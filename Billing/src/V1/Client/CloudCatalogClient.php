@@ -214,7 +214,7 @@ final class CloudCatalogClient
     /**
      * Lists all public cloud services.
      *
-     * The async variant is {@see CloudCatalogGapicClient::listServicesAsync()} .
+     * The async variant is {@see CloudCatalogClient::listServicesAsync()} .
      *
      * @param ListServicesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -238,7 +238,7 @@ final class CloudCatalogClient
     /**
      * Lists all publicly available SKUs for a given cloud service.
      *
-     * The async variant is {@see CloudCatalogGapicClient::listSkusAsync()} .
+     * The async variant is {@see CloudCatalogClient::listSkusAsync()} .
      *
      * @param ListSkusRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {

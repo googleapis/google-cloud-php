@@ -263,7 +263,7 @@ final class CloudShellServiceClient
      * corresponding private key to connect to that environment via SSH. If a key
      * with the same content already exists, this will error with ALREADY_EXISTS.
      *
-     * The async variant is {@see CloudShellServiceGapicClient::addPublicKeyAsync()} .
+     * The async variant is {@see CloudShellServiceClient::addPublicKeyAsync()} .
      *
      * @param AddPublicKeyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -290,8 +290,8 @@ final class CloudShellServiceClient
      * Cloud command line tools without requiring the user to manually
      * authenticate.
      *
-     * The async variant is
-     * {@see CloudShellServiceGapicClient::authorizeEnvironmentAsync()} .
+     * The async variant is {@see CloudShellServiceClient::authorizeEnvironmentAsync()}
+     * .
      *
      * @param AuthorizeEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -315,8 +315,7 @@ final class CloudShellServiceClient
     /**
      * Gets an environment. Returns NOT_FOUND if the environment does not exist.
      *
-     * The async variant is {@see CloudShellServiceGapicClient::getEnvironmentAsync()}
-     * .
+     * The async variant is {@see CloudShellServiceClient::getEnvironmentAsync()} .
      *
      * @param GetEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -343,8 +342,7 @@ final class CloudShellServiceClient
      * If a key with the same content is not present, this will error with
      * NOT_FOUND.
      *
-     * The async variant is {@see CloudShellServiceGapicClient::removePublicKeyAsync()}
-     * .
+     * The async variant is {@see CloudShellServiceClient::removePublicKeyAsync()} .
      *
      * @param RemovePublicKeyRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -373,8 +371,7 @@ final class CloudShellServiceClient
      * and is ready to accept connections, the operation will contain a
      * StartEnvironmentResponse in its response field.
      *
-     * The async variant is
-     * {@see CloudShellServiceGapicClient::startEnvironmentAsync()} .
+     * The async variant is {@see CloudShellServiceClient::startEnvironmentAsync()} .
      *
      * @param StartEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {

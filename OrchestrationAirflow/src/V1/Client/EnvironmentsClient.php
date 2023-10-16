@@ -275,7 +275,7 @@ final class EnvironmentsClient
     /**
      * Create a new environment.
      *
-     * The async variant is {@see EnvironmentsGapicClient::createEnvironmentAsync()} .
+     * The async variant is {@see EnvironmentsClient::createEnvironmentAsync()} .
      *
      * @param CreateEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -299,7 +299,7 @@ final class EnvironmentsClient
     /**
      * Triggers database failover (only for highly resilient environments).
      *
-     * The async variant is {@see EnvironmentsGapicClient::databaseFailoverAsync()} .
+     * The async variant is {@see EnvironmentsClient::databaseFailoverAsync()} .
      *
      * @param DatabaseFailoverRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -323,7 +323,7 @@ final class EnvironmentsClient
     /**
      * Delete an environment.
      *
-     * The async variant is {@see EnvironmentsGapicClient::deleteEnvironmentAsync()} .
+     * The async variant is {@see EnvironmentsClient::deleteEnvironmentAsync()} .
      *
      * @param DeleteEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -347,8 +347,7 @@ final class EnvironmentsClient
     /**
      * Executes Airflow CLI command.
      *
-     * The async variant is
-     * {@see EnvironmentsGapicClient::executeAirflowCommandAsync()} .
+     * The async variant is {@see EnvironmentsClient::executeAirflowCommandAsync()} .
      *
      * @param ExecuteAirflowCommandRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -372,8 +371,7 @@ final class EnvironmentsClient
     /**
      * Fetches database properties.
      *
-     * The async variant is
-     * {@see EnvironmentsGapicClient::fetchDatabasePropertiesAsync()} .
+     * The async variant is {@see EnvironmentsClient::fetchDatabasePropertiesAsync()} .
      *
      * @param FetchDatabasePropertiesRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -397,7 +395,7 @@ final class EnvironmentsClient
     /**
      * Get an existing environment.
      *
-     * The async variant is {@see EnvironmentsGapicClient::getEnvironmentAsync()} .
+     * The async variant is {@see EnvironmentsClient::getEnvironmentAsync()} .
      *
      * @param GetEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -421,7 +419,7 @@ final class EnvironmentsClient
     /**
      * List environments.
      *
-     * The async variant is {@see EnvironmentsGapicClient::listEnvironmentsAsync()} .
+     * The async variant is {@see EnvironmentsClient::listEnvironmentsAsync()} .
      *
      * @param ListEnvironmentsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -448,7 +446,7 @@ final class EnvironmentsClient
      * As a result of this operation, a snapshot of environment's specified in
      * LoadSnapshotRequest is loaded into the environment.
      *
-     * The async variant is {@see EnvironmentsGapicClient::loadSnapshotAsync()} .
+     * The async variant is {@see EnvironmentsClient::loadSnapshotAsync()} .
      *
      * @param LoadSnapshotRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -472,7 +470,7 @@ final class EnvironmentsClient
     /**
      * Polls Airflow CLI command execution and fetches logs.
      *
-     * The async variant is {@see EnvironmentsGapicClient::pollAirflowCommandAsync()} .
+     * The async variant is {@see EnvironmentsClient::pollAirflowCommandAsync()} .
      *
      * @param PollAirflowCommandRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -499,7 +497,7 @@ final class EnvironmentsClient
      * As a result of this operation, snapshot of environment's state is stored
      * in a location specified in the SaveSnapshotRequest.
      *
-     * The async variant is {@see EnvironmentsGapicClient::saveSnapshotAsync()} .
+     * The async variant is {@see EnvironmentsClient::saveSnapshotAsync()} .
      *
      * @param SaveSnapshotRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -523,7 +521,7 @@ final class EnvironmentsClient
     /**
      * Stops Airflow CLI command execution.
      *
-     * The async variant is {@see EnvironmentsGapicClient::stopAirflowCommandAsync()} .
+     * The async variant is {@see EnvironmentsClient::stopAirflowCommandAsync()} .
      *
      * @param StopAirflowCommandRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -547,7 +545,7 @@ final class EnvironmentsClient
     /**
      * Update an environment.
      *
-     * The async variant is {@see EnvironmentsGapicClient::updateEnvironmentAsync()} .
+     * The async variant is {@see EnvironmentsClient::updateEnvironmentAsync()} .
      *
      * @param UpdateEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {

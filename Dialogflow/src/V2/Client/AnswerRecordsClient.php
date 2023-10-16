@@ -613,7 +613,7 @@ final class AnswerRecordsClient
      * Returns the list of all answer records in the specified project in reverse
      * chronological order.
      *
-     * The async variant is {@see AnswerRecordsGapicClient::listAnswerRecordsAsync()} .
+     * The async variant is {@see AnswerRecordsClient::listAnswerRecordsAsync()} .
      *
      * @param ListAnswerRecordsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -637,8 +637,7 @@ final class AnswerRecordsClient
     /**
      * Updates the specified answer record.
      *
-     * The async variant is {@see AnswerRecordsGapicClient::updateAnswerRecordAsync()}
-     * .
+     * The async variant is {@see AnswerRecordsClient::updateAnswerRecordAsync()} .
      *
      * @param UpdateAnswerRecordRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -662,7 +661,7 @@ final class AnswerRecordsClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see AnswerRecordsGapicClient::getLocationAsync()} .
+     * The async variant is {@see AnswerRecordsClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -686,7 +685,7 @@ final class AnswerRecordsClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see AnswerRecordsGapicClient::listLocationsAsync()} .
+     * The async variant is {@see AnswerRecordsClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

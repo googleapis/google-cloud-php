@@ -431,7 +431,7 @@ final class SessionEntityTypesClient
      * with Google Assistant integration.
      *
      * The async variant is
-     * {@see SessionEntityTypesGapicClient::createSessionEntityTypeAsync()} .
+     * {@see SessionEntityTypesClient::createSessionEntityTypeAsync()} .
      *
      * @param CreateSessionEntityTypeRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -460,7 +460,7 @@ final class SessionEntityTypesClient
      * with Google Assistant integration.
      *
      * The async variant is
-     * {@see SessionEntityTypesGapicClient::deleteSessionEntityTypeAsync()} .
+     * {@see SessionEntityTypesClient::deleteSessionEntityTypeAsync()} .
      *
      * @param DeleteSessionEntityTypeRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -487,7 +487,7 @@ final class SessionEntityTypesClient
      * with Google Assistant integration.
      *
      * The async variant is
-     * {@see SessionEntityTypesGapicClient::getSessionEntityTypeAsync()} .
+     * {@see SessionEntityTypesClient::getSessionEntityTypeAsync()} .
      *
      * @param GetSessionEntityTypeRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -516,7 +516,7 @@ final class SessionEntityTypesClient
      * with Google Assistant integration.
      *
      * The async variant is
-     * {@see SessionEntityTypesGapicClient::listSessionEntityTypesAsync()} .
+     * {@see SessionEntityTypesClient::listSessionEntityTypesAsync()} .
      *
      * @param ListSessionEntityTypesRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -545,7 +545,7 @@ final class SessionEntityTypesClient
      * with Google Assistant integration.
      *
      * The async variant is
-     * {@see SessionEntityTypesGapicClient::updateSessionEntityTypeAsync()} .
+     * {@see SessionEntityTypesClient::updateSessionEntityTypeAsync()} .
      *
      * @param UpdateSessionEntityTypeRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -569,7 +569,7 @@ final class SessionEntityTypesClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see SessionEntityTypesGapicClient::getLocationAsync()} .
+     * The async variant is {@see SessionEntityTypesClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -593,8 +593,7 @@ final class SessionEntityTypesClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see SessionEntityTypesGapicClient::listLocationsAsync()}
-     * .
+     * The async variant is {@see SessionEntityTypesClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

@@ -442,7 +442,7 @@ final class MetadataServiceClient
      * simply skipped.
      *
      * The async variant is
-     * {@see MetadataServiceGapicClient::addContextArtifactsAndExecutionsAsync()} .
+     * {@see MetadataServiceClient::addContextArtifactsAndExecutionsAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/add_context_artifacts_and_executions.php
      *
@@ -472,8 +472,7 @@ final class MetadataServiceClient
      * have more than 10 parents, the request will fail with an INVALID_ARGUMENT
      * error.
      *
-     * The async variant is
-     * {@see MetadataServiceGapicClient::addContextChildrenAsync()} .
+     * The async variant is {@see MetadataServiceClient::addContextChildrenAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/add_context_children.php
      *
@@ -502,8 +501,7 @@ final class MetadataServiceClient
      * already exists between the Execution and the Artifact, the Event is
      * skipped.
      *
-     * The async variant is
-     * {@see MetadataServiceGapicClient::addExecutionEventsAsync()} .
+     * The async variant is {@see MetadataServiceClient::addExecutionEventsAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/add_execution_events.php
      *
@@ -529,7 +527,7 @@ final class MetadataServiceClient
     /**
      * Creates an Artifact associated with a MetadataStore.
      *
-     * The async variant is {@see MetadataServiceGapicClient::createArtifactAsync()} .
+     * The async variant is {@see MetadataServiceClient::createArtifactAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/create_artifact.php
      *
@@ -555,7 +553,7 @@ final class MetadataServiceClient
     /**
      * Creates a Context associated with a MetadataStore.
      *
-     * The async variant is {@see MetadataServiceGapicClient::createContextAsync()} .
+     * The async variant is {@see MetadataServiceClient::createContextAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/create_context.php
      *
@@ -581,7 +579,7 @@ final class MetadataServiceClient
     /**
      * Creates an Execution associated with a MetadataStore.
      *
-     * The async variant is {@see MetadataServiceGapicClient::createExecutionAsync()} .
+     * The async variant is {@see MetadataServiceClient::createExecutionAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/create_execution.php
      *
@@ -607,8 +605,7 @@ final class MetadataServiceClient
     /**
      * Creates a MetadataSchema.
      *
-     * The async variant is
-     * {@see MetadataServiceGapicClient::createMetadataSchemaAsync()} .
+     * The async variant is {@see MetadataServiceClient::createMetadataSchemaAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/create_metadata_schema.php
      *
@@ -634,8 +631,7 @@ final class MetadataServiceClient
     /**
      * Initializes a MetadataStore, including allocation of resources.
      *
-     * The async variant is
-     * {@see MetadataServiceGapicClient::createMetadataStoreAsync()} .
+     * The async variant is {@see MetadataServiceClient::createMetadataStoreAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/create_metadata_store.php
      *
@@ -661,7 +657,7 @@ final class MetadataServiceClient
     /**
      * Deletes an Artifact.
      *
-     * The async variant is {@see MetadataServiceGapicClient::deleteArtifactAsync()} .
+     * The async variant is {@see MetadataServiceClient::deleteArtifactAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/delete_artifact.php
      *
@@ -687,7 +683,7 @@ final class MetadataServiceClient
     /**
      * Deletes a stored Context.
      *
-     * The async variant is {@see MetadataServiceGapicClient::deleteContextAsync()} .
+     * The async variant is {@see MetadataServiceClient::deleteContextAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/delete_context.php
      *
@@ -713,7 +709,7 @@ final class MetadataServiceClient
     /**
      * Deletes an Execution.
      *
-     * The async variant is {@see MetadataServiceGapicClient::deleteExecutionAsync()} .
+     * The async variant is {@see MetadataServiceClient::deleteExecutionAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/delete_execution.php
      *
@@ -740,8 +736,7 @@ final class MetadataServiceClient
      * Deletes a single MetadataStore and all its child resources (Artifacts,
      * Executions, and Contexts).
      *
-     * The async variant is
-     * {@see MetadataServiceGapicClient::deleteMetadataStoreAsync()} .
+     * The async variant is {@see MetadataServiceClient::deleteMetadataStoreAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/delete_metadata_store.php
      *
@@ -767,7 +762,7 @@ final class MetadataServiceClient
     /**
      * Retrieves a specific Artifact.
      *
-     * The async variant is {@see MetadataServiceGapicClient::getArtifactAsync()} .
+     * The async variant is {@see MetadataServiceClient::getArtifactAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/get_artifact.php
      *
@@ -793,7 +788,7 @@ final class MetadataServiceClient
     /**
      * Retrieves a specific Context.
      *
-     * The async variant is {@see MetadataServiceGapicClient::getContextAsync()} .
+     * The async variant is {@see MetadataServiceClient::getContextAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/get_context.php
      *
@@ -819,7 +814,7 @@ final class MetadataServiceClient
     /**
      * Retrieves a specific Execution.
      *
-     * The async variant is {@see MetadataServiceGapicClient::getExecutionAsync()} .
+     * The async variant is {@see MetadataServiceClient::getExecutionAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/get_execution.php
      *
@@ -845,8 +840,7 @@ final class MetadataServiceClient
     /**
      * Retrieves a specific MetadataSchema.
      *
-     * The async variant is {@see MetadataServiceGapicClient::getMetadataSchemaAsync()}
-     * .
+     * The async variant is {@see MetadataServiceClient::getMetadataSchemaAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/get_metadata_schema.php
      *
@@ -872,8 +866,7 @@ final class MetadataServiceClient
     /**
      * Retrieves a specific MetadataStore.
      *
-     * The async variant is {@see MetadataServiceGapicClient::getMetadataStoreAsync()}
-     * .
+     * The async variant is {@see MetadataServiceClient::getMetadataStoreAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/get_metadata_store.php
      *
@@ -899,7 +892,7 @@ final class MetadataServiceClient
     /**
      * Lists Artifacts in the MetadataStore.
      *
-     * The async variant is {@see MetadataServiceGapicClient::listArtifactsAsync()} .
+     * The async variant is {@see MetadataServiceClient::listArtifactsAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/list_artifacts.php
      *
@@ -925,7 +918,7 @@ final class MetadataServiceClient
     /**
      * Lists Contexts on the MetadataStore.
      *
-     * The async variant is {@see MetadataServiceGapicClient::listContextsAsync()} .
+     * The async variant is {@see MetadataServiceClient::listContextsAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/list_contexts.php
      *
@@ -951,7 +944,7 @@ final class MetadataServiceClient
     /**
      * Lists Executions in the MetadataStore.
      *
-     * The async variant is {@see MetadataServiceGapicClient::listExecutionsAsync()} .
+     * The async variant is {@see MetadataServiceClient::listExecutionsAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/list_executions.php
      *
@@ -977,8 +970,7 @@ final class MetadataServiceClient
     /**
      * Lists MetadataSchemas.
      *
-     * The async variant is
-     * {@see MetadataServiceGapicClient::listMetadataSchemasAsync()} .
+     * The async variant is {@see MetadataServiceClient::listMetadataSchemasAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/list_metadata_schemas.php
      *
@@ -1004,8 +996,7 @@ final class MetadataServiceClient
     /**
      * Lists MetadataStores for a Location.
      *
-     * The async variant is
-     * {@see MetadataServiceGapicClient::listMetadataStoresAsync()} .
+     * The async variant is {@see MetadataServiceClient::listMetadataStoresAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/list_metadata_stores.php
      *
@@ -1031,7 +1022,7 @@ final class MetadataServiceClient
     /**
      * Purges Artifacts.
      *
-     * The async variant is {@see MetadataServiceGapicClient::purgeArtifactsAsync()} .
+     * The async variant is {@see MetadataServiceClient::purgeArtifactsAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/purge_artifacts.php
      *
@@ -1057,7 +1048,7 @@ final class MetadataServiceClient
     /**
      * Purges Contexts.
      *
-     * The async variant is {@see MetadataServiceGapicClient::purgeContextsAsync()} .
+     * The async variant is {@see MetadataServiceClient::purgeContextsAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/purge_contexts.php
      *
@@ -1083,7 +1074,7 @@ final class MetadataServiceClient
     /**
      * Purges Executions.
      *
-     * The async variant is {@see MetadataServiceGapicClient::purgeExecutionsAsync()} .
+     * The async variant is {@see MetadataServiceClient::purgeExecutionsAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/purge_executions.php
      *
@@ -1111,7 +1102,7 @@ final class MetadataServiceClient
      * Executions connected by Event edges and returned as a LineageSubgraph.
      *
      * The async variant is
-     * {@see MetadataServiceGapicClient::queryArtifactLineageSubgraphAsync()} .
+     * {@see MetadataServiceClient::queryArtifactLineageSubgraphAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/query_artifact_lineage_subgraph.php
      *
@@ -1139,7 +1130,7 @@ final class MetadataServiceClient
      * by Event edges and returned as a LineageSubgraph.
      *
      * The async variant is
-     * {@see MetadataServiceGapicClient::queryContextLineageSubgraphAsync()} .
+     * {@see MetadataServiceClient::queryContextLineageSubgraphAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/query_context_lineage_subgraph.php
      *
@@ -1168,7 +1159,7 @@ final class MetadataServiceClient
      * Events.
      *
      * The async variant is
-     * {@see MetadataServiceGapicClient::queryExecutionInputsAndOutputsAsync()} .
+     * {@see MetadataServiceClient::queryExecutionInputsAndOutputsAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/query_execution_inputs_and_outputs.php
      *
@@ -1196,8 +1187,8 @@ final class MetadataServiceClient
      * child Contexts were NOT added to the parent Context, they are
      * simply skipped.
      *
-     * The async variant is
-     * {@see MetadataServiceGapicClient::removeContextChildrenAsync()} .
+     * The async variant is {@see MetadataServiceClient::removeContextChildrenAsync()}
+     * .
      *
      * @example samples/V1/MetadataServiceClient/remove_context_children.php
      *
@@ -1223,7 +1214,7 @@ final class MetadataServiceClient
     /**
      * Updates a stored Artifact.
      *
-     * The async variant is {@see MetadataServiceGapicClient::updateArtifactAsync()} .
+     * The async variant is {@see MetadataServiceClient::updateArtifactAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/update_artifact.php
      *
@@ -1249,7 +1240,7 @@ final class MetadataServiceClient
     /**
      * Updates a stored Context.
      *
-     * The async variant is {@see MetadataServiceGapicClient::updateContextAsync()} .
+     * The async variant is {@see MetadataServiceClient::updateContextAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/update_context.php
      *
@@ -1275,7 +1266,7 @@ final class MetadataServiceClient
     /**
      * Updates a stored Execution.
      *
-     * The async variant is {@see MetadataServiceGapicClient::updateExecutionAsync()} .
+     * The async variant is {@see MetadataServiceClient::updateExecutionAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/update_execution.php
      *
@@ -1301,7 +1292,7 @@ final class MetadataServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see MetadataServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see MetadataServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/get_location.php
      *
@@ -1327,7 +1318,7 @@ final class MetadataServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see MetadataServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see MetadataServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/list_locations.php
      *
@@ -1354,7 +1345,7 @@ final class MetadataServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see MetadataServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see MetadataServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/get_iam_policy.php
      *
@@ -1384,7 +1375,7 @@ final class MetadataServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see MetadataServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see MetadataServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/set_iam_policy.php
      *
@@ -1416,8 +1407,7 @@ final class MetadataServiceClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is
-     * {@see MetadataServiceGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see MetadataServiceClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/test_iam_permissions.php
      *

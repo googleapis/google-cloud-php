@@ -226,7 +226,7 @@ final class PredictionServiceClient
      * [PredictionApiKeyRegistry][google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry]
      * service. [Learn more](https://cloud.google.com/recommendations-ai/docs/setting-up#register-key).
      *
-     * The async variant is {@see PredictionServiceGapicClient::predictAsync()} .
+     * The async variant is {@see PredictionServiceClient::predictAsync()} .
      *
      * @example samples/V1beta1/PredictionServiceClient/predict.php
      *

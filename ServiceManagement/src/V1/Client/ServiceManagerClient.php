@@ -250,7 +250,7 @@ final class ServiceManagerClient
      *
      * Operation<response: ManagedService>
      *
-     * The async variant is {@see ServiceManagerGapicClient::createServiceAsync()} .
+     * The async variant is {@see ServiceManagerClient::createServiceAsync()} .
      *
      * @param CreateServiceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -281,8 +281,7 @@ final class ServiceManagerClient
      * existing rollouts are kept for each service. The rest will be deleted
      * eventually.
      *
-     * The async variant is
-     * {@see ServiceManagerGapicClient::createServiceConfigAsync()} .
+     * The async variant is {@see ServiceManagerClient::createServiceConfigAsync()} .
      *
      * @param CreateServiceConfigRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -319,8 +318,7 @@ final class ServiceManagerClient
      *
      * Operation<response: Rollout>
      *
-     * The async variant is
-     * {@see ServiceManagerGapicClient::createServiceRolloutAsync()} .
+     * The async variant is {@see ServiceManagerClient::createServiceRolloutAsync()} .
      *
      * @param CreateServiceRolloutRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -351,7 +349,7 @@ final class ServiceManagerClient
      *
      * Operation<response: google.protobuf.Empty>
      *
-     * The async variant is {@see ServiceManagerGapicClient::deleteServiceAsync()} .
+     * The async variant is {@see ServiceManagerClient::deleteServiceAsync()} .
      *
      * @param DeleteServiceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -385,8 +383,7 @@ final class ServiceManagerClient
      * will compare GenerateConfigReportRequest.new_value with the last pushed
      * service configuration.
      *
-     * The async variant is
-     * {@see ServiceManagerGapicClient::generateConfigReportAsync()} .
+     * The async variant is {@see ServiceManagerClient::generateConfigReportAsync()} .
      *
      * @param GenerateConfigReportRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -411,7 +408,7 @@ final class ServiceManagerClient
      * Gets a managed service. Authentication is required unless the service is
      * public.
      *
-     * The async variant is {@see ServiceManagerGapicClient::getServiceAsync()} .
+     * The async variant is {@see ServiceManagerClient::getServiceAsync()} .
      *
      * @param GetServiceRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -435,7 +432,7 @@ final class ServiceManagerClient
     /**
      * Gets a service configuration (version) for a managed service.
      *
-     * The async variant is {@see ServiceManagerGapicClient::getServiceConfigAsync()} .
+     * The async variant is {@see ServiceManagerClient::getServiceConfigAsync()} .
      *
      * @param GetServiceConfigRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -460,8 +457,7 @@ final class ServiceManagerClient
      * Gets a service configuration
      * [rollout][google.api.servicemanagement.v1.Rollout].
      *
-     * The async variant is {@see ServiceManagerGapicClient::getServiceRolloutAsync()}
-     * .
+     * The async variant is {@see ServiceManagerClient::getServiceRolloutAsync()} .
      *
      * @param GetServiceRolloutRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -486,8 +482,7 @@ final class ServiceManagerClient
      * Lists the history of the service configuration for a managed service,
      * from the newest to the oldest.
      *
-     * The async variant is {@see ServiceManagerGapicClient::listServiceConfigsAsync()}
-     * .
+     * The async variant is {@see ServiceManagerClient::listServiceConfigsAsync()} .
      *
      * @param ListServiceConfigsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -512,8 +507,7 @@ final class ServiceManagerClient
      * Lists the history of the service configuration rollouts for a managed
      * service, from the newest to the oldest.
      *
-     * The async variant is
-     * {@see ServiceManagerGapicClient::listServiceRolloutsAsync()} .
+     * The async variant is {@see ServiceManagerClient::listServiceRolloutsAsync()} .
      *
      * @param ListServiceRolloutsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -541,7 +535,7 @@ final class ServiceManagerClient
      * services the calling user has "servicemanagement.services.get" permission
      * for.
      *
-     * The async variant is {@see ServiceManagerGapicClient::listServicesAsync()} .
+     * The async variant is {@see ServiceManagerClient::listServicesAsync()} .
      *
      * @param ListServicesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -578,8 +572,7 @@ final class ServiceManagerClient
      *
      * Operation<response: SubmitConfigSourceResponse>
      *
-     * The async variant is {@see ServiceManagerGapicClient::submitConfigSourceAsync()}
-     * .
+     * The async variant is {@see ServiceManagerClient::submitConfigSourceAsync()} .
      *
      * @param SubmitConfigSourceRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -608,7 +601,7 @@ final class ServiceManagerClient
      *
      * Operation<response: UndeleteServiceResponse>
      *
-     * The async variant is {@see ServiceManagerGapicClient::undeleteServiceAsync()} .
+     * The async variant is {@see ServiceManagerClient::undeleteServiceAsync()} .
      *
      * @param UndeleteServiceRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -633,7 +626,7 @@ final class ServiceManagerClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see ServiceManagerGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see ServiceManagerClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -661,7 +654,7 @@ final class ServiceManagerClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see ServiceManagerGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see ServiceManagerClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -691,8 +684,7 @@ final class ServiceManagerClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is {@see ServiceManagerGapicClient::testIamPermissionsAsync()}
-     * .
+     * The async variant is {@see ServiceManagerClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

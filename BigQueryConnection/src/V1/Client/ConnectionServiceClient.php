@@ -289,8 +289,7 @@ final class ConnectionServiceClient
     /**
      * Creates a new connection.
      *
-     * The async variant is
-     * {@see ConnectionServiceGapicClient::createConnectionAsync()} .
+     * The async variant is {@see ConnectionServiceClient::createConnectionAsync()} .
      *
      * @param CreateConnectionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -314,8 +313,7 @@ final class ConnectionServiceClient
     /**
      * Deletes connection and associated credential.
      *
-     * The async variant is
-     * {@see ConnectionServiceGapicClient::deleteConnectionAsync()} .
+     * The async variant is {@see ConnectionServiceClient::deleteConnectionAsync()} .
      *
      * @param DeleteConnectionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -337,7 +335,7 @@ final class ConnectionServiceClient
     /**
      * Returns specified connection.
      *
-     * The async variant is {@see ConnectionServiceGapicClient::getConnectionAsync()} .
+     * The async variant is {@see ConnectionServiceClient::getConnectionAsync()} .
      *
      * @param GetConnectionRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -363,7 +361,7 @@ final class ConnectionServiceClient
      * Returns an empty policy if the resource exists and does not have a policy
      * set.
      *
-     * The async variant is {@see ConnectionServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see ConnectionServiceClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -387,8 +385,7 @@ final class ConnectionServiceClient
     /**
      * Returns a list of connections in the given project.
      *
-     * The async variant is {@see ConnectionServiceGapicClient::listConnectionsAsync()}
-     * .
+     * The async variant is {@see ConnectionServiceClient::listConnectionsAsync()} .
      *
      * @param ListConnectionsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -415,7 +412,7 @@ final class ConnectionServiceClient
      *
      * Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      *
-     * The async variant is {@see ConnectionServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see ConnectionServiceClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -445,8 +442,7 @@ final class ConnectionServiceClient
      * UIs and command-line tools, not for authorization checking. This operation
      * may "fail open" without warning.
      *
-     * The async variant is
-     * {@see ConnectionServiceGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see ConnectionServiceClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -471,8 +467,7 @@ final class ConnectionServiceClient
      * Updates the specified connection. For security reasons, also resets
      * credential if connection properties are in the update field mask.
      *
-     * The async variant is
-     * {@see ConnectionServiceGapicClient::updateConnectionAsync()} .
+     * The async variant is {@see ConnectionServiceClient::updateConnectionAsync()} .
      *
      * @param UpdateConnectionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {

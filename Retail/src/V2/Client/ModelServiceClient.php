@@ -295,7 +295,7 @@ final class ModelServiceClient
     /**
      * Creates a new model.
      *
-     * The async variant is {@see ModelServiceGapicClient::createModelAsync()} .
+     * The async variant is {@see ModelServiceClient::createModelAsync()} .
      *
      * @param CreateModelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -319,7 +319,7 @@ final class ModelServiceClient
     /**
      * Deletes an existing model.
      *
-     * The async variant is {@see ModelServiceGapicClient::deleteModelAsync()} .
+     * The async variant is {@see ModelServiceClient::deleteModelAsync()} .
      *
      * @param DeleteModelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -341,7 +341,7 @@ final class ModelServiceClient
     /**
      * Gets a model.
      *
-     * The async variant is {@see ModelServiceGapicClient::getModelAsync()} .
+     * The async variant is {@see ModelServiceClient::getModelAsync()} .
      *
      * @param GetModelRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -365,7 +365,7 @@ final class ModelServiceClient
     /**
      * Lists all the models linked to this event store.
      *
-     * The async variant is {@see ModelServiceGapicClient::listModelsAsync()} .
+     * The async variant is {@see ModelServiceClient::listModelsAsync()} .
      *
      * @param ListModelsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -389,7 +389,7 @@ final class ModelServiceClient
     /**
      * Pauses the training of an existing model.
      *
-     * The async variant is {@see ModelServiceGapicClient::pauseModelAsync()} .
+     * The async variant is {@see ModelServiceClient::pauseModelAsync()} .
      *
      * @param PauseModelRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -413,7 +413,7 @@ final class ModelServiceClient
     /**
      * Resumes the training of an existing model.
      *
-     * The async variant is {@see ModelServiceGapicClient::resumeModelAsync()} .
+     * The async variant is {@see ModelServiceClient::resumeModelAsync()} .
      *
      * @param ResumeModelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -437,7 +437,7 @@ final class ModelServiceClient
     /**
      * Tunes an existing model.
      *
-     * The async variant is {@see ModelServiceGapicClient::tuneModelAsync()} .
+     * The async variant is {@see ModelServiceClient::tuneModelAsync()} .
      *
      * @param TuneModelRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -464,7 +464,7 @@ final class ModelServiceClient
      * `periodic_tuning_state`.
      * If other values are provided, this API method ignores them.
      *
-     * The async variant is {@see ModelServiceGapicClient::updateModelAsync()} .
+     * The async variant is {@see ModelServiceClient::updateModelAsync()} .
      *
      * @param UpdateModelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {

@@ -217,7 +217,7 @@ final class EventServiceClient
      * more](https://cloud.google.com/talent-solution/docs/management-tools)
      * about self service tools.
      *
-     * The async variant is {@see EventServiceGapicClient::createClientEventAsync()} .
+     * The async variant is {@see EventServiceClient::createClientEventAsync()} .
      *
      * @param CreateClientEventRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {

@@ -212,8 +212,7 @@ final class ConnectionServiceClient
      * Lists connections that are currently active for the given Apigee Connect
      * endpoint.
      *
-     * The async variant is {@see ConnectionServiceGapicClient::listConnectionsAsync()}
-     * .
+     * The async variant is {@see ConnectionServiceClient::listConnectionsAsync()} .
      *
      * @param ListConnectionsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {

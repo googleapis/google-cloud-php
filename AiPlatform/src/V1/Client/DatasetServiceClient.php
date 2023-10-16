@@ -403,7 +403,7 @@ final class DatasetServiceClient
     /**
      * Creates a Dataset.
      *
-     * The async variant is {@see DatasetServiceGapicClient::createDatasetAsync()} .
+     * The async variant is {@see DatasetServiceClient::createDatasetAsync()} .
      *
      * @example samples/V1/DatasetServiceClient/create_dataset.php
      *
@@ -429,8 +429,7 @@ final class DatasetServiceClient
     /**
      * Create a version from a Dataset.
      *
-     * The async variant is
-     * {@see DatasetServiceGapicClient::createDatasetVersionAsync()} .
+     * The async variant is {@see DatasetServiceClient::createDatasetVersionAsync()} .
      *
      * @example samples/V1/DatasetServiceClient/create_dataset_version.php
      *
@@ -456,7 +455,7 @@ final class DatasetServiceClient
     /**
      * Deletes a Dataset.
      *
-     * The async variant is {@see DatasetServiceGapicClient::deleteDatasetAsync()} .
+     * The async variant is {@see DatasetServiceClient::deleteDatasetAsync()} .
      *
      * @example samples/V1/DatasetServiceClient/delete_dataset.php
      *
@@ -482,8 +481,7 @@ final class DatasetServiceClient
     /**
      * Deletes a Dataset version.
      *
-     * The async variant is
-     * {@see DatasetServiceGapicClient::deleteDatasetVersionAsync()} .
+     * The async variant is {@see DatasetServiceClient::deleteDatasetVersionAsync()} .
      *
      * @example samples/V1/DatasetServiceClient/delete_dataset_version.php
      *
@@ -509,7 +507,7 @@ final class DatasetServiceClient
     /**
      * Deletes a SavedQuery.
      *
-     * The async variant is {@see DatasetServiceGapicClient::deleteSavedQueryAsync()} .
+     * The async variant is {@see DatasetServiceClient::deleteSavedQueryAsync()} .
      *
      * @example samples/V1/DatasetServiceClient/delete_saved_query.php
      *
@@ -535,7 +533,7 @@ final class DatasetServiceClient
     /**
      * Exports data from a Dataset.
      *
-     * The async variant is {@see DatasetServiceGapicClient::exportDataAsync()} .
+     * The async variant is {@see DatasetServiceClient::exportDataAsync()} .
      *
      * @example samples/V1/DatasetServiceClient/export_data.php
      *
@@ -561,8 +559,7 @@ final class DatasetServiceClient
     /**
      * Gets an AnnotationSpec.
      *
-     * The async variant is {@see DatasetServiceGapicClient::getAnnotationSpecAsync()}
-     * .
+     * The async variant is {@see DatasetServiceClient::getAnnotationSpecAsync()} .
      *
      * @example samples/V1/DatasetServiceClient/get_annotation_spec.php
      *
@@ -588,7 +585,7 @@ final class DatasetServiceClient
     /**
      * Gets a Dataset.
      *
-     * The async variant is {@see DatasetServiceGapicClient::getDatasetAsync()} .
+     * The async variant is {@see DatasetServiceClient::getDatasetAsync()} .
      *
      * @example samples/V1/DatasetServiceClient/get_dataset.php
      *
@@ -614,8 +611,7 @@ final class DatasetServiceClient
     /**
      * Gets a Dataset version.
      *
-     * The async variant is {@see DatasetServiceGapicClient::getDatasetVersionAsync()}
-     * .
+     * The async variant is {@see DatasetServiceClient::getDatasetVersionAsync()} .
      *
      * @example samples/V1/DatasetServiceClient/get_dataset_version.php
      *
@@ -641,7 +637,7 @@ final class DatasetServiceClient
     /**
      * Imports data into a Dataset.
      *
-     * The async variant is {@see DatasetServiceGapicClient::importDataAsync()} .
+     * The async variant is {@see DatasetServiceClient::importDataAsync()} .
      *
      * @example samples/V1/DatasetServiceClient/import_data.php
      *
@@ -667,7 +663,7 @@ final class DatasetServiceClient
     /**
      * Lists Annotations belongs to a dataitem
      *
-     * The async variant is {@see DatasetServiceGapicClient::listAnnotationsAsync()} .
+     * The async variant is {@see DatasetServiceClient::listAnnotationsAsync()} .
      *
      * @example samples/V1/DatasetServiceClient/list_annotations.php
      *
@@ -693,7 +689,7 @@ final class DatasetServiceClient
     /**
      * Lists DataItems in a Dataset.
      *
-     * The async variant is {@see DatasetServiceGapicClient::listDataItemsAsync()} .
+     * The async variant is {@see DatasetServiceClient::listDataItemsAsync()} .
      *
      * @example samples/V1/DatasetServiceClient/list_data_items.php
      *
@@ -719,8 +715,7 @@ final class DatasetServiceClient
     /**
      * Lists DatasetVersions in a Dataset.
      *
-     * The async variant is
-     * {@see DatasetServiceGapicClient::listDatasetVersionsAsync()} .
+     * The async variant is {@see DatasetServiceClient::listDatasetVersionsAsync()} .
      *
      * @example samples/V1/DatasetServiceClient/list_dataset_versions.php
      *
@@ -746,7 +741,7 @@ final class DatasetServiceClient
     /**
      * Lists Datasets in a Location.
      *
-     * The async variant is {@see DatasetServiceGapicClient::listDatasetsAsync()} .
+     * The async variant is {@see DatasetServiceClient::listDatasetsAsync()} .
      *
      * @example samples/V1/DatasetServiceClient/list_datasets.php
      *
@@ -772,7 +767,7 @@ final class DatasetServiceClient
     /**
      * Lists SavedQueries in a Dataset.
      *
-     * The async variant is {@see DatasetServiceGapicClient::listSavedQueriesAsync()} .
+     * The async variant is {@see DatasetServiceClient::listSavedQueriesAsync()} .
      *
      * @example samples/V1/DatasetServiceClient/list_saved_queries.php
      *
@@ -798,8 +793,7 @@ final class DatasetServiceClient
     /**
      * Restores a dataset version.
      *
-     * The async variant is
-     * {@see DatasetServiceGapicClient::restoreDatasetVersionAsync()} .
+     * The async variant is {@see DatasetServiceClient::restoreDatasetVersionAsync()} .
      *
      * @example samples/V1/DatasetServiceClient/restore_dataset_version.php
      *
@@ -825,7 +819,7 @@ final class DatasetServiceClient
     /**
      * Searches DataItems in a Dataset.
      *
-     * The async variant is {@see DatasetServiceGapicClient::searchDataItemsAsync()} .
+     * The async variant is {@see DatasetServiceClient::searchDataItemsAsync()} .
      *
      * @example samples/V1/DatasetServiceClient/search_data_items.php
      *
@@ -851,7 +845,7 @@ final class DatasetServiceClient
     /**
      * Updates a Dataset.
      *
-     * The async variant is {@see DatasetServiceGapicClient::updateDatasetAsync()} .
+     * The async variant is {@see DatasetServiceClient::updateDatasetAsync()} .
      *
      * @example samples/V1/DatasetServiceClient/update_dataset.php
      *
@@ -877,7 +871,7 @@ final class DatasetServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see DatasetServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see DatasetServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/DatasetServiceClient/get_location.php
      *
@@ -903,7 +897,7 @@ final class DatasetServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see DatasetServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see DatasetServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/DatasetServiceClient/list_locations.php
      *
@@ -930,7 +924,7 @@ final class DatasetServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see DatasetServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see DatasetServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/DatasetServiceClient/get_iam_policy.php
      *
@@ -960,7 +954,7 @@ final class DatasetServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see DatasetServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see DatasetServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/DatasetServiceClient/set_iam_policy.php
      *
@@ -992,8 +986,7 @@ final class DatasetServiceClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is {@see DatasetServiceGapicClient::testIamPermissionsAsync()}
-     * .
+     * The async variant is {@see DatasetServiceClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/DatasetServiceClient/test_iam_permissions.php
      *

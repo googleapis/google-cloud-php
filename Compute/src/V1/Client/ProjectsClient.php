@@ -252,7 +252,7 @@ final class ProjectsClient
     /**
      * Disable this project as a shared VPC host project.
      *
-     * The async variant is {@see ProjectsGapicClient::disableXpnHostAsync()} .
+     * The async variant is {@see ProjectsClient::disableXpnHostAsync()} .
      *
      * @param DisableXpnHostProjectRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -276,7 +276,7 @@ final class ProjectsClient
     /**
      * Disable a service resource (also known as service project) associated with this host project.
      *
-     * The async variant is {@see ProjectsGapicClient::disableXpnResourceAsync()} .
+     * The async variant is {@see ProjectsClient::disableXpnResourceAsync()} .
      *
      * @param DisableXpnResourceProjectRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -300,7 +300,7 @@ final class ProjectsClient
     /**
      * Enable this project as a shared VPC host project.
      *
-     * The async variant is {@see ProjectsGapicClient::enableXpnHostAsync()} .
+     * The async variant is {@see ProjectsClient::enableXpnHostAsync()} .
      *
      * @param EnableXpnHostProjectRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -324,7 +324,7 @@ final class ProjectsClient
     /**
      * Enable service resource (a.k.a service project) for a host project, so that subnets in the host project can be used by instances in the service project.
      *
-     * The async variant is {@see ProjectsGapicClient::enableXpnResourceAsync()} .
+     * The async variant is {@see ProjectsClient::enableXpnResourceAsync()} .
      *
      * @param EnableXpnResourceProjectRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -348,7 +348,7 @@ final class ProjectsClient
     /**
      * Returns the specified Project resource. To decrease latency for this method, you can optionally omit any unneeded information from the response by using a field mask. This practice is especially recommended for unused quota information (the `quotas` field). To exclude one or more fields, set your request's `fields` query parameter to only include the fields you need. For example, to only include the `id` and `selfLink` fields, add the query parameter `?fields=id,selfLink` to your request.
      *
-     * The async variant is {@see ProjectsGapicClient::getAsync()} .
+     * The async variant is {@see ProjectsClient::getAsync()} .
      *
      * @param GetProjectRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -372,7 +372,7 @@ final class ProjectsClient
     /**
      * Gets the shared VPC host project that this project links to. May be empty if no link exists.
      *
-     * The async variant is {@see ProjectsGapicClient::getXpnHostAsync()} .
+     * The async variant is {@see ProjectsClient::getXpnHostAsync()} .
      *
      * @param GetXpnHostProjectRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -396,7 +396,7 @@ final class ProjectsClient
     /**
      * Gets service resources (a.k.a service project) associated with this host project.
      *
-     * The async variant is {@see ProjectsGapicClient::getXpnResourcesAsync()} .
+     * The async variant is {@see ProjectsClient::getXpnResourcesAsync()} .
      *
      * @param GetXpnResourcesProjectsRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -420,7 +420,7 @@ final class ProjectsClient
     /**
      * Lists all shared VPC host projects visible to the user in an organization.
      *
-     * The async variant is {@see ProjectsGapicClient::listXpnHostsAsync()} .
+     * The async variant is {@see ProjectsClient::listXpnHostsAsync()} .
      *
      * @param ListXpnHostsProjectsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -444,7 +444,7 @@ final class ProjectsClient
     /**
      * Moves a persistent disk from one zone to another.
      *
-     * The async variant is {@see ProjectsGapicClient::moveDiskAsync()} .
+     * The async variant is {@see ProjectsClient::moveDiskAsync()} .
      *
      * @param MoveDiskProjectRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -468,7 +468,7 @@ final class ProjectsClient
     /**
      * Moves an instance and its attached persistent disks from one zone to another. *Note*: Moving VMs or disks by using this method might cause unexpected behavior. For more information, see the [known issue](/compute/docs/troubleshooting/known-issues#moving_vms_or_disks_using_the_moveinstance_api_or_the_causes_unexpected_behavior). [Deprecated] This method is deprecated. See [moving instance across zones](https://cloud.google.com/compute/docs/instances/moving-instance-across-zones) instead.
      *
-     * The async variant is {@see ProjectsGapicClient::moveInstanceAsync()} .
+     * The async variant is {@see ProjectsClient::moveInstanceAsync()} .
      *
      * @param MoveInstanceProjectRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -492,8 +492,7 @@ final class ProjectsClient
     /**
      * Sets metadata common to all instances within the specified project using the data included in the request.
      *
-     * The async variant is
-     * {@see ProjectsGapicClient::setCommonInstanceMetadataAsync()} .
+     * The async variant is {@see ProjectsClient::setCommonInstanceMetadataAsync()} .
      *
      * @param SetCommonInstanceMetadataProjectRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -517,7 +516,7 @@ final class ProjectsClient
     /**
      * Sets the default network tier of the project. The default network tier is used when an address/forwardingRule/instance is created without specifying the network tier field.
      *
-     * The async variant is {@see ProjectsGapicClient::setDefaultNetworkTierAsync()} .
+     * The async variant is {@see ProjectsClient::setDefaultNetworkTierAsync()} .
      *
      * @param SetDefaultNetworkTierProjectRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -541,7 +540,7 @@ final class ProjectsClient
     /**
      * Enables the usage export feature and sets the usage export bucket where reports are stored. If you provide an empty request body using this method, the usage export feature will be disabled.
      *
-     * The async variant is {@see ProjectsGapicClient::setUsageExportBucketAsync()} .
+     * The async variant is {@see ProjectsClient::setUsageExportBucketAsync()} .
      *
      * @param SetUsageExportBucketProjectRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {

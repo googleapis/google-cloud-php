@@ -248,7 +248,7 @@ final class RegionBackendServicesClient
     /**
      * Deletes the specified regional BackendService resource.
      *
-     * The async variant is {@see RegionBackendServicesGapicClient::deleteAsync()} .
+     * The async variant is {@see RegionBackendServicesClient::deleteAsync()} .
      *
      * @param DeleteRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -272,7 +272,7 @@ final class RegionBackendServicesClient
     /**
      * Returns the specified regional BackendService resource.
      *
-     * The async variant is {@see RegionBackendServicesGapicClient::getAsync()} .
+     * The async variant is {@see RegionBackendServicesClient::getAsync()} .
      *
      * @param GetRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -296,7 +296,7 @@ final class RegionBackendServicesClient
     /**
      * Gets the most recent health check results for this regional BackendService.
      *
-     * The async variant is {@see RegionBackendServicesGapicClient::getHealthAsync()} .
+     * The async variant is {@see RegionBackendServicesClient::getHealthAsync()} .
      *
      * @param GetHealthRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -320,8 +320,7 @@ final class RegionBackendServicesClient
     /**
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
-     * The async variant is
-     * {@see RegionBackendServicesGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see RegionBackendServicesClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -345,7 +344,7 @@ final class RegionBackendServicesClient
     /**
      * Creates a regional BackendService resource in the specified project using the data included in the request. For more information, see Backend services overview.
      *
-     * The async variant is {@see RegionBackendServicesGapicClient::insertAsync()} .
+     * The async variant is {@see RegionBackendServicesClient::insertAsync()} .
      *
      * @param InsertRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -369,7 +368,7 @@ final class RegionBackendServicesClient
     /**
      * Retrieves the list of regional BackendService resources available to the specified project in the given region.
      *
-     * The async variant is {@see RegionBackendServicesGapicClient::listAsync()} .
+     * The async variant is {@see RegionBackendServicesClient::listAsync()} .
      *
      * @param ListRegionBackendServicesRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -393,7 +392,7 @@ final class RegionBackendServicesClient
     /**
      * Updates the specified regional BackendService resource with the data included in the request. For more information, see Understanding backend services This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      *
-     * The async variant is {@see RegionBackendServicesGapicClient::patchAsync()} .
+     * The async variant is {@see RegionBackendServicesClient::patchAsync()} .
      *
      * @param PatchRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -417,8 +416,7 @@ final class RegionBackendServicesClient
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
-     * The async variant is
-     * {@see RegionBackendServicesGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see RegionBackendServicesClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -442,7 +440,7 @@ final class RegionBackendServicesClient
     /**
      * Updates the specified regional BackendService resource with the data included in the request. For more information, see Backend services overview .
      *
-     * The async variant is {@see RegionBackendServicesGapicClient::updateAsync()} .
+     * The async variant is {@see RegionBackendServicesClient::updateAsync()} .
      *
      * @param UpdateRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {

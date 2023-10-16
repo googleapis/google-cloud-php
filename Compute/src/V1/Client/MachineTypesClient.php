@@ -180,7 +180,7 @@ final class MachineTypesClient
     /**
      * Retrieves an aggregated list of machine types.
      *
-     * The async variant is {@see MachineTypesGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see MachineTypesClient::aggregatedListAsync()} .
      *
      * @param AggregatedListMachineTypesRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -204,7 +204,7 @@ final class MachineTypesClient
     /**
      * Returns the specified machine type.
      *
-     * The async variant is {@see MachineTypesGapicClient::getAsync()} .
+     * The async variant is {@see MachineTypesClient::getAsync()} .
      *
      * @param GetMachineTypeRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -228,7 +228,7 @@ final class MachineTypesClient
     /**
      * Retrieves a list of machine types available to the specified project.
      *
-     * The async variant is {@see MachineTypesGapicClient::listAsync()} .
+     * The async variant is {@see MachineTypesClient::listAsync()} .
      *
      * @param ListMachineTypesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {

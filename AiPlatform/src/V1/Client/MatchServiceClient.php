@@ -230,7 +230,7 @@ final class MatchServiceClient
     /**
      * Finds the nearest neighbors of each vector within the request.
      *
-     * The async variant is {@see MatchServiceGapicClient::findNeighborsAsync()} .
+     * The async variant is {@see MatchServiceClient::findNeighborsAsync()} .
      *
      * @example samples/V1/MatchServiceClient/find_neighbors.php
      *
@@ -257,8 +257,7 @@ final class MatchServiceClient
      * Reads the datapoints/vectors of the given IDs.
      * A maximum of 1000 datapoints can be retrieved in a batch.
      *
-     * The async variant is {@see MatchServiceGapicClient::readIndexDatapointsAsync()}
-     * .
+     * The async variant is {@see MatchServiceClient::readIndexDatapointsAsync()} .
      *
      * @example samples/V1/MatchServiceClient/read_index_datapoints.php
      *
@@ -284,7 +283,7 @@ final class MatchServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see MatchServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see MatchServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/MatchServiceClient/get_location.php
      *
@@ -310,7 +309,7 @@ final class MatchServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see MatchServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see MatchServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/MatchServiceClient/list_locations.php
      *
@@ -337,7 +336,7 @@ final class MatchServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see MatchServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see MatchServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/MatchServiceClient/get_iam_policy.php
      *
@@ -367,7 +366,7 @@ final class MatchServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see MatchServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see MatchServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/MatchServiceClient/set_iam_policy.php
      *
@@ -399,7 +398,7 @@ final class MatchServiceClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is {@see MatchServiceGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see MatchServiceClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/MatchServiceClient/test_iam_permissions.php
      *

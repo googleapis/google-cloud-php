@@ -266,8 +266,8 @@ final class ImageAnnotatorClient
      * `Operation.metadata` contains `OperationMetadata` (metadata).
      * `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
      *
-     * The async variant is
-     * {@see ImageAnnotatorGapicClient::asyncBatchAnnotateFilesAsync()} .
+     * The async variant is {@see ImageAnnotatorClient::asyncBatchAnnotateFilesAsync()}
+     * .
      *
      * @param AsyncBatchAnnotateFilesRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -300,7 +300,7 @@ final class ImageAnnotatorClient
      * GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
      *
      * The async variant is
-     * {@see ImageAnnotatorGapicClient::asyncBatchAnnotateImagesAsync()} .
+     * {@see ImageAnnotatorClient::asyncBatchAnnotateImagesAsync()} .
      *
      * @param AsyncBatchAnnotateImagesRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -330,8 +330,7 @@ final class ImageAnnotatorClient
      * file provided and perform detection and annotation for each image
      * extracted.
      *
-     * The async variant is {@see ImageAnnotatorGapicClient::batchAnnotateFilesAsync()}
-     * .
+     * The async variant is {@see ImageAnnotatorClient::batchAnnotateFilesAsync()} .
      *
      * @param BatchAnnotateFilesRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -355,8 +354,7 @@ final class ImageAnnotatorClient
     /**
      * Run image detection and annotation for a batch of images.
      *
-     * The async variant is
-     * {@see ImageAnnotatorGapicClient::batchAnnotateImagesAsync()} .
+     * The async variant is {@see ImageAnnotatorClient::batchAnnotateImagesAsync()} .
      *
      * @param BatchAnnotateImagesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {

@@ -301,7 +301,7 @@ final class DataprocMetastoreFederationClient
      * Creates a metastore federation in a project and location.
      *
      * The async variant is
-     * {@see DataprocMetastoreFederationGapicClient::createFederationAsync()} .
+     * {@see DataprocMetastoreFederationClient::createFederationAsync()} .
      *
      * @example samples/V1/DataprocMetastoreFederationClient/create_federation.php
      *
@@ -328,7 +328,7 @@ final class DataprocMetastoreFederationClient
      * Deletes a single federation.
      *
      * The async variant is
-     * {@see DataprocMetastoreFederationGapicClient::deleteFederationAsync()} .
+     * {@see DataprocMetastoreFederationClient::deleteFederationAsync()} .
      *
      * @example samples/V1/DataprocMetastoreFederationClient/delete_federation.php
      *
@@ -355,7 +355,7 @@ final class DataprocMetastoreFederationClient
      * Gets the details of a single federation.
      *
      * The async variant is
-     * {@see DataprocMetastoreFederationGapicClient::getFederationAsync()} .
+     * {@see DataprocMetastoreFederationClient::getFederationAsync()} .
      *
      * @example samples/V1/DataprocMetastoreFederationClient/get_federation.php
      *
@@ -382,7 +382,7 @@ final class DataprocMetastoreFederationClient
      * Lists federations in a project and location.
      *
      * The async variant is
-     * {@see DataprocMetastoreFederationGapicClient::listFederationsAsync()} .
+     * {@see DataprocMetastoreFederationClient::listFederationsAsync()} .
      *
      * @example samples/V1/DataprocMetastoreFederationClient/list_federations.php
      *
@@ -409,7 +409,7 @@ final class DataprocMetastoreFederationClient
      * Updates the fields of a federation.
      *
      * The async variant is
-     * {@see DataprocMetastoreFederationGapicClient::updateFederationAsync()} .
+     * {@see DataprocMetastoreFederationClient::updateFederationAsync()} .
      *
      * @example samples/V1/DataprocMetastoreFederationClient/update_federation.php
      *
@@ -436,7 +436,7 @@ final class DataprocMetastoreFederationClient
      * Gets information about a location.
      *
      * The async variant is
-     * {@see DataprocMetastoreFederationGapicClient::getLocationAsync()} .
+     * {@see DataprocMetastoreFederationClient::getLocationAsync()} .
      *
      * @example samples/V1/DataprocMetastoreFederationClient/get_location.php
      *
@@ -463,7 +463,7 @@ final class DataprocMetastoreFederationClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is
-     * {@see DataprocMetastoreFederationGapicClient::listLocationsAsync()} .
+     * {@see DataprocMetastoreFederationClient::listLocationsAsync()} .
      *
      * @example samples/V1/DataprocMetastoreFederationClient/list_locations.php
      *
@@ -491,7 +491,7 @@ final class DataprocMetastoreFederationClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is
-     * {@see DataprocMetastoreFederationGapicClient::getIamPolicyAsync()} .
+     * {@see DataprocMetastoreFederationClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/DataprocMetastoreFederationClient/get_iam_policy.php
      *
@@ -522,7 +522,7 @@ final class DataprocMetastoreFederationClient
     errors.
      *
      * The async variant is
-     * {@see DataprocMetastoreFederationGapicClient::setIamPolicyAsync()} .
+     * {@see DataprocMetastoreFederationClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/DataprocMetastoreFederationClient/set_iam_policy.php
      *
@@ -555,7 +555,7 @@ final class DataprocMetastoreFederationClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is
-     * {@see DataprocMetastoreFederationGapicClient::testIamPermissionsAsync()} .
+     * {@see DataprocMetastoreFederationClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/DataprocMetastoreFederationClient/test_iam_permissions.php
      *

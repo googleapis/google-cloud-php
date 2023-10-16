@@ -167,8 +167,7 @@ final class IamCheckerClient
      * resource, and explains why the principal does or does not have that
      * permission.
      *
-     * The async variant is {@see IamCheckerGapicClient::troubleshootIamPolicyAsync()}
-     * .
+     * The async variant is {@see IamCheckerClient::troubleshootIamPolicyAsync()} .
      *
      * @param TroubleshootIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {

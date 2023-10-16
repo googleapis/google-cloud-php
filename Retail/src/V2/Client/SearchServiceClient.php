@@ -220,7 +220,7 @@ final class SearchServiceClient
      * This feature is only available for users who have Retail Search enabled.
      * Enable Retail Search on Cloud Console before using this feature.
      *
-     * The async variant is {@see SearchServiceGapicClient::searchAsync()} .
+     * The async variant is {@see SearchServiceClient::searchAsync()} .
      *
      * @param SearchRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {

@@ -227,7 +227,7 @@ final class RegionInstancesClient
     /**
      * Creates multiple instances in a given region. Count specifies the number of instances to create.
      *
-     * The async variant is {@see RegionInstancesGapicClient::bulkInsertAsync()} .
+     * The async variant is {@see RegionInstancesClient::bulkInsertAsync()} .
      *
      * @param BulkInsertRegionInstanceRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {

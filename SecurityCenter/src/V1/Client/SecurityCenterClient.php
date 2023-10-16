@@ -1318,7 +1318,7 @@ final class SecurityCenterClient
      * parent can be either an organization, folder or project. The findings
      * matched by the filter will be muted after the LRO is done.
      *
-     * The async variant is {@see SecurityCenterGapicClient::bulkMuteFindingsAsync()} .
+     * The async variant is {@see SecurityCenterClient::bulkMuteFindingsAsync()} .
      *
      * @param BulkMuteFindingsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -1342,8 +1342,7 @@ final class SecurityCenterClient
     /**
      * Creates a BigQuery export.
      *
-     * The async variant is
-     * {@see SecurityCenterGapicClient::createBigQueryExportAsync()} .
+     * The async variant is {@see SecurityCenterClient::createBigQueryExportAsync()} .
      *
      * @param CreateBigQueryExportRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -1368,7 +1367,7 @@ final class SecurityCenterClient
      * Creates a finding. The corresponding source must exist for finding creation
      * to succeed.
      *
-     * The async variant is {@see SecurityCenterGapicClient::createFindingAsync()} .
+     * The async variant is {@see SecurityCenterClient::createFindingAsync()} .
      *
      * @param CreateFindingRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1392,7 +1391,7 @@ final class SecurityCenterClient
     /**
      * Creates a mute config.
      *
-     * The async variant is {@see SecurityCenterGapicClient::createMuteConfigAsync()} .
+     * The async variant is {@see SecurityCenterClient::createMuteConfigAsync()} .
      *
      * @param CreateMuteConfigRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -1417,7 +1416,7 @@ final class SecurityCenterClient
      * Creates a notification config.
      *
      * The async variant is
-     * {@see SecurityCenterGapicClient::createNotificationConfigAsync()} .
+     * {@see SecurityCenterClient::createNotificationConfigAsync()} .
      *
      * @param CreateNotificationConfigRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -1445,8 +1444,7 @@ final class SecurityCenterClient
      * parent. These modules are enabled by default.
      *
      * The async variant is
-     * {@see SecurityCenterGapicClient::createSecurityHealthAnalyticsCustomModuleAsync()}
-     * .
+     * {@see SecurityCenterClient::createSecurityHealthAnalyticsCustomModuleAsync()} .
      *
      * @param CreateSecurityHealthAnalyticsCustomModuleRequest $request     A request to house fields associated with the call.
      * @param array                                            $callOptions {
@@ -1470,7 +1468,7 @@ final class SecurityCenterClient
     /**
      * Creates a source.
      *
-     * The async variant is {@see SecurityCenterGapicClient::createSourceAsync()} .
+     * The async variant is {@see SecurityCenterClient::createSourceAsync()} .
      *
      * @param CreateSourceRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1494,8 +1492,7 @@ final class SecurityCenterClient
     /**
      * Deletes an existing BigQuery export.
      *
-     * The async variant is
-     * {@see SecurityCenterGapicClient::deleteBigQueryExportAsync()} .
+     * The async variant is {@see SecurityCenterClient::deleteBigQueryExportAsync()} .
      *
      * @param DeleteBigQueryExportRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -1517,7 +1514,7 @@ final class SecurityCenterClient
     /**
      * Deletes an existing mute config.
      *
-     * The async variant is {@see SecurityCenterGapicClient::deleteMuteConfigAsync()} .
+     * The async variant is {@see SecurityCenterClient::deleteMuteConfigAsync()} .
      *
      * @param DeleteMuteConfigRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -1540,7 +1537,7 @@ final class SecurityCenterClient
      * Deletes a notification config.
      *
      * The async variant is
-     * {@see SecurityCenterGapicClient::deleteNotificationConfigAsync()} .
+     * {@see SecurityCenterClient::deleteNotificationConfigAsync()} .
      *
      * @param DeleteNotificationConfigRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -1565,8 +1562,7 @@ final class SecurityCenterClient
      * resident custom modules.
      *
      * The async variant is
-     * {@see SecurityCenterGapicClient::deleteSecurityHealthAnalyticsCustomModuleAsync()}
-     * .
+     * {@see SecurityCenterClient::deleteSecurityHealthAnalyticsCustomModuleAsync()} .
      *
      * @param DeleteSecurityHealthAnalyticsCustomModuleRequest $request     A request to house fields associated with the call.
      * @param array                                            $callOptions {
@@ -1588,8 +1584,7 @@ final class SecurityCenterClient
     /**
      * Gets a BigQuery export.
      *
-     * The async variant is {@see SecurityCenterGapicClient::getBigQueryExportAsync()}
-     * .
+     * The async variant is {@see SecurityCenterClient::getBigQueryExportAsync()} .
      *
      * @param GetBigQueryExportRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -1614,7 +1609,7 @@ final class SecurityCenterClient
      * Retrieves an EffectiveSecurityHealthAnalyticsCustomModule.
      *
      * The async variant is
-     * {@see SecurityCenterGapicClient::getEffectiveSecurityHealthAnalyticsCustomModuleAsync()}
+     * {@see SecurityCenterClient::getEffectiveSecurityHealthAnalyticsCustomModuleAsync()}
      * .
      *
      * @param GetEffectiveSecurityHealthAnalyticsCustomModuleRequest $request     A request to house fields associated with the call.
@@ -1639,7 +1634,7 @@ final class SecurityCenterClient
     /**
      * Gets the access control policy on the specified Source.
      *
-     * The async variant is {@see SecurityCenterGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see SecurityCenterClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1663,7 +1658,7 @@ final class SecurityCenterClient
     /**
      * Gets a mute config.
      *
-     * The async variant is {@see SecurityCenterGapicClient::getMuteConfigAsync()} .
+     * The async variant is {@see SecurityCenterClient::getMuteConfigAsync()} .
      *
      * @param GetMuteConfigRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1687,8 +1682,7 @@ final class SecurityCenterClient
     /**
      * Gets a notification config.
      *
-     * The async variant is
-     * {@see SecurityCenterGapicClient::getNotificationConfigAsync()} .
+     * The async variant is {@see SecurityCenterClient::getNotificationConfigAsync()} .
      *
      * @param GetNotificationConfigRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -1712,8 +1706,8 @@ final class SecurityCenterClient
     /**
      * Gets the settings for an organization.
      *
-     * The async variant is
-     * {@see SecurityCenterGapicClient::getOrganizationSettingsAsync()} .
+     * The async variant is {@see SecurityCenterClient::getOrganizationSettingsAsync()}
+     * .
      *
      * @param GetOrganizationSettingsRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -1738,8 +1732,7 @@ final class SecurityCenterClient
      * Retrieves a SecurityHealthAnalyticsCustomModule.
      *
      * The async variant is
-     * {@see SecurityCenterGapicClient::getSecurityHealthAnalyticsCustomModuleAsync()}
-     * .
+     * {@see SecurityCenterClient::getSecurityHealthAnalyticsCustomModuleAsync()} .
      *
      * @param GetSecurityHealthAnalyticsCustomModuleRequest $request     A request to house fields associated with the call.
      * @param array                                         $callOptions {
@@ -1763,7 +1756,7 @@ final class SecurityCenterClient
     /**
      * Gets a source.
      *
-     * The async variant is {@see SecurityCenterGapicClient::getSourceAsync()} .
+     * The async variant is {@see SecurityCenterClient::getSourceAsync()} .
      *
      * @param GetSourceRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -1788,7 +1781,7 @@ final class SecurityCenterClient
      * Filters an organization's assets and  groups them by their specified
      * properties.
      *
-     * The async variant is {@see SecurityCenterGapicClient::groupAssetsAsync()} .
+     * The async variant is {@see SecurityCenterClient::groupAssetsAsync()} .
      *
      * @param GroupAssetsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1820,7 +1813,7 @@ final class SecurityCenterClient
      * /v1/folders/{folder_id}/sources/-/findings,
      * /v1/projects/{project_id}/sources/-/findings
      *
-     * The async variant is {@see SecurityCenterGapicClient::groupFindingsAsync()} .
+     * The async variant is {@see SecurityCenterClient::groupFindingsAsync()} .
      *
      * @param GroupFindingsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1844,7 +1837,7 @@ final class SecurityCenterClient
     /**
      * Lists an organization's assets.
      *
-     * The async variant is {@see SecurityCenterGapicClient::listAssetsAsync()} .
+     * The async variant is {@see SecurityCenterClient::listAssetsAsync()} .
      *
      * @param ListAssetsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -1874,8 +1867,7 @@ final class SecurityCenterClient
      * immediately under the folder plus the ones created under the projects
      * within the folder are returned.
      *
-     * The async variant is
-     * {@see SecurityCenterGapicClient::listBigQueryExportsAsync()} .
+     * The async variant is {@see SecurityCenterClient::listBigQueryExportsAsync()} .
      *
      * @param ListBigQueryExportsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -1901,7 +1893,7 @@ final class SecurityCenterClient
      * the given CRM parent and all of the parent’s CRM descendants.
      *
      * The async variant is
-     * {@see SecurityCenterGapicClient::listDescendantSecurityHealthAnalyticsCustomModulesAsync()}
+     * {@see SecurityCenterClient::listDescendantSecurityHealthAnalyticsCustomModulesAsync()}
      * .
      *
      * @param ListDescendantSecurityHealthAnalyticsCustomModulesRequest $request     A request to house fields associated with the call.
@@ -1929,7 +1921,7 @@ final class SecurityCenterClient
      * parent, and inherited modules, inherited from CRM ancestors.
      *
      * The async variant is
-     * {@see SecurityCenterGapicClient::listEffectiveSecurityHealthAnalyticsCustomModulesAsync()}
+     * {@see SecurityCenterClient::listEffectiveSecurityHealthAnalyticsCustomModulesAsync()}
      * .
      *
      * @param ListEffectiveSecurityHealthAnalyticsCustomModulesRequest $request     A request to house fields associated with the call.
@@ -1957,7 +1949,7 @@ final class SecurityCenterClient
      * To list across all sources provide a `-` as the source id.
      * Example: /v1/organizations/{organization_id}/sources/-/findings
      *
-     * The async variant is {@see SecurityCenterGapicClient::listFindingsAsync()} .
+     * The async variant is {@see SecurityCenterClient::listFindingsAsync()} .
      *
      * @param ListFindingsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1981,7 +1973,7 @@ final class SecurityCenterClient
     /**
      * Lists mute configs.
      *
-     * The async variant is {@see SecurityCenterGapicClient::listMuteConfigsAsync()} .
+     * The async variant is {@see SecurityCenterClient::listMuteConfigsAsync()} .
      *
      * @param ListMuteConfigsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -2005,8 +1997,8 @@ final class SecurityCenterClient
     /**
      * Lists notification configs.
      *
-     * The async variant is
-     * {@see SecurityCenterGapicClient::listNotificationConfigsAsync()} .
+     * The async variant is {@see SecurityCenterClient::listNotificationConfigsAsync()}
+     * .
      *
      * @param ListNotificationConfigsRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -2033,8 +2025,7 @@ final class SecurityCenterClient
      * and inherited modules, inherited from CRM ancestors.
      *
      * The async variant is
-     * {@see SecurityCenterGapicClient::listSecurityHealthAnalyticsCustomModulesAsync()}
-     * .
+     * {@see SecurityCenterClient::listSecurityHealthAnalyticsCustomModulesAsync()} .
      *
      * @param ListSecurityHealthAnalyticsCustomModulesRequest $request     A request to house fields associated with the call.
      * @param array                                           $callOptions {
@@ -2058,7 +2049,7 @@ final class SecurityCenterClient
     /**
      * Lists all sources belonging to an organization.
      *
-     * The async variant is {@see SecurityCenterGapicClient::listSourcesAsync()} .
+     * The async variant is {@see SecurityCenterClient::listSourcesAsync()} .
      *
      * @param ListSourcesRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -2087,8 +2078,7 @@ final class SecurityCenterClient
      * it is called too frequently the caller will receive a TOO_MANY_REQUESTS
      * error.
      *
-     * The async variant is {@see SecurityCenterGapicClient::runAssetDiscoveryAsync()}
-     * .
+     * The async variant is {@see SecurityCenterClient::runAssetDiscoveryAsync()} .
      *
      * @param RunAssetDiscoveryRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -2114,7 +2104,7 @@ final class SecurityCenterClient
     /**
      * Updates the state of a finding.
      *
-     * The async variant is {@see SecurityCenterGapicClient::setFindingStateAsync()} .
+     * The async variant is {@see SecurityCenterClient::setFindingStateAsync()} .
      *
      * @param SetFindingStateRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -2138,7 +2128,7 @@ final class SecurityCenterClient
     /**
      * Sets the access control policy on the specified Source.
      *
-     * The async variant is {@see SecurityCenterGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see SecurityCenterClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -2162,7 +2152,7 @@ final class SecurityCenterClient
     /**
      * Updates the mute state of a finding.
      *
-     * The async variant is {@see SecurityCenterGapicClient::setMuteAsync()} .
+     * The async variant is {@see SecurityCenterClient::setMuteAsync()} .
      *
      * @param SetMuteRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -2186,8 +2176,7 @@ final class SecurityCenterClient
     /**
      * Returns the permissions that a caller has on the specified source.
      *
-     * The async variant is {@see SecurityCenterGapicClient::testIamPermissionsAsync()}
-     * .
+     * The async variant is {@see SecurityCenterClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -2211,8 +2200,7 @@ final class SecurityCenterClient
     /**
      * Updates a BigQuery export.
      *
-     * The async variant is
-     * {@see SecurityCenterGapicClient::updateBigQueryExportAsync()} .
+     * The async variant is {@see SecurityCenterClient::updateBigQueryExportAsync()} .
      *
      * @param UpdateBigQueryExportRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -2236,8 +2224,7 @@ final class SecurityCenterClient
     /**
      * Updates external system. This is for a given finding.
      *
-     * The async variant is
-     * {@see SecurityCenterGapicClient::updateExternalSystemAsync()} .
+     * The async variant is {@see SecurityCenterClient::updateExternalSystemAsync()} .
      *
      * @param UpdateExternalSystemRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -2262,7 +2249,7 @@ final class SecurityCenterClient
      * Creates or updates a finding. The corresponding source must exist for a
      * finding creation to succeed.
      *
-     * The async variant is {@see SecurityCenterGapicClient::updateFindingAsync()} .
+     * The async variant is {@see SecurityCenterClient::updateFindingAsync()} .
      *
      * @param UpdateFindingRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -2286,7 +2273,7 @@ final class SecurityCenterClient
     /**
      * Updates a mute config.
      *
-     * The async variant is {@see SecurityCenterGapicClient::updateMuteConfigAsync()} .
+     * The async variant is {@see SecurityCenterClient::updateMuteConfigAsync()} .
      *
      * @param UpdateMuteConfigRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -2313,7 +2300,7 @@ final class SecurityCenterClient
      * fields are allowed: description, pubsub_topic, streaming_config.filter
      *
      * The async variant is
-     * {@see SecurityCenterGapicClient::updateNotificationConfigAsync()} .
+     * {@see SecurityCenterClient::updateNotificationConfigAsync()} .
      *
      * @param UpdateNotificationConfigRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -2338,7 +2325,7 @@ final class SecurityCenterClient
      * Updates an organization's settings.
      *
      * The async variant is
-     * {@see SecurityCenterGapicClient::updateOrganizationSettingsAsync()} .
+     * {@see SecurityCenterClient::updateOrganizationSettingsAsync()} .
      *
      * @param UpdateOrganizationSettingsRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -2367,8 +2354,7 @@ final class SecurityCenterClient
      * config of a module is supported on resident modules only.
      *
      * The async variant is
-     * {@see SecurityCenterGapicClient::updateSecurityHealthAnalyticsCustomModuleAsync()}
-     * .
+     * {@see SecurityCenterClient::updateSecurityHealthAnalyticsCustomModuleAsync()} .
      *
      * @param UpdateSecurityHealthAnalyticsCustomModuleRequest $request     A request to house fields associated with the call.
      * @param array                                            $callOptions {
@@ -2392,8 +2378,7 @@ final class SecurityCenterClient
     /**
      * Updates security marks.
      *
-     * The async variant is
-     * {@see SecurityCenterGapicClient::updateSecurityMarksAsync()} .
+     * The async variant is {@see SecurityCenterClient::updateSecurityMarksAsync()} .
      *
      * @param UpdateSecurityMarksRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -2417,7 +2402,7 @@ final class SecurityCenterClient
     /**
      * Updates a source.
      *
-     * The async variant is {@see SecurityCenterGapicClient::updateSourceAsync()} .
+     * The async variant is {@see SecurityCenterClient::updateSourceAsync()} .
      *
      * @param UpdateSourceRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {

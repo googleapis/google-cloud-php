@@ -245,8 +245,8 @@ final class CaseAttachmentServiceClient
     /**
      * Retrieve all attachments associated with a support case.
      *
-     * The async variant is
-     * {@see CaseAttachmentServiceGapicClient::listAttachmentsAsync()} .
+     * The async variant is {@see CaseAttachmentServiceClient::listAttachmentsAsync()}
+     * .
      *
      * @example samples/V2/CaseAttachmentServiceClient/list_attachments.php
      *

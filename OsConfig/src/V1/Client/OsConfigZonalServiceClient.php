@@ -448,7 +448,7 @@ class OsConfigZonalServiceClient
      * projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).
      *
      * The async variant is
-     * {@see OsConfigZonalServiceGapicClient::createOSPolicyAssignmentAsync()} .
+     * {@see OsConfigZonalServiceClient::createOSPolicyAssignmentAsync()} .
      *
      * @param CreateOSPolicyAssignmentRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -484,7 +484,7 @@ class OsConfigZonalServiceClient
      * projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).
      *
      * The async variant is
-     * {@see OsConfigZonalServiceGapicClient::deleteOSPolicyAssignmentAsync()} .
+     * {@see OsConfigZonalServiceClient::deleteOSPolicyAssignmentAsync()} .
      *
      * @param DeleteOSPolicyAssignmentRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -509,8 +509,7 @@ class OsConfigZonalServiceClient
      * Get inventory data for the specified VM instance. If the VM has no
      * associated inventory, the message `NOT_FOUND` is returned.
      *
-     * The async variant is {@see OsConfigZonalServiceGapicClient::getInventoryAsync()}
-     * .
+     * The async variant is {@see OsConfigZonalServiceClient::getInventoryAsync()} .
      *
      * @param GetInventoryRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -539,7 +538,7 @@ class OsConfigZonalServiceClient
      * `name` parameter.
      *
      * The async variant is
-     * {@see OsConfigZonalServiceGapicClient::getOSPolicyAssignmentAsync()} .
+     * {@see OsConfigZonalServiceClient::getOSPolicyAssignmentAsync()} .
      *
      * @param GetOSPolicyAssignmentRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -565,7 +564,7 @@ class OsConfigZonalServiceClient
      * instance.
      *
      * The async variant is
-     * {@see OsConfigZonalServiceGapicClient::getOSPolicyAssignmentReportAsync()} .
+     * {@see OsConfigZonalServiceClient::getOSPolicyAssignmentReportAsync()} .
      *
      * @param GetOSPolicyAssignmentReportRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -591,7 +590,7 @@ class OsConfigZonalServiceClient
      * inventory data have vulnerability reports associated with them.
      *
      * The async variant is
-     * {@see OsConfigZonalServiceGapicClient::getVulnerabilityReportAsync()} .
+     * {@see OsConfigZonalServiceClient::getVulnerabilityReportAsync()} .
      *
      * @param GetVulnerabilityReportRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -615,8 +614,7 @@ class OsConfigZonalServiceClient
     /**
      * List inventory data for all VM instances in the specified zone.
      *
-     * The async variant is
-     * {@see OsConfigZonalServiceGapicClient::listInventoriesAsync()} .
+     * The async variant is {@see OsConfigZonalServiceClient::listInventoriesAsync()} .
      *
      * @param ListInventoriesRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -642,7 +640,7 @@ class OsConfigZonalServiceClient
      * the specified zone.
      *
      * The async variant is
-     * {@see OsConfigZonalServiceGapicClient::listOSPolicyAssignmentReportsAsync()} .
+     * {@see OsConfigZonalServiceClient::listOSPolicyAssignmentReportsAsync()} .
      *
      * @param ListOSPolicyAssignmentReportsRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -667,7 +665,7 @@ class OsConfigZonalServiceClient
      * List the OS policy assignment revisions for a given OS policy assignment.
      *
      * The async variant is
-     * {@see OsConfigZonalServiceGapicClient::listOSPolicyAssignmentRevisionsAsync()} .
+     * {@see OsConfigZonalServiceClient::listOSPolicyAssignmentRevisionsAsync()} .
      *
      * @param ListOSPolicyAssignmentRevisionsRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -694,7 +692,7 @@ class OsConfigZonalServiceClient
      * For each OS policy assignment, the latest revision is returned.
      *
      * The async variant is
-     * {@see OsConfigZonalServiceGapicClient::listOSPolicyAssignmentsAsync()} .
+     * {@see OsConfigZonalServiceClient::listOSPolicyAssignmentsAsync()} .
      *
      * @param ListOSPolicyAssignmentsRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -719,7 +717,7 @@ class OsConfigZonalServiceClient
      * List vulnerability reports for all VM instances in the specified zone.
      *
      * The async variant is
-     * {@see OsConfigZonalServiceGapicClient::listVulnerabilityReportsAsync()} .
+     * {@see OsConfigZonalServiceClient::listVulnerabilityReportsAsync()} .
      *
      * @param ListVulnerabilityReportsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -752,7 +750,7 @@ class OsConfigZonalServiceClient
      * projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).
      *
      * The async variant is
-     * {@see OsConfigZonalServiceGapicClient::updateOSPolicyAssignmentAsync()} .
+     * {@see OsConfigZonalServiceClient::updateOSPolicyAssignmentAsync()} .
      *
      * @param UpdateOSPolicyAssignmentRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {

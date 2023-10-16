@@ -428,8 +428,7 @@ final class DatastreamClient
     /**
      * Use this method to create a connection profile in a project and location.
      *
-     * The async variant is
-     * {@see DatastreamGapicClient::createConnectionProfileAsync()} .
+     * The async variant is {@see DatastreamClient::createConnectionProfileAsync()} .
      *
      * @param CreateConnectionProfileRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -453,8 +452,7 @@ final class DatastreamClient
     /**
      * Use this method to create a private connectivity configuration.
      *
-     * The async variant is
-     * {@see DatastreamGapicClient::createPrivateConnectionAsync()} .
+     * The async variant is {@see DatastreamClient::createPrivateConnectionAsync()} .
      *
      * @param CreatePrivateConnectionRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -479,7 +477,7 @@ final class DatastreamClient
      * Use this method to create a route for a private connectivity configuration
      * in a project and location.
      *
-     * The async variant is {@see DatastreamGapicClient::createRouteAsync()} .
+     * The async variant is {@see DatastreamClient::createRouteAsync()} .
      *
      * @param CreateRouteRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -503,7 +501,7 @@ final class DatastreamClient
     /**
      * Use this method to create a stream.
      *
-     * The async variant is {@see DatastreamGapicClient::createStreamAsync()} .
+     * The async variant is {@see DatastreamClient::createStreamAsync()} .
      *
      * @param CreateStreamRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -527,8 +525,7 @@ final class DatastreamClient
     /**
      * Use this method to delete a connection profile.
      *
-     * The async variant is
-     * {@see DatastreamGapicClient::deleteConnectionProfileAsync()} .
+     * The async variant is {@see DatastreamClient::deleteConnectionProfileAsync()} .
      *
      * @param DeleteConnectionProfileRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -552,8 +549,7 @@ final class DatastreamClient
     /**
      * Use this method to delete a private connectivity configuration.
      *
-     * The async variant is
-     * {@see DatastreamGapicClient::deletePrivateConnectionAsync()} .
+     * The async variant is {@see DatastreamClient::deletePrivateConnectionAsync()} .
      *
      * @param DeletePrivateConnectionRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -577,7 +573,7 @@ final class DatastreamClient
     /**
      * Use this method to delete a route.
      *
-     * The async variant is {@see DatastreamGapicClient::deleteRouteAsync()} .
+     * The async variant is {@see DatastreamClient::deleteRouteAsync()} .
      *
      * @param DeleteRouteRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -601,7 +597,7 @@ final class DatastreamClient
     /**
      * Use this method to delete a stream.
      *
-     * The async variant is {@see DatastreamGapicClient::deleteStreamAsync()} .
+     * The async variant is {@see DatastreamClient::deleteStreamAsync()} .
      *
      * @param DeleteStreamRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -628,8 +624,7 @@ final class DatastreamClient
      * the profile. Typically, a request returns children data objects of a
      * parent data object that's optionally supplied in the request.
      *
-     * The async variant is
-     * {@see DatastreamGapicClient::discoverConnectionProfileAsync()} .
+     * The async variant is {@see DatastreamClient::discoverConnectionProfileAsync()} .
      *
      * @param DiscoverConnectionProfileRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -654,7 +649,7 @@ final class DatastreamClient
      * The FetchStaticIps API call exposes the static IP addresses used by
      * Datastream.
      *
-     * The async variant is {@see DatastreamGapicClient::fetchStaticIpsAsync()} .
+     * The async variant is {@see DatastreamClient::fetchStaticIpsAsync()} .
      *
      * @param FetchStaticIpsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -678,7 +673,7 @@ final class DatastreamClient
     /**
      * Use this method to get details about a connection profile.
      *
-     * The async variant is {@see DatastreamGapicClient::getConnectionProfileAsync()} .
+     * The async variant is {@see DatastreamClient::getConnectionProfileAsync()} .
      *
      * @param GetConnectionProfileRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -702,7 +697,7 @@ final class DatastreamClient
     /**
      * Use this method to get details about a private connectivity configuration.
      *
-     * The async variant is {@see DatastreamGapicClient::getPrivateConnectionAsync()} .
+     * The async variant is {@see DatastreamClient::getPrivateConnectionAsync()} .
      *
      * @param GetPrivateConnectionRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -726,7 +721,7 @@ final class DatastreamClient
     /**
      * Use this method to get details about a route.
      *
-     * The async variant is {@see DatastreamGapicClient::getRouteAsync()} .
+     * The async variant is {@see DatastreamClient::getRouteAsync()} .
      *
      * @param GetRouteRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -750,7 +745,7 @@ final class DatastreamClient
     /**
      * Use this method to get details about a stream.
      *
-     * The async variant is {@see DatastreamGapicClient::getStreamAsync()} .
+     * The async variant is {@see DatastreamClient::getStreamAsync()} .
      *
      * @param GetStreamRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -774,7 +769,7 @@ final class DatastreamClient
     /**
      * Use this method to get details about a stream object.
      *
-     * The async variant is {@see DatastreamGapicClient::getStreamObjectAsync()} .
+     * The async variant is {@see DatastreamClient::getStreamObjectAsync()} .
      *
      * @param GetStreamObjectRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -799,8 +794,7 @@ final class DatastreamClient
      * Use this method to list connection profiles created in a project and
      * location.
      *
-     * The async variant is {@see DatastreamGapicClient::listConnectionProfilesAsync()}
-     * .
+     * The async variant is {@see DatastreamClient::listConnectionProfilesAsync()} .
      *
      * @param ListConnectionProfilesRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -825,8 +819,7 @@ final class DatastreamClient
      * Use this method to list private connectivity configurations in a project
      * and location.
      *
-     * The async variant is {@see DatastreamGapicClient::listPrivateConnectionsAsync()}
-     * .
+     * The async variant is {@see DatastreamClient::listPrivateConnectionsAsync()} .
      *
      * @param ListPrivateConnectionsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -851,7 +844,7 @@ final class DatastreamClient
      * Use this method to list routes created for a private connectivity
      * configuration in a project and location.
      *
-     * The async variant is {@see DatastreamGapicClient::listRoutesAsync()} .
+     * The async variant is {@see DatastreamClient::listRoutesAsync()} .
      *
      * @param ListRoutesRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -875,7 +868,7 @@ final class DatastreamClient
     /**
      * Use this method to list the objects of a specific stream.
      *
-     * The async variant is {@see DatastreamGapicClient::listStreamObjectsAsync()} .
+     * The async variant is {@see DatastreamClient::listStreamObjectsAsync()} .
      *
      * @param ListStreamObjectsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -899,7 +892,7 @@ final class DatastreamClient
     /**
      * Use this method to list streams in a project and location.
      *
-     * The async variant is {@see DatastreamGapicClient::listStreamsAsync()} .
+     * The async variant is {@see DatastreamClient::listStreamsAsync()} .
      *
      * @param ListStreamsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -923,7 +916,7 @@ final class DatastreamClient
     /**
      * Use this method to look up a stream object by its source object identifier.
      *
-     * The async variant is {@see DatastreamGapicClient::lookupStreamObjectAsync()} .
+     * The async variant is {@see DatastreamClient::lookupStreamObjectAsync()} .
      *
      * @param LookupStreamObjectRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -947,7 +940,7 @@ final class DatastreamClient
     /**
      * Use this method to start a backfill job for the specified stream object.
      *
-     * The async variant is {@see DatastreamGapicClient::startBackfillJobAsync()} .
+     * The async variant is {@see DatastreamClient::startBackfillJobAsync()} .
      *
      * @param StartBackfillJobRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -971,7 +964,7 @@ final class DatastreamClient
     /**
      * Use this method to stop a backfill job for the specified stream object.
      *
-     * The async variant is {@see DatastreamGapicClient::stopBackfillJobAsync()} .
+     * The async variant is {@see DatastreamClient::stopBackfillJobAsync()} .
      *
      * @param StopBackfillJobRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -995,8 +988,7 @@ final class DatastreamClient
     /**
      * Use this method to update the parameters of a connection profile.
      *
-     * The async variant is
-     * {@see DatastreamGapicClient::updateConnectionProfileAsync()} .
+     * The async variant is {@see DatastreamClient::updateConnectionProfileAsync()} .
      *
      * @param UpdateConnectionProfileRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -1020,7 +1012,7 @@ final class DatastreamClient
     /**
      * Use this method to update the configuration of a stream.
      *
-     * The async variant is {@see DatastreamGapicClient::updateStreamAsync()} .
+     * The async variant is {@see DatastreamClient::updateStreamAsync()} .
      *
      * @param UpdateStreamRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1044,7 +1036,7 @@ final class DatastreamClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see DatastreamGapicClient::getLocationAsync()} .
+     * The async variant is {@see DatastreamClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1068,7 +1060,7 @@ final class DatastreamClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see DatastreamGapicClient::listLocationsAsync()} .
+     * The async variant is {@see DatastreamClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

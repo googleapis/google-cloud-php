@@ -252,7 +252,7 @@ final class BigtableClient
     /**
      * Mutates a row atomically based on the output of a predicate Reader filter.
      *
-     * The async variant is {@see BigtableGapicClient::checkAndMutateRowAsync()} .
+     * The async variant is {@see BigtableClient::checkAndMutateRowAsync()} .
      *
      * @param CheckAndMutateRowRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -300,7 +300,7 @@ final class BigtableClient
      * Mutates a row atomically. Cells already present in the row are left
      * unchanged unless explicitly changed by `mutation`.
      *
-     * The async variant is {@see BigtableGapicClient::mutateRowAsync()} .
+     * The async variant is {@see BigtableClient::mutateRowAsync()} .
      *
      * @param MutateRowRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -347,7 +347,7 @@ final class BigtableClient
      * Warm up associated instance metadata for this connection.
      * This call is not required but may be useful for connection keep-alive.
      *
-     * The async variant is {@see BigtableGapicClient::pingAndWarmAsync()} .
+     * The async variant is {@see BigtableClient::pingAndWarmAsync()} .
      *
      * @param PingAndWarmRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -398,7 +398,7 @@ final class BigtableClient
      * timestamp is the greater of the existing timestamp or the current server
      * time. The method returns the new contents of all modified cells.
      *
-     * The async variant is {@see BigtableGapicClient::readModifyWriteRowAsync()} .
+     * The async variant is {@see BigtableClient::readModifyWriteRowAsync()} .
      *
      * @param ReadModifyWriteRowRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

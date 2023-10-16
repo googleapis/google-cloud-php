@@ -330,7 +330,7 @@ final class BatchServiceClient
     /**
      * Create a Job.
      *
-     * The async variant is {@see BatchServiceGapicClient::createJobAsync()} .
+     * The async variant is {@see BatchServiceClient::createJobAsync()} .
      *
      * @example samples/V1/BatchServiceClient/create_job.php
      *
@@ -356,7 +356,7 @@ final class BatchServiceClient
     /**
      * Delete a Job.
      *
-     * The async variant is {@see BatchServiceGapicClient::deleteJobAsync()} .
+     * The async variant is {@see BatchServiceClient::deleteJobAsync()} .
      *
      * @example samples/V1/BatchServiceClient/delete_job.php
      *
@@ -382,7 +382,7 @@ final class BatchServiceClient
     /**
      * Get a Job specified by its resource name.
      *
-     * The async variant is {@see BatchServiceGapicClient::getJobAsync()} .
+     * The async variant is {@see BatchServiceClient::getJobAsync()} .
      *
      * @example samples/V1/BatchServiceClient/get_job.php
      *
@@ -408,7 +408,7 @@ final class BatchServiceClient
     /**
      * Return a single Task.
      *
-     * The async variant is {@see BatchServiceGapicClient::getTaskAsync()} .
+     * The async variant is {@see BatchServiceClient::getTaskAsync()} .
      *
      * @example samples/V1/BatchServiceClient/get_task.php
      *
@@ -434,7 +434,7 @@ final class BatchServiceClient
     /**
      * List all Jobs for a project within a region.
      *
-     * The async variant is {@see BatchServiceGapicClient::listJobsAsync()} .
+     * The async variant is {@see BatchServiceClient::listJobsAsync()} .
      *
      * @example samples/V1/BatchServiceClient/list_jobs.php
      *
@@ -460,7 +460,7 @@ final class BatchServiceClient
     /**
      * List Tasks associated with a job.
      *
-     * The async variant is {@see BatchServiceGapicClient::listTasksAsync()} .
+     * The async variant is {@see BatchServiceClient::listTasksAsync()} .
      *
      * @example samples/V1/BatchServiceClient/list_tasks.php
      *
@@ -486,7 +486,7 @@ final class BatchServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see BatchServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see BatchServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/BatchServiceClient/get_location.php
      *
@@ -512,7 +512,7 @@ final class BatchServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see BatchServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see BatchServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/BatchServiceClient/list_locations.php
      *

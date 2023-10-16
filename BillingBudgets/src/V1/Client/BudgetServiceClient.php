@@ -240,7 +240,7 @@ final class BudgetServiceClient
      * [Quotas and limits](https://cloud.google.com/billing/quotas)
      * for more information on the limits of the number of budgets you can create.
      *
-     * The async variant is {@see BudgetServiceGapicClient::createBudgetAsync()} .
+     * The async variant is {@see BudgetServiceClient::createBudgetAsync()} .
      *
      * @param CreateBudgetRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -264,7 +264,7 @@ final class BudgetServiceClient
     /**
      * Deletes a budget. Returns successfully if already deleted.
      *
-     * The async variant is {@see BudgetServiceGapicClient::deleteBudgetAsync()} .
+     * The async variant is {@see BudgetServiceClient::deleteBudgetAsync()} .
      *
      * @param DeleteBudgetRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -291,7 +291,7 @@ final class BudgetServiceClient
      * see these fields in the return value, though they may have been set
      * in the Cloud Console.
      *
-     * The async variant is {@see BudgetServiceGapicClient::getBudgetAsync()} .
+     * The async variant is {@see BudgetServiceClient::getBudgetAsync()} .
      *
      * @param GetBudgetRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -320,7 +320,7 @@ final class BudgetServiceClient
      * see these fields in the return value, though they may have been set
      * in the Cloud Console.
      *
-     * The async variant is {@see BudgetServiceGapicClient::listBudgetsAsync()} .
+     * The async variant is {@see BudgetServiceClient::listBudgetsAsync()} .
      *
      * @param ListBudgetsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -348,7 +348,7 @@ final class BudgetServiceClient
      * aren't available on this API. Budget fields that are not exposed in
      * this API will not be changed by this method.
      *
-     * The async variant is {@see BudgetServiceGapicClient::updateBudgetAsync()} .
+     * The async variant is {@see BudgetServiceClient::updateBudgetAsync()} .
      *
      * @param UpdateBudgetRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {

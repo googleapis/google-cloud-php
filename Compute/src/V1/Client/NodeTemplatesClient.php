@@ -245,7 +245,7 @@ final class NodeTemplatesClient
     /**
      * Retrieves an aggregated list of node templates.
      *
-     * The async variant is {@see NodeTemplatesGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see NodeTemplatesClient::aggregatedListAsync()} .
      *
      * @param AggregatedListNodeTemplatesRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -269,7 +269,7 @@ final class NodeTemplatesClient
     /**
      * Deletes the specified NodeTemplate resource.
      *
-     * The async variant is {@see NodeTemplatesGapicClient::deleteAsync()} .
+     * The async variant is {@see NodeTemplatesClient::deleteAsync()} .
      *
      * @param DeleteNodeTemplateRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -293,7 +293,7 @@ final class NodeTemplatesClient
     /**
      * Returns the specified node template.
      *
-     * The async variant is {@see NodeTemplatesGapicClient::getAsync()} .
+     * The async variant is {@see NodeTemplatesClient::getAsync()} .
      *
      * @param GetNodeTemplateRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -317,7 +317,7 @@ final class NodeTemplatesClient
     /**
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
-     * The async variant is {@see NodeTemplatesGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see NodeTemplatesClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyNodeTemplateRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -341,7 +341,7 @@ final class NodeTemplatesClient
     /**
      * Creates a NodeTemplate resource in the specified project using the data included in the request.
      *
-     * The async variant is {@see NodeTemplatesGapicClient::insertAsync()} .
+     * The async variant is {@see NodeTemplatesClient::insertAsync()} .
      *
      * @param InsertNodeTemplateRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -365,7 +365,7 @@ final class NodeTemplatesClient
     /**
      * Retrieves a list of node templates available to the specified project.
      *
-     * The async variant is {@see NodeTemplatesGapicClient::listAsync()} .
+     * The async variant is {@see NodeTemplatesClient::listAsync()} .
      *
      * @param ListNodeTemplatesRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -389,7 +389,7 @@ final class NodeTemplatesClient
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
-     * The async variant is {@see NodeTemplatesGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see NodeTemplatesClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyNodeTemplateRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -413,8 +413,7 @@ final class NodeTemplatesClient
     /**
      * Returns permissions that a caller has on the specified resource.
      *
-     * The async variant is {@see NodeTemplatesGapicClient::testIamPermissionsAsync()}
-     * .
+     * The async variant is {@see NodeTemplatesClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsNodeTemplateRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {

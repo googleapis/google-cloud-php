@@ -272,7 +272,7 @@ class OsConfigServiceClient
      * Cancel a patch job. The patch job must be active. Canceled patch jobs
      * cannot be restarted.
      *
-     * The async variant is {@see OsConfigServiceGapicClient::cancelPatchJobAsync()} .
+     * The async variant is {@see OsConfigServiceClient::cancelPatchJobAsync()} .
      *
      * @param CancelPatchJobRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -296,8 +296,8 @@ class OsConfigServiceClient
     /**
      * Create an OS Config patch deployment.
      *
-     * The async variant is
-     * {@see OsConfigServiceGapicClient::createPatchDeploymentAsync()} .
+     * The async variant is {@see OsConfigServiceClient::createPatchDeploymentAsync()}
+     * .
      *
      * @param CreatePatchDeploymentRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -321,8 +321,8 @@ class OsConfigServiceClient
     /**
      * Delete an OS Config patch deployment.
      *
-     * The async variant is
-     * {@see OsConfigServiceGapicClient::deletePatchDeploymentAsync()} .
+     * The async variant is {@see OsConfigServiceClient::deletePatchDeploymentAsync()}
+     * .
      *
      * @param DeletePatchDeploymentRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -344,7 +344,7 @@ class OsConfigServiceClient
     /**
      * Patch VM instances by creating and running a patch job.
      *
-     * The async variant is {@see OsConfigServiceGapicClient::executePatchJobAsync()} .
+     * The async variant is {@see OsConfigServiceClient::executePatchJobAsync()} .
      *
      * @param ExecutePatchJobRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -368,8 +368,7 @@ class OsConfigServiceClient
     /**
      * Get an OS Config patch deployment.
      *
-     * The async variant is
-     * {@see OsConfigServiceGapicClient::getPatchDeploymentAsync()} .
+     * The async variant is {@see OsConfigServiceClient::getPatchDeploymentAsync()} .
      *
      * @param GetPatchDeploymentRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -394,7 +393,7 @@ class OsConfigServiceClient
      * Get the patch job. This can be used to track the progress of an
      * ongoing patch job or review the details of completed jobs.
      *
-     * The async variant is {@see OsConfigServiceGapicClient::getPatchJobAsync()} .
+     * The async variant is {@see OsConfigServiceClient::getPatchJobAsync()} .
      *
      * @param GetPatchJobRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -418,8 +417,7 @@ class OsConfigServiceClient
     /**
      * Get a page of OS Config patch deployments.
      *
-     * The async variant is
-     * {@see OsConfigServiceGapicClient::listPatchDeploymentsAsync()} .
+     * The async variant is {@see OsConfigServiceClient::listPatchDeploymentsAsync()} .
      *
      * @param ListPatchDeploymentsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -444,7 +442,7 @@ class OsConfigServiceClient
      * Get a list of instance details for a given patch job.
      *
      * The async variant is
-     * {@see OsConfigServiceGapicClient::listPatchJobInstanceDetailsAsync()} .
+     * {@see OsConfigServiceClient::listPatchJobInstanceDetailsAsync()} .
      *
      * @param ListPatchJobInstanceDetailsRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -468,7 +466,7 @@ class OsConfigServiceClient
     /**
      * Get a list of patch jobs.
      *
-     * The async variant is {@see OsConfigServiceGapicClient::listPatchJobsAsync()} .
+     * The async variant is {@see OsConfigServiceClient::listPatchJobsAsync()} .
      *
      * @param ListPatchJobsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -493,8 +491,7 @@ class OsConfigServiceClient
      * Change state of patch deployment to "PAUSED".
      * Patch deployment in paused state doesn't generate patch jobs.
      *
-     * The async variant is
-     * {@see OsConfigServiceGapicClient::pausePatchDeploymentAsync()} .
+     * The async variant is {@see OsConfigServiceClient::pausePatchDeploymentAsync()} .
      *
      * @param PausePatchDeploymentRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -519,8 +516,8 @@ class OsConfigServiceClient
      * Change state of patch deployment back to "ACTIVE".
      * Patch deployment in active state continues to generate patch jobs.
      *
-     * The async variant is
-     * {@see OsConfigServiceGapicClient::resumePatchDeploymentAsync()} .
+     * The async variant is {@see OsConfigServiceClient::resumePatchDeploymentAsync()}
+     * .
      *
      * @param ResumePatchDeploymentRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -544,8 +541,8 @@ class OsConfigServiceClient
     /**
      * Update an OS Config patch deployment.
      *
-     * The async variant is
-     * {@see OsConfigServiceGapicClient::updatePatchDeploymentAsync()} .
+     * The async variant is {@see OsConfigServiceClient::updatePatchDeploymentAsync()}
+     * .
      *
      * @param UpdatePatchDeploymentRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {

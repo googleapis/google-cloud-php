@@ -180,7 +180,7 @@ final class DiskTypesClient
     /**
      * Retrieves an aggregated list of disk types.
      *
-     * The async variant is {@see DiskTypesGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see DiskTypesClient::aggregatedListAsync()} .
      *
      * @param AggregatedListDiskTypesRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -204,7 +204,7 @@ final class DiskTypesClient
     /**
      * Returns the specified disk type.
      *
-     * The async variant is {@see DiskTypesGapicClient::getAsync()} .
+     * The async variant is {@see DiskTypesClient::getAsync()} .
      *
      * @param GetDiskTypeRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -228,7 +228,7 @@ final class DiskTypesClient
     /**
      * Retrieves a list of disk types available to the specified project.
      *
-     * The async variant is {@see DiskTypesGapicClient::listAsync()} .
+     * The async variant is {@see DiskTypesClient::listAsync()} .
      *
      * @param ListDiskTypesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

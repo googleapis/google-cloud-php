@@ -174,7 +174,7 @@ final class SnapshotsV1Beta3Client
     /**
      * Deletes a snapshot.
      *
-     * The async variant is {@see SnapshotsV1Beta3GapicClient::deleteSnapshotAsync()} .
+     * The async variant is {@see SnapshotsV1Beta3Client::deleteSnapshotAsync()} .
      *
      * @example samples/V1beta3/SnapshotsV1Beta3Client/delete_snapshot.php
      *
@@ -202,7 +202,7 @@ final class SnapshotsV1Beta3Client
     /**
      * Gets information about a snapshot.
      *
-     * The async variant is {@see SnapshotsV1Beta3GapicClient::getSnapshotAsync()} .
+     * The async variant is {@see SnapshotsV1Beta3Client::getSnapshotAsync()} .
      *
      * @example samples/V1beta3/SnapshotsV1Beta3Client/get_snapshot.php
      *
@@ -230,7 +230,7 @@ final class SnapshotsV1Beta3Client
     /**
      * Lists snapshots.
      *
-     * The async variant is {@see SnapshotsV1Beta3GapicClient::listSnapshotsAsync()} .
+     * The async variant is {@see SnapshotsV1Beta3Client::listSnapshotsAsync()} .
      *
      * @example samples/V1beta3/SnapshotsV1Beta3Client/list_snapshots.php
      *

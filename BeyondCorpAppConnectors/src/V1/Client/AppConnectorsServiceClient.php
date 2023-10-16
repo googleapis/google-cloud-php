@@ -304,7 +304,7 @@ final class AppConnectorsServiceClient
      * Creates a new AppConnector in a given project and location.
      *
      * The async variant is
-     * {@see AppConnectorsServiceGapicClient::createAppConnectorAsync()} .
+     * {@see AppConnectorsServiceClient::createAppConnectorAsync()} .
      *
      * @example samples/V1/AppConnectorsServiceClient/create_app_connector.php
      *
@@ -331,7 +331,7 @@ final class AppConnectorsServiceClient
      * Deletes a single AppConnector.
      *
      * The async variant is
-     * {@see AppConnectorsServiceGapicClient::deleteAppConnectorAsync()} .
+     * {@see AppConnectorsServiceClient::deleteAppConnectorAsync()} .
      *
      * @example samples/V1/AppConnectorsServiceClient/delete_app_connector.php
      *
@@ -357,8 +357,7 @@ final class AppConnectorsServiceClient
     /**
      * Gets details of a single AppConnector.
      *
-     * The async variant is
-     * {@see AppConnectorsServiceGapicClient::getAppConnectorAsync()} .
+     * The async variant is {@see AppConnectorsServiceClient::getAppConnectorAsync()} .
      *
      * @example samples/V1/AppConnectorsServiceClient/get_app_connector.php
      *
@@ -384,8 +383,8 @@ final class AppConnectorsServiceClient
     /**
      * Lists AppConnectors in a given project and location.
      *
-     * The async variant is
-     * {@see AppConnectorsServiceGapicClient::listAppConnectorsAsync()} .
+     * The async variant is {@see AppConnectorsServiceClient::listAppConnectorsAsync()}
+     * .
      *
      * @example samples/V1/AppConnectorsServiceClient/list_app_connectors.php
      *
@@ -411,8 +410,7 @@ final class AppConnectorsServiceClient
     /**
      * Report status for a given connector.
      *
-     * The async variant is {@see AppConnectorsServiceGapicClient::reportStatusAsync()}
-     * .
+     * The async variant is {@see AppConnectorsServiceClient::reportStatusAsync()} .
      *
      * @example samples/V1/AppConnectorsServiceClient/report_status.php
      *
@@ -439,7 +437,7 @@ final class AppConnectorsServiceClient
      * Updates the parameters of a single AppConnector.
      *
      * The async variant is
-     * {@see AppConnectorsServiceGapicClient::updateAppConnectorAsync()} .
+     * {@see AppConnectorsServiceClient::updateAppConnectorAsync()} .
      *
      * @example samples/V1/AppConnectorsServiceClient/update_app_connector.php
      *
@@ -465,8 +463,7 @@ final class AppConnectorsServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see AppConnectorsServiceGapicClient::getLocationAsync()}
-     * .
+     * The async variant is {@see AppConnectorsServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/AppConnectorsServiceClient/get_location.php
      *
@@ -492,8 +489,7 @@ final class AppConnectorsServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is
-     * {@see AppConnectorsServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see AppConnectorsServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/AppConnectorsServiceClient/list_locations.php
      *
@@ -520,8 +516,7 @@ final class AppConnectorsServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see AppConnectorsServiceGapicClient::getIamPolicyAsync()}
-     * .
+     * The async variant is {@see AppConnectorsServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/AppConnectorsServiceClient/get_iam_policy.php
      *
@@ -551,8 +546,7 @@ final class AppConnectorsServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see AppConnectorsServiceGapicClient::setIamPolicyAsync()}
-     * .
+     * The async variant is {@see AppConnectorsServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/AppConnectorsServiceClient/set_iam_policy.php
      *
@@ -585,7 +579,7 @@ final class AppConnectorsServiceClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is
-     * {@see AppConnectorsServiceGapicClient::testIamPermissionsAsync()} .
+     * {@see AppConnectorsServiceClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/AppConnectorsServiceClient/test_iam_permissions.php
      *

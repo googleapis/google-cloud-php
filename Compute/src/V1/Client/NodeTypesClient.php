@@ -180,7 +180,7 @@ final class NodeTypesClient
     /**
      * Retrieves an aggregated list of node types.
      *
-     * The async variant is {@see NodeTypesGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see NodeTypesClient::aggregatedListAsync()} .
      *
      * @param AggregatedListNodeTypesRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -204,7 +204,7 @@ final class NodeTypesClient
     /**
      * Returns the specified node type.
      *
-     * The async variant is {@see NodeTypesGapicClient::getAsync()} .
+     * The async variant is {@see NodeTypesClient::getAsync()} .
      *
      * @param GetNodeTypeRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -228,7 +228,7 @@ final class NodeTypesClient
     /**
      * Retrieves a list of node types available to the specified project.
      *
-     * The async variant is {@see NodeTypesGapicClient::listAsync()} .
+     * The async variant is {@see NodeTypesClient::listAsync()} .
      *
      * @param ListNodeTypesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

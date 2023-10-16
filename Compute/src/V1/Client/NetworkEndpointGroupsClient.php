@@ -247,8 +247,7 @@ final class NetworkEndpointGroupsClient
     /**
      * Retrieves the list of network endpoint groups and sorts them by zone.
      *
-     * The async variant is
-     * {@see NetworkEndpointGroupsGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see NetworkEndpointGroupsClient::aggregatedListAsync()} .
      *
      * @param AggregatedListNetworkEndpointGroupsRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {
@@ -273,7 +272,7 @@ final class NetworkEndpointGroupsClient
      * Attach a list of network endpoints to the specified network endpoint group.
      *
      * The async variant is
-     * {@see NetworkEndpointGroupsGapicClient::attachNetworkEndpointsAsync()} .
+     * {@see NetworkEndpointGroupsClient::attachNetworkEndpointsAsync()} .
      *
      * @param AttachNetworkEndpointsNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                             $callOptions {
@@ -297,7 +296,7 @@ final class NetworkEndpointGroupsClient
     /**
      * Deletes the specified network endpoint group. The network endpoints in the NEG and the VM instances they belong to are not terminated when the NEG is deleted. Note that the NEG cannot be deleted if there are backend services referencing it.
      *
-     * The async variant is {@see NetworkEndpointGroupsGapicClient::deleteAsync()} .
+     * The async variant is {@see NetworkEndpointGroupsClient::deleteAsync()} .
      *
      * @param DeleteNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -322,7 +321,7 @@ final class NetworkEndpointGroupsClient
      * Detach a list of network endpoints from the specified network endpoint group.
      *
      * The async variant is
-     * {@see NetworkEndpointGroupsGapicClient::detachNetworkEndpointsAsync()} .
+     * {@see NetworkEndpointGroupsClient::detachNetworkEndpointsAsync()} .
      *
      * @param DetachNetworkEndpointsNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                             $callOptions {
@@ -346,7 +345,7 @@ final class NetworkEndpointGroupsClient
     /**
      * Returns the specified network endpoint group.
      *
-     * The async variant is {@see NetworkEndpointGroupsGapicClient::getAsync()} .
+     * The async variant is {@see NetworkEndpointGroupsClient::getAsync()} .
      *
      * @param GetNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -370,7 +369,7 @@ final class NetworkEndpointGroupsClient
     /**
      * Creates a network endpoint group in the specified project using the parameters that are included in the request.
      *
-     * The async variant is {@see NetworkEndpointGroupsGapicClient::insertAsync()} .
+     * The async variant is {@see NetworkEndpointGroupsClient::insertAsync()} .
      *
      * @param InsertNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -394,7 +393,7 @@ final class NetworkEndpointGroupsClient
     /**
      * Retrieves the list of network endpoint groups that are located in the specified project and zone.
      *
-     * The async variant is {@see NetworkEndpointGroupsGapicClient::listAsync()} .
+     * The async variant is {@see NetworkEndpointGroupsClient::listAsync()} .
      *
      * @param ListNetworkEndpointGroupsRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -419,7 +418,7 @@ final class NetworkEndpointGroupsClient
      * Lists the network endpoints in the specified network endpoint group.
      *
      * The async variant is
-     * {@see NetworkEndpointGroupsGapicClient::listNetworkEndpointsAsync()} .
+     * {@see NetworkEndpointGroupsClient::listNetworkEndpointsAsync()} .
      *
      * @param ListNetworkEndpointsNetworkEndpointGroupsRequest $request     A request to house fields associated with the call.
      * @param array                                            $callOptions {
@@ -444,7 +443,7 @@ final class NetworkEndpointGroupsClient
      * Returns permissions that a caller has on the specified resource.
      *
      * The async variant is
-     * {@see NetworkEndpointGroupsGapicClient::testIamPermissionsAsync()} .
+     * {@see NetworkEndpointGroupsClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                         $callOptions {

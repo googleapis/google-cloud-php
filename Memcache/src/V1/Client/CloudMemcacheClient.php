@@ -300,7 +300,7 @@ final class CloudMemcacheClient
      * `ApplyParameters` restarts the set of specified nodes in order to update
      * them to the current set of parameters for the Memcached Instance.
      *
-     * The async variant is {@see CloudMemcacheGapicClient::applyParametersAsync()} .
+     * The async variant is {@see CloudMemcacheClient::applyParametersAsync()} .
      *
      * @param ApplyParametersRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -324,7 +324,7 @@ final class CloudMemcacheClient
     /**
      * Creates a new Instance in a given location.
      *
-     * The async variant is {@see CloudMemcacheGapicClient::createInstanceAsync()} .
+     * The async variant is {@see CloudMemcacheClient::createInstanceAsync()} .
      *
      * @param CreateInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -348,7 +348,7 @@ final class CloudMemcacheClient
     /**
      * Deletes a single Instance.
      *
-     * The async variant is {@see CloudMemcacheGapicClient::deleteInstanceAsync()} .
+     * The async variant is {@see CloudMemcacheClient::deleteInstanceAsync()} .
      *
      * @param DeleteInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -372,7 +372,7 @@ final class CloudMemcacheClient
     /**
      * Gets details of a single Instance.
      *
-     * The async variant is {@see CloudMemcacheGapicClient::getInstanceAsync()} .
+     * The async variant is {@see CloudMemcacheClient::getInstanceAsync()} .
      *
      * @param GetInstanceRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -396,7 +396,7 @@ final class CloudMemcacheClient
     /**
      * Lists Instances in a given location.
      *
-     * The async variant is {@see CloudMemcacheGapicClient::listInstancesAsync()} .
+     * The async variant is {@see CloudMemcacheClient::listInstancesAsync()} .
      *
      * @param ListInstancesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -420,8 +420,7 @@ final class CloudMemcacheClient
     /**
      * Reschedules upcoming maintenance event.
      *
-     * The async variant is
-     * {@see CloudMemcacheGapicClient::rescheduleMaintenanceAsync()} .
+     * The async variant is {@see CloudMemcacheClient::rescheduleMaintenanceAsync()} .
      *
      * @param RescheduleMaintenanceRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -445,7 +444,7 @@ final class CloudMemcacheClient
     /**
      * Updates an existing Instance in a given project and location.
      *
-     * The async variant is {@see CloudMemcacheGapicClient::updateInstanceAsync()} .
+     * The async variant is {@see CloudMemcacheClient::updateInstanceAsync()} .
      *
      * @param UpdateInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -472,7 +471,7 @@ final class CloudMemcacheClient
      * `ApplyParameters` to apply the parameters to nodes of the Memcached
      * instance.
      *
-     * The async variant is {@see CloudMemcacheGapicClient::updateParametersAsync()} .
+     * The async variant is {@see CloudMemcacheClient::updateParametersAsync()} .
      *
      * @param UpdateParametersRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -496,7 +495,7 @@ final class CloudMemcacheClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see CloudMemcacheGapicClient::getLocationAsync()} .
+     * The async variant is {@see CloudMemcacheClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -520,7 +519,7 @@ final class CloudMemcacheClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see CloudMemcacheGapicClient::listLocationsAsync()} .
+     * The async variant is {@see CloudMemcacheClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

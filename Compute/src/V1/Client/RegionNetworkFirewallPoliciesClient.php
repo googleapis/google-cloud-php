@@ -268,7 +268,7 @@ final class RegionNetworkFirewallPoliciesClient
      * Inserts an association for the specified network firewall policy.
      *
      * The async variant is
-     * {@see RegionNetworkFirewallPoliciesGapicClient::addAssociationAsync()} .
+     * {@see RegionNetworkFirewallPoliciesClient::addAssociationAsync()} .
      *
      * @param AddAssociationRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                            $callOptions {
@@ -292,8 +292,8 @@ final class RegionNetworkFirewallPoliciesClient
     /**
      * Inserts a rule into a network firewall policy.
      *
-     * The async variant is
-     * {@see RegionNetworkFirewallPoliciesGapicClient::addRuleAsync()} .
+     * The async variant is {@see RegionNetworkFirewallPoliciesClient::addRuleAsync()}
+     * .
      *
      * @param AddRuleRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
@@ -318,7 +318,7 @@ final class RegionNetworkFirewallPoliciesClient
      * Copies rules to the specified network firewall policy.
      *
      * The async variant is
-     * {@see RegionNetworkFirewallPoliciesGapicClient::cloneRulesAsync()} .
+     * {@see RegionNetworkFirewallPoliciesClient::cloneRulesAsync()} .
      *
      * @param CloneRulesRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                        $callOptions {
@@ -342,8 +342,7 @@ final class RegionNetworkFirewallPoliciesClient
     /**
      * Deletes the specified network firewall policy.
      *
-     * The async variant is
-     * {@see RegionNetworkFirewallPoliciesGapicClient::deleteAsync()} .
+     * The async variant is {@see RegionNetworkFirewallPoliciesClient::deleteAsync()} .
      *
      * @param DeleteRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
@@ -367,8 +366,7 @@ final class RegionNetworkFirewallPoliciesClient
     /**
      * Returns the specified network firewall policy.
      *
-     * The async variant is {@see RegionNetworkFirewallPoliciesGapicClient::getAsync()}
-     * .
+     * The async variant is {@see RegionNetworkFirewallPoliciesClient::getAsync()} .
      *
      * @param GetRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
@@ -393,7 +391,7 @@ final class RegionNetworkFirewallPoliciesClient
      * Gets an association with the specified name.
      *
      * The async variant is
-     * {@see RegionNetworkFirewallPoliciesGapicClient::getAssociationAsync()} .
+     * {@see RegionNetworkFirewallPoliciesClient::getAssociationAsync()} .
      *
      * @param GetAssociationRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                            $callOptions {
@@ -418,7 +416,7 @@ final class RegionNetworkFirewallPoliciesClient
      * Returns the effective firewalls on a given network.
      *
      * The async variant is
-     * {@see RegionNetworkFirewallPoliciesGapicClient::getEffectiveFirewallsAsync()} .
+     * {@see RegionNetworkFirewallPoliciesClient::getEffectiveFirewallsAsync()} .
      *
      * @param GetEffectiveFirewallsRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                                   $callOptions {
@@ -443,7 +441,7 @@ final class RegionNetworkFirewallPoliciesClient
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
      * The async variant is
-     * {@see RegionNetworkFirewallPoliciesGapicClient::getIamPolicyAsync()} .
+     * {@see RegionNetworkFirewallPoliciesClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                          $callOptions {
@@ -467,8 +465,8 @@ final class RegionNetworkFirewallPoliciesClient
     /**
      * Gets a rule of the specified priority.
      *
-     * The async variant is
-     * {@see RegionNetworkFirewallPoliciesGapicClient::getRuleAsync()} .
+     * The async variant is {@see RegionNetworkFirewallPoliciesClient::getRuleAsync()}
+     * .
      *
      * @param GetRuleRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
@@ -492,8 +490,7 @@ final class RegionNetworkFirewallPoliciesClient
     /**
      * Creates a new network firewall policy in the specified project and region.
      *
-     * The async variant is
-     * {@see RegionNetworkFirewallPoliciesGapicClient::insertAsync()} .
+     * The async variant is {@see RegionNetworkFirewallPoliciesClient::insertAsync()} .
      *
      * @param InsertRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
@@ -517,8 +514,7 @@ final class RegionNetworkFirewallPoliciesClient
     /**
      * Lists all the network firewall policies that have been configured for the specified project in the given region.
      *
-     * The async variant is
-     * {@see RegionNetworkFirewallPoliciesGapicClient::listAsync()} .
+     * The async variant is {@see RegionNetworkFirewallPoliciesClient::listAsync()} .
      *
      * @param ListRegionNetworkFirewallPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
@@ -542,8 +538,7 @@ final class RegionNetworkFirewallPoliciesClient
     /**
      * Patches the specified network firewall policy.
      *
-     * The async variant is
-     * {@see RegionNetworkFirewallPoliciesGapicClient::patchAsync()} .
+     * The async variant is {@see RegionNetworkFirewallPoliciesClient::patchAsync()} .
      *
      * @param PatchRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -568,7 +563,7 @@ final class RegionNetworkFirewallPoliciesClient
      * Patches a rule of the specified priority.
      *
      * The async variant is
-     * {@see RegionNetworkFirewallPoliciesGapicClient::patchRuleAsync()} .
+     * {@see RegionNetworkFirewallPoliciesClient::patchRuleAsync()} .
      *
      * @param PatchRuleRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                       $callOptions {
@@ -593,7 +588,7 @@ final class RegionNetworkFirewallPoliciesClient
      * Removes an association for the specified network firewall policy.
      *
      * The async variant is
-     * {@see RegionNetworkFirewallPoliciesGapicClient::removeAssociationAsync()} .
+     * {@see RegionNetworkFirewallPoliciesClient::removeAssociationAsync()} .
      *
      * @param RemoveAssociationRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                               $callOptions {
@@ -618,7 +613,7 @@ final class RegionNetworkFirewallPoliciesClient
      * Deletes a rule of the specified priority.
      *
      * The async variant is
-     * {@see RegionNetworkFirewallPoliciesGapicClient::removeRuleAsync()} .
+     * {@see RegionNetworkFirewallPoliciesClient::removeRuleAsync()} .
      *
      * @param RemoveRuleRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                        $callOptions {
@@ -643,7 +638,7 @@ final class RegionNetworkFirewallPoliciesClient
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
      * The async variant is
-     * {@see RegionNetworkFirewallPoliciesGapicClient::setIamPolicyAsync()} .
+     * {@see RegionNetworkFirewallPoliciesClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                          $callOptions {
@@ -668,7 +663,7 @@ final class RegionNetworkFirewallPoliciesClient
      * Returns permissions that a caller has on the specified resource.
      *
      * The async variant is
-     * {@see RegionNetworkFirewallPoliciesGapicClient::testIamPermissionsAsync()} .
+     * {@see RegionNetworkFirewallPoliciesClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                                $callOptions {

@@ -286,8 +286,7 @@ final class NodeGroupControllerClient
      * [Operation.metadata][google.longrunning.Operation.metadata] is
      * [NodeGroupOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#nodegroupoperationmetadata).
      *
-     * The async variant is
-     * {@see NodeGroupControllerGapicClient::createNodeGroupAsync()} .
+     * The async variant is {@see NodeGroupControllerClient::createNodeGroupAsync()} .
      *
      * @param CreateNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -312,8 +311,7 @@ final class NodeGroupControllerClient
      * Gets the resource representation for a node group in a
      * cluster.
      *
-     * The async variant is {@see NodeGroupControllerGapicClient::getNodeGroupAsync()}
-     * .
+     * The async variant is {@see NodeGroupControllerClient::getNodeGroupAsync()} .
      *
      * @param GetNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -339,8 +337,7 @@ final class NodeGroupControllerClient
      * [Operation.metadata][google.longrunning.Operation.metadata] is
      * [NodeGroupOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#nodegroupoperationmetadata).
      *
-     * The async variant is
-     * {@see NodeGroupControllerGapicClient::resizeNodeGroupAsync()} .
+     * The async variant is {@see NodeGroupControllerClient::resizeNodeGroupAsync()} .
      *
      * @param ResizeNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -365,8 +362,7 @@ final class NodeGroupControllerClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see NodeGroupControllerGapicClient::getIamPolicyAsync()}
-     * .
+     * The async variant is {@see NodeGroupControllerClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -394,8 +390,7 @@ final class NodeGroupControllerClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see NodeGroupControllerGapicClient::setIamPolicyAsync()}
-     * .
+     * The async variant is {@see NodeGroupControllerClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -425,8 +420,8 @@ final class NodeGroupControllerClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is
-     * {@see NodeGroupControllerGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see NodeGroupControllerClient::testIamPermissionsAsync()}
+     * .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

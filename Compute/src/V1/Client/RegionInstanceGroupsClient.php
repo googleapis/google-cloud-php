@@ -236,7 +236,7 @@ final class RegionInstanceGroupsClient
     /**
      * Returns the specified instance group resource.
      *
-     * The async variant is {@see RegionInstanceGroupsGapicClient::getAsync()} .
+     * The async variant is {@see RegionInstanceGroupsClient::getAsync()} .
      *
      * @param GetRegionInstanceGroupRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -260,7 +260,7 @@ final class RegionInstanceGroupsClient
     /**
      * Retrieves the list of instance group resources contained within the specified region.
      *
-     * The async variant is {@see RegionInstanceGroupsGapicClient::listAsync()} .
+     * The async variant is {@see RegionInstanceGroupsClient::listAsync()} .
      *
      * @param ListRegionInstanceGroupsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -284,8 +284,7 @@ final class RegionInstanceGroupsClient
     /**
      * Lists the instances in the specified instance group and displays information about the named ports. Depending on the specified options, this method can list all instances or only the instances that are running. The orderBy query parameter is not supported.
      *
-     * The async variant is
-     * {@see RegionInstanceGroupsGapicClient::listInstancesAsync()} .
+     * The async variant is {@see RegionInstanceGroupsClient::listInstancesAsync()} .
      *
      * @param ListInstancesRegionInstanceGroupsRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
@@ -309,8 +308,7 @@ final class RegionInstanceGroupsClient
     /**
      * Sets the named ports for the specified regional instance group.
      *
-     * The async variant is
-     * {@see RegionInstanceGroupsGapicClient::setNamedPortsAsync()} .
+     * The async variant is {@see RegionInstanceGroupsClient::setNamedPortsAsync()} .
      *
      * @param SetNamedPortsRegionInstanceGroupRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {

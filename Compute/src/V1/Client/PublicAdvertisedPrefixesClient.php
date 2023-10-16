@@ -237,7 +237,7 @@ final class PublicAdvertisedPrefixesClient
     /**
      * Deletes the specified PublicAdvertisedPrefix
      *
-     * The async variant is {@see PublicAdvertisedPrefixesGapicClient::deleteAsync()} .
+     * The async variant is {@see PublicAdvertisedPrefixesClient::deleteAsync()} .
      *
      * @param DeletePublicAdvertisedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -261,7 +261,7 @@ final class PublicAdvertisedPrefixesClient
     /**
      * Returns the specified PublicAdvertisedPrefix resource.
      *
-     * The async variant is {@see PublicAdvertisedPrefixesGapicClient::getAsync()} .
+     * The async variant is {@see PublicAdvertisedPrefixesClient::getAsync()} .
      *
      * @param GetPublicAdvertisedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -285,7 +285,7 @@ final class PublicAdvertisedPrefixesClient
     /**
      * Creates a PublicAdvertisedPrefix in the specified project using the parameters that are included in the request.
      *
-     * The async variant is {@see PublicAdvertisedPrefixesGapicClient::insertAsync()} .
+     * The async variant is {@see PublicAdvertisedPrefixesClient::insertAsync()} .
      *
      * @param InsertPublicAdvertisedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -309,7 +309,7 @@ final class PublicAdvertisedPrefixesClient
     /**
      * Lists the PublicAdvertisedPrefixes for a project.
      *
-     * The async variant is {@see PublicAdvertisedPrefixesGapicClient::listAsync()} .
+     * The async variant is {@see PublicAdvertisedPrefixesClient::listAsync()} .
      *
      * @param ListPublicAdvertisedPrefixesRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -333,7 +333,7 @@ final class PublicAdvertisedPrefixesClient
     /**
      * Patches the specified Router resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
      *
-     * The async variant is {@see PublicAdvertisedPrefixesGapicClient::patchAsync()} .
+     * The async variant is {@see PublicAdvertisedPrefixesClient::patchAsync()} .
      *
      * @param PatchPublicAdvertisedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {

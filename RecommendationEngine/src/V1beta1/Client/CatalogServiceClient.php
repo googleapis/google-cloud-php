@@ -293,8 +293,7 @@ final class CatalogServiceClient
     /**
      * Creates a catalog item.
      *
-     * The async variant is {@see CatalogServiceGapicClient::createCatalogItemAsync()}
-     * .
+     * The async variant is {@see CatalogServiceClient::createCatalogItemAsync()} .
      *
      * @example samples/V1beta1/CatalogServiceClient/create_catalog_item.php
      *
@@ -322,8 +321,7 @@ final class CatalogServiceClient
     /**
      * Deletes a catalog item.
      *
-     * The async variant is {@see CatalogServiceGapicClient::deleteCatalogItemAsync()}
-     * .
+     * The async variant is {@see CatalogServiceClient::deleteCatalogItemAsync()} .
      *
      * @example samples/V1beta1/CatalogServiceClient/delete_catalog_item.php
      *
@@ -349,7 +347,7 @@ final class CatalogServiceClient
     /**
      * Gets a specific catalog item.
      *
-     * The async variant is {@see CatalogServiceGapicClient::getCatalogItemAsync()} .
+     * The async variant is {@see CatalogServiceClient::getCatalogItemAsync()} .
      *
      * @example samples/V1beta1/CatalogServiceClient/get_catalog_item.php
      *
@@ -382,8 +380,7 @@ final class CatalogServiceClient
      * Operation.response is of type ImportResponse. Note that it is
      * possible for a subset of the items to be successfully updated.
      *
-     * The async variant is {@see CatalogServiceGapicClient::importCatalogItemsAsync()}
-     * .
+     * The async variant is {@see CatalogServiceClient::importCatalogItemsAsync()} .
      *
      * @example samples/V1beta1/CatalogServiceClient/import_catalog_items.php
      *
@@ -411,7 +408,7 @@ final class CatalogServiceClient
     /**
      * Gets a list of catalog items.
      *
-     * The async variant is {@see CatalogServiceGapicClient::listCatalogItemsAsync()} .
+     * The async variant is {@see CatalogServiceClient::listCatalogItemsAsync()} .
      *
      * @example samples/V1beta1/CatalogServiceClient/list_catalog_items.php
      *
@@ -440,8 +437,7 @@ final class CatalogServiceClient
      * Updates a catalog item. Partial updating is supported. Non-existing
      * items will be created.
      *
-     * The async variant is {@see CatalogServiceGapicClient::updateCatalogItemAsync()}
-     * .
+     * The async variant is {@see CatalogServiceClient::updateCatalogItemAsync()} .
      *
      * @example samples/V1beta1/CatalogServiceClient/update_catalog_item.php
      *

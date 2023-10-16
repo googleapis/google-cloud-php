@@ -242,7 +242,7 @@ final class PublicCertificateAuthorityServiceClient
      * Creates a new [ExternalAccountKey][google.cloud.security.publicca.v1beta1.ExternalAccountKey] bound to the project.
      *
      * The async variant is
-     * {@see PublicCertificateAuthorityServiceGapicClient::createExternalAccountKeyAsync()}
+     * {@see PublicCertificateAuthorityServiceClient::createExternalAccountKeyAsync()}
      * .
      *
      * @example samples/V1beta1/PublicCertificateAuthorityServiceClient/create_external_account_key.php

@@ -241,7 +241,7 @@ final class ExecutionsClient
     /**
      * Cancels an execution of the given name.
      *
-     * The async variant is {@see ExecutionsGapicClient::cancelExecutionAsync()} .
+     * The async variant is {@see ExecutionsClient::cancelExecutionAsync()} .
      *
      * @example samples/V1/ExecutionsClient/cancel_execution.php
      *
@@ -267,7 +267,7 @@ final class ExecutionsClient
     /**
      * Creates a new execution using the latest revision of the given workflow.
      *
-     * The async variant is {@see ExecutionsGapicClient::createExecutionAsync()} .
+     * The async variant is {@see ExecutionsClient::createExecutionAsync()} .
      *
      * @example samples/V1/ExecutionsClient/create_execution.php
      *
@@ -293,7 +293,7 @@ final class ExecutionsClient
     /**
      * Returns an execution of the given name.
      *
-     * The async variant is {@see ExecutionsGapicClient::getExecutionAsync()} .
+     * The async variant is {@see ExecutionsClient::getExecutionAsync()} .
      *
      * @example samples/V1/ExecutionsClient/get_execution.php
      *
@@ -322,7 +322,7 @@ final class ExecutionsClient
      * revisions. Returned executions are ordered by their start time (newest
      * first).
      *
-     * The async variant is {@see ExecutionsGapicClient::listExecutionsAsync()} .
+     * The async variant is {@see ExecutionsClient::listExecutionsAsync()} .
      *
      * @example samples/V1/ExecutionsClient/list_executions.php
      *

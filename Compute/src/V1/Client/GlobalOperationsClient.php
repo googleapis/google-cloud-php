@@ -184,7 +184,7 @@ final class GlobalOperationsClient
     /**
      * Retrieves an aggregated list of all operations.
      *
-     * The async variant is {@see GlobalOperationsGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see GlobalOperationsClient::aggregatedListAsync()} .
      *
      * @param AggregatedListGlobalOperationsRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
@@ -208,7 +208,7 @@ final class GlobalOperationsClient
     /**
      * Deletes the specified Operations resource.
      *
-     * The async variant is {@see GlobalOperationsGapicClient::deleteAsync()} .
+     * The async variant is {@see GlobalOperationsClient::deleteAsync()} .
      *
      * @param DeleteGlobalOperationRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -232,7 +232,7 @@ final class GlobalOperationsClient
     /**
      * Retrieves the specified Operations resource.
      *
-     * The async variant is {@see GlobalOperationsGapicClient::getAsync()} .
+     * The async variant is {@see GlobalOperationsClient::getAsync()} .
      *
      * @param GetGlobalOperationRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -256,7 +256,7 @@ final class GlobalOperationsClient
     /**
      * Retrieves a list of Operation resources contained within the specified project.
      *
-     * The async variant is {@see GlobalOperationsGapicClient::listAsync()} .
+     * The async variant is {@see GlobalOperationsClient::listAsync()} .
      *
      * @param ListGlobalOperationsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -280,7 +280,7 @@ final class GlobalOperationsClient
     /**
      * Waits for the specified Operation resource to return as `DONE` or for the request to approach the 2 minute deadline, and retrieves the specified Operation resource. This method differs from the `GET` method in that it waits for no more than the default deadline (2 minutes) and then returns the current state of the operation, which might be `DONE` or still in progress. This method is called on a best-effort basis. Specifically: - In uncommon cases, when the server is overloaded, the request might return before the default deadline is reached, or might return after zero seconds. - If the default deadline is reached, there is no guarantee that the operation is actually done when the method returns. Be prepared to retry if the operation is not `DONE`.
      *
-     * The async variant is {@see GlobalOperationsGapicClient::waitAsync()} .
+     * The async variant is {@see GlobalOperationsClient::waitAsync()} .
      *
      * @param WaitGlobalOperationRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {

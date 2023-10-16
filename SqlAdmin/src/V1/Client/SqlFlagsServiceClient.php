@@ -162,7 +162,7 @@ final class SqlFlagsServiceClient
     /**
      * Lists all available database flags for Cloud SQL instances.
      *
-     * The async variant is {@see SqlFlagsServiceGapicClient::listAsync()} .
+     * The async variant is {@see SqlFlagsServiceClient::listAsync()} .
      *
      * @example samples/V1/SqlFlagsServiceClient/list.php
      *

@@ -167,7 +167,7 @@ final class SqlOperationsServiceClient
     /**
      * Cancels an instance operation that has been performed on an instance.
      *
-     * The async variant is {@see SqlOperationsServiceGapicClient::cancelAsync()} .
+     * The async variant is {@see SqlOperationsServiceClient::cancelAsync()} .
      *
      * @example samples/V1/SqlOperationsServiceClient/cancel.php
      *
@@ -191,7 +191,7 @@ final class SqlOperationsServiceClient
     /**
      * Retrieves an instance operation that has been performed on an instance.
      *
-     * The async variant is {@see SqlOperationsServiceGapicClient::getAsync()} .
+     * The async variant is {@see SqlOperationsServiceClient::getAsync()} .
      *
      * @example samples/V1/SqlOperationsServiceClient/get.php
      *
@@ -218,7 +218,7 @@ final class SqlOperationsServiceClient
      * Lists all instance operations that have been performed on the given Cloud
      * SQL instance in the reverse chronological order of the start time.
      *
-     * The async variant is {@see SqlOperationsServiceGapicClient::listAsync()} .
+     * The async variant is {@see SqlOperationsServiceClient::listAsync()} .
      *
      * @example samples/V1/SqlOperationsServiceClient/list.php
      *

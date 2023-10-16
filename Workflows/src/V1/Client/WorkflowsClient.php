@@ -304,7 +304,7 @@ final class WorkflowsClient
      * exists in the specified project and location, the long running operation
      * returns a [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
      *
-     * The async variant is {@see WorkflowsGapicClient::createWorkflowAsync()} .
+     * The async variant is {@see WorkflowsClient::createWorkflowAsync()} .
      *
      * @example samples/V1/WorkflowsClient/create_workflow.php
      *
@@ -332,7 +332,7 @@ final class WorkflowsClient
      * This method also cancels and deletes all running executions of the
      * workflow.
      *
-     * The async variant is {@see WorkflowsGapicClient::deleteWorkflowAsync()} .
+     * The async variant is {@see WorkflowsClient::deleteWorkflowAsync()} .
      *
      * @example samples/V1/WorkflowsClient/delete_workflow.php
      *
@@ -358,7 +358,7 @@ final class WorkflowsClient
     /**
      * Gets details of a single workflow.
      *
-     * The async variant is {@see WorkflowsGapicClient::getWorkflowAsync()} .
+     * The async variant is {@see WorkflowsClient::getWorkflowAsync()} .
      *
      * @example samples/V1/WorkflowsClient/get_workflow.php
      *
@@ -385,7 +385,7 @@ final class WorkflowsClient
      * Lists workflows in a given project and location.
      * The default order is not specified.
      *
-     * The async variant is {@see WorkflowsGapicClient::listWorkflowsAsync()} .
+     * The async variant is {@see WorkflowsClient::listWorkflowsAsync()} .
      *
      * @example samples/V1/WorkflowsClient/list_workflows.php
      *
@@ -415,7 +415,7 @@ final class WorkflowsClient
      * successful update operation. In that case, the new revision is used
      * in new workflow executions.
      *
-     * The async variant is {@see WorkflowsGapicClient::updateWorkflowAsync()} .
+     * The async variant is {@see WorkflowsClient::updateWorkflowAsync()} .
      *
      * @example samples/V1/WorkflowsClient/update_workflow.php
      *
@@ -441,7 +441,7 @@ final class WorkflowsClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see WorkflowsGapicClient::getLocationAsync()} .
+     * The async variant is {@see WorkflowsClient::getLocationAsync()} .
      *
      * @example samples/V1/WorkflowsClient/get_location.php
      *
@@ -467,7 +467,7 @@ final class WorkflowsClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see WorkflowsGapicClient::listLocationsAsync()} .
+     * The async variant is {@see WorkflowsClient::listLocationsAsync()} .
      *
      * @example samples/V1/WorkflowsClient/list_locations.php
      *

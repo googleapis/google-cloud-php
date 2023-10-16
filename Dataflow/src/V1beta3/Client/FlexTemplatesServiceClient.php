@@ -169,7 +169,7 @@ final class FlexTemplatesServiceClient
      * Launch a job with a FlexTemplate.
      *
      * The async variant is
-     * {@see FlexTemplatesServiceGapicClient::launchFlexTemplateAsync()} .
+     * {@see FlexTemplatesServiceClient::launchFlexTemplateAsync()} .
      *
      * @example samples/V1beta3/FlexTemplatesServiceClient/launch_flex_template.php
      *

@@ -527,7 +527,7 @@ final class AnalyticsAdminServiceClient
      * created.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::acknowledgeUserDataCollectionAsync()} .
+     * {@see AnalyticsAdminServiceClient::acknowledgeUserDataCollectionAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/acknowledge_user_data_collection.php
      *
@@ -556,7 +556,7 @@ final class AnalyticsAdminServiceClient
      * Archives a CustomDimension on a property.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::archiveCustomDimensionAsync()} .
+     * {@see AnalyticsAdminServiceClient::archiveCustomDimensionAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/archive_custom_dimension.php
      *
@@ -583,7 +583,7 @@ final class AnalyticsAdminServiceClient
      * Archives a CustomMetric on a property.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::archiveCustomMetricAsync()} .
+     * {@see AnalyticsAdminServiceClient::archiveCustomMetricAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/archive_custom_metric.php
      *
@@ -610,7 +610,7 @@ final class AnalyticsAdminServiceClient
      * Creates a conversion event with the specified attributes.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::createConversionEventAsync()} .
+     * {@see AnalyticsAdminServiceClient::createConversionEventAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/create_conversion_event.php
      *
@@ -639,7 +639,7 @@ final class AnalyticsAdminServiceClient
      * Creates a CustomDimension.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::createCustomDimensionAsync()} .
+     * {@see AnalyticsAdminServiceClient::createCustomDimensionAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/create_custom_dimension.php
      *
@@ -668,7 +668,7 @@ final class AnalyticsAdminServiceClient
      * Creates a CustomMetric.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::createCustomMetricAsync()} .
+     * {@see AnalyticsAdminServiceClient::createCustomMetricAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/create_custom_metric.php
      *
@@ -696,8 +696,8 @@ final class AnalyticsAdminServiceClient
     /**
      * Creates a DataStream.
      *
-     * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::createDataStreamAsync()} .
+     * The async variant is {@see AnalyticsAdminServiceClient::createDataStreamAsync()}
+     * .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/create_data_stream.php
      *
@@ -728,7 +728,7 @@ final class AnalyticsAdminServiceClient
      * Properties can have at most one FirebaseLink.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::createFirebaseLinkAsync()} .
+     * {@see AnalyticsAdminServiceClient::createFirebaseLinkAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/create_firebase_link.php
      *
@@ -757,7 +757,7 @@ final class AnalyticsAdminServiceClient
      * Creates a GoogleAdsLink.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::createGoogleAdsLinkAsync()} .
+     * {@see AnalyticsAdminServiceClient::createGoogleAdsLinkAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/create_google_ads_link.php
      *
@@ -786,8 +786,7 @@ final class AnalyticsAdminServiceClient
      * Creates a measurement protocol secret.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::createMeasurementProtocolSecretAsync()}
-     * .
+     * {@see AnalyticsAdminServiceClient::createMeasurementProtocolSecretAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/create_measurement_protocol_secret.php
      *
@@ -815,8 +814,7 @@ final class AnalyticsAdminServiceClient
     /**
      * Creates an "GA4" property with the specified location and attributes.
      *
-     * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::createPropertyAsync()} .
+     * The async variant is {@see AnalyticsAdminServiceClient::createPropertyAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/create_property.php
      *
@@ -854,8 +852,7 @@ final class AnalyticsAdminServiceClient
      *
      * Returns an error if the target is not found.
      *
-     * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::deleteAccountAsync()} .
+     * The async variant is {@see AnalyticsAdminServiceClient::deleteAccountAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/delete_account.php
      *
@@ -882,7 +879,7 @@ final class AnalyticsAdminServiceClient
      * Deletes a conversion event in a property.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::deleteConversionEventAsync()} .
+     * {@see AnalyticsAdminServiceClient::deleteConversionEventAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/delete_conversion_event.php
      *
@@ -908,8 +905,8 @@ final class AnalyticsAdminServiceClient
     /**
      * Deletes a DataStream on a property.
      *
-     * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::deleteDataStreamAsync()} .
+     * The async variant is {@see AnalyticsAdminServiceClient::deleteDataStreamAsync()}
+     * .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/delete_data_stream.php
      *
@@ -936,7 +933,7 @@ final class AnalyticsAdminServiceClient
      * Deletes a FirebaseLink on a property
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::deleteFirebaseLinkAsync()} .
+     * {@see AnalyticsAdminServiceClient::deleteFirebaseLinkAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/delete_firebase_link.php
      *
@@ -963,7 +960,7 @@ final class AnalyticsAdminServiceClient
      * Deletes a GoogleAdsLink on a property
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::deleteGoogleAdsLinkAsync()} .
+     * {@see AnalyticsAdminServiceClient::deleteGoogleAdsLinkAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/delete_google_ads_link.php
      *
@@ -990,8 +987,7 @@ final class AnalyticsAdminServiceClient
      * Deletes target MeasurementProtocolSecret.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::deleteMeasurementProtocolSecretAsync()}
-     * .
+     * {@see AnalyticsAdminServiceClient::deleteMeasurementProtocolSecretAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/delete_measurement_protocol_secret.php
      *
@@ -1027,8 +1023,7 @@ final class AnalyticsAdminServiceClient
      *
      * Returns an error if the target is not found, or is not a GA4 Property.
      *
-     * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::deletePropertyAsync()} .
+     * The async variant is {@see AnalyticsAdminServiceClient::deletePropertyAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/delete_property.php
      *
@@ -1056,8 +1051,7 @@ final class AnalyticsAdminServiceClient
     /**
      * Lookup for a single Account.
      *
-     * The async variant is {@see AnalyticsAdminServiceGapicClient::getAccountAsync()}
-     * .
+     * The async variant is {@see AnalyticsAdminServiceClient::getAccountAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/get_account.php
      *
@@ -1086,7 +1080,7 @@ final class AnalyticsAdminServiceClient
      * Retrieve a single conversion event.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::getConversionEventAsync()} .
+     * {@see AnalyticsAdminServiceClient::getConversionEventAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/get_conversion_event.php
      *
@@ -1115,7 +1109,7 @@ final class AnalyticsAdminServiceClient
      * Lookup for a single CustomDimension.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::getCustomDimensionAsync()} .
+     * {@see AnalyticsAdminServiceClient::getCustomDimensionAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/get_custom_dimension.php
      *
@@ -1143,8 +1137,8 @@ final class AnalyticsAdminServiceClient
     /**
      * Lookup for a single CustomMetric.
      *
-     * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::getCustomMetricAsync()} .
+     * The async variant is {@see AnalyticsAdminServiceClient::getCustomMetricAsync()}
+     * .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/get_custom_metric.php
      *
@@ -1173,7 +1167,7 @@ final class AnalyticsAdminServiceClient
      * Returns the singleton data retention settings for this property.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::getDataRetentionSettingsAsync()} .
+     * {@see AnalyticsAdminServiceClient::getDataRetentionSettingsAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/get_data_retention_settings.php
      *
@@ -1203,7 +1197,7 @@ final class AnalyticsAdminServiceClient
      * Data sharing settings are singletons.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::getDataSharingSettingsAsync()} .
+     * {@see AnalyticsAdminServiceClient::getDataSharingSettingsAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/get_data_sharing_settings.php
      *
@@ -1231,8 +1225,7 @@ final class AnalyticsAdminServiceClient
     /**
      * Lookup for a single DataStream.
      *
-     * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::getDataStreamAsync()} .
+     * The async variant is {@see AnalyticsAdminServiceClient::getDataStreamAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/get_data_stream.php
      *
@@ -1261,7 +1254,7 @@ final class AnalyticsAdminServiceClient
      * Lookup for a single "GA4" MeasurementProtocolSecret.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::getMeasurementProtocolSecretAsync()} .
+     * {@see AnalyticsAdminServiceClient::getMeasurementProtocolSecretAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/get_measurement_protocol_secret.php
      *
@@ -1289,8 +1282,7 @@ final class AnalyticsAdminServiceClient
     /**
      * Lookup for a single "GA4" Property.
      *
-     * The async variant is {@see AnalyticsAdminServiceGapicClient::getPropertyAsync()}
-     * .
+     * The async variant is {@see AnalyticsAdminServiceClient::getPropertyAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/get_property.php
      *
@@ -1319,7 +1311,7 @@ final class AnalyticsAdminServiceClient
      * Returns summaries of all accounts accessible by the caller.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::listAccountSummariesAsync()} .
+     * {@see AnalyticsAdminServiceClient::listAccountSummariesAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/list_account_summaries.php
      *
@@ -1351,8 +1343,7 @@ final class AnalyticsAdminServiceClient
      * Soft-deleted (ie: "trashed") accounts are excluded by default.
      * Returns an empty list if no relevant accounts are found.
      *
-     * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::listAccountsAsync()} .
+     * The async variant is {@see AnalyticsAdminServiceClient::listAccountsAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/list_accounts.php
      *
@@ -1383,7 +1374,7 @@ final class AnalyticsAdminServiceClient
      * Returns an empty list if no conversion events are found.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::listConversionEventsAsync()} .
+     * {@see AnalyticsAdminServiceClient::listConversionEventsAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/list_conversion_events.php
      *
@@ -1412,7 +1403,7 @@ final class AnalyticsAdminServiceClient
      * Lists CustomDimensions on a property.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::listCustomDimensionsAsync()} .
+     * {@see AnalyticsAdminServiceClient::listCustomDimensionsAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/list_custom_dimensions.php
      *
@@ -1441,7 +1432,7 @@ final class AnalyticsAdminServiceClient
      * Lists CustomMetrics on a property.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::listCustomMetricsAsync()} .
+     * {@see AnalyticsAdminServiceClient::listCustomMetricsAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/list_custom_metrics.php
      *
@@ -1469,8 +1460,8 @@ final class AnalyticsAdminServiceClient
     /**
      * Lists DataStreams on a property.
      *
-     * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::listDataStreamsAsync()} .
+     * The async variant is {@see AnalyticsAdminServiceClient::listDataStreamsAsync()}
+     * .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/list_data_streams.php
      *
@@ -1500,7 +1491,7 @@ final class AnalyticsAdminServiceClient
      * Properties can have at most one FirebaseLink.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::listFirebaseLinksAsync()} .
+     * {@see AnalyticsAdminServiceClient::listFirebaseLinksAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/list_firebase_links.php
      *
@@ -1529,7 +1520,7 @@ final class AnalyticsAdminServiceClient
      * Lists GoogleAdsLinks on a property.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::listGoogleAdsLinksAsync()} .
+     * {@see AnalyticsAdminServiceClient::listGoogleAdsLinksAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/list_google_ads_links.php
      *
@@ -1559,7 +1550,7 @@ final class AnalyticsAdminServiceClient
      * Property.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::listMeasurementProtocolSecretsAsync()} .
+     * {@see AnalyticsAdminServiceClient::listMeasurementProtocolSecretsAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/list_measurement_protocol_secrets.php
      *
@@ -1592,8 +1583,7 @@ final class AnalyticsAdminServiceClient
      * Soft-deleted (ie: "trashed") properties are excluded by default.
      * Returns an empty list if no relevant properties are found.
      *
-     * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::listPropertiesAsync()} .
+     * The async variant is {@see AnalyticsAdminServiceClient::listPropertiesAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/list_properties.php
      *
@@ -1622,7 +1612,7 @@ final class AnalyticsAdminServiceClient
      * Requests a ticket for creating an account.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::provisionAccountTicketAsync()} .
+     * {@see AnalyticsAdminServiceClient::provisionAccountTicketAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/provision_account_ticket.php
      *
@@ -1662,8 +1652,8 @@ final class AnalyticsAdminServiceClient
      * property's time zone. For configuration change history, see
      * [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).
      *
-     * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::runAccessReportAsync()} .
+     * The async variant is {@see AnalyticsAdminServiceClient::runAccessReportAsync()}
+     * .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/run_access_report.php
      *
@@ -1693,7 +1683,7 @@ final class AnalyticsAdminServiceClient
      * specified set of filters.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::searchChangeHistoryEventsAsync()} .
+     * {@see AnalyticsAdminServiceClient::searchChangeHistoryEventsAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/search_change_history_events.php
      *
@@ -1721,8 +1711,7 @@ final class AnalyticsAdminServiceClient
     /**
      * Updates an account.
      *
-     * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::updateAccountAsync()} .
+     * The async variant is {@see AnalyticsAdminServiceClient::updateAccountAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/update_account.php
      *
@@ -1751,7 +1740,7 @@ final class AnalyticsAdminServiceClient
      * Updates a conversion event with the specified attributes.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::updateConversionEventAsync()} .
+     * {@see AnalyticsAdminServiceClient::updateConversionEventAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/update_conversion_event.php
      *
@@ -1780,7 +1769,7 @@ final class AnalyticsAdminServiceClient
      * Updates a CustomDimension on a property.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::updateCustomDimensionAsync()} .
+     * {@see AnalyticsAdminServiceClient::updateCustomDimensionAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/update_custom_dimension.php
      *
@@ -1809,7 +1798,7 @@ final class AnalyticsAdminServiceClient
      * Updates a CustomMetric on a property.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::updateCustomMetricAsync()} .
+     * {@see AnalyticsAdminServiceClient::updateCustomMetricAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/update_custom_metric.php
      *
@@ -1838,7 +1827,7 @@ final class AnalyticsAdminServiceClient
      * Updates the singleton data retention settings for this property.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::updateDataRetentionSettingsAsync()} .
+     * {@see AnalyticsAdminServiceClient::updateDataRetentionSettingsAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/update_data_retention_settings.php
      *
@@ -1866,8 +1855,8 @@ final class AnalyticsAdminServiceClient
     /**
      * Updates a DataStream on a property.
      *
-     * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::updateDataStreamAsync()} .
+     * The async variant is {@see AnalyticsAdminServiceClient::updateDataStreamAsync()}
+     * .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/update_data_stream.php
      *
@@ -1896,7 +1885,7 @@ final class AnalyticsAdminServiceClient
      * Updates a GoogleAdsLink on a property
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::updateGoogleAdsLinkAsync()} .
+     * {@see AnalyticsAdminServiceClient::updateGoogleAdsLinkAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/update_google_ads_link.php
      *
@@ -1925,8 +1914,7 @@ final class AnalyticsAdminServiceClient
      * Updates a measurement protocol secret.
      *
      * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::updateMeasurementProtocolSecretAsync()}
-     * .
+     * {@see AnalyticsAdminServiceClient::updateMeasurementProtocolSecretAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/update_measurement_protocol_secret.php
      *
@@ -1954,8 +1942,7 @@ final class AnalyticsAdminServiceClient
     /**
      * Updates a property.
      *
-     * The async variant is
-     * {@see AnalyticsAdminServiceGapicClient::updatePropertyAsync()} .
+     * The async variant is {@see AnalyticsAdminServiceClient::updatePropertyAsync()} .
      *
      * @example samples/V1beta/AnalyticsAdminServiceClient/update_property.php
      *

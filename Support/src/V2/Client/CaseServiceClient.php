@@ -292,7 +292,7 @@ final class CaseServiceClient
     /**
      * Close the specified case.
      *
-     * The async variant is {@see CaseServiceGapicClient::closeCaseAsync()} .
+     * The async variant is {@see CaseServiceClient::closeCaseAsync()} .
      *
      * @example samples/V2/CaseServiceClient/close_case.php
      *
@@ -320,7 +320,7 @@ final class CaseServiceClient
      * The case object must have the following fields set: `display_name`,
      * `description`, `classification`, and `priority`.
      *
-     * The async variant is {@see CaseServiceGapicClient::createCaseAsync()} .
+     * The async variant is {@see CaseServiceClient::createCaseAsync()} .
      *
      * @example samples/V2/CaseServiceClient/create_case.php
      *
@@ -352,7 +352,7 @@ final class CaseServiceClient
      * escalations' in the feature list to find out which tiers are able to
      * perform escalations.
      *
-     * The async variant is {@see CaseServiceGapicClient::escalateCaseAsync()} .
+     * The async variant is {@see CaseServiceClient::escalateCaseAsync()} .
      *
      * @example samples/V2/CaseServiceClient/escalate_case.php
      *
@@ -378,7 +378,7 @@ final class CaseServiceClient
     /**
      * Retrieve the specified case.
      *
-     * The async variant is {@see CaseServiceGapicClient::getCaseAsync()} .
+     * The async variant is {@see CaseServiceClient::getCaseAsync()} .
      *
      * @example samples/V2/CaseServiceClient/get_case.php
      *
@@ -409,7 +409,7 @@ final class CaseServiceClient
      * including cases parented by projects under that organization, use
      * `cases.search`.
      *
-     * The async variant is {@see CaseServiceGapicClient::listCasesAsync()} .
+     * The async variant is {@see CaseServiceClient::listCasesAsync()} .
      *
      * @example samples/V2/CaseServiceClient/list_cases.php
      *
@@ -438,8 +438,8 @@ final class CaseServiceClient
      * all levels of the hierarchy, separated by " > ". For example "Technical
      * Issue > Compute > Compute Engine".
      *
-     * The async variant is
-     * {@see CaseServiceGapicClient::searchCaseClassificationsAsync()} .
+     * The async variant is {@see CaseServiceClient::searchCaseClassificationsAsync()}
+     * .
      *
      * @example samples/V2/CaseServiceClient/search_case_classifications.php
      *
@@ -465,7 +465,7 @@ final class CaseServiceClient
     /**
      * Search cases using the specified query.
      *
-     * The async variant is {@see CaseServiceGapicClient::searchCasesAsync()} .
+     * The async variant is {@see CaseServiceClient::searchCasesAsync()} .
      *
      * @example samples/V2/CaseServiceClient/search_cases.php
      *
@@ -491,7 +491,7 @@ final class CaseServiceClient
     /**
      * Update the specified case. Only a subset of fields can be updated.
      *
-     * The async variant is {@see CaseServiceGapicClient::updateCaseAsync()} .
+     * The async variant is {@see CaseServiceClient::updateCaseAsync()} .
      *
      * @example samples/V2/CaseServiceClient/update_case.php
      *

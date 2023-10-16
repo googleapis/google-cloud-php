@@ -302,7 +302,7 @@ final class NotebookServiceClient
      * Checks whether a notebook instance is upgradable.
      *
      * The async variant is
-     * {@see NotebookServiceGapicClient::checkInstanceUpgradabilityAsync()} .
+     * {@see NotebookServiceClient::checkInstanceUpgradabilityAsync()} .
      *
      * @example samples/V2/NotebookServiceClient/check_instance_upgradability.php
      *
@@ -328,7 +328,7 @@ final class NotebookServiceClient
     /**
      * Creates a new Instance in a given project and location.
      *
-     * The async variant is {@see NotebookServiceGapicClient::createInstanceAsync()} .
+     * The async variant is {@see NotebookServiceClient::createInstanceAsync()} .
      *
      * @example samples/V2/NotebookServiceClient/create_instance.php
      *
@@ -354,7 +354,7 @@ final class NotebookServiceClient
     /**
      * Deletes a single Instance.
      *
-     * The async variant is {@see NotebookServiceGapicClient::deleteInstanceAsync()} .
+     * The async variant is {@see NotebookServiceClient::deleteInstanceAsync()} .
      *
      * @example samples/V2/NotebookServiceClient/delete_instance.php
      *
@@ -380,8 +380,7 @@ final class NotebookServiceClient
     /**
      * Creates a Diagnostic File and runs Diagnostic Tool given an Instance.
      *
-     * The async variant is {@see NotebookServiceGapicClient::diagnoseInstanceAsync()}
-     * .
+     * The async variant is {@see NotebookServiceClient::diagnoseInstanceAsync()} .
      *
      * @example samples/V2/NotebookServiceClient/diagnose_instance.php
      *
@@ -407,7 +406,7 @@ final class NotebookServiceClient
     /**
      * Gets details of a single Instance.
      *
-     * The async variant is {@see NotebookServiceGapicClient::getInstanceAsync()} .
+     * The async variant is {@see NotebookServiceClient::getInstanceAsync()} .
      *
      * @example samples/V2/NotebookServiceClient/get_instance.php
      *
@@ -433,7 +432,7 @@ final class NotebookServiceClient
     /**
      * Lists instances in a given project and location.
      *
-     * The async variant is {@see NotebookServiceGapicClient::listInstancesAsync()} .
+     * The async variant is {@see NotebookServiceClient::listInstancesAsync()} .
      *
      * @example samples/V2/NotebookServiceClient/list_instances.php
      *
@@ -459,7 +458,7 @@ final class NotebookServiceClient
     /**
      * Resets a notebook instance.
      *
-     * The async variant is {@see NotebookServiceGapicClient::resetInstanceAsync()} .
+     * The async variant is {@see NotebookServiceClient::resetInstanceAsync()} .
      *
      * @example samples/V2/NotebookServiceClient/reset_instance.php
      *
@@ -485,8 +484,7 @@ final class NotebookServiceClient
     /**
      * Rollbacks a notebook instance to the previous version.
      *
-     * The async variant is {@see NotebookServiceGapicClient::rollbackInstanceAsync()}
-     * .
+     * The async variant is {@see NotebookServiceClient::rollbackInstanceAsync()} .
      *
      * @example samples/V2/NotebookServiceClient/rollback_instance.php
      *
@@ -512,7 +510,7 @@ final class NotebookServiceClient
     /**
      * Starts a notebook instance.
      *
-     * The async variant is {@see NotebookServiceGapicClient::startInstanceAsync()} .
+     * The async variant is {@see NotebookServiceClient::startInstanceAsync()} .
      *
      * @example samples/V2/NotebookServiceClient/start_instance.php
      *
@@ -538,7 +536,7 @@ final class NotebookServiceClient
     /**
      * Stops a notebook instance.
      *
-     * The async variant is {@see NotebookServiceGapicClient::stopInstanceAsync()} .
+     * The async variant is {@see NotebookServiceClient::stopInstanceAsync()} .
      *
      * @example samples/V2/NotebookServiceClient/stop_instance.php
      *
@@ -564,7 +562,7 @@ final class NotebookServiceClient
     /**
      * UpdateInstance updates an Instance.
      *
-     * The async variant is {@see NotebookServiceGapicClient::updateInstanceAsync()} .
+     * The async variant is {@see NotebookServiceClient::updateInstanceAsync()} .
      *
      * @example samples/V2/NotebookServiceClient/update_instance.php
      *
@@ -590,7 +588,7 @@ final class NotebookServiceClient
     /**
      * Upgrades a notebook instance to the latest version.
      *
-     * The async variant is {@see NotebookServiceGapicClient::upgradeInstanceAsync()} .
+     * The async variant is {@see NotebookServiceClient::upgradeInstanceAsync()} .
      *
      * @example samples/V2/NotebookServiceClient/upgrade_instance.php
      *
@@ -616,7 +614,7 @@ final class NotebookServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see NotebookServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see NotebookServiceClient::getLocationAsync()} .
      *
      * @example samples/V2/NotebookServiceClient/get_location.php
      *
@@ -642,7 +640,7 @@ final class NotebookServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see NotebookServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see NotebookServiceClient::listLocationsAsync()} .
      *
      * @example samples/V2/NotebookServiceClient/list_locations.php
      *
@@ -669,7 +667,7 @@ final class NotebookServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see NotebookServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see NotebookServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V2/NotebookServiceClient/get_iam_policy.php
      *
@@ -699,7 +697,7 @@ final class NotebookServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see NotebookServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see NotebookServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V2/NotebookServiceClient/set_iam_policy.php
      *
@@ -731,8 +729,7 @@ final class NotebookServiceClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is
-     * {@see NotebookServiceGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see NotebookServiceClient::testIamPermissionsAsync()} .
      *
      * @example samples/V2/NotebookServiceClient/test_iam_permissions.php
      *

@@ -241,7 +241,7 @@ final class AutoscalersClient
     /**
      * Retrieves an aggregated list of autoscalers.
      *
-     * The async variant is {@see AutoscalersGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see AutoscalersClient::aggregatedListAsync()} .
      *
      * @param AggregatedListAutoscalersRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -265,7 +265,7 @@ final class AutoscalersClient
     /**
      * Deletes the specified autoscaler.
      *
-     * The async variant is {@see AutoscalersGapicClient::deleteAsync()} .
+     * The async variant is {@see AutoscalersClient::deleteAsync()} .
      *
      * @param DeleteAutoscalerRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -289,7 +289,7 @@ final class AutoscalersClient
     /**
      * Returns the specified autoscaler resource.
      *
-     * The async variant is {@see AutoscalersGapicClient::getAsync()} .
+     * The async variant is {@see AutoscalersClient::getAsync()} .
      *
      * @param GetAutoscalerRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -313,7 +313,7 @@ final class AutoscalersClient
     /**
      * Creates an autoscaler in the specified project using the data included in the request.
      *
-     * The async variant is {@see AutoscalersGapicClient::insertAsync()} .
+     * The async variant is {@see AutoscalersClient::insertAsync()} .
      *
      * @param InsertAutoscalerRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -337,7 +337,7 @@ final class AutoscalersClient
     /**
      * Retrieves a list of autoscalers contained within the specified zone.
      *
-     * The async variant is {@see AutoscalersGapicClient::listAsync()} .
+     * The async variant is {@see AutoscalersClient::listAsync()} .
      *
      * @param ListAutoscalersRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -361,7 +361,7 @@ final class AutoscalersClient
     /**
      * Updates an autoscaler in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      *
-     * The async variant is {@see AutoscalersGapicClient::patchAsync()} .
+     * The async variant is {@see AutoscalersClient::patchAsync()} .
      *
      * @param PatchAutoscalerRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -385,7 +385,7 @@ final class AutoscalersClient
     /**
      * Updates an autoscaler in the specified project using the data included in the request.
      *
-     * The async variant is {@see AutoscalersGapicClient::updateAsync()} .
+     * The async variant is {@see AutoscalersClient::updateAsync()} .
      *
      * @param UpdateAutoscalerRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {

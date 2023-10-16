@@ -302,7 +302,7 @@ final class DataFusionClient
     /**
      * Creates a new Data Fusion instance in the specified project and location.
      *
-     * The async variant is {@see DataFusionGapicClient::createInstanceAsync()} .
+     * The async variant is {@see DataFusionClient::createInstanceAsync()} .
      *
      * @example samples/V1/DataFusionClient/create_instance.php
      *
@@ -328,7 +328,7 @@ final class DataFusionClient
     /**
      * Deletes a single Date Fusion instance.
      *
-     * The async variant is {@see DataFusionGapicClient::deleteInstanceAsync()} .
+     * The async variant is {@see DataFusionClient::deleteInstanceAsync()} .
      *
      * @example samples/V1/DataFusionClient/delete_instance.php
      *
@@ -354,7 +354,7 @@ final class DataFusionClient
     /**
      * Gets details of a single Data Fusion instance.
      *
-     * The async variant is {@see DataFusionGapicClient::getInstanceAsync()} .
+     * The async variant is {@see DataFusionClient::getInstanceAsync()} .
      *
      * @example samples/V1/DataFusionClient/get_instance.php
      *
@@ -381,8 +381,7 @@ final class DataFusionClient
      * Lists possible versions for Data Fusion instances in the specified project
      * and location.
      *
-     * The async variant is {@see DataFusionGapicClient::listAvailableVersionsAsync()}
-     * .
+     * The async variant is {@see DataFusionClient::listAvailableVersionsAsync()} .
      *
      * @example samples/V1/DataFusionClient/list_available_versions.php
      *
@@ -408,7 +407,7 @@ final class DataFusionClient
     /**
      * Lists Data Fusion instances in the specified project and location.
      *
-     * The async variant is {@see DataFusionGapicClient::listInstancesAsync()} .
+     * The async variant is {@see DataFusionClient::listInstancesAsync()} .
      *
      * @example samples/V1/DataFusionClient/list_instances.php
      *
@@ -435,7 +434,7 @@ final class DataFusionClient
      * Restart a single Data Fusion instance.
      * At the end of an operation instance is fully restarted.
      *
-     * The async variant is {@see DataFusionGapicClient::restartInstanceAsync()} .
+     * The async variant is {@see DataFusionClient::restartInstanceAsync()} .
      *
      * @example samples/V1/DataFusionClient/restart_instance.php
      *
@@ -461,7 +460,7 @@ final class DataFusionClient
     /**
      * Updates a single Data Fusion instance.
      *
-     * The async variant is {@see DataFusionGapicClient::updateInstanceAsync()} .
+     * The async variant is {@see DataFusionClient::updateInstanceAsync()} .
      *
      * @example samples/V1/DataFusionClient/update_instance.php
      *

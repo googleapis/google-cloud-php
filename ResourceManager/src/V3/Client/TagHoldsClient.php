@@ -272,7 +272,7 @@ final class TagHoldsClient
      * Creates a TagHold. Returns ALREADY_EXISTS if a TagHold with the same
      * resource and origin exists under the same TagValue.
      *
-     * The async variant is {@see TagHoldsGapicClient::createTagHoldAsync()} .
+     * The async variant is {@see TagHoldsClient::createTagHoldAsync()} .
      *
      * @example samples/V3/TagHoldsClient/create_tag_hold.php
      *
@@ -298,7 +298,7 @@ final class TagHoldsClient
     /**
      * Deletes a TagHold.
      *
-     * The async variant is {@see TagHoldsGapicClient::deleteTagHoldAsync()} .
+     * The async variant is {@see TagHoldsClient::deleteTagHoldAsync()} .
      *
      * @example samples/V3/TagHoldsClient/delete_tag_hold.php
      *
@@ -324,7 +324,7 @@ final class TagHoldsClient
     /**
      * Lists TagHolds under a TagValue.
      *
-     * The async variant is {@see TagHoldsGapicClient::listTagHoldsAsync()} .
+     * The async variant is {@see TagHoldsClient::listTagHoldsAsync()} .
      *
      * @example samples/V3/TagHoldsClient/list_tag_holds.php
      *

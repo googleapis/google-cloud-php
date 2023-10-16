@@ -530,7 +530,7 @@ final class VmwareEngineClient
      * use in the parent private cloud and requires sufficient [node
      * quota](https://cloud.google.com/vmware-engine/quotas).
      *
-     * The async variant is {@see VmwareEngineGapicClient::createClusterAsync()} .
+     * The async variant is {@see VmwareEngineClient::createClusterAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/create_cluster.php
      *
@@ -556,8 +556,7 @@ final class VmwareEngineClient
     /**
      * Creates a new HCX activation key in a given private cloud.
      *
-     * The async variant is
-     * {@see VmwareEngineGapicClient::createHcxActivationKeyAsync()} .
+     * The async variant is {@see VmwareEngineClient::createHcxActivationKeyAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/create_hcx_activation_key.php
      *
@@ -585,8 +584,7 @@ final class VmwareEngineClient
      * project and location (region). A new network policy cannot be created if
      * another network policy already exists in the same scope.
      *
-     * The async variant is {@see VmwareEngineGapicClient::createNetworkPolicyAsync()}
-     * .
+     * The async variant is {@see VmwareEngineClient::createNetworkPolicyAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/create_network_policy.php
      *
@@ -618,7 +616,7 @@ final class VmwareEngineClient
      * cluster](https://cloud.google.com/vmware-engine/docs/concepts-vmware-components)
      * for that private cloud.
      *
-     * The async variant is {@see VmwareEngineGapicClient::createPrivateCloudAsync()} .
+     * The async variant is {@see VmwareEngineClient::createPrivateCloudAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/create_private_cloud.php
      *
@@ -645,8 +643,7 @@ final class VmwareEngineClient
      * Creates a new private connection that can be used for accessing private
      * Clouds.
      *
-     * The async variant is
-     * {@see VmwareEngineGapicClient::createPrivateConnectionAsync()} .
+     * The async variant is {@see VmwareEngineClient::createPrivateConnectionAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/create_private_connection.php
      *
@@ -672,8 +669,8 @@ final class VmwareEngineClient
     /**
      * Creates a new VMware Engine network that can be used by a private cloud.
      *
-     * The async variant is
-     * {@see VmwareEngineGapicClient::createVmwareEngineNetworkAsync()} .
+     * The async variant is {@see VmwareEngineClient::createVmwareEngineNetworkAsync()}
+     * .
      *
      * @example samples/V1/VmwareEngineClient/create_vmware_engine_network.php
      *
@@ -702,7 +699,7 @@ final class VmwareEngineClient
      * You cannot delete the management cluster of a private cloud using this
      * method.
      *
-     * The async variant is {@see VmwareEngineGapicClient::deleteClusterAsync()} .
+     * The async variant is {@see VmwareEngineClient::deleteClusterAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/delete_cluster.php
      *
@@ -730,8 +727,7 @@ final class VmwareEngineClient
      * when `NetworkService.state` is set to `RECONCILING` for either its external
      * IP or internet access service.
      *
-     * The async variant is {@see VmwareEngineGapicClient::deleteNetworkPolicyAsync()}
-     * .
+     * The async variant is {@see VmwareEngineClient::deleteNetworkPolicyAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/delete_network_policy.php
      *
@@ -771,7 +767,7 @@ final class VmwareEngineClient
      * period of deletion and purging. It will not be returned only
      * when it is completely purged.
      *
-     * The async variant is {@see VmwareEngineGapicClient::deletePrivateCloudAsync()} .
+     * The async variant is {@see VmwareEngineClient::deletePrivateCloudAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/delete_private_cloud.php
      *
@@ -799,8 +795,7 @@ final class VmwareEngineClient
      * deleted for a VMware Engine network, the connected network becomes
      * inaccessible to that VMware Engine network.
      *
-     * The async variant is
-     * {@see VmwareEngineGapicClient::deletePrivateConnectionAsync()} .
+     * The async variant is {@see VmwareEngineClient::deletePrivateConnectionAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/delete_private_connection.php
      *
@@ -829,8 +824,8 @@ final class VmwareEngineClient
      * example, a private cloud, a network peering, and a network policy can all
      * refer to the same VMware Engine network.
      *
-     * The async variant is
-     * {@see VmwareEngineGapicClient::deleteVmwareEngineNetworkAsync()} .
+     * The async variant is {@see VmwareEngineClient::deleteVmwareEngineNetworkAsync()}
+     * .
      *
      * @example samples/V1/VmwareEngineClient/delete_vmware_engine_network.php
      *
@@ -856,7 +851,7 @@ final class VmwareEngineClient
     /**
      * Retrieves a `Cluster` resource by its resource name.
      *
-     * The async variant is {@see VmwareEngineGapicClient::getClusterAsync()} .
+     * The async variant is {@see VmwareEngineClient::getClusterAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/get_cluster.php
      *
@@ -882,8 +877,7 @@ final class VmwareEngineClient
     /**
      * Retrieves a `HcxActivationKey` resource by its resource name.
      *
-     * The async variant is {@see VmwareEngineGapicClient::getHcxActivationKeyAsync()}
-     * .
+     * The async variant is {@see VmwareEngineClient::getHcxActivationKeyAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/get_hcx_activation_key.php
      *
@@ -909,7 +903,7 @@ final class VmwareEngineClient
     /**
      * Retrieves a `NetworkPolicy` resource by its resource name.
      *
-     * The async variant is {@see VmwareEngineGapicClient::getNetworkPolicyAsync()} .
+     * The async variant is {@see VmwareEngineClient::getNetworkPolicyAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/get_network_policy.php
      *
@@ -935,7 +929,7 @@ final class VmwareEngineClient
     /**
      * Gets details of a single `NodeType`.
      *
-     * The async variant is {@see VmwareEngineGapicClient::getNodeTypeAsync()} .
+     * The async variant is {@see VmwareEngineClient::getNodeTypeAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/get_node_type.php
      *
@@ -961,7 +955,7 @@ final class VmwareEngineClient
     /**
      * Retrieves a `PrivateCloud` resource by its resource name.
      *
-     * The async variant is {@see VmwareEngineGapicClient::getPrivateCloudAsync()} .
+     * The async variant is {@see VmwareEngineClient::getPrivateCloudAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/get_private_cloud.php
      *
@@ -989,8 +983,7 @@ final class VmwareEngineClient
      * contains details of the private connection, such as connected
      * network, routing mode and state.
      *
-     * The async variant is {@see VmwareEngineGapicClient::getPrivateConnectionAsync()}
-     * .
+     * The async variant is {@see VmwareEngineClient::getPrivateConnectionAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/get_private_connection.php
      *
@@ -1016,7 +1009,7 @@ final class VmwareEngineClient
     /**
      * Gets details of a single subnet.
      *
-     * The async variant is {@see VmwareEngineGapicClient::getSubnetAsync()} .
+     * The async variant is {@see VmwareEngineClient::getSubnetAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/get_subnet.php
      *
@@ -1045,8 +1038,7 @@ final class VmwareEngineClient
      * Engine network type, peered networks in a service project, and state
      * (for example, `CREATING`, `ACTIVE`, `DELETING`).
      *
-     * The async variant is
-     * {@see VmwareEngineGapicClient::getVmwareEngineNetworkAsync()} .
+     * The async variant is {@see VmwareEngineClient::getVmwareEngineNetworkAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/get_vmware_engine_network.php
      *
@@ -1072,7 +1064,7 @@ final class VmwareEngineClient
     /**
      * Lists `Cluster` resources in a given private cloud.
      *
-     * The async variant is {@see VmwareEngineGapicClient::listClustersAsync()} .
+     * The async variant is {@see VmwareEngineClient::listClustersAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/list_clusters.php
      *
@@ -1098,8 +1090,7 @@ final class VmwareEngineClient
     /**
      * Lists `HcxActivationKey` resources in a given private cloud.
      *
-     * The async variant is
-     * {@see VmwareEngineGapicClient::listHcxActivationKeysAsync()} .
+     * The async variant is {@see VmwareEngineClient::listHcxActivationKeysAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/list_hcx_activation_keys.php
      *
@@ -1125,8 +1116,7 @@ final class VmwareEngineClient
     /**
      * Lists `NetworkPolicy` resources in a specified project and location.
      *
-     * The async variant is {@see VmwareEngineGapicClient::listNetworkPoliciesAsync()}
-     * .
+     * The async variant is {@see VmwareEngineClient::listNetworkPoliciesAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/list_network_policies.php
      *
@@ -1152,7 +1142,7 @@ final class VmwareEngineClient
     /**
      * Lists node types
      *
-     * The async variant is {@see VmwareEngineGapicClient::listNodeTypesAsync()} .
+     * The async variant is {@see VmwareEngineClient::listNodeTypesAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/list_node_types.php
      *
@@ -1178,7 +1168,7 @@ final class VmwareEngineClient
     /**
      * Lists `PrivateCloud` resources in a given project and location.
      *
-     * The async variant is {@see VmwareEngineGapicClient::listPrivateCloudsAsync()} .
+     * The async variant is {@see VmwareEngineClient::listPrivateCloudsAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/list_private_clouds.php
      *
@@ -1205,7 +1195,7 @@ final class VmwareEngineClient
      * Lists the private connection routes exchanged over a peering connection.
      *
      * The async variant is
-     * {@see VmwareEngineGapicClient::listPrivateConnectionPeeringRoutesAsync()} .
+     * {@see VmwareEngineClient::listPrivateConnectionPeeringRoutesAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/list_private_connection_peering_routes.php
      *
@@ -1231,8 +1221,7 @@ final class VmwareEngineClient
     /**
      * Lists `PrivateConnection` resources in a given project and location.
      *
-     * The async variant is
-     * {@see VmwareEngineGapicClient::listPrivateConnectionsAsync()} .
+     * The async variant is {@see VmwareEngineClient::listPrivateConnectionsAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/list_private_connections.php
      *
@@ -1258,7 +1247,7 @@ final class VmwareEngineClient
     /**
      * Lists subnets in a given private cloud.
      *
-     * The async variant is {@see VmwareEngineGapicClient::listSubnetsAsync()} .
+     * The async variant is {@see VmwareEngineClient::listSubnetsAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/list_subnets.php
      *
@@ -1284,8 +1273,8 @@ final class VmwareEngineClient
     /**
      * Lists `VmwareEngineNetwork` resources in a given project and location.
      *
-     * The async variant is
-     * {@see VmwareEngineGapicClient::listVmwareEngineNetworksAsync()} .
+     * The async variant is {@see VmwareEngineClient::listVmwareEngineNetworksAsync()}
+     * .
      *
      * @example samples/V1/VmwareEngineClient/list_vmware_engine_networks.php
      *
@@ -1311,8 +1300,7 @@ final class VmwareEngineClient
     /**
      * Resets credentials of the NSX appliance.
      *
-     * The async variant is {@see VmwareEngineGapicClient::resetNsxCredentialsAsync()}
-     * .
+     * The async variant is {@see VmwareEngineClient::resetNsxCredentialsAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/reset_nsx_credentials.php
      *
@@ -1338,8 +1326,7 @@ final class VmwareEngineClient
     /**
      * Resets credentials of the Vcenter appliance.
      *
-     * The async variant is
-     * {@see VmwareEngineGapicClient::resetVcenterCredentialsAsync()} .
+     * The async variant is {@see VmwareEngineClient::resetVcenterCredentialsAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/reset_vcenter_credentials.php
      *
@@ -1365,7 +1352,7 @@ final class VmwareEngineClient
     /**
      * Gets details of credentials for NSX appliance.
      *
-     * The async variant is {@see VmwareEngineGapicClient::showNsxCredentialsAsync()} .
+     * The async variant is {@see VmwareEngineClient::showNsxCredentialsAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/show_nsx_credentials.php
      *
@@ -1391,8 +1378,7 @@ final class VmwareEngineClient
     /**
      * Gets details of credentials for Vcenter appliance.
      *
-     * The async variant is
-     * {@see VmwareEngineGapicClient::showVcenterCredentialsAsync()} .
+     * The async variant is {@see VmwareEngineClient::showVcenterCredentialsAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/show_vcenter_credentials.php
      *
@@ -1421,8 +1407,7 @@ final class VmwareEngineClient
      * `PrivateCloud.state` set to `DELETED` and `PrivateCloud.expireTime` set to
      * the time when deletion can no longer be reversed.
      *
-     * The async variant is {@see VmwareEngineGapicClient::undeletePrivateCloudAsync()}
-     * .
+     * The async variant is {@see VmwareEngineClient::undeletePrivateCloudAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/undelete_private_cloud.php
      *
@@ -1455,7 +1440,7 @@ final class VmwareEngineClient
      * can't update the resource. Use the operation status to determine when the
      * processing fully completes.
      *
-     * The async variant is {@see VmwareEngineGapicClient::updateClusterAsync()} .
+     * The async variant is {@see VmwareEngineClient::updateClusterAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/update_cluster.php
      *
@@ -1492,8 +1477,7 @@ final class VmwareEngineClient
      * can't update the resource. Use the operation status to determine when the
      * processing fully completes.
      *
-     * The async variant is {@see VmwareEngineGapicClient::updateNetworkPolicyAsync()}
-     * .
+     * The async variant is {@see VmwareEngineClient::updateNetworkPolicyAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/update_network_policy.php
      *
@@ -1526,7 +1510,7 @@ final class VmwareEngineClient
      * can't update the resource. Use the operation status to determine when the
      * processing fully completes.
      *
-     * The async variant is {@see VmwareEngineGapicClient::updatePrivateCloudAsync()} .
+     * The async variant is {@see VmwareEngineClient::updatePrivateCloudAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/update_private_cloud.php
      *
@@ -1554,8 +1538,7 @@ final class VmwareEngineClient
      * `routing_mode` fields can be updated. Only fields specified in `updateMask`
      * are applied.
      *
-     * The async variant is
-     * {@see VmwareEngineGapicClient::updatePrivateConnectionAsync()} .
+     * The async variant is {@see VmwareEngineClient::updatePrivateConnectionAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/update_private_connection.php
      *
@@ -1586,7 +1569,7 @@ final class VmwareEngineClient
      * `google.longrunning.Operation` (LRO). The returned LRO will only have
      * `done` and `response` fields.
      *
-     * The async variant is {@see VmwareEngineGapicClient::updateSubnetAsync()} .
+     * The async variant is {@see VmwareEngineClient::updateSubnetAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/update_subnet.php
      *
@@ -1614,8 +1597,8 @@ final class VmwareEngineClient
      * updated: `description`. Only fields specified in `updateMask` are
      * applied.
      *
-     * The async variant is
-     * {@see VmwareEngineGapicClient::updateVmwareEngineNetworkAsync()} .
+     * The async variant is {@see VmwareEngineClient::updateVmwareEngineNetworkAsync()}
+     * .
      *
      * @example samples/V1/VmwareEngineClient/update_vmware_engine_network.php
      *
@@ -1641,7 +1624,7 @@ final class VmwareEngineClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see VmwareEngineGapicClient::getLocationAsync()} .
+     * The async variant is {@see VmwareEngineClient::getLocationAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/get_location.php
      *
@@ -1667,7 +1650,7 @@ final class VmwareEngineClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see VmwareEngineGapicClient::listLocationsAsync()} .
+     * The async variant is {@see VmwareEngineClient::listLocationsAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/list_locations.php
      *
@@ -1694,7 +1677,7 @@ final class VmwareEngineClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see VmwareEngineGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see VmwareEngineClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/get_iam_policy.php
      *
@@ -1724,7 +1707,7 @@ final class VmwareEngineClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see VmwareEngineGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see VmwareEngineClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/set_iam_policy.php
      *
@@ -1756,7 +1739,7 @@ final class VmwareEngineClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is {@see VmwareEngineGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see VmwareEngineClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/VmwareEngineClient/test_iam_permissions.php
      *

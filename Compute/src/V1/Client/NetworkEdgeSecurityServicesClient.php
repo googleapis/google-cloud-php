@@ -239,7 +239,7 @@ final class NetworkEdgeSecurityServicesClient
      * Retrieves the list of all NetworkEdgeSecurityService resources available to the specified project.
      *
      * The async variant is
-     * {@see NetworkEdgeSecurityServicesGapicClient::aggregatedListAsync()} .
+     * {@see NetworkEdgeSecurityServicesClient::aggregatedListAsync()} .
      *
      * @param AggregatedListNetworkEdgeSecurityServicesRequest $request     A request to house fields associated with the call.
      * @param array                                            $callOptions {
@@ -263,8 +263,7 @@ final class NetworkEdgeSecurityServicesClient
     /**
      * Deletes the specified service.
      *
-     * The async variant is
-     * {@see NetworkEdgeSecurityServicesGapicClient::deleteAsync()} .
+     * The async variant is {@see NetworkEdgeSecurityServicesClient::deleteAsync()} .
      *
      * @param DeleteNetworkEdgeSecurityServiceRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -288,7 +287,7 @@ final class NetworkEdgeSecurityServicesClient
     /**
      * Gets a specified NetworkEdgeSecurityService.
      *
-     * The async variant is {@see NetworkEdgeSecurityServicesGapicClient::getAsync()} .
+     * The async variant is {@see NetworkEdgeSecurityServicesClient::getAsync()} .
      *
      * @param GetNetworkEdgeSecurityServiceRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -312,8 +311,7 @@ final class NetworkEdgeSecurityServicesClient
     /**
      * Creates a new service in the specified project using the data included in the request.
      *
-     * The async variant is
-     * {@see NetworkEdgeSecurityServicesGapicClient::insertAsync()} .
+     * The async variant is {@see NetworkEdgeSecurityServicesClient::insertAsync()} .
      *
      * @param InsertNetworkEdgeSecurityServiceRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -337,8 +335,7 @@ final class NetworkEdgeSecurityServicesClient
     /**
      * Patches the specified policy with the data included in the request.
      *
-     * The async variant is {@see NetworkEdgeSecurityServicesGapicClient::patchAsync()}
-     * .
+     * The async variant is {@see NetworkEdgeSecurityServicesClient::patchAsync()} .
      *
      * @param PatchNetworkEdgeSecurityServiceRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
