@@ -240,8 +240,8 @@ final class PublicDelegatedPrefixesClient
     /**
      * Lists all PublicDelegatedPrefix resources owned by the specific project across all scopes.
      *
-     * The async variant is
-     * {@see PublicDelegatedPrefixesGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see PublicDelegatedPrefixesClient::aggregatedListAsync()}
+     * .
      *
      * @param AggregatedListPublicDelegatedPrefixesRequest $request     A request to house fields associated with the call.
      * @param array                                        $callOptions {
@@ -265,7 +265,7 @@ final class PublicDelegatedPrefixesClient
     /**
      * Deletes the specified PublicDelegatedPrefix in the given region.
      *
-     * The async variant is {@see PublicDelegatedPrefixesGapicClient::deleteAsync()} .
+     * The async variant is {@see PublicDelegatedPrefixesClient::deleteAsync()} .
      *
      * @param DeletePublicDelegatedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -289,7 +289,7 @@ final class PublicDelegatedPrefixesClient
     /**
      * Returns the specified PublicDelegatedPrefix resource in the given region.
      *
-     * The async variant is {@see PublicDelegatedPrefixesGapicClient::getAsync()} .
+     * The async variant is {@see PublicDelegatedPrefixesClient::getAsync()} .
      *
      * @param GetPublicDelegatedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -313,7 +313,7 @@ final class PublicDelegatedPrefixesClient
     /**
      * Creates a PublicDelegatedPrefix in the specified project in the given region using the parameters that are included in the request.
      *
-     * The async variant is {@see PublicDelegatedPrefixesGapicClient::insertAsync()} .
+     * The async variant is {@see PublicDelegatedPrefixesClient::insertAsync()} .
      *
      * @param InsertPublicDelegatedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -337,7 +337,7 @@ final class PublicDelegatedPrefixesClient
     /**
      * Lists the PublicDelegatedPrefixes for a project in the given region.
      *
-     * The async variant is {@see PublicDelegatedPrefixesGapicClient::listAsync()} .
+     * The async variant is {@see PublicDelegatedPrefixesClient::listAsync()} .
      *
      * @param ListPublicDelegatedPrefixesRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -361,7 +361,7 @@ final class PublicDelegatedPrefixesClient
     /**
      * Patches the specified PublicDelegatedPrefix resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
      *
-     * The async variant is {@see PublicDelegatedPrefixesGapicClient::patchAsync()} .
+     * The async variant is {@see PublicDelegatedPrefixesClient::patchAsync()} .
      *
      * @param PatchPublicDelegatedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {

@@ -297,7 +297,7 @@ final class BigQueryReadClient
      * Read sessions automatically expire 6 hours after they are created and do
      * not require manual clean-up by the caller.
      *
-     * The async variant is {@see BigQueryReadGapicClient::createReadSessionAsync()} .
+     * The async variant is {@see BigQueryReadClient::createReadSessionAsync()} .
      *
      * @param CreateReadSessionRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -358,7 +358,7 @@ final class BigQueryReadClient
      * original[j-n] = residual[0-m] once the streams have been read to
      * completion.
      *
-     * The async variant is {@see BigQueryReadGapicClient::splitReadStreamAsync()} .
+     * The async variant is {@see BigQueryReadClient::splitReadStreamAsync()} .
      *
      * @param SplitReadStreamRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {

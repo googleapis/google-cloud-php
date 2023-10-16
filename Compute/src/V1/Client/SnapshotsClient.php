@@ -244,7 +244,7 @@ final class SnapshotsClient
     /**
      * Deletes the specified Snapshot resource. Keep in mind that deleting a single snapshot might not necessarily delete all the data on that snapshot. If any data on the snapshot that is marked for deletion is needed for subsequent snapshots, the data will be moved to the next corresponding snapshot. For more information, see Deleting snapshots.
      *
-     * The async variant is {@see SnapshotsGapicClient::deleteAsync()} .
+     * The async variant is {@see SnapshotsClient::deleteAsync()} .
      *
      * @param DeleteSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -268,7 +268,7 @@ final class SnapshotsClient
     /**
      * Returns the specified Snapshot resource.
      *
-     * The async variant is {@see SnapshotsGapicClient::getAsync()} .
+     * The async variant is {@see SnapshotsClient::getAsync()} .
      *
      * @param GetSnapshotRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -292,7 +292,7 @@ final class SnapshotsClient
     /**
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
-     * The async variant is {@see SnapshotsGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see SnapshotsClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicySnapshotRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -316,7 +316,7 @@ final class SnapshotsClient
     /**
      * Creates a snapshot in the specified project using the data included in the request. For regular snapshot creation, consider using this method instead of disks.createSnapshot, as this method supports more features, such as creating snapshots in a project different from the source disk project.
      *
-     * The async variant is {@see SnapshotsGapicClient::insertAsync()} .
+     * The async variant is {@see SnapshotsClient::insertAsync()} .
      *
      * @param InsertSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -340,7 +340,7 @@ final class SnapshotsClient
     /**
      * Retrieves the list of Snapshot resources contained within the specified project.
      *
-     * The async variant is {@see SnapshotsGapicClient::listAsync()} .
+     * The async variant is {@see SnapshotsClient::listAsync()} .
      *
      * @param ListSnapshotsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -364,7 +364,7 @@ final class SnapshotsClient
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
-     * The async variant is {@see SnapshotsGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see SnapshotsClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicySnapshotRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -388,7 +388,7 @@ final class SnapshotsClient
     /**
      * Sets the labels on a snapshot. To learn more about labels, read the Labeling Resources documentation.
      *
-     * The async variant is {@see SnapshotsGapicClient::setLabelsAsync()} .
+     * The async variant is {@see SnapshotsClient::setLabelsAsync()} .
      *
      * @param SetLabelsSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -412,7 +412,7 @@ final class SnapshotsClient
     /**
      * Returns permissions that a caller has on the specified resource.
      *
-     * The async variant is {@see SnapshotsGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see SnapshotsClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {

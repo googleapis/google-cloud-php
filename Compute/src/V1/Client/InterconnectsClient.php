@@ -241,7 +241,7 @@ final class InterconnectsClient
     /**
      * Deletes the specified Interconnect.
      *
-     * The async variant is {@see InterconnectsGapicClient::deleteAsync()} .
+     * The async variant is {@see InterconnectsClient::deleteAsync()} .
      *
      * @param DeleteInterconnectRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -265,7 +265,7 @@ final class InterconnectsClient
     /**
      * Returns the specified Interconnect. Get a list of available Interconnects by making a list() request.
      *
-     * The async variant is {@see InterconnectsGapicClient::getAsync()} .
+     * The async variant is {@see InterconnectsClient::getAsync()} .
      *
      * @param GetInterconnectRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -289,7 +289,7 @@ final class InterconnectsClient
     /**
      * Returns the interconnectDiagnostics for the specified Interconnect.
      *
-     * The async variant is {@see InterconnectsGapicClient::getDiagnosticsAsync()} .
+     * The async variant is {@see InterconnectsClient::getDiagnosticsAsync()} .
      *
      * @param GetDiagnosticsInterconnectRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -313,7 +313,7 @@ final class InterconnectsClient
     /**
      * Creates an Interconnect in the specified project using the data included in the request.
      *
-     * The async variant is {@see InterconnectsGapicClient::insertAsync()} .
+     * The async variant is {@see InterconnectsClient::insertAsync()} .
      *
      * @param InsertInterconnectRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -337,7 +337,7 @@ final class InterconnectsClient
     /**
      * Retrieves the list of Interconnects available to the specified project.
      *
-     * The async variant is {@see InterconnectsGapicClient::listAsync()} .
+     * The async variant is {@see InterconnectsClient::listAsync()} .
      *
      * @param ListInterconnectsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -361,7 +361,7 @@ final class InterconnectsClient
     /**
      * Updates the specified Interconnect with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      *
-     * The async variant is {@see InterconnectsGapicClient::patchAsync()} .
+     * The async variant is {@see InterconnectsClient::patchAsync()} .
      *
      * @param PatchInterconnectRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -385,7 +385,7 @@ final class InterconnectsClient
     /**
      * Sets the labels on an Interconnect. To learn more about labels, read the Labeling Resources documentation.
      *
-     * The async variant is {@see InterconnectsGapicClient::setLabelsAsync()} .
+     * The async variant is {@see InterconnectsClient::setLabelsAsync()} .
      *
      * @param SetLabelsInterconnectRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {

@@ -279,8 +279,7 @@ final class CloudBillingClient
      * This method will return an error if the parent account has not been
      * provisioned for subaccounts.
      *
-     * The async variant is {@see CloudBillingGapicClient::createBillingAccountAsync()}
-     * .
+     * The async variant is {@see CloudBillingClient::createBillingAccountAsync()} .
      *
      * @param CreateBillingAccountRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -306,7 +305,7 @@ final class CloudBillingClient
      * must be a [viewer of the billing
      * account](https://cloud.google.com/billing/docs/how-to/billing-access).
      *
-     * The async variant is {@see CloudBillingGapicClient::getBillingAccountAsync()} .
+     * The async variant is {@see CloudBillingClient::getBillingAccountAsync()} .
      *
      * @param GetBillingAccountRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -333,7 +332,7 @@ final class CloudBillingClient
      * account, which is often given to billing account
      * [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
      *
-     * The async variant is {@see CloudBillingGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see CloudBillingClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -361,8 +360,7 @@ final class CloudBillingClient
      * Viewer](https://cloud.google.com/iam/docs/understanding-roles#predefined_roles)
      * role.
      *
-     * The async variant is
-     * {@see CloudBillingGapicClient::getProjectBillingInfoAsync()} .
+     * The async variant is {@see CloudBillingClient::getProjectBillingInfoAsync()} .
      *
      * @param GetProjectBillingInfoRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -388,8 +386,7 @@ final class CloudBillingClient
      * permission to
      * [view](https://cloud.google.com/billing/docs/how-to/billing-access).
      *
-     * The async variant is {@see CloudBillingGapicClient::listBillingAccountsAsync()}
-     * .
+     * The async variant is {@see CloudBillingClient::listBillingAccountsAsync()} .
      *
      * @param ListBillingAccountsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -416,8 +413,7 @@ final class CloudBillingClient
      * permission, which is often given to billing account
      * [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
      *
-     * The async variant is
-     * {@see CloudBillingGapicClient::listProjectBillingInfoAsync()} .
+     * The async variant is {@see CloudBillingClient::listProjectBillingInfoAsync()} .
      *
      * @param ListProjectBillingInfoRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -445,7 +441,7 @@ final class CloudBillingClient
      * account, which is often given to billing account
      * [administrators](https://cloud.google.com/billing/docs/how-to/billing-access).
      *
-     * The async variant is {@see CloudBillingGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see CloudBillingClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -471,7 +467,7 @@ final class CloudBillingClient
      * the resource and a set of permissions as input and returns the subset of
      * the input permissions that the caller is allowed for that resource.
      *
-     * The async variant is {@see CloudBillingGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see CloudBillingClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -500,8 +496,7 @@ final class CloudBillingClient
      * [administrator](https://cloud.google.com/billing/docs/how-to/billing-access)
      * of the billing account.
      *
-     * The async variant is {@see CloudBillingGapicClient::updateBillingAccountAsync()}
-     * .
+     * The async variant is {@see CloudBillingClient::updateBillingAccountAsync()} .
      *
      * @param UpdateBillingAccountRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -555,8 +550,8 @@ final class CloudBillingClient
      * disable billing, you should always call this method with the name of an
      * *open* billing account.
      *
-     * The async variant is
-     * {@see CloudBillingGapicClient::updateProjectBillingInfoAsync()} .
+     * The async variant is {@see CloudBillingClient::updateProjectBillingInfoAsync()}
+     * .
      *
      * @param UpdateProjectBillingInfoRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {

@@ -239,8 +239,7 @@ final class TargetVpnGatewaysClient
     /**
      * Retrieves an aggregated list of target VPN gateways.
      *
-     * The async variant is {@see TargetVpnGatewaysGapicClient::aggregatedListAsync()}
-     * .
+     * The async variant is {@see TargetVpnGatewaysClient::aggregatedListAsync()} .
      *
      * @param AggregatedListTargetVpnGatewaysRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -264,7 +263,7 @@ final class TargetVpnGatewaysClient
     /**
      * Deletes the specified target VPN gateway.
      *
-     * The async variant is {@see TargetVpnGatewaysGapicClient::deleteAsync()} .
+     * The async variant is {@see TargetVpnGatewaysClient::deleteAsync()} .
      *
      * @param DeleteTargetVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -288,7 +287,7 @@ final class TargetVpnGatewaysClient
     /**
      * Returns the specified target VPN gateway.
      *
-     * The async variant is {@see TargetVpnGatewaysGapicClient::getAsync()} .
+     * The async variant is {@see TargetVpnGatewaysClient::getAsync()} .
      *
      * @param GetTargetVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -312,7 +311,7 @@ final class TargetVpnGatewaysClient
     /**
      * Creates a target VPN gateway in the specified project and region using the data included in the request.
      *
-     * The async variant is {@see TargetVpnGatewaysGapicClient::insertAsync()} .
+     * The async variant is {@see TargetVpnGatewaysClient::insertAsync()} .
      *
      * @param InsertTargetVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -336,7 +335,7 @@ final class TargetVpnGatewaysClient
     /**
      * Retrieves a list of target VPN gateways available to the specified project and region.
      *
-     * The async variant is {@see TargetVpnGatewaysGapicClient::listAsync()} .
+     * The async variant is {@see TargetVpnGatewaysClient::listAsync()} .
      *
      * @param ListTargetVpnGatewaysRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -360,7 +359,7 @@ final class TargetVpnGatewaysClient
     /**
      * Sets the labels on a TargetVpnGateway. To learn more about labels, read the Labeling Resources documentation.
      *
-     * The async variant is {@see TargetVpnGatewaysGapicClient::setLabelsAsync()} .
+     * The async variant is {@see TargetVpnGatewaysClient::setLabelsAsync()} .
      *
      * @param SetLabelsTargetVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {

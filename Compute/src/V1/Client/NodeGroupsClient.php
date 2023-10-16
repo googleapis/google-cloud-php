@@ -257,7 +257,7 @@ final class NodeGroupsClient
     /**
      * Adds specified number of nodes to the node group.
      *
-     * The async variant is {@see NodeGroupsGapicClient::addNodesAsync()} .
+     * The async variant is {@see NodeGroupsClient::addNodesAsync()} .
      *
      * @param AddNodesNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -281,7 +281,7 @@ final class NodeGroupsClient
     /**
      * Retrieves an aggregated list of node groups. Note: use nodeGroups.listNodes for more details about each group.
      *
-     * The async variant is {@see NodeGroupsGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see NodeGroupsClient::aggregatedListAsync()} .
      *
      * @param AggregatedListNodeGroupsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -305,7 +305,7 @@ final class NodeGroupsClient
     /**
      * Deletes the specified NodeGroup resource.
      *
-     * The async variant is {@see NodeGroupsGapicClient::deleteAsync()} .
+     * The async variant is {@see NodeGroupsClient::deleteAsync()} .
      *
      * @param DeleteNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -329,7 +329,7 @@ final class NodeGroupsClient
     /**
      * Deletes specified nodes from the node group.
      *
-     * The async variant is {@see NodeGroupsGapicClient::deleteNodesAsync()} .
+     * The async variant is {@see NodeGroupsClient::deleteNodesAsync()} .
      *
      * @param DeleteNodesNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -353,7 +353,7 @@ final class NodeGroupsClient
     /**
      * Returns the specified NodeGroup. Get a list of available NodeGroups by making a list() request. Note: the "nodes" field should not be used. Use nodeGroups.listNodes instead.
      *
-     * The async variant is {@see NodeGroupsGapicClient::getAsync()} .
+     * The async variant is {@see NodeGroupsClient::getAsync()} .
      *
      * @param GetNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -377,7 +377,7 @@ final class NodeGroupsClient
     /**
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
-     * The async variant is {@see NodeGroupsGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see NodeGroupsClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -401,7 +401,7 @@ final class NodeGroupsClient
     /**
      * Creates a NodeGroup resource in the specified project using the data included in the request.
      *
-     * The async variant is {@see NodeGroupsGapicClient::insertAsync()} .
+     * The async variant is {@see NodeGroupsClient::insertAsync()} .
      *
      * @param InsertNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -425,7 +425,7 @@ final class NodeGroupsClient
     /**
      * Retrieves a list of node groups available to the specified project. Note: use nodeGroups.listNodes for more details about each group.
      *
-     * The async variant is {@see NodeGroupsGapicClient::listAsync()} .
+     * The async variant is {@see NodeGroupsClient::listAsync()} .
      *
      * @param ListNodeGroupsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -449,7 +449,7 @@ final class NodeGroupsClient
     /**
      * Lists nodes in the node group.
      *
-     * The async variant is {@see NodeGroupsGapicClient::listNodesAsync()} .
+     * The async variant is {@see NodeGroupsClient::listNodesAsync()} .
      *
      * @param ListNodesNodeGroupsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -473,7 +473,7 @@ final class NodeGroupsClient
     /**
      * Updates the specified node group.
      *
-     * The async variant is {@see NodeGroupsGapicClient::patchAsync()} .
+     * The async variant is {@see NodeGroupsClient::patchAsync()} .
      *
      * @param PatchNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -497,7 +497,7 @@ final class NodeGroupsClient
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
-     * The async variant is {@see NodeGroupsGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see NodeGroupsClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -521,7 +521,7 @@ final class NodeGroupsClient
     /**
      * Updates the node template of the node group.
      *
-     * The async variant is {@see NodeGroupsGapicClient::setNodeTemplateAsync()} .
+     * The async variant is {@see NodeGroupsClient::setNodeTemplateAsync()} .
      *
      * @param SetNodeTemplateNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -545,8 +545,7 @@ final class NodeGroupsClient
     /**
      * Simulates maintenance event on specified nodes from the node group.
      *
-     * The async variant is
-     * {@see NodeGroupsGapicClient::simulateMaintenanceEventAsync()} .
+     * The async variant is {@see NodeGroupsClient::simulateMaintenanceEventAsync()} .
      *
      * @param SimulateMaintenanceEventNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
@@ -570,7 +569,7 @@ final class NodeGroupsClient
     /**
      * Returns permissions that a caller has on the specified resource.
      *
-     * The async variant is {@see NodeGroupsGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see NodeGroupsClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {

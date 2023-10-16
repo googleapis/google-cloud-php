@@ -239,7 +239,7 @@ final class RegionHealthChecksClient
     /**
      * Deletes the specified HealthCheck resource.
      *
-     * The async variant is {@see RegionHealthChecksGapicClient::deleteAsync()} .
+     * The async variant is {@see RegionHealthChecksClient::deleteAsync()} .
      *
      * @param DeleteRegionHealthCheckRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -263,7 +263,7 @@ final class RegionHealthChecksClient
     /**
      * Returns the specified HealthCheck resource.
      *
-     * The async variant is {@see RegionHealthChecksGapicClient::getAsync()} .
+     * The async variant is {@see RegionHealthChecksClient::getAsync()} .
      *
      * @param GetRegionHealthCheckRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -287,7 +287,7 @@ final class RegionHealthChecksClient
     /**
      * Creates a HealthCheck resource in the specified project using the data included in the request.
      *
-     * The async variant is {@see RegionHealthChecksGapicClient::insertAsync()} .
+     * The async variant is {@see RegionHealthChecksClient::insertAsync()} .
      *
      * @param InsertRegionHealthCheckRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -311,7 +311,7 @@ final class RegionHealthChecksClient
     /**
      * Retrieves the list of HealthCheck resources available to the specified project.
      *
-     * The async variant is {@see RegionHealthChecksGapicClient::listAsync()} .
+     * The async variant is {@see RegionHealthChecksClient::listAsync()} .
      *
      * @param ListRegionHealthChecksRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -335,7 +335,7 @@ final class RegionHealthChecksClient
     /**
      * Updates a HealthCheck resource in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      *
-     * The async variant is {@see RegionHealthChecksGapicClient::patchAsync()} .
+     * The async variant is {@see RegionHealthChecksClient::patchAsync()} .
      *
      * @param PatchRegionHealthCheckRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -359,7 +359,7 @@ final class RegionHealthChecksClient
     /**
      * Updates a HealthCheck resource in the specified project using the data included in the request.
      *
-     * The async variant is {@see RegionHealthChecksGapicClient::updateAsync()} .
+     * The async variant is {@see RegionHealthChecksClient::updateAsync()} .
      *
      * @param UpdateRegionHealthCheckRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {

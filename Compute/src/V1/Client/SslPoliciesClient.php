@@ -241,7 +241,7 @@ final class SslPoliciesClient
     /**
      * Retrieves the list of all SslPolicy resources, regional and global, available to the specified project.
      *
-     * The async variant is {@see SslPoliciesGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see SslPoliciesClient::aggregatedListAsync()} .
      *
      * @param AggregatedListSslPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -265,7 +265,7 @@ final class SslPoliciesClient
     /**
      * Deletes the specified SSL policy. The SSL policy resource can be deleted only if it is not in use by any TargetHttpsProxy or TargetSslProxy resources.
      *
-     * The async variant is {@see SslPoliciesGapicClient::deleteAsync()} .
+     * The async variant is {@see SslPoliciesClient::deleteAsync()} .
      *
      * @param DeleteSslPolicyRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -289,7 +289,7 @@ final class SslPoliciesClient
     /**
      * Lists all of the ordered rules present in a single specified policy.
      *
-     * The async variant is {@see SslPoliciesGapicClient::getAsync()} .
+     * The async variant is {@see SslPoliciesClient::getAsync()} .
      *
      * @param GetSslPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -313,7 +313,7 @@ final class SslPoliciesClient
     /**
      * Returns the specified SSL policy resource.
      *
-     * The async variant is {@see SslPoliciesGapicClient::insertAsync()} .
+     * The async variant is {@see SslPoliciesClient::insertAsync()} .
      *
      * @param InsertSslPolicyRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -337,7 +337,7 @@ final class SslPoliciesClient
     /**
      * Lists all the SSL policies that have been configured for the specified project.
      *
-     * The async variant is {@see SslPoliciesGapicClient::listAsync()} .
+     * The async variant is {@see SslPoliciesClient::listAsync()} .
      *
      * @param ListSslPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -361,8 +361,7 @@ final class SslPoliciesClient
     /**
      * Lists all features that can be specified in the SSL policy when using custom profile.
      *
-     * The async variant is {@see SslPoliciesGapicClient::listAvailableFeaturesAsync()}
-     * .
+     * The async variant is {@see SslPoliciesClient::listAvailableFeaturesAsync()} .
      *
      * @param ListAvailableFeaturesSslPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -386,7 +385,7 @@ final class SslPoliciesClient
     /**
      * Patches the specified SSL policy with the data included in the request.
      *
-     * The async variant is {@see SslPoliciesGapicClient::patchAsync()} .
+     * The async variant is {@see SslPoliciesClient::patchAsync()} .
      *
      * @param PatchSslPolicyRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

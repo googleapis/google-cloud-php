@@ -449,8 +449,7 @@ final class CertificateManagerClient
     /**
      * Creates a new Certificate in a given project and location.
      *
-     * The async variant is
-     * {@see CertificateManagerGapicClient::createCertificateAsync()} .
+     * The async variant is {@see CertificateManagerClient::createCertificateAsync()} .
      *
      * @example samples/V1/CertificateManagerClient/create_certificate.php
      *
@@ -477,7 +476,7 @@ final class CertificateManagerClient
      * Creates a new CertificateIssuanceConfig in a given project and location.
      *
      * The async variant is
-     * {@see CertificateManagerGapicClient::createCertificateIssuanceConfigAsync()} .
+     * {@see CertificateManagerClient::createCertificateIssuanceConfigAsync()} .
      *
      * @example samples/V1/CertificateManagerClient/create_certificate_issuance_config.php
      *
@@ -504,7 +503,7 @@ final class CertificateManagerClient
      * Creates a new CertificateMap in a given project and location.
      *
      * The async variant is
-     * {@see CertificateManagerGapicClient::createCertificateMapAsync()} .
+     * {@see CertificateManagerClient::createCertificateMapAsync()} .
      *
      * @example samples/V1/CertificateManagerClient/create_certificate_map.php
      *
@@ -531,7 +530,7 @@ final class CertificateManagerClient
      * Creates a new CertificateMapEntry in a given project and location.
      *
      * The async variant is
-     * {@see CertificateManagerGapicClient::createCertificateMapEntryAsync()} .
+     * {@see CertificateManagerClient::createCertificateMapEntryAsync()} .
      *
      * @example samples/V1/CertificateManagerClient/create_certificate_map_entry.php
      *
@@ -558,7 +557,7 @@ final class CertificateManagerClient
      * Creates a new DnsAuthorization in a given project and location.
      *
      * The async variant is
-     * {@see CertificateManagerGapicClient::createDnsAuthorizationAsync()} .
+     * {@see CertificateManagerClient::createDnsAuthorizationAsync()} .
      *
      * @example samples/V1/CertificateManagerClient/create_dns_authorization.php
      *
@@ -584,8 +583,7 @@ final class CertificateManagerClient
     /**
      * Deletes a single Certificate.
      *
-     * The async variant is
-     * {@see CertificateManagerGapicClient::deleteCertificateAsync()} .
+     * The async variant is {@see CertificateManagerClient::deleteCertificateAsync()} .
      *
      * @example samples/V1/CertificateManagerClient/delete_certificate.php
      *
@@ -612,7 +610,7 @@ final class CertificateManagerClient
      * Deletes a single CertificateIssuanceConfig.
      *
      * The async variant is
-     * {@see CertificateManagerGapicClient::deleteCertificateIssuanceConfigAsync()} .
+     * {@see CertificateManagerClient::deleteCertificateIssuanceConfigAsync()} .
      *
      * @example samples/V1/CertificateManagerClient/delete_certificate_issuance_config.php
      *
@@ -641,7 +639,7 @@ final class CertificateManagerClient
      * the map before calling this method.
      *
      * The async variant is
-     * {@see CertificateManagerGapicClient::deleteCertificateMapAsync()} .
+     * {@see CertificateManagerClient::deleteCertificateMapAsync()} .
      *
      * @example samples/V1/CertificateManagerClient/delete_certificate_map.php
      *
@@ -668,7 +666,7 @@ final class CertificateManagerClient
      * Deletes a single CertificateMapEntry.
      *
      * The async variant is
-     * {@see CertificateManagerGapicClient::deleteCertificateMapEntryAsync()} .
+     * {@see CertificateManagerClient::deleteCertificateMapEntryAsync()} .
      *
      * @example samples/V1/CertificateManagerClient/delete_certificate_map_entry.php
      *
@@ -695,7 +693,7 @@ final class CertificateManagerClient
      * Deletes a single DnsAuthorization.
      *
      * The async variant is
-     * {@see CertificateManagerGapicClient::deleteDnsAuthorizationAsync()} .
+     * {@see CertificateManagerClient::deleteDnsAuthorizationAsync()} .
      *
      * @example samples/V1/CertificateManagerClient/delete_dns_authorization.php
      *
@@ -721,8 +719,7 @@ final class CertificateManagerClient
     /**
      * Gets details of a single Certificate.
      *
-     * The async variant is {@see CertificateManagerGapicClient::getCertificateAsync()}
-     * .
+     * The async variant is {@see CertificateManagerClient::getCertificateAsync()} .
      *
      * @example samples/V1/CertificateManagerClient/get_certificate.php
      *
@@ -749,7 +746,7 @@ final class CertificateManagerClient
      * Gets details of a single CertificateIssuanceConfig.
      *
      * The async variant is
-     * {@see CertificateManagerGapicClient::getCertificateIssuanceConfigAsync()} .
+     * {@see CertificateManagerClient::getCertificateIssuanceConfigAsync()} .
      *
      * @example samples/V1/CertificateManagerClient/get_certificate_issuance_config.php
      *
@@ -775,8 +772,7 @@ final class CertificateManagerClient
     /**
      * Gets details of a single CertificateMap.
      *
-     * The async variant is
-     * {@see CertificateManagerGapicClient::getCertificateMapAsync()} .
+     * The async variant is {@see CertificateManagerClient::getCertificateMapAsync()} .
      *
      * @example samples/V1/CertificateManagerClient/get_certificate_map.php
      *
@@ -803,7 +799,7 @@ final class CertificateManagerClient
      * Gets details of a single CertificateMapEntry.
      *
      * The async variant is
-     * {@see CertificateManagerGapicClient::getCertificateMapEntryAsync()} .
+     * {@see CertificateManagerClient::getCertificateMapEntryAsync()} .
      *
      * @example samples/V1/CertificateManagerClient/get_certificate_map_entry.php
      *
@@ -829,8 +825,8 @@ final class CertificateManagerClient
     /**
      * Gets details of a single DnsAuthorization.
      *
-     * The async variant is
-     * {@see CertificateManagerGapicClient::getDnsAuthorizationAsync()} .
+     * The async variant is {@see CertificateManagerClient::getDnsAuthorizationAsync()}
+     * .
      *
      * @example samples/V1/CertificateManagerClient/get_dns_authorization.php
      *
@@ -857,7 +853,7 @@ final class CertificateManagerClient
      * Lists CertificateIssuanceConfigs in a given project and location.
      *
      * The async variant is
-     * {@see CertificateManagerGapicClient::listCertificateIssuanceConfigsAsync()} .
+     * {@see CertificateManagerClient::listCertificateIssuanceConfigsAsync()} .
      *
      * @example samples/V1/CertificateManagerClient/list_certificate_issuance_configs.php
      *
@@ -884,7 +880,7 @@ final class CertificateManagerClient
      * Lists CertificateMapEntries in a given project and location.
      *
      * The async variant is
-     * {@see CertificateManagerGapicClient::listCertificateMapEntriesAsync()} .
+     * {@see CertificateManagerClient::listCertificateMapEntriesAsync()} .
      *
      * @example samples/V1/CertificateManagerClient/list_certificate_map_entries.php
      *
@@ -910,8 +906,8 @@ final class CertificateManagerClient
     /**
      * Lists CertificateMaps in a given project and location.
      *
-     * The async variant is
-     * {@see CertificateManagerGapicClient::listCertificateMapsAsync()} .
+     * The async variant is {@see CertificateManagerClient::listCertificateMapsAsync()}
+     * .
      *
      * @example samples/V1/CertificateManagerClient/list_certificate_maps.php
      *
@@ -937,8 +933,7 @@ final class CertificateManagerClient
     /**
      * Lists Certificates in a given project and location.
      *
-     * The async variant is
-     * {@see CertificateManagerGapicClient::listCertificatesAsync()} .
+     * The async variant is {@see CertificateManagerClient::listCertificatesAsync()} .
      *
      * @example samples/V1/CertificateManagerClient/list_certificates.php
      *
@@ -965,7 +960,7 @@ final class CertificateManagerClient
      * Lists DnsAuthorizations in a given project and location.
      *
      * The async variant is
-     * {@see CertificateManagerGapicClient::listDnsAuthorizationsAsync()} .
+     * {@see CertificateManagerClient::listDnsAuthorizationsAsync()} .
      *
      * @example samples/V1/CertificateManagerClient/list_dns_authorizations.php
      *
@@ -991,8 +986,7 @@ final class CertificateManagerClient
     /**
      * Updates a Certificate.
      *
-     * The async variant is
-     * {@see CertificateManagerGapicClient::updateCertificateAsync()} .
+     * The async variant is {@see CertificateManagerClient::updateCertificateAsync()} .
      *
      * @example samples/V1/CertificateManagerClient/update_certificate.php
      *
@@ -1019,7 +1013,7 @@ final class CertificateManagerClient
      * Updates a CertificateMap.
      *
      * The async variant is
-     * {@see CertificateManagerGapicClient::updateCertificateMapAsync()} .
+     * {@see CertificateManagerClient::updateCertificateMapAsync()} .
      *
      * @example samples/V1/CertificateManagerClient/update_certificate_map.php
      *
@@ -1046,7 +1040,7 @@ final class CertificateManagerClient
      * Updates a CertificateMapEntry.
      *
      * The async variant is
-     * {@see CertificateManagerGapicClient::updateCertificateMapEntryAsync()} .
+     * {@see CertificateManagerClient::updateCertificateMapEntryAsync()} .
      *
      * @example samples/V1/CertificateManagerClient/update_certificate_map_entry.php
      *
@@ -1073,7 +1067,7 @@ final class CertificateManagerClient
      * Updates a DnsAuthorization.
      *
      * The async variant is
-     * {@see CertificateManagerGapicClient::updateDnsAuthorizationAsync()} .
+     * {@see CertificateManagerClient::updateDnsAuthorizationAsync()} .
      *
      * @example samples/V1/CertificateManagerClient/update_dns_authorization.php
      *
@@ -1099,7 +1093,7 @@ final class CertificateManagerClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see CertificateManagerGapicClient::getLocationAsync()} .
+     * The async variant is {@see CertificateManagerClient::getLocationAsync()} .
      *
      * @example samples/V1/CertificateManagerClient/get_location.php
      *
@@ -1125,8 +1119,7 @@ final class CertificateManagerClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see CertificateManagerGapicClient::listLocationsAsync()}
-     * .
+     * The async variant is {@see CertificateManagerClient::listLocationsAsync()} .
      *
      * @example samples/V1/CertificateManagerClient/list_locations.php
      *

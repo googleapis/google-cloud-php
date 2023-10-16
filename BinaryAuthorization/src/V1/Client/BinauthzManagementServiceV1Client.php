@@ -297,7 +297,7 @@ final class BinauthzManagementServiceV1Client
      * [attestor][google.cloud.binaryauthorization.v1.Attestor] already exists.
      *
      * The async variant is
-     * {@see BinauthzManagementServiceV1GapicClient::createAttestorAsync()} .
+     * {@see BinauthzManagementServiceV1Client::createAttestorAsync()} .
      *
      * @example samples/V1/BinauthzManagementServiceV1Client/create_attestor.php
      *
@@ -325,7 +325,7 @@ final class BinauthzManagementServiceV1Client
      * [attestor][google.cloud.binaryauthorization.v1.Attestor] does not exist.
      *
      * The async variant is
-     * {@see BinauthzManagementServiceV1GapicClient::deleteAttestorAsync()} .
+     * {@see BinauthzManagementServiceV1Client::deleteAttestorAsync()} .
      *
      * @example samples/V1/BinauthzManagementServiceV1Client/delete_attestor.php
      *
@@ -351,7 +351,7 @@ final class BinauthzManagementServiceV1Client
      * Returns NOT_FOUND if the [attestor][google.cloud.binaryauthorization.v1.Attestor] does not exist.
      *
      * The async variant is
-     * {@see BinauthzManagementServiceV1GapicClient::getAttestorAsync()} .
+     * {@see BinauthzManagementServiceV1Client::getAttestorAsync()} .
      *
      * @example samples/V1/BinauthzManagementServiceV1Client/get_attestor.php
      *
@@ -383,8 +383,8 @@ final class BinauthzManagementServiceV1Client
      * Gets the [policy][google.cloud.binaryauthorization.v1.Policy] for this project. Returns a default
      * [policy][google.cloud.binaryauthorization.v1.Policy] if the project does not have one.
      *
-     * The async variant is
-     * {@see BinauthzManagementServiceV1GapicClient::getPolicyAsync()} .
+     * The async variant is {@see BinauthzManagementServiceV1Client::getPolicyAsync()}
+     * .
      *
      * @example samples/V1/BinauthzManagementServiceV1Client/get_policy.php
      *
@@ -412,7 +412,7 @@ final class BinauthzManagementServiceV1Client
      * Returns INVALID_ARGUMENT if the project does not exist.
      *
      * The async variant is
-     * {@see BinauthzManagementServiceV1GapicClient::listAttestorsAsync()} .
+     * {@see BinauthzManagementServiceV1Client::listAttestorsAsync()} .
      *
      * @example samples/V1/BinauthzManagementServiceV1Client/list_attestors.php
      *
@@ -440,7 +440,7 @@ final class BinauthzManagementServiceV1Client
      * Returns NOT_FOUND if the [attestor][google.cloud.binaryauthorization.v1.Attestor] does not exist.
      *
      * The async variant is
-     * {@see BinauthzManagementServiceV1GapicClient::updateAttestorAsync()} .
+     * {@see BinauthzManagementServiceV1Client::updateAttestorAsync()} .
      *
      * @example samples/V1/BinauthzManagementServiceV1Client/update_attestor.php
      *
@@ -471,7 +471,7 @@ final class BinauthzManagementServiceV1Client
      * if the request is malformed.
      *
      * The async variant is
-     * {@see BinauthzManagementServiceV1GapicClient::updatePolicyAsync()} .
+     * {@see BinauthzManagementServiceV1Client::updatePolicyAsync()} .
      *
      * @example samples/V1/BinauthzManagementServiceV1Client/update_policy.php
      *

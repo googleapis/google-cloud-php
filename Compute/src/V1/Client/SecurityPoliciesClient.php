@@ -252,7 +252,7 @@ final class SecurityPoliciesClient
     /**
      * Inserts a rule into a security policy.
      *
-     * The async variant is {@see SecurityPoliciesGapicClient::addRuleAsync()} .
+     * The async variant is {@see SecurityPoliciesClient::addRuleAsync()} .
      *
      * @param AddRuleSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -276,7 +276,7 @@ final class SecurityPoliciesClient
     /**
      * Retrieves the list of all SecurityPolicy resources, regional and global, available to the specified project.
      *
-     * The async variant is {@see SecurityPoliciesGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see SecurityPoliciesClient::aggregatedListAsync()} .
      *
      * @param AggregatedListSecurityPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
@@ -300,7 +300,7 @@ final class SecurityPoliciesClient
     /**
      * Deletes the specified policy.
      *
-     * The async variant is {@see SecurityPoliciesGapicClient::deleteAsync()} .
+     * The async variant is {@see SecurityPoliciesClient::deleteAsync()} .
      *
      * @param DeleteSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -324,7 +324,7 @@ final class SecurityPoliciesClient
     /**
      * List all of the ordered rules present in a single specified policy.
      *
-     * The async variant is {@see SecurityPoliciesGapicClient::getAsync()} .
+     * The async variant is {@see SecurityPoliciesClient::getAsync()} .
      *
      * @param GetSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -348,7 +348,7 @@ final class SecurityPoliciesClient
     /**
      * Gets a rule at the specified priority.
      *
-     * The async variant is {@see SecurityPoliciesGapicClient::getRuleAsync()} .
+     * The async variant is {@see SecurityPoliciesClient::getRuleAsync()} .
      *
      * @param GetRuleSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -372,7 +372,7 @@ final class SecurityPoliciesClient
     /**
      * Creates a new policy in the specified project using the data included in the request.
      *
-     * The async variant is {@see SecurityPoliciesGapicClient::insertAsync()} .
+     * The async variant is {@see SecurityPoliciesClient::insertAsync()} .
      *
      * @param InsertSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -396,7 +396,7 @@ final class SecurityPoliciesClient
     /**
      * List all the policies that have been configured for the specified project.
      *
-     * The async variant is {@see SecurityPoliciesGapicClient::listAsync()} .
+     * The async variant is {@see SecurityPoliciesClient::listAsync()} .
      *
      * @param ListSecurityPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -421,7 +421,7 @@ final class SecurityPoliciesClient
      * Gets the current list of preconfigured Web Application Firewall (WAF) expressions.
      *
      * The async variant is
-     * {@see SecurityPoliciesGapicClient::listPreconfiguredExpressionSetsAsync()} .
+     * {@see SecurityPoliciesClient::listPreconfiguredExpressionSetsAsync()} .
      *
      * @param ListPreconfiguredExpressionSetsSecurityPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                                                  $callOptions {
@@ -445,7 +445,7 @@ final class SecurityPoliciesClient
     /**
      * Patches the specified policy with the data included in the request. To clear fields in the policy, leave the fields empty and specify them in the updateMask. This cannot be used to be update the rules in the policy. Please use the per rule methods like addRule, patchRule, and removeRule instead.
      *
-     * The async variant is {@see SecurityPoliciesGapicClient::patchAsync()} .
+     * The async variant is {@see SecurityPoliciesClient::patchAsync()} .
      *
      * @param PatchSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -469,7 +469,7 @@ final class SecurityPoliciesClient
     /**
      * Patches a rule at the specified priority. To clear fields in the rule, leave the fields empty and specify them in the updateMask.
      *
-     * The async variant is {@see SecurityPoliciesGapicClient::patchRuleAsync()} .
+     * The async variant is {@see SecurityPoliciesClient::patchRuleAsync()} .
      *
      * @param PatchRuleSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -493,7 +493,7 @@ final class SecurityPoliciesClient
     /**
      * Deletes a rule at the specified priority.
      *
-     * The async variant is {@see SecurityPoliciesGapicClient::removeRuleAsync()} .
+     * The async variant is {@see SecurityPoliciesClient::removeRuleAsync()} .
      *
      * @param RemoveRuleSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -517,7 +517,7 @@ final class SecurityPoliciesClient
     /**
      * Sets the labels on a security policy. To learn more about labels, read the Labeling Resources documentation.
      *
-     * The async variant is {@see SecurityPoliciesGapicClient::setLabelsAsync()} .
+     * The async variant is {@see SecurityPoliciesClient::setLabelsAsync()} .
      *
      * @param SetLabelsSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {

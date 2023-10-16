@@ -240,8 +240,7 @@ final class TargetHttpProxiesClient
     /**
      * Retrieves the list of all TargetHttpProxy resources, regional and global, available to the specified project.
      *
-     * The async variant is {@see TargetHttpProxiesGapicClient::aggregatedListAsync()}
-     * .
+     * The async variant is {@see TargetHttpProxiesClient::aggregatedListAsync()} .
      *
      * @param AggregatedListTargetHttpProxiesRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -265,7 +264,7 @@ final class TargetHttpProxiesClient
     /**
      * Deletes the specified TargetHttpProxy resource.
      *
-     * The async variant is {@see TargetHttpProxiesGapicClient::deleteAsync()} .
+     * The async variant is {@see TargetHttpProxiesClient::deleteAsync()} .
      *
      * @param DeleteTargetHttpProxyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -289,7 +288,7 @@ final class TargetHttpProxiesClient
     /**
      * Returns the specified TargetHttpProxy resource.
      *
-     * The async variant is {@see TargetHttpProxiesGapicClient::getAsync()} .
+     * The async variant is {@see TargetHttpProxiesClient::getAsync()} .
      *
      * @param GetTargetHttpProxyRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -313,7 +312,7 @@ final class TargetHttpProxiesClient
     /**
      * Creates a TargetHttpProxy resource in the specified project using the data included in the request.
      *
-     * The async variant is {@see TargetHttpProxiesGapicClient::insertAsync()} .
+     * The async variant is {@see TargetHttpProxiesClient::insertAsync()} .
      *
      * @param InsertTargetHttpProxyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -337,7 +336,7 @@ final class TargetHttpProxiesClient
     /**
      * Retrieves the list of TargetHttpProxy resources available to the specified project.
      *
-     * The async variant is {@see TargetHttpProxiesGapicClient::listAsync()} .
+     * The async variant is {@see TargetHttpProxiesClient::listAsync()} .
      *
      * @param ListTargetHttpProxiesRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -361,7 +360,7 @@ final class TargetHttpProxiesClient
     /**
      * Patches the specified TargetHttpProxy resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
      *
-     * The async variant is {@see TargetHttpProxiesGapicClient::patchAsync()} .
+     * The async variant is {@see TargetHttpProxiesClient::patchAsync()} .
      *
      * @param PatchTargetHttpProxyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -385,7 +384,7 @@ final class TargetHttpProxiesClient
     /**
      * Changes the URL map for TargetHttpProxy.
      *
-     * The async variant is {@see TargetHttpProxiesGapicClient::setUrlMapAsync()} .
+     * The async variant is {@see TargetHttpProxiesClient::setUrlMapAsync()} .
      *
      * @param SetUrlMapTargetHttpProxyRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {

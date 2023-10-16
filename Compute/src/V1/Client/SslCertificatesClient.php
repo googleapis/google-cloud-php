@@ -236,7 +236,7 @@ final class SslCertificatesClient
     /**
      * Retrieves the list of all SslCertificate resources, regional and global, available to the specified project.
      *
-     * The async variant is {@see SslCertificatesGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see SslCertificatesClient::aggregatedListAsync()} .
      *
      * @param AggregatedListSslCertificatesRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -260,7 +260,7 @@ final class SslCertificatesClient
     /**
      * Deletes the specified SslCertificate resource.
      *
-     * The async variant is {@see SslCertificatesGapicClient::deleteAsync()} .
+     * The async variant is {@see SslCertificatesClient::deleteAsync()} .
      *
      * @param DeleteSslCertificateRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -284,7 +284,7 @@ final class SslCertificatesClient
     /**
      * Returns the specified SslCertificate resource.
      *
-     * The async variant is {@see SslCertificatesGapicClient::getAsync()} .
+     * The async variant is {@see SslCertificatesClient::getAsync()} .
      *
      * @param GetSslCertificateRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -308,7 +308,7 @@ final class SslCertificatesClient
     /**
      * Creates a SslCertificate resource in the specified project using the data included in the request.
      *
-     * The async variant is {@see SslCertificatesGapicClient::insertAsync()} .
+     * The async variant is {@see SslCertificatesClient::insertAsync()} .
      *
      * @param InsertSslCertificateRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -332,7 +332,7 @@ final class SslCertificatesClient
     /**
      * Retrieves the list of SslCertificate resources available to the specified project.
      *
-     * The async variant is {@see SslCertificatesGapicClient::listAsync()} .
+     * The async variant is {@see SslCertificatesClient::listAsync()} .
      *
      * @param ListSslCertificatesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {

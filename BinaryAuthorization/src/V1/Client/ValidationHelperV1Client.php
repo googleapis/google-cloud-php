@@ -163,7 +163,7 @@ final class ValidationHelperV1Client
      * was signed by the given Attestor
      *
      * The async variant is
-     * {@see ValidationHelperV1GapicClient::validateAttestationOccurrenceAsync()} .
+     * {@see ValidationHelperV1Client::validateAttestationOccurrenceAsync()} .
      *
      * @example samples/V1/ValidationHelperV1Client/validate_attestation_occurrence.php
      *
