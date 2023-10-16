@@ -221,7 +221,7 @@ final class ErrorStatsServiceClient
     /**
      * Deletes all error events of a given project.
      *
-     * The async variant is {@see ErrorStatsServiceGapicClient::deleteEventsAsync()} .
+     * The async variant is {@see ErrorStatsServiceClient::deleteEventsAsync()} .
      *
      * @example samples/V1beta1/ErrorStatsServiceClient/delete_events.php
      *
@@ -249,7 +249,7 @@ final class ErrorStatsServiceClient
     /**
      * Lists the specified events.
      *
-     * The async variant is {@see ErrorStatsServiceGapicClient::listEventsAsync()} .
+     * The async variant is {@see ErrorStatsServiceClient::listEventsAsync()} .
      *
      * @example samples/V1beta1/ErrorStatsServiceClient/list_events.php
      *
@@ -277,8 +277,7 @@ final class ErrorStatsServiceClient
     /**
      * Lists the specified groups.
      *
-     * The async variant is {@see ErrorStatsServiceGapicClient::listGroupStatsAsync()}
-     * .
+     * The async variant is {@see ErrorStatsServiceClient::listGroupStatsAsync()} .
      *
      * @example samples/V1beta1/ErrorStatsServiceClient/list_group_stats.php
      *

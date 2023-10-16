@@ -253,7 +253,7 @@ final class CompletionServiceClient
     /**
      * Completes the specified user input with keyword suggestions.
      *
-     * The async variant is {@see CompletionServiceGapicClient::completeQueryAsync()} .
+     * The async variant is {@see CompletionServiceClient::completeQueryAsync()} .
      *
      * @example samples/V1/CompletionServiceClient/complete_query.php
      *

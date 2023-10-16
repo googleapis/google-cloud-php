@@ -309,8 +309,8 @@ final class AttachedClustersClient
      * [Operation][google.longrunning.Operation] resource that can be
      * described to track the status of the operation.
      *
-     * The async variant is
-     * {@see AttachedClustersGapicClient::createAttachedClusterAsync()} .
+     * The async variant is {@see AttachedClustersClient::createAttachedClusterAsync()}
+     * .
      *
      * @example samples/V1/AttachedClustersClient/create_attached_cluster.php
      *
@@ -341,8 +341,8 @@ final class AttachedClustersClient
      * [Operation][google.longrunning.Operation] resource that can be
      * described to track the status of the operation.
      *
-     * The async variant is
-     * {@see AttachedClustersGapicClient::deleteAttachedClusterAsync()} .
+     * The async variant is {@see AttachedClustersClient::deleteAttachedClusterAsync()}
+     * .
      *
      * @example samples/V1/AttachedClustersClient/delete_attached_cluster.php
      *
@@ -369,8 +369,7 @@ final class AttachedClustersClient
      * Generates the install manifest to be installed on the target cluster.
      *
      * The async variant is
-     * {@see AttachedClustersGapicClient::generateAttachedClusterInstallManifestAsync()}
-     * .
+     * {@see AttachedClustersClient::generateAttachedClusterInstallManifestAsync()} .
      *
      * @example samples/V1/AttachedClustersClient/generate_attached_cluster_install_manifest.php
      *
@@ -397,8 +396,7 @@ final class AttachedClustersClient
      * Describes a specific
      * [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource.
      *
-     * The async variant is
-     * {@see AttachedClustersGapicClient::getAttachedClusterAsync()} .
+     * The async variant is {@see AttachedClustersClient::getAttachedClusterAsync()} .
      *
      * @example samples/V1/AttachedClustersClient/get_attached_cluster.php
      *
@@ -426,7 +424,7 @@ final class AttachedClustersClient
      * Google Cloud location.
      *
      * The async variant is
-     * {@see AttachedClustersGapicClient::getAttachedServerConfigAsync()} .
+     * {@see AttachedClustersClient::getAttachedServerConfigAsync()} .
      *
      * @example samples/V1/AttachedClustersClient/get_attached_server_config.php
      *
@@ -461,8 +459,8 @@ final class AttachedClustersClient
      * [Operation][google.longrunning.Operation] resource that can be
      * described to track the status of the operation.
      *
-     * The async variant is
-     * {@see AttachedClustersGapicClient::importAttachedClusterAsync()} .
+     * The async variant is {@see AttachedClustersClient::importAttachedClusterAsync()}
+     * .
      *
      * @example samples/V1/AttachedClustersClient/import_attached_cluster.php
      *
@@ -489,8 +487,8 @@ final class AttachedClustersClient
      * Lists all [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster]
      * resources on a given Google Cloud project and region.
      *
-     * The async variant is
-     * {@see AttachedClustersGapicClient::listAttachedClustersAsync()} .
+     * The async variant is {@see AttachedClustersClient::listAttachedClustersAsync()}
+     * .
      *
      * @example samples/V1/AttachedClustersClient/list_attached_clusters.php
      *
@@ -517,8 +515,8 @@ final class AttachedClustersClient
      * Updates an
      * [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster].
      *
-     * The async variant is
-     * {@see AttachedClustersGapicClient::updateAttachedClusterAsync()} .
+     * The async variant is {@see AttachedClustersClient::updateAttachedClusterAsync()}
+     * .
      *
      * @example samples/V1/AttachedClustersClient/update_attached_cluster.php
      *

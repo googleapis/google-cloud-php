@@ -480,7 +480,7 @@ final class FunctionServiceClient
      * the specified project, the long running operation will return
      * `ALREADY_EXISTS` error.
      *
-     * The async variant is {@see FunctionServiceGapicClient::createFunctionAsync()} .
+     * The async variant is {@see FunctionServiceClient::createFunctionAsync()} .
      *
      * @param CreateFunctionRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -506,7 +506,7 @@ final class FunctionServiceClient
      * given function is used by some trigger, the trigger will be updated to
      * remove this function.
      *
-     * The async variant is {@see FunctionServiceGapicClient::deleteFunctionAsync()} .
+     * The async variant is {@see FunctionServiceClient::deleteFunctionAsync()} .
      *
      * @param DeleteFunctionRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -534,8 +534,7 @@ final class FunctionServiceClient
      * For more information about the signed URL usage see:
      * https://cloud.google.com/storage/docs/access-control/signed-urls
      *
-     * The async variant is
-     * {@see FunctionServiceGapicClient::generateDownloadUrlAsync()} .
+     * The async variant is {@see FunctionServiceClient::generateDownloadUrlAsync()} .
      *
      * @param GenerateDownloadUrlRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -581,8 +580,7 @@ final class FunctionServiceClient
      *
      * * `Authorization: Bearer YOUR_TOKEN`
      *
-     * The async variant is {@see FunctionServiceGapicClient::generateUploadUrlAsync()}
-     * .
+     * The async variant is {@see FunctionServiceClient::generateUploadUrlAsync()} .
      *
      * @param GenerateUploadUrlRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -606,7 +604,7 @@ final class FunctionServiceClient
     /**
      * Returns a function with the given name from the requested project.
      *
-     * The async variant is {@see FunctionServiceGapicClient::getFunctionAsync()} .
+     * The async variant is {@see FunctionServiceClient::getFunctionAsync()} .
      *
      * @param GetFunctionRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -630,7 +628,7 @@ final class FunctionServiceClient
     /**
      * Returns a list of functions that belong to the requested project.
      *
-     * The async variant is {@see FunctionServiceGapicClient::listFunctionsAsync()} .
+     * The async variant is {@see FunctionServiceClient::listFunctionsAsync()} .
      *
      * @param ListFunctionsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -654,7 +652,7 @@ final class FunctionServiceClient
     /**
      * Returns a list of runtimes that are supported for the requested project.
      *
-     * The async variant is {@see FunctionServiceGapicClient::listRuntimesAsync()} .
+     * The async variant is {@see FunctionServiceClient::listRuntimesAsync()} .
      *
      * @param ListRuntimesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -678,7 +676,7 @@ final class FunctionServiceClient
     /**
      * Updates existing function.
      *
-     * The async variant is {@see FunctionServiceGapicClient::updateFunctionAsync()} .
+     * The async variant is {@see FunctionServiceClient::updateFunctionAsync()} .
      *
      * @param UpdateFunctionRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -702,7 +700,7 @@ final class FunctionServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see FunctionServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see FunctionServiceClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -727,7 +725,7 @@ final class FunctionServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see FunctionServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see FunctionServiceClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -755,7 +753,7 @@ final class FunctionServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see FunctionServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see FunctionServiceClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -785,8 +783,7 @@ final class FunctionServiceClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is
-     * {@see FunctionServiceGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see FunctionServiceClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

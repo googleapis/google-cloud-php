@@ -323,7 +323,7 @@ final class GkeHubClient
     /**
      * Adds a new Feature.
      *
-     * The async variant is {@see GkeHubGapicClient::createFeatureAsync()} .
+     * The async variant is {@see GkeHubClient::createFeatureAsync()} .
      *
      * @example samples/V1/GkeHubClient/create_feature.php
      *
@@ -353,7 +353,7 @@ final class GkeHubClient
      * To register other clusters, follow the instructions at
      * https://cloud.google.com/anthos/multicluster-management/connect/registering-a-cluster.
      *
-     * The async variant is {@see GkeHubGapicClient::createMembershipAsync()} .
+     * The async variant is {@see GkeHubClient::createMembershipAsync()} .
      *
      * @example samples/V1/GkeHubClient/create_membership.php
      *
@@ -379,7 +379,7 @@ final class GkeHubClient
     /**
      * Removes a Feature.
      *
-     * The async variant is {@see GkeHubGapicClient::deleteFeatureAsync()} .
+     * The async variant is {@see GkeHubClient::deleteFeatureAsync()} .
      *
      * @example samples/V1/GkeHubClient/delete_feature.php
      *
@@ -409,7 +409,7 @@ final class GkeHubClient
      * To unregister other clusters, follow the instructions at
      * https://cloud.google.com/anthos/multicluster-management/connect/unregistering-a-cluster.
      *
-     * The async variant is {@see GkeHubGapicClient::deleteMembershipAsync()} .
+     * The async variant is {@see GkeHubClient::deleteMembershipAsync()} .
      *
      * @example samples/V1/GkeHubClient/delete_membership.php
      *
@@ -438,7 +438,7 @@ final class GkeHubClient
      * **This method is used internally by Google-provided libraries.**
      * Most clients should not need to call this method directly.
      *
-     * The async variant is {@see GkeHubGapicClient::generateConnectManifestAsync()} .
+     * The async variant is {@see GkeHubClient::generateConnectManifestAsync()} .
      *
      * @example samples/V1/GkeHubClient/generate_connect_manifest.php
      *
@@ -464,7 +464,7 @@ final class GkeHubClient
     /**
      * Gets details of a single Feature.
      *
-     * The async variant is {@see GkeHubGapicClient::getFeatureAsync()} .
+     * The async variant is {@see GkeHubClient::getFeatureAsync()} .
      *
      * @example samples/V1/GkeHubClient/get_feature.php
      *
@@ -490,7 +490,7 @@ final class GkeHubClient
     /**
      * Gets the details of a Membership.
      *
-     * The async variant is {@see GkeHubGapicClient::getMembershipAsync()} .
+     * The async variant is {@see GkeHubClient::getMembershipAsync()} .
      *
      * @example samples/V1/GkeHubClient/get_membership.php
      *
@@ -516,7 +516,7 @@ final class GkeHubClient
     /**
      * Lists Features in a given project and location.
      *
-     * The async variant is {@see GkeHubGapicClient::listFeaturesAsync()} .
+     * The async variant is {@see GkeHubClient::listFeaturesAsync()} .
      *
      * @example samples/V1/GkeHubClient/list_features.php
      *
@@ -542,7 +542,7 @@ final class GkeHubClient
     /**
      * Lists Memberships in a given project and location.
      *
-     * The async variant is {@see GkeHubGapicClient::listMembershipsAsync()} .
+     * The async variant is {@see GkeHubClient::listMembershipsAsync()} .
      *
      * @example samples/V1/GkeHubClient/list_memberships.php
      *
@@ -568,7 +568,7 @@ final class GkeHubClient
     /**
      * Updates an existing Feature.
      *
-     * The async variant is {@see GkeHubGapicClient::updateFeatureAsync()} .
+     * The async variant is {@see GkeHubClient::updateFeatureAsync()} .
      *
      * @example samples/V1/GkeHubClient/update_feature.php
      *
@@ -594,7 +594,7 @@ final class GkeHubClient
     /**
      * Updates an existing Membership.
      *
-     * The async variant is {@see GkeHubGapicClient::updateMembershipAsync()} .
+     * The async variant is {@see GkeHubClient::updateMembershipAsync()} .
      *
      * @example samples/V1/GkeHubClient/update_membership.php
      *
