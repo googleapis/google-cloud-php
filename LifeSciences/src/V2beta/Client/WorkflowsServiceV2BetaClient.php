@@ -228,8 +228,7 @@ final class WorkflowsServiceV2BetaClient
      *
      * * `lifesciences.workflows.run`
      *
-     * The async variant is
-     * {@see WorkflowsServiceV2BetaGapicClient::runPipelineAsync()} .
+     * The async variant is {@see WorkflowsServiceV2BetaClient::runPipelineAsync()} .
      *
      * @example samples/V2beta/WorkflowsServiceV2BetaClient/run_pipeline.php
      *
@@ -257,8 +256,7 @@ final class WorkflowsServiceV2BetaClient
     /**
      * Gets information about a location.
      *
-     * The async variant is
-     * {@see WorkflowsServiceV2BetaGapicClient::getLocationAsync()} .
+     * The async variant is {@see WorkflowsServiceV2BetaClient::getLocationAsync()} .
      *
      * @example samples/V2beta/WorkflowsServiceV2BetaClient/get_location.php
      *
@@ -286,8 +284,7 @@ final class WorkflowsServiceV2BetaClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is
-     * {@see WorkflowsServiceV2BetaGapicClient::listLocationsAsync()} .
+     * The async variant is {@see WorkflowsServiceV2BetaClient::listLocationsAsync()} .
      *
      * @example samples/V2beta/WorkflowsServiceV2BetaClient/list_locations.php
      *

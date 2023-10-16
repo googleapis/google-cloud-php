@@ -303,8 +303,7 @@ final class ManagedNotebookServiceClient
     /**
      * Creates a new Runtime in a given project and location.
      *
-     * The async variant is
-     * {@see ManagedNotebookServiceGapicClient::createRuntimeAsync()} .
+     * The async variant is {@see ManagedNotebookServiceClient::createRuntimeAsync()} .
      *
      * @example samples/V1/ManagedNotebookServiceClient/create_runtime.php
      *
@@ -330,8 +329,7 @@ final class ManagedNotebookServiceClient
     /**
      * Deletes a single Runtime.
      *
-     * The async variant is
-     * {@see ManagedNotebookServiceGapicClient::deleteRuntimeAsync()} .
+     * The async variant is {@see ManagedNotebookServiceClient::deleteRuntimeAsync()} .
      *
      * @example samples/V1/ManagedNotebookServiceClient/delete_runtime.php
      *
@@ -357,8 +355,8 @@ final class ManagedNotebookServiceClient
     /**
      * Creates a Diagnostic File and runs Diagnostic Tool given a Runtime.
      *
-     * The async variant is
-     * {@see ManagedNotebookServiceGapicClient::diagnoseRuntimeAsync()} .
+     * The async variant is {@see ManagedNotebookServiceClient::diagnoseRuntimeAsync()}
+     * .
      *
      * @example samples/V1/ManagedNotebookServiceClient/diagnose_runtime.php
      *
@@ -385,8 +383,7 @@ final class ManagedNotebookServiceClient
      * Gets details of a single Runtime. The location must be a regional endpoint
      * rather than zonal.
      *
-     * The async variant is {@see ManagedNotebookServiceGapicClient::getRuntimeAsync()}
-     * .
+     * The async variant is {@see ManagedNotebookServiceClient::getRuntimeAsync()} .
      *
      * @example samples/V1/ManagedNotebookServiceClient/get_runtime.php
      *
@@ -412,8 +409,7 @@ final class ManagedNotebookServiceClient
     /**
      * Lists Runtimes in a given project and location.
      *
-     * The async variant is
-     * {@see ManagedNotebookServiceGapicClient::listRuntimesAsync()} .
+     * The async variant is {@see ManagedNotebookServiceClient::listRuntimesAsync()} .
      *
      * @example samples/V1/ManagedNotebookServiceClient/list_runtimes.php
      *
@@ -441,7 +437,7 @@ final class ManagedNotebookServiceClient
      * attached to the runtime. Only accessible from the tenant instance.
      *
      * The async variant is
-     * {@see ManagedNotebookServiceGapicClient::refreshRuntimeTokenInternalAsync()} .
+     * {@see ManagedNotebookServiceClient::refreshRuntimeTokenInternalAsync()} .
      *
      * @example samples/V1/ManagedNotebookServiceClient/refresh_runtime_token_internal.php
      *
@@ -468,7 +464,7 @@ final class ManagedNotebookServiceClient
      * Report and process a runtime event.
      *
      * The async variant is
-     * {@see ManagedNotebookServiceGapicClient::reportRuntimeEventAsync()} .
+     * {@see ManagedNotebookServiceClient::reportRuntimeEventAsync()} .
      *
      * @example samples/V1/ManagedNotebookServiceClient/report_runtime_event.php
      *
@@ -494,8 +490,7 @@ final class ManagedNotebookServiceClient
     /**
      * Resets a Managed Notebook Runtime.
      *
-     * The async variant is
-     * {@see ManagedNotebookServiceGapicClient::resetRuntimeAsync()} .
+     * The async variant is {@see ManagedNotebookServiceClient::resetRuntimeAsync()} .
      *
      * @example samples/V1/ManagedNotebookServiceClient/reset_runtime.php
      *
@@ -525,8 +520,7 @@ final class ManagedNotebookServiceClient
      * https://cloud.google.com/compute/docs/instances/stop-start-instance
      * https://cloud.google.com/compute/docs/instances/suspend-resume-instance
      *
-     * The async variant is
-     * {@see ManagedNotebookServiceGapicClient::startRuntimeAsync()} .
+     * The async variant is {@see ManagedNotebookServiceClient::startRuntimeAsync()} .
      *
      * @example samples/V1/ManagedNotebookServiceClient/start_runtime.php
      *
@@ -556,8 +550,7 @@ final class ManagedNotebookServiceClient
      * https://cloud.google.com/compute/docs/instances/stop-start-instance
      * https://cloud.google.com/compute/docs/instances/suspend-resume-instance
      *
-     * The async variant is
-     * {@see ManagedNotebookServiceGapicClient::stopRuntimeAsync()} .
+     * The async variant is {@see ManagedNotebookServiceClient::stopRuntimeAsync()} .
      *
      * @example samples/V1/ManagedNotebookServiceClient/stop_runtime.php
      *
@@ -583,8 +576,7 @@ final class ManagedNotebookServiceClient
     /**
      * Switch a Managed Notebook Runtime.
      *
-     * The async variant is
-     * {@see ManagedNotebookServiceGapicClient::switchRuntimeAsync()} .
+     * The async variant is {@see ManagedNotebookServiceClient::switchRuntimeAsync()} .
      *
      * @example samples/V1/ManagedNotebookServiceClient/switch_runtime.php
      *
@@ -610,8 +602,7 @@ final class ManagedNotebookServiceClient
     /**
      * Update Notebook Runtime configuration.
      *
-     * The async variant is
-     * {@see ManagedNotebookServiceGapicClient::updateRuntimeAsync()} .
+     * The async variant is {@see ManagedNotebookServiceClient::updateRuntimeAsync()} .
      *
      * @example samples/V1/ManagedNotebookServiceClient/update_runtime.php
      *
@@ -637,8 +628,8 @@ final class ManagedNotebookServiceClient
     /**
      * Upgrades a Managed Notebook Runtime to the latest version.
      *
-     * The async variant is
-     * {@see ManagedNotebookServiceGapicClient::upgradeRuntimeAsync()} .
+     * The async variant is {@see ManagedNotebookServiceClient::upgradeRuntimeAsync()}
+     * .
      *
      * @example samples/V1/ManagedNotebookServiceClient/upgrade_runtime.php
      *
@@ -664,8 +655,7 @@ final class ManagedNotebookServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is
-     * {@see ManagedNotebookServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see ManagedNotebookServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/ManagedNotebookServiceClient/get_location.php
      *
@@ -691,8 +681,7 @@ final class ManagedNotebookServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is
-     * {@see ManagedNotebookServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see ManagedNotebookServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/ManagedNotebookServiceClient/list_locations.php
      *
@@ -719,8 +708,7 @@ final class ManagedNotebookServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is
-     * {@see ManagedNotebookServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see ManagedNotebookServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/ManagedNotebookServiceClient/get_iam_policy.php
      *
@@ -750,8 +738,7 @@ final class ManagedNotebookServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is
-     * {@see ManagedNotebookServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see ManagedNotebookServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/ManagedNotebookServiceClient/set_iam_policy.php
      *
@@ -784,7 +771,7 @@ final class ManagedNotebookServiceClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is
-     * {@see ManagedNotebookServiceGapicClient::testIamPermissionsAsync()} .
+     * {@see ManagedNotebookServiceClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/ManagedNotebookServiceClient/test_iam_permissions.php
      *

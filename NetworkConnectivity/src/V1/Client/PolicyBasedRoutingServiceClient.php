@@ -304,7 +304,7 @@ final class PolicyBasedRoutingServiceClient
      * Creates a new PolicyBasedRoute in a given project and location.
      *
      * The async variant is
-     * {@see PolicyBasedRoutingServiceGapicClient::createPolicyBasedRouteAsync()} .
+     * {@see PolicyBasedRoutingServiceClient::createPolicyBasedRouteAsync()} .
      *
      * @param CreatePolicyBasedRouteRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -329,7 +329,7 @@ final class PolicyBasedRoutingServiceClient
      * Deletes a single PolicyBasedRoute.
      *
      * The async variant is
-     * {@see PolicyBasedRoutingServiceGapicClient::deletePolicyBasedRouteAsync()} .
+     * {@see PolicyBasedRoutingServiceClient::deletePolicyBasedRouteAsync()} .
      *
      * @param DeletePolicyBasedRouteRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -354,7 +354,7 @@ final class PolicyBasedRoutingServiceClient
      * Gets details of a single PolicyBasedRoute.
      *
      * The async variant is
-     * {@see PolicyBasedRoutingServiceGapicClient::getPolicyBasedRouteAsync()} .
+     * {@see PolicyBasedRoutingServiceClient::getPolicyBasedRouteAsync()} .
      *
      * @param GetPolicyBasedRouteRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -379,7 +379,7 @@ final class PolicyBasedRoutingServiceClient
      * Lists PolicyBasedRoutes in a given project and location.
      *
      * The async variant is
-     * {@see PolicyBasedRoutingServiceGapicClient::listPolicyBasedRoutesAsync()} .
+     * {@see PolicyBasedRoutingServiceClient::listPolicyBasedRoutesAsync()} .
      *
      * @param ListPolicyBasedRoutesRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -403,8 +403,8 @@ final class PolicyBasedRoutingServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is
-     * {@see PolicyBasedRoutingServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see PolicyBasedRoutingServiceClient::getLocationAsync()}
+     * .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -429,7 +429,7 @@ final class PolicyBasedRoutingServiceClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is
-     * {@see PolicyBasedRoutingServiceGapicClient::listLocationsAsync()} .
+     * {@see PolicyBasedRoutingServiceClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -454,8 +454,8 @@ final class PolicyBasedRoutingServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is
-     * {@see PolicyBasedRoutingServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see PolicyBasedRoutingServiceClient::getIamPolicyAsync()}
+     * .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -483,8 +483,8 @@ final class PolicyBasedRoutingServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is
-     * {@see PolicyBasedRoutingServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see PolicyBasedRoutingServiceClient::setIamPolicyAsync()}
+     * .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -515,7 +515,7 @@ final class PolicyBasedRoutingServiceClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is
-     * {@see PolicyBasedRoutingServiceGapicClient::testIamPermissionsAsync()} .
+     * {@see PolicyBasedRoutingServiceClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

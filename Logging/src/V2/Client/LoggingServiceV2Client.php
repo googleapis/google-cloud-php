@@ -363,7 +363,7 @@ final class LoggingServiceV2Client
      * the delete operation might not be deleted. Entries received after the
      * delete operation with a timestamp before the operation will be deleted.
      *
-     * The async variant is {@see LoggingServiceV2GapicClient::deleteLogAsync()} .
+     * The async variant is {@see LoggingServiceV2Client::deleteLogAsync()} .
      *
      * @param DeleteLogRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -388,7 +388,7 @@ final class LoggingServiceV2Client
      * entries, see [Exporting
      * Logs](https://cloud.google.com/logging/docs/export).
      *
-     * The async variant is {@see LoggingServiceV2GapicClient::listLogEntriesAsync()} .
+     * The async variant is {@see LoggingServiceV2Client::listLogEntriesAsync()} .
      *
      * @param ListLogEntriesRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -413,7 +413,7 @@ final class LoggingServiceV2Client
      * Lists the logs in projects, organizations, folders, or billing accounts.
      * Only logs that have entries are listed.
      *
-     * The async variant is {@see LoggingServiceV2GapicClient::listLogsAsync()} .
+     * The async variant is {@see LoggingServiceV2Client::listLogsAsync()} .
      *
      * @param ListLogsRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -438,7 +438,7 @@ final class LoggingServiceV2Client
      * Lists the descriptors for monitored resource types used by Logging.
      *
      * The async variant is
-     * {@see LoggingServiceV2GapicClient::listMonitoredResourceDescriptorsAsync()} .
+     * {@see LoggingServiceV2Client::listMonitoredResourceDescriptorsAsync()} .
      *
      * @param ListMonitoredResourceDescriptorsRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -488,8 +488,7 @@ final class LoggingServiceV2Client
      * different resources (projects, organizations, billing accounts or
      * folders)
      *
-     * The async variant is {@see LoggingServiceV2GapicClient::writeLogEntriesAsync()}
-     * .
+     * The async variant is {@see LoggingServiceV2Client::writeLogEntriesAsync()} .
      *
      * @param WriteLogEntriesRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {

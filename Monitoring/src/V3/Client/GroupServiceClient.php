@@ -286,7 +286,7 @@ final class GroupServiceClient
     /**
      * Creates a new group.
      *
-     * The async variant is {@see GroupServiceGapicClient::createGroupAsync()} .
+     * The async variant is {@see GroupServiceClient::createGroupAsync()} .
      *
      * @param CreateGroupRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -310,7 +310,7 @@ final class GroupServiceClient
     /**
      * Deletes an existing group.
      *
-     * The async variant is {@see GroupServiceGapicClient::deleteGroupAsync()} .
+     * The async variant is {@see GroupServiceClient::deleteGroupAsync()} .
      *
      * @param DeleteGroupRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -332,7 +332,7 @@ final class GroupServiceClient
     /**
      * Gets a single group.
      *
-     * The async variant is {@see GroupServiceGapicClient::getGroupAsync()} .
+     * The async variant is {@see GroupServiceClient::getGroupAsync()} .
      *
      * @param GetGroupRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -356,7 +356,7 @@ final class GroupServiceClient
     /**
      * Lists the monitored resources that are members of a group.
      *
-     * The async variant is {@see GroupServiceGapicClient::listGroupMembersAsync()} .
+     * The async variant is {@see GroupServiceClient::listGroupMembersAsync()} .
      *
      * @param ListGroupMembersRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -380,7 +380,7 @@ final class GroupServiceClient
     /**
      * Lists the existing groups.
      *
-     * The async variant is {@see GroupServiceGapicClient::listGroupsAsync()} .
+     * The async variant is {@see GroupServiceClient::listGroupsAsync()} .
      *
      * @param ListGroupsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -405,7 +405,7 @@ final class GroupServiceClient
      * Updates an existing group.
      * You can change any group attributes except `name`.
      *
-     * The async variant is {@see GroupServiceGapicClient::updateGroupAsync()} .
+     * The async variant is {@see GroupServiceClient::updateGroupAsync()} .
      *
      * @param UpdateGroupRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {

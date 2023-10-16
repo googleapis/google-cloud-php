@@ -177,7 +177,7 @@ final class LanguageServiceClient
      * along with entity types, probability, mentions for each entity, and
      * other properties.
      *
-     * The async variant is {@see LanguageServiceGapicClient::analyzeEntitiesAsync()} .
+     * The async variant is {@see LanguageServiceClient::analyzeEntitiesAsync()} .
      *
      * @example samples/V2/LanguageServiceClient/analyze_entities.php
      *
@@ -203,8 +203,7 @@ final class LanguageServiceClient
     /**
      * Analyzes the sentiment of the provided text.
      *
-     * The async variant is {@see LanguageServiceGapicClient::analyzeSentimentAsync()}
-     * .
+     * The async variant is {@see LanguageServiceClient::analyzeSentimentAsync()} .
      *
      * @example samples/V2/LanguageServiceClient/analyze_sentiment.php
      *
@@ -230,7 +229,7 @@ final class LanguageServiceClient
     /**
      * A convenience method that provides all features in one call.
      *
-     * The async variant is {@see LanguageServiceGapicClient::annotateTextAsync()} .
+     * The async variant is {@see LanguageServiceClient::annotateTextAsync()} .
      *
      * @example samples/V2/LanguageServiceClient/annotate_text.php
      *
@@ -256,7 +255,7 @@ final class LanguageServiceClient
     /**
      * Classifies a document into categories.
      *
-     * The async variant is {@see LanguageServiceGapicClient::classifyTextAsync()} .
+     * The async variant is {@see LanguageServiceClient::classifyTextAsync()} .
      *
      * @example samples/V2/LanguageServiceClient/classify_text.php
      *
@@ -282,7 +281,7 @@ final class LanguageServiceClient
     /**
      * Moderates a document for harmful and sensitive categories.
      *
-     * The async variant is {@see LanguageServiceGapicClient::moderateTextAsync()} .
+     * The async variant is {@see LanguageServiceClient::moderateTextAsync()} .
      *
      * @example samples/V2/LanguageServiceClient/moderate_text.php
      *

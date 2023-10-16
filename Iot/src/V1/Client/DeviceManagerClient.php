@@ -299,8 +299,7 @@ final class DeviceManagerClient
     /**
      * Associates the device with the gateway.
      *
-     * The async variant is {@see DeviceManagerGapicClient::bindDeviceToGatewayAsync()}
-     * .
+     * The async variant is {@see DeviceManagerClient::bindDeviceToGatewayAsync()} .
      *
      * @param BindDeviceToGatewayRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -324,7 +323,7 @@ final class DeviceManagerClient
     /**
      * Creates a device in a device registry.
      *
-     * The async variant is {@see DeviceManagerGapicClient::createDeviceAsync()} .
+     * The async variant is {@see DeviceManagerClient::createDeviceAsync()} .
      *
      * @param CreateDeviceRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -348,8 +347,7 @@ final class DeviceManagerClient
     /**
      * Creates a device registry that contains devices.
      *
-     * The async variant is
-     * {@see DeviceManagerGapicClient::createDeviceRegistryAsync()} .
+     * The async variant is {@see DeviceManagerClient::createDeviceRegistryAsync()} .
      *
      * @param CreateDeviceRegistryRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -373,7 +371,7 @@ final class DeviceManagerClient
     /**
      * Deletes a device.
      *
-     * The async variant is {@see DeviceManagerGapicClient::deleteDeviceAsync()} .
+     * The async variant is {@see DeviceManagerClient::deleteDeviceAsync()} .
      *
      * @param DeleteDeviceRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -395,8 +393,7 @@ final class DeviceManagerClient
     /**
      * Deletes a device registry configuration.
      *
-     * The async variant is
-     * {@see DeviceManagerGapicClient::deleteDeviceRegistryAsync()} .
+     * The async variant is {@see DeviceManagerClient::deleteDeviceRegistryAsync()} .
      *
      * @param DeleteDeviceRegistryRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -418,7 +415,7 @@ final class DeviceManagerClient
     /**
      * Gets details about a device.
      *
-     * The async variant is {@see DeviceManagerGapicClient::getDeviceAsync()} .
+     * The async variant is {@see DeviceManagerClient::getDeviceAsync()} .
      *
      * @param GetDeviceRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -442,7 +439,7 @@ final class DeviceManagerClient
     /**
      * Gets a device registry configuration.
      *
-     * The async variant is {@see DeviceManagerGapicClient::getDeviceRegistryAsync()} .
+     * The async variant is {@see DeviceManagerClient::getDeviceRegistryAsync()} .
      *
      * @param GetDeviceRegistryRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -468,7 +465,7 @@ final class DeviceManagerClient
      * Returns an empty policy if the resource exists and does not have a policy
      * set.
      *
-     * The async variant is {@see DeviceManagerGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see DeviceManagerClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -493,8 +490,8 @@ final class DeviceManagerClient
      * Lists the last few versions of the device configuration in descending
      * order (i.e.: newest first).
      *
-     * The async variant is
-     * {@see DeviceManagerGapicClient::listDeviceConfigVersionsAsync()} .
+     * The async variant is {@see DeviceManagerClient::listDeviceConfigVersionsAsync()}
+     * .
      *
      * @param ListDeviceConfigVersionsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -518,8 +515,7 @@ final class DeviceManagerClient
     /**
      * Lists device registries.
      *
-     * The async variant is
-     * {@see DeviceManagerGapicClient::listDeviceRegistriesAsync()} .
+     * The async variant is {@see DeviceManagerClient::listDeviceRegistriesAsync()} .
      *
      * @param ListDeviceRegistriesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -544,7 +540,7 @@ final class DeviceManagerClient
      * Lists the last few versions of the device state in descending order (i.e.:
      * newest first).
      *
-     * The async variant is {@see DeviceManagerGapicClient::listDeviceStatesAsync()} .
+     * The async variant is {@see DeviceManagerClient::listDeviceStatesAsync()} .
      *
      * @param ListDeviceStatesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -568,7 +564,7 @@ final class DeviceManagerClient
     /**
      * List devices in a device registry.
      *
-     * The async variant is {@see DeviceManagerGapicClient::listDevicesAsync()} .
+     * The async variant is {@see DeviceManagerClient::listDevicesAsync()} .
      *
      * @param ListDevicesRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -595,7 +591,7 @@ final class DeviceManagerClient
      * its metadata.
      *
      * The async variant is
-     * {@see DeviceManagerGapicClient::modifyCloudToDeviceConfigAsync()} .
+     * {@see DeviceManagerClient::modifyCloudToDeviceConfigAsync()} .
      *
      * @param ModifyCloudToDeviceConfigRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -631,8 +627,7 @@ final class DeviceManagerClient
      * return OK. If the subscription is QoS 1, at least once delivery will be
      * guaranteed; for QoS 0, no acknowledgment will be expected from the device.
      *
-     * The async variant is {@see DeviceManagerGapicClient::sendCommandToDeviceAsync()}
-     * .
+     * The async variant is {@see DeviceManagerClient::sendCommandToDeviceAsync()} .
      *
      * @param SendCommandToDeviceRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -657,7 +652,7 @@ final class DeviceManagerClient
      * Sets the access control policy on the specified resource. Replaces any
      * existing policy.
      *
-     * The async variant is {@see DeviceManagerGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see DeviceManagerClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -683,8 +678,7 @@ final class DeviceManagerClient
      * If the resource does not exist, this will return an empty set of
      * permissions, not a NOT_FOUND error.
      *
-     * The async variant is {@see DeviceManagerGapicClient::testIamPermissionsAsync()}
-     * .
+     * The async variant is {@see DeviceManagerClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -708,8 +702,8 @@ final class DeviceManagerClient
     /**
      * Deletes the association between the device and the gateway.
      *
-     * The async variant is
-     * {@see DeviceManagerGapicClient::unbindDeviceFromGatewayAsync()} .
+     * The async variant is {@see DeviceManagerClient::unbindDeviceFromGatewayAsync()}
+     * .
      *
      * @param UnbindDeviceFromGatewayRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -733,7 +727,7 @@ final class DeviceManagerClient
     /**
      * Updates a device.
      *
-     * The async variant is {@see DeviceManagerGapicClient::updateDeviceAsync()} .
+     * The async variant is {@see DeviceManagerClient::updateDeviceAsync()} .
      *
      * @param UpdateDeviceRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -757,8 +751,7 @@ final class DeviceManagerClient
     /**
      * Updates a device registry configuration.
      *
-     * The async variant is
-     * {@see DeviceManagerGapicClient::updateDeviceRegistryAsync()} .
+     * The async variant is {@see DeviceManagerClient::updateDeviceRegistryAsync()} .
      *
      * @param UpdateDeviceRegistryRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

@@ -304,7 +304,7 @@ final class EkmServiceClient
      * Creates a new [EkmConnection][google.cloud.kms.v1.EkmConnection] in a given
      * Project and Location.
      *
-     * The async variant is {@see EkmServiceGapicClient::createEkmConnectionAsync()} .
+     * The async variant is {@see EkmServiceClient::createEkmConnectionAsync()} .
      *
      * @param CreateEkmConnectionRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -329,7 +329,7 @@ final class EkmServiceClient
      * Returns the [EkmConfig][google.cloud.kms.v1.EkmConfig] singleton resource
      * for a given project and location.
      *
-     * The async variant is {@see EkmServiceGapicClient::getEkmConfigAsync()} .
+     * The async variant is {@see EkmServiceClient::getEkmConfigAsync()} .
      *
      * @param GetEkmConfigRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -354,7 +354,7 @@ final class EkmServiceClient
      * Returns metadata for a given
      * [EkmConnection][google.cloud.kms.v1.EkmConnection].
      *
-     * The async variant is {@see EkmServiceGapicClient::getEkmConnectionAsync()} .
+     * The async variant is {@see EkmServiceClient::getEkmConnectionAsync()} .
      *
      * @param GetEkmConnectionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -378,7 +378,7 @@ final class EkmServiceClient
     /**
      * Lists [EkmConnections][google.cloud.kms.v1.EkmConnection].
      *
-     * The async variant is {@see EkmServiceGapicClient::listEkmConnectionsAsync()} .
+     * The async variant is {@see EkmServiceClient::listEkmConnectionsAsync()} .
      *
      * @param ListEkmConnectionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -403,7 +403,7 @@ final class EkmServiceClient
      * Updates the [EkmConfig][google.cloud.kms.v1.EkmConfig] singleton resource
      * for a given project and location.
      *
-     * The async variant is {@see EkmServiceGapicClient::updateEkmConfigAsync()} .
+     * The async variant is {@see EkmServiceClient::updateEkmConfigAsync()} .
      *
      * @param UpdateEkmConfigRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -427,7 +427,7 @@ final class EkmServiceClient
     /**
      * Updates an [EkmConnection][google.cloud.kms.v1.EkmConnection]'s metadata.
      *
-     * The async variant is {@see EkmServiceGapicClient::updateEkmConnectionAsync()} .
+     * The async variant is {@see EkmServiceClient::updateEkmConnectionAsync()} .
      *
      * @param UpdateEkmConnectionRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -455,7 +455,7 @@ final class EkmServiceClient
      * FAILED_PRECONDITION status containing structured information as described
      * at https://cloud.google.com/kms/docs/reference/ekm_errors.
      *
-     * The async variant is {@see EkmServiceGapicClient::verifyConnectivityAsync()} .
+     * The async variant is {@see EkmServiceClient::verifyConnectivityAsync()} .
      *
      * @param VerifyConnectivityRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -479,7 +479,7 @@ final class EkmServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see EkmServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see EkmServiceClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -503,7 +503,7 @@ final class EkmServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see EkmServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see EkmServiceClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -528,7 +528,7 @@ final class EkmServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see EkmServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see EkmServiceClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -556,7 +556,7 @@ final class EkmServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see EkmServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see EkmServiceClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -586,7 +586,7 @@ final class EkmServiceClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is {@see EkmServiceGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see EkmServiceClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

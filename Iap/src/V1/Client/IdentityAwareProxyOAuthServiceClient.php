@@ -190,7 +190,7 @@ final class IdentityAwareProxyOAuthServiceClient
      * caller.
      *
      * The async variant is
-     * {@see IdentityAwareProxyOAuthServiceGapicClient::createBrandAsync()} .
+     * {@see IdentityAwareProxyOAuthServiceClient::createBrandAsync()} .
      *
      * @param CreateBrandRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -217,7 +217,7 @@ final class IdentityAwareProxyOAuthServiceClient
      * set for internal-only use.
      *
      * The async variant is
-     * {@see IdentityAwareProxyOAuthServiceGapicClient::createIdentityAwareProxyClientAsync()}
+     * {@see IdentityAwareProxyOAuthServiceClient::createIdentityAwareProxyClientAsync()}
      * .
      *
      * @param CreateIdentityAwareProxyClientRequest $request     A request to house fields associated with the call.
@@ -245,7 +245,7 @@ final class IdentityAwareProxyOAuthServiceClient
      * cleaning up after tests. Requires that the client is owned by IAP.
      *
      * The async variant is
-     * {@see IdentityAwareProxyOAuthServiceGapicClient::deleteIdentityAwareProxyClientAsync()}
+     * {@see IdentityAwareProxyOAuthServiceClient::deleteIdentityAwareProxyClientAsync()}
      * .
      *
      * @param DeleteIdentityAwareProxyClientRequest $request     A request to house fields associated with the call.
@@ -269,7 +269,7 @@ final class IdentityAwareProxyOAuthServiceClient
      * Retrieves the OAuth brand of the project.
      *
      * The async variant is
-     * {@see IdentityAwareProxyOAuthServiceGapicClient::getBrandAsync()} .
+     * {@see IdentityAwareProxyOAuthServiceClient::getBrandAsync()} .
      *
      * @param GetBrandRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -295,7 +295,7 @@ final class IdentityAwareProxyOAuthServiceClient
      * Requires that the client is owned by IAP.
      *
      * The async variant is
-     * {@see IdentityAwareProxyOAuthServiceGapicClient::getIdentityAwareProxyClientAsync()}
+     * {@see IdentityAwareProxyOAuthServiceClient::getIdentityAwareProxyClientAsync()}
      * .
      *
      * @param GetIdentityAwareProxyClientRequest $request     A request to house fields associated with the call.
@@ -321,7 +321,7 @@ final class IdentityAwareProxyOAuthServiceClient
      * Lists the existing brands for the project.
      *
      * The async variant is
-     * {@see IdentityAwareProxyOAuthServiceGapicClient::listBrandsAsync()} .
+     * {@see IdentityAwareProxyOAuthServiceClient::listBrandsAsync()} .
      *
      * @param ListBrandsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -346,7 +346,7 @@ final class IdentityAwareProxyOAuthServiceClient
      * Lists the existing clients for the brand.
      *
      * The async variant is
-     * {@see IdentityAwareProxyOAuthServiceGapicClient::listIdentityAwareProxyClientsAsync()}
+     * {@see IdentityAwareProxyOAuthServiceClient::listIdentityAwareProxyClientsAsync()}
      * .
      *
      * @param ListIdentityAwareProxyClientsRequest $request     A request to house fields associated with the call.
@@ -373,7 +373,7 @@ final class IdentityAwareProxyOAuthServiceClient
      * secret was compromised. Requires that the client is owned by IAP.
      *
      * The async variant is
-     * {@see IdentityAwareProxyOAuthServiceGapicClient::resetIdentityAwareProxyClientSecretAsync()}
+     * {@see IdentityAwareProxyOAuthServiceClient::resetIdentityAwareProxyClientSecretAsync()}
      * .
      *
      * @param ResetIdentityAwareProxyClientSecretRequest $request     A request to house fields associated with the call.
