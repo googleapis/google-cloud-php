@@ -384,7 +384,7 @@ final class FirestoreAdminClient
     /**
      * Create a database.
      *
-     * The async variant is {@see FirestoreAdminGapicClient::createDatabaseAsync()} .
+     * The async variant is {@see FirestoreAdminClient::createDatabaseAsync()} .
      *
      * @param CreateDatabaseRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -412,7 +412,7 @@ final class FirestoreAdminClient
      * will be the type
      * [IndexOperationMetadata][google.firestore.admin.v1.IndexOperationMetadata].
      *
-     * The async variant is {@see FirestoreAdminGapicClient::createIndexAsync()} .
+     * The async variant is {@see FirestoreAdminClient::createIndexAsync()} .
      *
      * @param CreateIndexRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -436,7 +436,7 @@ final class FirestoreAdminClient
     /**
      * Deletes a composite index.
      *
-     * The async variant is {@see FirestoreAdminGapicClient::deleteIndexAsync()} .
+     * The async variant is {@see FirestoreAdminClient::deleteIndexAsync()} .
      *
      * @param DeleteIndexRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -468,7 +468,7 @@ final class FirestoreAdminClient
      * For more details on export behavior and output format, refer to:
      * https://cloud.google.com/firestore/docs/manage-data/export-import
      *
-     * The async variant is {@see FirestoreAdminGapicClient::exportDocumentsAsync()} .
+     * The async variant is {@see FirestoreAdminClient::exportDocumentsAsync()} .
      *
      * @param ExportDocumentsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -492,7 +492,7 @@ final class FirestoreAdminClient
     /**
      * Gets information about a database.
      *
-     * The async variant is {@see FirestoreAdminGapicClient::getDatabaseAsync()} .
+     * The async variant is {@see FirestoreAdminClient::getDatabaseAsync()} .
      *
      * @param GetDatabaseRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -516,7 +516,7 @@ final class FirestoreAdminClient
     /**
      * Gets the metadata and configuration for a Field.
      *
-     * The async variant is {@see FirestoreAdminGapicClient::getFieldAsync()} .
+     * The async variant is {@see FirestoreAdminClient::getFieldAsync()} .
      *
      * @param GetFieldRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -540,7 +540,7 @@ final class FirestoreAdminClient
     /**
      * Gets a composite index.
      *
-     * The async variant is {@see FirestoreAdminGapicClient::getIndexAsync()} .
+     * The async variant is {@see FirestoreAdminClient::getIndexAsync()} .
      *
      * @param GetIndexRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -568,7 +568,7 @@ final class FirestoreAdminClient
      * created. If an ImportDocuments operation is cancelled, it is possible
      * that a subset of the data has already been imported to Cloud Firestore.
      *
-     * The async variant is {@see FirestoreAdminGapicClient::importDocumentsAsync()} .
+     * The async variant is {@see FirestoreAdminClient::importDocumentsAsync()} .
      *
      * @param ImportDocumentsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -592,7 +592,7 @@ final class FirestoreAdminClient
     /**
      * List all the databases in the project.
      *
-     * The async variant is {@see FirestoreAdminGapicClient::listDatabasesAsync()} .
+     * The async variant is {@see FirestoreAdminClient::listDatabasesAsync()} .
      *
      * @param ListDatabasesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -623,7 +623,7 @@ final class FirestoreAdminClient
      * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
      * with the filter set to `indexConfig.usesAncestorConfig:false` .
      *
-     * The async variant is {@see FirestoreAdminGapicClient::listFieldsAsync()} .
+     * The async variant is {@see FirestoreAdminClient::listFieldsAsync()} .
      *
      * @param ListFieldsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -647,7 +647,7 @@ final class FirestoreAdminClient
     /**
      * Lists composite indexes.
      *
-     * The async variant is {@see FirestoreAdminGapicClient::listIndexesAsync()} .
+     * The async variant is {@see FirestoreAdminClient::listIndexesAsync()} .
      *
      * @param ListIndexesRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -671,7 +671,7 @@ final class FirestoreAdminClient
     /**
      * Updates a database.
      *
-     * The async variant is {@see FirestoreAdminGapicClient::updateDatabaseAsync()} .
+     * The async variant is {@see FirestoreAdminClient::updateDatabaseAsync()} .
      *
      * @param UpdateDatabaseRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -710,7 +710,7 @@ final class FirestoreAdminClient
      * the special `Field` with resource name:
      * `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/*`.
      *
-     * The async variant is {@see FirestoreAdminGapicClient::updateFieldAsync()} .
+     * The async variant is {@see FirestoreAdminClient::updateFieldAsync()} .
      *
      * @param UpdateFieldRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {

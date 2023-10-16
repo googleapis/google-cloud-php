@@ -191,7 +191,7 @@ final class PublisherClient
      * Publish events to a ChannelConnection in a partner's project.
      *
      * The async variant is
-     * {@see PublisherGapicClient::publishChannelConnectionEventsAsync()} .
+     * {@see PublisherClient::publishChannelConnectionEventsAsync()} .
      *
      * @example samples/V1/PublisherClient/publish_channel_connection_events.php
      *
@@ -217,7 +217,7 @@ final class PublisherClient
     /**
      * Publish events to a subscriber's channel.
      *
-     * The async variant is {@see PublisherGapicClient::publishEventsAsync()} .
+     * The async variant is {@see PublisherClient::publishEventsAsync()} .
      *
      * @example samples/V1/PublisherClient/publish_events.php
      *

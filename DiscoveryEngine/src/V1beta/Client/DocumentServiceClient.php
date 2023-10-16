@@ -405,7 +405,7 @@ final class DocumentServiceClient
     /**
      * Creates a [Document][google.cloud.discoveryengine.v1beta.Document].
      *
-     * The async variant is {@see DocumentServiceGapicClient::createDocumentAsync()} .
+     * The async variant is {@see DocumentServiceClient::createDocumentAsync()} .
      *
      * @example samples/V1beta/DocumentServiceClient/create_document.php
      *
@@ -433,7 +433,7 @@ final class DocumentServiceClient
     /**
      * Deletes a [Document][google.cloud.discoveryengine.v1beta.Document].
      *
-     * The async variant is {@see DocumentServiceGapicClient::deleteDocumentAsync()} .
+     * The async variant is {@see DocumentServiceClient::deleteDocumentAsync()} .
      *
      * @example samples/V1beta/DocumentServiceClient/delete_document.php
      *
@@ -459,7 +459,7 @@ final class DocumentServiceClient
     /**
      * Gets a [Document][google.cloud.discoveryengine.v1beta.Document].
      *
-     * The async variant is {@see DocumentServiceGapicClient::getDocumentAsync()} .
+     * The async variant is {@see DocumentServiceClient::getDocumentAsync()} .
      *
      * @example samples/V1beta/DocumentServiceClient/get_document.php
      *
@@ -493,7 +493,7 @@ final class DocumentServiceClient
      * [Document][google.cloud.discoveryengine.v1beta.Document]s to be
      * successfully updated.
      *
-     * The async variant is {@see DocumentServiceGapicClient::importDocumentsAsync()} .
+     * The async variant is {@see DocumentServiceClient::importDocumentsAsync()} .
      *
      * @example samples/V1beta/DocumentServiceClient/import_documents.php
      *
@@ -521,7 +521,7 @@ final class DocumentServiceClient
     /**
      * Gets a list of [Document][google.cloud.discoveryengine.v1beta.Document]s.
      *
-     * The async variant is {@see DocumentServiceGapicClient::listDocumentsAsync()} .
+     * The async variant is {@see DocumentServiceClient::listDocumentsAsync()} .
      *
      * @example samples/V1beta/DocumentServiceClient/list_documents.php
      *
@@ -565,7 +565,7 @@ final class DocumentServiceClient
      * [PurgeDocumentsRequest.force][google.cloud.discoveryengine.v1beta.PurgeDocumentsRequest.force]
      * to false.
      *
-     * The async variant is {@see DocumentServiceGapicClient::purgeDocumentsAsync()} .
+     * The async variant is {@see DocumentServiceClient::purgeDocumentsAsync()} .
      *
      * @example samples/V1beta/DocumentServiceClient/purge_documents.php
      *
@@ -593,7 +593,7 @@ final class DocumentServiceClient
     /**
      * Updates a [Document][google.cloud.discoveryengine.v1beta.Document].
      *
-     * The async variant is {@see DocumentServiceGapicClient::updateDocumentAsync()} .
+     * The async variant is {@see DocumentServiceClient::updateDocumentAsync()} .
      *
      * @example samples/V1beta/DocumentServiceClient/update_document.php
      *

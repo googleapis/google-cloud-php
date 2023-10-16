@@ -476,7 +476,7 @@ final class EventarcClient
     /**
      * Create a new channel in a particular project and location.
      *
-     * The async variant is {@see EventarcGapicClient::createChannelAsync()} .
+     * The async variant is {@see EventarcClient::createChannelAsync()} .
      *
      * @param CreateChannelRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -500,8 +500,7 @@ final class EventarcClient
     /**
      * Create a new ChannelConnection in a particular project and location.
      *
-     * The async variant is {@see EventarcGapicClient::createChannelConnectionAsync()}
-     * .
+     * The async variant is {@see EventarcClient::createChannelConnectionAsync()} .
      *
      * @param CreateChannelConnectionRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -525,7 +524,7 @@ final class EventarcClient
     /**
      * Create a new trigger in a particular project and location.
      *
-     * The async variant is {@see EventarcGapicClient::createTriggerAsync()} .
+     * The async variant is {@see EventarcClient::createTriggerAsync()} .
      *
      * @param CreateTriggerRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -549,7 +548,7 @@ final class EventarcClient
     /**
      * Delete a single channel.
      *
-     * The async variant is {@see EventarcGapicClient::deleteChannelAsync()} .
+     * The async variant is {@see EventarcClient::deleteChannelAsync()} .
      *
      * @param DeleteChannelRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -573,8 +572,7 @@ final class EventarcClient
     /**
      * Delete a single ChannelConnection.
      *
-     * The async variant is {@see EventarcGapicClient::deleteChannelConnectionAsync()}
-     * .
+     * The async variant is {@see EventarcClient::deleteChannelConnectionAsync()} .
      *
      * @param DeleteChannelConnectionRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -598,7 +596,7 @@ final class EventarcClient
     /**
      * Delete a single trigger.
      *
-     * The async variant is {@see EventarcGapicClient::deleteTriggerAsync()} .
+     * The async variant is {@see EventarcClient::deleteTriggerAsync()} .
      *
      * @param DeleteTriggerRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -622,7 +620,7 @@ final class EventarcClient
     /**
      * Get a single Channel.
      *
-     * The async variant is {@see EventarcGapicClient::getChannelAsync()} .
+     * The async variant is {@see EventarcClient::getChannelAsync()} .
      *
      * @param GetChannelRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -646,7 +644,7 @@ final class EventarcClient
     /**
      * Get a single ChannelConnection.
      *
-     * The async variant is {@see EventarcGapicClient::getChannelConnectionAsync()} .
+     * The async variant is {@see EventarcClient::getChannelConnectionAsync()} .
      *
      * @param GetChannelConnectionRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -670,7 +668,7 @@ final class EventarcClient
     /**
      * Get a GoogleChannelConfig
      *
-     * The async variant is {@see EventarcGapicClient::getGoogleChannelConfigAsync()} .
+     * The async variant is {@see EventarcClient::getGoogleChannelConfigAsync()} .
      *
      * @param GetGoogleChannelConfigRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -694,7 +692,7 @@ final class EventarcClient
     /**
      * Get a single Provider.
      *
-     * The async variant is {@see EventarcGapicClient::getProviderAsync()} .
+     * The async variant is {@see EventarcClient::getProviderAsync()} .
      *
      * @param GetProviderRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -718,7 +716,7 @@ final class EventarcClient
     /**
      * Get a single trigger.
      *
-     * The async variant is {@see EventarcGapicClient::getTriggerAsync()} .
+     * The async variant is {@see EventarcClient::getTriggerAsync()} .
      *
      * @param GetTriggerRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -742,7 +740,7 @@ final class EventarcClient
     /**
      * List channel connections.
      *
-     * The async variant is {@see EventarcGapicClient::listChannelConnectionsAsync()} .
+     * The async variant is {@see EventarcClient::listChannelConnectionsAsync()} .
      *
      * @param ListChannelConnectionsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -766,7 +764,7 @@ final class EventarcClient
     /**
      * List channels.
      *
-     * The async variant is {@see EventarcGapicClient::listChannelsAsync()} .
+     * The async variant is {@see EventarcClient::listChannelsAsync()} .
      *
      * @param ListChannelsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -790,7 +788,7 @@ final class EventarcClient
     /**
      * List providers.
      *
-     * The async variant is {@see EventarcGapicClient::listProvidersAsync()} .
+     * The async variant is {@see EventarcClient::listProvidersAsync()} .
      *
      * @param ListProvidersRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -814,7 +812,7 @@ final class EventarcClient
     /**
      * List triggers.
      *
-     * The async variant is {@see EventarcGapicClient::listTriggersAsync()} .
+     * The async variant is {@see EventarcClient::listTriggersAsync()} .
      *
      * @param ListTriggersRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -838,7 +836,7 @@ final class EventarcClient
     /**
      * Update a single channel.
      *
-     * The async variant is {@see EventarcGapicClient::updateChannelAsync()} .
+     * The async variant is {@see EventarcClient::updateChannelAsync()} .
      *
      * @param UpdateChannelRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -862,8 +860,7 @@ final class EventarcClient
     /**
      * Update a single GoogleChannelConfig
      *
-     * The async variant is
-     * {@see EventarcGapicClient::updateGoogleChannelConfigAsync()} .
+     * The async variant is {@see EventarcClient::updateGoogleChannelConfigAsync()} .
      *
      * @param UpdateGoogleChannelConfigRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -887,7 +884,7 @@ final class EventarcClient
     /**
      * Update a single trigger.
      *
-     * The async variant is {@see EventarcGapicClient::updateTriggerAsync()} .
+     * The async variant is {@see EventarcClient::updateTriggerAsync()} .
      *
      * @param UpdateTriggerRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -911,7 +908,7 @@ final class EventarcClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see EventarcGapicClient::getLocationAsync()} .
+     * The async variant is {@see EventarcClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -935,7 +932,7 @@ final class EventarcClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see EventarcGapicClient::listLocationsAsync()} .
+     * The async variant is {@see EventarcClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -960,7 +957,7 @@ final class EventarcClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see EventarcGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see EventarcClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -988,7 +985,7 @@ final class EventarcClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see EventarcGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see EventarcClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1018,7 +1015,7 @@ final class EventarcClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is {@see EventarcGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see EventarcClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

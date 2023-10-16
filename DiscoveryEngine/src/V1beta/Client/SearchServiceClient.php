@@ -345,7 +345,7 @@ final class SearchServiceClient
     /**
      * Performs a search.
      *
-     * The async variant is {@see SearchServiceGapicClient::searchAsync()} .
+     * The async variant is {@see SearchServiceClient::searchAsync()} .
      *
      * @example samples/V1beta/SearchServiceClient/search.php
      *
