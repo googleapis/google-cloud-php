@@ -9,28 +9,28 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Issue severity per destination.
+ * Issue severity per reporting context.
  *
- * Generated from protobuf message <code>google.shopping.merchant.reports.v1beta.ProductView.ItemIssue.ItemIssueSeverity.IssueSeverityPerDestination</code>
+ * Generated from protobuf message <code>google.shopping.merchant.reports.v1beta.ProductView.ItemIssue.ItemIssueSeverity.IssueSeverityPerReportingContext</code>
  */
-class IssueSeverityPerDestination extends \Google\Protobuf\Internal\Message
+class IssueSeverityPerReportingContext extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Destination the issue applies to.
+     * Reporting context the issue applies to.
      *
-     * Generated from protobuf field <code>optional .google.shopping.type.Destination destination = 1;</code>
+     * Generated from protobuf field <code>optional .google.shopping.type.ReportingContext.ReportingContextEnum reporting_context = 1;</code>
      */
-    protected $destination = null;
+    protected $reporting_context = null;
     /**
-     * List of disapproved countries in the destination, represented in ISO
-     * 3166 format.
+     * List of disapproved countries in the reporting context, represented
+     * in ISO 3166 format.
      *
      * Generated from protobuf field <code>repeated string disapproved_countries = 2;</code>
      */
     private $disapproved_countries;
     /**
-     * List of demoted countries in the destination, represented in ISO 3166
-     * format.
+     * List of demoted countries in the reporting context, represented in
+     * ISO 3166 format.
      *
      * Generated from protobuf field <code>repeated string demoted_countries = 3;</code>
      */
@@ -42,14 +42,14 @@ class IssueSeverityPerDestination extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Shopping\Type\Destination $destination
-     *           Destination the issue applies to.
+     *     @type int $reporting_context
+     *           Reporting context the issue applies to.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $disapproved_countries
-     *           List of disapproved countries in the destination, represented in ISO
-     *           3166 format.
+     *           List of disapproved countries in the reporting context, represented
+     *           in ISO 3166 format.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $demoted_countries
-     *           List of demoted countries in the destination, represented in ISO 3166
-     *           format.
+     *           List of demoted countries in the reporting context, represented in
+     *           ISO 3166 format.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,44 +58,44 @@ class IssueSeverityPerDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Destination the issue applies to.
+     * Reporting context the issue applies to.
      *
-     * Generated from protobuf field <code>optional .google.shopping.type.Destination destination = 1;</code>
-     * @return \Google\Shopping\Type\Destination|null
+     * Generated from protobuf field <code>optional .google.shopping.type.ReportingContext.ReportingContextEnum reporting_context = 1;</code>
+     * @return int
      */
-    public function getDestination()
+    public function getReportingContext()
     {
-        return $this->destination;
+        return isset($this->reporting_context) ? $this->reporting_context : 0;
     }
 
-    public function hasDestination()
+    public function hasReportingContext()
     {
-        return isset($this->destination);
+        return isset($this->reporting_context);
     }
 
-    public function clearDestination()
+    public function clearReportingContext()
     {
-        unset($this->destination);
+        unset($this->reporting_context);
     }
 
     /**
-     * Destination the issue applies to.
+     * Reporting context the issue applies to.
      *
-     * Generated from protobuf field <code>optional .google.shopping.type.Destination destination = 1;</code>
-     * @param \Google\Shopping\Type\Destination $var
+     * Generated from protobuf field <code>optional .google.shopping.type.ReportingContext.ReportingContextEnum reporting_context = 1;</code>
+     * @param int $var
      * @return $this
      */
-    public function setDestination($var)
+    public function setReportingContext($var)
     {
-        GPBUtil::checkMessage($var, \Google\Shopping\Type\Destination::class);
-        $this->destination = $var;
+        GPBUtil::checkEnum($var, \Google\Shopping\Type\ReportingContext\ReportingContextEnum::class);
+        $this->reporting_context = $var;
 
         return $this;
     }
 
     /**
-     * List of disapproved countries in the destination, represented in ISO
-     * 3166 format.
+     * List of disapproved countries in the reporting context, represented
+     * in ISO 3166 format.
      *
      * Generated from protobuf field <code>repeated string disapproved_countries = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -106,8 +106,8 @@ class IssueSeverityPerDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of disapproved countries in the destination, represented in ISO
-     * 3166 format.
+     * List of disapproved countries in the reporting context, represented
+     * in ISO 3166 format.
      *
      * Generated from protobuf field <code>repeated string disapproved_countries = 2;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -122,8 +122,8 @@ class IssueSeverityPerDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of demoted countries in the destination, represented in ISO 3166
-     * format.
+     * List of demoted countries in the reporting context, represented in
+     * ISO 3166 format.
      *
      * Generated from protobuf field <code>repeated string demoted_countries = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -134,8 +134,8 @@ class IssueSeverityPerDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of demoted countries in the destination, represented in ISO 3166
-     * format.
+     * List of demoted countries in the reporting context, represented in
+     * ISO 3166 format.
      *
      * Generated from protobuf field <code>repeated string demoted_countries = 3;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

@@ -9,11 +9,12 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Relative demand of a product cluster or brand in the Best sellers report.
+ * Marketing method used to promote your products on Google (organic versus
+ * ads).
  *
- * Generated from protobuf message <code>google.shopping.merchant.reports.v1beta.RelativeDemand</code>
+ * Generated from protobuf message <code>google.shopping.merchant.reports.v1beta.MarketingMethod</code>
  */
-class RelativeDemand extends \Google\Protobuf\Internal\Message
+class MarketingMethod extends \Google\Protobuf\Internal\Message
 {
 
     /**

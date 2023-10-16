@@ -7,7 +7,7 @@ namespace Google\Shopping\Merchant\Reports\V1beta\ProductView\ItemIssue\ItemIssu
 use UnexpectedValueException;
 
 /**
- * Issue severity aggregated for all destinations.
+ * Issue severity aggregated for all reporting contexts.
  *
  * Protobuf type <code>google.shopping.merchant.reports.v1beta.ProductView.ItemIssue.ItemIssueSeverity.AggregatedIssueSeverity</code>
  */
@@ -20,13 +20,13 @@ class AggregatedIssueSeverity
      */
     const AGGREGATED_ISSUE_SEVERITY_UNSPECIFIED = 0;
     /**
-     * Issue disapproves the product in at least one destination.
+     * Issue disapproves the product in at least one reporting context.
      *
      * Generated from protobuf enum <code>DISAPPROVED = 1;</code>
      */
     const DISAPPROVED = 1;
     /**
-     * Issue demotes the product in all destinations it affects.
+     * Issue demotes the product in all reporting contexts it affects.
      *
      * Generated from protobuf enum <code>DEMOTED = 2;</code>
      */
