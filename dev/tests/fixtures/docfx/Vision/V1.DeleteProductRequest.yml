@@ -17,6 +17,7 @@ items:
       - '\Google\Cloud\Vision\V1\DeleteProductRequest::__construct()'
       - '\Google\Cloud\Vision\V1\DeleteProductRequest::getName()'
       - '\Google\Cloud\Vision\V1\DeleteProductRequest::setName()'
+      - '\Google\Cloud\Vision\V1\DeleteProductRequest::build()'
   -
     uid: '\Google\Cloud\Vision\V1\DeleteProductRequest::__construct()'
     name: __construct
@@ -75,3 +76,25 @@ items:
       returns:
         -
           var_type: $this
+  -
+    uid: '\Google\Cloud\Vision\V1\DeleteProductRequest::build()'
+    name: 'static::build'
+    id: build
+    parent: \Google\Cloud\Vision\V1\DeleteProductRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: name
+          var_type: string
+          description: |-
+            Required. Resource name of product to delete.
+
+            Format is:
+            `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
+            Please see <xref uid="\Google\Cloud\Vision\V1\ProductSearchClient::productName()">Google\Cloud\Vision\V1\ProductSearchClient::productName()</xref> for help formatting this field.
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\DeleteProductRequest">Google\Cloud\Vision\V1\DeleteProductRequest</xref>'

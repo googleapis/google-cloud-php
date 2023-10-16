@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START merchantapi_v1beta_generated_LocalInventoryService_InsertLocalInventory_sync]
 use Google\ApiCore\ApiException;
+use Google\Shopping\Merchant\Inventories\V1beta\Client\LocalInventoryServiceClient;
+use Google\Shopping\Merchant\Inventories\V1beta\InsertLocalInventoryRequest;
 use Google\Shopping\Merchant\Inventories\V1beta\LocalInventory;
-use Google\Shopping\Merchant\Inventories\V1beta\LocalInventoryServiceClient;
 
 /**
  * Inserts a `LocalInventory` resource to a product in your merchant
@@ -50,14 +51,17 @@ function insert_local_inventory_sample(string $parent, string $localInventorySto
     // Create a client.
     $localInventoryServiceClient = new LocalInventoryServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $localInventory = (new LocalInventory())
         ->setStoreCode($localInventoryStoreCode);
+    $request = (new InsertLocalInventoryRequest())
+        ->setParent($parent)
+        ->setLocalInventory($localInventory);
 
     // Call the API and handle any network failures.
     try {
         /** @var LocalInventory $response */
-        $response = $localInventoryServiceClient->insertLocalInventory($parent, $localInventory);
+        $response = $localInventoryServiceClient->insertLocalInventory($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

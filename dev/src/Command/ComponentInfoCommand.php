@@ -141,49 +141,53 @@ class ComponentInfoCommand extends Command
     private function getComponentDetails(Component $component, array $requestedFields, bool $expanded): array
     {
         $rows = [];
-        // use "array_intersect_key" to filter out fields that were not requested.
-        // use "array_replace" to sort the fields in the order they were requested.
-        $details = array_replace($requestedFields, array_intersect_key([
-            'name' => $component->getName(),
-            'package_name' => $component->getPackageName(),
-            'package_version' => $component->getPackageVersion(),
-            'api_versions' => $expanded ? '' : implode("\n", $component->getApiVersions()),
-            'release_level' => $component->getReleaseLevel(),
-            'migration' => $expanded ? '' : implode("\n", $component->getMigrationStatuses()),
-            'php_namespaces' => implode("\n", array_keys($component->getNamespaces())),
-            'github_repo' => $component->getRepoName(),
-            'proto' => $expanded ? '' : implode("\n", $component->getProtoPackages()),
-            'service_address' => $expanded ? '' : implode("\n", $component->getServiceAddresses()),
-            'shortname' => $expanded ? '' : implode("\n", $component->getApiShortnames()),
-            'description' => $component->getDescription(),
-        ], $requestedFields));
-
-        if (array_key_exists('available_api_versions', $requestedFields)) {
-            $details['available_api_versions'] = $this->getAvailableApiVersions($component);
-        }
-
-        $rows[] = $details;
-
         if ($expanded) {
             foreach ($component->getComponentPackages() as $pkg) {
+                $availableApiVersions = '';
+                if (array_key_exists('available_api_versions', $requestedFields)) {
+                    $availableApiVersions = $this->getAvailableApiVersions($component);
+                }
                 // use "array_intersect_key" to filter out fields that were not requested.
                 // use "array_replace" to sort the fields in the order they were requested.
                 $rows[] = array_replace($requestedFields, array_intersect_key([
-                    'name' => "    " . $pkg->getName(),
-                    'package_name' => '',       // defined by component
-                    'package_version' => '',    // defined by component
-                    'api_versions' => '',       // included in "name"
-                    'release_level' => '',      // defined by component
+                    'name' => $component->getName() . "\\" . $pkg->getName(),
+                    'package_name' => $component->getPackageName(),
+                    'package_version' => $component->getPackageVersion(),
+                    'api_versions' => $pkg->getName(),
+                    'release_level' => $component->getReleaseLevel(),
                     'migration' => $pkg->getMigrationStatus(),
-                    'php_namespaces' => '',     // defined by component
-                    'github_repo' => '',        // defined by component
+                    'php_namespaces' => implode("\n", array_keys($component->getNamespaces())),
+                    'github_repo' => $component->getRepoName(),
                     'proto' => $pkg->getProtoPackage(),
                     'service_address' => $pkg->getServiceAddress(),
                     'shortname' => $pkg->getApiShortname(),
-                    'description' => '',        // defined by component
-                    'available_api_versions' => '', // defined by component
+                    'description' => $component->getDescription(),
+                    'available_api_versions' => $availableApiVersions,
                 ], $requestedFields));
             }
+        } else {
+            // use "array_intersect_key" to filter out fields that were not requested.
+            // use "array_replace" to sort the fields in the order they were requested.
+            $details = array_replace($requestedFields, array_intersect_key([
+                'name' => $component->getName(),
+                'package_name' => $component->getPackageName(),
+                'package_version' => $component->getPackageVersion(),
+                'api_versions' => implode("\n", $component->getApiVersions()),
+                'release_level' => $component->getReleaseLevel(),
+                'migration' => implode("\n", $component->getMigrationStatuses()),
+                'php_namespaces' => implode("\n", array_keys($component->getNamespaces())),
+                'github_repo' => $component->getRepoName(),
+                'proto' => implode("\n", $component->getProtoPackages()),
+                'service_address' => implode("\n", $component->getServiceAddresses()),
+                'shortname' => implode("\n", $component->getApiShortnames()),
+                'description' => $component->getDescription(),
+            ], $requestedFields));
+
+            if (array_key_exists('available_api_versions', $requestedFields)) {
+                $details['available_api_versions'] = $this->getAvailableApiVersions($component);
+            }
+
+            $rows[] = $details;
         }
 
         return $rows;

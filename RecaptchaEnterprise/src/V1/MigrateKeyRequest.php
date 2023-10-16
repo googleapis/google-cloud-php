@@ -17,7 +17,7 @@ class MigrateKeyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the key to be migrated, in the format
-     * "projects/{project}/keys/{key}".
+     * `projects/{project}/keys/{key}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -44,7 +44,7 @@ class MigrateKeyRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the key to be migrated, in the format
-     *           "projects/{project}/keys/{key}".
+     *           `projects/{project}/keys/{key}`.
      *     @type bool $skip_billing_check
      *           Optional. If true, skips the billing check.
      *           A reCAPTCHA Enterprise key or migrated key behaves differently than a
@@ -63,7 +63,7 @@ class MigrateKeyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the key to be migrated, in the format
-     * "projects/{project}/keys/{key}".
+     * `projects/{project}/keys/{key}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -75,7 +75,7 @@ class MigrateKeyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the key to be migrated, in the format
-     * "projects/{project}/keys/{key}".
+     * `projects/{project}/keys/{key}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

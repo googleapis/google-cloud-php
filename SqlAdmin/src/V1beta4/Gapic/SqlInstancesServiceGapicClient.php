@@ -558,7 +558,7 @@ class SqlInstancesServiceGapicClient
      *     Optional.
      *
      *     @type string $instance
-     *           Cloud SQL instance ID. This does not include the project ID.
+     *           The Cloud SQL instance ID. This doesn't include the project ID.
      *     @type string $project
      *           Project ID of the project that contains the instance to be exported.
      *     @type InstancesExportRequest $body
@@ -1797,7 +1797,7 @@ class SqlInstancesServiceGapicClient
      *     @type int $syncParallelLevel
      *           Optional. Parallel level for initial data sync. Currently only applicable
      *           for MySQL.
-     *           For allowed values, use constants defined on {@see \Google\Cloud\Sql\V1beta4\SqlInstancesStartExternalSyncRequest\ExternalSyncParallelLevel}
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Sql\V1beta4\ExternalSyncParallelLevel}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

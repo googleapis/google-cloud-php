@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START merchantapi_v1beta_generated_RegionalInventoryService_ListRegionalInventories_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Shopping\Merchant\Inventories\V1beta\Client\RegionalInventoryServiceClient;
+use Google\Shopping\Merchant\Inventories\V1beta\ListRegionalInventoriesRequest;
 use Google\Shopping\Merchant\Inventories\V1beta\RegionalInventory;
-use Google\Shopping\Merchant\Inventories\V1beta\RegionalInventoryServiceClient;
 
 /**
  * Lists the `RegionalInventory` resources for the given product in your
@@ -44,10 +45,14 @@ function list_regional_inventories_sample(string $parent): void
     // Create a client.
     $regionalInventoryServiceClient = new RegionalInventoryServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListRegionalInventoriesRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $regionalInventoryServiceClient->listRegionalInventories($parent);
+        $response = $regionalInventoryServiceClient->listRegionalInventories($request);
 
         /** @var RegionalInventory $element */
         foreach ($response as $element) {

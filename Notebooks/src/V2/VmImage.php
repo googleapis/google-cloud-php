@@ -22,7 +22,7 @@ class VmImage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $project = '';
+    private $project = '';
     protected $image;
 
     /**

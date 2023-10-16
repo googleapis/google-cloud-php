@@ -128,7 +128,9 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      * network.
      * The value should be the name of the address
      * (https://cloud.google.com/compute/docs/reference/rest/v1/addresses)
-     * Example: 'vertex-ai-ip-range'.
+     * Example: ['vertex-ai-ip-range'].
+     * For more information about subnets and network IP ranges, please see
+     * https://cloud.google.com/vpc/docs/subnets#manually_created_subnet_ip_ranges.
      *
      * Generated from protobuf field <code>repeated string reserved_ip_ranges = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -228,7 +230,9 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *           network.
      *           The value should be the name of the address
      *           (https://cloud.google.com/compute/docs/reference/rest/v1/addresses)
-     *           Example: 'vertex-ai-ip-range'.
+     *           Example: ['vertex-ai-ip-range'].
+     *           For more information about subnets and network IP ranges, please see
+     *           https://cloud.google.com/vpc/docs/subnets#manually_created_subnet_ip_ranges.
      *     @type string $deployment_group
      *           Optional. The deployment group can be no longer than 64 characters (eg:
      *           'test', 'prod'). If not set, we will use the 'default' deployment group.
@@ -665,7 +669,9 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      * network.
      * The value should be the name of the address
      * (https://cloud.google.com/compute/docs/reference/rest/v1/addresses)
-     * Example: 'vertex-ai-ip-range'.
+     * Example: ['vertex-ai-ip-range'].
+     * For more information about subnets and network IP ranges, please see
+     * https://cloud.google.com/vpc/docs/subnets#manually_created_subnet_ip_ranges.
      *
      * Generated from protobuf field <code>repeated string reserved_ip_ranges = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -683,7 +689,9 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      * network.
      * The value should be the name of the address
      * (https://cloud.google.com/compute/docs/reference/rest/v1/addresses)
-     * Example: 'vertex-ai-ip-range'.
+     * Example: ['vertex-ai-ip-range'].
+     * For more information about subnets and network IP ranges, please see
+     * https://cloud.google.com/vpc/docs/subnets#manually_created_subnet_ip_ranges.
      *
      * Generated from protobuf field <code>repeated string reserved_ip_ranges = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

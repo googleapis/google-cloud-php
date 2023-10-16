@@ -33,6 +33,11 @@ class ComponentPackage
  \* Updates to the above are reflected here through a refresh process#';
     private string $path;
 
+    private const MIGRATION_V1 = 'v1';
+    private const MIGRATION_V2 = 'v2';
+    private const MIGRATION_V1_AND_V2 = 'v1 and v2';
+    private const MIGRATION_NA = 'n/a';
+
     public function __construct(private Component $component, private string $name)
     {
         $this->path = $component->getPath() . '/src/' . $name;
@@ -45,7 +50,7 @@ class ComponentPackage
 
     public function getProtoPackage(): string
     {
-        $gapicClientFiles = $this->getV1GapicClientFiles() + $this->getV2BaseClientFiles();
+        $gapicClientFiles = $this->getV1GapicClientFiles() + $this->getV2ClientFiles();
 
         foreach ($gapicClientFiles as $file) {
             $gapicClientContent = file_get_contents($file);
@@ -60,16 +65,16 @@ class ComponentPackage
     public function getMigrationStatus()
     {
         $hasV1Clients = count($this->getV1GapicClientFiles()) > 0;
-        $hasV2Clients = count($this->getV2BaseClientFiles()) > 0;
+        $hasV2Clients = count($this->getV2ClientFiles()) > 0;
         if ($hasV1Clients) {
-            return $hasV2Clients ? 'v1+v2' : 'v1';
+            return $hasV2Clients ? self::MIGRATION_V1_AND_V2 : self::MIGRATION_V1;
         }
-        return $hasV2Clients ? 'v2' : 'n/a';
+        return $hasV2Clients ? self::MIGRATION_V2 : self::MIGRATION_NA;
     }
 
     public function getServiceAddress(): string
     {
-        $gapicClientFiles = $this->getV1GapicClientFiles() + $this->getV2BaseClientFiles();
+        $gapicClientFiles = $this->getV1GapicClientFiles() + $this->getV2ClientFiles();
         $gapicClientClasses = array_map(fn ($fp) => $this->getClassFromFile($fp), $gapicClientFiles);
 
         foreach ($gapicClientClasses as $className) {
@@ -96,17 +101,20 @@ class ComponentPackage
 
     private function getV1GapicClientFiles(): array
     {
-        return $this->getFilesInDir('*GapicClient.php');
+        return $this->getFilesInDir('*GapicClient.php', $this->path . '/Gapic');
     }
 
-    private function getV2BaseClientFiles(): array
+    private function getV2ClientFiles(): array
     {
-        return $this->getFilesInDir('*BaseClient.php');
+        return $this->getFilesInDir('*Client.php', $this->path . '/Client');
     }
 
-    private function getFilesInDir(string $pattern): array
+    private function getFilesInDir(string $pattern, string $dir): array
     {
-        $result = (new Finder())->files()->name($pattern)->in($this->path);
+        if (!is_dir($dir)) {
+            return [];
+        }
+        $result = (new Finder())->files()->name($pattern)->in($dir);
         return array_map(fn ($file) => $file->getRealPath(), iterator_to_array($result));
     }
 

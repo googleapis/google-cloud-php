@@ -27,6 +27,18 @@ return [
                     ],
                 ],
             ],
+            'CreateFirewallPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*}/firewallpolicies',
+                'body' => 'firewall_policy',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateKey' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*}/keys',
@@ -39,9 +51,31 @@ return [
                     ],
                 ],
             ],
+            'DeleteFirewallPolicy' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/firewallpolicies/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteKey' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/keys/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetFirewallPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/firewallpolicies/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -68,6 +102,17 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListFirewallPolicies' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*}/firewallpolicies',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -136,6 +181,19 @@ return [
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateFirewallPolicy' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{firewall_policy.name=projects/*/firewallpolicies/*}',
+                'body' => 'firewall_policy',
+                'placeholders' => [
+                    'firewall_policy.name' => [
+                        'getters' => [
+                            'getFirewallPolicy',
+                            'getName',
                         ],
                     ],
                 ],

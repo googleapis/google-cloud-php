@@ -30,7 +30,7 @@ use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
  * Deletes the specified key.
  *
  * @param string $formattedName The name of the key to be deleted, in the format
- *                              "projects/{project}/keys/{key}". Please see
+ *                              `projects/{project}/keys/{key}`. Please see
  *                              {@see RecaptchaEnterpriseServiceClient::keyName()} for help formatting this field.
  */
 function delete_key_sample(string $formattedName): void

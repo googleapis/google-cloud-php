@@ -45,6 +45,20 @@ class ListRegionalInventoriesRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
+     * @param string $parent Required. The `name` of the parent product to list `RegionalInventory`
+     *                       resources for. Format: `accounts/{account}/products/{product}`
+     *
+     * @return \Google\Shopping\Merchant\Inventories\V1beta\ListRegionalInventoriesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

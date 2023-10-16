@@ -23,6 +23,14 @@ class ModelMonitoringAlertConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enable_logging = 2;</code>
      */
     private $enable_logging = false;
+    /**
+     * Resource names of the NotificationChannels to send alert.
+     * Must be of the format
+     * `projects/<project_id_or_number>/notificationChannels/<channel_id>`
+     *
+     * Generated from protobuf field <code>repeated string notification_channels = 3 [(.google.api.resource_reference) = {</code>
+     */
+    private $notification_channels;
     protected $alert;
 
     /**
@@ -39,6 +47,10 @@ class ModelMonitoringAlertConfig extends \Google\Protobuf\Internal\Message
      *           [google.cloud.aiplatform.logging.ModelMonitoringAnomaliesLogEntry][].
      *           This can be further sinked to Pub/Sub or any other services supported
      *           by Cloud Logging.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $notification_channels
+     *           Resource names of the NotificationChannels to send alert.
+     *           Must be of the format
+     *           `projects/<project_id_or_number>/notificationChannels/<channel_id>`
      * }
      */
     public function __construct($data = NULL) {
@@ -107,6 +119,36 @@ class ModelMonitoringAlertConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_logging = $var;
+
+        return $this;
+    }
+
+    /**
+     * Resource names of the NotificationChannels to send alert.
+     * Must be of the format
+     * `projects/<project_id_or_number>/notificationChannels/<channel_id>`
+     *
+     * Generated from protobuf field <code>repeated string notification_channels = 3 [(.google.api.resource_reference) = {</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getNotificationChannels()
+    {
+        return $this->notification_channels;
+    }
+
+    /**
+     * Resource names of the NotificationChannels to send alert.
+     * Must be of the format
+     * `projects/<project_id_or_number>/notificationChannels/<channel_id>`
+     *
+     * Generated from protobuf field <code>repeated string notification_channels = 3 [(.google.api.resource_reference) = {</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setNotificationChannels($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->notification_channels = $arr;
 
         return $this;
     }

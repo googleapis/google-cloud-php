@@ -147,7 +147,9 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
     /**
      * A template uri from where the
      * [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec],
-     * if empty, will be downloaded.
+     * if empty, will be downloaded. Currently, only uri from Vertex Template
+     * Registry & Gallery is supported. Reference to
+     * https://cloud.google.com/vertex-ai/docs/pipelines/create-pipeline-template.
      *
      * Generated from protobuf field <code>string template_uri = 19;</code>
      */
@@ -242,7 +244,9 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      *     @type string $template_uri
      *           A template uri from where the
      *           [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec],
-     *           if empty, will be downloaded.
+     *           if empty, will be downloaded. Currently, only uri from Vertex Template
+     *           Registry & Gallery is supported. Reference to
+     *           https://cloud.google.com/vertex-ai/docs/pipelines/create-pipeline-template.
      *     @type \Google\Cloud\AIPlatform\V1\PipelineTemplateMetadata $template_metadata
      *           Output only. Pipeline template metadata. Will fill up fields if
      *           [PipelineJob.template_uri][google.cloud.aiplatform.v1.PipelineJob.template_uri]
@@ -832,7 +836,9 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
     /**
      * A template uri from where the
      * [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec],
-     * if empty, will be downloaded.
+     * if empty, will be downloaded. Currently, only uri from Vertex Template
+     * Registry & Gallery is supported. Reference to
+     * https://cloud.google.com/vertex-ai/docs/pipelines/create-pipeline-template.
      *
      * Generated from protobuf field <code>string template_uri = 19;</code>
      * @return string
@@ -845,7 +851,9 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
     /**
      * A template uri from where the
      * [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec],
-     * if empty, will be downloaded.
+     * if empty, will be downloaded. Currently, only uri from Vertex Template
+     * Registry & Gallery is supported. Reference to
+     * https://cloud.google.com/vertex-ai/docs/pipelines/create-pipeline-template.
      *
      * Generated from protobuf field <code>string template_uri = 19;</code>
      * @param string $var

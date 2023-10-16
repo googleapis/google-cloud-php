@@ -4,65 +4,30 @@
 
 namespace Google\Shopping\Merchant\Reports\V1beta;
 
-use UnexpectedValueException;
+use Google\Protobuf\Internal\GPBType;
+use Google\Protobuf\Internal\RepeatedField;
+use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Traffic source of impressions in the Competitive visibility report.
  *
- * Protobuf type <code>google.shopping.merchant.reports.v1beta.TrafficSource</code>
+ * Generated from protobuf message <code>google.shopping.merchant.reports.v1beta.TrafficSource</code>
  */
-class TrafficSource
+class TrafficSource extends \Google\Protobuf\Internal\Message
 {
-    /**
-     * Not specified.
-     *
-     * Generated from protobuf enum <code>TRAFFIC_SOURCE_UNSPECIFIED = 0;</code>
-     */
-    const TRAFFIC_SOURCE_UNSPECIFIED = 0;
-    /**
-     * Organic traffic.
-     *
-     * Generated from protobuf enum <code>ORGANIC = 1;</code>
-     */
-    const ORGANIC = 1;
-    /**
-     * Traffic from ads.
-     *
-     * Generated from protobuf enum <code>ADS = 2;</code>
-     */
-    const ADS = 2;
-    /**
-     * Organic and ads traffic.
-     *
-     * Generated from protobuf enum <code>ALL = 3;</code>
-     */
-    const ALL = 3;
 
-    private static $valueToName = [
-        self::TRAFFIC_SOURCE_UNSPECIFIED => 'TRAFFIC_SOURCE_UNSPECIFIED',
-        self::ORGANIC => 'ORGANIC',
-        self::ADS => 'ADS',
-        self::ALL => 'ALL',
-    ];
-
-    public static function name($value)
-    {
-        if (!isset(self::$valueToName[$value])) {
-            throw new UnexpectedValueException(sprintf(
-                    'Enum %s has no name defined for value %s', __CLASS__, $value));
-        }
-        return self::$valueToName[$value];
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     * }
+     */
+    public function __construct($data = NULL) {
+        \GPBMetadata\Google\Shopping\Merchant\Reports\V1Beta\Reports::initOnce();
+        parent::__construct($data);
     }
 
-
-    public static function value($name)
-    {
-        $const = __CLASS__ . '::' . strtoupper($name);
-        if (!defined($const)) {
-            throw new UnexpectedValueException(sprintf(
-                    'Enum %s has no value defined for name %s', __CLASS__, $name));
-        }
-        return constant($const);
-    }
 }
 

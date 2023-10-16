@@ -25,6 +25,13 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      */
     private $travel_mode = 0;
     /**
+     * Optional. A set of conditions to satisfy that affect the way routes are
+     * calculated for the given vehicle.
+     *
+     * Generated from protobuf field <code>.google.cloud.optimization.v1.RouteModifiers route_modifiers = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $route_modifiers = null;
+    /**
      * Geographic location where the vehicle starts before picking up any
      * shipments. If not specified, the vehicle starts at its first pickup.
      * If the shipment model has duration and distance matrices, `start_location`
@@ -308,6 +315,9 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      *     @type int $travel_mode
      *           The travel mode which affects the roads usable by the vehicle and its
      *           speed. See also `travel_duration_multiple`.
+     *     @type \Google\Cloud\Optimization\V1\RouteModifiers $route_modifiers
+     *           Optional. A set of conditions to satisfy that affect the way routes are
+     *           calculated for the given vehicle.
      *     @type \Google\Type\LatLng $start_location
      *           Geographic location where the vehicle starts before picking up any
      *           shipments. If not specified, the vehicle starts at its first pickup.
@@ -501,6 +511,44 @@ class Vehicle extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Optimization\V1\Vehicle\TravelMode::class);
         $this->travel_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A set of conditions to satisfy that affect the way routes are
+     * calculated for the given vehicle.
+     *
+     * Generated from protobuf field <code>.google.cloud.optimization.v1.RouteModifiers route_modifiers = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Optimization\V1\RouteModifiers|null
+     */
+    public function getRouteModifiers()
+    {
+        return $this->route_modifiers;
+    }
+
+    public function hasRouteModifiers()
+    {
+        return isset($this->route_modifiers);
+    }
+
+    public function clearRouteModifiers()
+    {
+        unset($this->route_modifiers);
+    }
+
+    /**
+     * Optional. A set of conditions to satisfy that affect the way routes are
+     * calculated for the given vehicle.
+     *
+     * Generated from protobuf field <code>.google.cloud.optimization.v1.RouteModifiers route_modifiers = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Optimization\V1\RouteModifiers $var
+     * @return $this
+     */
+    public function setRouteModifiers($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Optimization\V1\RouteModifiers::class);
+        $this->route_modifiers = $var;
 
         return $this;
     }

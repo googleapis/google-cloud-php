@@ -20,31 +20,31 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1;</code>
      */
-    protected $create_time = null;
+    private $create_time = null;
     /**
      * The time the operation finished running.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      */
-    protected $end_time = null;
+    private $end_time = null;
     /**
      * Server-defined resource path for the target of the operation.
      *
      * Generated from protobuf field <code>string target = 3;</code>
      */
-    protected $target = '';
+    private $target = '';
     /**
      * Name of the verb executed by the operation.
      *
      * Generated from protobuf field <code>string verb = 4;</code>
      */
-    protected $verb = '';
+    private $verb = '';
     /**
      * Human-readable status of the operation, if any.
      *
      * Generated from protobuf field <code>string status_message = 5;</code>
      */
-    protected $status_message = '';
+    private $status_message = '';
     /**
      * Identifies whether the user has requested cancellation
      * of the operation. Operations that have successfully been cancelled
@@ -54,19 +54,19 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool requested_cancellation = 6;</code>
      */
-    protected $requested_cancellation = false;
+    private $requested_cancellation = false;
     /**
      * API version used to start the operation.
      *
      * Generated from protobuf field <code>string api_version = 7;</code>
      */
-    protected $api_version = '';
+    private $api_version = '';
     /**
      * API endpoint name of this operation.
      *
      * Generated from protobuf field <code>string endpoint = 8;</code>
      */
-    protected $endpoint = '';
+    private $endpoint = '';
 
     /**
      * Constructor.

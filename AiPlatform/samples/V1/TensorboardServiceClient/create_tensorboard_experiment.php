@@ -39,7 +39,7 @@ use Google\Cloud\AIPlatform\V1\TensorboardExperiment;
  *                                        final component of the Tensorboard experiment's resource name.
  *
  *                                        This value should be 1-128 characters, and valid characters
- *                                        are /[a-z][0-9]-/.
+ *                                        are `/[a-z][0-9]-/`.
  */
 function create_tensorboard_experiment_sample(
     string $formattedParent,

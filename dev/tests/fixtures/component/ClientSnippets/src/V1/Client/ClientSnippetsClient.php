@@ -2,8 +2,13 @@
 
 namespace Google\Cloud\ClientSnippets\Client;
 
-use Google\Cloud\ClientSnippets\Client\BaseClient\ClientSnippetsBaseClient;
-
-class ClientSnippetsClient extends ClientSnippetsBaseClient
+final class ClientSnippetsClient
 {
+    /**
+     * @example samples/V1/ClientSnippetsClient/an_rpc_method.php
+     */
+    public function anRpcMethod()
+    {
+
+    }
 }

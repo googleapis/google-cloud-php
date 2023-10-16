@@ -21,6 +21,7 @@ items:
       - '\Google\Cloud\Vision\V1\ListProductSetsRequest::setPageSize()'
       - '\Google\Cloud\Vision\V1\ListProductSetsRequest::getPageToken()'
       - '\Google\Cloud\Vision\V1\ListProductSetsRequest::setPageToken()'
+      - '\Google\Cloud\Vision\V1\ListProductSetsRequest::build()'
   -
     uid: '\Google\Cloud\Vision\V1\ListProductSetsRequest::__construct()'
     name: __construct
@@ -147,3 +148,24 @@ items:
       returns:
         -
           var_type: $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ListProductSetsRequest::build()'
+    name: 'static::build'
+    id: build
+    parent: \Google\Cloud\Vision\V1\ListProductSetsRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: parent
+          var_type: string
+          description: |-
+            Required. The project from which ProductSets should be listed.
+
+            Format is `projects/PROJECT_ID/locations/LOC_ID`. Please see
+            <xref uid="\Google\Cloud\Vision\V1\ProductSearchClient::locationName()">Google\Cloud\Vision\V1\ProductSearchClient::locationName()</xref> for help formatting this field.
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ListProductSetsRequest">Google\Cloud\Vision\V1\ListProductSetsRequest</xref>'

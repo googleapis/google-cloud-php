@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class PartialUpdateClusterRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The Cluster which contains the partial updates to be applied, subject to
-     * the update_mask.
+     * Required. The Cluster which contains the partial updates to be applied,
+     * subject to the update_mask.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster cluster = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -30,8 +30,8 @@ class PartialUpdateClusterRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
-     * @param \Google\Cloud\Bigtable\Admin\V2\Cluster $cluster    Required. The Cluster which contains the partial updates to be applied, subject to
-     *                                                            the update_mask.
+     * @param \Google\Cloud\Bigtable\Admin\V2\Cluster $cluster    Required. The Cluster which contains the partial updates to be applied,
+     *                                                            subject to the update_mask.
      * @param \Google\Protobuf\FieldMask              $updateMask Required. The subset of Cluster fields which should be replaced.
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\PartialUpdateClusterRequest
@@ -52,8 +52,8 @@ class PartialUpdateClusterRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Bigtable\Admin\V2\Cluster $cluster
-     *           Required. The Cluster which contains the partial updates to be applied, subject to
-     *           the update_mask.
+     *           Required. The Cluster which contains the partial updates to be applied,
+     *           subject to the update_mask.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. The subset of Cluster fields which should be replaced.
      * }
@@ -64,8 +64,8 @@ class PartialUpdateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Cluster which contains the partial updates to be applied, subject to
-     * the update_mask.
+     * Required. The Cluster which contains the partial updates to be applied,
+     * subject to the update_mask.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster cluster = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Bigtable\Admin\V2\Cluster|null
@@ -86,8 +86,8 @@ class PartialUpdateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Cluster which contains the partial updates to be applied, subject to
-     * the update_mask.
+     * Required. The Cluster which contains the partial updates to be applied,
+     * subject to the update_mask.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster cluster = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Bigtable\Admin\V2\Cluster $var

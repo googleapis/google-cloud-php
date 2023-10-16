@@ -19,6 +19,7 @@ items:
       - '\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest::setRequests()'
       - '\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest::getParent()'
       - '\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest::setParent()'
+      - '\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest::build()'
   -
     uid: '\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest::__construct()'
     name: __construct
@@ -126,3 +127,22 @@ items:
       returns:
         -
           var_type: $this
+  -
+    uid: '\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest::build()'
+    name: 'static::build'
+    id: build
+    parent: \Google\Cloud\Vision\V1\BatchAnnotateFilesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: requests
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateFileRequest">Google\Cloud\Vision\V1\AnnotateFileRequest</xref>&gt;'
+          description: |-
+            Required. The list of file annotation requests. Right now we support only one
+            AnnotateFileRequest in BatchAnnotateFilesRequest.
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest">Google\Cloud\Vision\V1\BatchAnnotateFilesRequest</xref>'

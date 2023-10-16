@@ -21,55 +21,55 @@ class UpgradeHistoryEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string snapshot = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $snapshot = '';
+    private $snapshot = '';
     /**
      * Optional. The VM image before this instance upgrade.
      *
      * Generated from protobuf field <code>string vm_image = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $vm_image = '';
+    private $vm_image = '';
     /**
      * Optional. The container image before this instance upgrade.
      *
      * Generated from protobuf field <code>string container_image = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $container_image = '';
+    private $container_image = '';
     /**
      * Optional. The framework of this notebook instance.
      *
      * Generated from protobuf field <code>string framework = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $framework = '';
+    private $framework = '';
     /**
      * Optional. The version of the notebook instance before this upgrade.
      *
      * Generated from protobuf field <code>string version = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $version = '';
+    private $version = '';
     /**
      * Output only. The state of this instance upgrade history entry.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v2.UpgradeHistoryEntry.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $state = 0;
+    private $state = 0;
     /**
      * Immutable. The time that this instance upgrade history entry is created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    protected $create_time = null;
+    private $create_time = null;
     /**
      * Optional. Action. Rolloback or Upgrade.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v2.UpgradeHistoryEntry.Action action = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $action = 0;
+    private $action = 0;
     /**
      * Optional. Target VM Version, like m63.
      *
      * Generated from protobuf field <code>string target_version = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $target_version = '';
+    private $target_version = '';
 
     /**
      * Constructor.

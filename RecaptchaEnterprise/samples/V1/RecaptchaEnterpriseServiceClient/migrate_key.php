@@ -31,12 +31,12 @@ use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
  * Migrates an existing key from reCAPTCHA to reCAPTCHA Enterprise.
  * Once a key is migrated, it can be used from either product. SiteVerify
  * requests are billed as CreateAssessment calls. You must be
- * authenticated as one of the current owners of the reCAPTCHA Site Key, and
+ * authenticated as one of the current owners of the reCAPTCHA Key, and
  * your user must have the reCAPTCHA Enterprise Admin IAM role in the
  * destination project.
  *
  * @param string $formattedName The name of the key to be migrated, in the format
- *                              "projects/{project}/keys/{key}". Please see
+ *                              `projects/{project}/keys/{key}`. Please see
  *                              {@see RecaptchaEnterpriseServiceClient::keyName()} for help formatting this field.
  */
 function migrate_key_sample(string $formattedName): void

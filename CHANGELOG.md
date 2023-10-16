@@ -1,5 +1,87 @@
 # Changelog
 
+## 0.222.0
+
+<details><summary>google/cloud-ai-platform 0.26.0</summary>
+
+
+
+### Features
+
+* Add DatasetVersion and dataset version RPCs to DatasetService ([#6672](https://github.com/googleapis/google-cloud-php/issues/6672)) ([c8ab13d](https://github.com/googleapis/google-cloud-php/commit/c8ab13d20fa205f8cc2007be256cbdc14d767cf9))
+* Add PersistentDiskSpec ([c8ab13d](https://github.com/googleapis/google-cloud-php/commit/c8ab13d20fa205f8cc2007be256cbdc14d767cf9))
+
+</details>
+
+<details><summary>google/cloud-batch 0.12.0</summary>
+
+
+
+### Features
+
+* Add InstancePolicy.reservation field for restricting jobs to a specific reservation ([#6674](https://github.com/googleapis/google-cloud-php/issues/6674)) ([26cec7d](https://github.com/googleapis/google-cloud-php/commit/26cec7dbbe6af8f60cedc6220e4504683ed77696))
+
+
+### Documentation
+
+* Elaborate the usage of Container.volumes proto field ([26cec7d](https://github.com/googleapis/google-cloud-php/commit/26cec7dbbe6af8f60cedc6220e4504683ed77696))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.29.0</summary>
+
+
+
+### Features
+
+* Add support for Cloud Bigtable Request Priorities in App Profiles ([#6682](https://github.com/googleapis/google-cloud-php/issues/6682)) ([668b030](https://github.com/googleapis/google-cloud-php/commit/668b03025f01493b9c0bcd1366558f0dfd31291a))
+
+</details>
+
+<details><summary>google/cloud-core 1.52.6</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-firestore 1.37.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 1.5.0</summary>
+
+
+
+### Features
+
+* Added AndroidKeySettings.support_non_google_app_store_distribution ([6597d90](https://github.com/googleapis/google-cloud-php/commit/6597d9006ce281ebdf52e363431c62a057244b25))
+* Added Assessment.firewall_policy_assessment, fraud_signals ([6597d90](https://github.com/googleapis/google-cloud-php/commit/6597d9006ce281ebdf52e363431c62a057244b25))
+* Added FraudPreventionAssessment.behavioral_trust_verdict ([6597d90](https://github.com/googleapis/google-cloud-php/commit/6597d9006ce281ebdf52e363431c62a057244b25))
+* Added IOSKeySettings.apple_developer_id ([6597d90](https://github.com/googleapis/google-cloud-php/commit/6597d9006ce281ebdf52e363431c62a057244b25))
+* Added new fields to Event message ([6597d90](https://github.com/googleapis/google-cloud-php/commit/6597d9006ce281ebdf52e363431c62a057244b25))
+* Added RiskAnalysis.extended_verdict_reasons ([6597d90](https://github.com/googleapis/google-cloud-php/commit/6597d9006ce281ebdf52e363431c62a057244b25))
+* Added WafFeature.EXPRESS enum value ([6597d90](https://github.com/googleapis/google-cloud-php/commit/6597d9006ce281ebdf52e363431c62a057244b25))
+* Added WafService.FASTLY enum value ([6597d90](https://github.com/googleapis/google-cloud-php/commit/6597d9006ce281ebdf52e363431c62a057244b25))
+* FirewallPolicy CRUD API ([#6680](https://github.com/googleapis/google-cloud-php/issues/6680)) ([6597d90](https://github.com/googleapis/google-cloud-php/commit/6597d9006ce281ebdf52e363431c62a057244b25))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 0.6.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Enum ExternalSyncParallelLevel moved to the top level ([#6676](https://github.com/googleapis/google-cloud-php/issues/6676))
+
+### Bug Fixes
+
+* Enum ExternalSyncParallelLevel moved to the top level ([#6676](https://github.com/googleapis/google-cloud-php/issues/6676)) ([e3ffe20](https://github.com/googleapis/google-cloud-php/commit/e3ffe20c6cd2bb58e0e5b93aaecdc0474dcbfe6e))
+
+</details>
+
 ## 0.221.0
 
 <details><summary>google/cloud-advisorynotifications 0.5.0</summary>

@@ -26,6 +26,7 @@ items:
       - '\Google\Cloud\Vision\V1\PurgeProductsRequest::getForce()'
       - '\Google\Cloud\Vision\V1\PurgeProductsRequest::setForce()'
       - '\Google\Cloud\Vision\V1\PurgeProductsRequest::getTarget()'
+      - '\Google\Cloud\Vision\V1\PurgeProductsRequest::build()'
   -
     uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::__construct()'
     name: __construct
@@ -223,3 +224,24 @@ items:
       returns:
         -
           var_type: string
+  -
+    uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::build()'
+    name: 'static::build'
+    id: build
+    parent: \Google\Cloud\Vision\V1\PurgeProductsRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: parent
+          var_type: string
+          description: |-
+            Required. The project and location in which the Products should be deleted.
+
+            Format is `projects/PROJECT_ID/locations/LOC_ID`. Please see
+            <xref uid="\Google\Cloud\Vision\V1\ProductSearchClient::locationName()">Google\Cloud\Vision\V1\ProductSearchClient::locationName()</xref> for help formatting this field.
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\PurgeProductsRequest">Google\Cloud\Vision\V1\PurgeProductsRequest</xref>'

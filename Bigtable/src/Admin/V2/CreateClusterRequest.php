@@ -16,16 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateClusterRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The unique name of the instance in which to create the new cluster.
-     * Values are of the form
-     * `projects/{project}/instances/{instance}`.
+     * Required. The unique name of the instance in which to create the new
+     * cluster. Values are of the form `projects/{project}/instances/{instance}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Required. The ID to be used when referring to the new cluster within its instance,
-     * e.g., just `mycluster` rather than
+     * Required. The ID to be used when referring to the new cluster within its
+     * instance, e.g., just `mycluster` rather than
      * `projects/myproject/instances/myinstance/clusters/mycluster`.
      *
      * Generated from protobuf field <code>string cluster_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -40,12 +39,11 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     private $cluster = null;
 
     /**
-     * @param string                                  $parent    Required. The unique name of the instance in which to create the new cluster.
-     *                                                           Values are of the form
-     *                                                           `projects/{project}/instances/{instance}`. Please see
+     * @param string                                  $parent    Required. The unique name of the instance in which to create the new
+     *                                                           cluster. Values are of the form `projects/{project}/instances/{instance}`. Please see
      *                                                           {@see BigtableInstanceAdminClient::instanceName()} for help formatting this field.
-     * @param string                                  $clusterId Required. The ID to be used when referring to the new cluster within its instance,
-     *                                                           e.g., just `mycluster` rather than
+     * @param string                                  $clusterId Required. The ID to be used when referring to the new cluster within its
+     *                                                           instance, e.g., just `mycluster` rather than
      *                                                           `projects/myproject/instances/myinstance/clusters/mycluster`.
      * @param \Google\Cloud\Bigtable\Admin\V2\Cluster $cluster   Required. The cluster to be created.
      *                                                           Fields marked `OutputOnly` must be left blank.
@@ -69,12 +67,11 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The unique name of the instance in which to create the new cluster.
-     *           Values are of the form
-     *           `projects/{project}/instances/{instance}`.
+     *           Required. The unique name of the instance in which to create the new
+     *           cluster. Values are of the form `projects/{project}/instances/{instance}`.
      *     @type string $cluster_id
-     *           Required. The ID to be used when referring to the new cluster within its instance,
-     *           e.g., just `mycluster` rather than
+     *           Required. The ID to be used when referring to the new cluster within its
+     *           instance, e.g., just `mycluster` rather than
      *           `projects/myproject/instances/myinstance/clusters/mycluster`.
      *     @type \Google\Cloud\Bigtable\Admin\V2\Cluster $cluster
      *           Required. The cluster to be created.
@@ -87,9 +84,8 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the instance in which to create the new cluster.
-     * Values are of the form
-     * `projects/{project}/instances/{instance}`.
+     * Required. The unique name of the instance in which to create the new
+     * cluster. Values are of the form `projects/{project}/instances/{instance}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -100,9 +96,8 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the instance in which to create the new cluster.
-     * Values are of the form
-     * `projects/{project}/instances/{instance}`.
+     * Required. The unique name of the instance in which to create the new
+     * cluster. Values are of the form `projects/{project}/instances/{instance}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -117,8 +112,8 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID to be used when referring to the new cluster within its instance,
-     * e.g., just `mycluster` rather than
+     * Required. The ID to be used when referring to the new cluster within its
+     * instance, e.g., just `mycluster` rather than
      * `projects/myproject/instances/myinstance/clusters/mycluster`.
      *
      * Generated from protobuf field <code>string cluster_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -130,8 +125,8 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID to be used when referring to the new cluster within its instance,
-     * e.g., just `mycluster` rather than
+     * Required. The ID to be used when referring to the new cluster within its
+     * instance, e.g., just `mycluster` rather than
      * `projects/myproject/instances/myinstance/clusters/mycluster`.
      *
      * Generated from protobuf field <code>string cluster_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>

@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteAppProfileRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The unique name of the app profile to be deleted. Values are of the form
+     * Required. The unique name of the app profile to be deleted. Values are of
+     * the form
      * `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -30,7 +31,8 @@ class DeleteAppProfileRequest extends \Google\Protobuf\Internal\Message
     private $ignore_warnings = false;
 
     /**
-     * @param string $name Required. The unique name of the app profile to be deleted. Values are of the form
+     * @param string $name Required. The unique name of the app profile to be deleted. Values are of
+     *                     the form
      *                     `projects/{project}/instances/{instance}/appProfiles/{app_profile}`. Please see
      *                     {@see BigtableInstanceAdminClient::appProfileName()} for help formatting this field.
      *
@@ -51,7 +53,8 @@ class DeleteAppProfileRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The unique name of the app profile to be deleted. Values are of the form
+     *           Required. The unique name of the app profile to be deleted. Values are of
+     *           the form
      *           `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
      *     @type bool $ignore_warnings
      *           Required. If true, ignore safety checks when deleting the app profile.
@@ -63,7 +66,8 @@ class DeleteAppProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the app profile to be deleted. Values are of the form
+     * Required. The unique name of the app profile to be deleted. Values are of
+     * the form
      * `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -75,7 +79,8 @@ class DeleteAppProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the app profile to be deleted. Values are of the form
+     * Required. The unique name of the app profile to be deleted. Values are of
+     * the form
      * `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

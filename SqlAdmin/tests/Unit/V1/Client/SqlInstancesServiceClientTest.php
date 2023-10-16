@@ -598,6 +598,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $maintenanceVersion = 'maintenanceVersion-588975188';
         $pscServiceAttachmentLink = 'pscServiceAttachmentLink309057421';
         $dnsName = 'dnsName411992033';
+        $primaryDnsName = 'primaryDnsName-1306966658';
         $expectedResponse = new DatabaseInstance();
         $expectedResponse->setKind($kind);
         $expectedResponse->setEtag($etag);
@@ -616,6 +617,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $expectedResponse->setMaintenanceVersion($maintenanceVersion);
         $expectedResponse->setPscServiceAttachmentLink($pscServiceAttachmentLink);
         $expectedResponse->setDnsName($dnsName);
+        $expectedResponse->setPrimaryDnsName($primaryDnsName);
         $transport->addResponse($expectedResponse);
         $request = new SqlInstancesGetRequest();
         $response = $gapicClient->get($request);

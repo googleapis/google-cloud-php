@@ -811,7 +811,7 @@ class TensorboardServiceGapicClient
      *                                        final component of the Tensorboard experiment's resource name.
      *
      *                                        This value should be 1-128 characters, and valid characters
-     *                                        are /[a-z][0-9]-/.
+     *                                        are `/[a-z][0-9]-/`.
      * @param array  $optionalArgs            {
      *     Optional.
      *
@@ -881,7 +881,7 @@ class TensorboardServiceGapicClient
      *                                         component of the Tensorboard run's resource name.
      *
      *                                         This value should be 1-128 characters, and valid characters
-     *                                         are /[a-z][0-9]-/.
+     *                                         are `/[a-z][0-9]-/`.
      * @param array          $optionalArgs     {
      *     Optional.
      *

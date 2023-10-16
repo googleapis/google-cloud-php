@@ -28,6 +28,16 @@ class IOSKeySettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string allowed_bundle_ids = 1;</code>
      */
     private $allowed_bundle_ids;
+    /**
+     * Apple Developer account details for the app that is protected by the
+     * reCAPTCHA Key. reCAPTCHA Enterprise leverages platform-specific checks like
+     * Apple App Attest and Apple DeviceCheck to protect your app from abuse.
+     * Providing these fields allows reCAPTCHA Enterprise to get a better
+     * assessment of the integrity of your app.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AppleDeveloperId apple_developer_id = 3;</code>
+     */
+    private $apple_developer_id = null;
 
     /**
      * Constructor.
@@ -40,6 +50,12 @@ class IOSKeySettings extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_bundle_ids
      *           iOS bundle ids of apps allowed to use the key.
      *           Example: 'com.companyname.productname.appname'
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\AppleDeveloperId $apple_developer_id
+     *           Apple Developer account details for the app that is protected by the
+     *           reCAPTCHA Key. reCAPTCHA Enterprise leverages platform-specific checks like
+     *           Apple App Attest and Apple DeviceCheck to protect your app from abuse.
+     *           Providing these fields allows reCAPTCHA Enterprise to get a better
+     *           assessment of the integrity of your app.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,6 +113,50 @@ class IOSKeySettings extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->allowed_bundle_ids = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Apple Developer account details for the app that is protected by the
+     * reCAPTCHA Key. reCAPTCHA Enterprise leverages platform-specific checks like
+     * Apple App Attest and Apple DeviceCheck to protect your app from abuse.
+     * Providing these fields allows reCAPTCHA Enterprise to get a better
+     * assessment of the integrity of your app.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AppleDeveloperId apple_developer_id = 3;</code>
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\AppleDeveloperId|null
+     */
+    public function getAppleDeveloperId()
+    {
+        return $this->apple_developer_id;
+    }
+
+    public function hasAppleDeveloperId()
+    {
+        return isset($this->apple_developer_id);
+    }
+
+    public function clearAppleDeveloperId()
+    {
+        unset($this->apple_developer_id);
+    }
+
+    /**
+     * Apple Developer account details for the app that is protected by the
+     * reCAPTCHA Key. reCAPTCHA Enterprise leverages platform-specific checks like
+     * Apple App Attest and Apple DeviceCheck to protect your app from abuse.
+     * Providing these fields allows reCAPTCHA Enterprise to get a better
+     * assessment of the integrity of your app.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AppleDeveloperId apple_developer_id = 3;</code>
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\AppleDeveloperId $var
+     * @return $this
+     */
+    public function setAppleDeveloperId($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\AppleDeveloperId::class);
+        $this->apple_developer_id = $var;
 
         return $this;
     }

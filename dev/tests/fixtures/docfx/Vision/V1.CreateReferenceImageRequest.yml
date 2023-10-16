@@ -23,6 +23,7 @@ items:
       - '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::setReferenceImage()'
       - '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::getReferenceImageId()'
       - '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::setReferenceImageId()'
+      - '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::build()'
   -
     uid: '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::__construct()'
     name: __construct
@@ -181,3 +182,39 @@ items:
       returns:
         -
           var_type: $this
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::build()'
+    name: 'static::build'
+    id: build
+    parent: \Google\Cloud\Vision\V1\CreateReferenceImageRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: parent
+          var_type: string
+          description: |-
+            Required. Resource name of the product in which to create the reference image.
+
+            Format is
+            `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`. Please see
+            <xref uid="\Google\Cloud\Vision\V1\ProductSearchClient::productName()">Google\Cloud\Vision\V1\ProductSearchClient::productName()</xref> for help formatting this field.
+        -
+          id: referenceImage
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">Google\Cloud\Vision\V1\ReferenceImage</xref>'
+          description: |-
+            Required. The reference image to create.
+            If an image ID is specified, it is ignored.
+        -
+          id: referenceImageId
+          var_type: string
+          description: |-
+            A user-supplied resource id for the ReferenceImage to be added. If set,
+            the server will attempt to use this value as the resource id. If it is
+            already in use, an error is returned with code ALREADY_EXISTS. Must be at
+            most 128 characters long. It cannot contain the character `/`.
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\CreateReferenceImageRequest">Google\Cloud\Vision\V1\CreateReferenceImageRequest</xref>'

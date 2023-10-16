@@ -25,8 +25,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Immutable. The location where this cluster's nodes and storage reside. For best
-     * performance, clients should be located as close as possible to this
+     * Immutable. The location where this cluster's nodes and storage reside. For
+     * best performance, clients should be located as close as possible to this
      * cluster. Currently only zones are supported, so values should be of the
      * form `projects/{project}/locations/{zone}`.
      *
@@ -71,8 +71,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           The unique name of the cluster. Values are of the form
      *           `projects/{project}/instances/{instance}/clusters/[a-z][-a-z0-9]*`.
      *     @type string $location
-     *           Immutable. The location where this cluster's nodes and storage reside. For best
-     *           performance, clients should be located as close as possible to this
+     *           Immutable. The location where this cluster's nodes and storage reside. For
+     *           best performance, clients should be located as close as possible to this
      *           cluster. Currently only zones are supported, so values should be of the
      *           form `projects/{project}/locations/{zone}`.
      *     @type int $state
@@ -123,8 +123,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The location where this cluster's nodes and storage reside. For best
-     * performance, clients should be located as close as possible to this
+     * Immutable. The location where this cluster's nodes and storage reside. For
+     * best performance, clients should be located as close as possible to this
      * cluster. Currently only zones are supported, so values should be of the
      * form `projects/{project}/locations/{zone}`.
      *
@@ -137,8 +137,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The location where this cluster's nodes and storage reside. For best
-     * performance, clients should be located as close as possible to this
+     * Immutable. The location where this cluster's nodes and storage reside. For
+     * best performance, clients should be located as close as possible to this
      * cluster. Currently only zones are supported, so values should be of the
      * form `projects/{project}/locations/{zone}`.
      *

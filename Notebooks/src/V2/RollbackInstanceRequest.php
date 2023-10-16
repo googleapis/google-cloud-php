@@ -21,20 +21,20 @@ class RollbackInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $name = '';
+    private $name = '';
     /**
      * Required. The snapshot for rollback.
      * Example: "projects/test-project/global/snapshots/krwlzipynril".
      *
      * Generated from protobuf field <code>string target_snapshot = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $target_snapshot = '';
+    private $target_snapshot = '';
     /**
      * Required. Output only. Revision Id
      *
      * Generated from protobuf field <code>string revision_id = 3 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $revision_id = '';
+    private $revision_id = '';
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class UpgradeInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $name = '';
+    private $name = '';
 
     /**
      * Constructor.

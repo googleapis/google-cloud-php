@@ -25,10 +25,17 @@ class WafService
      * Generated from protobuf enum <code>CA = 1;</code>
      */
     const CA = 1;
+    /**
+     * Fastly
+     *
+     * Generated from protobuf enum <code>FASTLY = 3;</code>
+     */
+    const FASTLY = 3;
 
     private static $valueToName = [
         self::WAF_SERVICE_UNSPECIFIED => 'WAF_SERVICE_UNSPECIFIED',
         self::CA => 'CA',
+        self::FASTLY => 'FASTLY',
     ];
 
     public static function name($value)

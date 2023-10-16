@@ -21,6 +21,7 @@ items:
       - '\Google\Cloud\Vision\V1\ImportProductSetsRequest::hasInputConfig()'
       - '\Google\Cloud\Vision\V1\ImportProductSetsRequest::clearInputConfig()'
       - '\Google\Cloud\Vision\V1\ImportProductSetsRequest::setInputConfig()'
+      - '\Google\Cloud\Vision\V1\ImportProductSetsRequest::build()'
   -
     uid: '\Google\Cloud\Vision\V1\ImportProductSetsRequest::__construct()'
     name: __construct
@@ -128,3 +129,28 @@ items:
       returns:
         -
           var_type: $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ImportProductSetsRequest::build()'
+    name: 'static::build'
+    id: build
+    parent: \Google\Cloud\Vision\V1\ImportProductSetsRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: parent
+          var_type: string
+          description: |-
+            Required. The project in which the ProductSets should be imported.
+
+            Format is `projects/PROJECT_ID/locations/LOC_ID`. Please see
+            <xref uid="\Google\Cloud\Vision\V1\ProductSearchClient::locationName()">Google\Cloud\Vision\V1\ProductSearchClient::locationName()</xref> for help formatting this field.
+        -
+          id: inputConfig
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImportProductSetsInputConfig">Google\Cloud\Vision\V1\ImportProductSetsInputConfig</xref>'
+          description: 'Required. The input content for the list of requests.'
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImportProductSetsRequest">Google\Cloud\Vision\V1\ImportProductSetsRequest</xref>'

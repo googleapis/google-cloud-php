@@ -21,7 +21,7 @@ class CheckInstanceUpgradabilityRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string notebook_instance = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $notebook_instance = '';
+    private $notebook_instance = '';
 
     /**
      * Constructor.

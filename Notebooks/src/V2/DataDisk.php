@@ -21,20 +21,20 @@ class DataDisk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 disk_size_gb = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $disk_size_gb = 0;
+    private $disk_size_gb = 0;
     /**
      * Optional. Input only. Indicates the type of the disk.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v2.DiskType disk_type = 2 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $disk_type = 0;
+    private $disk_type = 0;
     /**
      * Optional. Input only. Disk encryption method used on the boot and data
      * disks, defaults to GMEK.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v2.DiskEncryption disk_encryption = 5 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $disk_encryption = 0;
+    private $disk_encryption = 0;
     /**
      * Optional. Input only. The KMS key used to encrypt the disks, only
      * applicable if disk_encryption is CMEK. Format:
@@ -43,7 +43,7 @@ class DataDisk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key = 6 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $kms_key = '';
+    private $kms_key = '';
 
     /**
      * Constructor.

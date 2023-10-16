@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START merchantapi_v1beta_generated_LocalInventoryService_ListLocalInventories_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Shopping\Merchant\Inventories\V1beta\Client\LocalInventoryServiceClient;
+use Google\Shopping\Merchant\Inventories\V1beta\ListLocalInventoriesRequest;
 use Google\Shopping\Merchant\Inventories\V1beta\LocalInventory;
-use Google\Shopping\Merchant\Inventories\V1beta\LocalInventoryServiceClient;
 
 /**
  * Lists the `LocalInventory` resources for the given product in your merchant
@@ -45,10 +46,14 @@ function list_local_inventories_sample(string $parent): void
     // Create a client.
     $localInventoryServiceClient = new LocalInventoryServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListLocalInventoriesRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $localInventoryServiceClient->listLocalInventories($parent);
+        $response = $localInventoryServiceClient->listLocalInventories($request);
 
         /** @var LocalInventory $element */
         foreach ($response as $element) {

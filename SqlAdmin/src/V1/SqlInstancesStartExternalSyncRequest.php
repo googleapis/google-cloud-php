@@ -43,7 +43,7 @@ class SqlInstancesStartExternalSyncRequest extends \Google\Protobuf\Internal\Mes
      * Optional. Parallel level for initial data sync. Currently only applicable
      * for MySQL.
      *
-     * Generated from protobuf field <code>.google.cloud.sql.v1.SqlInstancesStartExternalSyncRequest.ExternalSyncParallelLevel sync_parallel_level = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ExternalSyncParallelLevel sync_parallel_level = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $sync_parallel_level = 0;
     protected $sync_config;
@@ -213,7 +213,7 @@ class SqlInstancesStartExternalSyncRequest extends \Google\Protobuf\Internal\Mes
      * Optional. Parallel level for initial data sync. Currently only applicable
      * for MySQL.
      *
-     * Generated from protobuf field <code>.google.cloud.sql.v1.SqlInstancesStartExternalSyncRequest.ExternalSyncParallelLevel sync_parallel_level = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ExternalSyncParallelLevel sync_parallel_level = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getSyncParallelLevel()
@@ -225,13 +225,13 @@ class SqlInstancesStartExternalSyncRequest extends \Google\Protobuf\Internal\Mes
      * Optional. Parallel level for initial data sync. Currently only applicable
      * for MySQL.
      *
-     * Generated from protobuf field <code>.google.cloud.sql.v1.SqlInstancesStartExternalSyncRequest.ExternalSyncParallelLevel sync_parallel_level = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ExternalSyncParallelLevel sync_parallel_level = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
     public function setSyncParallelLevel($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\SqlInstancesStartExternalSyncRequest\ExternalSyncParallelLevel::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\ExternalSyncParallelLevel::class);
         $this->sync_parallel_level = $var;
 
         return $this;

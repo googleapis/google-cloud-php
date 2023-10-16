@@ -16,13 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class ItemIssueSeverity extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Issue severity per destination.
+     * Issue severity per reporting context.
      *
-     * Generated from protobuf field <code>repeated .google.shopping.merchant.reports.v1beta.ProductView.ItemIssue.ItemIssueSeverity.IssueSeverityPerDestination severity_per_destination = 1;</code>
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.reports.v1beta.ProductView.ItemIssue.ItemIssueSeverity.IssueSeverityPerReportingContext severity_per_reporting_context = 1;</code>
      */
-    private $severity_per_destination;
+    private $severity_per_reporting_context;
     /**
-     * Aggregated severity of the issue for all destinations it affects.
+     * Aggregated severity of the issue for all reporting contexts it affects.
      * **This field can be used for filtering the results.**
      *
      * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.ProductView.ItemIssue.ItemIssueSeverity.AggregatedIssueSeverity aggregated_severity = 2;</code>
@@ -35,10 +35,10 @@ class ItemIssueSeverity extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Reports\V1beta\ProductView\ItemIssue\ItemIssueSeverity\IssueSeverityPerDestination>|\Google\Protobuf\Internal\RepeatedField $severity_per_destination
-     *           Issue severity per destination.
+     *     @type array<\Google\Shopping\Merchant\Reports\V1beta\ProductView\ItemIssue\ItemIssueSeverity\IssueSeverityPerReportingContext>|\Google\Protobuf\Internal\RepeatedField $severity_per_reporting_context
+     *           Issue severity per reporting context.
      *     @type int $aggregated_severity
-     *           Aggregated severity of the issue for all destinations it affects.
+     *           Aggregated severity of the issue for all reporting contexts it affects.
      *           **This field can be used for filtering the results.**
      * }
      */
@@ -48,33 +48,33 @@ class ItemIssueSeverity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Issue severity per destination.
+     * Issue severity per reporting context.
      *
-     * Generated from protobuf field <code>repeated .google.shopping.merchant.reports.v1beta.ProductView.ItemIssue.ItemIssueSeverity.IssueSeverityPerDestination severity_per_destination = 1;</code>
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.reports.v1beta.ProductView.ItemIssue.ItemIssueSeverity.IssueSeverityPerReportingContext severity_per_reporting_context = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
-    public function getSeverityPerDestination()
+    public function getSeverityPerReportingContext()
     {
-        return $this->severity_per_destination;
+        return $this->severity_per_reporting_context;
     }
 
     /**
-     * Issue severity per destination.
+     * Issue severity per reporting context.
      *
-     * Generated from protobuf field <code>repeated .google.shopping.merchant.reports.v1beta.ProductView.ItemIssue.ItemIssueSeverity.IssueSeverityPerDestination severity_per_destination = 1;</code>
-     * @param array<\Google\Shopping\Merchant\Reports\V1beta\ProductView\ItemIssue\ItemIssueSeverity\IssueSeverityPerDestination>|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.reports.v1beta.ProductView.ItemIssue.ItemIssueSeverity.IssueSeverityPerReportingContext severity_per_reporting_context = 1;</code>
+     * @param array<\Google\Shopping\Merchant\Reports\V1beta\ProductView\ItemIssue\ItemIssueSeverity\IssueSeverityPerReportingContext>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
-    public function setSeverityPerDestination($var)
+    public function setSeverityPerReportingContext($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Reports\V1beta\ProductView\ItemIssue\ItemIssueSeverity\IssueSeverityPerDestination::class);
-        $this->severity_per_destination = $arr;
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Reports\V1beta\ProductView\ItemIssue\ItemIssueSeverity\IssueSeverityPerReportingContext::class);
+        $this->severity_per_reporting_context = $arr;
 
         return $this;
     }
 
     /**
-     * Aggregated severity of the issue for all destinations it affects.
+     * Aggregated severity of the issue for all reporting contexts it affects.
      * **This field can be used for filtering the results.**
      *
      * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.ProductView.ItemIssue.ItemIssueSeverity.AggregatedIssueSeverity aggregated_severity = 2;</code>
@@ -96,7 +96,7 @@ class ItemIssueSeverity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Aggregated severity of the issue for all destinations it affects.
+     * Aggregated severity of the issue for all reporting contexts it affects.
      * **This field can be used for filtering the results.**
      *
      * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.ProductView.ItemIssue.ItemIssueSeverity.AggregatedIssueSeverity aggregated_severity = 2;</code>

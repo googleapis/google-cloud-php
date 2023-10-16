@@ -29,6 +29,13 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.RiskAnalysis.ClassificationReason reasons = 2;</code>
      */
     private $reasons;
+    /**
+     * Extended verdict reasons to be used for experimentation only. The set of
+     * possible reasons is subject to change.
+     *
+     * Generated from protobuf field <code>repeated string extended_verdict_reasons = 3;</code>
+     */
+    private $extended_verdict_reasons;
 
     /**
      * Constructor.
@@ -42,6 +49,9 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
      *           non-legitimate traffic).
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $reasons
      *           Reasons contributing to the risk analysis verdict.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $extended_verdict_reasons
+     *           Extended verdict reasons to be used for experimentation only. The set of
+     *           possible reasons is subject to change.
      * }
      */
     public function __construct($data = NULL) {
@@ -101,6 +111,34 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\RecaptchaEnterprise\V1\RiskAnalysis\ClassificationReason::class);
         $this->reasons = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Extended verdict reasons to be used for experimentation only. The set of
+     * possible reasons is subject to change.
+     *
+     * Generated from protobuf field <code>repeated string extended_verdict_reasons = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getExtendedVerdictReasons()
+    {
+        return $this->extended_verdict_reasons;
+    }
+
+    /**
+     * Extended verdict reasons to be used for experimentation only. The set of
+     * possible reasons is subject to change.
+     *
+     * Generated from protobuf field <code>repeated string extended_verdict_reasons = 3;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setExtendedVerdictReasons($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->extended_verdict_reasons = $arr;
 
         return $this;
     }

@@ -283,6 +283,12 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string dns_name = 49 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $dns_name = null;
+    /**
+     * Output only. The dns name of the primary instance in a replication group.
+     *
+     * Generated from protobuf field <code>optional string primary_dns_name = 51 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $primary_dns_name = null;
 
     /**
      * Constructor.
@@ -403,6 +409,8 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *           Output only. The link to service attachment of PSC instance.
      *     @type string $dns_name
      *           Output only. The dns name of the instance.
+     *     @type string $primary_dns_name
+     *           Output only. The dns name of the primary instance in a replication group.
      * }
      */
     public function __construct($data = NULL) {
@@ -1729,6 +1737,42 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->dns_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The dns name of the primary instance in a replication group.
+     *
+     * Generated from protobuf field <code>optional string primary_dns_name = 51 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getPrimaryDnsName()
+    {
+        return isset($this->primary_dns_name) ? $this->primary_dns_name : '';
+    }
+
+    public function hasPrimaryDnsName()
+    {
+        return isset($this->primary_dns_name);
+    }
+
+    public function clearPrimaryDnsName()
+    {
+        unset($this->primary_dns_name);
+    }
+
+    /**
+     * Output only. The dns name of the primary instance in a replication group.
+     *
+     * Generated from protobuf field <code>optional string primary_dns_name = 51 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPrimaryDnsName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->primary_dns_name = $var;
 
         return $this;
     }

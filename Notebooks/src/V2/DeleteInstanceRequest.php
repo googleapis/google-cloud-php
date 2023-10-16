@@ -21,13 +21,13 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $name = '';
+    private $name = '';
     /**
      * Optional. Idempotent request UUID.
      *
      * Generated from protobuf field <code>string request_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $request_id = '';
+    private $request_id = '';
 
     /**
      * @param string $name Required. Format:

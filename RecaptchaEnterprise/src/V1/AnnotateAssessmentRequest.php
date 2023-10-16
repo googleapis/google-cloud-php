@@ -17,7 +17,7 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the Assessment, in the format
-     * "projects/{project}/assessments/{assessment}".
+     * `projects/{project}/assessments/{assessment}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -57,7 +57,7 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name       Required. The resource name of the Assessment, in the format
-     *                           "projects/{project}/assessments/{assessment}". Please see
+     *                           `projects/{project}/assessments/{assessment}`. Please see
      *                           {@see RecaptchaEnterpriseServiceClient::assessmentName()} for help formatting this field.
      * @param int    $annotation Optional. The annotation that will be assigned to the Event. This field can
      *                           be left empty to provide reasons that apply to an event without concluding
@@ -83,7 +83,7 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The resource name of the Assessment, in the format
-     *           "projects/{project}/assessments/{assessment}".
+     *           `projects/{project}/assessments/{assessment}`.
      *     @type int $annotation
      *           Optional. The annotation that will be assigned to the Event. This field can
      *           be left empty to provide reasons that apply to an event without concluding
@@ -109,7 +109,7 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the Assessment, in the format
-     * "projects/{project}/assessments/{assessment}".
+     * `projects/{project}/assessments/{assessment}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -121,7 +121,7 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the Assessment, in the format
-     * "projects/{project}/assessments/{assessment}".
+     * `projects/{project}/assessments/{assessment}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

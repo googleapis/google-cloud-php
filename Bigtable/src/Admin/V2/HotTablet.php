@@ -58,10 +58,10 @@ class HotTablet extends \Google\Protobuf\Internal\Message
      */
     private $end_key = '';
     /**
-     * Output only. The average CPU usage spent by a node on this tablet over the start_time to
-     * end_time time range. The percentage is the amount of CPU used by the node
-     * to serve the tablet, from 0% (tablet was not interacted with) to 100% (the
-     * node spent all cycles serving the hot tablet).
+     * Output only. The average CPU usage spent by a node on this tablet over the
+     * start_time to end_time time range. The percentage is the amount of CPU used
+     * by the node to serve the tablet, from 0% (tablet was not interacted with)
+     * to 100% (the node spent all cycles serving the hot tablet).
      *
      * Generated from protobuf field <code>float node_cpu_usage_percent = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -88,10 +88,10 @@ class HotTablet extends \Google\Protobuf\Internal\Message
      *     @type string $end_key
      *           Tablet End Key (inclusive).
      *     @type float $node_cpu_usage_percent
-     *           Output only. The average CPU usage spent by a node on this tablet over the start_time to
-     *           end_time time range. The percentage is the amount of CPU used by the node
-     *           to serve the tablet, from 0% (tablet was not interacted with) to 100% (the
-     *           node spent all cycles serving the hot tablet).
+     *           Output only. The average CPU usage spent by a node on this tablet over the
+     *           start_time to end_time time range. The percentage is the amount of CPU used
+     *           by the node to serve the tablet, from 0% (tablet was not interacted with)
+     *           to 100% (the node spent all cycles serving the hot tablet).
      * }
      */
     public function __construct($data = NULL) {
@@ -280,10 +280,10 @@ class HotTablet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The average CPU usage spent by a node on this tablet over the start_time to
-     * end_time time range. The percentage is the amount of CPU used by the node
-     * to serve the tablet, from 0% (tablet was not interacted with) to 100% (the
-     * node spent all cycles serving the hot tablet).
+     * Output only. The average CPU usage spent by a node on this tablet over the
+     * start_time to end_time time range. The percentage is the amount of CPU used
+     * by the node to serve the tablet, from 0% (tablet was not interacted with)
+     * to 100% (the node spent all cycles serving the hot tablet).
      *
      * Generated from protobuf field <code>float node_cpu_usage_percent = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return float
@@ -294,10 +294,10 @@ class HotTablet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The average CPU usage spent by a node on this tablet over the start_time to
-     * end_time time range. The percentage is the amount of CPU used by the node
-     * to serve the tablet, from 0% (tablet was not interacted with) to 100% (the
-     * node spent all cycles serving the hot tablet).
+     * Output only. The average CPU usage spent by a node on this tablet over the
+     * start_time to end_time time range. The percentage is the amount of CPU used
+     * by the node to serve the tablet, from 0% (tablet was not interacted with)
+     * to 100% (the node spent all cycles serving the hot tablet).
      *
      * Generated from protobuf field <code>float node_cpu_usage_percent = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param float $var

@@ -42,7 +42,7 @@ use Google\Cloud\AIPlatform\V1\TensorboardRun;
  *                                          component of the Tensorboard run's resource name.
  *
  *                                          This value should be 1-128 characters, and valid characters
- *                                          are /[a-z][0-9]-/.
+ *                                          are `/[a-z][0-9]-/`.
  */
 function create_tensorboard_run_sample(
     string $formattedParent,

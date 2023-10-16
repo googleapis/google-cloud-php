@@ -42,7 +42,7 @@ class IssueSeverityPerDestination extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $destination
+     *     @type \Google\Shopping\Type\Destination $destination
      *           Destination the issue applies to.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $disapproved_countries
      *           List of disapproved countries in the destination, represented in ISO
@@ -61,11 +61,11 @@ class IssueSeverityPerDestination extends \Google\Protobuf\Internal\Message
      * Destination the issue applies to.
      *
      * Generated from protobuf field <code>optional .google.shopping.type.Destination destination = 1;</code>
-     * @return int
+     * @return \Google\Shopping\Type\Destination|null
      */
     public function getDestination()
     {
-        return isset($this->destination) ? $this->destination : 0;
+        return $this->destination;
     }
 
     public function hasDestination()
@@ -82,12 +82,12 @@ class IssueSeverityPerDestination extends \Google\Protobuf\Internal\Message
      * Destination the issue applies to.
      *
      * Generated from protobuf field <code>optional .google.shopping.type.Destination destination = 1;</code>
-     * @param int $var
+     * @param \Google\Shopping\Type\Destination $var
      * @return $this
      */
     public function setDestination($var)
     {
-        GPBUtil::checkEnum($var, \Google\Shopping\Type\Destination::class);
+        GPBUtil::checkMessage($var, \Google\Shopping\Type\Destination::class);
         $this->destination = $var;
 
         return $this;

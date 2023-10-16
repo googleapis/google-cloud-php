@@ -19,10 +19,10 @@
     },
     "require": {
         "php": ">=7.4",
-        "google/gax": "^1.19.1"
+        "google/gax": "^1.24.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0",
-        "google/cloud-core": "^1.39"
+        "google/cloud-core": "^1.52.7"
     }
 }

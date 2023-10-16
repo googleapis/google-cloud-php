@@ -20,7 +20,7 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string email = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $email = '';
+    private $email = '';
     /**
      * Output only. The list of scopes to be made available for this service
      * account. Set by the CLH to https://www.googleapis.com/auth/cloud-platform

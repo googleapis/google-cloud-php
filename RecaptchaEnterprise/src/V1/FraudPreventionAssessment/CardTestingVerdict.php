@@ -17,8 +17,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class CardTestingVerdict extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Probability (0-1) of this transaction attempt being part of a card
-     * testing attack.
+     * Probability of this transaction attempt being part of a card testing
+     * attack.
+     * Values are from 0.0 (lowest) to 1.0 (highest).
      *
      * Generated from protobuf field <code>float risk = 1;</code>
      */
@@ -31,8 +32,9 @@ class CardTestingVerdict extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type float $risk
-     *           Probability (0-1) of this transaction attempt being part of a card
-     *           testing attack.
+     *           Probability of this transaction attempt being part of a card testing
+     *           attack.
+     *           Values are from 0.0 (lowest) to 1.0 (highest).
      * }
      */
     public function __construct($data = NULL) {
@@ -41,8 +43,9 @@ class CardTestingVerdict extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Probability (0-1) of this transaction attempt being part of a card
-     * testing attack.
+     * Probability of this transaction attempt being part of a card testing
+     * attack.
+     * Values are from 0.0 (lowest) to 1.0 (highest).
      *
      * Generated from protobuf field <code>float risk = 1;</code>
      * @return float
@@ -53,8 +56,9 @@ class CardTestingVerdict extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Probability (0-1) of this transaction attempt being part of a card
-     * testing attack.
+     * Probability of this transaction attempt being part of a card testing
+     * attack.
+     * Values are from 0.0 (lowest) to 1.0 (highest).
      *
      * Generated from protobuf field <code>float risk = 1;</code>
      * @param float $var

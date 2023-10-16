@@ -27,8 +27,9 @@ class PriceCompetitivenessProductView extends \Google\Protobuf\Internal\Message
      */
     protected $report_country_code = null;
     /**
-     * REST ID of the product, in the form of languageCode~feedLabel~offerId. Can
-     * be used to join data with the `product_view` table.
+     * REST ID of the product, in the form of
+     * `channel~languageCode~feedLabel~offerId`. Can be used to join data with the
+     * `product_view` table.
      * Required in the `SELECT` clause.
      *
      * Generated from protobuf field <code>optional string id = 2;</code>
@@ -146,8 +147,9 @@ class PriceCompetitivenessProductView extends \Google\Protobuf\Internal\Message
      *           Country of the price benchmark. Represented in the ISO 3166 format.
      *           Required in the `SELECT` clause.
      *     @type string $id
-     *           REST ID of the product, in the form of languageCode~feedLabel~offerId. Can
-     *           be used to join data with the `product_view` table.
+     *           REST ID of the product, in the form of
+     *           `channel~languageCode~feedLabel~offerId`. Can be used to join data with the
+     *           `product_view` table.
      *           Required in the `SELECT` clause.
      *     @type string $offer_id
      *           Merchant-provided id of the product.
@@ -236,8 +238,9 @@ class PriceCompetitivenessProductView extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * REST ID of the product, in the form of languageCode~feedLabel~offerId. Can
-     * be used to join data with the `product_view` table.
+     * REST ID of the product, in the form of
+     * `channel~languageCode~feedLabel~offerId`. Can be used to join data with the
+     * `product_view` table.
      * Required in the `SELECT` clause.
      *
      * Generated from protobuf field <code>optional string id = 2;</code>
@@ -259,8 +262,9 @@ class PriceCompetitivenessProductView extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * REST ID of the product, in the form of languageCode~feedLabel~offerId. Can
-     * be used to join data with the `product_view` table.
+     * REST ID of the product, in the form of
+     * `channel~languageCode~feedLabel~offerId`. Can be used to join data with the
+     * `product_view` table.
      * Required in the `SELECT` clause.
      *
      * Generated from protobuf field <code>optional string id = 2;</code>

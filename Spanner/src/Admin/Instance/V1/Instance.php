@@ -42,8 +42,10 @@ class Instance extends \Google\Protobuf\Internal\Message
     private $display_name = '';
     /**
      * The number of nodes allocated to this instance. At most one of either
-     * node_count or processing_units should be present in the message. This
-     * may be zero in API responses for instances that are not yet in state
+     * node_count or processing_units should be present in the message.
+     * Users can set the node_count field to specify the target number of nodes
+     * allocated to the instance.
+     * This may be zero in API responses for instances that are not yet in state
      * `READY`.
      * See [the
      * documentation](https://cloud.google.com/spanner/docs/compute-capacity)
@@ -54,8 +56,11 @@ class Instance extends \Google\Protobuf\Internal\Message
     private $node_count = 0;
     /**
      * The number of processing units allocated to this instance. At most one of
-     * processing_units or node_count should be present in the message. This may
-     * be zero in API responses for instances that are not yet in state `READY`.
+     * processing_units or node_count should be present in the message.
+     * Users can set the processing_units field to specify the target number of
+     * processing units allocated to the instance.
+     * This may be zero in API responses for instances that are not yet in state
+     * `READY`.
      * See [the
      * documentation](https://cloud.google.com/spanner/docs/compute-capacity)
      * for more information about nodes and processing units.
@@ -63,6 +68,15 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 processing_units = 9;</code>
      */
     private $processing_units = 0;
+    /**
+     * Optional. The autoscaling configuration. Autoscaling is enabled if this
+     * field is set. When autoscaling is enabled, node_count and processing_units
+     * are treated as OUTPUT_ONLY fields and reflect the current compute capacity
+     * allocated to the instance.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.AutoscalingConfig autoscaling_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $autoscaling_config = null;
     /**
      * Output only. The current instance state. For
      * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance],
@@ -136,19 +150,29 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Must be unique per project and between 4 and 30 characters in length.
      *     @type int $node_count
      *           The number of nodes allocated to this instance. At most one of either
-     *           node_count or processing_units should be present in the message. This
-     *           may be zero in API responses for instances that are not yet in state
+     *           node_count or processing_units should be present in the message.
+     *           Users can set the node_count field to specify the target number of nodes
+     *           allocated to the instance.
+     *           This may be zero in API responses for instances that are not yet in state
      *           `READY`.
      *           See [the
      *           documentation](https://cloud.google.com/spanner/docs/compute-capacity)
      *           for more information about nodes and processing units.
      *     @type int $processing_units
      *           The number of processing units allocated to this instance. At most one of
-     *           processing_units or node_count should be present in the message. This may
-     *           be zero in API responses for instances that are not yet in state `READY`.
+     *           processing_units or node_count should be present in the message.
+     *           Users can set the processing_units field to specify the target number of
+     *           processing units allocated to the instance.
+     *           This may be zero in API responses for instances that are not yet in state
+     *           `READY`.
      *           See [the
      *           documentation](https://cloud.google.com/spanner/docs/compute-capacity)
      *           for more information about nodes and processing units.
+     *     @type \Google\Cloud\Spanner\Admin\Instance\V1\AutoscalingConfig $autoscaling_config
+     *           Optional. The autoscaling configuration. Autoscaling is enabled if this
+     *           field is set. When autoscaling is enabled, node_count and processing_units
+     *           are treated as OUTPUT_ONLY fields and reflect the current compute capacity
+     *           allocated to the instance.
      *     @type int $state
      *           Output only. The current instance state. For
      *           [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance],
@@ -281,8 +305,10 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * The number of nodes allocated to this instance. At most one of either
-     * node_count or processing_units should be present in the message. This
-     * may be zero in API responses for instances that are not yet in state
+     * node_count or processing_units should be present in the message.
+     * Users can set the node_count field to specify the target number of nodes
+     * allocated to the instance.
+     * This may be zero in API responses for instances that are not yet in state
      * `READY`.
      * See [the
      * documentation](https://cloud.google.com/spanner/docs/compute-capacity)
@@ -298,8 +324,10 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * The number of nodes allocated to this instance. At most one of either
-     * node_count or processing_units should be present in the message. This
-     * may be zero in API responses for instances that are not yet in state
+     * node_count or processing_units should be present in the message.
+     * Users can set the node_count field to specify the target number of nodes
+     * allocated to the instance.
+     * This may be zero in API responses for instances that are not yet in state
      * `READY`.
      * See [the
      * documentation](https://cloud.google.com/spanner/docs/compute-capacity)
@@ -319,8 +347,11 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * The number of processing units allocated to this instance. At most one of
-     * processing_units or node_count should be present in the message. This may
-     * be zero in API responses for instances that are not yet in state `READY`.
+     * processing_units or node_count should be present in the message.
+     * Users can set the processing_units field to specify the target number of
+     * processing units allocated to the instance.
+     * This may be zero in API responses for instances that are not yet in state
+     * `READY`.
      * See [the
      * documentation](https://cloud.google.com/spanner/docs/compute-capacity)
      * for more information about nodes and processing units.
@@ -335,8 +366,11 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * The number of processing units allocated to this instance. At most one of
-     * processing_units or node_count should be present in the message. This may
-     * be zero in API responses for instances that are not yet in state `READY`.
+     * processing_units or node_count should be present in the message.
+     * Users can set the processing_units field to specify the target number of
+     * processing units allocated to the instance.
+     * This may be zero in API responses for instances that are not yet in state
+     * `READY`.
      * See [the
      * documentation](https://cloud.google.com/spanner/docs/compute-capacity)
      * for more information about nodes and processing units.
@@ -349,6 +383,48 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->processing_units = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The autoscaling configuration. Autoscaling is enabled if this
+     * field is set. When autoscaling is enabled, node_count and processing_units
+     * are treated as OUTPUT_ONLY fields and reflect the current compute capacity
+     * allocated to the instance.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.AutoscalingConfig autoscaling_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Spanner\Admin\Instance\V1\AutoscalingConfig|null
+     */
+    public function getAutoscalingConfig()
+    {
+        return $this->autoscaling_config;
+    }
+
+    public function hasAutoscalingConfig()
+    {
+        return isset($this->autoscaling_config);
+    }
+
+    public function clearAutoscalingConfig()
+    {
+        unset($this->autoscaling_config);
+    }
+
+    /**
+     * Optional. The autoscaling configuration. Autoscaling is enabled if this
+     * field is set. When autoscaling is enabled, node_count and processing_units
+     * are treated as OUTPUT_ONLY fields and reflect the current compute capacity
+     * allocated to the instance.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.AutoscalingConfig autoscaling_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Spanner\Admin\Instance\V1\AutoscalingConfig $var
+     * @return $this
+     */
+    public function setAutoscalingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\Admin\Instance\V1\AutoscalingConfig::class);
+        $this->autoscaling_config = $var;
 
         return $this;
     }

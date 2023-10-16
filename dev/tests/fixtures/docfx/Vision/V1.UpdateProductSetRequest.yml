@@ -23,6 +23,7 @@ items:
       - '\Google\Cloud\Vision\V1\UpdateProductSetRequest::hasUpdateMask()'
       - '\Google\Cloud\Vision\V1\UpdateProductSetRequest::clearUpdateMask()'
       - '\Google\Cloud\Vision\V1\UpdateProductSetRequest::setUpdateMask()'
+      - '\Google\Cloud\Vision\V1\UpdateProductSetRequest::build()'
   -
     uid: '\Google\Cloud\Vision\V1\UpdateProductSetRequest::__construct()'
     name: __construct
@@ -150,3 +151,28 @@ items:
       returns:
         -
           var_type: $this
+  -
+    uid: '\Google\Cloud\Vision\V1\UpdateProductSetRequest::build()'
+    name: 'static::build'
+    id: build
+    parent: \Google\Cloud\Vision\V1\UpdateProductSetRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: productSet
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">Google\Cloud\Vision\V1\ProductSet</xref>'
+          description: 'Required. The ProductSet resource which replaces the one on the server.'
+        -
+          id: updateMask
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/FieldMask">Google\Protobuf\FieldMask</a>'
+          description: |-
+            The <a href="https://protobuf.dev/reference/php/api-docs/FieldMask">FieldMask</a> that specifies which fields to
+            update.
+            If update_mask isn't specified, all mutable fields are to be updated.
+            Valid mask path is `display_name`.
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\UpdateProductSetRequest">Google\Cloud\Vision\V1\UpdateProductSetRequest</xref>'

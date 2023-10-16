@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START merchantapi_v1beta_generated_RegionalInventoryService_InsertRegionalInventory_sync]
 use Google\ApiCore\ApiException;
+use Google\Shopping\Merchant\Inventories\V1beta\Client\RegionalInventoryServiceClient;
+use Google\Shopping\Merchant\Inventories\V1beta\InsertRegionalInventoryRequest;
 use Google\Shopping\Merchant\Inventories\V1beta\RegionalInventory;
-use Google\Shopping\Merchant\Inventories\V1beta\RegionalInventoryServiceClient;
 
 /**
  * Inserts a `RegionalInventory` to a given product in your
@@ -50,14 +51,17 @@ function insert_regional_inventory_sample(string $parent, string $regionalInvent
     // Create a client.
     $regionalInventoryServiceClient = new RegionalInventoryServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $regionalInventory = (new RegionalInventory())
         ->setRegion($regionalInventoryRegion);
+    $request = (new InsertRegionalInventoryRequest())
+        ->setParent($parent)
+        ->setRegionalInventory($regionalInventory);
 
     // Call the API and handle any network failures.
     try {
         /** @var RegionalInventory $response */
-        $response = $regionalInventoryServiceClient->insertRegionalInventory($parent, $regionalInventory);
+        $response = $regionalInventoryServiceClient->insertRegionalInventory($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

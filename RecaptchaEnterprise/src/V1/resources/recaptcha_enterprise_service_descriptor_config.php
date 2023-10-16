@@ -27,6 +27,18 @@ return [
                     ],
                 ],
             ],
+            'CreateFirewallPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateKey' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\RecaptchaEnterprise\V1\Key',
@@ -39,9 +51,33 @@ return [
                     ],
                 ],
             ],
+            'DeleteFirewallPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteKey' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetFirewallPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicy',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -71,6 +107,26 @@ return [
                         'keyName' => 'name',
                         'fieldAccessors' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListFirewallPolicies' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getFirewallPolicies',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\RecaptchaEnterprise\V1\ListFirewallPoliciesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -179,6 +235,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateFirewallPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'firewall_policy.name',
+                        'fieldAccessors' => [
+                            'getFirewallPolicy',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateKey' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\RecaptchaEnterprise\V1\Key',
@@ -194,6 +263,7 @@ return [
             ],
             'templateMap' => [
                 'assessment' => 'projects/{project}/assessments/{assessment}',
+                'firewallPolicy' => 'projects/{project}/firewallpolicies/{firewallpolicy}',
                 'key' => 'projects/{project}/keys/{key}',
                 'metrics' => 'projects/{project}/keys/{key}/metrics',
                 'project' => 'projects/{project}',

@@ -76,6 +76,21 @@ class DocFxCommandTest extends TestCase
         $this->assertFileEqualsWithDiff($left, $right, '1' === getenv('UPDATE_FIXTURES'));
     }
 
+    public function testGenerateSnippetsStructureXml()
+    {
+        $structureXml = __DIR__ . '/../../fixtures/phpdoc/clientsnippets.xml';
+        $componentPath = __DIR__ . '/../../fixtures/component/ClientSnippets';
+
+        $process = DocFxCommand::getPhpDocCommand($componentPath, self::$tmpDir);
+        $process->mustRun();
+
+        $this->assertFileEqualsWithDiff(
+            $structureXml,
+            self::$tmpDir . '/structure.xml',
+            '1' === getenv('UPDATE_FIXTURES')
+        );
+    }
+
     public function testGenerateDocFxFiles()
     {
         $fixturesFiles = array_diff(scandir(self::$fixturesDir . '/docfx/Vision'), ['..', '.']);
@@ -92,7 +107,7 @@ class DocFxCommandTest extends TestCase
     {
         $this->assertTrue(
             file_exists(self::$fixturesDir . '/docfx/Vision/' . $file),
-            sprintf('%s does not exist in fixtures (%s)', $file, self::$tmpDir . '/' . $file)
+            sprintf('tests/fixtures/docfx/%s does not exist (%s)', $file, self::$tmpDir . '/' . $file)
         );
 
         $left  = self::$fixturesDir . '/docfx/Vision/' . $file;

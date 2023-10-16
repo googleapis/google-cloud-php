@@ -32,7 +32,7 @@ use Google\Cloud\RecaptchaEnterprise\V1\RelatedAccountGroup;
  * List groups of related accounts.
  *
  * @param string $formattedParent The name of the project to list related account groups from, in
- *                                the format "projects/{project}". Please see
+ *                                the format `projects/{project}`. Please see
  *                                {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
  */
 function list_related_account_groups_sample(string $formattedParent): void

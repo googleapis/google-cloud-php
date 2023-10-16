@@ -20,8 +20,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class PriceInsightsProductView extends \Google\Protobuf\Internal\Message
 {
     /**
-     * REST ID of the product, in the form of languageCode~feedLabel~offerId. Can
-     * be used to join data with the `product_view` table.
+     * REST ID of the product, in the form of
+     * `channel~languageCode~feedLabel~offerId`. Can be used to join data with the
+     * `product_view` table.
      * Required in the `SELECT` clause.
      *
      * Generated from protobuf field <code>optional string id = 1;</code>
@@ -151,21 +152,6 @@ class PriceInsightsProductView extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional double predicted_conversions_change_fraction = 19;</code>
      */
     protected $predicted_conversions_change_fraction = null;
-    /**
-     * Predicted change in gross profit as a fraction after introducing the
-     * suggested price compared to current active price. For example, 0.05 is a 5%
-     * predicted increase in gross profit.
-     *
-     * Generated from protobuf field <code>optional double predicted_gross_profit_change_fraction = 20;</code>
-     */
-    protected $predicted_gross_profit_change_fraction = null;
-    /**
-     * Predicted change in gross profit after introducing the suggested price
-     * for a month compared to current active price.
-     *
-     * Generated from protobuf field <code>.google.shopping.type.Price predicted_monthly_gross_profit_change = 21;</code>
-     */
-    protected $predicted_monthly_gross_profit_change = null;
 
     /**
      * Constructor.
@@ -174,8 +160,9 @@ class PriceInsightsProductView extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $id
-     *           REST ID of the product, in the form of languageCode~feedLabel~offerId. Can
-     *           be used to join data with the `product_view` table.
+     *           REST ID of the product, in the form of
+     *           `channel~languageCode~feedLabel~offerId`. Can be used to join data with the
+     *           `product_view` table.
      *           Required in the `SELECT` clause.
      *     @type string $offer_id
      *           Merchant-provided id of the product.
@@ -229,13 +216,6 @@ class PriceInsightsProductView extends \Google\Protobuf\Internal\Message
      *           Predicted change in conversions as a fraction after introducing the
      *           suggested price compared to current active price. For example, 0.05 is a 5%
      *           predicted increase in conversions).
-     *     @type float $predicted_gross_profit_change_fraction
-     *           Predicted change in gross profit as a fraction after introducing the
-     *           suggested price compared to current active price. For example, 0.05 is a 5%
-     *           predicted increase in gross profit.
-     *     @type \Google\Shopping\Type\Price $predicted_monthly_gross_profit_change
-     *           Predicted change in gross profit after introducing the suggested price
-     *           for a month compared to current active price.
      * }
      */
     public function __construct($data = NULL) {
@@ -244,8 +224,9 @@ class PriceInsightsProductView extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * REST ID of the product, in the form of languageCode~feedLabel~offerId. Can
-     * be used to join data with the `product_view` table.
+     * REST ID of the product, in the form of
+     * `channel~languageCode~feedLabel~offerId`. Can be used to join data with the
+     * `product_view` table.
      * Required in the `SELECT` clause.
      *
      * Generated from protobuf field <code>optional string id = 1;</code>
@@ -267,8 +248,9 @@ class PriceInsightsProductView extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * REST ID of the product, in the form of languageCode~feedLabel~offerId. Can
-     * be used to join data with the `product_view` table.
+     * REST ID of the product, in the form of
+     * `channel~languageCode~feedLabel~offerId`. Can be used to join data with the
+     * `product_view` table.
      * Required in the `SELECT` clause.
      *
      * Generated from protobuf field <code>optional string id = 1;</code>
@@ -959,84 +941,6 @@ class PriceInsightsProductView extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkDouble($var);
         $this->predicted_conversions_change_fraction = $var;
-
-        return $this;
-    }
-
-    /**
-     * Predicted change in gross profit as a fraction after introducing the
-     * suggested price compared to current active price. For example, 0.05 is a 5%
-     * predicted increase in gross profit.
-     *
-     * Generated from protobuf field <code>optional double predicted_gross_profit_change_fraction = 20;</code>
-     * @return float
-     */
-    public function getPredictedGrossProfitChangeFraction()
-    {
-        return isset($this->predicted_gross_profit_change_fraction) ? $this->predicted_gross_profit_change_fraction : 0.0;
-    }
-
-    public function hasPredictedGrossProfitChangeFraction()
-    {
-        return isset($this->predicted_gross_profit_change_fraction);
-    }
-
-    public function clearPredictedGrossProfitChangeFraction()
-    {
-        unset($this->predicted_gross_profit_change_fraction);
-    }
-
-    /**
-     * Predicted change in gross profit as a fraction after introducing the
-     * suggested price compared to current active price. For example, 0.05 is a 5%
-     * predicted increase in gross profit.
-     *
-     * Generated from protobuf field <code>optional double predicted_gross_profit_change_fraction = 20;</code>
-     * @param float $var
-     * @return $this
-     */
-    public function setPredictedGrossProfitChangeFraction($var)
-    {
-        GPBUtil::checkDouble($var);
-        $this->predicted_gross_profit_change_fraction = $var;
-
-        return $this;
-    }
-
-    /**
-     * Predicted change in gross profit after introducing the suggested price
-     * for a month compared to current active price.
-     *
-     * Generated from protobuf field <code>.google.shopping.type.Price predicted_monthly_gross_profit_change = 21;</code>
-     * @return \Google\Shopping\Type\Price|null
-     */
-    public function getPredictedMonthlyGrossProfitChange()
-    {
-        return $this->predicted_monthly_gross_profit_change;
-    }
-
-    public function hasPredictedMonthlyGrossProfitChange()
-    {
-        return isset($this->predicted_monthly_gross_profit_change);
-    }
-
-    public function clearPredictedMonthlyGrossProfitChange()
-    {
-        unset($this->predicted_monthly_gross_profit_change);
-    }
-
-    /**
-     * Predicted change in gross profit after introducing the suggested price
-     * for a month compared to current active price.
-     *
-     * Generated from protobuf field <code>.google.shopping.type.Price predicted_monthly_gross_profit_change = 21;</code>
-     * @param \Google\Shopping\Type\Price $var
-     * @return $this
-     */
-    public function setPredictedMonthlyGrossProfitChange($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Shopping\Type\Price::class);
-        $this->predicted_monthly_gross_profit_change = $var;
 
         return $this;
     }

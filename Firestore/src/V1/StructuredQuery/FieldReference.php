@@ -16,9 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class FieldReference extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The relative path of the document being referenced.
+     * A reference to a field in a document.
      * Requires:
-     * * Conform to [document field name][google.firestore.v1.Document.fields]
+     * * MUST be a dot-delimited (`.`) string of segments, where each segment
+     * conforms to [document field name][google.firestore.v1.Document.fields]
      * limitations.
      *
      * Generated from protobuf field <code>string field_path = 2;</code>
@@ -32,9 +33,10 @@ class FieldReference extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $field_path
-     *           The relative path of the document being referenced.
+     *           A reference to a field in a document.
      *           Requires:
-     *           * Conform to [document field name][google.firestore.v1.Document.fields]
+     *           * MUST be a dot-delimited (`.`) string of segments, where each segment
+     *           conforms to [document field name][google.firestore.v1.Document.fields]
      *           limitations.
      * }
      */
@@ -44,9 +46,10 @@ class FieldReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The relative path of the document being referenced.
+     * A reference to a field in a document.
      * Requires:
-     * * Conform to [document field name][google.firestore.v1.Document.fields]
+     * * MUST be a dot-delimited (`.`) string of segments, where each segment
+     * conforms to [document field name][google.firestore.v1.Document.fields]
      * limitations.
      *
      * Generated from protobuf field <code>string field_path = 2;</code>
@@ -58,9 +61,10 @@ class FieldReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The relative path of the document being referenced.
+     * A reference to a field in a document.
      * Requires:
-     * * Conform to [document field name][google.firestore.v1.Document.fields]
+     * * MUST be a dot-delimited (`.`) string of segments, where each segment
+     * conforms to [document field name][google.firestore.v1.Document.fields]
      * limitations.
      *
      * Generated from protobuf field <code>string field_path = 2;</code>

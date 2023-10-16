@@ -4,59 +4,31 @@
 
 namespace Google\Shopping\Merchant\Reports\V1beta;
 
-use UnexpectedValueException;
+use Google\Protobuf\Internal\GPBType;
+use Google\Protobuf\Internal\RepeatedField;
+use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Granularity of the Best sellers report. Best sellers reports are computed
  * over a week and a month timeframe.
  *
- * Protobuf type <code>google.shopping.merchant.reports.v1beta.ReportGranularity</code>
+ * Generated from protobuf message <code>google.shopping.merchant.reports.v1beta.ReportGranularity</code>
  */
-class ReportGranularity
+class ReportGranularity extends \Google\Protobuf\Internal\Message
 {
-    /**
-     * Not specified.
-     *
-     * Generated from protobuf enum <code>REPORT_GRANULARITY_UNSPECIFIED = 0;</code>
-     */
-    const REPORT_GRANULARITY_UNSPECIFIED = 0;
-    /**
-     * Report is computed over a week timeframe.
-     *
-     * Generated from protobuf enum <code>WEEKLY = 1;</code>
-     */
-    const WEEKLY = 1;
-    /**
-     * Report is computed over a month timeframe.
-     *
-     * Generated from protobuf enum <code>MONTHLY = 2;</code>
-     */
-    const MONTHLY = 2;
 
-    private static $valueToName = [
-        self::REPORT_GRANULARITY_UNSPECIFIED => 'REPORT_GRANULARITY_UNSPECIFIED',
-        self::WEEKLY => 'WEEKLY',
-        self::MONTHLY => 'MONTHLY',
-    ];
-
-    public static function name($value)
-    {
-        if (!isset(self::$valueToName[$value])) {
-            throw new UnexpectedValueException(sprintf(
-                    'Enum %s has no name defined for value %s', __CLASS__, $value));
-        }
-        return self::$valueToName[$value];
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     * }
+     */
+    public function __construct($data = NULL) {
+        \GPBMetadata\Google\Shopping\Merchant\Reports\V1Beta\Reports::initOnce();
+        parent::__construct($data);
     }
 
-
-    public static function value($name)
-    {
-        $const = __CLASS__ . '::' . strtoupper($name);
-        if (!defined($const)) {
-            throw new UnexpectedValueException(sprintf(
-                    'Enum %s has no value defined for name %s', __CLASS__, $name));
-        }
-        return constant($const);
-    }
 }
 

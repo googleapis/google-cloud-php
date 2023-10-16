@@ -39,12 +39,20 @@ class WafFeature
      * Generated from protobuf enum <code>ACTION_TOKEN = 3;</code>
      */
     const ACTION_TOKEN = 3;
+    /**
+     * Use reCAPTCHA WAF express protection to protect any content other than
+     * web pages, like APIs and IoT devices.
+     *
+     * Generated from protobuf enum <code>EXPRESS = 5;</code>
+     */
+    const EXPRESS = 5;
 
     private static $valueToName = [
         self::WAF_FEATURE_UNSPECIFIED => 'WAF_FEATURE_UNSPECIFIED',
         self::CHALLENGE_PAGE => 'CHALLENGE_PAGE',
         self::SESSION_TOKEN => 'SESSION_TOKEN',
         self::ACTION_TOKEN => 'ACTION_TOKEN',
+        self::EXPRESS => 'EXPRESS',
     ];
 
     public static function name($value)
