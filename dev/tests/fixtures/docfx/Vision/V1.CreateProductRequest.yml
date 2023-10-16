@@ -23,6 +23,7 @@ items:
       - '\Google\Cloud\Vision\V1\CreateProductRequest::setProduct()'
       - '\Google\Cloud\Vision\V1\CreateProductRequest::getProductId()'
       - '\Google\Cloud\Vision\V1\CreateProductRequest::setProductId()'
+      - '\Google\Cloud\Vision\V1\CreateProductRequest::build()'
   -
     uid: '\Google\Cloud\Vision\V1\CreateProductRequest::__construct()'
     name: __construct
@@ -175,3 +176,37 @@ items:
       returns:
         -
           var_type: $this
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateProductRequest::build()'
+    name: 'static::build'
+    id: build
+    parent: \Google\Cloud\Vision\V1\CreateProductRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: parent
+          var_type: string
+          description: |-
+            Required. The project in which the Product should be created.
+
+            Format is
+            `projects/PROJECT_ID/locations/LOC_ID`. Please see
+            <xref uid="\Google\Cloud\Vision\V1\ProductSearchClient::locationName()">Google\Cloud\Vision\V1\ProductSearchClient::locationName()</xref> for help formatting this field.
+        -
+          id: product
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\Product">Google\Cloud\Vision\V1\Product</xref>'
+          description: 'Required. The product to create.'
+        -
+          id: productId
+          var_type: string
+          description: |-
+            A user-supplied resource id for this Product. If set, the server will
+            attempt to use this value as the resource id. If it is already in use, an
+            error is returned with code ALREADY_EXISTS. Must be at most 128 characters
+            long. It cannot contain the character `/`.
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\CreateProductRequest">Google\Cloud\Vision\V1\CreateProductRequest</xref>'

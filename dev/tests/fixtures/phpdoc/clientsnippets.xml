@@ -52,61 +52,7 @@ template only. It will require modifications to work:
 
             <parse_markers></parse_markers>
         </file>
-            <file path="src/V1/Client/BaseClient/ClientSnippetsBaseClient.php" hash="8a6c8baf74bb0e4f3abfced10949cfb7">
-            <docblock line="0">
-    <description></description>
-    <long-description></long-description>
-                    <tag
-                name="package"
-                description="Application"
-                                                                                                />
-            </docblock>
 
-
-
-                            <namespace-alias name="\Google\Cloud\ClientSnippets\Client\BaseClient"/>
-
-
-
-
-
-                                        <class final="false" abstract="true" namespace="\Google\Cloud\ClientSnippets\Client\BaseClient" line="5">
-                    <name>ClientSnippetsBaseClient</name>
-                    <full_name>\Google\Cloud\ClientSnippets\Client\BaseClient\ClientSnippetsBaseClient</full_name>
-                    <docblock line="5">
-    <description></description>
-    <long-description></long-description>
-                    <tag
-                name="package"
-                description="Application"
-                                                                                                />
-                        </docblock>
-
-
-
-
-
-                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\ClientSnippets\Client\BaseClient" line="10" visibility="public" returnByReference="false">
-    <name>anRpcMethod</name>
-    <full_name>\Google\Cloud\ClientSnippets\Client\BaseClient\ClientSnippetsBaseClient::anRpcMethod()</full_name>
-    <value></value>
-            <docblock line="10">
-    <description></description>
-    <long-description></long-description>
-                    <tag
-                name="example"
-                description="samples/V1/ClientSnippetsClient/an_rpc_method.php"
-                                                                                                />
-                        </docblock>
-
-</method>
-
-                                                                            </class>
-
-
-
-            <parse_markers></parse_markers>
-        </file>
             <file path="src/V1/Client/ClientSnippetsClient.php" hash="317420918e1ebf377a78940a73d66364">
             <docblock line="0">
     <description></description>
@@ -137,17 +83,15 @@ template only. It will require modifications to work:
                                                                                                 />
                         </docblock>
 
-                                            <extends>\Google\Cloud\ClientSnippets\Client\BaseClient\ClientSnippetsBaseClient</extends>
 
-
-
-                                                                <method final="false" abstract="false" static="false" namespace="\Google\Cloud\ClientSnippets\Client\BaseClient" line="10" visibility="public" returnByReference="false">
+                                                                <method final="false" abstract="false" static="false" namespace="\Google\Cloud\ClientSnippets\Client" line="10" visibility="public" returnByReference="false">
     <name>anRpcMethod</name>
-    <full_name>\Google\Cloud\ClientSnippets\Client\BaseClient\ClientSnippetsBaseClient::anRpcMethod()</full_name>
+    <full_name>\Google\Cloud\ClientSnippets\Client\ClientSnippetsClient::anRpcMethod()</full_name>
     <value></value>
-    <inherited_from>\Google\Cloud\ClientSnippets\Client\BaseClient\ClientSnippetsBaseClient</inherited_from>        <docblock line="10">
+    <docblock line="10">
     <description></description>
     <long-description></long-description>
+
                     <tag
                 name="example"
                 description="samples/V1/ClientSnippetsClient/an_rpc_method.php"
@@ -163,21 +107,13 @@ template only. It will require modifications to work:
             <parse_markers></parse_markers>
         </file>
 
-            <namespace name="BaseClient" full_name="\Google\Cloud\ClientSnippets\Client\BaseClient" />
-
-            <namespace name="Client" full_name="\Google\Cloud\ClientSnippets\Client">
-            <namespace name="BaseClient" full_name="\Google\Cloud\ClientSnippets\Client\BaseClient" />
-
-    </namespace>
+            <namespace name="Client" full_name="\Google\Cloud\ClientSnippets\Client" />
 
             <namespace name="\" full_name="\">
             <namespace name="Google" full_name="\Google">
             <namespace name="Cloud" full_name="\Google\Cloud">
             <namespace name="ClientSnippets" full_name="\Google\Cloud\ClientSnippets">
-            <namespace name="Client" full_name="\Google\Cloud\ClientSnippets\Client">
-            <namespace name="BaseClient" full_name="\Google\Cloud\ClientSnippets\Client\BaseClient" />
-
-    </namespace>
+            <namespace name="Client" full_name="\Google\Cloud\ClientSnippets\Client" />
 
     </namespace>
 
@@ -188,19 +124,13 @@ template only. It will require modifications to work:
     </namespace>
 
             <namespace name="ClientSnippets" full_name="\Google\Cloud\ClientSnippets">
-            <namespace name="Client" full_name="\Google\Cloud\ClientSnippets\Client">
-            <namespace name="BaseClient" full_name="\Google\Cloud\ClientSnippets\Client\BaseClient" />
-
-    </namespace>
+            <namespace name="Client" full_name="\Google\Cloud\ClientSnippets\Client" />
 
     </namespace>
 
             <namespace name="Cloud" full_name="\Google\Cloud">
             <namespace name="ClientSnippets" full_name="\Google\Cloud\ClientSnippets">
-            <namespace name="Client" full_name="\Google\Cloud\ClientSnippets\Client">
-            <namespace name="BaseClient" full_name="\Google\Cloud\ClientSnippets\Client\BaseClient" />
-
-    </namespace>
+            <namespace name="Client" full_name="\Google\Cloud\ClientSnippets\Client" />
 
     </namespace>
 
@@ -209,10 +139,7 @@ template only. It will require modifications to work:
             <namespace name="Google" full_name="\Google">
             <namespace name="Cloud" full_name="\Google\Cloud">
             <namespace name="ClientSnippets" full_name="\Google\Cloud\ClientSnippets">
-            <namespace name="Client" full_name="\Google\Cloud\ClientSnippets\Client">
-            <namespace name="BaseClient" full_name="\Google\Cloud\ClientSnippets\Client\BaseClient" />
-
-    </namespace>
+            <namespace name="Client" full_name="\Google\Cloud\ClientSnippets\Client" />
 
     </namespace>
 

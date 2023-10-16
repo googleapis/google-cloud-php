@@ -92,7 +92,7 @@ class DocFxCommandTest extends TestCase
     {
         $this->assertTrue(
             file_exists(self::$fixturesDir . '/docfx/Vision/' . $file),
-            sprintf('%s does not exist in fixtures (%s)', $file, self::$tmpDir . '/' . $file)
+            sprintf('tests/fixtures/docfx/%s does not exist (%s)', $file, self::$tmpDir . '/' . $file)
         );
 
         $left  = self::$fixturesDir . '/docfx/Vision/' . $file;
