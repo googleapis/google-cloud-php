@@ -286,7 +286,7 @@ final class ApiKeysClient
      * NOTE: Key is a global resource; hence the only supported value for
      * location is `global`.
      *
-     * The async variant is {@see ApiKeysGapicClient::createKeyAsync()} .
+     * The async variant is {@see ApiKeysClient::createKeyAsync()} .
      *
      * @example samples/V2/ApiKeysClient/create_key.php
      *
@@ -316,7 +316,7 @@ final class ApiKeysClient
      * NOTE: Key is a global resource; hence the only supported value for
      * location is `global`.
      *
-     * The async variant is {@see ApiKeysGapicClient::deleteKeyAsync()} .
+     * The async variant is {@see ApiKeysClient::deleteKeyAsync()} .
      *
      * @example samples/V2/ApiKeysClient/delete_key.php
      *
@@ -346,7 +346,7 @@ final class ApiKeysClient
      * NOTE: Key is a global resource; hence the only supported value for
      * location is `global`.
      *
-     * The async variant is {@see ApiKeysGapicClient::getKeyAsync()} .
+     * The async variant is {@see ApiKeysClient::getKeyAsync()} .
      *
      * @example samples/V2/ApiKeysClient/get_key.php
      *
@@ -375,7 +375,7 @@ final class ApiKeysClient
      * NOTE: Key is a global resource; hence the only supported value for
      * location is `global`.
      *
-     * The async variant is {@see ApiKeysGapicClient::getKeyStringAsync()} .
+     * The async variant is {@see ApiKeysClient::getKeyStringAsync()} .
      *
      * @example samples/V2/ApiKeysClient/get_key_string.php
      *
@@ -405,7 +405,7 @@ final class ApiKeysClient
      * NOTE: Key is a global resource; hence the only supported value for
      * location is `global`.
      *
-     * The async variant is {@see ApiKeysGapicClient::listKeysAsync()} .
+     * The async variant is {@see ApiKeysClient::listKeysAsync()} .
      *
      * @example samples/V2/ApiKeysClient/list_keys.php
      *
@@ -435,7 +435,7 @@ final class ApiKeysClient
      * The service account must have the `apikeys.keys.lookup` permission
      * on the parent project.
      *
-     * The async variant is {@see ApiKeysGapicClient::lookupKeyAsync()} .
+     * The async variant is {@see ApiKeysClient::lookupKeyAsync()} .
      *
      * @example samples/V2/ApiKeysClient/lookup_key.php
      *
@@ -464,7 +464,7 @@ final class ApiKeysClient
      * NOTE: Key is a global resource; hence the only supported value for
      * location is `global`.
      *
-     * The async variant is {@see ApiKeysGapicClient::undeleteKeyAsync()} .
+     * The async variant is {@see ApiKeysClient::undeleteKeyAsync()} .
      *
      * @example samples/V2/ApiKeysClient/undelete_key.php
      *
@@ -494,7 +494,7 @@ final class ApiKeysClient
      * NOTE: Key is a global resource; hence the only supported value for
      * location is `global`.
      *
-     * The async variant is {@see ApiKeysGapicClient::updateKeyAsync()} .
+     * The async variant is {@see ApiKeysClient::updateKeyAsync()} .
      *
      * @example samples/V2/ApiKeysClient/update_key.php
      *

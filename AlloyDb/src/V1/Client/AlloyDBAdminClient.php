@@ -451,8 +451,7 @@ final class AlloyDBAdminClient
      * for external customers to consume. Please do not start relying on it; its
      * behavior is subject to change without notice.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::batchCreateInstancesAsync()}
-     * .
+     * The async variant is {@see AlloyDBAdminClient::batchCreateInstancesAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/batch_create_instances.php
      *
@@ -478,7 +477,7 @@ final class AlloyDBAdminClient
     /**
      * Creates a new Backup in a given project and location.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::createBackupAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::createBackupAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/create_backup.php
      *
@@ -504,7 +503,7 @@ final class AlloyDBAdminClient
     /**
      * Creates a new Cluster in a given project and location.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::createClusterAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::createClusterAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/create_cluster.php
      *
@@ -530,7 +529,7 @@ final class AlloyDBAdminClient
     /**
      * Creates a new Instance in a given project and location.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::createInstanceAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::createInstanceAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/create_instance.php
      *
@@ -557,8 +556,7 @@ final class AlloyDBAdminClient
      * Creates a cluster of type SECONDARY in the given location using
      * the primary cluster as the source.
      *
-     * The async variant is
-     * {@see AlloyDBAdminGapicClient::createSecondaryClusterAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::createSecondaryClusterAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/create_secondary_cluster.php
      *
@@ -584,8 +582,7 @@ final class AlloyDBAdminClient
     /**
      * Creates a new SECONDARY Instance in a given project and location.
      *
-     * The async variant is
-     * {@see AlloyDBAdminGapicClient::createSecondaryInstanceAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::createSecondaryInstanceAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/create_secondary_instance.php
      *
@@ -611,7 +608,7 @@ final class AlloyDBAdminClient
     /**
      * Creates a new User in a given project, location, and cluster.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::createUserAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::createUserAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/create_user.php
      *
@@ -637,7 +634,7 @@ final class AlloyDBAdminClient
     /**
      * Deletes a single Backup.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::deleteBackupAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::deleteBackupAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/delete_backup.php
      *
@@ -663,7 +660,7 @@ final class AlloyDBAdminClient
     /**
      * Deletes a single Cluster.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::deleteClusterAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::deleteClusterAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/delete_cluster.php
      *
@@ -689,7 +686,7 @@ final class AlloyDBAdminClient
     /**
      * Deletes a single Instance.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::deleteInstanceAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::deleteInstanceAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/delete_instance.php
      *
@@ -715,7 +712,7 @@ final class AlloyDBAdminClient
     /**
      * Deletes a single User.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::deleteUserAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::deleteUserAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/delete_user.php
      *
@@ -741,7 +738,7 @@ final class AlloyDBAdminClient
      * Failover promotes the HA standby instance as the new primary.
      * Imperative only.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::failoverInstanceAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::failoverInstanceAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/failover_instance.php
      *
@@ -771,8 +768,8 @@ final class AlloyDBAdminClient
      * notice, so do not rely on its behavior remaining constant. Future changes
      * will not break AlloyDB connectors or the Auth Proxy client.
      *
-     * The async variant is
-     * {@see AlloyDBAdminGapicClient::generateClientCertificateAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::generateClientCertificateAsync()}
+     * .
      *
      * @example samples/V1/AlloyDBAdminClient/generate_client_certificate.php
      *
@@ -798,7 +795,7 @@ final class AlloyDBAdminClient
     /**
      * Gets details of a single Backup.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::getBackupAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::getBackupAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/get_backup.php
      *
@@ -824,7 +821,7 @@ final class AlloyDBAdminClient
     /**
      * Gets details of a single Cluster.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::getClusterAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::getClusterAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/get_cluster.php
      *
@@ -850,7 +847,7 @@ final class AlloyDBAdminClient
     /**
      * Get instance metadata used for a connection.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::getConnectionInfoAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::getConnectionInfoAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/get_connection_info.php
      *
@@ -876,7 +873,7 @@ final class AlloyDBAdminClient
     /**
      * Gets details of a single Instance.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::getInstanceAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::getInstanceAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/get_instance.php
      *
@@ -902,7 +899,7 @@ final class AlloyDBAdminClient
     /**
      * Gets details of a single User.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::getUserAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::getUserAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/get_user.php
      *
@@ -929,7 +926,7 @@ final class AlloyDBAdminClient
      * Injects fault in an instance.
      * Imperative only.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::injectFaultAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::injectFaultAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/inject_fault.php
      *
@@ -955,7 +952,7 @@ final class AlloyDBAdminClient
     /**
      * Lists Backups in a given project and location.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::listBackupsAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::listBackupsAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/list_backups.php
      *
@@ -981,7 +978,7 @@ final class AlloyDBAdminClient
     /**
      * Lists Clusters in a given project and location.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::listClustersAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::listClustersAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/list_clusters.php
      *
@@ -1007,7 +1004,7 @@ final class AlloyDBAdminClient
     /**
      * Lists Instances in a given project and location.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::listInstancesAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::listInstancesAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/list_instances.php
      *
@@ -1034,7 +1031,7 @@ final class AlloyDBAdminClient
      * Lists SupportedDatabaseFlags for a given project and location.
      *
      * The async variant is
-     * {@see AlloyDBAdminGapicClient::listSupportedDatabaseFlagsAsync()} .
+     * {@see AlloyDBAdminClient::listSupportedDatabaseFlagsAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/list_supported_database_flags.php
      *
@@ -1060,7 +1057,7 @@ final class AlloyDBAdminClient
     /**
      * Lists Users in a given project and location.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::listUsersAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::listUsersAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/list_users.php
      *
@@ -1089,7 +1086,7 @@ final class AlloyDBAdminClient
      * into its own standalone cluster.
      * Imperative only.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::promoteClusterAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::promoteClusterAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/promote_cluster.php
      *
@@ -1116,7 +1113,7 @@ final class AlloyDBAdminClient
      * Restart an Instance in a cluster.
      * Imperative only.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::restartInstanceAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::restartInstanceAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/restart_instance.php
      *
@@ -1144,7 +1141,7 @@ final class AlloyDBAdminClient
      * restored from the provided source, either a backup ID or a point-in-time
      * and a source cluster.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::restoreClusterAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::restoreClusterAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/restore_cluster.php
      *
@@ -1170,7 +1167,7 @@ final class AlloyDBAdminClient
     /**
      * Updates the parameters of a single Backup.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::updateBackupAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::updateBackupAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/update_backup.php
      *
@@ -1196,7 +1193,7 @@ final class AlloyDBAdminClient
     /**
      * Updates the parameters of a single Cluster.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::updateClusterAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::updateClusterAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/update_cluster.php
      *
@@ -1222,7 +1219,7 @@ final class AlloyDBAdminClient
     /**
      * Updates the parameters of a single Instance.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::updateInstanceAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::updateInstanceAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/update_instance.php
      *
@@ -1248,7 +1245,7 @@ final class AlloyDBAdminClient
     /**
      * Updates the parameters of a single User.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::updateUserAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::updateUserAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/update_user.php
      *
@@ -1274,7 +1271,7 @@ final class AlloyDBAdminClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::getLocationAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::getLocationAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/get_location.php
      *
@@ -1300,7 +1297,7 @@ final class AlloyDBAdminClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see AlloyDBAdminGapicClient::listLocationsAsync()} .
+     * The async variant is {@see AlloyDBAdminClient::listLocationsAsync()} .
      *
      * @example samples/V1/AlloyDBAdminClient/list_locations.php
      *

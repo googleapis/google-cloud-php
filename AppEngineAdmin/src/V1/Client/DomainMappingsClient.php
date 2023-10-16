@@ -210,8 +210,7 @@ final class DomainMappingsClient
      * domain in order to map it to an application. For a list of available
      * authorized domains, see [`AuthorizedDomains.ListAuthorizedDomains`]().
      *
-     * The async variant is
-     * {@see DomainMappingsGapicClient::createDomainMappingAsync()} .
+     * The async variant is {@see DomainMappingsClient::createDomainMappingAsync()} .
      *
      * @param CreateDomainMappingRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -237,8 +236,7 @@ final class DomainMappingsClient
      * administer the associated domain in order to delete a `DomainMapping`
      * resource.
      *
-     * The async variant is
-     * {@see DomainMappingsGapicClient::deleteDomainMappingAsync()} .
+     * The async variant is {@see DomainMappingsClient::deleteDomainMappingAsync()} .
      *
      * @param DeleteDomainMappingRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -262,7 +260,7 @@ final class DomainMappingsClient
     /**
      * Gets the specified domain mapping.
      *
-     * The async variant is {@see DomainMappingsGapicClient::getDomainMappingAsync()} .
+     * The async variant is {@see DomainMappingsClient::getDomainMappingAsync()} .
      *
      * @param GetDomainMappingRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -286,8 +284,7 @@ final class DomainMappingsClient
     /**
      * Lists the domain mappings on an application.
      *
-     * The async variant is {@see DomainMappingsGapicClient::listDomainMappingsAsync()}
-     * .
+     * The async variant is {@see DomainMappingsClient::listDomainMappingsAsync()} .
      *
      * @param ListDomainMappingsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -314,8 +311,7 @@ final class DomainMappingsClient
      * resource. A user must be authorized to administer the associated domain
      * in order to update a `DomainMapping` resource.
      *
-     * The async variant is
-     * {@see DomainMappingsGapicClient::updateDomainMappingAsync()} .
+     * The async variant is {@see DomainMappingsClient::updateDomainMappingAsync()} .
      *
      * @param UpdateDomainMappingRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {

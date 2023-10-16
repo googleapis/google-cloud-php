@@ -344,7 +344,7 @@ final class AppConnectionsServiceClient
      * Creates a new AppConnection in a given project and location.
      *
      * The async variant is
-     * {@see AppConnectionsServiceGapicClient::createAppConnectionAsync()} .
+     * {@see AppConnectionsServiceClient::createAppConnectionAsync()} .
      *
      * @example samples/V1/AppConnectionsServiceClient/create_app_connection.php
      *
@@ -371,7 +371,7 @@ final class AppConnectionsServiceClient
      * Deletes a single AppConnection.
      *
      * The async variant is
-     * {@see AppConnectionsServiceGapicClient::deleteAppConnectionAsync()} .
+     * {@see AppConnectionsServiceClient::deleteAppConnectionAsync()} .
      *
      * @example samples/V1/AppConnectionsServiceClient/delete_app_connection.php
      *
@@ -397,8 +397,8 @@ final class AppConnectionsServiceClient
     /**
      * Gets details of a single AppConnection.
      *
-     * The async variant is
-     * {@see AppConnectionsServiceGapicClient::getAppConnectionAsync()} .
+     * The async variant is {@see AppConnectionsServiceClient::getAppConnectionAsync()}
+     * .
      *
      * @example samples/V1/AppConnectionsServiceClient/get_app_connection.php
      *
@@ -425,7 +425,7 @@ final class AppConnectionsServiceClient
      * Lists AppConnections in a given project and location.
      *
      * The async variant is
-     * {@see AppConnectionsServiceGapicClient::listAppConnectionsAsync()} .
+     * {@see AppConnectionsServiceClient::listAppConnectionsAsync()} .
      *
      * @example samples/V1/AppConnectionsServiceClient/list_app_connections.php
      *
@@ -454,7 +454,7 @@ final class AppConnectionsServiceClient
      * to.
      *
      * The async variant is
-     * {@see AppConnectionsServiceGapicClient::resolveAppConnectionsAsync()} .
+     * {@see AppConnectionsServiceClient::resolveAppConnectionsAsync()} .
      *
      * @example samples/V1/AppConnectionsServiceClient/resolve_app_connections.php
      *
@@ -481,7 +481,7 @@ final class AppConnectionsServiceClient
      * Updates the parameters of a single AppConnection.
      *
      * The async variant is
-     * {@see AppConnectionsServiceGapicClient::updateAppConnectionAsync()} .
+     * {@see AppConnectionsServiceClient::updateAppConnectionAsync()} .
      *
      * @example samples/V1/AppConnectionsServiceClient/update_app_connection.php
      *
@@ -507,8 +507,7 @@ final class AppConnectionsServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see AppConnectionsServiceGapicClient::getLocationAsync()}
-     * .
+     * The async variant is {@see AppConnectionsServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/AppConnectionsServiceClient/get_location.php
      *
@@ -534,8 +533,7 @@ final class AppConnectionsServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is
-     * {@see AppConnectionsServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see AppConnectionsServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/AppConnectionsServiceClient/list_locations.php
      *
@@ -562,8 +560,7 @@ final class AppConnectionsServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is
-     * {@see AppConnectionsServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see AppConnectionsServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/AppConnectionsServiceClient/get_iam_policy.php
      *
@@ -593,8 +590,7 @@ final class AppConnectionsServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is
-     * {@see AppConnectionsServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see AppConnectionsServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/AppConnectionsServiceClient/set_iam_policy.php
      *
@@ -627,7 +623,7 @@ final class AppConnectionsServiceClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is
-     * {@see AppConnectionsServiceGapicClient::testIamPermissionsAsync()} .
+     * {@see AppConnectionsServiceClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/AppConnectionsServiceClient/test_iam_permissions.php
      *

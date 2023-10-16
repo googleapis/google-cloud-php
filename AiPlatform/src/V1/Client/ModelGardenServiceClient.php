@@ -225,8 +225,7 @@ final class ModelGardenServiceClient
     /**
      * Gets a Model Garden publisher model.
      *
-     * The async variant is
-     * {@see ModelGardenServiceGapicClient::getPublisherModelAsync()} .
+     * The async variant is {@see ModelGardenServiceClient::getPublisherModelAsync()} .
      *
      * @example samples/V1/ModelGardenServiceClient/get_publisher_model.php
      *
@@ -252,7 +251,7 @@ final class ModelGardenServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see ModelGardenServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see ModelGardenServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/ModelGardenServiceClient/get_location.php
      *
@@ -278,8 +277,7 @@ final class ModelGardenServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see ModelGardenServiceGapicClient::listLocationsAsync()}
-     * .
+     * The async variant is {@see ModelGardenServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/ModelGardenServiceClient/list_locations.php
      *
@@ -306,7 +304,7 @@ final class ModelGardenServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see ModelGardenServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see ModelGardenServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/ModelGardenServiceClient/get_iam_policy.php
      *
@@ -336,7 +334,7 @@ final class ModelGardenServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see ModelGardenServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see ModelGardenServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/ModelGardenServiceClient/set_iam_policy.php
      *
@@ -368,8 +366,8 @@ final class ModelGardenServiceClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is
-     * {@see ModelGardenServiceGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see ModelGardenServiceClient::testIamPermissionsAsync()}
+     * .
      *
      * @example samples/V1/ModelGardenServiceClient/test_iam_permissions.php
      *
