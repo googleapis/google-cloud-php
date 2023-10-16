@@ -296,7 +296,7 @@ final class MetadataServiceClient
     /**
      * Create a metadata entity.
      *
-     * The async variant is {@see MetadataServiceGapicClient::createEntityAsync()} .
+     * The async variant is {@see MetadataServiceClient::createEntityAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/create_entity.php
      *
@@ -322,7 +322,7 @@ final class MetadataServiceClient
     /**
      * Create a metadata partition.
      *
-     * The async variant is {@see MetadataServiceGapicClient::createPartitionAsync()} .
+     * The async variant is {@see MetadataServiceClient::createPartitionAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/create_partition.php
      *
@@ -348,7 +348,7 @@ final class MetadataServiceClient
     /**
      * Delete a metadata entity.
      *
-     * The async variant is {@see MetadataServiceGapicClient::deleteEntityAsync()} .
+     * The async variant is {@see MetadataServiceClient::deleteEntityAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/delete_entity.php
      *
@@ -372,7 +372,7 @@ final class MetadataServiceClient
     /**
      * Delete a metadata partition.
      *
-     * The async variant is {@see MetadataServiceGapicClient::deletePartitionAsync()} .
+     * The async variant is {@see MetadataServiceClient::deletePartitionAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/delete_partition.php
      *
@@ -396,7 +396,7 @@ final class MetadataServiceClient
     /**
      * Get a metadata entity.
      *
-     * The async variant is {@see MetadataServiceGapicClient::getEntityAsync()} .
+     * The async variant is {@see MetadataServiceClient::getEntityAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/get_entity.php
      *
@@ -422,7 +422,7 @@ final class MetadataServiceClient
     /**
      * Get a metadata partition of an entity.
      *
-     * The async variant is {@see MetadataServiceGapicClient::getPartitionAsync()} .
+     * The async variant is {@see MetadataServiceClient::getPartitionAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/get_partition.php
      *
@@ -448,7 +448,7 @@ final class MetadataServiceClient
     /**
      * List metadata entities in a zone.
      *
-     * The async variant is {@see MetadataServiceGapicClient::listEntitiesAsync()} .
+     * The async variant is {@see MetadataServiceClient::listEntitiesAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/list_entities.php
      *
@@ -474,7 +474,7 @@ final class MetadataServiceClient
     /**
      * List metadata partitions of an entity.
      *
-     * The async variant is {@see MetadataServiceGapicClient::listPartitionsAsync()} .
+     * The async variant is {@see MetadataServiceClient::listPartitionsAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/list_partitions.php
      *
@@ -500,7 +500,7 @@ final class MetadataServiceClient
     /**
      * Update a metadata entity. Only supports full resource update.
      *
-     * The async variant is {@see MetadataServiceGapicClient::updateEntityAsync()} .
+     * The async variant is {@see MetadataServiceClient::updateEntityAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/update_entity.php
      *
@@ -527,7 +527,7 @@ final class MetadataServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see MetadataServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see MetadataServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/get_iam_policy.php
      *
@@ -557,7 +557,7 @@ final class MetadataServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see MetadataServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see MetadataServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/set_iam_policy.php
      *
@@ -589,8 +589,7 @@ final class MetadataServiceClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is
-     * {@see MetadataServiceGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see MetadataServiceClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/test_iam_permissions.php
      *
@@ -616,7 +615,7 @@ final class MetadataServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see MetadataServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see MetadataServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/get_location.php
      *
@@ -642,7 +641,7 @@ final class MetadataServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see MetadataServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see MetadataServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/MetadataServiceClient/list_locations.php
      *

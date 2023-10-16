@@ -240,8 +240,8 @@ final class ConfidentialComputingClient
     /**
      * Creates a new Challenge in a given project and location.
      *
-     * The async variant is
-     * {@see ConfidentialComputingGapicClient::createChallengeAsync()} .
+     * The async variant is {@see ConfidentialComputingClient::createChallengeAsync()}
+     * .
      *
      * @example samples/V1/ConfidentialComputingClient/create_challenge.php
      *
@@ -268,7 +268,7 @@ final class ConfidentialComputingClient
      * Verifies the provided attestation info, returning a signed OIDC token.
      *
      * The async variant is
-     * {@see ConfidentialComputingGapicClient::verifyAttestationAsync()} .
+     * {@see ConfidentialComputingClient::verifyAttestationAsync()} .
      *
      * @example samples/V1/ConfidentialComputingClient/verify_attestation.php
      *
@@ -294,8 +294,7 @@ final class ConfidentialComputingClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see ConfidentialComputingGapicClient::getLocationAsync()}
-     * .
+     * The async variant is {@see ConfidentialComputingClient::getLocationAsync()} .
      *
      * @example samples/V1/ConfidentialComputingClient/get_location.php
      *
@@ -321,8 +320,7 @@ final class ConfidentialComputingClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is
-     * {@see ConfidentialComputingGapicClient::listLocationsAsync()} .
+     * The async variant is {@see ConfidentialComputingClient::listLocationsAsync()} .
      *
      * @example samples/V1/ConfidentialComputingClient/list_locations.php
      *

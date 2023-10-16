@@ -543,7 +543,7 @@ final class SessionsClient
      * See [Versions and
      * environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
      *
-     * The async variant is {@see SessionsGapicClient::detectIntentAsync()} .
+     * The async variant is {@see SessionsClient::detectIntentAsync()} .
      *
      * @param DetectIntentRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -599,7 +599,7 @@ final class SessionsClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see SessionsGapicClient::getLocationAsync()} .
+     * The async variant is {@see SessionsClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -623,7 +623,7 @@ final class SessionsClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see SessionsGapicClient::listLocationsAsync()} .
+     * The async variant is {@see SessionsClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

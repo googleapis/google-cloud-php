@@ -300,7 +300,7 @@ final class BatchControllerClient
     /**
      * Creates a batch workload that executes asynchronously.
      *
-     * The async variant is {@see BatchControllerGapicClient::createBatchAsync()} .
+     * The async variant is {@see BatchControllerClient::createBatchAsync()} .
      *
      * @param CreateBatchRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -325,7 +325,7 @@ final class BatchControllerClient
      * Deletes the batch workload resource. If the batch is not in terminal state,
      * the delete fails and the response returns `FAILED_PRECONDITION`.
      *
-     * The async variant is {@see BatchControllerGapicClient::deleteBatchAsync()} .
+     * The async variant is {@see BatchControllerClient::deleteBatchAsync()} .
      *
      * @param DeleteBatchRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -347,7 +347,7 @@ final class BatchControllerClient
     /**
      * Gets the batch workload resource representation.
      *
-     * The async variant is {@see BatchControllerGapicClient::getBatchAsync()} .
+     * The async variant is {@see BatchControllerClient::getBatchAsync()} .
      *
      * @param GetBatchRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -371,7 +371,7 @@ final class BatchControllerClient
     /**
      * Lists batch workloads.
      *
-     * The async variant is {@see BatchControllerGapicClient::listBatchesAsync()} .
+     * The async variant is {@see BatchControllerClient::listBatchesAsync()} .
      *
      * @param ListBatchesRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -396,7 +396,7 @@ final class BatchControllerClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see BatchControllerGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see BatchControllerClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -424,7 +424,7 @@ final class BatchControllerClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see BatchControllerGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see BatchControllerClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -454,8 +454,7 @@ final class BatchControllerClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is
-     * {@see BatchControllerGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see BatchControllerClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

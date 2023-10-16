@@ -221,7 +221,7 @@ final class JobControllerClient
      * or
      * [regions/{region}/jobs.get](https://cloud.google.com/dataproc/docs/reference/rest/v1/projects.regions.jobs/get).
      *
-     * The async variant is {@see JobControllerGapicClient::cancelJobAsync()} .
+     * The async variant is {@see JobControllerClient::cancelJobAsync()} .
      *
      * @param CancelJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -246,7 +246,7 @@ final class JobControllerClient
      * Deletes the job from the project. If the job is active, the delete fails,
      * and the response returns `FAILED_PRECONDITION`.
      *
-     * The async variant is {@see JobControllerGapicClient::deleteJobAsync()} .
+     * The async variant is {@see JobControllerClient::deleteJobAsync()} .
      *
      * @param DeleteJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -268,7 +268,7 @@ final class JobControllerClient
     /**
      * Gets the resource representation for a job in a project.
      *
-     * The async variant is {@see JobControllerGapicClient::getJobAsync()} .
+     * The async variant is {@see JobControllerClient::getJobAsync()} .
      *
      * @param GetJobRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -292,7 +292,7 @@ final class JobControllerClient
     /**
      * Lists regions/{region}/jobs in a project.
      *
-     * The async variant is {@see JobControllerGapicClient::listJobsAsync()} .
+     * The async variant is {@see JobControllerClient::listJobsAsync()} .
      *
      * @param ListJobsRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -316,7 +316,7 @@ final class JobControllerClient
     /**
      * Submits a job to a cluster.
      *
-     * The async variant is {@see JobControllerGapicClient::submitJobAsync()} .
+     * The async variant is {@see JobControllerClient::submitJobAsync()} .
      *
      * @param SubmitJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -340,8 +340,7 @@ final class JobControllerClient
     /**
      * Submits job to a cluster.
      *
-     * The async variant is
-     * {@see JobControllerGapicClient::submitJobAsOperationAsync()} .
+     * The async variant is {@see JobControllerClient::submitJobAsOperationAsync()} .
      *
      * @param SubmitJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -365,7 +364,7 @@ final class JobControllerClient
     /**
      * Updates a job in a project.
      *
-     * The async variant is {@see JobControllerGapicClient::updateJobAsync()} .
+     * The async variant is {@see JobControllerClient::updateJobAsync()} .
      *
      * @param UpdateJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -390,7 +389,7 @@ final class JobControllerClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see JobControllerGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see JobControllerClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -418,7 +417,7 @@ final class JobControllerClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see JobControllerGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see JobControllerClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -448,8 +447,7 @@ final class JobControllerClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is {@see JobControllerGapicClient::testIamPermissionsAsync()}
-     * .
+     * The async variant is {@see JobControllerClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

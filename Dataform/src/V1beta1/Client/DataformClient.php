@@ -423,8 +423,7 @@ final class DataformClient
     /**
      * Requests cancellation of a running WorkflowInvocation.
      *
-     * The async variant is {@see DataformGapicClient::cancelWorkflowInvocationAsync()}
-     * .
+     * The async variant is {@see DataformClient::cancelWorkflowInvocationAsync()} .
      *
      * @example samples/V1beta1/DataformClient/cancel_workflow_invocation.php
      *
@@ -450,7 +449,7 @@ final class DataformClient
     /**
      * Applies a Git commit for uncommitted files in a Workspace.
      *
-     * The async variant is {@see DataformGapicClient::commitWorkspaceChangesAsync()} .
+     * The async variant is {@see DataformClient::commitWorkspaceChangesAsync()} .
      *
      * @example samples/V1beta1/DataformClient/commit_workspace_changes.php
      *
@@ -476,8 +475,7 @@ final class DataformClient
     /**
      * Creates a new CompilationResult in a given project and location.
      *
-     * The async variant is {@see DataformGapicClient::createCompilationResultAsync()}
-     * .
+     * The async variant is {@see DataformClient::createCompilationResultAsync()} .
      *
      * @example samples/V1beta1/DataformClient/create_compilation_result.php
      *
@@ -505,7 +503,7 @@ final class DataformClient
     /**
      * Creates a new Repository in a given project and location.
      *
-     * The async variant is {@see DataformGapicClient::createRepositoryAsync()} .
+     * The async variant is {@see DataformClient::createRepositoryAsync()} .
      *
      * @example samples/V1beta1/DataformClient/create_repository.php
      *
@@ -533,8 +531,7 @@ final class DataformClient
     /**
      * Creates a new WorkflowInvocation in a given Repository.
      *
-     * The async variant is {@see DataformGapicClient::createWorkflowInvocationAsync()}
-     * .
+     * The async variant is {@see DataformClient::createWorkflowInvocationAsync()} .
      *
      * @example samples/V1beta1/DataformClient/create_workflow_invocation.php
      *
@@ -562,7 +559,7 @@ final class DataformClient
     /**
      * Creates a new Workspace in a given Repository.
      *
-     * The async variant is {@see DataformGapicClient::createWorkspaceAsync()} .
+     * The async variant is {@see DataformClient::createWorkspaceAsync()} .
      *
      * @example samples/V1beta1/DataformClient/create_workspace.php
      *
@@ -590,7 +587,7 @@ final class DataformClient
     /**
      * Deletes a single Repository.
      *
-     * The async variant is {@see DataformGapicClient::deleteRepositoryAsync()} .
+     * The async variant is {@see DataformClient::deleteRepositoryAsync()} .
      *
      * @example samples/V1beta1/DataformClient/delete_repository.php
      *
@@ -616,8 +613,7 @@ final class DataformClient
     /**
      * Deletes a single WorkflowInvocation.
      *
-     * The async variant is {@see DataformGapicClient::deleteWorkflowInvocationAsync()}
-     * .
+     * The async variant is {@see DataformClient::deleteWorkflowInvocationAsync()} .
      *
      * @example samples/V1beta1/DataformClient/delete_workflow_invocation.php
      *
@@ -643,7 +639,7 @@ final class DataformClient
     /**
      * Deletes a single Workspace.
      *
-     * The async variant is {@see DataformGapicClient::deleteWorkspaceAsync()} .
+     * The async variant is {@see DataformClient::deleteWorkspaceAsync()} .
      *
      * @example samples/V1beta1/DataformClient/delete_workspace.php
      *
@@ -669,7 +665,7 @@ final class DataformClient
     /**
      * Fetches Git diff for an uncommitted file in a Workspace.
      *
-     * The async variant is {@see DataformGapicClient::fetchFileDiffAsync()} .
+     * The async variant is {@see DataformClient::fetchFileDiffAsync()} .
      *
      * @example samples/V1beta1/DataformClient/fetch_file_diff.php
      *
@@ -697,7 +693,7 @@ final class DataformClient
     /**
      * Fetches Git statuses for the files in a Workspace.
      *
-     * The async variant is {@see DataformGapicClient::fetchFileGitStatusesAsync()} .
+     * The async variant is {@see DataformClient::fetchFileGitStatusesAsync()} .
      *
      * @example samples/V1beta1/DataformClient/fetch_file_git_statuses.php
      *
@@ -725,7 +721,7 @@ final class DataformClient
     /**
      * Fetches Git ahead/behind against a remote branch.
      *
-     * The async variant is {@see DataformGapicClient::fetchGitAheadBehindAsync()} .
+     * The async variant is {@see DataformClient::fetchGitAheadBehindAsync()} .
      *
      * @example samples/V1beta1/DataformClient/fetch_git_ahead_behind.php
      *
@@ -753,7 +749,7 @@ final class DataformClient
     /**
      * Fetches a Repository's remote branches.
      *
-     * The async variant is {@see DataformGapicClient::fetchRemoteBranchesAsync()} .
+     * The async variant is {@see DataformClient::fetchRemoteBranchesAsync()} .
      *
      * @example samples/V1beta1/DataformClient/fetch_remote_branches.php
      *
@@ -781,7 +777,7 @@ final class DataformClient
     /**
      * Fetches a single CompilationResult.
      *
-     * The async variant is {@see DataformGapicClient::getCompilationResultAsync()} .
+     * The async variant is {@see DataformClient::getCompilationResultAsync()} .
      *
      * @example samples/V1beta1/DataformClient/get_compilation_result.php
      *
@@ -809,7 +805,7 @@ final class DataformClient
     /**
      * Fetches a single Repository.
      *
-     * The async variant is {@see DataformGapicClient::getRepositoryAsync()} .
+     * The async variant is {@see DataformClient::getRepositoryAsync()} .
      *
      * @example samples/V1beta1/DataformClient/get_repository.php
      *
@@ -837,7 +833,7 @@ final class DataformClient
     /**
      * Fetches a single WorkflowInvocation.
      *
-     * The async variant is {@see DataformGapicClient::getWorkflowInvocationAsync()} .
+     * The async variant is {@see DataformClient::getWorkflowInvocationAsync()} .
      *
      * @example samples/V1beta1/DataformClient/get_workflow_invocation.php
      *
@@ -865,7 +861,7 @@ final class DataformClient
     /**
      * Fetches a single Workspace.
      *
-     * The async variant is {@see DataformGapicClient::getWorkspaceAsync()} .
+     * The async variant is {@see DataformClient::getWorkspaceAsync()} .
      *
      * @example samples/V1beta1/DataformClient/get_workspace.php
      *
@@ -893,7 +889,7 @@ final class DataformClient
     /**
      * Installs dependency NPM packages (inside a Workspace).
      *
-     * The async variant is {@see DataformGapicClient::installNpmPackagesAsync()} .
+     * The async variant is {@see DataformClient::installNpmPackagesAsync()} .
      *
      * @example samples/V1beta1/DataformClient/install_npm_packages.php
      *
@@ -921,7 +917,7 @@ final class DataformClient
     /**
      * Lists CompilationResults in a given Repository.
      *
-     * The async variant is {@see DataformGapicClient::listCompilationResultsAsync()} .
+     * The async variant is {@see DataformClient::listCompilationResultsAsync()} .
      *
      * @example samples/V1beta1/DataformClient/list_compilation_results.php
      *
@@ -949,7 +945,7 @@ final class DataformClient
     /**
      * Lists Repositories in a given project and location.
      *
-     * The async variant is {@see DataformGapicClient::listRepositoriesAsync()} .
+     * The async variant is {@see DataformClient::listRepositoriesAsync()} .
      *
      * @example samples/V1beta1/DataformClient/list_repositories.php
      *
@@ -977,8 +973,7 @@ final class DataformClient
     /**
      * Lists WorkflowInvocations in a given Repository.
      *
-     * The async variant is {@see DataformGapicClient::listWorkflowInvocationsAsync()}
-     * .
+     * The async variant is {@see DataformClient::listWorkflowInvocationsAsync()} .
      *
      * @example samples/V1beta1/DataformClient/list_workflow_invocations.php
      *
@@ -1006,7 +1001,7 @@ final class DataformClient
     /**
      * Lists Workspaces in a given Repository.
      *
-     * The async variant is {@see DataformGapicClient::listWorkspacesAsync()} .
+     * The async variant is {@see DataformClient::listWorkspacesAsync()} .
      *
      * @example samples/V1beta1/DataformClient/list_workspaces.php
      *
@@ -1034,7 +1029,7 @@ final class DataformClient
     /**
      * Creates a directory inside a Workspace.
      *
-     * The async variant is {@see DataformGapicClient::makeDirectoryAsync()} .
+     * The async variant is {@see DataformClient::makeDirectoryAsync()} .
      *
      * @example samples/V1beta1/DataformClient/make_directory.php
      *
@@ -1063,7 +1058,7 @@ final class DataformClient
      * Moves a directory (inside a Workspace), and all of its contents, to a new
      * location.
      *
-     * The async variant is {@see DataformGapicClient::moveDirectoryAsync()} .
+     * The async variant is {@see DataformClient::moveDirectoryAsync()} .
      *
      * @example samples/V1beta1/DataformClient/move_directory.php
      *
@@ -1091,7 +1086,7 @@ final class DataformClient
     /**
      * Moves a file (inside a Workspace) to a new location.
      *
-     * The async variant is {@see DataformGapicClient::moveFileAsync()} .
+     * The async variant is {@see DataformClient::moveFileAsync()} .
      *
      * @example samples/V1beta1/DataformClient/move_file.php
      *
@@ -1119,7 +1114,7 @@ final class DataformClient
     /**
      * Pulls Git commits from the Repository's remote into a Workspace.
      *
-     * The async variant is {@see DataformGapicClient::pullGitCommitsAsync()} .
+     * The async variant is {@see DataformClient::pullGitCommitsAsync()} .
      *
      * @example samples/V1beta1/DataformClient/pull_git_commits.php
      *
@@ -1145,7 +1140,7 @@ final class DataformClient
     /**
      * Pushes Git commits from a Workspace to the Repository's remote.
      *
-     * The async variant is {@see DataformGapicClient::pushGitCommitsAsync()} .
+     * The async variant is {@see DataformClient::pushGitCommitsAsync()} .
      *
      * @example samples/V1beta1/DataformClient/push_git_commits.php
      *
@@ -1171,8 +1166,8 @@ final class DataformClient
     /**
      * Returns CompilationResultActions in a given CompilationResult.
      *
-     * The async variant is
-     * {@see DataformGapicClient::queryCompilationResultActionsAsync()} .
+     * The async variant is {@see DataformClient::queryCompilationResultActionsAsync()}
+     * .
      *
      * @example samples/V1beta1/DataformClient/query_compilation_result_actions.php
      *
@@ -1200,7 +1195,7 @@ final class DataformClient
     /**
      * Returns the contents of a given Workspace directory.
      *
-     * The async variant is {@see DataformGapicClient::queryDirectoryContentsAsync()} .
+     * The async variant is {@see DataformClient::queryDirectoryContentsAsync()} .
      *
      * @example samples/V1beta1/DataformClient/query_directory_contents.php
      *
@@ -1229,7 +1224,7 @@ final class DataformClient
      * Returns WorkflowInvocationActions in a given WorkflowInvocation.
      *
      * The async variant is
-     * {@see DataformGapicClient::queryWorkflowInvocationActionsAsync()} .
+     * {@see DataformClient::queryWorkflowInvocationActionsAsync()} .
      *
      * @example samples/V1beta1/DataformClient/query_workflow_invocation_actions.php
      *
@@ -1257,7 +1252,7 @@ final class DataformClient
     /**
      * Returns the contents of a file (inside a Workspace).
      *
-     * The async variant is {@see DataformGapicClient::readFileAsync()} .
+     * The async variant is {@see DataformClient::readFileAsync()} .
      *
      * @example samples/V1beta1/DataformClient/read_file.php
      *
@@ -1285,7 +1280,7 @@ final class DataformClient
     /**
      * Deletes a directory (inside a Workspace) and all of its contents.
      *
-     * The async variant is {@see DataformGapicClient::removeDirectoryAsync()} .
+     * The async variant is {@see DataformClient::removeDirectoryAsync()} .
      *
      * @example samples/V1beta1/DataformClient/remove_directory.php
      *
@@ -1311,7 +1306,7 @@ final class DataformClient
     /**
      * Deletes a file (inside a Workspace).
      *
-     * The async variant is {@see DataformGapicClient::removeFileAsync()} .
+     * The async variant is {@see DataformClient::removeFileAsync()} .
      *
      * @example samples/V1beta1/DataformClient/remove_file.php
      *
@@ -1337,7 +1332,7 @@ final class DataformClient
     /**
      * Performs a Git reset for uncommitted files in a Workspace.
      *
-     * The async variant is {@see DataformGapicClient::resetWorkspaceChangesAsync()} .
+     * The async variant is {@see DataformClient::resetWorkspaceChangesAsync()} .
      *
      * @example samples/V1beta1/DataformClient/reset_workspace_changes.php
      *
@@ -1363,7 +1358,7 @@ final class DataformClient
     /**
      * Updates a single Repository.
      *
-     * The async variant is {@see DataformGapicClient::updateRepositoryAsync()} .
+     * The async variant is {@see DataformClient::updateRepositoryAsync()} .
      *
      * @example samples/V1beta1/DataformClient/update_repository.php
      *
@@ -1391,7 +1386,7 @@ final class DataformClient
     /**
      * Writes to a file (inside a Workspace).
      *
-     * The async variant is {@see DataformGapicClient::writeFileAsync()} .
+     * The async variant is {@see DataformClient::writeFileAsync()} .
      *
      * @example samples/V1beta1/DataformClient/write_file.php
      *
@@ -1419,7 +1414,7 @@ final class DataformClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see DataformGapicClient::getLocationAsync()} .
+     * The async variant is {@see DataformClient::getLocationAsync()} .
      *
      * @example samples/V1beta1/DataformClient/get_location.php
      *
@@ -1447,7 +1442,7 @@ final class DataformClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see DataformGapicClient::listLocationsAsync()} .
+     * The async variant is {@see DataformClient::listLocationsAsync()} .
      *
      * @example samples/V1beta1/DataformClient/list_locations.php
      *

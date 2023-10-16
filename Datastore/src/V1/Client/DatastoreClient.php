@@ -192,7 +192,7 @@ final class DatastoreClient
      * Allocates IDs for the given keys, which is useful for referencing an entity
      * before it is inserted.
      *
-     * The async variant is {@see DatastoreGapicClient::allocateIdsAsync()} .
+     * The async variant is {@see DatastoreClient::allocateIdsAsync()} .
      *
      * @param AllocateIdsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -216,7 +216,7 @@ final class DatastoreClient
     /**
      * Begins a new transaction.
      *
-     * The async variant is {@see DatastoreGapicClient::beginTransactionAsync()} .
+     * The async variant is {@see DatastoreClient::beginTransactionAsync()} .
      *
      * @param BeginTransactionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -241,7 +241,7 @@ final class DatastoreClient
      * Commits a transaction, optionally creating, deleting or modifying some
      * entities.
      *
-     * The async variant is {@see DatastoreGapicClient::commitAsync()} .
+     * The async variant is {@see DatastoreClient::commitAsync()} .
      *
      * @param CommitRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -265,7 +265,7 @@ final class DatastoreClient
     /**
      * Looks up entities by key.
      *
-     * The async variant is {@see DatastoreGapicClient::lookupAsync()} .
+     * The async variant is {@see DatastoreClient::lookupAsync()} .
      *
      * @param LookupRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -290,7 +290,7 @@ final class DatastoreClient
      * Prevents the supplied keys' IDs from being auto-allocated by Cloud
      * Datastore.
      *
-     * The async variant is {@see DatastoreGapicClient::reserveIdsAsync()} .
+     * The async variant is {@see DatastoreClient::reserveIdsAsync()} .
      *
      * @param ReserveIdsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -314,7 +314,7 @@ final class DatastoreClient
     /**
      * Rolls back a transaction.
      *
-     * The async variant is {@see DatastoreGapicClient::rollbackAsync()} .
+     * The async variant is {@see DatastoreClient::rollbackAsync()} .
      *
      * @param RollbackRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -338,7 +338,7 @@ final class DatastoreClient
     /**
      * Runs an aggregation query.
      *
-     * The async variant is {@see DatastoreGapicClient::runAggregationQueryAsync()} .
+     * The async variant is {@see DatastoreClient::runAggregationQueryAsync()} .
      *
      * @param RunAggregationQueryRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -362,7 +362,7 @@ final class DatastoreClient
     /**
      * Queries for entities.
      *
-     * The async variant is {@see DatastoreGapicClient::runQueryAsync()} .
+     * The async variant is {@see DatastoreClient::runQueryAsync()} .
      *
      * @param RunQueryRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {

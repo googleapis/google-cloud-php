@@ -337,7 +337,7 @@ final class AgentsClient
     /**
      * Deletes the specified agent.
      *
-     * The async variant is {@see AgentsGapicClient::deleteAgentAsync()} .
+     * The async variant is {@see AgentsClient::deleteAgentAsync()} .
      *
      * @param DeleteAgentRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -368,7 +368,7 @@ final class AgentsClient
      * - `response`:
      * [ExportAgentResponse][google.cloud.dialogflow.v2.ExportAgentResponse]
      *
-     * The async variant is {@see AgentsGapicClient::exportAgentAsync()} .
+     * The async variant is {@see AgentsClient::exportAgentAsync()} .
      *
      * @param ExportAgentRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -392,7 +392,7 @@ final class AgentsClient
     /**
      * Retrieves the specified agent.
      *
-     * The async variant is {@see AgentsGapicClient::getAgentAsync()} .
+     * The async variant is {@see AgentsClient::getAgentAsync()} .
      *
      * @param GetAgentRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -417,7 +417,7 @@ final class AgentsClient
      * Gets agent validation result. Agent validation is performed during
      * training time and is updated automatically when training is completed.
      *
-     * The async variant is {@see AgentsGapicClient::getValidationResultAsync()} .
+     * The async variant is {@see AgentsClient::getValidationResultAsync()} .
      *
      * @param GetValidationResultRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -467,7 +467,7 @@ final class AgentsClient
      * [training
      * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      *
-     * The async variant is {@see AgentsGapicClient::importAgentAsync()} .
+     * The async variant is {@see AgentsClient::importAgentAsync()} .
      *
      * @param ImportAgentRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -515,7 +515,7 @@ final class AgentsClient
      * [training
      * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      *
-     * The async variant is {@see AgentsGapicClient::restoreAgentAsync()} .
+     * The async variant is {@see AgentsClient::restoreAgentAsync()} .
      *
      * @param RestoreAgentRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -545,7 +545,7 @@ final class AgentsClient
      * Refer to [List
      * Sub-Collections](https://cloud.google.com/apis/design/design_patterns#list_sub-collections).
      *
-     * The async variant is {@see AgentsGapicClient::searchAgentsAsync()} .
+     * The async variant is {@see AgentsClient::searchAgentsAsync()} .
      *
      * @param SearchAgentsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -573,7 +573,7 @@ final class AgentsClient
      * [training
      * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      *
-     * The async variant is {@see AgentsGapicClient::setAgentAsync()} .
+     * The async variant is {@see AgentsClient::setAgentAsync()} .
      *
      * @param SetAgentRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -610,7 +610,7 @@ final class AgentsClient
      * [training
      * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      *
-     * The async variant is {@see AgentsGapicClient::trainAgentAsync()} .
+     * The async variant is {@see AgentsClient::trainAgentAsync()} .
      *
      * @param TrainAgentRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -634,7 +634,7 @@ final class AgentsClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see AgentsGapicClient::getLocationAsync()} .
+     * The async variant is {@see AgentsClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -658,7 +658,7 @@ final class AgentsClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see AgentsGapicClient::listLocationsAsync()} .
+     * The async variant is {@see AgentsClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

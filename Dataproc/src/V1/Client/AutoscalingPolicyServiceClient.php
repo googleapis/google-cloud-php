@@ -308,7 +308,7 @@ final class AutoscalingPolicyServiceClient
      * Creates new autoscaling policy.
      *
      * The async variant is
-     * {@see AutoscalingPolicyServiceGapicClient::createAutoscalingPolicyAsync()} .
+     * {@see AutoscalingPolicyServiceClient::createAutoscalingPolicyAsync()} .
      *
      * @param CreateAutoscalingPolicyRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -334,7 +334,7 @@ final class AutoscalingPolicyServiceClient
      * policy that is in use by one or more clusters.
      *
      * The async variant is
-     * {@see AutoscalingPolicyServiceGapicClient::deleteAutoscalingPolicyAsync()} .
+     * {@see AutoscalingPolicyServiceClient::deleteAutoscalingPolicyAsync()} .
      *
      * @param DeleteAutoscalingPolicyRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -357,7 +357,7 @@ final class AutoscalingPolicyServiceClient
      * Retrieves autoscaling policy.
      *
      * The async variant is
-     * {@see AutoscalingPolicyServiceGapicClient::getAutoscalingPolicyAsync()} .
+     * {@see AutoscalingPolicyServiceClient::getAutoscalingPolicyAsync()} .
      *
      * @param GetAutoscalingPolicyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -382,7 +382,7 @@ final class AutoscalingPolicyServiceClient
      * Lists autoscaling policies in the project.
      *
      * The async variant is
-     * {@see AutoscalingPolicyServiceGapicClient::listAutoscalingPoliciesAsync()} .
+     * {@see AutoscalingPolicyServiceClient::listAutoscalingPoliciesAsync()} .
      *
      * @param ListAutoscalingPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -410,7 +410,7 @@ final class AutoscalingPolicyServiceClient
      * replacements.
      *
      * The async variant is
-     * {@see AutoscalingPolicyServiceGapicClient::updateAutoscalingPolicyAsync()} .
+     * {@see AutoscalingPolicyServiceClient::updateAutoscalingPolicyAsync()} .
      *
      * @param UpdateAutoscalingPolicyRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -435,8 +435,8 @@ final class AutoscalingPolicyServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is
-     * {@see AutoscalingPolicyServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see AutoscalingPolicyServiceClient::getIamPolicyAsync()}
+     * .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -464,8 +464,8 @@ final class AutoscalingPolicyServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is
-     * {@see AutoscalingPolicyServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see AutoscalingPolicyServiceClient::setIamPolicyAsync()}
+     * .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -496,7 +496,7 @@ final class AutoscalingPolicyServiceClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is
-     * {@see AutoscalingPolicyServiceGapicClient::testIamPermissionsAsync()} .
+     * {@see AutoscalingPolicyServiceClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

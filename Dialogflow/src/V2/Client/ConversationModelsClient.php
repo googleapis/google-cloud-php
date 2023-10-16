@@ -468,7 +468,7 @@ final class ConversationModelsClient
      * [ConversationModel][google.cloud.dialogflow.v2.ConversationModel]
      *
      * The async variant is
-     * {@see ConversationModelsGapicClient::createConversationModelAsync()} .
+     * {@see ConversationModelsClient::createConversationModelAsync()} .
      *
      * @param CreateConversationModelRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -493,7 +493,7 @@ final class ConversationModelsClient
      * Creates evaluation of a conversation model.
      *
      * The async variant is
-     * {@see ConversationModelsGapicClient::createConversationModelEvaluationAsync()} .
+     * {@see ConversationModelsClient::createConversationModelEvaluationAsync()} .
      *
      * @param CreateConversationModelEvaluationRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
@@ -527,7 +527,7 @@ final class ConversationModelsClient
      * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
      *
      * The async variant is
-     * {@see ConversationModelsGapicClient::deleteConversationModelAsync()} .
+     * {@see ConversationModelsClient::deleteConversationModelAsync()} .
      *
      * @param DeleteConversationModelRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -564,7 +564,7 @@ final class ConversationModelsClient
      * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
      *
      * The async variant is
-     * {@see ConversationModelsGapicClient::deployConversationModelAsync()} .
+     * {@see ConversationModelsClient::deployConversationModelAsync()} .
      *
      * @param DeployConversationModelRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -589,7 +589,7 @@ final class ConversationModelsClient
      * Gets conversation model.
      *
      * The async variant is
-     * {@see ConversationModelsGapicClient::getConversationModelAsync()} .
+     * {@see ConversationModelsClient::getConversationModelAsync()} .
      *
      * @param GetConversationModelRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -614,7 +614,7 @@ final class ConversationModelsClient
      * Gets an evaluation of conversation model.
      *
      * The async variant is
-     * {@see ConversationModelsGapicClient::getConversationModelEvaluationAsync()} .
+     * {@see ConversationModelsClient::getConversationModelEvaluationAsync()} .
      *
      * @param GetConversationModelEvaluationRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
@@ -639,7 +639,7 @@ final class ConversationModelsClient
      * Lists evaluations of a conversation model.
      *
      * The async variant is
-     * {@see ConversationModelsGapicClient::listConversationModelEvaluationsAsync()} .
+     * {@see ConversationModelsClient::listConversationModelEvaluationsAsync()} .
      *
      * @param ListConversationModelEvaluationsRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -664,7 +664,7 @@ final class ConversationModelsClient
      * Lists conversation models.
      *
      * The async variant is
-     * {@see ConversationModelsGapicClient::listConversationModelsAsync()} .
+     * {@see ConversationModelsClient::listConversationModelsAsync()} .
      *
      * @param ListConversationModelsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -701,7 +701,7 @@ final class ConversationModelsClient
      * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
      *
      * The async variant is
-     * {@see ConversationModelsGapicClient::undeployConversationModelAsync()} .
+     * {@see ConversationModelsClient::undeployConversationModelAsync()} .
      *
      * @param UndeployConversationModelRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -725,7 +725,7 @@ final class ConversationModelsClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see ConversationModelsGapicClient::getLocationAsync()} .
+     * The async variant is {@see ConversationModelsClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -749,8 +749,7 @@ final class ConversationModelsClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see ConversationModelsGapicClient::listLocationsAsync()}
-     * .
+     * The async variant is {@see ConversationModelsClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

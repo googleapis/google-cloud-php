@@ -729,7 +729,7 @@ final class ParticipantsClient
      * sent to virtual agents. See [Versions and
      * environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
      *
-     * The async variant is {@see ParticipantsGapicClient::analyzeContentAsync()} .
+     * The async variant is {@see ParticipantsClient::analyzeContentAsync()} .
      *
      * @param AnalyzeContentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -753,7 +753,7 @@ final class ParticipantsClient
     /**
      * Creates a new participant in a conversation.
      *
-     * The async variant is {@see ParticipantsGapicClient::createParticipantAsync()} .
+     * The async variant is {@see ParticipantsClient::createParticipantAsync()} .
      *
      * @param CreateParticipantRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -777,7 +777,7 @@ final class ParticipantsClient
     /**
      * Retrieves a conversation participant.
      *
-     * The async variant is {@see ParticipantsGapicClient::getParticipantAsync()} .
+     * The async variant is {@see ParticipantsClient::getParticipantAsync()} .
      *
      * @param GetParticipantRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -801,7 +801,7 @@ final class ParticipantsClient
     /**
      * Returns the list of all participants in the specified conversation.
      *
-     * The async variant is {@see ParticipantsGapicClient::listParticipantsAsync()} .
+     * The async variant is {@see ParticipantsClient::listParticipantsAsync()} .
      *
      * @param ListParticipantsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -859,7 +859,7 @@ final class ParticipantsClient
      * Gets suggested articles for a participant based on specific historical
      * messages.
      *
-     * The async variant is {@see ParticipantsGapicClient::suggestArticlesAsync()} .
+     * The async variant is {@see ParticipantsClient::suggestArticlesAsync()} .
      *
      * @param SuggestArticlesRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -884,7 +884,7 @@ final class ParticipantsClient
      * Gets suggested faq answers for a participant based on specific historical
      * messages.
      *
-     * The async variant is {@see ParticipantsGapicClient::suggestFaqAnswersAsync()} .
+     * The async variant is {@see ParticipantsClient::suggestFaqAnswersAsync()} .
      *
      * @param SuggestFaqAnswersRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -909,8 +909,7 @@ final class ParticipantsClient
      * Gets smart replies for a participant based on specific historical
      * messages.
      *
-     * The async variant is {@see ParticipantsGapicClient::suggestSmartRepliesAsync()}
-     * .
+     * The async variant is {@see ParticipantsClient::suggestSmartRepliesAsync()} .
      *
      * @param SuggestSmartRepliesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -934,7 +933,7 @@ final class ParticipantsClient
     /**
      * Updates the specified participant.
      *
-     * The async variant is {@see ParticipantsGapicClient::updateParticipantAsync()} .
+     * The async variant is {@see ParticipantsClient::updateParticipantAsync()} .
      *
      * @param UpdateParticipantRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -958,7 +957,7 @@ final class ParticipantsClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see ParticipantsGapicClient::getLocationAsync()} .
+     * The async variant is {@see ParticipantsClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -982,7 +981,7 @@ final class ParticipantsClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see ParticipantsGapicClient::listLocationsAsync()} .
+     * The async variant is {@see ParticipantsClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
