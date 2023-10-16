@@ -903,7 +903,7 @@ class Database
         $startTransactionFn = function ($session, $options) use (&$attempt) {
             if ($attempt > 0) {
                 $options['isRetry'] = true;
-            } else {
+            } elseif (!isset($options['transactionOptions']['partitionedDml'])) {
                 // Make the begin options
                 $options['begin'] = $options['transactionOptions'];
             }
@@ -1787,7 +1787,7 @@ class Database
         try {
             return $this->operation->executeUpdate($session, $transaction, $statement, [
                 'statsItem' => 'rowCountLowerBound'
-            ] + $options);
+            ] + $options, $transaction->getIdReference());
         } finally {
             $session->setExpiration();
         }

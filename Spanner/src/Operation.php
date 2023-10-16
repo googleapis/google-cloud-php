@@ -285,7 +285,7 @@ class Operation
         &$transactionId = null
     ) {
         if ( !is_null($transactionId) and !is_array($transactionId) ) {
-            $options += ['transactionId' => $transaction->id()];
+            $options += ['transactionId' => $transactionId];
         }
         $res = $this->execute($session, $sql, $options, $transactionId);
 
@@ -363,7 +363,7 @@ class Operation
         }
 
         if ( !is_null($transactionId) and !is_array($transactionId) ) {
-            $options += ['transactionId' => $transaction->id()];
+            $options += ['transactionId' => $transactionId];
         }
 
         $res = $this->connection->executeBatchDml([
@@ -373,10 +373,10 @@ class Operation
         ] + $options);
 
         if (
-            isset($res['metadata']['transaction']['id']) &&
-            $res['metadata']['transaction']['id']
+            isset($res['resultSets'][0]['metadata']['transaction']['id']) and
+            $res['resultSets'][0]['metadata']['transaction']['id']
         ) {
-            $this->transactionId = $result['metadata']['transaction']['id'];
+            $transactionId = $res['resultSets'][0]['metadata']['transaction']['id'];
         }
 
         $errorStatement = null;
@@ -483,7 +483,10 @@ class Operation
         }
 
         if (!$options['singleUse']) {
-            if (isset($options['begin']) and !isset($transactionOptions['partitionedDml'])) {
+            if (
+                isset($options['begin']) and
+                !isset($options['transactionOptions']['partitionedDml'])
+            ) {
                 $res = ['id' => ['begin' => $options['begin']]];
             } else {
                 $res = $this->beginTransaction($session, $options);

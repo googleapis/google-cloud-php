@@ -453,7 +453,7 @@ class Transaction implements TransactionalReadInterface
         } else {
             $options['transactionId'] = $this->transactionId;
         }
-        $selector = $this->transactionSelector($options, $this->options);
+        $selector = $this->transactionSelector($options);
 
         $options['transaction'] = $selector[0];
           
@@ -558,11 +558,13 @@ class Transaction implements TransactionalReadInterface
     
         $options['transactionType'] = $this->context;
         if (is_array($this->transactionId) and isset($this->transactionId['begin'])) {
-            $options['begin'] = true;
+            $options['begin'] = $this->transactionId['begin'];
         } else {
             $options['transactionId'] = $this->transactionId;
         }
-        $selector = $this->transactionSelector($options, $this->options);
+        $selector = $this->transactionSelector($options);
+
+        $options['transaction'] = $selector[0];
 
         return $this->operation
             ->executeUpdateBatch(

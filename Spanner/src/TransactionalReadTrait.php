@@ -384,6 +384,11 @@ trait TransactionalReadTrait
         return $this->transactionId;
     }
 
+    public function &getIdReference()
+    {
+        return $this->transactionId;
+    }
+
     /**
      * Get the Transaction Type.
      *
