@@ -321,8 +321,7 @@ final class CatalogServiceClient
      * If the [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute] to add
      * already exists, an ALREADY_EXISTS error is returned.
      *
-     * The async variant is
-     * {@see CatalogServiceGapicClient::addCatalogAttributeAsync()} .
+     * The async variant is {@see CatalogServiceClient::addCatalogAttributeAsync()} .
      *
      * @param AddCatalogAttributeRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -346,8 +345,7 @@ final class CatalogServiceClient
     /**
      * Gets an [AttributesConfig][google.cloud.retail.v2.AttributesConfig].
      *
-     * The async variant is
-     * {@see CatalogServiceGapicClient::getAttributesConfigAsync()} .
+     * The async variant is {@see CatalogServiceClient::getAttributesConfigAsync()} .
      *
      * @param GetAttributesConfigRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -371,8 +369,7 @@ final class CatalogServiceClient
     /**
      * Gets a [CompletionConfig][google.cloud.retail.v2.CompletionConfig].
      *
-     * The async variant is
-     * {@see CatalogServiceGapicClient::getCompletionConfigAsync()} .
+     * The async variant is {@see CatalogServiceClient::getCompletionConfigAsync()} .
      *
      * @param GetCompletionConfigRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -398,7 +395,7 @@ final class CatalogServiceClient
      * [CatalogService.SetDefaultBranch][google.cloud.retail.v2.CatalogService.SetDefaultBranch]
      * method under a specified parent catalog.
      *
-     * The async variant is {@see CatalogServiceGapicClient::getDefaultBranchAsync()} .
+     * The async variant is {@see CatalogServiceClient::getDefaultBranchAsync()} .
      *
      * @param GetDefaultBranchRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -423,7 +420,7 @@ final class CatalogServiceClient
      * Lists all the [Catalog][google.cloud.retail.v2.Catalog]s associated with
      * the project.
      *
-     * The async variant is {@see CatalogServiceGapicClient::listCatalogsAsync()} .
+     * The async variant is {@see CatalogServiceClient::listCatalogsAsync()} .
      *
      * @param ListCatalogsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -452,8 +449,8 @@ final class CatalogServiceClient
      * If the [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute] to
      * remove does not exist, a NOT_FOUND error is returned.
      *
-     * The async variant is
-     * {@see CatalogServiceGapicClient::removeCatalogAttributeAsync()} .
+     * The async variant is {@see CatalogServiceClient::removeCatalogAttributeAsync()}
+     * .
      *
      * @param RemoveCatalogAttributeRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -484,8 +481,8 @@ final class CatalogServiceClient
      * If the [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute] to
      * replace does not exist, a NOT_FOUND error is returned.
      *
-     * The async variant is
-     * {@see CatalogServiceGapicClient::replaceCatalogAttributeAsync()} .
+     * The async variant is {@see CatalogServiceClient::replaceCatalogAttributeAsync()}
+     * .
      *
      * @param ReplaceCatalogAttributeRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -541,7 +538,7 @@ final class CatalogServiceClient
      * * UserEventService will only join events with products from branch
      * {newBranch}.
      *
-     * The async variant is {@see CatalogServiceGapicClient::setDefaultBranchAsync()} .
+     * The async variant is {@see CatalogServiceClient::setDefaultBranchAsync()} .
      *
      * @param SetDefaultBranchRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -570,8 +567,8 @@ final class CatalogServiceClient
      * response. The product attribute is assigned default values for missing
      * catalog attribute fields, e.g., searchable and dynamic facetable options.
      *
-     * The async variant is
-     * {@see CatalogServiceGapicClient::updateAttributesConfigAsync()} .
+     * The async variant is {@see CatalogServiceClient::updateAttributesConfigAsync()}
+     * .
      *
      * @param UpdateAttributesConfigRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -595,7 +592,7 @@ final class CatalogServiceClient
     /**
      * Updates the [Catalog][google.cloud.retail.v2.Catalog]s.
      *
-     * The async variant is {@see CatalogServiceGapicClient::updateCatalogAsync()} .
+     * The async variant is {@see CatalogServiceClient::updateCatalogAsync()} .
      *
      * @param UpdateCatalogRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -619,8 +616,8 @@ final class CatalogServiceClient
     /**
      * Updates the [CompletionConfig][google.cloud.retail.v2.CompletionConfig]s.
      *
-     * The async variant is
-     * {@see CatalogServiceGapicClient::updateCompletionConfigAsync()} .
+     * The async variant is {@see CatalogServiceClient::updateCompletionConfigAsync()}
+     * .
      *
      * @param UpdateCompletionConfigRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {

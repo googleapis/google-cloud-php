@@ -341,7 +341,7 @@ final class SubscriberClient
      * but such a message may be redelivered later. Acknowledging a message more
      * than once will not result in an error.
      *
-     * The async variant is {@see SubscriberGapicClient::acknowledgeAsync()} .
+     * The async variant is {@see SubscriberClient::acknowledgeAsync()} .
      *
      * @param AcknowledgeRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -378,7 +378,7 @@ final class SubscriberClient
      * generated name is populated in the returned Snapshot object. Note that for
      * REST API requests, you must specify a name in the request.
      *
-     * The async variant is {@see SubscriberGapicClient::createSnapshotAsync()} .
+     * The async variant is {@see SubscriberClient::createSnapshotAsync()} .
      *
      * @param CreateSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -412,7 +412,7 @@ final class SubscriberClient
      * name is populated in the returned Subscription object. Note that for REST
      * API requests, you must specify a name in the request.
      *
-     * The async variant is {@see SubscriberGapicClient::createSubscriptionAsync()} .
+     * The async variant is {@see SubscriberClient::createSubscriptionAsync()} .
      *
      * @param Subscription $request     A request to house fields associated with the call.
      * @param array        $callOptions {
@@ -444,7 +444,7 @@ final class SubscriberClient
      * created with the same name, but the new one has no association with the old
      * snapshot or its subscription, unless the same subscription is specified.
      *
-     * The async variant is {@see SubscriberGapicClient::deleteSnapshotAsync()} .
+     * The async variant is {@see SubscriberClient::deleteSnapshotAsync()} .
      *
      * @param DeleteSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -470,7 +470,7 @@ final class SubscriberClient
      * the same name, but the new one has no association with the old
      * subscription or its topic unless the same topic is specified.
      *
-     * The async variant is {@see SubscriberGapicClient::deleteSubscriptionAsync()} .
+     * The async variant is {@see SubscriberClient::deleteSubscriptionAsync()} .
      *
      * @param DeleteSubscriptionRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -496,7 +496,7 @@ final class SubscriberClient
      * set the acknowledgment state of messages in an existing subscription to the
      * state captured by a snapshot.
      *
-     * The async variant is {@see SubscriberGapicClient::getSnapshotAsync()} .
+     * The async variant is {@see SubscriberClient::getSnapshotAsync()} .
      *
      * @param GetSnapshotRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -520,7 +520,7 @@ final class SubscriberClient
     /**
      * Gets the configuration details of a subscription.
      *
-     * The async variant is {@see SubscriberGapicClient::getSubscriptionAsync()} .
+     * The async variant is {@see SubscriberClient::getSubscriptionAsync()} .
      *
      * @param GetSubscriptionRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -548,7 +548,7 @@ final class SubscriberClient
      * the acknowledgment state of messages in an existing subscription to the
      * state captured by a snapshot.
      *
-     * The async variant is {@see SubscriberGapicClient::listSnapshotsAsync()} .
+     * The async variant is {@see SubscriberClient::listSnapshotsAsync()} .
      *
      * @param ListSnapshotsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -572,7 +572,7 @@ final class SubscriberClient
     /**
      * Lists matching subscriptions.
      *
-     * The async variant is {@see SubscriberGapicClient::listSubscriptionsAsync()} .
+     * The async variant is {@see SubscriberClient::listSubscriptionsAsync()} .
      *
      * @param ListSubscriptionsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -600,7 +600,7 @@ final class SubscriberClient
      * processing was interrupted. Note that this does not modify the
      * subscription-level `ackDeadlineSeconds` used for subsequent messages.
      *
-     * The async variant is {@see SubscriberGapicClient::modifyAckDeadlineAsync()} .
+     * The async variant is {@see SubscriberClient::modifyAckDeadlineAsync()} .
      *
      * @param ModifyAckDeadlineRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -627,7 +627,7 @@ final class SubscriberClient
      * attributes of a push subscription. Messages will accumulate for delivery
      * continuously through the call regardless of changes to the `PushConfig`.
      *
-     * The async variant is {@see SubscriberGapicClient::modifyPushConfigAsync()} .
+     * The async variant is {@see SubscriberClient::modifyPushConfigAsync()} .
      *
      * @param ModifyPushConfigRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -649,7 +649,7 @@ final class SubscriberClient
     /**
      * Pulls messages from the server.
      *
-     * The async variant is {@see SubscriberGapicClient::pullAsync()} .
+     * The async variant is {@see SubscriberClient::pullAsync()} .
      *
      * @param PullRequest $request     A request to house fields associated with the call.
      * @param array       $callOptions {
@@ -679,7 +679,7 @@ final class SubscriberClient
      * state captured by a snapshot. Note that both the subscription and the
      * snapshot must be on the same topic.
      *
-     * The async variant is {@see SubscriberGapicClient::seekAsync()} .
+     * The async variant is {@see SubscriberClient::seekAsync()} .
      *
      * @param SeekRequest $request     A request to house fields associated with the call.
      * @param array       $callOptions {
@@ -732,7 +732,7 @@ final class SubscriberClient
      * set the acknowledgment state of messages in an existing subscription to the
      * state captured by a snapshot.
      *
-     * The async variant is {@see SubscriberGapicClient::updateSnapshotAsync()} .
+     * The async variant is {@see SubscriberClient::updateSnapshotAsync()} .
      *
      * @param UpdateSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -757,7 +757,7 @@ final class SubscriberClient
      * Updates an existing subscription. Note that certain properties of a
      * subscription, such as its topic, are not modifiable.
      *
-     * The async variant is {@see SubscriberGapicClient::updateSubscriptionAsync()} .
+     * The async variant is {@see SubscriberClient::updateSubscriptionAsync()} .
      *
      * @param UpdateSubscriptionRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -782,7 +782,7 @@ final class SubscriberClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see SubscriberGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see SubscriberClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -810,7 +810,7 @@ final class SubscriberClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see SubscriberGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see SubscriberClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -840,7 +840,7 @@ final class SubscriberClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is {@see SubscriberGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see SubscriberClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

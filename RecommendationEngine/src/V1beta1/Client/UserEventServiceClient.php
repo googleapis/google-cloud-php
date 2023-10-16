@@ -275,8 +275,7 @@ final class UserEventServiceClient
      * This method is used only by the Recommendations AI JavaScript pixel.
      * Users should not call this method directly.
      *
-     * The async variant is {@see UserEventServiceGapicClient::collectUserEventAsync()}
-     * .
+     * The async variant is {@see UserEventServiceClient::collectUserEventAsync()} .
      *
      * @example samples/V1beta1/UserEventServiceClient/collect_user_event.php
      *
@@ -310,8 +309,7 @@ final class UserEventServiceClient
      * possible for a subset of the items to be successfully inserted.
      * Operation.metadata is of type ImportMetadata.
      *
-     * The async variant is {@see UserEventServiceGapicClient::importUserEventsAsync()}
-     * .
+     * The async variant is {@see UserEventServiceClient::importUserEventsAsync()} .
      *
      * @example samples/V1beta1/UserEventServiceClient/import_user_events.php
      *
@@ -339,7 +337,7 @@ final class UserEventServiceClient
     /**
      * Gets a list of user events within a time range, with potential filtering.
      *
-     * The async variant is {@see UserEventServiceGapicClient::listUserEventsAsync()} .
+     * The async variant is {@see UserEventServiceClient::listUserEventsAsync()} .
      *
      * @example samples/V1beta1/UserEventServiceClient/list_user_events.php
      *
@@ -370,8 +368,7 @@ final class UserEventServiceClient
      * could take hours or days to complete. To test a filter, use the list
      * command first.
      *
-     * The async variant is {@see UserEventServiceGapicClient::purgeUserEventsAsync()}
-     * .
+     * The async variant is {@see UserEventServiceClient::purgeUserEventsAsync()} .
      *
      * @example samples/V1beta1/UserEventServiceClient/purge_user_events.php
      *
@@ -399,7 +396,7 @@ final class UserEventServiceClient
     /**
      * Writes a single user event.
      *
-     * The async variant is {@see UserEventServiceGapicClient::writeUserEventAsync()} .
+     * The async variant is {@see UserEventServiceClient::writeUserEventAsync()} .
      *
      * @example samples/V1beta1/UserEventServiceClient/write_user_event.php
      *

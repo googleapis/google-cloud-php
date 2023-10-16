@@ -246,7 +246,7 @@ final class ControlServiceClient
      * If the [Control][google.cloud.retail.v2.Control] to create already exists,
      * an ALREADY_EXISTS error is returned.
      *
-     * The async variant is {@see ControlServiceGapicClient::createControlAsync()} .
+     * The async variant is {@see ControlServiceClient::createControlAsync()} .
      *
      * @param CreateControlRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -273,7 +273,7 @@ final class ControlServiceClient
      * If the [Control][google.cloud.retail.v2.Control] to delete does not exist,
      * a NOT_FOUND error is returned.
      *
-     * The async variant is {@see ControlServiceGapicClient::deleteControlAsync()} .
+     * The async variant is {@see ControlServiceClient::deleteControlAsync()} .
      *
      * @param DeleteControlRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -295,7 +295,7 @@ final class ControlServiceClient
     /**
      * Gets a Control.
      *
-     * The async variant is {@see ControlServiceGapicClient::getControlAsync()} .
+     * The async variant is {@see ControlServiceClient::getControlAsync()} .
      *
      * @param GetControlRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -320,7 +320,7 @@ final class ControlServiceClient
      * Lists all Controls by their parent
      * [Catalog][google.cloud.retail.v2.Catalog].
      *
-     * The async variant is {@see ControlServiceGapicClient::listControlsAsync()} .
+     * The async variant is {@see ControlServiceClient::listControlsAsync()} .
      *
      * @param ListControlsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -349,7 +349,7 @@ final class ControlServiceClient
      * [Control][google.cloud.retail.v2.Control] to update does not exist, a
      * NOT_FOUND error is returned.
      *
-     * The async variant is {@see ControlServiceGapicClient::updateControlAsync()} .
+     * The async variant is {@see ControlServiceClient::updateControlAsync()} .
      *
      * @param UpdateControlRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

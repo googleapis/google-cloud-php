@@ -308,7 +308,7 @@ final class SecretManagerServiceClient
      * created [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
      * The async variant is
-     * {@see SecretManagerServiceGapicClient::accessSecretVersionAsync()} .
+     * {@see SecretManagerServiceClient::accessSecretVersionAsync()} .
      *
      * @param AccessSecretVersionRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -333,8 +333,8 @@ final class SecretManagerServiceClient
      * Creates a new [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] containing secret data and attaches
      * it to an existing [Secret][google.cloud.secretmanager.v1.Secret].
      *
-     * The async variant is
-     * {@see SecretManagerServiceGapicClient::addSecretVersionAsync()} .
+     * The async variant is {@see SecretManagerServiceClient::addSecretVersionAsync()}
+     * .
      *
      * @param AddSecretVersionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -358,8 +358,7 @@ final class SecretManagerServiceClient
     /**
      * Creates a new [Secret][google.cloud.secretmanager.v1.Secret] containing no [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
      *
-     * The async variant is {@see SecretManagerServiceGapicClient::createSecretAsync()}
-     * .
+     * The async variant is {@see SecretManagerServiceClient::createSecretAsync()} .
      *
      * @param CreateSecretRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -383,8 +382,7 @@ final class SecretManagerServiceClient
     /**
      * Deletes a [Secret][google.cloud.secretmanager.v1.Secret].
      *
-     * The async variant is {@see SecretManagerServiceGapicClient::deleteSecretAsync()}
-     * .
+     * The async variant is {@see SecretManagerServiceClient::deleteSecretAsync()} .
      *
      * @param DeleteSecretRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -411,7 +409,7 @@ final class SecretManagerServiceClient
      * secret data.
      *
      * The async variant is
-     * {@see SecretManagerServiceGapicClient::destroySecretVersionAsync()} .
+     * {@see SecretManagerServiceClient::destroySecretVersionAsync()} .
      *
      * @param DestroySecretVersionRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -439,7 +437,7 @@ final class SecretManagerServiceClient
      * [DISABLED][google.cloud.secretmanager.v1.SecretVersion.State.DISABLED].
      *
      * The async variant is
-     * {@see SecretManagerServiceGapicClient::disableSecretVersionAsync()} .
+     * {@see SecretManagerServiceClient::disableSecretVersionAsync()} .
      *
      * @param DisableSecretVersionRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -467,7 +465,7 @@ final class SecretManagerServiceClient
      * [ENABLED][google.cloud.secretmanager.v1.SecretVersion.State.ENABLED].
      *
      * The async variant is
-     * {@see SecretManagerServiceGapicClient::enableSecretVersionAsync()} .
+     * {@see SecretManagerServiceClient::enableSecretVersionAsync()} .
      *
      * @param EnableSecretVersionRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -492,8 +490,7 @@ final class SecretManagerServiceClient
      * Gets the access control policy for a secret.
      * Returns empty policy if the secret exists and does not have a policy set.
      *
-     * The async variant is {@see SecretManagerServiceGapicClient::getIamPolicyAsync()}
-     * .
+     * The async variant is {@see SecretManagerServiceClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -517,7 +514,7 @@ final class SecretManagerServiceClient
     /**
      * Gets metadata for a given [Secret][google.cloud.secretmanager.v1.Secret].
      *
-     * The async variant is {@see SecretManagerServiceGapicClient::getSecretAsync()} .
+     * The async variant is {@see SecretManagerServiceClient::getSecretAsync()} .
      *
      * @param GetSecretRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -544,8 +541,8 @@ final class SecretManagerServiceClient
      * `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the most recently
      * created [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
-     * The async variant is
-     * {@see SecretManagerServiceGapicClient::getSecretVersionAsync()} .
+     * The async variant is {@see SecretManagerServiceClient::getSecretVersionAsync()}
+     * .
      *
      * @param GetSecretVersionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -571,7 +568,7 @@ final class SecretManagerServiceClient
      * data.
      *
      * The async variant is
-     * {@see SecretManagerServiceGapicClient::listSecretVersionsAsync()} .
+     * {@see SecretManagerServiceClient::listSecretVersionsAsync()} .
      *
      * @param ListSecretVersionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -595,8 +592,7 @@ final class SecretManagerServiceClient
     /**
      * Lists [Secrets][google.cloud.secretmanager.v1.Secret].
      *
-     * The async variant is {@see SecretManagerServiceGapicClient::listSecretsAsync()}
-     * .
+     * The async variant is {@see SecretManagerServiceClient::listSecretsAsync()} .
      *
      * @param ListSecretsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -624,8 +620,7 @@ final class SecretManagerServiceClient
      * Permissions on [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] are enforced according
      * to the policy set on the associated [Secret][google.cloud.secretmanager.v1.Secret].
      *
-     * The async variant is {@see SecretManagerServiceGapicClient::setIamPolicyAsync()}
-     * .
+     * The async variant is {@see SecretManagerServiceClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -656,7 +651,7 @@ final class SecretManagerServiceClient
      * may "fail open" without warning.
      *
      * The async variant is
-     * {@see SecretManagerServiceGapicClient::testIamPermissionsAsync()} .
+     * {@see SecretManagerServiceClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -680,8 +675,7 @@ final class SecretManagerServiceClient
     /**
      * Updates metadata of an existing [Secret][google.cloud.secretmanager.v1.Secret].
      *
-     * The async variant is {@see SecretManagerServiceGapicClient::updateSecretAsync()}
-     * .
+     * The async variant is {@see SecretManagerServiceClient::updateSecretAsync()} .
      *
      * @param UpdateSecretRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {

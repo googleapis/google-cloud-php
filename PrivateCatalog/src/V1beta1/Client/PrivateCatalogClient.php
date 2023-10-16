@@ -190,7 +190,7 @@ final class PrivateCatalogClient
      * Search [Catalog][google.cloud.privatecatalog.v1beta1.Catalog] resources that consumers have access to, within the
      * scope of the consumer cloud resource hierarchy context.
      *
-     * The async variant is {@see PrivateCatalogGapicClient::searchCatalogsAsync()} .
+     * The async variant is {@see PrivateCatalogClient::searchCatalogsAsync()} .
      *
      * @example samples/V1beta1/PrivateCatalogClient/search_catalogs.php
      *
@@ -219,7 +219,7 @@ final class PrivateCatalogClient
      * Search [Product][google.cloud.privatecatalog.v1beta1.Product] resources that consumers have access to, within the
      * scope of the consumer cloud resource hierarchy context.
      *
-     * The async variant is {@see PrivateCatalogGapicClient::searchProductsAsync()} .
+     * The async variant is {@see PrivateCatalogClient::searchProductsAsync()} .
      *
      * @example samples/V1beta1/PrivateCatalogClient/search_products.php
      *
@@ -248,7 +248,7 @@ final class PrivateCatalogClient
      * Search [Version][google.cloud.privatecatalog.v1beta1.Version] resources that consumers have access to, within the
      * scope of the consumer cloud resource hierarchy context.
      *
-     * The async variant is {@see PrivateCatalogGapicClient::searchVersionsAsync()} .
+     * The async variant is {@see PrivateCatalogClient::searchVersionsAsync()} .
      *
      * @example samples/V1beta1/PrivateCatalogClient/search_versions.php
      *
