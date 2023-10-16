@@ -284,7 +284,7 @@ class Operation
         array $options = [],
         &$transactionId = null
     ) {
-        if (!isset($options['begin'])) {
+        if ( !is_null($transactionId) and !is_array($transactionId) ) {
             $options += ['transactionId' => $transaction->id()];
         }
         $res = $this->execute($session, $sql, $options, $transactionId);
@@ -346,7 +346,8 @@ class Operation
         Session $session,
         Transaction $transaction,
         array $statements,
-        array $options = []
+        array $options = [],
+        &$transactionId = null
     ) {
         $stmts = [];
         foreach ($statements as $statement) {
@@ -361,12 +362,22 @@ class Operation
             ] + $this->mapper->formatParamsForExecuteSql($parameters, $types);
         }
 
+        if ( !is_null($transactionId) and !is_array($transactionId) ) {
+            $options += ['transactionId' => $transaction->id()];
+        }
+
         $res = $this->connection->executeBatchDml([
             'session' => $session->name(),
             'database' => $this->getDatabaseNameFromSession($session),
-            'transactionId' => $transaction->id(),
             'statements' => $stmts
         ] + $options);
+
+        if (
+            isset($res['metadata']['transaction']['id']) &&
+            $res['metadata']['transaction']['id']
+        ) {
+            $this->transactionId = $result['metadata']['transaction']['id'];
+        }
 
         $errorStatement = null;
         if (isset($res['status']) && $res['status']['code'] !== Code::OK) {
@@ -398,8 +409,14 @@ class Operation
      * }
      * @return Result
      */
-    public function read(Session $session, $table, KeySet $keySet, array $columns, array $options = [])
-    {
+    public function read(
+        Session $session,
+        $table,
+        KeySet $keySet,
+        array $columns,
+        array $options = [],
+        &$transactionId = null
+    ) {
         $options += [
             'index' => null,
             'limit' => null,
@@ -423,7 +440,15 @@ class Operation
             ] + $options);
         };
 
-        return new Result($this, $session, $call, $context, $this->mapper);
+        return new Result(
+            $this,
+            $session,
+            $call,
+            $context,
+            $this->mapper,
+            self::DEFAULT_RETRIES,
+            $transactionId
+        );
     }
 
     /**

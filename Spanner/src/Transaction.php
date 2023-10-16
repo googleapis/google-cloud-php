@@ -565,7 +565,13 @@ class Transaction implements TransactionalReadInterface
         $selector = $this->transactionSelector($options, $this->options);
 
         return $this->operation
-            ->executeUpdateBatch($this->session, $this, $statements, $options, $this->transactionId);
+            ->executeUpdateBatch(
+                $this->session,
+                $this,
+                $statements,
+                $options,
+                $this->transactionId
+            );
     }
 
     /**

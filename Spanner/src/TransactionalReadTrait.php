@@ -289,7 +289,12 @@ trait TransactionalReadTrait
         }
 
         // Send the reference of the transactionId to populate it when the transaction gets generated
-        return $this->operation->execute($this->session, $sql, $options, $this->transactionId);
+        return $this->operation->execute(
+            $this->session,
+            $sql,
+            $options,
+            $this->transactionId
+        );
     }
 
     /**
@@ -335,7 +340,11 @@ trait TransactionalReadTrait
         $this->singleUseState();
         $this->checkReadContext();
 
-        $options['transactionId'] = $this->transactionId;
+        if (is_array($this->transactionId) and isset($this->transactionId['begin'])) {
+            $options['begin'] = $this->transactionId['begin'];
+        } else {
+            $options['transactionId'] = $this->transactionId;
+        }
         $options['transactionType'] = $this->context;
         $options += $this->options;
         $selector = $this->transactionSelector($options, $this->options);
@@ -350,7 +359,14 @@ trait TransactionalReadTrait
             $options['requestOptions']['transactionTag'] = $this->tag;
         }
 
-        return $this->operation->read($this->session, $table, $keySet, $columns, $options);
+        return $this->operation->read(
+            $this->session,
+            $table,
+            $keySet,
+            $columns,
+            $options,
+            $this->transactionId
+        );
     }
 
     /**
