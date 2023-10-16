@@ -191,8 +191,7 @@ final class WebSecurityScannerClient
     /**
      * Creates a new ScanConfig.
      *
-     * The async variant is
-     * {@see WebSecurityScannerGapicClient::createScanConfigAsync()} .
+     * The async variant is {@see WebSecurityScannerClient::createScanConfigAsync()} .
      *
      * @example samples/V1/WebSecurityScannerClient/create_scan_config.php
      *
@@ -218,8 +217,7 @@ final class WebSecurityScannerClient
     /**
      * Deletes an existing ScanConfig and its child resources.
      *
-     * The async variant is
-     * {@see WebSecurityScannerGapicClient::deleteScanConfigAsync()} .
+     * The async variant is {@see WebSecurityScannerClient::deleteScanConfigAsync()} .
      *
      * @example samples/V1/WebSecurityScannerClient/delete_scan_config.php
      *
@@ -243,7 +241,7 @@ final class WebSecurityScannerClient
     /**
      * Gets a Finding.
      *
-     * The async variant is {@see WebSecurityScannerGapicClient::getFindingAsync()} .
+     * The async variant is {@see WebSecurityScannerClient::getFindingAsync()} .
      *
      * @example samples/V1/WebSecurityScannerClient/get_finding.php
      *
@@ -269,8 +267,7 @@ final class WebSecurityScannerClient
     /**
      * Gets a ScanConfig.
      *
-     * The async variant is {@see WebSecurityScannerGapicClient::getScanConfigAsync()}
-     * .
+     * The async variant is {@see WebSecurityScannerClient::getScanConfigAsync()} .
      *
      * @example samples/V1/WebSecurityScannerClient/get_scan_config.php
      *
@@ -296,7 +293,7 @@ final class WebSecurityScannerClient
     /**
      * Gets a ScanRun.
      *
-     * The async variant is {@see WebSecurityScannerGapicClient::getScanRunAsync()} .
+     * The async variant is {@see WebSecurityScannerClient::getScanRunAsync()} .
      *
      * @example samples/V1/WebSecurityScannerClient/get_scan_run.php
      *
@@ -322,8 +319,7 @@ final class WebSecurityScannerClient
     /**
      * List CrawledUrls under a given ScanRun.
      *
-     * The async variant is
-     * {@see WebSecurityScannerGapicClient::listCrawledUrlsAsync()} .
+     * The async variant is {@see WebSecurityScannerClient::listCrawledUrlsAsync()} .
      *
      * @example samples/V1/WebSecurityScannerClient/list_crawled_urls.php
      *
@@ -350,7 +346,7 @@ final class WebSecurityScannerClient
      * List all FindingTypeStats under a given ScanRun.
      *
      * The async variant is
-     * {@see WebSecurityScannerGapicClient::listFindingTypeStatsAsync()} .
+     * {@see WebSecurityScannerClient::listFindingTypeStatsAsync()} .
      *
      * @example samples/V1/WebSecurityScannerClient/list_finding_type_stats.php
      *
@@ -376,7 +372,7 @@ final class WebSecurityScannerClient
     /**
      * List Findings under a given ScanRun.
      *
-     * The async variant is {@see WebSecurityScannerGapicClient::listFindingsAsync()} .
+     * The async variant is {@see WebSecurityScannerClient::listFindingsAsync()} .
      *
      * @example samples/V1/WebSecurityScannerClient/list_findings.php
      *
@@ -402,8 +398,7 @@ final class WebSecurityScannerClient
     /**
      * Lists ScanConfigs under a given project.
      *
-     * The async variant is
-     * {@see WebSecurityScannerGapicClient::listScanConfigsAsync()} .
+     * The async variant is {@see WebSecurityScannerClient::listScanConfigsAsync()} .
      *
      * @example samples/V1/WebSecurityScannerClient/list_scan_configs.php
      *
@@ -430,7 +425,7 @@ final class WebSecurityScannerClient
      * Lists ScanRuns under a given ScanConfig, in descending order of ScanRun
      * stop time.
      *
-     * The async variant is {@see WebSecurityScannerGapicClient::listScanRunsAsync()} .
+     * The async variant is {@see WebSecurityScannerClient::listScanRunsAsync()} .
      *
      * @example samples/V1/WebSecurityScannerClient/list_scan_runs.php
      *
@@ -456,7 +451,7 @@ final class WebSecurityScannerClient
     /**
      * Start a ScanRun according to the given ScanConfig.
      *
-     * The async variant is {@see WebSecurityScannerGapicClient::startScanRunAsync()} .
+     * The async variant is {@see WebSecurityScannerClient::startScanRunAsync()} .
      *
      * @example samples/V1/WebSecurityScannerClient/start_scan_run.php
      *
@@ -482,7 +477,7 @@ final class WebSecurityScannerClient
     /**
      * Stops a ScanRun. The stopped ScanRun is returned.
      *
-     * The async variant is {@see WebSecurityScannerGapicClient::stopScanRunAsync()} .
+     * The async variant is {@see WebSecurityScannerClient::stopScanRunAsync()} .
      *
      * @example samples/V1/WebSecurityScannerClient/stop_scan_run.php
      *
@@ -508,8 +503,7 @@ final class WebSecurityScannerClient
     /**
      * Updates a ScanConfig. This method support partial update of a ScanConfig.
      *
-     * The async variant is
-     * {@see WebSecurityScannerGapicClient::updateScanConfigAsync()} .
+     * The async variant is {@see WebSecurityScannerClient::updateScanConfigAsync()} .
      *
      * @example samples/V1/WebSecurityScannerClient/update_scan_config.php
      *
