@@ -168,7 +168,7 @@ final class ReportServiceClient
      * fewer rows than specified by `page_size`. Rely on `next_page_token` to
      * determine if there are more rows to be requested.
      *
-     * The async variant is {@see ReportServiceGapicClient::searchAsync()} .
+     * The async variant is {@see ReportServiceClient::searchAsync()} .
      *
      * @example samples/V1beta/ReportServiceClient/search.php
      *

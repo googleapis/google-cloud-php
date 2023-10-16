@@ -9,13 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Destinations available for a product.
- * Destinations are used in Merchant Center to allow you to control where the
- * products from your data feed should be displayed.
+ * Reporting contexts that your account and product issues apply to.
+ * Reporting contexts are groups of surfaces and formats for product results on
+ * Google. They can represent the entire destination (for example, [Shopping
+ * ads](https://support.google.com/merchants/answer/6149970)) or a subset of
+ * formats within a destination (for example, [Discovery
+ * ads](https://support.google.com/merchants/answer/13389785)).
  *
- * Generated from protobuf message <code>google.shopping.type.Destination</code>
+ * Generated from protobuf message <code>google.shopping.type.ReportingContext</code>
  */
-class Destination extends \Google\Protobuf\Internal\Message
+class ReportingContext extends \Google\Protobuf\Internal\Message
 {
 
     /**
