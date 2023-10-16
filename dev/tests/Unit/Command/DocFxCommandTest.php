@@ -76,6 +76,21 @@ class DocFxCommandTest extends TestCase
         $this->assertFileEqualsWithDiff($left, $right, '1' === getenv('UPDATE_FIXTURES'));
     }
 
+    public function testGenerateSnippetsStructureXml()
+    {
+        $structureXml = __DIR__ . '/../../fixtures/phpdoc/clientsnippets.xml';
+        $componentPath = __DIR__ . '/../../fixtures/component/ClientSnippets';
+
+        $process = DocFxCommand::getPhpDocCommand($componentPath, self::$tmpDir);
+        $process->mustRun();
+
+        $this->assertFileEqualsWithDiff(
+            $structureXml,
+            self::$tmpDir . '/structure.xml',
+            '1' === getenv('UPDATE_FIXTURES')
+        );
+    }
+
     public function testGenerateDocFxFiles()
     {
         $fixturesFiles = array_diff(scandir(self::$fixturesDir . '/docfx/Vision'), ['..', '.']);
