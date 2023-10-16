@@ -229,7 +229,7 @@ final class LocalInventoryServiceClient
      * period before attempting a delete again.
      *
      * The async variant is
-     * {@see LocalInventoryServiceGapicClient::deleteLocalInventoryAsync()} .
+     * {@see LocalInventoryServiceClient::deleteLocalInventoryAsync()} .
      *
      * @example samples/V1beta/LocalInventoryServiceClient/delete_local_inventory.php
      *
@@ -264,7 +264,7 @@ final class LocalInventoryServiceClient
      * resource to appear in products.
      *
      * The async variant is
-     * {@see LocalInventoryServiceGapicClient::insertLocalInventoryAsync()} .
+     * {@see LocalInventoryServiceClient::insertLocalInventoryAsync()} .
      *
      * @example samples/V1beta/LocalInventoryServiceClient/insert_local_inventory.php
      *
@@ -298,7 +298,7 @@ final class LocalInventoryServiceClient
      * `LocalInventory` resources are listed per product for a given account.
      *
      * The async variant is
-     * {@see LocalInventoryServiceGapicClient::listLocalInventoriesAsync()} .
+     * {@see LocalInventoryServiceClient::listLocalInventoriesAsync()} .
      *
      * @example samples/V1beta/LocalInventoryServiceClient/list_local_inventories.php
      *

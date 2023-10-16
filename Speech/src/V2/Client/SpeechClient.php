@@ -424,7 +424,7 @@ final class SpeechClient
      * audio files and receive a long running operation that can be polled to see
      * when the transcriptions are finished.
      *
-     * The async variant is {@see SpeechGapicClient::batchRecognizeAsync()} .
+     * The async variant is {@see SpeechClient::batchRecognizeAsync()} .
      *
      * @param BatchRecognizeRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -448,7 +448,7 @@ final class SpeechClient
     /**
      * Creates a [CustomClass][google.cloud.speech.v2.CustomClass].
      *
-     * The async variant is {@see SpeechGapicClient::createCustomClassAsync()} .
+     * The async variant is {@see SpeechClient::createCustomClassAsync()} .
      *
      * @param CreateCustomClassRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -472,7 +472,7 @@ final class SpeechClient
     /**
      * Creates a [PhraseSet][google.cloud.speech.v2.PhraseSet].
      *
-     * The async variant is {@see SpeechGapicClient::createPhraseSetAsync()} .
+     * The async variant is {@see SpeechClient::createPhraseSetAsync()} .
      *
      * @param CreatePhraseSetRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -496,7 +496,7 @@ final class SpeechClient
     /**
      * Creates a [Recognizer][google.cloud.speech.v2.Recognizer].
      *
-     * The async variant is {@see SpeechGapicClient::createRecognizerAsync()} .
+     * The async variant is {@see SpeechClient::createRecognizerAsync()} .
      *
      * @param CreateRecognizerRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -520,7 +520,7 @@ final class SpeechClient
     /**
      * Deletes the [CustomClass][google.cloud.speech.v2.CustomClass].
      *
-     * The async variant is {@see SpeechGapicClient::deleteCustomClassAsync()} .
+     * The async variant is {@see SpeechClient::deleteCustomClassAsync()} .
      *
      * @param DeleteCustomClassRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -544,7 +544,7 @@ final class SpeechClient
     /**
      * Deletes the [PhraseSet][google.cloud.speech.v2.PhraseSet].
      *
-     * The async variant is {@see SpeechGapicClient::deletePhraseSetAsync()} .
+     * The async variant is {@see SpeechClient::deletePhraseSetAsync()} .
      *
      * @param DeletePhraseSetRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -568,7 +568,7 @@ final class SpeechClient
     /**
      * Deletes the [Recognizer][google.cloud.speech.v2.Recognizer].
      *
-     * The async variant is {@see SpeechGapicClient::deleteRecognizerAsync()} .
+     * The async variant is {@see SpeechClient::deleteRecognizerAsync()} .
      *
      * @param DeleteRecognizerRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -592,7 +592,7 @@ final class SpeechClient
     /**
      * Returns the requested [Config][google.cloud.speech.v2.Config].
      *
-     * The async variant is {@see SpeechGapicClient::getConfigAsync()} .
+     * The async variant is {@see SpeechClient::getConfigAsync()} .
      *
      * @param GetConfigRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -617,7 +617,7 @@ final class SpeechClient
      * Returns the requested
      * [CustomClass][google.cloud.speech.v2.CustomClass].
      *
-     * The async variant is {@see SpeechGapicClient::getCustomClassAsync()} .
+     * The async variant is {@see SpeechClient::getCustomClassAsync()} .
      *
      * @param GetCustomClassRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -642,7 +642,7 @@ final class SpeechClient
      * Returns the requested
      * [PhraseSet][google.cloud.speech.v2.PhraseSet].
      *
-     * The async variant is {@see SpeechGapicClient::getPhraseSetAsync()} .
+     * The async variant is {@see SpeechClient::getPhraseSetAsync()} .
      *
      * @param GetPhraseSetRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -669,7 +669,7 @@ final class SpeechClient
      * [NOT_FOUND][google.rpc.Code.NOT_FOUND] if the requested Recognizer doesn't
      * exist.
      *
-     * The async variant is {@see SpeechGapicClient::getRecognizerAsync()} .
+     * The async variant is {@see SpeechClient::getRecognizerAsync()} .
      *
      * @param GetRecognizerRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -693,7 +693,7 @@ final class SpeechClient
     /**
      * Lists CustomClasses.
      *
-     * The async variant is {@see SpeechGapicClient::listCustomClassesAsync()} .
+     * The async variant is {@see SpeechClient::listCustomClassesAsync()} .
      *
      * @param ListCustomClassesRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -717,7 +717,7 @@ final class SpeechClient
     /**
      * Lists PhraseSets.
      *
-     * The async variant is {@see SpeechGapicClient::listPhraseSetsAsync()} .
+     * The async variant is {@see SpeechClient::listPhraseSetsAsync()} .
      *
      * @param ListPhraseSetsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -741,7 +741,7 @@ final class SpeechClient
     /**
      * Lists Recognizers.
      *
-     * The async variant is {@see SpeechGapicClient::listRecognizersAsync()} .
+     * The async variant is {@see SpeechClient::listRecognizersAsync()} .
      *
      * @param ListRecognizersRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -766,7 +766,7 @@ final class SpeechClient
      * Performs synchronous Speech recognition: receive results after all audio
      * has been sent and processed.
      *
-     * The async variant is {@see SpeechGapicClient::recognizeAsync()} .
+     * The async variant is {@see SpeechClient::recognizeAsync()} .
      *
      * @param RecognizeRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -810,7 +810,7 @@ final class SpeechClient
     /**
      * Undeletes the [CustomClass][google.cloud.speech.v2.CustomClass].
      *
-     * The async variant is {@see SpeechGapicClient::undeleteCustomClassAsync()} .
+     * The async variant is {@see SpeechClient::undeleteCustomClassAsync()} .
      *
      * @param UndeleteCustomClassRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -834,7 +834,7 @@ final class SpeechClient
     /**
      * Undeletes the [PhraseSet][google.cloud.speech.v2.PhraseSet].
      *
-     * The async variant is {@see SpeechGapicClient::undeletePhraseSetAsync()} .
+     * The async variant is {@see SpeechClient::undeletePhraseSetAsync()} .
      *
      * @param UndeletePhraseSetRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -858,7 +858,7 @@ final class SpeechClient
     /**
      * Undeletes the [Recognizer][google.cloud.speech.v2.Recognizer].
      *
-     * The async variant is {@see SpeechGapicClient::undeleteRecognizerAsync()} .
+     * The async variant is {@see SpeechClient::undeleteRecognizerAsync()} .
      *
      * @param UndeleteRecognizerRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -882,7 +882,7 @@ final class SpeechClient
     /**
      * Updates the [Config][google.cloud.speech.v2.Config].
      *
-     * The async variant is {@see SpeechGapicClient::updateConfigAsync()} .
+     * The async variant is {@see SpeechClient::updateConfigAsync()} .
      *
      * @param UpdateConfigRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -906,7 +906,7 @@ final class SpeechClient
     /**
      * Updates the [CustomClass][google.cloud.speech.v2.CustomClass].
      *
-     * The async variant is {@see SpeechGapicClient::updateCustomClassAsync()} .
+     * The async variant is {@see SpeechClient::updateCustomClassAsync()} .
      *
      * @param UpdateCustomClassRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -930,7 +930,7 @@ final class SpeechClient
     /**
      * Updates the [PhraseSet][google.cloud.speech.v2.PhraseSet].
      *
-     * The async variant is {@see SpeechGapicClient::updatePhraseSetAsync()} .
+     * The async variant is {@see SpeechClient::updatePhraseSetAsync()} .
      *
      * @param UpdatePhraseSetRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -954,7 +954,7 @@ final class SpeechClient
     /**
      * Updates the [Recognizer][google.cloud.speech.v2.Recognizer].
      *
-     * The async variant is {@see SpeechGapicClient::updateRecognizerAsync()} .
+     * The async variant is {@see SpeechClient::updateRecognizerAsync()} .
      *
      * @param UpdateRecognizerRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -978,7 +978,7 @@ final class SpeechClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see SpeechGapicClient::getLocationAsync()} .
+     * The async variant is {@see SpeechClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1002,7 +1002,7 @@ final class SpeechClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see SpeechGapicClient::listLocationsAsync()} .
+     * The async variant is {@see SpeechClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

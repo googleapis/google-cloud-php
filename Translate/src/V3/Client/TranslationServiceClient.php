@@ -297,7 +297,7 @@ final class TranslationServiceClient
      * google.longrunning.Operation.name to poll the status of the call.
      *
      * The async variant is
-     * {@see TranslationServiceGapicClient::batchTranslateDocumentAsync()} .
+     * {@see TranslationServiceClient::batchTranslateDocumentAsync()} .
      *
      * @param BatchTranslateDocumentRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -327,8 +327,8 @@ final class TranslationServiceClient
      * This call returns immediately and you can
      * use google.longrunning.Operation.name to poll the status of the call.
      *
-     * The async variant is
-     * {@see TranslationServiceGapicClient::batchTranslateTextAsync()} .
+     * The async variant is {@see TranslationServiceClient::batchTranslateTextAsync()}
+     * .
      *
      * @param BatchTranslateTextRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -353,8 +353,7 @@ final class TranslationServiceClient
      * Creates a glossary and returns the long-running operation. Returns
      * NOT_FOUND, if the project doesn't exist.
      *
-     * The async variant is {@see TranslationServiceGapicClient::createGlossaryAsync()}
-     * .
+     * The async variant is {@see TranslationServiceClient::createGlossaryAsync()} .
      *
      * @param CreateGlossaryRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -380,8 +379,7 @@ final class TranslationServiceClient
      * if the glossary isn't created yet.
      * Returns NOT_FOUND, if the glossary doesn't exist.
      *
-     * The async variant is {@see TranslationServiceGapicClient::deleteGlossaryAsync()}
-     * .
+     * The async variant is {@see TranslationServiceClient::deleteGlossaryAsync()} .
      *
      * @param DeleteGlossaryRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -405,8 +403,7 @@ final class TranslationServiceClient
     /**
      * Detects the language of text within a request.
      *
-     * The async variant is {@see TranslationServiceGapicClient::detectLanguageAsync()}
-     * .
+     * The async variant is {@see TranslationServiceClient::detectLanguageAsync()} .
      *
      * @param DetectLanguageRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -431,7 +428,7 @@ final class TranslationServiceClient
      * Gets a glossary. Returns NOT_FOUND, if the glossary doesn't
      * exist.
      *
-     * The async variant is {@see TranslationServiceGapicClient::getGlossaryAsync()} .
+     * The async variant is {@see TranslationServiceClient::getGlossaryAsync()} .
      *
      * @param GetGlossaryRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -456,7 +453,7 @@ final class TranslationServiceClient
      * Returns a list of supported languages for translation.
      *
      * The async variant is
-     * {@see TranslationServiceGapicClient::getSupportedLanguagesAsync()} .
+     * {@see TranslationServiceClient::getSupportedLanguagesAsync()} .
      *
      * @param GetSupportedLanguagesRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -481,8 +478,7 @@ final class TranslationServiceClient
      * Lists glossaries in a project. Returns NOT_FOUND, if the project doesn't
      * exist.
      *
-     * The async variant is {@see TranslationServiceGapicClient::listGlossariesAsync()}
-     * .
+     * The async variant is {@see TranslationServiceClient::listGlossariesAsync()} .
      *
      * @param ListGlossariesRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -506,8 +502,7 @@ final class TranslationServiceClient
     /**
      * Translates documents in synchronous mode.
      *
-     * The async variant is
-     * {@see TranslationServiceGapicClient::translateDocumentAsync()} .
+     * The async variant is {@see TranslationServiceClient::translateDocumentAsync()} .
      *
      * @param TranslateDocumentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -531,8 +526,7 @@ final class TranslationServiceClient
     /**
      * Translates input text and returns translated text.
      *
-     * The async variant is {@see TranslationServiceGapicClient::translateTextAsync()}
-     * .
+     * The async variant is {@see TranslationServiceClient::translateTextAsync()} .
      *
      * @param TranslateTextRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

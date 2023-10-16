@@ -169,7 +169,7 @@ final class SqlConnectServiceClient
      * database.
      *
      * The async variant is
-     * {@see SqlConnectServiceGapicClient::generateEphemeralCertAsync()} .
+     * {@see SqlConnectServiceClient::generateEphemeralCertAsync()} .
      *
      * @example samples/V1/SqlConnectServiceClient/generate_ephemeral_cert.php
      *
@@ -195,8 +195,7 @@ final class SqlConnectServiceClient
     /**
      * Retrieves connect settings about a Cloud SQL instance.
      *
-     * The async variant is
-     * {@see SqlConnectServiceGapicClient::getConnectSettingsAsync()} .
+     * The async variant is {@see SqlConnectServiceClient::getConnectSettingsAsync()} .
      *
      * @example samples/V1/SqlConnectServiceClient/get_connect_settings.php
      *

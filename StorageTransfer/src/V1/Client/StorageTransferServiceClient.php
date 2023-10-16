@@ -278,8 +278,8 @@ final class StorageTransferServiceClient
     /**
      * Creates an agent pool resource.
      *
-     * The async variant is
-     * {@see StorageTransferServiceGapicClient::createAgentPoolAsync()} .
+     * The async variant is {@see StorageTransferServiceClient::createAgentPoolAsync()}
+     * .
      *
      * @param CreateAgentPoolRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -304,7 +304,7 @@ final class StorageTransferServiceClient
      * Creates a transfer job that runs periodically.
      *
      * The async variant is
-     * {@see StorageTransferServiceGapicClient::createTransferJobAsync()} .
+     * {@see StorageTransferServiceClient::createTransferJobAsync()} .
      *
      * @param CreateTransferJobRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -328,8 +328,8 @@ final class StorageTransferServiceClient
     /**
      * Deletes an agent pool.
      *
-     * The async variant is
-     * {@see StorageTransferServiceGapicClient::deleteAgentPoolAsync()} .
+     * The async variant is {@see StorageTransferServiceClient::deleteAgentPoolAsync()}
+     * .
      *
      * @param DeleteAgentPoolRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -353,7 +353,7 @@ final class StorageTransferServiceClient
      * [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED].
      *
      * The async variant is
-     * {@see StorageTransferServiceGapicClient::deleteTransferJobAsync()} .
+     * {@see StorageTransferServiceClient::deleteTransferJobAsync()} .
      *
      * @param DeleteTransferJobRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -375,8 +375,7 @@ final class StorageTransferServiceClient
     /**
      * Gets an agent pool.
      *
-     * The async variant is
-     * {@see StorageTransferServiceGapicClient::getAgentPoolAsync()} .
+     * The async variant is {@see StorageTransferServiceClient::getAgentPoolAsync()} .
      *
      * @param GetAgentPoolRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -408,7 +407,7 @@ final class StorageTransferServiceClient
      * only be used by Storage Transfer Service.
      *
      * The async variant is
-     * {@see StorageTransferServiceGapicClient::getGoogleServiceAccountAsync()} .
+     * {@see StorageTransferServiceClient::getGoogleServiceAccountAsync()} .
      *
      * @param GetGoogleServiceAccountRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -432,8 +431,8 @@ final class StorageTransferServiceClient
     /**
      * Gets a transfer job.
      *
-     * The async variant is
-     * {@see StorageTransferServiceGapicClient::getTransferJobAsync()} .
+     * The async variant is {@see StorageTransferServiceClient::getTransferJobAsync()}
+     * .
      *
      * @param GetTransferJobRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -457,8 +456,8 @@ final class StorageTransferServiceClient
     /**
      * Lists agent pools.
      *
-     * The async variant is
-     * {@see StorageTransferServiceGapicClient::listAgentPoolsAsync()} .
+     * The async variant is {@see StorageTransferServiceClient::listAgentPoolsAsync()}
+     * .
      *
      * @param ListAgentPoolsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -483,7 +482,7 @@ final class StorageTransferServiceClient
      * Lists transfer jobs.
      *
      * The async variant is
-     * {@see StorageTransferServiceGapicClient::listTransferJobsAsync()} .
+     * {@see StorageTransferServiceClient::listTransferJobsAsync()} .
      *
      * @param ListTransferJobsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -508,7 +507,7 @@ final class StorageTransferServiceClient
      * Pauses a transfer operation.
      *
      * The async variant is
-     * {@see StorageTransferServiceGapicClient::pauseTransferOperationAsync()} .
+     * {@see StorageTransferServiceClient::pauseTransferOperationAsync()} .
      *
      * @param PauseTransferOperationRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -531,7 +530,7 @@ final class StorageTransferServiceClient
      * Resumes a transfer operation that is paused.
      *
      * The async variant is
-     * {@see StorageTransferServiceGapicClient::resumeTransferOperationAsync()} .
+     * {@see StorageTransferServiceClient::resumeTransferOperationAsync()} .
      *
      * @param ResumeTransferOperationRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -556,8 +555,8 @@ final class StorageTransferServiceClient
      * method is called while a `TransferOperation` is active, an error is
      * returned.
      *
-     * The async variant is
-     * {@see StorageTransferServiceGapicClient::runTransferJobAsync()} .
+     * The async variant is {@see StorageTransferServiceClient::runTransferJobAsync()}
+     * .
      *
      * @param RunTransferJobRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -581,8 +580,8 @@ final class StorageTransferServiceClient
     /**
      * Updates an existing agent pool resource.
      *
-     * The async variant is
-     * {@see StorageTransferServiceGapicClient::updateAgentPoolAsync()} .
+     * The async variant is {@see StorageTransferServiceClient::updateAgentPoolAsync()}
+     * .
      *
      * @param UpdateAgentPoolRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -614,7 +613,7 @@ final class StorageTransferServiceClient
      * [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED]).
      *
      * The async variant is
-     * {@see StorageTransferServiceGapicClient::updateTransferJobAsync()} .
+     * {@see StorageTransferServiceClient::updateTransferJobAsync()} .
      *
      * @param UpdateTransferJobRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
