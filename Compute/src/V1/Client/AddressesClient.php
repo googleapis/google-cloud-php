@@ -241,7 +241,7 @@ final class AddressesClient
     /**
      * Retrieves an aggregated list of addresses.
      *
-     * The async variant is {@see AddressesGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see AddressesClient::aggregatedListAsync()} .
      *
      * @param AggregatedListAddressesRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -265,7 +265,7 @@ final class AddressesClient
     /**
      * Deletes the specified address resource.
      *
-     * The async variant is {@see AddressesGapicClient::deleteAsync()} .
+     * The async variant is {@see AddressesClient::deleteAsync()} .
      *
      * @param DeleteAddressRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -289,7 +289,7 @@ final class AddressesClient
     /**
      * Returns the specified address resource.
      *
-     * The async variant is {@see AddressesGapicClient::getAsync()} .
+     * The async variant is {@see AddressesClient::getAsync()} .
      *
      * @param GetAddressRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -313,7 +313,7 @@ final class AddressesClient
     /**
      * Creates an address resource in the specified project by using the data included in the request.
      *
-     * The async variant is {@see AddressesGapicClient::insertAsync()} .
+     * The async variant is {@see AddressesClient::insertAsync()} .
      *
      * @param InsertAddressRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -337,7 +337,7 @@ final class AddressesClient
     /**
      * Retrieves a list of addresses contained within the specified region.
      *
-     * The async variant is {@see AddressesGapicClient::listAsync()} .
+     * The async variant is {@see AddressesClient::listAsync()} .
      *
      * @param ListAddressesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -361,7 +361,7 @@ final class AddressesClient
     /**
      * Moves the specified address resource.
      *
-     * The async variant is {@see AddressesGapicClient::moveAsync()} .
+     * The async variant is {@see AddressesClient::moveAsync()} .
      *
      * @param MoveAddressRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -385,7 +385,7 @@ final class AddressesClient
     /**
      * Sets the labels on an Address. To learn more about labels, read the Labeling Resources documentation.
      *
-     * The async variant is {@see AddressesGapicClient::setLabelsAsync()} .
+     * The async variant is {@see AddressesClient::setLabelsAsync()} .
      *
      * @param SetLabelsAddressRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {

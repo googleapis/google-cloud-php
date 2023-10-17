@@ -232,7 +232,7 @@ final class CompletionClient
      * Completes the specified prefix with keyword suggestions.
      * Intended for use by a job search auto-complete search box.
      *
-     * The async variant is {@see CompletionGapicClient::completeQueryAsync()} .
+     * The async variant is {@see CompletionClient::completeQueryAsync()} .
      *
      * @param CompleteQueryRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

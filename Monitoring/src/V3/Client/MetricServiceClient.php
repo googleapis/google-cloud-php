@@ -424,8 +424,7 @@ final class MetricServiceClient
      * User-created metric descriptors define
      * [custom metrics](https://cloud.google.com/monitoring/custom-metrics).
      *
-     * The async variant is
-     * {@see MetricServiceGapicClient::createMetricDescriptorAsync()} .
+     * The async variant is {@see MetricServiceClient::createMetricDescriptorAsync()} .
      *
      * @param CreateMetricDescriptorRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -457,8 +456,8 @@ final class MetricServiceClient
      * [projects.timeSeries.create][google.monitoring.v3.MetricService.CreateTimeSeries]
      * instead.
      *
-     * The async variant is
-     * {@see MetricServiceGapicClient::createServiceTimeSeriesAsync()} .
+     * The async variant is {@see MetricServiceClient::createServiceTimeSeriesAsync()}
+     * .
      *
      * @param CreateTimeSeriesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -483,7 +482,7 @@ final class MetricServiceClient
      * If any time series could not be written, a corresponding failure message is
      * included in the error response.
      *
-     * The async variant is {@see MetricServiceGapicClient::createTimeSeriesAsync()} .
+     * The async variant is {@see MetricServiceClient::createTimeSeriesAsync()} .
      *
      * @param CreateTimeSeriesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -507,8 +506,7 @@ final class MetricServiceClient
      * [custom metrics](https://cloud.google.com/monitoring/custom-metrics) can be
      * deleted.
      *
-     * The async variant is
-     * {@see MetricServiceGapicClient::deleteMetricDescriptorAsync()} .
+     * The async variant is {@see MetricServiceClient::deleteMetricDescriptorAsync()} .
      *
      * @param DeleteMetricDescriptorRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -530,8 +528,7 @@ final class MetricServiceClient
     /**
      * Gets a single metric descriptor. This method does not require a Workspace.
      *
-     * The async variant is {@see MetricServiceGapicClient::getMetricDescriptorAsync()}
-     * .
+     * The async variant is {@see MetricServiceClient::getMetricDescriptorAsync()} .
      *
      * @param GetMetricDescriptorRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -556,7 +553,7 @@ final class MetricServiceClient
      * Gets a single monitored resource descriptor. This method does not require a Workspace.
      *
      * The async variant is
-     * {@see MetricServiceGapicClient::getMonitoredResourceDescriptorAsync()} .
+     * {@see MetricServiceClient::getMonitoredResourceDescriptorAsync()} .
      *
      * @param GetMonitoredResourceDescriptorRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
@@ -580,8 +577,7 @@ final class MetricServiceClient
     /**
      * Lists metric descriptors that match a filter. This method does not require a Workspace.
      *
-     * The async variant is
-     * {@see MetricServiceGapicClient::listMetricDescriptorsAsync()} .
+     * The async variant is {@see MetricServiceClient::listMetricDescriptorsAsync()} .
      *
      * @param ListMetricDescriptorsRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -606,7 +602,7 @@ final class MetricServiceClient
      * Lists monitored resource descriptors that match a filter. This method does not require a Workspace.
      *
      * The async variant is
-     * {@see MetricServiceGapicClient::listMonitoredResourceDescriptorsAsync()} .
+     * {@see MetricServiceClient::listMonitoredResourceDescriptorsAsync()} .
      *
      * @param ListMonitoredResourceDescriptorsRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -630,7 +626,7 @@ final class MetricServiceClient
     /**
      * Lists time series that match a filter. This method does not require a Workspace.
      *
-     * The async variant is {@see MetricServiceGapicClient::listTimeSeriesAsync()} .
+     * The async variant is {@see MetricServiceClient::listTimeSeriesAsync()} .
      *
      * @param ListTimeSeriesRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

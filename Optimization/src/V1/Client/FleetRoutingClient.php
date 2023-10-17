@@ -225,7 +225,7 @@ final class FleetRoutingClient
      * containing `ShipmentRoute`s, which are a set of routes to be performed by
      * vehicles minimizing the overall cost.
      *
-     * The async variant is {@see FleetRoutingGapicClient::batchOptimizeToursAsync()} .
+     * The async variant is {@see FleetRoutingClient::batchOptimizeToursAsync()} .
      *
      * @example samples/V1/FleetRoutingClient/batch_optimize_tours.php
      *
@@ -264,7 +264,7 @@ final class FleetRoutingClient
      * minimizes the total cost where cost has many components defined in the
      * `ShipmentModel`.
      *
-     * The async variant is {@see FleetRoutingGapicClient::optimizeToursAsync()} .
+     * The async variant is {@see FleetRoutingClient::optimizeToursAsync()} .
      *
      * @example samples/V1/FleetRoutingClient/optimize_tours.php
      *

@@ -369,8 +369,7 @@ final class ProductSearchClient
      *
      * * Returns NOT_FOUND if the Product or the ProductSet doesn't exist.
      *
-     * The async variant is
-     * {@see ProductSearchGapicClient::addProductToProductSetAsync()} .
+     * The async variant is {@see ProductSearchClient::addProductToProductSetAsync()} .
      *
      * @param AddProductToProductSetRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -399,7 +398,7 @@ final class ProductSearchClient
      * * Returns INVALID_ARGUMENT if description is longer than 4096 characters.
      * * Returns INVALID_ARGUMENT if product_category is missing or invalid.
      *
-     * The async variant is {@see ProductSearchGapicClient::createProductAsync()} .
+     * The async variant is {@see ProductSearchClient::createProductAsync()} .
      *
      * @param CreateProductRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -428,7 +427,7 @@ final class ProductSearchClient
      * * Returns INVALID_ARGUMENT if display_name is missing, or is longer than
      * 4096 characters.
      *
-     * The async variant is {@see ProductSearchGapicClient::createProductSetAsync()} .
+     * The async variant is {@see ProductSearchClient::createProductSetAsync()} .
      *
      * @param CreateProductSetRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -470,8 +469,7 @@ final class ProductSearchClient
      * compatible with the parent product's product_category is detected.
      * * Returns INVALID_ARGUMENT if bounding_poly contains more than 10 polygons.
      *
-     * The async variant is
-     * {@see ProductSearchGapicClient::createReferenceImageAsync()} .
+     * The async variant is {@see ProductSearchClient::createReferenceImageAsync()} .
      *
      * @param CreateReferenceImageRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -499,7 +497,7 @@ final class ProductSearchClient
      * search queries against ProductSets containing the product may still work
      * until all related caches are refreshed.
      *
-     * The async variant is {@see ProductSearchGapicClient::deleteProductAsync()} .
+     * The async variant is {@see ProductSearchClient::deleteProductAsync()} .
      *
      * @param DeleteProductRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -524,7 +522,7 @@ final class ProductSearchClient
      *
      * The actual image files are not deleted from Google Cloud Storage.
      *
-     * The async variant is {@see ProductSearchGapicClient::deleteProductSetAsync()} .
+     * The async variant is {@see ProductSearchClient::deleteProductSetAsync()} .
      *
      * @param DeleteProductSetRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -552,8 +550,7 @@ final class ProductSearchClient
      *
      * The actual image files are not deleted from Google Cloud Storage.
      *
-     * The async variant is
-     * {@see ProductSearchGapicClient::deleteReferenceImageAsync()} .
+     * The async variant is {@see ProductSearchClient::deleteReferenceImageAsync()} .
      *
      * @param DeleteReferenceImageRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -579,7 +576,7 @@ final class ProductSearchClient
      *
      * * Returns NOT_FOUND if the Product does not exist.
      *
-     * The async variant is {@see ProductSearchGapicClient::getProductAsync()} .
+     * The async variant is {@see ProductSearchClient::getProductAsync()} .
      *
      * @param GetProductRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -607,7 +604,7 @@ final class ProductSearchClient
      *
      * * Returns NOT_FOUND if the ProductSet does not exist.
      *
-     * The async variant is {@see ProductSearchGapicClient::getProductSetAsync()} .
+     * The async variant is {@see ProductSearchClient::getProductSetAsync()} .
      *
      * @param GetProductSetRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -635,7 +632,7 @@ final class ProductSearchClient
      *
      * * Returns NOT_FOUND if the specified image does not exist.
      *
-     * The async variant is {@see ProductSearchGapicClient::getReferenceImageAsync()} .
+     * The async variant is {@see ProductSearchClient::getReferenceImageAsync()} .
      *
      * @param GetReferenceImageRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -669,7 +666,7 @@ final class ProductSearchClient
      * For the format of the csv file please see
      * [ImportProductSetsGcsSource.csv_file_uri][google.cloud.vision.v1.ImportProductSetsGcsSource.csv_file_uri].
      *
-     * The async variant is {@see ProductSearchGapicClient::importProductSetsAsync()} .
+     * The async variant is {@see ProductSearchClient::importProductSetsAsync()} .
      *
      * @param ImportProductSetsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -698,7 +695,7 @@ final class ProductSearchClient
      * * Returns INVALID_ARGUMENT if page_size is greater than 100, or less
      * than 1.
      *
-     * The async variant is {@see ProductSearchGapicClient::listProductSetsAsync()} .
+     * The async variant is {@see ProductSearchClient::listProductSetsAsync()} .
      *
      * @param ListProductSetsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -726,7 +723,7 @@ final class ProductSearchClient
      *
      * * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
      *
-     * The async variant is {@see ProductSearchGapicClient::listProductsAsync()} .
+     * The async variant is {@see ProductSearchClient::listProductsAsync()} .
      *
      * @param ListProductsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -756,8 +753,8 @@ final class ProductSearchClient
      *
      * * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
      *
-     * The async variant is
-     * {@see ProductSearchGapicClient::listProductsInProductSetAsync()} .
+     * The async variant is {@see ProductSearchClient::listProductsInProductSetAsync()}
+     * .
      *
      * @param ListProductsInProductSetRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -787,8 +784,7 @@ final class ProductSearchClient
      * * Returns INVALID_ARGUMENT if the page_size is greater than 100, or less
      * than 1.
      *
-     * The async variant is {@see ProductSearchGapicClient::listReferenceImagesAsync()}
-     * .
+     * The async variant is {@see ProductSearchClient::listReferenceImagesAsync()} .
      *
      * @param ListReferenceImagesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -835,7 +831,7 @@ final class ProductSearchClient
      * progress and results of the request.
      * `Operation.metadata` contains `BatchOperationMetadata`. (progress)
      *
-     * The async variant is {@see ProductSearchGapicClient::purgeProductsAsync()} .
+     * The async variant is {@see ProductSearchClient::purgeProductsAsync()} .
      *
      * @param PurgeProductsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -860,7 +856,7 @@ final class ProductSearchClient
      * Removes a Product from the specified ProductSet.
      *
      * The async variant is
-     * {@see ProductSearchGapicClient::removeProductFromProductSetAsync()} .
+     * {@see ProductSearchClient::removeProductFromProductSetAsync()} .
      *
      * @param RemoveProductFromProductSetRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -896,7 +892,7 @@ final class ProductSearchClient
      * longer than 4096 characters.
      * * Returns INVALID_ARGUMENT if product_category is present in update_mask.
      *
-     * The async variant is {@see ProductSearchGapicClient::updateProductAsync()} .
+     * The async variant is {@see ProductSearchClient::updateProductAsync()} .
      *
      * @param UpdateProductRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -927,7 +923,7 @@ final class ProductSearchClient
      * * Returns INVALID_ARGUMENT if display_name is present in update_mask but
      * missing from the request or longer than 4096 characters.
      *
-     * The async variant is {@see ProductSearchGapicClient::updateProductSetAsync()} .
+     * The async variant is {@see ProductSearchClient::updateProductSetAsync()} .
      *
      * @param UpdateProductSetRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {

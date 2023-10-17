@@ -172,7 +172,7 @@ final class SqlUsersServiceClient
     /**
      * Deletes a user from a Cloud SQL instance.
      *
-     * The async variant is {@see SqlUsersServiceGapicClient::deleteAsync()} .
+     * The async variant is {@see SqlUsersServiceClient::deleteAsync()} .
      *
      * @example samples/V1/SqlUsersServiceClient/delete.php
      *
@@ -198,7 +198,7 @@ final class SqlUsersServiceClient
     /**
      * Retrieves a resource containing information about a user.
      *
-     * The async variant is {@see SqlUsersServiceGapicClient::getAsync()} .
+     * The async variant is {@see SqlUsersServiceClient::getAsync()} .
      *
      * @example samples/V1/SqlUsersServiceClient/get.php
      *
@@ -224,7 +224,7 @@ final class SqlUsersServiceClient
     /**
      * Creates a new user in a Cloud SQL instance.
      *
-     * The async variant is {@see SqlUsersServiceGapicClient::insertAsync()} .
+     * The async variant is {@see SqlUsersServiceClient::insertAsync()} .
      *
      * @example samples/V1/SqlUsersServiceClient/insert.php
      *
@@ -250,7 +250,7 @@ final class SqlUsersServiceClient
     /**
      * Lists users in the specified Cloud SQL instance.
      *
-     * The async variant is {@see SqlUsersServiceGapicClient::listAsync()} .
+     * The async variant is {@see SqlUsersServiceClient::listAsync()} .
      *
      * @example samples/V1/SqlUsersServiceClient/list.php
      *
@@ -276,7 +276,7 @@ final class SqlUsersServiceClient
     /**
      * Updates an existing user in a Cloud SQL instance.
      *
-     * The async variant is {@see SqlUsersServiceGapicClient::updateAsync()} .
+     * The async variant is {@see SqlUsersServiceClient::updateAsync()} .
      *
      * @example samples/V1/SqlUsersServiceClient/update.php
      *

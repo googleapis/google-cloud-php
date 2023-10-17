@@ -211,8 +211,7 @@ final class KeyDashboardServiceClient
      * Note that this data is sourced from snapshots, meaning it may not
      * completely reflect the actual state of key metadata at call time.
      *
-     * The async variant is
-     * {@see KeyDashboardServiceGapicClient::listCryptoKeysAsync()} .
+     * The async variant is {@see KeyDashboardServiceClient::listCryptoKeysAsync()} .
      *
      * @example samples/V1/KeyDashboardServiceClient/list_crypto_keys.php
      *

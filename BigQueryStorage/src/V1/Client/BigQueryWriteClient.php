@@ -308,8 +308,8 @@ final class BigQueryWriteClient
      * times. Once a stream is committed, data in the stream becomes available
      * for read operations.
      *
-     * The async variant is
-     * {@see BigQueryWriteGapicClient::batchCommitWriteStreamsAsync()} .
+     * The async variant is {@see BigQueryWriteClient::batchCommitWriteStreamsAsync()}
+     * .
      *
      * @param BatchCommitWriteStreamsRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -338,7 +338,7 @@ final class BigQueryWriteClient
      * number of clients. Data written to this stream is considered committed as
      * soon as an acknowledgement is received.
      *
-     * The async variant is {@see BigQueryWriteGapicClient::createWriteStreamAsync()} .
+     * The async variant is {@see BigQueryWriteClient::createWriteStreamAsync()} .
      *
      * @param CreateWriteStreamRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -363,8 +363,7 @@ final class BigQueryWriteClient
      * Finalize a write stream so that no new data can be appended to the
      * stream. Finalize is not supported on the '_default' stream.
      *
-     * The async variant is {@see BigQueryWriteGapicClient::finalizeWriteStreamAsync()}
-     * .
+     * The async variant is {@see BigQueryWriteClient::finalizeWriteStreamAsync()} .
      *
      * @param FinalizeWriteStreamRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -395,7 +394,7 @@ final class BigQueryWriteClient
      *
      * Flush is not supported on the _default stream, since it is not BUFFERED.
      *
-     * The async variant is {@see BigQueryWriteGapicClient::flushRowsAsync()} .
+     * The async variant is {@see BigQueryWriteClient::flushRowsAsync()} .
      *
      * @param FlushRowsRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -419,7 +418,7 @@ final class BigQueryWriteClient
     /**
      * Gets information about a write stream.
      *
-     * The async variant is {@see BigQueryWriteGapicClient::getWriteStreamAsync()} .
+     * The async variant is {@see BigQueryWriteClient::getWriteStreamAsync()} .
      *
      * @param GetWriteStreamRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

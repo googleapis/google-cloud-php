@@ -366,7 +366,7 @@ final class NotificationChannelServiceClient
      * UpdateNotificationChannel.
      *
      * The async variant is
-     * {@see NotificationChannelServiceGapicClient::createNotificationChannelAsync()} .
+     * {@see NotificationChannelServiceClient::createNotificationChannelAsync()} .
      *
      * @param CreateNotificationChannelRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -396,7 +396,7 @@ final class NotificationChannelServiceClient
      * UpdateNotificationChannel.
      *
      * The async variant is
-     * {@see NotificationChannelServiceGapicClient::deleteNotificationChannelAsync()} .
+     * {@see NotificationChannelServiceClient::deleteNotificationChannelAsync()} .
      *
      * @param DeleteNotificationChannelRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -423,7 +423,7 @@ final class NotificationChannelServiceClient
      * that was supplied in the call to the create method.
      *
      * The async variant is
-     * {@see NotificationChannelServiceGapicClient::getNotificationChannelAsync()} .
+     * {@see NotificationChannelServiceClient::getNotificationChannelAsync()} .
      *
      * @param GetNotificationChannelRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -449,7 +449,7 @@ final class NotificationChannelServiceClient
      * are expected / permitted for a notification channel of the given type.
      *
      * The async variant is
-     * {@see NotificationChannelServiceGapicClient::getNotificationChannelDescriptorAsync()}
+     * {@see NotificationChannelServiceClient::getNotificationChannelDescriptorAsync()}
      * .
      *
      * @param GetNotificationChannelDescriptorRequest $request     A request to house fields associated with the call.
@@ -495,7 +495,7 @@ final class NotificationChannelServiceClient
      * 64 encoded string that has a longer expiration time.
      *
      * The async variant is
-     * {@see NotificationChannelServiceGapicClient::getNotificationChannelVerificationCodeAsync()}
+     * {@see NotificationChannelServiceClient::getNotificationChannelVerificationCodeAsync()}
      * .
      *
      * @param GetNotificationChannelVerificationCodeRequest $request     A request to house fields associated with the call.
@@ -522,7 +522,7 @@ final class NotificationChannelServiceClient
      * makes it possible for new channel types to be dynamically added.
      *
      * The async variant is
-     * {@see NotificationChannelServiceGapicClient::listNotificationChannelDescriptorsAsync()}
+     * {@see NotificationChannelServiceClient::listNotificationChannelDescriptorsAsync()}
      * .
      *
      * @param ListNotificationChannelDescriptorsRequest $request     A request to house fields associated with the call.
@@ -550,7 +550,7 @@ final class NotificationChannelServiceClient
      * the `ListNotificationChannelDescriptors` method.
      *
      * The async variant is
-     * {@see NotificationChannelServiceGapicClient::listNotificationChannelsAsync()} .
+     * {@see NotificationChannelServiceClient::listNotificationChannelsAsync()} .
      *
      * @param ListNotificationChannelsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -576,7 +576,7 @@ final class NotificationChannelServiceClient
      * can then be supplied in `VerifyNotificationChannel` to verify the channel.
      *
      * The async variant is
-     * {@see NotificationChannelServiceGapicClient::sendNotificationChannelVerificationCodeAsync()}
+     * {@see NotificationChannelServiceClient::sendNotificationChannelVerificationCodeAsync()}
      * .
      *
      * @param SendNotificationChannelVerificationCodeRequest $request     A request to house fields associated with the call.
@@ -606,7 +606,7 @@ final class NotificationChannelServiceClient
      * UpdateNotificationChannel.
      *
      * The async variant is
-     * {@see NotificationChannelServiceGapicClient::updateNotificationChannelAsync()} .
+     * {@see NotificationChannelServiceClient::updateNotificationChannelAsync()} .
      *
      * @param UpdateNotificationChannelRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -633,7 +633,7 @@ final class NotificationChannelServiceClient
      * `SendNotificationChannelVerificationCode`.
      *
      * The async variant is
-     * {@see NotificationChannelServiceGapicClient::verifyNotificationChannelAsync()} .
+     * {@see NotificationChannelServiceClient::verifyNotificationChannelAsync()} .
      *
      * @param VerifyNotificationChannelRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {

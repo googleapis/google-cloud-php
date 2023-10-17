@@ -327,8 +327,8 @@ final class AnalyticsHubServiceClient
     /**
      * Creates a new data exchange.
      *
-     * The async variant is
-     * {@see AnalyticsHubServiceGapicClient::createDataExchangeAsync()} .
+     * The async variant is {@see AnalyticsHubServiceClient::createDataExchangeAsync()}
+     * .
      *
      * @example samples/V1beta1/AnalyticsHubServiceClient/create_data_exchange.php
      *
@@ -356,8 +356,7 @@ final class AnalyticsHubServiceClient
     /**
      * Creates a new listing.
      *
-     * The async variant is {@see AnalyticsHubServiceGapicClient::createListingAsync()}
-     * .
+     * The async variant is {@see AnalyticsHubServiceClient::createListingAsync()} .
      *
      * @example samples/V1beta1/AnalyticsHubServiceClient/create_listing.php
      *
@@ -385,8 +384,8 @@ final class AnalyticsHubServiceClient
     /**
      * Deletes an existing data exchange.
      *
-     * The async variant is
-     * {@see AnalyticsHubServiceGapicClient::deleteDataExchangeAsync()} .
+     * The async variant is {@see AnalyticsHubServiceClient::deleteDataExchangeAsync()}
+     * .
      *
      * @example samples/V1beta1/AnalyticsHubServiceClient/delete_data_exchange.php
      *
@@ -412,8 +411,7 @@ final class AnalyticsHubServiceClient
     /**
      * Deletes a listing.
      *
-     * The async variant is {@see AnalyticsHubServiceGapicClient::deleteListingAsync()}
-     * .
+     * The async variant is {@see AnalyticsHubServiceClient::deleteListingAsync()} .
      *
      * @example samples/V1beta1/AnalyticsHubServiceClient/delete_listing.php
      *
@@ -439,8 +437,7 @@ final class AnalyticsHubServiceClient
     /**
      * Gets the details of a data exchange.
      *
-     * The async variant is
-     * {@see AnalyticsHubServiceGapicClient::getDataExchangeAsync()} .
+     * The async variant is {@see AnalyticsHubServiceClient::getDataExchangeAsync()} .
      *
      * @example samples/V1beta1/AnalyticsHubServiceClient/get_data_exchange.php
      *
@@ -468,8 +465,7 @@ final class AnalyticsHubServiceClient
     /**
      * Gets the IAM policy.
      *
-     * The async variant is {@see AnalyticsHubServiceGapicClient::getIamPolicyAsync()}
-     * .
+     * The async variant is {@see AnalyticsHubServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1beta1/AnalyticsHubServiceClient/get_iam_policy.php
      *
@@ -497,7 +493,7 @@ final class AnalyticsHubServiceClient
     /**
      * Gets the details of a listing.
      *
-     * The async variant is {@see AnalyticsHubServiceGapicClient::getListingAsync()} .
+     * The async variant is {@see AnalyticsHubServiceClient::getListingAsync()} .
      *
      * @example samples/V1beta1/AnalyticsHubServiceClient/get_listing.php
      *
@@ -525,8 +521,8 @@ final class AnalyticsHubServiceClient
     /**
      * Lists all data exchanges in a given project and location.
      *
-     * The async variant is
-     * {@see AnalyticsHubServiceGapicClient::listDataExchangesAsync()} .
+     * The async variant is {@see AnalyticsHubServiceClient::listDataExchangesAsync()}
+     * .
      *
      * @example samples/V1beta1/AnalyticsHubServiceClient/list_data_exchanges.php
      *
@@ -554,8 +550,7 @@ final class AnalyticsHubServiceClient
     /**
      * Lists all listings in a given project and location.
      *
-     * The async variant is {@see AnalyticsHubServiceGapicClient::listListingsAsync()}
-     * .
+     * The async variant is {@see AnalyticsHubServiceClient::listListingsAsync()} .
      *
      * @example samples/V1beta1/AnalyticsHubServiceClient/list_listings.php
      *
@@ -585,7 +580,7 @@ final class AnalyticsHubServiceClient
      * location.
      *
      * The async variant is
-     * {@see AnalyticsHubServiceGapicClient::listOrgDataExchangesAsync()} .
+     * {@see AnalyticsHubServiceClient::listOrgDataExchangesAsync()} .
      *
      * @example samples/V1beta1/AnalyticsHubServiceClient/list_org_data_exchanges.php
      *
@@ -613,8 +608,7 @@ final class AnalyticsHubServiceClient
     /**
      * Sets the IAM policy.
      *
-     * The async variant is {@see AnalyticsHubServiceGapicClient::setIamPolicyAsync()}
-     * .
+     * The async variant is {@see AnalyticsHubServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1beta1/AnalyticsHubServiceClient/set_iam_policy.php
      *
@@ -647,8 +641,7 @@ final class AnalyticsHubServiceClient
      * Upon subscription to a listing for a BigQuery dataset, Analytics Hub
      * creates a linked dataset in the subscriber's project.
      *
-     * The async variant is
-     * {@see AnalyticsHubServiceGapicClient::subscribeListingAsync()} .
+     * The async variant is {@see AnalyticsHubServiceClient::subscribeListingAsync()} .
      *
      * @example samples/V1beta1/AnalyticsHubServiceClient/subscribe_listing.php
      *
@@ -676,8 +669,8 @@ final class AnalyticsHubServiceClient
     /**
      * Returns the permissions that a caller has.
      *
-     * The async variant is
-     * {@see AnalyticsHubServiceGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see AnalyticsHubServiceClient::testIamPermissionsAsync()}
+     * .
      *
      * @example samples/V1beta1/AnalyticsHubServiceClient/test_iam_permissions.php
      *
@@ -705,8 +698,8 @@ final class AnalyticsHubServiceClient
     /**
      * Updates an existing data exchange.
      *
-     * The async variant is
-     * {@see AnalyticsHubServiceGapicClient::updateDataExchangeAsync()} .
+     * The async variant is {@see AnalyticsHubServiceClient::updateDataExchangeAsync()}
+     * .
      *
      * @example samples/V1beta1/AnalyticsHubServiceClient/update_data_exchange.php
      *
@@ -734,8 +727,7 @@ final class AnalyticsHubServiceClient
     /**
      * Updates an existing listing.
      *
-     * The async variant is {@see AnalyticsHubServiceGapicClient::updateListingAsync()}
-     * .
+     * The async variant is {@see AnalyticsHubServiceClient::updateListingAsync()} .
      *
      * @example samples/V1beta1/AnalyticsHubServiceClient/update_listing.php
      *
@@ -763,7 +755,7 @@ final class AnalyticsHubServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see AnalyticsHubServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see AnalyticsHubServiceClient::getLocationAsync()} .
      *
      * @example samples/V1beta1/AnalyticsHubServiceClient/get_location.php
      *
@@ -791,8 +783,7 @@ final class AnalyticsHubServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see AnalyticsHubServiceGapicClient::listLocationsAsync()}
-     * .
+     * The async variant is {@see AnalyticsHubServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1beta1/AnalyticsHubServiceClient/list_locations.php
      *

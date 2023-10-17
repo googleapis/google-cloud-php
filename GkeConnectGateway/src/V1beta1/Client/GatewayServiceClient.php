@@ -173,7 +173,7 @@ final class GatewayServiceClient
     /**
      * DeleteResource performs an HTTP DELETE on the Kubernetes API Server.
      *
-     * The async variant is {@see GatewayServiceGapicClient::deleteResourceAsync()} .
+     * The async variant is {@see GatewayServiceClient::deleteResourceAsync()} .
      *
      * @example samples/V1beta1/GatewayServiceClient/delete_resource.php
      *
@@ -201,7 +201,7 @@ final class GatewayServiceClient
     /**
      * GetResource performs an HTTP GET request on the Kubernetes API Server.
      *
-     * The async variant is {@see GatewayServiceGapicClient::getResourceAsync()} .
+     * The async variant is {@see GatewayServiceClient::getResourceAsync()} .
      *
      * @example samples/V1beta1/GatewayServiceClient/get_resource.php
      *
@@ -229,7 +229,7 @@ final class GatewayServiceClient
     /**
      * PatchResource performs an HTTP PATCH on the Kubernetes API Server.
      *
-     * The async variant is {@see GatewayServiceGapicClient::patchResourceAsync()} .
+     * The async variant is {@see GatewayServiceClient::patchResourceAsync()} .
      *
      * @example samples/V1beta1/GatewayServiceClient/patch_resource.php
      *
@@ -257,7 +257,7 @@ final class GatewayServiceClient
     /**
      * PostResource performs an HTTP POST on the Kubernetes API Server.
      *
-     * The async variant is {@see GatewayServiceGapicClient::postResourceAsync()} .
+     * The async variant is {@see GatewayServiceClient::postResourceAsync()} .
      *
      * @example samples/V1beta1/GatewayServiceClient/post_resource.php
      *
@@ -285,7 +285,7 @@ final class GatewayServiceClient
     /**
      * PutResource performs an HTTP PUT on the Kubernetes API Server.
      *
-     * The async variant is {@see GatewayServiceGapicClient::putResourceAsync()} .
+     * The async variant is {@see GatewayServiceClient::putResourceAsync()} .
      *
      * @example samples/V1beta1/GatewayServiceClient/put_resource.php
      *

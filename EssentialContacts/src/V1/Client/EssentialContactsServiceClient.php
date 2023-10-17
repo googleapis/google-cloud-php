@@ -329,7 +329,7 @@ final class EssentialContactsServiceClient
      * any parent resources.
      *
      * The async variant is
-     * {@see EssentialContactsServiceGapicClient::computeContactsAsync()} .
+     * {@see EssentialContactsServiceClient::computeContactsAsync()} .
      *
      * @example samples/V1/EssentialContactsServiceClient/compute_contacts.php
      *
@@ -355,8 +355,8 @@ final class EssentialContactsServiceClient
     /**
      * Adds a new contact for a resource.
      *
-     * The async variant is
-     * {@see EssentialContactsServiceGapicClient::createContactAsync()} .
+     * The async variant is {@see EssentialContactsServiceClient::createContactAsync()}
+     * .
      *
      * @example samples/V1/EssentialContactsServiceClient/create_contact.php
      *
@@ -382,8 +382,8 @@ final class EssentialContactsServiceClient
     /**
      * Deletes a contact.
      *
-     * The async variant is
-     * {@see EssentialContactsServiceGapicClient::deleteContactAsync()} .
+     * The async variant is {@see EssentialContactsServiceClient::deleteContactAsync()}
+     * .
      *
      * @example samples/V1/EssentialContactsServiceClient/delete_contact.php
      *
@@ -407,8 +407,7 @@ final class EssentialContactsServiceClient
     /**
      * Gets a single contact.
      *
-     * The async variant is
-     * {@see EssentialContactsServiceGapicClient::getContactAsync()} .
+     * The async variant is {@see EssentialContactsServiceClient::getContactAsync()} .
      *
      * @example samples/V1/EssentialContactsServiceClient/get_contact.php
      *
@@ -434,8 +433,8 @@ final class EssentialContactsServiceClient
     /**
      * Lists the contacts that have been set on a resource.
      *
-     * The async variant is
-     * {@see EssentialContactsServiceGapicClient::listContactsAsync()} .
+     * The async variant is {@see EssentialContactsServiceClient::listContactsAsync()}
+     * .
      *
      * @example samples/V1/EssentialContactsServiceClient/list_contacts.php
      *
@@ -463,7 +462,7 @@ final class EssentialContactsServiceClient
      * has been configured correctly.
      *
      * The async variant is
-     * {@see EssentialContactsServiceGapicClient::sendTestMessageAsync()} .
+     * {@see EssentialContactsServiceClient::sendTestMessageAsync()} .
      *
      * @example samples/V1/EssentialContactsServiceClient/send_test_message.php
      *
@@ -488,8 +487,8 @@ final class EssentialContactsServiceClient
      * Updates a contact.
      * Note: A contact's email address cannot be changed.
      *
-     * The async variant is
-     * {@see EssentialContactsServiceGapicClient::updateContactAsync()} .
+     * The async variant is {@see EssentialContactsServiceClient::updateContactAsync()}
+     * .
      *
      * @example samples/V1/EssentialContactsServiceClient/update_contact.php
      *

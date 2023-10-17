@@ -239,8 +239,7 @@ final class MetricsServiceV2Client
     /**
      * Creates a logs-based metric.
      *
-     * The async variant is {@see MetricsServiceV2GapicClient::createLogMetricAsync()}
-     * .
+     * The async variant is {@see MetricsServiceV2Client::createLogMetricAsync()} .
      *
      * @param CreateLogMetricRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -264,8 +263,7 @@ final class MetricsServiceV2Client
     /**
      * Deletes a logs-based metric.
      *
-     * The async variant is {@see MetricsServiceV2GapicClient::deleteLogMetricAsync()}
-     * .
+     * The async variant is {@see MetricsServiceV2Client::deleteLogMetricAsync()} .
      *
      * @param DeleteLogMetricRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -287,7 +285,7 @@ final class MetricsServiceV2Client
     /**
      * Gets a logs-based metric.
      *
-     * The async variant is {@see MetricsServiceV2GapicClient::getLogMetricAsync()} .
+     * The async variant is {@see MetricsServiceV2Client::getLogMetricAsync()} .
      *
      * @param GetLogMetricRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -311,7 +309,7 @@ final class MetricsServiceV2Client
     /**
      * Lists logs-based metrics.
      *
-     * The async variant is {@see MetricsServiceV2GapicClient::listLogMetricsAsync()} .
+     * The async variant is {@see MetricsServiceV2Client::listLogMetricsAsync()} .
      *
      * @param ListLogMetricsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -335,8 +333,7 @@ final class MetricsServiceV2Client
     /**
      * Creates or updates a logs-based metric.
      *
-     * The async variant is {@see MetricsServiceV2GapicClient::updateLogMetricAsync()}
-     * .
+     * The async variant is {@see MetricsServiceV2Client::updateLogMetricAsync()} .
      *
      * @param UpdateLogMetricRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {

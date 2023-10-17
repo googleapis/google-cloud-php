@@ -246,7 +246,7 @@ final class PolicyTagManagerSerializationClient
      * policy tags that can be used as input for `ImportTaxonomies` calls.
      *
      * The async variant is
-     * {@see PolicyTagManagerSerializationGapicClient::exportTaxonomiesAsync()} .
+     * {@see PolicyTagManagerSerializationClient::exportTaxonomiesAsync()} .
      *
      * @param ExportTaxonomiesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -278,7 +278,7 @@ final class PolicyTagManagerSerializationClient
      * nested protocol buffer structures.
      *
      * The async variant is
-     * {@see PolicyTagManagerSerializationGapicClient::importTaxonomiesAsync()} .
+     * {@see PolicyTagManagerSerializationClient::importTaxonomiesAsync()} .
      *
      * @param ImportTaxonomiesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -315,7 +315,7 @@ final class PolicyTagManagerSerializationClient
      * - Updates policy tags with valid resources names accordingly.
      *
      * The async variant is
-     * {@see PolicyTagManagerSerializationGapicClient::replaceTaxonomyAsync()} .
+     * {@see PolicyTagManagerSerializationClient::replaceTaxonomyAsync()} .
      *
      * @param ReplaceTaxonomyRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {

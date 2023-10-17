@@ -395,8 +395,8 @@ final class BigtableInstanceAdminClient
     /**
      * Creates an app profile within an instance.
      *
-     * The async variant is
-     * {@see BigtableInstanceAdminGapicClient::createAppProfileAsync()} .
+     * The async variant is {@see BigtableInstanceAdminClient::createAppProfileAsync()}
+     * .
      *
      * @param CreateAppProfileRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -426,8 +426,7 @@ final class BigtableInstanceAdminClient
      * cluster_config.cluster_autoscaling_config is non-empty, then autoscaling is
      * enabled.
      *
-     * The async variant is
-     * {@see BigtableInstanceAdminGapicClient::createClusterAsync()} .
+     * The async variant is {@see BigtableInstanceAdminClient::createClusterAsync()} .
      *
      * @param CreateClusterRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -457,8 +456,7 @@ final class BigtableInstanceAdminClient
      * cluster_config.cluster_autoscaling_config is non-empty, then autoscaling is
      * enabled.
      *
-     * The async variant is
-     * {@see BigtableInstanceAdminGapicClient::createInstanceAsync()} .
+     * The async variant is {@see BigtableInstanceAdminClient::createInstanceAsync()} .
      *
      * @param CreateInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -482,8 +480,8 @@ final class BigtableInstanceAdminClient
     /**
      * Deletes an app profile from an instance.
      *
-     * The async variant is
-     * {@see BigtableInstanceAdminGapicClient::deleteAppProfileAsync()} .
+     * The async variant is {@see BigtableInstanceAdminClient::deleteAppProfileAsync()}
+     * .
      *
      * @param DeleteAppProfileRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -505,8 +503,7 @@ final class BigtableInstanceAdminClient
     /**
      * Deletes a cluster from an instance.
      *
-     * The async variant is
-     * {@see BigtableInstanceAdminGapicClient::deleteClusterAsync()} .
+     * The async variant is {@see BigtableInstanceAdminClient::deleteClusterAsync()} .
      *
      * @param DeleteClusterRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -528,8 +525,7 @@ final class BigtableInstanceAdminClient
     /**
      * Delete an instance from a project.
      *
-     * The async variant is
-     * {@see BigtableInstanceAdminGapicClient::deleteInstanceAsync()} .
+     * The async variant is {@see BigtableInstanceAdminClient::deleteInstanceAsync()} .
      *
      * @param DeleteInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -551,8 +547,7 @@ final class BigtableInstanceAdminClient
     /**
      * Gets information about an app profile.
      *
-     * The async variant is
-     * {@see BigtableInstanceAdminGapicClient::getAppProfileAsync()} .
+     * The async variant is {@see BigtableInstanceAdminClient::getAppProfileAsync()} .
      *
      * @param GetAppProfileRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -576,8 +571,7 @@ final class BigtableInstanceAdminClient
     /**
      * Gets information about a cluster.
      *
-     * The async variant is {@see BigtableInstanceAdminGapicClient::getClusterAsync()}
-     * .
+     * The async variant is {@see BigtableInstanceAdminClient::getClusterAsync()} .
      *
      * @param GetClusterRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -602,8 +596,7 @@ final class BigtableInstanceAdminClient
      * Gets the access control policy for an instance resource. Returns an empty
      * policy if an instance exists but does not have a policy set.
      *
-     * The async variant is
-     * {@see BigtableInstanceAdminGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see BigtableInstanceAdminClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -627,8 +620,7 @@ final class BigtableInstanceAdminClient
     /**
      * Gets information about an instance.
      *
-     * The async variant is {@see BigtableInstanceAdminGapicClient::getInstanceAsync()}
-     * .
+     * The async variant is {@see BigtableInstanceAdminClient::getInstanceAsync()} .
      *
      * @param GetInstanceRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -652,8 +644,8 @@ final class BigtableInstanceAdminClient
     /**
      * Lists information about app profiles in an instance.
      *
-     * The async variant is
-     * {@see BigtableInstanceAdminGapicClient::listAppProfilesAsync()} .
+     * The async variant is {@see BigtableInstanceAdminClient::listAppProfilesAsync()}
+     * .
      *
      * @param ListAppProfilesRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -677,8 +669,7 @@ final class BigtableInstanceAdminClient
     /**
      * Lists information about clusters in an instance.
      *
-     * The async variant is
-     * {@see BigtableInstanceAdminGapicClient::listClustersAsync()} .
+     * The async variant is {@see BigtableInstanceAdminClient::listClustersAsync()} .
      *
      * @param ListClustersRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -703,8 +694,7 @@ final class BigtableInstanceAdminClient
      * Lists hot tablets in a cluster, within the time range provided. Hot
      * tablets are ordered based on CPU usage.
      *
-     * The async variant is
-     * {@see BigtableInstanceAdminGapicClient::listHotTabletsAsync()} .
+     * The async variant is {@see BigtableInstanceAdminClient::listHotTabletsAsync()} .
      *
      * @param ListHotTabletsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -728,8 +718,7 @@ final class BigtableInstanceAdminClient
     /**
      * Lists information about instances in a project.
      *
-     * The async variant is
-     * {@see BigtableInstanceAdminGapicClient::listInstancesAsync()} .
+     * The async variant is {@see BigtableInstanceAdminClient::listInstancesAsync()} .
      *
      * @param ListInstancesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -765,7 +754,7 @@ final class BigtableInstanceAdminClient
      * and explicitly set a serve_node count via the update_mask.
      *
      * The async variant is
-     * {@see BigtableInstanceAdminGapicClient::partialUpdateClusterAsync()} .
+     * {@see BigtableInstanceAdminClient::partialUpdateClusterAsync()} .
      *
      * @param PartialUpdateClusterRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -791,7 +780,7 @@ final class BigtableInstanceAdminClient
      * fields of an Instance and is the preferred way to update an Instance.
      *
      * The async variant is
-     * {@see BigtableInstanceAdminGapicClient::partialUpdateInstanceAsync()} .
+     * {@see BigtableInstanceAdminClient::partialUpdateInstanceAsync()} .
      *
      * @param PartialUpdateInstanceRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -816,8 +805,7 @@ final class BigtableInstanceAdminClient
      * Sets the access control policy on an instance resource. Replaces any
      * existing policy.
      *
-     * The async variant is
-     * {@see BigtableInstanceAdminGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see BigtableInstanceAdminClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -842,7 +830,7 @@ final class BigtableInstanceAdminClient
      * Returns permissions that the caller has on the specified instance resource.
      *
      * The async variant is
-     * {@see BigtableInstanceAdminGapicClient::testIamPermissionsAsync()} .
+     * {@see BigtableInstanceAdminClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -866,8 +854,8 @@ final class BigtableInstanceAdminClient
     /**
      * Updates an app profile within an instance.
      *
-     * The async variant is
-     * {@see BigtableInstanceAdminGapicClient::updateAppProfileAsync()} .
+     * The async variant is {@see BigtableInstanceAdminClient::updateAppProfileAsync()}
+     * .
      *
      * @param UpdateAppProfileRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -895,8 +883,7 @@ final class BigtableInstanceAdminClient
      * cluster_config.cluster_autoscaling_config. In order to update it, you
      * must use PartialUpdateCluster.
      *
-     * The async variant is
-     * {@see BigtableInstanceAdminGapicClient::updateClusterAsync()} .
+     * The async variant is {@see BigtableInstanceAdminClient::updateClusterAsync()} .
      *
      * @param Cluster $request     A request to house fields associated with the call.
      * @param array   $callOptions {
@@ -922,8 +909,7 @@ final class BigtableInstanceAdminClient
      * name and type for an Instance. To update other Instance properties, such as
      * labels, use PartialUpdateInstance.
      *
-     * The async variant is
-     * {@see BigtableInstanceAdminGapicClient::updateInstanceAsync()} .
+     * The async variant is {@see BigtableInstanceAdminClient::updateInstanceAsync()} .
      *
      * @param Instance $request     A request to house fields associated with the call.
      * @param array    $callOptions {

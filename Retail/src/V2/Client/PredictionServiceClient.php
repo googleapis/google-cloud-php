@@ -216,7 +216,7 @@ final class PredictionServiceClient
     /**
      * Makes a recommendation prediction.
      *
-     * The async variant is {@see PredictionServiceGapicClient::predictAsync()} .
+     * The async variant is {@see PredictionServiceClient::predictAsync()} .
      *
      * @param PredictRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {

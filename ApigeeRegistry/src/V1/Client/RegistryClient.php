@@ -521,7 +521,7 @@ final class RegistryClient
     /**
      * Creates a specified API.
      *
-     * The async variant is {@see RegistryGapicClient::createApiAsync()} .
+     * The async variant is {@see RegistryClient::createApiAsync()} .
      *
      * @example samples/V1/RegistryClient/create_api.php
      *
@@ -547,7 +547,7 @@ final class RegistryClient
     /**
      * Creates a specified deployment.
      *
-     * The async variant is {@see RegistryGapicClient::createApiDeploymentAsync()} .
+     * The async variant is {@see RegistryClient::createApiDeploymentAsync()} .
      *
      * @example samples/V1/RegistryClient/create_api_deployment.php
      *
@@ -573,7 +573,7 @@ final class RegistryClient
     /**
      * Creates a specified spec.
      *
-     * The async variant is {@see RegistryGapicClient::createApiSpecAsync()} .
+     * The async variant is {@see RegistryClient::createApiSpecAsync()} .
      *
      * @example samples/V1/RegistryClient/create_api_spec.php
      *
@@ -599,7 +599,7 @@ final class RegistryClient
     /**
      * Creates a specified version.
      *
-     * The async variant is {@see RegistryGapicClient::createApiVersionAsync()} .
+     * The async variant is {@see RegistryClient::createApiVersionAsync()} .
      *
      * @example samples/V1/RegistryClient/create_api_version.php
      *
@@ -625,7 +625,7 @@ final class RegistryClient
     /**
      * Creates a specified artifact.
      *
-     * The async variant is {@see RegistryGapicClient::createArtifactAsync()} .
+     * The async variant is {@see RegistryClient::createArtifactAsync()} .
      *
      * @example samples/V1/RegistryClient/create_artifact.php
      *
@@ -652,7 +652,7 @@ final class RegistryClient
      * Removes a specified API and all of the resources that it
      * owns.
      *
-     * The async variant is {@see RegistryGapicClient::deleteApiAsync()} .
+     * The async variant is {@see RegistryClient::deleteApiAsync()} .
      *
      * @example samples/V1/RegistryClient/delete_api.php
      *
@@ -677,7 +677,7 @@ final class RegistryClient
      * Removes a specified deployment, all revisions, and all
      * child resources (e.g., artifacts).
      *
-     * The async variant is {@see RegistryGapicClient::deleteApiDeploymentAsync()} .
+     * The async variant is {@see RegistryClient::deleteApiDeploymentAsync()} .
      *
      * @example samples/V1/RegistryClient/delete_api_deployment.php
      *
@@ -701,8 +701,7 @@ final class RegistryClient
     /**
      * Deletes a revision of a deployment.
      *
-     * The async variant is
-     * {@see RegistryGapicClient::deleteApiDeploymentRevisionAsync()} .
+     * The async variant is {@see RegistryClient::deleteApiDeploymentRevisionAsync()} .
      *
      * @example samples/V1/RegistryClient/delete_api_deployment_revision.php
      *
@@ -729,7 +728,7 @@ final class RegistryClient
      * Removes a specified spec, all revisions, and all child
      * resources (e.g., artifacts).
      *
-     * The async variant is {@see RegistryGapicClient::deleteApiSpecAsync()} .
+     * The async variant is {@see RegistryClient::deleteApiSpecAsync()} .
      *
      * @example samples/V1/RegistryClient/delete_api_spec.php
      *
@@ -753,7 +752,7 @@ final class RegistryClient
     /**
      * Deletes a revision of a spec.
      *
-     * The async variant is {@see RegistryGapicClient::deleteApiSpecRevisionAsync()} .
+     * The async variant is {@see RegistryClient::deleteApiSpecRevisionAsync()} .
      *
      * @example samples/V1/RegistryClient/delete_api_spec_revision.php
      *
@@ -780,7 +779,7 @@ final class RegistryClient
      * Removes a specified version and all of the resources that
      * it owns.
      *
-     * The async variant is {@see RegistryGapicClient::deleteApiVersionAsync()} .
+     * The async variant is {@see RegistryClient::deleteApiVersionAsync()} .
      *
      * @example samples/V1/RegistryClient/delete_api_version.php
      *
@@ -804,7 +803,7 @@ final class RegistryClient
     /**
      * Removes a specified artifact.
      *
-     * The async variant is {@see RegistryGapicClient::deleteArtifactAsync()} .
+     * The async variant is {@see RegistryClient::deleteArtifactAsync()} .
      *
      * @example samples/V1/RegistryClient/delete_artifact.php
      *
@@ -828,7 +827,7 @@ final class RegistryClient
     /**
      * Returns a specified API.
      *
-     * The async variant is {@see RegistryGapicClient::getApiAsync()} .
+     * The async variant is {@see RegistryClient::getApiAsync()} .
      *
      * @example samples/V1/RegistryClient/get_api.php
      *
@@ -854,7 +853,7 @@ final class RegistryClient
     /**
      * Returns a specified deployment.
      *
-     * The async variant is {@see RegistryGapicClient::getApiDeploymentAsync()} .
+     * The async variant is {@see RegistryClient::getApiDeploymentAsync()} .
      *
      * @example samples/V1/RegistryClient/get_api_deployment.php
      *
@@ -880,7 +879,7 @@ final class RegistryClient
     /**
      * Returns a specified spec.
      *
-     * The async variant is {@see RegistryGapicClient::getApiSpecAsync()} .
+     * The async variant is {@see RegistryClient::getApiSpecAsync()} .
      *
      * @example samples/V1/RegistryClient/get_api_spec.php
      *
@@ -909,7 +908,7 @@ final class RegistryClient
      * is to return the spec uncompressed (the mime_type response field
      * indicates the exact format returned).
      *
-     * The async variant is {@see RegistryGapicClient::getApiSpecContentsAsync()} .
+     * The async variant is {@see RegistryClient::getApiSpecContentsAsync()} .
      *
      * @example samples/V1/RegistryClient/get_api_spec_contents.php
      *
@@ -935,7 +934,7 @@ final class RegistryClient
     /**
      * Returns a specified version.
      *
-     * The async variant is {@see RegistryGapicClient::getApiVersionAsync()} .
+     * The async variant is {@see RegistryClient::getApiVersionAsync()} .
      *
      * @example samples/V1/RegistryClient/get_api_version.php
      *
@@ -961,7 +960,7 @@ final class RegistryClient
     /**
      * Returns a specified artifact.
      *
-     * The async variant is {@see RegistryGapicClient::getArtifactAsync()} .
+     * The async variant is {@see RegistryClient::getArtifactAsync()} .
      *
      * @example samples/V1/RegistryClient/get_artifact.php
      *
@@ -990,7 +989,7 @@ final class RegistryClient
      * is to return the artifact uncompressed (the mime_type response field
      * indicates the exact format returned).
      *
-     * The async variant is {@see RegistryGapicClient::getArtifactContentsAsync()} .
+     * The async variant is {@see RegistryClient::getArtifactContentsAsync()} .
      *
      * @example samples/V1/RegistryClient/get_artifact_contents.php
      *
@@ -1017,8 +1016,7 @@ final class RegistryClient
      * Lists all revisions of a deployment.
      * Revisions are returned in descending order of revision creation time.
      *
-     * The async variant is
-     * {@see RegistryGapicClient::listApiDeploymentRevisionsAsync()} .
+     * The async variant is {@see RegistryClient::listApiDeploymentRevisionsAsync()} .
      *
      * @example samples/V1/RegistryClient/list_api_deployment_revisions.php
      *
@@ -1044,7 +1042,7 @@ final class RegistryClient
     /**
      * Returns matching deployments.
      *
-     * The async variant is {@see RegistryGapicClient::listApiDeploymentsAsync()} .
+     * The async variant is {@see RegistryClient::listApiDeploymentsAsync()} .
      *
      * @example samples/V1/RegistryClient/list_api_deployments.php
      *
@@ -1071,7 +1069,7 @@ final class RegistryClient
      * Lists all revisions of a spec.
      * Revisions are returned in descending order of revision creation time.
      *
-     * The async variant is {@see RegistryGapicClient::listApiSpecRevisionsAsync()} .
+     * The async variant is {@see RegistryClient::listApiSpecRevisionsAsync()} .
      *
      * @example samples/V1/RegistryClient/list_api_spec_revisions.php
      *
@@ -1097,7 +1095,7 @@ final class RegistryClient
     /**
      * Returns matching specs.
      *
-     * The async variant is {@see RegistryGapicClient::listApiSpecsAsync()} .
+     * The async variant is {@see RegistryClient::listApiSpecsAsync()} .
      *
      * @example samples/V1/RegistryClient/list_api_specs.php
      *
@@ -1123,7 +1121,7 @@ final class RegistryClient
     /**
      * Returns matching versions.
      *
-     * The async variant is {@see RegistryGapicClient::listApiVersionsAsync()} .
+     * The async variant is {@see RegistryClient::listApiVersionsAsync()} .
      *
      * @example samples/V1/RegistryClient/list_api_versions.php
      *
@@ -1149,7 +1147,7 @@ final class RegistryClient
     /**
      * Returns matching APIs.
      *
-     * The async variant is {@see RegistryGapicClient::listApisAsync()} .
+     * The async variant is {@see RegistryClient::listApisAsync()} .
      *
      * @example samples/V1/RegistryClient/list_apis.php
      *
@@ -1175,7 +1173,7 @@ final class RegistryClient
     /**
      * Returns matching artifacts.
      *
-     * The async variant is {@see RegistryGapicClient::listArtifactsAsync()} .
+     * The async variant is {@see RegistryClient::listArtifactsAsync()} .
      *
      * @example samples/V1/RegistryClient/list_artifacts.php
      *
@@ -1201,7 +1199,7 @@ final class RegistryClient
     /**
      * Used to replace a specified artifact.
      *
-     * The async variant is {@see RegistryGapicClient::replaceArtifactAsync()} .
+     * The async variant is {@see RegistryClient::replaceArtifactAsync()} .
      *
      * @example samples/V1/RegistryClient/replace_artifact.php
      *
@@ -1228,7 +1226,7 @@ final class RegistryClient
      * Sets the current revision to a specified prior
      * revision. Note that this creates a new revision with a new revision ID.
      *
-     * The async variant is {@see RegistryGapicClient::rollbackApiDeploymentAsync()} .
+     * The async variant is {@see RegistryClient::rollbackApiDeploymentAsync()} .
      *
      * @example samples/V1/RegistryClient/rollback_api_deployment.php
      *
@@ -1255,7 +1253,7 @@ final class RegistryClient
      * Sets the current revision to a specified prior revision.
      * Note that this creates a new revision with a new revision ID.
      *
-     * The async variant is {@see RegistryGapicClient::rollbackApiSpecAsync()} .
+     * The async variant is {@see RegistryClient::rollbackApiSpecAsync()} .
      *
      * @example samples/V1/RegistryClient/rollback_api_spec.php
      *
@@ -1282,8 +1280,7 @@ final class RegistryClient
      * Adds a tag to a specified revision of a
      * deployment.
      *
-     * The async variant is {@see RegistryGapicClient::tagApiDeploymentRevisionAsync()}
-     * .
+     * The async variant is {@see RegistryClient::tagApiDeploymentRevisionAsync()} .
      *
      * @example samples/V1/RegistryClient/tag_api_deployment_revision.php
      *
@@ -1309,7 +1306,7 @@ final class RegistryClient
     /**
      * Adds a tag to a specified revision of a spec.
      *
-     * The async variant is {@see RegistryGapicClient::tagApiSpecRevisionAsync()} .
+     * The async variant is {@see RegistryClient::tagApiSpecRevisionAsync()} .
      *
      * @example samples/V1/RegistryClient/tag_api_spec_revision.php
      *
@@ -1335,7 +1332,7 @@ final class RegistryClient
     /**
      * Used to modify a specified API.
      *
-     * The async variant is {@see RegistryGapicClient::updateApiAsync()} .
+     * The async variant is {@see RegistryClient::updateApiAsync()} .
      *
      * @example samples/V1/RegistryClient/update_api.php
      *
@@ -1361,7 +1358,7 @@ final class RegistryClient
     /**
      * Used to modify a specified deployment.
      *
-     * The async variant is {@see RegistryGapicClient::updateApiDeploymentAsync()} .
+     * The async variant is {@see RegistryClient::updateApiDeploymentAsync()} .
      *
      * @example samples/V1/RegistryClient/update_api_deployment.php
      *
@@ -1387,7 +1384,7 @@ final class RegistryClient
     /**
      * Used to modify a specified spec.
      *
-     * The async variant is {@see RegistryGapicClient::updateApiSpecAsync()} .
+     * The async variant is {@see RegistryClient::updateApiSpecAsync()} .
      *
      * @example samples/V1/RegistryClient/update_api_spec.php
      *
@@ -1413,7 +1410,7 @@ final class RegistryClient
     /**
      * Used to modify a specified version.
      *
-     * The async variant is {@see RegistryGapicClient::updateApiVersionAsync()} .
+     * The async variant is {@see RegistryClient::updateApiVersionAsync()} .
      *
      * @example samples/V1/RegistryClient/update_api_version.php
      *
@@ -1439,7 +1436,7 @@ final class RegistryClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see RegistryGapicClient::getLocationAsync()} .
+     * The async variant is {@see RegistryClient::getLocationAsync()} .
      *
      * @example samples/V1/RegistryClient/get_location.php
      *
@@ -1465,7 +1462,7 @@ final class RegistryClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see RegistryGapicClient::listLocationsAsync()} .
+     * The async variant is {@see RegistryClient::listLocationsAsync()} .
      *
      * @example samples/V1/RegistryClient/list_locations.php
      *
@@ -1492,7 +1489,7 @@ final class RegistryClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see RegistryGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see RegistryClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/RegistryClient/get_iam_policy.php
      *
@@ -1522,7 +1519,7 @@ final class RegistryClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see RegistryGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see RegistryClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/RegistryClient/set_iam_policy.php
      *
@@ -1554,7 +1551,7 @@ final class RegistryClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is {@see RegistryGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see RegistryClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/RegistryClient/test_iam_permissions.php
      *

@@ -177,7 +177,7 @@ final class QuotaControllerClient
      * reliability, the server may inject these errors to prohibit any hard
      * dependency on the quota functionality.
      *
-     * The async variant is {@see QuotaControllerGapicClient::allocateQuotaAsync()} .
+     * The async variant is {@see QuotaControllerClient::allocateQuotaAsync()} .
      *
      * @param AllocateQuotaRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

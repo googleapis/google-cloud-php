@@ -359,8 +359,7 @@ final class CloudFilestoreManagerClient
     /**
      * Creates a backup.
      *
-     * The async variant is
-     * {@see CloudFilestoreManagerGapicClient::createBackupAsync()} .
+     * The async variant is {@see CloudFilestoreManagerClient::createBackupAsync()} .
      *
      * @param CreateBackupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -387,8 +386,7 @@ final class CloudFilestoreManagerClient
      * equal to or larger than the capacity of the backup (and also equal to or
      * larger than the minimum capacity of the tier).
      *
-     * The async variant is
-     * {@see CloudFilestoreManagerGapicClient::createInstanceAsync()} .
+     * The async variant is {@see CloudFilestoreManagerClient::createInstanceAsync()} .
      *
      * @param CreateInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -412,8 +410,7 @@ final class CloudFilestoreManagerClient
     /**
      * Creates a snapshot.
      *
-     * The async variant is
-     * {@see CloudFilestoreManagerGapicClient::createSnapshotAsync()} .
+     * The async variant is {@see CloudFilestoreManagerClient::createSnapshotAsync()} .
      *
      * @param CreateSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -437,8 +434,7 @@ final class CloudFilestoreManagerClient
     /**
      * Deletes a backup.
      *
-     * The async variant is
-     * {@see CloudFilestoreManagerGapicClient::deleteBackupAsync()} .
+     * The async variant is {@see CloudFilestoreManagerClient::deleteBackupAsync()} .
      *
      * @param DeleteBackupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -462,8 +458,7 @@ final class CloudFilestoreManagerClient
     /**
      * Deletes an instance.
      *
-     * The async variant is
-     * {@see CloudFilestoreManagerGapicClient::deleteInstanceAsync()} .
+     * The async variant is {@see CloudFilestoreManagerClient::deleteInstanceAsync()} .
      *
      * @param DeleteInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -487,8 +482,7 @@ final class CloudFilestoreManagerClient
     /**
      * Deletes a snapshot.
      *
-     * The async variant is
-     * {@see CloudFilestoreManagerGapicClient::deleteSnapshotAsync()} .
+     * The async variant is {@see CloudFilestoreManagerClient::deleteSnapshotAsync()} .
      *
      * @param DeleteSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -512,7 +506,7 @@ final class CloudFilestoreManagerClient
     /**
      * Gets the details of a specific backup.
      *
-     * The async variant is {@see CloudFilestoreManagerGapicClient::getBackupAsync()} .
+     * The async variant is {@see CloudFilestoreManagerClient::getBackupAsync()} .
      *
      * @param GetBackupRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -536,8 +530,7 @@ final class CloudFilestoreManagerClient
     /**
      * Gets the details of a specific instance.
      *
-     * The async variant is {@see CloudFilestoreManagerGapicClient::getInstanceAsync()}
-     * .
+     * The async variant is {@see CloudFilestoreManagerClient::getInstanceAsync()} .
      *
      * @param GetInstanceRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -561,8 +554,7 @@ final class CloudFilestoreManagerClient
     /**
      * Gets the details of a specific snapshot.
      *
-     * The async variant is {@see CloudFilestoreManagerGapicClient::getSnapshotAsync()}
-     * .
+     * The async variant is {@see CloudFilestoreManagerClient::getSnapshotAsync()} .
      *
      * @param GetSnapshotRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -587,8 +579,7 @@ final class CloudFilestoreManagerClient
      * Lists all backups in a project for either a specified location or for all
      * locations.
      *
-     * The async variant is {@see CloudFilestoreManagerGapicClient::listBackupsAsync()}
-     * .
+     * The async variant is {@see CloudFilestoreManagerClient::listBackupsAsync()} .
      *
      * @param ListBackupsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -613,8 +604,7 @@ final class CloudFilestoreManagerClient
      * Lists all instances in a project for either a specified location
      * or for all locations.
      *
-     * The async variant is
-     * {@see CloudFilestoreManagerGapicClient::listInstancesAsync()} .
+     * The async variant is {@see CloudFilestoreManagerClient::listInstancesAsync()} .
      *
      * @param ListInstancesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -639,8 +629,7 @@ final class CloudFilestoreManagerClient
      * Lists all snapshots in a project for either a specified location
      * or for all locations.
      *
-     * The async variant is
-     * {@see CloudFilestoreManagerGapicClient::listSnapshotsAsync()} .
+     * The async variant is {@see CloudFilestoreManagerClient::listSnapshotsAsync()} .
      *
      * @param ListSnapshotsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -668,8 +657,8 @@ final class CloudFilestoreManagerClient
      * capacity of the backup (and also equal to or larger than the minimum
      * capacity of the tier).
      *
-     * The async variant is
-     * {@see CloudFilestoreManagerGapicClient::restoreInstanceAsync()} .
+     * The async variant is {@see CloudFilestoreManagerClient::restoreInstanceAsync()}
+     * .
      *
      * @param RestoreInstanceRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -693,8 +682,7 @@ final class CloudFilestoreManagerClient
     /**
      * Updates the settings of a specific backup.
      *
-     * The async variant is
-     * {@see CloudFilestoreManagerGapicClient::updateBackupAsync()} .
+     * The async variant is {@see CloudFilestoreManagerClient::updateBackupAsync()} .
      *
      * @param UpdateBackupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -718,8 +706,7 @@ final class CloudFilestoreManagerClient
     /**
      * Updates the settings of a specific instance.
      *
-     * The async variant is
-     * {@see CloudFilestoreManagerGapicClient::updateInstanceAsync()} .
+     * The async variant is {@see CloudFilestoreManagerClient::updateInstanceAsync()} .
      *
      * @param UpdateInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -743,8 +730,7 @@ final class CloudFilestoreManagerClient
     /**
      * Updates the settings of a specific snapshot.
      *
-     * The async variant is
-     * {@see CloudFilestoreManagerGapicClient::updateSnapshotAsync()} .
+     * The async variant is {@see CloudFilestoreManagerClient::updateSnapshotAsync()} .
      *
      * @param UpdateSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

@@ -299,8 +299,7 @@ final class AppGatewaysServiceClient
     /**
      * Creates a new AppGateway in a given project and location.
      *
-     * The async variant is
-     * {@see AppGatewaysServiceGapicClient::createAppGatewayAsync()} .
+     * The async variant is {@see AppGatewaysServiceClient::createAppGatewayAsync()} .
      *
      * @example samples/V1/AppGatewaysServiceClient/create_app_gateway.php
      *
@@ -326,8 +325,7 @@ final class AppGatewaysServiceClient
     /**
      * Deletes a single AppGateway.
      *
-     * The async variant is
-     * {@see AppGatewaysServiceGapicClient::deleteAppGatewayAsync()} .
+     * The async variant is {@see AppGatewaysServiceClient::deleteAppGatewayAsync()} .
      *
      * @example samples/V1/AppGatewaysServiceClient/delete_app_gateway.php
      *
@@ -353,8 +351,7 @@ final class AppGatewaysServiceClient
     /**
      * Gets details of a single AppGateway.
      *
-     * The async variant is {@see AppGatewaysServiceGapicClient::getAppGatewayAsync()}
-     * .
+     * The async variant is {@see AppGatewaysServiceClient::getAppGatewayAsync()} .
      *
      * @example samples/V1/AppGatewaysServiceClient/get_app_gateway.php
      *
@@ -380,8 +377,7 @@ final class AppGatewaysServiceClient
     /**
      * Lists AppGateways in a given project and location.
      *
-     * The async variant is
-     * {@see AppGatewaysServiceGapicClient::listAppGatewaysAsync()} .
+     * The async variant is {@see AppGatewaysServiceClient::listAppGatewaysAsync()} .
      *
      * @example samples/V1/AppGatewaysServiceClient/list_app_gateways.php
      *
@@ -407,7 +403,7 @@ final class AppGatewaysServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see AppGatewaysServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see AppGatewaysServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/AppGatewaysServiceClient/get_location.php
      *
@@ -433,8 +429,7 @@ final class AppGatewaysServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see AppGatewaysServiceGapicClient::listLocationsAsync()}
-     * .
+     * The async variant is {@see AppGatewaysServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/AppGatewaysServiceClient/list_locations.php
      *
@@ -461,7 +456,7 @@ final class AppGatewaysServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see AppGatewaysServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see AppGatewaysServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/AppGatewaysServiceClient/get_iam_policy.php
      *
@@ -491,7 +486,7 @@ final class AppGatewaysServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see AppGatewaysServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see AppGatewaysServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/AppGatewaysServiceClient/set_iam_policy.php
      *
@@ -523,8 +518,8 @@ final class AppGatewaysServiceClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is
-     * {@see AppGatewaysServiceGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see AppGatewaysServiceClient::testIamPermissionsAsync()}
+     * .
      *
      * @example samples/V1/AppGatewaysServiceClient/test_iam_permissions.php
      *

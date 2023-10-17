@@ -310,7 +310,7 @@ final class RapidMigrationAssessmentClient
      * Creates an Annotation
      *
      * The async variant is
-     * {@see RapidMigrationAssessmentGapicClient::createAnnotationAsync()} .
+     * {@see RapidMigrationAssessmentClient::createAnnotationAsync()} .
      *
      * @example samples/V1/RapidMigrationAssessmentClient/create_annotation.php
      *
@@ -338,7 +338,7 @@ final class RapidMigrationAssessmentClient
      * information about Customer assets.
      *
      * The async variant is
-     * {@see RapidMigrationAssessmentGapicClient::createCollectorAsync()} .
+     * {@see RapidMigrationAssessmentClient::createCollectorAsync()} .
      *
      * @example samples/V1/RapidMigrationAssessmentClient/create_collector.php
      *
@@ -366,7 +366,7 @@ final class RapidMigrationAssessmentClient
      * Background jobs does final deletion thorugh producer api.
      *
      * The async variant is
-     * {@see RapidMigrationAssessmentGapicClient::deleteCollectorAsync()} .
+     * {@see RapidMigrationAssessmentClient::deleteCollectorAsync()} .
      *
      * @example samples/V1/RapidMigrationAssessmentClient/delete_collector.php
      *
@@ -392,8 +392,8 @@ final class RapidMigrationAssessmentClient
     /**
      * Gets details of a single Annotation.
      *
-     * The async variant is
-     * {@see RapidMigrationAssessmentGapicClient::getAnnotationAsync()} .
+     * The async variant is {@see RapidMigrationAssessmentClient::getAnnotationAsync()}
+     * .
      *
      * @example samples/V1/RapidMigrationAssessmentClient/get_annotation.php
      *
@@ -419,8 +419,8 @@ final class RapidMigrationAssessmentClient
     /**
      * Gets details of a single Collector.
      *
-     * The async variant is
-     * {@see RapidMigrationAssessmentGapicClient::getCollectorAsync()} .
+     * The async variant is {@see RapidMigrationAssessmentClient::getCollectorAsync()}
+     * .
      *
      * @example samples/V1/RapidMigrationAssessmentClient/get_collector.php
      *
@@ -447,7 +447,7 @@ final class RapidMigrationAssessmentClient
      * Lists Collectors in a given project and location.
      *
      * The async variant is
-     * {@see RapidMigrationAssessmentGapicClient::listCollectorsAsync()} .
+     * {@see RapidMigrationAssessmentClient::listCollectorsAsync()} .
      *
      * @example samples/V1/RapidMigrationAssessmentClient/list_collectors.php
      *
@@ -474,7 +474,7 @@ final class RapidMigrationAssessmentClient
      * Pauses the given collector.
      *
      * The async variant is
-     * {@see RapidMigrationAssessmentGapicClient::pauseCollectorAsync()} .
+     * {@see RapidMigrationAssessmentClient::pauseCollectorAsync()} .
      *
      * @example samples/V1/RapidMigrationAssessmentClient/pause_collector.php
      *
@@ -501,7 +501,7 @@ final class RapidMigrationAssessmentClient
      * Registers the given collector.
      *
      * The async variant is
-     * {@see RapidMigrationAssessmentGapicClient::registerCollectorAsync()} .
+     * {@see RapidMigrationAssessmentClient::registerCollectorAsync()} .
      *
      * @example samples/V1/RapidMigrationAssessmentClient/register_collector.php
      *
@@ -528,7 +528,7 @@ final class RapidMigrationAssessmentClient
      * Resumes the given collector.
      *
      * The async variant is
-     * {@see RapidMigrationAssessmentGapicClient::resumeCollectorAsync()} .
+     * {@see RapidMigrationAssessmentClient::resumeCollectorAsync()} .
      *
      * @example samples/V1/RapidMigrationAssessmentClient/resume_collector.php
      *
@@ -555,7 +555,7 @@ final class RapidMigrationAssessmentClient
      * Updates the parameters of a single Collector.
      *
      * The async variant is
-     * {@see RapidMigrationAssessmentGapicClient::updateCollectorAsync()} .
+     * {@see RapidMigrationAssessmentClient::updateCollectorAsync()} .
      *
      * @example samples/V1/RapidMigrationAssessmentClient/update_collector.php
      *
@@ -581,8 +581,7 @@ final class RapidMigrationAssessmentClient
     /**
      * Gets information about a location.
      *
-     * The async variant is
-     * {@see RapidMigrationAssessmentGapicClient::getLocationAsync()} .
+     * The async variant is {@see RapidMigrationAssessmentClient::getLocationAsync()} .
      *
      * @example samples/V1/RapidMigrationAssessmentClient/get_location.php
      *
@@ -608,8 +607,8 @@ final class RapidMigrationAssessmentClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is
-     * {@see RapidMigrationAssessmentGapicClient::listLocationsAsync()} .
+     * The async variant is {@see RapidMigrationAssessmentClient::listLocationsAsync()}
+     * .
      *
      * @example samples/V1/RapidMigrationAssessmentClient/list_locations.php
      *

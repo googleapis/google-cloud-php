@@ -313,7 +313,7 @@ final class IndexServiceClient
     /**
      * Creates an Index.
      *
-     * The async variant is {@see IndexServiceGapicClient::createIndexAsync()} .
+     * The async variant is {@see IndexServiceClient::createIndexAsync()} .
      *
      * @example samples/V1/IndexServiceClient/create_index.php
      *
@@ -342,7 +342,7 @@ final class IndexServiceClient
      * [DeployedIndexes][google.cloud.aiplatform.v1.Index.deployed_indexes] had
      * been undeployed.
      *
-     * The async variant is {@see IndexServiceGapicClient::deleteIndexAsync()} .
+     * The async variant is {@see IndexServiceClient::deleteIndexAsync()} .
      *
      * @example samples/V1/IndexServiceClient/delete_index.php
      *
@@ -368,7 +368,7 @@ final class IndexServiceClient
     /**
      * Gets an Index.
      *
-     * The async variant is {@see IndexServiceGapicClient::getIndexAsync()} .
+     * The async variant is {@see IndexServiceClient::getIndexAsync()} .
      *
      * @example samples/V1/IndexServiceClient/get_index.php
      *
@@ -394,7 +394,7 @@ final class IndexServiceClient
     /**
      * Lists Indexes in a Location.
      *
-     * The async variant is {@see IndexServiceGapicClient::listIndexesAsync()} .
+     * The async variant is {@see IndexServiceClient::listIndexesAsync()} .
      *
      * @example samples/V1/IndexServiceClient/list_indexes.php
      *
@@ -420,7 +420,7 @@ final class IndexServiceClient
     /**
      * Remove Datapoints from an Index.
      *
-     * The async variant is {@see IndexServiceGapicClient::removeDatapointsAsync()} .
+     * The async variant is {@see IndexServiceClient::removeDatapointsAsync()} .
      *
      * @example samples/V1/IndexServiceClient/remove_datapoints.php
      *
@@ -446,7 +446,7 @@ final class IndexServiceClient
     /**
      * Updates an Index.
      *
-     * The async variant is {@see IndexServiceGapicClient::updateIndexAsync()} .
+     * The async variant is {@see IndexServiceClient::updateIndexAsync()} .
      *
      * @example samples/V1/IndexServiceClient/update_index.php
      *
@@ -472,7 +472,7 @@ final class IndexServiceClient
     /**
      * Add/update Datapoints into an Index.
      *
-     * The async variant is {@see IndexServiceGapicClient::upsertDatapointsAsync()} .
+     * The async variant is {@see IndexServiceClient::upsertDatapointsAsync()} .
      *
      * @example samples/V1/IndexServiceClient/upsert_datapoints.php
      *
@@ -498,7 +498,7 @@ final class IndexServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see IndexServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see IndexServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/IndexServiceClient/get_location.php
      *
@@ -524,7 +524,7 @@ final class IndexServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see IndexServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see IndexServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/IndexServiceClient/list_locations.php
      *
@@ -551,7 +551,7 @@ final class IndexServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see IndexServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see IndexServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/IndexServiceClient/get_iam_policy.php
      *
@@ -581,7 +581,7 @@ final class IndexServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see IndexServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see IndexServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/IndexServiceClient/set_iam_policy.php
      *
@@ -613,7 +613,7 @@ final class IndexServiceClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is {@see IndexServiceGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see IndexServiceClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/IndexServiceClient/test_iam_permissions.php
      *

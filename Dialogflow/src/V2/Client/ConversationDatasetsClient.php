@@ -298,7 +298,7 @@ final class ConversationDatasetsClient
      * [ConversationDataset][google.cloud.dialogflow.v2.ConversationDataset]
      *
      * The async variant is
-     * {@see ConversationDatasetsGapicClient::createConversationDatasetAsync()} .
+     * {@see ConversationDatasetsClient::createConversationDatasetAsync()} .
      *
      * @param CreateConversationDatasetRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -332,7 +332,7 @@ final class ConversationDatasetsClient
      * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
      *
      * The async variant is
-     * {@see ConversationDatasetsGapicClient::deleteConversationDatasetAsync()} .
+     * {@see ConversationDatasetsClient::deleteConversationDatasetAsync()} .
      *
      * @param DeleteConversationDatasetRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -357,7 +357,7 @@ final class ConversationDatasetsClient
      * Retrieves the specified conversation dataset.
      *
      * The async variant is
-     * {@see ConversationDatasetsGapicClient::getConversationDatasetAsync()} .
+     * {@see ConversationDatasetsClient::getConversationDatasetAsync()} .
      *
      * @param GetConversationDatasetRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -393,7 +393,7 @@ final class ConversationDatasetsClient
      * [ImportConversationDataOperationResponse][google.cloud.dialogflow.v2.ImportConversationDataOperationResponse]
      *
      * The async variant is
-     * {@see ConversationDatasetsGapicClient::importConversationDataAsync()} .
+     * {@see ConversationDatasetsClient::importConversationDataAsync()} .
      *
      * @param ImportConversationDataRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -419,7 +419,7 @@ final class ConversationDatasetsClient
      * project and location.
      *
      * The async variant is
-     * {@see ConversationDatasetsGapicClient::listConversationDatasetsAsync()} .
+     * {@see ConversationDatasetsClient::listConversationDatasetsAsync()} .
      *
      * @param ListConversationDatasetsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -443,8 +443,7 @@ final class ConversationDatasetsClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see ConversationDatasetsGapicClient::getLocationAsync()}
-     * .
+     * The async variant is {@see ConversationDatasetsClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -468,8 +467,7 @@ final class ConversationDatasetsClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is
-     * {@see ConversationDatasetsGapicClient::listLocationsAsync()} .
+     * The async variant is {@see ConversationDatasetsClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

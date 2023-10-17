@@ -368,7 +368,7 @@ final class InstanceAdminClient
      * The [response][google.longrunning.Operation.response] field type is
      * [Instance][google.spanner.admin.instance.v1.Instance], if successful.
      *
-     * The async variant is {@see InstanceAdminGapicClient::createInstanceAsync()} .
+     * The async variant is {@see InstanceAdminClient::createInstanceAsync()} .
      *
      * @param CreateInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -432,8 +432,7 @@ final class InstanceAdminClient
      * the resource
      * [parent][google.spanner.admin.instance.v1.CreateInstanceConfigRequest.parent].
      *
-     * The async variant is
-     * {@see InstanceAdminGapicClient::createInstanceConfigAsync()} .
+     * The async variant is {@see InstanceAdminClient::createInstanceConfigAsync()} .
      *
      * @param CreateInstanceConfigRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -467,7 +466,7 @@ final class InstanceAdminClient
      * irrevocably disappear from the API. All data in the databases
      * is permanently deleted.
      *
-     * The async variant is {@see InstanceAdminGapicClient::deleteInstanceAsync()} .
+     * The async variant is {@see InstanceAdminClient::deleteInstanceAsync()} .
      *
      * @param DeleteInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -496,8 +495,7 @@ final class InstanceAdminClient
      * Authorization requires `spanner.instanceConfigs.delete` permission on
      * the resource [name][google.spanner.admin.instance.v1.InstanceConfig.name].
      *
-     * The async variant is
-     * {@see InstanceAdminGapicClient::deleteInstanceConfigAsync()} .
+     * The async variant is {@see InstanceAdminClient::deleteInstanceConfigAsync()} .
      *
      * @param DeleteInstanceConfigRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -523,7 +521,7 @@ final class InstanceAdminClient
      * Authorization requires `spanner.instances.getIamPolicy` on
      * [resource][google.iam.v1.GetIamPolicyRequest.resource].
      *
-     * The async variant is {@see InstanceAdminGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see InstanceAdminClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -547,7 +545,7 @@ final class InstanceAdminClient
     /**
      * Gets information about a particular instance.
      *
-     * The async variant is {@see InstanceAdminGapicClient::getInstanceAsync()} .
+     * The async variant is {@see InstanceAdminClient::getInstanceAsync()} .
      *
      * @param GetInstanceRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -571,7 +569,7 @@ final class InstanceAdminClient
     /**
      * Gets information about a particular instance configuration.
      *
-     * The async variant is {@see InstanceAdminGapicClient::getInstanceConfigAsync()} .
+     * The async variant is {@see InstanceAdminClient::getInstanceConfigAsync()} .
      *
      * @param GetInstanceConfigRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -606,7 +604,7 @@ final class InstanceAdminClient
      * from the most recently started operation.
      *
      * The async variant is
-     * {@see InstanceAdminGapicClient::listInstanceConfigOperationsAsync()} .
+     * {@see InstanceAdminClient::listInstanceConfigOperationsAsync()} .
      *
      * @param ListInstanceConfigOperationsRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -630,8 +628,7 @@ final class InstanceAdminClient
     /**
      * Lists the supported instance configurations for a given project.
      *
-     * The async variant is {@see InstanceAdminGapicClient::listInstanceConfigsAsync()}
-     * .
+     * The async variant is {@see InstanceAdminClient::listInstanceConfigsAsync()} .
      *
      * @param ListInstanceConfigsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -655,7 +652,7 @@ final class InstanceAdminClient
     /**
      * Lists all instances in the given project.
      *
-     * The async variant is {@see InstanceAdminGapicClient::listInstancesAsync()} .
+     * The async variant is {@see InstanceAdminClient::listInstancesAsync()} .
      *
      * @param ListInstancesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -683,7 +680,7 @@ final class InstanceAdminClient
      * Authorization requires `spanner.instances.setIamPolicy` on
      * [resource][google.iam.v1.SetIamPolicyRequest.resource].
      *
-     * The async variant is {@see InstanceAdminGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see InstanceAdminClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -712,8 +709,7 @@ final class InstanceAdminClient
      * permission on the containing Google Cloud Project. Otherwise returns an
      * empty set of permissions.
      *
-     * The async variant is {@see InstanceAdminGapicClient::testIamPermissionsAsync()}
-     * .
+     * The async variant is {@see InstanceAdminClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -776,7 +772,7 @@ final class InstanceAdminClient
      * Authorization requires `spanner.instances.update` permission on
      * the resource [name][google.spanner.admin.instance.v1.Instance.name].
      *
-     * The async variant is {@see InstanceAdminGapicClient::updateInstanceAsync()} .
+     * The async variant is {@see InstanceAdminClient::updateInstanceAsync()} .
      *
      * @param UpdateInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -843,8 +839,7 @@ final class InstanceAdminClient
      * Authorization requires `spanner.instanceConfigs.update` permission on
      * the resource [name][google.spanner.admin.instance.v1.InstanceConfig.name].
      *
-     * The async variant is
-     * {@see InstanceAdminGapicClient::updateInstanceConfigAsync()} .
+     * The async variant is {@see InstanceAdminClient::updateInstanceConfigAsync()} .
      *
      * @param UpdateInstanceConfigRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

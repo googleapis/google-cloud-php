@@ -387,7 +387,7 @@ final class JobsClient
     /**
      * Creates a Job.
      *
-     * The async variant is {@see JobsGapicClient::createJobAsync()} .
+     * The async variant is {@see JobsClient::createJobAsync()} .
      *
      * @example samples/V2/JobsClient/create_job.php
      *
@@ -413,7 +413,7 @@ final class JobsClient
     /**
      * Deletes a Job.
      *
-     * The async variant is {@see JobsGapicClient::deleteJobAsync()} .
+     * The async variant is {@see JobsClient::deleteJobAsync()} .
      *
      * @example samples/V2/JobsClient/delete_job.php
      *
@@ -440,7 +440,7 @@ final class JobsClient
      * Gets the IAM Access Control policy currently in effect for the given Job.
      * This result does not include any inherited policies.
      *
-     * The async variant is {@see JobsGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see JobsClient::getIamPolicyAsync()} .
      *
      * @example samples/V2/JobsClient/get_iam_policy.php
      *
@@ -466,7 +466,7 @@ final class JobsClient
     /**
      * Gets information about a Job.
      *
-     * The async variant is {@see JobsGapicClient::getJobAsync()} .
+     * The async variant is {@see JobsClient::getJobAsync()} .
      *
      * @example samples/V2/JobsClient/get_job.php
      *
@@ -492,7 +492,7 @@ final class JobsClient
     /**
      * Lists Jobs.
      *
-     * The async variant is {@see JobsGapicClient::listJobsAsync()} .
+     * The async variant is {@see JobsClient::listJobsAsync()} .
      *
      * @example samples/V2/JobsClient/list_jobs.php
      *
@@ -518,7 +518,7 @@ final class JobsClient
     /**
      * Triggers creation of a new Execution of this Job.
      *
-     * The async variant is {@see JobsGapicClient::runJobAsync()} .
+     * The async variant is {@see JobsClient::runJobAsync()} .
      *
      * @example samples/V2/JobsClient/run_job.php
      *
@@ -545,7 +545,7 @@ final class JobsClient
      * Sets the IAM Access control policy for the specified Job. Overwrites
      * any existing policy.
      *
-     * The async variant is {@see JobsGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see JobsClient::setIamPolicyAsync()} .
      *
      * @example samples/V2/JobsClient/set_iam_policy.php
      *
@@ -573,7 +573,7 @@ final class JobsClient
      *
      * There are no permissions required for making this API call.
      *
-     * The async variant is {@see JobsGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see JobsClient::testIamPermissionsAsync()} .
      *
      * @example samples/V2/JobsClient/test_iam_permissions.php
      *
@@ -599,7 +599,7 @@ final class JobsClient
     /**
      * Updates a Job.
      *
-     * The async variant is {@see JobsGapicClient::updateJobAsync()} .
+     * The async variant is {@see JobsClient::updateJobAsync()} .
      *
      * @example samples/V2/JobsClient/update_job.php
      *

@@ -257,7 +257,7 @@ final class PredictionApiKeyRegistryClient
      * Register an API key for use with predict method.
      *
      * The async variant is
-     * {@see PredictionApiKeyRegistryGapicClient::createPredictionApiKeyRegistrationAsync()}
+     * {@see PredictionApiKeyRegistryClient::createPredictionApiKeyRegistrationAsync()}
      * .
      *
      * @example samples/V1beta1/PredictionApiKeyRegistryClient/create_prediction_api_key_registration.php
@@ -287,7 +287,7 @@ final class PredictionApiKeyRegistryClient
      * Unregister an apiKey from using for predict method.
      *
      * The async variant is
-     * {@see PredictionApiKeyRegistryGapicClient::deletePredictionApiKeyRegistrationAsync()}
+     * {@see PredictionApiKeyRegistryClient::deletePredictionApiKeyRegistrationAsync()}
      * .
      *
      * @example samples/V1beta1/PredictionApiKeyRegistryClient/delete_prediction_api_key_registration.php
@@ -315,7 +315,7 @@ final class PredictionApiKeyRegistryClient
      * List the registered apiKeys for use with predict method.
      *
      * The async variant is
-     * {@see PredictionApiKeyRegistryGapicClient::listPredictionApiKeyRegistrationsAsync()}
+     * {@see PredictionApiKeyRegistryClient::listPredictionApiKeyRegistrationsAsync()}
      * .
      *
      * @example samples/V1beta1/PredictionApiKeyRegistryClient/list_prediction_api_key_registrations.php

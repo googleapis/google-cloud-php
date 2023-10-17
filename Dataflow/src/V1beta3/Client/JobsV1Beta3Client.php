@@ -183,7 +183,7 @@ final class JobsV1Beta3Client
     /**
      * List the jobs of a project across all regions.
      *
-     * The async variant is {@see JobsV1Beta3GapicClient::aggregatedListJobsAsync()} .
+     * The async variant is {@see JobsV1Beta3Client::aggregatedListJobsAsync()} .
      *
      * @example samples/V1beta3/JobsV1Beta3Client/aggregated_list_jobs.php
      *
@@ -211,7 +211,7 @@ final class JobsV1Beta3Client
     /**
      * Check for existence of active jobs in the given project across all regions.
      *
-     * The async variant is {@see JobsV1Beta3GapicClient::checkActiveJobsAsync()} .
+     * The async variant is {@see JobsV1Beta3Client::checkActiveJobsAsync()} .
      *
      * @example samples/V1beta3/JobsV1Beta3Client/check_active_jobs.php
      *
@@ -245,7 +245,7 @@ final class JobsV1Beta3Client
      * `projects.jobs.create` is not recommended, as your job will always start
      * in `us-central1`.
      *
-     * The async variant is {@see JobsV1Beta3GapicClient::createJobAsync()} .
+     * The async variant is {@see JobsV1Beta3Client::createJobAsync()} .
      *
      * @example samples/V1beta3/JobsV1Beta3Client/create_job.php
      *
@@ -279,7 +279,7 @@ final class JobsV1Beta3Client
      * `projects.jobs.get` is not recommended, as you can only get the state of
      * jobs that are running in `us-central1`.
      *
-     * The async variant is {@see JobsV1Beta3GapicClient::getJobAsync()} .
+     * The async variant is {@see JobsV1Beta3Client::getJobAsync()} .
      *
      * @example samples/V1beta3/JobsV1Beta3Client/get_job.php
      *
@@ -314,7 +314,7 @@ final class JobsV1Beta3Client
      * `projects.jobs.list` is not recommended, as you can only get the list of
      * jobs that are running in `us-central1`.
      *
-     * The async variant is {@see JobsV1Beta3GapicClient::listJobsAsync()} .
+     * The async variant is {@see JobsV1Beta3Client::listJobsAsync()} .
      *
      * @example samples/V1beta3/JobsV1Beta3Client/list_jobs.php
      *
@@ -342,7 +342,7 @@ final class JobsV1Beta3Client
     /**
      * Snapshot the state of a streaming job.
      *
-     * The async variant is {@see JobsV1Beta3GapicClient::snapshotJobAsync()} .
+     * The async variant is {@see JobsV1Beta3Client::snapshotJobAsync()} .
      *
      * @example samples/V1beta3/JobsV1Beta3Client/snapshot_job.php
      *
@@ -376,7 +376,7 @@ final class JobsV1Beta3Client
      * `projects.jobs.update` is not recommended, as you can only update the state
      * of jobs that are running in `us-central1`.
      *
-     * The async variant is {@see JobsV1Beta3GapicClient::updateJobAsync()} .
+     * The async variant is {@see JobsV1Beta3Client::updateJobAsync()} .
      *
      * @example samples/V1beta3/JobsV1Beta3Client/update_job.php
      *

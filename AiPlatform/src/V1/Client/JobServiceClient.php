@@ -689,8 +689,7 @@ final class JobServiceClient
      * is set to `CANCELLED`. Any files already outputted by the job are not
      * deleted.
      *
-     * The async variant is
-     * {@see JobServiceGapicClient::cancelBatchPredictionJobAsync()} .
+     * The async variant is {@see JobServiceClient::cancelBatchPredictionJobAsync()} .
      *
      * @example samples/V1/JobServiceClient/cancel_batch_prediction_job.php
      *
@@ -726,7 +725,7 @@ final class JobServiceClient
      * [CustomJob.state][google.cloud.aiplatform.v1.CustomJob.state] is set to
      * `CANCELLED`.
      *
-     * The async variant is {@see JobServiceGapicClient::cancelCustomJobAsync()} .
+     * The async variant is {@see JobServiceClient::cancelCustomJobAsync()} .
      *
      * @example samples/V1/JobServiceClient/cancel_custom_job.php
      *
@@ -750,8 +749,7 @@ final class JobServiceClient
     /**
      * Cancels a DataLabelingJob. Success of cancellation is not guaranteed.
      *
-     * The async variant is {@see JobServiceGapicClient::cancelDataLabelingJobAsync()}
-     * .
+     * The async variant is {@see JobServiceClient::cancelDataLabelingJobAsync()} .
      *
      * @example samples/V1/JobServiceClient/cancel_data_labeling_job.php
      *
@@ -789,7 +787,7 @@ final class JobServiceClient
      * is set to `CANCELLED`.
      *
      * The async variant is
-     * {@see JobServiceGapicClient::cancelHyperparameterTuningJobAsync()} .
+     * {@see JobServiceClient::cancelHyperparameterTuningJobAsync()} .
      *
      * @example samples/V1/JobServiceClient/cancel_hyperparameter_tuning_job.php
      *
@@ -825,7 +823,7 @@ final class JobServiceClient
      * [NasJob.state][google.cloud.aiplatform.v1.NasJob.state] is set to
      * `CANCELLED`.
      *
-     * The async variant is {@see JobServiceGapicClient::cancelNasJobAsync()} .
+     * The async variant is {@see JobServiceClient::cancelNasJobAsync()} .
      *
      * @example samples/V1/JobServiceClient/cancel_nas_job.php
      *
@@ -850,8 +848,7 @@ final class JobServiceClient
      * Creates a BatchPredictionJob. A BatchPredictionJob once created will
      * right away be attempted to start.
      *
-     * The async variant is
-     * {@see JobServiceGapicClient::createBatchPredictionJobAsync()} .
+     * The async variant is {@see JobServiceClient::createBatchPredictionJobAsync()} .
      *
      * @example samples/V1/JobServiceClient/create_batch_prediction_job.php
      *
@@ -878,7 +875,7 @@ final class JobServiceClient
      * Creates a CustomJob. A created CustomJob right away
      * will be attempted to be run.
      *
-     * The async variant is {@see JobServiceGapicClient::createCustomJobAsync()} .
+     * The async variant is {@see JobServiceClient::createCustomJobAsync()} .
      *
      * @example samples/V1/JobServiceClient/create_custom_job.php
      *
@@ -904,8 +901,7 @@ final class JobServiceClient
     /**
      * Creates a DataLabelingJob.
      *
-     * The async variant is {@see JobServiceGapicClient::createDataLabelingJobAsync()}
-     * .
+     * The async variant is {@see JobServiceClient::createDataLabelingJobAsync()} .
      *
      * @example samples/V1/JobServiceClient/create_data_labeling_job.php
      *
@@ -932,7 +928,7 @@ final class JobServiceClient
      * Creates a HyperparameterTuningJob
      *
      * The async variant is
-     * {@see JobServiceGapicClient::createHyperparameterTuningJobAsync()} .
+     * {@see JobServiceClient::createHyperparameterTuningJobAsync()} .
      *
      * @example samples/V1/JobServiceClient/create_hyperparameter_tuning_job.php
      *
@@ -960,7 +956,7 @@ final class JobServiceClient
      * configured interval.
      *
      * The async variant is
-     * {@see JobServiceGapicClient::createModelDeploymentMonitoringJobAsync()} .
+     * {@see JobServiceClient::createModelDeploymentMonitoringJobAsync()} .
      *
      * @example samples/V1/JobServiceClient/create_model_deployment_monitoring_job.php
      *
@@ -986,7 +982,7 @@ final class JobServiceClient
     /**
      * Creates a NasJob
      *
-     * The async variant is {@see JobServiceGapicClient::createNasJobAsync()} .
+     * The async variant is {@see JobServiceClient::createNasJobAsync()} .
      *
      * @example samples/V1/JobServiceClient/create_nas_job.php
      *
@@ -1013,8 +1009,7 @@ final class JobServiceClient
      * Deletes a BatchPredictionJob. Can only be called on jobs that already
      * finished.
      *
-     * The async variant is
-     * {@see JobServiceGapicClient::deleteBatchPredictionJobAsync()} .
+     * The async variant is {@see JobServiceClient::deleteBatchPredictionJobAsync()} .
      *
      * @example samples/V1/JobServiceClient/delete_batch_prediction_job.php
      *
@@ -1040,7 +1035,7 @@ final class JobServiceClient
     /**
      * Deletes a CustomJob.
      *
-     * The async variant is {@see JobServiceGapicClient::deleteCustomJobAsync()} .
+     * The async variant is {@see JobServiceClient::deleteCustomJobAsync()} .
      *
      * @example samples/V1/JobServiceClient/delete_custom_job.php
      *
@@ -1066,8 +1061,7 @@ final class JobServiceClient
     /**
      * Deletes a DataLabelingJob.
      *
-     * The async variant is {@see JobServiceGapicClient::deleteDataLabelingJobAsync()}
-     * .
+     * The async variant is {@see JobServiceClient::deleteDataLabelingJobAsync()} .
      *
      * @example samples/V1/JobServiceClient/delete_data_labeling_job.php
      *
@@ -1094,7 +1088,7 @@ final class JobServiceClient
      * Deletes a HyperparameterTuningJob.
      *
      * The async variant is
-     * {@see JobServiceGapicClient::deleteHyperparameterTuningJobAsync()} .
+     * {@see JobServiceClient::deleteHyperparameterTuningJobAsync()} .
      *
      * @example samples/V1/JobServiceClient/delete_hyperparameter_tuning_job.php
      *
@@ -1121,7 +1115,7 @@ final class JobServiceClient
      * Deletes a ModelDeploymentMonitoringJob.
      *
      * The async variant is
-     * {@see JobServiceGapicClient::deleteModelDeploymentMonitoringJobAsync()} .
+     * {@see JobServiceClient::deleteModelDeploymentMonitoringJobAsync()} .
      *
      * @example samples/V1/JobServiceClient/delete_model_deployment_monitoring_job.php
      *
@@ -1147,7 +1141,7 @@ final class JobServiceClient
     /**
      * Deletes a NasJob.
      *
-     * The async variant is {@see JobServiceGapicClient::deleteNasJobAsync()} .
+     * The async variant is {@see JobServiceClient::deleteNasJobAsync()} .
      *
      * @example samples/V1/JobServiceClient/delete_nas_job.php
      *
@@ -1173,8 +1167,7 @@ final class JobServiceClient
     /**
      * Gets a BatchPredictionJob
      *
-     * The async variant is {@see JobServiceGapicClient::getBatchPredictionJobAsync()}
-     * .
+     * The async variant is {@see JobServiceClient::getBatchPredictionJobAsync()} .
      *
      * @example samples/V1/JobServiceClient/get_batch_prediction_job.php
      *
@@ -1200,7 +1193,7 @@ final class JobServiceClient
     /**
      * Gets a CustomJob.
      *
-     * The async variant is {@see JobServiceGapicClient::getCustomJobAsync()} .
+     * The async variant is {@see JobServiceClient::getCustomJobAsync()} .
      *
      * @example samples/V1/JobServiceClient/get_custom_job.php
      *
@@ -1226,7 +1219,7 @@ final class JobServiceClient
     /**
      * Gets a DataLabelingJob.
      *
-     * The async variant is {@see JobServiceGapicClient::getDataLabelingJobAsync()} .
+     * The async variant is {@see JobServiceClient::getDataLabelingJobAsync()} .
      *
      * @example samples/V1/JobServiceClient/get_data_labeling_job.php
      *
@@ -1252,8 +1245,8 @@ final class JobServiceClient
     /**
      * Gets a HyperparameterTuningJob
      *
-     * The async variant is
-     * {@see JobServiceGapicClient::getHyperparameterTuningJobAsync()} .
+     * The async variant is {@see JobServiceClient::getHyperparameterTuningJobAsync()}
+     * .
      *
      * @example samples/V1/JobServiceClient/get_hyperparameter_tuning_job.php
      *
@@ -1280,7 +1273,7 @@ final class JobServiceClient
      * Gets a ModelDeploymentMonitoringJob.
      *
      * The async variant is
-     * {@see JobServiceGapicClient::getModelDeploymentMonitoringJobAsync()} .
+     * {@see JobServiceClient::getModelDeploymentMonitoringJobAsync()} .
      *
      * @example samples/V1/JobServiceClient/get_model_deployment_monitoring_job.php
      *
@@ -1306,7 +1299,7 @@ final class JobServiceClient
     /**
      * Gets a NasJob
      *
-     * The async variant is {@see JobServiceGapicClient::getNasJobAsync()} .
+     * The async variant is {@see JobServiceClient::getNasJobAsync()} .
      *
      * @example samples/V1/JobServiceClient/get_nas_job.php
      *
@@ -1332,7 +1325,7 @@ final class JobServiceClient
     /**
      * Gets a NasTrialDetail.
      *
-     * The async variant is {@see JobServiceGapicClient::getNasTrialDetailAsync()} .
+     * The async variant is {@see JobServiceClient::getNasTrialDetailAsync()} .
      *
      * @example samples/V1/JobServiceClient/get_nas_trial_detail.php
      *
@@ -1358,8 +1351,7 @@ final class JobServiceClient
     /**
      * Lists BatchPredictionJobs in a Location.
      *
-     * The async variant is
-     * {@see JobServiceGapicClient::listBatchPredictionJobsAsync()} .
+     * The async variant is {@see JobServiceClient::listBatchPredictionJobsAsync()} .
      *
      * @example samples/V1/JobServiceClient/list_batch_prediction_jobs.php
      *
@@ -1385,7 +1377,7 @@ final class JobServiceClient
     /**
      * Lists CustomJobs in a Location.
      *
-     * The async variant is {@see JobServiceGapicClient::listCustomJobsAsync()} .
+     * The async variant is {@see JobServiceClient::listCustomJobsAsync()} .
      *
      * @example samples/V1/JobServiceClient/list_custom_jobs.php
      *
@@ -1411,7 +1403,7 @@ final class JobServiceClient
     /**
      * Lists DataLabelingJobs in a Location.
      *
-     * The async variant is {@see JobServiceGapicClient::listDataLabelingJobsAsync()} .
+     * The async variant is {@see JobServiceClient::listDataLabelingJobsAsync()} .
      *
      * @example samples/V1/JobServiceClient/list_data_labeling_jobs.php
      *
@@ -1438,7 +1430,7 @@ final class JobServiceClient
      * Lists HyperparameterTuningJobs in a Location.
      *
      * The async variant is
-     * {@see JobServiceGapicClient::listHyperparameterTuningJobsAsync()} .
+     * {@see JobServiceClient::listHyperparameterTuningJobsAsync()} .
      *
      * @example samples/V1/JobServiceClient/list_hyperparameter_tuning_jobs.php
      *
@@ -1465,7 +1457,7 @@ final class JobServiceClient
      * Lists ModelDeploymentMonitoringJobs in a Location.
      *
      * The async variant is
-     * {@see JobServiceGapicClient::listModelDeploymentMonitoringJobsAsync()} .
+     * {@see JobServiceClient::listModelDeploymentMonitoringJobsAsync()} .
      *
      * @example samples/V1/JobServiceClient/list_model_deployment_monitoring_jobs.php
      *
@@ -1491,7 +1483,7 @@ final class JobServiceClient
     /**
      * Lists NasJobs in a Location.
      *
-     * The async variant is {@see JobServiceGapicClient::listNasJobsAsync()} .
+     * The async variant is {@see JobServiceClient::listNasJobsAsync()} .
      *
      * @example samples/V1/JobServiceClient/list_nas_jobs.php
      *
@@ -1517,7 +1509,7 @@ final class JobServiceClient
     /**
      * List top NasTrialDetails of a NasJob.
      *
-     * The async variant is {@see JobServiceGapicClient::listNasTrialDetailsAsync()} .
+     * The async variant is {@see JobServiceClient::listNasTrialDetailsAsync()} .
      *
      * @example samples/V1/JobServiceClient/list_nas_trial_details.php
      *
@@ -1547,7 +1539,7 @@ final class JobServiceClient
      * to 'PAUSED'.
      *
      * The async variant is
-     * {@see JobServiceGapicClient::pauseModelDeploymentMonitoringJobAsync()} .
+     * {@see JobServiceClient::pauseModelDeploymentMonitoringJobAsync()} .
      *
      * @example samples/V1/JobServiceClient/pause_model_deployment_monitoring_job.php
      *
@@ -1574,7 +1566,7 @@ final class JobServiceClient
      * resumed.
      *
      * The async variant is
-     * {@see JobServiceGapicClient::resumeModelDeploymentMonitoringJobAsync()} .
+     * {@see JobServiceClient::resumeModelDeploymentMonitoringJobAsync()} .
      *
      * @example samples/V1/JobServiceClient/resume_model_deployment_monitoring_job.php
      *
@@ -1599,8 +1591,7 @@ final class JobServiceClient
      * Searches Model Monitoring Statistics generated within a given time window.
      *
      * The async variant is
-     * {@see JobServiceGapicClient::searchModelDeploymentMonitoringStatsAnomaliesAsync()}
-     * .
+     * {@see JobServiceClient::searchModelDeploymentMonitoringStatsAnomaliesAsync()} .
      *
      * @example samples/V1/JobServiceClient/search_model_deployment_monitoring_stats_anomalies.php
      *
@@ -1627,7 +1618,7 @@ final class JobServiceClient
      * Updates a ModelDeploymentMonitoringJob.
      *
      * The async variant is
-     * {@see JobServiceGapicClient::updateModelDeploymentMonitoringJobAsync()} .
+     * {@see JobServiceClient::updateModelDeploymentMonitoringJobAsync()} .
      *
      * @example samples/V1/JobServiceClient/update_model_deployment_monitoring_job.php
      *
@@ -1653,7 +1644,7 @@ final class JobServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see JobServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see JobServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/JobServiceClient/get_location.php
      *
@@ -1679,7 +1670,7 @@ final class JobServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see JobServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see JobServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/JobServiceClient/list_locations.php
      *
@@ -1706,7 +1697,7 @@ final class JobServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see JobServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see JobServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/JobServiceClient/get_iam_policy.php
      *
@@ -1736,7 +1727,7 @@ final class JobServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see JobServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see JobServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/JobServiceClient/set_iam_policy.php
      *
@@ -1768,7 +1759,7 @@ final class JobServiceClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is {@see JobServiceGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see JobServiceClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/JobServiceClient/test_iam_permissions.php
      *

@@ -443,7 +443,7 @@ final class LivestreamServiceClient
      * Creates a Asset with the provided unique ID in the specified
      * region.
      *
-     * The async variant is {@see LivestreamServiceGapicClient::createAssetAsync()} .
+     * The async variant is {@see LivestreamServiceClient::createAssetAsync()} .
      *
      * @example samples/V1/LivestreamServiceClient/create_asset.php
      *
@@ -470,7 +470,7 @@ final class LivestreamServiceClient
      * Creates a channel with the provided unique ID in the specified
      * region.
      *
-     * The async variant is {@see LivestreamServiceGapicClient::createChannelAsync()} .
+     * The async variant is {@see LivestreamServiceClient::createChannelAsync()} .
      *
      * @example samples/V1/LivestreamServiceClient/create_channel.php
      *
@@ -496,7 +496,7 @@ final class LivestreamServiceClient
     /**
      * Creates an event with the provided unique ID in the specified channel.
      *
-     * The async variant is {@see LivestreamServiceGapicClient::createEventAsync()} .
+     * The async variant is {@see LivestreamServiceClient::createEventAsync()} .
      *
      * @example samples/V1/LivestreamServiceClient/create_event.php
      *
@@ -522,7 +522,7 @@ final class LivestreamServiceClient
     /**
      * Creates an input with the provided unique ID in the specified region.
      *
-     * The async variant is {@see LivestreamServiceGapicClient::createInputAsync()} .
+     * The async variant is {@see LivestreamServiceClient::createInputAsync()} .
      *
      * @example samples/V1/LivestreamServiceClient/create_input.php
      *
@@ -548,7 +548,7 @@ final class LivestreamServiceClient
     /**
      * Deletes the specified asset if it is not used.
      *
-     * The async variant is {@see LivestreamServiceGapicClient::deleteAssetAsync()} .
+     * The async variant is {@see LivestreamServiceClient::deleteAssetAsync()} .
      *
      * @example samples/V1/LivestreamServiceClient/delete_asset.php
      *
@@ -574,7 +574,7 @@ final class LivestreamServiceClient
     /**
      * Deletes the specified channel.
      *
-     * The async variant is {@see LivestreamServiceGapicClient::deleteChannelAsync()} .
+     * The async variant is {@see LivestreamServiceClient::deleteChannelAsync()} .
      *
      * @example samples/V1/LivestreamServiceClient/delete_channel.php
      *
@@ -600,7 +600,7 @@ final class LivestreamServiceClient
     /**
      * Deletes the specified event.
      *
-     * The async variant is {@see LivestreamServiceGapicClient::deleteEventAsync()} .
+     * The async variant is {@see LivestreamServiceClient::deleteEventAsync()} .
      *
      * @example samples/V1/LivestreamServiceClient/delete_event.php
      *
@@ -624,7 +624,7 @@ final class LivestreamServiceClient
     /**
      * Deletes the specified input.
      *
-     * The async variant is {@see LivestreamServiceGapicClient::deleteInputAsync()} .
+     * The async variant is {@see LivestreamServiceClient::deleteInputAsync()} .
      *
      * @example samples/V1/LivestreamServiceClient/delete_input.php
      *
@@ -650,7 +650,7 @@ final class LivestreamServiceClient
     /**
      * Returns the specified asset.
      *
-     * The async variant is {@see LivestreamServiceGapicClient::getAssetAsync()} .
+     * The async variant is {@see LivestreamServiceClient::getAssetAsync()} .
      *
      * @example samples/V1/LivestreamServiceClient/get_asset.php
      *
@@ -676,7 +676,7 @@ final class LivestreamServiceClient
     /**
      * Returns the specified channel.
      *
-     * The async variant is {@see LivestreamServiceGapicClient::getChannelAsync()} .
+     * The async variant is {@see LivestreamServiceClient::getChannelAsync()} .
      *
      * @example samples/V1/LivestreamServiceClient/get_channel.php
      *
@@ -702,7 +702,7 @@ final class LivestreamServiceClient
     /**
      * Returns the specified event.
      *
-     * The async variant is {@see LivestreamServiceGapicClient::getEventAsync()} .
+     * The async variant is {@see LivestreamServiceClient::getEventAsync()} .
      *
      * @example samples/V1/LivestreamServiceClient/get_event.php
      *
@@ -728,7 +728,7 @@ final class LivestreamServiceClient
     /**
      * Returns the specified input.
      *
-     * The async variant is {@see LivestreamServiceGapicClient::getInputAsync()} .
+     * The async variant is {@see LivestreamServiceClient::getInputAsync()} .
      *
      * @example samples/V1/LivestreamServiceClient/get_input.php
      *
@@ -754,7 +754,7 @@ final class LivestreamServiceClient
     /**
      * Returns the specified pool.
      *
-     * The async variant is {@see LivestreamServiceGapicClient::getPoolAsync()} .
+     * The async variant is {@see LivestreamServiceClient::getPoolAsync()} .
      *
      * @example samples/V1/LivestreamServiceClient/get_pool.php
      *
@@ -780,7 +780,7 @@ final class LivestreamServiceClient
     /**
      * Returns a list of all assets in the specified region.
      *
-     * The async variant is {@see LivestreamServiceGapicClient::listAssetsAsync()} .
+     * The async variant is {@see LivestreamServiceClient::listAssetsAsync()} .
      *
      * @example samples/V1/LivestreamServiceClient/list_assets.php
      *
@@ -806,7 +806,7 @@ final class LivestreamServiceClient
     /**
      * Returns a list of all channels in the specified region.
      *
-     * The async variant is {@see LivestreamServiceGapicClient::listChannelsAsync()} .
+     * The async variant is {@see LivestreamServiceClient::listChannelsAsync()} .
      *
      * @example samples/V1/LivestreamServiceClient/list_channels.php
      *
@@ -832,7 +832,7 @@ final class LivestreamServiceClient
     /**
      * Returns a list of all events in the specified channel.
      *
-     * The async variant is {@see LivestreamServiceGapicClient::listEventsAsync()} .
+     * The async variant is {@see LivestreamServiceClient::listEventsAsync()} .
      *
      * @example samples/V1/LivestreamServiceClient/list_events.php
      *
@@ -858,7 +858,7 @@ final class LivestreamServiceClient
     /**
      * Returns a list of all inputs in the specified region.
      *
-     * The async variant is {@see LivestreamServiceGapicClient::listInputsAsync()} .
+     * The async variant is {@see LivestreamServiceClient::listInputsAsync()} .
      *
      * @example samples/V1/LivestreamServiceClient/list_inputs.php
      *
@@ -885,7 +885,7 @@ final class LivestreamServiceClient
      * Starts the specified channel. Part of the video pipeline will be created
      * only when the StartChannel request is received by the server.
      *
-     * The async variant is {@see LivestreamServiceGapicClient::startChannelAsync()} .
+     * The async variant is {@see LivestreamServiceClient::startChannelAsync()} .
      *
      * @example samples/V1/LivestreamServiceClient/start_channel.php
      *
@@ -912,7 +912,7 @@ final class LivestreamServiceClient
      * Stops the specified channel. Part of the video pipeline will be released
      * when the StopChannel request is received by the server.
      *
-     * The async variant is {@see LivestreamServiceGapicClient::stopChannelAsync()} .
+     * The async variant is {@see LivestreamServiceClient::stopChannelAsync()} .
      *
      * @example samples/V1/LivestreamServiceClient/stop_channel.php
      *
@@ -938,7 +938,7 @@ final class LivestreamServiceClient
     /**
      * Updates the specified channel.
      *
-     * The async variant is {@see LivestreamServiceGapicClient::updateChannelAsync()} .
+     * The async variant is {@see LivestreamServiceClient::updateChannelAsync()} .
      *
      * @example samples/V1/LivestreamServiceClient/update_channel.php
      *
@@ -964,7 +964,7 @@ final class LivestreamServiceClient
     /**
      * Updates the specified input.
      *
-     * The async variant is {@see LivestreamServiceGapicClient::updateInputAsync()} .
+     * The async variant is {@see LivestreamServiceClient::updateInputAsync()} .
      *
      * @example samples/V1/LivestreamServiceClient/update_input.php
      *
@@ -990,7 +990,7 @@ final class LivestreamServiceClient
     /**
      * Updates the specified pool.
      *
-     * The async variant is {@see LivestreamServiceGapicClient::updatePoolAsync()} .
+     * The async variant is {@see LivestreamServiceClient::updatePoolAsync()} .
      *
      * @example samples/V1/LivestreamServiceClient/update_pool.php
      *
@@ -1016,7 +1016,7 @@ final class LivestreamServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see LivestreamServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see LivestreamServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/LivestreamServiceClient/get_location.php
      *
@@ -1042,7 +1042,7 @@ final class LivestreamServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see LivestreamServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see LivestreamServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/LivestreamServiceClient/list_locations.php
      *

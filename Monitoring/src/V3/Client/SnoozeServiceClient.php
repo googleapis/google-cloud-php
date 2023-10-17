@@ -325,7 +325,7 @@ final class SnoozeServiceClient
      * criteria, from being opened. The `Snooze` applies for a specific time
      * interval.
      *
-     * The async variant is {@see SnoozeServiceGapicClient::createSnoozeAsync()} .
+     * The async variant is {@see SnoozeServiceClient::createSnoozeAsync()} .
      *
      * @param CreateSnoozeRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -349,7 +349,7 @@ final class SnoozeServiceClient
     /**
      * Retrieves a `Snooze` by `name`.
      *
-     * The async variant is {@see SnoozeServiceGapicClient::getSnoozeAsync()} .
+     * The async variant is {@see SnoozeServiceClient::getSnoozeAsync()} .
      *
      * @param GetSnoozeRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -374,7 +374,7 @@ final class SnoozeServiceClient
      * Lists the `Snooze`s associated with a project. Can optionally pass in
      * `filter`, which specifies predicates to match `Snooze`s.
      *
-     * The async variant is {@see SnoozeServiceGapicClient::listSnoozesAsync()} .
+     * The async variant is {@see SnoozeServiceClient::listSnoozesAsync()} .
      *
      * @param ListSnoozesRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -399,7 +399,7 @@ final class SnoozeServiceClient
      * Updates a `Snooze`, identified by its `name`, with the parameters in the
      * given `Snooze` object.
      *
-     * The async variant is {@see SnoozeServiceGapicClient::updateSnoozeAsync()} .
+     * The async variant is {@see SnoozeServiceClient::updateSnoozeAsync()} .
      *
      * @param UpdateSnoozeRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {

@@ -208,7 +208,7 @@ final class VersionsClient
     /**
      * Deploys code and resource files to a new version.
      *
-     * The async variant is {@see VersionsGapicClient::createVersionAsync()} .
+     * The async variant is {@see VersionsClient::createVersionAsync()} .
      *
      * @param CreateVersionRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -232,7 +232,7 @@ final class VersionsClient
     /**
      * Deletes an existing Version resource.
      *
-     * The async variant is {@see VersionsGapicClient::deleteVersionAsync()} .
+     * The async variant is {@see VersionsClient::deleteVersionAsync()} .
      *
      * @param DeleteVersionRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -258,7 +258,7 @@ final class VersionsClient
      * By default, only a `BASIC_VIEW` will be returned.
      * Specify the `FULL_VIEW` parameter to get the full resource.
      *
-     * The async variant is {@see VersionsGapicClient::getVersionAsync()} .
+     * The async variant is {@see VersionsClient::getVersionAsync()} .
      *
      * @param GetVersionRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -282,7 +282,7 @@ final class VersionsClient
     /**
      * Lists the versions of a service.
      *
-     * The async variant is {@see VersionsGapicClient::listVersionsAsync()} .
+     * The async variant is {@see VersionsClient::listVersionsAsync()} .
      *
      * @param ListVersionsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -341,7 +341,7 @@ final class VersionsClient
      *
      * * [`manual_scaling.instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#manualscaling)
      *
-     * The async variant is {@see VersionsGapicClient::updateVersionAsync()} .
+     * The async variant is {@see VersionsClient::updateVersionAsync()} .
      *
      * @param UpdateVersionRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

@@ -232,7 +232,7 @@ final class FirestoreClient
      * If you require an atomically applied set of writes, use
      * [Commit][google.firestore.v1.Firestore.Commit] instead.
      *
-     * The async variant is {@see FirestoreGapicClient::batchWriteAsync()} .
+     * The async variant is {@see FirestoreClient::batchWriteAsync()} .
      *
      * @param BatchWriteRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -256,7 +256,7 @@ final class FirestoreClient
     /**
      * Starts a new transaction.
      *
-     * The async variant is {@see FirestoreGapicClient::beginTransactionAsync()} .
+     * The async variant is {@see FirestoreClient::beginTransactionAsync()} .
      *
      * @param BeginTransactionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -280,7 +280,7 @@ final class FirestoreClient
     /**
      * Commits a transaction, while optionally updating documents.
      *
-     * The async variant is {@see FirestoreGapicClient::commitAsync()} .
+     * The async variant is {@see FirestoreClient::commitAsync()} .
      *
      * @param CommitRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -304,7 +304,7 @@ final class FirestoreClient
     /**
      * Creates a new document.
      *
-     * The async variant is {@see FirestoreGapicClient::createDocumentAsync()} .
+     * The async variant is {@see FirestoreClient::createDocumentAsync()} .
      *
      * @param CreateDocumentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -328,7 +328,7 @@ final class FirestoreClient
     /**
      * Deletes a document.
      *
-     * The async variant is {@see FirestoreGapicClient::deleteDocumentAsync()} .
+     * The async variant is {@see FirestoreClient::deleteDocumentAsync()} .
      *
      * @param DeleteDocumentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -350,7 +350,7 @@ final class FirestoreClient
     /**
      * Gets a single document.
      *
-     * The async variant is {@see FirestoreGapicClient::getDocumentAsync()} .
+     * The async variant is {@see FirestoreClient::getDocumentAsync()} .
      *
      * @param GetDocumentRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -374,7 +374,7 @@ final class FirestoreClient
     /**
      * Lists all the collection IDs underneath a document.
      *
-     * The async variant is {@see FirestoreGapicClient::listCollectionIdsAsync()} .
+     * The async variant is {@see FirestoreClient::listCollectionIdsAsync()} .
      *
      * @param ListCollectionIdsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -398,7 +398,7 @@ final class FirestoreClient
     /**
      * Lists documents.
      *
-     * The async variant is {@see FirestoreGapicClient::listDocumentsAsync()} .
+     * The async variant is {@see FirestoreClient::listDocumentsAsync()} .
      *
      * @param ListDocumentsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -444,7 +444,7 @@ final class FirestoreClient
      * the query in parallel. The returned partition cursors are split points that
      * can be used by RunQuery as starting/end points for the query results.
      *
-     * The async variant is {@see FirestoreGapicClient::partitionQueryAsync()} .
+     * The async variant is {@see FirestoreClient::partitionQueryAsync()} .
      *
      * @param PartitionQueryRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -468,7 +468,7 @@ final class FirestoreClient
     /**
      * Rolls back a transaction.
      *
-     * The async variant is {@see FirestoreGapicClient::rollbackAsync()} .
+     * The async variant is {@see FirestoreClient::rollbackAsync()} .
      *
      * @param RollbackRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -542,7 +542,7 @@ final class FirestoreClient
     /**
      * Updates or inserts a document.
      *
-     * The async variant is {@see FirestoreGapicClient::updateDocumentAsync()} .
+     * The async variant is {@see FirestoreClient::updateDocumentAsync()} .
      *
      * @param UpdateDocumentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

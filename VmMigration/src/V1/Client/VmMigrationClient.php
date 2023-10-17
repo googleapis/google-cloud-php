@@ -548,7 +548,7 @@ final class VmMigrationClient
     /**
      * Adds a MigratingVm to a Group.
      *
-     * The async variant is {@see VmMigrationGapicClient::addGroupMigrationAsync()} .
+     * The async variant is {@see VmMigrationClient::addGroupMigrationAsync()} .
      *
      * @example samples/V1/VmMigrationClient/add_group_migration.php
      *
@@ -574,7 +574,7 @@ final class VmMigrationClient
     /**
      * Initiates the cancellation of a running clone job.
      *
-     * The async variant is {@see VmMigrationGapicClient::cancelCloneJobAsync()} .
+     * The async variant is {@see VmMigrationClient::cancelCloneJobAsync()} .
      *
      * @example samples/V1/VmMigrationClient/cancel_clone_job.php
      *
@@ -600,7 +600,7 @@ final class VmMigrationClient
     /**
      * Initiates the cancellation of a running cutover job.
      *
-     * The async variant is {@see VmMigrationGapicClient::cancelCutoverJobAsync()} .
+     * The async variant is {@see VmMigrationClient::cancelCutoverJobAsync()} .
      *
      * @example samples/V1/VmMigrationClient/cancel_cutover_job.php
      *
@@ -626,7 +626,7 @@ final class VmMigrationClient
     /**
      * Initiates a Clone of a specific migrating VM.
      *
-     * The async variant is {@see VmMigrationGapicClient::createCloneJobAsync()} .
+     * The async variant is {@see VmMigrationClient::createCloneJobAsync()} .
      *
      * @example samples/V1/VmMigrationClient/create_clone_job.php
      *
@@ -654,7 +654,7 @@ final class VmMigrationClient
      * The returned LRO is completed when the cutover job resource is created
      * and the job is initiated.
      *
-     * The async variant is {@see VmMigrationGapicClient::createCutoverJobAsync()} .
+     * The async variant is {@see VmMigrationClient::createCutoverJobAsync()} .
      *
      * @example samples/V1/VmMigrationClient/create_cutover_job.php
      *
@@ -680,8 +680,8 @@ final class VmMigrationClient
     /**
      * Creates a new DatacenterConnector in a given Source.
      *
-     * The async variant is
-     * {@see VmMigrationGapicClient::createDatacenterConnectorAsync()} .
+     * The async variant is {@see VmMigrationClient::createDatacenterConnectorAsync()}
+     * .
      *
      * @example samples/V1/VmMigrationClient/create_datacenter_connector.php
      *
@@ -707,7 +707,7 @@ final class VmMigrationClient
     /**
      * Creates a new Group in a given project and location.
      *
-     * The async variant is {@see VmMigrationGapicClient::createGroupAsync()} .
+     * The async variant is {@see VmMigrationClient::createGroupAsync()} .
      *
      * @example samples/V1/VmMigrationClient/create_group.php
      *
@@ -733,7 +733,7 @@ final class VmMigrationClient
     /**
      * Creates a new MigratingVm in a given Source.
      *
-     * The async variant is {@see VmMigrationGapicClient::createMigratingVmAsync()} .
+     * The async variant is {@see VmMigrationClient::createMigratingVmAsync()} .
      *
      * @example samples/V1/VmMigrationClient/create_migrating_vm.php
      *
@@ -759,7 +759,7 @@ final class VmMigrationClient
     /**
      * Creates a new Source in a given project and location.
      *
-     * The async variant is {@see VmMigrationGapicClient::createSourceAsync()} .
+     * The async variant is {@see VmMigrationClient::createSourceAsync()} .
      *
      * @example samples/V1/VmMigrationClient/create_source.php
      *
@@ -788,7 +788,7 @@ final class VmMigrationClient
      * NOTE: TargetProject is a global resource; hence the only supported value
      * for location is `global`.
      *
-     * The async variant is {@see VmMigrationGapicClient::createTargetProjectAsync()} .
+     * The async variant is {@see VmMigrationClient::createTargetProjectAsync()} .
      *
      * @example samples/V1/VmMigrationClient/create_target_project.php
      *
@@ -814,8 +814,7 @@ final class VmMigrationClient
     /**
      * Creates a new UtilizationReport.
      *
-     * The async variant is
-     * {@see VmMigrationGapicClient::createUtilizationReportAsync()} .
+     * The async variant is {@see VmMigrationClient::createUtilizationReportAsync()} .
      *
      * @example samples/V1/VmMigrationClient/create_utilization_report.php
      *
@@ -841,8 +840,8 @@ final class VmMigrationClient
     /**
      * Deletes a single DatacenterConnector.
      *
-     * The async variant is
-     * {@see VmMigrationGapicClient::deleteDatacenterConnectorAsync()} .
+     * The async variant is {@see VmMigrationClient::deleteDatacenterConnectorAsync()}
+     * .
      *
      * @example samples/V1/VmMigrationClient/delete_datacenter_connector.php
      *
@@ -868,7 +867,7 @@ final class VmMigrationClient
     /**
      * Deletes a single Group.
      *
-     * The async variant is {@see VmMigrationGapicClient::deleteGroupAsync()} .
+     * The async variant is {@see VmMigrationClient::deleteGroupAsync()} .
      *
      * @example samples/V1/VmMigrationClient/delete_group.php
      *
@@ -894,7 +893,7 @@ final class VmMigrationClient
     /**
      * Deletes a single MigratingVm.
      *
-     * The async variant is {@see VmMigrationGapicClient::deleteMigratingVmAsync()} .
+     * The async variant is {@see VmMigrationClient::deleteMigratingVmAsync()} .
      *
      * @example samples/V1/VmMigrationClient/delete_migrating_vm.php
      *
@@ -920,7 +919,7 @@ final class VmMigrationClient
     /**
      * Deletes a single Source.
      *
-     * The async variant is {@see VmMigrationGapicClient::deleteSourceAsync()} .
+     * The async variant is {@see VmMigrationClient::deleteSourceAsync()} .
      *
      * @example samples/V1/VmMigrationClient/delete_source.php
      *
@@ -949,7 +948,7 @@ final class VmMigrationClient
      * NOTE: TargetProject is a global resource; hence the only supported value
      * for location is `global`.
      *
-     * The async variant is {@see VmMigrationGapicClient::deleteTargetProjectAsync()} .
+     * The async variant is {@see VmMigrationClient::deleteTargetProjectAsync()} .
      *
      * @example samples/V1/VmMigrationClient/delete_target_project.php
      *
@@ -975,8 +974,7 @@ final class VmMigrationClient
     /**
      * Deletes a single Utilization Report.
      *
-     * The async variant is
-     * {@see VmMigrationGapicClient::deleteUtilizationReportAsync()} .
+     * The async variant is {@see VmMigrationClient::deleteUtilizationReportAsync()} .
      *
      * @example samples/V1/VmMigrationClient/delete_utilization_report.php
      *
@@ -1006,7 +1004,7 @@ final class VmMigrationClient
      * source. Note that this operation lists the VMs on the remote source, as
      * opposed to listing the MigratingVms resources in the vmmigration service.
      *
-     * The async variant is {@see VmMigrationGapicClient::fetchInventoryAsync()} .
+     * The async variant is {@see VmMigrationClient::fetchInventoryAsync()} .
      *
      * @example samples/V1/VmMigrationClient/fetch_inventory.php
      *
@@ -1033,7 +1031,7 @@ final class VmMigrationClient
      * Marks a migration as completed, deleting migration resources that are no
      * longer being used. Only applicable after cutover is done.
      *
-     * The async variant is {@see VmMigrationGapicClient::finalizeMigrationAsync()} .
+     * The async variant is {@see VmMigrationClient::finalizeMigrationAsync()} .
      *
      * @example samples/V1/VmMigrationClient/finalize_migration.php
      *
@@ -1059,7 +1057,7 @@ final class VmMigrationClient
     /**
      * Gets details of a single CloneJob.
      *
-     * The async variant is {@see VmMigrationGapicClient::getCloneJobAsync()} .
+     * The async variant is {@see VmMigrationClient::getCloneJobAsync()} .
      *
      * @example samples/V1/VmMigrationClient/get_clone_job.php
      *
@@ -1085,7 +1083,7 @@ final class VmMigrationClient
     /**
      * Gets details of a single CutoverJob.
      *
-     * The async variant is {@see VmMigrationGapicClient::getCutoverJobAsync()} .
+     * The async variant is {@see VmMigrationClient::getCutoverJobAsync()} .
      *
      * @example samples/V1/VmMigrationClient/get_cutover_job.php
      *
@@ -1111,8 +1109,7 @@ final class VmMigrationClient
     /**
      * Gets details of a single DatacenterConnector.
      *
-     * The async variant is
-     * {@see VmMigrationGapicClient::getDatacenterConnectorAsync()} .
+     * The async variant is {@see VmMigrationClient::getDatacenterConnectorAsync()} .
      *
      * @example samples/V1/VmMigrationClient/get_datacenter_connector.php
      *
@@ -1138,7 +1135,7 @@ final class VmMigrationClient
     /**
      * Gets details of a single Group.
      *
-     * The async variant is {@see VmMigrationGapicClient::getGroupAsync()} .
+     * The async variant is {@see VmMigrationClient::getGroupAsync()} .
      *
      * @example samples/V1/VmMigrationClient/get_group.php
      *
@@ -1164,7 +1161,7 @@ final class VmMigrationClient
     /**
      * Gets details of a single MigratingVm.
      *
-     * The async variant is {@see VmMigrationGapicClient::getMigratingVmAsync()} .
+     * The async variant is {@see VmMigrationClient::getMigratingVmAsync()} .
      *
      * @example samples/V1/VmMigrationClient/get_migrating_vm.php
      *
@@ -1190,7 +1187,7 @@ final class VmMigrationClient
     /**
      * Gets details of a single ReplicationCycle.
      *
-     * The async variant is {@see VmMigrationGapicClient::getReplicationCycleAsync()} .
+     * The async variant is {@see VmMigrationClient::getReplicationCycleAsync()} .
      *
      * @example samples/V1/VmMigrationClient/get_replication_cycle.php
      *
@@ -1216,7 +1213,7 @@ final class VmMigrationClient
     /**
      * Gets details of a single Source.
      *
-     * The async variant is {@see VmMigrationGapicClient::getSourceAsync()} .
+     * The async variant is {@see VmMigrationClient::getSourceAsync()} .
      *
      * @example samples/V1/VmMigrationClient/get_source.php
      *
@@ -1245,7 +1242,7 @@ final class VmMigrationClient
      * NOTE: TargetProject is a global resource; hence the only supported value
      * for location is `global`.
      *
-     * The async variant is {@see VmMigrationGapicClient::getTargetProjectAsync()} .
+     * The async variant is {@see VmMigrationClient::getTargetProjectAsync()} .
      *
      * @example samples/V1/VmMigrationClient/get_target_project.php
      *
@@ -1271,8 +1268,7 @@ final class VmMigrationClient
     /**
      * Gets a single Utilization Report.
      *
-     * The async variant is {@see VmMigrationGapicClient::getUtilizationReportAsync()}
-     * .
+     * The async variant is {@see VmMigrationClient::getUtilizationReportAsync()} .
      *
      * @example samples/V1/VmMigrationClient/get_utilization_report.php
      *
@@ -1298,7 +1294,7 @@ final class VmMigrationClient
     /**
      * Lists CloneJobs of a given migrating VM.
      *
-     * The async variant is {@see VmMigrationGapicClient::listCloneJobsAsync()} .
+     * The async variant is {@see VmMigrationClient::listCloneJobsAsync()} .
      *
      * @example samples/V1/VmMigrationClient/list_clone_jobs.php
      *
@@ -1324,7 +1320,7 @@ final class VmMigrationClient
     /**
      * Lists CutoverJobs of a given migrating VM.
      *
-     * The async variant is {@see VmMigrationGapicClient::listCutoverJobsAsync()} .
+     * The async variant is {@see VmMigrationClient::listCutoverJobsAsync()} .
      *
      * @example samples/V1/VmMigrationClient/list_cutover_jobs.php
      *
@@ -1350,8 +1346,7 @@ final class VmMigrationClient
     /**
      * Lists DatacenterConnectors in a given Source.
      *
-     * The async variant is
-     * {@see VmMigrationGapicClient::listDatacenterConnectorsAsync()} .
+     * The async variant is {@see VmMigrationClient::listDatacenterConnectorsAsync()} .
      *
      * @example samples/V1/VmMigrationClient/list_datacenter_connectors.php
      *
@@ -1377,7 +1372,7 @@ final class VmMigrationClient
     /**
      * Lists Groups in a given project and location.
      *
-     * The async variant is {@see VmMigrationGapicClient::listGroupsAsync()} .
+     * The async variant is {@see VmMigrationClient::listGroupsAsync()} .
      *
      * @example samples/V1/VmMigrationClient/list_groups.php
      *
@@ -1403,7 +1398,7 @@ final class VmMigrationClient
     /**
      * Lists MigratingVms in a given Source.
      *
-     * The async variant is {@see VmMigrationGapicClient::listMigratingVmsAsync()} .
+     * The async variant is {@see VmMigrationClient::listMigratingVmsAsync()} .
      *
      * @example samples/V1/VmMigrationClient/list_migrating_vms.php
      *
@@ -1429,8 +1424,7 @@ final class VmMigrationClient
     /**
      * Lists ReplicationCycles in a given MigratingVM.
      *
-     * The async variant is {@see VmMigrationGapicClient::listReplicationCyclesAsync()}
-     * .
+     * The async variant is {@see VmMigrationClient::listReplicationCyclesAsync()} .
      *
      * @example samples/V1/VmMigrationClient/list_replication_cycles.php
      *
@@ -1456,7 +1450,7 @@ final class VmMigrationClient
     /**
      * Lists Sources in a given project and location.
      *
-     * The async variant is {@see VmMigrationGapicClient::listSourcesAsync()} .
+     * The async variant is {@see VmMigrationClient::listSourcesAsync()} .
      *
      * @example samples/V1/VmMigrationClient/list_sources.php
      *
@@ -1485,7 +1479,7 @@ final class VmMigrationClient
      * NOTE: TargetProject is a global resource; hence the only supported value
      * for location is `global`.
      *
-     * The async variant is {@see VmMigrationGapicClient::listTargetProjectsAsync()} .
+     * The async variant is {@see VmMigrationClient::listTargetProjectsAsync()} .
      *
      * @example samples/V1/VmMigrationClient/list_target_projects.php
      *
@@ -1511,8 +1505,7 @@ final class VmMigrationClient
     /**
      * Lists Utilization Reports of the given Source.
      *
-     * The async variant is
-     * {@see VmMigrationGapicClient::listUtilizationReportsAsync()} .
+     * The async variant is {@see VmMigrationClient::listUtilizationReportsAsync()} .
      *
      * @example samples/V1/VmMigrationClient/list_utilization_reports.php
      *
@@ -1540,7 +1533,7 @@ final class VmMigrationClient
      * cancelled, preserving source task data. Further replication cycles will not
      * be triggered while the VM is paused.
      *
-     * The async variant is {@see VmMigrationGapicClient::pauseMigrationAsync()} .
+     * The async variant is {@see VmMigrationClient::pauseMigrationAsync()} .
      *
      * @example samples/V1/VmMigrationClient/pause_migration.php
      *
@@ -1566,8 +1559,7 @@ final class VmMigrationClient
     /**
      * Removes a MigratingVm from a Group.
      *
-     * The async variant is {@see VmMigrationGapicClient::removeGroupMigrationAsync()}
-     * .
+     * The async variant is {@see VmMigrationClient::removeGroupMigrationAsync()} .
      *
      * @example samples/V1/VmMigrationClient/remove_group_migration.php
      *
@@ -1596,7 +1588,7 @@ final class VmMigrationClient
      * completed cut-over migration, will update the migration to active state and
      * start the process of uploading data and creating snapshots.
      *
-     * The async variant is {@see VmMigrationGapicClient::resumeMigrationAsync()} .
+     * The async variant is {@see VmMigrationClient::resumeMigrationAsync()} .
      *
      * @example samples/V1/VmMigrationClient/resume_migration.php
      *
@@ -1623,7 +1615,7 @@ final class VmMigrationClient
      * Starts migration for a VM. Starts the process of uploading
      * data and creating snapshots, in replication cycles scheduled by the policy.
      *
-     * The async variant is {@see VmMigrationGapicClient::startMigrationAsync()} .
+     * The async variant is {@see VmMigrationClient::startMigrationAsync()} .
      *
      * @example samples/V1/VmMigrationClient/start_migration.php
      *
@@ -1649,7 +1641,7 @@ final class VmMigrationClient
     /**
      * Updates the parameters of a single Group.
      *
-     * The async variant is {@see VmMigrationGapicClient::updateGroupAsync()} .
+     * The async variant is {@see VmMigrationClient::updateGroupAsync()} .
      *
      * @example samples/V1/VmMigrationClient/update_group.php
      *
@@ -1675,7 +1667,7 @@ final class VmMigrationClient
     /**
      * Updates the parameters of a single MigratingVm.
      *
-     * The async variant is {@see VmMigrationGapicClient::updateMigratingVmAsync()} .
+     * The async variant is {@see VmMigrationClient::updateMigratingVmAsync()} .
      *
      * @example samples/V1/VmMigrationClient/update_migrating_vm.php
      *
@@ -1701,7 +1693,7 @@ final class VmMigrationClient
     /**
      * Updates the parameters of a single Source.
      *
-     * The async variant is {@see VmMigrationGapicClient::updateSourceAsync()} .
+     * The async variant is {@see VmMigrationClient::updateSourceAsync()} .
      *
      * @example samples/V1/VmMigrationClient/update_source.php
      *
@@ -1730,7 +1722,7 @@ final class VmMigrationClient
      * NOTE: TargetProject is a global resource; hence the only supported value
      * for location is `global`.
      *
-     * The async variant is {@see VmMigrationGapicClient::updateTargetProjectAsync()} .
+     * The async variant is {@see VmMigrationClient::updateTargetProjectAsync()} .
      *
      * @example samples/V1/VmMigrationClient/update_target_project.php
      *
@@ -1757,7 +1749,7 @@ final class VmMigrationClient
      * Upgrades the appliance relate to this DatacenterConnector to the in-place
      * updateable version.
      *
-     * The async variant is {@see VmMigrationGapicClient::upgradeApplianceAsync()} .
+     * The async variant is {@see VmMigrationClient::upgradeApplianceAsync()} .
      *
      * @example samples/V1/VmMigrationClient/upgrade_appliance.php
      *
@@ -1783,7 +1775,7 @@ final class VmMigrationClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see VmMigrationGapicClient::getLocationAsync()} .
+     * The async variant is {@see VmMigrationClient::getLocationAsync()} .
      *
      * @example samples/V1/VmMigrationClient/get_location.php
      *
@@ -1809,7 +1801,7 @@ final class VmMigrationClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see VmMigrationGapicClient::listLocationsAsync()} .
+     * The async variant is {@see VmMigrationClient::listLocationsAsync()} .
      *
      * @example samples/V1/VmMigrationClient/list_locations.php
      *

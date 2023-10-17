@@ -236,7 +236,7 @@ final class TargetGrpcProxiesClient
     /**
      * Deletes the specified TargetGrpcProxy in the given scope
      *
-     * The async variant is {@see TargetGrpcProxiesGapicClient::deleteAsync()} .
+     * The async variant is {@see TargetGrpcProxiesClient::deleteAsync()} .
      *
      * @param DeleteTargetGrpcProxyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -260,7 +260,7 @@ final class TargetGrpcProxiesClient
     /**
      * Returns the specified TargetGrpcProxy resource in the given scope.
      *
-     * The async variant is {@see TargetGrpcProxiesGapicClient::getAsync()} .
+     * The async variant is {@see TargetGrpcProxiesClient::getAsync()} .
      *
      * @param GetTargetGrpcProxyRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -284,7 +284,7 @@ final class TargetGrpcProxiesClient
     /**
      * Creates a TargetGrpcProxy in the specified project in the given scope using the parameters that are included in the request.
      *
-     * The async variant is {@see TargetGrpcProxiesGapicClient::insertAsync()} .
+     * The async variant is {@see TargetGrpcProxiesClient::insertAsync()} .
      *
      * @param InsertTargetGrpcProxyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -308,7 +308,7 @@ final class TargetGrpcProxiesClient
     /**
      * Lists the TargetGrpcProxies for a project in the given scope.
      *
-     * The async variant is {@see TargetGrpcProxiesGapicClient::listAsync()} .
+     * The async variant is {@see TargetGrpcProxiesClient::listAsync()} .
      *
      * @param ListTargetGrpcProxiesRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -332,7 +332,7 @@ final class TargetGrpcProxiesClient
     /**
      * Patches the specified TargetGrpcProxy resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
      *
-     * The async variant is {@see TargetGrpcProxiesGapicClient::patchAsync()} .
+     * The async variant is {@see TargetGrpcProxiesClient::patchAsync()} .
      *
      * @param PatchTargetGrpcProxyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

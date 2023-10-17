@@ -284,8 +284,7 @@ final class ResourceSettingsServiceClient
      * Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
      * setting does not exist.
      *
-     * The async variant is
-     * {@see ResourceSettingsServiceGapicClient::getSettingAsync()} .
+     * The async variant is {@see ResourceSettingsServiceClient::getSettingAsync()} .
      *
      * @param GetSettingRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -309,8 +308,7 @@ final class ResourceSettingsServiceClient
     /**
      * Lists all the settings that are available on the Cloud resource `parent`.
      *
-     * The async variant is
-     * {@see ResourceSettingsServiceGapicClient::listSettingsAsync()} .
+     * The async variant is {@see ResourceSettingsServiceClient::listSettingsAsync()} .
      *
      * @param ListSettingsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -349,8 +347,8 @@ final class ResourceSettingsServiceClient
      * Note: the supplied setting will perform a full overwrite of the
      * `local_value` field.
      *
-     * The async variant is
-     * {@see ResourceSettingsServiceGapicClient::updateSettingAsync()} .
+     * The async variant is {@see ResourceSettingsServiceClient::updateSettingAsync()}
+     * .
      *
      * @param UpdateSettingRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

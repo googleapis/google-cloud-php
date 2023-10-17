@@ -560,8 +560,7 @@ final class MigrationCenterClient
     /**
      * Adds assets to a group.
      *
-     * The async variant is {@see MigrationCenterGapicClient::addAssetsToGroupAsync()}
-     * .
+     * The async variant is {@see MigrationCenterClient::addAssetsToGroupAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/add_assets_to_group.php
      *
@@ -587,8 +586,8 @@ final class MigrationCenterClient
     /**
      * Aggregates the requested fields based on provided function.
      *
-     * The async variant is
-     * {@see MigrationCenterGapicClient::aggregateAssetsValuesAsync()} .
+     * The async variant is {@see MigrationCenterClient::aggregateAssetsValuesAsync()}
+     * .
      *
      * @example samples/V1/MigrationCenterClient/aggregate_assets_values.php
      *
@@ -614,8 +613,7 @@ final class MigrationCenterClient
     /**
      * Deletes list of Assets.
      *
-     * The async variant is {@see MigrationCenterGapicClient::batchDeleteAssetsAsync()}
-     * .
+     * The async variant is {@see MigrationCenterClient::batchDeleteAssetsAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/batch_delete_assets.php
      *
@@ -639,8 +637,7 @@ final class MigrationCenterClient
     /**
      * Updates the parameters of a list of assets.
      *
-     * The async variant is {@see MigrationCenterGapicClient::batchUpdateAssetsAsync()}
-     * .
+     * The async variant is {@see MigrationCenterClient::batchUpdateAssetsAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/batch_update_assets.php
      *
@@ -666,7 +663,7 @@ final class MigrationCenterClient
     /**
      * Creates a new group in a given project and location.
      *
-     * The async variant is {@see MigrationCenterGapicClient::createGroupAsync()} .
+     * The async variant is {@see MigrationCenterClient::createGroupAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/create_group.php
      *
@@ -692,8 +689,7 @@ final class MigrationCenterClient
     /**
      * Creates an import data file.
      *
-     * The async variant is
-     * {@see MigrationCenterGapicClient::createImportDataFileAsync()} .
+     * The async variant is {@see MigrationCenterClient::createImportDataFileAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/create_import_data_file.php
      *
@@ -719,7 +715,7 @@ final class MigrationCenterClient
     /**
      * Creates an import job.
      *
-     * The async variant is {@see MigrationCenterGapicClient::createImportJobAsync()} .
+     * The async variant is {@see MigrationCenterClient::createImportJobAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/create_import_job.php
      *
@@ -745,8 +741,7 @@ final class MigrationCenterClient
     /**
      * Creates a new preference set in a given project and location.
      *
-     * The async variant is
-     * {@see MigrationCenterGapicClient::createPreferenceSetAsync()} .
+     * The async variant is {@see MigrationCenterClient::createPreferenceSetAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/create_preference_set.php
      *
@@ -772,7 +767,7 @@ final class MigrationCenterClient
     /**
      * Creates a report.
      *
-     * The async variant is {@see MigrationCenterGapicClient::createReportAsync()} .
+     * The async variant is {@see MigrationCenterClient::createReportAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/create_report.php
      *
@@ -798,8 +793,7 @@ final class MigrationCenterClient
     /**
      * Creates a report configuration.
      *
-     * The async variant is
-     * {@see MigrationCenterGapicClient::createReportConfigAsync()} .
+     * The async variant is {@see MigrationCenterClient::createReportConfigAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/create_report_config.php
      *
@@ -825,7 +819,7 @@ final class MigrationCenterClient
     /**
      * Creates a new source in a given project and location.
      *
-     * The async variant is {@see MigrationCenterGapicClient::createSourceAsync()} .
+     * The async variant is {@see MigrationCenterClient::createSourceAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/create_source.php
      *
@@ -851,7 +845,7 @@ final class MigrationCenterClient
     /**
      * Deletes an asset.
      *
-     * The async variant is {@see MigrationCenterGapicClient::deleteAssetAsync()} .
+     * The async variant is {@see MigrationCenterClient::deleteAssetAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/delete_asset.php
      *
@@ -875,7 +869,7 @@ final class MigrationCenterClient
     /**
      * Deletes a group.
      *
-     * The async variant is {@see MigrationCenterGapicClient::deleteGroupAsync()} .
+     * The async variant is {@see MigrationCenterClient::deleteGroupAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/delete_group.php
      *
@@ -901,8 +895,7 @@ final class MigrationCenterClient
     /**
      * Delete an import data file.
      *
-     * The async variant is
-     * {@see MigrationCenterGapicClient::deleteImportDataFileAsync()} .
+     * The async variant is {@see MigrationCenterClient::deleteImportDataFileAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/delete_import_data_file.php
      *
@@ -928,7 +921,7 @@ final class MigrationCenterClient
     /**
      * Deletes an import job.
      *
-     * The async variant is {@see MigrationCenterGapicClient::deleteImportJobAsync()} .
+     * The async variant is {@see MigrationCenterClient::deleteImportJobAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/delete_import_job.php
      *
@@ -954,8 +947,7 @@ final class MigrationCenterClient
     /**
      * Deletes a preference set.
      *
-     * The async variant is
-     * {@see MigrationCenterGapicClient::deletePreferenceSetAsync()} .
+     * The async variant is {@see MigrationCenterClient::deletePreferenceSetAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/delete_preference_set.php
      *
@@ -981,7 +973,7 @@ final class MigrationCenterClient
     /**
      * Deletes a Report.
      *
-     * The async variant is {@see MigrationCenterGapicClient::deleteReportAsync()} .
+     * The async variant is {@see MigrationCenterClient::deleteReportAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/delete_report.php
      *
@@ -1007,8 +999,7 @@ final class MigrationCenterClient
     /**
      * Deletes a ReportConfig.
      *
-     * The async variant is
-     * {@see MigrationCenterGapicClient::deleteReportConfigAsync()} .
+     * The async variant is {@see MigrationCenterClient::deleteReportConfigAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/delete_report_config.php
      *
@@ -1034,7 +1025,7 @@ final class MigrationCenterClient
     /**
      * Deletes a source.
      *
-     * The async variant is {@see MigrationCenterGapicClient::deleteSourceAsync()} .
+     * The async variant is {@see MigrationCenterClient::deleteSourceAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/delete_source.php
      *
@@ -1060,7 +1051,7 @@ final class MigrationCenterClient
     /**
      * Gets the details of an asset.
      *
-     * The async variant is {@see MigrationCenterGapicClient::getAssetAsync()} .
+     * The async variant is {@see MigrationCenterClient::getAssetAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/get_asset.php
      *
@@ -1086,7 +1077,7 @@ final class MigrationCenterClient
     /**
      * Gets the details of an error frame.
      *
-     * The async variant is {@see MigrationCenterGapicClient::getErrorFrameAsync()} .
+     * The async variant is {@see MigrationCenterClient::getErrorFrameAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/get_error_frame.php
      *
@@ -1112,7 +1103,7 @@ final class MigrationCenterClient
     /**
      * Gets the details of a group.
      *
-     * The async variant is {@see MigrationCenterGapicClient::getGroupAsync()} .
+     * The async variant is {@see MigrationCenterClient::getGroupAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/get_group.php
      *
@@ -1138,8 +1129,7 @@ final class MigrationCenterClient
     /**
      * Gets an import data file.
      *
-     * The async variant is {@see MigrationCenterGapicClient::getImportDataFileAsync()}
-     * .
+     * The async variant is {@see MigrationCenterClient::getImportDataFileAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/get_import_data_file.php
      *
@@ -1165,7 +1155,7 @@ final class MigrationCenterClient
     /**
      * Gets the details of an import job.
      *
-     * The async variant is {@see MigrationCenterGapicClient::getImportJobAsync()} .
+     * The async variant is {@see MigrationCenterClient::getImportJobAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/get_import_job.php
      *
@@ -1191,8 +1181,7 @@ final class MigrationCenterClient
     /**
      * Gets the details of a preference set.
      *
-     * The async variant is {@see MigrationCenterGapicClient::getPreferenceSetAsync()}
-     * .
+     * The async variant is {@see MigrationCenterClient::getPreferenceSetAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/get_preference_set.php
      *
@@ -1218,7 +1207,7 @@ final class MigrationCenterClient
     /**
      * Gets details of a single Report.
      *
-     * The async variant is {@see MigrationCenterGapicClient::getReportAsync()} .
+     * The async variant is {@see MigrationCenterClient::getReportAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/get_report.php
      *
@@ -1244,7 +1233,7 @@ final class MigrationCenterClient
     /**
      * Gets details of a single ReportConfig.
      *
-     * The async variant is {@see MigrationCenterGapicClient::getReportConfigAsync()} .
+     * The async variant is {@see MigrationCenterClient::getReportConfigAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/get_report_config.php
      *
@@ -1270,7 +1259,7 @@ final class MigrationCenterClient
     /**
      * Gets the details of regional settings.
      *
-     * The async variant is {@see MigrationCenterGapicClient::getSettingsAsync()} .
+     * The async variant is {@see MigrationCenterClient::getSettingsAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/get_settings.php
      *
@@ -1296,7 +1285,7 @@ final class MigrationCenterClient
     /**
      * Gets the details of a source.
      *
-     * The async variant is {@see MigrationCenterGapicClient::getSourceAsync()} .
+     * The async variant is {@see MigrationCenterClient::getSourceAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/get_source.php
      *
@@ -1322,7 +1311,7 @@ final class MigrationCenterClient
     /**
      * Lists all the assets in a given project and location.
      *
-     * The async variant is {@see MigrationCenterGapicClient::listAssetsAsync()} .
+     * The async variant is {@see MigrationCenterClient::listAssetsAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/list_assets.php
      *
@@ -1348,7 +1337,7 @@ final class MigrationCenterClient
     /**
      * Lists all error frames in a given source and location.
      *
-     * The async variant is {@see MigrationCenterGapicClient::listErrorFramesAsync()} .
+     * The async variant is {@see MigrationCenterClient::listErrorFramesAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/list_error_frames.php
      *
@@ -1374,7 +1363,7 @@ final class MigrationCenterClient
     /**
      * Lists all groups in a given project and location.
      *
-     * The async variant is {@see MigrationCenterGapicClient::listGroupsAsync()} .
+     * The async variant is {@see MigrationCenterClient::listGroupsAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/list_groups.php
      *
@@ -1400,8 +1389,7 @@ final class MigrationCenterClient
     /**
      * List import data files.
      *
-     * The async variant is
-     * {@see MigrationCenterGapicClient::listImportDataFilesAsync()} .
+     * The async variant is {@see MigrationCenterClient::listImportDataFilesAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/list_import_data_files.php
      *
@@ -1427,7 +1415,7 @@ final class MigrationCenterClient
     /**
      * Lists all import jobs.
      *
-     * The async variant is {@see MigrationCenterGapicClient::listImportJobsAsync()} .
+     * The async variant is {@see MigrationCenterClient::listImportJobsAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/list_import_jobs.php
      *
@@ -1453,8 +1441,7 @@ final class MigrationCenterClient
     /**
      * Lists all the preference sets in a given project and location.
      *
-     * The async variant is
-     * {@see MigrationCenterGapicClient::listPreferenceSetsAsync()} .
+     * The async variant is {@see MigrationCenterClient::listPreferenceSetsAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/list_preference_sets.php
      *
@@ -1480,8 +1467,7 @@ final class MigrationCenterClient
     /**
      * Lists ReportConfigs in a given project and location.
      *
-     * The async variant is {@see MigrationCenterGapicClient::listReportConfigsAsync()}
-     * .
+     * The async variant is {@see MigrationCenterClient::listReportConfigsAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/list_report_configs.php
      *
@@ -1507,7 +1493,7 @@ final class MigrationCenterClient
     /**
      * Lists Reports in a given ReportConfig.
      *
-     * The async variant is {@see MigrationCenterGapicClient::listReportsAsync()} .
+     * The async variant is {@see MigrationCenterClient::listReportsAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/list_reports.php
      *
@@ -1533,7 +1519,7 @@ final class MigrationCenterClient
     /**
      * Lists all the sources in a given project and location.
      *
-     * The async variant is {@see MigrationCenterGapicClient::listSourcesAsync()} .
+     * The async variant is {@see MigrationCenterClient::listSourcesAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/list_sources.php
      *
@@ -1559,8 +1545,8 @@ final class MigrationCenterClient
     /**
      * Removes assets from a group.
      *
-     * The async variant is
-     * {@see MigrationCenterGapicClient::removeAssetsFromGroupAsync()} .
+     * The async variant is {@see MigrationCenterClient::removeAssetsFromGroupAsync()}
+     * .
      *
      * @example samples/V1/MigrationCenterClient/remove_assets_from_group.php
      *
@@ -1586,8 +1572,7 @@ final class MigrationCenterClient
     /**
      * Reports a set of frames.
      *
-     * The async variant is {@see MigrationCenterGapicClient::reportAssetFramesAsync()}
-     * .
+     * The async variant is {@see MigrationCenterClient::reportAssetFramesAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/report_asset_frames.php
      *
@@ -1613,7 +1598,7 @@ final class MigrationCenterClient
     /**
      * Runs an import job.
      *
-     * The async variant is {@see MigrationCenterGapicClient::runImportJobAsync()} .
+     * The async variant is {@see MigrationCenterClient::runImportJobAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/run_import_job.php
      *
@@ -1639,7 +1624,7 @@ final class MigrationCenterClient
     /**
      * Updates the parameters of an asset.
      *
-     * The async variant is {@see MigrationCenterGapicClient::updateAssetAsync()} .
+     * The async variant is {@see MigrationCenterClient::updateAssetAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/update_asset.php
      *
@@ -1665,7 +1650,7 @@ final class MigrationCenterClient
     /**
      * Updates the parameters of a group.
      *
-     * The async variant is {@see MigrationCenterGapicClient::updateGroupAsync()} .
+     * The async variant is {@see MigrationCenterClient::updateGroupAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/update_group.php
      *
@@ -1691,7 +1676,7 @@ final class MigrationCenterClient
     /**
      * Updates an import job.
      *
-     * The async variant is {@see MigrationCenterGapicClient::updateImportJobAsync()} .
+     * The async variant is {@see MigrationCenterClient::updateImportJobAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/update_import_job.php
      *
@@ -1717,8 +1702,7 @@ final class MigrationCenterClient
     /**
      * Updates the parameters of a preference set.
      *
-     * The async variant is
-     * {@see MigrationCenterGapicClient::updatePreferenceSetAsync()} .
+     * The async variant is {@see MigrationCenterClient::updatePreferenceSetAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/update_preference_set.php
      *
@@ -1744,7 +1728,7 @@ final class MigrationCenterClient
     /**
      * Updates the regional-level project settings.
      *
-     * The async variant is {@see MigrationCenterGapicClient::updateSettingsAsync()} .
+     * The async variant is {@see MigrationCenterClient::updateSettingsAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/update_settings.php
      *
@@ -1770,7 +1754,7 @@ final class MigrationCenterClient
     /**
      * Updates the parameters of a source.
      *
-     * The async variant is {@see MigrationCenterGapicClient::updateSourceAsync()} .
+     * The async variant is {@see MigrationCenterClient::updateSourceAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/update_source.php
      *
@@ -1796,8 +1780,7 @@ final class MigrationCenterClient
     /**
      * Validates an import job.
      *
-     * The async variant is {@see MigrationCenterGapicClient::validateImportJobAsync()}
-     * .
+     * The async variant is {@see MigrationCenterClient::validateImportJobAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/validate_import_job.php
      *
@@ -1823,7 +1806,7 @@ final class MigrationCenterClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see MigrationCenterGapicClient::getLocationAsync()} .
+     * The async variant is {@see MigrationCenterClient::getLocationAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/get_location.php
      *
@@ -1849,7 +1832,7 @@ final class MigrationCenterClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see MigrationCenterGapicClient::listLocationsAsync()} .
+     * The async variant is {@see MigrationCenterClient::listLocationsAsync()} .
      *
      * @example samples/V1/MigrationCenterClient/list_locations.php
      *

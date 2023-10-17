@@ -230,7 +230,7 @@ final class RegionalInventoryServiceClient
      * period before attempting a delete again.
      *
      * The async variant is
-     * {@see RegionalInventoryServiceGapicClient::deleteRegionalInventoryAsync()} .
+     * {@see RegionalInventoryServiceClient::deleteRegionalInventoryAsync()} .
      *
      * @example samples/V1beta/RegionalInventoryServiceClient/delete_regional_inventory.php
      *
@@ -265,7 +265,7 @@ final class RegionalInventoryServiceClient
      * resource to appear in products.
      *
      * The async variant is
-     * {@see RegionalInventoryServiceGapicClient::insertRegionalInventoryAsync()} .
+     * {@see RegionalInventoryServiceClient::insertRegionalInventoryAsync()} .
      *
      * @example samples/V1beta/RegionalInventoryServiceClient/insert_regional_inventory.php
      *
@@ -299,7 +299,7 @@ final class RegionalInventoryServiceClient
      * `RegionalInventory` resources are listed per product for a given account.
      *
      * The async variant is
-     * {@see RegionalInventoryServiceGapicClient::listRegionalInventoriesAsync()} .
+     * {@see RegionalInventoryServiceClient::listRegionalInventoriesAsync()} .
      *
      * @example samples/V1beta/RegionalInventoryServiceClient/list_regional_inventories.php
      *

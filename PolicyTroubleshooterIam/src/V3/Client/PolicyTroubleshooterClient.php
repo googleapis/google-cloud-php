@@ -166,7 +166,7 @@ final class PolicyTroubleshooterClient
      * permission.
      *
      * The async variant is
-     * {@see PolicyTroubleshooterGapicClient::troubleshootIamPolicyAsync()} .
+     * {@see PolicyTroubleshooterClient::troubleshootIamPolicyAsync()} .
      *
      * @example samples/V3/PolicyTroubleshooterClient/troubleshoot_iam_policy.php
      *

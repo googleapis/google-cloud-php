@@ -387,7 +387,7 @@ final class ApiGatewayServiceClient
     /**
      * Creates a new Api in a given project and location.
      *
-     * The async variant is {@see ApiGatewayServiceGapicClient::createApiAsync()} .
+     * The async variant is {@see ApiGatewayServiceClient::createApiAsync()} .
      *
      * @param CreateApiRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -411,8 +411,7 @@ final class ApiGatewayServiceClient
     /**
      * Creates a new ApiConfig in a given project and location.
      *
-     * The async variant is {@see ApiGatewayServiceGapicClient::createApiConfigAsync()}
-     * .
+     * The async variant is {@see ApiGatewayServiceClient::createApiConfigAsync()} .
      *
      * @param CreateApiConfigRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -436,7 +435,7 @@ final class ApiGatewayServiceClient
     /**
      * Creates a new Gateway in a given project and location.
      *
-     * The async variant is {@see ApiGatewayServiceGapicClient::createGatewayAsync()} .
+     * The async variant is {@see ApiGatewayServiceClient::createGatewayAsync()} .
      *
      * @param CreateGatewayRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -460,7 +459,7 @@ final class ApiGatewayServiceClient
     /**
      * Deletes a single Api.
      *
-     * The async variant is {@see ApiGatewayServiceGapicClient::deleteApiAsync()} .
+     * The async variant is {@see ApiGatewayServiceClient::deleteApiAsync()} .
      *
      * @param DeleteApiRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -484,8 +483,7 @@ final class ApiGatewayServiceClient
     /**
      * Deletes a single ApiConfig.
      *
-     * The async variant is {@see ApiGatewayServiceGapicClient::deleteApiConfigAsync()}
-     * .
+     * The async variant is {@see ApiGatewayServiceClient::deleteApiConfigAsync()} .
      *
      * @param DeleteApiConfigRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -509,7 +507,7 @@ final class ApiGatewayServiceClient
     /**
      * Deletes a single Gateway.
      *
-     * The async variant is {@see ApiGatewayServiceGapicClient::deleteGatewayAsync()} .
+     * The async variant is {@see ApiGatewayServiceClient::deleteGatewayAsync()} .
      *
      * @param DeleteGatewayRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -533,7 +531,7 @@ final class ApiGatewayServiceClient
     /**
      * Gets details of a single Api.
      *
-     * The async variant is {@see ApiGatewayServiceGapicClient::getApiAsync()} .
+     * The async variant is {@see ApiGatewayServiceClient::getApiAsync()} .
      *
      * @param GetApiRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -557,7 +555,7 @@ final class ApiGatewayServiceClient
     /**
      * Gets details of a single ApiConfig.
      *
-     * The async variant is {@see ApiGatewayServiceGapicClient::getApiConfigAsync()} .
+     * The async variant is {@see ApiGatewayServiceClient::getApiConfigAsync()} .
      *
      * @param GetApiConfigRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -581,7 +579,7 @@ final class ApiGatewayServiceClient
     /**
      * Gets details of a single Gateway.
      *
-     * The async variant is {@see ApiGatewayServiceGapicClient::getGatewayAsync()} .
+     * The async variant is {@see ApiGatewayServiceClient::getGatewayAsync()} .
      *
      * @param GetGatewayRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -605,8 +603,7 @@ final class ApiGatewayServiceClient
     /**
      * Lists ApiConfigs in a given project and location.
      *
-     * The async variant is {@see ApiGatewayServiceGapicClient::listApiConfigsAsync()}
-     * .
+     * The async variant is {@see ApiGatewayServiceClient::listApiConfigsAsync()} .
      *
      * @param ListApiConfigsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -630,7 +627,7 @@ final class ApiGatewayServiceClient
     /**
      * Lists Apis in a given project and location.
      *
-     * The async variant is {@see ApiGatewayServiceGapicClient::listApisAsync()} .
+     * The async variant is {@see ApiGatewayServiceClient::listApisAsync()} .
      *
      * @param ListApisRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -654,7 +651,7 @@ final class ApiGatewayServiceClient
     /**
      * Lists Gateways in a given project and location.
      *
-     * The async variant is {@see ApiGatewayServiceGapicClient::listGatewaysAsync()} .
+     * The async variant is {@see ApiGatewayServiceClient::listGatewaysAsync()} .
      *
      * @param ListGatewaysRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -678,7 +675,7 @@ final class ApiGatewayServiceClient
     /**
      * Updates the parameters of a single Api.
      *
-     * The async variant is {@see ApiGatewayServiceGapicClient::updateApiAsync()} .
+     * The async variant is {@see ApiGatewayServiceClient::updateApiAsync()} .
      *
      * @param UpdateApiRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -702,8 +699,7 @@ final class ApiGatewayServiceClient
     /**
      * Updates the parameters of a single ApiConfig.
      *
-     * The async variant is {@see ApiGatewayServiceGapicClient::updateApiConfigAsync()}
-     * .
+     * The async variant is {@see ApiGatewayServiceClient::updateApiConfigAsync()} .
      *
      * @param UpdateApiConfigRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -727,7 +723,7 @@ final class ApiGatewayServiceClient
     /**
      * Updates the parameters of a single Gateway.
      *
-     * The async variant is {@see ApiGatewayServiceGapicClient::updateGatewayAsync()} .
+     * The async variant is {@see ApiGatewayServiceClient::updateGatewayAsync()} .
      *
      * @param UpdateGatewayRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

@@ -243,7 +243,7 @@ final class ForwardingRulesClient
     /**
      * Retrieves an aggregated list of forwarding rules.
      *
-     * The async variant is {@see ForwardingRulesGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see ForwardingRulesClient::aggregatedListAsync()} .
      *
      * @param AggregatedListForwardingRulesRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -267,7 +267,7 @@ final class ForwardingRulesClient
     /**
      * Deletes the specified ForwardingRule resource.
      *
-     * The async variant is {@see ForwardingRulesGapicClient::deleteAsync()} .
+     * The async variant is {@see ForwardingRulesClient::deleteAsync()} .
      *
      * @param DeleteForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -291,7 +291,7 @@ final class ForwardingRulesClient
     /**
      * Returns the specified ForwardingRule resource.
      *
-     * The async variant is {@see ForwardingRulesGapicClient::getAsync()} .
+     * The async variant is {@see ForwardingRulesClient::getAsync()} .
      *
      * @param GetForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -315,7 +315,7 @@ final class ForwardingRulesClient
     /**
      * Creates a ForwardingRule resource in the specified project and region using the data included in the request.
      *
-     * The async variant is {@see ForwardingRulesGapicClient::insertAsync()} .
+     * The async variant is {@see ForwardingRulesClient::insertAsync()} .
      *
      * @param InsertForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -339,7 +339,7 @@ final class ForwardingRulesClient
     /**
      * Retrieves a list of ForwardingRule resources available to the specified project and region.
      *
-     * The async variant is {@see ForwardingRulesGapicClient::listAsync()} .
+     * The async variant is {@see ForwardingRulesClient::listAsync()} .
      *
      * @param ListForwardingRulesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -363,7 +363,7 @@ final class ForwardingRulesClient
     /**
      * Updates the specified forwarding rule with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. Currently, you can only patch the network_tier field.
      *
-     * The async variant is {@see ForwardingRulesGapicClient::patchAsync()} .
+     * The async variant is {@see ForwardingRulesClient::patchAsync()} .
      *
      * @param PatchForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -387,7 +387,7 @@ final class ForwardingRulesClient
     /**
      * Sets the labels on the specified resource. To learn more about labels, read the Labeling Resources documentation.
      *
-     * The async variant is {@see ForwardingRulesGapicClient::setLabelsAsync()} .
+     * The async variant is {@see ForwardingRulesClient::setLabelsAsync()} .
      *
      * @param SetLabelsForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -411,7 +411,7 @@ final class ForwardingRulesClient
     /**
      * Changes target URL for forwarding rule. The new target should be of the same type as the old target.
      *
-     * The async variant is {@see ForwardingRulesGapicClient::setTargetAsync()} .
+     * The async variant is {@see ForwardingRulesClient::setTargetAsync()} .
      *
      * @param SetTargetForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {

@@ -272,7 +272,7 @@ final class TranscoderServiceClient
     /**
      * Creates a job in the specified region.
      *
-     * The async variant is {@see TranscoderServiceGapicClient::createJobAsync()} .
+     * The async variant is {@see TranscoderServiceClient::createJobAsync()} .
      *
      * @example samples/V1/TranscoderServiceClient/create_job.php
      *
@@ -298,8 +298,7 @@ final class TranscoderServiceClient
     /**
      * Creates a job template in the specified region.
      *
-     * The async variant is
-     * {@see TranscoderServiceGapicClient::createJobTemplateAsync()} .
+     * The async variant is {@see TranscoderServiceClient::createJobTemplateAsync()} .
      *
      * @example samples/V1/TranscoderServiceClient/create_job_template.php
      *
@@ -325,7 +324,7 @@ final class TranscoderServiceClient
     /**
      * Deletes a job.
      *
-     * The async variant is {@see TranscoderServiceGapicClient::deleteJobAsync()} .
+     * The async variant is {@see TranscoderServiceClient::deleteJobAsync()} .
      *
      * @example samples/V1/TranscoderServiceClient/delete_job.php
      *
@@ -349,8 +348,7 @@ final class TranscoderServiceClient
     /**
      * Deletes a job template.
      *
-     * The async variant is
-     * {@see TranscoderServiceGapicClient::deleteJobTemplateAsync()} .
+     * The async variant is {@see TranscoderServiceClient::deleteJobTemplateAsync()} .
      *
      * @example samples/V1/TranscoderServiceClient/delete_job_template.php
      *
@@ -374,7 +372,7 @@ final class TranscoderServiceClient
     /**
      * Returns the job data.
      *
-     * The async variant is {@see TranscoderServiceGapicClient::getJobAsync()} .
+     * The async variant is {@see TranscoderServiceClient::getJobAsync()} .
      *
      * @example samples/V1/TranscoderServiceClient/get_job.php
      *
@@ -400,8 +398,7 @@ final class TranscoderServiceClient
     /**
      * Returns the job template data.
      *
-     * The async variant is {@see TranscoderServiceGapicClient::getJobTemplateAsync()}
-     * .
+     * The async variant is {@see TranscoderServiceClient::getJobTemplateAsync()} .
      *
      * @example samples/V1/TranscoderServiceClient/get_job_template.php
      *
@@ -427,8 +424,7 @@ final class TranscoderServiceClient
     /**
      * Lists job templates in the specified region.
      *
-     * The async variant is
-     * {@see TranscoderServiceGapicClient::listJobTemplatesAsync()} .
+     * The async variant is {@see TranscoderServiceClient::listJobTemplatesAsync()} .
      *
      * @example samples/V1/TranscoderServiceClient/list_job_templates.php
      *
@@ -454,7 +450,7 @@ final class TranscoderServiceClient
     /**
      * Lists jobs in the specified region.
      *
-     * The async variant is {@see TranscoderServiceGapicClient::listJobsAsync()} .
+     * The async variant is {@see TranscoderServiceClient::listJobsAsync()} .
      *
      * @example samples/V1/TranscoderServiceClient/list_jobs.php
      *

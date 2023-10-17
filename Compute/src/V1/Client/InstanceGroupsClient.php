@@ -245,7 +245,7 @@ final class InstanceGroupsClient
     /**
      * Adds a list of instances to the specified instance group. All of the instances in the instance group must be in the same network/subnetwork. Read Adding instances for more information.
      *
-     * The async variant is {@see InstanceGroupsGapicClient::addInstancesAsync()} .
+     * The async variant is {@see InstanceGroupsClient::addInstancesAsync()} .
      *
      * @param AddInstancesInstanceGroupRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -269,7 +269,7 @@ final class InstanceGroupsClient
     /**
      * Retrieves the list of instance groups and sorts them by zone.
      *
-     * The async variant is {@see InstanceGroupsGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see InstanceGroupsClient::aggregatedListAsync()} .
      *
      * @param AggregatedListInstanceGroupsRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -293,7 +293,7 @@ final class InstanceGroupsClient
     /**
      * Deletes the specified instance group. The instances in the group are not deleted. Note that instance group must not belong to a backend service. Read Deleting an instance group for more information.
      *
-     * The async variant is {@see InstanceGroupsGapicClient::deleteAsync()} .
+     * The async variant is {@see InstanceGroupsClient::deleteAsync()} .
      *
      * @param DeleteInstanceGroupRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -317,7 +317,7 @@ final class InstanceGroupsClient
     /**
      * Returns the specified zonal instance group. Get a list of available zonal instance groups by making a list() request. For managed instance groups, use the instanceGroupManagers or regionInstanceGroupManagers methods instead.
      *
-     * The async variant is {@see InstanceGroupsGapicClient::getAsync()} .
+     * The async variant is {@see InstanceGroupsClient::getAsync()} .
      *
      * @param GetInstanceGroupRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -341,7 +341,7 @@ final class InstanceGroupsClient
     /**
      * Creates an instance group in the specified project using the parameters that are included in the request.
      *
-     * The async variant is {@see InstanceGroupsGapicClient::insertAsync()} .
+     * The async variant is {@see InstanceGroupsClient::insertAsync()} .
      *
      * @param InsertInstanceGroupRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -365,7 +365,7 @@ final class InstanceGroupsClient
     /**
      * Retrieves the list of zonal instance group resources contained within the specified zone. For managed instance groups, use the instanceGroupManagers or regionInstanceGroupManagers methods instead.
      *
-     * The async variant is {@see InstanceGroupsGapicClient::listAsync()} .
+     * The async variant is {@see InstanceGroupsClient::listAsync()} .
      *
      * @param ListInstanceGroupsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -389,7 +389,7 @@ final class InstanceGroupsClient
     /**
      * Lists the instances in the specified instance group. The orderBy query parameter is not supported. The filter query parameter is supported, but only for expressions that use `eq` (equal) or `ne` (not equal) operators.
      *
-     * The async variant is {@see InstanceGroupsGapicClient::listInstancesAsync()} .
+     * The async variant is {@see InstanceGroupsClient::listInstancesAsync()} .
      *
      * @param ListInstancesInstanceGroupsRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -413,7 +413,7 @@ final class InstanceGroupsClient
     /**
      * Removes one or more instances from the specified instance group, but does not delete those instances. If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration before the VM instance is removed or deleted.
      *
-     * The async variant is {@see InstanceGroupsGapicClient::removeInstancesAsync()} .
+     * The async variant is {@see InstanceGroupsClient::removeInstancesAsync()} .
      *
      * @param RemoveInstancesInstanceGroupRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -437,7 +437,7 @@ final class InstanceGroupsClient
     /**
      * Sets the named ports for the specified instance group.
      *
-     * The async variant is {@see InstanceGroupsGapicClient::setNamedPortsAsync()} .
+     * The async variant is {@see InstanceGroupsClient::setNamedPortsAsync()} .
      *
      * @param SetNamedPortsInstanceGroupRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {

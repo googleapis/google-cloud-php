@@ -241,7 +241,7 @@ final class GlobalForwardingRulesClient
     /**
      * Deletes the specified GlobalForwardingRule resource.
      *
-     * The async variant is {@see GlobalForwardingRulesGapicClient::deleteAsync()} .
+     * The async variant is {@see GlobalForwardingRulesClient::deleteAsync()} .
      *
      * @param DeleteGlobalForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -265,7 +265,7 @@ final class GlobalForwardingRulesClient
     /**
      * Returns the specified GlobalForwardingRule resource. Gets a list of available forwarding rules by making a list() request.
      *
-     * The async variant is {@see GlobalForwardingRulesGapicClient::getAsync()} .
+     * The async variant is {@see GlobalForwardingRulesClient::getAsync()} .
      *
      * @param GetGlobalForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -289,7 +289,7 @@ final class GlobalForwardingRulesClient
     /**
      * Creates a GlobalForwardingRule resource in the specified project using the data included in the request.
      *
-     * The async variant is {@see GlobalForwardingRulesGapicClient::insertAsync()} .
+     * The async variant is {@see GlobalForwardingRulesClient::insertAsync()} .
      *
      * @param InsertGlobalForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -313,7 +313,7 @@ final class GlobalForwardingRulesClient
     /**
      * Retrieves a list of GlobalForwardingRule resources available to the specified project.
      *
-     * The async variant is {@see GlobalForwardingRulesGapicClient::listAsync()} .
+     * The async variant is {@see GlobalForwardingRulesClient::listAsync()} .
      *
      * @param ListGlobalForwardingRulesRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -337,7 +337,7 @@ final class GlobalForwardingRulesClient
     /**
      * Updates the specified forwarding rule with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. Currently, you can only patch the network_tier field.
      *
-     * The async variant is {@see GlobalForwardingRulesGapicClient::patchAsync()} .
+     * The async variant is {@see GlobalForwardingRulesClient::patchAsync()} .
      *
      * @param PatchGlobalForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -361,7 +361,7 @@ final class GlobalForwardingRulesClient
     /**
      * Sets the labels on the specified resource. To learn more about labels, read the Labeling resources documentation.
      *
-     * The async variant is {@see GlobalForwardingRulesGapicClient::setLabelsAsync()} .
+     * The async variant is {@see GlobalForwardingRulesClient::setLabelsAsync()} .
      *
      * @param SetLabelsGlobalForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -385,7 +385,7 @@ final class GlobalForwardingRulesClient
     /**
      * Changes target URL for the GlobalForwardingRule resource. The new target should be of the same type as the old target.
      *
-     * The async variant is {@see GlobalForwardingRulesGapicClient::setTargetAsync()} .
+     * The async variant is {@see GlobalForwardingRulesClient::setTargetAsync()} .
      *
      * @param SetTargetGlobalForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {

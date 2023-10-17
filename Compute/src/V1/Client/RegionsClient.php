@@ -178,7 +178,7 @@ final class RegionsClient
     /**
      * Returns the specified Region resource. To decrease latency for this method, you can optionally omit any unneeded information from the response by using a field mask. This practice is especially recommended for unused quota information (the `quotas` field). To exclude one or more fields, set your request's `fields` query parameter to only include the fields you need. For example, to only include the `id` and `selfLink` fields, add the query parameter `?fields=id,selfLink` to your request.
      *
-     * The async variant is {@see RegionsGapicClient::getAsync()} .
+     * The async variant is {@see RegionsClient::getAsync()} .
      *
      * @param GetRegionRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -202,7 +202,7 @@ final class RegionsClient
     /**
      * Retrieves the list of region resources available to the specified project. To decrease latency for this method, you can optionally omit any unneeded information from the response by using a field mask. This practice is especially recommended for unused quota information (the `items.quotas` field). To exclude one or more fields, set your request's `fields` query parameter to only include the fields you need. For example, to only include the `id` and `selfLink` fields, add the query parameter `?fields=id,selfLink` to your request.
      *
-     * The async variant is {@see RegionsGapicClient::listAsync()} .
+     * The async variant is {@see RegionsClient::listAsync()} .
      *
      * @param ListRegionsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {

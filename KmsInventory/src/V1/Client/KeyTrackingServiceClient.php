@@ -287,7 +287,7 @@ final class KeyTrackingServiceClient
      * succeed.
      *
      * The async variant is
-     * {@see KeyTrackingServiceGapicClient::getProtectedResourcesSummaryAsync()} .
+     * {@see KeyTrackingServiceClient::getProtectedResourcesSummaryAsync()} .
      *
      * @example samples/V1/KeyTrackingServiceClient/get_protected_resources_summary.php
      *
@@ -315,7 +315,7 @@ final class KeyTrackingServiceClient
      * [CryptoKey][google.cloud.kms.v1.CryptoKey] in the given Cloud organization.
      *
      * The async variant is
-     * {@see KeyTrackingServiceGapicClient::searchProtectedResourcesAsync()} .
+     * {@see KeyTrackingServiceClient::searchProtectedResourcesAsync()} .
      *
      * @example samples/V1/KeyTrackingServiceClient/search_protected_resources.php
      *

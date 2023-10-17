@@ -19,6 +19,7 @@ items:
       - '\Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest::setName()'
       - '\Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest::getProduct()'
       - '\Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest::setProduct()'
+      - '\Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest::build()'
   -
     uid: '\Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest::__construct()'
     name: __construct
@@ -120,3 +121,34 @@ items:
       returns:
         -
           var_type: $this
+  -
+    uid: '\Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest::build()'
+    name: 'static::build'
+    id: build
+    parent: \Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: name
+          var_type: string
+          description: |-
+            Required. The resource name for the ProductSet to modify.
+
+            Format is:
+            `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+            Please see <xref uid="\Google\Cloud\Vision\V1\ProductSearchClient::productSetName()">Google\Cloud\Vision\V1\ProductSearchClient::productSetName()</xref> for help formatting this field.
+        -
+          id: product
+          var_type: string
+          description: |-
+            Required. The resource name for the Product to be removed from this ProductSet.
+
+            Format is:
+            `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
+            Please see <xref uid="\Google\Cloud\Vision\V1\ProductSearchClient::productName()">Google\Cloud\Vision\V1\ProductSearchClient::productName()</xref> for help formatting this field.
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest">Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest</xref>'

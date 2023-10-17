@@ -255,7 +255,7 @@ final class CompletionServiceClient
      * This feature is only available for users who have Retail Search enabled.
      * Enable Retail Search on Cloud Console before using this feature.
      *
-     * The async variant is {@see CompletionServiceGapicClient::completeQueryAsync()} .
+     * The async variant is {@see CompletionServiceClient::completeQueryAsync()} .
      *
      * @param CompleteQueryRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -287,8 +287,8 @@ final class CompletionServiceClient
      * This feature is only available for users who have Retail Search enabled.
      * Enable Retail Search on Cloud Console before using this feature.
      *
-     * The async variant is
-     * {@see CompletionServiceGapicClient::importCompletionDataAsync()} .
+     * The async variant is {@see CompletionServiceClient::importCompletionDataAsync()}
+     * .
      *
      * @param ImportCompletionDataRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

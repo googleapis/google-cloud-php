@@ -343,7 +343,7 @@ final class DataScanServiceClient
     /**
      * Creates a DataScan resource.
      *
-     * The async variant is {@see DataScanServiceGapicClient::createDataScanAsync()} .
+     * The async variant is {@see DataScanServiceClient::createDataScanAsync()} .
      *
      * @example samples/V1/DataScanServiceClient/create_data_scan.php
      *
@@ -369,7 +369,7 @@ final class DataScanServiceClient
     /**
      * Deletes a DataScan resource.
      *
-     * The async variant is {@see DataScanServiceGapicClient::deleteDataScanAsync()} .
+     * The async variant is {@see DataScanServiceClient::deleteDataScanAsync()} .
      *
      * @example samples/V1/DataScanServiceClient/delete_data_scan.php
      *
@@ -395,7 +395,7 @@ final class DataScanServiceClient
     /**
      * Gets a DataScan resource.
      *
-     * The async variant is {@see DataScanServiceGapicClient::getDataScanAsync()} .
+     * The async variant is {@see DataScanServiceClient::getDataScanAsync()} .
      *
      * @example samples/V1/DataScanServiceClient/get_data_scan.php
      *
@@ -421,7 +421,7 @@ final class DataScanServiceClient
     /**
      * Gets a DataScanJob resource.
      *
-     * The async variant is {@see DataScanServiceGapicClient::getDataScanJobAsync()} .
+     * The async variant is {@see DataScanServiceClient::getDataScanJobAsync()} .
      *
      * @example samples/V1/DataScanServiceClient/get_data_scan_job.php
      *
@@ -447,8 +447,7 @@ final class DataScanServiceClient
     /**
      * Lists DataScanJobs under the given DataScan.
      *
-     * The async variant is {@see DataScanServiceGapicClient::listDataScanJobsAsync()}
-     * .
+     * The async variant is {@see DataScanServiceClient::listDataScanJobsAsync()} .
      *
      * @example samples/V1/DataScanServiceClient/list_data_scan_jobs.php
      *
@@ -474,7 +473,7 @@ final class DataScanServiceClient
     /**
      * Lists DataScans.
      *
-     * The async variant is {@see DataScanServiceGapicClient::listDataScansAsync()} .
+     * The async variant is {@see DataScanServiceClient::listDataScansAsync()} .
      *
      * @example samples/V1/DataScanServiceClient/list_data_scans.php
      *
@@ -500,7 +499,7 @@ final class DataScanServiceClient
     /**
      * Runs an on-demand execution of a DataScan
      *
-     * The async variant is {@see DataScanServiceGapicClient::runDataScanAsync()} .
+     * The async variant is {@see DataScanServiceClient::runDataScanAsync()} .
      *
      * @example samples/V1/DataScanServiceClient/run_data_scan.php
      *
@@ -526,7 +525,7 @@ final class DataScanServiceClient
     /**
      * Updates a DataScan resource.
      *
-     * The async variant is {@see DataScanServiceGapicClient::updateDataScanAsync()} .
+     * The async variant is {@see DataScanServiceClient::updateDataScanAsync()} .
      *
      * @example samples/V1/DataScanServiceClient/update_data_scan.php
      *
@@ -553,7 +552,7 @@ final class DataScanServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see DataScanServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see DataScanServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/DataScanServiceClient/get_iam_policy.php
      *
@@ -583,7 +582,7 @@ final class DataScanServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see DataScanServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see DataScanServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/DataScanServiceClient/set_iam_policy.php
      *
@@ -615,8 +614,7 @@ final class DataScanServiceClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is
-     * {@see DataScanServiceGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see DataScanServiceClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/DataScanServiceClient/test_iam_permissions.php
      *
@@ -642,7 +640,7 @@ final class DataScanServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see DataScanServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see DataScanServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/DataScanServiceClient/get_location.php
      *
@@ -668,7 +666,7 @@ final class DataScanServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see DataScanServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see DataScanServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/DataScanServiceClient/list_locations.php
      *

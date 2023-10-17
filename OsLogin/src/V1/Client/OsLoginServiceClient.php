@@ -264,8 +264,7 @@ class OsLoginServiceClient
     /**
      * Create an SSH public key
      *
-     * The async variant is {@see OsLoginServiceGapicClient::createSshPublicKeyAsync()}
-     * .
+     * The async variant is {@see OsLoginServiceClient::createSshPublicKeyAsync()} .
      *
      * @param CreateSshPublicKeyRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -289,8 +288,7 @@ class OsLoginServiceClient
     /**
      * Deletes a POSIX account.
      *
-     * The async variant is {@see OsLoginServiceGapicClient::deletePosixAccountAsync()}
-     * .
+     * The async variant is {@see OsLoginServiceClient::deletePosixAccountAsync()} .
      *
      * @param DeletePosixAccountRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -312,8 +310,7 @@ class OsLoginServiceClient
     /**
      * Deletes an SSH public key.
      *
-     * The async variant is {@see OsLoginServiceGapicClient::deleteSshPublicKeyAsync()}
-     * .
+     * The async variant is {@see OsLoginServiceClient::deleteSshPublicKeyAsync()} .
      *
      * @param DeleteSshPublicKeyRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -336,7 +333,7 @@ class OsLoginServiceClient
      * Retrieves the profile information used for logging in to a virtual machine
      * on Google Compute Engine.
      *
-     * The async variant is {@see OsLoginServiceGapicClient::getLoginProfileAsync()} .
+     * The async variant is {@see OsLoginServiceClient::getLoginProfileAsync()} .
      *
      * @param GetLoginProfileRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -360,7 +357,7 @@ class OsLoginServiceClient
     /**
      * Retrieves an SSH public key.
      *
-     * The async variant is {@see OsLoginServiceGapicClient::getSshPublicKeyAsync()} .
+     * The async variant is {@see OsLoginServiceClient::getSshPublicKeyAsync()} .
      *
      * @param GetSshPublicKeyRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -386,8 +383,7 @@ class OsLoginServiceClient
      * account information is set when no username and UID exist as part of the
      * login profile.
      *
-     * The async variant is {@see OsLoginServiceGapicClient::importSshPublicKeyAsync()}
-     * .
+     * The async variant is {@see OsLoginServiceClient::importSshPublicKeyAsync()} .
      *
      * @param ImportSshPublicKeyRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -412,8 +408,7 @@ class OsLoginServiceClient
      * Updates an SSH public key and returns the profile information. This method
      * supports patch semantics.
      *
-     * The async variant is {@see OsLoginServiceGapicClient::updateSshPublicKeyAsync()}
-     * .
+     * The async variant is {@see OsLoginServiceClient::updateSshPublicKeyAsync()} .
      *
      * @param UpdateSshPublicKeyRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

@@ -223,7 +223,7 @@ final class LookupServiceClient
      * associated endpoints.
      * Resolving a service is not considered an active developer method.
      *
-     * The async variant is {@see LookupServiceGapicClient::resolveServiceAsync()} .
+     * The async variant is {@see LookupServiceClient::resolveServiceAsync()} .
      *
      * @param ResolveServiceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -247,7 +247,7 @@ final class LookupServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see LookupServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see LookupServiceClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -271,7 +271,7 @@ final class LookupServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see LookupServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see LookupServiceClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

@@ -469,7 +469,7 @@ final class NetAppClient
      * CreateActiveDirectory
      * Creates the active directory specified in the request.
      *
-     * The async variant is {@see NetAppGapicClient::createActiveDirectoryAsync()} .
+     * The async variant is {@see NetAppClient::createActiveDirectoryAsync()} .
      *
      * @example samples/V1/NetAppClient/create_active_directory.php
      *
@@ -495,7 +495,7 @@ final class NetAppClient
     /**
      * Creates a new KMS config.
      *
-     * The async variant is {@see NetAppGapicClient::createKmsConfigAsync()} .
+     * The async variant is {@see NetAppClient::createKmsConfigAsync()} .
      *
      * @example samples/V1/NetAppClient/create_kms_config.php
      *
@@ -521,7 +521,7 @@ final class NetAppClient
     /**
      * Create a new replication for a volume.
      *
-     * The async variant is {@see NetAppGapicClient::createReplicationAsync()} .
+     * The async variant is {@see NetAppClient::createReplicationAsync()} .
      *
      * @example samples/V1/NetAppClient/create_replication.php
      *
@@ -547,7 +547,7 @@ final class NetAppClient
     /**
      * Create a new snapshot for a volume.
      *
-     * The async variant is {@see NetAppGapicClient::createSnapshotAsync()} .
+     * The async variant is {@see NetAppClient::createSnapshotAsync()} .
      *
      * @example samples/V1/NetAppClient/create_snapshot.php
      *
@@ -573,7 +573,7 @@ final class NetAppClient
     /**
      * Creates a new storage pool.
      *
-     * The async variant is {@see NetAppGapicClient::createStoragePoolAsync()} .
+     * The async variant is {@see NetAppClient::createStoragePoolAsync()} .
      *
      * @example samples/V1/NetAppClient/create_storage_pool.php
      *
@@ -599,7 +599,7 @@ final class NetAppClient
     /**
      * Creates a new Volume in a given project and location.
      *
-     * The async variant is {@see NetAppGapicClient::createVolumeAsync()} .
+     * The async variant is {@see NetAppClient::createVolumeAsync()} .
      *
      * @example samples/V1/NetAppClient/create_volume.php
      *
@@ -625,7 +625,7 @@ final class NetAppClient
     /**
      * Delete the active directory specified in the request.
      *
-     * The async variant is {@see NetAppGapicClient::deleteActiveDirectoryAsync()} .
+     * The async variant is {@see NetAppClient::deleteActiveDirectoryAsync()} .
      *
      * @example samples/V1/NetAppClient/delete_active_directory.php
      *
@@ -651,7 +651,7 @@ final class NetAppClient
     /**
      * Warning! This operation will permanently delete the Kms config.
      *
-     * The async variant is {@see NetAppGapicClient::deleteKmsConfigAsync()} .
+     * The async variant is {@see NetAppClient::deleteKmsConfigAsync()} .
      *
      * @example samples/V1/NetAppClient/delete_kms_config.php
      *
@@ -677,7 +677,7 @@ final class NetAppClient
     /**
      * Deletes a replication.
      *
-     * The async variant is {@see NetAppGapicClient::deleteReplicationAsync()} .
+     * The async variant is {@see NetAppClient::deleteReplicationAsync()} .
      *
      * @example samples/V1/NetAppClient/delete_replication.php
      *
@@ -703,7 +703,7 @@ final class NetAppClient
     /**
      * Deletes a snapshot.
      *
-     * The async variant is {@see NetAppGapicClient::deleteSnapshotAsync()} .
+     * The async variant is {@see NetAppClient::deleteSnapshotAsync()} .
      *
      * @example samples/V1/NetAppClient/delete_snapshot.php
      *
@@ -729,7 +729,7 @@ final class NetAppClient
     /**
      * Warning! This operation will permanently delete the storage pool.
      *
-     * The async variant is {@see NetAppGapicClient::deleteStoragePoolAsync()} .
+     * The async variant is {@see NetAppClient::deleteStoragePoolAsync()} .
      *
      * @example samples/V1/NetAppClient/delete_storage_pool.php
      *
@@ -755,7 +755,7 @@ final class NetAppClient
     /**
      * Deletes a single Volume.
      *
-     * The async variant is {@see NetAppGapicClient::deleteVolumeAsync()} .
+     * The async variant is {@see NetAppClient::deleteVolumeAsync()} .
      *
      * @example samples/V1/NetAppClient/delete_volume.php
      *
@@ -782,7 +782,7 @@ final class NetAppClient
      * Encrypt the existing volumes without CMEK encryption with the desired the
      * KMS config for the whole region.
      *
-     * The async variant is {@see NetAppGapicClient::encryptVolumesAsync()} .
+     * The async variant is {@see NetAppClient::encryptVolumesAsync()} .
      *
      * @example samples/V1/NetAppClient/encrypt_volumes.php
      *
@@ -808,7 +808,7 @@ final class NetAppClient
     /**
      * Describes a specified active directory.
      *
-     * The async variant is {@see NetAppGapicClient::getActiveDirectoryAsync()} .
+     * The async variant is {@see NetAppClient::getActiveDirectoryAsync()} .
      *
      * @example samples/V1/NetAppClient/get_active_directory.php
      *
@@ -834,7 +834,7 @@ final class NetAppClient
     /**
      * Returns the description of the specified KMS config by kms_config_id.
      *
-     * The async variant is {@see NetAppGapicClient::getKmsConfigAsync()} .
+     * The async variant is {@see NetAppClient::getKmsConfigAsync()} .
      *
      * @example samples/V1/NetAppClient/get_kms_config.php
      *
@@ -860,7 +860,7 @@ final class NetAppClient
     /**
      * Describe a replication for a volume.
      *
-     * The async variant is {@see NetAppGapicClient::getReplicationAsync()} .
+     * The async variant is {@see NetAppClient::getReplicationAsync()} .
      *
      * @example samples/V1/NetAppClient/get_replication.php
      *
@@ -886,7 +886,7 @@ final class NetAppClient
     /**
      * Describe a snapshot for a volume.
      *
-     * The async variant is {@see NetAppGapicClient::getSnapshotAsync()} .
+     * The async variant is {@see NetAppClient::getSnapshotAsync()} .
      *
      * @example samples/V1/NetAppClient/get_snapshot.php
      *
@@ -912,7 +912,7 @@ final class NetAppClient
     /**
      * Returns the description of the specified storage pool by poolId.
      *
-     * The async variant is {@see NetAppGapicClient::getStoragePoolAsync()} .
+     * The async variant is {@see NetAppClient::getStoragePoolAsync()} .
      *
      * @example samples/V1/NetAppClient/get_storage_pool.php
      *
@@ -938,7 +938,7 @@ final class NetAppClient
     /**
      * Gets details of a single Volume.
      *
-     * The async variant is {@see NetAppGapicClient::getVolumeAsync()} .
+     * The async variant is {@see NetAppClient::getVolumeAsync()} .
      *
      * @example samples/V1/NetAppClient/get_volume.php
      *
@@ -964,7 +964,7 @@ final class NetAppClient
     /**
      * Lists active directories.
      *
-     * The async variant is {@see NetAppGapicClient::listActiveDirectoriesAsync()} .
+     * The async variant is {@see NetAppClient::listActiveDirectoriesAsync()} .
      *
      * @example samples/V1/NetAppClient/list_active_directories.php
      *
@@ -990,7 +990,7 @@ final class NetAppClient
     /**
      * Returns descriptions of all KMS configs owned by the caller.
      *
-     * The async variant is {@see NetAppGapicClient::listKmsConfigsAsync()} .
+     * The async variant is {@see NetAppClient::listKmsConfigsAsync()} .
      *
      * @example samples/V1/NetAppClient/list_kms_configs.php
      *
@@ -1016,7 +1016,7 @@ final class NetAppClient
     /**
      * Returns descriptions of all replications for a volume.
      *
-     * The async variant is {@see NetAppGapicClient::listReplicationsAsync()} .
+     * The async variant is {@see NetAppClient::listReplicationsAsync()} .
      *
      * @example samples/V1/NetAppClient/list_replications.php
      *
@@ -1042,7 +1042,7 @@ final class NetAppClient
     /**
      * Returns descriptions of all snapshots for a volume.
      *
-     * The async variant is {@see NetAppGapicClient::listSnapshotsAsync()} .
+     * The async variant is {@see NetAppClient::listSnapshotsAsync()} .
      *
      * @example samples/V1/NetAppClient/list_snapshots.php
      *
@@ -1068,7 +1068,7 @@ final class NetAppClient
     /**
      * Returns descriptions of all storage pools owned by the caller.
      *
-     * The async variant is {@see NetAppGapicClient::listStoragePoolsAsync()} .
+     * The async variant is {@see NetAppClient::listStoragePoolsAsync()} .
      *
      * @example samples/V1/NetAppClient/list_storage_pools.php
      *
@@ -1094,7 +1094,7 @@ final class NetAppClient
     /**
      * Lists Volumes in a given project.
      *
-     * The async variant is {@see NetAppGapicClient::listVolumesAsync()} .
+     * The async variant is {@see NetAppClient::listVolumesAsync()} .
      *
      * @example samples/V1/NetAppClient/list_volumes.php
      *
@@ -1120,7 +1120,7 @@ final class NetAppClient
     /**
      * Resume Cross Region Replication.
      *
-     * The async variant is {@see NetAppGapicClient::resumeReplicationAsync()} .
+     * The async variant is {@see NetAppClient::resumeReplicationAsync()} .
      *
      * @example samples/V1/NetAppClient/resume_replication.php
      *
@@ -1147,8 +1147,7 @@ final class NetAppClient
      * Reverses direction of replication. Source becomes destination and
      * destination becomes source.
      *
-     * The async variant is
-     * {@see NetAppGapicClient::reverseReplicationDirectionAsync()} .
+     * The async variant is {@see NetAppClient::reverseReplicationDirectionAsync()} .
      *
      * @example samples/V1/NetAppClient/reverse_replication_direction.php
      *
@@ -1176,7 +1175,7 @@ final class NetAppClient
      * Warning! This operation will permanently revert all changes made after the
      * snapshot was created.
      *
-     * The async variant is {@see NetAppGapicClient::revertVolumeAsync()} .
+     * The async variant is {@see NetAppClient::revertVolumeAsync()} .
      *
      * @example samples/V1/NetAppClient/revert_volume.php
      *
@@ -1202,7 +1201,7 @@ final class NetAppClient
     /**
      * Stop Cross Region Replication.
      *
-     * The async variant is {@see NetAppGapicClient::stopReplicationAsync()} .
+     * The async variant is {@see NetAppClient::stopReplicationAsync()} .
      *
      * @example samples/V1/NetAppClient/stop_replication.php
      *
@@ -1228,7 +1227,7 @@ final class NetAppClient
     /**
      * Update the parameters of an active directories.
      *
-     * The async variant is {@see NetAppGapicClient::updateActiveDirectoryAsync()} .
+     * The async variant is {@see NetAppClient::updateActiveDirectoryAsync()} .
      *
      * @example samples/V1/NetAppClient/update_active_directory.php
      *
@@ -1254,7 +1253,7 @@ final class NetAppClient
     /**
      * Updates the Kms config properties with the full spec
      *
-     * The async variant is {@see NetAppGapicClient::updateKmsConfigAsync()} .
+     * The async variant is {@see NetAppClient::updateKmsConfigAsync()} .
      *
      * @example samples/V1/NetAppClient/update_kms_config.php
      *
@@ -1280,7 +1279,7 @@ final class NetAppClient
     /**
      * Updates the settings of a specific replication.
      *
-     * The async variant is {@see NetAppGapicClient::updateReplicationAsync()} .
+     * The async variant is {@see NetAppClient::updateReplicationAsync()} .
      *
      * @example samples/V1/NetAppClient/update_replication.php
      *
@@ -1306,7 +1305,7 @@ final class NetAppClient
     /**
      * Updates the settings of a specific snapshot.
      *
-     * The async variant is {@see NetAppGapicClient::updateSnapshotAsync()} .
+     * The async variant is {@see NetAppClient::updateSnapshotAsync()} .
      *
      * @example samples/V1/NetAppClient/update_snapshot.php
      *
@@ -1332,7 +1331,7 @@ final class NetAppClient
     /**
      * Updates the storage pool properties with the full spec
      *
-     * The async variant is {@see NetAppGapicClient::updateStoragePoolAsync()} .
+     * The async variant is {@see NetAppClient::updateStoragePoolAsync()} .
      *
      * @example samples/V1/NetAppClient/update_storage_pool.php
      *
@@ -1358,7 +1357,7 @@ final class NetAppClient
     /**
      * Updates the parameters of a single Volume.
      *
-     * The async variant is {@see NetAppGapicClient::updateVolumeAsync()} .
+     * The async variant is {@see NetAppClient::updateVolumeAsync()} .
      *
      * @example samples/V1/NetAppClient/update_volume.php
      *
@@ -1384,7 +1383,7 @@ final class NetAppClient
     /**
      * Verifies KMS config reachability.
      *
-     * The async variant is {@see NetAppGapicClient::verifyKmsConfigAsync()} .
+     * The async variant is {@see NetAppClient::verifyKmsConfigAsync()} .
      *
      * @example samples/V1/NetAppClient/verify_kms_config.php
      *
@@ -1410,7 +1409,7 @@ final class NetAppClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see NetAppGapicClient::getLocationAsync()} .
+     * The async variant is {@see NetAppClient::getLocationAsync()} .
      *
      * @example samples/V1/NetAppClient/get_location.php
      *
@@ -1436,7 +1435,7 @@ final class NetAppClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see NetAppGapicClient::listLocationsAsync()} .
+     * The async variant is {@see NetAppClient::listLocationsAsync()} .
      *
      * @example samples/V1/NetAppClient/list_locations.php
      *

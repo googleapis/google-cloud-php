@@ -297,7 +297,7 @@ final class ClientGatewaysServiceClient
      * Creates a new ClientGateway in a given project and location.
      *
      * The async variant is
-     * {@see ClientGatewaysServiceGapicClient::createClientGatewayAsync()} .
+     * {@see ClientGatewaysServiceClient::createClientGatewayAsync()} .
      *
      * @example samples/V1/ClientGatewaysServiceClient/create_client_gateway.php
      *
@@ -324,7 +324,7 @@ final class ClientGatewaysServiceClient
      * Deletes a single ClientGateway.
      *
      * The async variant is
-     * {@see ClientGatewaysServiceGapicClient::deleteClientGatewayAsync()} .
+     * {@see ClientGatewaysServiceClient::deleteClientGatewayAsync()} .
      *
      * @example samples/V1/ClientGatewaysServiceClient/delete_client_gateway.php
      *
@@ -350,8 +350,8 @@ final class ClientGatewaysServiceClient
     /**
      * Gets details of a single ClientGateway.
      *
-     * The async variant is
-     * {@see ClientGatewaysServiceGapicClient::getClientGatewayAsync()} .
+     * The async variant is {@see ClientGatewaysServiceClient::getClientGatewayAsync()}
+     * .
      *
      * @example samples/V1/ClientGatewaysServiceClient/get_client_gateway.php
      *
@@ -378,7 +378,7 @@ final class ClientGatewaysServiceClient
      * Lists ClientGateways in a given project and location.
      *
      * The async variant is
-     * {@see ClientGatewaysServiceGapicClient::listClientGatewaysAsync()} .
+     * {@see ClientGatewaysServiceClient::listClientGatewaysAsync()} .
      *
      * @example samples/V1/ClientGatewaysServiceClient/list_client_gateways.php
      *
@@ -404,8 +404,7 @@ final class ClientGatewaysServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see ClientGatewaysServiceGapicClient::getLocationAsync()}
-     * .
+     * The async variant is {@see ClientGatewaysServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/ClientGatewaysServiceClient/get_location.php
      *
@@ -431,8 +430,7 @@ final class ClientGatewaysServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is
-     * {@see ClientGatewaysServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see ClientGatewaysServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/ClientGatewaysServiceClient/list_locations.php
      *
@@ -459,8 +457,7 @@ final class ClientGatewaysServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is
-     * {@see ClientGatewaysServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see ClientGatewaysServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/ClientGatewaysServiceClient/get_iam_policy.php
      *
@@ -490,8 +487,7 @@ final class ClientGatewaysServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is
-     * {@see ClientGatewaysServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see ClientGatewaysServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/ClientGatewaysServiceClient/set_iam_policy.php
      *
@@ -524,7 +520,7 @@ final class ClientGatewaysServiceClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is
-     * {@see ClientGatewaysServiceGapicClient::testIamPermissionsAsync()} .
+     * {@see ClientGatewaysServiceClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/ClientGatewaysServiceClient/test_iam_permissions.php
      *

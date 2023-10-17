@@ -187,7 +187,7 @@ final class ServiceControllerClient
      * on the specified service. For more information, see
      * [Cloud IAM](https://cloud.google.com/iam).
      *
-     * The async variant is {@see ServiceControllerGapicClient::checkAsync()} .
+     * The async variant is {@see ServiceControllerClient::checkAsync()} .
      *
      * @param CheckRequest $request     A request to house fields associated with the call.
      * @param array        $callOptions {
@@ -225,7 +225,7 @@ final class ServiceControllerClient
      * on the specified service. For more information, see
      * [Google Cloud IAM](https://cloud.google.com/iam).
      *
-     * The async variant is {@see ServiceControllerGapicClient::reportAsync()} .
+     * The async variant is {@see ServiceControllerClient::reportAsync()} .
      *
      * @param ReportRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {

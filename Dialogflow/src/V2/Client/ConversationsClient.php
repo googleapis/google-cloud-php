@@ -672,8 +672,7 @@ final class ConversationsClient
      * Completes the specified conversation. Finished conversations are purged
      * from the database after 30 days.
      *
-     * The async variant is
-     * {@see ConversationsGapicClient::completeConversationAsync()} .
+     * The async variant is {@see ConversationsClient::completeConversationAsync()} .
      *
      * @param CompleteConversationRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -717,8 +716,7 @@ final class ConversationsClient
      * [Intent.live_agent_handoff][google.cloud.dialogflow.v2.Intent.live_agent_handoff]
      * is triggered, conversation will transfer to Assist Stage.
      *
-     * The async variant is {@see ConversationsGapicClient::createConversationAsync()}
-     * .
+     * The async variant is {@see ConversationsClient::createConversationAsync()} .
      *
      * @param CreateConversationRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -743,8 +741,8 @@ final class ConversationsClient
      * Generates and returns a summary for a conversation that does not have a
      * resource created for it.
      *
-     * The async variant is
-     * {@see ConversationsGapicClient::generateStatelessSummaryAsync()} .
+     * The async variant is {@see ConversationsClient::generateStatelessSummaryAsync()}
+     * .
      *
      * @param GenerateStatelessSummaryRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -768,7 +766,7 @@ final class ConversationsClient
     /**
      * Retrieves the specific conversation.
      *
-     * The async variant is {@see ConversationsGapicClient::getConversationAsync()} .
+     * The async variant is {@see ConversationsClient::getConversationAsync()} .
      *
      * @param GetConversationRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -792,7 +790,7 @@ final class ConversationsClient
     /**
      * Returns the list of all conversations in the specified project.
      *
-     * The async variant is {@see ConversationsGapicClient::listConversationsAsync()} .
+     * The async variant is {@see ConversationsClient::listConversationsAsync()} .
      *
      * @param ListConversationsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -820,7 +818,7 @@ final class ConversationsClient
      * `create_time_epoch_microseconds >
      * [first item's create_time of previous request]` and empty page_token.
      *
-     * The async variant is {@see ConversationsGapicClient::listMessagesAsync()} .
+     * The async variant is {@see ConversationsClient::listMessagesAsync()} .
      *
      * @param ListMessagesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -844,7 +842,7 @@ final class ConversationsClient
     /**
      * Get answers for the given query based on knowledge documents.
      *
-     * The async variant is {@see ConversationsGapicClient::searchKnowledgeAsync()} .
+     * The async variant is {@see ConversationsClient::searchKnowledgeAsync()} .
      *
      * @param SearchKnowledgeRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -871,7 +869,7 @@ final class ConversationsClient
      * request.
      *
      * The async variant is
-     * {@see ConversationsGapicClient::suggestConversationSummaryAsync()} .
+     * {@see ConversationsClient::suggestConversationSummaryAsync()} .
      *
      * @param SuggestConversationSummaryRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -895,7 +893,7 @@ final class ConversationsClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see ConversationsGapicClient::getLocationAsync()} .
+     * The async variant is {@see ConversationsClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -919,7 +917,7 @@ final class ConversationsClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see ConversationsGapicClient::listLocationsAsync()} .
+     * The async variant is {@see ConversationsClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

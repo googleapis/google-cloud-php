@@ -242,7 +242,7 @@ final class RegionUrlMapsClient
     /**
      * Deletes the specified UrlMap resource.
      *
-     * The async variant is {@see RegionUrlMapsGapicClient::deleteAsync()} .
+     * The async variant is {@see RegionUrlMapsClient::deleteAsync()} .
      *
      * @param DeleteRegionUrlMapRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -266,7 +266,7 @@ final class RegionUrlMapsClient
     /**
      * Returns the specified UrlMap resource.
      *
-     * The async variant is {@see RegionUrlMapsGapicClient::getAsync()} .
+     * The async variant is {@see RegionUrlMapsClient::getAsync()} .
      *
      * @param GetRegionUrlMapRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -290,7 +290,7 @@ final class RegionUrlMapsClient
     /**
      * Creates a UrlMap resource in the specified project using the data included in the request.
      *
-     * The async variant is {@see RegionUrlMapsGapicClient::insertAsync()} .
+     * The async variant is {@see RegionUrlMapsClient::insertAsync()} .
      *
      * @param InsertRegionUrlMapRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -314,7 +314,7 @@ final class RegionUrlMapsClient
     /**
      * Retrieves the list of UrlMap resources available to the specified project in the specified region.
      *
-     * The async variant is {@see RegionUrlMapsGapicClient::listAsync()} .
+     * The async variant is {@see RegionUrlMapsClient::listAsync()} .
      *
      * @param ListRegionUrlMapsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -338,7 +338,7 @@ final class RegionUrlMapsClient
     /**
      * Patches the specified UrlMap resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
      *
-     * The async variant is {@see RegionUrlMapsGapicClient::patchAsync()} .
+     * The async variant is {@see RegionUrlMapsClient::patchAsync()} .
      *
      * @param PatchRegionUrlMapRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -362,7 +362,7 @@ final class RegionUrlMapsClient
     /**
      * Updates the specified UrlMap resource with the data included in the request.
      *
-     * The async variant is {@see RegionUrlMapsGapicClient::updateAsync()} .
+     * The async variant is {@see RegionUrlMapsClient::updateAsync()} .
      *
      * @param UpdateRegionUrlMapRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -386,7 +386,7 @@ final class RegionUrlMapsClient
     /**
      * Runs static validation for the UrlMap. In particular, the tests of the provided UrlMap will be run. Calling this method does NOT create the UrlMap.
      *
-     * The async variant is {@see RegionUrlMapsGapicClient::validateAsync()} .
+     * The async variant is {@see RegionUrlMapsClient::validateAsync()} .
      *
      * @param ValidateRegionUrlMapRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

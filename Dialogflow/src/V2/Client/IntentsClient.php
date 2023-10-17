@@ -581,7 +581,7 @@ final class IntentsClient
      * [training
      * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      *
-     * The async variant is {@see IntentsGapicClient::batchDeleteIntentsAsync()} .
+     * The async variant is {@see IntentsClient::batchDeleteIntentsAsync()} .
      *
      * @param BatchDeleteIntentsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -618,7 +618,7 @@ final class IntentsClient
      * [training
      * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      *
-     * The async variant is {@see IntentsGapicClient::batchUpdateIntentsAsync()} .
+     * The async variant is {@see IntentsClient::batchUpdateIntentsAsync()} .
      *
      * @param BatchUpdateIntentsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -646,7 +646,7 @@ final class IntentsClient
      * [training
      * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      *
-     * The async variant is {@see IntentsGapicClient::createIntentAsync()} .
+     * The async variant is {@see IntentsClient::createIntentAsync()} .
      *
      * @param CreateIntentRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -674,7 +674,7 @@ final class IntentsClient
      * [training
      * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      *
-     * The async variant is {@see IntentsGapicClient::deleteIntentAsync()} .
+     * The async variant is {@see IntentsClient::deleteIntentAsync()} .
      *
      * @param DeleteIntentRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -696,7 +696,7 @@ final class IntentsClient
     /**
      * Retrieves the specified intent.
      *
-     * The async variant is {@see IntentsGapicClient::getIntentAsync()} .
+     * The async variant is {@see IntentsClient::getIntentAsync()} .
      *
      * @param GetIntentRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -720,7 +720,7 @@ final class IntentsClient
     /**
      * Returns the list of all intents in the specified agent.
      *
-     * The async variant is {@see IntentsGapicClient::listIntentsAsync()} .
+     * The async variant is {@see IntentsClient::listIntentsAsync()} .
      *
      * @param ListIntentsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -748,7 +748,7 @@ final class IntentsClient
      * [training
      * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      *
-     * The async variant is {@see IntentsGapicClient::updateIntentAsync()} .
+     * The async variant is {@see IntentsClient::updateIntentAsync()} .
      *
      * @param UpdateIntentRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -772,7 +772,7 @@ final class IntentsClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see IntentsGapicClient::getLocationAsync()} .
+     * The async variant is {@see IntentsClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -796,7 +796,7 @@ final class IntentsClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see IntentsGapicClient::listLocationsAsync()} .
+     * The async variant is {@see IntentsClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

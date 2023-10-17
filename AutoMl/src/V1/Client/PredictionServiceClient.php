@@ -267,7 +267,7 @@ final class PredictionServiceClient
      * * AutoML Natural Language Sentiment Analysis
      * * AutoML Tables
      *
-     * The async variant is {@see PredictionServiceGapicClient::batchPredictAsync()} .
+     * The async variant is {@see PredictionServiceClient::batchPredictAsync()} .
      *
      * @param BatchPredictRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -326,7 +326,7 @@ final class PredictionServiceClient
      * the columns of the model, up to 5MB. Not available for FORECASTING
      * `prediction_type`.
      *
-     * The async variant is {@see PredictionServiceGapicClient::predictAsync()} .
+     * The async variant is {@see PredictionServiceClient::predictAsync()} .
      *
      * @param PredictRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {

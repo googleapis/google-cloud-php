@@ -242,7 +242,7 @@ final class GlobalNetworkEndpointGroupsClient
      * Attach a network endpoint to the specified network endpoint group.
      *
      * The async variant is
-     * {@see GlobalNetworkEndpointGroupsGapicClient::attachNetworkEndpointsAsync()} .
+     * {@see GlobalNetworkEndpointGroupsClient::attachNetworkEndpointsAsync()} .
      *
      * @param AttachNetworkEndpointsGlobalNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                                   $callOptions {
@@ -266,8 +266,7 @@ final class GlobalNetworkEndpointGroupsClient
     /**
      * Deletes the specified network endpoint group.Note that the NEG cannot be deleted if there are backend services referencing it.
      *
-     * The async variant is
-     * {@see GlobalNetworkEndpointGroupsGapicClient::deleteAsync()} .
+     * The async variant is {@see GlobalNetworkEndpointGroupsClient::deleteAsync()} .
      *
      * @param DeleteGlobalNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -292,7 +291,7 @@ final class GlobalNetworkEndpointGroupsClient
      * Detach the network endpoint from the specified network endpoint group.
      *
      * The async variant is
-     * {@see GlobalNetworkEndpointGroupsGapicClient::detachNetworkEndpointsAsync()} .
+     * {@see GlobalNetworkEndpointGroupsClient::detachNetworkEndpointsAsync()} .
      *
      * @param DetachNetworkEndpointsGlobalNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                                   $callOptions {
@@ -316,7 +315,7 @@ final class GlobalNetworkEndpointGroupsClient
     /**
      * Returns the specified network endpoint group.
      *
-     * The async variant is {@see GlobalNetworkEndpointGroupsGapicClient::getAsync()} .
+     * The async variant is {@see GlobalNetworkEndpointGroupsClient::getAsync()} .
      *
      * @param GetGlobalNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -340,8 +339,7 @@ final class GlobalNetworkEndpointGroupsClient
     /**
      * Creates a network endpoint group in the specified project using the parameters that are included in the request.
      *
-     * The async variant is
-     * {@see GlobalNetworkEndpointGroupsGapicClient::insertAsync()} .
+     * The async variant is {@see GlobalNetworkEndpointGroupsClient::insertAsync()} .
      *
      * @param InsertGlobalNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -365,8 +363,7 @@ final class GlobalNetworkEndpointGroupsClient
     /**
      * Retrieves the list of network endpoint groups that are located in the specified project.
      *
-     * The async variant is {@see GlobalNetworkEndpointGroupsGapicClient::listAsync()}
-     * .
+     * The async variant is {@see GlobalNetworkEndpointGroupsClient::listAsync()} .
      *
      * @param ListGlobalNetworkEndpointGroupsRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -391,7 +388,7 @@ final class GlobalNetworkEndpointGroupsClient
      * Lists the network endpoints in the specified network endpoint group.
      *
      * The async variant is
-     * {@see GlobalNetworkEndpointGroupsGapicClient::listNetworkEndpointsAsync()} .
+     * {@see GlobalNetworkEndpointGroupsClient::listNetworkEndpointsAsync()} .
      *
      * @param ListNetworkEndpointsGlobalNetworkEndpointGroupsRequest $request     A request to house fields associated with the call.
      * @param array                                                  $callOptions {

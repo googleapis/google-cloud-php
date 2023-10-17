@@ -236,7 +236,7 @@ final class ContainerAnalysisClient
      * notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for
      * occurrences.
      *
-     * The async variant is {@see ContainerAnalysisGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see ContainerAnalysisClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/ContainerAnalysisClient/get_iam_policy.php
      *
@@ -263,7 +263,7 @@ final class ContainerAnalysisClient
      * Gets a summary of the number and severity of occurrences.
      *
      * The async variant is
-     * {@see ContainerAnalysisGapicClient::getVulnerabilityOccurrencesSummaryAsync()} .
+     * {@see ContainerAnalysisClient::getVulnerabilityOccurrencesSummaryAsync()} .
      *
      * @example samples/V1/ContainerAnalysisClient/get_vulnerability_occurrences_summary.php
      *
@@ -296,7 +296,7 @@ final class ContainerAnalysisClient
      * notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for
      * occurrences.
      *
-     * The async variant is {@see ContainerAnalysisGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see ContainerAnalysisClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/ContainerAnalysisClient/set_iam_policy.php
      *
@@ -328,8 +328,7 @@ final class ContainerAnalysisClient
      * notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for
      * occurrences.
      *
-     * The async variant is
-     * {@see ContainerAnalysisGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see ContainerAnalysisClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/ContainerAnalysisClient/test_iam_permissions.php
      *

@@ -24,13 +24,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class ProductPerformanceView extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Destination of the product to which metrics apply. Segment.
-     * Product performance data is not available for the LOCAL_INVENTORY_ADS
-     * destination.
+     * Marketing method to which metrics apply. Segment.
      *
-     * Generated from protobuf field <code>optional .google.shopping.type.Destination destination = 1;</code>
+     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.MarketingMethod.MarketingMethodEnum marketing_method = 1;</code>
      */
-    protected $destination = null;
+    protected $marketing_method = null;
     /**
      * Date in the merchant timezone to which metrics apply. Segment.
      * Condition on `date` is required in the `WHERE` clause.
@@ -260,10 +258,8 @@ class ProductPerformanceView extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $destination
-     *           Destination of the product to which metrics apply. Segment.
-     *           Product performance data is not available for the LOCAL_INVENTORY_ADS
-     *           destination.
+     *     @type int $marketing_method
+     *           Marketing method to which metrics apply. Segment.
      *     @type \Google\Type\Date $date
      *           Date in the merchant timezone to which metrics apply. Segment.
      *           Condition on `date` is required in the `WHERE` clause.
@@ -374,41 +370,37 @@ class ProductPerformanceView extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Destination of the product to which metrics apply. Segment.
-     * Product performance data is not available for the LOCAL_INVENTORY_ADS
-     * destination.
+     * Marketing method to which metrics apply. Segment.
      *
-     * Generated from protobuf field <code>optional .google.shopping.type.Destination destination = 1;</code>
+     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.MarketingMethod.MarketingMethodEnum marketing_method = 1;</code>
      * @return int
      */
-    public function getDestination()
+    public function getMarketingMethod()
     {
-        return isset($this->destination) ? $this->destination : 0;
+        return isset($this->marketing_method) ? $this->marketing_method : 0;
     }
 
-    public function hasDestination()
+    public function hasMarketingMethod()
     {
-        return isset($this->destination);
+        return isset($this->marketing_method);
     }
 
-    public function clearDestination()
+    public function clearMarketingMethod()
     {
-        unset($this->destination);
+        unset($this->marketing_method);
     }
 
     /**
-     * Destination of the product to which metrics apply. Segment.
-     * Product performance data is not available for the LOCAL_INVENTORY_ADS
-     * destination.
+     * Marketing method to which metrics apply. Segment.
      *
-     * Generated from protobuf field <code>optional .google.shopping.type.Destination destination = 1;</code>
+     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.MarketingMethod.MarketingMethodEnum marketing_method = 1;</code>
      * @param int $var
      * @return $this
      */
-    public function setDestination($var)
+    public function setMarketingMethod($var)
     {
-        GPBUtil::checkEnum($var, \Google\Shopping\Type\Destination::class);
-        $this->destination = $var;
+        GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Reports\V1beta\MarketingMethod\MarketingMethodEnum::class);
+        $this->marketing_method = $var;
 
         return $this;
     }

@@ -351,7 +351,7 @@ final class NetworkSecurityClient
      * Creates a new AuthorizationPolicy in a given project and location.
      *
      * The async variant is
-     * {@see NetworkSecurityGapicClient::createAuthorizationPolicyAsync()} .
+     * {@see NetworkSecurityClient::createAuthorizationPolicyAsync()} .
      *
      * @example samples/V1/NetworkSecurityClient/create_authorization_policy.php
      *
@@ -377,8 +377,8 @@ final class NetworkSecurityClient
     /**
      * Creates a new ClientTlsPolicy in a given project and location.
      *
-     * The async variant is
-     * {@see NetworkSecurityGapicClient::createClientTlsPolicyAsync()} .
+     * The async variant is {@see NetworkSecurityClient::createClientTlsPolicyAsync()}
+     * .
      *
      * @example samples/V1/NetworkSecurityClient/create_client_tls_policy.php
      *
@@ -404,8 +404,8 @@ final class NetworkSecurityClient
     /**
      * Creates a new ServerTlsPolicy in a given project and location.
      *
-     * The async variant is
-     * {@see NetworkSecurityGapicClient::createServerTlsPolicyAsync()} .
+     * The async variant is {@see NetworkSecurityClient::createServerTlsPolicyAsync()}
+     * .
      *
      * @example samples/V1/NetworkSecurityClient/create_server_tls_policy.php
      *
@@ -432,7 +432,7 @@ final class NetworkSecurityClient
      * Deletes a single AuthorizationPolicy.
      *
      * The async variant is
-     * {@see NetworkSecurityGapicClient::deleteAuthorizationPolicyAsync()} .
+     * {@see NetworkSecurityClient::deleteAuthorizationPolicyAsync()} .
      *
      * @example samples/V1/NetworkSecurityClient/delete_authorization_policy.php
      *
@@ -458,8 +458,8 @@ final class NetworkSecurityClient
     /**
      * Deletes a single ClientTlsPolicy.
      *
-     * The async variant is
-     * {@see NetworkSecurityGapicClient::deleteClientTlsPolicyAsync()} .
+     * The async variant is {@see NetworkSecurityClient::deleteClientTlsPolicyAsync()}
+     * .
      *
      * @example samples/V1/NetworkSecurityClient/delete_client_tls_policy.php
      *
@@ -485,8 +485,8 @@ final class NetworkSecurityClient
     /**
      * Deletes a single ServerTlsPolicy.
      *
-     * The async variant is
-     * {@see NetworkSecurityGapicClient::deleteServerTlsPolicyAsync()} .
+     * The async variant is {@see NetworkSecurityClient::deleteServerTlsPolicyAsync()}
+     * .
      *
      * @example samples/V1/NetworkSecurityClient/delete_server_tls_policy.php
      *
@@ -512,8 +512,8 @@ final class NetworkSecurityClient
     /**
      * Gets details of a single AuthorizationPolicy.
      *
-     * The async variant is
-     * {@see NetworkSecurityGapicClient::getAuthorizationPolicyAsync()} .
+     * The async variant is {@see NetworkSecurityClient::getAuthorizationPolicyAsync()}
+     * .
      *
      * @example samples/V1/NetworkSecurityClient/get_authorization_policy.php
      *
@@ -539,8 +539,7 @@ final class NetworkSecurityClient
     /**
      * Gets details of a single ClientTlsPolicy.
      *
-     * The async variant is
-     * {@see NetworkSecurityGapicClient::getClientTlsPolicyAsync()} .
+     * The async variant is {@see NetworkSecurityClient::getClientTlsPolicyAsync()} .
      *
      * @example samples/V1/NetworkSecurityClient/get_client_tls_policy.php
      *
@@ -566,8 +565,7 @@ final class NetworkSecurityClient
     /**
      * Gets details of a single ServerTlsPolicy.
      *
-     * The async variant is
-     * {@see NetworkSecurityGapicClient::getServerTlsPolicyAsync()} .
+     * The async variant is {@see NetworkSecurityClient::getServerTlsPolicyAsync()} .
      *
      * @example samples/V1/NetworkSecurityClient/get_server_tls_policy.php
      *
@@ -594,7 +592,7 @@ final class NetworkSecurityClient
      * Lists AuthorizationPolicies in a given project and location.
      *
      * The async variant is
-     * {@see NetworkSecurityGapicClient::listAuthorizationPoliciesAsync()} .
+     * {@see NetworkSecurityClient::listAuthorizationPoliciesAsync()} .
      *
      * @example samples/V1/NetworkSecurityClient/list_authorization_policies.php
      *
@@ -620,8 +618,8 @@ final class NetworkSecurityClient
     /**
      * Lists ClientTlsPolicies in a given project and location.
      *
-     * The async variant is
-     * {@see NetworkSecurityGapicClient::listClientTlsPoliciesAsync()} .
+     * The async variant is {@see NetworkSecurityClient::listClientTlsPoliciesAsync()}
+     * .
      *
      * @example samples/V1/NetworkSecurityClient/list_client_tls_policies.php
      *
@@ -647,8 +645,8 @@ final class NetworkSecurityClient
     /**
      * Lists ServerTlsPolicies in a given project and location.
      *
-     * The async variant is
-     * {@see NetworkSecurityGapicClient::listServerTlsPoliciesAsync()} .
+     * The async variant is {@see NetworkSecurityClient::listServerTlsPoliciesAsync()}
+     * .
      *
      * @example samples/V1/NetworkSecurityClient/list_server_tls_policies.php
      *
@@ -675,7 +673,7 @@ final class NetworkSecurityClient
      * Updates the parameters of a single AuthorizationPolicy.
      *
      * The async variant is
-     * {@see NetworkSecurityGapicClient::updateAuthorizationPolicyAsync()} .
+     * {@see NetworkSecurityClient::updateAuthorizationPolicyAsync()} .
      *
      * @example samples/V1/NetworkSecurityClient/update_authorization_policy.php
      *
@@ -701,8 +699,8 @@ final class NetworkSecurityClient
     /**
      * Updates the parameters of a single ClientTlsPolicy.
      *
-     * The async variant is
-     * {@see NetworkSecurityGapicClient::updateClientTlsPolicyAsync()} .
+     * The async variant is {@see NetworkSecurityClient::updateClientTlsPolicyAsync()}
+     * .
      *
      * @example samples/V1/NetworkSecurityClient/update_client_tls_policy.php
      *
@@ -728,8 +726,8 @@ final class NetworkSecurityClient
     /**
      * Updates the parameters of a single ServerTlsPolicy.
      *
-     * The async variant is
-     * {@see NetworkSecurityGapicClient::updateServerTlsPolicyAsync()} .
+     * The async variant is {@see NetworkSecurityClient::updateServerTlsPolicyAsync()}
+     * .
      *
      * @example samples/V1/NetworkSecurityClient/update_server_tls_policy.php
      *
@@ -755,7 +753,7 @@ final class NetworkSecurityClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see NetworkSecurityGapicClient::getLocationAsync()} .
+     * The async variant is {@see NetworkSecurityClient::getLocationAsync()} .
      *
      * @example samples/V1/NetworkSecurityClient/get_location.php
      *
@@ -781,7 +779,7 @@ final class NetworkSecurityClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see NetworkSecurityGapicClient::listLocationsAsync()} .
+     * The async variant is {@see NetworkSecurityClient::listLocationsAsync()} .
      *
      * @example samples/V1/NetworkSecurityClient/list_locations.php
      *
@@ -808,7 +806,7 @@ final class NetworkSecurityClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see NetworkSecurityGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see NetworkSecurityClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/NetworkSecurityClient/get_iam_policy.php
      *
@@ -838,7 +836,7 @@ final class NetworkSecurityClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see NetworkSecurityGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see NetworkSecurityClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/NetworkSecurityClient/set_iam_policy.php
      *
@@ -870,8 +868,7 @@ final class NetworkSecurityClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is
-     * {@see NetworkSecurityGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see NetworkSecurityClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/NetworkSecurityClient/test_iam_permissions.php
      *

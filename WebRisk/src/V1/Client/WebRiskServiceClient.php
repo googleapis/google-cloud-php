@@ -260,8 +260,7 @@ final class WebRiskServiceClient
      * update multiple ThreatList databases, this method needs to be called once
      * for each list.
      *
-     * The async variant is
-     * {@see WebRiskServiceGapicClient::computeThreatListDiffAsync()} .
+     * The async variant is {@see WebRiskServiceClient::computeThreatListDiffAsync()} .
      *
      * @param ComputeThreatListDiffRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -291,7 +290,7 @@ final class WebRiskServiceClient
      * allowlisted projects can use this method during Early Access. Please reach
      * out to Sales or your customer engineer to obtain access.
      *
-     * The async variant is {@see WebRiskServiceGapicClient::createSubmissionAsync()} .
+     * The async variant is {@see WebRiskServiceClient::createSubmissionAsync()} .
      *
      * @param CreateSubmissionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -319,7 +318,7 @@ final class WebRiskServiceClient
      * so the client must query this method to determine if there is a full
      * hash match of a threat.
      *
-     * The async variant is {@see WebRiskServiceGapicClient::searchHashesAsync()} .
+     * The async variant is {@see WebRiskServiceClient::searchHashesAsync()} .
      *
      * @param SearchHashesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -347,7 +346,7 @@ final class WebRiskServiceClient
      * match. If the URI is not found on any of the requested ThreatList an
      * empty response will be returned.
      *
-     * The async variant is {@see WebRiskServiceGapicClient::searchUrisAsync()} .
+     * The async variant is {@see WebRiskServiceClient::searchUrisAsync()} .
      *
      * @param SearchUrisRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -380,7 +379,7 @@ final class WebRiskServiceClient
      * allowlisted projects can use this method during Early Access. Please reach
      * out to Sales or your customer engineer to obtain access.
      *
-     * The async variant is {@see WebRiskServiceGapicClient::submitUriAsync()} .
+     * The async variant is {@see WebRiskServiceClient::submitUriAsync()} .
      *
      * @param SubmitUriRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {

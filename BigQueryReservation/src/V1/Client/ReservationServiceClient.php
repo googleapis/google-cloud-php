@@ -385,8 +385,7 @@ final class ReservationServiceClient
      * Returns `google.rpc.Code.INVALID_ARGUMENT` when location of the assignment
      * does not match location of the reservation.
      *
-     * The async variant is
-     * {@see ReservationServiceGapicClient::createAssignmentAsync()} .
+     * The async variant is {@see ReservationServiceClient::createAssignmentAsync()} .
      *
      * @param CreateAssignmentRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -411,7 +410,7 @@ final class ReservationServiceClient
      * Creates a new capacity commitment resource.
      *
      * The async variant is
-     * {@see ReservationServiceGapicClient::createCapacityCommitmentAsync()} .
+     * {@see ReservationServiceClient::createCapacityCommitmentAsync()} .
      *
      * @param CreateCapacityCommitmentRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -435,8 +434,7 @@ final class ReservationServiceClient
     /**
      * Creates a new reservation resource.
      *
-     * The async variant is
-     * {@see ReservationServiceGapicClient::createReservationAsync()} .
+     * The async variant is {@see ReservationServiceClient::createReservationAsync()} .
      *
      * @param CreateReservationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -474,8 +472,7 @@ final class ReservationServiceClient
      * queries from `project1` will still use `res1` while queries from
      * `project2` will switch to use on-demand mode.
      *
-     * The async variant is
-     * {@see ReservationServiceGapicClient::deleteAssignmentAsync()} .
+     * The async variant is {@see ReservationServiceClient::deleteAssignmentAsync()} .
      *
      * @param DeleteAssignmentRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -500,7 +497,7 @@ final class ReservationServiceClient
      * `google.rpc.Code.FAILED_PRECONDITION`.
      *
      * The async variant is
-     * {@see ReservationServiceGapicClient::deleteCapacityCommitmentAsync()} .
+     * {@see ReservationServiceClient::deleteCapacityCommitmentAsync()} .
      *
      * @param DeleteCapacityCommitmentRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -524,8 +521,7 @@ final class ReservationServiceClient
      * Returns `google.rpc.Code.FAILED_PRECONDITION` when reservation has
      * assignments.
      *
-     * The async variant is
-     * {@see ReservationServiceGapicClient::deleteReservationAsync()} .
+     * The async variant is {@see ReservationServiceClient::deleteReservationAsync()} .
      *
      * @param DeleteReservationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -547,8 +543,7 @@ final class ReservationServiceClient
     /**
      * Retrieves a BI reservation.
      *
-     * The async variant is
-     * {@see ReservationServiceGapicClient::getBiReservationAsync()} .
+     * The async variant is {@see ReservationServiceClient::getBiReservationAsync()} .
      *
      * @param GetBiReservationRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -573,7 +568,7 @@ final class ReservationServiceClient
      * Returns information about the capacity commitment.
      *
      * The async variant is
-     * {@see ReservationServiceGapicClient::getCapacityCommitmentAsync()} .
+     * {@see ReservationServiceClient::getCapacityCommitmentAsync()} .
      *
      * @param GetCapacityCommitmentRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -597,8 +592,7 @@ final class ReservationServiceClient
     /**
      * Returns information about the reservation.
      *
-     * The async variant is {@see ReservationServiceGapicClient::getReservationAsync()}
-     * .
+     * The async variant is {@see ReservationServiceClient::getReservationAsync()} .
      *
      * @param GetReservationRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -642,8 +636,7 @@ final class ReservationServiceClient
      *
      * **Note** "-" cannot be used for projects nor locations.
      *
-     * The async variant is
-     * {@see ReservationServiceGapicClient::listAssignmentsAsync()} .
+     * The async variant is {@see ReservationServiceClient::listAssignmentsAsync()} .
      *
      * @param ListAssignmentsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -668,7 +661,7 @@ final class ReservationServiceClient
      * Lists all the capacity commitments for the admin project.
      *
      * The async variant is
-     * {@see ReservationServiceGapicClient::listCapacityCommitmentsAsync()} .
+     * {@see ReservationServiceClient::listCapacityCommitmentsAsync()} .
      *
      * @param ListCapacityCommitmentsRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -692,8 +685,7 @@ final class ReservationServiceClient
     /**
      * Lists all the reservations for the project in the specified location.
      *
-     * The async variant is
-     * {@see ReservationServiceGapicClient::listReservationsAsync()} .
+     * The async variant is {@see ReservationServiceClient::listReservationsAsync()} .
      *
      * @param ListReservationsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -724,7 +716,7 @@ final class ReservationServiceClient
      * with the error code `google.rpc.Code.FAILED_PRECONDITION`.
      *
      * The async variant is
-     * {@see ReservationServiceGapicClient::mergeCapacityCommitmentsAsync()} .
+     * {@see ReservationServiceClient::mergeCapacityCommitmentsAsync()} .
      *
      * @param MergeCapacityCommitmentsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -752,8 +744,7 @@ final class ReservationServiceClient
      * by providing a transactional change that ensures an assignee always has an
      * associated reservation.
      *
-     * The async variant is {@see ReservationServiceGapicClient::moveAssignmentAsync()}
-     * .
+     * The async variant is {@see ReservationServiceClient::moveAssignmentAsync()} .
      *
      * @param MoveAssignmentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -797,7 +788,7 @@ final class ReservationServiceClient
      * `projects/&#42;/locations/*reservations/*`.
      *
      * The async variant is
-     * {@see ReservationServiceGapicClient::searchAllAssignmentsAsync()} .
+     * {@see ReservationServiceClient::searchAllAssignmentsAsync()} .
      *
      * @param SearchAllAssignmentsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -843,8 +834,7 @@ final class ReservationServiceClient
      * **Note** "-" cannot be used for projects
      * nor locations.
      *
-     * The async variant is
-     * {@see ReservationServiceGapicClient::searchAssignmentsAsync()} .
+     * The async variant is {@see ReservationServiceClient::searchAssignmentsAsync()} .
      *
      * @param SearchAssignmentsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -878,7 +868,7 @@ final class ReservationServiceClient
      * you delete the first one after the commitment end time passes.
      *
      * The async variant is
-     * {@see ReservationServiceGapicClient::splitCapacityCommitmentAsync()} .
+     * {@see ReservationServiceClient::splitCapacityCommitmentAsync()} .
      *
      * @param SplitCapacityCommitmentRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -904,8 +894,7 @@ final class ReservationServiceClient
      *
      * Only the `priority` field can be updated.
      *
-     * The async variant is
-     * {@see ReservationServiceGapicClient::updateAssignmentAsync()} .
+     * The async variant is {@see ReservationServiceClient::updateAssignmentAsync()} .
      *
      * @param UpdateAssignmentRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -936,8 +925,8 @@ final class ReservationServiceClient
      * greater than 0. In order to release BI capacity reservation size
      * must be set to 0.
      *
-     * The async variant is
-     * {@see ReservationServiceGapicClient::updateBiReservationAsync()} .
+     * The async variant is {@see ReservationServiceClient::updateBiReservationAsync()}
+     * .
      *
      * @param UpdateBiReservationRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -968,7 +957,7 @@ final class ReservationServiceClient
      * with the error code `google.rpc.Code.FAILED_PRECONDITION`.
      *
      * The async variant is
-     * {@see ReservationServiceGapicClient::updateCapacityCommitmentAsync()} .
+     * {@see ReservationServiceClient::updateCapacityCommitmentAsync()} .
      *
      * @param UpdateCapacityCommitmentRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -992,8 +981,7 @@ final class ReservationServiceClient
     /**
      * Updates an existing reservation resource.
      *
-     * The async variant is
-     * {@see ReservationServiceGapicClient::updateReservationAsync()} .
+     * The async variant is {@see ReservationServiceClient::updateReservationAsync()} .
      *
      * @param UpdateReservationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
