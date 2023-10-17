@@ -4,6 +4,8 @@ on:
         tags:
             - "*"
     workflow_dispatch:
+permissions:
+  contents: write
 jobs:
     docs:
         name: "Generate and Deploy Documentation"
