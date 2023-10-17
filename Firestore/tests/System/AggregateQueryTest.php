@@ -145,43 +145,43 @@ class AggregateQueryTest extends FirestoreTestCase
         );
     }
 
+    /**
+     * This dataProvider returns the test cases to test how
+     * aggregations work with `select()` field mask.
+     *
+     * The values are of the form
+     * [
+     *     $aggregationType,
+     *     $arg,
+     *     $fieldMask,
+     *     $expectedResult,
+     *     $docsToAddBeforeTestRunning
+     * ]
+     */
     public function getSelectCases()
     {
-        // This dataProvider returns the test cases to test
-        // how aggregations work with `select()` field mask.
-        //
-        // The values are of the form
-        // [
-        //      $aggregationType,
-        //      $arg,
-        //      $fieldMask,
-        //      $expectedResult,
-        //      $docsToAddBeforeTestRunning
-        // ]
-        //
-
         return [
             ['count', null, ['foo', 'good'], 1, [['foo' => 'bar', 'hello' => 'world', 'good' => 'night']]],
             ['count', null, [], 1, [['foo' => 'bar']]],
         ];
     }
 
+    /**
+     * This dataProvider returns the test cases to test how
+     * aggregations work with `where()` (i.e. field filter).
+     *
+     * The values are of the form
+     * [
+     *     $aggregationType,
+     *     $arg,
+     *     $operation
+     *     $fieldValue,
+     *     $expectedResult,
+     *     $docsToAddBeforeTestRunning
+     * ]
+     */
     public function getWhereCases()
     {
-        // This dataProvider returns the test cases to test
-        // how aggregations work with `where()` (i.e. field filter).
-        //
-        // The values are of the form
-        // [
-        //      $aggregationType,
-        //      $arg,
-        //      $operation,
-        //      $fieldValue,
-        //      $expectedResult,
-        //      $docsToAddBeforeTestRunning
-        // ]
-        //
-
         $arrayDoc = [
             ['value' => ['foo', 'bar']],
             ['value' => ['foo']]
@@ -206,40 +206,40 @@ class AggregateQueryTest extends FirestoreTestCase
         ];
     }
 
+    /**
+     * This dataProvider returns the test cases to test how
+     * aggregations work with `cursors`.
+     *
+     * The values are of the form
+     * [
+     *     $aggregationType,
+     *     $arg,
+     *     $expectedResults,
+     *     $docsToAddBeforeTestRunning
+     * ]
+     */
     public function getSnapshotCursorCases()
     {
-        // This dataProvider returns the test cases to test
-        // how aggregations work with `cursors`.
-        //
-        // The values are of the form
-        // [
-        //      $aggregationType,
-        //      $arg,
-        //      $expectedResults,
-        //      $docsToAddBeforeTestRunning
-        // ]
-        //
-
         $docsToAdd = [['value' => 0], ['value' => 1], ['value' => 2], ['value' => 3]];
         return [
             ['count', null, [4, 3, 3, 4], $docsToAdd]
         ];
     }
 
+    /**
+     * This dataProvider returns the test cases to test how
+     * aggregations work with `limits`.
+     *
+     * The values are of the form
+     * [
+     *     $aggregationType,
+     *     $arg,
+     *     $expectedResults,
+     *     $docsToAddBeforeTestRunning
+     * ]
+     */
     public function getLimitCases()
     {
-        // This dataProvider returns the test cases to test
-        // how aggregations work with `limits`.
-        //
-        // The values are of the form
-        // [
-        //      $aggregationType,
-        //      $arg,
-        //      $expectedResults,
-        //      $docsToAddBeforeTestRunning
-        // ]
-        //
-
         $docsToAdd = [['value' => 0], ['value' => 1], ['value' => 2], ['value' => 3],  ['value' => 4]];
         return [
             ['count', null, [2, 2], $docsToAdd]

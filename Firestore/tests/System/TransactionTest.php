@@ -238,19 +238,20 @@ class TransactionTest extends FirestoreTestCase
         $this->assertEquals('bat', $this->document->snapshot()['foo']);
     }
 
+    /**
+     * This dataProvider returns the test cases to test how
+     * aggregations work in a transaction.
+     *
+     * The values are of the form
+     * [
+     *     $aggregationType,
+     *     $arg,
+     *     $expectedResults,
+     *     $docsToAddBeforeTestRunning
+     * ]
+     */
     public function getAggregateCases()
     {
-        // This dataProvider returns the test cases to test
-        // how aggregations work with in a transaction.
-        //
-        // The values are of the form
-        // [
-        //      $aggregationType,
-        //      $arg,
-        //      $expectedResult,
-        //      $docsToAddBeforeTestRunning
-        // ]
-
         $docsToAdd = [
             ['value' => ['foobar']],
             ['value' => ['foo', 'bar']],
