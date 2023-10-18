@@ -258,7 +258,7 @@ class Schema
      * $definition = file_get_contents('my-schema.txt');
      * $revision = $schema->commit($definition, 'AVRO);
      *
-     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.schemas/deleteRevision Delete Schema revision.
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.schemas/deleteRevision Delete revision.
      * ```
      *
      * @param string $revisionId The revisionId
