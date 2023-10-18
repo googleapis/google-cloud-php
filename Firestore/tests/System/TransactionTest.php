@@ -244,10 +244,10 @@ class TransactionTest extends FirestoreTestCase
      *
      * The values are of the form
      * [
-     *     $aggregationType,
-     *     $arg,
-     *     $expectedResults,
-     *     $docsToAddBeforeTestRunning
+     *     string $aggregationType,
+     *     string $targetFieldName,
+     *     array $expectedResults,
+     *     array $docsToAddBeforeTestRunning
      * ]
      */
     public function getAggregateCases()
