@@ -49,6 +49,7 @@ use Google\Cloud\SecurityCenter\V1\CreateMuteConfigRequest;
 use Google\Cloud\SecurityCenter\V1\CreateNotificationConfigRequest;
 use Google\Cloud\SecurityCenter\V1\CreateSecurityHealthAnalyticsCustomModuleRequest;
 use Google\Cloud\SecurityCenter\V1\CreateSourceRequest;
+use Google\Cloud\SecurityCenter\V1\CustomConfig;
 use Google\Cloud\SecurityCenter\V1\DeleteBigQueryExportRequest;
 use Google\Cloud\SecurityCenter\V1\DeleteMuteConfigRequest;
 use Google\Cloud\SecurityCenter\V1\DeleteNotificationConfigRequest;
@@ -95,6 +96,9 @@ use Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule;
 use Google\Cloud\SecurityCenter\V1\SecurityMarks;
 use Google\Cloud\SecurityCenter\V1\SetFindingStateRequest;
 use Google\Cloud\SecurityCenter\V1\SetMuteRequest;
+use Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleRequest;
+use Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleRequest\SimulatedResource;
+use Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleResponse;
 use Google\Cloud\SecurityCenter\V1\Source;
 use Google\Cloud\SecurityCenter\V1\UpdateBigQueryExportRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateExternalSystemRequest;
@@ -4446,6 +4450,55 @@ class SecurityCenterGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('SetMute', Finding::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Simulates a given SecurityHealthAnalyticsCustomModule and Resource.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $parent = 'parent';
+     *     $customConfig = new CustomConfig();
+     *     $resource = new SimulatedResource();
+     *     $response = $securityCenterClient->simulateSecurityHealthAnalyticsCustomModule($parent, $customConfig, $resource);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string            $parent       Required. The relative resource name of the organization, project, or
+     *                                        folder. See:
+     *                                        https://cloud.google.com/apis/design/resource_names#relative_resource_name
+     *                                        An example is:
+     *                                        "organizations/{organization_id}".
+     * @param CustomConfig      $customConfig Required. The user specified custom configuration to test.
+     * @param SimulatedResource $resource     Required. Resource data to simulate custom module against.
+     * @param array             $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function simulateSecurityHealthAnalyticsCustomModule($parent, $customConfig, $resource, array $optionalArgs = [])
+    {
+        $request = new SimulateSecurityHealthAnalyticsCustomModuleRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setCustomConfig($customConfig);
+        $request->setResource($resource);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('SimulateSecurityHealthAnalyticsCustomModule', SimulateSecurityHealthAnalyticsCustomModuleResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
