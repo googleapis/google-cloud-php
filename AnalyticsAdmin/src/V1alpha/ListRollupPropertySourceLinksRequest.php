@@ -9,38 +9,36 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for ListSKAdNetworkConversionValueSchemas RPC
+ * Request message for ListRollupPropertySourceLinks RPC.
  *
- * Generated from protobuf message <code>google.analytics.admin.v1alpha.ListSKAdNetworkConversionValueSchemasRequest</code>
+ * Generated from protobuf message <code>google.analytics.admin.v1alpha.ListRollupPropertySourceLinksRequest</code>
  */
-class ListSKAdNetworkConversionValueSchemasRequest extends \Google\Protobuf\Internal\Message
+class ListRollupPropertySourceLinksRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The DataStream resource to list schemas for.
-     * Format:
-     * properties/{property_id}/dataStreams/{dataStream}
-     * Example: properties/1234/dataStreams/5678
+     * Required. The name of the roll-up property to list roll-up property source
+     * links under. Format: properties/{property_id} Example: properties/1234
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * The maximum number of resources to return. The service may return
+     * Optional. The maximum number of resources to return. The service may return
      * fewer than this value, even if there are additional pages.
      * If unspecified, at most 50 resources will be returned.
      * The maximum value is 200; (higher values will be coerced to the maximum)
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * A page token, received from a previous
-     * `ListSKAdNetworkConversionValueSchemas` call. Provide this to retrieve the
+     * Optional. A page token, received from a previous
+     * `ListRollupPropertySourceLinks` call. Provide this to retrieve the
      * subsequent page. When paginating, all other parameters provided to
-     * `ListSKAdNetworkConversionValueSchema` must match the call that provided
-     * the page token.
+     * `ListRollupPropertySourceLinks` must match the call that provided the page
+     * token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
 
@@ -51,21 +49,19 @@ class ListSKAdNetworkConversionValueSchemasRequest extends \Google\Protobuf\Inte
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The DataStream resource to list schemas for.
-     *           Format:
-     *           properties/{property_id}/dataStreams/{dataStream}
-     *           Example: properties/1234/dataStreams/5678
+     *           Required. The name of the roll-up property to list roll-up property source
+     *           links under. Format: properties/{property_id} Example: properties/1234
      *     @type int $page_size
-     *           The maximum number of resources to return. The service may return
+     *           Optional. The maximum number of resources to return. The service may return
      *           fewer than this value, even if there are additional pages.
      *           If unspecified, at most 50 resources will be returned.
      *           The maximum value is 200; (higher values will be coerced to the maximum)
      *     @type string $page_token
-     *           A page token, received from a previous
-     *           `ListSKAdNetworkConversionValueSchemas` call. Provide this to retrieve the
+     *           Optional. A page token, received from a previous
+     *           `ListRollupPropertySourceLinks` call. Provide this to retrieve the
      *           subsequent page. When paginating, all other parameters provided to
-     *           `ListSKAdNetworkConversionValueSchema` must match the call that provided
-     *           the page token.
+     *           `ListRollupPropertySourceLinks` must match the call that provided the page
+     *           token.
      * }
      */
     public function __construct($data = NULL) {
@@ -74,10 +70,8 @@ class ListSKAdNetworkConversionValueSchemasRequest extends \Google\Protobuf\Inte
     }
 
     /**
-     * Required. The DataStream resource to list schemas for.
-     * Format:
-     * properties/{property_id}/dataStreams/{dataStream}
-     * Example: properties/1234/dataStreams/5678
+     * Required. The name of the roll-up property to list roll-up property source
+     * links under. Format: properties/{property_id} Example: properties/1234
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -88,10 +82,8 @@ class ListSKAdNetworkConversionValueSchemasRequest extends \Google\Protobuf\Inte
     }
 
     /**
-     * Required. The DataStream resource to list schemas for.
-     * Format:
-     * properties/{property_id}/dataStreams/{dataStream}
-     * Example: properties/1234/dataStreams/5678
+     * Required. The name of the roll-up property to list roll-up property source
+     * links under. Format: properties/{property_id} Example: properties/1234
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -106,12 +98,12 @@ class ListSKAdNetworkConversionValueSchemasRequest extends \Google\Protobuf\Inte
     }
 
     /**
-     * The maximum number of resources to return. The service may return
+     * Optional. The maximum number of resources to return. The service may return
      * fewer than this value, even if there are additional pages.
      * If unspecified, at most 50 resources will be returned.
      * The maximum value is 200; (higher values will be coerced to the maximum)
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -120,12 +112,12 @@ class ListSKAdNetworkConversionValueSchemasRequest extends \Google\Protobuf\Inte
     }
 
     /**
-     * The maximum number of resources to return. The service may return
+     * Optional. The maximum number of resources to return. The service may return
      * fewer than this value, even if there are additional pages.
      * If unspecified, at most 50 resources will be returned.
      * The maximum value is 200; (higher values will be coerced to the maximum)
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -138,13 +130,13 @@ class ListSKAdNetworkConversionValueSchemasRequest extends \Google\Protobuf\Inte
     }
 
     /**
-     * A page token, received from a previous
-     * `ListSKAdNetworkConversionValueSchemas` call. Provide this to retrieve the
+     * Optional. A page token, received from a previous
+     * `ListRollupPropertySourceLinks` call. Provide this to retrieve the
      * subsequent page. When paginating, all other parameters provided to
-     * `ListSKAdNetworkConversionValueSchema` must match the call that provided
-     * the page token.
+     * `ListRollupPropertySourceLinks` must match the call that provided the page
+     * token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -153,13 +145,13 @@ class ListSKAdNetworkConversionValueSchemasRequest extends \Google\Protobuf\Inte
     }
 
     /**
-     * A page token, received from a previous
-     * `ListSKAdNetworkConversionValueSchemas` call. Provide this to retrieve the
+     * Optional. A page token, received from a previous
+     * `ListRollupPropertySourceLinks` call. Provide this to retrieve the
      * subsequent page. When paginating, all other parameters provided to
-     * `ListSKAdNetworkConversionValueSchema` must match the call that provided
-     * the page token.
+     * `ListRollupPropertySourceLinks` must match the call that provided the page
+     * token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
