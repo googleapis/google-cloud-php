@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class HybridInspectJobTriggerRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name of the trigger to execute a hybrid inspect on, for example
-     * `projects/dlp-test-project/jobTriggers/53234423`.
+     * Required. Resource name of the trigger to execute a hybrid inspect on, for
+     * example `projects/dlp-test-project/jobTriggers/53234423`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -30,8 +30,8 @@ class HybridInspectJobTriggerRequest extends \Google\Protobuf\Internal\Message
     private $hybrid_item = null;
 
     /**
-     * @param string $name Required. Resource name of the trigger to execute a hybrid inspect on, for example
-     *                     `projects/dlp-test-project/jobTriggers/53234423`. Please see
+     * @param string $name Required. Resource name of the trigger to execute a hybrid inspect on, for
+     *                     example `projects/dlp-test-project/jobTriggers/53234423`. Please see
      *                     {@see DlpServiceClient::jobTriggerName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dlp\V2\HybridInspectJobTriggerRequest
@@ -51,8 +51,8 @@ class HybridInspectJobTriggerRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Resource name of the trigger to execute a hybrid inspect on, for example
-     *           `projects/dlp-test-project/jobTriggers/53234423`.
+     *           Required. Resource name of the trigger to execute a hybrid inspect on, for
+     *           example `projects/dlp-test-project/jobTriggers/53234423`.
      *     @type \Google\Cloud\Dlp\V2\HybridContentItem $hybrid_item
      *           The item to inspect.
      * }
@@ -63,8 +63,8 @@ class HybridInspectJobTriggerRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the trigger to execute a hybrid inspect on, for example
-     * `projects/dlp-test-project/jobTriggers/53234423`.
+     * Required. Resource name of the trigger to execute a hybrid inspect on, for
+     * example `projects/dlp-test-project/jobTriggers/53234423`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -75,8 +75,8 @@ class HybridInspectJobTriggerRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the trigger to execute a hybrid inspect on, for example
-     * `projects/dlp-test-project/jobTriggers/53234423`.
+     * Required. Resource name of the trigger to execute a hybrid inspect on, for
+     * example `projects/dlp-test-project/jobTriggers/53234423`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

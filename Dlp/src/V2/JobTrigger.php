@@ -45,8 +45,8 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
      */
     private $triggers;
     /**
-     * Output only. A stream of errors encountered when the trigger was activated. Repeated
-     * errors may result in the JobTrigger automatically being paused.
+     * Output only. A stream of errors encountered when the trigger was activated.
+     * Repeated errors may result in the JobTrigger automatically being paused.
      * Will return the last 100 errors. Whenever the JobTrigger is modified
      * this list will be cleared.
      *
@@ -100,8 +100,8 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
      *           needs to trigger for a job to be started. The list may contain only
      *           a single Schedule trigger and must have at least one object.
      *     @type array<\Google\Cloud\Dlp\V2\Error>|\Google\Protobuf\Internal\RepeatedField $errors
-     *           Output only. A stream of errors encountered when the trigger was activated. Repeated
-     *           errors may result in the JobTrigger automatically being paused.
+     *           Output only. A stream of errors encountered when the trigger was activated.
+     *           Repeated errors may result in the JobTrigger automatically being paused.
      *           Will return the last 100 errors. Whenever the JobTrigger is modified
      *           this list will be cleared.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -263,8 +263,8 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A stream of errors encountered when the trigger was activated. Repeated
-     * errors may result in the JobTrigger automatically being paused.
+     * Output only. A stream of errors encountered when the trigger was activated.
+     * Repeated errors may result in the JobTrigger automatically being paused.
      * Will return the last 100 errors. Whenever the JobTrigger is modified
      * this list will be cleared.
      *
@@ -277,8 +277,8 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A stream of errors encountered when the trigger was activated. Repeated
-     * errors may result in the JobTrigger automatically being paused.
+     * Output only. A stream of errors encountered when the trigger was activated.
+     * Repeated errors may result in the JobTrigger automatically being paused.
      * Will return the last 100 errors. Whenever the JobTrigger is modified
      * this list will be cleared.
      *
