@@ -32,9 +32,9 @@ class Service
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¶F
+øH
 1google/devtools/artifactregistry/v1/service.proto#google.devtools.artifactregistry.v1google/api/client.proto6google/devtools/artifactregistry/v1/apt_artifact.proto2google/devtools/artifactregistry/v1/artifact.proto.google/devtools/artifactregistry/v1/file.proto1google/devtools/artifactregistry/v1/package.proto4google/devtools/artifactregistry/v1/repository.proto2google/devtools/artifactregistry/v1/settings.proto-google/devtools/artifactregistry/v1/tag.proto1google/devtools/artifactregistry/v1/version.proto6google/devtools/artifactregistry/v1/vpcsc_config.proto6google/devtools/artifactregistry/v1/yum_artifact.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto"
-OperationMetadata2¢>
+OperationMetadata2ä@
 ArtifactRegistryá
 ListDockerImages<.google.devtools.artifactregistry.v1.ListDockerImagesRequest=.google.devtools.artifactregistry.v1.ListDockerImagesResponse"P‚Óä“A?/v1/{parent=projects/*/locations/*/repositories/*}/dockerImagesÚAparentÎ
 GetDockerImage:.google.devtools.artifactregistry.v1.GetDockerImageRequest0.google.devtools.artifactregistry.v1.DockerImage"N‚Óä“A?/v1/{name=projects/*/locations/*/repositories/*/dockerImages/*}ÚAnameé
@@ -66,7 +66,9 @@ GetPackage6.google.devtools.artifactregistry.v1.GetPackageRequest,.google.devt
 
 GetVersion6.google.devtools.artifactregistry.v1.GetVersionRequest,.google.devtools.artifactregistry.v1.Version"U‚Óä“HF/v1/{name=projects/*/locations/*/repositories/*/packages/*/versions/*}ÚAname’
 DeleteVersion9.google.devtools.artifactregistry.v1.DeleteVersionRequest.google.longrunning.Operation"¦‚Óä“H*F/v1/{name=projects/*/locations/*/repositories/*/packages/*/versions/*}ÚAnameÊAN
-google.protobuf.Empty5google.devtools.artifactregistry.v1.OperationMetadataÅ
+google.protobuf.Empty5google.devtools.artifactregistry.v1.OperationMetadata¿
+BatchDeleteVersions?.google.devtools.artifactregistry.v1.BatchDeleteVersionsRequest.google.longrunning.Operation"Ç‚Óä“W"R/v1/{parent=projects/*/locations/*/repositories/*/packages/*}/versions:batchDelete:*ÚAparent,namesÊAX
+google.protobuf.Empty?google.devtools.artifactregistry.v1.BatchDeleteVersionsMetadataÅ
 	ListFiles5.google.devtools.artifactregistry.v1.ListFilesRequest6.google.devtools.artifactregistry.v1.ListFilesResponse"I‚Óä“:8/v1/{parent=projects/*/locations/*/repositories/*}/filesÚAparent³
 GetFile3.google.devtools.artifactregistry.v1.GetFileRequest).google.devtools.artifactregistry.v1.File"H‚Óä“;9/v1/{name=projects/*/locations/*/repositories/*/files/**}ÚAnameÌ
 ListTags4.google.devtools.artifactregistry.v1.ListTagsRequest5.google.devtools.artifactregistry.v1.ListTagsResponse"S‚Óä“DB/v1/{parent=projects/*/locations/*/repositories/*/packages/*}/tagsÚAparent¹
