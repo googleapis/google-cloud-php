@@ -25,7 +25,7 @@ class FileType
      * scanning attempts to convert the content of the file to utf_8 to scan
      * the file.
      * If you wish to avoid this fall back, specify one or more of the other
-     * FileType's in your storage scan.
+     * file types in your storage scan.
      *
      * Generated from protobuf enum <code>BINARY_FILE = 1;</code>
      */
@@ -44,25 +44,30 @@ class FileType
     const TEXT_FILE = 2;
     /**
      * Included file extensions:
-     *   bmp, gif, jpg, jpeg, jpe, png.
-     * bytes_limit_per_file has no effect on image files.
-     * Image inspection is restricted to 'global', 'us', 'asia', and 'europe'.
+     *   bmp, gif, jpg, jpeg, jpe, png. Setting
+     * [bytes_limit_per_file][google.privacy.dlp.v2.CloudStorageOptions.bytes_limit_per_file]
+     * or
+     * [bytes_limit_per_file_percent][google.privacy.dlp.v2.CloudStorageOptions.bytes_limit_per_file]
+     * has no effect on image files. Image inspection is restricted to the
+     * `global`, `us`, `asia`, and `europe` regions.
      *
      * Generated from protobuf enum <code>IMAGE = 3;</code>
      */
     const IMAGE = 3;
     /**
-     * Word files >30 MB will be scanned as binary files.
+     * Microsoft Word files larger than 30 MB will be scanned as binary files.
      * Included file extensions:
-     *   docx, dotx, docm, dotm
+     *   docx, dotx, docm, dotm. Setting `bytes_limit_per_file` or
+     *   `bytes_limit_per_file_percent` has no effect on Word files.
      *
      * Generated from protobuf enum <code>WORD = 5;</code>
      */
     const WORD = 5;
     /**
-     * PDF files >30 MB will be scanned as binary files.
+     * PDF files larger than 30 MB will be scanned as binary files.
      * Included file extensions:
-     *   pdf
+     *   pdf. Setting `bytes_limit_per_file` or `bytes_limit_per_file_percent`
+     * has no effect on PDF files.
      *
      * Generated from protobuf enum <code>PDF = 6;</code>
      */
@@ -89,17 +94,19 @@ class FileType
      */
     const TSV = 9;
     /**
-     * Powerpoint files >30 MB will be scanned as binary files.
-     * Included file extensions:
-     *   pptx, pptm, potx, potm, pot
+     * Microsoft PowerPoint files larger than 30 MB will be scanned as binary
+     * files. Included file extensions:
+     *   pptx, pptm, potx, potm, pot. Setting `bytes_limit_per_file` or
+     *   `bytes_limit_per_file_percent` has no effect on PowerPoint files.
      *
      * Generated from protobuf enum <code>POWERPOINT = 11;</code>
      */
     const POWERPOINT = 11;
     /**
-     * Excel files >30 MB will be scanned as binary files.
+     * Microsoft Excel files larger than 30 MB will be scanned as binary files.
      * Included file extensions:
-     *   xlsx, xlsm, xltx, xltm
+     *   xlsx, xlsm, xltx, xltm. Setting `bytes_limit_per_file` or
+     *   `bytes_limit_per_file_percent` has no effect on Excel files.
      *
      * Generated from protobuf enum <code>EXCEL = 12;</code>
      */
