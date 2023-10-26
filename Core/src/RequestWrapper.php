@@ -17,10 +17,12 @@
 
 namespace Google\Cloud\Core;
 
+use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GetQuotaProjectInterface;
 use Google\Auth\HttpHandler\Guzzle6HttpHandler;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
+use Google\Auth\UpdateMetadataInterface;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\RequestWrapperTrait;
 use GuzzleHttp\Exception\RequestException;
@@ -309,21 +311,28 @@ class RequestWrapper
             $quotaProject = $this->quotaProject;
             $token = null;
 
+            $authHeaders = [];
             if ($this->accessToken) {
-                $token = $this->accessToken;
+                $authHeaders = $this->createAuthHeader($this->accessToken);
             } else {
                 $credentialsFetcher = $this->getCredentialsFetcher();
-                $token = $this->fetchCredentials($credentialsFetcher)['access_token'];
+                $authHeaders = $this->fetchAuthHeaders($credentialsFetcher);
 
                 if ($credentialsFetcher instanceof GetQuotaProjectInterface) {
                     $quotaProject = $credentialsFetcher->getQuotaProject();
                 }
             }
 
-            $headers['Authorization'] = 'Bearer ' . $token;
-
             if ($quotaProject) {
                 $headers['X-Goog-User-Project'] = [$quotaProject];
+            }
+
+            foreach ($authHeaders as $key => $value) {
+                if (array_key_exists($key, $headers)) {
+                    $headers[$key] .= ' ' . $value;
+                } else {
+                    $headers[$key] = $value;
+                }
             }
         }
 
@@ -331,30 +340,71 @@ class RequestWrapper
     }
 
     /**
-     * Fetches credentials.
+     * Fetches auth headers.
      *
      * @param FetchAuthTokenInterface $credentialsFetcher
      * @return array
      * @throws ServiceException
      */
-    private function fetchCredentials(FetchAuthTokenInterface $credentialsFetcher)
+    private function fetchAuthHeaders(FetchAuthTokenInterface $credentialsFetcher)
     {
         $backoff = new ExponentialBackoff($this->retries, $this->getRetryFunction());
 
         try {
             return $backoff->execute(
                 function () use ($credentialsFetcher) {
-                    if ($token = $credentialsFetcher->fetchAuthToken($this->authHttpHandler)) {
-                        return $token;
+                    // Proper error message capture to as to not break existing
+                    // exception message.
+                    $exceptionMessage = '';
+
+                    // We need to find the actual fetcher incase of a cache wrapper
+                    // so that we can avoid the exception case where actual fetcher
+                    // does not implements UpdateMetadataInterface with cache wrapper's
+                    // `updateMetadata` being called.
+                    $actualFetcher = $credentialsFetcher;
+                    if ($credentialsFetcher instanceof FetchAuthTokenCache) {
+                        $actualFetcher = $credentialsFetcher->getFetcher();
+                    }
+
+                    if ($actualFetcher instanceof UpdateMetadataInterface) {
+                        $header = $credentialsFetcher->updateMetadata([], null, $this->authHttpHandler);
+                        if (array_key_exists('authorization', $header) ||
+                            array_key_exists('proxy-authorization', $header)) {
+                            return $header;
+                        }
+                        $exceptionMessage = 'Unable to fetch auth headers';
+                    } else {
+                        $tokenArray = $credentialsFetcher->fetchAuthToken($this->authHttpHandler);
+                        if ($this->isValidToken($tokenArray)) {
+                            return $this->createAuthHeader($tokenArray['access_token']);
+                        }
+                        $exceptionMessage = 'Unable to fetch token';
                     }
                     // As we do not know the reason the credentials fetcher could not fetch the
                     // token, we should not retry.
-                    throw new \RuntimeException('Unable to fetch token');
+                    throw new \RuntimeException($exceptionMessage);
                 }
             );
         } catch (\Exception $ex) {
             throw $this->convertToGoogleException($ex);
         }
+    }
+
+    /**
+     * @param mixed $token
+     */
+    private function isValidToken($token)
+    {
+        return is_array($token)
+            && array_key_exists('access_token', $token);
+    }
+
+    /**
+     * @param string $accessToken
+     */
+    private function createAuthHeader(string $accessToken)
+    {
+        return ['authorization' => 'Bearer ' . $accessToken];
     }
 
     /**
