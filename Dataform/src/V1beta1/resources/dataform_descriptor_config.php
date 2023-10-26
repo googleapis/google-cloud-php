@@ -15,9 +15,33 @@ return [
                     ],
                 ],
             ],
+            'CommitRepositoryChanges' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CommitWorkspaceChanges' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ComputeRepositoryAccessTokenStatus' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\ComputeRepositoryAccessTokenStatusResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -39,9 +63,33 @@ return [
                     ],
                 ],
             ],
+            'CreateReleaseConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\ReleaseConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateRepository' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dataform\V1beta1\Repository',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateWorkflowConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\WorkflowConfig',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -75,7 +123,31 @@ return [
                     ],
                 ],
             ],
+            'DeleteReleaseConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteRepository' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteWorkflowConfig' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
                 'headerParams' => [
@@ -159,6 +231,26 @@ return [
                     ],
                 ],
             ],
+            'FetchRepositoryHistory' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getCommits',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\FetchRepositoryHistoryResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetCompilationResult' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dataform\V1beta1\CompilationResult',
@@ -171,9 +263,33 @@ return [
                     ],
                 ],
             ],
+            'GetReleaseConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\ReleaseConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetRepository' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dataform\V1beta1\Repository',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetWorkflowConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\WorkflowConfig',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -239,6 +355,26 @@ return [
                     ],
                 ],
             ],
+            'ListReleaseConfigs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getReleaseConfigs',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\ListReleaseConfigsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListRepositories' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -250,6 +386,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\Dataform\V1beta1\ListRepositoriesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListWorkflowConfigs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getWorkflowConfigs',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\ListWorkflowConfigsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -399,6 +555,26 @@ return [
                     ],
                 ],
             ],
+            'QueryRepositoryDirectoryContents' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getDirectoryEntries',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\QueryRepositoryDirectoryContentsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'QueryWorkflowInvocationActions' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -427,6 +603,18 @@ return [
                         'keyName' => 'workspace',
                         'fieldAccessors' => [
                             'getWorkspace',
+                        ],
+                    ],
+                ],
+            ],
+            'ReadRepositoryFile' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\ReadRepositoryFileResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -467,6 +655,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateReleaseConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\ReleaseConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'release_config.name',
+                        'fieldAccessors' => [
+                            'getReleaseConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateRepository' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dataform\V1beta1\Repository',
@@ -475,6 +676,19 @@ return [
                         'keyName' => 'repository.name',
                         'fieldAccessors' => [
                             'getRepository',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateWorkflowConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\WorkflowConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'workflow_config.name',
+                        'fieldAccessors' => [
+                            'getWorkflowConfig',
                             'getName',
                         ],
                     ],
@@ -526,11 +740,52 @@ return [
                 ],
                 'interfaceOverride' => 'google.cloud.location.Locations',
             ],
+            'GetIamPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Iam\V1\Policy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'resource',
+                        'fieldAccessors' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+                'interfaceOverride' => 'google.iam.v1.IAMPolicy',
+            ],
+            'SetIamPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Iam\V1\Policy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'resource',
+                        'fieldAccessors' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+                'interfaceOverride' => 'google.iam.v1.IAMPolicy',
+            ],
+            'TestIamPermissions' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Iam\V1\TestIamPermissionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'resource',
+                        'fieldAccessors' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+                'interfaceOverride' => 'google.iam.v1.IAMPolicy',
+            ],
             'templateMap' => [
                 'compilationResult' => 'projects/{project}/locations/{location}/repositories/{repository}/compilationResults/{compilation_result}',
                 'location' => 'projects/{project}/locations/{location}',
+                'releaseConfig' => 'projects/{project}/locations/{location}/repositories/{repository}/releaseConfigs/{release_config}',
                 'repository' => 'projects/{project}/locations/{location}/repositories/{repository}',
                 'secretVersion' => 'projects/{project}/secrets/{secret}/versions/{version}',
+                'workflowConfig' => 'projects/{project}/locations/{location}/repositories/{repository}/workflowConfigs/{workflow_config}',
                 'workflowInvocation' => 'projects/{project}/locations/{location}/repositories/{repository}/workflowInvocations/{workflow_invocation}',
                 'workspace' => 'projects/{project}/locations/{location}/repositories/{repository}/workspaces/{workspace}',
             ],

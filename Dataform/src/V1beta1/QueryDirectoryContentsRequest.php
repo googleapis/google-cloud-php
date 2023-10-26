@@ -22,8 +22,8 @@ class QueryDirectoryContentsRequest extends \Google\Protobuf\Internal\Message
      */
     private $workspace = '';
     /**
-     * Optional. The directory's full path including directory name, relative to the
-     * workspace root. If left unset, the workspace root is used.
+     * Optional. The directory's full path including directory name, relative to
+     * the workspace root. If left unset, the workspace root is used.
      *
      * Generated from protobuf field <code>string path = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -37,8 +37,8 @@ class QueryDirectoryContentsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_size = 0;
     /**
-     * Optional. Page token received from a previous `QueryDirectoryContents` call.
-     * Provide this to retrieve the subsequent page.
+     * Optional. Page token received from a previous `QueryDirectoryContents`
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
      * `QueryDirectoryContents` must match the call that provided the page
      * token.
@@ -56,15 +56,15 @@ class QueryDirectoryContentsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $workspace
      *           Required. The workspace's name.
      *     @type string $path
-     *           Optional. The directory's full path including directory name, relative to the
-     *           workspace root. If left unset, the workspace root is used.
+     *           Optional. The directory's full path including directory name, relative to
+     *           the workspace root. If left unset, the workspace root is used.
      *     @type int $page_size
      *           Optional. Maximum number of paths to return. The server may return fewer
      *           items than requested. If unspecified, the server will pick an appropriate
      *           default.
      *     @type string $page_token
-     *           Optional. Page token received from a previous `QueryDirectoryContents` call.
-     *           Provide this to retrieve the subsequent page.
+     *           Optional. Page token received from a previous `QueryDirectoryContents`
+     *           call. Provide this to retrieve the subsequent page.
      *           When paginating, all other parameters provided to
      *           `QueryDirectoryContents` must match the call that provided the page
      *           token.
@@ -102,8 +102,8 @@ class QueryDirectoryContentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The directory's full path including directory name, relative to the
-     * workspace root. If left unset, the workspace root is used.
+     * Optional. The directory's full path including directory name, relative to
+     * the workspace root. If left unset, the workspace root is used.
      *
      * Generated from protobuf field <code>string path = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -114,8 +114,8 @@ class QueryDirectoryContentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The directory's full path including directory name, relative to the
-     * workspace root. If left unset, the workspace root is used.
+     * Optional. The directory's full path including directory name, relative to
+     * the workspace root. If left unset, the workspace root is used.
      *
      * Generated from protobuf field <code>string path = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -160,8 +160,8 @@ class QueryDirectoryContentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Page token received from a previous `QueryDirectoryContents` call.
-     * Provide this to retrieve the subsequent page.
+     * Optional. Page token received from a previous `QueryDirectoryContents`
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
      * `QueryDirectoryContents` must match the call that provided the page
      * token.
@@ -175,8 +175,8 @@ class QueryDirectoryContentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Page token received from a previous `QueryDirectoryContents` call.
-     * Provide this to retrieve the subsequent page.
+     * Optional. Page token received from a previous `QueryDirectoryContents`
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
      * `QueryDirectoryContents` must match the call that provided the page
      * token.

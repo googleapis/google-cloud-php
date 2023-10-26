@@ -31,11 +31,11 @@ use Google\Cloud\Dataform\V1beta1\Repository;
 /**
  * Creates a new Repository in a given project and location.
  *
- * @param string $formattedParent The location in which to create the repository. Must be in the format
- *                                `projects/&#42;/locations/*`. Please see
+ * @param string $formattedParent The location in which to create the repository. Must be in the
+ *                                format `projects/&#42;/locations/*`. Please see
  *                                {@see DataformClient::locationName()} for help formatting this field.
- * @param string $repositoryId    The ID to use for the repository, which will become the final component of
- *                                the repository's resource name.
+ * @param string $repositoryId    The ID to use for the repository, which will become the final
+ *                                component of the repository's resource name.
  */
 function create_repository_sample(string $formattedParent, string $repositoryId): void
 {

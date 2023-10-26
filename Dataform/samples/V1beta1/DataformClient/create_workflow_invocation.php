@@ -31,8 +31,8 @@ use Google\Cloud\Dataform\V1beta1\WorkflowInvocation;
 /**
  * Creates a new WorkflowInvocation in a given Repository.
  *
- * @param string $formattedParent The repository in which to create the workflow invocation. Must be in the
- *                                format `projects/&#42;/locations/&#42;/repositories/*`. Please see
+ * @param string $formattedParent The repository in which to create the workflow invocation. Must
+ *                                be in the format `projects/&#42;/locations/&#42;/repositories/*`. Please see
  *                                {@see DataformClient::repositoryName()} for help formatting this field.
  */
 function create_workflow_invocation_sample(string $formattedParent): void
