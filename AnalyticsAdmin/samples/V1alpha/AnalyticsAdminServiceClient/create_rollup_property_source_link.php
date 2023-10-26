@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,37 +22,36 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_DeleteAccount_sync]
+// [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_CreateRollupPropertySourceLink_sync]
 use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\RollupPropertySourceLink;
 use Google\ApiCore\ApiException;
 
 /**
- * Marks target Account as soft-deleted (ie: "trashed") and returns it.
+ * Creates a roll-up property source link.
+ * Only roll-up properties can have source links, so this method will throw an
+ * error if used on other types of properties.
  *
- * This API does not have a method to restore soft-deleted accounts.
- * However, they can be restored using the Trash Can UI.
- *
- * If the accounts are not restored before the expiration time, the account
- * and all child resources (eg: Properties, GoogleAdsLinks, Streams,
- * AccessBindings) will be permanently purged.
- * https://support.google.com/analytics/answer/6154772
- *
- * Returns an error if the target is not found.
- *
- * @param string $formattedName The name of the Account to soft-delete.
- *                              Format: accounts/{account}
- *                              Example: "accounts/100"
- *                              Please see {@see AnalyticsAdminServiceClient::accountName()} for help formatting this field.
+ * @param string $formattedParent Format: properties/{property_id}
+ *                                Example: properties/1234
+ *                                Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
  */
-function delete_account_sample(string $formattedName): void
+function create_rollup_property_source_link_sample(string $formattedParent): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $rollupPropertySourceLink = new RollupPropertySourceLink();
+
     // Call the API and handle any network failures.
     try {
-        $analyticsAdminServiceClient->deleteAccount($formattedName);
-        printf('Call completed successfully.' . PHP_EOL);
+        /** @var RollupPropertySourceLink $response */
+        $response = $analyticsAdminServiceClient->createRollupPropertySourceLink(
+            $formattedParent,
+            $rollupPropertySourceLink
+        );
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -69,8 +68,8 @@ function delete_account_sample(string $formattedName): void
  */
 function callSample(): void
 {
-    $formattedName = AnalyticsAdminServiceClient::accountName('[ACCOUNT]');
+    $formattedParent = AnalyticsAdminServiceClient::propertyName('[PROPERTY]');
 
-    delete_account_sample($formattedName);
+    create_rollup_property_source_link_sample($formattedParent);
 }
-// [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_DeleteAccount_sync]
+// [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_CreateRollupPropertySourceLink_sync]

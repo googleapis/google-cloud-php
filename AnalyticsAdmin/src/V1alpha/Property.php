@@ -26,8 +26,7 @@ class Property extends \Google\Protobuf\Internal\Message
     /**
      * Immutable. The property type for this Property resource. When creating a
      * property, if the type is "PROPERTY_TYPE_UNSPECIFIED", then
-     * "ORDINARY_PROPERTY" will be implied. "SUBPROPERTY" and "ROLLUP_PROPERTY"
-     * types cannot yet be created with the Google Analytics Admin API.
+     * "ORDINARY_PROPERTY" will be implied.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.PropertyType property_type = 14 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -131,8 +130,7 @@ class Property extends \Google\Protobuf\Internal\Message
      *     @type int $property_type
      *           Immutable. The property type for this Property resource. When creating a
      *           property, if the type is "PROPERTY_TYPE_UNSPECIFIED", then
-     *           "ORDINARY_PROPERTY" will be implied. "SUBPROPERTY" and "ROLLUP_PROPERTY"
-     *           types cannot yet be created with the Google Analytics Admin API.
+     *           "ORDINARY_PROPERTY" will be implied.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time when the entity was originally created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -214,8 +212,7 @@ class Property extends \Google\Protobuf\Internal\Message
     /**
      * Immutable. The property type for this Property resource. When creating a
      * property, if the type is "PROPERTY_TYPE_UNSPECIFIED", then
-     * "ORDINARY_PROPERTY" will be implied. "SUBPROPERTY" and "ROLLUP_PROPERTY"
-     * types cannot yet be created with the Google Analytics Admin API.
+     * "ORDINARY_PROPERTY" will be implied.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.PropertyType property_type = 14 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
@@ -228,8 +225,7 @@ class Property extends \Google\Protobuf\Internal\Message
     /**
      * Immutable. The property type for this Property resource. When creating a
      * property, if the type is "PROPERTY_TYPE_UNSPECIFIED", then
-     * "ORDINARY_PROPERTY" will be implied. "SUBPROPERTY" and "ROLLUP_PROPERTY"
-     * types cannot yet be created with the Google Analytics Admin API.
+     * "ORDINARY_PROPERTY" will be implied.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.PropertyType property_type = 14 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var
