@@ -32,7 +32,8 @@ use Google\Cloud\Dataform\V1beta1\RemoveFileRequest;
  *
  * @param string $formattedWorkspace The workspace's name. Please see
  *                                   {@see DataformClient::workspaceName()} for help formatting this field.
- * @param string $path               The file's full path including filename, relative to the workspace root.
+ * @param string $path               The file's full path including filename, relative to the
+ *                                   workspace root.
  */
 function remove_file_sample(string $formattedWorkspace, string $path): void
 {

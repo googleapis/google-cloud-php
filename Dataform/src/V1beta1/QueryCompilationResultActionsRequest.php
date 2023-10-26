@@ -22,16 +22,17 @@ class QueryCompilationResultActionsRequest extends \Google\Protobuf\Internal\Mes
      */
     private $name = '';
     /**
-     * Optional. Maximum number of compilation results to return. The server may return
-     * fewer items than requested. If unspecified, the server will pick an
+     * Optional. Maximum number of compilation results to return. The server may
+     * return fewer items than requested. If unspecified, the server will pick an
      * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. Page token received from a previous `QueryCompilationResultActions` call.
-     * Provide this to retrieve the subsequent page.
+     * Optional. Page token received from a previous
+     * `QueryCompilationResultActions` call. Provide this to retrieve the
+     * subsequent page.
      * When paginating, all other parameters provided to
      * `QueryCompilationResultActions` must match the call that provided the page
      * token.
@@ -40,8 +41,8 @@ class QueryCompilationResultActionsRequest extends \Google\Protobuf\Internal\Mes
      */
     private $page_token = '';
     /**
-     * Optional. Optional filter for the returned list. Filtering is only currently
-     * supported on the `file_path` field.
+     * Optional. Optional filter for the returned list. Filtering is only
+     * currently supported on the `file_path` field.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -56,18 +57,19 @@ class QueryCompilationResultActionsRequest extends \Google\Protobuf\Internal\Mes
      *     @type string $name
      *           Required. The compilation result's name.
      *     @type int $page_size
-     *           Optional. Maximum number of compilation results to return. The server may return
-     *           fewer items than requested. If unspecified, the server will pick an
+     *           Optional. Maximum number of compilation results to return. The server may
+     *           return fewer items than requested. If unspecified, the server will pick an
      *           appropriate default.
      *     @type string $page_token
-     *           Optional. Page token received from a previous `QueryCompilationResultActions` call.
-     *           Provide this to retrieve the subsequent page.
+     *           Optional. Page token received from a previous
+     *           `QueryCompilationResultActions` call. Provide this to retrieve the
+     *           subsequent page.
      *           When paginating, all other parameters provided to
      *           `QueryCompilationResultActions` must match the call that provided the page
      *           token.
      *     @type string $filter
-     *           Optional. Optional filter for the returned list. Filtering is only currently
-     *           supported on the `file_path` field.
+     *           Optional. Optional filter for the returned list. Filtering is only
+     *           currently supported on the `file_path` field.
      * }
      */
     public function __construct($data = NULL) {
@@ -102,8 +104,8 @@ class QueryCompilationResultActionsRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Optional. Maximum number of compilation results to return. The server may return
-     * fewer items than requested. If unspecified, the server will pick an
+     * Optional. Maximum number of compilation results to return. The server may
+     * return fewer items than requested. If unspecified, the server will pick an
      * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -115,8 +117,8 @@ class QueryCompilationResultActionsRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Optional. Maximum number of compilation results to return. The server may return
-     * fewer items than requested. If unspecified, the server will pick an
+     * Optional. Maximum number of compilation results to return. The server may
+     * return fewer items than requested. If unspecified, the server will pick an
      * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -132,8 +134,9 @@ class QueryCompilationResultActionsRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Optional. Page token received from a previous `QueryCompilationResultActions` call.
-     * Provide this to retrieve the subsequent page.
+     * Optional. Page token received from a previous
+     * `QueryCompilationResultActions` call. Provide this to retrieve the
+     * subsequent page.
      * When paginating, all other parameters provided to
      * `QueryCompilationResultActions` must match the call that provided the page
      * token.
@@ -147,8 +150,9 @@ class QueryCompilationResultActionsRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Optional. Page token received from a previous `QueryCompilationResultActions` call.
-     * Provide this to retrieve the subsequent page.
+     * Optional. Page token received from a previous
+     * `QueryCompilationResultActions` call. Provide this to retrieve the
+     * subsequent page.
      * When paginating, all other parameters provided to
      * `QueryCompilationResultActions` must match the call that provided the page
      * token.
@@ -166,8 +170,8 @@ class QueryCompilationResultActionsRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Optional. Optional filter for the returned list. Filtering is only currently
-     * supported on the `file_path` field.
+     * Optional. Optional filter for the returned list. Filtering is only
+     * currently supported on the `file_path` field.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -178,8 +182,8 @@ class QueryCompilationResultActionsRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Optional. Optional filter for the returned list. Filtering is only currently
-     * supported on the `file_path` field.
+     * Optional. Optional filter for the returned list. Filtering is only
+     * currently supported on the `file_path` field.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

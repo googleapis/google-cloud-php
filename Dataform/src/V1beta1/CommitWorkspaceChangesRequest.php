@@ -34,8 +34,8 @@ class CommitWorkspaceChangesRequest extends \Google\Protobuf\Internal\Message
      */
     private $commit_message = '';
     /**
-     * Optional. Full file paths to commit including filename, rooted at workspace root. If
-     * left empty, all files will be committed.
+     * Optional. Full file paths to commit including filename, rooted at workspace
+     * root. If left empty, all files will be committed.
      *
      * Generated from protobuf field <code>repeated string paths = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -54,8 +54,8 @@ class CommitWorkspaceChangesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $commit_message
      *           Optional. The commit's message.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $paths
-     *           Optional. Full file paths to commit including filename, rooted at workspace root. If
-     *           left empty, all files will be committed.
+     *           Optional. Full file paths to commit including filename, rooted at workspace
+     *           root. If left empty, all files will be committed.
      * }
      */
     public function __construct($data = NULL) {
@@ -152,8 +152,8 @@ class CommitWorkspaceChangesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Full file paths to commit including filename, rooted at workspace root. If
-     * left empty, all files will be committed.
+     * Optional. Full file paths to commit including filename, rooted at workspace
+     * root. If left empty, all files will be committed.
      *
      * Generated from protobuf field <code>repeated string paths = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -164,8 +164,8 @@ class CommitWorkspaceChangesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Full file paths to commit including filename, rooted at workspace root. If
-     * left empty, all files will be committed.
+     * Optional. Full file paths to commit including filename, rooted at workspace
+     * root. If left empty, all files will be committed.
      *
      * Generated from protobuf field <code>repeated string paths = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

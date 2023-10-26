@@ -26,8 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
+use Google\Cloud\Dataform\V1beta1\DirectoryEntry;
 use Google\Cloud\Dataform\V1beta1\QueryDirectoryContentsRequest;
-use Google\Cloud\Dataform\V1beta1\QueryDirectoryContentsResponse\DirectoryEntry;
 
 /**
  * Returns the contents of a given Workspace directory.
