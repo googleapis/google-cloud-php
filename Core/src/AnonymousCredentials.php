@@ -83,7 +83,7 @@ class AnonymousCredentials implements
         $authUri = null,
         callable $httpHandler = null
     ) {
-        return $metadata;
+        return $metadata + ['authorization' => null];
     }
 
     /**
