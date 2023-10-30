@@ -20,6 +20,9 @@ namespace Google\Cloud\Firestore\Tests\System;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Core\Testing\System\DeletionQueue;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
+use Google\Cloud\Firestore\CollectionReference;
+use Google\Cloud\Firestore\DocumentReference;
+use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FirestoreClient;
 
 class FirestoreTestCase extends SystemTestCase

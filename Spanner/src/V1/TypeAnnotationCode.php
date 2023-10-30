@@ -45,11 +45,20 @@ class TypeAnnotationCode
      * Generated from protobuf enum <code>PG_JSONB = 3;</code>
      */
     const PG_JSONB = 3;
+    /**
+     * PostgreSQL compatible OID type. This annotation can be used by a client
+     * interacting with PostgreSQL-enabled Spanner database to specify that a
+     * value should be treated using the semantics of the OID type.
+     *
+     * Generated from protobuf enum <code>PG_OID = 4;</code>
+     */
+    const PG_OID = 4;
 
     private static $valueToName = [
         self::TYPE_ANNOTATION_CODE_UNSPECIFIED => 'TYPE_ANNOTATION_CODE_UNSPECIFIED',
         self::PG_NUMERIC => 'PG_NUMERIC',
         self::PG_JSONB => 'PG_JSONB',
+        self::PG_OID => 'PG_OID',
     ];
 
     public static function name($value)
