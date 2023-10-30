@@ -1,0 +1,78 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.functions.v2",
+    "libraryPackage": "Google\\Cloud\\Functions\\V2",
+    "services": {
+        "FunctionService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "FunctionServiceGapicClient",
+                    "rpcs": {
+                        "CreateFunction": {
+                            "methods": [
+                                "createFunction"
+                            ]
+                        },
+                        "DeleteFunction": {
+                            "methods": [
+                                "deleteFunction"
+                            ]
+                        },
+                        "GenerateDownloadUrl": {
+                            "methods": [
+                                "generateDownloadUrl"
+                            ]
+                        },
+                        "GenerateUploadUrl": {
+                            "methods": [
+                                "generateUploadUrl"
+                            ]
+                        },
+                        "GetFunction": {
+                            "methods": [
+                                "getFunction"
+                            ]
+                        },
+                        "ListFunctions": {
+                            "methods": [
+                                "listFunctions"
+                            ]
+                        },
+                        "ListRuntimes": {
+                            "methods": [
+                                "listRuntimes"
+                            ]
+                        },
+                        "UpdateFunction": {
+                            "methods": [
+                                "updateFunction"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
