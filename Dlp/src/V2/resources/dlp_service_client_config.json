@@ -54,6 +54,11 @@
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
+                "CreateDiscoveryConfig": {
+                    "timeout_millis": 300000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
                 "CreateDlpJob": {
                     "timeout_millis": 300000,
                     "retry_codes_name": "no_retry_1_codes",
@@ -84,6 +89,11 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "DeleteDiscoveryConfig": {
+                    "timeout_millis": 300000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "DeleteDlpJob": {
                     "timeout_millis": 300000,
                     "retry_codes_name": "retry_policy_1_codes",
@@ -110,6 +120,11 @@
                     "retry_params_name": "no_retry_1_params"
                 },
                 "GetDeidentifyTemplate": {
+                    "timeout_millis": 300000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetDiscoveryConfig": {
                     "timeout_millis": 300000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -154,6 +169,11 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "ListDiscoveryConfigs": {
+                    "timeout_millis": 300000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "ListDlpJobs": {
                     "timeout_millis": 300000,
                     "retry_codes_name": "retry_policy_1_codes",
@@ -190,6 +210,11 @@
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "UpdateDeidentifyTemplate": {
+                    "timeout_millis": 300000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "UpdateDiscoveryConfig": {
                     "timeout_millis": 300000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"

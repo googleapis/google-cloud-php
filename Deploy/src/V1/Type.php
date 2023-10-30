@@ -50,6 +50,12 @@ class Type
      */
     const TYPE_RESOURCE_DELETED = 6;
     /**
+     * Rollout updated.
+     *
+     * Generated from protobuf enum <code>TYPE_ROLLOUT_UPDATE = 7;</code>
+     */
+    const TYPE_ROLLOUT_UPDATE = 7;
+    /**
      * Deprecated: This field is never used. Use release_render log type instead.
      *
      * Generated from protobuf enum <code>TYPE_RENDER_STATUES_CHANGE = 2 [deprecated = true];</code>
@@ -63,6 +69,7 @@ class Type
         self::TYPE_PROCESS_ABORTED => 'TYPE_PROCESS_ABORTED',
         self::TYPE_RESTRICTION_VIOLATED => 'TYPE_RESTRICTION_VIOLATED',
         self::TYPE_RESOURCE_DELETED => 'TYPE_RESOURCE_DELETED',
+        self::TYPE_ROLLOUT_UPDATE => 'TYPE_ROLLOUT_UPDATE',
         self::TYPE_RENDER_STATUES_CHANGE => 'TYPE_RENDER_STATUES_CHANGE',
     ];
 

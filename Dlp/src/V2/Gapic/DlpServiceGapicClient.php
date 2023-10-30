@@ -38,6 +38,7 @@ use Google\Cloud\Dlp\V2\ByteContentItem;
 use Google\Cloud\Dlp\V2\CancelDlpJobRequest;
 use Google\Cloud\Dlp\V2\ContentItem;
 use Google\Cloud\Dlp\V2\CreateDeidentifyTemplateRequest;
+use Google\Cloud\Dlp\V2\CreateDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\CreateDlpJobRequest;
 use Google\Cloud\Dlp\V2\CreateInspectTemplateRequest;
 use Google\Cloud\Dlp\V2\CreateJobTriggerRequest;
@@ -47,14 +48,17 @@ use Google\Cloud\Dlp\V2\DeidentifyContentRequest;
 use Google\Cloud\Dlp\V2\DeidentifyContentResponse;
 use Google\Cloud\Dlp\V2\DeidentifyTemplate;
 use Google\Cloud\Dlp\V2\DeleteDeidentifyTemplateRequest;
+use Google\Cloud\Dlp\V2\DeleteDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\DeleteDlpJobRequest;
 use Google\Cloud\Dlp\V2\DeleteInspectTemplateRequest;
 use Google\Cloud\Dlp\V2\DeleteJobTriggerRequest;
 use Google\Cloud\Dlp\V2\DeleteStoredInfoTypeRequest;
+use Google\Cloud\Dlp\V2\DiscoveryConfig;
 use Google\Cloud\Dlp\V2\DlpJob;
 use Google\Cloud\Dlp\V2\DlpJobType;
 use Google\Cloud\Dlp\V2\FinishDlpJobRequest;
 use Google\Cloud\Dlp\V2\GetDeidentifyTemplateRequest;
+use Google\Cloud\Dlp\V2\GetDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\GetDlpJobRequest;
 use Google\Cloud\Dlp\V2\GetInspectTemplateRequest;
 use Google\Cloud\Dlp\V2\GetJobTriggerRequest;
@@ -71,6 +75,8 @@ use Google\Cloud\Dlp\V2\InspectTemplate;
 use Google\Cloud\Dlp\V2\JobTrigger;
 use Google\Cloud\Dlp\V2\ListDeidentifyTemplatesRequest;
 use Google\Cloud\Dlp\V2\ListDeidentifyTemplatesResponse;
+use Google\Cloud\Dlp\V2\ListDiscoveryConfigsRequest;
+use Google\Cloud\Dlp\V2\ListDiscoveryConfigsResponse;
 use Google\Cloud\Dlp\V2\ListDlpJobsRequest;
 use Google\Cloud\Dlp\V2\ListDlpJobsResponse;
 use Google\Cloud\Dlp\V2\ListInfoTypesRequest;
@@ -90,6 +96,7 @@ use Google\Cloud\Dlp\V2\RiskAnalysisJobConfig;
 use Google\Cloud\Dlp\V2\StoredInfoType;
 use Google\Cloud\Dlp\V2\StoredInfoTypeConfig;
 use Google\Cloud\Dlp\V2\UpdateDeidentifyTemplateRequest;
+use Google\Cloud\Dlp\V2\UpdateDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\UpdateInspectTemplateRequest;
 use Google\Cloud\Dlp\V2\UpdateJobTriggerRequest;
 use Google\Cloud\Dlp\V2\UpdateStoredInfoTypeRequest;
@@ -150,6 +157,8 @@ class DlpServiceGapicClient
     ];
 
     private static $deidentifyTemplateNameTemplate;
+
+    private static $discoveryConfigNameTemplate;
 
     private static $dlpJobNameTemplate;
 
@@ -235,6 +244,17 @@ class DlpServiceGapicClient
         }
 
         return self::$deidentifyTemplateNameTemplate;
+    }
+
+    private static function getDiscoveryConfigNameTemplate()
+    {
+        if (self::$discoveryConfigNameTemplate == null) {
+            self::$discoveryConfigNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/discoveryConfigs/{discovery_config}'
+            );
+        }
+
+        return self::$discoveryConfigNameTemplate;
     }
 
     private static function getDlpJobNameTemplate()
@@ -504,6 +524,7 @@ class DlpServiceGapicClient
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'deidentifyTemplate' => self::getDeidentifyTemplateNameTemplate(),
+                'discoveryConfig' => self::getDiscoveryConfigNameTemplate(),
                 'dlpJob' => self::getDlpJobNameTemplate(),
                 'inspectTemplate' => self::getInspectTemplateNameTemplate(),
                 'jobTrigger' => self::getJobTriggerNameTemplate(),
@@ -550,6 +571,28 @@ class DlpServiceGapicClient
         return self::getDeidentifyTemplateNameTemplate()->render([
             'organization' => $organization,
             'deidentify_template' => $deidentifyTemplate,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * discovery_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $discoveryConfig
+     *
+     * @return string The formatted discovery_config resource.
+     */
+    public static function discoveryConfigName(
+        $project,
+        $location,
+        $discoveryConfig
+    ) {
+        return self::getDiscoveryConfigNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'discovery_config' => $discoveryConfig,
         ]);
     }
 
@@ -1020,6 +1063,7 @@ class DlpServiceGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - deidentifyTemplate: organizations/{organization}/deidentifyTemplates/{deidentify_template}
+     * - discoveryConfig: projects/{project}/locations/{location}/discoveryConfigs/{discovery_config}
      * - dlpJob: projects/{project}/dlpJobs/{dlp_job}
      * - inspectTemplate: organizations/{organization}/inspectTemplates/{inspect_template}
      * - jobTrigger: projects/{project}/jobTriggers/{job_trigger}
@@ -1330,6 +1374,78 @@ class DlpServiceGapicClient
         return $this->startCall(
             'CreateDeidentifyTemplate',
             DeidentifyTemplate::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Creates a config for discovery to scan and profile storage.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedParent = $dlpServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $discoveryConfig = new DiscoveryConfig();
+     *     $response = $dlpServiceClient->createDiscoveryConfig($formattedParent, $discoveryConfig);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string          $parent          Required. Parent resource name.
+     *
+     *                                         The format of this value is as follows:
+     *                                         `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *
+     *                                         The following example `parent` string specifies a parent project with the
+     *                                         identifier `example-project`, and specifies the `europe-west3` location
+     *                                         for processing data:
+     *
+     *                                         parent=projects/example-project/locations/europe-west3
+     * @param DiscoveryConfig $discoveryConfig Required. The DiscoveryConfig to create.
+     * @param array           $optionalArgs    {
+     *     Optional.
+     *
+     *     @type string $configId
+     *           The config ID can contain uppercase and lowercase letters,
+     *           numbers, and hyphens; that is, it must match the regular
+     *           expression: `[a-zA-Z\d-_]+`. The maximum length is 100
+     *           characters. Can be empty to allow the system to generate one.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dlp\V2\DiscoveryConfig
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createDiscoveryConfig(
+        $parent,
+        $discoveryConfig,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateDiscoveryConfigRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setDiscoveryConfig($discoveryConfig);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['configId'])) {
+            $request->setConfigId($optionalArgs['configId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateDiscoveryConfig',
+            DiscoveryConfig::class,
             $optionalArgs,
             $request
         )->wait();
@@ -1848,8 +1964,9 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and deidentify template to be deleted,
-     *                             for example `organizations/433245324/deidentifyTemplates/432452342` or
+     * @param string $name         Required. Resource name of the organization and deidentify template to be
+     *                             deleted, for example
+     *                             `organizations/433245324/deidentifyTemplates/432452342` or
      *                             projects/project-id/deidentifyTemplates/432452342.
      * @param array  $optionalArgs {
      *     Optional.
@@ -1876,6 +1993,53 @@ class DlpServiceGapicClient
             : $requestParams->getHeader();
         return $this->startCall(
             'DeleteDeidentifyTemplate',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes a discovery configuration.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedName = $dlpServiceClient->discoveryConfigName('[PROJECT]', '[LOCATION]', '[DISCOVERY_CONFIG]');
+     *     $dlpServiceClient->deleteDiscoveryConfig($formattedName);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name of the project and the config, for example
+     *                             `projects/dlp-test-project/discoveryConfigs/53234423`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteDiscoveryConfig($name, array $optionalArgs = [])
+    {
+        $request = new DeleteDiscoveryConfigRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteDiscoveryConfig',
             GPBEmpty::class,
             $optionalArgs,
             $request
@@ -1947,9 +2111,9 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and inspectTemplate to be deleted, for
-     *                             example `organizations/433245324/inspectTemplates/432452342` or
-     *                             projects/project-id/inspectTemplates/432452342.
+     * @param string $name         Required. Resource name of the organization and inspectTemplate to be
+     *                             deleted, for example `organizations/433245324/inspectTemplates/432452342`
+     *                             or projects/project-id/inspectTemplates/432452342.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2045,8 +2209,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and storedInfoType to be deleted, for
-     *                             example `organizations/433245324/storedInfoTypes/432452342` or
+     * @param string $name         Required. Resource name of the organization and storedInfoType to be
+     *                             deleted, for example `organizations/433245324/storedInfoTypes/432452342` or
      *                             projects/project-id/storedInfoTypes/432452342.
      * @param array  $optionalArgs {
      *     Optional.
@@ -2142,9 +2306,9 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and deidentify template to be read, for
-     *                             example `organizations/433245324/deidentifyTemplates/432452342` or
-     *                             projects/project-id/deidentifyTemplates/432452342.
+     * @param string $name         Required. Resource name of the organization and deidentify template to be
+     *                             read, for example `organizations/433245324/deidentifyTemplates/432452342`
+     *                             or projects/project-id/deidentifyTemplates/432452342.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2173,6 +2337,55 @@ class DlpServiceGapicClient
         return $this->startCall(
             'GetDeidentifyTemplate',
             DeidentifyTemplate::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets a discovery configuration.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedName = $dlpServiceClient->discoveryConfigName('[PROJECT]', '[LOCATION]', '[DISCOVERY_CONFIG]');
+     *     $response = $dlpServiceClient->getDiscoveryConfig($formattedName);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name of the project and the configuration, for example
+     *                             `projects/dlp-test-project/discoveryConfigs/53234423`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dlp\V2\DiscoveryConfig
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getDiscoveryConfig($name, array $optionalArgs = [])
+    {
+        $request = new GetDiscoveryConfigRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetDiscoveryConfig',
+            DiscoveryConfig::class,
             $optionalArgs,
             $request
         )->wait();
@@ -2243,8 +2456,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and inspectTemplate to be read, for
-     *                             example `organizations/433245324/inspectTemplates/432452342` or
+     * @param string $name         Required. Resource name of the organization and inspectTemplate to be read,
+     *                             for example `organizations/433245324/inspectTemplates/432452342` or
      *                             projects/project-id/inspectTemplates/432452342.
      * @param array  $optionalArgs {
      *     Optional.
@@ -2345,8 +2558,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and storedInfoType to be read, for
-     *                             example `organizations/433245324/storedInfoTypes/432452342` or
+     * @param string $name         Required. Resource name of the organization and storedInfoType to be read,
+     *                             for example `organizations/433245324/storedInfoTypes/432452342` or
      *                             projects/project-id/storedInfoTypes/432452342.
      * @param array  $optionalArgs {
      *     Optional.
@@ -2397,8 +2610,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the job to execute a hybrid inspect on, for example
-     *                             `projects/dlp-test-project/dlpJob/53234423`.
+     * @param string $name         Required. Resource name of the job to execute a hybrid inspect on, for
+     *                             example `projects/dlp-test-project/dlpJob/53234423`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2454,8 +2667,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the trigger to execute a hybrid inspect on, for example
-     *                             `projects/dlp-test-project/jobTriggers/53234423`.
+     * @param string $name         Required. Resource name of the trigger to execute a hybrid inspect on, for
+     *                             example `projects/dlp-test-project/jobTriggers/53234423`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2662,8 +2875,8 @@ class DlpServiceGapicClient
      *           there are additional values to be retrieved.
      *     @type string $orderBy
      *           Comma separated list of fields to order by,
-     *           followed by `asc` or `desc` postfix. This list is case-insensitive,
-     *           default sorting order is ascending, redundant space characters are
+     *           followed by `asc` or `desc` postfix. This list is case insensitive. The
+     *           default sorting order is ascending. Redundant space characters are
      *           insignificant.
      *
      *           Example: `name asc,update_time, create_time desc`
@@ -2718,6 +2931,109 @@ class DlpServiceGapicClient
             'ListDeidentifyTemplates',
             $optionalArgs,
             ListDeidentifyTemplatesResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists discovery configurations.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedParent = $dlpServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $dlpServiceClient->listDiscoveryConfigs($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $dlpServiceClient->listDiscoveryConfigs($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Parent resource name.
+     *
+     *                             The format of this value is as follows:
+     *                             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *
+     *                             The following example `parent` string specifies a parent project with the
+     *                             identifier `example-project`, and specifies the `europe-west3` location
+     *                             for processing data:
+     *
+     *                             parent=projects/example-project/locations/europe-west3
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $orderBy
+     *           Comma separated list of config fields to order by,
+     *           followed by `asc` or `desc` postfix. This list is case insensitive. The
+     *           default sorting order is ascending. Redundant space characters are
+     *           insignificant.
+     *
+     *           Example: `name asc,update_time, create_time desc`
+     *
+     *           Supported fields are:
+     *
+     *           - `last_run_time`: corresponds to the last time the DiscoveryConfig ran.
+     *           - `name`: corresponds to the DiscoveryConfig's name.
+     *           - `status`: corresponds to DiscoveryConfig's status.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listDiscoveryConfigs($parent, array $optionalArgs = [])
+    {
+        $request = new ListDiscoveryConfigsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListDiscoveryConfigs',
+            $optionalArgs,
+            ListDiscoveryConfigsResponse::class,
             $request
         );
     }
@@ -2812,8 +3128,8 @@ class DlpServiceGapicClient
      *           For allowed values, use constants defined on {@see \Google\Cloud\Dlp\V2\DlpJobType}
      *     @type string $orderBy
      *           Comma separated list of fields to order by,
-     *           followed by `asc` or `desc` postfix. This list is case-insensitive,
-     *           default sorting order is ascending, redundant space characters are
+     *           followed by `asc` or `desc` postfix. This list is case insensitive. The
+     *           default sorting order is ascending. Redundant space characters are
      *           insignificant.
      *
      *           Example: `name asc, end_time asc, create_time desc`
@@ -3019,8 +3335,8 @@ class DlpServiceGapicClient
      *           there are additional values to be retrieved.
      *     @type string $orderBy
      *           Comma separated list of fields to order by,
-     *           followed by `asc` or `desc` postfix. This list is case-insensitive,
-     *           default sorting order is ascending, redundant space characters are
+     *           followed by `asc` or `desc` postfix. This list is case insensitive. The
+     *           default sorting order is ascending. Redundant space characters are
      *           insignificant.
      *
      *           Example: `name asc,update_time, create_time desc`
@@ -3136,8 +3452,8 @@ class DlpServiceGapicClient
      *           there are additional values to be retrieved.
      *     @type string $orderBy
      *           Comma separated list of triggeredJob fields to order by,
-     *           followed by `asc` or `desc` postfix. This list is case-insensitive,
-     *           default sorting order is ascending, redundant space characters are
+     *           followed by `asc` or `desc` postfix. This list is case insensitive. The
+     *           default sorting order is ascending. Redundant space characters are
      *           insignificant.
      *
      *           Example: `name asc,update_time, create_time desc`
@@ -3292,8 +3608,8 @@ class DlpServiceGapicClient
      *           there are additional values to be retrieved.
      *     @type string $orderBy
      *           Comma separated list of fields to order by,
-     *           followed by `asc` or `desc` postfix. This list is case-insensitive,
-     *           default sorting order is ascending, redundant space characters are
+     *           followed by `asc` or `desc` postfix. This list is case insensitive. The
+     *           default sorting order is ascending. Redundant space characters are
      *           insignificant.
      *
      *           Example: `name asc, display_name, create_time desc`
@@ -3600,8 +3916,9 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of organization and deidentify template to be updated, for
-     *                             example `organizations/433245324/deidentifyTemplates/432452342` or
+     * @param string $name         Required. Resource name of organization and deidentify template to be
+     *                             updated, for example
+     *                             `organizations/433245324/deidentifyTemplates/432452342` or
      *                             projects/project-id/deidentifyTemplates/432452342.
      * @param array  $optionalArgs {
      *     Optional.
@@ -3651,6 +3968,67 @@ class DlpServiceGapicClient
     }
 
     /**
+     * Updates a discovery configuration.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedName = $dlpServiceClient->discoveryConfigName('[PROJECT]', '[LOCATION]', '[DISCOVERY_CONFIG]');
+     *     $discoveryConfig = new DiscoveryConfig();
+     *     $response = $dlpServiceClient->updateDiscoveryConfig($formattedName, $discoveryConfig);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string          $name            Required. Resource name of the project and the configuration, for example
+     *                                         `projects/dlp-test-project/discoveryConfigs/53234423`.
+     * @param DiscoveryConfig $discoveryConfig Required. New DiscoveryConfig value.
+     * @param array           $optionalArgs    {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           Mask to control which fields get updated.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dlp\V2\DiscoveryConfig
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateDiscoveryConfig(
+        $name,
+        $discoveryConfig,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdateDiscoveryConfigRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setDiscoveryConfig($discoveryConfig);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateDiscoveryConfig',
+            DiscoveryConfig::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Updates the InspectTemplate.
      * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
      *
@@ -3665,8 +4043,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of organization and inspectTemplate to be updated, for
-     *                             example `organizations/433245324/inspectTemplates/432452342` or
+     * @param string $name         Required. Resource name of organization and inspectTemplate to be updated,
+     *                             for example `organizations/433245324/inspectTemplates/432452342` or
      *                             projects/project-id/inspectTemplates/432452342.
      * @param array  $optionalArgs {
      *     Optional.
@@ -3792,8 +4170,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of organization and storedInfoType to be updated, for
-     *                             example `organizations/433245324/storedInfoTypes/432452342` or
+     * @param string $name         Required. Resource name of organization and storedInfoType to be updated,
+     *                             for example `organizations/433245324/storedInfoTypes/432452342` or
      *                             projects/project-id/storedInfoTypes/432452342.
      * @param array  $optionalArgs {
      *     Optional.

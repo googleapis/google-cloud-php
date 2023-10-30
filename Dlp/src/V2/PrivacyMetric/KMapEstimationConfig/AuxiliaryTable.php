@@ -34,8 +34,8 @@ class AuxiliaryTable extends \Google\Protobuf\Internal\Message
      */
     private $quasi_ids;
     /**
-     * Required. The relative frequency column must contain a floating-point number
-     * between 0 and 1 (inclusive). Null values are assumed to be zero.
+     * Required. The relative frequency column must contain a floating-point
+     * number between 0 and 1 (inclusive). Null values are assumed to be zero.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId relative_frequency = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -52,8 +52,8 @@ class AuxiliaryTable extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Dlp\V2\PrivacyMetric\KMapEstimationConfig\AuxiliaryTable\QuasiIdField>|\Google\Protobuf\Internal\RepeatedField $quasi_ids
      *           Required. Quasi-identifier columns.
      *     @type \Google\Cloud\Dlp\V2\FieldId $relative_frequency
-     *           Required. The relative frequency column must contain a floating-point number
-     *           between 0 and 1 (inclusive). Null values are assumed to be zero.
+     *           Required. The relative frequency column must contain a floating-point
+     *           number between 0 and 1 (inclusive). Null values are assumed to be zero.
      * }
      */
     public function __construct($data = NULL) {
@@ -124,8 +124,8 @@ class AuxiliaryTable extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative frequency column must contain a floating-point number
-     * between 0 and 1 (inclusive). Null values are assumed to be zero.
+     * Required. The relative frequency column must contain a floating-point
+     * number between 0 and 1 (inclusive). Null values are assumed to be zero.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId relative_frequency = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dlp\V2\FieldId|null
@@ -146,8 +146,8 @@ class AuxiliaryTable extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative frequency column must contain a floating-point number
-     * between 0 and 1 (inclusive). Null values are assumed to be zero.
+     * Required. The relative frequency column must contain a floating-point
+     * number between 0 and 1 (inclusive). Null values are assumed to be zero.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId relative_frequency = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dlp\V2\FieldId $var

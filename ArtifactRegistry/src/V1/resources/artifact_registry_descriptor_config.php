@@ -3,6 +3,25 @@
 return [
     'interfaces' => [
         'google.devtools.artifactregistry.v1.ArtifactRegistry' => [
+            'BatchDeleteVersions' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\ArtifactRegistry\V1\BatchDeleteVersionsMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateRepository' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\ArtifactRegistry\V1\Repository',
@@ -585,7 +604,9 @@ return [
                 'projectSettings' => 'projects/{project}/projectSettings',
                 'pythonPackage' => 'projects/{project}/locations/{location}/repositories/{repository}/pythonPackages/{python_package}',
                 'repository' => 'projects/{project}/locations/{location}/repositories/{repository}',
+                'secretVersion' => 'projects/{project}/secrets/{secret}/versions/{secret_version}',
                 'tag' => 'projects/{project}/locations/{location}/repositories/{repository}/packages/{package}/tags/{tag}',
+                'version' => 'projects/{project}/locations/{location}/repositories/{repository}/packages/{package}/versions/{version}',
                 'vpcscConfig' => 'projects/{project}/locations/{location}/vpcscConfig',
             ],
         ],

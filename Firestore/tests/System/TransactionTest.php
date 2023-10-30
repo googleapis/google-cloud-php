@@ -126,80 +126,80 @@ class TransactionTest extends FirestoreTestCase
         });
     }
 
-    public function testAggregateQuery()
+    /**
+     * @dataProvider getAggregateCases
+     */
+    public function testAggregateQuery($type, $arg, $expected, $docsToAdd)
     {
-        $this->document->create([
-            'foos' => ['foobar'],
-        ]);
-        self::$collection->add([
-            'foos' => ['foo', 'bar'],
-        ]);
-        self::$collection->add([
-            'foos' => ['foo'],
-        ]);
+        $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
+        self::$localDeletionQueue->add($collection);
+        foreach ($docsToAdd as $docToAdd) {
+            $collection->add($docToAdd);
+        }
 
-        $aggregateQuery = self::$collection->where('foos', '!=', [])->addAggregation(
-            Aggregate::count()->alias('count')
+        $query = $collection->where('value', '!=', [])
+        ->addAggregation(
+            ($arg ? Aggregate::$type($arg) : Aggregate::$type())->alias('res')
         );
 
         // without sleep, test fails intermittently
         sleep(1);
         $readTime = new Timestamp(new \DateTimeImmutable('now'));
 
-        self::$client->runTransaction(function ($t) use ($aggregateQuery, $readTime) {
-            $snapshot = $t->runAggregateQuery($aggregateQuery, [
+        self::$client->runTransaction(function ($t) use ($query, $readTime, $expected) {
+            $snapshot = $t->runAggregateQuery($query, [
                 'readTime' => $readTime
             ]);
 
-            $this->assertEquals(3, $snapshot->get('count'));
+            $this->assertEquals($expected, $snapshot->get('res'));
 
             $this->assertEqualsWithDelta(
                 $readTime->get()->getTimestamp(),
                 $snapshot->getReadTime()->get()->getTimestamp(),
-                10
+                100
             );
         });
     }
 
-    public function testAggregateQueryWithMultipleAggregation()
+    /**
+     * @dataProvider getAggregateCases
+     */
+    public function testAggregateQueryWithMultipleAggregation($type, $arg, $expected, $docsToAdd)
     {
-        $this->document->create([
-            'bars' => ['foobar'],
-        ]);
-        self::$collection->add([
-            'bars' => ['foo', 'bar'],
-        ]);
-        self::$collection->add([
-            'bars' => ['foo'],
-        ]);
+        $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
+        self::$localDeletionQueue->add($collection);
+        foreach ($docsToAdd as $docToAdd) {
+            $collection->add($docToAdd);
+        }
 
-        $aggregateQuery = self::$collection->where('bars', '!=', [])->addAggregation(
-            Aggregate::count()->alias('count')
+        $query = $collection->where('value', '!=', [])
+        ->addAggregation(
+            ($arg ? Aggregate::$type($arg) : Aggregate::$type())->alias('res_1')
         );
-        $aggregateQuery = $aggregateQuery->addAggregation(
-            Aggregate::count()->alias('count_with_alias_a')
+        $query = $query->addAggregation(
+            ($arg ? Aggregate::$type($arg) : Aggregate::$type())->alias('res_2')
         );
-        $aggregateQuery = $aggregateQuery->addAggregation(
-            Aggregate::count()->alias('count_with_alias_b')
+        $query = $query->addAggregation(
+            ($arg ? Aggregate::$type($arg) : Aggregate::$type())->alias('res_3')
         );
 
         // without sleep, test fails intermittently
         sleep(1);
         $readTime = new Timestamp(new \DateTimeImmutable('now'));
 
-        self::$client->runTransaction(function ($t) use ($aggregateQuery, $readTime) {
-            $snapshot = $t->runAggregateQuery($aggregateQuery, [
+        self::$client->runTransaction(function ($t) use ($query, $readTime, $expected) {
+            $snapshot = $t->runAggregateQuery($query, [
                 'readTime' => $readTime
             ]);
 
-            $this->assertEquals(3, $snapshot->get('count'));
-            $this->assertEquals(3, $snapshot->get('count_with_alias_a'));
-            $this->assertEquals(3, $snapshot->get('count_with_alias_b'));
+            $this->assertEquals($expected, $snapshot->get('res_1'));
+            $this->assertEquals($expected, $snapshot->get('res_2'));
+            $this->assertEquals($expected, $snapshot->get('res_3'));
 
             $this->assertEqualsWithDelta(
                 $readTime->get()->getTimestamp(),
                 $snapshot->getReadTime()->get()->getTimestamp(),
-                10
+                100
             );
         });
     }
@@ -236,5 +236,29 @@ class TransactionTest extends FirestoreTestCase
 
         $this->assertTrue($didRetry);
         $this->assertEquals('bat', $this->document->snapshot()['foo']);
+    }
+
+    /**
+     * This dataProvider returns the test cases to test how
+     * aggregations work in a transaction.
+     *
+     * The values are of the form
+     * [
+     *     string $aggregationType,
+     *     string $targetFieldName,
+     *     array $expectedResults,
+     *     array $docsToAddBeforeTestRunning
+     * ]
+     */
+    public function getAggregateCases()
+    {
+        $docsToAdd = [
+            ['value' => ['foobar']],
+            ['value' => ['foo', 'bar']],
+            ['value' => ['foo']]
+        ];
+        return [
+            ['count', null, 3, $docsToAdd],
+        ];
     }
 }

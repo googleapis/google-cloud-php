@@ -81,6 +81,8 @@ use Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule;
 use Google\Cloud\SecurityCenter\V1\SecurityMarks;
 use Google\Cloud\SecurityCenter\V1\SetFindingStateRequest;
 use Google\Cloud\SecurityCenter\V1\SetMuteRequest;
+use Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleRequest;
+use Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleResponse;
 use Google\Cloud\SecurityCenter\V1\Source;
 use Google\Cloud\SecurityCenter\V1\UpdateBigQueryExportRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateExternalSystemRequest;
@@ -145,6 +147,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface setFindingStateAsync(SetFindingStateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setMuteAsync(SetMuteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface simulateSecurityHealthAnalyticsCustomModuleAsync(SimulateSecurityHealthAnalyticsCustomModuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateBigQueryExportAsync(UpdateBigQueryExportRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateExternalSystemAsync(UpdateExternalSystemRequest $request, array $optionalArgs = [])
@@ -2171,6 +2174,32 @@ final class SecurityCenterClient
     public function setMute(SetMuteRequest $request, array $callOptions = []): Finding
     {
         return $this->startApiCall('SetMute', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Simulates a given SecurityHealthAnalyticsCustomModule and Resource.
+     *
+     * The async variant is
+     * {@see SecurityCenterClient::simulateSecurityHealthAnalyticsCustomModuleAsync()}
+     * .
+     *
+     * @param SimulateSecurityHealthAnalyticsCustomModuleRequest $request     A request to house fields associated with the call.
+     * @param array                                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SimulateSecurityHealthAnalyticsCustomModuleResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function simulateSecurityHealthAnalyticsCustomModule(SimulateSecurityHealthAnalyticsCustomModuleRequest $request, array $callOptions = []): SimulateSecurityHealthAnalyticsCustomModuleResponse
+    {
+        return $this->startApiCall('SimulateSecurityHealthAnalyticsCustomModule', $request, $callOptions)->wait();
     }
 
     /**

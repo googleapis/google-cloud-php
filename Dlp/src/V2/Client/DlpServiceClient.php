@@ -36,6 +36,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Dlp\V2\ActivateJobTriggerRequest;
 use Google\Cloud\Dlp\V2\CancelDlpJobRequest;
 use Google\Cloud\Dlp\V2\CreateDeidentifyTemplateRequest;
+use Google\Cloud\Dlp\V2\CreateDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\CreateDlpJobRequest;
 use Google\Cloud\Dlp\V2\CreateInspectTemplateRequest;
 use Google\Cloud\Dlp\V2\CreateJobTriggerRequest;
@@ -44,13 +45,16 @@ use Google\Cloud\Dlp\V2\DeidentifyContentRequest;
 use Google\Cloud\Dlp\V2\DeidentifyContentResponse;
 use Google\Cloud\Dlp\V2\DeidentifyTemplate;
 use Google\Cloud\Dlp\V2\DeleteDeidentifyTemplateRequest;
+use Google\Cloud\Dlp\V2\DeleteDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\DeleteDlpJobRequest;
 use Google\Cloud\Dlp\V2\DeleteInspectTemplateRequest;
 use Google\Cloud\Dlp\V2\DeleteJobTriggerRequest;
 use Google\Cloud\Dlp\V2\DeleteStoredInfoTypeRequest;
+use Google\Cloud\Dlp\V2\DiscoveryConfig;
 use Google\Cloud\Dlp\V2\DlpJob;
 use Google\Cloud\Dlp\V2\FinishDlpJobRequest;
 use Google\Cloud\Dlp\V2\GetDeidentifyTemplateRequest;
+use Google\Cloud\Dlp\V2\GetDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\GetDlpJobRequest;
 use Google\Cloud\Dlp\V2\GetInspectTemplateRequest;
 use Google\Cloud\Dlp\V2\GetJobTriggerRequest;
@@ -63,6 +67,7 @@ use Google\Cloud\Dlp\V2\InspectContentResponse;
 use Google\Cloud\Dlp\V2\InspectTemplate;
 use Google\Cloud\Dlp\V2\JobTrigger;
 use Google\Cloud\Dlp\V2\ListDeidentifyTemplatesRequest;
+use Google\Cloud\Dlp\V2\ListDiscoveryConfigsRequest;
 use Google\Cloud\Dlp\V2\ListDlpJobsRequest;
 use Google\Cloud\Dlp\V2\ListInfoTypesRequest;
 use Google\Cloud\Dlp\V2\ListInfoTypesResponse;
@@ -75,6 +80,7 @@ use Google\Cloud\Dlp\V2\ReidentifyContentRequest;
 use Google\Cloud\Dlp\V2\ReidentifyContentResponse;
 use Google\Cloud\Dlp\V2\StoredInfoType;
 use Google\Cloud\Dlp\V2\UpdateDeidentifyTemplateRequest;
+use Google\Cloud\Dlp\V2\UpdateDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\UpdateInspectTemplateRequest;
 use Google\Cloud\Dlp\V2\UpdateJobTriggerRequest;
 use Google\Cloud\Dlp\V2\UpdateStoredInfoTypeRequest;
@@ -105,18 +111,21 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface activateJobTriggerAsync(ActivateJobTriggerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface cancelDlpJobAsync(CancelDlpJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createDeidentifyTemplateAsync(CreateDeidentifyTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createDiscoveryConfigAsync(CreateDiscoveryConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createDlpJobAsync(CreateDlpJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createInspectTemplateAsync(CreateInspectTemplateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createJobTriggerAsync(CreateJobTriggerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createStoredInfoTypeAsync(CreateStoredInfoTypeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deidentifyContentAsync(DeidentifyContentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteDeidentifyTemplateAsync(DeleteDeidentifyTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteDiscoveryConfigAsync(DeleteDiscoveryConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteDlpJobAsync(DeleteDlpJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteInspectTemplateAsync(DeleteInspectTemplateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteJobTriggerAsync(DeleteJobTriggerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteStoredInfoTypeAsync(DeleteStoredInfoTypeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface finishDlpJobAsync(FinishDlpJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getDeidentifyTemplateAsync(GetDeidentifyTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getDiscoveryConfigAsync(GetDiscoveryConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getDlpJobAsync(GetDlpJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getInspectTemplateAsync(GetInspectTemplateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getJobTriggerAsync(GetJobTriggerRequest $request, array $optionalArgs = [])
@@ -125,6 +134,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface hybridInspectJobTriggerAsync(HybridInspectJobTriggerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface inspectContentAsync(InspectContentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listDeidentifyTemplatesAsync(ListDeidentifyTemplatesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listDiscoveryConfigsAsync(ListDiscoveryConfigsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listDlpJobsAsync(ListDlpJobsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listInfoTypesAsync(ListInfoTypesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listInspectTemplatesAsync(ListInspectTemplatesRequest $request, array $optionalArgs = [])
@@ -133,6 +143,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface redactImageAsync(RedactImageRequest $request, array $optionalArgs = [])
  * @method PromiseInterface reidentifyContentAsync(ReidentifyContentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateDeidentifyTemplateAsync(UpdateDeidentifyTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateDiscoveryConfigAsync(UpdateDiscoveryConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateInspectTemplateAsync(UpdateInspectTemplateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateJobTriggerAsync(UpdateJobTriggerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateStoredInfoTypeAsync(UpdateStoredInfoTypeRequest $request, array $optionalArgs = [])
@@ -192,6 +203,25 @@ class DlpServiceClient
         return self::getPathTemplate('deidentifyTemplate')->render([
             'organization' => $organization,
             'deidentify_template' => $deidentifyTemplate,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * discovery_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $discoveryConfig
+     *
+     * @return string The formatted discovery_config resource.
+     */
+    public static function discoveryConfigName(string $project, string $location, string $discoveryConfig): string
+    {
+        return self::getPathTemplate('discoveryConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'discovery_config' => $discoveryConfig,
         ]);
     }
 
@@ -620,6 +650,7 @@ class DlpServiceClient
      * The following name formats are supported:
      * Template: Pattern
      * - deidentifyTemplate: organizations/{organization}/deidentifyTemplates/{deidentify_template}
+     * - discoveryConfig: projects/{project}/locations/{location}/discoveryConfigs/{discovery_config}
      * - dlpJob: projects/{project}/dlpJobs/{dlp_job}
      * - inspectTemplate: organizations/{organization}/inspectTemplates/{inspect_template}
      * - jobTrigger: projects/{project}/jobTriggers/{job_trigger}
@@ -813,6 +844,30 @@ class DlpServiceClient
     }
 
     /**
+     * Creates a config for discovery to scan and profile storage.
+     *
+     * The async variant is {@see DlpServiceClient::createDiscoveryConfigAsync()} .
+     *
+     * @param CreateDiscoveryConfigRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DiscoveryConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createDiscoveryConfig(CreateDiscoveryConfigRequest $request, array $callOptions = []): DiscoveryConfig
+    {
+        return $this->startApiCall('CreateDiscoveryConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new job to inspect storage or calculate risk metrics.
      * See https://cloud.google.com/dlp/docs/inspecting-storage and
      * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
@@ -976,6 +1031,28 @@ class DlpServiceClient
     }
 
     /**
+     * Deletes a discovery configuration.
+     *
+     * The async variant is {@see DlpServiceClient::deleteDiscoveryConfigAsync()} .
+     *
+     * @param DeleteDiscoveryConfigRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteDiscoveryConfig(DeleteDiscoveryConfigRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteDiscoveryConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a long-running DlpJob. This method indicates that the client is
      * no longer interested in the DlpJob result. The job will be canceled if
      * possible.
@@ -1118,6 +1195,30 @@ class DlpServiceClient
     public function getDeidentifyTemplate(GetDeidentifyTemplateRequest $request, array $callOptions = []): DeidentifyTemplate
     {
         return $this->startApiCall('GetDeidentifyTemplate', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets a discovery configuration.
+     *
+     * The async variant is {@see DlpServiceClient::getDiscoveryConfigAsync()} .
+     *
+     * @param GetDiscoveryConfigRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DiscoveryConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getDiscoveryConfig(GetDiscoveryConfigRequest $request, array $callOptions = []): DiscoveryConfig
+    {
+        return $this->startApiCall('GetDiscoveryConfig', $request, $callOptions)->wait();
     }
 
     /**
@@ -1333,6 +1434,30 @@ class DlpServiceClient
     }
 
     /**
+     * Lists discovery configurations.
+     *
+     * The async variant is {@see DlpServiceClient::listDiscoveryConfigsAsync()} .
+     *
+     * @param ListDiscoveryConfigsRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listDiscoveryConfigs(ListDiscoveryConfigsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListDiscoveryConfigs', $request, $callOptions);
+    }
+
+    /**
      * Lists DlpJobs that match the specified filter in the request.
      * See https://cloud.google.com/dlp/docs/inspecting-storage and
      * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
@@ -1542,6 +1667,30 @@ class DlpServiceClient
     public function updateDeidentifyTemplate(UpdateDeidentifyTemplateRequest $request, array $callOptions = []): DeidentifyTemplate
     {
         return $this->startApiCall('UpdateDeidentifyTemplate', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a discovery configuration.
+     *
+     * The async variant is {@see DlpServiceClient::updateDiscoveryConfigAsync()} .
+     *
+     * @param UpdateDiscoveryConfigRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DiscoveryConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateDiscoveryConfig(UpdateDiscoveryConfigRequest $request, array $callOptions = []): DiscoveryConfig
+    {
+        return $this->startApiCall('UpdateDiscoveryConfig', $request, $callOptions)->wait();
     }
 
     /**

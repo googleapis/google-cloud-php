@@ -180,6 +180,11 @@
                                 "setMute"
                             ]
                         },
+                        "SimulateSecurityHealthAnalyticsCustomModule": {
+                            "methods": [
+                                "simulateSecurityHealthAnalyticsCustomModule"
+                            ]
+                        },
                         "TestIamPermissions": {
                             "methods": [
                                 "testIamPermissions"
