@@ -28,19 +28,28 @@ class GitRemoteSettings extends \Google\Protobuf\Internal\Message
      */
     private $default_branch = '';
     /**
-     * Required. The name of the Secret Manager secret version to use as an
+     * Optional. The name of the Secret Manager secret version to use as an
      * authentication token for Git operations. Must be in the format
      * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
      *
-     * Generated from protobuf field <code>string authentication_token_secret_version = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string authentication_token_secret_version = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $authentication_token_secret_version = '';
     /**
-     * Output only. Indicates the status of the Git access token.
+     * Optional. Authentication fields for remote uris using SSH protocol.
      *
-     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Repository.GitRemoteSettings.TokenStatus token_status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Repository.GitRemoteSettings.SshAuthenticationConfig ssh_authentication_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $token_status = 0;
+    private $ssh_authentication_config = null;
+    /**
+     * Output only. Deprecated: The field does not contain any token status
+     * information. Instead use
+     * https://cloud.google.com/dataform/reference/rest/v1beta1/projects.locations.repositories/computeAccessTokenStatus
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Repository.GitRemoteSettings.TokenStatus token_status = 4 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
+     */
+    protected $token_status = 0;
 
     /**
      * Constructor.
@@ -53,11 +62,15 @@ class GitRemoteSettings extends \Google\Protobuf\Internal\Message
      *     @type string $default_branch
      *           Required. The Git remote's default branch name.
      *     @type string $authentication_token_secret_version
-     *           Required. The name of the Secret Manager secret version to use as an
+     *           Optional. The name of the Secret Manager secret version to use as an
      *           authentication token for Git operations. Must be in the format
      *           `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     *     @type \Google\Cloud\Dataform\V1beta1\Repository\GitRemoteSettings\SshAuthenticationConfig $ssh_authentication_config
+     *           Optional. Authentication fields for remote uris using SSH protocol.
      *     @type int $token_status
-     *           Output only. Indicates the status of the Git access token.
+     *           Output only. Deprecated: The field does not contain any token status
+     *           information. Instead use
+     *           https://cloud.google.com/dataform/reference/rest/v1beta1/projects.locations.repositories/computeAccessTokenStatus
      * }
      */
     public function __construct($data = NULL) {
@@ -118,11 +131,11 @@ class GitRemoteSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the Secret Manager secret version to use as an
+     * Optional. The name of the Secret Manager secret version to use as an
      * authentication token for Git operations. Must be in the format
      * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
      *
-     * Generated from protobuf field <code>string authentication_token_secret_version = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string authentication_token_secret_version = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getAuthenticationTokenSecretVersion()
@@ -131,11 +144,11 @@ class GitRemoteSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the Secret Manager secret version to use as an
+     * Optional. The name of the Secret Manager secret version to use as an
      * authentication token for Git operations. Must be in the format
      * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
      *
-     * Generated from protobuf field <code>string authentication_token_secret_version = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string authentication_token_secret_version = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -148,25 +161,69 @@ class GitRemoteSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Indicates the status of the Git access token.
+     * Optional. Authentication fields for remote uris using SSH protocol.
      *
-     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Repository.GitRemoteSettings.TokenStatus token_status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Repository.GitRemoteSettings.SshAuthenticationConfig ssh_authentication_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataform\V1beta1\Repository\GitRemoteSettings\SshAuthenticationConfig|null
+     */
+    public function getSshAuthenticationConfig()
+    {
+        return $this->ssh_authentication_config;
+    }
+
+    public function hasSshAuthenticationConfig()
+    {
+        return isset($this->ssh_authentication_config);
+    }
+
+    public function clearSshAuthenticationConfig()
+    {
+        unset($this->ssh_authentication_config);
+    }
+
+    /**
+     * Optional. Authentication fields for remote uris using SSH protocol.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Repository.GitRemoteSettings.SshAuthenticationConfig ssh_authentication_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataform\V1beta1\Repository\GitRemoteSettings\SshAuthenticationConfig $var
+     * @return $this
+     */
+    public function setSshAuthenticationConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\Repository\GitRemoteSettings\SshAuthenticationConfig::class);
+        $this->ssh_authentication_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Deprecated: The field does not contain any token status
+     * information. Instead use
+     * https://cloud.google.com/dataform/reference/rest/v1beta1/projects.locations.repositories/computeAccessTokenStatus
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Repository.GitRemoteSettings.TokenStatus token_status = 4 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
+     * @deprecated
      */
     public function getTokenStatus()
     {
+        @trigger_error('token_status is deprecated.', E_USER_DEPRECATED);
         return $this->token_status;
     }
 
     /**
-     * Output only. Indicates the status of the Git access token.
+     * Output only. Deprecated: The field does not contain any token status
+     * information. Instead use
+     * https://cloud.google.com/dataform/reference/rest/v1beta1/projects.locations.repositories/computeAccessTokenStatus
      *
-     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Repository.GitRemoteSettings.TokenStatus token_status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Repository.GitRemoteSettings.TokenStatus token_status = 4 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
+     * @deprecated
      */
     public function setTokenStatus($var)
     {
+        @trigger_error('token_status is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkEnum($var, \Google\Cloud\Dataform\V1beta1\Repository\GitRemoteSettings\TokenStatus::class);
         $this->token_status = $var;
 
