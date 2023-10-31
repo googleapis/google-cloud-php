@@ -32,8 +32,9 @@ use Google\Cloud\Dlp\V2\DlpServiceClient;
  * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
  * more.
  *
- * @param string $formattedName Resource name of organization and deidentify template to be updated, for
- *                              example `organizations/433245324/deidentifyTemplates/432452342` or
+ * @param string $formattedName Resource name of organization and deidentify template to be
+ *                              updated, for example
+ *                              `organizations/433245324/deidentifyTemplates/432452342` or
  *                              projects/project-id/deidentifyTemplates/432452342. Please see
  *                              {@see DlpServiceClient::deidentifyTemplateName()} for help formatting this field.
  */

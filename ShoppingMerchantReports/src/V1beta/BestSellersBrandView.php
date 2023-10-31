@@ -60,12 +60,6 @@ class BestSellersBrandView extends \Google\Protobuf\Internal\Message
      */
     protected $report_category_id = null;
     /**
-     * Google-assigned id of the brand.
-     *
-     * Generated from protobuf field <code>optional string id = 5;</code>
-     */
-    protected $id = null;
-    /**
      * Name of the brand.
      *
      * Generated from protobuf field <code>optional string brand = 6;</code>
@@ -135,8 +129,6 @@ class BestSellersBrandView extends \Google\Protobuf\Internal\Message
      *           Required in the `SELECT` clause. If a `WHERE` condition on
      *           `report_category_id` is not specified in the query, rankings for all
      *           top-level categories are returned.
-     *     @type string $id
-     *           Google-assigned id of the brand.
      *     @type string $brand
      *           Name of the brand.
      *     @type int|string $rank
@@ -331,42 +323,6 @@ class BestSellersBrandView extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->report_category_id = $var;
-
-        return $this;
-    }
-
-    /**
-     * Google-assigned id of the brand.
-     *
-     * Generated from protobuf field <code>optional string id = 5;</code>
-     * @return string
-     */
-    public function getId()
-    {
-        return isset($this->id) ? $this->id : '';
-    }
-
-    public function hasId()
-    {
-        return isset($this->id);
-    }
-
-    public function clearId()
-    {
-        unset($this->id);
-    }
-
-    /**
-     * Google-assigned id of the brand.
-     *
-     * Generated from protobuf field <code>optional string id = 5;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setId($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->id = $var;
 
         return $this;
     }

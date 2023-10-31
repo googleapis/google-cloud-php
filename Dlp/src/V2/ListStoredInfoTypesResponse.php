@@ -23,7 +23,7 @@ class ListStoredInfoTypesResponse extends \Google\Protobuf\Internal\Message
     private $stored_info_types;
     /**
      * If the next page is available then the next page token to be used
-     * in following ListStoredInfoTypes request.
+     * in the following ListStoredInfoTypes request.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -39,7 +39,7 @@ class ListStoredInfoTypesResponse extends \Google\Protobuf\Internal\Message
      *           List of storedInfoTypes, up to page_size in ListStoredInfoTypesRequest.
      *     @type string $next_page_token
      *           If the next page is available then the next page token to be used
-     *           in following ListStoredInfoTypes request.
+     *           in the following ListStoredInfoTypes request.
      * }
      */
     public function __construct($data = NULL) {
@@ -75,7 +75,7 @@ class ListStoredInfoTypesResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * If the next page is available then the next page token to be used
-     * in following ListStoredInfoTypes request.
+     * in the following ListStoredInfoTypes request.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -87,7 +87,7 @@ class ListStoredInfoTypesResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * If the next page is available then the next page token to be used
-     * in following ListStoredInfoTypes request.
+     * in the following ListStoredInfoTypes request.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

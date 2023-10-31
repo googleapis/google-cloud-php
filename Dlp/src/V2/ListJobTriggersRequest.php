@@ -33,7 +33,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Page token to continue retrieval. Comes from previous call
+     * Page token to continue retrieval. Comes from the previous call
      * to ListJobTriggers. `order_by` field must not
      * change for subsequent calls.
      *
@@ -41,15 +41,15 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
     /**
-     * Size of the page, can be limited by a server.
+     * Size of the page. This value can be limited by a server.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
     private $page_size = 0;
     /**
      * Comma separated list of triggeredJob fields to order by,
-     * followed by `asc` or `desc` postfix. This list is case-insensitive,
-     * default sorting order is ascending, redundant space characters are
+     * followed by `asc` or `desc` postfix. This list is case insensitive. The
+     * default sorting order is ascending. Redundant space characters are
      * insignificant.
      * Example: `name asc,update_time, create_time desc`
      * Supported fields are:
@@ -149,15 +149,15 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      *           for processing data:
      *               parent=projects/example-project/locations/europe-west3
      *     @type string $page_token
-     *           Page token to continue retrieval. Comes from previous call
+     *           Page token to continue retrieval. Comes from the previous call
      *           to ListJobTriggers. `order_by` field must not
      *           change for subsequent calls.
      *     @type int $page_size
-     *           Size of the page, can be limited by a server.
+     *           Size of the page. This value can be limited by a server.
      *     @type string $order_by
      *           Comma separated list of triggeredJob fields to order by,
-     *           followed by `asc` or `desc` postfix. This list is case-insensitive,
-     *           default sorting order is ascending, redundant space characters are
+     *           followed by `asc` or `desc` postfix. This list is case insensitive. The
+     *           default sorting order is ascending. Redundant space characters are
      *           insignificant.
      *           Example: `name asc,update_time, create_time desc`
      *           Supported fields are:
@@ -247,7 +247,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Page token to continue retrieval. Comes from previous call
+     * Page token to continue retrieval. Comes from the previous call
      * to ListJobTriggers. `order_by` field must not
      * change for subsequent calls.
      *
@@ -260,7 +260,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Page token to continue retrieval. Comes from previous call
+     * Page token to continue retrieval. Comes from the previous call
      * to ListJobTriggers. `order_by` field must not
      * change for subsequent calls.
      *
@@ -277,7 +277,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Size of the page, can be limited by a server.
+     * Size of the page. This value can be limited by a server.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      * @return int
@@ -288,7 +288,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Size of the page, can be limited by a server.
+     * Size of the page. This value can be limited by a server.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      * @param int $var
@@ -304,8 +304,8 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Comma separated list of triggeredJob fields to order by,
-     * followed by `asc` or `desc` postfix. This list is case-insensitive,
-     * default sorting order is ascending, redundant space characters are
+     * followed by `asc` or `desc` postfix. This list is case insensitive. The
+     * default sorting order is ascending. Redundant space characters are
      * insignificant.
      * Example: `name asc,update_time, create_time desc`
      * Supported fields are:
@@ -326,8 +326,8 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Comma separated list of triggeredJob fields to order by,
-     * followed by `asc` or `desc` postfix. This list is case-insensitive,
-     * default sorting order is ascending, redundant space characters are
+     * followed by `asc` or `desc` postfix. This list is case insensitive. The
+     * default sorting order is ascending. Redundant space characters are
      * insignificant.
      * Example: `name asc,update_time, create_time desc`
      * Supported fields are:

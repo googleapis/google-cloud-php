@@ -23,13 +23,13 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * The repository id to use for this repository.
+     * Required. The repository id to use for this repository.
      *
      * Generated from protobuf field <code>string repository_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $repository_id = '';
     /**
-     * The repository to be created.
+     * Required. The repository to be created.
      *
      * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.Repository repository = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -39,8 +39,8 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
      * @param string                                       $parent       Required. The name of the parent resource where the repository will be
      *                                                                   created. Please see
      *                                                                   {@see ArtifactRegistryClient::locationName()} for help formatting this field.
-     * @param \Google\Cloud\ArtifactRegistry\V1\Repository $repository   The repository to be created.
-     * @param string                                       $repositoryId The repository id to use for this repository.
+     * @param \Google\Cloud\ArtifactRegistry\V1\Repository $repository   Required. The repository to be created.
+     * @param string                                       $repositoryId Required. The repository id to use for this repository.
      *
      * @return \Google\Cloud\ArtifactRegistry\V1\CreateRepositoryRequest
      *
@@ -64,9 +64,9 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the parent resource where the repository will be
      *           created.
      *     @type string $repository_id
-     *           The repository id to use for this repository.
+     *           Required. The repository id to use for this repository.
      *     @type \Google\Cloud\ArtifactRegistry\V1\Repository $repository
-     *           The repository to be created.
+     *           Required. The repository to be created.
      * }
      */
     public function __construct($data = NULL) {
@@ -103,7 +103,7 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The repository id to use for this repository.
+     * Required. The repository id to use for this repository.
      *
      * Generated from protobuf field <code>string repository_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -114,7 +114,7 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The repository id to use for this repository.
+     * Required. The repository id to use for this repository.
      *
      * Generated from protobuf field <code>string repository_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -129,7 +129,7 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The repository to be created.
+     * Required. The repository to be created.
      *
      * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.Repository repository = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\ArtifactRegistry\V1\Repository|null
@@ -150,7 +150,7 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The repository to be created.
+     * Required. The repository to be created.
      *
      * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.Repository repository = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\ArtifactRegistry\V1\Repository $var

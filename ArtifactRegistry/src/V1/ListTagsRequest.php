@@ -16,7 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListTagsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the parent resource whose tags will be listed.
+     * The name of the parent package whose tags will be listed.
+     * For example:
+     * `projects/p1/locations/us-central1/repositories/repo1/packages/pkg1`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
@@ -46,7 +48,9 @@ class ListTagsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
-     * @param string $parent The name of the parent resource whose tags will be listed.
+     * @param string $parent The name of the parent package whose tags will be listed.
+     *                       For example:
+     *                       `projects/p1/locations/us-central1/repositories/repo1/packages/pkg1`.
      *
      * @return \Google\Cloud\ArtifactRegistry\V1\ListTagsRequest
      *
@@ -65,7 +69,9 @@ class ListTagsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The name of the parent resource whose tags will be listed.
+     *           The name of the parent package whose tags will be listed.
+     *           For example:
+     *           `projects/p1/locations/us-central1/repositories/repo1/packages/pkg1`.
      *     @type string $filter
      *           An expression for filtering the results of the request. Filter rules are
      *           case insensitive. The fields eligible for filtering are:
@@ -85,7 +91,9 @@ class ListTagsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the parent resource whose tags will be listed.
+     * The name of the parent package whose tags will be listed.
+     * For example:
+     * `projects/p1/locations/us-central1/repositories/repo1/packages/pkg1`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @return string
@@ -96,7 +104,9 @@ class ListTagsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the parent resource whose tags will be listed.
+     * The name of the parent package whose tags will be listed.
+     * For example:
+     * `projects/p1/locations/us-central1/repositories/repo1/packages/pkg1`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @param string $var

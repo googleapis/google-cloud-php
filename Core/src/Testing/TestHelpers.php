@@ -131,7 +131,7 @@ class TestHelpers
      */
     public static function perfBootstrap()
     {
-        $bootstraps = glob(self::projectRoot() .'/*/tests/Perf/bootstrap.php');
+        $bootstraps = glob(self::projectRoot() .'/*tests/Perf/bootstrap.php');
         foreach ($bootstraps as $bootstrap) {
             require_once $bootstrap;
         }
@@ -186,7 +186,7 @@ class TestHelpers
 
         SystemTestCase::setupQueue();
 
-        $bootstraps = glob(self::projectRoot() .'/*/tests/System/bootstrap.php');
+        $bootstraps = glob(self::projectRoot() .'/*tests/System/bootstrap.php');
         foreach ($bootstraps as $bootstrap) {
             require_once $bootstrap;
         }

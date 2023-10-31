@@ -1,5 +1,148 @@
 # Changelog
 
+## 0.224.0
+
+<details><summary>google/analytics-admin 0.19.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Delete `BatchDeleteUserLinks`, `DeleteUserLink`, `BatchUpdateUserLinks`, `UpdateUserLink`, `BatchCreateUserLinks`, `CreateUserLink`, `AuditUserLinks`, `ListUserLinks`, `BatchGetUserLinks`, `GetUserLink` from the Admin API v1 alph... ([#6733](https://github.com/googleapis/google-cloud-php/issues/6733))
+
+### Features
+
+* Add `DataRedactionSettings`, `RollupPropertySourceLink`, `SubpropertyEventFilterCondition`, `SubpropertyEventFilterExpression`, `SubpropertyEventFilterExpressionList`, `SubpropertyEventFilterClause`, `SubpropertyEventFilter` types ([5aefad6](https://github.com/googleapis/google-cloud-php/commit/5aefad63af7f3e83e68c999a8ccddbded3f0feb0))
+* Add `include_all_users`, `expand_groups` fields to `RunAccessReportRequest` ([5aefad6](https://github.com/googleapis/google-cloud-php/commit/5aefad63af7f3e83e68c999a8ccddbded3f0feb0))
+* Add `UpdateDataRedactionSettings`, `CreateRollupProperty`, `GetRollupPropertySourceLink`, `ListRollupPropertySourceLinks`, `CreateRollupPropertySourceLink`, `DeleteRollupPropertySourceLink`, `CreateSubproperty`, `CreateSubpropertyEventFilter`, `CreateSubpropertyEventFilter`, `ListSubpropertyEventFilters`, `UpdateSubpropertyEventFilter`, `DeleteSubpropertyEventFilter` methods to the Admin API v1 alpha ([5aefad6](https://github.com/googleapis/google-cloud-php/commit/5aefad63af7f3e83e68c999a8ccddbded3f0feb0))
+* Add the `data_redaction_settings` field to the `ChangeHistoryResource.resource` oneof field ([5aefad6](https://github.com/googleapis/google-cloud-php/commit/5aefad63af7f3e83e68c999a8ccddbded3f0feb0))
+* Add the `DATA_REDACTION_SETTINGS` option to the `ChangeHistoryResourceType` enum ([5aefad6](https://github.com/googleapis/google-cloud-php/commit/5aefad63af7f3e83e68c999a8ccddbded3f0feb0))
+
+
+### Bug Fixes
+
+* Delete `BatchDeleteUserLinks`, `DeleteUserLink`, `BatchUpdateUserLinks`, `UpdateUserLink`, `BatchCreateUserLinks`, `CreateUserLink`, `AuditUserLinks`, `ListUserLinks`, `BatchGetUserLinks`, `GetUserLink` from the Admin API v1 alph... ([#6733](https://github.com/googleapis/google-cloud-php/issues/6733)) ([5aefad6](https://github.com/googleapis/google-cloud-php/commit/5aefad63af7f3e83e68c999a8ccddbded3f0feb0))
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 0.5.0</summary>
+
+
+
+### Features
+
+* Add support for cleanup policies ([9b4bd43](https://github.com/googleapis/google-cloud-php/commit/9b4bd4328c25a5e9ccecc5bf6a4ace5c1a23373e))
+* Add support for Docker immutable tags ([9b4bd43](https://github.com/googleapis/google-cloud-php/commit/9b4bd4328c25a5e9ccecc5bf6a4ace5c1a23373e))
+* Add support for Go and KFP repositories ([9b4bd43](https://github.com/googleapis/google-cloud-php/commit/9b4bd4328c25a5e9ccecc5bf6a4ace5c1a23373e))
+* Add support for Physical Zone Separation ([9b4bd43](https://github.com/googleapis/google-cloud-php/commit/9b4bd4328c25a5e9ccecc5bf6a4ace5c1a23373e))
+* Add support for virtual and remote repositories ([9b4bd43](https://github.com/googleapis/google-cloud-php/commit/9b4bd4328c25a5e9ccecc5bf6a4ace5c1a23373e))
+* Expose the size of the Repository resource ([9b4bd43](https://github.com/googleapis/google-cloud-php/commit/9b4bd4328c25a5e9ccecc5bf6a4ace5c1a23373e))
+
+
+### Documentation
+
+* Mark the create_time and update_time in the Repository resource as output only fields ([9b4bd43](https://github.com/googleapis/google-cloud-php/commit/9b4bd4328c25a5e9ccecc5bf6a4ace5c1a23373e))
+* Mark the repository_id and repository fields in the CreateRepository request as required fields ([9b4bd43](https://github.com/googleapis/google-cloud-php/commit/9b4bd4328c25a5e9ccecc5bf6a4ace5c1a23373e))
+* Use code font for resource name references ([#6736](https://github.com/googleapis/google-cloud-php/issues/6736)) ([9b4bd43](https://github.com/googleapis/google-cloud-php/commit/9b4bd4328c25a5e9ccecc5bf6a4ace5c1a23373e))
+
+</details>
+
+<details><summary>google/cloud-batch 0.13.0</summary>
+
+
+
+### Features
+
+* Expose display_name to batch v1 API ([#6720](https://github.com/googleapis/google-cloud-php/issues/6720)) ([5acfacc](https://github.com/googleapis/google-cloud-php/commit/5acfacc97335319bd5d413f4c22af7cf57667576))
+
+</details>
+
+<details><summary>google/cloud-deploy 0.13.0</summary>
+
+
+
+### Features
+
+* Added platform log RolloutUpdateEvent ([#6728](https://github.com/googleapis/google-cloud-php/issues/6728)) ([055c39c](https://github.com/googleapis/google-cloud-php/commit/055c39cbd22784834c7e147d0c46f72a77f8ef95))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.11.0</summary>
+
+
+
+### Features
+
+* Introduce Discovery API protos and methods ([#6735](https://github.com/googleapis/google-cloud-php/issues/6735)) ([3eac688](https://github.com/googleapis/google-cloud-php/commit/3eac6886ef557c168de164f88ae9fd60c9b85c9e))
+
+
+### Documentation
+
+* Update comments for many messages. ([3eac688](https://github.com/googleapis/google-cloud-php/commit/3eac6886ef557c168de164f88ae9fd60c9b85c9e))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.37.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.46.5</summary>
+
+
+
+### Documentation
+
+* Modified some descriptions ([#6723](https://github.com/googleapis/google-cloud-php/issues/6723)) ([827b247](https://github.com/googleapis/google-cloud-php/commit/827b247b3d39c82624af6806be310e6ff1bc8cee))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.20.0</summary>
+
+
+
+### Features
+
+* Add SimulateSecurityHealthAnalyticsCustomModule API for testing SHA custom module ([#6730](https://github.com/googleapis/google-cloud-php/issues/6730)) ([4c9e4bd](https://github.com/googleapis/google-cloud-php/commit/4c9e4bd6b21995ec11625b1416bf9cb8d8d76b20))
+
+</details>
+
+<details><summary>google/shopping-merchant-reports 0.3.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Non_product_performance_view table, seller segments in product_performance_view table, and entity ids in best_seller tables are removed ([#6732](https://github.com/googleapis/google-cloud-php/issues/6732))
+
+### Bug Fixes
+
+* Non_product_performance_view table, seller segments in product_performance_view table, and entity ids in best_seller tables are removed ([#6732](https://github.com/googleapis/google-cloud-php/issues/6732)) ([d0aa538](https://github.com/googleapis/google-cloud-php/commit/d0aa5383e8f731fbf960f5d5e119671f05024170))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.66.0</summary>
+
+
+
+### Features
+
+* Add PG.OID type cod annotation ([#6740](https://github.com/googleapis/google-cloud-php/issues/6740)) ([8c83579](https://github.com/googleapis/google-cloud-php/commit/8c83579d45b08e4a375b895a39c62a2a51e11288))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 0.8.0</summary>
+
+
+
+### Features
+
+* A new value `dump_flags` is added to `VerifyExternalSyncSettingsRequest` ([b80b0d7](https://github.com/googleapis/google-cloud-php/commit/b80b0d761149b043ccf0da7ff379b416cc369e37))
+* A new value `LOCAL_INFILE_OFF` is added to enum `SqlExternalSyncSettingErrorType` ([#6729](https://github.com/googleapis/google-cloud-php/issues/6729)) ([b80b0d7](https://github.com/googleapis/google-cloud-php/commit/b80b0d761149b043ccf0da7ff379b416cc369e37))
+
+</details>
+
 ## 0.223.0
 
 <details><summary>google/cloud-access-approval 1.1.3</summary>

@@ -30,9 +30,9 @@ use Google\Cloud\Dlp\V2\DlpServiceClient;
  * Deletes an InspectTemplate.
  * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
  *
- * @param string $formattedName Resource name of the organization and inspectTemplate to be deleted, for
- *                              example `organizations/433245324/inspectTemplates/432452342` or
- *                              projects/project-id/inspectTemplates/432452342. Please see
+ * @param string $formattedName Resource name of the organization and inspectTemplate to be
+ *                              deleted, for example `organizations/433245324/inspectTemplates/432452342`
+ *                              or projects/project-id/inspectTemplates/432452342. Please see
  *                              {@see DlpServiceClient::inspectTemplateName()} for help formatting this field.
  */
 function delete_inspect_template_sample(string $formattedName): void
