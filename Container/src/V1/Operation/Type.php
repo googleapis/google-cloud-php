@@ -178,6 +178,13 @@ class Type
      * Generated from protobuf enum <code>RESIZE_CLUSTER = 18;</code>
      */
     const RESIZE_CLUSTER = 18;
+    /**
+     * Fleet features of GKE Enterprise are being upgraded. The cluster should
+     * be assumed to be blocked for other upgrades until the operation finishes.
+     *
+     * Generated from protobuf enum <code>FLEET_FEATURE_UPGRADE = 19;</code>
+     */
+    const FLEET_FEATURE_UPGRADE = 19;
 
     private static $valueToName = [
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
@@ -198,6 +205,7 @@ class Type
         self::SET_NETWORK_POLICY => 'SET_NETWORK_POLICY',
         self::SET_MAINTENANCE_POLICY => 'SET_MAINTENANCE_POLICY',
         self::RESIZE_CLUSTER => 'RESIZE_CLUSTER',
+        self::FLEET_FEATURE_UPGRADE => 'FLEET_FEATURE_UPGRADE',
     ];
 
     public static function name($value)
