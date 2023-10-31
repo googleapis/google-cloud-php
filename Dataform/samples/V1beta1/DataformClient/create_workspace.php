@@ -31,11 +31,11 @@ use Google\Cloud\Dataform\V1beta1\Workspace;
 /**
  * Creates a new Workspace in a given Repository.
  *
- * @param string $formattedParent The repository in which to create the workspace. Must be in the format
- *                                `projects/&#42;/locations/&#42;/repositories/*`. Please see
+ * @param string $formattedParent The repository in which to create the workspace. Must be in the
+ *                                format `projects/&#42;/locations/&#42;/repositories/*`. Please see
  *                                {@see DataformClient::repositoryName()} for help formatting this field.
- * @param string $workspaceId     The ID to use for the workspace, which will become the final component of
- *                                the workspace's resource name.
+ * @param string $workspaceId     The ID to use for the workspace, which will become the final
+ *                                component of the workspace's resource name.
  */
 function create_workspace_sample(string $formattedParent, string $workspaceId): void
 {

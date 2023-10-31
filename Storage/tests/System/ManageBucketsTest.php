@@ -160,13 +160,12 @@ class ManageBucketsTest extends StorageTestCase
         $this->assertEquals($lifecycle->toArray(), $bucket->info()['lifecycle']);
     }
 
-    public function testUpdateBucketWithAutoclassConfig()
+    /**
+     * @dataProvider autoclassConfigs
+     */
+    public function testCreateAndUpdateBucketWithAutoclassConfig($autoclassConfig)
     {
-        $autoclassConfig = [
-            'autoclass' => [
-                'enabled' => true,
-            ],
-        ];
+        $autoclassConfig = ['autoclass' => $autoclassConfig];
 
         $bucket = self::createBucket(
             self::$client,
@@ -174,13 +173,50 @@ class ManageBucketsTest extends StorageTestCase
             $autoclassConfig
         );
         $this->assertArrayHasKey('autoclass', $bucket->info());
-        $this->assertTrue($bucket->info()['autoclass']['enabled']);
+        $autoclassInfo = $bucket->info()['autoclass'];
+        $this->assertTrue($autoclassInfo['enabled']);
+        $this->assertArrayHasKey('toggleTime', $autoclassInfo);
+        $this->assertArrayHasKey('terminalStorageClass', $autoclassInfo);
+        if (array_key_exists('terminalStorageClass', $autoclassConfig)) {
+            $this->assertEquals(
+                $autoclassConfig['terminalStorageClass'],
+                $autoclassInfo['terminalStorageClass']
+            );
+        }
+        $this->assertArrayHasKey('terminalStorageClassUpdateTime', $autoclassInfo);
 
         // test disabling autoclass
-        $autoclassConfig['autoclass']['enabled'] = false;
+        $autoclassConfig = ['autoclass' => ['enabled' => false]];
         $bucket->update($autoclassConfig);
         $this->assertArrayHasKey('autoclass', $bucket->info());
         $this->assertFalse($bucket->info()['autoclass']['enabled']);
+    }
+
+    /**
+     * @dataProvider autoclassConfigs
+     */
+    public function testUpdateExisitngBucketWithAutoclassConfig($autoclassConfig)
+    {
+        $bucket = self::createBucket(
+            self::$client,
+            uniqid(self::TESTING_PREFIX),
+        );
+        $autoclassConfig = ['autoclass' => $autoclassConfig];
+        $this->assertArrayNotHasKey('autoclass', $bucket->info());
+
+        $bucket->update($autoclassConfig);
+        $this->assertArrayHasKey('autoclass', $bucket->info());
+        $autoclassInfo = $bucket->info()['autoclass'];
+        $this->assertTrue($autoclassInfo['enabled']);
+        $this->assertArrayHasKey('toggleTime', $autoclassInfo);
+        $this->assertArrayHasKey('terminalStorageClass', $autoclassInfo);
+        if (array_key_exists('terminalStorageClass', $autoclassConfig)) {
+            $this->assertEquals(
+                $autoclassConfig['terminalStorageClass'],
+                $autoclassInfo['terminalStorageClass']
+            );
+        }
+        $this->assertArrayHasKey('terminalStorageClassUpdateTime', $autoclassInfo);
     }
 
     public function lifecycleRules()
@@ -366,6 +402,15 @@ class ManageBucketsTest extends StorageTestCase
                 'dual-region',
                 'STANDARD'
             ]
+        ];
+    }
+
+    public function autoclassConfigs()
+    {
+        return [
+            [['enabled' => true]],
+            [['enabled' => true, 'terminalStorageClass' => 'NEARLINE']],
+            [['enabled' => true, 'terminalStorageClass' => 'ARCHIVE']],
         ];
     }
 }

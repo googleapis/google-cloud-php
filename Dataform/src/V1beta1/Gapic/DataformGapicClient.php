@@ -38,13 +38,21 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Dataform\V1beta1\CancelWorkflowInvocationRequest;
 use Google\Cloud\Dataform\V1beta1\CommitAuthor;
+use Google\Cloud\Dataform\V1beta1\CommitMetadata;
+use Google\Cloud\Dataform\V1beta1\CommitRepositoryChangesRequest;
 use Google\Cloud\Dataform\V1beta1\CommitWorkspaceChangesRequest;
 use Google\Cloud\Dataform\V1beta1\CompilationResult;
+use Google\Cloud\Dataform\V1beta1\ComputeRepositoryAccessTokenStatusRequest;
+use Google\Cloud\Dataform\V1beta1\ComputeRepositoryAccessTokenStatusResponse;
 use Google\Cloud\Dataform\V1beta1\CreateCompilationResultRequest;
+use Google\Cloud\Dataform\V1beta1\CreateReleaseConfigRequest;
 use Google\Cloud\Dataform\V1beta1\CreateRepositoryRequest;
+use Google\Cloud\Dataform\V1beta1\CreateWorkflowConfigRequest;
 use Google\Cloud\Dataform\V1beta1\CreateWorkflowInvocationRequest;
 use Google\Cloud\Dataform\V1beta1\CreateWorkspaceRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteReleaseConfigRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteRepositoryRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteWorkflowConfigRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteWorkflowInvocationRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteWorkspaceRequest;
 use Google\Cloud\Dataform\V1beta1\FetchFileDiffRequest;
@@ -55,16 +63,24 @@ use Google\Cloud\Dataform\V1beta1\FetchGitAheadBehindRequest;
 use Google\Cloud\Dataform\V1beta1\FetchGitAheadBehindResponse;
 use Google\Cloud\Dataform\V1beta1\FetchRemoteBranchesRequest;
 use Google\Cloud\Dataform\V1beta1\FetchRemoteBranchesResponse;
+use Google\Cloud\Dataform\V1beta1\FetchRepositoryHistoryRequest;
+use Google\Cloud\Dataform\V1beta1\FetchRepositoryHistoryResponse;
 use Google\Cloud\Dataform\V1beta1\GetCompilationResultRequest;
+use Google\Cloud\Dataform\V1beta1\GetReleaseConfigRequest;
 use Google\Cloud\Dataform\V1beta1\GetRepositoryRequest;
+use Google\Cloud\Dataform\V1beta1\GetWorkflowConfigRequest;
 use Google\Cloud\Dataform\V1beta1\GetWorkflowInvocationRequest;
 use Google\Cloud\Dataform\V1beta1\GetWorkspaceRequest;
 use Google\Cloud\Dataform\V1beta1\InstallNpmPackagesRequest;
 use Google\Cloud\Dataform\V1beta1\InstallNpmPackagesResponse;
 use Google\Cloud\Dataform\V1beta1\ListCompilationResultsRequest;
 use Google\Cloud\Dataform\V1beta1\ListCompilationResultsResponse;
+use Google\Cloud\Dataform\V1beta1\ListReleaseConfigsRequest;
+use Google\Cloud\Dataform\V1beta1\ListReleaseConfigsResponse;
 use Google\Cloud\Dataform\V1beta1\ListRepositoriesRequest;
 use Google\Cloud\Dataform\V1beta1\ListRepositoriesResponse;
+use Google\Cloud\Dataform\V1beta1\ListWorkflowConfigsRequest;
+use Google\Cloud\Dataform\V1beta1\ListWorkflowConfigsResponse;
 use Google\Cloud\Dataform\V1beta1\ListWorkflowInvocationsRequest;
 use Google\Cloud\Dataform\V1beta1\ListWorkflowInvocationsResponse;
 use Google\Cloud\Dataform\V1beta1\ListWorkspacesRequest;
@@ -81,19 +97,33 @@ use Google\Cloud\Dataform\V1beta1\QueryCompilationResultActionsRequest;
 use Google\Cloud\Dataform\V1beta1\QueryCompilationResultActionsResponse;
 use Google\Cloud\Dataform\V1beta1\QueryDirectoryContentsRequest;
 use Google\Cloud\Dataform\V1beta1\QueryDirectoryContentsResponse;
+use Google\Cloud\Dataform\V1beta1\QueryRepositoryDirectoryContentsRequest;
+use Google\Cloud\Dataform\V1beta1\QueryRepositoryDirectoryContentsResponse;
 use Google\Cloud\Dataform\V1beta1\QueryWorkflowInvocationActionsRequest;
 use Google\Cloud\Dataform\V1beta1\QueryWorkflowInvocationActionsResponse;
 use Google\Cloud\Dataform\V1beta1\ReadFileRequest;
 use Google\Cloud\Dataform\V1beta1\ReadFileResponse;
+use Google\Cloud\Dataform\V1beta1\ReadRepositoryFileRequest;
+use Google\Cloud\Dataform\V1beta1\ReadRepositoryFileResponse;
+use Google\Cloud\Dataform\V1beta1\ReleaseConfig;
 use Google\Cloud\Dataform\V1beta1\RemoveDirectoryRequest;
 use Google\Cloud\Dataform\V1beta1\RemoveFileRequest;
 use Google\Cloud\Dataform\V1beta1\Repository;
 use Google\Cloud\Dataform\V1beta1\ResetWorkspaceChangesRequest;
+use Google\Cloud\Dataform\V1beta1\UpdateReleaseConfigRequest;
 use Google\Cloud\Dataform\V1beta1\UpdateRepositoryRequest;
+use Google\Cloud\Dataform\V1beta1\UpdateWorkflowConfigRequest;
+use Google\Cloud\Dataform\V1beta1\WorkflowConfig;
 use Google\Cloud\Dataform\V1beta1\WorkflowInvocation;
 use Google\Cloud\Dataform\V1beta1\Workspace;
 use Google\Cloud\Dataform\V1beta1\WriteFileRequest;
 use Google\Cloud\Dataform\V1beta1\WriteFileResponse;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\GetPolicyOptions;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
@@ -153,9 +183,13 @@ class DataformGapicClient
 
     private static $locationNameTemplate;
 
+    private static $releaseConfigNameTemplate;
+
     private static $repositoryNameTemplate;
 
     private static $secretVersionNameTemplate;
+
+    private static $workflowConfigNameTemplate;
 
     private static $workflowInvocationNameTemplate;
 
@@ -210,6 +244,17 @@ class DataformGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getReleaseConfigNameTemplate()
+    {
+        if (self::$releaseConfigNameTemplate == null) {
+            self::$releaseConfigNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/repositories/{repository}/releaseConfigs/{release_config}'
+            );
+        }
+
+        return self::$releaseConfigNameTemplate;
+    }
+
     private static function getRepositoryNameTemplate()
     {
         if (self::$repositoryNameTemplate == null) {
@@ -230,6 +275,17 @@ class DataformGapicClient
         }
 
         return self::$secretVersionNameTemplate;
+    }
+
+    private static function getWorkflowConfigNameTemplate()
+    {
+        if (self::$workflowConfigNameTemplate == null) {
+            self::$workflowConfigNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/repositories/{repository}/workflowConfigs/{workflow_config}'
+            );
+        }
+
+        return self::$workflowConfigNameTemplate;
     }
 
     private static function getWorkflowInvocationNameTemplate()
@@ -260,8 +316,10 @@ class DataformGapicClient
             self::$pathTemplateMap = [
                 'compilationResult' => self::getCompilationResultNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'releaseConfig' => self::getReleaseConfigNameTemplate(),
                 'repository' => self::getRepositoryNameTemplate(),
                 'secretVersion' => self::getSecretVersionNameTemplate(),
+                'workflowConfig' => self::getWorkflowConfigNameTemplate(),
                 'workflowInvocation' => self::getWorkflowInvocationNameTemplate(),
                 'workspace' => self::getWorkspaceNameTemplate(),
             ];
@@ -317,6 +375,33 @@ class DataformGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * release_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $repository
+     * @param string $releaseConfig
+     *
+     * @return string The formatted release_config resource.
+     *
+     * @experimental
+     */
+    public static function releaseConfigName(
+        $project,
+        $location,
+        $repository,
+        $releaseConfig
+    ) {
+        return self::getReleaseConfigNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'repository' => $repository,
+            'release_config' => $releaseConfig,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a repository
      * resource.
      *
@@ -355,6 +440,33 @@ class DataformGapicClient
             'project' => $project,
             'secret' => $secret,
             'version' => $version,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * workflow_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $repository
+     * @param string $workflowConfig
+     *
+     * @return string The formatted workflow_config resource.
+     *
+     * @experimental
+     */
+    public static function workflowConfigName(
+        $project,
+        $location,
+        $repository,
+        $workflowConfig
+    ) {
+        return self::getWorkflowConfigNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'repository' => $repository,
+            'workflow_config' => $workflowConfig,
         ]);
     }
 
@@ -418,8 +530,10 @@ class DataformGapicClient
      * Template: Pattern
      * - compilationResult: projects/{project}/locations/{location}/repositories/{repository}/compilationResults/{compilation_result}
      * - location: projects/{project}/locations/{location}
+     * - releaseConfig: projects/{project}/locations/{location}/repositories/{repository}/releaseConfigs/{release_config}
      * - repository: projects/{project}/locations/{location}/repositories/{repository}
      * - secretVersion: projects/{project}/secrets/{secret}/versions/{version}
+     * - workflowConfig: projects/{project}/locations/{location}/repositories/{repository}/workflowConfigs/{workflow_config}
      * - workflowInvocation: projects/{project}/locations/{location}/repositories/{repository}/workflowInvocations/{workflow_invocation}
      * - workspace: projects/{project}/locations/{location}/repositories/{repository}/workspaces/{workspace}
      *
@@ -575,6 +689,78 @@ class DataformGapicClient
     }
 
     /**
+     * Applies a Git commit to a Repository. The Repository must not have a value
+     * for `git_remote_settings.url`.
+     *
+     * Sample code:
+     * ```
+     * $dataformClient = new DataformClient();
+     * try {
+     *     $formattedName = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+     *     $commitMetadata = new CommitMetadata();
+     *     $dataformClient->commitRepositoryChanges($formattedName, $commitMetadata);
+     * } finally {
+     *     $dataformClient->close();
+     * }
+     * ```
+     *
+     * @param string         $name           Required. The repository's name.
+     * @param CommitMetadata $commitMetadata Required. The changes to commit to the repository.
+     * @param array          $optionalArgs   {
+     *     Optional.
+     *
+     *     @type string $requiredHeadCommitSha
+     *           Optional. The commit SHA which must be the repository's current HEAD before
+     *           applying this commit; otherwise this request will fail. If unset, no
+     *           validation on the current HEAD commit SHA is performed.
+     *     @type array $fileOperations
+     *           A map to the path of the file to the operation. The path is the full file
+     *           path including filename, from repository root.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function commitRepositoryChanges(
+        $name,
+        $commitMetadata,
+        array $optionalArgs = []
+    ) {
+        $request = new CommitRepositoryChangesRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setCommitMetadata($commitMetadata);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['requiredHeadCommitSha'])) {
+            $request->setRequiredHeadCommitSha(
+                $optionalArgs['requiredHeadCommitSha']
+            );
+        }
+
+        if (isset($optionalArgs['fileOperations'])) {
+            $request->setFileOperations($optionalArgs['fileOperations']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CommitRepositoryChanges',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Applies a Git commit for uncommitted files in a Workspace.
      *
      * Sample code:
@@ -597,8 +783,8 @@ class DataformGapicClient
      *     @type string $commitMessage
      *           Optional. The commit's message.
      *     @type string[] $paths
-     *           Optional. Full file paths to commit including filename, rooted at workspace root. If
-     *           left empty, all files will be committed.
+     *           Optional. Full file paths to commit including filename, rooted at workspace
+     *           root. If left empty, all files will be committed.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -642,6 +828,58 @@ class DataformGapicClient
     }
 
     /**
+     * Computes a Repository's Git access token status.
+     *
+     * Sample code:
+     * ```
+     * $dataformClient = new DataformClient();
+     * try {
+     *     $formattedName = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+     *     $response = $dataformClient->computeRepositoryAccessTokenStatus($formattedName);
+     * } finally {
+     *     $dataformClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The repository's name.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dataform\V1beta1\ComputeRepositoryAccessTokenStatusResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function computeRepositoryAccessTokenStatus(
+        $name,
+        array $optionalArgs = []
+    ) {
+        $request = new ComputeRepositoryAccessTokenStatusRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ComputeRepositoryAccessTokenStatus',
+            ComputeRepositoryAccessTokenStatusResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Creates a new CompilationResult in a given project and location.
      *
      * Sample code:
@@ -656,8 +894,8 @@ class DataformGapicClient
      * }
      * ```
      *
-     * @param string            $parent            Required. The repository in which to create the compilation result. Must be in the
-     *                                             format `projects/&#42;/locations/&#42;/repositories/*`.
+     * @param string            $parent            Required. The repository in which to create the compilation result. Must be
+     *                                             in the format `projects/&#42;/locations/&#42;/repositories/*`.
      * @param CompilationResult $compilationResult Required. The compilation result to create.
      * @param array             $optionalArgs      {
      *     Optional.
@@ -699,6 +937,68 @@ class DataformGapicClient
     }
 
     /**
+     * Creates a new ReleaseConfig in a given Repository.
+     *
+     * Sample code:
+     * ```
+     * $dataformClient = new DataformClient();
+     * try {
+     *     $formattedParent = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+     *     $releaseConfig = new ReleaseConfig();
+     *     $releaseConfigId = 'release_config_id';
+     *     $response = $dataformClient->createReleaseConfig($formattedParent, $releaseConfig, $releaseConfigId);
+     * } finally {
+     *     $dataformClient->close();
+     * }
+     * ```
+     *
+     * @param string        $parent          Required. The repository in which to create the release config. Must be in
+     *                                       the format `projects/&#42;/locations/&#42;/repositories/*`.
+     * @param ReleaseConfig $releaseConfig   Required. The release config to create.
+     * @param string        $releaseConfigId Required. The ID to use for the release config, which will become the final
+     *                                       component of the release config's resource name.
+     * @param array         $optionalArgs    {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dataform\V1beta1\ReleaseConfig
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function createReleaseConfig(
+        $parent,
+        $releaseConfig,
+        $releaseConfigId,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateReleaseConfigRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setReleaseConfig($releaseConfig);
+        $request->setReleaseConfigId($releaseConfigId);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateReleaseConfig',
+            ReleaseConfig::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Creates a new Repository in a given project and location.
      *
      * Sample code:
@@ -714,11 +1014,11 @@ class DataformGapicClient
      * }
      * ```
      *
-     * @param string     $parent       Required. The location in which to create the repository. Must be in the format
-     *                                 `projects/&#42;/locations/*`.
+     * @param string     $parent       Required. The location in which to create the repository. Must be in the
+     *                                 format `projects/&#42;/locations/*`.
      * @param Repository $repository   Required. The repository to create.
-     * @param string     $repositoryId Required. The ID to use for the repository, which will become the final component of
-     *                                 the repository's resource name.
+     * @param string     $repositoryId Required. The ID to use for the repository, which will become the final
+     *                                 component of the repository's resource name.
      * @param array      $optionalArgs {
      *     Optional.
      *
@@ -761,6 +1061,68 @@ class DataformGapicClient
     }
 
     /**
+     * Creates a new WorkflowConfig in a given Repository.
+     *
+     * Sample code:
+     * ```
+     * $dataformClient = new DataformClient();
+     * try {
+     *     $formattedParent = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+     *     $workflowConfig = new WorkflowConfig();
+     *     $workflowConfigId = 'workflow_config_id';
+     *     $response = $dataformClient->createWorkflowConfig($formattedParent, $workflowConfig, $workflowConfigId);
+     * } finally {
+     *     $dataformClient->close();
+     * }
+     * ```
+     *
+     * @param string         $parent           Required. The repository in which to create the workflow config. Must be in
+     *                                         the format `projects/&#42;/locations/&#42;/repositories/*`.
+     * @param WorkflowConfig $workflowConfig   Required. The workflow config to create.
+     * @param string         $workflowConfigId Required. The ID to use for the workflow config, which will become the
+     *                                         final component of the workflow config's resource name.
+     * @param array          $optionalArgs     {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dataform\V1beta1\WorkflowConfig
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function createWorkflowConfig(
+        $parent,
+        $workflowConfig,
+        $workflowConfigId,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateWorkflowConfigRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setWorkflowConfig($workflowConfig);
+        $request->setWorkflowConfigId($workflowConfigId);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateWorkflowConfig',
+            WorkflowConfig::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Creates a new WorkflowInvocation in a given Repository.
      *
      * Sample code:
@@ -775,8 +1137,8 @@ class DataformGapicClient
      * }
      * ```
      *
-     * @param string             $parent             Required. The repository in which to create the workflow invocation. Must be in the
-     *                                               format `projects/&#42;/locations/&#42;/repositories/*`.
+     * @param string             $parent             Required. The repository in which to create the workflow invocation. Must
+     *                                               be in the format `projects/&#42;/locations/&#42;/repositories/*`.
      * @param WorkflowInvocation $workflowInvocation Required. The workflow invocation resource to create.
      * @param array              $optionalArgs       {
      *     Optional.
@@ -833,11 +1195,11 @@ class DataformGapicClient
      * }
      * ```
      *
-     * @param string    $parent       Required. The repository in which to create the workspace. Must be in the format
-     *                                `projects/&#42;/locations/&#42;/repositories/*`.
+     * @param string    $parent       Required. The repository in which to create the workspace. Must be in the
+     *                                format `projects/&#42;/locations/&#42;/repositories/*`.
      * @param Workspace $workspace    Required. The workspace to create.
-     * @param string    $workspaceId  Required. The ID to use for the workspace, which will become the final component of
-     *                                the workspace's resource name.
+     * @param string    $workspaceId  Required. The ID to use for the workspace, which will become the final
+     *                                component of the workspace's resource name.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -874,6 +1236,54 @@ class DataformGapicClient
         return $this->startCall(
             'CreateWorkspace',
             Workspace::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes a single ReleaseConfig.
+     *
+     * Sample code:
+     * ```
+     * $dataformClient = new DataformClient();
+     * try {
+     *     $formattedName = $dataformClient->releaseConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[RELEASE_CONFIG]');
+     *     $dataformClient->deleteReleaseConfig($formattedName);
+     * } finally {
+     *     $dataformClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The release config's name.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function deleteReleaseConfig($name, array $optionalArgs = [])
+    {
+        $request = new DeleteReleaseConfigRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteReleaseConfig',
+            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();
@@ -929,6 +1339,54 @@ class DataformGapicClient
             : $requestParams->getHeader();
         return $this->startCall(
             'DeleteRepository',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes a single WorkflowConfig.
+     *
+     * Sample code:
+     * ```
+     * $dataformClient = new DataformClient();
+     * try {
+     *     $formattedName = $dataformClient->workflowConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_CONFIG]');
+     *     $dataformClient->deleteWorkflowConfig($formattedName);
+     * } finally {
+     *     $dataformClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The workflow config's name.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function deleteWorkflowConfig($name, array $optionalArgs = [])
+    {
+        $request = new DeleteWorkflowConfigRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteWorkflowConfig',
             GPBEmpty::class,
             $optionalArgs,
             $request
@@ -1047,7 +1505,8 @@ class DataformGapicClient
      * ```
      *
      * @param string $workspace    Required. The workspace's name.
-     * @param string $path         Required. The file's full path including filename, relative to the workspace root.
+     * @param string $path         Required. The file's full path including filename, relative to the
+     *                             workspace root.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1153,9 +1612,9 @@ class DataformGapicClient
      *     Optional.
      *
      *     @type string $remoteBranch
-     *           Optional. The name of the branch in the Git remote against which this workspace
-     *           should be compared. If left unset, the repository's default branch name
-     *           will be used.
+     *           Optional. The name of the branch in the Git remote against which this
+     *           workspace should be compared. If left unset, the repository's default
+     *           branch name will be used.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1243,6 +1702,86 @@ class DataformGapicClient
     }
 
     /**
+     * Fetches a Repository's history of commits.  The Repository must not have a
+     * value for `git_remote_settings.url`.
+     *
+     * Sample code:
+     * ```
+     * $dataformClient = new DataformClient();
+     * try {
+     *     $formattedName = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $dataformClient->fetchRepositoryHistory($formattedName);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $dataformClient->fetchRepositoryHistory($formattedName);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $dataformClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The repository's name.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function fetchRepositoryHistory($name, array $optionalArgs = [])
+    {
+        $request = new FetchRepositoryHistoryRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'FetchRepositoryHistory',
+            $optionalArgs,
+            FetchRepositoryHistoryResponse::class,
+            $request
+        );
+    }
+
+    /**
      * Fetches a single CompilationResult.
      *
      * Sample code:
@@ -1293,6 +1832,56 @@ class DataformGapicClient
     }
 
     /**
+     * Fetches a single ReleaseConfig.
+     *
+     * Sample code:
+     * ```
+     * $dataformClient = new DataformClient();
+     * try {
+     *     $formattedName = $dataformClient->releaseConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[RELEASE_CONFIG]');
+     *     $response = $dataformClient->getReleaseConfig($formattedName);
+     * } finally {
+     *     $dataformClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The release config's name.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dataform\V1beta1\ReleaseConfig
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getReleaseConfig($name, array $optionalArgs = [])
+    {
+        $request = new GetReleaseConfigRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetReleaseConfig',
+            ReleaseConfig::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Fetches a single Repository.
      *
      * Sample code:
@@ -1337,6 +1926,56 @@ class DataformGapicClient
         return $this->startCall(
             'GetRepository',
             Repository::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Fetches a single WorkflowConfig.
+     *
+     * Sample code:
+     * ```
+     * $dataformClient = new DataformClient();
+     * try {
+     *     $formattedName = $dataformClient->workflowConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_CONFIG]');
+     *     $response = $dataformClient->getWorkflowConfig($formattedName);
+     * } finally {
+     *     $dataformClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The workflow config's name.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dataform\V1beta1\WorkflowConfig
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getWorkflowConfig($name, array $optionalArgs = [])
+    {
+        $request = new GetWorkflowConfigRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetWorkflowConfig',
+            WorkflowConfig::class,
             $optionalArgs,
             $request
         )->wait();
@@ -1518,8 +2157,8 @@ class DataformGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The repository in which to list compilation results. Must be in the
-     *                             format `projects/&#42;/locations/&#42;/repositories/*`.
+     * @param string $parent       Required. The repository in which to list compilation results. Must be in
+     *                             the format `projects/&#42;/locations/&#42;/repositories/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1573,6 +2212,86 @@ class DataformGapicClient
     }
 
     /**
+     * Lists ReleaseConfigs in a given Repository.
+     *
+     * Sample code:
+     * ```
+     * $dataformClient = new DataformClient();
+     * try {
+     *     $formattedParent = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $dataformClient->listReleaseConfigs($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $dataformClient->listReleaseConfigs($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $dataformClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The repository in which to list release configs. Must be in the
+     *                             format `projects/&#42;/locations/&#42;/repositories/*`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listReleaseConfigs($parent, array $optionalArgs = [])
+    {
+        $request = new ListReleaseConfigsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListReleaseConfigs',
+            $optionalArgs,
+            ListReleaseConfigsResponse::class,
+            $request
+        );
+    }
+
+    /**
      * Lists Repositories in a given project and location.
      *
      * Sample code:
@@ -1613,9 +2332,9 @@ class DataformGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string $orderBy
-     *           Optional. This field only supports ordering by `name`. If unspecified, the server
-     *           will choose the ordering. If specified, the default order is ascending for
-     *           the `name` field.
+     *           Optional. This field only supports ordering by `name`. If unspecified, the
+     *           server will choose the ordering. If specified, the default order is
+     *           ascending for the `name` field.
      *     @type string $filter
      *           Optional. Filter for the returned list.
      *     @type RetrySettings|array $retrySettings
@@ -1667,7 +2386,7 @@ class DataformGapicClient
     }
 
     /**
-     * Lists WorkflowInvocations in a given Repository.
+     * Lists WorkflowConfigs in a given Repository.
      *
      * Sample code:
      * ```
@@ -1675,7 +2394,7 @@ class DataformGapicClient
      * try {
      *     $formattedParent = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataformClient->listWorkflowInvocations($formattedParent);
+     *     $pagedResponse = $dataformClient->listWorkflowConfigs($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1683,7 +2402,7 @@ class DataformGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataformClient->listWorkflowInvocations($formattedParent);
+     *     $pagedResponse = $dataformClient->listWorkflowConfigs($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1692,7 +2411,7 @@ class DataformGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource of the WorkflowInvocation type. Must be in the
+     * @param string $parent       Required. The repository in which to list workflow configs. Must be in the
      *                             format `projects/&#42;/locations/&#42;/repositories/*`.
      * @param array  $optionalArgs {
      *     Optional.
@@ -1718,6 +2437,92 @@ class DataformGapicClient
      *
      * @experimental
      */
+    public function listWorkflowConfigs($parent, array $optionalArgs = [])
+    {
+        $request = new ListWorkflowConfigsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListWorkflowConfigs',
+            $optionalArgs,
+            ListWorkflowConfigsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists WorkflowInvocations in a given Repository.
+     *
+     * Sample code:
+     * ```
+     * $dataformClient = new DataformClient();
+     * try {
+     *     $formattedParent = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $dataformClient->listWorkflowInvocations($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $dataformClient->listWorkflowInvocations($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $dataformClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent resource of the WorkflowInvocation type. Must be in
+     *                             the format `projects/&#42;/locations/&#42;/repositories/*`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $orderBy
+     *           Optional. This field only supports ordering by `name`. If unspecified, the
+     *           server will choose the ordering. If specified, the default order is
+     *           ascending for the `name` field.
+     *     @type string $filter
+     *           Optional. Filter for the returned list.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
     public function listWorkflowInvocations($parent, array $optionalArgs = [])
     {
         $request = new ListWorkflowInvocationsRequest();
@@ -1730,6 +2535,14 @@ class DataformGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1787,9 +2600,9 @@ class DataformGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string $orderBy
-     *           Optional. This field only supports ordering by `name`. If unspecified, the server
-     *           will choose the ordering. If specified, the default order is ascending for
-     *           the `name` field.
+     *           Optional. This field only supports ordering by `name`. If unspecified, the
+     *           server will choose the ordering. If specified, the default order is
+     *           ascending for the `name` field.
      *     @type string $filter
      *           Optional. Filter for the returned list.
      *     @type RetrySettings|array $retrySettings
@@ -1856,8 +2669,8 @@ class DataformGapicClient
      * ```
      *
      * @param string $workspace    Required. The workspace's name.
-     * @param string $path         Required. The directory's full path including directory name, relative to the
-     *                             workspace root.
+     * @param string $path         Required. The directory's full path including directory name, relative to
+     *                             the workspace root.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1912,10 +2725,10 @@ class DataformGapicClient
      * ```
      *
      * @param string $workspace    Required. The workspace's name.
-     * @param string $path         Required. The directory's full path including directory name, relative to the
-     *                             workspace root.
-     * @param string $newPath      Required. The new path for the directory including directory name, rooted at
-     *                             workspace root.
+     * @param string $path         Required. The directory's full path including directory name, relative to
+     *                             the workspace root.
+     * @param string $newPath      Required. The new path for the directory including directory name, rooted
+     *                             at workspace root.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1974,8 +2787,10 @@ class DataformGapicClient
      * ```
      *
      * @param string $workspace    Required. The workspace's name.
-     * @param string $path         Required. The file's full path including filename, relative to the workspace root.
-     * @param string $newPath      Required. The file's new path including filename, relative to the workspace root.
+     * @param string $path         Required. The file's full path including filename, relative to the
+     *                             workspace root.
+     * @param string $newPath      Required. The file's new path including filename, relative to the workspace
+     *                             root.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2033,14 +2848,14 @@ class DataformGapicClient
      * ```
      *
      * @param string       $name         Required. The workspace's name.
-     * @param CommitAuthor $author       Required. The author of any merge commit which may be created as a result of merging
-     *                                   fetched Git commits into this workspace.
+     * @param CommitAuthor $author       Required. The author of any merge commit which may be created as a result
+     *                                   of merging fetched Git commits into this workspace.
      * @param array        $optionalArgs {
      *     Optional.
      *
      *     @type string $remoteBranch
-     *           Optional. The name of the branch in the Git remote from which to pull commits.
-     *           If left unset, the repository's default branch name will be used.
+     *           Optional. The name of the branch in the Git remote from which to pull
+     *           commits. If left unset, the repository's default branch name will be used.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2095,8 +2910,9 @@ class DataformGapicClient
      *     Optional.
      *
      *     @type string $remoteBranch
-     *           Optional. The name of the branch in the Git remote to which commits should be pushed.
-     *           If left unset, the repository's default branch name will be used.
+     *           Optional. The name of the branch in the Git remote to which commits should
+     *           be pushed. If left unset, the repository's default branch name will be
+     *           used.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2171,8 +2987,8 @@ class DataformGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string $filter
-     *           Optional. Optional filter for the returned list. Filtering is only currently
-     *           supported on the `file_path` field.
+     *           Optional. Optional filter for the returned list. Filtering is only
+     *           currently supported on the `file_path` field.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2250,8 +3066,8 @@ class DataformGapicClient
      *     Optional.
      *
      *     @type string $path
-     *           Optional. The directory's full path including directory name, relative to the
-     *           workspace root. If left unset, the workspace root is used.
+     *           Optional. The directory's full path including directory name, relative to
+     *           the workspace root. If left unset, the workspace root is used.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2301,6 +3117,102 @@ class DataformGapicClient
             'QueryDirectoryContents',
             $optionalArgs,
             QueryDirectoryContentsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Returns the contents of a given Repository directory. The Repository must
+     * not have a value for `git_remote_settings.url`.
+     *
+     * Sample code:
+     * ```
+     * $dataformClient = new DataformClient();
+     * try {
+     *     $formattedName = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $dataformClient->queryRepositoryDirectoryContents($formattedName);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $dataformClient->queryRepositoryDirectoryContents($formattedName);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $dataformClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The repository's name.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $commitSha
+     *           Optional. The Commit SHA for the commit to query from. If unset, the
+     *           directory will be queried from HEAD.
+     *     @type string $path
+     *           Optional. The directory's full path including directory name, relative to
+     *           root. If left unset, the root is used.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function queryRepositoryDirectoryContents(
+        $name,
+        array $optionalArgs = []
+    ) {
+        $request = new QueryRepositoryDirectoryContentsRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['commitSha'])) {
+            $request->setCommitSha($optionalArgs['commitSha']);
+        }
+
+        if (isset($optionalArgs['path'])) {
+            $request->setPath($optionalArgs['path']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'QueryRepositoryDirectoryContents',
+            $optionalArgs,
+            QueryRepositoryDirectoryContentsResponse::class,
             $request
         );
     }
@@ -2402,7 +3314,8 @@ class DataformGapicClient
      * ```
      *
      * @param string $workspace    Required. The workspace's name.
-     * @param string $path         Required. The file's full path including filename, relative to the workspace root.
+     * @param string $path         Required. The file's full path including filename, relative to the
+     *                             workspace root.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2440,6 +3353,67 @@ class DataformGapicClient
     }
 
     /**
+     * Returns the contents of a file (inside a Repository). The Repository
+     * must not have a value for `git_remote_settings.url`.
+     *
+     * Sample code:
+     * ```
+     * $dataformClient = new DataformClient();
+     * try {
+     *     $formattedName = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+     *     $path = 'path';
+     *     $response = $dataformClient->readRepositoryFile($formattedName, $path);
+     * } finally {
+     *     $dataformClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The repository's name.
+     * @param string $path         Required. Full file path to read including filename, from repository root.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $commitSha
+     *           Optional. The commit SHA for the commit to read from. If unset, the file
+     *           will be read from HEAD.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dataform\V1beta1\ReadRepositoryFileResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function readRepositoryFile($name, $path, array $optionalArgs = [])
+    {
+        $request = new ReadRepositoryFileRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setPath($path);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['commitSha'])) {
+            $request->setCommitSha($optionalArgs['commitSha']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ReadRepositoryFile',
+            ReadRepositoryFileResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Deletes a directory (inside a Workspace) and all of its contents.
      *
      * Sample code:
@@ -2455,8 +3429,8 @@ class DataformGapicClient
      * ```
      *
      * @param string $workspace    Required. The workspace's name.
-     * @param string $path         Required. The directory's full path including directory name, relative to the
-     *                             workspace root.
+     * @param string $path         Required. The directory's full path including directory name, relative to
+     *                             the workspace root.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2507,7 +3481,8 @@ class DataformGapicClient
      * ```
      *
      * @param string $workspace    Required. The workspace's name.
-     * @param string $path         Required. The file's full path including filename, relative to the workspace root.
+     * @param string $path         Required. The file's full path including filename, relative to the
+     *                             workspace root.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2561,8 +3536,8 @@ class DataformGapicClient
      *     Optional.
      *
      *     @type string[] $paths
-     *           Optional. Full file paths to reset back to their committed state including filename,
-     *           rooted at workspace root. If left empty, all files will be reset.
+     *           Optional. Full file paths to reset back to their committed state including
+     *           filename, rooted at workspace root. If left empty, all files will be reset.
      *     @type bool $clean
      *           Optional. If set to true, untracked files will be deleted.
      *     @type RetrySettings|array $retrySettings
@@ -2604,6 +3579,65 @@ class DataformGapicClient
     }
 
     /**
+     * Updates a single ReleaseConfig.
+     *
+     * Sample code:
+     * ```
+     * $dataformClient = new DataformClient();
+     * try {
+     *     $releaseConfig = new ReleaseConfig();
+     *     $response = $dataformClient->updateReleaseConfig($releaseConfig);
+     * } finally {
+     *     $dataformClient->close();
+     * }
+     * ```
+     *
+     * @param ReleaseConfig $releaseConfig Required. The release config to update.
+     * @param array         $optionalArgs  {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           Optional. Specifies the fields to be updated in the release config. If left
+     *           unset, all fields will be updated.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dataform\V1beta1\ReleaseConfig
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function updateReleaseConfig(
+        $releaseConfig,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdateReleaseConfigRequest();
+        $requestParamHeaders = [];
+        $request->setReleaseConfig($releaseConfig);
+        $requestParamHeaders['release_config.name'] = $releaseConfig->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateReleaseConfig',
+            ReleaseConfig::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Updates a single Repository.
      *
      * Sample code:
@@ -2622,8 +3656,8 @@ class DataformGapicClient
      *     Optional.
      *
      *     @type FieldMask $updateMask
-     *           Optional. Specifies the fields to be updated in the repository. If left unset,
-     *           all fields will be updated.
+     *           Optional. Specifies the fields to be updated in the repository. If left
+     *           unset, all fields will be updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2655,6 +3689,67 @@ class DataformGapicClient
         return $this->startCall(
             'UpdateRepository',
             Repository::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Updates a single WorkflowConfig.
+     *
+     * Sample code:
+     * ```
+     * $dataformClient = new DataformClient();
+     * try {
+     *     $workflowConfig = new WorkflowConfig();
+     *     $response = $dataformClient->updateWorkflowConfig($workflowConfig);
+     * } finally {
+     *     $dataformClient->close();
+     * }
+     * ```
+     *
+     * @param WorkflowConfig $workflowConfig Required. The workflow config to update.
+     * @param array          $optionalArgs   {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           Optional. Specifies the fields to be updated in the workflow config. If
+     *           left unset, all fields will be updated.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dataform\V1beta1\WorkflowConfig
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function updateWorkflowConfig(
+        $workflowConfig,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdateWorkflowConfigRequest();
+        $requestParamHeaders = [];
+        $request->setWorkflowConfig($workflowConfig);
+        $requestParamHeaders[
+            'workflow_config.name'
+        ] = $workflowConfig->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateWorkflowConfig',
+            WorkflowConfig::class,
             $optionalArgs,
             $request
         )->wait();
@@ -2862,5 +3957,207 @@ class DataformGapicClient
             $request,
             'google.cloud.location.Locations'
         );
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy
+    if the resource exists and does not have a policy set.
+     *
+     * Sample code:
+     * ```
+     * $dataformClient = new DataformClient();
+     * try {
+     *     $resource = 'resource';
+     *     $response = $dataformClient->getIamPolicy($resource);
+     * } finally {
+     *     $dataformClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type GetPolicyOptions $options
+     *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
+     *           `GetIamPolicy`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getIamPolicy($resource, array $optionalArgs = [])
+    {
+        $request = new GetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['options'])) {
+            $request->setOptions($optionalArgs['options']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
+        )->wait();
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces
+    any existing policy.
+
+    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    errors.
+     *
+     * Sample code:
+     * ```
+     * $dataformClient = new DataformClient();
+     * try {
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $dataformClient->setIamPolicy($resource, $policy);
+     * } finally {
+     *     $dataformClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
+     *           the fields in the mask will be modified. If no mask is provided, the
+     *           following default mask is used:
+     *
+     *           `paths: "bindings, etag"`
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    {
+        $request = new SetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'SetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
+        )->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the
+    resource does not exist, this will return an empty set of
+    permissions, not a `NOT_FOUND` error.
+
+    Note: This operation is designed to be used for building
+    permission-aware UIs and command-line tools, not for authorization
+    checking. This operation may "fail open" without warning.
+     *
+     * Sample code:
+     * ```
+     * $dataformClient = new DataformClient();
+     * try {
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $dataformClient->testIamPermissions($resource, $permissions);
+     * } finally {
+     *     $dataformClient->close();
+     * }
+     * ```
+     *
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
+        $request = new TestIamPermissionsRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'TestIamPermissions',
+            TestIamPermissionsResponse::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
+        )->wait();
     }
 }

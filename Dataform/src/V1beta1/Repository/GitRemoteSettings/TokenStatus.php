@@ -7,8 +7,6 @@ namespace Google\Cloud\Dataform\V1beta1\Repository\GitRemoteSettings;
 use UnexpectedValueException;
 
 /**
- * Indicates the status of a Git authentication token.
- *
  * Protobuf type <code>google.cloud.dataform.v1beta1.Repository.GitRemoteSettings.TokenStatus</code>
  */
 class TokenStatus
