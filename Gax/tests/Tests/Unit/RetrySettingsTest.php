@@ -70,6 +70,7 @@ class RetrySettingsTest extends TestCase
         $timeoutOnlyMethod = $defaultRetrySettings['TimeoutOnlyMethod'];
         $this->assertFalse($timeoutOnlyMethod->retriesEnabled());
         $this->assertEquals(40000, $timeoutOnlyMethod->getNoRetriesRpcTimeoutMillis());
+        $this->assertEquals(RetrySettings::DEFAULT_MAX_RETRIES, $simpleMethod->getMaxRetries());
     }
 
     public function testLoadInvalid()
@@ -222,7 +223,9 @@ class RetrySettingsTest extends TestCase
             'totalTimeoutMillis' => 2000,
             'retryableCodes' => [1],
             'noRetriesRpcTimeoutMillis' => 150,
-            'retriesEnabled' => true
+            'retriesEnabled' => true,
+            'maxRetries' => RetrySettings::DEFAULT_MAX_RETRIES,
+            'retryFunction' => null,
         ];
         return [
             [
@@ -268,6 +271,24 @@ class RetrySettingsTest extends TestCase
                 [
                     'noRetriesRpcTimeoutMillis' => 151,
                 ] + $defaultExpectedValues
+            ],
+            [
+                // Test with a custom retry function
+                [
+                    'retryFunction' => function($ex, $options) {return true;}
+                ] + $defaultSettings,
+                [
+                    'retryFunction' => function($ex, $options) {return true;}
+                ] + $defaultExpectedValues
+            ],
+            [
+                // Test with a maxRetries value
+                [
+                    'maxRetries' => 2
+                ] + $defaultSettings,
+                [
+                    'maxRetries' => 2
+                ] + $defaultExpectedValues
             ]
         ];
     }
@@ -297,6 +318,8 @@ class RetrySettingsTest extends TestCase
             'retryableCodes' => [1],
             'noRetriesRpcTimeoutMillis' => 1,
             'retriesEnabled' => true,
+            'maxRetries' => RetrySettings::DEFAULT_MAX_RETRIES,
+            'retryFunction' => null,
         ];
         return [
             [
@@ -342,6 +365,26 @@ class RetrySettingsTest extends TestCase
                     'noRetriesRpcTimeoutMillis' => 10,
                     'retriesEnabled' => false,
                 ]
+            ],
+            [
+                // Test with a custom retry function
+                $defaultSettings,
+                [
+                    'retryFunction' => function($ex, $options) {return true;}
+                ],
+                [
+                    'retryFunction' => function($ex, $options) {return true;}
+                ] + $defaultExpectedValues
+            ],
+            [
+                // Test with a maxRetries value
+                $defaultSettings,
+                [
+                    'maxRetries' => 2
+                ],
+                [
+                    'maxRetries' => 2
+                ] + $defaultExpectedValues
             ]
         ];
     }
