@@ -1787,7 +1787,7 @@ class Database
         try {
             return $this->operation->executeUpdate($session, $transaction, $statement, [
                 'statsItem' => 'rowCountLowerBound'
-            ] + $options, $transaction->getIdReference());
+            ] + $options);
         } finally {
             $session->setExpiration();
         }

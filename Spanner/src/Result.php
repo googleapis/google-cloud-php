@@ -122,9 +122,9 @@ class Result implements \IteratorAggregate
     private $call;
 
     /**
-     * @var string|array
+     * @var Transaction|null
      */
-    private $transactionId;
+    private $transactionHandle;
 
     /**
      * @param Operation $operation Runs operations against Google Cloud Spanner.
@@ -134,6 +134,7 @@ class Result implements \IteratorAggregate
      * @param ValueMapper $mapper Maps values.
      * @param int $retries Number of attempts to resume a broken stream, assuming
      *        a resume token is present. **Defaults to** 3.
+     * @param Transaction $transactionHandle The transaction of the Result.
      */
     public function __construct(
         Operation $operation,
@@ -142,7 +143,7 @@ class Result implements \IteratorAggregate
         $transactionContext,
         ValueMapper $mapper,
         $retries = 3,
-        &$transactionId = null
+        $transactionHandle = null
     ) {
         $this->operation = $operation;
         $this->session = $session;
@@ -150,7 +151,7 @@ class Result implements \IteratorAggregate
         $this->transactionContext = $transactionContext;
         $this->mapper = $mapper;
         $this->retries = $retries;
-        $this->transactionId = &$transactionId;
+        $this->transactionHandle = $transactionHandle;
     }
 
     /**
@@ -474,7 +475,9 @@ class Result implements \IteratorAggregate
         }
 
         if (isset($result['metadata']['transaction']['id']) && $result['metadata']['transaction']['id']) {
-            $this->transactionId = $result['metadata']['transaction']['id'];
+            if (!is_null($this->transactionHandle) && is_null($this->transactionHandle->id())) {
+                $this->transactionHandle->setId($result['metadata']['transaction']['id']);
+            }
             if ($this->transactionContext === SessionPoolInterface::CONTEXT_READ) {
                 $this->snapshot = $this->operation->createSnapshot(
                     $this->session,

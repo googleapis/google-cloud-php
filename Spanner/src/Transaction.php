@@ -82,11 +82,6 @@ class Transaction implements TransactionalReadInterface
     private $isRetry = false;
 
     /**
-     * @var array
-     */
-    private $options = [];
-
-    /**
      * @param Operation $operation The Operation instance.
      * @param Session $session The session to use for spanner interactions.
      * @param string $transactionId [optional] The Transaction ID. If no ID is
@@ -94,6 +89,12 @@ class Transaction implements TransactionalReadInterface
      * @param bool $isRetry Whether the transaction will automatically retry or not.
      * @param string $tag A transaction tag. Requests made using this transaction will
      *        use this as the transaction tag.
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type array $begin The begin Transaction options.
+     *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
+     * }
      * @throws \InvalidArgumentException if a tag is specified on a single-use transaction.
      */
     public function __construct(
@@ -102,14 +103,14 @@ class Transaction implements TransactionalReadInterface
         $transactionId = null,
         $isRetry = false,
         $tag = null,
-        $options = null
+        $options = []
     ) {
         $this->operation = $operation;
         $this->session = $session;
         $this->transactionId = $transactionId;
         $this->isRetry = $isRetry;
 
-        $this->type = $transactionId
+        $this->type = ($transactionId || isset($options['begin']))
             ? self::TYPE_PRE_ALLOCATED
             : self::TYPE_SINGLE_USE;
 
@@ -448,17 +449,18 @@ class Transaction implements TransactionalReadInterface
         $this->seqno++;
 
         $options['transactionType'] = $this->context;
-        if (is_array($this->transactionId) and isset($this->transactionId['begin'])) {
-            $options['begin'] = $this->transactionId['begin'];
+        if (is_null($this->transactionId) && isset($this->options['begin'])) {
+            $options['begin'] = $this->options['begin'];
         } else {
             $options['transactionId'] = $this->transactionId;
         }
         $selector = $this->transactionSelector($options);
 
         $options['transaction'] = $selector[0];
+        $options['transactionHandle'] = $this;
           
         return $this->operation
-            ->executeUpdate($this->session, $this, $sql, $options, $this->transactionId);
+            ->executeUpdate($this->session, $this, $sql, $options);
     }
 
     /**
@@ -557,22 +559,22 @@ class Transaction implements TransactionalReadInterface
         $this->seqno++;
     
         $options['transactionType'] = $this->context;
-        if (is_array($this->transactionId) and isset($this->transactionId['begin'])) {
-            $options['begin'] = $this->transactionId['begin'];
+        if (is_null($this->transactionId) && isset($this->options['begin'])) {
+            $options['begin'] = $this->options['begin'];
         } else {
             $options['transactionId'] = $this->transactionId;
         }
         $selector = $this->transactionSelector($options);
 
         $options['transaction'] = $selector[0];
+        $options['transactionHandle'] = $this;
 
         return $this->operation
             ->executeUpdateBatch(
                 $this->session,
                 $this,
                 $statements,
-                $options,
-                $this->transactionId
+                $options
             );
     }
 
@@ -648,16 +650,11 @@ class Transaction implements TransactionalReadInterface
             throw new \BadMethodCallException('The transaction cannot be committed because it is not active');
         }
 
-        if (is_array($this->transactionId) and isset($this->transactionId['begin'])) {
+        if (is_null($this->transactionId) && isset($this->options['begin'])) {
             unset($this->options['begin']);
-            $res = $this->operation->transaction($this->session, $this->options+[
-                'fromTransaction' => true
-            ]);
-            if (is_array($res) and isset($res['id'])) {
-                $this->transactionId = $res['id'];
-            } else {
-                // singleUse transaction
-                $this->transactionId = null;
+            $transaction = $this->operation->transaction($this->session, $this->options);
+            if (!is_null($transaction->id())) {
+                $this->setId($transaction->id());
             }
         }
 

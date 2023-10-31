@@ -188,9 +188,10 @@ class Operation
      */
     public function rollback(Session $session, $transactionId, array $options = [])
     {
-        // TODO: Check with team on this and decide
-        if (is_array($transactionId) and isset($transactionId['begin'])) {
+        // @TODO: Check with team on this if check and decide
+        if (is_null($transactionId)) {
             return;
+            // @TODO: Check with team and decide whether to throw exception or just return.
             // throw new \RuntimeException('Streaming calls must invoke rows() function');
         }
         $this->connection->rollback([
@@ -213,10 +214,11 @@ class Operation
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *     @type Transaction transactionHandle Transaction to be used for this operation.
      * }
      * @return Result
      */
-    public function execute(Session $session, $sql, array $options = [], &$transactionId = null)
+    public function execute(Session $session, $sql, array $options = [])
     {
         $options += [
             'parameters' => [],
@@ -233,9 +235,12 @@ class Operation
         // Initially with begin, transactionId will be null.
         // Once generated it will get populated from Result->rows()
         // Incase of stream failure, the transactionId is preserved here to reuse.
-        $call = function ($resumeToken = null) use ($session, $sql, $options, &$transactionId) {
-            if ( !is_null($transactionId) and !is_array($transactionId) ) {
-                $options['transaction'] = ['id' => $transactionId];
+        $call = function ($resumeToken = null) use ($session, $sql, $options) {
+            if (
+                isset($options['transactionHandle']) &&
+                !is_null($options['transactionHandle']->id())
+            ) {
+                $options['transaction'] = ['id' => $options['transactionHandle']->id()];
             }
             if ($resumeToken) {
                 $options['resumeToken'] = $resumeToken;
@@ -255,7 +260,7 @@ class Operation
             $context,
             $this->mapper,
             self::DEFAULT_RETRIES,
-            $transactionId
+            $options['transactionHandle'] ?? null
         );
     }
 
@@ -273,6 +278,8 @@ class Operation
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *     @type array $begin The begin Transaction options.
+     *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
      * }
      * @return int
      * @throws \InvalidArgumentException If the SQL string isn't an update operation.
@@ -281,13 +288,14 @@ class Operation
         Session $session,
         Transaction $transaction,
         $sql,
-        array $options = [],
-        &$transactionId = null
+        array $options = []
     ) {
-        if ( !is_null($transactionId) and !is_array($transactionId) ) {
-            $options += ['transactionId' => $transactionId];
+        if (!is_null($transaction->id())) {
+            $options += ['transactionId' => $transaction->id()];
         }
-        $res = $this->execute($session, $sql, $options, $transactionId);
+        $res = $this->execute($session, $sql, $options + [
+            'transactionHandle' => $transaction
+        ]);
 
         // Iterate through the result to ensure we have query statistics available.
         iterator_to_array($res->rows());
@@ -338,6 +346,9 @@ class Operation
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *     @type array $begin The begin Transaction options.
+     *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
+     * 
      * }
      * @return BatchDmlResult
      * @throws \InvalidArgumentException If any statement is missing the `sql` key.
@@ -346,8 +357,7 @@ class Operation
         Session $session,
         Transaction $transaction,
         array $statements,
-        array $options = [],
-        &$transactionId = null
+        array $options = []
     ) {
         $stmts = [];
         foreach ($statements as $statement) {
@@ -362,8 +372,8 @@ class Operation
             ] + $this->mapper->formatParamsForExecuteSql($parameters, $types);
         }
 
-        if ( !is_null($transactionId) and !is_array($transactionId) ) {
-            $options += ['transactionId' => $transactionId];
+        if (!is_null($transaction->id())) {
+            $options += ['transactionId' => $transaction->id()];
         }
 
         $res = $this->connection->executeBatchDml([
@@ -373,10 +383,10 @@ class Operation
         ] + $options);
 
         if (
-            isset($res['resultSets'][0]['metadata']['transaction']['id']) and
+            isset($res['resultSets'][0]['metadata']['transaction']['id']) &&
             $res['resultSets'][0]['metadata']['transaction']['id']
         ) {
-            $transactionId = $res['resultSets'][0]['metadata']['transaction']['id'];
+            $transaction->setId($res['resultSets'][0]['metadata']['transaction']['id']);
         }
 
         $errorStatement = null;
@@ -406,6 +416,7 @@ class Operation
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *     @type Transaction $transactionHandle Transaction to be used for this operation.
      * }
      * @return Result
      */
@@ -414,8 +425,7 @@ class Operation
         $table,
         KeySet $keySet,
         array $columns,
-        array $options = [],
-        &$transactionId = null
+        array $options = []
     ) {
         $options += [
             'index' => null,
@@ -427,6 +437,12 @@ class Operation
         $context = $this->pluck('transactionContext', $options);
 
         $call = function ($resumeToken = null) use ($table, $session, $columns, $keySet, $options) {
+            if (
+                isset($options['transactionHandle']) &&
+                !is_null($options['transactionHandle']->id())
+            ) {
+                $options['transaction'] = ['id' => $options['transactionHandle']->id()];
+            }
             if ($resumeToken) {
                 $options['resumeToken'] = $resumeToken;
             }
@@ -447,7 +463,7 @@ class Operation
             $context,
             $this->mapper,
             self::DEFAULT_RETRIES,
-            $transactionId
+            $options['transactionHandle'] ?? null
         );
     }
 
@@ -467,6 +483,8 @@ class Operation
      *     @type bool $isRetry If true, the resulting transaction will indicate
      *           that it is the result of a retry operation. **Defaults to**
      *           `false`.
+     *     @type array $begin The begin Transaction options.
+     *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
      * }
      * @return Transaction
      */
@@ -482,21 +500,13 @@ class Operation
             $options['requestOptions']['transactionTag'] = $transactionTag;
         }
 
-        if (!$options['singleUse']) {
-            if (
-                isset($options['begin']) and
-                !isset($options['transactionOptions']['partitionedDml'])
-            ) {
-                $res = ['id' => ['begin' => $options['begin']]];
-            } else {
-                $res = $this->beginTransaction($session, $options);
-            }
+        if (!$options['singleUse'] && (
+            !isset($options['begin']) ||
+            isset($options['transactionOptions']['partitionedDml'])
+        )) {
+            $res = $this->beginTransaction($session, $options);
         } else {
             $res = [];
-        }
-
-        if (isset($options['fromTransaction'])) {
-            return $res;
         }
 
         return $this->createTransaction(
@@ -512,6 +522,8 @@ class Operation
      * @param Session $session The session the transaction belongs to.
      * @param array $res [optional] The createTransaction response.
      * @param array $options [optional] Options for the transaction object.
+     *     @type array $begin The begin Transaction options.
+     *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
      * @return Transaction
      */
     public function createTransaction(Session $session, array $res = [], array $options = [])
@@ -811,6 +823,7 @@ class Operation
      *
      * @param Session $session The session to start the snapshot in.
      * @param array $options [optional] Configuration options.
+     *
      * @return array
      */
     private function beginTransaction(Session $session, array $options = [])
