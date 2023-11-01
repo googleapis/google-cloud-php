@@ -56,3 +56,5 @@ jobs:
           Spanner/vendor/bin/phpunit -c Spanner/phpunit-system.xml.dist
         env:
           SPANNER_EMULATOR_HOST: localhost:9010
+          GOOGLE_CLOUD_PHP_TESTS_KEY_PATH: '.github/emulator/example-key.json'
+          GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH: '.github/emulator/example-key.json'
