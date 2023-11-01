@@ -29,7 +29,7 @@ class IncludeReplicas extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool auto_failover_disabled = 2;</code>
      */
-    protected $auto_failover_disabled = false;
+    private $auto_failover_disabled = false;
 
     /**
      * Constructor.

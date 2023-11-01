@@ -34,13 +34,13 @@ class ReplicaSelection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 1;</code>
      */
-    protected $location = '';
+    private $location = '';
     /**
      * The type of replica.
      *
      * Generated from protobuf field <code>.google.spanner.v1.DirectedReadOptions.ReplicaSelection.Type type = 2;</code>
      */
-    protected $type = 0;
+    private $type = 0;
 
     /**
      * Constructor.

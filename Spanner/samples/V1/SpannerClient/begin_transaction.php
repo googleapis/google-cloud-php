@@ -30,7 +30,8 @@ use Google\Cloud\Spanner\V1\TransactionOptions;
 
 /**
  * Begins a new transaction. This step can often be skipped:
- * [Read][google.spanner.v1.Spanner.Read], [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql] and
+ * [Read][google.spanner.v1.Spanner.Read],
+ * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql] and
  * [Commit][google.spanner.v1.Spanner.Commit] can begin a new transaction as a
  * side-effect.
  *

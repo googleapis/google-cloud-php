@@ -31,19 +31,19 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
      */
     private $transaction = null;
     /**
-     * Required. The list of statements to execute in this batch. Statements are executed
-     * serially, such that the effects of statement `i` are visible to statement
-     * `i+1`. Each statement must be a DML statement. Execution stops at the
-     * first failed statement; the remaining statements are not executed.
+     * Required. The list of statements to execute in this batch. Statements are
+     * executed serially, such that the effects of statement `i` are visible to
+     * statement `i+1`. Each statement must be a DML statement. Execution stops at
+     * the first failed statement; the remaining statements are not executed.
      * Callers must provide at least one statement.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.ExecuteBatchDmlRequest.Statement statements = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $statements;
     /**
-     * Required. A per-transaction sequence number used to identify this request. This field
-     * makes each request idempotent such that if the request is received multiple
-     * times, at most one will succeed.
+     * Required. A per-transaction sequence number used to identify this request.
+     * This field makes each request idempotent such that if the request is
+     * received multiple times, at most one will succeed.
      * The sequence number must be monotonically increasing within the
      * transaction. If a request arrives for the first time with an out-of-order
      * sequence number, the transaction may be aborted. Replays of previously
@@ -73,15 +73,15 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
      *           caller must either supply an existing transaction ID or begin a new
      *           transaction.
      *     @type array<\Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement>|\Google\Protobuf\Internal\RepeatedField $statements
-     *           Required. The list of statements to execute in this batch. Statements are executed
-     *           serially, such that the effects of statement `i` are visible to statement
-     *           `i+1`. Each statement must be a DML statement. Execution stops at the
-     *           first failed statement; the remaining statements are not executed.
+     *           Required. The list of statements to execute in this batch. Statements are
+     *           executed serially, such that the effects of statement `i` are visible to
+     *           statement `i+1`. Each statement must be a DML statement. Execution stops at
+     *           the first failed statement; the remaining statements are not executed.
      *           Callers must provide at least one statement.
      *     @type int|string $seqno
-     *           Required. A per-transaction sequence number used to identify this request. This field
-     *           makes each request idempotent such that if the request is received multiple
-     *           times, at most one will succeed.
+     *           Required. A per-transaction sequence number used to identify this request.
+     *           This field makes each request idempotent such that if the request is
+     *           received multiple times, at most one will succeed.
      *           The sequence number must be monotonically increasing within the
      *           transaction. If a request arrives for the first time with an out-of-order
      *           sequence number, the transaction may be aborted. Replays of previously
@@ -164,10 +164,10 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The list of statements to execute in this batch. Statements are executed
-     * serially, such that the effects of statement `i` are visible to statement
-     * `i+1`. Each statement must be a DML statement. Execution stops at the
-     * first failed statement; the remaining statements are not executed.
+     * Required. The list of statements to execute in this batch. Statements are
+     * executed serially, such that the effects of statement `i` are visible to
+     * statement `i+1`. Each statement must be a DML statement. Execution stops at
+     * the first failed statement; the remaining statements are not executed.
      * Callers must provide at least one statement.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.ExecuteBatchDmlRequest.Statement statements = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -179,10 +179,10 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The list of statements to execute in this batch. Statements are executed
-     * serially, such that the effects of statement `i` are visible to statement
-     * `i+1`. Each statement must be a DML statement. Execution stops at the
-     * first failed statement; the remaining statements are not executed.
+     * Required. The list of statements to execute in this batch. Statements are
+     * executed serially, such that the effects of statement `i` are visible to
+     * statement `i+1`. Each statement must be a DML statement. Execution stops at
+     * the first failed statement; the remaining statements are not executed.
      * Callers must provide at least one statement.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.ExecuteBatchDmlRequest.Statement statements = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -198,9 +198,9 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A per-transaction sequence number used to identify this request. This field
-     * makes each request idempotent such that if the request is received multiple
-     * times, at most one will succeed.
+     * Required. A per-transaction sequence number used to identify this request.
+     * This field makes each request idempotent such that if the request is
+     * received multiple times, at most one will succeed.
      * The sequence number must be monotonically increasing within the
      * transaction. If a request arrives for the first time with an out-of-order
      * sequence number, the transaction may be aborted. Replays of previously
@@ -215,9 +215,9 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A per-transaction sequence number used to identify this request. This field
-     * makes each request idempotent such that if the request is received multiple
-     * times, at most one will succeed.
+     * Required. A per-transaction sequence number used to identify this request.
+     * This field makes each request idempotent such that if the request is
+     * received multiple times, at most one will succeed.
      * The sequence number must be monotonically increasing within the
      * transaction. If a request arrives for the first time with an out-of-order
      * sequence number, the transaction may be aborted. Replays of previously
