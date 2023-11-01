@@ -21,7 +21,7 @@ class EnterpriseConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.EnterpriseConfig.ClusterTier cluster_tier = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $cluster_tier = 0;
+    private $cluster_tier = 0;
 
     /**
      * Constructor.
