@@ -59,6 +59,4 @@ class SourceFetcher
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SourceFetcher::class, \Google\Cloud\Build\V1\StorageSource_SourceFetcher::class);
 
