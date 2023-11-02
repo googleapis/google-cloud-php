@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class PremiumFeatures extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Turn on selection mark detector in OCR engine. Only available in OCR 2.0+
-     * processors.
+     * Turn on selection mark detector in OCR engine. Only available in OCR 2.0
+     * (and later) processors.
      *
      * Generated from protobuf field <code>bool enable_selection_mark_detection = 3;</code>
      */
@@ -42,8 +42,8 @@ class PremiumFeatures extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $enable_selection_mark_detection
-     *           Turn on selection mark detector in OCR engine. Only available in OCR 2.0+
-     *           processors.
+     *           Turn on selection mark detector in OCR engine. Only available in OCR 2.0
+     *           (and later) processors.
      *     @type bool $compute_style_info
      *           Turn on font identification model and return font style information.
      *     @type bool $enable_math_ocr
@@ -56,8 +56,8 @@ class PremiumFeatures extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Turn on selection mark detector in OCR engine. Only available in OCR 2.0+
-     * processors.
+     * Turn on selection mark detector in OCR engine. Only available in OCR 2.0
+     * (and later) processors.
      *
      * Generated from protobuf field <code>bool enable_selection_mark_detection = 3;</code>
      * @return bool
@@ -68,8 +68,8 @@ class PremiumFeatures extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Turn on selection mark detector in OCR engine. Only available in OCR 2.0+
-     * processors.
+     * Turn on selection mark detector in OCR engine. Only available in OCR 2.0
+     * (and later) processors.
      *
      * Generated from protobuf field <code>bool enable_selection_mark_detection = 3;</code>
      * @param bool $var
