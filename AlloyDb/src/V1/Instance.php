@@ -146,7 +146,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $query_insights_config = null;
     /**
-     * Read pool specific config.
+     * Read pool instance configuration.
+     * This is required if the value of instanceType is READ_POOL.
      *
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ReadPoolConfig read_pool_config = 14;</code>
      */
@@ -261,7 +262,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AlloyDb\V1\Instance\QueryInsightsInstanceConfig $query_insights_config
      *           Configuration for query insights.
      *     @type \Google\Cloud\AlloyDb\V1\Instance\ReadPoolConfig $read_pool_config
-     *           Read pool specific config.
+     *           Read pool instance configuration.
+     *           This is required if the value of instanceType is READ_POOL.
      *     @type string $ip_address
      *           Output only. The IP address for the Instance.
      *           This is the connection endpoint for an end-user application.
@@ -829,7 +831,8 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Read pool specific config.
+     * Read pool instance configuration.
+     * This is required if the value of instanceType is READ_POOL.
      *
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ReadPoolConfig read_pool_config = 14;</code>
      * @return \Google\Cloud\AlloyDb\V1\Instance\ReadPoolConfig|null
@@ -850,7 +853,8 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Read pool specific config.
+     * Read pool instance configuration.
+     * This is required if the value of instanceType is READ_POOL.
      *
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ReadPoolConfig read_pool_config = 14;</code>
      * @param \Google\Cloud\AlloyDb\V1\Instance\ReadPoolConfig $var
