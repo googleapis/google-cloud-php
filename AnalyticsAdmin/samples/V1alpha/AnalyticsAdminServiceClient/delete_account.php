@@ -34,7 +34,7 @@ use Google\ApiCore\ApiException;
  *
  * If the accounts are not restored before the expiration time, the account
  * and all child resources (eg: Properties, GoogleAdsLinks, Streams,
- * UserLinks) will be permanently purged.
+ * AccessBindings) will be permanently purged.
  * https://support.google.com/analytics/answer/6154772
  *
  * Returns an error if the target is not found.

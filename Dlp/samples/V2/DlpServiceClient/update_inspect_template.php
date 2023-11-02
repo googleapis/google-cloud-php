@@ -31,8 +31,8 @@ use Google\Cloud\Dlp\V2\InspectTemplate;
  * Updates the InspectTemplate.
  * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
  *
- * @param string $formattedName Resource name of organization and inspectTemplate to be updated, for
- *                              example `organizations/433245324/inspectTemplates/432452342` or
+ * @param string $formattedName Resource name of organization and inspectTemplate to be updated,
+ *                              for example `organizations/433245324/inspectTemplates/432452342` or
  *                              projects/project-id/inspectTemplates/432452342. Please see
  *                              {@see DlpServiceClient::inspectTemplateName()} for help formatting this field.
  */

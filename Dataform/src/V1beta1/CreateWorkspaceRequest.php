@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateWorkspaceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The repository in which to create the workspace. Must be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
+     * Required. The repository in which to create the workspace. Must be in the
+     * format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -29,20 +29,20 @@ class CreateWorkspaceRequest extends \Google\Protobuf\Internal\Message
      */
     private $workspace = null;
     /**
-     * Required. The ID to use for the workspace, which will become the final component of
-     * the workspace's resource name.
+     * Required. The ID to use for the workspace, which will become the final
+     * component of the workspace's resource name.
      *
      * Generated from protobuf field <code>string workspace_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $workspace_id = '';
 
     /**
-     * @param string                                   $parent      Required. The repository in which to create the workspace. Must be in the format
-     *                                                              `projects/&#42;/locations/&#42;/repositories/*`. Please see
+     * @param string                                   $parent      Required. The repository in which to create the workspace. Must be in the
+     *                                                              format `projects/&#42;/locations/&#42;/repositories/*`. Please see
      *                                                              {@see DataformClient::repositoryName()} for help formatting this field.
      * @param \Google\Cloud\Dataform\V1beta1\Workspace $workspace   Required. The workspace to create.
-     * @param string                                   $workspaceId Required. The ID to use for the workspace, which will become the final component of
-     *                                                              the workspace's resource name.
+     * @param string                                   $workspaceId Required. The ID to use for the workspace, which will become the final
+     *                                                              component of the workspace's resource name.
      *
      * @return \Google\Cloud\Dataform\V1beta1\CreateWorkspaceRequest
      *
@@ -63,13 +63,13 @@ class CreateWorkspaceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The repository in which to create the workspace. Must be in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
+     *           Required. The repository in which to create the workspace. Must be in the
+     *           format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
      *     @type \Google\Cloud\Dataform\V1beta1\Workspace $workspace
      *           Required. The workspace to create.
      *     @type string $workspace_id
-     *           Required. The ID to use for the workspace, which will become the final component of
-     *           the workspace's resource name.
+     *           Required. The ID to use for the workspace, which will become the final
+     *           component of the workspace's resource name.
      * }
      */
     public function __construct($data = NULL) {
@@ -78,8 +78,8 @@ class CreateWorkspaceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The repository in which to create the workspace. Must be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
+     * Required. The repository in which to create the workspace. Must be in the
+     * format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -90,8 +90,8 @@ class CreateWorkspaceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The repository in which to create the workspace. Must be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
+     * Required. The repository in which to create the workspace. Must be in the
+     * format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -142,8 +142,8 @@ class CreateWorkspaceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID to use for the workspace, which will become the final component of
-     * the workspace's resource name.
+     * Required. The ID to use for the workspace, which will become the final
+     * component of the workspace's resource name.
      *
      * Generated from protobuf field <code>string workspace_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -154,8 +154,8 @@ class CreateWorkspaceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID to use for the workspace, which will become the final component of
-     * the workspace's resource name.
+     * Required. The ID to use for the workspace, which will become the final
+     * component of the workspace's resource name.
      *
      * Generated from protobuf field <code>string workspace_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

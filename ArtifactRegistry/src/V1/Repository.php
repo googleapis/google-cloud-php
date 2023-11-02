@@ -17,15 +17,15 @@ class Repository extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the repository, for example:
-     * "projects/p1/locations/us-central1/repositories/repo1".
+     * `projects/p1/locations/us-central1/repositories/repo1`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * The format of packages that are stored in the repository.
+     * Optional. The format of packages that are stored in the repository.
      *
-     * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.Repository.Format format = 2;</code>
+     * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.Repository.Format format = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $format = 0;
     /**
@@ -45,15 +45,15 @@ class Repository extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * The time when the repository was created.
+     * Output only. The time when the repository was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
     /**
-     * The time when the repository was last updated.
+     * Output only. The time when the repository was last updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $update_time = null;
     /**
@@ -65,7 +65,44 @@ class Repository extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string kms_key_name = 8;</code>
      */
     private $kms_key_name = '';
+    /**
+     * Optional. The mode of the repository.
+     *
+     * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.Repository.Mode mode = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $mode = 0;
+    /**
+     * Optional. Cleanup policies for this repository. Cleanup policies indicate
+     * when certain package versions can be automatically deleted. Map keys are
+     * policy IDs supplied by users during policy creation. They must unique
+     * within a repository and be under 128 characters in length.
+     *
+     * Generated from protobuf field <code>map<string, .google.devtools.artifactregistry.v1.CleanupPolicy> cleanup_policies = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $cleanup_policies;
+    /**
+     * Output only. The size, in bytes, of all artifact storage in this
+     * repository. Repositories that are generally available or in public preview
+     *  use this to calculate storage costs.
+     *
+     * Generated from protobuf field <code>int64 size_bytes = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $size_bytes = 0;
+    /**
+     * Output only. If set, the repository satisfies physical zone separation.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $satisfies_pzs = false;
+    /**
+     * Optional. If true, the cleanup pipeline is prevented from deleting versions
+     * in this repository.
+     *
+     * Generated from protobuf field <code>bool cleanup_policy_dry_run = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $cleanup_policy_dry_run = false;
     protected $format_config;
+    protected $mode_config;
 
     /**
      * Constructor.
@@ -76,11 +113,18 @@ class Repository extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\ArtifactRegistry\V1\Repository\MavenRepositoryConfig $maven_config
      *           Maven repository config contains repository level configuration
      *           for the repositories of maven type.
+     *     @type \Google\Cloud\ArtifactRegistry\V1\Repository\DockerRepositoryConfig $docker_config
+     *           Docker repository config contains repository level configuration
+     *           for the repositories of docker type.
+     *     @type \Google\Cloud\ArtifactRegistry\V1\VirtualRepositoryConfig $virtual_repository_config
+     *           Configuration specific for a Virtual Repository.
+     *     @type \Google\Cloud\ArtifactRegistry\V1\RemoteRepositoryConfig $remote_repository_config
+     *           Configuration specific for a Remote Repository.
      *     @type string $name
      *           The name of the repository, for example:
-     *           "projects/p1/locations/us-central1/repositories/repo1".
+     *           `projects/p1/locations/us-central1/repositories/repo1`.
      *     @type int $format
-     *           The format of packages that are stored in the repository.
+     *           Optional. The format of packages that are stored in the repository.
      *     @type string $description
      *           The user-provided description of the repository.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
@@ -90,14 +134,30 @@ class Repository extends \Google\Protobuf\Internal\Message
      *           and may only contain lowercase letters, numeric characters, underscores,
      *           and dashes.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           The time when the repository was created.
+     *           Output only. The time when the repository was created.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           The time when the repository was last updated.
+     *           Output only. The time when the repository was last updated.
      *     @type string $kms_key_name
      *           The Cloud KMS resource name of the customer managed encryption key that's
      *           used to encrypt the contents of the Repository. Has the form:
      *           `projects/my-project/locations/my-region/keyRings/my-kr/cryptoKeys/my-key`.
      *           This value may not be changed after the Repository has been created.
+     *     @type int $mode
+     *           Optional. The mode of the repository.
+     *     @type array|\Google\Protobuf\Internal\MapField $cleanup_policies
+     *           Optional. Cleanup policies for this repository. Cleanup policies indicate
+     *           when certain package versions can be automatically deleted. Map keys are
+     *           policy IDs supplied by users during policy creation. They must unique
+     *           within a repository and be under 128 characters in length.
+     *     @type int|string $size_bytes
+     *           Output only. The size, in bytes, of all artifact storage in this
+     *           repository. Repositories that are generally available or in public preview
+     *            use this to calculate storage costs.
+     *     @type bool $satisfies_pzs
+     *           Output only. If set, the repository satisfies physical zone separation.
+     *     @type bool $cleanup_policy_dry_run
+     *           Optional. If true, the cleanup pipeline is prevented from deleting versions
+     *           in this repository.
      * }
      */
     public function __construct($data = NULL) {
@@ -139,8 +199,103 @@ class Repository extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Docker repository config contains repository level configuration
+     * for the repositories of docker type.
+     *
+     * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.Repository.DockerRepositoryConfig docker_config = 17;</code>
+     * @return \Google\Cloud\ArtifactRegistry\V1\Repository\DockerRepositoryConfig|null
+     */
+    public function getDockerConfig()
+    {
+        return $this->readOneof(17);
+    }
+
+    public function hasDockerConfig()
+    {
+        return $this->hasOneof(17);
+    }
+
+    /**
+     * Docker repository config contains repository level configuration
+     * for the repositories of docker type.
+     *
+     * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.Repository.DockerRepositoryConfig docker_config = 17;</code>
+     * @param \Google\Cloud\ArtifactRegistry\V1\Repository\DockerRepositoryConfig $var
+     * @return $this
+     */
+    public function setDockerConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ArtifactRegistry\V1\Repository\DockerRepositoryConfig::class);
+        $this->writeOneof(17, $var);
+
+        return $this;
+    }
+
+    /**
+     * Configuration specific for a Virtual Repository.
+     *
+     * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.VirtualRepositoryConfig virtual_repository_config = 14;</code>
+     * @return \Google\Cloud\ArtifactRegistry\V1\VirtualRepositoryConfig|null
+     */
+    public function getVirtualRepositoryConfig()
+    {
+        return $this->readOneof(14);
+    }
+
+    public function hasVirtualRepositoryConfig()
+    {
+        return $this->hasOneof(14);
+    }
+
+    /**
+     * Configuration specific for a Virtual Repository.
+     *
+     * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.VirtualRepositoryConfig virtual_repository_config = 14;</code>
+     * @param \Google\Cloud\ArtifactRegistry\V1\VirtualRepositoryConfig $var
+     * @return $this
+     */
+    public function setVirtualRepositoryConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ArtifactRegistry\V1\VirtualRepositoryConfig::class);
+        $this->writeOneof(14, $var);
+
+        return $this;
+    }
+
+    /**
+     * Configuration specific for a Remote Repository.
+     *
+     * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.RemoteRepositoryConfig remote_repository_config = 15;</code>
+     * @return \Google\Cloud\ArtifactRegistry\V1\RemoteRepositoryConfig|null
+     */
+    public function getRemoteRepositoryConfig()
+    {
+        return $this->readOneof(15);
+    }
+
+    public function hasRemoteRepositoryConfig()
+    {
+        return $this->hasOneof(15);
+    }
+
+    /**
+     * Configuration specific for a Remote Repository.
+     *
+     * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.RemoteRepositoryConfig remote_repository_config = 15;</code>
+     * @param \Google\Cloud\ArtifactRegistry\V1\RemoteRepositoryConfig $var
+     * @return $this
+     */
+    public function setRemoteRepositoryConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ArtifactRegistry\V1\RemoteRepositoryConfig::class);
+        $this->writeOneof(15, $var);
+
+        return $this;
+    }
+
+    /**
      * The name of the repository, for example:
-     * "projects/p1/locations/us-central1/repositories/repo1".
+     * `projects/p1/locations/us-central1/repositories/repo1`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -152,7 +307,7 @@ class Repository extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the repository, for example:
-     * "projects/p1/locations/us-central1/repositories/repo1".
+     * `projects/p1/locations/us-central1/repositories/repo1`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -167,9 +322,9 @@ class Repository extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The format of packages that are stored in the repository.
+     * Optional. The format of packages that are stored in the repository.
      *
-     * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.Repository.Format format = 2;</code>
+     * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.Repository.Format format = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getFormat()
@@ -178,9 +333,9 @@ class Repository extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The format of packages that are stored in the repository.
+     * Optional. The format of packages that are stored in the repository.
      *
-     * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.Repository.Format format = 2;</code>
+     * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.Repository.Format format = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -253,9 +408,9 @@ class Repository extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time when the repository was created.
+     * Output only. The time when the repository was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
@@ -274,9 +429,9 @@ class Repository extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time when the repository was created.
+     * Output only. The time when the repository was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -289,9 +444,9 @@ class Repository extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time when the repository was last updated.
+     * Output only. The time when the repository was last updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
@@ -310,9 +465,9 @@ class Repository extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time when the repository was last updated.
+     * Output only. The time when the repository was last updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -357,11 +512,161 @@ class Repository extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The mode of the repository.
+     *
+     * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.Repository.Mode mode = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMode()
+    {
+        return $this->mode;
+    }
+
+    /**
+     * Optional. The mode of the repository.
+     *
+     * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.Repository.Mode mode = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\ArtifactRegistry\V1\Repository\Mode::class);
+        $this->mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Cleanup policies for this repository. Cleanup policies indicate
+     * when certain package versions can be automatically deleted. Map keys are
+     * policy IDs supplied by users during policy creation. They must unique
+     * within a repository and be under 128 characters in length.
+     *
+     * Generated from protobuf field <code>map<string, .google.devtools.artifactregistry.v1.CleanupPolicy> cleanup_policies = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getCleanupPolicies()
+    {
+        return $this->cleanup_policies;
+    }
+
+    /**
+     * Optional. Cleanup policies for this repository. Cleanup policies indicate
+     * when certain package versions can be automatically deleted. Map keys are
+     * policy IDs supplied by users during policy creation. They must unique
+     * within a repository and be under 128 characters in length.
+     *
+     * Generated from protobuf field <code>map<string, .google.devtools.artifactregistry.v1.CleanupPolicy> cleanup_policies = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setCleanupPolicies($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\ArtifactRegistry\V1\CleanupPolicy::class);
+        $this->cleanup_policies = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The size, in bytes, of all artifact storage in this
+     * repository. Repositories that are generally available or in public preview
+     *  use this to calculate storage costs.
+     *
+     * Generated from protobuf field <code>int64 size_bytes = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getSizeBytes()
+    {
+        return $this->size_bytes;
+    }
+
+    /**
+     * Output only. The size, in bytes, of all artifact storage in this
+     * repository. Repositories that are generally available or in public preview
+     *  use this to calculate storage costs.
+     *
+     * Generated from protobuf field <code>int64 size_bytes = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setSizeBytes($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->size_bytes = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. If set, the repository satisfies physical zone separation.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. If set, the repository satisfies physical zone separation.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, the cleanup pipeline is prevented from deleting versions
+     * in this repository.
+     *
+     * Generated from protobuf field <code>bool cleanup_policy_dry_run = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getCleanupPolicyDryRun()
+    {
+        return $this->cleanup_policy_dry_run;
+    }
+
+    /**
+     * Optional. If true, the cleanup pipeline is prevented from deleting versions
+     * in this repository.
+     *
+     * Generated from protobuf field <code>bool cleanup_policy_dry_run = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setCleanupPolicyDryRun($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->cleanup_policy_dry_run = $var;
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getFormatConfig()
     {
         return $this->whichOneof("format_config");
+    }
+
+    /**
+     * @return string
+     */
+    public function getModeConfig()
+    {
+        return $this->whichOneof("mode_config");
     }
 
 }

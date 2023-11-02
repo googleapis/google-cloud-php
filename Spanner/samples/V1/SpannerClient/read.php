@@ -31,14 +31,15 @@ use Google\Cloud\Spanner\V1\SpannerClient;
 /**
  * Reads rows from the database using key lookups and scans, as a
  * simple key/value style alternative to
- * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql].  This method cannot be used to
- * return a result set larger than 10 MiB; if the read matches more
+ * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql].  This method cannot be
+ * used to return a result set larger than 10 MiB; if the read matches more
  * data than that, the read fails with a `FAILED_PRECONDITION`
  * error.
  *
  * Reads inside read-write transactions might return `ABORTED`. If
  * this occurs, the application should restart the transaction from
- * the beginning. See [Transaction][google.spanner.v1.Transaction] for more details.
+ * the beginning. See [Transaction][google.spanner.v1.Transaction] for more
+ * details.
  *
  * Larger result sets can be yielded in streaming fashion by calling
  * [StreamingRead][google.spanner.v1.Spanner.StreamingRead] instead.
@@ -46,8 +47,8 @@ use Google\Cloud\Spanner\V1\SpannerClient;
  * @param string $formattedSession The session in which the read should be performed. Please see
  *                                 {@see SpannerClient::sessionName()} for help formatting this field.
  * @param string $table            The name of the table in the database to be read.
- * @param string $columnsElement   The columns of [table][google.spanner.v1.ReadRequest.table] to be returned for each row matching
- *                                 this request.
+ * @param string $columnsElement   The columns of [table][google.spanner.v1.ReadRequest.table] to be
+ *                                 returned for each row matching this request.
  */
 function read_sample(string $formattedSession, string $table, string $columnsElement): void
 {

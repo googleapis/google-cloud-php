@@ -78,6 +78,7 @@ use Google\Cloud\Container\V1\NodePool\UpgradeSettings;
 use Google\Cloud\Container\V1\NodeTaints;
 use Google\Cloud\Container\V1\Operation;
 use Google\Cloud\Container\V1\ResourceLabels;
+use Google\Cloud\Container\V1\ResourceManagerTags;
 use Google\Cloud\Container\V1\RollbackNodePoolUpgradeRequest;
 use Google\Cloud\Container\V1\ServerConfig;
 use Google\Cloud\Container\V1\SetAddonsConfigRequest;
@@ -2820,6 +2821,10 @@ class ClusterManagerGapicClient
      *           The smallest allowed disk size is 10GB.
      *           Initiates an upgrade operation that migrates the nodes in the
      *           node pool to the specified disk size.
+     *     @type ResourceManagerTags $resourceManagerTags
+     *           Desired resource manager tag keys and values to be attached to the nodes
+     *           for managing Compute Engine firewalls using Network Firewall Policies.
+     *           Existing tags will be replaced with new values.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2939,6 +2944,10 @@ class ClusterManagerGapicClient
 
         if (isset($optionalArgs['diskSizeGb'])) {
             $request->setDiskSizeGb($optionalArgs['diskSizeGb']);
+        }
+
+        if (isset($optionalArgs['resourceManagerTags'])) {
+            $request->setResourceManagerTags($optionalArgs['resourceManagerTags']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
