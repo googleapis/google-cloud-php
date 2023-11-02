@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.25.0](https://github.com/googleapis/gax-php/compare/v1.24.0...v1.25.0) (2023-11-02)
+
+
+### Features
+
+* Add custom retries ([#489](https://github.com/googleapis/gax-php/issues/489)) ([ef0789b](https://github.com/googleapis/gax-php/commit/ef0789b73ef28d79a08c354d1361a9ccc6206088))
+
 ## [1.24.0](https://github.com/googleapis/gax-php/compare/v1.23.0...v1.24.0) (2023-10-10)
 
 
