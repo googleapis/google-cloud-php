@@ -1,5 +1,491 @@
 # Changelog
 
+## 0.225.0
+
+<details><summary>google/access-context-manager 0.4.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-ai-platform 0.26.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-alloydb 0.8.0</summary>
+
+
+
+### Features
+
+* Add new field in `GenerateClientCertificate` v1 API to allow AlloyDB connectors request client certs with metadata exchange support ([#6762](https://github.com/googleapis/google-cloud-php/issues/6762)) ([bc00f60](https://github.com/googleapis/google-cloud-php/commit/bc00f60a4b908e5932ab19862130c4ae886ed167))
+
+
+### Documentation
+
+* Clarify that `readPoolConfig` is required under certain circumstances, and fix doc formatting on `allocatedIpRange`. ([bc00f60](https://github.com/googleapis/google-cloud-php/commit/bc00f60a4b908e5932ab19862130c4ae886ed167))
+
+</details>
+
+<details><summary>google/cloud-api-gateway 1.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-api-keys 0.3.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-apigee-registry 0.4.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-appengine-admin 1.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 0.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-asset 1.13.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-assured-workloads 0.10.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-automl 1.5.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bare-metal-solution 0.5.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-batch 0.13.1</summary>
+
+
+
+### Documentation
+
+* Update default max parallel tasks per job ([#6750](https://github.com/googleapis/google-cloud-php/issues/6750)) ([ef399b9](https://github.com/googleapis/google-cloud-php/commit/ef399b9e7f0157f832cae1836dcbc99ecb9ddefb))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appconnections 0.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appconnectors 0.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appgateways 0.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-clientconnectorservices 0.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-clientgateways 0.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-analyticshub 0.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.29.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-build 0.13.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-certificate-manager 0.5.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-channel 1.8.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 1.6.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-container 1.22.0</summary>
+
+
+
+### Features
+
+* Add a new cluster field for the cluster tier of GKE clusters ([cf4188d](https://github.com/googleapis/google-cloud-php/commit/cf4188dbfc4f5cb696be1a81960a2b8ec328a3ac))
+* Add ResourceManagerTags API to attach tags on the underlying Compute Engine VMs of GKE Nodes which can be used to selectively enforce Cloud Firewall network firewall policies ([#6748](https://github.com/googleapis/google-cloud-php/issues/6748)) ([490966c](https://github.com/googleapis/google-cloud-php/commit/490966c444a73dd8c4e4d27b150af0ce5d0d9eda))
+* Added EnterpriseConfig ([#6760](https://github.com/googleapis/google-cloud-php/issues/6760)) ([cf4188d](https://github.com/googleapis/google-cloud-php/commit/cf4188dbfc4f5cb696be1a81960a2b8ec328a3ac))
+
+
+### Documentation
+
+* Updated comments ([490966c](https://github.com/googleapis/google-cloud-php/commit/490966c444a73dd8c4e4d27b150af0ce5d0d9eda))
+
+</details>
+
+<details><summary>google/cloud-core 1.52.8</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-data-catalog 1.8.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-data-fusion 0.5.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-datalabeling 0.4.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataform 0.3.0</summary>
+
+
+
+### Features
+
+* Support custom service account repository configuration ([c5b3bb1](https://github.com/googleapis/google-cloud-php/commit/c5b3bb1c53aeb0088b835b4e144df317b9275f63))
+* Support for ReleaseConfigs ([#6737](https://github.com/googleapis/google-cloud-php/issues/6737)) ([c5b3bb1](https://github.com/googleapis/google-cloud-php/commit/c5b3bb1c53aeb0088b835b4e144df317b9275f63))
+* Support for WorkflowConfigs ([c5b3bb1](https://github.com/googleapis/google-cloud-php/commit/c5b3bb1c53aeb0088b835b4e144df317b9275f63))
+* Support labels on repositories ([c5b3bb1](https://github.com/googleapis/google-cloud-php/commit/c5b3bb1c53aeb0088b835b4e144df317b9275f63))
+* Support new ComputeRepositoryAccessTokenStatus repository method ([c5b3bb1](https://github.com/googleapis/google-cloud-php/commit/c5b3bb1c53aeb0088b835b4e144df317b9275f63))
+* Support new first-party repository methods for committing, listing/reading files, and fetching history ([c5b3bb1](https://github.com/googleapis/google-cloud-php/commit/c5b3bb1c53aeb0088b835b4e144df317b9275f63))
+* Support NPMRC environment variables ([c5b3bb1](https://github.com/googleapis/google-cloud-php/commit/c5b3bb1c53aeb0088b835b4e144df317b9275f63))
+* Support SSH based git authentication configuration ([c5b3bb1](https://github.com/googleapis/google-cloud-php/commit/c5b3bb1c53aeb0088b835b4e144df317b9275f63))
+* Support workspace compilation override fields ([c5b3bb1](https://github.com/googleapis/google-cloud-php/commit/c5b3bb1c53aeb0088b835b4e144df317b9275f63))
+
+
+### Bug Fixes
+
+* Rearrange several messages, thus changing field types ([c5b3bb1](https://github.com/googleapis/google-cloud-php/commit/c5b3bb1c53aeb0088b835b4e144df317b9275f63))
+
+
+### Documentation
+
+* Several comments reformatted ([c5b3bb1](https://github.com/googleapis/google-cloud-php/commit/c5b3bb1c53aeb0088b835b4e144df317b9275f63))
+
+</details>
+
+<details><summary>google/cloud-dataplex 0.11.0</summary>
+
+
+
+### Features
+
+* Add relativeResourceName and linkedResourceName to search result ([f12d405](https://github.com/googleapis/google-cloud-php/commit/f12d40542aa978f094246e5fd3a0f03c4aff9792))
+* DataQualityDimension is now part of the DataQualityDimensionResult message ([#6749](https://github.com/googleapis/google-cloud-php/issues/6749)) ([f12d405](https://github.com/googleapis/google-cloud-php/commit/f12d40542aa978f094246e5fd3a0f03c4aff9792))
+
+</details>
+
+<details><summary>google/cloud-dataproc 3.11.0</summary>
+
+
+
+### Features
+
+* Support required_registration_fraction for secondary workers ([#6763](https://github.com/googleapis/google-cloud-php/issues/6763)) ([1f1746e](https://github.com/googleapis/google-cloud-php/commit/1f1746e971079dd0bf190ddaefa1a73fb19c7f82))
+
+</details>
+
+<details><summary>google/cloud-dataproc-metastore 0.10.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-datastore-admin 0.7.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-datastream 1.4.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-deploy 0.13.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dialogflow 1.10.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dms 1.4.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-document-ai 1.8.2</summary>
+
+
+
+### Documentation
+
+* Updated comments ([#6755](https://github.com/googleapis/google-cloud-php/issues/6755)) ([ee06013](https://github.com/googleapis/google-cloud-php/commit/ee060139c94d43151bf72cf38b95584bae479731))
+
+</details>
+
+<details><summary>google/cloud-domains 0.4.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-eventarc 1.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-filestore 1.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-firestore 1.37.6</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-functions 1.4.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-game-servers 1.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-iot 1.6.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-run 0.7.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-security-center 1.20.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-security-private-ca 1.4.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-service-management 1.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-service-usage 1.2.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-shell 1.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-spanner 1.67.0</summary>
+
+
+
+### Features
+
+* **spanner:** Add directed_read_option in spanner.proto ([#6759](https://github.com/googleapis/google-cloud-php/issues/6759)) ([6b5bb82](https://github.com/googleapis/google-cloud-php/commit/6b5bb823327efa2b68ef12b2be049764d249a27d))
+
+
+### Documentation
+
+* **spanner:** Updated comment formatting ([6b5bb82](https://github.com/googleapis/google-cloud-php/commit/6b5bb823327efa2b68ef12b2be049764d249a27d))
+
+</details>
+
+<details><summary>google/cloud-speech 1.15.0</summary>
+
+
+
+### Features
+
+* Support MP3, TranscriptNormalization and SpeakerLabels in STT V1 API ([#6747](https://github.com/googleapis/google-cloud-php/issues/6747)) ([47d8a7e](https://github.com/googleapis/google-cloud-php/commit/47d8a7ee049fcc092ffcd767745522f61d072600))
+
+</details>
+
+<details><summary>google/cloud-storage 1.34.0</summary>
+
+
+
+### Features
+
+* **Storage:** Enable Autoclass V2 ([#6731](https://github.com/googleapis/google-cloud-php/issues/6731)) ([412a8e4](https://github.com/googleapis/google-cloud-php/commit/412a8e43fe2b0a943dc3697def66fb03c5fd24e5))
+
+</details>
+
+<details><summary>google/cloud-talent 1.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.7.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-tpu 1.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-translate 1.15.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-videointelligence 1.14.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-video-live-stream 0.6.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-video-stitcher 0.7.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vision 1.7.6</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vm-migration 0.5.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vmware-engine 0.3.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vpc-access 1.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-web-risk 1.4.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-workflows 0.4.2</summary>
+
+
+
+</details>
+
 ## 0.224.0
 
 <details><summary>google/analytics-admin 0.19.0</summary>
