@@ -804,7 +804,7 @@ final class RecommenderClient
      * Gets the requested insight. Requires the recommender.*.get IAM permission
      * for the specified insight type.
      *
-     * The async variant is {@see RecommenderGapicClient::getInsightAsync()} .
+     * The async variant is {@see RecommenderClient::getInsightAsync()} .
      *
      * @param GetInsightRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -829,8 +829,7 @@ final class RecommenderClient
      * Gets the requested InsightTypeConfig. There is only one instance of the
      * config for each InsightType.
      *
-     * The async variant is {@see RecommenderGapicClient::getInsightTypeConfigAsync()}
-     * .
+     * The async variant is {@see RecommenderClient::getInsightTypeConfigAsync()} .
      *
      * @param GetInsightTypeConfigRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -855,7 +854,7 @@ final class RecommenderClient
      * Gets the requested recommendation. Requires the recommender.*.get
      * IAM permission for the specified recommender.
      *
-     * The async variant is {@see RecommenderGapicClient::getRecommendationAsync()} .
+     * The async variant is {@see RecommenderClient::getRecommendationAsync()} .
      *
      * @param GetRecommendationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -880,8 +879,7 @@ final class RecommenderClient
      * Gets the requested Recommender Config. There is only one instance of the
      * config for each Recommender.
      *
-     * The async variant is {@see RecommenderGapicClient::getRecommenderConfigAsync()}
-     * .
+     * The async variant is {@see RecommenderClient::getRecommenderConfigAsync()} .
      *
      * @param GetRecommenderConfigRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -906,7 +904,7 @@ final class RecommenderClient
      * Lists insights for the specified Cloud Resource. Requires the
      * recommender.*.list IAM permission for the specified insight type.
      *
-     * The async variant is {@see RecommenderGapicClient::listInsightsAsync()} .
+     * The async variant is {@see RecommenderClient::listInsightsAsync()} .
      *
      * @param ListInsightsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -931,7 +929,7 @@ final class RecommenderClient
      * Lists recommendations for the specified Cloud Resource. Requires the
      * recommender.*.list IAM permission for the specified recommender.
      *
-     * The async variant is {@see RecommenderGapicClient::listRecommendationsAsync()} .
+     * The async variant is {@see RecommenderClient::listRecommendationsAsync()} .
      *
      * @param ListRecommendationsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -960,7 +958,7 @@ final class RecommenderClient
      * MarkInsightAccepted can be applied to insights in ACTIVE state. Requires
      * the recommender.*.update IAM permission for the specified insight.
      *
-     * The async variant is {@see RecommenderGapicClient::markInsightAcceptedAsync()} .
+     * The async variant is {@see RecommenderClient::markInsightAcceptedAsync()} .
      *
      * @param MarkInsightAcceptedRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -993,8 +991,8 @@ final class RecommenderClient
      * Requires the recommender.*.update IAM permission for the specified
      * recommender.
      *
-     * The async variant is
-     * {@see RecommenderGapicClient::markRecommendationClaimedAsync()} .
+     * The async variant is {@see RecommenderClient::markRecommendationClaimedAsync()}
+     * .
      *
      * @param MarkRecommendationClaimedRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -1027,7 +1025,7 @@ final class RecommenderClient
      * recommender.
      *
      * The async variant is
-     * {@see RecommenderGapicClient::markRecommendationDismissedAsync()} .
+     * {@see RecommenderClient::markRecommendationDismissedAsync()} .
      *
      * @param MarkRecommendationDismissedRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -1061,8 +1059,7 @@ final class RecommenderClient
      * Requires the recommender.*.update IAM permission for the specified
      * recommender.
      *
-     * The async variant is
-     * {@see RecommenderGapicClient::markRecommendationFailedAsync()} .
+     * The async variant is {@see RecommenderClient::markRecommendationFailedAsync()} .
      *
      * @param MarkRecommendationFailedRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -1097,7 +1094,7 @@ final class RecommenderClient
      * recommender.
      *
      * The async variant is
-     * {@see RecommenderGapicClient::markRecommendationSucceededAsync()} .
+     * {@see RecommenderClient::markRecommendationSucceededAsync()} .
      *
      * @param MarkRecommendationSucceededRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -1122,8 +1119,7 @@ final class RecommenderClient
      * Updates an InsightTypeConfig change. This will create a new revision of the
      * config.
      *
-     * The async variant is
-     * {@see RecommenderGapicClient::updateInsightTypeConfigAsync()} .
+     * The async variant is {@see RecommenderClient::updateInsightTypeConfigAsync()} .
      *
      * @param UpdateInsightTypeConfigRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -1148,8 +1144,7 @@ final class RecommenderClient
      * Updates a Recommender Config. This will create a new revision of the
      * config.
      *
-     * The async variant is
-     * {@see RecommenderGapicClient::updateRecommenderConfigAsync()} .
+     * The async variant is {@see RecommenderClient::updateRecommenderConfigAsync()} .
      *
      * @param UpdateRecommenderConfigRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {

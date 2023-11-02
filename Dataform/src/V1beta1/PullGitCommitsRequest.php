@@ -22,15 +22,15 @@ class PullGitCommitsRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Optional. The name of the branch in the Git remote from which to pull commits.
-     * If left unset, the repository's default branch name will be used.
+     * Optional. The name of the branch in the Git remote from which to pull
+     * commits. If left unset, the repository's default branch name will be used.
      *
      * Generated from protobuf field <code>string remote_branch = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $remote_branch = '';
     /**
-     * Required. The author of any merge commit which may be created as a result of merging
-     * fetched Git commits into this workspace.
+     * Required. The author of any merge commit which may be created as a result
+     * of merging fetched Git commits into this workspace.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CommitAuthor author = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -45,11 +45,11 @@ class PullGitCommitsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The workspace's name.
      *     @type string $remote_branch
-     *           Optional. The name of the branch in the Git remote from which to pull commits.
-     *           If left unset, the repository's default branch name will be used.
+     *           Optional. The name of the branch in the Git remote from which to pull
+     *           commits. If left unset, the repository's default branch name will be used.
      *     @type \Google\Cloud\Dataform\V1beta1\CommitAuthor $author
-     *           Required. The author of any merge commit which may be created as a result of merging
-     *           fetched Git commits into this workspace.
+     *           Required. The author of any merge commit which may be created as a result
+     *           of merging fetched Git commits into this workspace.
      * }
      */
     public function __construct($data = NULL) {
@@ -84,8 +84,8 @@ class PullGitCommitsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the branch in the Git remote from which to pull commits.
-     * If left unset, the repository's default branch name will be used.
+     * Optional. The name of the branch in the Git remote from which to pull
+     * commits. If left unset, the repository's default branch name will be used.
      *
      * Generated from protobuf field <code>string remote_branch = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -96,8 +96,8 @@ class PullGitCommitsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the branch in the Git remote from which to pull commits.
-     * If left unset, the repository's default branch name will be used.
+     * Optional. The name of the branch in the Git remote from which to pull
+     * commits. If left unset, the repository's default branch name will be used.
      *
      * Generated from protobuf field <code>string remote_branch = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -112,8 +112,8 @@ class PullGitCommitsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The author of any merge commit which may be created as a result of merging
-     * fetched Git commits into this workspace.
+     * Required. The author of any merge commit which may be created as a result
+     * of merging fetched Git commits into this workspace.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CommitAuthor author = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dataform\V1beta1\CommitAuthor|null
@@ -134,8 +134,8 @@ class PullGitCommitsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The author of any merge commit which may be created as a result of merging
-     * fetched Git commits into this workspace.
+     * Required. The author of any merge commit which may be created as a result
+     * of merging fetched Git commits into this workspace.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CommitAuthor author = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dataform\V1beta1\CommitAuthor $var

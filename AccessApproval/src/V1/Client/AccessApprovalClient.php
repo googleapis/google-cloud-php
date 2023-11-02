@@ -431,8 +431,8 @@ final class AccessApprovalClient
      * Returns NOT_FOUND if the request does not exist. Returns
      * FAILED_PRECONDITION if the request exists but is not in a pending state.
      *
-     * The async variant is
-     * {@see AccessApprovalGapicClient::approveApprovalRequestAsync()} .
+     * The async variant is {@see AccessApprovalClient::approveApprovalRequestAsync()}
+     * .
      *
      * @param ApproveApprovalRequestMessage $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -462,7 +462,7 @@ final class AccessApprovalClient
      * the settings are inherited.
      *
      * The async variant is
-     * {@see AccessApprovalGapicClient::deleteAccessApprovalSettingsAsync()} .
+     * {@see AccessApprovalClient::deleteAccessApprovalSettingsAsync()} .
      *
      * @param DeleteAccessApprovalSettingsMessage $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -493,8 +493,8 @@ final class AccessApprovalClient
      * Returns FAILED_PRECONDITION if the request exists but is not in a pending
      * state.
      *
-     * The async variant is
-     * {@see AccessApprovalGapicClient::dismissApprovalRequestAsync()} .
+     * The async variant is {@see AccessApprovalClient::dismissApprovalRequestAsync()}
+     * .
      *
      * @param DismissApprovalRequestMessage $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -520,7 +520,7 @@ final class AccessApprovalClient
      * keys for signing approved approval requests.
      *
      * The async variant is
-     * {@see AccessApprovalGapicClient::getAccessApprovalServiceAccountAsync()} .
+     * {@see AccessApprovalClient::getAccessApprovalServiceAccountAsync()} .
      *
      * @param GetAccessApprovalServiceAccountMessage $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -545,7 +545,7 @@ final class AccessApprovalClient
      * Gets the settings associated with a project, folder, or organization.
      *
      * The async variant is
-     * {@see AccessApprovalGapicClient::getAccessApprovalSettingsAsync()} .
+     * {@see AccessApprovalClient::getAccessApprovalSettingsAsync()} .
      *
      * @param GetAccessApprovalSettingsMessage $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -569,8 +569,7 @@ final class AccessApprovalClient
     /**
      * Gets an approval request. Returns NOT_FOUND if the request does not exist.
      *
-     * The async variant is {@see AccessApprovalGapicClient::getApprovalRequestAsync()}
-     * .
+     * The async variant is {@see AccessApprovalClient::getApprovalRequestAsync()} .
      *
      * @param GetApprovalRequestMessage $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -602,7 +601,7 @@ final class AccessApprovalClient
      * state.
      *
      * The async variant is
-     * {@see AccessApprovalGapicClient::invalidateApprovalRequestAsync()} .
+     * {@see AccessApprovalClient::invalidateApprovalRequestAsync()} .
      *
      * @param InvalidateApprovalRequestMessage $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -628,8 +627,7 @@ final class AccessApprovalClient
      * Approval requests can be filtered by state (pending, active, dismissed).
      * The order is reverse chronological.
      *
-     * The async variant is
-     * {@see AccessApprovalGapicClient::listApprovalRequestsAsync()} .
+     * The async variant is {@see AccessApprovalClient::listApprovalRequestsAsync()} .
      *
      * @param ListApprovalRequestsMessage $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -655,7 +653,7 @@ final class AccessApprovalClient
      * Settings to update are determined by the value of field_mask.
      *
      * The async variant is
-     * {@see AccessApprovalGapicClient::updateAccessApprovalSettingsAsync()} .
+     * {@see AccessApprovalClient::updateAccessApprovalSettingsAsync()} .
      *
      * @param UpdateAccessApprovalSettingsMessage $request     A request to house fields associated with the call.
      * @param array                               $callOptions {

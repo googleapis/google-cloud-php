@@ -266,7 +266,7 @@ final class TagKeysClient
      * will receive an error. A maximum of 1000 TagKeys can exist under a parent
      * at any given time.
      *
-     * The async variant is {@see TagKeysGapicClient::createTagKeyAsync()} .
+     * The async variant is {@see TagKeysClient::createTagKeyAsync()} .
      *
      * @example samples/V3/TagKeysClient/create_tag_key.php
      *
@@ -293,7 +293,7 @@ final class TagKeysClient
      * Deletes a TagKey. The TagKey cannot be deleted if it has any child
      * TagValues.
      *
-     * The async variant is {@see TagKeysGapicClient::deleteTagKeyAsync()} .
+     * The async variant is {@see TagKeysClient::deleteTagKeyAsync()} .
      *
      * @example samples/V3/TagKeysClient/delete_tag_key.php
      *
@@ -324,7 +324,7 @@ final class TagKeysClient
      * `cloudresourcemanager.googleapis.com/tagKeys.getIamPolicy` permission on
      * the specified TagKey.
      *
-     * The async variant is {@see TagKeysGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see TagKeysClient::getIamPolicyAsync()} .
      *
      * @example samples/V3/TagKeysClient/get_iam_policy.php
      *
@@ -352,7 +352,7 @@ final class TagKeysClient
      * This method will return `PERMISSION_DENIED` if the key does not exist
      * or the user does not have permission to view it.
      *
-     * The async variant is {@see TagKeysGapicClient::getNamespacedTagKeyAsync()} .
+     * The async variant is {@see TagKeysClient::getNamespacedTagKeyAsync()} .
      *
      * @example samples/V3/TagKeysClient/get_namespaced_tag_key.php
      *
@@ -379,7 +379,7 @@ final class TagKeysClient
      * Retrieves a TagKey. This method will return `PERMISSION_DENIED` if the
      * key does not exist or the user does not have permission to view it.
      *
-     * The async variant is {@see TagKeysGapicClient::getTagKeyAsync()} .
+     * The async variant is {@see TagKeysClient::getTagKeyAsync()} .
      *
      * @example samples/V3/TagKeysClient/get_tag_key.php
      *
@@ -405,7 +405,7 @@ final class TagKeysClient
     /**
      * Lists all TagKeys for a parent resource.
      *
-     * The async variant is {@see TagKeysGapicClient::listTagKeysAsync()} .
+     * The async variant is {@see TagKeysClient::listTagKeysAsync()} .
      *
      * @example samples/V3/TagKeysClient/list_tag_keys.php
      *
@@ -435,7 +435,7 @@ final class TagKeysClient
      * The caller must have `resourcemanager.tagKeys.setIamPolicy` permission
      * on the identified tagValue.
      *
-     * The async variant is {@see TagKeysGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see TagKeysClient::setIamPolicyAsync()} .
      *
      * @example samples/V3/TagKeysClient/set_iam_policy.php
      *
@@ -465,7 +465,7 @@ final class TagKeysClient
      *
      * There are no permissions required for making this API call.
      *
-     * The async variant is {@see TagKeysGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see TagKeysClient::testIamPermissionsAsync()} .
      *
      * @example samples/V3/TagKeysClient/test_iam_permissions.php
      *
@@ -491,7 +491,7 @@ final class TagKeysClient
     /**
      * Updates the attributes of the TagKey resource.
      *
-     * The async variant is {@see TagKeysGapicClient::updateTagKeyAsync()} .
+     * The async variant is {@see TagKeysClient::updateTagKeyAsync()} .
      *
      * @example samples/V3/TagKeysClient/update_tag_key.php
      *

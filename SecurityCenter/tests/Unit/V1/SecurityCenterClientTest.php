@@ -31,6 +31,7 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\SecurityCenter\V1\BigQueryExport;
 use Google\Cloud\SecurityCenter\V1\BulkMuteFindingsResponse;
+use Google\Cloud\SecurityCenter\V1\CustomConfig;
 use Google\Cloud\SecurityCenter\V1\EffectiveSecurityHealthAnalyticsCustomModule;
 use Google\Cloud\SecurityCenter\V1\ExternalSystem;
 use Google\Cloud\SecurityCenter\V1\Finding;
@@ -57,6 +58,8 @@ use Google\Cloud\SecurityCenter\V1\RunAssetDiscoveryResponse;
 use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
 use Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule;
 use Google\Cloud\SecurityCenter\V1\SecurityMarks;
+use Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleRequest\SimulatedResource;
+use Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleResponse;
 use Google\Cloud\SecurityCenter\V1\Source;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -2529,6 +2532,76 @@ class SecurityCenterClientTest extends GeneratedTest
         $mute = Mute::MUTE_UNSPECIFIED;
         try {
             $gapicClient->setMute($formattedName, $mute);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function simulateSecurityHealthAnalyticsCustomModuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new SimulateSecurityHealthAnalyticsCustomModuleResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $parent = 'parent-995424086';
+        $customConfig = new CustomConfig();
+        $resource = new SimulatedResource();
+        $resourceResourceType = 'resourceResourceType305300374';
+        $resource->setResourceType($resourceResourceType);
+        $response = $gapicClient->simulateSecurityHealthAnalyticsCustomModule($parent, $customConfig, $resource);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/SimulateSecurityHealthAnalyticsCustomModule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($parent, $actualValue);
+        $actualValue = $actualRequestObject->getCustomConfig();
+        $this->assertProtobufEquals($customConfig, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function simulateSecurityHealthAnalyticsCustomModuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $parent = 'parent-995424086';
+        $customConfig = new CustomConfig();
+        $resource = new SimulatedResource();
+        $resourceResourceType = 'resourceResourceType305300374';
+        $resource->setResourceType($resourceResourceType);
+        try {
+            $gapicClient->simulateSecurityHealthAnalyticsCustomModule($parent, $customConfig, $resource);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

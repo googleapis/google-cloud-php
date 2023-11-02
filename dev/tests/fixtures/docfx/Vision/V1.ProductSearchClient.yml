@@ -39,6 +39,8 @@ items:
       assist with these names, this class includes a format method for each type of
       name, and additionally a parseName method to extract the individual identifiers
       contained within formatted names that are returned by the API.
+
+      This service has a new (beta) implementation. See <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient">Google\Cloud\Vision\V1\Client\ProductSearchClient</xref> to use the new surface.
     type: class
     namespace: 'Google \ Cloud \ Vision \ V1'
     langs:

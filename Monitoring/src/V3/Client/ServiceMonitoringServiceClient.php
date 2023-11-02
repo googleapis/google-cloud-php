@@ -368,8 +368,8 @@ final class ServiceMonitoringServiceClient
     /**
      * Create a `Service`.
      *
-     * The async variant is
-     * {@see ServiceMonitoringServiceGapicClient::createServiceAsync()} .
+     * The async variant is {@see ServiceMonitoringServiceClient::createServiceAsync()}
+     * .
      *
      * @param CreateServiceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -394,7 +394,7 @@ final class ServiceMonitoringServiceClient
      * Create a `ServiceLevelObjective` for the given `Service`.
      *
      * The async variant is
-     * {@see ServiceMonitoringServiceGapicClient::createServiceLevelObjectiveAsync()} .
+     * {@see ServiceMonitoringServiceClient::createServiceLevelObjectiveAsync()} .
      *
      * @param CreateServiceLevelObjectiveRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -418,8 +418,8 @@ final class ServiceMonitoringServiceClient
     /**
      * Soft delete this `Service`.
      *
-     * The async variant is
-     * {@see ServiceMonitoringServiceGapicClient::deleteServiceAsync()} .
+     * The async variant is {@see ServiceMonitoringServiceClient::deleteServiceAsync()}
+     * .
      *
      * @param DeleteServiceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -442,7 +442,7 @@ final class ServiceMonitoringServiceClient
      * Delete the given `ServiceLevelObjective`.
      *
      * The async variant is
-     * {@see ServiceMonitoringServiceGapicClient::deleteServiceLevelObjectiveAsync()} .
+     * {@see ServiceMonitoringServiceClient::deleteServiceLevelObjectiveAsync()} .
      *
      * @param DeleteServiceLevelObjectiveRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -464,8 +464,7 @@ final class ServiceMonitoringServiceClient
     /**
      * Get the named `Service`.
      *
-     * The async variant is
-     * {@see ServiceMonitoringServiceGapicClient::getServiceAsync()} .
+     * The async variant is {@see ServiceMonitoringServiceClient::getServiceAsync()} .
      *
      * @param GetServiceRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -490,7 +489,7 @@ final class ServiceMonitoringServiceClient
      * Get a `ServiceLevelObjective` by name.
      *
      * The async variant is
-     * {@see ServiceMonitoringServiceGapicClient::getServiceLevelObjectiveAsync()} .
+     * {@see ServiceMonitoringServiceClient::getServiceLevelObjectiveAsync()} .
      *
      * @param GetServiceLevelObjectiveRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -515,7 +514,7 @@ final class ServiceMonitoringServiceClient
      * List the `ServiceLevelObjective`s for the given `Service`.
      *
      * The async variant is
-     * {@see ServiceMonitoringServiceGapicClient::listServiceLevelObjectivesAsync()} .
+     * {@see ServiceMonitoringServiceClient::listServiceLevelObjectivesAsync()} .
      *
      * @param ListServiceLevelObjectivesRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -539,8 +538,8 @@ final class ServiceMonitoringServiceClient
     /**
      * List `Service`s for this workspace.
      *
-     * The async variant is
-     * {@see ServiceMonitoringServiceGapicClient::listServicesAsync()} .
+     * The async variant is {@see ServiceMonitoringServiceClient::listServicesAsync()}
+     * .
      *
      * @param ListServicesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -564,8 +563,8 @@ final class ServiceMonitoringServiceClient
     /**
      * Update this `Service`.
      *
-     * The async variant is
-     * {@see ServiceMonitoringServiceGapicClient::updateServiceAsync()} .
+     * The async variant is {@see ServiceMonitoringServiceClient::updateServiceAsync()}
+     * .
      *
      * @param UpdateServiceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -590,7 +589,7 @@ final class ServiceMonitoringServiceClient
      * Update the given `ServiceLevelObjective`.
      *
      * The async variant is
-     * {@see ServiceMonitoringServiceGapicClient::updateServiceLevelObjectiveAsync()} .
+     * {@see ServiceMonitoringServiceClient::updateServiceLevelObjectiveAsync()} .
      *
      * @param UpdateServiceLevelObjectiveRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {

@@ -80,8 +80,8 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
     private $type = 0;
     /**
      * Comma separated list of fields to order by,
-     * followed by `asc` or `desc` postfix. This list is case-insensitive,
-     * default sorting order is ascending, redundant space characters are
+     * followed by `asc` or `desc` postfix. This list is case insensitive. The
+     * default sorting order is ascending. Redundant space characters are
      * insignificant.
      * Example: `name asc, end_time asc, create_time desc`
      * Supported fields are:
@@ -180,8 +180,8 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      *           The type of job. Defaults to `DlpJobType.INSPECT`
      *     @type string $order_by
      *           Comma separated list of fields to order by,
-     *           followed by `asc` or `desc` postfix. This list is case-insensitive,
-     *           default sorting order is ascending, redundant space characters are
+     *           followed by `asc` or `desc` postfix. This list is case insensitive. The
+     *           default sorting order is ascending. Redundant space characters are
      *           insignificant.
      *           Example: `name asc, end_time asc, create_time desc`
      *           Supported fields are:
@@ -396,8 +396,8 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Comma separated list of fields to order by,
-     * followed by `asc` or `desc` postfix. This list is case-insensitive,
-     * default sorting order is ascending, redundant space characters are
+     * followed by `asc` or `desc` postfix. This list is case insensitive. The
+     * default sorting order is ascending. Redundant space characters are
      * insignificant.
      * Example: `name asc, end_time asc, create_time desc`
      * Supported fields are:
@@ -416,8 +416,8 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Comma separated list of fields to order by,
-     * followed by `asc` or `desc` postfix. This list is case-insensitive,
-     * default sorting order is ascending, redundant space characters are
+     * followed by `asc` or `desc` postfix. This list is case insensitive. The
+     * default sorting order is ascending. Redundant space characters are
      * insignificant.
      * Example: `name asc, end_time asc, create_time desc`
      * Supported fields are:

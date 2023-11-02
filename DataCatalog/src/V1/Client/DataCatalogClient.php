@@ -469,7 +469,7 @@ final class DataCatalogClient
      *
      * An entry group can have a maximum of 100,000 entries.
      *
-     * The async variant is {@see DataCatalogGapicClient::createEntryAsync()} .
+     * The async variant is {@see DataCatalogClient::createEntryAsync()} .
      *
      * @param CreateEntryRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -519,7 +519,7 @@ final class DataCatalogClient
      * the `parent` parameter. For more information, see [Data Catalog resource
      * project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
      *
-     * The async variant is {@see DataCatalogGapicClient::createEntryGroupAsync()} .
+     * The async variant is {@see DataCatalogClient::createEntryGroupAsync()} .
      *
      * @param CreateEntryGroupRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -554,7 +554,7 @@ final class DataCatalogClient
      * (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.tagTemplates/create#path-parameters)
      * used to create the tag must be in the same organization.
      *
-     * The async variant is {@see DataCatalogGapicClient::createTagAsync()} .
+     * The async variant is {@see DataCatalogClient::createTagAsync()} .
      *
      * @param CreateTagRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -583,7 +583,7 @@ final class DataCatalogClient
      * For more information, see [Data Catalog resource project]
      * (https://cloud.google.com/data-catalog/docs/concepts/resource-project).
      *
-     * The async variant is {@see DataCatalogGapicClient::createTagTemplateAsync()} .
+     * The async variant is {@see DataCatalogClient::createTagTemplateAsync()} .
      *
      * @param CreateTagTemplateRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -611,8 +611,7 @@ final class DataCatalogClient
      * the `parent` parameter. For more information, see [Data Catalog resource
      * project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
      *
-     * The async variant is
-     * {@see DataCatalogGapicClient::createTagTemplateFieldAsync()} .
+     * The async variant is {@see DataCatalogClient::createTagTemplateFieldAsync()} .
      *
      * @param CreateTagTemplateFieldRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -645,7 +644,7 @@ final class DataCatalogClient
      * resource
      * project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
      *
-     * The async variant is {@see DataCatalogGapicClient::deleteEntryAsync()} .
+     * The async variant is {@see DataCatalogClient::deleteEntryAsync()} .
      *
      * @param DeleteEntryRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -672,7 +671,7 @@ final class DataCatalogClient
      * resource
      * project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
      *
-     * The async variant is {@see DataCatalogGapicClient::deleteEntryGroupAsync()} .
+     * The async variant is {@see DataCatalogClient::deleteEntryGroupAsync()} .
      *
      * @param DeleteEntryGroupRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -694,7 +693,7 @@ final class DataCatalogClient
     /**
      * Deletes a tag.
      *
-     * The async variant is {@see DataCatalogGapicClient::deleteTagAsync()} .
+     * The async variant is {@see DataCatalogClient::deleteTagAsync()} .
      *
      * @param DeleteTagRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -720,7 +719,7 @@ final class DataCatalogClient
      * the `name` parameter. For more information, see [Data Catalog resource
      * project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
      *
-     * The async variant is {@see DataCatalogGapicClient::deleteTagTemplateAsync()} .
+     * The async variant is {@see DataCatalogClient::deleteTagTemplateAsync()} .
      *
      * @param DeleteTagTemplateRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -747,8 +746,7 @@ final class DataCatalogClient
      * the `name` parameter. For more information, see [Data Catalog resource
      * project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
      *
-     * The async variant is
-     * {@see DataCatalogGapicClient::deleteTagTemplateFieldAsync()} .
+     * The async variant is {@see DataCatalogClient::deleteTagTemplateFieldAsync()} .
      *
      * @param DeleteTagTemplateFieldRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -770,7 +768,7 @@ final class DataCatalogClient
     /**
      * Gets an entry.
      *
-     * The async variant is {@see DataCatalogGapicClient::getEntryAsync()} .
+     * The async variant is {@see DataCatalogClient::getEntryAsync()} .
      *
      * @param GetEntryRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -794,7 +792,7 @@ final class DataCatalogClient
     /**
      * Gets an entry group.
      *
-     * The async variant is {@see DataCatalogGapicClient::getEntryGroupAsync()} .
+     * The async variant is {@see DataCatalogClient::getEntryGroupAsync()} .
      *
      * @param GetEntryGroupRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -838,7 +836,7 @@ final class DataCatalogClient
      * templates.
      * - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
      *
-     * The async variant is {@see DataCatalogGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see DataCatalogClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -862,7 +860,7 @@ final class DataCatalogClient
     /**
      * Gets a tag template.
      *
-     * The async variant is {@see DataCatalogGapicClient::getTagTemplateAsync()} .
+     * The async variant is {@see DataCatalogClient::getTagTemplateAsync()} .
      *
      * @param GetTagTemplateRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -903,7 +901,7 @@ final class DataCatalogClient
      * [ImportEntriesResponse][google.cloud.datacatalog.v1.ImportEntriesResponse]
      * message.
      *
-     * The async variant is {@see DataCatalogGapicClient::importEntriesAsync()} .
+     * The async variant is {@see DataCatalogClient::importEntriesAsync()} .
      *
      * @param ImportEntriesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -931,7 +929,7 @@ final class DataCatalogClient
      * To get a list of both custom and automatically created entries, use
      * [SearchCatalog][google.cloud.datacatalog.v1.DataCatalog.SearchCatalog].
      *
-     * The async variant is {@see DataCatalogGapicClient::listEntriesAsync()} .
+     * The async variant is {@see DataCatalogClient::listEntriesAsync()} .
      *
      * @param ListEntriesRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -955,7 +953,7 @@ final class DataCatalogClient
     /**
      * Lists entry groups.
      *
-     * The async variant is {@see DataCatalogGapicClient::listEntryGroupsAsync()} .
+     * The async variant is {@see DataCatalogClient::listEntryGroupsAsync()} .
      *
      * @param ListEntryGroupsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -981,7 +979,7 @@ final class DataCatalogClient
      * The [columns][google.cloud.datacatalog.v1.Tag.column] in the response are
      * lowercased.
      *
-     * The async variant is {@see DataCatalogGapicClient::listTagsAsync()} .
+     * The async variant is {@see DataCatalogClient::listTagsAsync()} .
      *
      * @param ListTagsRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -1007,7 +1005,7 @@ final class DataCatalogClient
      *
      * The resource name comes from the source Google Cloud Platform service.
      *
-     * The async variant is {@see DataCatalogGapicClient::lookupEntryAsync()} .
+     * The async variant is {@see DataCatalogClient::lookupEntryAsync()} .
      *
      * @param LookupEntryRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1035,7 +1033,7 @@ final class DataCatalogClient
      * To call this method, you must have the `datacatalog.entries.updateContacts`
      * IAM permission on the corresponding project.
      *
-     * The async variant is {@see DataCatalogGapicClient::modifyEntryContactsAsync()} .
+     * The async variant is {@see DataCatalogClient::modifyEntryContactsAsync()} .
      *
      * @param ModifyEntryContactsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -1063,7 +1061,7 @@ final class DataCatalogClient
      * To call this method, you must have the `datacatalog.entries.updateOverview`
      * IAM permission on the corresponding project.
      *
-     * The async variant is {@see DataCatalogGapicClient::modifyEntryOverviewAsync()} .
+     * The async variant is {@see DataCatalogClient::modifyEntryOverviewAsync()} .
      *
      * @param ModifyEntryOverviewRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -1099,7 +1097,7 @@ final class DataCatalogClient
      * a [ReconcileTagsResponse]
      * [google.cloud.datacatalog.v1.ReconcileTagsResponse] message.
      *
-     * The async variant is {@see DataCatalogGapicClient::reconcileTagsAsync()} .
+     * The async variant is {@see DataCatalogClient::reconcileTagsAsync()} .
      *
      * @param ReconcileTagsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1127,8 +1125,7 @@ final class DataCatalogClient
      * `name` parameter. For more information, see [Data Catalog resource project]
      * (https://cloud.google.com/data-catalog/docs/concepts/resource-project).
      *
-     * The async variant is
-     * {@see DataCatalogGapicClient::renameTagTemplateFieldAsync()} .
+     * The async variant is {@see DataCatalogClient::renameTagTemplateFieldAsync()} .
      *
      * @param RenameTagTemplateFieldRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -1155,7 +1152,7 @@ final class DataCatalogClient
      * Within a single enum field, enum values must be unique.
      *
      * The async variant is
-     * {@see DataCatalogGapicClient::renameTagTemplateFieldEnumValueAsync()} .
+     * {@see DataCatalogClient::renameTagTemplateFieldEnumValueAsync()} .
      *
      * @param RenameTagTemplateFieldEnumValueRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -1193,7 +1190,7 @@ final class DataCatalogClient
      * For more information, see [Data Catalog search syntax]
      * (https://cloud.google.com/data-catalog/docs/how-to/search-reference).
      *
-     * The async variant is {@see DataCatalogGapicClient::searchCatalogAsync()} .
+     * The async variant is {@see DataCatalogClient::searchCatalogAsync()} .
      *
      * @param SearchCatalogRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1233,7 +1230,7 @@ final class DataCatalogClient
      * templates.
      * - `datacatalog.entryGroups.setIamPolicy` to set policies on entry groups.
      *
-     * The async variant is {@see DataCatalogGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see DataCatalogClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1258,7 +1255,7 @@ final class DataCatalogClient
      * Marks an [Entry][google.cloud.datacatalog.v1.Entry] as starred by
      * the current user. Starring information is private to each user.
      *
-     * The async variant is {@see DataCatalogGapicClient::starEntryAsync()} .
+     * The async variant is {@see DataCatalogClient::starEntryAsync()} .
      *
      * @param StarEntryRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -1295,7 +1292,7 @@ final class DataCatalogClient
      *
      * No Google IAM permissions are required to call this method.
      *
-     * The async variant is {@see DataCatalogGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see DataCatalogClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -1320,7 +1317,7 @@ final class DataCatalogClient
      * Marks an [Entry][google.cloud.datacatalog.v1.Entry] as NOT starred by
      * the current user. Starring information is private to each user.
      *
-     * The async variant is {@see DataCatalogGapicClient::unstarEntryAsync()} .
+     * The async variant is {@see DataCatalogClient::unstarEntryAsync()} .
      *
      * @param UnstarEntryRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1349,7 +1346,7 @@ final class DataCatalogClient
      * resource
      * project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
      *
-     * The async variant is {@see DataCatalogGapicClient::updateEntryAsync()} .
+     * The async variant is {@see DataCatalogClient::updateEntryAsync()} .
      *
      * @param UpdateEntryRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1378,7 +1375,7 @@ final class DataCatalogClient
      * resource
      * project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
      *
-     * The async variant is {@see DataCatalogGapicClient::updateEntryGroupAsync()} .
+     * The async variant is {@see DataCatalogClient::updateEntryGroupAsync()} .
      *
      * @param UpdateEntryGroupRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -1402,7 +1399,7 @@ final class DataCatalogClient
     /**
      * Updates an existing tag.
      *
-     * The async variant is {@see DataCatalogGapicClient::updateTagAsync()} .
+     * The async variant is {@see DataCatalogClient::updateTagAsync()} .
      *
      * @param UpdateTagRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -1434,7 +1431,7 @@ final class DataCatalogClient
      * resource
      * project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
      *
-     * The async variant is {@see DataCatalogGapicClient::updateTagTemplateAsync()} .
+     * The async variant is {@see DataCatalogClient::updateTagTemplateAsync()} .
      *
      * @param UpdateTagTemplateRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -1465,8 +1462,7 @@ final class DataCatalogClient
      * resource
      * project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
      *
-     * The async variant is
-     * {@see DataCatalogGapicClient::updateTagTemplateFieldAsync()} .
+     * The async variant is {@see DataCatalogClient::updateTagTemplateFieldAsync()} .
      *
      * @param UpdateTagTemplateFieldRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {

@@ -371,7 +371,7 @@ final class AzureClustersClient
      * [Operation][google.longrunning.Operation] resource that can be
      * described to track the status of the operation.
      *
-     * The async variant is {@see AzureClustersGapicClient::createAzureClientAsync()} .
+     * The async variant is {@see AzureClustersClient::createAzureClientAsync()} .
      *
      * @example samples/V1/AzureClustersClient/create_azure_client.php
      *
@@ -402,8 +402,7 @@ final class AzureClustersClient
      * [Operation][google.longrunning.Operation] resource that can be
      * described to track the status of the operation.
      *
-     * The async variant is {@see AzureClustersGapicClient::createAzureClusterAsync()}
-     * .
+     * The async variant is {@see AzureClustersClient::createAzureClusterAsync()} .
      *
      * @example samples/V1/AzureClustersClient/create_azure_cluster.php
      *
@@ -435,8 +434,7 @@ final class AzureClustersClient
      * [Operation][google.longrunning.Operation] resource that can be
      * described to track the status of the operation.
      *
-     * The async variant is {@see AzureClustersGapicClient::createAzureNodePoolAsync()}
-     * .
+     * The async variant is {@see AzureClustersClient::createAzureNodePoolAsync()} .
      *
      * @example samples/V1/AzureClustersClient/create_azure_node_pool.php
      *
@@ -470,7 +468,7 @@ final class AzureClustersClient
      * [Operation][google.longrunning.Operation] resource that can be
      * described to track the status of the operation.
      *
-     * The async variant is {@see AzureClustersGapicClient::deleteAzureClientAsync()} .
+     * The async variant is {@see AzureClustersClient::deleteAzureClientAsync()} .
      *
      * @example samples/V1/AzureClustersClient/delete_azure_client.php
      *
@@ -504,8 +502,7 @@ final class AzureClustersClient
      * [Operation][google.longrunning.Operation] resource that can be
      * described to track the status of the operation.
      *
-     * The async variant is {@see AzureClustersGapicClient::deleteAzureClusterAsync()}
-     * .
+     * The async variant is {@see AzureClustersClient::deleteAzureClusterAsync()} .
      *
      * @example samples/V1/AzureClustersClient/delete_azure_cluster.php
      *
@@ -536,8 +533,7 @@ final class AzureClustersClient
      * [Operation][google.longrunning.Operation] resource that can be
      * described to track the status of the operation.
      *
-     * The async variant is {@see AzureClustersGapicClient::deleteAzureNodePoolAsync()}
-     * .
+     * The async variant is {@see AzureClustersClient::deleteAzureNodePoolAsync()} .
      *
      * @example samples/V1/AzureClustersClient/delete_azure_node_pool.php
      *
@@ -564,8 +560,8 @@ final class AzureClustersClient
      * Generates a short-lived access token to authenticate to a given
      * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource.
      *
-     * The async variant is
-     * {@see AzureClustersGapicClient::generateAzureAccessTokenAsync()} .
+     * The async variant is {@see AzureClustersClient::generateAzureAccessTokenAsync()}
+     * .
      *
      * @example samples/V1/AzureClustersClient/generate_azure_access_token.php
      *
@@ -592,7 +588,7 @@ final class AzureClustersClient
      * Describes a specific
      * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource.
      *
-     * The async variant is {@see AzureClustersGapicClient::getAzureClientAsync()} .
+     * The async variant is {@see AzureClustersClient::getAzureClientAsync()} .
      *
      * @example samples/V1/AzureClustersClient/get_azure_client.php
      *
@@ -619,7 +615,7 @@ final class AzureClustersClient
      * Describes a specific
      * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource.
      *
-     * The async variant is {@see AzureClustersGapicClient::getAzureClusterAsync()} .
+     * The async variant is {@see AzureClustersClient::getAzureClusterAsync()} .
      *
      * @example samples/V1/AzureClustersClient/get_azure_cluster.php
      *
@@ -646,7 +642,7 @@ final class AzureClustersClient
      * Describes a specific
      * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource.
      *
-     * The async variant is {@see AzureClustersGapicClient::getAzureNodePoolAsync()} .
+     * The async variant is {@see AzureClustersClient::getAzureNodePoolAsync()} .
      *
      * @example samples/V1/AzureClustersClient/get_azure_node_pool.php
      *
@@ -673,8 +669,7 @@ final class AzureClustersClient
      * Returns information, such as supported Azure regions and Kubernetes
      * versions, on a given Google Cloud location.
      *
-     * The async variant is
-     * {@see AzureClustersGapicClient::getAzureServerConfigAsync()} .
+     * The async variant is {@see AzureClustersClient::getAzureServerConfigAsync()} .
      *
      * @example samples/V1/AzureClustersClient/get_azure_server_config.php
      *
@@ -701,7 +696,7 @@ final class AzureClustersClient
      * Lists all [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
      * resources on a given Google Cloud project and region.
      *
-     * The async variant is {@see AzureClustersGapicClient::listAzureClientsAsync()} .
+     * The async variant is {@see AzureClustersClient::listAzureClientsAsync()} .
      *
      * @example samples/V1/AzureClustersClient/list_azure_clients.php
      *
@@ -728,7 +723,7 @@ final class AzureClustersClient
      * Lists all [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
      * resources on a given Google Cloud project and region.
      *
-     * The async variant is {@see AzureClustersGapicClient::listAzureClustersAsync()} .
+     * The async variant is {@see AzureClustersClient::listAzureClustersAsync()} .
      *
      * @example samples/V1/AzureClustersClient/list_azure_clusters.php
      *
@@ -756,8 +751,7 @@ final class AzureClustersClient
      * resources on a given
      * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
      *
-     * The async variant is {@see AzureClustersGapicClient::listAzureNodePoolsAsync()}
-     * .
+     * The async variant is {@see AzureClustersClient::listAzureNodePoolsAsync()} .
      *
      * @example samples/V1/AzureClustersClient/list_azure_node_pools.php
      *
@@ -783,8 +777,7 @@ final class AzureClustersClient
     /**
      * Updates an [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
      *
-     * The async variant is {@see AzureClustersGapicClient::updateAzureClusterAsync()}
-     * .
+     * The async variant is {@see AzureClustersClient::updateAzureClusterAsync()} .
      *
      * @example samples/V1/AzureClustersClient/update_azure_cluster.php
      *
@@ -810,8 +803,7 @@ final class AzureClustersClient
     /**
      * Updates an [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool].
      *
-     * The async variant is {@see AzureClustersGapicClient::updateAzureNodePoolAsync()}
-     * .
+     * The async variant is {@see AzureClustersClient::updateAzureNodePoolAsync()} .
      *
      * @example samples/V1/AzureClustersClient/update_azure_node_pool.php
      *

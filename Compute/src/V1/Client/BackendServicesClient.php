@@ -256,7 +256,7 @@ final class BackendServicesClient
     /**
      * Adds a key for validating requests with signed URLs for this backend service.
      *
-     * The async variant is {@see BackendServicesGapicClient::addSignedUrlKeyAsync()} .
+     * The async variant is {@see BackendServicesClient::addSignedUrlKeyAsync()} .
      *
      * @param AddSignedUrlKeyBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -280,7 +280,7 @@ final class BackendServicesClient
     /**
      * Retrieves the list of all BackendService resources, regional and global, available to the specified project.
      *
-     * The async variant is {@see BackendServicesGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see BackendServicesClient::aggregatedListAsync()} .
      *
      * @param AggregatedListBackendServicesRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -304,7 +304,7 @@ final class BackendServicesClient
     /**
      * Deletes the specified BackendService resource.
      *
-     * The async variant is {@see BackendServicesGapicClient::deleteAsync()} .
+     * The async variant is {@see BackendServicesClient::deleteAsync()} .
      *
      * @param DeleteBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -328,8 +328,7 @@ final class BackendServicesClient
     /**
      * Deletes a key for validating requests with signed URLs for this backend service.
      *
-     * The async variant is
-     * {@see BackendServicesGapicClient::deleteSignedUrlKeyAsync()} .
+     * The async variant is {@see BackendServicesClient::deleteSignedUrlKeyAsync()} .
      *
      * @param DeleteSignedUrlKeyBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -353,7 +352,7 @@ final class BackendServicesClient
     /**
      * Returns the specified BackendService resource.
      *
-     * The async variant is {@see BackendServicesGapicClient::getAsync()} .
+     * The async variant is {@see BackendServicesClient::getAsync()} .
      *
      * @param GetBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -377,7 +376,7 @@ final class BackendServicesClient
     /**
      * Gets the most recent health check results for this BackendService. Example request body: { "group": "/zones/us-east1-b/instanceGroups/lb-backend-example" }
      *
-     * The async variant is {@see BackendServicesGapicClient::getHealthAsync()} .
+     * The async variant is {@see BackendServicesClient::getHealthAsync()} .
      *
      * @param GetHealthBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -401,7 +400,7 @@ final class BackendServicesClient
     /**
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
-     * The async variant is {@see BackendServicesGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see BackendServicesClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -425,7 +424,7 @@ final class BackendServicesClient
     /**
      * Creates a BackendService resource in the specified project using the data included in the request. For more information, see Backend services overview .
      *
-     * The async variant is {@see BackendServicesGapicClient::insertAsync()} .
+     * The async variant is {@see BackendServicesClient::insertAsync()} .
      *
      * @param InsertBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -449,7 +448,7 @@ final class BackendServicesClient
     /**
      * Retrieves the list of BackendService resources available to the specified project.
      *
-     * The async variant is {@see BackendServicesGapicClient::listAsync()} .
+     * The async variant is {@see BackendServicesClient::listAsync()} .
      *
      * @param ListBackendServicesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -473,7 +472,7 @@ final class BackendServicesClient
     /**
      * Patches the specified BackendService resource with the data included in the request. For more information, see Backend services overview. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      *
-     * The async variant is {@see BackendServicesGapicClient::patchAsync()} .
+     * The async variant is {@see BackendServicesClient::patchAsync()} .
      *
      * @param PatchBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -497,8 +496,8 @@ final class BackendServicesClient
     /**
      * Sets the edge security policy for the specified backend service.
      *
-     * The async variant is
-     * {@see BackendServicesGapicClient::setEdgeSecurityPolicyAsync()} .
+     * The async variant is {@see BackendServicesClient::setEdgeSecurityPolicyAsync()}
+     * .
      *
      * @param SetEdgeSecurityPolicyBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {
@@ -522,7 +521,7 @@ final class BackendServicesClient
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
-     * The async variant is {@see BackendServicesGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see BackendServicesClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -546,8 +545,7 @@ final class BackendServicesClient
     /**
      * Sets the Google Cloud Armor security policy for the specified backend service. For more information, see Google Cloud Armor Overview
      *
-     * The async variant is {@see BackendServicesGapicClient::setSecurityPolicyAsync()}
-     * .
+     * The async variant is {@see BackendServicesClient::setSecurityPolicyAsync()} .
      *
      * @param SetSecurityPolicyBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -571,7 +569,7 @@ final class BackendServicesClient
     /**
      * Updates the specified BackendService resource with the data included in the request. For more information, see Backend services overview.
      *
-     * The async variant is {@see BackendServicesGapicClient::updateAsync()} .
+     * The async variant is {@see BackendServicesClient::updateAsync()} .
      *
      * @param UpdateBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

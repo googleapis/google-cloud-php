@@ -349,7 +349,7 @@ final class OrgPolicyClient
      * Returns a `google.rpc.Status` with `google.rpc.Code.ALREADY_EXISTS` if the
      * policy already exists on the given Cloud resource.
      *
-     * The async variant is {@see OrgPolicyGapicClient::createPolicyAsync()} .
+     * The async variant is {@see OrgPolicyClient::createPolicyAsync()} .
      *
      * @example samples/V2/OrgPolicyClient/create_policy.php
      *
@@ -378,7 +378,7 @@ final class OrgPolicyClient
      * Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
      * constraint or Org Policy does not exist.
      *
-     * The async variant is {@see OrgPolicyGapicClient::deletePolicyAsync()} .
+     * The async variant is {@see OrgPolicyClient::deletePolicyAsync()} .
      *
      * @example samples/V2/OrgPolicyClient/delete_policy.php
      *
@@ -407,7 +407,7 @@ final class OrgPolicyClient
      * Subtrees of Resource Manager resource hierarchy with 'under:' prefix will
      * not be expanded.
      *
-     * The async variant is {@see OrgPolicyGapicClient::getEffectivePolicyAsync()} .
+     * The async variant is {@see OrgPolicyClient::getEffectivePolicyAsync()} .
      *
      * @example samples/V2/OrgPolicyClient/get_effective_policy.php
      *
@@ -437,7 +437,7 @@ final class OrgPolicyClient
      * `etag` value can be used with `UpdatePolicy()` to update a
      * `Policy` during read-modify-write.
      *
-     * The async variant is {@see OrgPolicyGapicClient::getPolicyAsync()} .
+     * The async variant is {@see OrgPolicyClient::getPolicyAsync()} .
      *
      * @example samples/V2/OrgPolicyClient/get_policy.php
      *
@@ -463,7 +463,7 @@ final class OrgPolicyClient
     /**
      * Lists `Constraints` that could be applied on the specified resource.
      *
-     * The async variant is {@see OrgPolicyGapicClient::listConstraintsAsync()} .
+     * The async variant is {@see OrgPolicyClient::listConstraintsAsync()} .
      *
      * @example samples/V2/OrgPolicyClient/list_constraints.php
      *
@@ -489,7 +489,7 @@ final class OrgPolicyClient
     /**
      * Retrieves all of the `Policies` that exist on a particular resource.
      *
-     * The async variant is {@see OrgPolicyGapicClient::listPoliciesAsync()} .
+     * The async variant is {@see OrgPolicyClient::listPoliciesAsync()} .
      *
      * @example samples/V2/OrgPolicyClient/list_policies.php
      *
@@ -523,7 +523,7 @@ final class OrgPolicyClient
      * Note: the supplied policy will perform a full overwrite of all
      * fields.
      *
-     * The async variant is {@see OrgPolicyGapicClient::updatePolicyAsync()} .
+     * The async variant is {@see OrgPolicyClient::updatePolicyAsync()} .
      *
      * @example samples/V2/OrgPolicyClient/update_policy.php
      *

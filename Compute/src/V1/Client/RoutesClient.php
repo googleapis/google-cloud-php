@@ -234,7 +234,7 @@ final class RoutesClient
     /**
      * Deletes the specified Route resource.
      *
-     * The async variant is {@see RoutesGapicClient::deleteAsync()} .
+     * The async variant is {@see RoutesClient::deleteAsync()} .
      *
      * @param DeleteRouteRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -258,7 +258,7 @@ final class RoutesClient
     /**
      * Returns the specified Route resource.
      *
-     * The async variant is {@see RoutesGapicClient::getAsync()} .
+     * The async variant is {@see RoutesClient::getAsync()} .
      *
      * @param GetRouteRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -282,7 +282,7 @@ final class RoutesClient
     /**
      * Creates a Route resource in the specified project using the data included in the request.
      *
-     * The async variant is {@see RoutesGapicClient::insertAsync()} .
+     * The async variant is {@see RoutesClient::insertAsync()} .
      *
      * @param InsertRouteRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -306,7 +306,7 @@ final class RoutesClient
     /**
      * Retrieves the list of Route resources available to the specified project.
      *
-     * The async variant is {@see RoutesGapicClient::listAsync()} .
+     * The async variant is {@see RoutesClient::listAsync()} .
      *
      * @param ListRoutesRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {

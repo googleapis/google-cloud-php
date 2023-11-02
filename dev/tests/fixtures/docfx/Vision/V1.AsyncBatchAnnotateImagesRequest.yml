@@ -23,6 +23,7 @@ items:
       - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::setOutputConfig()'
       - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::getParent()'
       - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::setParent()'
+      - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::build()'
   -
     uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::__construct()'
     name: __construct
@@ -177,3 +178,24 @@ items:
       returns:
         -
           var_type: $this
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::build()'
+    name: 'static::build'
+    id: build
+    parent: \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: requests
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateImageRequest">Google\Cloud\Vision\V1\AnnotateImageRequest</xref>&gt;'
+          description: 'Required. Individual image annotation requests for this batch.'
+        -
+          id: outputConfig
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>'
+          description: 'Required. The desired output location and metadata (e.g. format).'
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest">Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest</xref>'

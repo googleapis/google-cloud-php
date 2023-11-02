@@ -32,8 +32,8 @@ use Google\Cloud\Dlp\V2\HybridInspectResponse;
  * To review the findings, inspect the job. Inspection will occur
  * asynchronously.
  *
- * @param string $formattedName Resource name of the job to execute a hybrid inspect on, for example
- *                              `projects/dlp-test-project/dlpJob/53234423`. Please see
+ * @param string $formattedName Resource name of the job to execute a hybrid inspect on, for
+ *                              example `projects/dlp-test-project/dlpJob/53234423`. Please see
  *                              {@see DlpServiceClient::dlpJobName()} for help formatting this field.
  */
 function hybrid_inspect_dlp_job_sample(string $formattedName): void

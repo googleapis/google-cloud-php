@@ -185,7 +185,7 @@ final class Debugger2Client
     /**
      * Deletes the breakpoint from the debuggee.
      *
-     * The async variant is {@see Debugger2GapicClient::deleteBreakpointAsync()} .
+     * The async variant is {@see Debugger2Client::deleteBreakpointAsync()} .
      *
      * @param DeleteBreakpointRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -207,7 +207,7 @@ final class Debugger2Client
     /**
      * Gets breakpoint information.
      *
-     * The async variant is {@see Debugger2GapicClient::getBreakpointAsync()} .
+     * The async variant is {@see Debugger2Client::getBreakpointAsync()} .
      *
      * @param GetBreakpointRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -231,7 +231,7 @@ final class Debugger2Client
     /**
      * Lists all breakpoints for the debuggee.
      *
-     * The async variant is {@see Debugger2GapicClient::listBreakpointsAsync()} .
+     * The async variant is {@see Debugger2Client::listBreakpointsAsync()} .
      *
      * @param ListBreakpointsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -255,7 +255,7 @@ final class Debugger2Client
     /**
      * Lists all the debuggees that the user has access to.
      *
-     * The async variant is {@see Debugger2GapicClient::listDebuggeesAsync()} .
+     * The async variant is {@see Debugger2Client::listDebuggeesAsync()} .
      *
      * @param ListDebuggeesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -279,7 +279,7 @@ final class Debugger2Client
     /**
      * Sets the breakpoint to the debuggee.
      *
-     * The async variant is {@see Debugger2GapicClient::setBreakpointAsync()} .
+     * The async variant is {@see Debugger2Client::setBreakpointAsync()} .
      *
      * @param SetBreakpointRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

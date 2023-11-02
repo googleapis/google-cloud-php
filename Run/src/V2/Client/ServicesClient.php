@@ -384,7 +384,7 @@ final class ServicesClient
     /**
      * Creates a new Service in a given project and location.
      *
-     * The async variant is {@see ServicesGapicClient::createServiceAsync()} .
+     * The async variant is {@see ServicesClient::createServiceAsync()} .
      *
      * @example samples/V2/ServicesClient/create_service.php
      *
@@ -412,7 +412,7 @@ final class ServicesClient
      * This will cause the Service to stop serving traffic and will delete all
      * revisions.
      *
-     * The async variant is {@see ServicesGapicClient::deleteServiceAsync()} .
+     * The async variant is {@see ServicesClient::deleteServiceAsync()} .
      *
      * @example samples/V2/ServicesClient/delete_service.php
      *
@@ -439,7 +439,7 @@ final class ServicesClient
      * Gets the IAM Access Control policy currently in effect for the given
      * Cloud Run Service. This result does not include any inherited policies.
      *
-     * The async variant is {@see ServicesGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see ServicesClient::getIamPolicyAsync()} .
      *
      * @example samples/V2/ServicesClient/get_iam_policy.php
      *
@@ -465,7 +465,7 @@ final class ServicesClient
     /**
      * Gets information about a Service.
      *
-     * The async variant is {@see ServicesGapicClient::getServiceAsync()} .
+     * The async variant is {@see ServicesClient::getServiceAsync()} .
      *
      * @example samples/V2/ServicesClient/get_service.php
      *
@@ -491,7 +491,7 @@ final class ServicesClient
     /**
      * Lists Services.
      *
-     * The async variant is {@see ServicesGapicClient::listServicesAsync()} .
+     * The async variant is {@see ServicesClient::listServicesAsync()} .
      *
      * @example samples/V2/ServicesClient/list_services.php
      *
@@ -518,7 +518,7 @@ final class ServicesClient
      * Sets the IAM Access control policy for the specified Service. Overwrites
      * any existing policy.
      *
-     * The async variant is {@see ServicesGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see ServicesClient::setIamPolicyAsync()} .
      *
      * @example samples/V2/ServicesClient/set_iam_policy.php
      *
@@ -546,7 +546,7 @@ final class ServicesClient
      *
      * There are no permissions required for making this API call.
      *
-     * The async variant is {@see ServicesGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see ServicesClient::testIamPermissionsAsync()} .
      *
      * @example samples/V2/ServicesClient/test_iam_permissions.php
      *
@@ -572,7 +572,7 @@ final class ServicesClient
     /**
      * Updates a Service.
      *
-     * The async variant is {@see ServicesGapicClient::updateServiceAsync()} .
+     * The async variant is {@see ServicesClient::updateServiceAsync()} .
      *
      * @example samples/V2/ServicesClient/update_service.php
      *

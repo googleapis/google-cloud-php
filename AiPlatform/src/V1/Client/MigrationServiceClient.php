@@ -343,8 +343,8 @@ final class MigrationServiceClient
      * Batch migrates resources from ml.googleapis.com, automl.googleapis.com,
      * and datalabeling.googleapis.com to Vertex AI.
      *
-     * The async variant is
-     * {@see MigrationServiceGapicClient::batchMigrateResourcesAsync()} .
+     * The async variant is {@see MigrationServiceClient::batchMigrateResourcesAsync()}
+     * .
      *
      * @example samples/V1/MigrationServiceClient/batch_migrate_resources.php
      *
@@ -373,7 +373,7 @@ final class MigrationServiceClient
      * Vertex AI's given location.
      *
      * The async variant is
-     * {@see MigrationServiceGapicClient::searchMigratableResourcesAsync()} .
+     * {@see MigrationServiceClient::searchMigratableResourcesAsync()} .
      *
      * @example samples/V1/MigrationServiceClient/search_migratable_resources.php
      *
@@ -399,7 +399,7 @@ final class MigrationServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see MigrationServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see MigrationServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/MigrationServiceClient/get_location.php
      *
@@ -425,7 +425,7 @@ final class MigrationServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see MigrationServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see MigrationServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/MigrationServiceClient/list_locations.php
      *
@@ -452,7 +452,7 @@ final class MigrationServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see MigrationServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see MigrationServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/MigrationServiceClient/get_iam_policy.php
      *
@@ -482,7 +482,7 @@ final class MigrationServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see MigrationServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see MigrationServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/MigrationServiceClient/set_iam_policy.php
      *
@@ -514,8 +514,7 @@ final class MigrationServiceClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is
-     * {@see MigrationServiceGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see MigrationServiceClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/MigrationServiceClient/test_iam_permissions.php
      *

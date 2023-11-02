@@ -315,7 +315,7 @@ final class VersionsClient
      *
      * The new version points to the agent instance in the "default" environment.
      *
-     * The async variant is {@see VersionsGapicClient::createVersionAsync()} .
+     * The async variant is {@see VersionsClient::createVersionAsync()} .
      *
      * @param CreateVersionRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -339,7 +339,7 @@ final class VersionsClient
     /**
      * Delete the specified agent version.
      *
-     * The async variant is {@see VersionsGapicClient::deleteVersionAsync()} .
+     * The async variant is {@see VersionsClient::deleteVersionAsync()} .
      *
      * @param DeleteVersionRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -361,7 +361,7 @@ final class VersionsClient
     /**
      * Retrieves the specified agent version.
      *
-     * The async variant is {@see VersionsGapicClient::getVersionAsync()} .
+     * The async variant is {@see VersionsClient::getVersionAsync()} .
      *
      * @param GetVersionRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -385,7 +385,7 @@ final class VersionsClient
     /**
      * Returns the list of all versions of the specified agent.
      *
-     * The async variant is {@see VersionsGapicClient::listVersionsAsync()} .
+     * The async variant is {@see VersionsClient::listVersionsAsync()} .
      *
      * @param ListVersionsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -413,7 +413,7 @@ final class VersionsClient
      * the given version points to. It allows you to update only mutable
      * properties of the version resource.
      *
-     * The async variant is {@see VersionsGapicClient::updateVersionAsync()} .
+     * The async variant is {@see VersionsClient::updateVersionAsync()} .
      *
      * @param UpdateVersionRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -437,7 +437,7 @@ final class VersionsClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see VersionsGapicClient::getLocationAsync()} .
+     * The async variant is {@see VersionsClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -461,7 +461,7 @@ final class VersionsClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see VersionsGapicClient::listLocationsAsync()} .
+     * The async variant is {@see VersionsClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

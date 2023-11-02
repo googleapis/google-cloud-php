@@ -22,13 +22,15 @@ class MoveFileRequest extends \Google\Protobuf\Internal\Message
      */
     private $workspace = '';
     /**
-     * Required. The file's full path including filename, relative to the workspace root.
+     * Required. The file's full path including filename, relative to the
+     * workspace root.
      *
      * Generated from protobuf field <code>string path = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $path = '';
     /**
-     * Required. The file's new path including filename, relative to the workspace root.
+     * Required. The file's new path including filename, relative to the workspace
+     * root.
      *
      * Generated from protobuf field <code>string new_path = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -43,9 +45,11 @@ class MoveFileRequest extends \Google\Protobuf\Internal\Message
      *     @type string $workspace
      *           Required. The workspace's name.
      *     @type string $path
-     *           Required. The file's full path including filename, relative to the workspace root.
+     *           Required. The file's full path including filename, relative to the
+     *           workspace root.
      *     @type string $new_path
-     *           Required. The file's new path including filename, relative to the workspace root.
+     *           Required. The file's new path including filename, relative to the workspace
+     *           root.
      * }
      */
     public function __construct($data = NULL) {
@@ -80,7 +84,8 @@ class MoveFileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The file's full path including filename, relative to the workspace root.
+     * Required. The file's full path including filename, relative to the
+     * workspace root.
      *
      * Generated from protobuf field <code>string path = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -91,7 +96,8 @@ class MoveFileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The file's full path including filename, relative to the workspace root.
+     * Required. The file's full path including filename, relative to the
+     * workspace root.
      *
      * Generated from protobuf field <code>string path = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -106,7 +112,8 @@ class MoveFileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The file's new path including filename, relative to the workspace root.
+     * Required. The file's new path including filename, relative to the workspace
+     * root.
      *
      * Generated from protobuf field <code>string new_path = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -117,7 +124,8 @@ class MoveFileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The file's new path including filename, relative to the workspace root.
+     * Required. The file's new path including filename, relative to the workspace
+     * root.
      *
      * Generated from protobuf field <code>string new_path = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

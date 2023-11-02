@@ -242,7 +242,7 @@ final class MachineImagesClient
     /**
      * Deletes the specified machine image. Deleting a machine image is permanent and cannot be undone.
      *
-     * The async variant is {@see MachineImagesGapicClient::deleteAsync()} .
+     * The async variant is {@see MachineImagesClient::deleteAsync()} .
      *
      * @param DeleteMachineImageRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -266,7 +266,7 @@ final class MachineImagesClient
     /**
      * Returns the specified machine image.
      *
-     * The async variant is {@see MachineImagesGapicClient::getAsync()} .
+     * The async variant is {@see MachineImagesClient::getAsync()} .
      *
      * @param GetMachineImageRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -290,7 +290,7 @@ final class MachineImagesClient
     /**
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
-     * The async variant is {@see MachineImagesGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see MachineImagesClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyMachineImageRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -314,7 +314,7 @@ final class MachineImagesClient
     /**
      * Creates a machine image in the specified project using the data that is included in the request. If you are creating a new machine image to update an existing instance, your new machine image should use the same network or, if applicable, the same subnetwork as the original instance.
      *
-     * The async variant is {@see MachineImagesGapicClient::insertAsync()} .
+     * The async variant is {@see MachineImagesClient::insertAsync()} .
      *
      * @param InsertMachineImageRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -338,7 +338,7 @@ final class MachineImagesClient
     /**
      * Retrieves a list of machine images that are contained within the specified project.
      *
-     * The async variant is {@see MachineImagesGapicClient::listAsync()} .
+     * The async variant is {@see MachineImagesClient::listAsync()} .
      *
      * @param ListMachineImagesRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -362,7 +362,7 @@ final class MachineImagesClient
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
-     * The async variant is {@see MachineImagesGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see MachineImagesClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyMachineImageRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -386,8 +386,7 @@ final class MachineImagesClient
     /**
      * Returns permissions that a caller has on the specified resource.
      *
-     * The async variant is {@see MachineImagesGapicClient::testIamPermissionsAsync()}
-     * .
+     * The async variant is {@see MachineImagesClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsMachineImageRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {

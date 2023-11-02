@@ -7,7 +7,7 @@ namespace Google\Cloud\Dataform\V1beta1\WorkflowInvocationAction;
 use UnexpectedValueException;
 
 /**
- * Represents the current state of an workflow invocation action.
+ * Represents the current state of a workflow invocation action.
  *
  * Protobuf type <code>google.cloud.dataform.v1beta1.WorkflowInvocationAction.State</code>
  */

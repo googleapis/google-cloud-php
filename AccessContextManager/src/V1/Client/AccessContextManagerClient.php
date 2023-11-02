@@ -397,7 +397,7 @@ final class AccessContextManagerClient
      * cleared after a successful commit operation.
      *
      * The async variant is
-     * {@see AccessContextManagerGapicClient::commitServicePerimetersAsync()} .
+     * {@see AccessContextManagerClient::commitServicePerimetersAsync()} .
      *
      * @example samples/V1/AccessContextManagerClient/commit_service_perimeters.php
      *
@@ -429,8 +429,8 @@ final class AccessContextManagerClient
      * [google.identity.accesscontextmanager.v1.AccessLevel] contain
      * errors, an error response is returned for the first error encountered.
      *
-     * The async variant is
-     * {@see AccessContextManagerGapicClient::createAccessLevelAsync()} .
+     * The async variant is {@see AccessContextManagerClient::createAccessLevelAsync()}
+     * .
      *
      * @example samples/V1/AccessContextManagerClient/create_access_level.php
      *
@@ -461,7 +461,7 @@ final class AccessContextManagerClient
      * BadRequest proto.
      *
      * The async variant is
-     * {@see AccessContextManagerGapicClient::createAccessPolicyAsync()} .
+     * {@see AccessContextManagerClient::createAccessPolicyAsync()} .
      *
      * @example samples/V1/AccessContextManagerClient/create_access_policy.php
      *
@@ -497,7 +497,7 @@ final class AccessContextManagerClient
      * time.
      *
      * The async variant is
-     * {@see AccessContextManagerGapicClient::createGcpUserAccessBindingAsync()} .
+     * {@see AccessContextManagerClient::createGcpUserAccessBindingAsync()} .
      *
      * @example samples/V1/AccessContextManagerClient/create_gcp_user_access_binding.php
      *
@@ -531,7 +531,7 @@ final class AccessContextManagerClient
      * errors, an error response is returned for the first error encountered.
      *
      * The async variant is
-     * {@see AccessContextManagerGapicClient::createServicePerimeterAsync()} .
+     * {@see AccessContextManagerClient::createServicePerimeterAsync()} .
      *
      * @example samples/V1/AccessContextManagerClient/create_service_perimeter.php
      *
@@ -562,8 +562,8 @@ final class AccessContextManagerClient
      * [google.identity.accesscontextmanager.v1.AccessLevel] has been removed
      * from long-lasting storage.
      *
-     * The async variant is
-     * {@see AccessContextManagerGapicClient::deleteAccessLevelAsync()} .
+     * The async variant is {@see AccessContextManagerClient::deleteAccessLevelAsync()}
+     * .
      *
      * @example samples/V1/AccessContextManagerClient/delete_access_level.php
      *
@@ -594,7 +594,7 @@ final class AccessContextManagerClient
      * is removed from long-lasting storage.
      *
      * The async variant is
-     * {@see AccessContextManagerGapicClient::deleteAccessPolicyAsync()} .
+     * {@see AccessContextManagerClient::deleteAccessPolicyAsync()} .
      *
      * @example samples/V1/AccessContextManagerClient/delete_access_policy.php
      *
@@ -625,7 +625,7 @@ final class AccessContextManagerClient
      * more time.
      *
      * The async variant is
-     * {@see AccessContextManagerGapicClient::deleteGcpUserAccessBindingAsync()} .
+     * {@see AccessContextManagerClient::deleteGcpUserAccessBindingAsync()} .
      *
      * @example samples/V1/AccessContextManagerClient/delete_gcp_user_access_binding.php
      *
@@ -657,7 +657,7 @@ final class AccessContextManagerClient
      * long-lasting storage.
      *
      * The async variant is
-     * {@see AccessContextManagerGapicClient::deleteServicePerimeterAsync()} .
+     * {@see AccessContextManagerClient::deleteServicePerimeterAsync()} .
      *
      * @example samples/V1/AccessContextManagerClient/delete_service_perimeter.php
      *
@@ -685,8 +685,7 @@ final class AccessContextManagerClient
      * [google.identity.accesscontextmanager.v1.AccessLevel] based on the resource
      * name.
      *
-     * The async variant is
-     * {@see AccessContextManagerGapicClient::getAccessLevelAsync()} .
+     * The async variant is {@see AccessContextManagerClient::getAccessLevelAsync()} .
      *
      * @example samples/V1/AccessContextManagerClient/get_access_level.php
      *
@@ -713,8 +712,7 @@ final class AccessContextManagerClient
      * Returns an [access policy]
      * [google.identity.accesscontextmanager.v1.AccessPolicy] based on the name.
      *
-     * The async variant is
-     * {@see AccessContextManagerGapicClient::getAccessPolicyAsync()} .
+     * The async variant is {@see AccessContextManagerClient::getAccessPolicyAsync()} .
      *
      * @example samples/V1/AccessContextManagerClient/get_access_policy.php
      *
@@ -743,7 +741,7 @@ final class AccessContextManagerClient
      * the given name.
      *
      * The async variant is
-     * {@see AccessContextManagerGapicClient::getGcpUserAccessBindingAsync()} .
+     * {@see AccessContextManagerClient::getGcpUserAccessBindingAsync()} .
      *
      * @example samples/V1/AccessContextManagerClient/get_gcp_user_access_binding.php
      *
@@ -770,8 +768,7 @@ final class AccessContextManagerClient
      * Gets the IAM policy for the specified Access Context Manager
      * [access policy][google.identity.accesscontextmanager.v1.AccessPolicy].
      *
-     * The async variant is {@see AccessContextManagerGapicClient::getIamPolicyAsync()}
-     * .
+     * The async variant is {@see AccessContextManagerClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/AccessContextManagerClient/get_iam_policy.php
      *
@@ -800,7 +797,7 @@ final class AccessContextManagerClient
      * resource name.
      *
      * The async variant is
-     * {@see AccessContextManagerGapicClient::getServicePerimeterAsync()} .
+     * {@see AccessContextManagerClient::getServicePerimeterAsync()} .
      *
      * @example samples/V1/AccessContextManagerClient/get_service_perimeter.php
      *
@@ -828,8 +825,8 @@ final class AccessContextManagerClient
      * [google.identity.accesscontextmanager.v1.AccessLevel] for an access
      * policy.
      *
-     * The async variant is
-     * {@see AccessContextManagerGapicClient::listAccessLevelsAsync()} .
+     * The async variant is {@see AccessContextManagerClient::listAccessLevelsAsync()}
+     * .
      *
      * @example samples/V1/AccessContextManagerClient/list_access_levels.php
      *
@@ -858,7 +855,7 @@ final class AccessContextManagerClient
      * organization.
      *
      * The async variant is
-     * {@see AccessContextManagerGapicClient::listAccessPoliciesAsync()} .
+     * {@see AccessContextManagerClient::listAccessPoliciesAsync()} .
      *
      * @example samples/V1/AccessContextManagerClient/list_access_policies.php
      *
@@ -887,7 +884,7 @@ final class AccessContextManagerClient
      * Google Cloud organization.
      *
      * The async variant is
-     * {@see AccessContextManagerGapicClient::listGcpUserAccessBindingsAsync()} .
+     * {@see AccessContextManagerClient::listGcpUserAccessBindingsAsync()} .
      *
      * @example samples/V1/AccessContextManagerClient/list_gcp_user_access_bindings.php
      *
@@ -916,7 +913,7 @@ final class AccessContextManagerClient
      * access policy.
      *
      * The async variant is
-     * {@see AccessContextManagerGapicClient::listServicePerimetersAsync()} .
+     * {@see AccessContextManagerClient::listServicePerimetersAsync()} .
      *
      * @example samples/V1/AccessContextManagerClient/list_service_perimeters.php
      *
@@ -959,7 +956,7 @@ final class AccessContextManagerClient
      * error.
      *
      * The async variant is
-     * {@see AccessContextManagerGapicClient::replaceAccessLevelsAsync()} .
+     * {@see AccessContextManagerClient::replaceAccessLevelsAsync()} .
      *
      * @example samples/V1/AccessContextManagerClient/replace_access_levels.php
      *
@@ -998,7 +995,7 @@ final class AccessContextManagerClient
      * ReplaceServicePerimetersResponse.
      *
      * The async variant is
-     * {@see AccessContextManagerGapicClient::replaceServicePerimetersAsync()} .
+     * {@see AccessContextManagerClient::replaceServicePerimetersAsync()} .
      *
      * @example samples/V1/AccessContextManagerClient/replace_service_perimeters.php
      *
@@ -1029,8 +1026,7 @@ final class AccessContextManagerClient
      * Access Context Manager [access
      * policy][google.identity.accesscontextmanager.v1.AccessPolicy].
      *
-     * The async variant is {@see AccessContextManagerGapicClient::setIamPolicyAsync()}
-     * .
+     * The async variant is {@see AccessContextManagerClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/AccessContextManagerClient/set_iam_policy.php
      *
@@ -1062,7 +1058,7 @@ final class AccessContextManagerClient
      * ]. This method does not support other resources.
      *
      * The async variant is
-     * {@see AccessContextManagerGapicClient::testIamPermissionsAsync()} .
+     * {@see AccessContextManagerClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/AccessContextManagerClient/test_iam_permissions.php
      *
@@ -1095,8 +1091,8 @@ final class AccessContextManagerClient
      * [google.identity.accesscontextmanager.v1.AccessLevel] contain
      * errors, an error response is returned for the first error encountered.
      *
-     * The async variant is
-     * {@see AccessContextManagerGapicClient::updateAccessLevelAsync()} .
+     * The async variant is {@see AccessContextManagerClient::updateAccessLevelAsync()}
+     * .
      *
      * @example samples/V1/AccessContextManagerClient/update_access_level.php
      *
@@ -1128,7 +1124,7 @@ final class AccessContextManagerClient
      * to long-lasting storage.
      *
      * The async variant is
-     * {@see AccessContextManagerGapicClient::updateAccessPolicyAsync()} .
+     * {@see AccessContextManagerClient::updateAccessPolicyAsync()} .
      *
      * @example samples/V1/AccessContextManagerClient/update_access_policy.php
      *
@@ -1159,7 +1155,7 @@ final class AccessContextManagerClient
      * more time.
      *
      * The async variant is
-     * {@see AccessContextManagerGapicClient::updateGcpUserAccessBindingAsync()} .
+     * {@see AccessContextManagerClient::updateGcpUserAccessBindingAsync()} .
      *
      * @example samples/V1/AccessContextManagerClient/update_gcp_user_access_binding.php
      *
@@ -1193,7 +1189,7 @@ final class AccessContextManagerClient
      * errors, an error response is returned for the first error encountered.
      *
      * The async variant is
-     * {@see AccessContextManagerGapicClient::updateServicePerimeterAsync()} .
+     * {@see AccessContextManagerClient::updateServicePerimeterAsync()} .
      *
      * @example samples/V1/AccessContextManagerClient/update_service_perimeter.php
      *

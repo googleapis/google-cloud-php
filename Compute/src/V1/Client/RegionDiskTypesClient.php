@@ -178,7 +178,7 @@ final class RegionDiskTypesClient
     /**
      * Returns the specified regional disk type.
      *
-     * The async variant is {@see RegionDiskTypesGapicClient::getAsync()} .
+     * The async variant is {@see RegionDiskTypesClient::getAsync()} .
      *
      * @param GetRegionDiskTypeRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -202,7 +202,7 @@ final class RegionDiskTypesClient
     /**
      * Retrieves a list of regional disk types available to the specified project.
      *
-     * The async variant is {@see RegionDiskTypesGapicClient::listAsync()} .
+     * The async variant is {@see RegionDiskTypesClient::listAsync()} .
      *
      * @param ListRegionDiskTypesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {

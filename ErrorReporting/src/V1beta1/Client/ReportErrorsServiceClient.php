@@ -228,8 +228,7 @@ final class ReportErrorsServiceClient
      * in regional log buckets or logs routed to other Google Cloud projects.
      *
      *
-     * The async variant is
-     * {@see ReportErrorsServiceGapicClient::reportErrorEventAsync()} .
+     * The async variant is {@see ReportErrorsServiceClient::reportErrorEventAsync()} .
      *
      * @example samples/V1beta1/ReportErrorsServiceClient/report_error_event.php
      *

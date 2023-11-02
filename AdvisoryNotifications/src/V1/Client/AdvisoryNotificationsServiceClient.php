@@ -258,7 +258,7 @@ final class AdvisoryNotificationsServiceClient
      * Gets a notification.
      *
      * The async variant is
-     * {@see AdvisoryNotificationsServiceGapicClient::getNotificationAsync()} .
+     * {@see AdvisoryNotificationsServiceClient::getNotificationAsync()} .
      *
      * @example samples/V1/AdvisoryNotificationsServiceClient/get_notification.php
      *
@@ -285,7 +285,7 @@ final class AdvisoryNotificationsServiceClient
      * Get notification settings.
      *
      * The async variant is
-     * {@see AdvisoryNotificationsServiceGapicClient::getSettingsAsync()} .
+     * {@see AdvisoryNotificationsServiceClient::getSettingsAsync()} .
      *
      * @example samples/V1/AdvisoryNotificationsServiceClient/get_settings.php
      *
@@ -312,7 +312,7 @@ final class AdvisoryNotificationsServiceClient
      * Lists notifications under a given parent.
      *
      * The async variant is
-     * {@see AdvisoryNotificationsServiceGapicClient::listNotificationsAsync()} .
+     * {@see AdvisoryNotificationsServiceClient::listNotificationsAsync()} .
      *
      * @example samples/V1/AdvisoryNotificationsServiceClient/list_notifications.php
      *
@@ -339,7 +339,7 @@ final class AdvisoryNotificationsServiceClient
      * Update notification settings.
      *
      * The async variant is
-     * {@see AdvisoryNotificationsServiceGapicClient::updateSettingsAsync()} .
+     * {@see AdvisoryNotificationsServiceClient::updateSettingsAsync()} .
      *
      * @example samples/V1/AdvisoryNotificationsServiceClient/update_settings.php
      *

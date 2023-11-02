@@ -263,8 +263,8 @@ final class NetworkFirewallPoliciesClient
     /**
      * Inserts an association for the specified firewall policy.
      *
-     * The async variant is
-     * {@see NetworkFirewallPoliciesGapicClient::addAssociationAsync()} .
+     * The async variant is {@see NetworkFirewallPoliciesClient::addAssociationAsync()}
+     * .
      *
      * @param AddAssociationNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {
@@ -288,7 +288,7 @@ final class NetworkFirewallPoliciesClient
     /**
      * Inserts a rule into a firewall policy.
      *
-     * The async variant is {@see NetworkFirewallPoliciesGapicClient::addRuleAsync()} .
+     * The async variant is {@see NetworkFirewallPoliciesClient::addRuleAsync()} .
      *
      * @param AddRuleNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -312,8 +312,7 @@ final class NetworkFirewallPoliciesClient
     /**
      * Copies rules to the specified firewall policy.
      *
-     * The async variant is
-     * {@see NetworkFirewallPoliciesGapicClient::cloneRulesAsync()} .
+     * The async variant is {@see NetworkFirewallPoliciesClient::cloneRulesAsync()} .
      *
      * @param CloneRulesNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -337,7 +336,7 @@ final class NetworkFirewallPoliciesClient
     /**
      * Deletes the specified policy.
      *
-     * The async variant is {@see NetworkFirewallPoliciesGapicClient::deleteAsync()} .
+     * The async variant is {@see NetworkFirewallPoliciesClient::deleteAsync()} .
      *
      * @param DeleteNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -361,7 +360,7 @@ final class NetworkFirewallPoliciesClient
     /**
      * Returns the specified network firewall policy.
      *
-     * The async variant is {@see NetworkFirewallPoliciesGapicClient::getAsync()} .
+     * The async variant is {@see NetworkFirewallPoliciesClient::getAsync()} .
      *
      * @param GetNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -385,8 +384,8 @@ final class NetworkFirewallPoliciesClient
     /**
      * Gets an association with the specified name.
      *
-     * The async variant is
-     * {@see NetworkFirewallPoliciesGapicClient::getAssociationAsync()} .
+     * The async variant is {@see NetworkFirewallPoliciesClient::getAssociationAsync()}
+     * .
      *
      * @param GetAssociationNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {
@@ -410,8 +409,7 @@ final class NetworkFirewallPoliciesClient
     /**
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
-     * The async variant is
-     * {@see NetworkFirewallPoliciesGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see NetworkFirewallPoliciesClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
@@ -435,7 +433,7 @@ final class NetworkFirewallPoliciesClient
     /**
      * Gets a rule of the specified priority.
      *
-     * The async variant is {@see NetworkFirewallPoliciesGapicClient::getRuleAsync()} .
+     * The async variant is {@see NetworkFirewallPoliciesClient::getRuleAsync()} .
      *
      * @param GetRuleNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -459,7 +457,7 @@ final class NetworkFirewallPoliciesClient
     /**
      * Creates a new policy in the specified project using the data included in the request.
      *
-     * The async variant is {@see NetworkFirewallPoliciesGapicClient::insertAsync()} .
+     * The async variant is {@see NetworkFirewallPoliciesClient::insertAsync()} .
      *
      * @param InsertNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -483,7 +481,7 @@ final class NetworkFirewallPoliciesClient
     /**
      * Lists all the policies that have been configured for the specified project.
      *
-     * The async variant is {@see NetworkFirewallPoliciesGapicClient::listAsync()} .
+     * The async variant is {@see NetworkFirewallPoliciesClient::listAsync()} .
      *
      * @param ListNetworkFirewallPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -507,7 +505,7 @@ final class NetworkFirewallPoliciesClient
     /**
      * Patches the specified policy with the data included in the request.
      *
-     * The async variant is {@see NetworkFirewallPoliciesGapicClient::patchAsync()} .
+     * The async variant is {@see NetworkFirewallPoliciesClient::patchAsync()} .
      *
      * @param PatchNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -531,8 +529,7 @@ final class NetworkFirewallPoliciesClient
     /**
      * Patches a rule of the specified priority.
      *
-     * The async variant is {@see NetworkFirewallPoliciesGapicClient::patchRuleAsync()}
-     * .
+     * The async variant is {@see NetworkFirewallPoliciesClient::patchRuleAsync()} .
      *
      * @param PatchRuleNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
@@ -557,7 +554,7 @@ final class NetworkFirewallPoliciesClient
      * Removes an association for the specified firewall policy.
      *
      * The async variant is
-     * {@see NetworkFirewallPoliciesGapicClient::removeAssociationAsync()} .
+     * {@see NetworkFirewallPoliciesClient::removeAssociationAsync()} .
      *
      * @param RemoveAssociationNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                         $callOptions {
@@ -581,8 +578,7 @@ final class NetworkFirewallPoliciesClient
     /**
      * Deletes a rule of the specified priority.
      *
-     * The async variant is
-     * {@see NetworkFirewallPoliciesGapicClient::removeRuleAsync()} .
+     * The async variant is {@see NetworkFirewallPoliciesClient::removeRuleAsync()} .
      *
      * @param RemoveRuleNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -606,8 +602,7 @@ final class NetworkFirewallPoliciesClient
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
-     * The async variant is
-     * {@see NetworkFirewallPoliciesGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see NetworkFirewallPoliciesClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
@@ -632,7 +627,7 @@ final class NetworkFirewallPoliciesClient
      * Returns permissions that a caller has on the specified resource.
      *
      * The async variant is
-     * {@see NetworkFirewallPoliciesGapicClient::testIamPermissionsAsync()} .
+     * {@see NetworkFirewallPoliciesClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                          $callOptions {

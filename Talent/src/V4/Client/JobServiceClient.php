@@ -305,7 +305,7 @@ final class JobServiceClient
     /**
      * Begins executing a batch create jobs operation.
      *
-     * The async variant is {@see JobServiceGapicClient::batchCreateJobsAsync()} .
+     * The async variant is {@see JobServiceClient::batchCreateJobsAsync()} .
      *
      * @param BatchCreateJobsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -329,7 +329,7 @@ final class JobServiceClient
     /**
      * Begins executing a batch delete jobs operation.
      *
-     * The async variant is {@see JobServiceGapicClient::batchDeleteJobsAsync()} .
+     * The async variant is {@see JobServiceClient::batchDeleteJobsAsync()} .
      *
      * @param BatchDeleteJobsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -353,7 +353,7 @@ final class JobServiceClient
     /**
      * Begins executing a batch update jobs operation.
      *
-     * The async variant is {@see JobServiceGapicClient::batchUpdateJobsAsync()} .
+     * The async variant is {@see JobServiceClient::batchUpdateJobsAsync()} .
      *
      * @param BatchUpdateJobsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -380,7 +380,7 @@ final class JobServiceClient
      * Typically, the job becomes searchable within 10 seconds, but it may take
      * up to 5 minutes.
      *
-     * The async variant is {@see JobServiceGapicClient::createJobAsync()} .
+     * The async variant is {@see JobServiceClient::createJobAsync()} .
      *
      * @param CreateJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -407,7 +407,7 @@ final class JobServiceClient
      * Typically, the job becomes unsearchable within 10 seconds, but it may take
      * up to 5 minutes.
      *
-     * The async variant is {@see JobServiceGapicClient::deleteJobAsync()} .
+     * The async variant is {@see JobServiceClient::deleteJobAsync()} .
      *
      * @param DeleteJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -430,7 +430,7 @@ final class JobServiceClient
      * Retrieves the specified job, whose status is OPEN or recently EXPIRED
      * within the last 90 days.
      *
-     * The async variant is {@see JobServiceGapicClient::getJobAsync()} .
+     * The async variant is {@see JobServiceClient::getJobAsync()} .
      *
      * @param GetJobRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -454,7 +454,7 @@ final class JobServiceClient
     /**
      * Lists jobs by filter.
      *
-     * The async variant is {@see JobServiceGapicClient::listJobsAsync()} .
+     * The async variant is {@see JobServiceClient::listJobsAsync()} .
      *
      * @param ListJobsRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -484,7 +484,7 @@ final class JobServiceClient
      * database, and only returns jobs that the caller has permission to search
      * against.
      *
-     * The async variant is {@see JobServiceGapicClient::searchJobsAsync()} .
+     * The async variant is {@see JobServiceClient::searchJobsAsync()} .
      *
      * @param SearchJobsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -519,7 +519,7 @@ final class JobServiceClient
      * database, and only returns jobs the caller has permission to search
      * against.
      *
-     * The async variant is {@see JobServiceGapicClient::searchJobsForAlertAsync()} .
+     * The async variant is {@see JobServiceClient::searchJobsForAlertAsync()} .
      *
      * @param SearchJobsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -546,7 +546,7 @@ final class JobServiceClient
      * Typically, updated contents become visible in search results within 10
      * seconds, but it may take up to 5 minutes.
      *
-     * The async variant is {@see JobServiceGapicClient::updateJobAsync()} .
+     * The async variant is {@see JobServiceClient::updateJobAsync()} .
      *
      * @param UpdateJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {

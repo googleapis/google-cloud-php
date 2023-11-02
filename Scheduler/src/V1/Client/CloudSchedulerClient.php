@@ -269,7 +269,7 @@ final class CloudSchedulerClient
     /**
      * Creates a job.
      *
-     * The async variant is {@see CloudSchedulerGapicClient::createJobAsync()} .
+     * The async variant is {@see CloudSchedulerClient::createJobAsync()} .
      *
      * @param CreateJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -293,7 +293,7 @@ final class CloudSchedulerClient
     /**
      * Deletes a job.
      *
-     * The async variant is {@see CloudSchedulerGapicClient::deleteJobAsync()} .
+     * The async variant is {@see CloudSchedulerClient::deleteJobAsync()} .
      *
      * @param DeleteJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -315,7 +315,7 @@ final class CloudSchedulerClient
     /**
      * Gets a job.
      *
-     * The async variant is {@see CloudSchedulerGapicClient::getJobAsync()} .
+     * The async variant is {@see CloudSchedulerClient::getJobAsync()} .
      *
      * @param GetJobRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -339,7 +339,7 @@ final class CloudSchedulerClient
     /**
      * Lists jobs.
      *
-     * The async variant is {@see CloudSchedulerGapicClient::listJobsAsync()} .
+     * The async variant is {@see CloudSchedulerClient::listJobsAsync()} .
      *
      * @param ListJobsRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -372,7 +372,7 @@ final class CloudSchedulerClient
      * be in [Job.State.ENABLED][google.cloud.scheduler.v1.Job.State.ENABLED] to
      * be paused.
      *
-     * The async variant is {@see CloudSchedulerGapicClient::pauseJobAsync()} .
+     * The async variant is {@see CloudSchedulerClient::pauseJobAsync()} .
      *
      * @param PauseJobRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -404,7 +404,7 @@ final class CloudSchedulerClient
      * must be in [Job.State.PAUSED][google.cloud.scheduler.v1.Job.State.PAUSED]
      * to be resumed.
      *
-     * The async variant is {@see CloudSchedulerGapicClient::resumeJobAsync()} .
+     * The async variant is {@see CloudSchedulerClient::resumeJobAsync()} .
      *
      * @param ResumeJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -431,7 +431,7 @@ final class CloudSchedulerClient
      * When this method is called, Cloud Scheduler will dispatch the job, even
      * if the job is already running.
      *
-     * The async variant is {@see CloudSchedulerGapicClient::runJobAsync()} .
+     * The async variant is {@see CloudSchedulerClient::runJobAsync()} .
      *
      * @param RunJobRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -464,7 +464,7 @@ final class CloudSchedulerClient
      * state. A job in this state may not be executed. If this happens, retry the
      * UpdateJob request until a successful response is received.
      *
-     * The async variant is {@see CloudSchedulerGapicClient::updateJobAsync()} .
+     * The async variant is {@see CloudSchedulerClient::updateJobAsync()} .
      *
      * @param UpdateJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -488,7 +488,7 @@ final class CloudSchedulerClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see CloudSchedulerGapicClient::getLocationAsync()} .
+     * The async variant is {@see CloudSchedulerClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -512,7 +512,7 @@ final class CloudSchedulerClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see CloudSchedulerGapicClient::listLocationsAsync()} .
+     * The async variant is {@see CloudSchedulerClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

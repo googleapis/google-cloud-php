@@ -294,7 +294,7 @@ final class SpecialistPoolServiceClient
      * Creates a SpecialistPool.
      *
      * The async variant is
-     * {@see SpecialistPoolServiceGapicClient::createSpecialistPoolAsync()} .
+     * {@see SpecialistPoolServiceClient::createSpecialistPoolAsync()} .
      *
      * @example samples/V1/SpecialistPoolServiceClient/create_specialist_pool.php
      *
@@ -321,7 +321,7 @@ final class SpecialistPoolServiceClient
      * Deletes a SpecialistPool as well as all Specialists in the pool.
      *
      * The async variant is
-     * {@see SpecialistPoolServiceGapicClient::deleteSpecialistPoolAsync()} .
+     * {@see SpecialistPoolServiceClient::deleteSpecialistPoolAsync()} .
      *
      * @example samples/V1/SpecialistPoolServiceClient/delete_specialist_pool.php
      *
@@ -348,7 +348,7 @@ final class SpecialistPoolServiceClient
      * Gets a SpecialistPool.
      *
      * The async variant is
-     * {@see SpecialistPoolServiceGapicClient::getSpecialistPoolAsync()} .
+     * {@see SpecialistPoolServiceClient::getSpecialistPoolAsync()} .
      *
      * @example samples/V1/SpecialistPoolServiceClient/get_specialist_pool.php
      *
@@ -375,7 +375,7 @@ final class SpecialistPoolServiceClient
      * Lists SpecialistPools in a Location.
      *
      * The async variant is
-     * {@see SpecialistPoolServiceGapicClient::listSpecialistPoolsAsync()} .
+     * {@see SpecialistPoolServiceClient::listSpecialistPoolsAsync()} .
      *
      * @example samples/V1/SpecialistPoolServiceClient/list_specialist_pools.php
      *
@@ -402,7 +402,7 @@ final class SpecialistPoolServiceClient
      * Updates a SpecialistPool.
      *
      * The async variant is
-     * {@see SpecialistPoolServiceGapicClient::updateSpecialistPoolAsync()} .
+     * {@see SpecialistPoolServiceClient::updateSpecialistPoolAsync()} .
      *
      * @example samples/V1/SpecialistPoolServiceClient/update_specialist_pool.php
      *
@@ -428,8 +428,7 @@ final class SpecialistPoolServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see SpecialistPoolServiceGapicClient::getLocationAsync()}
-     * .
+     * The async variant is {@see SpecialistPoolServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/SpecialistPoolServiceClient/get_location.php
      *
@@ -455,8 +454,7 @@ final class SpecialistPoolServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is
-     * {@see SpecialistPoolServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see SpecialistPoolServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/SpecialistPoolServiceClient/list_locations.php
      *
@@ -483,8 +481,7 @@ final class SpecialistPoolServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is
-     * {@see SpecialistPoolServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see SpecialistPoolServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/SpecialistPoolServiceClient/get_iam_policy.php
      *
@@ -514,8 +511,7 @@ final class SpecialistPoolServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is
-     * {@see SpecialistPoolServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see SpecialistPoolServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/SpecialistPoolServiceClient/set_iam_policy.php
      *
@@ -548,7 +544,7 @@ final class SpecialistPoolServiceClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is
-     * {@see SpecialistPoolServiceGapicClient::testIamPermissionsAsync()} .
+     * {@see SpecialistPoolServiceClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/SpecialistPoolServiceClient/test_iam_permissions.php
      *

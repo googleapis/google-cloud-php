@@ -237,8 +237,7 @@ final class RegionCommitmentsClient
     /**
      * Retrieves an aggregated list of commitments by region.
      *
-     * The async variant is {@see RegionCommitmentsGapicClient::aggregatedListAsync()}
-     * .
+     * The async variant is {@see RegionCommitmentsClient::aggregatedListAsync()} .
      *
      * @param AggregatedListRegionCommitmentsRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -262,7 +261,7 @@ final class RegionCommitmentsClient
     /**
      * Returns the specified commitment resource.
      *
-     * The async variant is {@see RegionCommitmentsGapicClient::getAsync()} .
+     * The async variant is {@see RegionCommitmentsClient::getAsync()} .
      *
      * @param GetRegionCommitmentRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -286,7 +285,7 @@ final class RegionCommitmentsClient
     /**
      * Creates a commitment in the specified project using the data included in the request.
      *
-     * The async variant is {@see RegionCommitmentsGapicClient::insertAsync()} .
+     * The async variant is {@see RegionCommitmentsClient::insertAsync()} .
      *
      * @param InsertRegionCommitmentRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -310,7 +309,7 @@ final class RegionCommitmentsClient
     /**
      * Retrieves a list of commitments contained within the specified region.
      *
-     * The async variant is {@see RegionCommitmentsGapicClient::listAsync()} .
+     * The async variant is {@see RegionCommitmentsClient::listAsync()} .
      *
      * @param ListRegionCommitmentsRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -334,7 +333,7 @@ final class RegionCommitmentsClient
     /**
      * Updates the specified commitment with the data included in the request. Update is performed only on selected fields included as part of update-mask. Only the following fields can be modified: auto_renew.
      *
-     * The async variant is {@see RegionCommitmentsGapicClient::updateAsync()} .
+     * The async variant is {@see RegionCommitmentsClient::updateAsync()} .
      *
      * @param UpdateRegionCommitmentRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {

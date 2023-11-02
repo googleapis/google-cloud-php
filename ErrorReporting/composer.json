@@ -6,12 +6,12 @@
     "require": {
         "php": ">=7.4",
         "google/cloud-logging": "^1.16",
-        "google/gax": "^1.19.1"
+        "google/gax": "^1.24.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0",
         "phpspec/prophecy-phpunit": "^2.0",
-        "google/cloud-core": "^1.39"
+        "google/cloud-core": "^1.52.7"
     },
     "suggest": {
         "ext-grpc": "The gRPC extension allows more granular control over Error Reporting",

@@ -178,7 +178,7 @@ final class LicenseCodesClient
     /**
      * Return a specified license code. License codes are mirrored across all projects that have permissions to read the License Code. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
      *
-     * The async variant is {@see LicenseCodesGapicClient::getAsync()} .
+     * The async variant is {@see LicenseCodesClient::getAsync()} .
      *
      * @param GetLicenseCodeRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -202,7 +202,7 @@ final class LicenseCodesClient
     /**
      * Returns permissions that a caller has on the specified resource. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
      *
-     * The async variant is {@see LicenseCodesGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see LicenseCodesClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsLicenseCodeRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {

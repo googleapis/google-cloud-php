@@ -239,7 +239,7 @@ final class SystemPolicyV1Client
     /**
      * Gets the current system policy in the specified location.
      *
-     * The async variant is {@see SystemPolicyV1GapicClient::getSystemPolicyAsync()} .
+     * The async variant is {@see SystemPolicyV1Client::getSystemPolicyAsync()} .
      *
      * @example samples/V1/SystemPolicyV1Client/get_system_policy.php
      *

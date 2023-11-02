@@ -271,7 +271,7 @@ final class ProjectsClient
      * automatically deleted after a few hours, so there is no need to call
      * `DeleteOperation`.
      *
-     * The async variant is {@see ProjectsGapicClient::createProjectAsync()} .
+     * The async variant is {@see ProjectsClient::createProjectAsync()} .
      *
      * @example samples/V3/ProjectsClient/create_project.php
      *
@@ -329,7 +329,7 @@ final class ProjectsClient
      * The caller must have `resourcemanager.projects.delete` permissions for this
      * project.
      *
-     * The async variant is {@see ProjectsGapicClient::deleteProjectAsync()} .
+     * The async variant is {@see ProjectsClient::deleteProjectAsync()} .
      *
      * @example samples/V3/ProjectsClient/delete_project.php
      *
@@ -357,7 +357,7 @@ final class ProjectsClient
      * format `projects/{ProjectIdOrNumber}` e.g. projects/123.
      * Permission is denied if the policy or the resource do not exist.
      *
-     * The async variant is {@see ProjectsGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see ProjectsClient::getIamPolicyAsync()} .
      *
      * @example samples/V3/ProjectsClient/get_iam_policy.php
      *
@@ -387,7 +387,7 @@ final class ProjectsClient
      * The caller must have `resourcemanager.projects.get` permission
      * for this project.
      *
-     * The async variant is {@see ProjectsGapicClient::getProjectAsync()} .
+     * The async variant is {@see ProjectsClient::getProjectAsync()} .
      *
      * @example samples/V3/ProjectsClient/get_project.php
      *
@@ -418,7 +418,7 @@ final class ProjectsClient
      * `display_name`. The caller must have `resourcemanager.projects.list`
      * permission on the identified parent.
      *
-     * The async variant is {@see ProjectsGapicClient::listProjectsAsync()} .
+     * The async variant is {@see ProjectsClient::listProjectsAsync()} .
      *
      * @example samples/V3/ProjectsClient/list_projects.php
      *
@@ -459,7 +459,7 @@ final class ProjectsClient
      *
      *
      *
-     * The async variant is {@see ProjectsGapicClient::moveProjectAsync()} .
+     * The async variant is {@see ProjectsClient::moveProjectAsync()} .
      *
      * @example samples/V3/ProjectsClient/move_project.php
      *
@@ -494,7 +494,7 @@ final class ProjectsClient
      * retrieve the latest state of a project, use the
      * [GetProject][google.cloud.resourcemanager.v3.Projects.GetProject] method.
      *
-     * The async variant is {@see ProjectsGapicClient::searchProjectsAsync()} .
+     * The async variant is {@see ProjectsClient::searchProjectsAsync()} .
      *
      * @example samples/V3/ProjectsClient/search_projects.php
      *
@@ -560,7 +560,7 @@ final class ProjectsClient
      * rectified. If the project is part of an organization, you can remove all
      * owners, potentially making the organization inaccessible.
      *
-     * The async variant is {@see ProjectsGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see ProjectsClient::setIamPolicyAsync()} .
      *
      * @example samples/V3/ProjectsClient/set_iam_policy.php
      *
@@ -587,7 +587,7 @@ final class ProjectsClient
      * Returns permissions that a caller has on the specified project, in the
      * format `projects/{ProjectIdOrNumber}` e.g. projects/123..
      *
-     * The async variant is {@see ProjectsGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see ProjectsClient::testIamPermissionsAsync()} .
      *
      * @example samples/V3/ProjectsClient/test_iam_permissions.php
      *
@@ -621,7 +621,7 @@ final class ProjectsClient
      * The caller must have `resourcemanager.projects.undelete` permission for
      * this project.
      *
-     * The async variant is {@see ProjectsGapicClient::undeleteProjectAsync()} .
+     * The async variant is {@see ProjectsClient::undeleteProjectAsync()} .
      *
      * @example samples/V3/ProjectsClient/undelete_project.php
      *
@@ -652,7 +652,7 @@ final class ProjectsClient
      * The caller must have `resourcemanager.projects.update` permission for this
      * project.
      *
-     * The async variant is {@see ProjectsGapicClient::updateProjectAsync()} .
+     * The async variant is {@see ProjectsClient::updateProjectAsync()} .
      *
      * @example samples/V3/ProjectsClient/update_project.php
      *

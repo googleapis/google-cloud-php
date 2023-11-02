@@ -164,7 +164,7 @@ final class QueryServiceClient
     /**
      * Queries time series using Monitoring Query Language. This method does not require a Workspace.
      *
-     * The async variant is {@see QueryServiceGapicClient::queryTimeSeriesAsync()} .
+     * The async variant is {@see QueryServiceClient::queryTimeSeriesAsync()} .
      *
      * @param QueryTimeSeriesRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {

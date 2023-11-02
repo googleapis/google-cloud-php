@@ -597,7 +597,7 @@ final class ConversationProfilesClient
      * [ConversationProfile][google.cloud.dialogflow.v2.ConversationProfile]
      *
      * The async variant is
-     * {@see ConversationProfilesGapicClient::clearSuggestionFeatureConfigAsync()} .
+     * {@see ConversationProfilesClient::clearSuggestionFeatureConfigAsync()} .
      *
      * @param ClearSuggestionFeatureConfigRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -627,7 +627,7 @@ final class ConversationProfilesClient
      * API.
      *
      * The async variant is
-     * {@see ConversationProfilesGapicClient::createConversationProfileAsync()} .
+     * {@see ConversationProfilesClient::createConversationProfileAsync()} .
      *
      * @param CreateConversationProfileRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -652,7 +652,7 @@ final class ConversationProfilesClient
      * Deletes the specified conversation profile.
      *
      * The async variant is
-     * {@see ConversationProfilesGapicClient::deleteConversationProfileAsync()} .
+     * {@see ConversationProfilesClient::deleteConversationProfileAsync()} .
      *
      * @param DeleteConversationProfileRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -675,7 +675,7 @@ final class ConversationProfilesClient
      * Retrieves the specified conversation profile.
      *
      * The async variant is
-     * {@see ConversationProfilesGapicClient::getConversationProfileAsync()} .
+     * {@see ConversationProfilesClient::getConversationProfileAsync()} .
      *
      * @param GetConversationProfileRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -700,7 +700,7 @@ final class ConversationProfilesClient
      * Returns the list of all conversation profiles in the specified project.
      *
      * The async variant is
-     * {@see ConversationProfilesGapicClient::listConversationProfilesAsync()} .
+     * {@see ConversationProfilesClient::listConversationProfilesAsync()} .
      *
      * @param ListConversationProfilesRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -742,7 +742,7 @@ final class ConversationProfilesClient
      * before sending such request, otherwise the request will be rejected.
      *
      * The async variant is
-     * {@see ConversationProfilesGapicClient::setSuggestionFeatureConfigAsync()} .
+     * {@see ConversationProfilesClient::setSuggestionFeatureConfigAsync()} .
      *
      * @param SetSuggestionFeatureConfigRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -772,7 +772,7 @@ final class ConversationProfilesClient
      * API.
      *
      * The async variant is
-     * {@see ConversationProfilesGapicClient::updateConversationProfileAsync()} .
+     * {@see ConversationProfilesClient::updateConversationProfileAsync()} .
      *
      * @param UpdateConversationProfileRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -796,8 +796,7 @@ final class ConversationProfilesClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see ConversationProfilesGapicClient::getLocationAsync()}
-     * .
+     * The async variant is {@see ConversationProfilesClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -821,8 +820,7 @@ final class ConversationProfilesClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is
-     * {@see ConversationProfilesGapicClient::listLocationsAsync()} .
+     * The async variant is {@see ConversationProfilesClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

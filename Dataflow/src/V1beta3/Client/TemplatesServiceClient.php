@@ -174,8 +174,8 @@ final class TemplatesServiceClient
     /**
      * Creates a Cloud Dataflow job from a template.
      *
-     * The async variant is
-     * {@see TemplatesServiceGapicClient::createJobFromTemplateAsync()} .
+     * The async variant is {@see TemplatesServiceClient::createJobFromTemplateAsync()}
+     * .
      *
      * @example samples/V1beta3/TemplatesServiceClient/create_job_from_template.php
      *
@@ -203,7 +203,7 @@ final class TemplatesServiceClient
     /**
      * Get the template associated with a template.
      *
-     * The async variant is {@see TemplatesServiceGapicClient::getTemplateAsync()} .
+     * The async variant is {@see TemplatesServiceClient::getTemplateAsync()} .
      *
      * @example samples/V1beta3/TemplatesServiceClient/get_template.php
      *
@@ -231,7 +231,7 @@ final class TemplatesServiceClient
     /**
      * Launch a template.
      *
-     * The async variant is {@see TemplatesServiceGapicClient::launchTemplateAsync()} .
+     * The async variant is {@see TemplatesServiceClient::launchTemplateAsync()} .
      *
      * @example samples/V1beta3/TemplatesServiceClient/launch_template.php
      *

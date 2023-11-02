@@ -256,7 +256,7 @@ final class SchemaServiceClient
     /**
      * Commits a new schema revision to an existing schema.
      *
-     * The async variant is {@see SchemaServiceGapicClient::commitSchemaAsync()} .
+     * The async variant is {@see SchemaServiceClient::commitSchemaAsync()} .
      *
      * @param CommitSchemaRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -280,7 +280,7 @@ final class SchemaServiceClient
     /**
      * Creates a schema.
      *
-     * The async variant is {@see SchemaServiceGapicClient::createSchemaAsync()} .
+     * The async variant is {@see SchemaServiceClient::createSchemaAsync()} .
      *
      * @param CreateSchemaRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -304,7 +304,7 @@ final class SchemaServiceClient
     /**
      * Deletes a schema.
      *
-     * The async variant is {@see SchemaServiceGapicClient::deleteSchemaAsync()} .
+     * The async variant is {@see SchemaServiceClient::deleteSchemaAsync()} .
      *
      * @param DeleteSchemaRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -326,8 +326,7 @@ final class SchemaServiceClient
     /**
      * Deletes a specific schema revision.
      *
-     * The async variant is
-     * {@see SchemaServiceGapicClient::deleteSchemaRevisionAsync()} .
+     * The async variant is {@see SchemaServiceClient::deleteSchemaRevisionAsync()} .
      *
      * @param DeleteSchemaRevisionRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -351,7 +350,7 @@ final class SchemaServiceClient
     /**
      * Gets a schema.
      *
-     * The async variant is {@see SchemaServiceGapicClient::getSchemaAsync()} .
+     * The async variant is {@see SchemaServiceClient::getSchemaAsync()} .
      *
      * @param GetSchemaRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -375,8 +374,7 @@ final class SchemaServiceClient
     /**
      * Lists all schema revisions for the named schema.
      *
-     * The async variant is {@see SchemaServiceGapicClient::listSchemaRevisionsAsync()}
-     * .
+     * The async variant is {@see SchemaServiceClient::listSchemaRevisionsAsync()} .
      *
      * @param ListSchemaRevisionsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -400,7 +398,7 @@ final class SchemaServiceClient
     /**
      * Lists schemas in a project.
      *
-     * The async variant is {@see SchemaServiceGapicClient::listSchemasAsync()} .
+     * The async variant is {@see SchemaServiceClient::listSchemasAsync()} .
      *
      * @param ListSchemasRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -424,7 +422,7 @@ final class SchemaServiceClient
     /**
      * Creates a new schema revision that is a copy of the provided revision_id.
      *
-     * The async variant is {@see SchemaServiceGapicClient::rollbackSchemaAsync()} .
+     * The async variant is {@see SchemaServiceClient::rollbackSchemaAsync()} .
      *
      * @param RollbackSchemaRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -448,7 +446,7 @@ final class SchemaServiceClient
     /**
      * Validates a message against a schema.
      *
-     * The async variant is {@see SchemaServiceGapicClient::validateMessageAsync()} .
+     * The async variant is {@see SchemaServiceClient::validateMessageAsync()} .
      *
      * @param ValidateMessageRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -472,7 +470,7 @@ final class SchemaServiceClient
     /**
      * Validates a schema.
      *
-     * The async variant is {@see SchemaServiceGapicClient::validateSchemaAsync()} .
+     * The async variant is {@see SchemaServiceClient::validateSchemaAsync()} .
      *
      * @param ValidateSchemaRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -497,7 +495,7 @@ final class SchemaServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see SchemaServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see SchemaServiceClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -525,7 +523,7 @@ final class SchemaServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see SchemaServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see SchemaServiceClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -555,8 +553,7 @@ final class SchemaServiceClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is {@see SchemaServiceGapicClient::testIamPermissionsAsync()}
-     * .
+     * The async variant is {@see SchemaServiceClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

@@ -17,6 +17,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class Runnable extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Optional. DisplayName is an optional field that can be provided by the
+     * caller. If provided, it will be used in logs and other outputs to identify
+     * the script, making it easier for users to understand the logs. If not
+     * provided the index of the runnable will be used for outputs.
+     *
+     * Generated from protobuf field <code>string display_name = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $display_name = '';
+    /**
      * Normally, a non-zero exit status causes the Task to fail. This flag allows
      * execution of other Runnables to continue instead.
      *
@@ -76,6 +85,11 @@ class Runnable extends \Google\Protobuf\Internal\Message
      *           Script runnable.
      *     @type \Google\Cloud\Batch\V1\Runnable\Barrier $barrier
      *           Barrier runnable.
+     *     @type string $display_name
+     *           Optional. DisplayName is an optional field that can be provided by the
+     *           caller. If provided, it will be used in logs and other outputs to identify
+     *           the script, making it easier for users to understand the logs. If not
+     *           provided the index of the runnable will be used for outputs.
      *     @type bool $ignore_exit_status
      *           Normally, a non-zero exit status causes the Task to fail. This flag allows
      *           execution of other Runnables to continue instead.
@@ -194,6 +208,38 @@ class Runnable extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Batch\V1\Runnable\Barrier::class);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. DisplayName is an optional field that can be provided by the
+     * caller. If provided, it will be used in logs and other outputs to identify
+     * the script, making it easier for users to understand the logs. If not
+     * provided the index of the runnable will be used for outputs.
+     *
+     * Generated from protobuf field <code>string display_name = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getDisplayName()
+    {
+        return $this->display_name;
+    }
+
+    /**
+     * Optional. DisplayName is an optional field that can be provided by the
+     * caller. If provided, it will be used in logs and other outputs to identify
+     * the script, making it easier for users to understand the logs. If not
+     * provided the index of the runnable will be used for outputs.
+     *
+     * Generated from protobuf field <code>string display_name = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->display_name = $var;
 
         return $this;
     }

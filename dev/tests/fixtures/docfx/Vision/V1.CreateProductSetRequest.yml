@@ -23,6 +23,7 @@ items:
       - '\Google\Cloud\Vision\V1\CreateProductSetRequest::setProductSet()'
       - '\Google\Cloud\Vision\V1\CreateProductSetRequest::getProductSetId()'
       - '\Google\Cloud\Vision\V1\CreateProductSetRequest::setProductSetId()'
+      - '\Google\Cloud\Vision\V1\CreateProductSetRequest::build()'
   -
     uid: '\Google\Cloud\Vision\V1\CreateProductSetRequest::__construct()'
     name: __construct
@@ -173,3 +174,36 @@ items:
       returns:
         -
           var_type: $this
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateProductSetRequest::build()'
+    name: 'static::build'
+    id: build
+    parent: \Google\Cloud\Vision\V1\CreateProductSetRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: parent
+          var_type: string
+          description: |-
+            Required. The project in which the ProductSet should be created.
+
+            Format is `projects/PROJECT_ID/locations/LOC_ID`. Please see
+            <xref uid="\Google\Cloud\Vision\V1\ProductSearchClient::locationName()">Google\Cloud\Vision\V1\ProductSearchClient::locationName()</xref> for help formatting this field.
+        -
+          id: productSet
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">Google\Cloud\Vision\V1\ProductSet</xref>'
+          description: 'Required. The ProductSet to create.'
+        -
+          id: productSetId
+          var_type: string
+          description: |-
+            A user-supplied resource id for this ProductSet. If set, the server will
+            attempt to use this value as the resource id. If it is already in use, an
+            error is returned with code ALREADY_EXISTS. Must be at most 128 characters
+            long. It cannot contain the character `/`.
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\CreateProductSetRequest">Google\Cloud\Vision\V1\CreateProductSetRequest</xref>'

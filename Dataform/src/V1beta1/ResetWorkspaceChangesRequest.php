@@ -22,8 +22,8 @@ class ResetWorkspaceChangesRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Optional. Full file paths to reset back to their committed state including filename,
-     * rooted at workspace root. If left empty, all files will be reset.
+     * Optional. Full file paths to reset back to their committed state including
+     * filename, rooted at workspace root. If left empty, all files will be reset.
      *
      * Generated from protobuf field <code>repeated string paths = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -44,8 +44,8 @@ class ResetWorkspaceChangesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The workspace's name.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $paths
-     *           Optional. Full file paths to reset back to their committed state including filename,
-     *           rooted at workspace root. If left empty, all files will be reset.
+     *           Optional. Full file paths to reset back to their committed state including
+     *           filename, rooted at workspace root. If left empty, all files will be reset.
      *     @type bool $clean
      *           Optional. If set to true, untracked files will be deleted.
      * }
@@ -82,8 +82,8 @@ class ResetWorkspaceChangesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Full file paths to reset back to their committed state including filename,
-     * rooted at workspace root. If left empty, all files will be reset.
+     * Optional. Full file paths to reset back to their committed state including
+     * filename, rooted at workspace root. If left empty, all files will be reset.
      *
      * Generated from protobuf field <code>repeated string paths = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -94,8 +94,8 @@ class ResetWorkspaceChangesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Full file paths to reset back to their committed state including filename,
-     * rooted at workspace root. If left empty, all files will be reset.
+     * Optional. Full file paths to reset back to their committed state including
+     * filename, rooted at workspace root. If left empty, all files will be reset.
      *
      * Generated from protobuf field <code>repeated string paths = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

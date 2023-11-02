@@ -32,8 +32,8 @@ use Google\Cloud\Dataform\V1beta1\RemoveDirectoryRequest;
  *
  * @param string $formattedWorkspace The workspace's name. Please see
  *                                   {@see DataformClient::workspaceName()} for help formatting this field.
- * @param string $path               The directory's full path including directory name, relative to the
- *                                   workspace root.
+ * @param string $path               The directory's full path including directory name, relative to
+ *                                   the workspace root.
  */
 function remove_directory_sample(string $formattedWorkspace, string $path): void
 {

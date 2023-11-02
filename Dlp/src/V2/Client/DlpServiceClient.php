@@ -36,6 +36,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Dlp\V2\ActivateJobTriggerRequest;
 use Google\Cloud\Dlp\V2\CancelDlpJobRequest;
 use Google\Cloud\Dlp\V2\CreateDeidentifyTemplateRequest;
+use Google\Cloud\Dlp\V2\CreateDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\CreateDlpJobRequest;
 use Google\Cloud\Dlp\V2\CreateInspectTemplateRequest;
 use Google\Cloud\Dlp\V2\CreateJobTriggerRequest;
@@ -44,13 +45,16 @@ use Google\Cloud\Dlp\V2\DeidentifyContentRequest;
 use Google\Cloud\Dlp\V2\DeidentifyContentResponse;
 use Google\Cloud\Dlp\V2\DeidentifyTemplate;
 use Google\Cloud\Dlp\V2\DeleteDeidentifyTemplateRequest;
+use Google\Cloud\Dlp\V2\DeleteDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\DeleteDlpJobRequest;
 use Google\Cloud\Dlp\V2\DeleteInspectTemplateRequest;
 use Google\Cloud\Dlp\V2\DeleteJobTriggerRequest;
 use Google\Cloud\Dlp\V2\DeleteStoredInfoTypeRequest;
+use Google\Cloud\Dlp\V2\DiscoveryConfig;
 use Google\Cloud\Dlp\V2\DlpJob;
 use Google\Cloud\Dlp\V2\FinishDlpJobRequest;
 use Google\Cloud\Dlp\V2\GetDeidentifyTemplateRequest;
+use Google\Cloud\Dlp\V2\GetDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\GetDlpJobRequest;
 use Google\Cloud\Dlp\V2\GetInspectTemplateRequest;
 use Google\Cloud\Dlp\V2\GetJobTriggerRequest;
@@ -63,6 +67,7 @@ use Google\Cloud\Dlp\V2\InspectContentResponse;
 use Google\Cloud\Dlp\V2\InspectTemplate;
 use Google\Cloud\Dlp\V2\JobTrigger;
 use Google\Cloud\Dlp\V2\ListDeidentifyTemplatesRequest;
+use Google\Cloud\Dlp\V2\ListDiscoveryConfigsRequest;
 use Google\Cloud\Dlp\V2\ListDlpJobsRequest;
 use Google\Cloud\Dlp\V2\ListInfoTypesRequest;
 use Google\Cloud\Dlp\V2\ListInfoTypesResponse;
@@ -75,6 +80,7 @@ use Google\Cloud\Dlp\V2\ReidentifyContentRequest;
 use Google\Cloud\Dlp\V2\ReidentifyContentResponse;
 use Google\Cloud\Dlp\V2\StoredInfoType;
 use Google\Cloud\Dlp\V2\UpdateDeidentifyTemplateRequest;
+use Google\Cloud\Dlp\V2\UpdateDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\UpdateInspectTemplateRequest;
 use Google\Cloud\Dlp\V2\UpdateJobTriggerRequest;
 use Google\Cloud\Dlp\V2\UpdateStoredInfoTypeRequest;
@@ -105,18 +111,21 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface activateJobTriggerAsync(ActivateJobTriggerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface cancelDlpJobAsync(CancelDlpJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createDeidentifyTemplateAsync(CreateDeidentifyTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createDiscoveryConfigAsync(CreateDiscoveryConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createDlpJobAsync(CreateDlpJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createInspectTemplateAsync(CreateInspectTemplateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createJobTriggerAsync(CreateJobTriggerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createStoredInfoTypeAsync(CreateStoredInfoTypeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deidentifyContentAsync(DeidentifyContentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteDeidentifyTemplateAsync(DeleteDeidentifyTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteDiscoveryConfigAsync(DeleteDiscoveryConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteDlpJobAsync(DeleteDlpJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteInspectTemplateAsync(DeleteInspectTemplateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteJobTriggerAsync(DeleteJobTriggerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteStoredInfoTypeAsync(DeleteStoredInfoTypeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface finishDlpJobAsync(FinishDlpJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getDeidentifyTemplateAsync(GetDeidentifyTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getDiscoveryConfigAsync(GetDiscoveryConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getDlpJobAsync(GetDlpJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getInspectTemplateAsync(GetInspectTemplateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getJobTriggerAsync(GetJobTriggerRequest $request, array $optionalArgs = [])
@@ -125,6 +134,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface hybridInspectJobTriggerAsync(HybridInspectJobTriggerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface inspectContentAsync(InspectContentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listDeidentifyTemplatesAsync(ListDeidentifyTemplatesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listDiscoveryConfigsAsync(ListDiscoveryConfigsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listDlpJobsAsync(ListDlpJobsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listInfoTypesAsync(ListInfoTypesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listInspectTemplatesAsync(ListInspectTemplatesRequest $request, array $optionalArgs = [])
@@ -133,6 +143,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface redactImageAsync(RedactImageRequest $request, array $optionalArgs = [])
  * @method PromiseInterface reidentifyContentAsync(ReidentifyContentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateDeidentifyTemplateAsync(UpdateDeidentifyTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateDiscoveryConfigAsync(UpdateDiscoveryConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateInspectTemplateAsync(UpdateInspectTemplateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateJobTriggerAsync(UpdateJobTriggerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateStoredInfoTypeAsync(UpdateStoredInfoTypeRequest $request, array $optionalArgs = [])
@@ -192,6 +203,25 @@ class DlpServiceClient
         return self::getPathTemplate('deidentifyTemplate')->render([
             'organization' => $organization,
             'deidentify_template' => $deidentifyTemplate,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * discovery_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $discoveryConfig
+     *
+     * @return string The formatted discovery_config resource.
+     */
+    public static function discoveryConfigName(string $project, string $location, string $discoveryConfig): string
+    {
+        return self::getPathTemplate('discoveryConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'discovery_config' => $discoveryConfig,
         ]);
     }
 
@@ -620,6 +650,7 @@ class DlpServiceClient
      * The following name formats are supported:
      * Template: Pattern
      * - deidentifyTemplate: organizations/{organization}/deidentifyTemplates/{deidentify_template}
+     * - discoveryConfig: projects/{project}/locations/{location}/discoveryConfigs/{discovery_config}
      * - dlpJob: projects/{project}/dlpJobs/{dlp_job}
      * - inspectTemplate: organizations/{organization}/inspectTemplates/{inspect_template}
      * - jobTrigger: projects/{project}/jobTriggers/{job_trigger}
@@ -738,7 +769,7 @@ class DlpServiceClient
      * Activate a job trigger. Causes the immediate execute of a trigger
      * instead of waiting on the trigger event to occur.
      *
-     * The async variant is {@see DlpServiceGapicClient::activateJobTriggerAsync()} .
+     * The async variant is {@see DlpServiceClient::activateJobTriggerAsync()} .
      *
      * @param ActivateJobTriggerRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -766,7 +797,7 @@ class DlpServiceClient
      * See https://cloud.google.com/dlp/docs/inspecting-storage and
      * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
      *
-     * The async variant is {@see DlpServiceGapicClient::cancelDlpJobAsync()} .
+     * The async variant is {@see DlpServiceClient::cancelDlpJobAsync()} .
      *
      * @param CancelDlpJobRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -791,8 +822,7 @@ class DlpServiceClient
      * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
      * more.
      *
-     * The async variant is
-     * {@see DlpServiceGapicClient::createDeidentifyTemplateAsync()} .
+     * The async variant is {@see DlpServiceClient::createDeidentifyTemplateAsync()} .
      *
      * @param CreateDeidentifyTemplateRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -814,6 +844,30 @@ class DlpServiceClient
     }
 
     /**
+     * Creates a config for discovery to scan and profile storage.
+     *
+     * The async variant is {@see DlpServiceClient::createDiscoveryConfigAsync()} .
+     *
+     * @param CreateDiscoveryConfigRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DiscoveryConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createDiscoveryConfig(CreateDiscoveryConfigRequest $request, array $callOptions = []): DiscoveryConfig
+    {
+        return $this->startApiCall('CreateDiscoveryConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new job to inspect storage or calculate risk metrics.
      * See https://cloud.google.com/dlp/docs/inspecting-storage and
      * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
@@ -822,7 +876,7 @@ class DlpServiceClient
      * system will automatically choose what detectors to run. By default this may
      * be all types, but may change over time as detectors are updated.
      *
-     * The async variant is {@see DlpServiceGapicClient::createDlpJobAsync()} .
+     * The async variant is {@see DlpServiceClient::createDlpJobAsync()} .
      *
      * @param CreateDlpJobRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -848,8 +902,7 @@ class DlpServiceClient
      * for inspecting content, images, and storage.
      * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
      *
-     * The async variant is {@see DlpServiceGapicClient::createInspectTemplateAsync()}
-     * .
+     * The async variant is {@see DlpServiceClient::createInspectTemplateAsync()} .
      *
      * @param CreateInspectTemplateRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -875,7 +928,7 @@ class DlpServiceClient
      * sensitive information on a set schedule.
      * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
      *
-     * The async variant is {@see DlpServiceGapicClient::createJobTriggerAsync()} .
+     * The async variant is {@see DlpServiceClient::createJobTriggerAsync()} .
      *
      * @param CreateJobTriggerRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -901,7 +954,7 @@ class DlpServiceClient
      * See https://cloud.google.com/dlp/docs/creating-stored-infotypes to
      * learn more.
      *
-     * The async variant is {@see DlpServiceGapicClient::createStoredInfoTypeAsync()} .
+     * The async variant is {@see DlpServiceClient::createStoredInfoTypeAsync()} .
      *
      * @param CreateStoredInfoTypeRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -932,7 +985,7 @@ class DlpServiceClient
      * system will automatically choose what detectors to run. By default this may
      * be all types, but may change over time as detectors are updated.
      *
-     * The async variant is {@see DlpServiceGapicClient::deidentifyContentAsync()} .
+     * The async variant is {@see DlpServiceClient::deidentifyContentAsync()} .
      *
      * @param DeidentifyContentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -958,8 +1011,7 @@ class DlpServiceClient
      * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
      * more.
      *
-     * The async variant is
-     * {@see DlpServiceGapicClient::deleteDeidentifyTemplateAsync()} .
+     * The async variant is {@see DlpServiceClient::deleteDeidentifyTemplateAsync()} .
      *
      * @param DeleteDeidentifyTemplateRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -979,13 +1031,35 @@ class DlpServiceClient
     }
 
     /**
+     * Deletes a discovery configuration.
+     *
+     * The async variant is {@see DlpServiceClient::deleteDiscoveryConfigAsync()} .
+     *
+     * @param DeleteDiscoveryConfigRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteDiscoveryConfig(DeleteDiscoveryConfigRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteDiscoveryConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a long-running DlpJob. This method indicates that the client is
      * no longer interested in the DlpJob result. The job will be canceled if
      * possible.
      * See https://cloud.google.com/dlp/docs/inspecting-storage and
      * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
      *
-     * The async variant is {@see DlpServiceGapicClient::deleteDlpJobAsync()} .
+     * The async variant is {@see DlpServiceClient::deleteDlpJobAsync()} .
      *
      * @param DeleteDlpJobRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1008,8 +1082,7 @@ class DlpServiceClient
      * Deletes an InspectTemplate.
      * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
      *
-     * The async variant is {@see DlpServiceGapicClient::deleteInspectTemplateAsync()}
-     * .
+     * The async variant is {@see DlpServiceClient::deleteInspectTemplateAsync()} .
      *
      * @param DeleteInspectTemplateRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -1032,7 +1105,7 @@ class DlpServiceClient
      * Deletes a job trigger.
      * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
      *
-     * The async variant is {@see DlpServiceGapicClient::deleteJobTriggerAsync()} .
+     * The async variant is {@see DlpServiceClient::deleteJobTriggerAsync()} .
      *
      * @param DeleteJobTriggerRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -1056,7 +1129,7 @@ class DlpServiceClient
      * See https://cloud.google.com/dlp/docs/creating-stored-infotypes to
      * learn more.
      *
-     * The async variant is {@see DlpServiceGapicClient::deleteStoredInfoTypeAsync()} .
+     * The async variant is {@see DlpServiceClient::deleteStoredInfoTypeAsync()} .
      *
      * @param DeleteStoredInfoTypeRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -1079,7 +1152,7 @@ class DlpServiceClient
      * Finish a running hybrid DlpJob. Triggers the finalization steps and running
      * of any enabled actions that have not yet run.
      *
-     * The async variant is {@see DlpServiceGapicClient::finishDlpJobAsync()} .
+     * The async variant is {@see DlpServiceClient::finishDlpJobAsync()} .
      *
      * @param FinishDlpJobRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1103,8 +1176,7 @@ class DlpServiceClient
      * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
      * more.
      *
-     * The async variant is {@see DlpServiceGapicClient::getDeidentifyTemplateAsync()}
-     * .
+     * The async variant is {@see DlpServiceClient::getDeidentifyTemplateAsync()} .
      *
      * @param GetDeidentifyTemplateRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -1126,11 +1198,35 @@ class DlpServiceClient
     }
 
     /**
+     * Gets a discovery configuration.
+     *
+     * The async variant is {@see DlpServiceClient::getDiscoveryConfigAsync()} .
+     *
+     * @param GetDiscoveryConfigRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DiscoveryConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getDiscoveryConfig(GetDiscoveryConfigRequest $request, array $callOptions = []): DiscoveryConfig
+    {
+        return $this->startApiCall('GetDiscoveryConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets the latest state of a long-running DlpJob.
      * See https://cloud.google.com/dlp/docs/inspecting-storage and
      * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
      *
-     * The async variant is {@see DlpServiceGapicClient::getDlpJobAsync()} .
+     * The async variant is {@see DlpServiceClient::getDlpJobAsync()} .
      *
      * @param GetDlpJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -1155,7 +1251,7 @@ class DlpServiceClient
      * Gets an InspectTemplate.
      * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
      *
-     * The async variant is {@see DlpServiceGapicClient::getInspectTemplateAsync()} .
+     * The async variant is {@see DlpServiceClient::getInspectTemplateAsync()} .
      *
      * @param GetInspectTemplateRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -1180,7 +1276,7 @@ class DlpServiceClient
      * Gets a job trigger.
      * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
      *
-     * The async variant is {@see DlpServiceGapicClient::getJobTriggerAsync()} .
+     * The async variant is {@see DlpServiceClient::getJobTriggerAsync()} .
      *
      * @param GetJobTriggerRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1206,7 +1302,7 @@ class DlpServiceClient
      * See https://cloud.google.com/dlp/docs/creating-stored-infotypes to
      * learn more.
      *
-     * The async variant is {@see DlpServiceGapicClient::getStoredInfoTypeAsync()} .
+     * The async variant is {@see DlpServiceClient::getStoredInfoTypeAsync()} .
      *
      * @param GetStoredInfoTypeRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -1232,7 +1328,7 @@ class DlpServiceClient
      * To review the findings, inspect the job. Inspection will occur
      * asynchronously.
      *
-     * The async variant is {@see DlpServiceGapicClient::hybridInspectDlpJobAsync()} .
+     * The async variant is {@see DlpServiceClient::hybridInspectDlpJobAsync()} .
      *
      * @param HybridInspectDlpJobRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -1258,8 +1354,7 @@ class DlpServiceClient
      * will be processed asynchronously. To review the findings monitor the
      * jobs within the trigger.
      *
-     * The async variant is
-     * {@see DlpServiceGapicClient::hybridInspectJobTriggerAsync()} .
+     * The async variant is {@see DlpServiceClient::hybridInspectJobTriggerAsync()} .
      *
      * @param HybridInspectJobTriggerRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -1291,7 +1386,7 @@ class DlpServiceClient
      * For how to guides, see https://cloud.google.com/dlp/docs/inspecting-images
      * and https://cloud.google.com/dlp/docs/inspecting-text,
      *
-     * The async variant is {@see DlpServiceGapicClient::inspectContentAsync()} .
+     * The async variant is {@see DlpServiceClient::inspectContentAsync()} .
      *
      * @param InspectContentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -1317,8 +1412,7 @@ class DlpServiceClient
      * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
      * more.
      *
-     * The async variant is
-     * {@see DlpServiceGapicClient::listDeidentifyTemplatesAsync()} .
+     * The async variant is {@see DlpServiceClient::listDeidentifyTemplatesAsync()} .
      *
      * @param ListDeidentifyTemplatesRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -1340,11 +1434,35 @@ class DlpServiceClient
     }
 
     /**
+     * Lists discovery configurations.
+     *
+     * The async variant is {@see DlpServiceClient::listDiscoveryConfigsAsync()} .
+     *
+     * @param ListDiscoveryConfigsRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listDiscoveryConfigs(ListDiscoveryConfigsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListDiscoveryConfigs', $request, $callOptions);
+    }
+
+    /**
      * Lists DlpJobs that match the specified filter in the request.
      * See https://cloud.google.com/dlp/docs/inspecting-storage and
      * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
      *
-     * The async variant is {@see DlpServiceGapicClient::listDlpJobsAsync()} .
+     * The async variant is {@see DlpServiceClient::listDlpJobsAsync()} .
      *
      * @param ListDlpJobsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1370,7 +1488,7 @@ class DlpServiceClient
      * supports. See https://cloud.google.com/dlp/docs/infotypes-reference to
      * learn more.
      *
-     * The async variant is {@see DlpServiceGapicClient::listInfoTypesAsync()} .
+     * The async variant is {@see DlpServiceClient::listInfoTypesAsync()} .
      *
      * @param ListInfoTypesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1395,7 +1513,7 @@ class DlpServiceClient
      * Lists InspectTemplates.
      * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
      *
-     * The async variant is {@see DlpServiceGapicClient::listInspectTemplatesAsync()} .
+     * The async variant is {@see DlpServiceClient::listInspectTemplatesAsync()} .
      *
      * @param ListInspectTemplatesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -1420,7 +1538,7 @@ class DlpServiceClient
      * Lists job triggers.
      * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
      *
-     * The async variant is {@see DlpServiceGapicClient::listJobTriggersAsync()} .
+     * The async variant is {@see DlpServiceClient::listJobTriggersAsync()} .
      *
      * @param ListJobTriggersRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1446,7 +1564,7 @@ class DlpServiceClient
      * See https://cloud.google.com/dlp/docs/creating-stored-infotypes to
      * learn more.
      *
-     * The async variant is {@see DlpServiceGapicClient::listStoredInfoTypesAsync()} .
+     * The async variant is {@see DlpServiceClient::listStoredInfoTypesAsync()} .
      *
      * @param ListStoredInfoTypesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -1477,7 +1595,7 @@ class DlpServiceClient
      * system will automatically choose what detectors to run. By default this may
      * be all types, but may change over time as detectors are updated.
      *
-     * The async variant is {@see DlpServiceGapicClient::redactImageAsync()} .
+     * The async variant is {@see DlpServiceClient::redactImageAsync()} .
      *
      * @param RedactImageRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1504,7 +1622,7 @@ class DlpServiceClient
      * https://cloud.google.com/dlp/docs/pseudonymization#re-identification_in_free_text_code_example
      * to learn more.
      *
-     * The async variant is {@see DlpServiceGapicClient::reidentifyContentAsync()} .
+     * The async variant is {@see DlpServiceClient::reidentifyContentAsync()} .
      *
      * @param ReidentifyContentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -1530,8 +1648,7 @@ class DlpServiceClient
      * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
      * more.
      *
-     * The async variant is
-     * {@see DlpServiceGapicClient::updateDeidentifyTemplateAsync()} .
+     * The async variant is {@see DlpServiceClient::updateDeidentifyTemplateAsync()} .
      *
      * @param UpdateDeidentifyTemplateRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -1553,11 +1670,34 @@ class DlpServiceClient
     }
 
     /**
+     * Updates a discovery configuration.
+     *
+     * The async variant is {@see DlpServiceClient::updateDiscoveryConfigAsync()} .
+     *
+     * @param UpdateDiscoveryConfigRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DiscoveryConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateDiscoveryConfig(UpdateDiscoveryConfigRequest $request, array $callOptions = []): DiscoveryConfig
+    {
+        return $this->startApiCall('UpdateDiscoveryConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Updates the InspectTemplate.
      * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
      *
-     * The async variant is {@see DlpServiceGapicClient::updateInspectTemplateAsync()}
-     * .
+     * The async variant is {@see DlpServiceClient::updateInspectTemplateAsync()} .
      *
      * @param UpdateInspectTemplateRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -1582,7 +1722,7 @@ class DlpServiceClient
      * Updates a job trigger.
      * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
      *
-     * The async variant is {@see DlpServiceGapicClient::updateJobTriggerAsync()} .
+     * The async variant is {@see DlpServiceClient::updateJobTriggerAsync()} .
      *
      * @param UpdateJobTriggerRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -1609,7 +1749,7 @@ class DlpServiceClient
      * See https://cloud.google.com/dlp/docs/creating-stored-infotypes to
      * learn more.
      *
-     * The async variant is {@see DlpServiceGapicClient::updateStoredInfoTypeAsync()} .
+     * The async variant is {@see DlpServiceClient::updateStoredInfoTypeAsync()} .
      *
      * @param UpdateStoredInfoTypeRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

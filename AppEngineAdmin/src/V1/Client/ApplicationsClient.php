@@ -211,7 +211,7 @@ final class ApplicationsClient
      *
      * For more information about App Engine applications, see [Managing Projects, Applications, and Billing](https://cloud.google.com/appengine/docs/standard/python/console/).
      *
-     * The async variant is {@see ApplicationsGapicClient::createApplicationAsync()} .
+     * The async variant is {@see ApplicationsClient::createApplicationAsync()} .
      *
      * @param CreateApplicationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -235,7 +235,7 @@ final class ApplicationsClient
     /**
      * Gets information about an application.
      *
-     * The async variant is {@see ApplicationsGapicClient::getApplicationAsync()} .
+     * The async variant is {@see ApplicationsClient::getApplicationAsync()} .
      *
      * @param GetApplicationRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -268,7 +268,7 @@ final class ApplicationsClient
      * If the deletion was recent, the numeric ID can be found in the Cloud
      * Console Activity Log.
      *
-     * The async variant is {@see ApplicationsGapicClient::repairApplicationAsync()} .
+     * The async variant is {@see ApplicationsClient::repairApplicationAsync()} .
      *
      * @param RepairApplicationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -297,7 +297,7 @@ final class ApplicationsClient
      * * `default_cookie_expiration` - Cookie expiration policy for the application.
      * * `iap` - Identity-Aware Proxy properties for the application.
      *
-     * The async variant is {@see ApplicationsGapicClient::updateApplicationAsync()} .
+     * The async variant is {@see ApplicationsClient::updateApplicationAsync()} .
      *
      * @param UpdateApplicationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {

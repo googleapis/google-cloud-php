@@ -441,8 +441,7 @@ final class DataTransferServiceClient
      * Returns true if valid credentials exist for the given data source and
      * requesting user.
      *
-     * The async variant is
-     * {@see DataTransferServiceGapicClient::checkValidCredsAsync()} .
+     * The async variant is {@see DataTransferServiceClient::checkValidCredsAsync()} .
      *
      * @param CheckValidCredsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -467,7 +466,7 @@ final class DataTransferServiceClient
      * Creates a new data transfer configuration.
      *
      * The async variant is
-     * {@see DataTransferServiceGapicClient::createTransferConfigAsync()} .
+     * {@see DataTransferServiceClient::createTransferConfigAsync()} .
      *
      * @param CreateTransferConfigRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -493,7 +492,7 @@ final class DataTransferServiceClient
      * runs and logs.
      *
      * The async variant is
-     * {@see DataTransferServiceGapicClient::deleteTransferConfigAsync()} .
+     * {@see DataTransferServiceClient::deleteTransferConfigAsync()} .
      *
      * @param DeleteTransferConfigRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -515,8 +514,8 @@ final class DataTransferServiceClient
     /**
      * Deletes the specified transfer run.
      *
-     * The async variant is
-     * {@see DataTransferServiceGapicClient::deleteTransferRunAsync()} .
+     * The async variant is {@see DataTransferServiceClient::deleteTransferRunAsync()}
+     * .
      *
      * @param DeleteTransferRunRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -545,8 +544,8 @@ final class DataTransferServiceClient
      * [Data Transfer
      * Service](https://cloud.google.com/bigquery/docs/working-with-transfers).
      *
-     * The async variant is
-     * {@see DataTransferServiceGapicClient::enrollDataSourcesAsync()} .
+     * The async variant is {@see DataTransferServiceClient::enrollDataSourcesAsync()}
+     * .
      *
      * @param EnrollDataSourcesRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -568,8 +567,7 @@ final class DataTransferServiceClient
     /**
      * Retrieves a supported data source and returns its settings.
      *
-     * The async variant is {@see DataTransferServiceGapicClient::getDataSourceAsync()}
-     * .
+     * The async variant is {@see DataTransferServiceClient::getDataSourceAsync()} .
      *
      * @param GetDataSourceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -593,8 +591,8 @@ final class DataTransferServiceClient
     /**
      * Returns information about a data transfer config.
      *
-     * The async variant is
-     * {@see DataTransferServiceGapicClient::getTransferConfigAsync()} .
+     * The async variant is {@see DataTransferServiceClient::getTransferConfigAsync()}
+     * .
      *
      * @param GetTransferConfigRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -618,8 +616,7 @@ final class DataTransferServiceClient
     /**
      * Returns information about the particular transfer run.
      *
-     * The async variant is
-     * {@see DataTransferServiceGapicClient::getTransferRunAsync()} .
+     * The async variant is {@see DataTransferServiceClient::getTransferRunAsync()} .
      *
      * @param GetTransferRunRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -643,8 +640,7 @@ final class DataTransferServiceClient
     /**
      * Lists supported data sources and returns their settings.
      *
-     * The async variant is
-     * {@see DataTransferServiceGapicClient::listDataSourcesAsync()} .
+     * The async variant is {@see DataTransferServiceClient::listDataSourcesAsync()} .
      *
      * @param ListDataSourcesRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -670,7 +666,7 @@ final class DataTransferServiceClient
      * specified location.
      *
      * The async variant is
-     * {@see DataTransferServiceGapicClient::listTransferConfigsAsync()} .
+     * {@see DataTransferServiceClient::listTransferConfigsAsync()} .
      *
      * @param ListTransferConfigsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -694,8 +690,7 @@ final class DataTransferServiceClient
     /**
      * Returns log messages for the transfer run.
      *
-     * The async variant is
-     * {@see DataTransferServiceGapicClient::listTransferLogsAsync()} .
+     * The async variant is {@see DataTransferServiceClient::listTransferLogsAsync()} .
      *
      * @param ListTransferLogsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -719,8 +714,7 @@ final class DataTransferServiceClient
     /**
      * Returns information about running and completed transfer runs.
      *
-     * The async variant is
-     * {@see DataTransferServiceGapicClient::listTransferRunsAsync()} .
+     * The async variant is {@see DataTransferServiceClient::listTransferRunsAsync()} .
      *
      * @param ListTransferRunsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -749,7 +743,7 @@ final class DataTransferServiceClient
      * DEPRECATED: use StartManualTransferRuns instead.
      *
      * The async variant is
-     * {@see DataTransferServiceGapicClient::scheduleTransferRunsAsync()} .
+     * {@see DataTransferServiceClient::scheduleTransferRunsAsync()} .
      *
      * @param ScheduleTransferRunsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -779,7 +773,7 @@ final class DataTransferServiceClient
      * a specific run_time.
      *
      * The async variant is
-     * {@see DataTransferServiceGapicClient::startManualTransferRunsAsync()} .
+     * {@see DataTransferServiceClient::startManualTransferRunsAsync()} .
      *
      * @param StartManualTransferRunsRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -805,7 +799,7 @@ final class DataTransferServiceClient
      * All fields must be set, even if they are not updated.
      *
      * The async variant is
-     * {@see DataTransferServiceGapicClient::updateTransferConfigAsync()} .
+     * {@see DataTransferServiceClient::updateTransferConfigAsync()} .
      *
      * @param UpdateTransferConfigRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -829,7 +823,7 @@ final class DataTransferServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see DataTransferServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see DataTransferServiceClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -853,8 +847,7 @@ final class DataTransferServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see DataTransferServiceGapicClient::listLocationsAsync()}
-     * .
+     * The async variant is {@see DataTransferServiceClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

@@ -248,7 +248,7 @@ final class TextToSpeechLongAudioSynthesizeClient
      * Synthesizes long form text asynchronously.
      *
      * The async variant is
-     * {@see TextToSpeechLongAudioSynthesizeGapicClient::synthesizeLongAudioAsync()} .
+     * {@see TextToSpeechLongAudioSynthesizeClient::synthesizeLongAudioAsync()} .
      *
      * @param SynthesizeLongAudioRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {

@@ -287,7 +287,7 @@ final class PredictionServiceClient
      * [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec]
      * populated.
      *
-     * The async variant is {@see PredictionServiceGapicClient::explainAsync()} .
+     * The async variant is {@see PredictionServiceClient::explainAsync()} .
      *
      * @example samples/V1/PredictionServiceClient/explain.php
      *
@@ -313,7 +313,7 @@ final class PredictionServiceClient
     /**
      * Perform an online prediction.
      *
-     * The async variant is {@see PredictionServiceGapicClient::predictAsync()} .
+     * The async variant is {@see PredictionServiceClient::predictAsync()} .
      *
      * @example samples/V1/PredictionServiceClient/predict.php
      *
@@ -349,7 +349,7 @@ final class PredictionServiceClient
      * [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] that served this
      * prediction.
      *
-     * The async variant is {@see PredictionServiceGapicClient::rawPredictAsync()} .
+     * The async variant is {@see PredictionServiceClient::rawPredictAsync()} .
      *
      * @example samples/V1/PredictionServiceClient/raw_predict.php
      *
@@ -398,7 +398,7 @@ final class PredictionServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see PredictionServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see PredictionServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/PredictionServiceClient/get_location.php
      *
@@ -424,7 +424,7 @@ final class PredictionServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see PredictionServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see PredictionServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/PredictionServiceClient/list_locations.php
      *
@@ -451,7 +451,7 @@ final class PredictionServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see PredictionServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see PredictionServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/PredictionServiceClient/get_iam_policy.php
      *
@@ -481,7 +481,7 @@ final class PredictionServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see PredictionServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see PredictionServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/PredictionServiceClient/set_iam_policy.php
      *
@@ -513,8 +513,7 @@ final class PredictionServiceClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is
-     * {@see PredictionServiceGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see PredictionServiceClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/PredictionServiceClient/test_iam_permissions.php
      *

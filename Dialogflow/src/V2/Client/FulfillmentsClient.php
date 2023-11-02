@@ -251,7 +251,7 @@ final class FulfillmentsClient
     /**
      * Retrieves the fulfillment.
      *
-     * The async variant is {@see FulfillmentsGapicClient::getFulfillmentAsync()} .
+     * The async variant is {@see FulfillmentsClient::getFulfillmentAsync()} .
      *
      * @param GetFulfillmentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -275,7 +275,7 @@ final class FulfillmentsClient
     /**
      * Updates the fulfillment.
      *
-     * The async variant is {@see FulfillmentsGapicClient::updateFulfillmentAsync()} .
+     * The async variant is {@see FulfillmentsClient::updateFulfillmentAsync()} .
      *
      * @param UpdateFulfillmentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -299,7 +299,7 @@ final class FulfillmentsClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see FulfillmentsGapicClient::getLocationAsync()} .
+     * The async variant is {@see FulfillmentsClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -323,7 +323,7 @@ final class FulfillmentsClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see FulfillmentsGapicClient::listLocationsAsync()} .
+     * The async variant is {@see FulfillmentsClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

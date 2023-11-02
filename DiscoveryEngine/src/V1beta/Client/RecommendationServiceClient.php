@@ -351,7 +351,7 @@ final class RecommendationServiceClient
     /**
      * Makes a recommendation, which requires a contextual user event.
      *
-     * The async variant is {@see RecommendationServiceGapicClient::recommendAsync()} .
+     * The async variant is {@see RecommendationServiceClient::recommendAsync()} .
      *
      * @example samples/V1beta/RecommendationServiceClient/recommend.php
      *

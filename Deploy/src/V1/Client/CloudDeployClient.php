@@ -552,7 +552,7 @@ final class CloudDeployClient
     /**
      * Abandons a Release in the Delivery Pipeline.
      *
-     * The async variant is {@see CloudDeployGapicClient::abandonReleaseAsync()} .
+     * The async variant is {@see CloudDeployClient::abandonReleaseAsync()} .
      *
      * @example samples/V1/CloudDeployClient/abandon_release.php
      *
@@ -578,7 +578,7 @@ final class CloudDeployClient
     /**
      * Advances a Rollout in a given project and location.
      *
-     * The async variant is {@see CloudDeployGapicClient::advanceRolloutAsync()} .
+     * The async variant is {@see CloudDeployClient::advanceRolloutAsync()} .
      *
      * @example samples/V1/CloudDeployClient/advance_rollout.php
      *
@@ -604,7 +604,7 @@ final class CloudDeployClient
     /**
      * Approves a Rollout.
      *
-     * The async variant is {@see CloudDeployGapicClient::approveRolloutAsync()} .
+     * The async variant is {@see CloudDeployClient::approveRolloutAsync()} .
      *
      * @example samples/V1/CloudDeployClient/approve_rollout.php
      *
@@ -630,7 +630,7 @@ final class CloudDeployClient
     /**
      * Cancels a Rollout in a given project and location.
      *
-     * The async variant is {@see CloudDeployGapicClient::cancelRolloutAsync()} .
+     * The async variant is {@see CloudDeployClient::cancelRolloutAsync()} .
      *
      * @example samples/V1/CloudDeployClient/cancel_rollout.php
      *
@@ -656,8 +656,7 @@ final class CloudDeployClient
     /**
      * Creates a new DeliveryPipeline in a given project and location.
      *
-     * The async variant is
-     * {@see CloudDeployGapicClient::createDeliveryPipelineAsync()} .
+     * The async variant is {@see CloudDeployClient::createDeliveryPipelineAsync()} .
      *
      * @example samples/V1/CloudDeployClient/create_delivery_pipeline.php
      *
@@ -683,7 +682,7 @@ final class CloudDeployClient
     /**
      * Creates a new Release in a given project and location.
      *
-     * The async variant is {@see CloudDeployGapicClient::createReleaseAsync()} .
+     * The async variant is {@see CloudDeployClient::createReleaseAsync()} .
      *
      * @example samples/V1/CloudDeployClient/create_release.php
      *
@@ -709,7 +708,7 @@ final class CloudDeployClient
     /**
      * Creates a new Rollout in a given project and location.
      *
-     * The async variant is {@see CloudDeployGapicClient::createRolloutAsync()} .
+     * The async variant is {@see CloudDeployClient::createRolloutAsync()} .
      *
      * @example samples/V1/CloudDeployClient/create_rollout.php
      *
@@ -735,7 +734,7 @@ final class CloudDeployClient
     /**
      * Creates a new Target in a given project and location.
      *
-     * The async variant is {@see CloudDeployGapicClient::createTargetAsync()} .
+     * The async variant is {@see CloudDeployClient::createTargetAsync()} .
      *
      * @example samples/V1/CloudDeployClient/create_target.php
      *
@@ -761,8 +760,7 @@ final class CloudDeployClient
     /**
      * Deletes a single DeliveryPipeline.
      *
-     * The async variant is
-     * {@see CloudDeployGapicClient::deleteDeliveryPipelineAsync()} .
+     * The async variant is {@see CloudDeployClient::deleteDeliveryPipelineAsync()} .
      *
      * @example samples/V1/CloudDeployClient/delete_delivery_pipeline.php
      *
@@ -788,7 +786,7 @@ final class CloudDeployClient
     /**
      * Deletes a single Target.
      *
-     * The async variant is {@see CloudDeployGapicClient::deleteTargetAsync()} .
+     * The async variant is {@see CloudDeployClient::deleteTargetAsync()} .
      *
      * @example samples/V1/CloudDeployClient/delete_target.php
      *
@@ -814,7 +812,7 @@ final class CloudDeployClient
     /**
      * Gets the configuration for a location.
      *
-     * The async variant is {@see CloudDeployGapicClient::getConfigAsync()} .
+     * The async variant is {@see CloudDeployClient::getConfigAsync()} .
      *
      * @example samples/V1/CloudDeployClient/get_config.php
      *
@@ -840,7 +838,7 @@ final class CloudDeployClient
     /**
      * Gets details of a single DeliveryPipeline.
      *
-     * The async variant is {@see CloudDeployGapicClient::getDeliveryPipelineAsync()} .
+     * The async variant is {@see CloudDeployClient::getDeliveryPipelineAsync()} .
      *
      * @example samples/V1/CloudDeployClient/get_delivery_pipeline.php
      *
@@ -866,7 +864,7 @@ final class CloudDeployClient
     /**
      * Gets details of a single JobRun.
      *
-     * The async variant is {@see CloudDeployGapicClient::getJobRunAsync()} .
+     * The async variant is {@see CloudDeployClient::getJobRunAsync()} .
      *
      * @example samples/V1/CloudDeployClient/get_job_run.php
      *
@@ -892,7 +890,7 @@ final class CloudDeployClient
     /**
      * Gets details of a single Release.
      *
-     * The async variant is {@see CloudDeployGapicClient::getReleaseAsync()} .
+     * The async variant is {@see CloudDeployClient::getReleaseAsync()} .
      *
      * @example samples/V1/CloudDeployClient/get_release.php
      *
@@ -918,7 +916,7 @@ final class CloudDeployClient
     /**
      * Gets details of a single Rollout.
      *
-     * The async variant is {@see CloudDeployGapicClient::getRolloutAsync()} .
+     * The async variant is {@see CloudDeployClient::getRolloutAsync()} .
      *
      * @example samples/V1/CloudDeployClient/get_rollout.php
      *
@@ -944,7 +942,7 @@ final class CloudDeployClient
     /**
      * Gets details of a single Target.
      *
-     * The async variant is {@see CloudDeployGapicClient::getTargetAsync()} .
+     * The async variant is {@see CloudDeployClient::getTargetAsync()} .
      *
      * @example samples/V1/CloudDeployClient/get_target.php
      *
@@ -970,7 +968,7 @@ final class CloudDeployClient
     /**
      * Ignores the specified Job in a Rollout.
      *
-     * The async variant is {@see CloudDeployGapicClient::ignoreJobAsync()} .
+     * The async variant is {@see CloudDeployClient::ignoreJobAsync()} .
      *
      * @example samples/V1/CloudDeployClient/ignore_job.php
      *
@@ -996,8 +994,7 @@ final class CloudDeployClient
     /**
      * Lists DeliveryPipelines in a given project and location.
      *
-     * The async variant is {@see CloudDeployGapicClient::listDeliveryPipelinesAsync()}
-     * .
+     * The async variant is {@see CloudDeployClient::listDeliveryPipelinesAsync()} .
      *
      * @example samples/V1/CloudDeployClient/list_delivery_pipelines.php
      *
@@ -1023,7 +1020,7 @@ final class CloudDeployClient
     /**
      * Lists JobRuns in a given project and location.
      *
-     * The async variant is {@see CloudDeployGapicClient::listJobRunsAsync()} .
+     * The async variant is {@see CloudDeployClient::listJobRunsAsync()} .
      *
      * @example samples/V1/CloudDeployClient/list_job_runs.php
      *
@@ -1049,7 +1046,7 @@ final class CloudDeployClient
     /**
      * Lists Releases in a given project and location.
      *
-     * The async variant is {@see CloudDeployGapicClient::listReleasesAsync()} .
+     * The async variant is {@see CloudDeployClient::listReleasesAsync()} .
      *
      * @example samples/V1/CloudDeployClient/list_releases.php
      *
@@ -1075,7 +1072,7 @@ final class CloudDeployClient
     /**
      * Lists Rollouts in a given project and location.
      *
-     * The async variant is {@see CloudDeployGapicClient::listRolloutsAsync()} .
+     * The async variant is {@see CloudDeployClient::listRolloutsAsync()} .
      *
      * @example samples/V1/CloudDeployClient/list_rollouts.php
      *
@@ -1101,7 +1098,7 @@ final class CloudDeployClient
     /**
      * Lists Targets in a given project and location.
      *
-     * The async variant is {@see CloudDeployGapicClient::listTargetsAsync()} .
+     * The async variant is {@see CloudDeployClient::listTargetsAsync()} .
      *
      * @example samples/V1/CloudDeployClient/list_targets.php
      *
@@ -1127,7 +1124,7 @@ final class CloudDeployClient
     /**
      * Retries the specified Job in a Rollout.
      *
-     * The async variant is {@see CloudDeployGapicClient::retryJobAsync()} .
+     * The async variant is {@see CloudDeployClient::retryJobAsync()} .
      *
      * @example samples/V1/CloudDeployClient/retry_job.php
      *
@@ -1153,7 +1150,7 @@ final class CloudDeployClient
     /**
      * Terminates a Job Run in a given project and location.
      *
-     * The async variant is {@see CloudDeployGapicClient::terminateJobRunAsync()} .
+     * The async variant is {@see CloudDeployClient::terminateJobRunAsync()} .
      *
      * @example samples/V1/CloudDeployClient/terminate_job_run.php
      *
@@ -1179,8 +1176,7 @@ final class CloudDeployClient
     /**
      * Updates the parameters of a single DeliveryPipeline.
      *
-     * The async variant is
-     * {@see CloudDeployGapicClient::updateDeliveryPipelineAsync()} .
+     * The async variant is {@see CloudDeployClient::updateDeliveryPipelineAsync()} .
      *
      * @example samples/V1/CloudDeployClient/update_delivery_pipeline.php
      *
@@ -1206,7 +1202,7 @@ final class CloudDeployClient
     /**
      * Updates the parameters of a single Target.
      *
-     * The async variant is {@see CloudDeployGapicClient::updateTargetAsync()} .
+     * The async variant is {@see CloudDeployClient::updateTargetAsync()} .
      *
      * @example samples/V1/CloudDeployClient/update_target.php
      *
@@ -1232,7 +1228,7 @@ final class CloudDeployClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see CloudDeployGapicClient::getLocationAsync()} .
+     * The async variant is {@see CloudDeployClient::getLocationAsync()} .
      *
      * @example samples/V1/CloudDeployClient/get_location.php
      *
@@ -1258,7 +1254,7 @@ final class CloudDeployClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see CloudDeployGapicClient::listLocationsAsync()} .
+     * The async variant is {@see CloudDeployClient::listLocationsAsync()} .
      *
      * @example samples/V1/CloudDeployClient/list_locations.php
      *
@@ -1285,7 +1281,7 @@ final class CloudDeployClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see CloudDeployGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see CloudDeployClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/CloudDeployClient/get_iam_policy.php
      *
@@ -1315,7 +1311,7 @@ final class CloudDeployClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see CloudDeployGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see CloudDeployClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/CloudDeployClient/set_iam_policy.php
      *
@@ -1347,7 +1343,7 @@ final class CloudDeployClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is {@see CloudDeployGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see CloudDeployClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/CloudDeployClient/test_iam_permissions.php
      *

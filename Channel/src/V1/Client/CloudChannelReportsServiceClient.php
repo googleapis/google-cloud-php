@@ -274,7 +274,7 @@ final class CloudChannelReportsServiceClient
      * [CloudChannelReportsService.RunReportJob][google.cloud.channel.v1.CloudChannelReportsService.RunReportJob].
      *
      * The async variant is
-     * {@see CloudChannelReportsServiceGapicClient::fetchReportResultsAsync()} .
+     * {@see CloudChannelReportsServiceClient::fetchReportResultsAsync()} .
      *
      * @param FetchReportResultsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -299,8 +299,8 @@ final class CloudChannelReportsServiceClient
      * Lists the reports that RunReportJob can run. These reports include an ID,
      * a description, and the list of columns that will be in the result.
      *
-     * The async variant is
-     * {@see CloudChannelReportsServiceGapicClient::listReportsAsync()} .
+     * The async variant is {@see CloudChannelReportsServiceClient::listReportsAsync()}
+     * .
      *
      * @param ListReportsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -349,7 +349,7 @@ final class CloudChannelReportsServiceClient
      * [RunReportJobResponse.report_job][google.cloud.channel.v1.RunReportJobResponse.report_job].
      *
      * The async variant is
-     * {@see CloudChannelReportsServiceGapicClient::runReportJobAsync()} .
+     * {@see CloudChannelReportsServiceClient::runReportJobAsync()} .
      *
      * @param RunReportJobRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {

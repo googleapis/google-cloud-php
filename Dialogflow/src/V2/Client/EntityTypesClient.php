@@ -374,7 +374,7 @@ final class EntityTypesClient
      * [training
      * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      *
-     * The async variant is {@see EntityTypesGapicClient::batchCreateEntitiesAsync()} .
+     * The async variant is {@see EntityTypesClient::batchCreateEntitiesAsync()} .
      *
      * @param BatchCreateEntitiesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -411,7 +411,7 @@ final class EntityTypesClient
      * [training
      * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      *
-     * The async variant is {@see EntityTypesGapicClient::batchDeleteEntitiesAsync()} .
+     * The async variant is {@see EntityTypesClient::batchDeleteEntitiesAsync()} .
      *
      * @param BatchDeleteEntitiesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -448,8 +448,7 @@ final class EntityTypesClient
      * [training
      * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      *
-     * The async variant is
-     * {@see EntityTypesGapicClient::batchDeleteEntityTypesAsync()} .
+     * The async variant is {@see EntityTypesClient::batchDeleteEntityTypesAsync()} .
      *
      * @param BatchDeleteEntityTypesRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -489,7 +488,7 @@ final class EntityTypesClient
      * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      *
      *
-     * The async variant is {@see EntityTypesGapicClient::batchUpdateEntitiesAsync()} .
+     * The async variant is {@see EntityTypesClient::batchUpdateEntitiesAsync()} .
      *
      * @param BatchUpdateEntitiesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -526,8 +525,7 @@ final class EntityTypesClient
      * [training
      * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      *
-     * The async variant is
-     * {@see EntityTypesGapicClient::batchUpdateEntityTypesAsync()} .
+     * The async variant is {@see EntityTypesClient::batchUpdateEntityTypesAsync()} .
      *
      * @param BatchUpdateEntityTypesRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -555,7 +553,7 @@ final class EntityTypesClient
      * [training
      * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      *
-     * The async variant is {@see EntityTypesGapicClient::createEntityTypeAsync()} .
+     * The async variant is {@see EntityTypesClient::createEntityTypeAsync()} .
      *
      * @param CreateEntityTypeRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -583,7 +581,7 @@ final class EntityTypesClient
      * [training
      * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      *
-     * The async variant is {@see EntityTypesGapicClient::deleteEntityTypeAsync()} .
+     * The async variant is {@see EntityTypesClient::deleteEntityTypeAsync()} .
      *
      * @param DeleteEntityTypeRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -605,7 +603,7 @@ final class EntityTypesClient
     /**
      * Retrieves the specified entity type.
      *
-     * The async variant is {@see EntityTypesGapicClient::getEntityTypeAsync()} .
+     * The async variant is {@see EntityTypesClient::getEntityTypeAsync()} .
      *
      * @param GetEntityTypeRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -629,7 +627,7 @@ final class EntityTypesClient
     /**
      * Returns the list of all entity types in the specified agent.
      *
-     * The async variant is {@see EntityTypesGapicClient::listEntityTypesAsync()} .
+     * The async variant is {@see EntityTypesClient::listEntityTypesAsync()} .
      *
      * @param ListEntityTypesRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -657,7 +655,7 @@ final class EntityTypesClient
      * [training
      * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      *
-     * The async variant is {@see EntityTypesGapicClient::updateEntityTypeAsync()} .
+     * The async variant is {@see EntityTypesClient::updateEntityTypeAsync()} .
      *
      * @param UpdateEntityTypeRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -681,7 +679,7 @@ final class EntityTypesClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see EntityTypesGapicClient::getLocationAsync()} .
+     * The async variant is {@see EntityTypesClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -705,7 +703,7 @@ final class EntityTypesClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see EntityTypesGapicClient::listLocationsAsync()} .
+     * The async variant is {@see EntityTypesClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

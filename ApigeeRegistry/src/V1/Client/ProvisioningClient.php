@@ -285,7 +285,7 @@ final class ProvisioningClient
     /**
      * Provisions instance resources for the Registry.
      *
-     * The async variant is {@see ProvisioningGapicClient::createInstanceAsync()} .
+     * The async variant is {@see ProvisioningClient::createInstanceAsync()} .
      *
      * @example samples/V1/ProvisioningClient/create_instance.php
      *
@@ -311,7 +311,7 @@ final class ProvisioningClient
     /**
      * Deletes the Registry instance.
      *
-     * The async variant is {@see ProvisioningGapicClient::deleteInstanceAsync()} .
+     * The async variant is {@see ProvisioningClient::deleteInstanceAsync()} .
      *
      * @example samples/V1/ProvisioningClient/delete_instance.php
      *
@@ -337,7 +337,7 @@ final class ProvisioningClient
     /**
      * Gets details of a single Instance.
      *
-     * The async variant is {@see ProvisioningGapicClient::getInstanceAsync()} .
+     * The async variant is {@see ProvisioningClient::getInstanceAsync()} .
      *
      * @example samples/V1/ProvisioningClient/get_instance.php
      *
@@ -363,7 +363,7 @@ final class ProvisioningClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see ProvisioningGapicClient::getLocationAsync()} .
+     * The async variant is {@see ProvisioningClient::getLocationAsync()} .
      *
      * @example samples/V1/ProvisioningClient/get_location.php
      *
@@ -389,7 +389,7 @@ final class ProvisioningClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see ProvisioningGapicClient::listLocationsAsync()} .
+     * The async variant is {@see ProvisioningClient::listLocationsAsync()} .
      *
      * @example samples/V1/ProvisioningClient/list_locations.php
      *
@@ -416,7 +416,7 @@ final class ProvisioningClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see ProvisioningGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see ProvisioningClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/ProvisioningClient/get_iam_policy.php
      *
@@ -446,7 +446,7 @@ final class ProvisioningClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see ProvisioningGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see ProvisioningClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/ProvisioningClient/set_iam_policy.php
      *
@@ -478,7 +478,7 @@ final class ProvisioningClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is {@see ProvisioningGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see ProvisioningClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/ProvisioningClient/test_iam_permissions.php
      *

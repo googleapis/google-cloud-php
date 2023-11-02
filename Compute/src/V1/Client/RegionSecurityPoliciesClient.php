@@ -238,7 +238,7 @@ final class RegionSecurityPoliciesClient
     /**
      * Deletes the specified policy.
      *
-     * The async variant is {@see RegionSecurityPoliciesGapicClient::deleteAsync()} .
+     * The async variant is {@see RegionSecurityPoliciesClient::deleteAsync()} .
      *
      * @param DeleteRegionSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -262,7 +262,7 @@ final class RegionSecurityPoliciesClient
     /**
      * List all of the ordered rules present in a single specified policy.
      *
-     * The async variant is {@see RegionSecurityPoliciesGapicClient::getAsync()} .
+     * The async variant is {@see RegionSecurityPoliciesClient::getAsync()} .
      *
      * @param GetRegionSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -286,7 +286,7 @@ final class RegionSecurityPoliciesClient
     /**
      * Creates a new policy in the specified project using the data included in the request.
      *
-     * The async variant is {@see RegionSecurityPoliciesGapicClient::insertAsync()} .
+     * The async variant is {@see RegionSecurityPoliciesClient::insertAsync()} .
      *
      * @param InsertRegionSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -310,7 +310,7 @@ final class RegionSecurityPoliciesClient
     /**
      * List all the policies that have been configured for the specified project and region.
      *
-     * The async variant is {@see RegionSecurityPoliciesGapicClient::listAsync()} .
+     * The async variant is {@see RegionSecurityPoliciesClient::listAsync()} .
      *
      * @param ListRegionSecurityPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -334,7 +334,7 @@ final class RegionSecurityPoliciesClient
     /**
      * Patches the specified policy with the data included in the request. To clear fields in the policy, leave the fields empty and specify them in the updateMask. This cannot be used to be update the rules in the policy. Please use the per rule methods like addRule, patchRule, and removeRule instead.
      *
-     * The async variant is {@see RegionSecurityPoliciesGapicClient::patchAsync()} .
+     * The async variant is {@see RegionSecurityPoliciesClient::patchAsync()} .
      *
      * @param PatchRegionSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {

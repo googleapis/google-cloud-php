@@ -397,7 +397,7 @@ final class ConfigClient
     /**
      * Creates a [Deployment][google.cloud.config.v1.Deployment].
      *
-     * The async variant is {@see ConfigGapicClient::createDeploymentAsync()} .
+     * The async variant is {@see ConfigClient::createDeploymentAsync()} .
      *
      * @example samples/V1/ConfigClient/create_deployment.php
      *
@@ -423,7 +423,7 @@ final class ConfigClient
     /**
      * Deletes a [Deployment][google.cloud.config.v1.Deployment].
      *
-     * The async variant is {@see ConfigGapicClient::deleteDeploymentAsync()} .
+     * The async variant is {@see ConfigClient::deleteDeploymentAsync()} .
      *
      * @example samples/V1/ConfigClient/delete_deployment.php
      *
@@ -449,7 +449,7 @@ final class ConfigClient
     /**
      * Deletes Terraform state file in a given deployment.
      *
-     * The async variant is {@see ConfigGapicClient::deleteStatefileAsync()} .
+     * The async variant is {@see ConfigClient::deleteStatefileAsync()} .
      *
      * @example samples/V1/ConfigClient/delete_statefile.php
      *
@@ -473,8 +473,7 @@ final class ConfigClient
     /**
      * Exports Terraform state file from a given deployment.
      *
-     * The async variant is {@see ConfigGapicClient::exportDeploymentStatefileAsync()}
-     * .
+     * The async variant is {@see ConfigClient::exportDeploymentStatefileAsync()} .
      *
      * @example samples/V1/ConfigClient/export_deployment_statefile.php
      *
@@ -500,7 +499,7 @@ final class ConfigClient
     /**
      * Exports the lock info on a locked deployment.
      *
-     * The async variant is {@see ConfigGapicClient::exportLockInfoAsync()} .
+     * The async variant is {@see ConfigClient::exportLockInfoAsync()} .
      *
      * @example samples/V1/ConfigClient/export_lock_info.php
      *
@@ -526,7 +525,7 @@ final class ConfigClient
     /**
      * Exports Terraform state file from a given revision.
      *
-     * The async variant is {@see ConfigGapicClient::exportRevisionStatefileAsync()} .
+     * The async variant is {@see ConfigClient::exportRevisionStatefileAsync()} .
      *
      * @example samples/V1/ConfigClient/export_revision_statefile.php
      *
@@ -552,7 +551,7 @@ final class ConfigClient
     /**
      * Gets details about a [Deployment][google.cloud.config.v1.Deployment].
      *
-     * The async variant is {@see ConfigGapicClient::getDeploymentAsync()} .
+     * The async variant is {@see ConfigClient::getDeploymentAsync()} .
      *
      * @example samples/V1/ConfigClient/get_deployment.php
      *
@@ -579,7 +578,7 @@ final class ConfigClient
      * Gets details about a [Resource][google.cloud.config.v1.Resource] deployed
      * by Infra Manager.
      *
-     * The async variant is {@see ConfigGapicClient::getResourceAsync()} .
+     * The async variant is {@see ConfigClient::getResourceAsync()} .
      *
      * @example samples/V1/ConfigClient/get_resource.php
      *
@@ -605,7 +604,7 @@ final class ConfigClient
     /**
      * Gets details about a [Revision][google.cloud.config.v1.Revision].
      *
-     * The async variant is {@see ConfigGapicClient::getRevisionAsync()} .
+     * The async variant is {@see ConfigClient::getRevisionAsync()} .
      *
      * @example samples/V1/ConfigClient/get_revision.php
      *
@@ -632,7 +631,7 @@ final class ConfigClient
      * Imports Terraform state file in a given deployment. The state file does not
      * take effect until the Deployment has been unlocked.
      *
-     * The async variant is {@see ConfigGapicClient::importStatefileAsync()} .
+     * The async variant is {@see ConfigClient::importStatefileAsync()} .
      *
      * @example samples/V1/ConfigClient/import_statefile.php
      *
@@ -659,7 +658,7 @@ final class ConfigClient
      * Lists [Deployment][google.cloud.config.v1.Deployment]s in a given project
      * and location.
      *
-     * The async variant is {@see ConfigGapicClient::listDeploymentsAsync()} .
+     * The async variant is {@see ConfigClient::listDeploymentsAsync()} .
      *
      * @example samples/V1/ConfigClient/list_deployments.php
      *
@@ -685,7 +684,7 @@ final class ConfigClient
     /**
      * Lists [Resource][google.cloud.config.v1.Resource]s in a given revision.
      *
-     * The async variant is {@see ConfigGapicClient::listResourcesAsync()} .
+     * The async variant is {@see ConfigClient::listResourcesAsync()} .
      *
      * @example samples/V1/ConfigClient/list_resources.php
      *
@@ -711,7 +710,7 @@ final class ConfigClient
     /**
      * Lists [Revision][google.cloud.config.v1.Revision]s of a deployment.
      *
-     * The async variant is {@see ConfigGapicClient::listRevisionsAsync()} .
+     * The async variant is {@see ConfigClient::listRevisionsAsync()} .
      *
      * @example samples/V1/ConfigClient/list_revisions.php
      *
@@ -737,7 +736,7 @@ final class ConfigClient
     /**
      * Locks a deployment.
      *
-     * The async variant is {@see ConfigGapicClient::lockDeploymentAsync()} .
+     * The async variant is {@see ConfigClient::lockDeploymentAsync()} .
      *
      * @example samples/V1/ConfigClient/lock_deployment.php
      *
@@ -763,7 +762,7 @@ final class ConfigClient
     /**
      * Unlocks a locked deployment.
      *
-     * The async variant is {@see ConfigGapicClient::unlockDeploymentAsync()} .
+     * The async variant is {@see ConfigClient::unlockDeploymentAsync()} .
      *
      * @example samples/V1/ConfigClient/unlock_deployment.php
      *
@@ -789,7 +788,7 @@ final class ConfigClient
     /**
      * Updates a [Deployment][google.cloud.config.v1.Deployment].
      *
-     * The async variant is {@see ConfigGapicClient::updateDeploymentAsync()} .
+     * The async variant is {@see ConfigClient::updateDeploymentAsync()} .
      *
      * @example samples/V1/ConfigClient/update_deployment.php
      *
@@ -815,7 +814,7 @@ final class ConfigClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see ConfigGapicClient::getLocationAsync()} .
+     * The async variant is {@see ConfigClient::getLocationAsync()} .
      *
      * @example samples/V1/ConfigClient/get_location.php
      *
@@ -841,7 +840,7 @@ final class ConfigClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see ConfigGapicClient::listLocationsAsync()} .
+     * The async variant is {@see ConfigClient::listLocationsAsync()} .
      *
      * @example samples/V1/ConfigClient/list_locations.php
      *
@@ -868,7 +867,7 @@ final class ConfigClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see ConfigGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see ConfigClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/ConfigClient/get_iam_policy.php
      *
@@ -898,7 +897,7 @@ final class ConfigClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see ConfigGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see ConfigClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/ConfigClient/set_iam_policy.php
      *
@@ -930,7 +929,7 @@ final class ConfigClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is {@see ConfigGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see ConfigClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/ConfigClient/test_iam_permissions.php
      *

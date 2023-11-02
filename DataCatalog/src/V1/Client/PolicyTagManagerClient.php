@@ -286,8 +286,7 @@ final class PolicyTagManagerClient
     /**
      * Creates a policy tag in a taxonomy.
      *
-     * The async variant is {@see PolicyTagManagerGapicClient::createPolicyTagAsync()}
-     * .
+     * The async variant is {@see PolicyTagManagerClient::createPolicyTagAsync()} .
      *
      * @param CreatePolicyTagRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -313,7 +312,7 @@ final class PolicyTagManagerClient
      *
      * The taxonomy is initially empty, that is, it doesn't contain policy tags.
      *
-     * The async variant is {@see PolicyTagManagerGapicClient::createTaxonomyAsync()} .
+     * The async variant is {@see PolicyTagManagerClient::createTaxonomyAsync()} .
      *
      * @param CreateTaxonomyRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -342,8 +341,7 @@ final class PolicyTagManagerClient
      * * References from BigQuery table schema of the policy tag and its
      * descendants
      *
-     * The async variant is {@see PolicyTagManagerGapicClient::deletePolicyTagAsync()}
-     * .
+     * The async variant is {@see PolicyTagManagerClient::deletePolicyTagAsync()} .
      *
      * @param DeletePolicyTagRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -367,7 +365,7 @@ final class PolicyTagManagerClient
      * taxonomy, their associated policies, and the policy tags references from
      * BigQuery columns.
      *
-     * The async variant is {@see PolicyTagManagerGapicClient::deleteTaxonomyAsync()} .
+     * The async variant is {@see PolicyTagManagerClient::deleteTaxonomyAsync()} .
      *
      * @param DeleteTaxonomyRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -389,7 +387,7 @@ final class PolicyTagManagerClient
     /**
      * Gets the IAM policy for a policy tag or a taxonomy.
      *
-     * The async variant is {@see PolicyTagManagerGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see PolicyTagManagerClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -413,7 +411,7 @@ final class PolicyTagManagerClient
     /**
      * Gets a policy tag.
      *
-     * The async variant is {@see PolicyTagManagerGapicClient::getPolicyTagAsync()} .
+     * The async variant is {@see PolicyTagManagerClient::getPolicyTagAsync()} .
      *
      * @param GetPolicyTagRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -437,7 +435,7 @@ final class PolicyTagManagerClient
     /**
      * Gets a taxonomy.
      *
-     * The async variant is {@see PolicyTagManagerGapicClient::getTaxonomyAsync()} .
+     * The async variant is {@see PolicyTagManagerClient::getTaxonomyAsync()} .
      *
      * @param GetTaxonomyRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -461,7 +459,7 @@ final class PolicyTagManagerClient
     /**
      * Lists all policy tags in a taxonomy.
      *
-     * The async variant is {@see PolicyTagManagerGapicClient::listPolicyTagsAsync()} .
+     * The async variant is {@see PolicyTagManagerClient::listPolicyTagsAsync()} .
      *
      * @param ListPolicyTagsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -486,7 +484,7 @@ final class PolicyTagManagerClient
      * Lists all taxonomies in a project in a particular location that you
      * have a permission to view.
      *
-     * The async variant is {@see PolicyTagManagerGapicClient::listTaxonomiesAsync()} .
+     * The async variant is {@see PolicyTagManagerClient::listTaxonomiesAsync()} .
      *
      * @param ListTaxonomiesRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -510,7 +508,7 @@ final class PolicyTagManagerClient
     /**
      * Sets the IAM policy for a policy tag or a taxonomy.
      *
-     * The async variant is {@see PolicyTagManagerGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see PolicyTagManagerClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -535,8 +533,7 @@ final class PolicyTagManagerClient
      * Returns your permissions on a specified policy tag or
      * taxonomy.
      *
-     * The async variant is
-     * {@see PolicyTagManagerGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see PolicyTagManagerClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -561,8 +558,7 @@ final class PolicyTagManagerClient
      * Updates a policy tag, including its display
      * name, description, and parent policy tag.
      *
-     * The async variant is {@see PolicyTagManagerGapicClient::updatePolicyTagAsync()}
-     * .
+     * The async variant is {@see PolicyTagManagerClient::updatePolicyTagAsync()} .
      *
      * @param UpdatePolicyTagRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -587,7 +583,7 @@ final class PolicyTagManagerClient
      * Updates a taxonomy, including its display name,
      * description, and activated policy types.
      *
-     * The async variant is {@see PolicyTagManagerGapicClient::updateTaxonomyAsync()} .
+     * The async variant is {@see PolicyTagManagerClient::updateTaxonomyAsync()} .
      *
      * @param UpdateTaxonomyRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

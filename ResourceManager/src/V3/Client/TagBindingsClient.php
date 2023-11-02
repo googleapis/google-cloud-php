@@ -253,7 +253,7 @@ final class TagBindingsClient
     /**
      * Creates a TagBinding between a TagValue and a Google Cloud resource.
      *
-     * The async variant is {@see TagBindingsGapicClient::createTagBindingAsync()} .
+     * The async variant is {@see TagBindingsClient::createTagBindingAsync()} .
      *
      * @example samples/V3/TagBindingsClient/create_tag_binding.php
      *
@@ -279,7 +279,7 @@ final class TagBindingsClient
     /**
      * Deletes a TagBinding.
      *
-     * The async variant is {@see TagBindingsGapicClient::deleteTagBindingAsync()} .
+     * The async variant is {@see TagBindingsClient::deleteTagBindingAsync()} .
      *
      * @example samples/V3/TagBindingsClient/delete_tag_binding.php
      *
@@ -306,7 +306,7 @@ final class TagBindingsClient
      * Return a list of effective tags for the given Google Cloud resource, as
      * specified in `parent`.
      *
-     * The async variant is {@see TagBindingsGapicClient::listEffectiveTagsAsync()} .
+     * The async variant is {@see TagBindingsClient::listEffectiveTagsAsync()} .
      *
      * @example samples/V3/TagBindingsClient/list_effective_tags.php
      *
@@ -336,7 +336,7 @@ final class TagBindingsClient
      * NOTE: The `parent` field is expected to be a full resource name:
      * https://cloud.google.com/apis/design/resource_names#full_resource_name
      *
-     * The async variant is {@see TagBindingsGapicClient::listTagBindingsAsync()} .
+     * The async variant is {@see TagBindingsClient::listTagBindingsAsync()} .
      *
      * @example samples/V3/TagBindingsClient/list_tag_bindings.php
      *

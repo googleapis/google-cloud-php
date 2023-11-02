@@ -63,25 +63,6 @@ return [
                     ],
                 ],
             ],
-            'AuditUserLinks' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1alpha/{parent=accounts/*}/userLinks:audit',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1alpha/{parent=properties/*}/userLinks:audit',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'BatchCreateAccessBindings' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=accounts/*}/accessBindings:batchCreate',
@@ -90,25 +71,6 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1alpha/{parent=properties/*}/accessBindings:batchCreate',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'BatchCreateUserLinks' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1alpha/{parent=accounts/*}/userLinks:batchCreate',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1alpha/{parent=properties/*}/userLinks:batchCreate',
                         'body' => '*',
                     ],
                 ],
@@ -139,25 +101,6 @@ return [
                     ],
                 ],
             ],
-            'BatchDeleteUserLinks' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1alpha/{parent=accounts/*}/userLinks:batchDelete',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1alpha/{parent=properties/*}/userLinks:batchDelete',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'BatchGetAccessBindings' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=accounts/*}/accessBindings:batchGet',
@@ -165,23 +108,6 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1alpha/{parent=properties/*}/accessBindings:batchGet',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'BatchGetUserLinks' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1alpha/{parent=accounts/*}/userLinks:batchGet',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1alpha/{parent=properties/*}/userLinks:batchGet',
                     ],
                 ],
                 'placeholders' => [
@@ -200,25 +126,6 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1alpha/{parent=properties/*}/accessBindings:batchUpdate',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'BatchUpdateUserLinks' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1alpha/{parent=accounts/*}/userLinks:batchUpdate',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1alpha/{parent=properties/*}/userLinks:batchUpdate',
                         'body' => '*',
                     ],
                 ],
@@ -439,6 +346,23 @@ return [
                 'uriTemplate' => '/v1alpha/properties',
                 'body' => 'property',
             ],
+            'CreateRollupProperty' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/properties:createRollupProperty',
+                'body' => '*',
+            ],
+            'CreateRollupPropertySourceLink' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/rollupPropertySourceLinks',
+                'body' => 'rollup_property_source_link',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateSKAdNetworkConversionValueSchema' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=properties/*/dataStreams/*}/sKAdNetworkConversionValueSchema',
@@ -463,17 +387,15 @@ return [
                     ],
                 ],
             ],
-            'CreateUserLink' => [
+            'CreateSubproperty' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1alpha/{parent=accounts/*}/userLinks',
-                'body' => 'user_link',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1alpha/{parent=properties/*}/userLinks',
-                        'body' => 'user_link',
-                    ],
-                ],
+                'uriTemplate' => '/v1alpha/properties:createSubproperty',
+                'body' => '*',
+            ],
+            'CreateSubpropertyEventFilter' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/subpropertyEventFilters',
+                'body' => 'subproperty_event_filter',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -647,6 +569,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteRollupPropertySourceLink' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/rollupPropertySourceLinks/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteSKAdNetworkConversionValueSchema' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=properties/*/dataStreams/*/sKAdNetworkConversionValueSchema/*}',
@@ -669,15 +602,9 @@ return [
                     ],
                 ],
             ],
-            'DeleteUserLink' => [
+            'DeleteSubpropertyEventFilter' => [
                 'method' => 'delete',
-                'uriTemplate' => '/v1alpha/{name=accounts/*/userLinks/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v1alpha/{name=properties/*/userLinks/*}',
-                    ],
-                ],
+                'uriTemplate' => '/v1alpha/{name=properties/*/subpropertyEventFilters/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -803,6 +730,17 @@ return [
             'GetCustomMetric' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*/customMetrics/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDataRedactionSettings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/dataStreams/*/dataRedactionSettings}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -943,6 +881,17 @@ return [
                     ],
                 ],
             ],
+            'GetRollupPropertySourceLink' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/rollupPropertySourceLinks/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetSKAdNetworkConversionValueSchema' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*/dataStreams/*/sKAdNetworkConversionValueSchema/*}',
@@ -957,23 +906,6 @@ return [
             'GetSearchAds360Link' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*/searchAds360Links/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetUserLink' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1alpha/{name=accounts/*/userLinks/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1alpha/{name=properties/*/userLinks/*}',
-                    ],
-                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -1184,6 +1116,17 @@ return [
                     'filter',
                 ],
             ],
+            'ListRollupPropertySourceLinks' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/rollupPropertySourceLinks',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListSKAdNetworkConversionValueSchemas' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*/dataStreams/*}/sKAdNetworkConversionValueSchema',
@@ -1198,23 +1141,6 @@ return [
             'ListSearchAds360Links' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/searchAds360Links',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ListUserLinks' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1alpha/{parent=accounts/*}/userLinks',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1alpha/{parent=properties/*}/userLinks',
-                    ],
-                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -1388,6 +1314,22 @@ return [
                     'custom_metric.name' => [
                         'getters' => [
                             'getCustomMetric',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateDataRedactionSettings' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{data_redaction_settings.name=properties/*/dataStreams/*/dataRedactionSettings}',
+                'body' => 'data_redaction_settings',
+                'placeholders' => [
+                    'data_redaction_settings.name' => [
+                        'getters' => [
+                            'getDataRedactionSettings',
                             'getName',
                         ],
                     ],
@@ -1586,26 +1528,6 @@ return [
                 ],
                 'queryParams' => [
                     'update_mask',
-                ],
-            ],
-            'UpdateUserLink' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1alpha/{user_link.name=accounts/*/userLinks/*}',
-                'body' => 'user_link',
-                'additionalBindings' => [
-                    [
-                        'method' => 'patch',
-                        'uriTemplate' => '/v1alpha/{user_link.name=properties/*/userLinks/*}',
-                        'body' => 'user_link',
-                    ],
-                ],
-                'placeholders' => [
-                    'user_link.name' => [
-                        'getters' => [
-                            'getUserLink',
-                            'getName',
-                        ],
-                    ],
                 ],
             ],
         ],

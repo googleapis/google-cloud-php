@@ -206,7 +206,7 @@ final class PoliciesClient
     /**
      * Creates a policy.
      *
-     * The async variant is {@see PoliciesGapicClient::createPolicyAsync()} .
+     * The async variant is {@see PoliciesClient::createPolicyAsync()} .
      *
      * @example samples/V2/PoliciesClient/create_policy.php
      *
@@ -232,7 +232,7 @@ final class PoliciesClient
     /**
      * Deletes a policy. This action is permanent.
      *
-     * The async variant is {@see PoliciesGapicClient::deletePolicyAsync()} .
+     * The async variant is {@see PoliciesClient::deletePolicyAsync()} .
      *
      * @example samples/V2/PoliciesClient/delete_policy.php
      *
@@ -258,7 +258,7 @@ final class PoliciesClient
     /**
      * Gets a policy.
      *
-     * The async variant is {@see PoliciesGapicClient::getPolicyAsync()} .
+     * The async variant is {@see PoliciesClient::getPolicyAsync()} .
      *
      * @example samples/V2/PoliciesClient/get_policy.php
      *
@@ -288,7 +288,7 @@ final class PoliciesClient
      * The response lists only policy metadata. In particular, policy rules are
      * omitted.
      *
-     * The async variant is {@see PoliciesGapicClient::listPoliciesAsync()} .
+     * The async variant is {@see PoliciesClient::listPoliciesAsync()} .
      *
      * @example samples/V2/PoliciesClient/list_policies.php
      *
@@ -324,7 +324,7 @@ final class PoliciesClient
      *
      * This pattern helps prevent conflicts between concurrent updates.
      *
-     * The async variant is {@see PoliciesGapicClient::updatePolicyAsync()} .
+     * The async variant is {@see PoliciesClient::updatePolicyAsync()} .
      *
      * @example samples/V2/PoliciesClient/update_policy.php
      *

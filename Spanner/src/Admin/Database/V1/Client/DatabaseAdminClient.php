@@ -399,7 +399,7 @@ final class DatabaseAdminClient
      * copying and delete the backup.
      * Concurrent CopyBackup requests can run on the same source backup.
      *
-     * The async variant is {@see DatabaseAdminGapicClient::copyBackupAsync()} .
+     * The async variant is {@see DatabaseAdminClient::copyBackupAsync()} .
      *
      * @param CopyBackupRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -434,7 +434,7 @@ final class DatabaseAdminClient
      * There can be only one pending backup creation per database. Backup creation
      * of different databases can run concurrently.
      *
-     * The async variant is {@see DatabaseAdminGapicClient::createBackupAsync()} .
+     * The async variant is {@see DatabaseAdminClient::createBackupAsync()} .
      *
      * @param CreateBackupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -465,7 +465,7 @@ final class DatabaseAdminClient
      * [response][google.longrunning.Operation.response] field type is
      * [Database][google.spanner.admin.database.v1.Database], if successful.
      *
-     * The async variant is {@see DatabaseAdminGapicClient::createDatabaseAsync()} .
+     * The async variant is {@see DatabaseAdminClient::createDatabaseAsync()} .
      *
      * @param CreateDatabaseRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -489,7 +489,7 @@ final class DatabaseAdminClient
     /**
      * Deletes a pending or completed [Backup][google.spanner.admin.database.v1.Backup].
      *
-     * The async variant is {@see DatabaseAdminGapicClient::deleteBackupAsync()} .
+     * The async variant is {@see DatabaseAdminClient::deleteBackupAsync()} .
      *
      * @param DeleteBackupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -515,7 +515,7 @@ final class DatabaseAdminClient
      * Note: Cloud Spanner might continue to accept requests for a few seconds
      * after the database has been deleted.
      *
-     * The async variant is {@see DatabaseAdminGapicClient::dropDatabaseAsync()} .
+     * The async variant is {@see DatabaseAdminClient::dropDatabaseAsync()} .
      *
      * @param DropDatabaseRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -537,7 +537,7 @@ final class DatabaseAdminClient
     /**
      * Gets metadata on a pending or completed [Backup][google.spanner.admin.database.v1.Backup].
      *
-     * The async variant is {@see DatabaseAdminGapicClient::getBackupAsync()} .
+     * The async variant is {@see DatabaseAdminClient::getBackupAsync()} .
      *
      * @param GetBackupRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -561,7 +561,7 @@ final class DatabaseAdminClient
     /**
      * Gets the state of a Cloud Spanner database.
      *
-     * The async variant is {@see DatabaseAdminGapicClient::getDatabaseAsync()} .
+     * The async variant is {@see DatabaseAdminClient::getDatabaseAsync()} .
      *
      * @param GetDatabaseRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -587,7 +587,7 @@ final class DatabaseAdminClient
      * DDL statements. This method does not show pending schema updates, those may
      * be queried using the [Operations][google.longrunning.Operations] API.
      *
-     * The async variant is {@see DatabaseAdminGapicClient::getDatabaseDdlAsync()} .
+     * The async variant is {@see DatabaseAdminClient::getDatabaseDdlAsync()} .
      *
      * @param GetDatabaseDdlRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -618,7 +618,7 @@ final class DatabaseAdminClient
      * For backups, authorization requires `spanner.backups.getIamPolicy`
      * permission on [resource][google.iam.v1.GetIamPolicyRequest.resource].
      *
-     * The async variant is {@see DatabaseAdminGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see DatabaseAdminClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -651,8 +651,7 @@ final class DatabaseAdminClient
      * `operation.metadata.value.progress.start_time` in descending order starting
      * from the most recently started operation.
      *
-     * The async variant is
-     * {@see DatabaseAdminGapicClient::listBackupOperationsAsync()} .
+     * The async variant is {@see DatabaseAdminClient::listBackupOperationsAsync()} .
      *
      * @param ListBackupOperationsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -678,7 +677,7 @@ final class DatabaseAdminClient
      * Backups returned are ordered by `create_time` in descending order,
      * starting from the most recent `create_time`.
      *
-     * The async variant is {@see DatabaseAdminGapicClient::listBackupsAsync()} .
+     * The async variant is {@see DatabaseAdminClient::listBackupsAsync()} .
      *
      * @param ListBackupsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -709,8 +708,7 @@ final class DatabaseAdminClient
      * include those that have completed/failed/canceled within the last 7 days,
      * and pending operations.
      *
-     * The async variant is
-     * {@see DatabaseAdminGapicClient::listDatabaseOperationsAsync()} .
+     * The async variant is {@see DatabaseAdminClient::listDatabaseOperationsAsync()} .
      *
      * @param ListDatabaseOperationsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -734,7 +732,7 @@ final class DatabaseAdminClient
     /**
      * Lists Cloud Spanner database roles.
      *
-     * The async variant is {@see DatabaseAdminGapicClient::listDatabaseRolesAsync()} .
+     * The async variant is {@see DatabaseAdminClient::listDatabaseRolesAsync()} .
      *
      * @param ListDatabaseRolesRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -758,7 +756,7 @@ final class DatabaseAdminClient
     /**
      * Lists Cloud Spanner databases.
      *
-     * The async variant is {@see DatabaseAdminGapicClient::listDatabasesAsync()} .
+     * The async variant is {@see DatabaseAdminClient::listDatabasesAsync()} .
      *
      * @param ListDatabasesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -798,7 +796,7 @@ final class DatabaseAdminClient
      * initiated, without waiting for the optimize operation associated with the
      * first restore to complete.
      *
-     * The async variant is {@see DatabaseAdminGapicClient::restoreDatabaseAsync()} .
+     * The async variant is {@see DatabaseAdminClient::restoreDatabaseAsync()} .
      *
      * @param RestoreDatabaseRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -828,7 +826,7 @@ final class DatabaseAdminClient
      * For backups, authorization requires `spanner.backups.setIamPolicy`
      * permission on [resource][google.iam.v1.SetIamPolicyRequest.resource].
      *
-     * The async variant is {@see DatabaseAdminGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see DatabaseAdminClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -861,8 +859,7 @@ final class DatabaseAdminClient
      * result in a NOT_FOUND error if the user has
      * `spanner.backups.list` permission on the containing instance.
      *
-     * The async variant is {@see DatabaseAdminGapicClient::testIamPermissionsAsync()}
-     * .
+     * The async variant is {@see DatabaseAdminClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -886,7 +883,7 @@ final class DatabaseAdminClient
     /**
      * Updates a pending or completed [Backup][google.spanner.admin.database.v1.Backup].
      *
-     * The async variant is {@see DatabaseAdminGapicClient::updateBackupAsync()} .
+     * The async variant is {@see DatabaseAdminClient::updateBackupAsync()} .
      *
      * @param UpdateBackupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -945,7 +942,7 @@ final class DatabaseAdminClient
      * The [response][google.longrunning.Operation.response] field type is
      * [Database][google.spanner.admin.database.v1.Database], if successful.
      *
-     * The async variant is {@see DatabaseAdminGapicClient::updateDatabaseAsync()} .
+     * The async variant is {@see DatabaseAdminClient::updateDatabaseAsync()} .
      *
      * @param UpdateDatabaseRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -975,7 +972,7 @@ final class DatabaseAdminClient
      * [metadata][google.longrunning.Operation.metadata] field type is
      * [UpdateDatabaseDdlMetadata][google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata].  The operation has no response.
      *
-     * The async variant is {@see DatabaseAdminGapicClient::updateDatabaseDdlAsync()} .
+     * The async variant is {@see DatabaseAdminClient::updateDatabaseDdlAsync()} .
      *
      * @param UpdateDatabaseDdlRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {

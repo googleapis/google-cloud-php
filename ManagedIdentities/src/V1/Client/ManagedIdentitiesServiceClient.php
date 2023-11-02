@@ -317,8 +317,7 @@ final class ManagedIdentitiesServiceClient
     /**
      * Adds an AD trust to a domain.
      *
-     * The async variant is
-     * {@see ManagedIdentitiesServiceGapicClient::attachTrustAsync()} .
+     * The async variant is {@see ManagedIdentitiesServiceClient::attachTrustAsync()} .
      *
      * @param AttachTrustRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -343,7 +342,7 @@ final class ManagedIdentitiesServiceClient
      * Creates a Microsoft AD domain.
      *
      * The async variant is
-     * {@see ManagedIdentitiesServiceGapicClient::createMicrosoftAdDomainAsync()} .
+     * {@see ManagedIdentitiesServiceClient::createMicrosoftAdDomainAsync()} .
      *
      * @param CreateMicrosoftAdDomainRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -367,8 +366,8 @@ final class ManagedIdentitiesServiceClient
     /**
      * Deletes a domain.
      *
-     * The async variant is
-     * {@see ManagedIdentitiesServiceGapicClient::deleteDomainAsync()} .
+     * The async variant is {@see ManagedIdentitiesServiceClient::deleteDomainAsync()}
+     * .
      *
      * @param DeleteDomainRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -392,8 +391,7 @@ final class ManagedIdentitiesServiceClient
     /**
      * Removes an AD trust.
      *
-     * The async variant is
-     * {@see ManagedIdentitiesServiceGapicClient::detachTrustAsync()} .
+     * The async variant is {@see ManagedIdentitiesServiceClient::detachTrustAsync()} .
      *
      * @param DetachTrustRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -417,8 +415,7 @@ final class ManagedIdentitiesServiceClient
     /**
      * Gets information about a domain.
      *
-     * The async variant is
-     * {@see ManagedIdentitiesServiceGapicClient::getDomainAsync()} .
+     * The async variant is {@see ManagedIdentitiesServiceClient::getDomainAsync()} .
      *
      * @param GetDomainRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -442,8 +439,7 @@ final class ManagedIdentitiesServiceClient
     /**
      * Lists domains in a project.
      *
-     * The async variant is
-     * {@see ManagedIdentitiesServiceGapicClient::listDomainsAsync()} .
+     * The async variant is {@see ManagedIdentitiesServiceClient::listDomainsAsync()} .
      *
      * @param ListDomainsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -468,7 +464,7 @@ final class ManagedIdentitiesServiceClient
      * Updates the DNS conditional forwarder.
      *
      * The async variant is
-     * {@see ManagedIdentitiesServiceGapicClient::reconfigureTrustAsync()} .
+     * {@see ManagedIdentitiesServiceClient::reconfigureTrustAsync()} .
      *
      * @param ReconfigureTrustRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -493,7 +489,7 @@ final class ManagedIdentitiesServiceClient
      * Resets a domain's administrator password.
      *
      * The async variant is
-     * {@see ManagedIdentitiesServiceGapicClient::resetAdminPasswordAsync()} .
+     * {@see ManagedIdentitiesServiceClient::resetAdminPasswordAsync()} .
      *
      * @param ResetAdminPasswordRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -517,8 +513,8 @@ final class ManagedIdentitiesServiceClient
     /**
      * Updates the metadata and configuration of a domain.
      *
-     * The async variant is
-     * {@see ManagedIdentitiesServiceGapicClient::updateDomainAsync()} .
+     * The async variant is {@see ManagedIdentitiesServiceClient::updateDomainAsync()}
+     * .
      *
      * @param UpdateDomainRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -543,8 +539,8 @@ final class ManagedIdentitiesServiceClient
      * Validates a trust state, that the target domain is reachable, and that the
      * target domain is able to accept incoming trust requests.
      *
-     * The async variant is
-     * {@see ManagedIdentitiesServiceGapicClient::validateTrustAsync()} .
+     * The async variant is {@see ManagedIdentitiesServiceClient::validateTrustAsync()}
+     * .
      *
      * @param ValidateTrustRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

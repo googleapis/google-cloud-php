@@ -249,7 +249,7 @@ final class ReservationsClient
     /**
      * Retrieves an aggregated list of reservations.
      *
-     * The async variant is {@see ReservationsGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see ReservationsClient::aggregatedListAsync()} .
      *
      * @param AggregatedListReservationsRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -273,7 +273,7 @@ final class ReservationsClient
     /**
      * Deletes the specified reservation.
      *
-     * The async variant is {@see ReservationsGapicClient::deleteAsync()} .
+     * The async variant is {@see ReservationsClient::deleteAsync()} .
      *
      * @param DeleteReservationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -297,7 +297,7 @@ final class ReservationsClient
     /**
      * Retrieves information about the specified reservation.
      *
-     * The async variant is {@see ReservationsGapicClient::getAsync()} .
+     * The async variant is {@see ReservationsClient::getAsync()} .
      *
      * @param GetReservationRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -321,7 +321,7 @@ final class ReservationsClient
     /**
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
-     * The async variant is {@see ReservationsGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see ReservationsClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyReservationRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -345,7 +345,7 @@ final class ReservationsClient
     /**
      * Creates a new reservation. For more information, read Reserving zonal resources.
      *
-     * The async variant is {@see ReservationsGapicClient::insertAsync()} .
+     * The async variant is {@see ReservationsClient::insertAsync()} .
      *
      * @param InsertReservationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -369,7 +369,7 @@ final class ReservationsClient
     /**
      * A list of all the reservations that have been configured for the specified project in specified zone.
      *
-     * The async variant is {@see ReservationsGapicClient::listAsync()} .
+     * The async variant is {@see ReservationsClient::listAsync()} .
      *
      * @param ListReservationsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -393,7 +393,7 @@ final class ReservationsClient
     /**
      * Resizes the reservation (applicable to standalone reservations only). For more information, read Modifying reservations.
      *
-     * The async variant is {@see ReservationsGapicClient::resizeAsync()} .
+     * The async variant is {@see ReservationsClient::resizeAsync()} .
      *
      * @param ResizeReservationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -417,7 +417,7 @@ final class ReservationsClient
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
-     * The async variant is {@see ReservationsGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see ReservationsClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyReservationRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -441,7 +441,7 @@ final class ReservationsClient
     /**
      * Returns permissions that a caller has on the specified resource.
      *
-     * The async variant is {@see ReservationsGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see ReservationsClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsReservationRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -465,7 +465,7 @@ final class ReservationsClient
     /**
      * Update share settings of the reservation.
      *
-     * The async variant is {@see ReservationsGapicClient::updateAsync()} .
+     * The async variant is {@see ReservationsClient::updateAsync()} .
      *
      * @param UpdateReservationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {

@@ -319,9 +319,9 @@ final class PublisherClient
 
     /**
      * Creates the given topic with the given name. See the [resource name rules]
-     * (https://cloud.google.com/pubsub/docs/admin#resource_names).
+     * (https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names).
      *
-     * The async variant is {@see PublisherGapicClient::createTopicAsync()} .
+     * The async variant is {@see PublisherClient::createTopicAsync()} .
      *
      * @param Topic $request     A request to house fields associated with the call.
      * @param array $callOptions {
@@ -349,7 +349,7 @@ final class PublisherClient
      * configuration or subscriptions. Existing subscriptions to this topic are
      * not deleted, but their `topic` field is set to `_deleted-topic_`.
      *
-     * The async variant is {@see PublisherGapicClient::deleteTopicAsync()} .
+     * The async variant is {@see PublisherClient::deleteTopicAsync()} .
      *
      * @param DeleteTopicRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -374,7 +374,7 @@ final class PublisherClient
      * will return FAILED_PRECONDITION. If the subscription is a push
      * subscription, pushes to the endpoint will stop.
      *
-     * The async variant is {@see PublisherGapicClient::detachSubscriptionAsync()} .
+     * The async variant is {@see PublisherClient::detachSubscriptionAsync()} .
      *
      * @param DetachSubscriptionRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -398,7 +398,7 @@ final class PublisherClient
     /**
      * Gets the configuration of a topic.
      *
-     * The async variant is {@see PublisherGapicClient::getTopicAsync()} .
+     * The async variant is {@see PublisherClient::getTopicAsync()} .
      *
      * @param GetTopicRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -426,7 +426,7 @@ final class PublisherClient
      * set the acknowledgment state of messages in an existing subscription to the
      * state captured by a snapshot.
      *
-     * The async variant is {@see PublisherGapicClient::listTopicSnapshotsAsync()} .
+     * The async variant is {@see PublisherClient::listTopicSnapshotsAsync()} .
      *
      * @param ListTopicSnapshotsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -450,8 +450,7 @@ final class PublisherClient
     /**
      * Lists the names of the attached subscriptions on this topic.
      *
-     * The async variant is {@see PublisherGapicClient::listTopicSubscriptionsAsync()}
-     * .
+     * The async variant is {@see PublisherClient::listTopicSubscriptionsAsync()} .
      *
      * @param ListTopicSubscriptionsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -475,7 +474,7 @@ final class PublisherClient
     /**
      * Lists matching topics.
      *
-     * The async variant is {@see PublisherGapicClient::listTopicsAsync()} .
+     * The async variant is {@see PublisherClient::listTopicsAsync()} .
      *
      * @param ListTopicsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -500,7 +499,7 @@ final class PublisherClient
      * Adds one or more messages to the topic. Returns `NOT_FOUND` if the topic
      * does not exist.
      *
-     * The async variant is {@see PublisherGapicClient::publishAsync()} .
+     * The async variant is {@see PublisherClient::publishAsync()} .
      *
      * @param PublishRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -525,7 +524,7 @@ final class PublisherClient
      * Updates an existing topic. Note that certain properties of a
      * topic are not modifiable.
      *
-     * The async variant is {@see PublisherGapicClient::updateTopicAsync()} .
+     * The async variant is {@see PublisherClient::updateTopicAsync()} .
      *
      * @param UpdateTopicRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -550,7 +549,7 @@ final class PublisherClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see PublisherGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see PublisherClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -578,7 +577,7 @@ final class PublisherClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see PublisherGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see PublisherClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -608,7 +607,7 @@ final class PublisherClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is {@see PublisherGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see PublisherClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

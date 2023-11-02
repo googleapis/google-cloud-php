@@ -245,8 +245,7 @@ final class NetworkAttachmentsClient
     /**
      * Retrieves the list of all NetworkAttachment resources, regional and global, available to the specified project.
      *
-     * The async variant is {@see NetworkAttachmentsGapicClient::aggregatedListAsync()}
-     * .
+     * The async variant is {@see NetworkAttachmentsClient::aggregatedListAsync()} .
      *
      * @param AggregatedListNetworkAttachmentsRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -270,7 +269,7 @@ final class NetworkAttachmentsClient
     /**
      * Deletes the specified NetworkAttachment in the given scope
      *
-     * The async variant is {@see NetworkAttachmentsGapicClient::deleteAsync()} .
+     * The async variant is {@see NetworkAttachmentsClient::deleteAsync()} .
      *
      * @param DeleteNetworkAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -294,7 +293,7 @@ final class NetworkAttachmentsClient
     /**
      * Returns the specified NetworkAttachment resource in the given scope.
      *
-     * The async variant is {@see NetworkAttachmentsGapicClient::getAsync()} .
+     * The async variant is {@see NetworkAttachmentsClient::getAsync()} .
      *
      * @param GetNetworkAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -318,7 +317,7 @@ final class NetworkAttachmentsClient
     /**
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
-     * The async variant is {@see NetworkAttachmentsGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see NetworkAttachmentsClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyNetworkAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -342,7 +341,7 @@ final class NetworkAttachmentsClient
     /**
      * Creates a NetworkAttachment in the specified project in the given scope using the parameters that are included in the request.
      *
-     * The async variant is {@see NetworkAttachmentsGapicClient::insertAsync()} .
+     * The async variant is {@see NetworkAttachmentsClient::insertAsync()} .
      *
      * @param InsertNetworkAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -366,7 +365,7 @@ final class NetworkAttachmentsClient
     /**
      * Lists the NetworkAttachments for a project in the given scope.
      *
-     * The async variant is {@see NetworkAttachmentsGapicClient::listAsync()} .
+     * The async variant is {@see NetworkAttachmentsClient::listAsync()} .
      *
      * @param ListNetworkAttachmentsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -390,7 +389,7 @@ final class NetworkAttachmentsClient
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
-     * The async variant is {@see NetworkAttachmentsGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see NetworkAttachmentsClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyNetworkAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -414,8 +413,8 @@ final class NetworkAttachmentsClient
     /**
      * Returns permissions that a caller has on the specified resource.
      *
-     * The async variant is
-     * {@see NetworkAttachmentsGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see NetworkAttachmentsClient::testIamPermissionsAsync()}
+     * .
      *
      * @param TestIamPermissionsNetworkAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {

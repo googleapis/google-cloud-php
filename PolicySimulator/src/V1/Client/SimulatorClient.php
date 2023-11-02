@@ -323,7 +323,7 @@ final class SimulatorClient
      * Creates and starts a [Replay][google.cloud.policysimulator.v1.Replay] using
      * the given [ReplayConfig][google.cloud.policysimulator.v1.ReplayConfig].
      *
-     * The async variant is {@see SimulatorGapicClient::createReplayAsync()} .
+     * The async variant is {@see SimulatorClient::createReplayAsync()} .
      *
      * @example samples/V1/SimulatorClient/create_replay.php
      *
@@ -350,7 +350,7 @@ final class SimulatorClient
      * Gets the specified [Replay][google.cloud.policysimulator.v1.Replay]. Each
      * `Replay` is available for at least 7 days.
      *
-     * The async variant is {@see SimulatorGapicClient::getReplayAsync()} .
+     * The async variant is {@see SimulatorClient::getReplayAsync()} .
      *
      * @example samples/V1/SimulatorClient/get_replay.php
      *
@@ -377,7 +377,7 @@ final class SimulatorClient
      * Lists the results of running a
      * [Replay][google.cloud.policysimulator.v1.Replay].
      *
-     * The async variant is {@see SimulatorGapicClient::listReplayResultsAsync()} .
+     * The async variant is {@see SimulatorClient::listReplayResultsAsync()} .
      *
      * @example samples/V1/SimulatorClient/list_replay_results.php
      *

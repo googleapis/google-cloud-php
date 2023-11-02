@@ -266,7 +266,7 @@ final class TagValuesClient
      * process the second request will receive an error. A maximum of 1000
      * TagValues can exist under a TagKey at any given time.
      *
-     * The async variant is {@see TagValuesGapicClient::createTagValueAsync()} .
+     * The async variant is {@see TagValuesClient::createTagValueAsync()} .
      *
      * @example samples/V3/TagValuesClient/create_tag_value.php
      *
@@ -293,7 +293,7 @@ final class TagValuesClient
      * Deletes a TagValue. The TagValue cannot have any bindings when it is
      * deleted.
      *
-     * The async variant is {@see TagValuesGapicClient::deleteTagValueAsync()} .
+     * The async variant is {@see TagValuesClient::deleteTagValueAsync()} .
      *
      * @example samples/V3/TagValuesClient/delete_tag_value.php
      *
@@ -324,7 +324,7 @@ final class TagValuesClient
      * `cloudresourcemanager.googleapis.com/tagValues.getIamPolicy` permission on
      * the identified TagValue to get the access control policy.
      *
-     * The async variant is {@see TagValuesGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see TagValuesClient::getIamPolicyAsync()} .
      *
      * @example samples/V3/TagValuesClient/get_iam_policy.php
      *
@@ -352,7 +352,7 @@ final class TagValuesClient
      * This method will return `PERMISSION_DENIED` if the value does not exist
      * or the user does not have permission to view it.
      *
-     * The async variant is {@see TagValuesGapicClient::getNamespacedTagValueAsync()} .
+     * The async variant is {@see TagValuesClient::getNamespacedTagValueAsync()} .
      *
      * @example samples/V3/TagValuesClient/get_namespaced_tag_value.php
      *
@@ -379,7 +379,7 @@ final class TagValuesClient
      * Retrieves a TagValue. This method will return `PERMISSION_DENIED` if the
      * value does not exist or the user does not have permission to view it.
      *
-     * The async variant is {@see TagValuesGapicClient::getTagValueAsync()} .
+     * The async variant is {@see TagValuesClient::getTagValueAsync()} .
      *
      * @example samples/V3/TagValuesClient/get_tag_value.php
      *
@@ -405,7 +405,7 @@ final class TagValuesClient
     /**
      * Lists all TagValues for a specific TagKey.
      *
-     * The async variant is {@see TagValuesGapicClient::listTagValuesAsync()} .
+     * The async variant is {@see TagValuesClient::listTagValuesAsync()} .
      *
      * @example samples/V3/TagValuesClient/list_tag_values.php
      *
@@ -435,7 +435,7 @@ final class TagValuesClient
      * The caller must have `resourcemanager.tagValues.setIamPolicy` permission
      * on the identified tagValue.
      *
-     * The async variant is {@see TagValuesGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see TagValuesClient::setIamPolicyAsync()} .
      *
      * @example samples/V3/TagValuesClient/set_iam_policy.php
      *
@@ -465,7 +465,7 @@ final class TagValuesClient
      *
      * There are no permissions required for making this API call.
      *
-     * The async variant is {@see TagValuesGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see TagValuesClient::testIamPermissionsAsync()} .
      *
      * @example samples/V3/TagValuesClient/test_iam_permissions.php
      *
@@ -491,7 +491,7 @@ final class TagValuesClient
     /**
      * Updates the attributes of the TagValue resource.
      *
-     * The async variant is {@see TagValuesGapicClient::updateTagValueAsync()} .
+     * The async variant is {@see TagValuesClient::updateTagValueAsync()} .
      *
      * @example samples/V3/TagValuesClient/update_tag_value.php
      *

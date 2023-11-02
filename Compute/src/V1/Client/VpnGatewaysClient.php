@@ -245,7 +245,7 @@ final class VpnGatewaysClient
     /**
      * Retrieves an aggregated list of VPN gateways.
      *
-     * The async variant is {@see VpnGatewaysGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see VpnGatewaysClient::aggregatedListAsync()} .
      *
      * @param AggregatedListVpnGatewaysRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -269,7 +269,7 @@ final class VpnGatewaysClient
     /**
      * Deletes the specified VPN gateway.
      *
-     * The async variant is {@see VpnGatewaysGapicClient::deleteAsync()} .
+     * The async variant is {@see VpnGatewaysClient::deleteAsync()} .
      *
      * @param DeleteVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -293,7 +293,7 @@ final class VpnGatewaysClient
     /**
      * Returns the specified VPN gateway.
      *
-     * The async variant is {@see VpnGatewaysGapicClient::getAsync()} .
+     * The async variant is {@see VpnGatewaysClient::getAsync()} .
      *
      * @param GetVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -317,7 +317,7 @@ final class VpnGatewaysClient
     /**
      * Returns the status for the specified VPN gateway.
      *
-     * The async variant is {@see VpnGatewaysGapicClient::getStatusAsync()} .
+     * The async variant is {@see VpnGatewaysClient::getStatusAsync()} .
      *
      * @param GetStatusVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -341,7 +341,7 @@ final class VpnGatewaysClient
     /**
      * Creates a VPN gateway in the specified project and region using the data included in the request.
      *
-     * The async variant is {@see VpnGatewaysGapicClient::insertAsync()} .
+     * The async variant is {@see VpnGatewaysClient::insertAsync()} .
      *
      * @param InsertVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -365,7 +365,7 @@ final class VpnGatewaysClient
     /**
      * Retrieves a list of VPN gateways available to the specified project and region.
      *
-     * The async variant is {@see VpnGatewaysGapicClient::listAsync()} .
+     * The async variant is {@see VpnGatewaysClient::listAsync()} .
      *
      * @param ListVpnGatewaysRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -389,7 +389,7 @@ final class VpnGatewaysClient
     /**
      * Sets the labels on a VpnGateway. To learn more about labels, read the Labeling Resources documentation.
      *
-     * The async variant is {@see VpnGatewaysGapicClient::setLabelsAsync()} .
+     * The async variant is {@see VpnGatewaysClient::setLabelsAsync()} .
      *
      * @param SetLabelsVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -413,7 +413,7 @@ final class VpnGatewaysClient
     /**
      * Returns permissions that a caller has on the specified resource.
      *
-     * The async variant is {@see VpnGatewaysGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see VpnGatewaysClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {

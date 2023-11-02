@@ -181,8 +181,7 @@ final class GlobalOrganizationOperationsClient
     /**
      * Deletes the specified Operations resource.
      *
-     * The async variant is
-     * {@see GlobalOrganizationOperationsGapicClient::deleteAsync()} .
+     * The async variant is {@see GlobalOrganizationOperationsClient::deleteAsync()} .
      *
      * @param DeleteGlobalOrganizationOperationRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
@@ -206,8 +205,7 @@ final class GlobalOrganizationOperationsClient
     /**
      * Retrieves the specified Operations resource. Gets a list of operations by making a `list()` request.
      *
-     * The async variant is {@see GlobalOrganizationOperationsGapicClient::getAsync()}
-     * .
+     * The async variant is {@see GlobalOrganizationOperationsClient::getAsync()} .
      *
      * @param GetGlobalOrganizationOperationRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
@@ -231,8 +229,7 @@ final class GlobalOrganizationOperationsClient
     /**
      * Retrieves a list of Operation resources contained within the specified organization.
      *
-     * The async variant is {@see GlobalOrganizationOperationsGapicClient::listAsync()}
-     * .
+     * The async variant is {@see GlobalOrganizationOperationsClient::listAsync()} .
      *
      * @param ListGlobalOrganizationOperationsRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {

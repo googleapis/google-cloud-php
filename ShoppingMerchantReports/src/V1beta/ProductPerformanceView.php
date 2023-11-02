@@ -24,13 +24,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class ProductPerformanceView extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Destination of the product to which metrics apply. Segment.
-     * Product performance data is not available for the LOCAL_INVENTORY_ADS
-     * destination.
+     * Marketing method to which metrics apply. Segment.
      *
-     * Generated from protobuf field <code>optional .google.shopping.type.Destination destination = 1;</code>
+     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.MarketingMethod.MarketingMethodEnum marketing_method = 1;</code>
      */
-    protected $destination = null;
+    protected $marketing_method = null;
     /**
      * Date in the merchant timezone to which metrics apply. Segment.
      * Condition on `date` is required in the `WHERE` clause.
@@ -54,31 +52,6 @@ class ProductPerformanceView extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string customer_country_code = 4;</code>
      */
     protected $customer_country_code = null;
-    /**
-     * Merchant Center account id of the seller of the offer. Segment.
-     * Available only for multi-client accounts.
-     *
-     * Generated from protobuf field <code>optional int64 account_id = 29;</code>
-     */
-    protected $account_id = null;
-    /**
-     * Merchant Center account name of the seller of the offer. Segment.
-     * Available only for multi-client accounts.
-     *
-     * Generated from protobuf field <code>optional string account_display_name = 30;</code>
-     */
-    protected $account_display_name = null;
-    /**
-     * [External account
-     * id](https://support.google.com/merchants/answer/11537846?hl=en) submitted
-     * in an offer feed by a multi-seller account to identify the seller of the
-     * offer. Segment.
-     * Available only for multi-client accounts. This field is non-empty only for
-     * auto-seller accounts.
-     *
-     * Generated from protobuf field <code>optional string external_account_id = 31;</code>
-     */
-    protected $external_account_id = null;
     /**
      * Merchant-provided id of the product. Segment.
      *
@@ -260,10 +233,8 @@ class ProductPerformanceView extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $destination
-     *           Destination of the product to which metrics apply. Segment.
-     *           Product performance data is not available for the LOCAL_INVENTORY_ADS
-     *           destination.
+     *     @type int $marketing_method
+     *           Marketing method to which metrics apply. Segment.
      *     @type \Google\Type\Date $date
      *           Date in the merchant timezone to which metrics apply. Segment.
      *           Condition on `date` is required in the `WHERE` clause.
@@ -275,19 +246,6 @@ class ProductPerformanceView extends \Google\Protobuf\Internal\Message
      *           Represented in the ISO 3166 format. Segment.
      *           If the customer country cannot be determined, a special 'ZZ' code is
      *           returned.
-     *     @type int|string $account_id
-     *           Merchant Center account id of the seller of the offer. Segment.
-     *           Available only for multi-client accounts.
-     *     @type string $account_display_name
-     *           Merchant Center account name of the seller of the offer. Segment.
-     *           Available only for multi-client accounts.
-     *     @type string $external_account_id
-     *           [External account
-     *           id](https://support.google.com/merchants/answer/11537846?hl=en) submitted
-     *           in an offer feed by a multi-seller account to identify the seller of the
-     *           offer. Segment.
-     *           Available only for multi-client accounts. This field is non-empty only for
-     *           auto-seller accounts.
      *     @type string $offer_id
      *           Merchant-provided id of the product. Segment.
      *     @type string $title
@@ -374,41 +332,37 @@ class ProductPerformanceView extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Destination of the product to which metrics apply. Segment.
-     * Product performance data is not available for the LOCAL_INVENTORY_ADS
-     * destination.
+     * Marketing method to which metrics apply. Segment.
      *
-     * Generated from protobuf field <code>optional .google.shopping.type.Destination destination = 1;</code>
+     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.MarketingMethod.MarketingMethodEnum marketing_method = 1;</code>
      * @return int
      */
-    public function getDestination()
+    public function getMarketingMethod()
     {
-        return isset($this->destination) ? $this->destination : 0;
+        return isset($this->marketing_method) ? $this->marketing_method : 0;
     }
 
-    public function hasDestination()
+    public function hasMarketingMethod()
     {
-        return isset($this->destination);
+        return isset($this->marketing_method);
     }
 
-    public function clearDestination()
+    public function clearMarketingMethod()
     {
-        unset($this->destination);
+        unset($this->marketing_method);
     }
 
     /**
-     * Destination of the product to which metrics apply. Segment.
-     * Product performance data is not available for the LOCAL_INVENTORY_ADS
-     * destination.
+     * Marketing method to which metrics apply. Segment.
      *
-     * Generated from protobuf field <code>optional .google.shopping.type.Destination destination = 1;</code>
+     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.MarketingMethod.MarketingMethodEnum marketing_method = 1;</code>
      * @param int $var
      * @return $this
      */
-    public function setDestination($var)
+    public function setMarketingMethod($var)
     {
-        GPBUtil::checkEnum($var, \Google\Shopping\Type\Destination::class);
-        $this->destination = $var;
+        GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Reports\V1beta\MarketingMethod\MarketingMethodEnum::class);
+        $this->marketing_method = $var;
 
         return $this;
     }
@@ -527,128 +481,6 @@ class ProductPerformanceView extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->customer_country_code = $var;
-
-        return $this;
-    }
-
-    /**
-     * Merchant Center account id of the seller of the offer. Segment.
-     * Available only for multi-client accounts.
-     *
-     * Generated from protobuf field <code>optional int64 account_id = 29;</code>
-     * @return int|string
-     */
-    public function getAccountId()
-    {
-        return isset($this->account_id) ? $this->account_id : 0;
-    }
-
-    public function hasAccountId()
-    {
-        return isset($this->account_id);
-    }
-
-    public function clearAccountId()
-    {
-        unset($this->account_id);
-    }
-
-    /**
-     * Merchant Center account id of the seller of the offer. Segment.
-     * Available only for multi-client accounts.
-     *
-     * Generated from protobuf field <code>optional int64 account_id = 29;</code>
-     * @param int|string $var
-     * @return $this
-     */
-    public function setAccountId($var)
-    {
-        GPBUtil::checkInt64($var);
-        $this->account_id = $var;
-
-        return $this;
-    }
-
-    /**
-     * Merchant Center account name of the seller of the offer. Segment.
-     * Available only for multi-client accounts.
-     *
-     * Generated from protobuf field <code>optional string account_display_name = 30;</code>
-     * @return string
-     */
-    public function getAccountDisplayName()
-    {
-        return isset($this->account_display_name) ? $this->account_display_name : '';
-    }
-
-    public function hasAccountDisplayName()
-    {
-        return isset($this->account_display_name);
-    }
-
-    public function clearAccountDisplayName()
-    {
-        unset($this->account_display_name);
-    }
-
-    /**
-     * Merchant Center account name of the seller of the offer. Segment.
-     * Available only for multi-client accounts.
-     *
-     * Generated from protobuf field <code>optional string account_display_name = 30;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setAccountDisplayName($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->account_display_name = $var;
-
-        return $this;
-    }
-
-    /**
-     * [External account
-     * id](https://support.google.com/merchants/answer/11537846?hl=en) submitted
-     * in an offer feed by a multi-seller account to identify the seller of the
-     * offer. Segment.
-     * Available only for multi-client accounts. This field is non-empty only for
-     * auto-seller accounts.
-     *
-     * Generated from protobuf field <code>optional string external_account_id = 31;</code>
-     * @return string
-     */
-    public function getExternalAccountId()
-    {
-        return isset($this->external_account_id) ? $this->external_account_id : '';
-    }
-
-    public function hasExternalAccountId()
-    {
-        return isset($this->external_account_id);
-    }
-
-    public function clearExternalAccountId()
-    {
-        unset($this->external_account_id);
-    }
-
-    /**
-     * [External account
-     * id](https://support.google.com/merchants/answer/11537846?hl=en) submitted
-     * in an offer feed by a multi-seller account to identify the seller of the
-     * offer. Segment.
-     * Available only for multi-client accounts. This field is non-empty only for
-     * auto-seller accounts.
-     *
-     * Generated from protobuf field <code>optional string external_account_id = 31;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setExternalAccountId($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->external_account_id = $var;
 
         return $this;
     }

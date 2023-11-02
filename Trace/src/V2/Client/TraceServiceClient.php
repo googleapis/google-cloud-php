@@ -237,7 +237,7 @@ final class TraceServiceClient
      * Batch writes new spans to new or existing traces. You cannot update
      * existing spans.
      *
-     * The async variant is {@see TraceServiceGapicClient::batchWriteSpansAsync()} .
+     * The async variant is {@see TraceServiceClient::batchWriteSpansAsync()} .
      *
      * @param BatchWriteSpansRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -259,7 +259,7 @@ final class TraceServiceClient
     /**
      * Creates a new span.
      *
-     * The async variant is {@see TraceServiceGapicClient::createSpanAsync()} .
+     * The async variant is {@see TraceServiceClient::createSpanAsync()} .
      *
      * @param Span  $request     A request to house fields associated with the call.
      * @param array $callOptions {

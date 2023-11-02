@@ -76,6 +76,12 @@ class LocationCategory
      */
     const COLOMBIA = 9;
     /**
+     * The infoType is typically used in Croatia.
+     *
+     * Generated from protobuf enum <code>CROATIA = 42;</code>
+     */
+    const CROATIA = 42;
+    /**
      * The infoType is typically used in Denmark.
      *
      * Generated from protobuf enum <code>DENMARK = 10;</code>
@@ -160,6 +166,12 @@ class LocationCategory
      */
     const THE_NETHERLANDS = 23;
     /**
+     * The infoType is typically used in New Zealand.
+     *
+     * Generated from protobuf enum <code>NEW_ZEALAND = 41;</code>
+     */
+    const NEW_ZEALAND = 41;
+    /**
      * The infoType is typically used in Norway.
      *
      * Generated from protobuf enum <code>NORWAY = 24;</code>
@@ -214,6 +226,12 @@ class LocationCategory
      */
     const SWEDEN = 32;
     /**
+     * The infoType is typically used in Switzerland.
+     *
+     * Generated from protobuf enum <code>SWITZERLAND = 43;</code>
+     */
+    const SWITZERLAND = 43;
+    /**
      * The infoType is typically used in Taiwan.
      *
      * Generated from protobuf enum <code>TAIWAN = 33;</code>
@@ -261,12 +279,6 @@ class LocationCategory
      * Generated from protobuf enum <code>INTERNAL = 40;</code>
      */
     const INTERNAL = 40;
-    /**
-     * The infoType is typically used in New Zealand.
-     *
-     * Generated from protobuf enum <code>NEW_ZEALAND = 41;</code>
-     */
-    const NEW_ZEALAND = 41;
 
     private static $valueToName = [
         self::LOCATION_UNSPECIFIED => 'LOCATION_UNSPECIFIED',
@@ -279,6 +291,7 @@ class LocationCategory
         self::CHILE => 'CHILE',
         self::CHINA => 'CHINA',
         self::COLOMBIA => 'COLOMBIA',
+        self::CROATIA => 'CROATIA',
         self::DENMARK => 'DENMARK',
         self::FRANCE => 'FRANCE',
         self::FINLAND => 'FINLAND',
@@ -293,6 +306,7 @@ class LocationCategory
         self::KOREA => 'KOREA',
         self::MEXICO => 'MEXICO',
         self::THE_NETHERLANDS => 'THE_NETHERLANDS',
+        self::NEW_ZEALAND => 'NEW_ZEALAND',
         self::NORWAY => 'NORWAY',
         self::PARAGUAY => 'PARAGUAY',
         self::PERU => 'PERU',
@@ -302,6 +316,7 @@ class LocationCategory
         self::SOUTH_AFRICA => 'SOUTH_AFRICA',
         self::SPAIN => 'SPAIN',
         self::SWEDEN => 'SWEDEN',
+        self::SWITZERLAND => 'SWITZERLAND',
         self::TAIWAN => 'TAIWAN',
         self::THAILAND => 'THAILAND',
         self::TURKEY => 'TURKEY',
@@ -310,7 +325,6 @@ class LocationCategory
         self::URUGUAY => 'URUGUAY',
         self::VENEZUELA => 'VENEZUELA',
         self::INTERNAL => 'INTERNAL',
-        self::NEW_ZEALAND => 'NEW_ZEALAND',
     ];
 
     public static function name($value)

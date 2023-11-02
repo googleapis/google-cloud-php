@@ -442,8 +442,7 @@ final class CertificateAuthorityServiceClient
      * this method can complete the activation process.
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::activateCertificateAuthorityAsync()}
-     * .
+     * {@see CertificateAuthorityServiceClient::activateCertificateAuthorityAsync()} .
      *
      * @param ActivateCertificateAuthorityRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -468,7 +467,7 @@ final class CertificateAuthorityServiceClient
      * Create a [CaPool][google.cloud.security.privateca.v1.CaPool].
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::createCaPoolAsync()} .
+     * {@see CertificateAuthorityServiceClient::createCaPoolAsync()} .
      *
      * @param CreateCaPoolRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -495,7 +494,7 @@ final class CertificateAuthorityServiceClient
      * [CaPool][google.cloud.security.privateca.v1.CaPool].
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::createCertificateAsync()} .
+     * {@see CertificateAuthorityServiceClient::createCertificateAsync()} .
      *
      * @param CreateCertificateRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -522,8 +521,7 @@ final class CertificateAuthorityServiceClient
      * in a given Project and Location.
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::createCertificateAuthorityAsync()}
-     * .
+     * {@see CertificateAuthorityServiceClient::createCertificateAuthorityAsync()} .
      *
      * @param CreateCertificateAuthorityRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -550,8 +548,7 @@ final class CertificateAuthorityServiceClient
      * in a given Project and Location.
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::createCertificateTemplateAsync()}
-     * .
+     * {@see CertificateAuthorityServiceClient::createCertificateTemplateAsync()} .
      *
      * @param CreateCertificateTemplateRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -576,7 +573,7 @@ final class CertificateAuthorityServiceClient
      * Delete a [CaPool][google.cloud.security.privateca.v1.CaPool].
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::deleteCaPoolAsync()} .
+     * {@see CertificateAuthorityServiceClient::deleteCaPoolAsync()} .
      *
      * @param DeleteCaPoolRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -602,8 +599,7 @@ final class CertificateAuthorityServiceClient
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::deleteCertificateAuthorityAsync()}
-     * .
+     * {@see CertificateAuthorityServiceClient::deleteCertificateAuthorityAsync()} .
      *
      * @param DeleteCertificateAuthorityRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -629,8 +625,7 @@ final class CertificateAuthorityServiceClient
      * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::deleteCertificateTemplateAsync()}
-     * .
+     * {@see CertificateAuthorityServiceClient::deleteCertificateTemplateAsync()} .
      *
      * @param DeleteCertificateTemplateRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -656,8 +651,7 @@ final class CertificateAuthorityServiceClient
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::disableCertificateAuthorityAsync()}
-     * .
+     * {@see CertificateAuthorityServiceClient::disableCertificateAuthorityAsync()} .
      *
      * @param DisableCertificateAuthorityRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -683,8 +677,7 @@ final class CertificateAuthorityServiceClient
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::enableCertificateAuthorityAsync()}
-     * .
+     * {@see CertificateAuthorityServiceClient::enableCertificateAuthorityAsync()} .
      *
      * @param EnableCertificateAuthorityRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -713,7 +706,7 @@ final class CertificateAuthorityServiceClient
      * resources in the [CaPool][google.cloud.security.privateca.v1.CaPool].
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::fetchCaCertsAsync()} .
+     * {@see CertificateAuthorityServiceClient::fetchCaCertsAsync()} .
      *
      * @param FetchCaCertsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -748,8 +741,7 @@ final class CertificateAuthorityServiceClient
      * [ActivateCertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthorityService.ActivateCertificateAuthority].
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::fetchCertificateAuthorityCsrAsync()}
-     * .
+     * {@see CertificateAuthorityServiceClient::fetchCertificateAuthorityCsrAsync()} .
      *
      * @param FetchCertificateAuthorityCsrRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -773,8 +765,8 @@ final class CertificateAuthorityServiceClient
     /**
      * Returns a [CaPool][google.cloud.security.privateca.v1.CaPool].
      *
-     * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::getCaPoolAsync()} .
+     * The async variant is {@see CertificateAuthorityServiceClient::getCaPoolAsync()}
+     * .
      *
      * @param GetCaPoolRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -799,7 +791,7 @@ final class CertificateAuthorityServiceClient
      * Returns a [Certificate][google.cloud.security.privateca.v1.Certificate].
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::getCertificateAsync()} .
+     * {@see CertificateAuthorityServiceClient::getCertificateAsync()} .
      *
      * @param GetCertificateRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -825,7 +817,7 @@ final class CertificateAuthorityServiceClient
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::getCertificateAuthorityAsync()} .
+     * {@see CertificateAuthorityServiceClient::getCertificateAuthorityAsync()} .
      *
      * @param GetCertificateAuthorityRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -851,8 +843,7 @@ final class CertificateAuthorityServiceClient
      * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::getCertificateRevocationListAsync()}
-     * .
+     * {@see CertificateAuthorityServiceClient::getCertificateRevocationListAsync()} .
      *
      * @param GetCertificateRevocationListRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -878,7 +869,7 @@ final class CertificateAuthorityServiceClient
      * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::getCertificateTemplateAsync()} .
+     * {@see CertificateAuthorityServiceClient::getCertificateTemplateAsync()} .
      *
      * @param GetCertificateTemplateRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -903,7 +894,7 @@ final class CertificateAuthorityServiceClient
      * Lists [CaPools][google.cloud.security.privateca.v1.CaPool].
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::listCaPoolsAsync()} .
+     * {@see CertificateAuthorityServiceClient::listCaPoolsAsync()} .
      *
      * @param ListCaPoolsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -929,8 +920,7 @@ final class CertificateAuthorityServiceClient
      * [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority].
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::listCertificateAuthoritiesAsync()}
-     * .
+     * {@see CertificateAuthorityServiceClient::listCertificateAuthoritiesAsync()} .
      *
      * @param ListCertificateAuthoritiesRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -956,7 +946,7 @@ final class CertificateAuthorityServiceClient
      * [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList].
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::listCertificateRevocationListsAsync()}
+     * {@see CertificateAuthorityServiceClient::listCertificateRevocationListsAsync()}
      * .
      *
      * @param ListCertificateRevocationListsRequest $request     A request to house fields associated with the call.
@@ -983,7 +973,7 @@ final class CertificateAuthorityServiceClient
      * [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate].
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::listCertificateTemplatesAsync()} .
+     * {@see CertificateAuthorityServiceClient::listCertificateTemplatesAsync()} .
      *
      * @param ListCertificateTemplatesRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -1008,7 +998,7 @@ final class CertificateAuthorityServiceClient
      * Lists [Certificates][google.cloud.security.privateca.v1.Certificate].
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::listCertificatesAsync()} .
+     * {@see CertificateAuthorityServiceClient::listCertificatesAsync()} .
      *
      * @param ListCertificatesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -1033,7 +1023,7 @@ final class CertificateAuthorityServiceClient
      * Revoke a [Certificate][google.cloud.security.privateca.v1.Certificate].
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::revokeCertificateAsync()} .
+     * {@see CertificateAuthorityServiceClient::revokeCertificateAsync()} .
      *
      * @param RevokeCertificateRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -1060,8 +1050,7 @@ final class CertificateAuthorityServiceClient
      * that has been deleted.
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::undeleteCertificateAuthorityAsync()}
-     * .
+     * {@see CertificateAuthorityServiceClient::undeleteCertificateAuthorityAsync()} .
      *
      * @param UndeleteCertificateAuthorityRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -1086,7 +1075,7 @@ final class CertificateAuthorityServiceClient
      * Update a [CaPool][google.cloud.security.privateca.v1.CaPool].
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::updateCaPoolAsync()} .
+     * {@see CertificateAuthorityServiceClient::updateCaPoolAsync()} .
      *
      * @param UpdateCaPoolRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1113,7 +1102,7 @@ final class CertificateAuthorityServiceClient
      * [labels][google.cloud.security.privateca.v1.Certificate.labels] field.
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::updateCertificateAsync()} .
+     * {@see CertificateAuthorityServiceClient::updateCertificateAsync()} .
      *
      * @param UpdateCertificateRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -1139,8 +1128,7 @@ final class CertificateAuthorityServiceClient
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::updateCertificateAuthorityAsync()}
-     * .
+     * {@see CertificateAuthorityServiceClient::updateCertificateAuthorityAsync()} .
      *
      * @param UpdateCertificateAuthorityRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -1166,7 +1154,7 @@ final class CertificateAuthorityServiceClient
      * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::updateCertificateRevocationListAsync()}
+     * {@see CertificateAuthorityServiceClient::updateCertificateRevocationListAsync()}
      * .
      *
      * @param UpdateCertificateRevocationListRequest $request     A request to house fields associated with the call.
@@ -1193,8 +1181,7 @@ final class CertificateAuthorityServiceClient
      * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::updateCertificateTemplateAsync()}
-     * .
+     * {@see CertificateAuthorityServiceClient::updateCertificateTemplateAsync()} .
      *
      * @param UpdateCertificateTemplateRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -1219,7 +1206,7 @@ final class CertificateAuthorityServiceClient
      * Gets information about a location.
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::getLocationAsync()} .
+     * {@see CertificateAuthorityServiceClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1244,7 +1231,7 @@ final class CertificateAuthorityServiceClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::listLocationsAsync()} .
+     * {@see CertificateAuthorityServiceClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1270,7 +1257,7 @@ final class CertificateAuthorityServiceClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::getIamPolicyAsync()} .
+     * {@see CertificateAuthorityServiceClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1299,7 +1286,7 @@ final class CertificateAuthorityServiceClient
     errors.
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::setIamPolicyAsync()} .
+     * {@see CertificateAuthorityServiceClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1330,7 +1317,7 @@ final class CertificateAuthorityServiceClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is
-     * {@see CertificateAuthorityServiceGapicClient::testIamPermissionsAsync()} .
+     * {@see CertificateAuthorityServiceClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

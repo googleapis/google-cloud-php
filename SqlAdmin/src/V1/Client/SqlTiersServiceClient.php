@@ -164,7 +164,7 @@ final class SqlTiersServiceClient
      * `db-custom-1-3840`. For more information, see
      * https://cloud.google.com/sql/pricing.
      *
-     * The async variant is {@see SqlTiersServiceGapicClient::listAsync()} .
+     * The async variant is {@see SqlTiersServiceClient::listAsync()} .
      *
      * @example samples/V1/SqlTiersServiceClient/list.php
      *

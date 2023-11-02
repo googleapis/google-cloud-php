@@ -284,7 +284,7 @@ final class UptimeCheckServiceClient
      * Creates a new Uptime check configuration.
      *
      * The async variant is
-     * {@see UptimeCheckServiceGapicClient::createUptimeCheckConfigAsync()} .
+     * {@see UptimeCheckServiceClient::createUptimeCheckConfigAsync()} .
      *
      * @param CreateUptimeCheckConfigRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -311,7 +311,7 @@ final class UptimeCheckServiceClient
      * other dependent configs that would be rendered invalid by the deletion.
      *
      * The async variant is
-     * {@see UptimeCheckServiceGapicClient::deleteUptimeCheckConfigAsync()} .
+     * {@see UptimeCheckServiceClient::deleteUptimeCheckConfigAsync()} .
      *
      * @param DeleteUptimeCheckConfigRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -334,7 +334,7 @@ final class UptimeCheckServiceClient
      * Gets a single Uptime check configuration.
      *
      * The async variant is
-     * {@see UptimeCheckServiceGapicClient::getUptimeCheckConfigAsync()} .
+     * {@see UptimeCheckServiceClient::getUptimeCheckConfigAsync()} .
      *
      * @param GetUptimeCheckConfigRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -360,7 +360,7 @@ final class UptimeCheckServiceClient
      * (leaving out any invalid configurations).
      *
      * The async variant is
-     * {@see UptimeCheckServiceGapicClient::listUptimeCheckConfigsAsync()} .
+     * {@see UptimeCheckServiceClient::listUptimeCheckConfigsAsync()} .
      *
      * @param ListUptimeCheckConfigsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -384,8 +384,8 @@ final class UptimeCheckServiceClient
     /**
      * Returns the list of IP addresses that checkers run from
      *
-     * The async variant is
-     * {@see UptimeCheckServiceGapicClient::listUptimeCheckIpsAsync()} .
+     * The async variant is {@see UptimeCheckServiceClient::listUptimeCheckIpsAsync()}
+     * .
      *
      * @param ListUptimeCheckIpsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -413,7 +413,7 @@ final class UptimeCheckServiceClient
      * Returns the updated configuration.
      *
      * The async variant is
-     * {@see UptimeCheckServiceGapicClient::updateUptimeCheckConfigAsync()} .
+     * {@see UptimeCheckServiceClient::updateUptimeCheckConfigAsync()} .
      *
      * @param UpdateUptimeCheckConfigRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {

@@ -237,8 +237,8 @@ final class BetaAnalyticsDataClient
      * Returns multiple pivot reports in a batch. All reports must be for the same
      * GA4 Property.
      *
-     * The async variant is
-     * {@see BetaAnalyticsDataGapicClient::batchRunPivotReportsAsync()} .
+     * The async variant is {@see BetaAnalyticsDataClient::batchRunPivotReportsAsync()}
+     * .
      *
      * @example samples/V1beta/BetaAnalyticsDataClient/batch_run_pivot_reports.php
      *
@@ -267,8 +267,7 @@ final class BetaAnalyticsDataClient
      * Returns multiple reports in a batch. All reports must be for the same
      * GA4 Property.
      *
-     * The async variant is {@see BetaAnalyticsDataGapicClient::batchRunReportsAsync()}
-     * .
+     * The async variant is {@see BetaAnalyticsDataClient::batchRunReportsAsync()} .
      *
      * @example samples/V1beta/BetaAnalyticsDataClient/batch_run_reports.php
      *
@@ -305,8 +304,7 @@ final class BetaAnalyticsDataClient
      * The Realtime and Core reports have different compatibility rules. This
      * method checks compatibility for Core reports.
      *
-     * The async variant is
-     * {@see BetaAnalyticsDataGapicClient::checkCompatibilityAsync()} .
+     * The async variant is {@see BetaAnalyticsDataClient::checkCompatibilityAsync()} .
      *
      * @example samples/V1beta/BetaAnalyticsDataClient/check_compatibility.php
      *
@@ -343,7 +341,7 @@ final class BetaAnalyticsDataClient
      * `customEvent:levels_unlocked`. Universal metadata are dimensions and
      * metrics applicable to any property such as `country` and `totalUsers`.
      *
-     * The async variant is {@see BetaAnalyticsDataGapicClient::getMetadataAsync()} .
+     * The async variant is {@see BetaAnalyticsDataClient::getMetadataAsync()} .
      *
      * @example samples/V1beta/BetaAnalyticsDataClient/get_metadata.php
      *
@@ -375,8 +373,7 @@ final class BetaAnalyticsDataClient
      * included in a pivot. Multiple pivots can be specified to further dissect
      * your data.
      *
-     * The async variant is {@see BetaAnalyticsDataGapicClient::runPivotReportAsync()}
-     * .
+     * The async variant is {@see BetaAnalyticsDataClient::runPivotReportAsync()} .
      *
      * @example samples/V1beta/BetaAnalyticsDataClient/run_pivot_report.php
      *
@@ -412,8 +409,7 @@ final class BetaAnalyticsDataClient
      * see [Creating a Realtime
      * Report](https://developers.google.com/analytics/devguides/reporting/data/v1/realtime-basics).
      *
-     * The async variant is
-     * {@see BetaAnalyticsDataGapicClient::runRealtimeReportAsync()} .
+     * The async variant is {@see BetaAnalyticsDataClient::runRealtimeReportAsync()} .
      *
      * @example samples/V1beta/BetaAnalyticsDataClient/run_realtime_report.php
      *
@@ -451,7 +447,7 @@ final class BetaAnalyticsDataClient
      * [Creating a
      * Report](https://developers.google.com/analytics/devguides/reporting/data/v1/basics).
      *
-     * The async variant is {@see BetaAnalyticsDataGapicClient::runReportAsync()} .
+     * The async variant is {@see BetaAnalyticsDataClient::runReportAsync()} .
      *
      * @example samples/V1beta/BetaAnalyticsDataClient/run_report.php
      *

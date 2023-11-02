@@ -295,7 +295,7 @@ final class FoldersClient
      * The caller must have `resourcemanager.folders.create` permission on the
      * identified parent.
      *
-     * The async variant is {@see FoldersGapicClient::createFolderAsync()} .
+     * The async variant is {@see FoldersClient::createFolderAsync()} .
      *
      * @example samples/V3/FoldersClient/create_folder.php
      *
@@ -331,7 +331,7 @@ final class FoldersClient
      * The caller must have `resourcemanager.folders.delete` permission on the
      * identified folder.
      *
-     * The async variant is {@see FoldersGapicClient::deleteFolderAsync()} .
+     * The async variant is {@see FoldersClient::deleteFolderAsync()} .
      *
      * @example samples/V3/FoldersClient/delete_folder.php
      *
@@ -361,7 +361,7 @@ final class FoldersClient
      * The caller must have `resourcemanager.folders.get` permission on the
      * identified folder.
      *
-     * The async variant is {@see FoldersGapicClient::getFolderAsync()} .
+     * The async variant is {@see FoldersClient::getFolderAsync()} .
      *
      * @example samples/V3/FoldersClient/get_folder.php
      *
@@ -391,7 +391,7 @@ final class FoldersClient
      * The caller must have `resourcemanager.folders.getIamPolicy` permission
      * on the identified folder.
      *
-     * The async variant is {@see FoldersGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see FoldersClient::getIamPolicyAsync()} .
      *
      * @example samples/V3/FoldersClient/get_iam_policy.php
      *
@@ -423,7 +423,7 @@ final class FoldersClient
      * The caller must have `resourcemanager.folders.list` permission on the
      * identified parent.
      *
-     * The async variant is {@see FoldersGapicClient::listFoldersAsync()} .
+     * The async variant is {@see FoldersClient::listFoldersAsync()} .
      *
      * @example samples/V3/FoldersClient/list_folders.php
      *
@@ -465,7 +465,7 @@ final class FoldersClient
      * documentation. The caller must have `resourcemanager.folders.move`
      * permission on the folder's current and proposed new parent.
      *
-     * The async variant is {@see FoldersGapicClient::moveFolderAsync()} .
+     * The async variant is {@see FoldersClient::moveFolderAsync()} .
      *
      * @example samples/V3/FoldersClient/move_folder.php
      *
@@ -496,7 +496,7 @@ final class FoldersClient
      * This will only return folders on which the caller has the
      * permission `resourcemanager.folders.get`.
      *
-     * The async variant is {@see FoldersGapicClient::searchFoldersAsync()} .
+     * The async variant is {@see FoldersClient::searchFoldersAsync()} .
      *
      * @example samples/V3/FoldersClient/search_folders.php
      *
@@ -526,7 +526,7 @@ final class FoldersClient
      * The caller must have `resourcemanager.folders.setIamPolicy` permission
      * on the identified folder.
      *
-     * The async variant is {@see FoldersGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see FoldersClient::setIamPolicyAsync()} .
      *
      * @example samples/V3/FoldersClient/set_iam_policy.php
      *
@@ -556,7 +556,7 @@ final class FoldersClient
      *
      * There are no permissions required for making this API call.
      *
-     * The async variant is {@see FoldersGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see FoldersClient::testIamPermissionsAsync()} .
      *
      * @example samples/V3/FoldersClient/test_iam_permissions.php
      *
@@ -592,7 +592,7 @@ final class FoldersClient
      * documentation. The caller must have `resourcemanager.folders.undelete`
      * permission on the identified folder.
      *
-     * The async variant is {@see FoldersGapicClient::undeleteFolderAsync()} .
+     * The async variant is {@see FoldersClient::undeleteFolderAsync()} .
      *
      * @example samples/V3/FoldersClient/undelete_folder.php
      *
@@ -634,7 +634,7 @@ final class FoldersClient
      * `PreconditionFailure` explaining this violation will be returned
      * in the Status.details field.
      *
-     * The async variant is {@see FoldersGapicClient::updateFolderAsync()} .
+     * The async variant is {@see FoldersClient::updateFolderAsync()} .
      *
      * @example samples/V3/FoldersClient/update_folder.php
      *

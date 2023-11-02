@@ -219,7 +219,7 @@ final class ErrorGroupServiceClient
     /**
      * Get the specified group.
      *
-     * The async variant is {@see ErrorGroupServiceGapicClient::getGroupAsync()} .
+     * The async variant is {@see ErrorGroupServiceClient::getGroupAsync()} .
      *
      * @example samples/V1beta1/ErrorGroupServiceClient/get_group.php
      *
@@ -248,7 +248,7 @@ final class ErrorGroupServiceClient
      * Replace the data for the specified group.
      * Fails if the group does not exist.
      *
-     * The async variant is {@see ErrorGroupServiceGapicClient::updateGroupAsync()} .
+     * The async variant is {@see ErrorGroupServiceClient::updateGroupAsync()} .
      *
      * @example samples/V1beta1/ErrorGroupServiceClient/update_group.php
      *

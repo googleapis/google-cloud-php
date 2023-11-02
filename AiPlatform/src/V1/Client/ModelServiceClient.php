@@ -466,7 +466,7 @@ final class ModelServiceClient
      * Imports a list of externally generated EvaluatedAnnotations.
      *
      * The async variant is
-     * {@see ModelServiceGapicClient::batchImportEvaluatedAnnotationsAsync()} .
+     * {@see ModelServiceClient::batchImportEvaluatedAnnotationsAsync()} .
      *
      * @example samples/V1/ModelServiceClient/batch_import_evaluated_annotations.php
      *
@@ -493,7 +493,7 @@ final class ModelServiceClient
      * Imports a list of externally generated ModelEvaluationSlice.
      *
      * The async variant is
-     * {@see ModelServiceGapicClient::batchImportModelEvaluationSlicesAsync()} .
+     * {@see ModelServiceClient::batchImportModelEvaluationSlicesAsync()} .
      *
      * @example samples/V1/ModelServiceClient/batch_import_model_evaluation_slices.php
      *
@@ -524,7 +524,7 @@ final class ModelServiceClient
      * region-agnostic, as well as making sure that any resources (e.g. files) it
      * depends on remain accessible.
      *
-     * The async variant is {@see ModelServiceGapicClient::copyModelAsync()} .
+     * The async variant is {@see ModelServiceClient::copyModelAsync()} .
      *
      * @example samples/V1/ModelServiceClient/copy_model.php
      *
@@ -557,7 +557,7 @@ final class ModelServiceClient
      * [deployed_models][google.cloud.aiplatform.v1.Endpoint.deployed_models]
      * field.
      *
-     * The async variant is {@see ModelServiceGapicClient::deleteModelAsync()} .
+     * The async variant is {@see ModelServiceClient::deleteModelAsync()} .
      *
      * @example samples/V1/ModelServiceClient/delete_model.php
      *
@@ -589,7 +589,7 @@ final class ModelServiceClient
      * [DeleteModel][google.cloud.aiplatform.v1.ModelService.DeleteModel] for
      * deleting the Model instead.
      *
-     * The async variant is {@see ModelServiceGapicClient::deleteModelVersionAsync()} .
+     * The async variant is {@see ModelServiceClient::deleteModelVersionAsync()} .
      *
      * @example samples/V1/ModelServiceClient/delete_model_version.php
      *
@@ -618,7 +618,7 @@ final class ModelServiceClient
      * [supported export
      * format][google.cloud.aiplatform.v1.Model.supported_export_formats].
      *
-     * The async variant is {@see ModelServiceGapicClient::exportModelAsync()} .
+     * The async variant is {@see ModelServiceClient::exportModelAsync()} .
      *
      * @example samples/V1/ModelServiceClient/export_model.php
      *
@@ -644,7 +644,7 @@ final class ModelServiceClient
     /**
      * Gets a Model.
      *
-     * The async variant is {@see ModelServiceGapicClient::getModelAsync()} .
+     * The async variant is {@see ModelServiceClient::getModelAsync()} .
      *
      * @example samples/V1/ModelServiceClient/get_model.php
      *
@@ -670,7 +670,7 @@ final class ModelServiceClient
     /**
      * Gets a ModelEvaluation.
      *
-     * The async variant is {@see ModelServiceGapicClient::getModelEvaluationAsync()} .
+     * The async variant is {@see ModelServiceClient::getModelEvaluationAsync()} .
      *
      * @example samples/V1/ModelServiceClient/get_model_evaluation.php
      *
@@ -696,8 +696,7 @@ final class ModelServiceClient
     /**
      * Gets a ModelEvaluationSlice.
      *
-     * The async variant is
-     * {@see ModelServiceGapicClient::getModelEvaluationSliceAsync()} .
+     * The async variant is {@see ModelServiceClient::getModelEvaluationSliceAsync()} .
      *
      * @example samples/V1/ModelServiceClient/get_model_evaluation_slice.php
      *
@@ -723,8 +722,7 @@ final class ModelServiceClient
     /**
      * Imports an externally generated ModelEvaluation.
      *
-     * The async variant is
-     * {@see ModelServiceGapicClient::importModelEvaluationAsync()} .
+     * The async variant is {@see ModelServiceClient::importModelEvaluationAsync()} .
      *
      * @example samples/V1/ModelServiceClient/import_model_evaluation.php
      *
@@ -750,8 +748,8 @@ final class ModelServiceClient
     /**
      * Lists ModelEvaluationSlices in a ModelEvaluation.
      *
-     * The async variant is
-     * {@see ModelServiceGapicClient::listModelEvaluationSlicesAsync()} .
+     * The async variant is {@see ModelServiceClient::listModelEvaluationSlicesAsync()}
+     * .
      *
      * @example samples/V1/ModelServiceClient/list_model_evaluation_slices.php
      *
@@ -777,8 +775,7 @@ final class ModelServiceClient
     /**
      * Lists ModelEvaluations in a Model.
      *
-     * The async variant is {@see ModelServiceGapicClient::listModelEvaluationsAsync()}
-     * .
+     * The async variant is {@see ModelServiceClient::listModelEvaluationsAsync()} .
      *
      * @example samples/V1/ModelServiceClient/list_model_evaluations.php
      *
@@ -804,7 +801,7 @@ final class ModelServiceClient
     /**
      * Lists versions of the specified model.
      *
-     * The async variant is {@see ModelServiceGapicClient::listModelVersionsAsync()} .
+     * The async variant is {@see ModelServiceClient::listModelVersionsAsync()} .
      *
      * @example samples/V1/ModelServiceClient/list_model_versions.php
      *
@@ -830,7 +827,7 @@ final class ModelServiceClient
     /**
      * Lists Models in a Location.
      *
-     * The async variant is {@see ModelServiceGapicClient::listModelsAsync()} .
+     * The async variant is {@see ModelServiceClient::listModelsAsync()} .
      *
      * @example samples/V1/ModelServiceClient/list_models.php
      *
@@ -856,8 +853,7 @@ final class ModelServiceClient
     /**
      * Merges a set of aliases for a Model version.
      *
-     * The async variant is {@see ModelServiceGapicClient::mergeVersionAliasesAsync()}
-     * .
+     * The async variant is {@see ModelServiceClient::mergeVersionAliasesAsync()} .
      *
      * @example samples/V1/ModelServiceClient/merge_version_aliases.php
      *
@@ -883,8 +879,8 @@ final class ModelServiceClient
     /**
      * Incrementally update the dataset used for an examples model.
      *
-     * The async variant is
-     * {@see ModelServiceGapicClient::updateExplanationDatasetAsync()} .
+     * The async variant is {@see ModelServiceClient::updateExplanationDatasetAsync()}
+     * .
      *
      * @example samples/V1/ModelServiceClient/update_explanation_dataset.php
      *
@@ -910,7 +906,7 @@ final class ModelServiceClient
     /**
      * Updates a Model.
      *
-     * The async variant is {@see ModelServiceGapicClient::updateModelAsync()} .
+     * The async variant is {@see ModelServiceClient::updateModelAsync()} .
      *
      * @example samples/V1/ModelServiceClient/update_model.php
      *
@@ -936,7 +932,7 @@ final class ModelServiceClient
     /**
      * Uploads a Model artifact into Vertex AI.
      *
-     * The async variant is {@see ModelServiceGapicClient::uploadModelAsync()} .
+     * The async variant is {@see ModelServiceClient::uploadModelAsync()} .
      *
      * @example samples/V1/ModelServiceClient/upload_model.php
      *
@@ -962,7 +958,7 @@ final class ModelServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see ModelServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see ModelServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/ModelServiceClient/get_location.php
      *
@@ -988,7 +984,7 @@ final class ModelServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see ModelServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see ModelServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/ModelServiceClient/list_locations.php
      *
@@ -1015,7 +1011,7 @@ final class ModelServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see ModelServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see ModelServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/ModelServiceClient/get_iam_policy.php
      *
@@ -1045,7 +1041,7 @@ final class ModelServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see ModelServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see ModelServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/ModelServiceClient/set_iam_policy.php
      *
@@ -1077,7 +1073,7 @@ final class ModelServiceClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is {@see ModelServiceGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see ModelServiceClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/ModelServiceClient/test_iam_permissions.php
      *
