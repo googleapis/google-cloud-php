@@ -26,7 +26,7 @@ class StartupConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional double required_registration_fraction = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $required_registration_fraction = null;
+    private $required_registration_fraction = null;
 
     /**
      * Constructor.
