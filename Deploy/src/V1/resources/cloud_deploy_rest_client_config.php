@@ -39,6 +39,18 @@ return [
                     ],
                 ],
             ],
+            'CancelAutomationRun' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/deliveryPipelines/*/automationRuns/*}:cancel',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CancelRollout' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/deliveryPipelines/*/releases/*/rollouts/*}:cancel',
@@ -49,6 +61,21 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+            ],
+            'CreateAutomation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/deliveryPipelines/*}/automations',
+                'body' => 'automation',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'automation_id',
                 ],
             ],
             'CreateDeliveryPipeline' => [
@@ -111,6 +138,17 @@ return [
                     'target_id',
                 ],
             ],
+            'DeleteAutomation' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/deliveryPipelines/*/automations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteDeliveryPipeline' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/deliveryPipelines/*}',
@@ -125,6 +163,28 @@ return [
             'DeleteTarget' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/targets/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAutomation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/deliveryPipelines/*/automations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAutomationRun' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/deliveryPipelines/*/automationRuns/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -211,6 +271,28 @@ return [
                     ],
                 ],
             ],
+            'ListAutomationRuns' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/deliveryPipelines/*}/automationRuns',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAutomations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/deliveryPipelines/*}/automations',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListDeliveryPipelines' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/deliveryPipelines',
@@ -278,6 +360,18 @@ return [
                     ],
                 ],
             ],
+            'RollbackTarget' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/deliveryPipelines/*}:rollbackTarget',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'TerminateJobRun' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/deliveryPipelines/*/releases/*/rollouts/*/jobRuns/*}:terminate',
@@ -288,6 +382,22 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+            ],
+            'UpdateAutomation' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{automation.name=projects/*/locations/*/deliveryPipelines/*/automations/*}',
+                'body' => 'automation',
+                'placeholders' => [
+                    'automation.name' => [
+                        'getters' => [
+                            'getAutomation',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateDeliveryPipeline' => [

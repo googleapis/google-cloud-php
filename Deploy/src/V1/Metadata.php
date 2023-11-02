@@ -22,6 +22,13 @@ class Metadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.deploy.v1.CloudRunMetadata cloud_run = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $cloud_run = null;
+    /**
+     * Output only. AutomationRolloutMetadata contains the information about the
+     * interactions between Automation service and this rollout.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.AutomationRolloutMetadata automation = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $automation = null;
 
     /**
      * Constructor.
@@ -32,6 +39,9 @@ class Metadata extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Deploy\V1\CloudRunMetadata $cloud_run
      *           Output only. The name of the Cloud Run Service that is associated with a
      *           `Rollout`.
+     *     @type \Google\Cloud\Deploy\V1\AutomationRolloutMetadata $automation
+     *           Output only. AutomationRolloutMetadata contains the information about the
+     *           interactions between Automation service and this rollout.
      * }
      */
     public function __construct($data = NULL) {
@@ -73,6 +83,44 @@ class Metadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\CloudRunMetadata::class);
         $this->cloud_run = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. AutomationRolloutMetadata contains the information about the
+     * interactions between Automation service and this rollout.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.AutomationRolloutMetadata automation = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Deploy\V1\AutomationRolloutMetadata|null
+     */
+    public function getAutomation()
+    {
+        return $this->automation;
+    }
+
+    public function hasAutomation()
+    {
+        return isset($this->automation);
+    }
+
+    public function clearAutomation()
+    {
+        unset($this->automation);
+    }
+
+    /**
+     * Output only. AutomationRolloutMetadata contains the information about the
+     * interactions between Automation service and this rollout.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.AutomationRolloutMetadata automation = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Deploy\V1\AutomationRolloutMetadata $var
+     * @return $this
+     */
+    public function setAutomation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\AutomationRolloutMetadata::class);
+        $this->automation = $var;
 
         return $this;
     }

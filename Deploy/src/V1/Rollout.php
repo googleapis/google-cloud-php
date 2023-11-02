@@ -17,9 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Rollout extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Name of the `Rollout`. Format is projects/{project}/
-     * locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     * releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}.
+     * Optional. Name of the `Rollout`. Format is
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -150,13 +149,25 @@ class Rollout extends \Google\Protobuf\Internal\Message
      */
     private $metadata = null;
     /**
-     * Output only. Name of the `ControllerRollout`. Format is projects/{project}/
-     * locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     * releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}.
+     * Output only. Name of the `ControllerRollout`. Format is
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}`.
      *
      * Generated from protobuf field <code>string controller_rollout = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $controller_rollout = '';
+    /**
+     * Output only. Name of the `Rollout` that is rolled back by this `Rollout`.
+     * Empty if this `Rollout` wasn't created as a rollback.
+     *
+     * Generated from protobuf field <code>string rollback_of_rollout = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $rollback_of_rollout = '';
+    /**
+     * Output only. Names of `Rollouts` that rolled back this `Rollout`.
+     *
+     * Generated from protobuf field <code>repeated string rolled_back_by_rollouts = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $rolled_back_by_rollouts;
 
     /**
      * Constructor.
@@ -165,9 +176,8 @@ class Rollout extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Optional. Name of the `Rollout`. Format is projects/{project}/
-     *           locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     *           releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}.
+     *           Optional. Name of the `Rollout`. Format is
+     *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}`.
      *     @type string $uid
      *           Output only. Unique identifier of the `Rollout`.
      *     @type string $description
@@ -222,9 +232,13 @@ class Rollout extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Deploy\V1\Metadata $metadata
      *           Output only. Metadata contains information about the rollout.
      *     @type string $controller_rollout
-     *           Output only. Name of the `ControllerRollout`. Format is projects/{project}/
-     *           locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     *           releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}.
+     *           Output only. Name of the `ControllerRollout`. Format is
+     *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}`.
+     *     @type string $rollback_of_rollout
+     *           Output only. Name of the `Rollout` that is rolled back by this `Rollout`.
+     *           Empty if this `Rollout` wasn't created as a rollback.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $rolled_back_by_rollouts
+     *           Output only. Names of `Rollouts` that rolled back this `Rollout`.
      * }
      */
     public function __construct($data = NULL) {
@@ -233,9 +247,8 @@ class Rollout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the `Rollout`. Format is projects/{project}/
-     * locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     * releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}.
+     * Optional. Name of the `Rollout`. Format is
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -246,9 +259,8 @@ class Rollout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the `Rollout`. Format is projects/{project}/
-     * locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     * releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}.
+     * Optional. Name of the `Rollout`. Format is
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -825,9 +837,8 @@ class Rollout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Name of the `ControllerRollout`. Format is projects/{project}/
-     * locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     * releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}.
+     * Output only. Name of the `ControllerRollout`. Format is
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}`.
      *
      * Generated from protobuf field <code>string controller_rollout = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -838,9 +849,8 @@ class Rollout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Name of the `ControllerRollout`. Format is projects/{project}/
-     * locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     * releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}.
+     * Output only. Name of the `ControllerRollout`. Format is
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}`.
      *
      * Generated from protobuf field <code>string controller_rollout = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -850,6 +860,60 @@ class Rollout extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->controller_rollout = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Name of the `Rollout` that is rolled back by this `Rollout`.
+     * Empty if this `Rollout` wasn't created as a rollback.
+     *
+     * Generated from protobuf field <code>string rollback_of_rollout = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getRollbackOfRollout()
+    {
+        return $this->rollback_of_rollout;
+    }
+
+    /**
+     * Output only. Name of the `Rollout` that is rolled back by this `Rollout`.
+     * Empty if this `Rollout` wasn't created as a rollback.
+     *
+     * Generated from protobuf field <code>string rollback_of_rollout = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRollbackOfRollout($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->rollback_of_rollout = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Names of `Rollouts` that rolled back this `Rollout`.
+     *
+     * Generated from protobuf field <code>repeated string rolled_back_by_rollouts = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getRolledBackByRollouts()
+    {
+        return $this->rolled_back_by_rollouts;
+    }
+
+    /**
+     * Output only. Names of `Rollouts` that rolled back this `Rollout`.
+     *
+     * Generated from protobuf field <code>repeated string rolled_back_by_rollouts = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setRolledBackByRollouts($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->rolled_back_by_rollouts = $arr;
 
         return $this;
     }

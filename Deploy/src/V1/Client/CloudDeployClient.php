@@ -41,16 +41,24 @@ use Google\Cloud\Deploy\V1\AdvanceRolloutRequest;
 use Google\Cloud\Deploy\V1\AdvanceRolloutResponse;
 use Google\Cloud\Deploy\V1\ApproveRolloutRequest;
 use Google\Cloud\Deploy\V1\ApproveRolloutResponse;
+use Google\Cloud\Deploy\V1\Automation;
+use Google\Cloud\Deploy\V1\AutomationRun;
+use Google\Cloud\Deploy\V1\CancelAutomationRunRequest;
+use Google\Cloud\Deploy\V1\CancelAutomationRunResponse;
 use Google\Cloud\Deploy\V1\CancelRolloutRequest;
 use Google\Cloud\Deploy\V1\CancelRolloutResponse;
 use Google\Cloud\Deploy\V1\Config;
+use Google\Cloud\Deploy\V1\CreateAutomationRequest;
 use Google\Cloud\Deploy\V1\CreateDeliveryPipelineRequest;
 use Google\Cloud\Deploy\V1\CreateReleaseRequest;
 use Google\Cloud\Deploy\V1\CreateRolloutRequest;
 use Google\Cloud\Deploy\V1\CreateTargetRequest;
+use Google\Cloud\Deploy\V1\DeleteAutomationRequest;
 use Google\Cloud\Deploy\V1\DeleteDeliveryPipelineRequest;
 use Google\Cloud\Deploy\V1\DeleteTargetRequest;
 use Google\Cloud\Deploy\V1\DeliveryPipeline;
+use Google\Cloud\Deploy\V1\GetAutomationRequest;
+use Google\Cloud\Deploy\V1\GetAutomationRunRequest;
 use Google\Cloud\Deploy\V1\GetConfigRequest;
 use Google\Cloud\Deploy\V1\GetDeliveryPipelineRequest;
 use Google\Cloud\Deploy\V1\GetJobRunRequest;
@@ -60,6 +68,8 @@ use Google\Cloud\Deploy\V1\GetTargetRequest;
 use Google\Cloud\Deploy\V1\IgnoreJobRequest;
 use Google\Cloud\Deploy\V1\IgnoreJobResponse;
 use Google\Cloud\Deploy\V1\JobRun;
+use Google\Cloud\Deploy\V1\ListAutomationRunsRequest;
+use Google\Cloud\Deploy\V1\ListAutomationsRequest;
 use Google\Cloud\Deploy\V1\ListDeliveryPipelinesRequest;
 use Google\Cloud\Deploy\V1\ListJobRunsRequest;
 use Google\Cloud\Deploy\V1\ListReleasesRequest;
@@ -68,10 +78,13 @@ use Google\Cloud\Deploy\V1\ListTargetsRequest;
 use Google\Cloud\Deploy\V1\Release;
 use Google\Cloud\Deploy\V1\RetryJobRequest;
 use Google\Cloud\Deploy\V1\RetryJobResponse;
+use Google\Cloud\Deploy\V1\RollbackTargetRequest;
+use Google\Cloud\Deploy\V1\RollbackTargetResponse;
 use Google\Cloud\Deploy\V1\Rollout;
 use Google\Cloud\Deploy\V1\Target;
 use Google\Cloud\Deploy\V1\TerminateJobRunRequest;
 use Google\Cloud\Deploy\V1\TerminateJobRunResponse;
+use Google\Cloud\Deploy\V1\UpdateAutomationRequest;
 use Google\Cloud\Deploy\V1\UpdateDeliveryPipelineRequest;
 use Google\Cloud\Deploy\V1\UpdateTargetRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -105,13 +118,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface abandonReleaseAsync(AbandonReleaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface advanceRolloutAsync(AdvanceRolloutRequest $request, array $optionalArgs = [])
  * @method PromiseInterface approveRolloutAsync(ApproveRolloutRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface cancelAutomationRunAsync(CancelAutomationRunRequest $request, array $optionalArgs = [])
  * @method PromiseInterface cancelRolloutAsync(CancelRolloutRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createAutomationAsync(CreateAutomationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createDeliveryPipelineAsync(CreateDeliveryPipelineRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createReleaseAsync(CreateReleaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createRolloutAsync(CreateRolloutRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createTargetAsync(CreateTargetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteAutomationAsync(DeleteAutomationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteDeliveryPipelineAsync(DeleteDeliveryPipelineRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteTargetAsync(DeleteTargetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getAutomationAsync(GetAutomationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getAutomationRunAsync(GetAutomationRunRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getConfigAsync(GetConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getDeliveryPipelineAsync(GetDeliveryPipelineRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getJobRunAsync(GetJobRunRequest $request, array $optionalArgs = [])
@@ -119,13 +137,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface getRolloutAsync(GetRolloutRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getTargetAsync(GetTargetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface ignoreJobAsync(IgnoreJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listAutomationRunsAsync(ListAutomationRunsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listAutomationsAsync(ListAutomationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listDeliveryPipelinesAsync(ListDeliveryPipelinesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listJobRunsAsync(ListJobRunsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listReleasesAsync(ListReleasesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listRolloutsAsync(ListRolloutsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listTargetsAsync(ListTargetsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface retryJobAsync(RetryJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface rollbackTargetAsync(RollbackTargetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface terminateJobRunAsync(TerminateJobRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateAutomationAsync(UpdateAutomationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateDeliveryPipelineAsync(UpdateDeliveryPipelineRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateTargetAsync(UpdateTargetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
@@ -207,6 +229,48 @@ final class CloudDeployClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a automation
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $deliveryPipeline
+     * @param string $automation
+     *
+     * @return string The formatted automation resource.
+     */
+    public static function automationName(string $project, string $location, string $deliveryPipeline, string $automation): string
+    {
+        return self::getPathTemplate('automation')->render([
+            'project' => $project,
+            'location' => $location,
+            'delivery_pipeline' => $deliveryPipeline,
+            'automation' => $automation,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * automation_run resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $deliveryPipeline
+     * @param string $automationRun
+     *
+     * @return string The formatted automation_run resource.
+     */
+    public static function automationRunName(string $project, string $location, string $deliveryPipeline, string $automationRun): string
+    {
+        return self::getPathTemplate('automationRun')->render([
+            'project' => $project,
+            'location' => $location,
+            'delivery_pipeline' => $deliveryPipeline,
+            'automation_run' => $automationRun,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a build
      * resource.
      *
@@ -277,6 +341,25 @@ final class CloudDeployClient
             'project' => $project,
             'location' => $location,
             'delivery_pipeline' => $deliveryPipeline,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a job
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $job
+     *
+     * @return string The formatted job resource.
+     */
+    public static function jobName(string $project, string $location, string $job): string
+    {
+        return self::getPathTemplate('job')->render([
+            'project' => $project,
+            'location' => $location,
+            'job' => $job,
         ]);
     }
 
@@ -446,10 +529,13 @@ final class CloudDeployClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - automation: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/automations/{automation}
+     * - automationRun: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/automationRuns/{automation_run}
      * - build: projects/{project}/locations/{location}/builds/{build}
      * - cluster: projects/{project}/locations/{location}/clusters/{cluster}
      * - config: projects/{project}/locations/{location}/config
      * - deliveryPipeline: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}
+     * - job: projects/{project}/locations/{location}/jobs/{job}
      * - jobRun: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/releases/{release}/rollouts/{rollout}/jobRuns/{job_run}
      * - location: projects/{project}/locations/{location}
      * - membership: projects/{project}/locations/{location}/memberships/{membership}
@@ -628,6 +714,35 @@ final class CloudDeployClient
     }
 
     /**
+     * Cancels an AutomationRun. The `state` of the `AutomationRun` after
+     * cancelling is `CANCELLED`. `CancelAutomationRun` can be called on
+     * AutomationRun in the state `IN_PROGRESS` and `PENDING`; AutomationRun
+     * in a different state returns an `FAILED_PRECONDITION` error.
+     *
+     * The async variant is {@see CloudDeployClient::cancelAutomationRunAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/cancel_automation_run.php
+     *
+     * @param CancelAutomationRunRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CancelAutomationRunResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function cancelAutomationRun(CancelAutomationRunRequest $request, array $callOptions = []): CancelAutomationRunResponse
+    {
+        return $this->startApiCall('CancelAutomationRun', $request, $callOptions)->wait();
+    }
+
+    /**
      * Cancels a Rollout in a given project and location.
      *
      * The async variant is {@see CloudDeployClient::cancelRolloutAsync()} .
@@ -651,6 +766,32 @@ final class CloudDeployClient
     public function cancelRollout(CancelRolloutRequest $request, array $callOptions = []): CancelRolloutResponse
     {
         return $this->startApiCall('CancelRollout', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new Automation in a given project and location.
+     *
+     * The async variant is {@see CloudDeployClient::createAutomationAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/create_automation.php
+     *
+     * @param CreateAutomationRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createAutomation(CreateAutomationRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateAutomation', $request, $callOptions)->wait();
     }
 
     /**
@@ -758,6 +899,32 @@ final class CloudDeployClient
     }
 
     /**
+     * Deletes a single Automation resource.
+     *
+     * The async variant is {@see CloudDeployClient::deleteAutomationAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/delete_automation.php
+     *
+     * @param DeleteAutomationRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteAutomation(DeleteAutomationRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteAutomation', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a single DeliveryPipeline.
      *
      * The async variant is {@see CloudDeployClient::deleteDeliveryPipelineAsync()} .
@@ -807,6 +974,58 @@ final class CloudDeployClient
     public function deleteTarget(DeleteTargetRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteTarget', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single Automation.
+     *
+     * The async variant is {@see CloudDeployClient::getAutomationAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/get_automation.php
+     *
+     * @param GetAutomationRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Automation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAutomation(GetAutomationRequest $request, array $callOptions = []): Automation
+    {
+        return $this->startApiCall('GetAutomation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single AutomationRun.
+     *
+     * The async variant is {@see CloudDeployClient::getAutomationRunAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/get_automation_run.php
+     *
+     * @param GetAutomationRunRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AutomationRun
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAutomationRun(GetAutomationRunRequest $request, array $callOptions = []): AutomationRun
+    {
+        return $this->startApiCall('GetAutomationRun', $request, $callOptions)->wait();
     }
 
     /**
@@ -992,6 +1211,58 @@ final class CloudDeployClient
     }
 
     /**
+     * Lists AutomationRuns in a given project and location.
+     *
+     * The async variant is {@see CloudDeployClient::listAutomationRunsAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/list_automation_runs.php
+     *
+     * @param ListAutomationRunsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listAutomationRuns(ListAutomationRunsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListAutomationRuns', $request, $callOptions);
+    }
+
+    /**
+     * Lists Automations in a given project and location.
+     *
+     * The async variant is {@see CloudDeployClient::listAutomationsAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/list_automations.php
+     *
+     * @param ListAutomationsRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listAutomations(ListAutomationsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListAutomations', $request, $callOptions);
+    }
+
+    /**
      * Lists DeliveryPipelines in a given project and location.
      *
      * The async variant is {@see CloudDeployClient::listDeliveryPipelinesAsync()} .
@@ -1148,6 +1419,32 @@ final class CloudDeployClient
     }
 
     /**
+     * Creates a `Rollout` to roll back the specified target.
+     *
+     * The async variant is {@see CloudDeployClient::rollbackTargetAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/rollback_target.php
+     *
+     * @param RollbackTargetRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RollbackTargetResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function rollbackTarget(RollbackTargetRequest $request, array $callOptions = []): RollbackTargetResponse
+    {
+        return $this->startApiCall('RollbackTarget', $request, $callOptions)->wait();
+    }
+
+    /**
      * Terminates a Job Run in a given project and location.
      *
      * The async variant is {@see CloudDeployClient::terminateJobRunAsync()} .
@@ -1171,6 +1468,32 @@ final class CloudDeployClient
     public function terminateJobRun(TerminateJobRunRequest $request, array $callOptions = []): TerminateJobRunResponse
     {
         return $this->startApiCall('TerminateJobRun', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the parameters of a single Automation resource.
+     *
+     * The async variant is {@see CloudDeployClient::updateAutomationAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/update_automation.php
+     *
+     * @param UpdateAutomationRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateAutomation(UpdateAutomationRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateAutomation', $request, $callOptions)->wait();
     }
 
     /**

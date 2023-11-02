@@ -18,7 +18,7 @@ class CloudRunRenderMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The name of the Cloud Run Service in the rendered manifest.
-     * Format is projects/{project}/locations/{location}/services/{service}.
+     * Format is `projects/{project}/locations/{location}/services/{service}`.
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -32,7 +32,7 @@ class CloudRunRenderMetadata extends \Google\Protobuf\Internal\Message
      *
      *     @type string $service
      *           Output only. The name of the Cloud Run Service in the rendered manifest.
-     *           Format is projects/{project}/locations/{location}/services/{service}.
+     *           Format is `projects/{project}/locations/{location}/services/{service}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -42,7 +42,7 @@ class CloudRunRenderMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The name of the Cloud Run Service in the rendered manifest.
-     * Format is projects/{project}/locations/{location}/services/{service}.
+     * Format is `projects/{project}/locations/{location}/services/{service}`.
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -54,7 +54,7 @@ class CloudRunRenderMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The name of the Cloud Run Service in the rendered manifest.
-     * Format is projects/{project}/locations/{location}/services/{service}.
+     * Format is `projects/{project}/locations/{location}/services/{service}`.
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var

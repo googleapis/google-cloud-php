@@ -42,16 +42,24 @@ use Google\Cloud\Deploy\V1\AdvanceRolloutRequest;
 use Google\Cloud\Deploy\V1\AdvanceRolloutResponse;
 use Google\Cloud\Deploy\V1\ApproveRolloutRequest;
 use Google\Cloud\Deploy\V1\ApproveRolloutResponse;
+use Google\Cloud\Deploy\V1\Automation;
+use Google\Cloud\Deploy\V1\AutomationRun;
+use Google\Cloud\Deploy\V1\CancelAutomationRunRequest;
+use Google\Cloud\Deploy\V1\CancelAutomationRunResponse;
 use Google\Cloud\Deploy\V1\CancelRolloutRequest;
 use Google\Cloud\Deploy\V1\CancelRolloutResponse;
 use Google\Cloud\Deploy\V1\Config;
+use Google\Cloud\Deploy\V1\CreateAutomationRequest;
 use Google\Cloud\Deploy\V1\CreateDeliveryPipelineRequest;
 use Google\Cloud\Deploy\V1\CreateReleaseRequest;
 use Google\Cloud\Deploy\V1\CreateRolloutRequest;
 use Google\Cloud\Deploy\V1\CreateTargetRequest;
+use Google\Cloud\Deploy\V1\DeleteAutomationRequest;
 use Google\Cloud\Deploy\V1\DeleteDeliveryPipelineRequest;
 use Google\Cloud\Deploy\V1\DeleteTargetRequest;
 use Google\Cloud\Deploy\V1\DeliveryPipeline;
+use Google\Cloud\Deploy\V1\GetAutomationRequest;
+use Google\Cloud\Deploy\V1\GetAutomationRunRequest;
 use Google\Cloud\Deploy\V1\GetConfigRequest;
 use Google\Cloud\Deploy\V1\GetDeliveryPipelineRequest;
 use Google\Cloud\Deploy\V1\GetJobRunRequest;
@@ -61,6 +69,10 @@ use Google\Cloud\Deploy\V1\GetTargetRequest;
 use Google\Cloud\Deploy\V1\IgnoreJobRequest;
 use Google\Cloud\Deploy\V1\IgnoreJobResponse;
 use Google\Cloud\Deploy\V1\JobRun;
+use Google\Cloud\Deploy\V1\ListAutomationRunsRequest;
+use Google\Cloud\Deploy\V1\ListAutomationRunsResponse;
+use Google\Cloud\Deploy\V1\ListAutomationsRequest;
+use Google\Cloud\Deploy\V1\ListAutomationsResponse;
 use Google\Cloud\Deploy\V1\ListDeliveryPipelinesRequest;
 use Google\Cloud\Deploy\V1\ListDeliveryPipelinesResponse;
 use Google\Cloud\Deploy\V1\ListJobRunsRequest;
@@ -74,10 +86,14 @@ use Google\Cloud\Deploy\V1\ListTargetsResponse;
 use Google\Cloud\Deploy\V1\Release;
 use Google\Cloud\Deploy\V1\RetryJobRequest;
 use Google\Cloud\Deploy\V1\RetryJobResponse;
+use Google\Cloud\Deploy\V1\RollbackTargetConfig;
+use Google\Cloud\Deploy\V1\RollbackTargetRequest;
+use Google\Cloud\Deploy\V1\RollbackTargetResponse;
 use Google\Cloud\Deploy\V1\Rollout;
 use Google\Cloud\Deploy\V1\Target;
 use Google\Cloud\Deploy\V1\TerminateJobRunRequest;
 use Google\Cloud\Deploy\V1\TerminateJobRunResponse;
+use Google\Cloud\Deploy\V1\UpdateAutomationRequest;
 use Google\Cloud\Deploy\V1\UpdateDeliveryPipelineRequest;
 use Google\Cloud\Deploy\V1\UpdateTargetRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -139,6 +155,10 @@ class CloudDeployGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $automationNameTemplate;
+
+    private static $automationRunNameTemplate;
+
     private static $buildNameTemplate;
 
     private static $clusterNameTemplate;
@@ -146,6 +166,8 @@ class CloudDeployGapicClient
     private static $configNameTemplate;
 
     private static $deliveryPipelineNameTemplate;
+
+    private static $jobNameTemplate;
 
     private static $jobRunNameTemplate;
 
@@ -192,6 +214,28 @@ class CloudDeployGapicClient
         ];
     }
 
+    private static function getAutomationNameTemplate()
+    {
+        if (self::$automationNameTemplate == null) {
+            self::$automationNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/automations/{automation}'
+            );
+        }
+
+        return self::$automationNameTemplate;
+    }
+
+    private static function getAutomationRunNameTemplate()
+    {
+        if (self::$automationRunNameTemplate == null) {
+            self::$automationRunNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/automationRuns/{automation_run}'
+            );
+        }
+
+        return self::$automationRunNameTemplate;
+    }
+
     private static function getBuildNameTemplate()
     {
         if (self::$buildNameTemplate == null) {
@@ -234,6 +278,17 @@ class CloudDeployGapicClient
         }
 
         return self::$deliveryPipelineNameTemplate;
+    }
+
+    private static function getJobNameTemplate()
+    {
+        if (self::$jobNameTemplate == null) {
+            self::$jobNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/jobs/{job}'
+            );
+        }
+
+        return self::$jobNameTemplate;
     }
 
     private static function getJobRunNameTemplate()
@@ -328,10 +383,13 @@ class CloudDeployGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'automation' => self::getAutomationNameTemplate(),
+                'automationRun' => self::getAutomationRunNameTemplate(),
                 'build' => self::getBuildNameTemplate(),
                 'cluster' => self::getClusterNameTemplate(),
                 'config' => self::getConfigNameTemplate(),
                 'deliveryPipeline' => self::getDeliveryPipelineNameTemplate(),
+                'job' => self::getJobNameTemplate(),
                 'jobRun' => self::getJobRunNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'membership' => self::getMembershipNameTemplate(),
@@ -344,6 +402,56 @@ class CloudDeployGapicClient
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a automation
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $deliveryPipeline
+     * @param string $automation
+     *
+     * @return string The formatted automation resource.
+     */
+    public static function automationName(
+        $project,
+        $location,
+        $deliveryPipeline,
+        $automation
+    ) {
+        return self::getAutomationNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'delivery_pipeline' => $deliveryPipeline,
+            'automation' => $automation,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * automation_run resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $deliveryPipeline
+     * @param string $automationRun
+     *
+     * @return string The formatted automation_run resource.
+     */
+    public static function automationRunName(
+        $project,
+        $location,
+        $deliveryPipeline,
+        $automationRun
+    ) {
+        return self::getAutomationRunNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'delivery_pipeline' => $deliveryPipeline,
+            'automation_run' => $automationRun,
+        ]);
     }
 
     /**
@@ -420,6 +528,25 @@ class CloudDeployGapicClient
             'project' => $project,
             'location' => $location,
             'delivery_pipeline' => $deliveryPipeline,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a job
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $job
+     *
+     * @return string The formatted job resource.
+     */
+    public static function jobName($project, $location, $job)
+    {
+        return self::getJobNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'job' => $job,
         ]);
     }
 
@@ -604,10 +731,13 @@ class CloudDeployGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - automation: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/automations/{automation}
+     * - automationRun: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/automationRuns/{automation_run}
      * - build: projects/{project}/locations/{location}/builds/{build}
      * - cluster: projects/{project}/locations/{location}/clusters/{cluster}
      * - config: projects/{project}/locations/{location}/config
      * - deliveryPipeline: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}
+     * - job: projects/{project}/locations/{location}/jobs/{job}
      * - jobRun: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/releases/{release}/rollouts/{rollout}/jobRuns/{job_run}
      * - location: projects/{project}/locations/{location}
      * - membership: projects/{project}/locations/{location}/memberships/{membership}
@@ -767,8 +897,7 @@ class CloudDeployGapicClient
      * ```
      *
      * @param string $name         Required. Name of the Release. Format is
-     *                             projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     *                             releases/{release}.
+     *                             `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -818,8 +947,7 @@ class CloudDeployGapicClient
      * ```
      *
      * @param string $name         Required. Name of the Rollout. Format is
-     *                             projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     *                             releases/{release}/rollouts/{rollout}.
+     *                             `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      * @param string $phaseId      Required. The phase ID to advance the `Rollout` to.
      * @param array  $optionalArgs {
      *     Optional.
@@ -871,8 +999,7 @@ class CloudDeployGapicClient
      * ```
      *
      * @param string $name         Required. Name of the Rollout. Format is
-     *                             projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     *                             releases/{release}/rollouts/{rollout}.
+     *                             `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      * @param bool   $approved     Required. True = approve; false = reject
      * @param array  $optionalArgs {
      *     Optional.
@@ -909,6 +1036,58 @@ class CloudDeployGapicClient
     }
 
     /**
+     * Cancels an AutomationRun. The `state` of the `AutomationRun` after
+     * cancelling is `CANCELLED`. `CancelAutomationRun` can be called on
+     * AutomationRun in the state `IN_PROGRESS` and `PENDING`; AutomationRun
+     * in a different state returns an `FAILED_PRECONDITION` error.
+     *
+     * Sample code:
+     * ```
+     * $cloudDeployClient = new CloudDeployClient();
+     * try {
+     *     $formattedName = $cloudDeployClient->automationRunName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[AUTOMATION_RUN]');
+     *     $response = $cloudDeployClient->cancelAutomationRun($formattedName);
+     * } finally {
+     *     $cloudDeployClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the `AutomationRun`. Format is
+     *                             `projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/automationRuns/{automation_run}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Deploy\V1\CancelAutomationRunResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function cancelAutomationRun($name, array $optionalArgs = [])
+    {
+        $request = new CancelAutomationRunRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CancelAutomationRun',
+            CancelAutomationRunResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Cancels a Rollout in a given project and location.
      *
      * Sample code:
@@ -923,8 +1102,7 @@ class CloudDeployGapicClient
      * ```
      *
      * @param string $name         Required. Name of the Rollout. Format is
-     *                             projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     *                             releases/{release}/rollouts/{rollout}.
+     *                             `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -955,6 +1133,116 @@ class CloudDeployGapicClient
             CancelRolloutResponse::class,
             $optionalArgs,
             $request
+        )->wait();
+    }
+
+    /**
+     * Creates a new Automation in a given project and location.
+     *
+     * Sample code:
+     * ```
+     * $cloudDeployClient = new CloudDeployClient();
+     * try {
+     *     $formattedParent = $cloudDeployClient->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
+     *     $automationId = 'automation_id';
+     *     $automation = new Automation();
+     *     $operationResponse = $cloudDeployClient->createAutomation($formattedParent, $automationId, $automation);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $cloudDeployClient->createAutomation($formattedParent, $automationId, $automation);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $cloudDeployClient->resumeOperation($operationName, 'createAutomation');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $cloudDeployClient->close();
+     * }
+     * ```
+     *
+     * @param string     $parent       Required. The parent collection in which the `Automation` should be
+     *                                 created. Format should be
+     *                                 `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
+     * @param string     $automationId Required. ID of the `Automation`.
+     * @param Automation $automation   Required. The `Automation` to create.
+     * @param array      $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server will guarantee
+     *           that for at least 60 minutes since the first request.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request ID,
+     *           the server can check if original operation with the same request ID was
+     *           received, and if so, will ignore the second request. This prevents clients
+     *           from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type bool $validateOnly
+     *           Optional. If set to true, the request is validated and the user is provided
+     *           with an expected result, but no actual change is made.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createAutomation(
+        $parent,
+        $automationId,
+        $automation,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateAutomationRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setAutomationId($automationId);
+        $request->setAutomation($automation);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CreateAutomation',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 
@@ -1000,7 +1288,8 @@ class CloudDeployGapicClient
      * ```
      *
      * @param string           $parent             Required. The parent collection in which the `DeliveryPipeline` should be
-     *                                             created. Format should be projects/{project_id}/locations/{location_name}.
+     *                                             created. Format should be
+     *                                             `projects/{project_id}/locations/{location_name}`.
      * @param string           $deliveryPipelineId Required. ID of the `DeliveryPipeline`.
      * @param DeliveryPipeline $deliveryPipeline   Required. The `DeliveryPipeline` to create.
      * @param array            $optionalArgs       {
@@ -1110,7 +1399,7 @@ class CloudDeployGapicClient
      *
      * @param string  $parent       Required. The parent collection in which the `Release` should be created.
      *                              Format should be
-     *                              projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}.
+     *                              `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      * @param string  $releaseId    Required. ID of the `Release`.
      * @param Release $release      Required. The `Release` to create.
      * @param array   $optionalArgs {
@@ -1220,7 +1509,7 @@ class CloudDeployGapicClient
      *
      * @param string  $parent       Required. The parent collection in which the `Rollout` should be created.
      *                              Format should be
-     *                              projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}.
+     *                              `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}`.
      * @param string  $rolloutId    Required. ID of the `Rollout`.
      * @param Rollout $rollout      Required. The `Rollout` to create.
      * @param array   $optionalArgs {
@@ -1337,7 +1626,7 @@ class CloudDeployGapicClient
      *
      * @param string $parent       Required. The parent collection in which the `Target` should be created.
      *                             Format should be
-     *                             projects/{project_id}/locations/{location_name}.
+     *                             `projects/{project_id}/locations/{location_name}`.
      * @param string $targetId     Required. ID of the `Target`.
      * @param Target $target       Required. The `Target` to create.
      * @param array  $optionalArgs {
@@ -1405,6 +1694,119 @@ class CloudDeployGapicClient
     }
 
     /**
+     * Deletes a single Automation resource.
+     *
+     * Sample code:
+     * ```
+     * $cloudDeployClient = new CloudDeployClient();
+     * try {
+     *     $formattedName = $cloudDeployClient->automationName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[AUTOMATION]');
+     *     $operationResponse = $cloudDeployClient->deleteAutomation($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $cloudDeployClient->deleteAutomation($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $cloudDeployClient->resumeOperation($operationName, 'deleteAutomation');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $cloudDeployClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the `Automation` to delete. Format should be
+     *                             `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/automations/{automation_name}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server will guarantee
+     *           that for at least 60 minutes after the first request.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request ID,
+     *           the server can check if original operation with the same request ID was
+     *           received, and if so, will ignore the second request. This prevents clients
+     *           from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type bool $allowMissing
+     *           Optional. If set to true, then deleting an already deleted or non-existing
+     *           `Automation` will succeed.
+     *     @type bool $validateOnly
+     *           Optional. If set, validate the request and verify whether the resource
+     *           exists, but do not actually post it.
+     *     @type string $etag
+     *           Optional. The weak etag of the request.
+     *           This checksum is computed by the server based on the value of other
+     *           fields, and may be sent on update and delete requests to ensure the
+     *           client has an up-to-date value before proceeding.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteAutomation($name, array $optionalArgs = [])
+    {
+        $request = new DeleteAutomationRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['allowMissing'])) {
+            $request->setAllowMissing($optionalArgs['allowMissing']);
+        }
+
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        if (isset($optionalArgs['etag'])) {
+            $request->setEtag($optionalArgs['etag']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteAutomation',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Deletes a single DeliveryPipeline.
      *
      * Sample code:
@@ -1442,7 +1844,7 @@ class CloudDeployGapicClient
      * ```
      *
      * @param string $name         Required. The name of the `DeliveryPipeline` to delete. Format should be
-     *                             projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}.
+     *                             `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1562,7 +1964,7 @@ class CloudDeployGapicClient
      * ```
      *
      * @param string $name         Required. The name of the `Target` to delete. Format should be
-     *                             projects/{project_id}/locations/{location_name}/targets/{target_name}.
+     *                             `projects/{project_id}/locations/{location_name}/targets/{target_name}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1637,6 +2039,104 @@ class CloudDeployGapicClient
     }
 
     /**
+     * Gets details of a single Automation.
+     *
+     * Sample code:
+     * ```
+     * $cloudDeployClient = new CloudDeployClient();
+     * try {
+     *     $formattedName = $cloudDeployClient->automationName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[AUTOMATION]');
+     *     $response = $cloudDeployClient->getAutomation($formattedName);
+     * } finally {
+     *     $cloudDeployClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the `Automation`. Format must be
+     *                             `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/automations/{automation_name}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Deploy\V1\Automation
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getAutomation($name, array $optionalArgs = [])
+    {
+        $request = new GetAutomationRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetAutomation',
+            Automation::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets details of a single AutomationRun.
+     *
+     * Sample code:
+     * ```
+     * $cloudDeployClient = new CloudDeployClient();
+     * try {
+     *     $formattedName = $cloudDeployClient->automationRunName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[AUTOMATION_RUN]');
+     *     $response = $cloudDeployClient->getAutomationRun($formattedName);
+     * } finally {
+     *     $cloudDeployClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the `AutomationRun`. Format must be
+     *                             `projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/automationRuns/{automation_run}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Deploy\V1\AutomationRun
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getAutomationRun($name, array $optionalArgs = [])
+    {
+        $request = new GetAutomationRunRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetAutomationRun',
+            AutomationRun::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Gets the configuration for a location.
      *
      * Sample code:
@@ -1699,7 +2199,7 @@ class CloudDeployGapicClient
      * ```
      *
      * @param string $name         Required. Name of the `DeliveryPipeline`. Format must be
-     *                             projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}.
+     *                             `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1748,7 +2248,7 @@ class CloudDeployGapicClient
      * ```
      *
      * @param string $name         Required. Name of the `JobRun`. Format must be
-     *                             projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}/rollouts/{rollout_name}/jobRuns/{job_run_name}.
+     *                             `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}/rollouts/{rollout_name}/jobRuns/{job_run_name}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1797,7 +2297,7 @@ class CloudDeployGapicClient
      * ```
      *
      * @param string $name         Required. Name of the `Release`. Format must be
-     *                             projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}.
+     *                             `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1846,7 +2346,7 @@ class CloudDeployGapicClient
      * ```
      *
      * @param string $name         Required. Name of the `Rollout`. Format must be
-     *                             projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}/rollouts/{rollout_name}.
+     *                             `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}/rollouts/{rollout_name}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1895,7 +2395,7 @@ class CloudDeployGapicClient
      * ```
      *
      * @param string $name         Required. Name of the `Target`. Format must be
-     *                             projects/{project_id}/locations/{location_name}/targets/{target_name}.
+     *                             `projects/{project_id}/locations/{location_name}/targets/{target_name}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1946,8 +2446,7 @@ class CloudDeployGapicClient
      * ```
      *
      * @param string $rollout      Required. Name of the Rollout. Format is
-     *                             projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     *                             releases/{release}/rollouts/{rollout}.
+     *                             `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      * @param string $phaseId      Required. The phase ID the Job to ignore belongs to.
      * @param string $jobId        Required. The job ID for the Job to ignore.
      * @param array  $optionalArgs {
@@ -1990,6 +2489,190 @@ class CloudDeployGapicClient
     }
 
     /**
+     * Lists AutomationRuns in a given project and location.
+     *
+     * Sample code:
+     * ```
+     * $cloudDeployClient = new CloudDeployClient();
+     * try {
+     *     $formattedParent = $cloudDeployClient->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $cloudDeployClient->listAutomationRuns($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $cloudDeployClient->listAutomationRuns($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $cloudDeployClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent, which owns this collection of automationRuns. Format
+     *                             must be
+     *                             `projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           Filter automationRuns to be returned. All fields can be used in the
+     *           filter.
+     *     @type string $orderBy
+     *           Field to sort by.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listAutomationRuns($parent, array $optionalArgs = [])
+    {
+        $request = new ListAutomationRunsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListAutomationRuns',
+            $optionalArgs,
+            ListAutomationRunsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists Automations in a given project and location.
+     *
+     * Sample code:
+     * ```
+     * $cloudDeployClient = new CloudDeployClient();
+     * try {
+     *     $formattedParent = $cloudDeployClient->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $cloudDeployClient->listAutomations($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $cloudDeployClient->listAutomations($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $cloudDeployClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent, which owns this collection of automations. Format
+     *                             must be
+     *                             `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           Filter automations to be returned. All fields can be used in the
+     *           filter.
+     *     @type string $orderBy
+     *           Field to sort by.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listAutomations($parent, array $optionalArgs = [])
+    {
+        $request = new ListAutomationsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListAutomations',
+            $optionalArgs,
+            ListAutomationsResponse::class,
+            $request
+        );
+    }
+
+    /**
      * Lists DeliveryPipelines in a given project and location.
      *
      * Sample code:
@@ -2016,7 +2699,7 @@ class CloudDeployGapicClient
      * ```
      *
      * @param string $parent       Required. The parent, which owns this collection of pipelines. Format must
-     *                             be projects/{project_id}/locations/{location_name}.
+     *                             be `projects/{project_id}/locations/{location_name}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2381,7 +3064,7 @@ class CloudDeployGapicClient
      * ```
      *
      * @param string $parent       Required. The parent, which owns this collection of targets. Format must be
-     *                             projects/{project_id}/locations/{location_name}.
+     *                             `projects/{project_id}/locations/{location_name}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2463,8 +3146,7 @@ class CloudDeployGapicClient
      * ```
      *
      * @param string $rollout      Required. Name of the Rollout. Format is
-     *                             projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     *                             releases/{release}/rollouts/{rollout}.
+     *                             `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      * @param string $phaseId      Required. The phase ID the Job to retry belongs to.
      * @param string $jobId        Required. The job ID for the Job to retry.
      * @param array  $optionalArgs {
@@ -2507,6 +3189,94 @@ class CloudDeployGapicClient
     }
 
     /**
+     * Creates a `Rollout` to roll back the specified target.
+     *
+     * Sample code:
+     * ```
+     * $cloudDeployClient = new CloudDeployClient();
+     * try {
+     *     $formattedName = $cloudDeployClient->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
+     *     $targetId = 'target_id';
+     *     $rolloutId = 'rollout_id';
+     *     $response = $cloudDeployClient->rollbackTarget($formattedName, $targetId, $rolloutId);
+     * } finally {
+     *     $cloudDeployClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The `DeliveryPipeline` for which the rollback `Rollout` should be
+     *                             created. Format should be
+     *                             `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
+     * @param string $targetId     Required. ID of the `Target` that is being rolled back.
+     * @param string $rolloutId    Required. ID of the rollback `Rollout` to create.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $releaseId
+     *           Optional. ID of the `Release` to roll back to. If this isn't specified, the
+     *           previous successful `Rollout` to the specified target will be used to
+     *           determine the `Release`.
+     *     @type string $rolloutToRollBack
+     *           Optional. If provided, this must be the latest `Rollout` that is on the
+     *           `Target`.
+     *     @type RollbackTargetConfig $rollbackConfig
+     *           Optional. Configs for the rollback `Rollout`.
+     *     @type bool $validateOnly
+     *           Optional. If set to true, the request is validated and the user is provided
+     *           with a `RollbackTargetResponse`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Deploy\V1\RollbackTargetResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function rollbackTarget(
+        $name,
+        $targetId,
+        $rolloutId,
+        array $optionalArgs = []
+    ) {
+        $request = new RollbackTargetRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setTargetId($targetId);
+        $request->setRolloutId($rolloutId);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['releaseId'])) {
+            $request->setReleaseId($optionalArgs['releaseId']);
+        }
+
+        if (isset($optionalArgs['rolloutToRollBack'])) {
+            $request->setRolloutToRollBack($optionalArgs['rolloutToRollBack']);
+        }
+
+        if (isset($optionalArgs['rollbackConfig'])) {
+            $request->setRollbackConfig($optionalArgs['rollbackConfig']);
+        }
+
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'RollbackTarget',
+            RollbackTargetResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Terminates a Job Run in a given project and location.
      *
      * Sample code:
@@ -2521,8 +3291,7 @@ class CloudDeployGapicClient
      * ```
      *
      * @param string $name         Required. Name of the `JobRun`. Format must be
-     *                             projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     *                             releases/{release}/rollouts/{rollout}/jobRuns/{jobRun}.
+     *                             `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}/jobRuns/{jobRun}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2553,6 +3322,121 @@ class CloudDeployGapicClient
             TerminateJobRunResponse::class,
             $optionalArgs,
             $request
+        )->wait();
+    }
+
+    /**
+     * Updates the parameters of a single Automation resource.
+     *
+     * Sample code:
+     * ```
+     * $cloudDeployClient = new CloudDeployClient();
+     * try {
+     *     $updateMask = new FieldMask();
+     *     $automation = new Automation();
+     *     $operationResponse = $cloudDeployClient->updateAutomation($updateMask, $automation);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $cloudDeployClient->updateAutomation($updateMask, $automation);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $cloudDeployClient->resumeOperation($operationName, 'updateAutomation');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $cloudDeployClient->close();
+     * }
+     * ```
+     *
+     * @param FieldMask  $updateMask   Required. Field mask is used to specify the fields to be overwritten in the
+     *                                 `Automation` resource by the update.
+     *                                 The fields specified in the update_mask are relative to the resource, not
+     *                                 the full request. A field will be overwritten if it is in the mask. If the
+     *                                 user does not provide a mask then all fields will be overwritten.
+     * @param Automation $automation   Required. The `Automation` to update.
+     * @param array      $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server will guarantee
+     *           that for at least 60 minutes since the first request.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request ID,
+     *           the server can check if original operation with the same request ID was
+     *           received, and if so, will ignore the second request. This prevents clients
+     *           from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type bool $allowMissing
+     *           Optional. If set to true, updating a `Automation` that does not exist will
+     *           result in the creation of a new `Automation`.
+     *     @type bool $validateOnly
+     *           Optional. If set to true, the request is validated and the user is provided
+     *           with an expected result, but no actual change is made.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateAutomation(
+        $updateMask,
+        $automation,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdateAutomationRequest();
+        $requestParamHeaders = [];
+        $request->setUpdateMask($updateMask);
+        $request->setAutomation($automation);
+        $requestParamHeaders['automation.name'] = $automation->getName();
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['allowMissing'])) {
+            $request->setAllowMissing($optionalArgs['allowMissing']);
+        }
+
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdateAutomation',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 
