@@ -2,7 +2,6 @@
     "name": "google/cloud",
     "type": "library",
     "description": "Google Cloud Client Library",
-    "abandoned": true,
     "keywords": [
         "google apis client",
         "google api client",
