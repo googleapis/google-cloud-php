@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ $# -lt 2 ]]; then
+    echo "Usage: bump-dep.sh <package> <version>"
+    exit 1
+fi
+
 set -ev
 
 # This script expects to be run from the google-cloud-php root.
@@ -13,4 +18,4 @@ dep=$(echo $1 | sed 's/\//\\\//g')
 
 find . -maxdepth 2 -name composer.json \
      -not -path "./vendor/*" \
-     -exec sed -i "s/$dep[\"']: [\"']\^[0-9]\+\.[0-9]\+\(\.[0-9]\+\)\?[\"']/$dep\": \"\^$2\"/" "{}" \;
+     -exec sed -i '' "s/$dep[\"']: [\"']\^[0-9]\+\.[0-9]\+\(\.[0-9]\+\)\?[\"']/$dep\": \"\^$2\"/" "{}" \;

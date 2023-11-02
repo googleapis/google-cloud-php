@@ -51,7 +51,7 @@
         "monolog/monolog": "^2.0||^3.0",
         "psr/http-message": "^1.0|^2.0",
         "ramsey/uuid": "^4.0",
-        "google/gax": "^1.24.0",
+        "google/gax": "dev-main",
         "google/common-protos": "^4.0",
         "google/auth": "^1.18"
     },
@@ -327,10 +327,7 @@
             "GPBMetadata\\Google\\Cloud\\Notebooks\\": "Notebooks/metadata",
             "GPBMetadata\\Google\\Cloud\\Optimization\\": "Optimization/metadata",
             "GPBMetadata\\Google\\Cloud\\Orchestration\\Airflow\\Service\\": "OrchestrationAirflow/metadata",
-            "GPBMetadata\\Google\\Cloud\\Orgpolicy\\": [
-                "OrgPolicy/metadata",
-                "Asset/external/metadata/Cloud/Orgpolicy"
-            ],
+            "GPBMetadata\\Google\\Cloud\\Orgpolicy\\": "OrgPolicy/metadata",
             "GPBMetadata\\Google\\Cloud\\Osconfig\\": "OsConfig/metadata",
             "GPBMetadata\\Google\\Cloud\\Oslogin\\": "OsLogin/metadata",
             "GPBMetadata\\Google\\Cloud\\Policysimulator\\": "PolicySimulator/metadata",
@@ -509,10 +506,7 @@
             "Google\\Cloud\\Notebooks\\": "Notebooks/src",
             "Google\\Cloud\\Optimization\\": "Optimization/src",
             "Google\\Cloud\\Orchestration\\Airflow\\Service\\": "OrchestrationAirflow/src",
-            "Google\\Cloud\\OrgPolicy\\": [
-                "OrgPolicy/src",
-                "Asset/external/protos/Cloud/OrgPolicy"
-            ],
+            "Google\\Cloud\\OrgPolicy\\": "OrgPolicy/src",
             "Google\\Cloud\\OsConfig\\": "OsConfig/src",
             "Google\\Cloud\\OsLogin\\": "OsLogin/src",
             "Google\\Cloud\\PolicySimulator\\": "PolicySimulator/src",
