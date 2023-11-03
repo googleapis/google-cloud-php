@@ -1037,14 +1037,14 @@ class Query
             }
         }
 
-        if ((is_float($value) && is_nan($value)) || is_null($value)) {
+        if (is_null($value) || (is_float($value) && is_nan($value))) {
             if ($operator !== FieldFilterOperator::EQUAL) {
                 throw new \InvalidArgumentException('Null and NaN are allowed only with operator EQUALS.');
             }
 
-            $unaryOperator = is_nan($value)
-                ? self::OP_NAN
-                : self::OP_NULL;
+            $unaryOperator = is_null($value)
+                ? self::OP_NULL
+                : self::OP_NAN;
 
             $filter = [
                 'unaryFilter' => [

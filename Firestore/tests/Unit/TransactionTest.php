@@ -50,7 +50,7 @@ class TransactionTest extends TestCase
     private $connection;
     private $valueMapper;
     private $transaction;
-    private $reference;
+    private $ref;
 
     public function setUp(): void
     {
