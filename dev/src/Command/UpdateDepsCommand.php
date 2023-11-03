@@ -41,7 +41,8 @@ class UpdateDepsCommand extends Command
             ->addArgument('version', InputArgument::OPTIONAL, 'Package version to update to, e.g. "1.4.0"', '')
             ->addOption('bump', '', InputOption::VALUE_NONE, 'Bump to latest version of the package')
             ->addOption('add', '', InputOption::VALUE_NONE, 'Adds the dep if it doesn\'t exist')
-            ->addOption('dev', '', InputOption::VALUE_NONE, 'Updated the dep in "require-dev"')
+            ->addOption('add-dev', '', InputOption::VALUE_NONE, 'Adds the dep to dev if it doesn\'t exist')
+            ->addOption('local', '', InputOption::VALUE_NONE, 'Add a link to the local component')
         ;
     }
 
@@ -59,24 +60,62 @@ class UpdateDepsCommand extends Command
             throw new \InvalidArgumentException('You cannot supply both a package version and the --bump flag');
         }
 
+        if ($input->getOption('add') && $this->getOption('add-dev')) {
+            throw new \InvalidArgumentException('You cannot supply both --add and --add-dev');
+        }
+
         $projectRoot = realpath(__DIR__ . '/../../../');
         $result = (new Finder())->files()->in($projectRoot)->depth('<= 1')->name('composer.json');
         $paths = array_map(fn ($file) => $file->getRelativePathname(), iterator_to_array($result));
         sort($paths);
-        $require = $input->getOption('dev') ? 'require-dev' : 'require';
+
+        $componentPath = $input->getOption('local') ? $this->getComponentName($paths, $package) : null;
+        $updateCount = 0;
         foreach ($paths as $path) {
             $composerJson = json_decode(file_get_contents($projectRoot . '/' . $path), true);
-            if (!isset($composerJson[$require][$package])) {
-                if (!$input->getOption('add')) {
+            if (isset($composerJson['require'][$package])) {
+                $require = 'require';
+            } elseif (isset($composerJson['require-dev'][$package])) {
+                $require = 'require-dev';
+            } else {
+                // Set a default "require" using "add" and "add-dev" options if it doesn't exist
+                $require = $input->getOption('add') ? 'require' : ($input->getOption('add-dev') ? 'require-dev' : null);
+                if (!$require) {
                     continue;
                 }
-                $composerJson[$require] = [];
+                if (!isset($composerJson[$require][$package])) {
+                    $composerJson[$require] = [];
+                }
             }
             $composerJson[$require][$package] = $version;
+            if ($input->getOption('local')) {
+                $composerJson['repositories'] ??= [];
+                $composerJson['repositories'][] = [
+                    'type' => 'path',
+                    'url' => '../' . $componentPath,
+                    'options' => [
+                        'versions' => [$package => $version],
+                    ]
+                ];
+            }
+            $output->writeln("Updated <info>$path</>");
             file_put_contents($projectRoot . '/' . $path, json_encode($composerJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . "\n");
+            $updateCount++;
         }
-        $output->writeln(sprintf("Updated <fg=white>%s files</> to use <comment>$package</>: <info>$version</>", count($paths)));
+        $output->writeln("Updated <fg=white>$updateCount files</> to use <comment>$package</>: <info>$version</>");
 
         return 0;
+    }
+
+    private function getComponentName(array $paths, string $package): string
+    {
+        foreach ($paths as $path) {
+            $composerJson = json_decode(file_get_contents($path), true);
+            if (isset($composerJson['name']) && $composerJson['name'] === $package) {
+                return dirname($path);
+            }
+        }
+
+        throw new \LogicException('Component not found for package ' . $package);
     }
 }
