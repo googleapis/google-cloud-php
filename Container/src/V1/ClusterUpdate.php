@@ -364,6 +364,13 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.K8sBetaAPIConfig desired_k8s_beta_apis = 131;</code>
      */
     private $desired_k8s_beta_apis = null;
+    /**
+     * The desired resource manager tags that apply to all auto-provisioned node
+     * pools in autopilot clusters and node auto-provisioning enabled clusters.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ResourceManagerTags desired_node_pool_auto_config_resource_manager_tags = 136;</code>
+     */
+    private $desired_node_pool_auto_config_resource_manager_tags = null;
 
     /**
      * Constructor.
@@ -522,6 +529,9 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           The desired workload policy configuration for the autopilot cluster.
      *     @type \Google\Cloud\Container\V1\K8sBetaAPIConfig $desired_k8s_beta_apis
      *           Desired Beta APIs to be enabled for cluster.
+     *     @type \Google\Cloud\Container\V1\ResourceManagerTags $desired_node_pool_auto_config_resource_manager_tags
+     *           The desired resource manager tags that apply to all auto-provisioned node
+     *           pools in autopilot clusters and node auto-provisioning enabled clusters.
      * }
      */
     public function __construct($data = NULL) {
@@ -2285,6 +2295,44 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\K8sBetaAPIConfig::class);
         $this->desired_k8s_beta_apis = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired resource manager tags that apply to all auto-provisioned node
+     * pools in autopilot clusters and node auto-provisioning enabled clusters.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ResourceManagerTags desired_node_pool_auto_config_resource_manager_tags = 136;</code>
+     * @return \Google\Cloud\Container\V1\ResourceManagerTags|null
+     */
+    public function getDesiredNodePoolAutoConfigResourceManagerTags()
+    {
+        return $this->desired_node_pool_auto_config_resource_manager_tags;
+    }
+
+    public function hasDesiredNodePoolAutoConfigResourceManagerTags()
+    {
+        return isset($this->desired_node_pool_auto_config_resource_manager_tags);
+    }
+
+    public function clearDesiredNodePoolAutoConfigResourceManagerTags()
+    {
+        unset($this->desired_node_pool_auto_config_resource_manager_tags);
+    }
+
+    /**
+     * The desired resource manager tags that apply to all auto-provisioned node
+     * pools in autopilot clusters and node auto-provisioning enabled clusters.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ResourceManagerTags desired_node_pool_auto_config_resource_manager_tags = 136;</code>
+     * @param \Google\Cloud\Container\V1\ResourceManagerTags $var
+     * @return $this
+     */
+    public function setDesiredNodePoolAutoConfigResourceManagerTags($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ResourceManagerTags::class);
+        $this->desired_node_pool_auto_config_resource_manager_tags = $var;
 
         return $this;
     }

@@ -22,8 +22,8 @@ class MakeDirectoryRequest extends \Google\Protobuf\Internal\Message
      */
     private $workspace = '';
     /**
-     * Required. The directory's full path including directory name, relative to the
-     * workspace root.
+     * Required. The directory's full path including directory name, relative to
+     * the workspace root.
      *
      * Generated from protobuf field <code>string path = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -38,8 +38,8 @@ class MakeDirectoryRequest extends \Google\Protobuf\Internal\Message
      *     @type string $workspace
      *           Required. The workspace's name.
      *     @type string $path
-     *           Required. The directory's full path including directory name, relative to the
-     *           workspace root.
+     *           Required. The directory's full path including directory name, relative to
+     *           the workspace root.
      * }
      */
     public function __construct($data = NULL) {
@@ -74,8 +74,8 @@ class MakeDirectoryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The directory's full path including directory name, relative to the
-     * workspace root.
+     * Required. The directory's full path including directory name, relative to
+     * the workspace root.
      *
      * Generated from protobuf field <code>string path = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -86,8 +86,8 @@ class MakeDirectoryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The directory's full path including directory name, relative to the
-     * workspace root.
+     * Required. The directory's full path including directory name, relative to
+     * the workspace root.
      *
      * Generated from protobuf field <code>string path = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

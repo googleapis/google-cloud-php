@@ -30,17 +30,17 @@ use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\SpannerClient;
 
 /**
- * Like [Read][google.spanner.v1.Spanner.Read], except returns the result set as a
- * stream. Unlike [Read][google.spanner.v1.Spanner.Read], there is no limit on the
- * size of the returned result set. However, no individual row in
+ * Like [Read][google.spanner.v1.Spanner.Read], except returns the result set
+ * as a stream. Unlike [Read][google.spanner.v1.Spanner.Read], there is no
+ * limit on the size of the returned result set. However, no individual row in
  * the result set can exceed 100 MiB, and no column value can exceed
  * 10 MiB.
  *
  * @param string $formattedSession The session in which the read should be performed. Please see
  *                                 {@see SpannerClient::sessionName()} for help formatting this field.
  * @param string $table            The name of the table in the database to be read.
- * @param string $columnsElement   The columns of [table][google.spanner.v1.ReadRequest.table] to be returned for each row matching
- *                                 this request.
+ * @param string $columnsElement   The columns of [table][google.spanner.v1.ReadRequest.table] to be
+ *                                 returned for each row matching this request.
  */
 function streaming_read_sample(
     string $formattedSession,

@@ -34,10 +34,10 @@ use Google\Cloud\Dataform\V1beta1\MoveDirectoryResponse;
  *
  * @param string $formattedWorkspace The workspace's name. Please see
  *                                   {@see DataformClient::workspaceName()} for help formatting this field.
- * @param string $path               The directory's full path including directory name, relative to the
- *                                   workspace root.
- * @param string $newPath            The new path for the directory including directory name, rooted at
- *                                   workspace root.
+ * @param string $path               The directory's full path including directory name, relative to
+ *                                   the workspace root.
+ * @param string $newPath            The new path for the directory including directory name, rooted
+ *                                   at workspace root.
  */
 function move_directory_sample(string $formattedWorkspace, string $path, string $newPath): void
 {

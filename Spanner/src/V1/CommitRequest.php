@@ -31,8 +31,8 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
     private $mutations;
     /**
      * If `true`, then statistics related to the transaction will be included in
-     * the [CommitResponse][google.spanner.v1.CommitResponse.commit_stats]. Default value is
-     * `false`.
+     * the [CommitResponse][google.spanner.v1.CommitResponse.commit_stats].
+     * Default value is `false`.
      *
      * Generated from protobuf field <code>bool return_commit_stats = 5;</code>
      */
@@ -119,8 +119,8 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      *           this list.
      *     @type bool $return_commit_stats
      *           If `true`, then statistics related to the transaction will be included in
-     *           the [CommitResponse][google.spanner.v1.CommitResponse.commit_stats]. Default value is
-     *           `false`.
+     *           the [CommitResponse][google.spanner.v1.CommitResponse.commit_stats].
+     *           Default value is `false`.
      *     @type \Google\Cloud\Spanner\V1\RequestOptions $request_options
      *           Common options for this request.
      * }
@@ -266,8 +266,8 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If `true`, then statistics related to the transaction will be included in
-     * the [CommitResponse][google.spanner.v1.CommitResponse.commit_stats]. Default value is
-     * `false`.
+     * the [CommitResponse][google.spanner.v1.CommitResponse.commit_stats].
+     * Default value is `false`.
      *
      * Generated from protobuf field <code>bool return_commit_stats = 5;</code>
      * @return bool
@@ -279,8 +279,8 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If `true`, then statistics related to the transaction will be included in
-     * the [CommitResponse][google.spanner.v1.CommitResponse.commit_stats]. Default value is
-     * `false`.
+     * the [CommitResponse][google.spanner.v1.CommitResponse.commit_stats].
+     * Default value is `false`.
      *
      * Generated from protobuf field <code>bool return_commit_stats = 5;</code>
      * @param bool $var

@@ -47,7 +47,7 @@ class StorageClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '1.33.4';
+    const VERSION = '1.34.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
@@ -308,6 +308,8 @@ class StorageClient
      *           Buckets can have either StorageClass OLM rules or Autoclass,
      *           but not both. When Autoclass is enabled on a bucket, adding
      *           StorageClass OLM rules will result in failure.
+     *           For more information, refer to
+     *           [Storage Autoclass](https://cloud.google.com/storage/docs/autoclass)
      *     @type array $versioning The bucket's versioning configuration.
      *     @type array $website The bucket's website configuration.
      *     @type array $billing The bucket's billing configuration.

@@ -39,7 +39,8 @@ use Google\Cloud\Spanner\V1\SpannerClient;
  *                                  The API may return fewer than the requested number of sessions. If a
  *                                  specific number of sessions are desired, the client can make additional
  *                                  calls to BatchCreateSessions (adjusting
- *                                  [session_count][google.spanner.v1.BatchCreateSessionsRequest.session_count] as necessary).
+ *                                  [session_count][google.spanner.v1.BatchCreateSessionsRequest.session_count]
+ *                                  as necessary).
  */
 function batch_create_sessions_sample(string $formattedDatabase, int $sessionCount): void
 {

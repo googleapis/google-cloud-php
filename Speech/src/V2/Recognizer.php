@@ -36,8 +36,11 @@ class Recognizer extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * Optional. Which model to use for recognition requests. Select the model
-     * best suited to your domain to get best results.
+     * Optional. This field is now deprecated. Prefer the
+     * [`model`][google.cloud.speech.v2.RecognitionConfig.model] field in the
+     * [`RecognitionConfig`][google.cloud.speech.v2.RecognitionConfig] message.
+     * Which model to use for recognition requests. Select the model best suited
+     * to your domain to get best results.
      * Guidance for choosing which model to use can be found in the [Transcription
      * Models
      * Documentation](https://cloud.google.com/speech-to-text/v2/docs/transcription-model)
@@ -50,7 +53,11 @@ class Recognizer extends \Google\Protobuf\Internal\Message
      */
     protected $model = '';
     /**
-     * Optional. The language of the supplied audio as a
+     * Optional. This field is now deprecated. Prefer the
+     * [`language_codes`][google.cloud.speech.v2.RecognitionConfig.language_codes]
+     * field in the
+     * [`RecognitionConfig`][google.cloud.speech.v2.RecognitionConfig] message.
+     * The language of the supplied audio as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
      * Supported languages for each model are listed in the [Table of Supported
      * Models](https://cloud.google.com/speech-to-text/v2/docs/speech-to-text-supported-languages).
@@ -161,8 +168,11 @@ class Recognizer extends \Google\Protobuf\Internal\Message
      *           User-settable, human-readable name for the Recognizer. Must be 63
      *           characters or less.
      *     @type string $model
-     *           Optional. Which model to use for recognition requests. Select the model
-     *           best suited to your domain to get best results.
+     *           Optional. This field is now deprecated. Prefer the
+     *           [`model`][google.cloud.speech.v2.RecognitionConfig.model] field in the
+     *           [`RecognitionConfig`][google.cloud.speech.v2.RecognitionConfig] message.
+     *           Which model to use for recognition requests. Select the model best suited
+     *           to your domain to get best results.
      *           Guidance for choosing which model to use can be found in the [Transcription
      *           Models
      *           Documentation](https://cloud.google.com/speech-to-text/v2/docs/transcription-model)
@@ -170,7 +180,11 @@ class Recognizer extends \Google\Protobuf\Internal\Message
      *           Supported
      *           Models](https://cloud.google.com/speech-to-text/v2/docs/speech-to-text-supported-languages).
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $language_codes
-     *           Optional. The language of the supplied audio as a
+     *           Optional. This field is now deprecated. Prefer the
+     *           [`language_codes`][google.cloud.speech.v2.RecognitionConfig.language_codes]
+     *           field in the
+     *           [`RecognitionConfig`][google.cloud.speech.v2.RecognitionConfig] message.
+     *           The language of the supplied audio as a
      *           [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
      *           Supported languages for each model are listed in the [Table of Supported
      *           Models](https://cloud.google.com/speech-to-text/v2/docs/speech-to-text-supported-languages).
@@ -306,8 +320,11 @@ class Recognizer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Which model to use for recognition requests. Select the model
-     * best suited to your domain to get best results.
+     * Optional. This field is now deprecated. Prefer the
+     * [`model`][google.cloud.speech.v2.RecognitionConfig.model] field in the
+     * [`RecognitionConfig`][google.cloud.speech.v2.RecognitionConfig] message.
+     * Which model to use for recognition requests. Select the model best suited
+     * to your domain to get best results.
      * Guidance for choosing which model to use can be found in the [Transcription
      * Models
      * Documentation](https://cloud.google.com/speech-to-text/v2/docs/transcription-model)
@@ -326,8 +343,11 @@ class Recognizer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Which model to use for recognition requests. Select the model
-     * best suited to your domain to get best results.
+     * Optional. This field is now deprecated. Prefer the
+     * [`model`][google.cloud.speech.v2.RecognitionConfig.model] field in the
+     * [`RecognitionConfig`][google.cloud.speech.v2.RecognitionConfig] message.
+     * Which model to use for recognition requests. Select the model best suited
+     * to your domain to get best results.
      * Guidance for choosing which model to use can be found in the [Transcription
      * Models
      * Documentation](https://cloud.google.com/speech-to-text/v2/docs/transcription-model)
@@ -350,7 +370,11 @@ class Recognizer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The language of the supplied audio as a
+     * Optional. This field is now deprecated. Prefer the
+     * [`language_codes`][google.cloud.speech.v2.RecognitionConfig.language_codes]
+     * field in the
+     * [`RecognitionConfig`][google.cloud.speech.v2.RecognitionConfig] message.
+     * The language of the supplied audio as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
      * Supported languages for each model are listed in the [Table of Supported
      * Models](https://cloud.google.com/speech-to-text/v2/docs/speech-to-text-supported-languages).
@@ -372,7 +396,11 @@ class Recognizer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The language of the supplied audio as a
+     * Optional. This field is now deprecated. Prefer the
+     * [`language_codes`][google.cloud.speech.v2.RecognitionConfig.language_codes]
+     * field in the
+     * [`RecognitionConfig`][google.cloud.speech.v2.RecognitionConfig] message.
+     * The language of the supplied audio as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
      * Supported languages for each model are listed in the [Table of Supported
      * Models](https://cloud.google.com/speech-to-text/v2/docs/speech-to-text-supported-languages).

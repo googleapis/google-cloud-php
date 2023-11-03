@@ -333,7 +333,8 @@ final class SpannerClient
 
     /**
      * Begins a new transaction. This step can often be skipped:
-     * [Read][google.spanner.v1.Spanner.Read], [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql] and
+     * [Read][google.spanner.v1.Spanner.Read],
+     * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql] and
      * [Commit][google.spanner.v1.Spanner.Commit] can begin a new transaction as a
      * side-effect.
      *
@@ -467,9 +468,10 @@ final class SpannerClient
      * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql].
      *
      * Statements are executed in sequential order. A request can succeed even if
-     * a statement fails. The [ExecuteBatchDmlResponse.status][google.spanner.v1.ExecuteBatchDmlResponse.status] field in the
-     * response provides information about the statement that failed. Clients must
-     * inspect this field to determine whether an error occurred.
+     * a statement fails. The
+     * [ExecuteBatchDmlResponse.status][google.spanner.v1.ExecuteBatchDmlResponse.status]
+     * field in the response provides information about the statement that failed.
+     * Clients must inspect this field to determine whether an error occurred.
      *
      * Execution stops after the first failed statement; the remaining statements
      * are not executed.
@@ -503,10 +505,12 @@ final class SpannerClient
      *
      * Operations inside read-write transactions might return `ABORTED`. If
      * this occurs, the application should restart the transaction from
-     * the beginning. See [Transaction][google.spanner.v1.Transaction] for more details.
+     * the beginning. See [Transaction][google.spanner.v1.Transaction] for more
+     * details.
      *
      * Larger result sets can be fetched in streaming fashion by calling
-     * [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] instead.
+     * [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql]
+     * instead.
      *
      * The async variant is {@see SpannerClient::executeSqlAsync()} .
      *
@@ -530,11 +534,11 @@ final class SpannerClient
     }
 
     /**
-     * Like [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql], except returns the result
-     * set as a stream. Unlike [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql], there
-     * is no limit on the size of the returned result set. However, no
-     * individual row in the result set can exceed 100 MiB, and no
-     * column value can exceed 10 MiB.
+     * Like [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql], except returns the
+     * result set as a stream. Unlike
+     * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql], there is no limit on
+     * the size of the returned result set. However, no individual row in the
+     * result set can exceed 100 MiB, and no column value can exceed 10 MiB.
      *
      * @param ExecuteSqlRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -606,10 +610,11 @@ final class SpannerClient
     /**
      * Creates a set of partition tokens that can be used to execute a query
      * operation in parallel.  Each of the returned partition tokens can be used
-     * by [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] to specify a subset
-     * of the query result to read.  The same session and read-only transaction
-     * must be used by the PartitionQueryRequest used to create the
-     * partition tokens and the ExecuteSqlRequests that use the partition tokens.
+     * by [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] to
+     * specify a subset of the query result to read.  The same session and
+     * read-only transaction must be used by the PartitionQueryRequest used to
+     * create the partition tokens and the ExecuteSqlRequests that use the
+     * partition tokens.
      *
      * Partition tokens become invalid when the session used to create them
      * is deleted, is idle for too long, begins a new transaction, or becomes too
@@ -640,12 +645,13 @@ final class SpannerClient
     /**
      * Creates a set of partition tokens that can be used to execute a read
      * operation in parallel.  Each of the returned partition tokens can be used
-     * by [StreamingRead][google.spanner.v1.Spanner.StreamingRead] to specify a subset of the read
-     * result to read.  The same session and read-only transaction must be used by
-     * the PartitionReadRequest used to create the partition tokens and the
-     * ReadRequests that use the partition tokens.  There are no ordering
-     * guarantees on rows returned among the returned partition tokens, or even
-     * within each individual StreamingRead call issued with a partition_token.
+     * by [StreamingRead][google.spanner.v1.Spanner.StreamingRead] to specify a
+     * subset of the read result to read.  The same session and read-only
+     * transaction must be used by the PartitionReadRequest used to create the
+     * partition tokens and the ReadRequests that use the partition tokens.  There
+     * are no ordering guarantees on rows returned among the returned partition
+     * tokens, or even within each individual StreamingRead call issued with a
+     * partition_token.
      *
      * Partition tokens become invalid when the session used to create them
      * is deleted, is idle for too long, begins a new transaction, or becomes too
@@ -676,14 +682,15 @@ final class SpannerClient
     /**
      * Reads rows from the database using key lookups and scans, as a
      * simple key/value style alternative to
-     * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql].  This method cannot be used to
-     * return a result set larger than 10 MiB; if the read matches more
+     * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql].  This method cannot be
+     * used to return a result set larger than 10 MiB; if the read matches more
      * data than that, the read fails with a `FAILED_PRECONDITION`
      * error.
      *
      * Reads inside read-write transactions might return `ABORTED`. If
      * this occurs, the application should restart the transaction from
-     * the beginning. See [Transaction][google.spanner.v1.Transaction] for more details.
+     * the beginning. See [Transaction][google.spanner.v1.Transaction] for more
+     * details.
      *
      * Larger result sets can be yielded in streaming fashion by calling
      * [StreamingRead][google.spanner.v1.Spanner.StreamingRead] instead.
@@ -712,8 +719,9 @@ final class SpannerClient
     /**
      * Rolls back a transaction, releasing any locks it holds. It is a good
      * idea to call this for any transaction that includes one or more
-     * [Read][google.spanner.v1.Spanner.Read] or [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql] requests and
-     * ultimately decides not to commit.
+     * [Read][google.spanner.v1.Spanner.Read] or
+     * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql] requests and ultimately
+     * decides not to commit.
      *
      * `Rollback` returns `OK` if it successfully aborts the transaction, the
      * transaction was already aborted, or the transaction is not
@@ -739,9 +747,9 @@ final class SpannerClient
     }
 
     /**
-     * Like [Read][google.spanner.v1.Spanner.Read], except returns the result set as a
-     * stream. Unlike [Read][google.spanner.v1.Spanner.Read], there is no limit on the
-     * size of the returned result set. However, no individual row in
+     * Like [Read][google.spanner.v1.Spanner.Read], except returns the result set
+     * as a stream. Unlike [Read][google.spanner.v1.Spanner.Read], there is no
+     * limit on the size of the returned result set. However, no individual row in
      * the result set can exceed 100 MiB, and no column value can exceed
      * 10 MiB.
      *

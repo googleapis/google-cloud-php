@@ -32,8 +32,8 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * instance IPs for this cluster will be created in the allocated range. The
      * range name must comply with RFC 1035. Specifically, the name must be 1-63
      * characters long and match the regular expression
-     * [a-z]([-a-z0-9]*[a-z0-9])?.
-     * Field name is intended to be consistent with CloudSQL.
+     * `[a-z]([-a-z0-9]*[a-z0-9])?`.
+     * Field name is intended to be consistent with Cloud SQL.
      *
      * Generated from protobuf field <code>string allocated_ip_range = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -58,8 +58,8 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *           instance IPs for this cluster will be created in the allocated range. The
      *           range name must comply with RFC 1035. Specifically, the name must be 1-63
      *           characters long and match the regular expression
-     *           [a-z]([-a-z0-9]*[a-z0-9])?.
-     *           Field name is intended to be consistent with CloudSQL.
+     *           `[a-z]([-a-z0-9]*[a-z0-9])?`.
+     *           Field name is intended to be consistent with Cloud SQL.
      * }
      */
     public function __construct($data = NULL) {
@@ -109,8 +109,8 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * instance IPs for this cluster will be created in the allocated range. The
      * range name must comply with RFC 1035. Specifically, the name must be 1-63
      * characters long and match the regular expression
-     * [a-z]([-a-z0-9]*[a-z0-9])?.
-     * Field name is intended to be consistent with CloudSQL.
+     * `[a-z]([-a-z0-9]*[a-z0-9])?`.
+     * Field name is intended to be consistent with Cloud SQL.
      *
      * Generated from protobuf field <code>string allocated_ip_range = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -126,8 +126,8 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * instance IPs for this cluster will be created in the allocated range. The
      * range name must comply with RFC 1035. Specifically, the name must be 1-63
      * characters long and match the regular expression
-     * [a-z]([-a-z0-9]*[a-z0-9])?.
-     * Field name is intended to be consistent with CloudSQL.
+     * `[a-z]([-a-z0-9]*[a-z0-9])?`.
+     * Field name is intended to be consistent with Cloud SQL.
      *
      * Generated from protobuf field <code>string allocated_ip_range = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

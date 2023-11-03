@@ -35,9 +35,10 @@ use Google\Cloud\Spanner\V1\TransactionSelector;
  * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql].
  *
  * Statements are executed in sequential order. A request can succeed even if
- * a statement fails. The [ExecuteBatchDmlResponse.status][google.spanner.v1.ExecuteBatchDmlResponse.status] field in the
- * response provides information about the statement that failed. Clients must
- * inspect this field to determine whether an error occurred.
+ * a statement fails. The
+ * [ExecuteBatchDmlResponse.status][google.spanner.v1.ExecuteBatchDmlResponse.status]
+ * field in the response provides information about the statement that failed.
+ * Clients must inspect this field to determine whether an error occurred.
  *
  * Execution stops after the first failed statement; the remaining statements
  * are not executed.
@@ -45,9 +46,9 @@ use Google\Cloud\Spanner\V1\TransactionSelector;
  * @param string $formattedSession The session in which the DML statements should be performed. Please see
  *                                 {@see SpannerClient::sessionName()} for help formatting this field.
  * @param string $statementsSql    The DML string.
- * @param int    $seqno            A per-transaction sequence number used to identify this request. This field
- *                                 makes each request idempotent such that if the request is received multiple
- *                                 times, at most one will succeed.
+ * @param int    $seqno            A per-transaction sequence number used to identify this request.
+ *                                 This field makes each request idempotent such that if the request is
+ *                                 received multiple times, at most one will succeed.
  *
  *                                 The sequence number must be monotonically increasing within the
  *                                 transaction. If a request arrives for the first time with an out-of-order
