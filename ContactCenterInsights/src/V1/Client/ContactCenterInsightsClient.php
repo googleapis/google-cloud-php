@@ -37,6 +37,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\ContactCenterInsights\V1\Analysis;
 use Google\Cloud\ContactCenterInsights\V1\BulkAnalyzeConversationsRequest;
+use Google\Cloud\ContactCenterInsights\V1\BulkDeleteConversationsRequest;
 use Google\Cloud\ContactCenterInsights\V1\CalculateIssueModelStatsRequest;
 use Google\Cloud\ContactCenterInsights\V1\CalculateIssueModelStatsResponse;
 use Google\Cloud\ContactCenterInsights\V1\CalculateStatsRequest;
@@ -105,6 +106,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @experimental
  *
  * @method PromiseInterface bulkAnalyzeConversationsAsync(BulkAnalyzeConversationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface bulkDeleteConversationsAsync(BulkDeleteConversationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface calculateIssueModelStatsAsync(CalculateIssueModelStatsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface calculateStatsAsync(CalculateStatsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createAnalysisAsync(CreateAnalysisRequest $request, array $optionalArgs = [])
@@ -595,6 +597,31 @@ final class ContactCenterInsightsClient
     public function bulkAnalyzeConversations(BulkAnalyzeConversationsRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('BulkAnalyzeConversations', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes multiple conversations in a single request.
+     *
+     * The async variant is
+     * {@see ContactCenterInsightsClient::bulkDeleteConversationsAsync()} .
+     *
+     * @param BulkDeleteConversationsRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function bulkDeleteConversations(BulkDeleteConversationsRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('BulkDeleteConversations', $request, $callOptions)->wait();
     }
 
     /**
