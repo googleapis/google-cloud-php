@@ -56,6 +56,15 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.speech.v2.SpeechAdaptation adaptation = 6;</code>
      */
     private $adaptation = null;
+    /**
+     * Optional. Use transcription normalization to automatically replace parts of
+     * the transcript with phrases of your choosing. For StreamingRecognize, this
+     * normalization only applies to stable partial transcripts (stability > 0.8)
+     * and final transcripts.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v2.TranscriptNormalization transcript_normalization = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $transcript_normalization = null;
     protected $decoding_config;
 
     /**
@@ -94,6 +103,11 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Speech\V2\SpeechAdaptation $adaptation
      *           Speech adaptation context that weights recognizer predictions for specific
      *           words and phrases.
+     *     @type \Google\Cloud\Speech\V2\TranscriptNormalization $transcript_normalization
+     *           Optional. Use transcription normalization to automatically replace parts of
+     *           the transcript with phrases of your choosing. For StreamingRecognize, this
+     *           normalization only applies to stable partial transcripts (stability > 0.8)
+     *           and final transcripts.
      * }
      */
     public function __construct($data = NULL) {
@@ -319,6 +333,48 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Speech\V2\SpeechAdaptation::class);
         $this->adaptation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Use transcription normalization to automatically replace parts of
+     * the transcript with phrases of your choosing. For StreamingRecognize, this
+     * normalization only applies to stable partial transcripts (stability > 0.8)
+     * and final transcripts.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v2.TranscriptNormalization transcript_normalization = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Speech\V2\TranscriptNormalization|null
+     */
+    public function getTranscriptNormalization()
+    {
+        return $this->transcript_normalization;
+    }
+
+    public function hasTranscriptNormalization()
+    {
+        return isset($this->transcript_normalization);
+    }
+
+    public function clearTranscriptNormalization()
+    {
+        unset($this->transcript_normalization);
+    }
+
+    /**
+     * Optional. Use transcription normalization to automatically replace parts of
+     * the transcript with phrases of your choosing. For StreamingRecognize, this
+     * normalization only applies to stable partial transcripts (stability > 0.8)
+     * and final transcripts.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v2.TranscriptNormalization transcript_normalization = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Speech\V2\TranscriptNormalization $var
+     * @return $this
+     */
+    public function setTranscriptNormalization($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Speech\V2\TranscriptNormalization::class);
+        $this->transcript_normalization = $var;
 
         return $this;
     }

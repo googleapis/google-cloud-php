@@ -1,6 +1,7 @@
 {
     "name": "google/cloud-game-servers",
     "description": "Google Cloud Game Servers Client for PHP",
+    "abandoned": true,
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "autoload": {
