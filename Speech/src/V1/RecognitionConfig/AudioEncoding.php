@@ -101,6 +101,15 @@ class AudioEncoding
      */
     const SPEEX_WITH_HEADER_BYTE = 7;
     /**
+     * MP3 audio. MP3 encoding is a Beta feature and only available in
+     * v1p1beta1. Support all standard MP3 bitrates (which range from 32-320
+     * kbps). When using this encoding, `sample_rate_hertz` has to match the
+     * sample rate of the file being used.
+     *
+     * Generated from protobuf enum <code>MP3 = 8;</code>
+     */
+    const MP3 = 8;
+    /**
      * Opus encoded audio frames in WebM container
      * ([OggOpus](https://wiki.xiph.org/OggOpus)). `sample_rate_hertz` must be
      * one of 8000, 12000, 16000, 24000, or 48000.
@@ -118,6 +127,7 @@ class AudioEncoding
         self::AMR_WB => 'AMR_WB',
         self::OGG_OPUS => 'OGG_OPUS',
         self::SPEEX_WITH_HEADER_BYTE => 'SPEEX_WITH_HEADER_BYTE',
+        self::MP3 => 'MP3',
         self::WEBM_OPUS => 'WEBM_OPUS',
     ];
 
