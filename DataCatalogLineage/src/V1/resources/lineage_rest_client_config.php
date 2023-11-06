@@ -150,6 +150,18 @@ return [
                     ],
                 ],
             ],
+            'ProcessOpenLineageRunEvent' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}:processOpenLineageRunEvent',
+                'body' => 'open_lineage',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'SearchLinks' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}:searchLinks',

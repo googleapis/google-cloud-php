@@ -32,6 +32,12 @@ class UpdateRunRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
     protected $update_mask = null;
+    /**
+     * If set to true and the run is not found, the request creates it.
+     *
+     * Generated from protobuf field <code>bool allow_missing = 3;</code>
+     */
+    protected $allow_missing = false;
 
     /**
      * @param \Google\Cloud\DataCatalog\Lineage\V1\Run $run        Required. The lineage run to update.
@@ -68,6 +74,8 @@ class UpdateRunRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           The list of fields to update. Currently not used. The whole message is
      *           updated.
+     *     @type bool $allow_missing
+     *           If set to true and the run is not found, the request creates it.
      * }
      */
     public function __construct($data = NULL) {
@@ -151,6 +159,32 @@ class UpdateRunRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
         $this->update_mask = $var;
+
+        return $this;
+    }
+
+    /**
+     * If set to true and the run is not found, the request creates it.
+     *
+     * Generated from protobuf field <code>bool allow_missing = 3;</code>
+     * @return bool
+     */
+    public function getAllowMissing()
+    {
+        return $this->allow_missing;
+    }
+
+    /**
+     * If set to true and the run is not found, the request creates it.
+     *
+     * Generated from protobuf field <code>bool allow_missing = 3;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAllowMissing($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->allow_missing = $var;
 
         return $this;
     }

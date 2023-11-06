@@ -35,8 +35,9 @@ class Run extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * Optional. The attributes of the run. Can be anything, for example, a string
-     * with an SQL request. Up to 100 attributes are allowed.
+     * Optional. The attributes of the run. Should only be used for the purpose of
+     * non-semantic management (classifying, describing or labeling the run).
+     * Up to 100 attributes are allowed.
      *
      * Generated from protobuf field <code>map<string, .google.protobuf.Value> attributes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -77,8 +78,9 @@ class Run extends \Google\Protobuf\Internal\Message
      *           Must be not longer than 1024 characters and only contain UTF-8 letters
      *           or numbers, spaces or characters like `_-:&.`
      *     @type array|\Google\Protobuf\Internal\MapField $attributes
-     *           Optional. The attributes of the run. Can be anything, for example, a string
-     *           with an SQL request. Up to 100 attributes are allowed.
+     *           Optional. The attributes of the run. Should only be used for the purpose of
+     *           non-semantic management (classifying, describing or labeling the run).
+     *           Up to 100 attributes are allowed.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Required. The timestamp of the start of the run.
      *     @type \Google\Protobuf\Timestamp $end_time
@@ -157,8 +159,9 @@ class Run extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The attributes of the run. Can be anything, for example, a string
-     * with an SQL request. Up to 100 attributes are allowed.
+     * Optional. The attributes of the run. Should only be used for the purpose of
+     * non-semantic management (classifying, describing or labeling the run).
+     * Up to 100 attributes are allowed.
      *
      * Generated from protobuf field <code>map<string, .google.protobuf.Value> attributes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -169,8 +172,9 @@ class Run extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The attributes of the run. Can be anything, for example, a string
-     * with an SQL request. Up to 100 attributes are allowed.
+     * Optional. The attributes of the run. Should only be used for the purpose of
+     * non-semantic management (classifying, describing or labeling the run).
+     * Up to 100 attributes are allowed.
      *
      * Generated from protobuf field <code>map<string, .google.protobuf.Value> attributes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
