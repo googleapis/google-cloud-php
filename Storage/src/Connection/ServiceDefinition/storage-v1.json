@@ -474,7 +474,7 @@
      "properties": {
       "retentionDurationSeconds": {
        "type": "string",
-       "description": "The period of time in seconds, that soft-deleted objects in the bucket will be retained and cannot be permanently deleted.",
+       "description": "The duration in seconds that soft-deleted objects in the bucket will be retained and cannot be permanently deleted.",
        "format": "int64"
       },
       "effectiveTime": {
@@ -525,6 +525,84 @@
     "satisfiesPZS": {
      "type": "boolean",
      "description": "Reserved for future use."
+    }
+   }
+  },
+  "AnywhereCache": {
+   "id": "AnywhereCache",
+   "type": "object",
+   "description": "An Anywhere Cache instance.",
+   "properties": {
+    "kind": {
+     "type": "string",
+     "description": "The kind of item this is. For Anywhere Cache, this is always storage#anywhereCache.",
+     "default": "storage#anywhereCache"
+    },
+    "id": {
+     "type": "string",
+     "description": "The ID of the resource, including the project number, bucket name and anywhere cache ID."
+    },
+    "selfLink": {
+     "type": "string",
+     "description": "The link to this cache instance."
+    },
+    "bucket": {
+     "type": "string",
+     "description": "The name of the bucket containing this cache instance."
+    },
+    "anywhereCacheId": {
+     "type": "string",
+     "description": "The ID of the Anywhere cache instance."
+    },
+    "state": {
+     "type": "string",
+     "description": "The current state of the cache instance."
+    },
+    "createTime": {
+     "type": "string",
+     "description": "The creation time of the cache instance in RFC 3339 format.",
+     "format": "date-time"
+    },
+    "updateTime": {
+     "type": "string",
+     "description": "The modification time of the cache instance metadata in RFC 3339 format.",
+     "format": "date-time"
+    },
+    "ttl": {
+     "type": "string",
+     "description": "The TTL of all cache entries in whole seconds. e.g., \"7200s\". ",
+     "format": "google-duration"
+    },
+    "admissionPolicy": {
+     "type": "string",
+     "description": "The cache-level entry admission policy."
+    },
+    "pendingUpdate": {
+     "type": "boolean",
+     "description": "True if the cache instance has an active Update long-running operation."
+    }
+   }
+  },
+  "AnywhereCaches": {
+   "id": "AnywhereCaches",
+   "type": "object",
+   "description": "A list of Anywhere Caches.",
+   "properties": {
+    "kind": {
+     "type": "string",
+     "description": "The kind of item this is. For lists of Anywhere Caches, this is always storage#anywhereCaches.",
+     "default": "storage#anywhereCaches"
+    },
+    "nextPageToken": {
+     "type": "string",
+     "description": "The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results."
+    },
+    "items": {
+     "type": "array",
+     "description": "The list of items.",
+     "items": {
+      "$ref": "AnywhereCache"
+     }
     }
    }
   },
@@ -1601,6 +1679,242 @@
   }
  },
  "resources": {
+  "anywhereCache": {
+   "methods": {
+    "insert": {
+     "id": "storage.anywhereCaches.insert",
+     "path": "b/{bucket}/anywhereCaches",
+     "httpMethod": "POST",
+     "description": "Creates an Anywhere Cache instance.",
+     "parameters": {
+      "bucket": {
+       "type": "string",
+       "description": "Name of the partent bucket",
+       "required": true,
+       "location": "path"
+      }
+     },
+     "parameterOrder": [
+      "bucket"
+     ],
+     "request": {
+      "$ref": "AnywhereCache"
+     },
+     "response": {
+      "$ref": "GoogleLongrunningOperation"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/cloud-platform",
+      "https://www.googleapis.com/auth/devstorage.full_control",
+      "https://www.googleapis.com/auth/devstorage.read_write"
+     ]
+    },
+    "update": {
+     "id": "storage.anywhereCaches.update",
+     "path": "b/{bucket}/anywhereCaches/{anywhereCacheId}",
+     "httpMethod": "PATCH",
+     "description": "Updates the config(ttl and admissionPolicy) of an Anywhere Cache instance.",
+     "parameters": {
+      "bucket": {
+       "type": "string",
+       "description": "Name of the partent bucket",
+       "required": true,
+       "location": "path"
+      },
+      "anywhereCacheId": {
+       "type": "string",
+       "description": "The ID of requested Anywhere Cache instance.",
+       "required": true,
+       "location": "path"
+      }
+     },
+     "parameterOrder": [
+      "bucket",
+      "anywhereCacheId"
+     ],
+     "request": {
+      "$ref": "AnywhereCache"
+     },
+     "response": {
+      "$ref": "GoogleLongrunningOperation"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/cloud-platform",
+      "https://www.googleapis.com/auth/devstorage.full_control",
+      "https://www.googleapis.com/auth/devstorage.read_write"
+     ]
+    },
+    "get": {
+     "id": "storage.anywhereCaches.get",
+     "path": "b/{bucket}/anywhereCaches/{anywhereCacheId}",
+     "httpMethod": "GET",
+     "description": "Returns the metadata of an Anywhere Cache instance.",
+     "parameters": {
+      "bucket": {
+       "type": "string",
+       "description": "Name of the partent bucket",
+       "required": true,
+       "location": "path"
+      },
+      "anywhereCacheId": {
+       "type": "string",
+       "description": "The ID of requested Anywhere Cache instance.",
+       "required": true,
+       "location": "path"
+      }
+     },
+     "parameterOrder": [
+      "bucket",
+      "anywhereCacheId"
+     ],
+     "response": {
+      "$ref": "AnywhereCache"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/cloud-platform",
+      "https://www.googleapis.com/auth/cloud-platform.read-only",
+      "https://www.googleapis.com/auth/devstorage.full_control",
+      "https://www.googleapis.com/auth/devstorage.read_only",
+      "https://www.googleapis.com/auth/devstorage.read_write"
+     ]
+    },
+    "list": {
+     "id": "storage.anywhereCaches.list",
+     "path": "b/{bucket}/anywhereCache",
+     "httpMethod": "GET",
+     "description": "Returns a list of Anywhere Cache instances of the bucket matching the criteria.",
+     "parameters": {
+      "bucket": {
+       "type": "string",
+       "description": "Name of the partent bucket",
+       "required": true,
+       "location": "path"
+      },
+      "pageSize": {
+       "type": "integer",
+       "description": "Maximum number of items return in a single page of responses. Maximum 1000.",
+       "format": "int32",
+       "minimum": "0",
+       "location": "query"
+      },
+      "pageToken": {
+       "type": "string",
+       "description": "A previously-returned page token representing part of the larger set of results to view.",
+       "location": "query"
+      }
+     },
+     "parameterOrder": [
+      "bucket"
+     ],
+     "response": {
+      "$ref": "AnywhereCaches"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/cloud-platform",
+      "https://www.googleapis.com/auth/cloud-platform.read-only",
+      "https://www.googleapis.com/auth/devstorage.full_control",
+      "https://www.googleapis.com/auth/devstorage.read_only",
+      "https://www.googleapis.com/auth/devstorage.read_write"
+     ]
+    },
+    "pause": {
+     "id": "storage.anywhereCaches.pause",
+     "path": "b/{bucket}/anywhereCaches/{anywhereCacheId}/pause",
+     "httpMethod": "POST",
+     "description": "Pauses an Anywhere Cache instance.",
+     "parameters": {
+      "bucket": {
+       "type": "string",
+       "description": "Name of the partent bucket",
+       "required": true,
+       "location": "path"
+      },
+      "anywhereCacheId": {
+       "type": "string",
+       "description": "The ID of requested Anywhere Cache instance.",
+       "required": true,
+       "location": "path"
+      }
+     },
+     "parameterOrder": [
+      "bucket",
+      "anywhereCacheId"
+     ],
+     "response": {
+      "$ref": "AnywhereCache"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/cloud-platform",
+      "https://www.googleapis.com/auth/devstorage.full_control",
+      "https://www.googleapis.com/auth/devstorage.read_write"
+     ]
+    },
+    "resume": {
+     "id": "storage.anywhereCaches.resume",
+     "path": "b/{bucket}/anywhereCaches/{anywhereCacheId}/resume",
+     "httpMethod": "POST",
+     "description": "Resumes a paused or disabled Anywhere Cache instance.",
+     "parameters": {
+      "bucket": {
+       "type": "string",
+       "description": "Name of the partent bucket",
+       "required": true,
+       "location": "path"
+      },
+      "anywhereCacheId": {
+       "type": "string",
+       "description": "The ID of requested Anywhere Cache instance.",
+       "required": true,
+       "location": "path"
+      }
+     },
+     "parameterOrder": [
+      "bucket",
+      "anywhereCacheId"
+     ],
+     "response": {
+      "$ref": "AnywhereCache"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/cloud-platform",
+      "https://www.googleapis.com/auth/devstorage.full_control",
+      "https://www.googleapis.com/auth/devstorage.read_write"
+     ]
+    },
+    "disable": {
+     "id": "storage.anywhereCaches.disable",
+     "path": "b/{bucket}/anywhereCaches/{anywhereCacheId}/disable",
+     "httpMethod": "POST",
+     "description": "Disables an Anywhere Cache instance.",
+     "parameters": {
+      "bucket": {
+       "type": "string",
+       "description": "Name of the partent bucket",
+       "required": true,
+       "location": "path"
+      },
+      "anywhereCacheId": {
+       "type": "string",
+       "description": "The ID of requested Anywhere Cache instance.",
+       "required": true,
+       "location": "path"
+      }
+     },
+     "parameterOrder": [
+      "bucket",
+      "anywhereCacheId"
+     ],
+     "response": {
+      "$ref": "AnywhereCache"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/cloud-platform",
+      "https://www.googleapis.com/auth/devstorage.full_control",
+      "https://www.googleapis.com/auth/devstorage.read_write"
+     ]
+    }
+   }
+  },
   "bucketAccessControls": {
    "methods": {
     "delete": {
@@ -5072,6 +5386,6 @@
    }
   }
  },
- "revision": "20231012",
- "etag": "\"3133333835393639383131353638313238353437\""
+ "revision": "20231028",
+ "etag": "\"39383633393336373936373236333033393737\""
 }
