@@ -226,9 +226,11 @@
         "google/cloud-workflows": "0.4.2",
         "google/grafeas": "0.8.3",
         "google/longrunning": "0.2.6",
+        "google/maps-fleetengine": "0.0.0",
+        "google/maps-fleetengine-delivery": "0.0.0",
+        "google/shopping-common-protos": "0.2.0",
         "google/shopping-merchant-inventories": "0.1.1",
-        "google/shopping-merchant-reports": "0.3.0",
-        "google/shopping-common-protos": "0.2.0"
+        "google/shopping-merchant-reports": "0.3.0"
     },
     "suggest": {
         "opis/closure": "May be used to serialize closures to process jobs in the batch daemon. Please require version ^3.",
@@ -387,11 +389,13 @@
             "GPBMetadata\\Google\\Devtools\\Cloudtrace\\": "Trace/metadata",
             "GPBMetadata\\Google\\Devtools\\Containeranalysis\\": "ContainerAnalysis/metadata",
             "GPBMetadata\\Google\\Firestore\\": "Firestore/metadata",
+            "GPBMetadata\\Google\\Geo\\": "MapsFleetengine/metadata/Geo",
             "GPBMetadata\\Google\\Iam\\": "Iam/metadata",
             "GPBMetadata\\Google\\Iam\\Credentials\\": "IamCredentials/metadata",
             "GPBMetadata\\Google\\Identity\\Accesscontextmanager\\": "AccessContextManager/metadata",
             "GPBMetadata\\Google\\Logging\\": "Logging/metadata",
             "GPBMetadata\\Google\\Longrunning\\": "LongRunning/metadata/Longrunning",
+            "GPBMetadata\\Google\\Maps\\Fleetengine\\": "MapsFleetengine/metadata",
             "GPBMetadata\\Google\\Monitoring\\": "Monitoring/metadata",
             "GPBMetadata\\Google\\Privacy\\Dlp\\": "Dlp/metadata",
             "GPBMetadata\\Google\\Pubsub\\": "PubSub/metadata",
@@ -402,6 +406,7 @@
             "GPBMetadata\\Google\\Spanner\\": "Spanner/metadata",
             "GPBMetadata\\Google\\Storagetransfer\\": "StorageTransfer/metadata",
             "GPBMetadata\\Grafeas\\": "Grafeas/metadata",
+            "GPBMetadata\\Maps\\Fleetengine\\Delivery\\": "MapsFleetengineDelivery/metadata",
             "Google\\Analytics\\Admin\\": "AnalyticsAdmin/src",
             "Google\\Analytics\\Data\\": "AnalyticsData/src",
             "Google\\ApiCore\\LongRunning\\": "LongRunning/src/ApiCore/LongRunning",
@@ -563,12 +568,15 @@
             "Google\\Cloud\\WebRisk\\": "WebRisk/src",
             "Google\\Cloud\\WebSecurityScanner\\": "WebSecurityScanner/src",
             "Google\\Cloud\\Workflows\\": "Workflows/src",
+            "Google\\Geo\\": "MapsFleetengine/src/Geo",
             "Google\\Identity\\AccessContextManager\\": "AccessContextManager/src",
             "Google\\LongRunning\\": "LongRunning/src/LongRunning",
             "Google\\Shopping\\Merchant\\Inventories\\": "ShoppingMerchantInventories/src",
             "Google\\Shopping\\Merchant\\Reports\\": "ShoppingMerchantReports/src",
             "Google\\Shopping\\Type\\": "ShoppingCommonProtos/src/Type",
-            "Grafeas\\": "Grafeas/src"
+            "Grafeas\\": "Grafeas/src",
+            "Maps\\Fleetengine\\": "MapsFleetengine/src",
+            "Maps\\Fleetengine\\Delivery\\": "MapsFleetengineDelivery/src"
         },
         "files": [
             "BigQueryStorage/metadata/descriptor_fix.php"

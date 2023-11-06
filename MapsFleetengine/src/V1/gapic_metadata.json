@@ -1,0 +1,92 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "maps.fleetengine.v1",
+    "libraryPackage": "Maps\\Fleetengine\\V1",
+    "services": {
+        "TripService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "TripServiceGapicClient",
+                    "rpcs": {
+                        "CreateTrip": {
+                            "methods": [
+                                "createTrip"
+                            ]
+                        },
+                        "GetTrip": {
+                            "methods": [
+                                "getTrip"
+                            ]
+                        },
+                        "ReportBillableTrip": {
+                            "methods": [
+                                "reportBillableTrip"
+                            ]
+                        },
+                        "SearchTrips": {
+                            "methods": [
+                                "searchTrips"
+                            ]
+                        },
+                        "UpdateTrip": {
+                            "methods": [
+                                "updateTrip"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "VehicleService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "VehicleServiceGapicClient",
+                    "rpcs": {
+                        "CreateVehicle": {
+                            "methods": [
+                                "createVehicle"
+                            ]
+                        },
+                        "GetVehicle": {
+                            "methods": [
+                                "getVehicle"
+                            ]
+                        },
+                        "ListVehicles": {
+                            "methods": [
+                                "listVehicles"
+                            ]
+                        },
+                        "SearchFuzzedVehicles": {
+                            "methods": [
+                                "searchFuzzedVehicles"
+                            ]
+                        },
+                        "SearchVehicles": {
+                            "methods": [
+                                "searchVehicles"
+                            ]
+                        },
+                        "UpdateVehicle": {
+                            "methods": [
+                                "updateVehicle"
+                            ]
+                        },
+                        "UpdateVehicleAttributes": {
+                            "methods": [
+                                "updateVehicleAttributes"
+                            ]
+                        },
+                        "UpdateVehicleLocation": {
+                            "methods": [
+                                "updateVehicleLocation"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
