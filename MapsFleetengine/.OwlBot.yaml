@@ -2,5 +2,7 @@ deep-copy-regex:
     - source: /google/maps/fleetengine/(v1)/.*-php/(.*)
       dest: /owl-bot-staging/MapsFleetengine/$1/$2
     - source: /google/maps/fleetengine/delivery/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/MapsFleetengineDelivery/$1/$2
+      dest: /owl-bot-staging/MapsFleetengine/$1/$2
+    - source: /google/geo/type/.*-php/(.*)
+      dest: /owl-bot-staging/MapsFleetengine/common-protos/$1
 api-name: MapsFleetengine
