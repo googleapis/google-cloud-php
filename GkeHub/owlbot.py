@@ -30,6 +30,13 @@ dest = Path().resolve()
 # Added so that we can pass copy_excludes in the owlbot_main() call
 _tracked_paths.add(src)
 
+# Handle non-standard version numbers in namespace - the version should come
+# before the namespace, but in this case, the protos are misconfigured.
+# (e.g. "V1/MultiClusterIngress" instead of "MultiClusterIngress/V1")
+proto_dir = src / "v1/proto/src/Google/Cloud/GkeHub"
+s.move([proto_dir / "ConfigManagement"], dest / "src/ConfigManagement", merge=php._merge)
+s.move([proto_dir / "MultiClusterIngress"], dest / "src/MultiClusterIngress", merge=php._merge)
+
 php.owlbot_main(src=src, dest=dest)
 
 # Change the wording for the deprecation warning.
