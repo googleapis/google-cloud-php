@@ -24,47 +24,39 @@ from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-dest = Path().resolve()
-
-src0 = Path(f"../{php.STAGING_DIR}/MapsFleetengine").resolve()
-_tracked_paths.add(src0)
-php.owlbot_copy_version(
-    src=src0,
-    dest=dest,
-    copy_excludes=[
-        src0 / "**/[A-Z]*_*.php"
-    ],
-    version_string="delivery",
-)
-
 src = Path(f"../{php.STAGING_DIR}/MapsFleetengine").resolve()
+dest = Path().resolve()
+copy_excludes = [src / "**/[A-Z]*_*.php"]
+
 # Added so that we can pass copy_excludes in the owlbot_main() call
 _tracked_paths.add(src)
 
+## copy MapsFleetengine Delivery
+php.owlbot_copy_version(
+    src=src / "delivery-v1",
+    dest=dest,
+    copy_excludes=copy_excludes,
+    version_string="Delivery",
+)
+
+# copy Geo Common Protos
+php.owlbot_copy_version(
+    src=src / "common-protos",
+    dest=dest,
+    copy_excludes=copy_excludes,
+    version_string="geo",
+)
+
+## copy MapsFleetengine
 php.owlbot_main(
     src=src,
     dest=dest,
-    copy_excludes=[
-        src / "**/[A-Z]*_*.php",
-    ]
-)
-
-# use owlbot_copy_version instead of owlbot_main and set "version_string"
-# manually because some common protos do not have a version
-src2 = Path(f"../{php.STAGING_DIR}/MapsFleetengine/common-protos").resolve()
-_tracked_paths.add(src2)
-php.owlbot_copy_version(
-    src=src2,
-    dest=dest,
-    copy_excludes=[
-        src2 / "**/[A-Z]*_*.php"
-    ],
-    version_string="geo",
+    copy_excludes=copy_excludes,
 )
 
 # remove class_alias code
 s.replace(
-    "src/V*/**/*.php",
+    "src/**/*.php",
     r"^// Adding a class alias for backwards compatibility with the previous class name.$"
     + "\n"
     + r"^class_alias\(.*\);$"
