@@ -347,7 +347,9 @@ class RequestWrapper
             return $backoff->execute(
                 function () use ($request, $fetcher) {
                     if (!$fetcher instanceof UpdateMetadataInterface ||
-                        ($fetcher instanceof FetchAuthTokenCache && !$fetcher->getFetcher() instanceof UpdateMetadataInterface)
+                         ($fetcher instanceof FetchAuthTokenCache &&
+                            !$fetcher->getFetcher() instanceof UpdateMetadataInterface
+                         )
                     ) {
                         if ($token = $fetcher->fetchAuthToken()) {
                             return $request->withHeader('authorization', 'Bearer ' . $token['access_token']);
