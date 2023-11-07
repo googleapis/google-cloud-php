@@ -349,7 +349,7 @@ class RequestWrapper
                     if (!$fetcher instanceof UpdateMetadataInterface ||
                         ($fetcher instanceof FetchAuthTokenCache && !$fetcher->getFetcher() instanceof UpdateMetadataInterface)
                     ) {
-                        if ($this->isValidToken($token = $fetcher->fetchAuthToken())) {
+                        if ($token = $fetcher->fetchAuthToken()) {
                             return $request->withHeader('authorization', 'Bearer ' . $token['access_token']);
                         }
                     } else {
@@ -365,15 +365,6 @@ class RequestWrapper
         } catch (\Exception $ex) {
             throw $this->convertToGoogleException($ex);
         }
-    }
-
-    /**
-     * @param mixed $token
-     */
-    private function isValidToken($token)
-    {
-        return is_array($token)
-            && array_key_exists('access_token', $token);
     }
 
     /**
