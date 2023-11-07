@@ -42,12 +42,8 @@ class OperationsMiddleware
 {
     /** @var callable */
     private $nextHandler;
-
-    /** @var object */
-    private $operationsClient;
-
-    /** @var array */
-    private $descriptor;
+    private object $operationsClient;
+    private array $descriptor;
 
     public function __construct(
         callable $nextHandler,

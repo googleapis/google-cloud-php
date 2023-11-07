@@ -44,9 +44,7 @@ class PagedMiddleware
 {
     /** @var callable */
     private $nextHandler;
-
-    /** @var PageStreamingDescriptor */
-    private $descriptor;
+    private PageStreamingDescriptor $descriptor;
 
     /**
      * @param callable $nextHandler

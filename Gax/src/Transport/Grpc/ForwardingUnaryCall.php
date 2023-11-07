@@ -32,6 +32,8 @@
 
 namespace Google\ApiCore\Transport\Grpc;
 
+use Grpc\UnaryCall;
+
 /**
  * Class ForwardingUnaryCall wraps a \Grpc\UnaryCall.
  *
@@ -39,10 +41,8 @@ namespace Google\ApiCore\Transport\Grpc;
  */
 class ForwardingUnaryCall extends ForwardingCall
 {
-    /**
-     * @var \Grpc\UnaryCall
-     */
-    protected $innerCall;
+    /** @var UnaryCall */
+    protected object $innerCall;
 
     /**
      * Wait for the server to respond with data and a status.

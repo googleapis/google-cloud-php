@@ -67,17 +67,15 @@ trait GapicClientTrait
     }
     use GrpcSupportTrait;
 
-    /** @var TransportInterface */
-    private $transport;
-    private $credentialsWrapper;
-
+    private ?TransportInterface $transport = null;
+    private ?CredentialsWrapper $credentialsWrapper = null;
     private static $gapicVersionFromFile;
     /** @var RetrySettings[] $retrySettings */
-    private $retrySettings;
-    private $serviceName;
-    private $agentHeader;
-    private $descriptors;
-    private $transportCallMethods = [
+    private array $retrySettings = [];
+    private string $serviceName = '';
+    private array $agentHeader = [];
+    private array $descriptors = [];
+    private array $transportCallMethods = [
         Call::UNARY_CALL => 'startUnaryCall',
         Call::BIDI_STREAMING_CALL => 'startBidiStreamingCall',
         Call::CLIENT_STREAMING_CALL => 'startClientStreamingCall',

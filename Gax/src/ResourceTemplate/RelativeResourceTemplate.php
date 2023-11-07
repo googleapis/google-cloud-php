@@ -53,8 +53,8 @@ use Google\ApiCore\ValidationException;
  */
 class RelativeResourceTemplate implements ResourceTemplateInterface
 {
-    /** @var Segment[] $segments */
-    private $segments;
+    /** @var Segment[] */
+    private array $segments;
 
     /**
      * RelativeResourceTemplate constructor.

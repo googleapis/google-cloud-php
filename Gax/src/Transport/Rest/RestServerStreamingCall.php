@@ -48,40 +48,17 @@ use stdClass;
  */
 class RestServerStreamingCall implements ServerStreamingCallInterface
 {
-    /**
-     * @var callable
-     */
+    /** @var callable */
     private $httpHandler;
 
-    /**
-     * @var RequestInterface
-     */
-    private $originalRequest;
+    /** @var array<mixed> */
+    private array $decoderOptions;
 
-    /**
-     * @var ?JsonStreamDecoder
-     */
-    private $decoder;
-
-    /**
-     * @var string
-     */
-    private $decodeType;
-
-    /**
-     * @var array<mixed>
-     */
-    private $decoderOptions;
-
-    /**
-     * @var ?ResponseInterface
-     */
-    private $response;
-
-    /**
-     * @var stdClass
-     */
-    private $status;
+    private RequestInterface $originalRequest;
+    private ?JsonStreamDecoder $decoder;
+    private string $decodeType;
+    private ?ResponseInterface $response;
+    private stdClass $status;
 
     /**
      * @param callable $httpHandler

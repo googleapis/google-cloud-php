@@ -41,9 +41,8 @@ class FixedHeaderMiddleware
 {
     /** @var callable */
     private $nextHandler;
-
-    private $headers;
-    private $overrideUserHeaders;
+    private array $headers;
+    private bool $overrideUserHeaders;
 
     public function __construct(
         callable $nextHandler,

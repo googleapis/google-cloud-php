@@ -53,10 +53,8 @@ use Google\ApiCore\ValidationException;
  */
 class AbsoluteResourceTemplate implements ResourceTemplateInterface
 {
-    /** @var RelativeResourceTemplate */
-    private $resourceTemplate;
-
-    /** @var string */
+    private RelativeResourceTemplate $resourceTemplate;
+    /** @var string|bool */
     private $verb;
 
     /**

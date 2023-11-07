@@ -56,10 +56,7 @@ class RestTransport implements TransportInterface
         startServerStreamingCall as protected unsupportedServerStreamingCall;
     }
 
-    /**
-     * @var RequestBuilder
-     */
-    private $requestBuilder;
+    private RequestBuilder $requestBuilder;
 
     /**
      * @param RequestBuilder $requestBuilder A builder responsible for creating

@@ -41,9 +41,7 @@ class CredentialsWrapperMiddleware
 {
     /** @var callable */
     private $nextHandler;
-
-    /** @var CredentialsWrapper */
-    private $credentialsWrapper;
+    private CredentialsWrapper $credentialsWrapper;
 
     public function __construct(
         callable $nextHandler,

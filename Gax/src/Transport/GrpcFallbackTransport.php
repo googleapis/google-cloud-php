@@ -54,7 +54,7 @@ class GrpcFallbackTransport implements TransportInterface
     use ServiceAddressTrait;
     use HttpUnaryTransportTrait;
 
-    private $baseUri;
+    private string $baseUri;
 
     /**
      * @param string $baseUri
