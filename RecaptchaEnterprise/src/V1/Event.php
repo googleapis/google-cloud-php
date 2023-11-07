@@ -81,7 +81,7 @@ class Event extends \Google\Protobuf\Internal\Message
      */
     private $waf_token_assessment = false;
     /**
-     * Optional. Optional JA3 fingerprint for SSL clients.
+     * Optional. JA3 fingerprint for SSL clients.
      *
      * Generated from protobuf field <code>string ja3 = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -145,7 +145,7 @@ class Event extends \Google\Protobuf\Internal\Message
      *           If enabled, the token must be specified, and have been created by a
      *           WAF-enabled key.
      *     @type string $ja3
-     *           Optional. Optional JA3 fingerprint for SSL clients.
+     *           Optional. JA3 fingerprint for SSL clients.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $headers
      *           Optional. HTTP header information about the request.
      *     @type bool $firewall_policy_evaluation
@@ -420,7 +420,7 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional JA3 fingerprint for SSL clients.
+     * Optional. JA3 fingerprint for SSL clients.
      *
      * Generated from protobuf field <code>string ja3 = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -431,7 +431,7 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional JA3 fingerprint for SSL clients.
+     * Optional. JA3 fingerprint for SSL clients.
      *
      * Generated from protobuf field <code>string ja3 = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
