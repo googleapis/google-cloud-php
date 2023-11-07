@@ -54,11 +54,12 @@ class CredentialsWrapper
     use ValidationTrait;
 
     /** @var FetchAuthTokenInterface $credentialsFetcher */
-    private $credentialsFetcher;
+    private FetchAuthTokenInterface $credentialsFetcher;
+    /** @var callable $authHttpHandle */
     private $authHttpHandler;
 
     /** @var int */
-    private static $eagerRefreshThresholdSeconds = 10;
+    private static int $eagerRefreshThresholdSeconds = 10;
 
     /**
      * CredentialsWrapper constructor.

@@ -12,6 +12,7 @@ branchProtectionRules:
     - 'PHP 8.2 Unit Test'
     - 'PHP 8.2 Unit Test protobuf,grpc'
     - 'PHP Style Check'
+    - 'PHPStan Static Analysis'
     - 'cla/google'
   requiredApprovingReviewCount: 1
   requiresCodeOwnerReviews: true

@@ -47,23 +47,12 @@ class Segment
     const DOUBLE_WILDCARD_SEGMENT = 2;
     const VARIABLE_SEGMENT = 3;
 
-    /** @var int */
-    private $segmentType;
-
-    /** @var string|null */
-    private $value;
-
-    /** @var string|null */
-    private $key;
-
-    /** @var RelativeResourceTemplate|null */
-    private $template;
-
-    /** @var string */
-    private $stringRepr;
-
-    /** @var string */
-    private $separator;
+    private int $segmentType;
+    private ?string $value;
+    private ?string $key;
+    private ?RelativeResourceTemplate $template;
+    private ?string $stringRepr;
+    private ?string $separator;
 
     /**
      * Segment constructor.

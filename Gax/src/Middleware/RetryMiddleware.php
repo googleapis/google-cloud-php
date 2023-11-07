@@ -44,12 +44,8 @@ class RetryMiddleware
 {
     /** @var callable */
     private $nextHandler;
-
-    /** @var RetrySettings */
-    private $retrySettings;
-
-    /** @var float|null */
-    private $deadlineMs;
+    private RetrySettings $retrySettings;
+    private ?float $deadlineMs;
 
     /*
      * The number of retries that have already been attempted.

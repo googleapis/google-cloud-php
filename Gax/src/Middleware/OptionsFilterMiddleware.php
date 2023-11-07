@@ -43,9 +43,7 @@ class OptionsFilterMiddleware
 
     /** @var callable */
     private $nextHandler;
-
-    /** @var array */
-    private $permittedOptions;
+    private array $permittedOptions;
 
     public function __construct(
         callable $nextHandler,
