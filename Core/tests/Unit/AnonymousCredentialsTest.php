@@ -53,10 +53,7 @@ class AnonymousCredentialsTest extends TestCase
     public function testUpdateMetadata()
     {
         $metadata = ['foo' => 'bar'];
-        $this->assertEquals(
-            $metadata + ['authorization' => null],
-            $this->credentials->updateMetadata($metadata)
-        );
+        $this->assertEquals($metadata, $this->credentials->updateMetadata($metadata));
     }
 
     public function testGetQuotaProject()

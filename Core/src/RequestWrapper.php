@@ -307,16 +307,16 @@ class RequestWrapper
             unset($options['retryHeaders']);
         }
 
+        $request = Utils::modifyRequest($request, ['set_headers' => $headers]);
+
         if ($this->shouldSignRequest) {
             $quotaProject = $this->quotaProject;
-            $token = null;
 
-            $authHeaders = [];
             if ($this->accessToken) {
-                $authHeaders = $this->createAuthHeader($this->accessToken);
+                $request = $request->withHeader('authorization', 'Bearer ' . $this->accessToken);
             } else {
                 $credentialsFetcher = $this->getCredentialsFetcher();
-                $authHeaders = $this->fetchAuthHeaders($credentialsFetcher);
+                $request = $this->addAuthHeaders($request, $credentialsFetcher);
 
                 if ($credentialsFetcher instanceof GetQuotaProjectInterface) {
                     $quotaProject = $credentialsFetcher->getQuotaProject();
@@ -324,65 +324,42 @@ class RequestWrapper
             }
 
             if ($quotaProject) {
-                $headers['X-Goog-User-Project'] = [$quotaProject];
-            }
-
-            foreach ($authHeaders as $key => $value) {
-                if (array_key_exists($key, $headers)) {
-                    $headers[$key] .= ' ' . $value;
-                } else {
-                    $headers[$key] = $value;
-                }
+                $request = $request->withHeader('X-Goog-User-Project', $quotaProject);
             }
         }
 
-        return Utils::modifyRequest($request, ['set_headers' => $headers]);
+        return $request;
     }
 
     /**
-     * Fetches auth headers.
+     * Adds auth headers to the request.
      *
-     * @param FetchAuthTokenInterface $credentialsFetcher
+     * @param RequestInterface $request
+     * @param FetchAuthTokenInterface $fetcher
      * @return array
      * @throws ServiceException
      */
-    private function fetchAuthHeaders(FetchAuthTokenInterface $credentialsFetcher)
+    private function addAuthHeaders(RequestInterface $request, FetchAuthTokenInterface $fetcher)
     {
         $backoff = new ExponentialBackoff($this->retries, $this->getRetryFunction());
 
         try {
             return $backoff->execute(
-                function () use ($credentialsFetcher) {
-                    // Proper error message capture to as to not break existing
-                    // exception message.
-                    $exceptionMessage = '';
-
-                    // We need to find the actual fetcher incase of a cache wrapper
-                    // so that we can avoid the exception case where actual fetcher
-                    // does not implements UpdateMetadataInterface with cache wrapper's
-                    // `updateMetadata` being called.
-                    $actualFetcher = $credentialsFetcher;
-                    if ($credentialsFetcher instanceof FetchAuthTokenCache) {
-                        $actualFetcher = $credentialsFetcher->getFetcher();
-                    }
-
-                    if ($actualFetcher instanceof UpdateMetadataInterface) {
-                        $header = $credentialsFetcher->updateMetadata([], null, $this->authHttpHandler);
-                        if (array_key_exists('authorization', $header) ||
-                            array_key_exists('proxy-authorization', $header)) {
-                            return $header;
+                function () use ($request, $fetcher) {
+                    if (!$fetcher instanceof UpdateMetadataInterface ||
+                        ($fetcher instanceof FetchAuthTokenCache && !$fetcher->getFetcher() instanceof UpdateMetadataInterface)
+                    ) {
+                        if ($this->isValidToken($token = $fetcher->fetchAuthToken())) {
+                            return $request->withHeader('authorization', 'Bearer ' . $token['access_token']);
                         }
-                        $exceptionMessage = 'Unable to fetch auth headers';
                     } else {
-                        $tokenArray = $credentialsFetcher->fetchAuthToken($this->authHttpHandler);
-                        if ($this->isValidToken($tokenArray)) {
-                            return $this->createAuthHeader($tokenArray['access_token']);
-                        }
-                        $exceptionMessage = 'Unable to fetch token';
+                        $headers = $fetcher->updateMetadata($request->getHeaders(), null, $this->authHttpHandler);
+                        return Utils::modifyRequest($request, ['set_headers' => $headers]);
                     }
+
                     // As we do not know the reason the credentials fetcher could not fetch the
                     // token, we should not retry.
-                    throw new \RuntimeException($exceptionMessage);
+                    throw new \RuntimeException('Unable to fetch token');
                 }
             );
         } catch (\Exception $ex) {
@@ -397,14 +374,6 @@ class RequestWrapper
     {
         return is_array($token)
             && array_key_exists('access_token', $token);
-    }
-
-    /**
-     * @param string $accessToken
-     */
-    private function createAuthHeader(string $accessToken)
-    {
-        return ['authorization' => 'Bearer ' . $accessToken];
     }
 
     /**

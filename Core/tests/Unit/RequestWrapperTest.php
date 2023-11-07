@@ -683,7 +683,7 @@ class RequestWrapperTest extends TestCase
 
         $accessToken = 'abc';
         $credentialsFetcher->updateMetadata(Argument::cetera())->willReturn([
-            'authorization' => 'Bearer ' . $accessToken
+            'authorization' => ['Bearer ' . $accessToken]
         ]);
 
         // We have to mock this message because RequestWrapper wraps the credentials using the
@@ -715,9 +715,11 @@ class RequestWrapperTest extends TestCase
         $credentialsFetcher->willImplement(UpdateMetadataInterface::class);
 
         $accessToken = 'abc';
-        $credentialsFetcher->updateMetadata(Argument::cetera())->willReturn([
-            'authorization' => 'Bearer ' . $accessToken,
-            'x-goog-api-client' => 'xyz'
+        $credentialsFetcher->updateMetadata(Argument::that(function ($arg) {
+            return array_key_exists('x-goog-api-client', $arg);
+        }), Argument::cetera())->willReturn([
+            'authorization' => ['Bearer ' . $accessToken],
+            'x-goog-api-client' => ['xyz']
         ]);
 
         // We have to mock this message because RequestWrapper wraps the credentials using the
@@ -729,21 +731,11 @@ class RequestWrapperTest extends TestCase
         // internally calls getLastReceivedToken() as a part of token fetching.
         $credentialsFetcher->getLastReceivedToken()->willReturn(null);
 
-        $version = '1.0.0';
-        $expectedOverlapingHeader = sprintf(
-            'gl-php/%s gccl/%s xyz',
-            PHP_VERSION,
-            $version
-        );
-
         $requestWrapper = new RequestWrapper([
             'credentialsFetcher' => $credentialsFetcher->reveal(),
-            'componentVersion' => $version,
-            'httpHandler' => function ($request, $options = []) use ($accessToken, $expectedOverlapingHeader) {
+            'httpHandler' => function ($request, $options = []) use ($accessToken) {
                 $authHeader = $request->getHeaderLine('authorization');
                 $this->assertEquals('Bearer ' . $accessToken, $authHeader);
-                $xGoogApiClient = $request->getHeaderLine('x-goog-api-client');
-                $this->assertEquals($expectedOverlapingHeader, $xGoogApiClient);
                 return new Response(200);
             },
         ]);

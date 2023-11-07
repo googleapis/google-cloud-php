@@ -38,13 +38,6 @@ class AnonymousCredentials implements
     ];
 
     /**
-     * @var array
-     */
-    private $authHeader = [
-        'authorization' => null
-    ];
-
-    /**
      * Fetches the auth token. In this case it returns a null value.
      *
      * @param callable $httpHandler
@@ -90,7 +83,7 @@ class AnonymousCredentials implements
         $authUri = null,
         callable $httpHandler = null
     ) {
-        return $metadata + $this->authHeader;
+        return $metadata;
     }
 
     /**
