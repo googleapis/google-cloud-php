@@ -31,8 +31,6 @@ use Symfony\Component\Finder\Finder;
  */
 class UpdateDepsCommand extends Command
 {
-    private GitHub $github;
-
     protected function configure()
     {
         $this->setName('update-deps')
