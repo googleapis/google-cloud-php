@@ -202,13 +202,18 @@ class Query
      * ```
      * $sum = $query->sum();
      * ```
+     *
+     * Sum of integers which exceed maxinum integer value returns a float.
+     * Sum of numbers exceeding max float value returns `INF`.
+     * Sum of data which contains `NaN` returns `NaN`.
+     *
      * @param string $field The relative path of the field to aggregate upon.
      * @param array $options [optional] {
      *     Configuration options is an array.
      *
      *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
      * }
-     * @return int
+     * @return int|float
      */
     public function sum(string $field, array $options = [])
     {
@@ -226,13 +231,17 @@ class Query
      * $avg = $query->avg();
      * ```
      *
+     * Average of empty valid data set return `null`.
+     * Average of numbers exceeding max float value returns `INF`.
+     * Average of data which contains `NaN` returns `NaN`.
+     *
      * @param string $field The relative path of the field to aggregate upon.
      * @param array $options [optional] {
      *     Configuration options is an array.
      *
      *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
      * }
-     * @return int
+     * @return float|null
      */
     public function avg(string $field, array $options = [])
     {

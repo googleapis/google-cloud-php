@@ -126,7 +126,7 @@ class AggregateQueryTest extends FirestoreTestCase
 
     private function compareResult($expected, $actual)
     {
-        if (is_nan($expected)) {
+        if (!is_null($expected) && is_nan($expected)) {
             $this->assertNan($actual);
         } elseif (is_double($expected)) {
             $this->assertEqualsWithDelta($expected, $actual, 0.01);
@@ -144,9 +144,7 @@ class AggregateQueryTest extends FirestoreTestCase
 
         $actual = $arg ? $query->$type($arg) : $query->$type();
 
-        if (!($expected instanceof Exception)) {
-            $this->compareResult($expected, $actual);
-        }
+        $this->compareResult($expected, $actual);
         $this->assertQueryWithMultipleAggregations($query, $type, $arg, $expected);
     }
 
@@ -174,11 +172,9 @@ class AggregateQueryTest extends FirestoreTestCase
 
         $snapshot = $query->getSnapshot();
 
-        if (!($expected instanceof Exception)) {
-            foreach ($expectedResults as $key => $expectedResult) {
-                $actualResult = $snapshot->get($key);
-                $this->compareResult($expected, $actualResult);
-            }
+        foreach ($expectedResults as $key => $expectedResult) {
+            $actualResult = $snapshot->get($key);
+            $this->compareResult($expected, $actualResult);
         }
 
         $this->assertEquals(0, strlen($snapshot->getTransaction()));
@@ -200,7 +196,7 @@ class AggregateQueryTest extends FirestoreTestCase
      *     string $aggregationType,
      *     string $targetFieldName,
      *     string $fieldMask,
-     *     mixed $expectedResult, // can be exception too
+     *     mixed $expectedResult, // can also be instance of Exception
      *     array $docsToAddBeforeTestRunning
      * ]
      */

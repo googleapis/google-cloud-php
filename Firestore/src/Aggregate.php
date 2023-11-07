@@ -73,9 +73,7 @@ class Aggregate
      */
     public static function count()
     {
-        $count = new Aggregate(self::TYPE_COUNT);
-        $count->props[$count->aggregationType] = [];
-        return $count;
+        return self::createAggregate(self::TYPE_COUNT);
     }
 
     /**
@@ -85,18 +83,18 @@ class Aggregate
      * ```
      * $sum = Aggregate::sum('field_to_aggregate_upon');
      * ```
+     * Result of SUM aggregation can be a integer or a float.
+     * Sum of integers which exceed maxinum integer value returns a float.
+     * Sum of numbers exceeding max float value returns `INF`.
+     * Sum of data which contains `NaN` returns `NaN`.
+     *
      * @param string $field The relative path of the field to aggregate upon.
      * @return Aggregate
      */
     public static function sum($field)
     {
-        $sum = new Aggregate(self::TYPE_SUM);
-        $sum->props[$sum->aggregationType] = [
-            'field' => [
-                'fieldPath' => $field
-            ]
-        ];
-        return $sum;
+        return self::createAggregate(self::TYPE_SUM, $field);
+
     }
 
     /**
@@ -106,18 +104,31 @@ class Aggregate
      * ```
      * $avg = Aggregate::avg('field_to_aggregate_upon');
      * ```
+     *
+     * Average of empty valid data set return `null`.
+     * Average of numbers exceeding max float value returns `INF`.
+     * Average of data which contains `NaN` returns `NaN`.
+     *
      * @param string $field The relative path of the field to aggregate upon.
      * @return Aggregate
      */
     public static function avg($field)
     {
-        $avg = new Aggregate(self::TYPE_AVG);
-        $avg->props[$avg->aggregationType] = [
-            'field' => [
-                'fieldPath' => $field
-            ]
-        ];
-        return $avg;
+        return self::createAggregate(self::TYPE_AVG, $field);
+    }
+
+    private static function createAggregate(string $type, string $field = '')
+    {
+        $aggregate = new Aggregate($type);
+        $aggregate->props[$aggregate->aggregationType] = [];
+        if (!empty($field)) {
+            $aggregate->props[$aggregate->aggregationType] = [
+                'field' => [
+                    'fieldPath' => $field
+                ]
+            ];
+        }
+        return $aggregate;
     }
 
     /**
