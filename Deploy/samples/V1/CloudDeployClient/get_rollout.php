@@ -32,7 +32,7 @@ use Google\Cloud\Deploy\V1\Rollout;
  * Gets details of a single Rollout.
  *
  * @param string $formattedName Name of the `Rollout`. Format must be
- *                              projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}/rollouts/{rollout_name}. Please see
+ *                              `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}/rollouts/{rollout_name}`. Please see
  *                              {@see CloudDeployClient::rolloutName()} for help formatting this field.
  */
 function get_rollout_sample(string $formattedName): void

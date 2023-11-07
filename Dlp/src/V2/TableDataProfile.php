@@ -28,7 +28,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      */
     private $project_data_profile = '';
     /**
-     * The GCP project ID that owns the BigQuery dataset.
+     * The Google Cloud project ID that owns the BigQuery dataset.
      *
      * Generated from protobuf field <code>string dataset_project_id = 24;</code>
      */
@@ -182,7 +182,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      *     @type string $project_data_profile
      *           The resource name to the project data profile for this table.
      *     @type string $dataset_project_id
-     *           The GCP project ID that owns the BigQuery dataset.
+     *           The Google Cloud project ID that owns the BigQuery dataset.
      *     @type string $dataset_location
      *           The BigQuery location where the dataset's data is stored.
      *           See https://cloud.google.com/bigquery/docs/locations for supported
@@ -292,7 +292,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The GCP project ID that owns the BigQuery dataset.
+     * The Google Cloud project ID that owns the BigQuery dataset.
      *
      * Generated from protobuf field <code>string dataset_project_id = 24;</code>
      * @return string
@@ -303,7 +303,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The GCP project ID that owns the BigQuery dataset.
+     * The Google Cloud project ID that owns the BigQuery dataset.
      *
      * Generated from protobuf field <code>string dataset_project_id = 24;</code>
      * @param string $var

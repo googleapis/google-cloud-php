@@ -57,12 +57,18 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
     /**
      * References to fields excluded from scanning. This allows you to skip
      * inspection of entire columns which you know have no findings.
+     * When inspecting a table, we recommend that you inspect all columns.
+     * Otherwise, findings might be affected because hints from excluded columns
+     * will not be used.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId excluded_fields = 5;</code>
      */
     private $excluded_fields;
     /**
      * Limit scanning only to these fields.
+     * When inspecting a table, we recommend that you inspect all columns.
+     * Otherwise, findings might be affected because hints from excluded columns
+     * will not be used.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId included_fields = 7;</code>
      */
@@ -97,8 +103,14 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $excluded_fields
      *           References to fields excluded from scanning. This allows you to skip
      *           inspection of entire columns which you know have no findings.
+     *           When inspecting a table, we recommend that you inspect all columns.
+     *           Otherwise, findings might be affected because hints from excluded columns
+     *           will not be used.
      *     @type array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $included_fields
      *           Limit scanning only to these fields.
+     *           When inspecting a table, we recommend that you inspect all columns.
+     *           Otherwise, findings might be affected because hints from excluded columns
+     *           will not be used.
      * }
      */
     public function __construct($data = NULL) {
@@ -267,6 +279,9 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
     /**
      * References to fields excluded from scanning. This allows you to skip
      * inspection of entire columns which you know have no findings.
+     * When inspecting a table, we recommend that you inspect all columns.
+     * Otherwise, findings might be affected because hints from excluded columns
+     * will not be used.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId excluded_fields = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -279,6 +294,9 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
     /**
      * References to fields excluded from scanning. This allows you to skip
      * inspection of entire columns which you know have no findings.
+     * When inspecting a table, we recommend that you inspect all columns.
+     * Otherwise, findings might be affected because hints from excluded columns
+     * will not be used.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId excluded_fields = 5;</code>
      * @param array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $var
@@ -294,6 +312,9 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
 
     /**
      * Limit scanning only to these fields.
+     * When inspecting a table, we recommend that you inspect all columns.
+     * Otherwise, findings might be affected because hints from excluded columns
+     * will not be used.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId included_fields = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -305,6 +326,9 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
 
     /**
      * Limit scanning only to these fields.
+     * When inspecting a table, we recommend that you inspect all columns.
+     * Otherwise, findings might be affected because hints from excluded columns
+     * will not be used.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId included_fields = 7;</code>
      * @param array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $var

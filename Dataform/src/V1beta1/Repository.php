@@ -22,11 +22,56 @@ class Repository extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
+     * Optional. The repository's user-friendly name.
+     *
+     * Generated from protobuf field <code>string display_name = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $display_name = '';
+    /**
      * Optional. If set, configures this repository to be linked to a Git remote.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Repository.GitRemoteSettings git_remote_settings = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $git_remote_settings = null;
+    /**
+     * Optional. The name of the Secret Manager secret version to be used to
+     * interpolate variables into the .npmrc file for package installation
+     * operations. Must be in the format `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`. The
+     * file itself must be in a JSON format.
+     *
+     * Generated from protobuf field <code>string npmrc_environment_variables_secret_version = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $npmrc_environment_variables_secret_version = '';
+    /**
+     * Optional. If set, fields of `workspace_compilation_overrides` override the
+     * default compilation settings that are specified in dataform.json when
+     * creating workspace-scoped compilation results. See documentation for
+     * `WorkspaceCompilationOverrides` for more information.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Repository.WorkspaceCompilationOverrides workspace_compilation_overrides = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $workspace_compilation_overrides = null;
+    /**
+     * Optional. Repository user labels.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $labels;
+    /**
+     * Optional. Input only. If set to true, the authenticated user will be
+     * granted the roles/dataform.admin role on the created repository. To modify
+     * access to the created repository later apply setIamPolicy from
+     * https://cloud.google.com/dataform/reference/rest#rest-resource:-v1beta1.projects.locations.repositories
+     *
+     * Generated from protobuf field <code>bool set_authenticated_user_admin = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     */
+    private $set_authenticated_user_admin = false;
+    /**
+     * Optional. The service account to run workflow invocations under.
+     *
+     * Generated from protobuf field <code>string service_account = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $service_account = '';
 
     /**
      * Constructor.
@@ -36,8 +81,29 @@ class Repository extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. The repository's name.
+     *     @type string $display_name
+     *           Optional. The repository's user-friendly name.
      *     @type \Google\Cloud\Dataform\V1beta1\Repository\GitRemoteSettings $git_remote_settings
      *           Optional. If set, configures this repository to be linked to a Git remote.
+     *     @type string $npmrc_environment_variables_secret_version
+     *           Optional. The name of the Secret Manager secret version to be used to
+     *           interpolate variables into the .npmrc file for package installation
+     *           operations. Must be in the format `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`. The
+     *           file itself must be in a JSON format.
+     *     @type \Google\Cloud\Dataform\V1beta1\Repository\WorkspaceCompilationOverrides $workspace_compilation_overrides
+     *           Optional. If set, fields of `workspace_compilation_overrides` override the
+     *           default compilation settings that are specified in dataform.json when
+     *           creating workspace-scoped compilation results. See documentation for
+     *           `WorkspaceCompilationOverrides` for more information.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Optional. Repository user labels.
+     *     @type bool $set_authenticated_user_admin
+     *           Optional. Input only. If set to true, the authenticated user will be
+     *           granted the roles/dataform.admin role on the created repository. To modify
+     *           access to the created repository later apply setIamPolicy from
+     *           https://cloud.google.com/dataform/reference/rest#rest-resource:-v1beta1.projects.locations.repositories
+     *     @type string $service_account
+     *           Optional. The service account to run workflow invocations under.
      * }
      */
     public function __construct($data = NULL) {
@@ -67,6 +133,32 @@ class Repository extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The repository's user-friendly name.
+     *
+     * Generated from protobuf field <code>string display_name = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getDisplayName()
+    {
+        return $this->display_name;
+    }
+
+    /**
+     * Optional. The repository's user-friendly name.
+     *
+     * Generated from protobuf field <code>string display_name = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->display_name = $var;
 
         return $this;
     }
@@ -103,6 +195,164 @@ class Repository extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\Repository\GitRemoteSettings::class);
         $this->git_remote_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The name of the Secret Manager secret version to be used to
+     * interpolate variables into the .npmrc file for package installation
+     * operations. Must be in the format `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`. The
+     * file itself must be in a JSON format.
+     *
+     * Generated from protobuf field <code>string npmrc_environment_variables_secret_version = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getNpmrcEnvironmentVariablesSecretVersion()
+    {
+        return $this->npmrc_environment_variables_secret_version;
+    }
+
+    /**
+     * Optional. The name of the Secret Manager secret version to be used to
+     * interpolate variables into the .npmrc file for package installation
+     * operations. Must be in the format `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`. The
+     * file itself must be in a JSON format.
+     *
+     * Generated from protobuf field <code>string npmrc_environment_variables_secret_version = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNpmrcEnvironmentVariablesSecretVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->npmrc_environment_variables_secret_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set, fields of `workspace_compilation_overrides` override the
+     * default compilation settings that are specified in dataform.json when
+     * creating workspace-scoped compilation results. See documentation for
+     * `WorkspaceCompilationOverrides` for more information.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Repository.WorkspaceCompilationOverrides workspace_compilation_overrides = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataform\V1beta1\Repository\WorkspaceCompilationOverrides|null
+     */
+    public function getWorkspaceCompilationOverrides()
+    {
+        return $this->workspace_compilation_overrides;
+    }
+
+    public function hasWorkspaceCompilationOverrides()
+    {
+        return isset($this->workspace_compilation_overrides);
+    }
+
+    public function clearWorkspaceCompilationOverrides()
+    {
+        unset($this->workspace_compilation_overrides);
+    }
+
+    /**
+     * Optional. If set, fields of `workspace_compilation_overrides` override the
+     * default compilation settings that are specified in dataform.json when
+     * creating workspace-scoped compilation results. See documentation for
+     * `WorkspaceCompilationOverrides` for more information.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Repository.WorkspaceCompilationOverrides workspace_compilation_overrides = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataform\V1beta1\Repository\WorkspaceCompilationOverrides $var
+     * @return $this
+     */
+    public function setWorkspaceCompilationOverrides($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\Repository\WorkspaceCompilationOverrides::class);
+        $this->workspace_compilation_overrides = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Repository user labels.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * Optional. Repository user labels.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. If set to true, the authenticated user will be
+     * granted the roles/dataform.admin role on the created repository. To modify
+     * access to the created repository later apply setIamPolicy from
+     * https://cloud.google.com/dataform/reference/rest#rest-resource:-v1beta1.projects.locations.repositories
+     *
+     * Generated from protobuf field <code>bool set_authenticated_user_admin = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSetAuthenticatedUserAdmin()
+    {
+        return $this->set_authenticated_user_admin;
+    }
+
+    /**
+     * Optional. Input only. If set to true, the authenticated user will be
+     * granted the roles/dataform.admin role on the created repository. To modify
+     * access to the created repository later apply setIamPolicy from
+     * https://cloud.google.com/dataform/reference/rest#rest-resource:-v1beta1.projects.locations.repositories
+     *
+     * Generated from protobuf field <code>bool set_authenticated_user_admin = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSetAuthenticatedUserAdmin($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->set_authenticated_user_admin = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The service account to run workflow invocations under.
+     *
+     * Generated from protobuf field <code>string service_account = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getServiceAccount()
+    {
+        return $this->service_account;
+    }
+
+    /**
+     * Optional. The service account to run workflow invocations under.
+     *
+     * Generated from protobuf field <code>string service_account = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceAccount($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_account = $var;
 
         return $this;
     }

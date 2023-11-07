@@ -7,8 +7,18 @@ namespace Google\Cloud\Dlp\V2;
 use UnexpectedValueException;
 
 /**
- * Categorization of results based on how likely they are to represent a match,
- * based on the number of elements they contain which imply a match.
+ * Coarse-grained confidence level of how well a particular finding
+ * satisfies the criteria to match a particular infoType.
+ * Likelihood is calculated based on the number of signals a
+ * finding has that implies that the finding matches the infoType. For
+ * example, a string that has an '&#64;' and a '.com' is more likely to be a
+ * match for an email address than a string that only has an '&#64;'.
+ * In general, the highest likelihood level has the strongest signals that
+ * indicate a match. That is, a finding with a high likelihood has a low chance
+ * of being a false positive.
+ * For more information about each likelihood level
+ * and how likelihood works, see [Match
+ * likelihood](https://cloud.google.com/dlp/docs/likelihood).
  *
  * Protobuf type <code>google.privacy.dlp.v2.Likelihood</code>
  */
@@ -21,27 +31,31 @@ class Likelihood
      */
     const LIKELIHOOD_UNSPECIFIED = 0;
     /**
-     * Few matching elements.
+     * Highest chance of a false positive.
      *
      * Generated from protobuf enum <code>VERY_UNLIKELY = 1;</code>
      */
     const VERY_UNLIKELY = 1;
     /**
+     * High chance of a false positive.
+     *
      * Generated from protobuf enum <code>UNLIKELY = 2;</code>
      */
     const UNLIKELY = 2;
     /**
-     * Some matching elements.
+     * Some matching signals. The default value.
      *
      * Generated from protobuf enum <code>POSSIBLE = 3;</code>
      */
     const POSSIBLE = 3;
     /**
+     * Low chance of a false positive.
+     *
      * Generated from protobuf enum <code>LIKELY = 4;</code>
      */
     const LIKELY = 4;
     /**
-     * Many matching elements.
+     * Confidence level is high. Lowest chance of a false positive.
      *
      * Generated from protobuf enum <code>VERY_LIKELY = 5;</code>
      */

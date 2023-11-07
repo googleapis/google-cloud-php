@@ -33,7 +33,7 @@ use Google\Rpc\Status;
  * Deletes a single Target.
  *
  * @param string $formattedName The name of the `Target` to delete. Format should be
- *                              projects/{project_id}/locations/{location_name}/targets/{target_name}. Please see
+ *                              `projects/{project_id}/locations/{location_name}/targets/{target_name}`. Please see
  *                              {@see CloudDeployClient::targetName()} for help formatting this field.
  */
 function delete_target_sample(string $formattedName): void

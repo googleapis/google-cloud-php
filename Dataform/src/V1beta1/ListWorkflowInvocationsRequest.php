@@ -16,33 +16,47 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListWorkflowInvocationsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource of the WorkflowInvocation type. Must be in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
+     * Required. The parent resource of the WorkflowInvocation type. Must be in
+     * the format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Optional. Maximum number of workflow invocations to return. The server may return
-     * fewer items than requested. If unspecified, the server will pick an
+     * Optional. Maximum number of workflow invocations to return. The server may
+     * return fewer items than requested. If unspecified, the server will pick an
      * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. Page token received from a previous `ListWorkflowInvocations` call.
-     * Provide this to retrieve the subsequent page.
+     * Optional. Page token received from a previous `ListWorkflowInvocations`
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to `ListWorkflowInvocations`
      * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
+    /**
+     * Optional. This field only supports ordering by `name`. If unspecified, the
+     * server will choose the ordering. If specified, the default order is
+     * ascending for the `name` field.
+     *
+     * Generated from protobuf field <code>string order_by = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $order_by = '';
+    /**
+     * Optional. Filter for the returned list.
+     *
+     * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $filter = '';
 
     /**
-     * @param string $parent Required. The parent resource of the WorkflowInvocation type. Must be in the
-     *                       format `projects/&#42;/locations/&#42;/repositories/*`. Please see
+     * @param string $parent Required. The parent resource of the WorkflowInvocation type. Must be in
+     *                       the format `projects/&#42;/locations/&#42;/repositories/*`. Please see
      *                       {@see DataformClient::repositoryName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataform\V1beta1\ListWorkflowInvocationsRequest
@@ -62,17 +76,23 @@ class ListWorkflowInvocationsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent resource of the WorkflowInvocation type. Must be in the
-     *           format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
+     *           Required. The parent resource of the WorkflowInvocation type. Must be in
+     *           the format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
      *     @type int $page_size
-     *           Optional. Maximum number of workflow invocations to return. The server may return
-     *           fewer items than requested. If unspecified, the server will pick an
+     *           Optional. Maximum number of workflow invocations to return. The server may
+     *           return fewer items than requested. If unspecified, the server will pick an
      *           appropriate default.
      *     @type string $page_token
-     *           Optional. Page token received from a previous `ListWorkflowInvocations` call.
-     *           Provide this to retrieve the subsequent page.
+     *           Optional. Page token received from a previous `ListWorkflowInvocations`
+     *           call. Provide this to retrieve the subsequent page.
      *           When paginating, all other parameters provided to `ListWorkflowInvocations`
      *           must match the call that provided the page token.
+     *     @type string $order_by
+     *           Optional. This field only supports ordering by `name`. If unspecified, the
+     *           server will choose the ordering. If specified, the default order is
+     *           ascending for the `name` field.
+     *     @type string $filter
+     *           Optional. Filter for the returned list.
      * }
      */
     public function __construct($data = NULL) {
@@ -81,8 +101,8 @@ class ListWorkflowInvocationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource of the WorkflowInvocation type. Must be in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
+     * Required. The parent resource of the WorkflowInvocation type. Must be in
+     * the format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -93,8 +113,8 @@ class ListWorkflowInvocationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource of the WorkflowInvocation type. Must be in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
+     * Required. The parent resource of the WorkflowInvocation type. Must be in
+     * the format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -109,8 +129,8 @@ class ListWorkflowInvocationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Maximum number of workflow invocations to return. The server may return
-     * fewer items than requested. If unspecified, the server will pick an
+     * Optional. Maximum number of workflow invocations to return. The server may
+     * return fewer items than requested. If unspecified, the server will pick an
      * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -122,8 +142,8 @@ class ListWorkflowInvocationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Maximum number of workflow invocations to return. The server may return
-     * fewer items than requested. If unspecified, the server will pick an
+     * Optional. Maximum number of workflow invocations to return. The server may
+     * return fewer items than requested. If unspecified, the server will pick an
      * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -139,8 +159,8 @@ class ListWorkflowInvocationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Page token received from a previous `ListWorkflowInvocations` call.
-     * Provide this to retrieve the subsequent page.
+     * Optional. Page token received from a previous `ListWorkflowInvocations`
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to `ListWorkflowInvocations`
      * must match the call that provided the page token.
      *
@@ -153,8 +173,8 @@ class ListWorkflowInvocationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Page token received from a previous `ListWorkflowInvocations` call.
-     * Provide this to retrieve the subsequent page.
+     * Optional. Page token received from a previous `ListWorkflowInvocations`
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to `ListWorkflowInvocations`
      * must match the call that provided the page token.
      *
@@ -166,6 +186,62 @@ class ListWorkflowInvocationsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. This field only supports ordering by `name`. If unspecified, the
+     * server will choose the ordering. If specified, the default order is
+     * ascending for the `name` field.
+     *
+     * Generated from protobuf field <code>string order_by = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getOrderBy()
+    {
+        return $this->order_by;
+    }
+
+    /**
+     * Optional. This field only supports ordering by `name`. If unspecified, the
+     * server will choose the ordering. If specified, the default order is
+     * ascending for the `name` field.
+     *
+     * Generated from protobuf field <code>string order_by = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOrderBy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->order_by = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Filter for the returned list.
+     *
+     * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * Optional. Filter for the returned list.
+     *
+     * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
 
         return $this;
     }

@@ -52,6 +52,12 @@ class DlpJob extends \Google\Protobuf\Internal\Message
      */
     private $end_time = null;
     /**
+     * Time when the job was last modified by the system.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_modified = 15;</code>
+     */
+    private $last_modified = null;
+    /**
      * If created by a job trigger, the resource name of the trigger that
      * instantiated the job.
      *
@@ -64,6 +70,12 @@ class DlpJob extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 11;</code>
      */
     private $errors;
+    /**
+     * Events that should occur after the job has completed.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ActionDetails action_details = 12;</code>
+     */
+    private $action_details;
     protected $details;
 
     /**
@@ -88,11 +100,15 @@ class DlpJob extends \Google\Protobuf\Internal\Message
      *           Time when the job started.
      *     @type \Google\Protobuf\Timestamp $end_time
      *           Time when the job finished.
+     *     @type \Google\Protobuf\Timestamp $last_modified
+     *           Time when the job was last modified by the system.
      *     @type string $job_trigger_name
      *           If created by a job trigger, the resource name of the trigger that
      *           instantiated the job.
      *     @type array<\Google\Cloud\Dlp\V2\Error>|\Google\Protobuf\Internal\RepeatedField $errors
      *           A stream of errors encountered running the job.
+     *     @type array<\Google\Cloud\Dlp\V2\ActionDetails>|\Google\Protobuf\Internal\RepeatedField $action_details
+     *           Events that should occur after the job has completed.
      * }
      */
     public function __construct($data = NULL) {
@@ -349,6 +365,42 @@ class DlpJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Time when the job was last modified by the system.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_modified = 15;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getLastModified()
+    {
+        return $this->last_modified;
+    }
+
+    public function hasLastModified()
+    {
+        return isset($this->last_modified);
+    }
+
+    public function clearLastModified()
+    {
+        unset($this->last_modified);
+    }
+
+    /**
+     * Time when the job was last modified by the system.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_modified = 15;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setLastModified($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->last_modified = $var;
+
+        return $this;
+    }
+
+    /**
      * If created by a job trigger, the resource name of the trigger that
      * instantiated the job.
      *
@@ -398,6 +450,32 @@ class DlpJob extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\Error::class);
         $this->errors = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Events that should occur after the job has completed.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ActionDetails action_details = 12;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getActionDetails()
+    {
+        return $this->action_details;
+    }
+
+    /**
+     * Events that should occur after the job has completed.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ActionDetails action_details = 12;</code>
+     * @param array<\Google\Cloud\Dlp\V2\ActionDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setActionDetails($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\ActionDetails::class);
+        $this->action_details = $arr;
 
         return $this;
     }

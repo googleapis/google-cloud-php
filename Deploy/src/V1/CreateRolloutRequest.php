@@ -18,7 +18,7 @@ class CreateRolloutRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent collection in which the `Rollout` should be created.
      * Format should be
-     * projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}.
+     * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -69,7 +69,7 @@ class CreateRolloutRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                          $parent    Required. The parent collection in which the `Rollout` should be created.
      *                                                   Format should be
-     *                                                   projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}. Please see
+     *                                                   `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}`. Please see
      *                                                   {@see CloudDeployClient::releaseName()} for help formatting this field.
      * @param \Google\Cloud\Deploy\V1\Rollout $rollout   Required. The `Rollout` to create.
      * @param string                          $rolloutId Required. ID of the `Rollout`.
@@ -95,7 +95,7 @@ class CreateRolloutRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The parent collection in which the `Rollout` should be created.
      *           Format should be
-     *           projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}.
+     *           `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}`.
      *     @type string $rollout_id
      *           Required. ID of the `Rollout`.
      *     @type \Google\Cloud\Deploy\V1\Rollout $rollout
@@ -128,7 +128,7 @@ class CreateRolloutRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent collection in which the `Rollout` should be created.
      * Format should be
-     * projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}.
+     * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -141,7 +141,7 @@ class CreateRolloutRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent collection in which the `Rollout` should be created.
      * Format should be
-     * projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}.
+     * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -25,12 +25,6 @@ class ReportRow extends \Google\Protobuf\Internal\Message
      */
     protected $product_performance_view = null;
     /**
-     * Fields available for query in `non_product_performance_view` table.
-     *
-     * Generated from protobuf field <code>.google.shopping.merchant.reports.v1beta.NonProductPerformanceView non_product_performance_view = 7;</code>
-     */
-    protected $non_product_performance_view = null;
-    /**
      * Fields available for query in `product_view` table.
      *
      * Generated from protobuf field <code>.google.shopping.merchant.reports.v1beta.ProductView product_view = 2;</code>
@@ -90,8 +84,6 @@ class ReportRow extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Shopping\Merchant\Reports\V1beta\ProductPerformanceView $product_performance_view
      *           Fields available for query in `product_performance_view` table.
-     *     @type \Google\Shopping\Merchant\Reports\V1beta\NonProductPerformanceView $non_product_performance_view
-     *           Fields available for query in `non_product_performance_view` table.
      *     @type \Google\Shopping\Merchant\Reports\V1beta\ProductView $product_view
      *           Fields available for query in `product_view` table.
      *     @type \Google\Shopping\Merchant\Reports\V1beta\PriceCompetitivenessProductView $price_competitiveness_product_view
@@ -150,42 +142,6 @@ class ReportRow extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Reports\V1beta\ProductPerformanceView::class);
         $this->product_performance_view = $var;
-
-        return $this;
-    }
-
-    /**
-     * Fields available for query in `non_product_performance_view` table.
-     *
-     * Generated from protobuf field <code>.google.shopping.merchant.reports.v1beta.NonProductPerformanceView non_product_performance_view = 7;</code>
-     * @return \Google\Shopping\Merchant\Reports\V1beta\NonProductPerformanceView|null
-     */
-    public function getNonProductPerformanceView()
-    {
-        return $this->non_product_performance_view;
-    }
-
-    public function hasNonProductPerformanceView()
-    {
-        return isset($this->non_product_performance_view);
-    }
-
-    public function clearNonProductPerformanceView()
-    {
-        unset($this->non_product_performance_view);
-    }
-
-    /**
-     * Fields available for query in `non_product_performance_view` table.
-     *
-     * Generated from protobuf field <code>.google.shopping.merchant.reports.v1beta.NonProductPerformanceView non_product_performance_view = 7;</code>
-     * @param \Google\Shopping\Merchant\Reports\V1beta\NonProductPerformanceView $var
-     * @return $this
-     */
-    public function setNonProductPerformanceView($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Reports\V1beta\NonProductPerformanceView::class);
-        $this->non_product_performance_view = $var;
 
         return $this;
     }

@@ -16,18 +16,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteInspectTemplateRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name of the organization and inspectTemplate to be deleted, for
-     * example `organizations/433245324/inspectTemplates/432452342` or
-     * projects/project-id/inspectTemplates/432452342.
+     * Required. Resource name of the organization and inspectTemplate to be
+     * deleted, for example `organizations/433245324/inspectTemplates/432452342`
+     * or projects/project-id/inspectTemplates/432452342.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
     /**
-     * @param string $name Required. Resource name of the organization and inspectTemplate to be deleted, for
-     *                     example `organizations/433245324/inspectTemplates/432452342` or
-     *                     projects/project-id/inspectTemplates/432452342. Please see
+     * @param string $name Required. Resource name of the organization and inspectTemplate to be
+     *                     deleted, for example `organizations/433245324/inspectTemplates/432452342`
+     *                     or projects/project-id/inspectTemplates/432452342. Please see
      *                     {@see DlpServiceClient::inspectTemplateName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dlp\V2\DeleteInspectTemplateRequest
@@ -47,9 +47,9 @@ class DeleteInspectTemplateRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Resource name of the organization and inspectTemplate to be deleted, for
-     *           example `organizations/433245324/inspectTemplates/432452342` or
-     *           projects/project-id/inspectTemplates/432452342.
+     *           Required. Resource name of the organization and inspectTemplate to be
+     *           deleted, for example `organizations/433245324/inspectTemplates/432452342`
+     *           or projects/project-id/inspectTemplates/432452342.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,9 +58,9 @@ class DeleteInspectTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the organization and inspectTemplate to be deleted, for
-     * example `organizations/433245324/inspectTemplates/432452342` or
-     * projects/project-id/inspectTemplates/432452342.
+     * Required. Resource name of the organization and inspectTemplate to be
+     * deleted, for example `organizations/433245324/inspectTemplates/432452342`
+     * or projects/project-id/inspectTemplates/432452342.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -71,9 +71,9 @@ class DeleteInspectTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the organization and inspectTemplate to be deleted, for
-     * example `organizations/433245324/inspectTemplates/432452342` or
-     * projects/project-id/inspectTemplates/432452342.
+     * Required. Resource name of the organization and inspectTemplate to be
+     * deleted, for example `organizations/433245324/inspectTemplates/432452342`
+     * or projects/project-id/inspectTemplates/432452342.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

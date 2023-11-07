@@ -55,6 +55,14 @@ class GenerateClientCertificateRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string public_key = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $public_key = '';
+    /**
+     * Optional. An optional hint to the endpoint to generate a client
+     * ceritificate that can be used by AlloyDB connectors to exchange additional
+     * metadata with the server after TLS handshake.
+     *
+     * Generated from protobuf field <code>bool use_metadata_exchange = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $use_metadata_exchange = false;
 
     /**
      * @param string $parent Required. The name of the parent resource. The required format is:
@@ -100,6 +108,10 @@ class GenerateClientCertificateRequest extends \Google\Protobuf\Internal\Message
      *           default duration.
      *     @type string $public_key
      *           Optional. The public key from the client.
+     *     @type bool $use_metadata_exchange
+     *           Optional. An optional hint to the endpoint to generate a client
+     *           ceritificate that can be used by AlloyDB connectors to exchange additional
+     *           metadata with the server after TLS handshake.
      * }
      */
     public function __construct($data = NULL) {
@@ -247,6 +259,36 @@ class GenerateClientCertificateRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->public_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. An optional hint to the endpoint to generate a client
+     * ceritificate that can be used by AlloyDB connectors to exchange additional
+     * metadata with the server after TLS handshake.
+     *
+     * Generated from protobuf field <code>bool use_metadata_exchange = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getUseMetadataExchange()
+    {
+        return $this->use_metadata_exchange;
+    }
+
+    /**
+     * Optional. An optional hint to the endpoint to generate a client
+     * ceritificate that can be used by AlloyDB connectors to exchange additional
+     * metadata with the server after TLS handshake.
+     *
+     * Generated from protobuf field <code>bool use_metadata_exchange = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUseMetadataExchange($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->use_metadata_exchange = $var;
 
         return $this;
     }

@@ -33,8 +33,8 @@ class ProcessOptions extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DocumentAI\V1\ProcessOptions\IndividualPageSelector $individual_page_selector
      *           Which pages to process (1-indexed).
      *     @type int $from_start
-     *           Only process certain pages from the start, process all if the document
-     *           has less pages.
+     *           Only process certain pages from the start. Process all if the document
+     *           has fewer pages.
      *     @type int $from_end
      *           Only process certain pages from the end, same as above.
      *     @type \Google\Cloud\DocumentAI\V1\OcrConfig $ocr_config
@@ -79,8 +79,8 @@ class ProcessOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only process certain pages from the start, process all if the document
-     * has less pages.
+     * Only process certain pages from the start. Process all if the document
+     * has fewer pages.
      *
      * Generated from protobuf field <code>int32 from_start = 6;</code>
      * @return int
@@ -96,8 +96,8 @@ class ProcessOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only process certain pages from the start, process all if the document
-     * has less pages.
+     * Only process certain pages from the start. Process all if the document
+     * has fewer pages.
      *
      * Generated from protobuf field <code>int32 from_start = 6;</code>
      * @param int $var

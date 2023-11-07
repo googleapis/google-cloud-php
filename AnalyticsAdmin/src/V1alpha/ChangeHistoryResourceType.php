@@ -128,6 +128,12 @@ class ChangeHistoryResourceType
      */
     const ENHANCED_MEASUREMENT_SETTINGS = 24;
     /**
+     * DataRedactionSettings resource
+     *
+     * Generated from protobuf enum <code>DATA_REDACTION_SETTINGS = 25;</code>
+     */
+    const DATA_REDACTION_SETTINGS = 25;
+    /**
      * SKAdNetworkConversionValueSchema resource
      *
      * Generated from protobuf enum <code>SKADNETWORK_CONVERSION_VALUE_SCHEMA = 26;</code>
@@ -172,6 +178,7 @@ class ChangeHistoryResourceType
         self::EXPANDED_DATA_SET => 'EXPANDED_DATA_SET',
         self::CHANNEL_GROUP => 'CHANNEL_GROUP',
         self::ENHANCED_MEASUREMENT_SETTINGS => 'ENHANCED_MEASUREMENT_SETTINGS',
+        self::DATA_REDACTION_SETTINGS => 'DATA_REDACTION_SETTINGS',
         self::SKADNETWORK_CONVERSION_VALUE_SCHEMA => 'SKADNETWORK_CONVERSION_VALUE_SCHEMA',
         self::ADSENSE_LINK => 'ADSENSE_LINK',
         self::AUDIENCE => 'AUDIENCE',

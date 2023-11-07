@@ -47,7 +47,7 @@ class DataProfileJobConfig extends \Google\Protobuf\Internal\Message
      * template is provided for a region with data, that region's data will not be
      * scanned.
      * For more information, see
-     * https://cloud.google.com/dlp/docs/data-profiles#data_residency.
+     * https://cloud.google.com/dlp/docs/data-profiles#data-residency.
      *
      * Generated from protobuf field <code>repeated string inspect_templates = 7;</code>
      */
@@ -84,7 +84,7 @@ class DataProfileJobConfig extends \Google\Protobuf\Internal\Message
      *           template is provided for a region with data, that region's data will not be
      *           scanned.
      *           For more information, see
-     *           https://cloud.google.com/dlp/docs/data-profiles#data_residency.
+     *           https://cloud.google.com/dlp/docs/data-profiles#data-residency.
      *     @type array<\Google\Cloud\Dlp\V2\DataProfileAction>|\Google\Protobuf\Internal\RepeatedField $data_profile_actions
      *           Actions to execute at the completion of the job.
      * }
@@ -173,7 +173,7 @@ class DataProfileJobConfig extends \Google\Protobuf\Internal\Message
      * template is provided for a region with data, that region's data will not be
      * scanned.
      * For more information, see
-     * https://cloud.google.com/dlp/docs/data-profiles#data_residency.
+     * https://cloud.google.com/dlp/docs/data-profiles#data-residency.
      *
      * Generated from protobuf field <code>repeated string inspect_templates = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -196,7 +196,7 @@ class DataProfileJobConfig extends \Google\Protobuf\Internal\Message
      * template is provided for a region with data, that region's data will not be
      * scanned.
      * For more information, see
-     * https://cloud.google.com/dlp/docs/data-profiles#data_residency.
+     * https://cloud.google.com/dlp/docs/data-profiles#data-residency.
      *
      * Generated from protobuf field <code>repeated string inspect_templates = 7;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
