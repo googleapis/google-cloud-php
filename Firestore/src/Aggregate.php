@@ -94,7 +94,6 @@ class Aggregate
     public static function sum($field)
     {
         return self::createAggregate(self::TYPE_SUM, $field);
-
     }
 
     /**
