@@ -17,8 +17,7 @@ class AdvanceRolloutRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the Rollout. Format is
-     * projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     * releases/{release}/rollouts/{rollout}.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -32,8 +31,7 @@ class AdvanceRolloutRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name    Required. Name of the Rollout. Format is
-     *                        projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     *                        releases/{release}/rollouts/{rollout}. Please see
+     *                        `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`. Please see
      *                        {@see CloudDeployClient::rolloutName()} for help formatting this field.
      * @param string $phaseId Required. The phase ID to advance the `Rollout` to.
      *
@@ -56,8 +54,7 @@ class AdvanceRolloutRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Name of the Rollout. Format is
-     *           projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     *           releases/{release}/rollouts/{rollout}.
+     *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      *     @type string $phase_id
      *           Required. The phase ID to advance the `Rollout` to.
      * }
@@ -69,8 +66,7 @@ class AdvanceRolloutRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the Rollout. Format is
-     * projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     * releases/{release}/rollouts/{rollout}.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -82,8 +78,7 @@ class AdvanceRolloutRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the Rollout. Format is
-     * projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     * releases/{release}/rollouts/{rollout}.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

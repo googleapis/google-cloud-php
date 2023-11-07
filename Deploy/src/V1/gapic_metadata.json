@@ -25,9 +25,19 @@
                                 "approveRollout"
                             ]
                         },
+                        "CancelAutomationRun": {
+                            "methods": [
+                                "cancelAutomationRun"
+                            ]
+                        },
                         "CancelRollout": {
                             "methods": [
                                 "cancelRollout"
+                            ]
+                        },
+                        "CreateAutomation": {
+                            "methods": [
+                                "createAutomation"
                             ]
                         },
                         "CreateDeliveryPipeline": {
@@ -50,6 +60,11 @@
                                 "createTarget"
                             ]
                         },
+                        "DeleteAutomation": {
+                            "methods": [
+                                "deleteAutomation"
+                            ]
+                        },
                         "DeleteDeliveryPipeline": {
                             "methods": [
                                 "deleteDeliveryPipeline"
@@ -58,6 +73,16 @@
                         "DeleteTarget": {
                             "methods": [
                                 "deleteTarget"
+                            ]
+                        },
+                        "GetAutomation": {
+                            "methods": [
+                                "getAutomation"
+                            ]
+                        },
+                        "GetAutomationRun": {
+                            "methods": [
+                                "getAutomationRun"
                             ]
                         },
                         "GetConfig": {
@@ -95,6 +120,16 @@
                                 "ignoreJob"
                             ]
                         },
+                        "ListAutomationRuns": {
+                            "methods": [
+                                "listAutomationRuns"
+                            ]
+                        },
+                        "ListAutomations": {
+                            "methods": [
+                                "listAutomations"
+                            ]
+                        },
                         "ListDeliveryPipelines": {
                             "methods": [
                                 "listDeliveryPipelines"
@@ -125,9 +160,19 @@
                                 "retryJob"
                             ]
                         },
+                        "RollbackTarget": {
+                            "methods": [
+                                "rollbackTarget"
+                            ]
+                        },
                         "TerminateJobRun": {
                             "methods": [
                                 "terminateJobRun"
+                            ]
+                        },
+                        "UpdateAutomation": {
+                            "methods": [
+                                "updateAutomation"
                             ]
                         },
                         "UpdateDeliveryPipeline": {

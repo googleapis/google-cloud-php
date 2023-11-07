@@ -32,8 +32,7 @@ use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
  * Abandons a Release in the Delivery Pipeline.
  *
  * @param string $formattedName Name of the Release. Format is
- *                              projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
- *                              releases/{release}. Please see
+ *                              `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}`. Please see
  *                              {@see CloudDeployClient::releaseName()} for help formatting this field.
  */
 function abandon_release_sample(string $formattedName): void
