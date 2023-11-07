@@ -39,7 +39,7 @@ class UpdateDepsCommand extends Command
             ->addArgument('version', InputArgument::OPTIONAL, 'Package version to update to, e.g. "1.4.0"', '')
             ->addOption('bump', '', InputOption::VALUE_NONE, 'Bump to latest version of the package')
             ->addOption('add', '', InputOption::VALUE_NONE, 'Adds the dep if it doesn\'t exist')
-            ->addOption('add-dev', '', InputOption::VALUE_NONE, 'Adds the dep to dev if it doesn\'t exist')
+            ->addOption('dev', '', InputOption::VALUE_NONE, 'Adds the dep to dev if it doesn\'t exist')
             ->addOption('local', '', InputOption::VALUE_NONE, 'Add a link to the local component')
         ;
     }
@@ -71,18 +71,16 @@ class UpdateDepsCommand extends Command
         $updateCount = 0;
         foreach ($paths as $path) {
             $composerJson = json_decode(file_get_contents($projectRoot . '/' . $path), true);
-            if (isset($composerJson['require'][$package])) {
-                $require = 'require';
-            } elseif (isset($composerJson['require-dev'][$package])) {
-                $require = 'require-dev';
-            } else {
-                // Set a default "require" using "add" and "add-dev" options if it doesn't exist
-                $require = $input->getOption('add') ? 'require' : ($input->getOption('add-dev') ? 'require-dev' : null);
-                if (!$require) {
-                    continue;
-                }
-                if (!isset($composerJson[$require][$package])) {
-                    $composerJson[$require] = [];
+            $require = 'require';
+            if (!isset($composerJson['require'][$package])) {
+                if (!isset($composerJson['require-dev'][$package])) {
+                    if (!$input->getOption('add')) {
+                        continue;
+                    } elseif ($input->getOption('dev')) {
+                        $require = 'require-dev';
+                    }
+                } else {
+                    $require = 'require-dev';
                 }
             }
             $composerJson[$require][$package] = $version;
