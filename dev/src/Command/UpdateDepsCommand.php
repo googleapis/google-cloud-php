@@ -37,9 +37,9 @@ class UpdateDepsCommand extends Command
             ->setDescription('update a dependency across all components')
             ->addArgument('package', InputArgument::REQUIRED, 'Package name to update, e.g. "google/gax"')
             ->addArgument('version', InputArgument::OPTIONAL, 'Package version to update to, e.g. "1.4.0"', '')
+            ->addOption('file', 'f', InputOption::VALUE_REQUIRED|InputOption::VALUE_IS_ARRAY, 'bumps deps for a single composer file')
             ->addOption('bump', '', InputOption::VALUE_NONE, 'Bump to latest version of the package')
-            ->addOption('add', '', InputOption::VALUE_NONE, 'Adds the dep if it doesn\'t exist')
-            ->addOption('dev', '', InputOption::VALUE_NONE, 'Adds the dep to dev if it doesn\'t exist')
+            ->addOption('add', '', InputOption::VALUE_OPTIONAL, 'Adds the dep if it doesn\'t exist (--add=dev for require-dev)')
             ->addOption('local', '', InputOption::VALUE_NONE, 'Add a link to the local component')
         ;
     }
@@ -58,28 +58,22 @@ class UpdateDepsCommand extends Command
             throw new \InvalidArgumentException('You cannot supply both a package version and the --bump flag');
         }
 
-        if ($input->getOption('add') && $this->getOption('add-dev')) {
-            throw new \InvalidArgumentException('You cannot supply both --add and --add-dev');
-        }
-
         $projectRoot = realpath(__DIR__ . '/../../../');
         $result = (new Finder())->files()->in($projectRoot)->depth('<= 1')->name('composer.json');
-        $paths = array_map(fn ($file) => $file->getRelativePathname(), iterator_to_array($result));
+        $paths = array_map(fn ($file) => $file->getPathname(), iterator_to_array($result));
         sort($paths);
 
         $componentPath = $input->getOption('local') ? $this->getComponentName($paths, $package) : null;
         $updateCount = 0;
-        foreach ($paths as $path) {
-            $composerJson = json_decode(file_get_contents($projectRoot . '/' . $path), true);
+        foreach ($input->getOption('file') ?: $paths as $jsonFile) {
+            $composerJson = json_decode(file_get_contents($jsonFile), true);
             $require = 'require';
             if (!isset($composerJson['require'][$package])) {
-                if (!isset($composerJson['require-dev'][$package])) {
-                    if (!$input->getOption('add')) {
-                        continue;
-                    } elseif ($input->getOption('dev')) {
-                        $require = 'require-dev';
-                    }
-                } else {
+                if (isset($composerJson['require-dev'][$package])) {
+                    $require = 'require-dev';
+                } elseif (!$input->getOption('add')) {
+                    continue;
+                } elseif ('dev' === $input->getOption('add')) {
                     $require = 'require-dev';
                 }
             }
@@ -94,8 +88,8 @@ class UpdateDepsCommand extends Command
                     ]
                 ];
             }
-            $output->writeln("Updated <info>$path</>");
-            file_put_contents($projectRoot . '/' . $path, json_encode($composerJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . "\n");
+            $output->writeln(sprintf('Updated <info>%s</>', basename(dirname($jsonFile))));
+            file_put_contents($jsonFile, json_encode($composerJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . "\n");
             $updateCount++;
         }
         $output->writeln("Updated <fg=white>$updateCount files</> to use <comment>$package</>: <info>$version</>");
@@ -108,10 +102,10 @@ class UpdateDepsCommand extends Command
         foreach ($paths as $path) {
             $composerJson = json_decode(file_get_contents($path), true);
             if (isset($composerJson['name']) && $composerJson['name'] === $package) {
-                return dirname($path);
+                return basename(dirname($path));
             }
         }
 
-        throw new \LogicException('Component not found for package ' . $package);
+        throw new \InvalidArgumentException('Component not found for package ' . $package);
     }
 }
