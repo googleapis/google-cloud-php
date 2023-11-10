@@ -38,7 +38,7 @@ for DIR in ${DIRS}; do {
     done
 
     echo "Installing composer in $DIR"
-    COMPOSER_ROOT_VERSION=$(cat $DIR/VERSION) composer -q --no-interaction --no-ansi --no-progress update -d ${DIR};
+    COMPOSER_ROOT_VERSION=$(cat $DIR/VERSION) composer --no-interaction --no-ansi --no-progress update -d ${DIR};
     if [ $? != 0 ]; then
         echo "$DIR: composer install failed" >> "${FAILED_FILE}"
         continue
