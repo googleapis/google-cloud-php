@@ -88,6 +88,15 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      */
     private $base_output_directory = null;
     /**
+     * The ID of the location to store protected artifacts. e.g. us-central1.
+     * Populate only when the location is different than CustomJob location.
+     * List of supported locations:
+     * https://cloud.google.com/vertex-ai/docs/general/locations
+     *
+     * Generated from protobuf field <code>string protected_artifact_location_id = 19;</code>
+     */
+    private $protected_artifact_location_id = '';
+    /**
      * Optional. The name of a Vertex AI
      * [Tensorboard][google.cloud.aiplatform.v1.Tensorboard] resource to which
      * this CustomJob will upload Tensorboard logs. Format:
@@ -196,6 +205,11 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *             * AIP_MODEL_DIR = `<base_output_directory>/<trial_id>/model/`
      *             * AIP_CHECKPOINT_DIR = `<base_output_directory>/<trial_id>/checkpoints/`
      *             * AIP_TENSORBOARD_LOG_DIR = `<base_output_directory>/<trial_id>/logs/`
+     *     @type string $protected_artifact_location_id
+     *           The ID of the location to store protected artifacts. e.g. us-central1.
+     *           Populate only when the location is different than CustomJob location.
+     *           List of supported locations:
+     *           https://cloud.google.com/vertex-ai/docs/general/locations
      *     @type string $tensorboard
      *           Optional. The name of a Vertex AI
      *           [Tensorboard][google.cloud.aiplatform.v1.Tensorboard] resource to which
@@ -481,6 +495,38 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GcsDestination::class);
         $this->base_output_directory = $var;
+
+        return $this;
+    }
+
+    /**
+     * The ID of the location to store protected artifacts. e.g. us-central1.
+     * Populate only when the location is different than CustomJob location.
+     * List of supported locations:
+     * https://cloud.google.com/vertex-ai/docs/general/locations
+     *
+     * Generated from protobuf field <code>string protected_artifact_location_id = 19;</code>
+     * @return string
+     */
+    public function getProtectedArtifactLocationId()
+    {
+        return $this->protected_artifact_location_id;
+    }
+
+    /**
+     * The ID of the location to store protected artifacts. e.g. us-central1.
+     * Populate only when the location is different than CustomJob location.
+     * List of supported locations:
+     * https://cloud.google.com/vertex-ai/docs/general/locations
+     *
+     * Generated from protobuf field <code>string protected_artifact_location_id = 19;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setProtectedArtifactLocationId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->protected_artifact_location_id = $var;
 
         return $this;
     }

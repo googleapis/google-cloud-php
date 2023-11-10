@@ -35,6 +35,7 @@ use Google\Rpc\Status;
  * @param string $formattedName The name of the Features to be deleted.
  *                              Format:
  *                              `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
+ *                              `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
  *                              Please see {@see FeaturestoreServiceClient::featureName()} for help formatting this field.
  */
 function delete_feature_sample(string $formattedName): void
