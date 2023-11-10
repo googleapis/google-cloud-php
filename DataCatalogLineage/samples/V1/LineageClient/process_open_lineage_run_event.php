@@ -22,45 +22,38 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START datalineage_v1_generated_Lineage_SearchLinks_sync]
+// [START datalineage_v1_generated_Lineage_ProcessOpenLineageRunEvent_sync]
 use Google\ApiCore\ApiException;
-use Google\ApiCore\PagedListResponse;
 use Google\Cloud\DataCatalog\Lineage\V1\Client\LineageClient;
-use Google\Cloud\DataCatalog\Lineage\V1\Link;
-use Google\Cloud\DataCatalog\Lineage\V1\SearchLinksRequest;
+use Google\Cloud\DataCatalog\Lineage\V1\ProcessOpenLineageRunEventRequest;
+use Google\Cloud\DataCatalog\Lineage\V1\ProcessOpenLineageRunEventResponse;
+use Google\Protobuf\Struct;
 
 /**
- * Retrieve a list of links connected to a specific asset.
- * Links represent the data flow between **source** (upstream)
- * and **target** (downstream) assets in transformation pipelines.
- * Links are stored in the same project as the Lineage Events that create
- * them.
+ * Creates new lineage events together with their parents: process and run.
+ * Updates the process and run if they already exist.
+ * Mapped from Open Lineage specification:
+ * https://github.com/OpenLineage/OpenLineage/blob/main/spec/OpenLineage.json.
  *
- * You can retrieve links in every project where you have the
- * `datalineage.events.get` permission. The project provided in the URL
- * is used for Billing and Quota.
- *
- * @param string $formattedParent The project and location you want search in. Please see
- *                                {@see LineageClient::locationName()} for help formatting this field.
+ * @param string $parent The name of the project and its location that should own the
+ *                       process, run, and lineage event.
  */
-function search_links_sample(string $formattedParent): void
+function process_open_lineage_run_event_sample(string $parent): void
 {
     // Create a client.
     $lineageClient = new LineageClient();
 
     // Prepare the request message.
-    $request = (new SearchLinksRequest())
-        ->setParent($formattedParent);
+    $openLineage = new Struct();
+    $request = (new ProcessOpenLineageRunEventRequest())
+        ->setParent($parent)
+        ->setOpenLineage($openLineage);
 
     // Call the API and handle any network failures.
     try {
-        /** @var PagedListResponse $response */
-        $response = $lineageClient->searchLinks($request);
-
-        /** @var Link $element */
-        foreach ($response as $element) {
-            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
-        }
+        /** @var ProcessOpenLineageRunEventResponse $response */
+        $response = $lineageClient->processOpenLineageRunEvent($request);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -77,8 +70,8 @@ function search_links_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = LineageClient::locationName('[PROJECT]', '[LOCATION]');
+    $parent = '[PARENT]';
 
-    search_links_sample($formattedParent);
+    process_open_lineage_run_event_sample($parent);
 }
-// [END datalineage_v1_generated_Lineage_SearchLinks_sync]
+// [END datalineage_v1_generated_Lineage_ProcessOpenLineageRunEvent_sync]
