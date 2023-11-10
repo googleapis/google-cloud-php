@@ -16,41 +16,43 @@ use Google\Protobuf\Internal\GPBUtil;
 class Address extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The recipient name, potentially including information such as "care of".
+     * Optional. The recipient name, potentially including information such as
+     * "care of".
      *
-     * Generated from protobuf field <code>string recipient = 1;</code>
+     * Generated from protobuf field <code>string recipient = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $recipient = '';
     /**
-     * The first lines of the address. The first line generally contains the
-     * street name and number, and further lines may include information such as
-     * an apartment number.
+     * Optional. The first lines of the address. The first line generally
+     * contains the street name and number, and further lines may include
+     * information such as an apartment number.
      *
-     * Generated from protobuf field <code>repeated string address = 2;</code>
+     * Generated from protobuf field <code>repeated string address = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $address;
     /**
-     * The town/city of the address.
+     * Optional. The town/city of the address.
      *
-     * Generated from protobuf field <code>string locality = 3;</code>
+     * Generated from protobuf field <code>string locality = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $locality = '';
     /**
-     * The state, province, or otherwise administrative area of the address.
+     * Optional. The state, province, or otherwise administrative area of the
+     * address.
      *
-     * Generated from protobuf field <code>string administrative_area = 4;</code>
+     * Generated from protobuf field <code>string administrative_area = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $administrative_area = '';
     /**
-     * The CLDR country/region of the address.
+     * Optional. The CLDR country/region of the address.
      *
-     * Generated from protobuf field <code>string region_code = 5;</code>
+     * Generated from protobuf field <code>string region_code = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $region_code = '';
     /**
-     * The postal or ZIP code of the address.
+     * Optional. The postal or ZIP code of the address.
      *
-     * Generated from protobuf field <code>string postal_code = 6;</code>
+     * Generated from protobuf field <code>string postal_code = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $postal_code = '';
 
@@ -61,19 +63,21 @@ class Address extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $recipient
-     *           The recipient name, potentially including information such as "care of".
+     *           Optional. The recipient name, potentially including information such as
+     *           "care of".
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $address
-     *           The first lines of the address. The first line generally contains the
-     *           street name and number, and further lines may include information such as
-     *           an apartment number.
+     *           Optional. The first lines of the address. The first line generally
+     *           contains the street name and number, and further lines may include
+     *           information such as an apartment number.
      *     @type string $locality
-     *           The town/city of the address.
+     *           Optional. The town/city of the address.
      *     @type string $administrative_area
-     *           The state, province, or otherwise administrative area of the address.
+     *           Optional. The state, province, or otherwise administrative area of the
+     *           address.
      *     @type string $region_code
-     *           The CLDR country/region of the address.
+     *           Optional. The CLDR country/region of the address.
      *     @type string $postal_code
-     *           The postal or ZIP code of the address.
+     *           Optional. The postal or ZIP code of the address.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,9 +86,10 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The recipient name, potentially including information such as "care of".
+     * Optional. The recipient name, potentially including information such as
+     * "care of".
      *
-     * Generated from protobuf field <code>string recipient = 1;</code>
+     * Generated from protobuf field <code>string recipient = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getRecipient()
@@ -93,9 +98,10 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The recipient name, potentially including information such as "care of".
+     * Optional. The recipient name, potentially including information such as
+     * "care of".
      *
-     * Generated from protobuf field <code>string recipient = 1;</code>
+     * Generated from protobuf field <code>string recipient = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -108,11 +114,11 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The first lines of the address. The first line generally contains the
-     * street name and number, and further lines may include information such as
-     * an apartment number.
+     * Optional. The first lines of the address. The first line generally
+     * contains the street name and number, and further lines may include
+     * information such as an apartment number.
      *
-     * Generated from protobuf field <code>repeated string address = 2;</code>
+     * Generated from protobuf field <code>repeated string address = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAddress()
@@ -121,11 +127,11 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The first lines of the address. The first line generally contains the
-     * street name and number, and further lines may include information such as
-     * an apartment number.
+     * Optional. The first lines of the address. The first line generally
+     * contains the street name and number, and further lines may include
+     * information such as an apartment number.
      *
-     * Generated from protobuf field <code>repeated string address = 2;</code>
+     * Generated from protobuf field <code>repeated string address = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -138,9 +144,9 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The town/city of the address.
+     * Optional. The town/city of the address.
      *
-     * Generated from protobuf field <code>string locality = 3;</code>
+     * Generated from protobuf field <code>string locality = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getLocality()
@@ -149,9 +155,9 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The town/city of the address.
+     * Optional. The town/city of the address.
      *
-     * Generated from protobuf field <code>string locality = 3;</code>
+     * Generated from protobuf field <code>string locality = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -164,9 +170,10 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The state, province, or otherwise administrative area of the address.
+     * Optional. The state, province, or otherwise administrative area of the
+     * address.
      *
-     * Generated from protobuf field <code>string administrative_area = 4;</code>
+     * Generated from protobuf field <code>string administrative_area = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getAdministrativeArea()
@@ -175,9 +182,10 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The state, province, or otherwise administrative area of the address.
+     * Optional. The state, province, or otherwise administrative area of the
+     * address.
      *
-     * Generated from protobuf field <code>string administrative_area = 4;</code>
+     * Generated from protobuf field <code>string administrative_area = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -190,9 +198,9 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The CLDR country/region of the address.
+     * Optional. The CLDR country/region of the address.
      *
-     * Generated from protobuf field <code>string region_code = 5;</code>
+     * Generated from protobuf field <code>string region_code = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getRegionCode()
@@ -201,9 +209,9 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The CLDR country/region of the address.
+     * Optional. The CLDR country/region of the address.
      *
-     * Generated from protobuf field <code>string region_code = 5;</code>
+     * Generated from protobuf field <code>string region_code = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -216,9 +224,9 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The postal or ZIP code of the address.
+     * Optional. The postal or ZIP code of the address.
      *
-     * Generated from protobuf field <code>string postal_code = 6;</code>
+     * Generated from protobuf field <code>string postal_code = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPostalCode()
@@ -227,9 +235,9 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The postal or ZIP code of the address.
+     * Optional. The postal or ZIP code of the address.
      *
-     * Generated from protobuf field <code>string postal_code = 6;</code>
+     * Generated from protobuf field <code>string postal_code = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

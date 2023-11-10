@@ -16,29 +16,29 @@ use Google\Protobuf\Internal\GPBUtil;
 class Item extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The full name of the item.
+     * Optional. The full name of the item.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $name = '';
     /**
-     * The value per item that the user is paying, in the transaction currency,
-     * after discounts.
+     * Optional. The value per item that the user is paying, in the transaction
+     * currency, after discounts.
      *
-     * Generated from protobuf field <code>double value = 2;</code>
+     * Generated from protobuf field <code>double value = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $value = 0.0;
     /**
-     * The quantity of this item that is being purchased.
+     * Optional. The quantity of this item that is being purchased.
      *
-     * Generated from protobuf field <code>int64 quantity = 3;</code>
+     * Generated from protobuf field <code>int64 quantity = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $quantity = 0;
     /**
-     * When a merchant is specified, its corresponding account_id. Necessary to
-     * populate marketplace-style transactions.
+     * Optional. When a merchant is specified, its corresponding account_id.
+     * Necessary to populate marketplace-style transactions.
      *
-     * Generated from protobuf field <code>string merchant_account_id = 4;</code>
+     * Generated from protobuf field <code>string merchant_account_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $merchant_account_id = '';
 
@@ -49,15 +49,15 @@ class Item extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The full name of the item.
+     *           Optional. The full name of the item.
      *     @type float $value
-     *           The value per item that the user is paying, in the transaction currency,
-     *           after discounts.
+     *           Optional. The value per item that the user is paying, in the transaction
+     *           currency, after discounts.
      *     @type int|string $quantity
-     *           The quantity of this item that is being purchased.
+     *           Optional. The quantity of this item that is being purchased.
      *     @type string $merchant_account_id
-     *           When a merchant is specified, its corresponding account_id. Necessary to
-     *           populate marketplace-style transactions.
+     *           Optional. When a merchant is specified, its corresponding account_id.
+     *           Necessary to populate marketplace-style transactions.
      * }
      */
     public function __construct($data = NULL) {
@@ -66,9 +66,9 @@ class Item extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full name of the item.
+     * Optional. The full name of the item.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getName()
@@ -77,9 +77,9 @@ class Item extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full name of the item.
+     * Optional. The full name of the item.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -92,10 +92,10 @@ class Item extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value per item that the user is paying, in the transaction currency,
-     * after discounts.
+     * Optional. The value per item that the user is paying, in the transaction
+     * currency, after discounts.
      *
-     * Generated from protobuf field <code>double value = 2;</code>
+     * Generated from protobuf field <code>double value = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
      */
     public function getValue()
@@ -104,10 +104,10 @@ class Item extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value per item that the user is paying, in the transaction currency,
-     * after discounts.
+     * Optional. The value per item that the user is paying, in the transaction
+     * currency, after discounts.
      *
-     * Generated from protobuf field <code>double value = 2;</code>
+     * Generated from protobuf field <code>double value = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
      * @return $this
      */
@@ -120,9 +120,9 @@ class Item extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The quantity of this item that is being purchased.
+     * Optional. The quantity of this item that is being purchased.
      *
-     * Generated from protobuf field <code>int64 quantity = 3;</code>
+     * Generated from protobuf field <code>int64 quantity = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
      */
     public function getQuantity()
@@ -131,9 +131,9 @@ class Item extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The quantity of this item that is being purchased.
+     * Optional. The quantity of this item that is being purchased.
      *
-     * Generated from protobuf field <code>int64 quantity = 3;</code>
+     * Generated from protobuf field <code>int64 quantity = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var
      * @return $this
      */
@@ -146,10 +146,10 @@ class Item extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When a merchant is specified, its corresponding account_id. Necessary to
-     * populate marketplace-style transactions.
+     * Optional. When a merchant is specified, its corresponding account_id.
+     * Necessary to populate marketplace-style transactions.
      *
-     * Generated from protobuf field <code>string merchant_account_id = 4;</code>
+     * Generated from protobuf field <code>string merchant_account_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getMerchantAccountId()
@@ -158,10 +158,10 @@ class Item extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When a merchant is specified, its corresponding account_id. Necessary to
-     * populate marketplace-style transactions.
+     * Optional. When a merchant is specified, its corresponding account_id.
+     * Necessary to populate marketplace-style transactions.
      *
-     * Generated from protobuf field <code>string merchant_account_id = 4;</code>
+     * Generated from protobuf field <code>string merchant_account_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
