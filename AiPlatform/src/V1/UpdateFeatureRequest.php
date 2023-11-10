@@ -11,6 +11,8 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Request message for
  * [FeaturestoreService.UpdateFeature][google.cloud.aiplatform.v1.FeaturestoreService.UpdateFeature].
+ * Request message for
+ * [FeatureRegistryService.UpdateFeature][google.cloud.aiplatform.v1.FeatureRegistryService.UpdateFeature].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.UpdateFeatureRequest</code>
  */
@@ -21,6 +23,7 @@ class UpdateFeatureRequest extends \Google\Protobuf\Internal\Message
      * updated.
      * Format:
      * `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
+     * `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Feature feature = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -36,7 +39,7 @@ class UpdateFeatureRequest extends \Google\Protobuf\Internal\Message
      * Updatable fields:
      *   * `description`
      *   * `labels`
-     *   * `disable_monitoring`
+     *   * `disable_monitoring` (Not supported for FeatureRegistry Feature)
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
@@ -47,6 +50,7 @@ class UpdateFeatureRequest extends \Google\Protobuf\Internal\Message
      *                                                        updated.
      *                                                        Format:
      *                                                        `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
+     *                                                        `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
      * @param \Google\Protobuf\FieldMask          $updateMask Field mask is used to specify the fields to be overwritten in the
      *                                                        Features resource by the update.
      *                                                        The fields specified in the update_mask are relative to the resource, not
@@ -59,7 +63,7 @@ class UpdateFeatureRequest extends \Google\Protobuf\Internal\Message
      *
      *                                                        * `description`
      *                                                        * `labels`
-     *                                                        * `disable_monitoring`
+     *                                                        * `disable_monitoring` (Not supported for FeatureRegistry Feature)
      *
      * @return \Google\Cloud\AIPlatform\V1\UpdateFeatureRequest
      *
@@ -83,6 +87,7 @@ class UpdateFeatureRequest extends \Google\Protobuf\Internal\Message
      *           updated.
      *           Format:
      *           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
+     *           `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Field mask is used to specify the fields to be overwritten in the
      *           Features resource by the update.
@@ -94,7 +99,7 @@ class UpdateFeatureRequest extends \Google\Protobuf\Internal\Message
      *           Updatable fields:
      *             * `description`
      *             * `labels`
-     *             * `disable_monitoring`
+     *             * `disable_monitoring` (Not supported for FeatureRegistry Feature)
      * }
      */
     public function __construct($data = NULL) {
@@ -107,6 +112,7 @@ class UpdateFeatureRequest extends \Google\Protobuf\Internal\Message
      * updated.
      * Format:
      * `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
+     * `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Feature feature = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\AIPlatform\V1\Feature|null
@@ -131,6 +137,7 @@ class UpdateFeatureRequest extends \Google\Protobuf\Internal\Message
      * updated.
      * Format:
      * `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
+     * `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Feature feature = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\AIPlatform\V1\Feature $var
@@ -155,7 +162,7 @@ class UpdateFeatureRequest extends \Google\Protobuf\Internal\Message
      * Updatable fields:
      *   * `description`
      *   * `labels`
-     *   * `disable_monitoring`
+     *   * `disable_monitoring` (Not supported for FeatureRegistry Feature)
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -186,7 +193,7 @@ class UpdateFeatureRequest extends \Google\Protobuf\Internal\Message
      * Updatable fields:
      *   * `description`
      *   * `labels`
-     *   * `disable_monitoring`
+     *   * `disable_monitoring` (Not supported for FeatureRegistry Feature)
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

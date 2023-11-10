@@ -24,7 +24,7 @@ class PredictionService
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ý
+²
 3google/cloud/aiplatform/v1/prediction_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/httpbody.protogoogle/api/resource.proto,google/cloud/aiplatform/v1/explanation.proto&google/cloud/aiplatform/v1/types.protogoogle/protobuf/struct.proto"ª
 PredictRequest<
 endpoint (	B*àAúA$
@@ -65,7 +65,14 @@ parameters (2.google.protobuf.ValueV
 ExplainResponse=
 explanations (2\'.google.cloud.aiplatform.v1.Explanation
 deployed_model_id (	+
-predictions (2.google.protobuf.Value2	
+predictions (2.google.protobuf.Value"‚
+CountTokensRequest<
+endpoint (	B*àAúA$
+"aiplatform.googleapis.com/Endpoint.
+	instances (2.google.protobuf.ValueBàA"N
+CountTokensResponse
+total_tokens (!
+total_billable_characters (2	
 PredictionService”
 Predict*.google.cloud.aiplatform.v1.PredictRequest+.google.cloud.aiplatform.v1.PredictResponse"¯‚Óä“ˆ"9/v1/{endpoint=projects/*/locations/*/endpoints/*}:predict:*ZH"C/v1/{endpoint=projects/*/locations/*/publishers/*/models/*}:predict:*ÚAendpoint,instances,parametersþ
 
