@@ -722,7 +722,7 @@ class TensorboardServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -739,7 +739,7 @@ class TensorboardServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -811,7 +811,7 @@ class TensorboardServiceGapicClient
      *                                        final component of the Tensorboard experiment's resource name.
      *
      *                                        This value should be 1-128 characters, and valid characters
-     *                                        are /[a-z][0-9]-/.
+     *                                        are `/[a-z][0-9]-/`.
      * @param array  $optionalArgs            {
      *     Optional.
      *
@@ -881,7 +881,7 @@ class TensorboardServiceGapicClient
      *                                         component of the Tensorboard run's resource name.
      *
      *                                         This value should be 1-128 characters, and valid characters
-     *                                         are /[a-z][0-9]-/.
+     *                                         are `/[a-z][0-9]-/`.
      * @param array          $optionalArgs     {
      *     Optional.
      *
@@ -2219,7 +2219,7 @@ class TensorboardServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2236,7 +2236,7 @@ class TensorboardServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)

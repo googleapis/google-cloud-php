@@ -40,12 +40,13 @@ class TraceClient
 {
     use ClientTrait;
 
-    const VERSION = '1.6.2';
+    const VERSION = '1.6.5';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
     /**
      * @var ConnectionInterface $connection Represents a connection to Trace
+     * @internal
      */
     protected $connection;
 
@@ -160,7 +161,7 @@ class TraceClient
     /**
      * Lazily find or instantiates a trace. There are no network requests made at this
      * point. To see the operations that can be performed on a trace please
-     * see {@see Google\Cloud\Trace\Trace}. If no traceId is provided, one will be
+     * see {@see \Google\Cloud\Trace\Trace}. If no traceId is provided, one will be
      * generated for you.
      *
      * Example:

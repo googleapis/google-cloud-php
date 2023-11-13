@@ -17,7 +17,7 @@ class Metrics extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The name of the metrics, in the format
-     * "projects/{project}/keys/{key}/metrics".
+     * `projects/{project}/keys/{key}/metrics`.
      *
      * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -52,7 +52,7 @@ class Metrics extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. The name of the metrics, in the format
-     *           "projects/{project}/keys/{key}/metrics".
+     *           `projects/{project}/keys/{key}/metrics`.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Inclusive start time aligned to a day (UTC).
      *     @type array<\Google\Cloud\RecaptchaEnterprise\V1\ScoreMetrics>|\Google\Protobuf\Internal\RepeatedField $score_metrics
@@ -71,7 +71,7 @@ class Metrics extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The name of the metrics, in the format
-     * "projects/{project}/keys/{key}/metrics".
+     * `projects/{project}/keys/{key}/metrics`.
      *
      * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -83,7 +83,7 @@ class Metrics extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The name of the metrics, in the format
-     * "projects/{project}/keys/{key}/metrics".
+     * `projects/{project}/keys/{key}/metrics`.
      *
      * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

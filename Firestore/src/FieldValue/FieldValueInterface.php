@@ -25,7 +25,7 @@ use Google\Cloud\Firestore\FieldPath;
  * A special field value which is handled by the client to accomplish a specific
  * task, such as field deletion. Instances of `FieldValueInterface` do not
  * enqueue a DocumentTransform mutation. to enqueue a transform, use
- * {@see Google\Cloud\Firestore\FieldValue\DocumentTransformInterface}.
+ * {@see \Google\Cloud\Firestore\FieldValue\DocumentTransformInterface}.
  */
 interface FieldValueInterface
 {

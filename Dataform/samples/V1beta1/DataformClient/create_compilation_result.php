@@ -31,8 +31,8 @@ use Google\Cloud\Dataform\V1beta1\CreateCompilationResultRequest;
 /**
  * Creates a new CompilationResult in a given project and location.
  *
- * @param string $formattedParent The repository in which to create the compilation result. Must be in the
- *                                format `projects/&#42;/locations/&#42;/repositories/*`. Please see
+ * @param string $formattedParent The repository in which to create the compilation result. Must be
+ *                                in the format `projects/&#42;/locations/&#42;/repositories/*`. Please see
  *                                {@see DataformClient::repositoryName()} for help formatting this field.
  */
 function create_compilation_result_sample(string $formattedParent): void

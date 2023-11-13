@@ -40,13 +40,14 @@ class DebuggerClient
 {
     use ClientTrait;
 
-    const VERSION = '1.6.1';
+    const VERSION = '1.6.4';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/debugger.readonly';
 
     /**
      * @var ConnectionInterface $connection Represents a connection to Debugger
+     * @internal
      */
     protected $connection;
 
@@ -117,7 +118,7 @@ class DebuggerClient
     /**
      * Lazily instantiate a debuggee. There are no network requests made at this
      * point. To see the operations that can be performed on a debuggee, please
-     * see {@see Google\Cloud\Debugger\Debuggee}.
+     * see {@see \Google\Cloud\Debugger\Debuggee}.
      *
      * Example:
      * ```

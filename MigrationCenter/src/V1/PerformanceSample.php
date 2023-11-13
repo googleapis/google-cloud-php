@@ -17,6 +17,7 @@ class PerformanceSample extends \Google\Protobuf\Internal\Message
 {
     /**
      * Time the sample was collected.
+     * If omitted, the frame report time will be used.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp sample_time = 1;</code>
      */
@@ -54,6 +55,7 @@ class PerformanceSample extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Protobuf\Timestamp $sample_time
      *           Time the sample was collected.
+     *           If omitted, the frame report time will be used.
      *     @type \Google\Cloud\MigrationCenter\V1\MemoryUsageSample $memory
      *           Memory usage sample.
      *     @type \Google\Cloud\MigrationCenter\V1\CpuUsageSample $cpu
@@ -71,6 +73,7 @@ class PerformanceSample extends \Google\Protobuf\Internal\Message
 
     /**
      * Time the sample was collected.
+     * If omitted, the frame report time will be used.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp sample_time = 1;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -92,6 +95,7 @@ class PerformanceSample extends \Google\Protobuf\Internal\Message
 
     /**
      * Time the sample was collected.
+     * If omitted, the frame report time will be used.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp sample_time = 1;</code>
      * @param \Google\Protobuf\Timestamp $var

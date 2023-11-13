@@ -44,6 +44,12 @@ class ExecutionReason
      * Generated from protobuf enum <code>CANCELLING = 4;</code>
      */
     const CANCELLING = 4;
+    /**
+     * The execution was deleted.
+     *
+     * Generated from protobuf enum <code>DELETED = 5;</code>
+     */
+    const DELETED = 5;
 
     private static $valueToName = [
         self::EXECUTION_REASON_UNDEFINED => 'EXECUTION_REASON_UNDEFINED',
@@ -51,6 +57,7 @@ class ExecutionReason
         self::NON_ZERO_EXIT_CODE => 'NON_ZERO_EXIT_CODE',
         self::CANCELLED => 'CANCELLED',
         self::CANCELLING => 'CANCELLING',
+        self::DELETED => 'DELETED',
     ];
 
     public static function name($value)

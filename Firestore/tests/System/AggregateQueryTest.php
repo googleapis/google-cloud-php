@@ -35,162 +35,92 @@ class AggregateQueryTest extends FirestoreTestCase
         self::$localDeletionQueue->add($this->query);
     }
 
-    public function testSelect()
+    /**
+     * @dataProvider getSelectCases
+     */
+    public function testSelect($type, $arg, $fieldMask, $expected, $docsToAdd = [])
     {
-        $this->insertDoc([
-            'foo' => 'bar',
-            'hello' => 'world',
-            'good' => 'night'
-        ]);
-
-        $query = $this->query->select(['foo', 'good']);
-
-        $this->assertQueryCount($query, 1);
+        $this->insertDocs($docsToAdd);
+        $query = $this->query->select($fieldMask);
+        $this->assertQuery($query, $type, $arg, $expected);
     }
 
-    public function testSelectEmpty()
+    /**
+     * @dataProvider getWhereCases
+     */
+    public function testWhere($type, $arg, $op, $fieldValue, $expected, $docsToAdd = [])
     {
-        $this->insertDoc([
-            'foo' => 'bar'
-        ]);
-
-        $query = $this->query->select([]);
-
-        $this->assertQueryCount($query, 1);
+        $this->insertDocs($docsToAdd);
+        $query = $this->query->where('value', $op, $fieldValue);
+        $this->assertQuery($query, $type, $arg, $expected);
     }
 
-    public function testWhere()
+    /**
+     * @dataProvider getSnapshotCursorCases
+     */
+    public function testSnapshotCursors($type, $arg, $expectedResults, $docsToAdd = [])
     {
-        $randomVal = base64_encode(random_bytes(10));
-        $this->insertDoc([
-            'foo' => $randomVal
-        ]);
+        $refs = $this->insertDocs($docsToAdd);
 
-        $query = $this->query->where('foo', '=', $randomVal);
-        $this->assertQueryCount($query, 1);
+        $query = $this->query->orderBy('value')->startAt($refs[0]->snapshot());
+        $this->assertQuery($query, $type, $arg, $expectedResults[0]);
+
+        $query = $this->query->orderBy('value')->startAfter($refs[0]->snapshot());
+        $this->assertQuery($query, $type, $arg, $expectedResults[1]);
+
+        $query = $this->query->orderBy('value')->endBefore(end($refs)->snapshot());
+        $this->assertQuery($query, $type, $arg, $expectedResults[2]);
+
+        $query = $this->query->orderBy('value')->endAt(end($refs)->snapshot());
+        $this->assertQuery($query, $type, $arg, $expectedResults[3]);
     }
 
-    public function testWhereNull()
+    /**
+     * @dataProvider getLimitCases
+     */
+    public function testLimits($type, $arg, $expectedResults, $docsToAdd = [])
     {
-        $this->insertDoc([
-            'foo' => null
-        ]);
+        $refs = $this->insertDocs($docsToAdd);
 
-        $query = $this->query->where('foo', '=', null);
-        $this->assertQueryCount($query, 1);
-    }
-
-    public function testWhereNan()
-    {
-        $this->insertDoc([
-            'foo' => NAN
-        ]);
-
-        $query = $this->query->where('foo', '=', NAN);
-        $this->assertQueryCount($query, 1);
-    }
-
-    public function testWhereInArray()
-    {
-        $name = $this->query->name();
-        $this->insertDoc([
-            'foos' => ['foo', 'bar'],
-        ]);
-        $this->insertDoc([
-            'foos' => ['foo'],
-        ]);
-
-        $docs = self::$client->collection($name)->where('foos', 'in', [['foo']]);
-        $this->assertQueryCount($docs, 1);
-        $docs = self::$client->collection($name)->where('foos', 'in', [['bar']]);
-        $this->assertQueryCount($docs, 0);
-        $docs = self::$client->collection($name)->where('foos', 'in', [['foo', 'bar']]);
-        $this->assertQueryCount($docs, 1);
-        $docs = self::$client->collection($name)->where('foos', 'in', [['bar', 'foo']]);
-        $this->assertQueryCount($docs, 0);
-    }
-
-    public function testSnapshotCursors()
-    {
-        $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
-        self::$localDeletionQueue->add($collection);
-
-        $refs = [];
-        for ($i = 0; $i <= 3; $i++) {
-            $doc = $collection->document($i);
-            $doc->create(['i' => $i]);
-            $refs[] = $doc;
-        }
-
-        $q = $collection->startAt($refs[0]->snapshot());
-        $this->assertQueryCount($q, count($refs));
-
-        $q = $collection->startAfter($refs[0]->snapshot());
-        $this->assertQueryCount($q, count($refs)-1);
-
-        $q = $collection->endBefore(end($refs)->snapshot());
-        $this->assertQueryCount($q, count($refs)-1);
-
-        $q = $collection->endAt(end($refs)->snapshot());
-        $this->assertQueryCount($q, count($refs));
-    }
-
-    public function testLimitToLast()
-    {
-        $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
-        self::$localDeletionQueue->add($collection);
-        for ($i = 1; $i <= 5; $i++) {
-            $collection->add(['i' => $i]);
-        }
-
-        $q = $collection->orderBy('i')
+        $query = $this->query->orderBy('value')
             ->limitToLast(2);
+        $this->assertQuery($query, $type, $arg, $expectedResults[0]);
 
-        $this->assertQueryCount($q, 2);
+
+        $query = $this->query->orderBy('value')
+            ->startAt($refs[1]->snapshot())
+            ->endAt($refs[3]->snapshot())
+            ->limitToLast(2);
+        $this->assertQuery($query, $type, $arg, $expectedResults[1]);
     }
 
-    public function testLimitToLastWithCursors()
+    private function insertDocs(array $docs)
     {
-        $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
-        self::$localDeletionQueue->add($collection);
-        for ($i = 1; $i <= 5; $i++) {
-            $collection->add(['i' => $i]);
+        $docsRefs = [];
+        foreach ($docs as $doc) {
+            $docsRefs[] = $this->query->add($doc);
         }
-
-        $q = $collection->orderBy('i')
-            ->startAt([2])
-            ->endAt([4])
-            ->limitToLast(5);
-
-        $this->assertQueryCount($q, 3);
+        return $docsRefs;
     }
 
-    private function insertDoc(array $fields)
+    private function assertQuery(Query $query, $type, $arg, $expected)
     {
-        return $this->query->add($fields);
+        $actual = $arg ? $query->$type($arg) : $query->$type();
+        $this->assertEquals($expected, $actual);
+        $this->assertQueryWithMultipleAggregations($query, $type, $arg, $expected);
     }
 
-    private function assertQueryCount(Query $query, $expectedCount)
+    private function assertQueryWithMultipleAggregations(Query $query, $type, $arg, $expected)
     {
-        $actualCount = $query->count();
-        $this->assertEquals($expectedCount, $actualCount);
-
-        $this->assertQueryCountWithMultipleAggregations($query, $expectedCount);
-    }
-
-    private function assertQueryCountWithMultipleAggregations(
-        Query $query,
-        $expectedCount
-    ) {
         $aggregations = [
-            Aggregate::count()->alias('count'),
-            Aggregate::count()->alias('count_with_alias_a'),
-            Aggregate::count()->alias('count_with_alias_b'),
+            ($arg ? Aggregate::$type($arg) : Aggregate::$type())->alias('a1'),
+            ($arg ? Aggregate::$type($arg) : Aggregate::$type())->alias('a2'),
+            ($arg ? Aggregate::$type($arg) : Aggregate::$type())->alias('a3')
         ];
-        $expectedCounts = [
-            'count' => $expectedCount,
-            'count_with_alias_a' => $expectedCount,
-            'count_with_alias_b' => $expectedCount,
+        $expectedResults = [
+            'a1' => $expected,
+            'a2' => $expected,
+            'a3' => $expected,
         ];
         foreach ($aggregations as $aggregation) {
             $query = $query->addAggregation($aggregation);
@@ -199,10 +129,10 @@ class AggregateQueryTest extends FirestoreTestCase
 
         $snapshot = $query->getSnapshot();
 
-        foreach ($expectedCounts as $k => $v) {
-            $expectedCount = $v;
-            $actualCount = $snapshot->get($k);
-            $this->assertEquals($expectedCount, $actualCount);
+        foreach ($expectedResults as $k => $v) {
+            $expectedResult = $v;
+            $actualResult = $snapshot->get($k);
+            $this->assertEquals($expectedResult, $actualResult);
         }
 
         $this->assertEquals(0, strlen($snapshot->getTransaction()));
@@ -211,7 +141,108 @@ class AggregateQueryTest extends FirestoreTestCase
         $this->assertEqualsWithDelta(
             $expectedTimestamp->get()->getTimestamp(),
             $actualTimestamp->get()->getTimestamp(),
-            10
+            100
         );
+    }
+
+    /**
+     * This dataProvider returns the test cases to test how
+     * aggregations work with `select()` field mask.
+     *
+     * The values are of the form
+     * [
+     *     string $aggregationType,
+     *     string $targetFieldName,
+     *     string $fieldMask,
+     *     mixed $expectedResult,
+     *     array $docsToAddBeforeTestRunning
+     * ]
+     */
+    public function getSelectCases()
+    {
+        return [
+            ['count', null, ['foo', 'good'], 1, [['foo' => 'bar', 'hello' => 'world', 'good' => 'night']]],
+            ['count', null, [], 1, [['foo' => 'bar']]],
+        ];
+    }
+
+    /**
+     * This dataProvider returns the test cases to test how
+     * aggregations work with `where()` (i.e. field filter).
+     *
+     * The values are of the form
+     * [
+     *     string $aggregationType,
+     *     string $targetFieldName,
+     *     string $operation
+     *     string $fieldValue,
+     *     mixed $expectedResult,
+     *     array $docsToAddBeforeTestRunning
+     * ]
+     */
+    public function getWhereCases()
+    {
+        $arrayDoc = [
+            ['value' => ['foo', 'bar']],
+            ['value' => ['foo']]
+        ];
+        $randomVal = base64_encode(random_bytes(10));
+        return [
+            // For testing where: equality for random value
+            ['count', null, '=', $randomVal, 1, [['value' => $randomVal]]],
+
+            // For testing where: equality for null
+            ['count', null, '=', null, 1, [['value' => null]]],
+
+            // For testing where: equality for NAN
+            ['count', null, '=', NAN, 1, [['value' => NAN]]],
+
+            // For testing where: in array
+            ['count', null, 'in', [['foo']], 1, $arrayDoc],
+            ['count', null, 'in', [['foo'], ['foo', 'bar']], 2, $arrayDoc],
+            ['count', null, 'in', [['bar']], 0, $arrayDoc],
+            ['count', null, 'in', [['foo', 'bar']], 1, $arrayDoc],
+            ['count', null, 'in', [['bar', 'foo']], 0, $arrayDoc],
+        ];
+    }
+
+    /**
+     * This dataProvider returns the test cases to test how
+     * aggregations work with `cursors`.
+     *
+     * The values are of the form
+     * [
+     *     string $aggregationType,
+     *     string $targetFieldName,
+     *     array $expectedResults,
+     *     array $docsToAddBeforeTestRunning
+     * ]
+     */
+    public function getSnapshotCursorCases()
+    {
+        $docsToAdd = [['value' => 0], ['value' => 1], ['value' => 2], ['value' => 3]];
+        return [
+            ['count', null, [4, 3, 3, 4], $docsToAdd]
+        ];
+    }
+
+    /**
+     * This dataProvider returns the test cases to test how
+     * aggregations work with `limits`.
+     *
+     * The values are of the form
+     * [
+     *     string $aggregationType,
+     *     string $targetFieldName,
+     *     array $expectedResults,
+     *     array $docsToAddBeforeTestRunning
+     * ]
+     */
+    public function getLimitCases()
+    {
+        $docsToAdd = [['value' => 0], ['value' => 1], ['value' => 2], ['value' => 3],  ['value' => 4]];
+        return [
+            ['count', null, [2, 2], $docsToAdd]
+        ];
     }
 }

@@ -34,7 +34,10 @@ use Google\Rpc\Status;
  *
  * Possible error codes:
  *
- * * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+ * * PERMISSION_DENIED:
+ * * The customer doesn't belong to the reseller.
+ * * The reseller is not authorized to transact on this Product. See
+ * https://support.google.com/channelservices/answer/9759265
  * * INVALID_ARGUMENT:
  * * Required request parameters are missing or invalid.
  * * There is already a customer entitlement for a SKU from the same

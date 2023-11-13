@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/shopping/type/.*-php/(.*)
+      dest: /owl-bot-staging/ShoppingCommonProtos/$1
+api-name: ShoppingCommonProtos

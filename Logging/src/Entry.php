@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Logging;
 
-use Google\Cloud\Logging\Connection\ConnectionInterface;
-
 /**
  * An individual entry in a log.
  *

@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ConvertJobDetails extends \Google\Protobuf\Internal\Message
 {
     /**
-     * AIP-160 based filter used to specify the entities to convert
+     * Output only. AIP-160 based filter used to specify the entities to convert
      *
-     * Generated from protobuf field <code>string filter = 1;</code>
+     * Generated from protobuf field <code>string filter = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $filter = '';
 
@@ -29,7 +29,7 @@ class ConvertJobDetails extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $filter
-     *           AIP-160 based filter used to specify the entities to convert
+     *           Output only. AIP-160 based filter used to specify the entities to convert
      * }
      */
     public function __construct($data = NULL) {
@@ -38,9 +38,9 @@ class ConvertJobDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * AIP-160 based filter used to specify the entities to convert
+     * Output only. AIP-160 based filter used to specify the entities to convert
      *
-     * Generated from protobuf field <code>string filter = 1;</code>
+     * Generated from protobuf field <code>string filter = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getFilter()
@@ -49,9 +49,9 @@ class ConvertJobDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * AIP-160 based filter used to specify the entities to convert
+     * Output only. AIP-160 based filter used to specify the entities to convert
      *
-     * Generated from protobuf field <code>string filter = 1;</code>
+     * Generated from protobuf field <code>string filter = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

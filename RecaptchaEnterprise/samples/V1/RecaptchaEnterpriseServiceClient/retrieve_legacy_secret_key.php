@@ -33,7 +33,7 @@ use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyResponse;
  * legacy reCAPTCHA.
  *
  * @param string $formattedKey The public key name linked to the requested secret key in the
- *                             format "projects/{project}/keys/{key}". Please see
+ *                             format `projects/{project}/keys/{key}`. Please see
  *                             {@see RecaptchaEnterpriseServiceClient::keyName()} for help formatting this field.
  */
 function retrieve_legacy_secret_key_sample(string $formattedKey): void

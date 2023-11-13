@@ -19,6 +19,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class VirtualMachinePreferences extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Target product for assets using this preference set.
+     * Specify either target product or business goal, but
+     * not both.
+     *
+     * Generated from protobuf field <code>.google.cloud.migrationcenter.v1.ComputeMigrationTargetProduct target_product = 2;</code>
+     */
+    protected $target_product = 0;
+    /**
      * Region preferences for assets using this preference set.
      * If you are unsure which value to set, the migration service API region is
      * often a good value to start with.
@@ -52,6 +60,19 @@ class VirtualMachinePreferences extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.migrationcenter.v1.ComputeEnginePreferences compute_engine_preferences = 6;</code>
      */
     protected $compute_engine_preferences = null;
+    /**
+     * Preferences concerning insights and recommendations for
+     * Google Cloud VMware Engine.
+     *
+     * Generated from protobuf field <code>.google.cloud.migrationcenter.v1.VmwareEnginePreferences vmware_engine_preferences = 7;</code>
+     */
+    protected $vmware_engine_preferences = null;
+    /**
+     * Preferences concerning Sole Tenant nodes and virtual machines.
+     *
+     * Generated from protobuf field <code>.google.cloud.migrationcenter.v1.SoleTenancyPreferences sole_tenancy_preferences = 8;</code>
+     */
+    protected $sole_tenancy_preferences = null;
 
     /**
      * Constructor.
@@ -59,6 +80,10 @@ class VirtualMachinePreferences extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type int $target_product
+     *           Target product for assets using this preference set.
+     *           Specify either target product or business goal, but
+     *           not both.
      *     @type \Google\Cloud\MigrationCenter\V1\RegionPreferences $region_preferences
      *           Region preferences for assets using this preference set.
      *           If you are unsure which value to set, the migration service API region is
@@ -77,11 +102,46 @@ class VirtualMachinePreferences extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\MigrationCenter\V1\ComputeEnginePreferences $compute_engine_preferences
      *           Compute Engine preferences concern insights and recommendations for Compute
      *           Engine target.
+     *     @type \Google\Cloud\MigrationCenter\V1\VmwareEnginePreferences $vmware_engine_preferences
+     *           Preferences concerning insights and recommendations for
+     *           Google Cloud VMware Engine.
+     *     @type \Google\Cloud\MigrationCenter\V1\SoleTenancyPreferences $sole_tenancy_preferences
+     *           Preferences concerning Sole Tenant nodes and virtual machines.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Migrationcenter\V1\Migrationcenter::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Target product for assets using this preference set.
+     * Specify either target product or business goal, but
+     * not both.
+     *
+     * Generated from protobuf field <code>.google.cloud.migrationcenter.v1.ComputeMigrationTargetProduct target_product = 2;</code>
+     * @return int
+     */
+    public function getTargetProduct()
+    {
+        return $this->target_product;
+    }
+
+    /**
+     * Target product for assets using this preference set.
+     * Specify either target product or business goal, but
+     * not both.
+     *
+     * Generated from protobuf field <code>.google.cloud.migrationcenter.v1.ComputeMigrationTargetProduct target_product = 2;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTargetProduct($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\MigrationCenter\V1\ComputeMigrationTargetProduct::class);
+        $this->target_product = $var;
+
+        return $this;
     }
 
     /**
@@ -224,6 +284,80 @@ class VirtualMachinePreferences extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\MigrationCenter\V1\ComputeEnginePreferences::class);
         $this->compute_engine_preferences = $var;
+
+        return $this;
+    }
+
+    /**
+     * Preferences concerning insights and recommendations for
+     * Google Cloud VMware Engine.
+     *
+     * Generated from protobuf field <code>.google.cloud.migrationcenter.v1.VmwareEnginePreferences vmware_engine_preferences = 7;</code>
+     * @return \Google\Cloud\MigrationCenter\V1\VmwareEnginePreferences|null
+     */
+    public function getVmwareEnginePreferences()
+    {
+        return $this->vmware_engine_preferences;
+    }
+
+    public function hasVmwareEnginePreferences()
+    {
+        return isset($this->vmware_engine_preferences);
+    }
+
+    public function clearVmwareEnginePreferences()
+    {
+        unset($this->vmware_engine_preferences);
+    }
+
+    /**
+     * Preferences concerning insights and recommendations for
+     * Google Cloud VMware Engine.
+     *
+     * Generated from protobuf field <code>.google.cloud.migrationcenter.v1.VmwareEnginePreferences vmware_engine_preferences = 7;</code>
+     * @param \Google\Cloud\MigrationCenter\V1\VmwareEnginePreferences $var
+     * @return $this
+     */
+    public function setVmwareEnginePreferences($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\MigrationCenter\V1\VmwareEnginePreferences::class);
+        $this->vmware_engine_preferences = $var;
+
+        return $this;
+    }
+
+    /**
+     * Preferences concerning Sole Tenant nodes and virtual machines.
+     *
+     * Generated from protobuf field <code>.google.cloud.migrationcenter.v1.SoleTenancyPreferences sole_tenancy_preferences = 8;</code>
+     * @return \Google\Cloud\MigrationCenter\V1\SoleTenancyPreferences|null
+     */
+    public function getSoleTenancyPreferences()
+    {
+        return $this->sole_tenancy_preferences;
+    }
+
+    public function hasSoleTenancyPreferences()
+    {
+        return isset($this->sole_tenancy_preferences);
+    }
+
+    public function clearSoleTenancyPreferences()
+    {
+        unset($this->sole_tenancy_preferences);
+    }
+
+    /**
+     * Preferences concerning Sole Tenant nodes and virtual machines.
+     *
+     * Generated from protobuf field <code>.google.cloud.migrationcenter.v1.SoleTenancyPreferences sole_tenancy_preferences = 8;</code>
+     * @param \Google\Cloud\MigrationCenter\V1\SoleTenancyPreferences $var
+     * @return $this
+     */
+    public function setSoleTenancyPreferences($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\MigrationCenter\V1\SoleTenancyPreferences::class);
+        $this->sole_tenancy_preferences = $var;
 
         return $this;
     }

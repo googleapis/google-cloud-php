@@ -155,6 +155,12 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.CloudSqlSettings.SqlAvailabilityType availability_type = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $availability_type = 0;
+    /**
+     * Optional. The edition of the given Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.CloudSqlSettings.Edition edition = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $edition = 0;
 
     /**
      * Constructor.
@@ -230,6 +236,8 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
      *           zone affect data availability.
      *           *  `REGIONAL`: The instance can serve data from more than one zone in a
      *           region (it is highly available).
+     *     @type int $edition
+     *           Optional. The edition of the given Cloud SQL instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -898,6 +906,32 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\CloudDms\V1\CloudSqlSettings\SqlAvailabilityType::class);
         $this->availability_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The edition of the given Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.CloudSqlSettings.Edition edition = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getEdition()
+    {
+        return $this->edition;
+    }
+
+    /**
+     * Optional. The edition of the given Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.CloudSqlSettings.Edition edition = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEdition($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\CloudDms\V1\CloudSqlSettings\Edition::class);
+        $this->edition = $var;
 
         return $this;
     }

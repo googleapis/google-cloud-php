@@ -223,6 +223,10 @@ class LoadJobConfigurationTest extends SnippetTestCase
                     'value' => 'sessionId'
                 ]
             ],
+            [
+                'referenceFileSchemaUri',
+                'gs://bucket/source.parquet'
+            ]
         ];
     }
 }

@@ -22,12 +22,12 @@ class DeletePolicyBasedRouteRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID
-     * so that if you must retry your request, the server will know to ignore
-     * the request if it has already been completed. The server will guarantee
-     * that for at least 60 minutes after the first request.
-     * For example, consider a situation where you make an initial request and t
-     * he request times out. If you make the request again with the same request
+     * Optional. An optional request ID to identify requests. Specify a unique
+     * request ID so that if you must retry your request, the server will know to
+     * ignore the request if it has already been completed. The server will
+     * guarantee that for at least 60 minutes after the first request.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same request
      * ID, the server can check if original operation with the same request ID
      * was received, and if so, will ignore the second request. This prevents
      * clients from accidentally creating duplicate commitments.
@@ -39,6 +39,20 @@ class DeletePolicyBasedRouteRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string $name Required. Name of the PolicyBasedRoute resource to delete. Please see
+     *                     {@see PolicyBasedRoutingServiceClient::policyBasedRouteName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\NetworkConnectivity\V1\DeletePolicyBasedRouteRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -47,12 +61,12 @@ class DeletePolicyBasedRouteRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. Name of the PolicyBasedRoute resource to delete.
      *     @type string $request_id
-     *           Optional. An optional request ID to identify requests. Specify a unique request ID
-     *           so that if you must retry your request, the server will know to ignore
-     *           the request if it has already been completed. The server will guarantee
-     *           that for at least 60 minutes after the first request.
-     *           For example, consider a situation where you make an initial request and t
-     *           he request times out. If you make the request again with the same request
+     *           Optional. An optional request ID to identify requests. Specify a unique
+     *           request ID so that if you must retry your request, the server will know to
+     *           ignore the request if it has already been completed. The server will
+     *           guarantee that for at least 60 minutes after the first request.
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
      *           was received, and if so, will ignore the second request. This prevents
      *           clients from accidentally creating duplicate commitments.
@@ -92,12 +106,12 @@ class DeletePolicyBasedRouteRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID
-     * so that if you must retry your request, the server will know to ignore
-     * the request if it has already been completed. The server will guarantee
-     * that for at least 60 minutes after the first request.
-     * For example, consider a situation where you make an initial request and t
-     * he request times out. If you make the request again with the same request
+     * Optional. An optional request ID to identify requests. Specify a unique
+     * request ID so that if you must retry your request, the server will know to
+     * ignore the request if it has already been completed. The server will
+     * guarantee that for at least 60 minutes after the first request.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same request
      * ID, the server can check if original operation with the same request ID
      * was received, and if so, will ignore the second request. This prevents
      * clients from accidentally creating duplicate commitments.
@@ -113,12 +127,12 @@ class DeletePolicyBasedRouteRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID
-     * so that if you must retry your request, the server will know to ignore
-     * the request if it has already been completed. The server will guarantee
-     * that for at least 60 minutes after the first request.
-     * For example, consider a situation where you make an initial request and t
-     * he request times out. If you make the request again with the same request
+     * Optional. An optional request ID to identify requests. Specify a unique
+     * request ID so that if you must retry your request, the server will know to
+     * ignore the request if it has already been completed. The server will
+     * guarantee that for at least 60 minutes after the first request.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same request
      * ID, the server can check if original operation with the same request ID
      * was received, and if so, will ignore the second request. This prevents
      * clients from accidentally creating duplicate commitments.

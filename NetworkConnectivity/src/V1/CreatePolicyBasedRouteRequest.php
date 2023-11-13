@@ -22,9 +22,9 @@ class CreatePolicyBasedRouteRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. Unique id for the Policy Based Route to create.
+     * Required. Unique id for the Policy Based Route to create.
      *
-     * Generated from protobuf field <code>string policy_based_route_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string policy_based_route_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $policy_based_route_id = '';
     /**
@@ -34,12 +34,12 @@ class CreatePolicyBasedRouteRequest extends \Google\Protobuf\Internal\Message
      */
     private $policy_based_route = null;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID
-     * so that if you must retry your request, the server will know to ignore
-     * the request if it has already been completed. The server will guarantee
-     * that for at least 60 minutes since the first request.
-     * For example, consider a situation where you make an initial request and t
-     * he request times out. If you make the request again with the same request
+     * Optional. An optional request ID to identify requests. Specify a unique
+     * request ID so that if you must retry your request, the server will know to
+     * ignore the request if it has already been completed. The server will
+     * guarantee that for at least 60 minutes since the first request.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same request
      * ID, the server can check if original operation with the same request ID
      * was received, and if so, will ignore the second request. This prevents
      * clients from accidentally creating duplicate commitments.
@@ -51,6 +51,24 @@ class CreatePolicyBasedRouteRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string                                                $parent             Required. The parent resource's name of the PolicyBasedRoute. Please see
+     *                                                                                  {@see PolicyBasedRoutingServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute $policyBasedRoute   Required. Initial values for a new Policy Based Route.
+     * @param string                                                $policyBasedRouteId Required. Unique id for the Policy Based Route to create.
+     *
+     * @return \Google\Cloud\NetworkConnectivity\V1\CreatePolicyBasedRouteRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute $policyBasedRoute, string $policyBasedRouteId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setPolicyBasedRoute($policyBasedRoute)
+            ->setPolicyBasedRouteId($policyBasedRouteId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -59,16 +77,16 @@ class CreatePolicyBasedRouteRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The parent resource's name of the PolicyBasedRoute.
      *     @type string $policy_based_route_id
-     *           Optional. Unique id for the Policy Based Route to create.
+     *           Required. Unique id for the Policy Based Route to create.
      *     @type \Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute $policy_based_route
      *           Required. Initial values for a new Policy Based Route.
      *     @type string $request_id
-     *           Optional. An optional request ID to identify requests. Specify a unique request ID
-     *           so that if you must retry your request, the server will know to ignore
-     *           the request if it has already been completed. The server will guarantee
-     *           that for at least 60 minutes since the first request.
-     *           For example, consider a situation where you make an initial request and t
-     *           he request times out. If you make the request again with the same request
+     *           Optional. An optional request ID to identify requests. Specify a unique
+     *           request ID so that if you must retry your request, the server will know to
+     *           ignore the request if it has already been completed. The server will
+     *           guarantee that for at least 60 minutes since the first request.
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
      *           was received, and if so, will ignore the second request. This prevents
      *           clients from accidentally creating duplicate commitments.
@@ -108,9 +126,9 @@ class CreatePolicyBasedRouteRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Unique id for the Policy Based Route to create.
+     * Required. Unique id for the Policy Based Route to create.
      *
-     * Generated from protobuf field <code>string policy_based_route_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string policy_based_route_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getPolicyBasedRouteId()
@@ -119,9 +137,9 @@ class CreatePolicyBasedRouteRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Unique id for the Policy Based Route to create.
+     * Required. Unique id for the Policy Based Route to create.
      *
-     * Generated from protobuf field <code>string policy_based_route_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string policy_based_route_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -170,12 +188,12 @@ class CreatePolicyBasedRouteRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID
-     * so that if you must retry your request, the server will know to ignore
-     * the request if it has already been completed. The server will guarantee
-     * that for at least 60 minutes since the first request.
-     * For example, consider a situation where you make an initial request and t
-     * he request times out. If you make the request again with the same request
+     * Optional. An optional request ID to identify requests. Specify a unique
+     * request ID so that if you must retry your request, the server will know to
+     * ignore the request if it has already been completed. The server will
+     * guarantee that for at least 60 minutes since the first request.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same request
      * ID, the server can check if original operation with the same request ID
      * was received, and if so, will ignore the second request. This prevents
      * clients from accidentally creating duplicate commitments.
@@ -191,12 +209,12 @@ class CreatePolicyBasedRouteRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID
-     * so that if you must retry your request, the server will know to ignore
-     * the request if it has already been completed. The server will guarantee
-     * that for at least 60 minutes since the first request.
-     * For example, consider a situation where you make an initial request and t
-     * he request times out. If you make the request again with the same request
+     * Optional. An optional request ID to identify requests. Specify a unique
+     * request ID so that if you must retry your request, the server will know to
+     * ignore the request if it has already been completed. The server will
+     * guarantee that for at least 60 minutes since the first request.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same request
      * ID, the server can check if original operation with the same request ID
      * was received, and if so, will ignore the second request. This prevents
      * clients from accidentally creating duplicate commitments.

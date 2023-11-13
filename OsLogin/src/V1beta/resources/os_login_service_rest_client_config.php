@@ -75,6 +75,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta/{parent=users/*/projects/*/zones/*}:signSshPublicKey',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{parent=users/*/projects/*/locations/*}:signSshPublicKey',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

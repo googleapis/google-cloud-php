@@ -9,11 +9,12 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A Network Connectivity Center hub is a collection of spokes. A single hub
- * can contain spokes from multiple regions. However, if any of a hub's spokes
- * use the data transfer feature, the resources associated with those spokes
- * must all reside in the same VPC network. Spokes that do not use data
- * transfer can be associated with any VPC network in your project.
+ * A Network Connectivity Center hub is a global management resource to which
+ * you attach spokes. A single hub can contain spokes from multiple regions.
+ * However, if any of a hub's spokes use the site-to-site data transfer feature,
+ * the resources associated with those spokes must all be in the same VPC
+ * network. Spokes that do not use site-to-site data transfer can be associated
+ * with any VPC network in your project.
  *
  * Generated from protobuf message <code>google.cloud.networkconnectivity.v1.Hub</code>
  */
@@ -40,8 +41,8 @@ class Hub extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * Optional labels in key:value format. For more information about labels, see
-     * [Requirements for
+     * Optional labels in key-value pair format. For more information about
+     * labels, see [Requirements for
      * labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).
      *
      * Generated from protobuf field <code>map<string, string> labels = 4;</code>
@@ -75,6 +76,26 @@ class Hub extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.RoutingVPC routing_vpcs = 10;</code>
      */
     private $routing_vpcs;
+    /**
+     * Output only. The route tables that belong to this hub. They use the
+     * following form:
+     *    `projects/{project_number}/locations/global/hubs/{hub_id}/routeTables/{route_table_id}`
+     * This field is read-only. Network Connectivity Center automatically
+     * populates it based on the route tables nested under the hub.
+     *
+     * Generated from protobuf field <code>repeated string route_tables = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $route_tables;
+    /**
+     * Output only. A summary of the spokes associated with a hub. The
+     * summary includes a count of spokes according to type
+     * and according to state. If any spokes are inactive,
+     * the summary also lists the reasons they are inactive,
+     * including a count for each reason.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.SpokeSummary spoke_summary = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $spoke_summary = null;
 
     /**
      * Constructor.
@@ -91,8 +112,8 @@ class Hub extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The time the hub was last updated.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Optional labels in key:value format. For more information about labels, see
-     *           [Requirements for
+     *           Optional labels in key-value pair format. For more information about
+     *           labels, see [Requirements for
      *           labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).
      *     @type string $description
      *           An optional description of the hub.
@@ -106,6 +127,18 @@ class Hub extends \Google\Protobuf\Internal\Message
      *           The VPC networks associated with this hub's spokes.
      *           This field is read-only. Network Connectivity Center automatically
      *           populates it based on the set of spokes attached to the hub.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $route_tables
+     *           Output only. The route tables that belong to this hub. They use the
+     *           following form:
+     *              `projects/{project_number}/locations/global/hubs/{hub_id}/routeTables/{route_table_id}`
+     *           This field is read-only. Network Connectivity Center automatically
+     *           populates it based on the route tables nested under the hub.
+     *     @type \Google\Cloud\NetworkConnectivity\V1\SpokeSummary $spoke_summary
+     *           Output only. A summary of the spokes associated with a hub. The
+     *           summary includes a count of spokes according to type
+     *           and according to state. If any spokes are inactive,
+     *           the summary also lists the reasons they are inactive,
+     *           including a count for each reason.
      * }
      */
     public function __construct($data = NULL) {
@@ -216,8 +249,8 @@ class Hub extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional labels in key:value format. For more information about labels, see
-     * [Requirements for
+     * Optional labels in key-value pair format. For more information about
+     * labels, see [Requirements for
      * labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).
      *
      * Generated from protobuf field <code>map<string, string> labels = 4;</code>
@@ -229,8 +262,8 @@ class Hub extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional labels in key:value format. For more information about labels, see
-     * [Requirements for
+     * Optional labels in key-value pair format. For more information about
+     * labels, see [Requirements for
      * labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).
      *
      * Generated from protobuf field <code>map<string, string> labels = 4;</code>
@@ -353,6 +386,84 @@ class Hub extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\NetworkConnectivity\V1\RoutingVPC::class);
         $this->routing_vpcs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The route tables that belong to this hub. They use the
+     * following form:
+     *    `projects/{project_number}/locations/global/hubs/{hub_id}/routeTables/{route_table_id}`
+     * This field is read-only. Network Connectivity Center automatically
+     * populates it based on the route tables nested under the hub.
+     *
+     * Generated from protobuf field <code>repeated string route_tables = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getRouteTables()
+    {
+        return $this->route_tables;
+    }
+
+    /**
+     * Output only. The route tables that belong to this hub. They use the
+     * following form:
+     *    `projects/{project_number}/locations/global/hubs/{hub_id}/routeTables/{route_table_id}`
+     * This field is read-only. Network Connectivity Center automatically
+     * populates it based on the route tables nested under the hub.
+     *
+     * Generated from protobuf field <code>repeated string route_tables = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setRouteTables($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->route_tables = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A summary of the spokes associated with a hub. The
+     * summary includes a count of spokes according to type
+     * and according to state. If any spokes are inactive,
+     * the summary also lists the reasons they are inactive,
+     * including a count for each reason.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.SpokeSummary spoke_summary = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\NetworkConnectivity\V1\SpokeSummary|null
+     */
+    public function getSpokeSummary()
+    {
+        return $this->spoke_summary;
+    }
+
+    public function hasSpokeSummary()
+    {
+        return isset($this->spoke_summary);
+    }
+
+    public function clearSpokeSummary()
+    {
+        unset($this->spoke_summary);
+    }
+
+    /**
+     * Output only. A summary of the spokes associated with a hub. The
+     * summary includes a count of spokes according to type
+     * and according to state. If any spokes are inactive,
+     * the summary also lists the reasons they are inactive,
+     * including a count for each reason.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.SpokeSummary spoke_summary = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\NetworkConnectivity\V1\SpokeSummary $var
+     * @return $this
+     */
+    public function setSpokeSummary($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkConnectivity\V1\SpokeSummary::class);
+        $this->spoke_summary = $var;
 
         return $this;
     }

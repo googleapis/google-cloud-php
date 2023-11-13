@@ -19,9 +19,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - run: ./.github/emulator/start-emulator.sh firestore 424.0.0-emulators
+      - run: ./.github/emulator/start-emulator.sh firestore 453.0.0-emulators
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2

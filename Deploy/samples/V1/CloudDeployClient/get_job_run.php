@@ -32,7 +32,7 @@ use Google\Cloud\Deploy\V1\JobRun;
  * Gets details of a single JobRun.
  *
  * @param string $formattedName Name of the `JobRun`. Format must be
- *                              projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}/rollouts/{rollout_name}/jobRuns/{job_run_name}. Please see
+ *                              `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}/rollouts/{rollout_name}/jobRuns/{job_run_name}`. Please see
  *                              {@see CloudDeployClient::jobRunName()} for help formatting this field.
  */
 function get_job_run_sample(string $formattedName): void

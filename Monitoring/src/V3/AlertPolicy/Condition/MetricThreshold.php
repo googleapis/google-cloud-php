@@ -17,7 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class MetricThreshold extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
+     * Required. A
+     * [filter](https://cloud.google.com/monitoring/api/v3/filters) that
      * identifies which time series should be compared with the threshold.
      * The filter is similar to the one that is specified in the
      * [`ListTimeSeries`
@@ -72,6 +73,16 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Aggregation denominator_aggregations = 10;</code>
      */
     private $denominator_aggregations;
+    /**
+     * When this field is present, the `MetricThreshold` condition forecasts
+     * whether the time series is predicted to violate the threshold within
+     * the `forecast_horizon`. When this field is not set, the
+     * `MetricThreshold` tests the current value of the timeseries against the
+     * threshold.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.MetricThreshold.ForecastOptions forecast_options = 12;</code>
+     */
+    private $forecast_options = null;
     /**
      * The comparison to apply between the time series (indicated by `filter`
      * and `aggregation`) and the threshold (indicated by `threshold_value`).
@@ -129,7 +140,8 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $filter
-     *           Required. A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
+     *           Required. A
+     *           [filter](https://cloud.google.com/monitoring/api/v3/filters) that
      *           identifies which time series should be compared with the threshold.
      *           The filter is similar to the one that is specified in the
      *           [`ListTimeSeries`
@@ -168,6 +180,12 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      *           When computing ratios, the `aggregations` and
      *           `denominator_aggregations` fields must use the same alignment period
      *           and produce time series that have the same periodicity and labels.
+     *     @type \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\MetricThreshold\ForecastOptions $forecast_options
+     *           When this field is present, the `MetricThreshold` condition forecasts
+     *           whether the time series is predicted to violate the threshold within
+     *           the `forecast_horizon`. When this field is not set, the
+     *           `MetricThreshold` tests the current value of the timeseries against the
+     *           threshold.
      *     @type int $comparison
      *           The comparison to apply between the time series (indicated by `filter`
      *           and `aggregation`) and the threshold (indicated by `threshold_value`).
@@ -205,7 +223,8 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
+     * Required. A
+     * [filter](https://cloud.google.com/monitoring/api/v3/filters) that
      * identifies which time series should be compared with the threshold.
      * The filter is similar to the one that is specified in the
      * [`ListTimeSeries`
@@ -224,7 +243,8 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
+     * Required. A
+     * [filter](https://cloud.google.com/monitoring/api/v3/filters) that
      * identifies which time series should be compared with the threshold.
      * The filter is similar to the one that is specified in the
      * [`ListTimeSeries`
@@ -368,6 +388,50 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Monitoring\V3\Aggregation::class);
         $this->denominator_aggregations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * When this field is present, the `MetricThreshold` condition forecasts
+     * whether the time series is predicted to violate the threshold within
+     * the `forecast_horizon`. When this field is not set, the
+     * `MetricThreshold` tests the current value of the timeseries against the
+     * threshold.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.MetricThreshold.ForecastOptions forecast_options = 12;</code>
+     * @return \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\MetricThreshold\ForecastOptions|null
+     */
+    public function getForecastOptions()
+    {
+        return $this->forecast_options;
+    }
+
+    public function hasForecastOptions()
+    {
+        return isset($this->forecast_options);
+    }
+
+    public function clearForecastOptions()
+    {
+        unset($this->forecast_options);
+    }
+
+    /**
+     * When this field is present, the `MetricThreshold` condition forecasts
+     * whether the time series is predicted to violate the threshold within
+     * the `forecast_horizon`. When this field is not set, the
+     * `MetricThreshold` tests the current value of the timeseries against the
+     * threshold.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.MetricThreshold.ForecastOptions forecast_options = 12;</code>
+     * @param \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\MetricThreshold\ForecastOptions $var
+     * @return $this
+     */
+    public function setForecastOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\MetricThreshold\ForecastOptions::class);
+        $this->forecast_options = $var;
 
         return $this;
     }

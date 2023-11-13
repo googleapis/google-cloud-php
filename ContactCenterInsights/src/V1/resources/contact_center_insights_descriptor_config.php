@@ -22,6 +22,25 @@ return [
                     ],
                 ],
             ],
+            'BulkDeleteConversations' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\ContactCenterInsights\V1\BulkDeleteConversationsResponse',
+                    'metadataReturnType' => '\Google\Cloud\ContactCenterInsights\V1\BulkDeleteConversationsMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateAnalysis' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\ContactCenterInsights\V1\Analysis',
@@ -571,6 +590,7 @@ return [
                 'phraseMatcher' => 'projects/{project}/locations/{location}/phraseMatchers/{phrase_matcher}',
                 'projectConversationParticipant' => 'projects/{project}/conversations/{conversation}/participants/{participant}',
                 'projectLocationConversationParticipant' => 'projects/{project}/locations/{location}/conversations/{conversation}/participants/{participant}',
+                'recognizer' => 'projects/{project}/locations/{location}/recognizers/{recognizer}',
                 'settings' => 'projects/{project}/locations/{location}/settings',
                 'view' => 'projects/{project}/locations/{location}/views/{view}',
             ],

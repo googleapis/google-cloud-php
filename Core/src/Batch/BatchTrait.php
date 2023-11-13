@@ -161,7 +161,7 @@ trait BatchTrait
      *           responsible for serializing closures used in the
      *           `$clientConfig`. This is especially important when using the
      *           batch daemon. **Defaults to**
-     *           {@see Google\Cloud\Core\Batch\OpisClosureSerializer} if the
+     *           {@see \Google\Cloud\Core\Batch\OpisClosureSerializer} if the
      *           `opis/closure` library is installed.
      * }
      * @throws \InvalidArgumentException

@@ -30,12 +30,12 @@ use Google\Rpc\Code;
 /**
  * Common interface for running operations against Cloud Spanner. This class is
  * intended for internal use by the client library only. Implementors should
- * access these operations via {@see Google\Cloud\Spanner\Database} or
- * {@see Google\Cloud\Spanner\Transaction}.
+ * access these operations via {@see \Google\Cloud\Spanner\Database} or
+ * {@see \Google\Cloud\Spanner\Transaction}.
  *
  * Usage examples may be found in classes making use of this class:
- * * {@see Google\Cloud\Spanner\Database}
- * * {@see Google\Cloud\Spanner\Transaction}
+ * * {@see \Google\Cloud\Spanner\Database}
+ * * {@see \Google\Cloud\Spanner\Transaction}
  */
 class Operation
 {
@@ -51,6 +51,7 @@ class Operation
 
     /**
      * @var ConnectionInterface
+     * @internal
      */
     private $connection;
 
@@ -61,9 +62,10 @@ class Operation
 
     /**
      * @param ConnectionInterface $connection A connection to Google Cloud
-     *        Spanner.
+     *        Spanner. This object is created by SpannerClient,
+     *        and should not be instantiated outside of this client.
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
-     *        returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
+     *        returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *        platform compatibility.
      */
     public function __construct(ConnectionInterface $connection, $returnInt64AsObject)
@@ -125,7 +127,7 @@ class Operation
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -152,9 +154,9 @@ class Operation
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
-     * @return array An array containing {@see Google\Cloud\Spanner\Timestamp}
+     * @return array An array containing {@see \Google\Cloud\Spanner\Timestamp}
      *               at index 0 and the commit response as an array at index 1.
      */
     public function commitWithResponse(Session $session, array $mutations, array $options = [])
@@ -204,7 +206,7 @@ class Operation
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
      * @return Result
      */
@@ -250,7 +252,7 @@ class Operation
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
      * @return int
      * @throws \InvalidArgumentException If the SQL string isn't an update operation.
@@ -284,7 +286,7 @@ class Operation
      * Execute multiple DML statements.
      *
      * For detailed usage instructions, see
-     * {@see Google\Cloud\Spanner\Transaction::executeUpdateBatch()}.
+     * {@see \Google\Cloud\Spanner\Transaction::executeUpdateBatch()}.
      *
      * @param Session $session The session in which the update operation should
      *        be executed.
@@ -298,14 +300,14 @@ class Operation
      *        infer types. Explicit type declarations are required in the case
      *        of struct parameters, or when a null value exists as a parameter.
      *        Accepted values for primitive types are defined as constants on
-     *        {@see Google\Cloud\Spanner\Database}, and are as follows:
+     *        {@see \Google\Cloud\Spanner\Database}, and are as follows:
      *        `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
      *        `Database::TYPE_FLOAT64`, `Database::TYPE_TIMESTAMP`,
      *        `Database::TYPE_DATE`, `Database::TYPE_STRING`,
      *        `Database::TYPE_BYTES`. If the value is an array, use
-     *        {@see Google\Cloud\Spanner\ArrayType} to declare the array
+     *        {@see \Google\Cloud\Spanner\ArrayType} to declare the array
      *        parameter types. Likewise, for structs, use
-     *        {@see Google\Cloud\Spanner\StructType}.
+     *        {@see \Google\Cloud\Spanner\StructType}.
      * @param array $options [optional] {
      *     Configuration Options.
      *
@@ -313,7 +315,7 @@ class Operation
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
      * @return BatchDmlResult
      * @throws \InvalidArgumentException If any statement is missing the `sql` key.
@@ -370,7 +372,7 @@ class Operation
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
      * @return Result
      */
@@ -569,7 +571,7 @@ class Operation
     /**
      * Lazily instantiates a session. There are no network requests made at this
      * point. To see the operations that can be performed on a session please
-     * see {@see Google\Cloud\Spanner\Session\Session}.
+     * see {@see \Google\Cloud\Spanner\Session\Session}.
      *
      * Sessions are handled behind the scenes and this method does not need to
      * be called directly.
@@ -614,7 +616,7 @@ class Operation
      *           Generally, Google Cloud PHP can infer types. Explicit type
      *           definitions are only necessary for null parameter values.
      *           Accepted values are defined as constants on
-     *           {@see Google\Cloud\Spanner\ValueMapper}, and are as follows:
+     *           {@see \Google\Cloud\Spanner\ValueMapper}, and are as follows:
      *           `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
      *           `Database::TYPE_FLOAT64`, `Database::TYPE_TIMESTAMP`,
      *           `Database::TYPE_DATE`, `Database::TYPE_STRING`,

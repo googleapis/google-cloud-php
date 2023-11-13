@@ -16,29 +16,30 @@ use Google\Protobuf\Internal\GPBUtil;
 class GatewayInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the gateway service (for example, stripe, square, paypal).
+     * Optional. Name of the gateway service (for example, stripe, square,
+     * paypal).
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $name = '';
     /**
-     * Gateway response code describing the state of the transaction.
+     * Optional. Gateway response code describing the state of the transaction.
      *
-     * Generated from protobuf field <code>string gateway_response_code = 2;</code>
+     * Generated from protobuf field <code>string gateway_response_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $gateway_response_code = '';
     /**
-     * AVS response code from the gateway
+     * Optional. AVS response code from the gateway
      * (available only when reCAPTCHA Enterprise is called after authorization).
      *
-     * Generated from protobuf field <code>string avs_response_code = 3;</code>
+     * Generated from protobuf field <code>string avs_response_code = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $avs_response_code = '';
     /**
-     * CVV response code from the gateway
+     * Optional. CVV response code from the gateway
      * (available only when reCAPTCHA Enterprise is called after authorization).
      *
-     * Generated from protobuf field <code>string cvv_response_code = 4;</code>
+     * Generated from protobuf field <code>string cvv_response_code = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $cvv_response_code = '';
 
@@ -49,14 +50,15 @@ class GatewayInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Name of the gateway service (for example, stripe, square, paypal).
+     *           Optional. Name of the gateway service (for example, stripe, square,
+     *           paypal).
      *     @type string $gateway_response_code
-     *           Gateway response code describing the state of the transaction.
+     *           Optional. Gateway response code describing the state of the transaction.
      *     @type string $avs_response_code
-     *           AVS response code from the gateway
+     *           Optional. AVS response code from the gateway
      *           (available only when reCAPTCHA Enterprise is called after authorization).
      *     @type string $cvv_response_code
-     *           CVV response code from the gateway
+     *           Optional. CVV response code from the gateway
      *           (available only when reCAPTCHA Enterprise is called after authorization).
      * }
      */
@@ -66,9 +68,10 @@ class GatewayInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the gateway service (for example, stripe, square, paypal).
+     * Optional. Name of the gateway service (for example, stripe, square,
+     * paypal).
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getName()
@@ -77,9 +80,10 @@ class GatewayInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the gateway service (for example, stripe, square, paypal).
+     * Optional. Name of the gateway service (for example, stripe, square,
+     * paypal).
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -92,9 +96,9 @@ class GatewayInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Gateway response code describing the state of the transaction.
+     * Optional. Gateway response code describing the state of the transaction.
      *
-     * Generated from protobuf field <code>string gateway_response_code = 2;</code>
+     * Generated from protobuf field <code>string gateway_response_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getGatewayResponseCode()
@@ -103,9 +107,9 @@ class GatewayInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Gateway response code describing the state of the transaction.
+     * Optional. Gateway response code describing the state of the transaction.
      *
-     * Generated from protobuf field <code>string gateway_response_code = 2;</code>
+     * Generated from protobuf field <code>string gateway_response_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -118,10 +122,10 @@ class GatewayInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * AVS response code from the gateway
+     * Optional. AVS response code from the gateway
      * (available only when reCAPTCHA Enterprise is called after authorization).
      *
-     * Generated from protobuf field <code>string avs_response_code = 3;</code>
+     * Generated from protobuf field <code>string avs_response_code = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getAvsResponseCode()
@@ -130,10 +134,10 @@ class GatewayInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * AVS response code from the gateway
+     * Optional. AVS response code from the gateway
      * (available only when reCAPTCHA Enterprise is called after authorization).
      *
-     * Generated from protobuf field <code>string avs_response_code = 3;</code>
+     * Generated from protobuf field <code>string avs_response_code = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -146,10 +150,10 @@ class GatewayInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * CVV response code from the gateway
+     * Optional. CVV response code from the gateway
      * (available only when reCAPTCHA Enterprise is called after authorization).
      *
-     * Generated from protobuf field <code>string cvv_response_code = 4;</code>
+     * Generated from protobuf field <code>string cvv_response_code = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getCvvResponseCode()
@@ -158,10 +162,10 @@ class GatewayInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * CVV response code from the gateway
+     * Optional. CVV response code from the gateway
      * (available only when reCAPTCHA Enterprise is called after authorization).
      *
-     * Generated from protobuf field <code>string cvv_response_code = 4;</code>
+     * Generated from protobuf field <code>string cvv_response_code = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

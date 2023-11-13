@@ -23,9 +23,9 @@ class ListWorkspacesRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. Maximum number of workspaces to return. The server may return fewer
-     * items than requested. If unspecified, the server will pick an appropriate
-     * default.
+     * Optional. Maximum number of workspaces to return. The server may return
+     * fewer items than requested. If unspecified, the server will pick an
+     * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -40,9 +40,9 @@ class ListWorkspacesRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
     /**
-     * Optional. This field only supports ordering by `name`. If unspecified, the server
-     * will choose the ordering. If specified, the default order is ascending for
-     * the `name` field.
+     * Optional. This field only supports ordering by `name`. If unspecified, the
+     * server will choose the ordering. If specified, the default order is
+     * ascending for the `name` field.
      *
      * Generated from protobuf field <code>string order_by = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -79,18 +79,18 @@ class ListWorkspacesRequest extends \Google\Protobuf\Internal\Message
      *           Required. The repository in which to list workspaces. Must be in the
      *           format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
      *     @type int $page_size
-     *           Optional. Maximum number of workspaces to return. The server may return fewer
-     *           items than requested. If unspecified, the server will pick an appropriate
-     *           default.
+     *           Optional. Maximum number of workspaces to return. The server may return
+     *           fewer items than requested. If unspecified, the server will pick an
+     *           appropriate default.
      *     @type string $page_token
      *           Optional. Page token received from a previous `ListWorkspaces` call.
      *           Provide this to retrieve the subsequent page.
      *           When paginating, all other parameters provided to `ListWorkspaces`
      *           must match the call that provided the page token.
      *     @type string $order_by
-     *           Optional. This field only supports ordering by `name`. If unspecified, the server
-     *           will choose the ordering. If specified, the default order is ascending for
-     *           the `name` field.
+     *           Optional. This field only supports ordering by `name`. If unspecified, the
+     *           server will choose the ordering. If specified, the default order is
+     *           ascending for the `name` field.
      *     @type string $filter
      *           Optional. Filter for the returned list.
      * }
@@ -129,9 +129,9 @@ class ListWorkspacesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Maximum number of workspaces to return. The server may return fewer
-     * items than requested. If unspecified, the server will pick an appropriate
-     * default.
+     * Optional. Maximum number of workspaces to return. The server may return
+     * fewer items than requested. If unspecified, the server will pick an
+     * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -142,9 +142,9 @@ class ListWorkspacesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Maximum number of workspaces to return. The server may return fewer
-     * items than requested. If unspecified, the server will pick an appropriate
-     * default.
+     * Optional. Maximum number of workspaces to return. The server may return
+     * fewer items than requested. If unspecified, the server will pick an
+     * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -191,9 +191,9 @@ class ListWorkspacesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This field only supports ordering by `name`. If unspecified, the server
-     * will choose the ordering. If specified, the default order is ascending for
-     * the `name` field.
+     * Optional. This field only supports ordering by `name`. If unspecified, the
+     * server will choose the ordering. If specified, the default order is
+     * ascending for the `name` field.
      *
      * Generated from protobuf field <code>string order_by = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -204,9 +204,9 @@ class ListWorkspacesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This field only supports ordering by `name`. If unspecified, the server
-     * will choose the ordering. If specified, the default order is ascending for
-     * the `name` field.
+     * Optional. This field only supports ordering by `name`. If unspecified, the
+     * server will choose the ordering. If specified, the default order is
+     * ascending for the `name` field.
      *
      * Generated from protobuf field <code>string order_by = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

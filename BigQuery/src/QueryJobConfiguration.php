@@ -65,8 +65,9 @@ class QueryJobConfiguration implements JobConfigurationInterface
 
     /**
      * Sets whether or not the query can produce arbitrarily large result
-     * tables at a slight cost in performance. Only applies to queries
-     * performed with legacy SQL dialect and requires a
+     * tables at a slight cost in performance.
+     *
+     * Only applies to queries performed with legacy SQL dialect and requires a
      * {@see QueryJobConfiguration::destinationTable()} to
      * be set.
      *
@@ -195,9 +196,11 @@ class QueryJobConfiguration implements JobConfigurationInterface
 
     /**
      * Sets whether or not to flatten all nested and repeated fields in the
-     * query results. Only applies to queries performed with legacy SQL dialect.
-     * {@see QueryJobConfiguration::allowLargeResults()}
-     * must be true if this is set to false.
+     * query results.
+     *
+     * Only applies to queries performed with legacy SQL dialect.
+     * {@see QueryJobConfiguration::allowLargeResults()} must be true if this
+     * is set to false.
      *
      * Example:
      * ```

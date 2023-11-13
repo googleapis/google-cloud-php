@@ -10,6 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Contains information of the customer's network configurations.
+ * Next available ID: 5
  *
  * Generated from protobuf message <code>google.cloud.metastore.v1beta.NetworkConfig.Consumer</code>
  */
@@ -22,6 +23,13 @@ class Consumer extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string endpoint_uri = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $endpoint_uri = '';
+    /**
+     * Output only. The location of the endpoint URI. Format:
+     * `projects/{project}/locations/{location}`.
+     *
+     * Generated from protobuf field <code>string endpoint_location = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    private $endpoint_location = '';
     protected $vpc_resource;
 
     /**
@@ -41,6 +49,9 @@ class Consumer extends \Google\Protobuf\Internal\Message
      *     @type string $endpoint_uri
      *           Output only. The URI of the endpoint used to access the metastore
      *           service.
+     *     @type string $endpoint_location
+     *           Output only. The location of the endpoint URI. Format:
+     *           `projects/{project}/locations/{location}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -115,6 +126,34 @@ class Consumer extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->endpoint_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The location of the endpoint URI. Format:
+     * `projects/{project}/locations/{location}`.
+     *
+     * Generated from protobuf field <code>string endpoint_location = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getEndpointLocation()
+    {
+        return $this->endpoint_location;
+    }
+
+    /**
+     * Output only. The location of the endpoint URI. Format:
+     * `projects/{project}/locations/{location}`.
+     *
+     * Generated from protobuf field <code>string endpoint_location = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEndpointLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->endpoint_location = $var;
 
         return $this;
     }

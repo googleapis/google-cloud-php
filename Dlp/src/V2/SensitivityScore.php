@@ -9,15 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Score is a summary of all elements in the data profile.
- * A higher number means more sensitive.
+ * Score is calculated from of all elements in the data profile.
+ * A higher level means the data is more sensitive.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.SensitivityScore</code>
  */
 class SensitivityScore extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The score applied to the resource.
+     * The sensitivity score applied to the resource.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.SensitivityScore.SensitivityScoreLevel score = 1;</code>
      */
@@ -30,7 +30,7 @@ class SensitivityScore extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $score
-     *           The score applied to the resource.
+     *           The sensitivity score applied to the resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -39,7 +39,7 @@ class SensitivityScore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The score applied to the resource.
+     * The sensitivity score applied to the resource.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.SensitivityScore.SensitivityScoreLevel score = 1;</code>
      * @return int
@@ -50,7 +50,7 @@ class SensitivityScore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The score applied to the resource.
+     * The sensitivity score applied to the resource.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.SensitivityScore.SensitivityScoreLevel score = 1;</code>
      * @param int $var

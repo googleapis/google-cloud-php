@@ -25,21 +25,21 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  * Manages interaction with Cloud Spanner inside a Transaction.
  *
  * Transactions can be started via
- * {@see Google\Cloud\Spanner\Database::runTransaction()} (recommended) or via
- * {@see Google\Cloud\Spanner\Database::transaction()}. Transactions should
- * always call {@see Google\Cloud\Spanner\Transaction::commit()} or
- * {@see Google\Cloud\Spanner\Transaction::rollback()} to ensure that locks are
+ * {@see \Google\Cloud\Spanner\Database::runTransaction()} (recommended) or via
+ * {@see \Google\Cloud\Spanner\Database::transaction()}. Transactions should
+ * always call {@see \Google\Cloud\Spanner\Transaction::commit()} or
+ * {@see \Google\Cloud\Spanner\Transaction::rollback()} to ensure that locks are
  * released in a timely manner.
  *
  * If you do not plan on performing any writes in your transaction, a
- * {@see Google\Cloud\Spanner\Snapshot} is a better solution which does not
+ * {@see \Google\Cloud\Spanner\Snapshot} is a better solution which does not
  * require a commit or rollback and does not lock any data.
  *
- * Transactions may raise {@see Google\Cloud\Core\Exception\AbortedException} errors
+ * Transactions may raise {@see \Google\Cloud\Core\Exception\AbortedException} errors
  * when the transaction cannot complete for any reason. In this case, the entire
  * operation (all reads and writes) should be reapplied atomically. Google Cloud
  * PHP handles this transparently when using
- * {@see Google\Cloud\Spanner\Database::runTransaction()}. In other cases, it is
+ * {@see \Google\Cloud\Spanner\Database::runTransaction()}. In other cases, it is
  * highly recommended that applications implement their own retry logic.
  *
  * Example:
@@ -352,7 +352,7 @@ class Transaction implements TransactionalReadInterface
      * [DML syntax guide](https://cloud.google.com/spanner/docs/dml-syntax).
      *
      * To execute a SQL query (such as a SELECT), use
-     * {@see Google\Cloud\Spanner\Transaction::execute()}.
+     * {@see \Google\Cloud\Spanner\Transaction::execute()}.
      *
      * Mutations performed via DML will be visible to subsequent operations
      * within the same transaction. In other words, unlike with other mutation
@@ -410,19 +410,19 @@ class Transaction implements TransactionalReadInterface
      *           declarations are required in the case of struct parameters,
      *           or when a null value exists as a parameter.
      *           Accepted values for primitive types are defined as constants on
-     *           {@see Google\Cloud\Spanner\Database}, and are as follows:
+     *           {@see \Google\Cloud\Spanner\Database}, and are as follows:
      *           `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
      *           `Database::TYPE_FLOAT64`, `Database::TYPE_TIMESTAMP`,
      *           `Database::TYPE_DATE`, `Database::TYPE_STRING`,
      *           `Database::TYPE_BYTES`. If the value is an array, use
-     *           {@see Google\Cloud\Spanner\ArrayType} to declare the array
+     *           {@see \Google\Cloud\Spanner\ArrayType} to declare the array
      *           parameter types. Likewise, for structs, use
-     *           {@see Google\Cloud\Spanner\StructType}.
+     *           {@see \Google\Cloud\Spanner\StructType}.
      *     @type array $requestOptions Request options.
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as the transaction tag should have already
      *         been set when creating the transaction.
      * }
@@ -449,7 +449,7 @@ class Transaction implements TransactionalReadInterface
      *
      * This method allows many statements to be run with lower latency than
      * submitting them sequentially with
-     * {@see Google\Cloud\Spanner\Transaction::executeUpdate()}.
+     * {@see \Google\Cloud\Spanner\Transaction::executeUpdate()}.
      *
      * Statements are executed in order, sequentially. Execution will stop at
      * the first failed statement; the remaining statements will not be run.
@@ -505,14 +505,14 @@ class Transaction implements TransactionalReadInterface
      *        infer types. Explicit type declarations are required in the case
      *        of struct parameters, or when a null value exists as a parameter.
      *        Accepted values for primitive types are defined as constants on
-     *        {@see Google\Cloud\Spanner\Database}, and are as follows:
+     *        {@see \Google\Cloud\Spanner\Database}, and are as follows:
      *        `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
      *        `Database::TYPE_FLOAT64`, `Database::TYPE_TIMESTAMP`,
      *        `Database::TYPE_DATE`, `Database::TYPE_STRING`,
      *        `Database::TYPE_BYTES`. If the value is an array, use
-     *        {@see Google\Cloud\Spanner\ArrayType} to declare the array
+     *        {@see \Google\Cloud\Spanner\ArrayType} to declare the array
      *        parameter types. Likewise, for structs, use
-     *        {@see Google\Cloud\Spanner\StructType}.
+     *        {@see \Google\Cloud\Spanner\StructType}.
      * @param array $options [optional] {
      *     Configuration Options.
      *
@@ -520,7 +520,7 @@ class Transaction implements TransactionalReadInterface
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as the transaction tag should have already
      *         been set when creating the transaction.
      * }
@@ -581,7 +581,7 @@ class Transaction implements TransactionalReadInterface
      * Commit and end the transaction.
      *
      * It is advised that transactions be run inside
-     * {@see Google\Cloud\Spanner\Database::runTransaction()} in order to take
+     * {@see \Google\Cloud\Spanner\Database::runTransaction()} in order to take
      * advantage of automated transaction retry in case of a transaction aborted
      * error.
      *
@@ -596,13 +596,13 @@ class Transaction implements TransactionalReadInterface
      *     @type array $mutations An array of mutations to commit. May be used
      *           instead of or in addition to enqueing mutations separately.
      *     @type bool $returnCommitStats If true, commit statistics will be
-     *           returned and accessible via {@see Google\Cloud\Spanner\Transaction::getCommitStats()}.
+     *           returned and accessible via {@see \Google\Cloud\Spanner\Transaction::getCommitStats()}.
      *           **Defaults to** `false`.
      *     @type array $requestOptions Request options.
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `requestTag` setting will be ignored as it is not supported for commit requests.
      * }
      * @return Timestamp The commit timestamp.
@@ -666,7 +666,7 @@ class Transaction implements TransactionalReadInterface
     /**
      * Check whether the current transaction is a retry transaction.
      *
-     * When using {@see Google\Cloud\Spanner\Database::runTransaction()},
+     * When using {@see \Google\Cloud\Spanner\Database::runTransaction()},
      * transactions are automatically retried when a conflict causes it to abort.
      * In such cases, subsequent invocations of the transaction callable will
      * provide a transaction where `$transaction->isRetry()` is true. This can

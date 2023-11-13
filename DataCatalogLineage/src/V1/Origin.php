@@ -17,6 +17,9 @@ class Origin extends \Google\Protobuf\Internal\Message
 {
     /**
      * Type of the source.
+     * Use of a source_type other than `CUSTOM` for process creation
+     * or updating is highly discouraged, and may be restricted in the future
+     * without notice.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.lineage.v1.Origin.SourceType source_type = 1;</code>
      */
@@ -43,6 +46,9 @@ class Origin extends \Google\Protobuf\Internal\Message
      *
      *     @type int $source_type
      *           Type of the source.
+     *           Use of a source_type other than `CUSTOM` for process creation
+     *           or updating is highly discouraged, and may be restricted in the future
+     *           without notice.
      *     @type string $name
      *           If the source_type isn't CUSTOM, the value of this field should be a GCP
      *           resource name of the system, which reports lineage. The project and
@@ -61,6 +67,9 @@ class Origin extends \Google\Protobuf\Internal\Message
 
     /**
      * Type of the source.
+     * Use of a source_type other than `CUSTOM` for process creation
+     * or updating is highly discouraged, and may be restricted in the future
+     * without notice.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.lineage.v1.Origin.SourceType source_type = 1;</code>
      * @return int
@@ -72,6 +81,9 @@ class Origin extends \Google\Protobuf\Internal\Message
 
     /**
      * Type of the source.
+     * Use of a source_type other than `CUSTOM` for process creation
+     * or updating is highly discouraged, and may be restricted in the future
+     * without notice.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.lineage.v1.Origin.SourceType source_type = 1;</code>
      * @param int $var

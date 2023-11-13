@@ -55,6 +55,15 @@ class ListTransferableOffersRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string language_code = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $language_code = '';
+    /**
+     * Optional. The Billing Account to look up Offers for. Format:
+     * accounts/{account_id}/billingAccounts/{billing_account_id}.
+     * This field is only relevant for multi-currency accounts. It should be left
+     * empty for single currency accounts.
+     *
+     * Generated from protobuf field <code>string billing_account = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $billing_account = '';
     protected $transferred_customer_identity;
 
     /**
@@ -87,6 +96,11 @@ class ListTransferableOffersRequest extends \Google\Protobuf\Internal\Message
      *           Optional. The BCP-47 language code. For example, "en-US". The
      *           response will localize in the corresponding language code, if specified.
      *           The default value is "en-US".
+     *     @type string $billing_account
+     *           Optional. The Billing Account to look up Offers for. Format:
+     *           accounts/{account_id}/billingAccounts/{billing_account_id}.
+     *           This field is only relevant for multi-currency accounts. It should be left
+     *           empty for single currency accounts.
      * }
      */
     public function __construct($data = NULL) {
@@ -302,6 +316,38 @@ class ListTransferableOffersRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->language_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The Billing Account to look up Offers for. Format:
+     * accounts/{account_id}/billingAccounts/{billing_account_id}.
+     * This field is only relevant for multi-currency accounts. It should be left
+     * empty for single currency accounts.
+     *
+     * Generated from protobuf field <code>string billing_account = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getBillingAccount()
+    {
+        return $this->billing_account;
+    }
+
+    /**
+     * Optional. The Billing Account to look up Offers for. Format:
+     * accounts/{account_id}/billingAccounts/{billing_account_id}.
+     * This field is only relevant for multi-currency accounts. It should be left
+     * empty for single currency accounts.
+     *
+     * Generated from protobuf field <code>string billing_account = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBillingAccount($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->billing_account = $var;
 
         return $this;
     }

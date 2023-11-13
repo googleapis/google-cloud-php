@@ -467,6 +467,17 @@ return [
                     ],
                 ],
             ],
+            'QueryEligibleBillingAccounts' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{customer=accounts/*/customers/*}:queryEligibleBillingAccounts',
+                'placeholders' => [
+                    'customer' => [
+                        'getters' => [
+                            'getCustomer',
+                        ],
+                    ],
+                ],
+            ],
             'RegisterSubscriber' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{account=accounts/*}:register',

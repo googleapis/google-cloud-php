@@ -87,12 +87,13 @@ class PubSubClient
     use IncomingMessageTrait;
     use ResourceNameTrait;
 
-    const VERSION = '1.46.1';
+    const VERSION = '1.46.5';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
 
     /**
      * @var Connection\ConnectionInterface
+     * @internal
      */
     protected $connection;
 
@@ -169,9 +170,9 @@ class PubSubClient
     /**
      * Create a topic.
      *
-     * Unlike {@see Google\Cloud\PubSub\PubSubClient::topic()}, this method will send an API call to
+     * Unlike {@see PubSubClient::topic()}, this method will send an API call to
      * create the topic. If the topic already exists, an exception will be
-     * thrown. When in doubt, use {@see Google\Cloud\PubSub\PubSubClient::topic()}.
+     * thrown. When in doubt, use {@see PubSubClient::topic()}.
      *
      * Example:
      * ```
@@ -184,7 +185,7 @@ class PubSubClient
      * @param string $name The topic name
      * @param array $options [optional] Configuration Options. For available
      *        configuration options, refer to
-     *        {@see Google\Cloud\PubSub\Topic::create()} {
+     *        {@see Topic::create()} {
      *        @type bool $enableCompression Flag to enable compression of messages
      *              before publishing. Set the flag to `true` to enable compression.
      *              Defaults to `false`. Messsages are compressed if their total
@@ -209,7 +210,7 @@ class PubSubClient
      * Lazily instantiate a topic with a topic name.
      *
      * No API requests are made by this method. If you want to create a new
-     * topic, use {@see Google\Cloud\PubSub\Topic::createTopic()}.
+     * topic, use {@see Topic::createTopic()}.
      *
      * Example:
      * ```
@@ -289,9 +290,9 @@ class PubSubClient
      * Create a Subscription. If the subscription does not exist, it will be
      * created.
      *
-     * Use {@see Google\Cloud\PubSub\PubSubClient::subscription()} to create a subscription object
+     * Use {@see PubSubClient::subscription()} to create a subscription object
      * without any API requests. If the topic already exists, an exception will
-     * be thrown. When in doubt, use {@see Google\Cloud\PubSub\PubSubClient::subscription()}.
+     * be thrown. When in doubt, use {@see PubSubClient::subscription()}.
      *
      * Example:
      * ```
@@ -303,7 +304,7 @@ class PubSubClient
      *
      * @param string $name A subscription name
      * @param Topic|string $topic The topic to which the new subscription will be subscribed.
-     * @param array  $options [optional] Please see {@see Google\Cloud\PubSub\Subscription::create()}
+     * @param array  $options [optional] Please see {@see Subscription::create()}
      *        for configuration details.
      * @return Subscription
      */
@@ -319,7 +320,7 @@ class PubSubClient
      * Lazily instantiate a subscription with a subscription name.
      *
      * This method will NOT perform any API calls. If you wish to create a new
-     * subscription, use {@see Google\Cloud\PubSub\PubSubClient::subscribe()}.
+     * subscription, use {@see PubSubClient::subscribe()}.
      *
      * Unless you are sure the subscription exists, you should check its
      * existence before using it.
@@ -541,7 +542,7 @@ class PubSubClient
      * Lists all schemas in the current project.
      *
      * Please note that the schemas returned will not contain the entire resource.
-     * If you need details on the full resource, call {@see Google\Cloud\PubSub\Schema::reload()}
+     * If you need details on the full resource, call {@see Schema::reload()}
      * on the resource in question, or set `$options.view` to `FULL`.
      *
      * Example:
@@ -596,7 +597,7 @@ class PubSubClient
      * Verify that a schema is valid.
      *
      * If the schema is valid, the response will be empty. If invalid, a
-     * {@see Google\Cloud\Core\Exception\BadRequestException} will be thrown.
+     * {@see \Google\Cloud\Core\Exception\BadRequestException} will be thrown.
      *
      * Example:
      * ```
@@ -636,7 +637,7 @@ class PubSubClient
      * Validate a given message against a schema.
      *
      * If the message is valid, the response will be empty. If invalid, a
-     * {@see Google\Cloud\Core\Exception\BadRequestException} will be thrown.
+     * {@see \Google\Cloud\Core\Exception\BadRequestException} will be thrown.
      *
      * Example:
      * ```
@@ -658,7 +659,7 @@ class PubSubClient
      * @param Schema|string|array $schema The schema to validate against. If a
      *     string is given, it should be a fully-qualified schema name, e.g.
      *     `projects/my-project/schemas/my-schema`. If an instance of
-     *     {@see Google\Cloud\PubSub\Schema} is provided, it must exist in the
+     *     {@see Schema} is provided, it must exist in the
      *     current project. If an array is given, see
      *     [Schema](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.schemas#Schema)
      *     for definition. The array representation allows for validation of

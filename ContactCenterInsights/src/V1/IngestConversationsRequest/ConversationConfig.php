@@ -22,6 +22,22 @@ class ConversationConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string agent_id = 1;</code>
      */
     private $agent_id = '';
+    /**
+     * Optional. For audio conversations, this field indicates which of the
+     * channels, 1 or 2, contains the agent. Note that this must be set for
+     * audio conversations to be properly displayed and analyzed.
+     *
+     * Generated from protobuf field <code>int32 agent_channel = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $agent_channel = 0;
+    /**
+     * Optional. For audio conversations, this field indicates which of the
+     * channels, 1 or 2, contains the customer. Note that this must be set for
+     * audio conversations to be properly displayed and analyzed.
+     *
+     * Generated from protobuf field <code>int32 customer_channel = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $customer_channel = 0;
 
     /**
      * Constructor.
@@ -32,6 +48,14 @@ class ConversationConfig extends \Google\Protobuf\Internal\Message
      *     @type string $agent_id
      *           An opaque, user-specified string representing the human agent who handled
      *           the conversations.
+     *     @type int $agent_channel
+     *           Optional. For audio conversations, this field indicates which of the
+     *           channels, 1 or 2, contains the agent. Note that this must be set for
+     *           audio conversations to be properly displayed and analyzed.
+     *     @type int $customer_channel
+     *           Optional. For audio conversations, this field indicates which of the
+     *           channels, 1 or 2, contains the customer. Note that this must be set for
+     *           audio conversations to be properly displayed and analyzed.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +87,66 @@ class ConversationConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->agent_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. For audio conversations, this field indicates which of the
+     * channels, 1 or 2, contains the agent. Note that this must be set for
+     * audio conversations to be properly displayed and analyzed.
+     *
+     * Generated from protobuf field <code>int32 agent_channel = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getAgentChannel()
+    {
+        return $this->agent_channel;
+    }
+
+    /**
+     * Optional. For audio conversations, this field indicates which of the
+     * channels, 1 or 2, contains the agent. Note that this must be set for
+     * audio conversations to be properly displayed and analyzed.
+     *
+     * Generated from protobuf field <code>int32 agent_channel = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAgentChannel($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->agent_channel = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. For audio conversations, this field indicates which of the
+     * channels, 1 or 2, contains the customer. Note that this must be set for
+     * audio conversations to be properly displayed and analyzed.
+     *
+     * Generated from protobuf field <code>int32 customer_channel = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getCustomerChannel()
+    {
+        return $this->customer_channel;
+    }
+
+    /**
+     * Optional. For audio conversations, this field indicates which of the
+     * channels, 1 or 2, contains the customer. Note that this must be set for
+     * audio conversations to be properly displayed and analyzed.
+     *
+     * Generated from protobuf field <code>int32 customer_channel = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCustomerChannel($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->customer_channel = $var;
 
         return $this;
     }

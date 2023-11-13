@@ -70,6 +70,25 @@ return [
                     ],
                 ],
             ],
+            'CreateDiscoveryConfig' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/discoveryConfigs',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/discoveryConfigs',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateDlpJob' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*}/dlpJobs',
@@ -215,6 +234,23 @@ return [
                     ],
                 ],
             ],
+            'DeleteDiscoveryConfig' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/discoveryConfigs/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/discoveryConfigs/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteDlpJob' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v2/{name=projects/*/dlpJobs/*}',
@@ -330,6 +366,23 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{name=projects/*/locations/*/deidentifyTemplates/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDiscoveryConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/discoveryConfigs/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/discoveryConfigs/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -486,6 +539,23 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{parent=projects/*/locations/*}/deidentifyTemplates',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDiscoveryConfigs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/discoveryConfigs',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/discoveryConfigs',
                     ],
                 ],
                 'placeholders' => [
@@ -661,6 +731,25 @@ return [
                     [
                         'method' => 'patch',
                         'uriTemplate' => '/v2/{name=projects/*/locations/*/deidentifyTemplates/*}',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateDiscoveryConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/discoveryConfigs/*}',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/discoveryConfigs/*}',
                         'body' => '*',
                     ],
                 ],

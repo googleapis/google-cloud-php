@@ -29,8 +29,9 @@ use Google\Cloud\Spanner\V1\SpannerClient;
 /**
  * Rolls back a transaction, releasing any locks it holds. It is a good
  * idea to call this for any transaction that includes one or more
- * [Read][google.spanner.v1.Spanner.Read] or [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql] requests and
- * ultimately decides not to commit.
+ * [Read][google.spanner.v1.Spanner.Read] or
+ * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql] requests and ultimately
+ * decides not to commit.
  *
  * `Rollback` returns `OK` if it successfully aborts the transaction, the
  * transaction was already aborted, or the transaction is not

@@ -52,8 +52,8 @@ class ResumableUploader extends AbstractUploader
 
     /**
      * Classes extending ResumableUploader may provide request headers to be
-     * included in {@see Google\Cloud\Core\Upload\ResumableUploader::upload()}
-     * and {@see Google\Cloud\Core\Upload\ResumableUploader::createResumeUri{}}.
+     * included in {@see \Google\Cloud\Core\Upload\ResumableUploader::upload()}
+     * and {@see \Google\Cloud\Core\Upload\ResumableUploader::createResumeUri{}}.
      *
      * @var array
      */
@@ -142,7 +142,7 @@ class ResumableUploader extends AbstractUploader
      * Triggers the upload process.
      *
      * Errors are of form [`google.rpc.Status`](https://cloud.google.com/apis/design/errors#error_model),
-     * and may be obtained via {@see Google\Cloud\Core\Exception\ServiceException::getMetadata()}.
+     * and may be obtained via {@see \Google\Cloud\Core\Exception\ServiceException::getMetadata()}.
      *
      * @return array
      * @throws ServiceException

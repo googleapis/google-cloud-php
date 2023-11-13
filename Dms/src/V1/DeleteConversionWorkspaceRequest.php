@@ -31,6 +31,13 @@ class DeleteConversionWorkspaceRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string request_id = 2;</code>
      */
     private $request_id = '';
+    /**
+     * Force delete the conversion workspace, even if there's a running migration
+     * that is using the workspace.
+     *
+     * Generated from protobuf field <code>bool force = 3;</code>
+     */
+    private $force = false;
 
     /**
      * @param string $name Required. Name of the conversion workspace resource to delete. Please see
@@ -60,6 +67,9 @@ class DeleteConversionWorkspaceRequest extends \Google\Protobuf\Internal\Message
      *           It is recommended to always set this value to a UUID.
      *           The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
      *           (_), and hyphens (-). The maximum length is 40 characters.
+     *     @type bool $force
+     *           Force delete the conversion workspace, even if there's a running migration
+     *           that is using the workspace.
      * }
      */
     public function __construct($data = NULL) {
@@ -123,6 +133,34 @@ class DeleteConversionWorkspaceRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->request_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Force delete the conversion workspace, even if there's a running migration
+     * that is using the workspace.
+     *
+     * Generated from protobuf field <code>bool force = 3;</code>
+     * @return bool
+     */
+    public function getForce()
+    {
+        return $this->force;
+    }
+
+    /**
+     * Force delete the conversion workspace, even if there's a running migration
+     * that is using the workspace.
+     *
+     * Generated from protobuf field <code>bool force = 3;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setForce($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->force = $var;
 
         return $this;
     }

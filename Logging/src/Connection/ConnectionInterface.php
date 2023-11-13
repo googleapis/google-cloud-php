@@ -20,6 +20,8 @@ namespace Google\Cloud\Logging\Connection;
 /**
  * Represents a connection to
  * [Stackdriver Logging](https://cloud.google.com/logging/).
+ *
+ * @internal
  */
 interface ConnectionInterface
 {

@@ -32,9 +32,10 @@ use Google\ApiCore\PagedListResponse;
  * Lists SKAdNetworkConversionValueSchema on a stream.
  * Properties can have at most one SKAdNetworkConversionValueSchema.
  *
- * @param string $formattedParent Format:
- *                                properties/{property_id}/dataStreams/{dataStream}/sKAdNetworkConversionValueSchema
- *                                Example: properties/1234/dataStreams/5678/sKAdNetworkConversionValueSchema
+ * @param string $formattedParent The DataStream resource to list schemas for.
+ *                                Format:
+ *                                properties/{property_id}/dataStreams/{dataStream}
+ *                                Example: properties/1234/dataStreams/5678
  *                                Please see {@see AnalyticsAdminServiceClient::dataStreamName()} for help formatting this field.
  */
 function list_sk_ad_network_conversion_value_schemas_sample(string $formattedParent): void

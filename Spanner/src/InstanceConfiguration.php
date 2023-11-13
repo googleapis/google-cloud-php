@@ -54,6 +54,7 @@ class InstanceConfiguration
 
     /**
      * @var ConnectionInterface
+     * @internal
      */
     private $connection;
 
@@ -76,7 +77,8 @@ class InstanceConfiguration
      * Create an instance configuration object.
      *
      * @param ConnectionInterface $connection A service connection for the
-     *        Spanner API.
+     *        Spanner API. This object is created by SpannerClient,
+     *        and should not be instantiated outside of this client.
      * @param string $projectId The current project ID.
      * @param string $name The configuration name or ID.
      * @param array $info [optional] A service representation of the

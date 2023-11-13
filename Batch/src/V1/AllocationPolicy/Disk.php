@@ -52,7 +52,9 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * Local SSDs are available through both "SCSI" and "NVMe" interfaces.
      * If not indicated, "NVMe" will be the default one for local ssds.
-     * We only support "SCSI" for persistent disks now.
+     * This field is ignored for persistent disks as the interface is chosen
+     * automatically. See
+     * https://cloud.google.com/compute/docs/disks/persistent-disks#choose_an_interface.
      *
      * Generated from protobuf field <code>string disk_interface = 6;</code>
      */
@@ -78,6 +80,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           * `batch-centos`: use Batch CentOS images.
      *           * `batch-cos`: use Batch Container-Optimized images.
      *           * `batch-hpc-centos`: use Batch HPC CentOS images.
+     *           * `batch-hpc-rocky`: use Batch HPC Rocky Linux images.
      *     @type string $snapshot
      *           Name of a snapshot used as the data source.
      *           Snapshot is not supported as boot disk now.
@@ -107,7 +110,9 @@ class Disk extends \Google\Protobuf\Internal\Message
      *     @type string $disk_interface
      *           Local SSDs are available through both "SCSI" and "NVMe" interfaces.
      *           If not indicated, "NVMe" will be the default one for local ssds.
-     *           We only support "SCSI" for persistent disks now.
+     *           This field is ignored for persistent disks as the interface is chosen
+     *           automatically. See
+     *           https://cloud.google.com/compute/docs/disks/persistent-disks#choose_an_interface.
      * }
      */
     public function __construct($data = NULL) {
@@ -128,6 +133,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * * `batch-centos`: use Batch CentOS images.
      * * `batch-cos`: use Batch Container-Optimized images.
      * * `batch-hpc-centos`: use Batch HPC CentOS images.
+     * * `batch-hpc-rocky`: use Batch HPC Rocky Linux images.
      *
      * Generated from protobuf field <code>string image = 4;</code>
      * @return string
@@ -155,6 +161,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * * `batch-centos`: use Batch CentOS images.
      * * `batch-cos`: use Batch Container-Optimized images.
      * * `batch-hpc-centos`: use Batch HPC CentOS images.
+     * * `batch-hpc-rocky`: use Batch HPC Rocky Linux images.
      *
      * Generated from protobuf field <code>string image = 4;</code>
      * @param string $var
@@ -294,7 +301,9 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * Local SSDs are available through both "SCSI" and "NVMe" interfaces.
      * If not indicated, "NVMe" will be the default one for local ssds.
-     * We only support "SCSI" for persistent disks now.
+     * This field is ignored for persistent disks as the interface is chosen
+     * automatically. See
+     * https://cloud.google.com/compute/docs/disks/persistent-disks#choose_an_interface.
      *
      * Generated from protobuf field <code>string disk_interface = 6;</code>
      * @return string
@@ -307,7 +316,9 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * Local SSDs are available through both "SCSI" and "NVMe" interfaces.
      * If not indicated, "NVMe" will be the default one for local ssds.
-     * We only support "SCSI" for persistent disks now.
+     * This field is ignored for persistent disks as the interface is chosen
+     * automatically. See
+     * https://cloud.google.com/compute/docs/disks/persistent-disks#choose_an_interface.
      *
      * Generated from protobuf field <code>string disk_interface = 6;</code>
      * @param string $var

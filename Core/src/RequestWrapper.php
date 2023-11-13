@@ -95,12 +95,13 @@ class RequestWrapper
     /**
      * @param array $config [optional] {
      *     Configuration options. Please see
-     *     {@see Google\Cloud\Core\RequestWrapperTrait::setCommonDefaults()} for
+     *     {@see \Google\Cloud\Core\RequestWrapperTrait::setCommonDefaults()} for
      *     the other available options.
      *
      *     @type string $componentVersion The current version of the component from
      *           which the request originated.
      *     @type string $accessToken Access token used to sign requests.
+     *           Deprecated: This option is no longer supported. Use the `$credentialsFetcher` option instead.
      *     @type callable $asyncHttpHandler *Experimental* A handler used to
      *           deliver PSR-7 requests asynchronously. Function signature should match:
      *           `function (RequestInterface $request, array $options = []) : PromiseInterface<ResponseInterface>`.

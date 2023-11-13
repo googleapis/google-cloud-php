@@ -25,8 +25,9 @@ class ConnectionInfo extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Output only. The IP address for the Instance.
-     * This is the connection endpoint for an end-user application.
+     * Output only. The private network IP address for the Instance. This is the
+     * default IP for the instance and is always created (even if enable_public_ip
+     * is set). This is the connection endpoint for an end-user application.
      *
      * Generated from protobuf field <code>string ip_address = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -57,8 +58,9 @@ class ConnectionInfo extends \Google\Protobuf\Internal\Message
      *           projects/{project}/locations/{location}/clusters/&#42;&#47;instances/&#42;&#47;connectionInfo
      *           This field currently has no semantic meaning.
      *     @type string $ip_address
-     *           Output only. The IP address for the Instance.
-     *           This is the connection endpoint for an end-user application.
+     *           Output only. The private network IP address for the Instance. This is the
+     *           default IP for the instance and is always created (even if enable_public_ip
+     *           is set). This is the connection endpoint for an end-user application.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $pem_certificate_chain
      *           Output only. The pem-encoded chain that may be used to verify the X.509
      *           certificate. Expected to be in issuer-to-root order according to RFC 5246.
@@ -102,8 +104,9 @@ class ConnectionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The IP address for the Instance.
-     * This is the connection endpoint for an end-user application.
+     * Output only. The private network IP address for the Instance. This is the
+     * default IP for the instance and is always created (even if enable_public_ip
+     * is set). This is the connection endpoint for an end-user application.
      *
      * Generated from protobuf field <code>string ip_address = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -114,8 +117,9 @@ class ConnectionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The IP address for the Instance.
-     * This is the connection endpoint for an end-user application.
+     * Output only. The private network IP address for the Instance. This is the
+     * default IP for the instance and is always created (even if enable_public_ip
+     * is set). This is the connection endpoint for an end-user application.
      *
      * Generated from protobuf field <code>string ip_address = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

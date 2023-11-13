@@ -123,6 +123,7 @@ class Database
 
     /**
      * @var ConnectionInterface
+     * @internal
      */
     private $connection;
 
@@ -180,7 +181,8 @@ class Database
      * Create an object representing a Database.
      *
      * @param ConnectionInterface $connection The connection to the
-     *        Cloud Spanner Admin API.
+     *        Cloud Spanner Admin API. This object is created by SpannerClient,
+     *        and should not be instantiated outside of this client.
      * @param Instance $instance The instance in which the database exists.
      * @param LongRunningConnectionInterface $lroConnection An implementation
      *        mapping to methods which handle LRO resolution in the service.
@@ -190,7 +192,7 @@ class Database
      * @param SessionPoolInterface $sessionPool [optional] The session pool
      *        implementation.
      * @param bool $returnInt64AsObject [optional If true, 64 bit integers will
-     *        be returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
+     *        be returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *        platform compatibility. **Defaults to** false.
      * @param string $databaseRole The user created database role which creates the session.
      */
@@ -228,7 +230,7 @@ class Database
      * When databases are created or restored, they may take some time before
      * they are ready for use. This method allows for checking whether a
      * database is ready. Note that this value is cached within the class instance,
-     * so if you are polling it, first call {@see Google\Cloud\Spanner\Database::reload()}
+     * so if you are polling it, first call {@see \Google\Cloud\Spanner\Database::reload()}
      * to refresh the cached value.
      *
      * Example:
@@ -739,10 +741,10 @@ class Database
      *
      * When manually using a Transaction, it is advised that retry logic be
      * implemented to reapply all operations when an instance of
-     * {@see Google\Cloud\Core\Exception\AbortedException} is thrown.
+     * {@see \Google\Cloud\Core\Exception\AbortedException} is thrown.
      *
      * If you wish Google Cloud PHP to handle retry logic for you (recommended
-     * for most cases), use {@see Google\Cloud\Spanner\Database::runTransaction()}.
+     * for most cases), use {@see \Google\Cloud\Spanner\Database::runTransaction()}.
      *
      * Please note that once a transaction reads data, it will lock the read
      * data, preventing other users from modifying that data. For this reason,
@@ -805,7 +807,7 @@ class Database
      * new transaction.
      *
      * If a transaction exceeds the maximum number of retries,
-     * {@see Google\Cloud\Core\Exception\AbortedException} will be thrown. Any other
+     * {@see \Google\Cloud\Core\Exception\AbortedException} will be thrown. Any other
      * exception types will immediately bubble up and will interrupt the retry
      * operation.
      *
@@ -819,8 +821,8 @@ class Database
      * raise a `BadMethodCallException`.
      *
      * If a callable finishes executing without invoking
-     * {@see Google\Cloud\Spanner\Transaction::commit()} or
-     * {@see Google\Cloud\Spanner\Transaction::rollback()}, the transaction will
+     * {@see \Google\Cloud\Spanner\Transaction::commit()} or
+     * {@see \Google\Cloud\Spanner\Transaction::rollback()}, the transaction will
      * automatically be rolled back and `\RuntimeException` thrown.
      *
      * Example:
@@ -987,7 +989,7 @@ class Database
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
      *         transactions.
      * }
@@ -1036,7 +1038,7 @@ class Database
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
      *         transactions.
      * }
@@ -1082,7 +1084,7 @@ class Database
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
      *         transactions.
      * }
@@ -1128,7 +1130,7 @@ class Database
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
      *         transactions.
      * }
@@ -1175,7 +1177,7 @@ class Database
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
      *         transactions.
      * }
@@ -1223,7 +1225,7 @@ class Database
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
      *         transactions.
      * }
@@ -1270,7 +1272,7 @@ class Database
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
      *         transactions.
      * }
@@ -1318,7 +1320,7 @@ class Database
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
      *         transactions.
      * }
@@ -1368,7 +1370,7 @@ class Database
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
      *         transactions.
      * }
@@ -1385,10 +1387,10 @@ class Database
      * Run a query.
      *
      * Google Cloud PHP will infer parameter types for all primitive types and
-     * all values implementing {@see Google\Cloud\Spanner\ValueInterface}, with
+     * all values implementing {@see \Google\Cloud\Spanner\ValueInterface}, with
      * the exception of `null`. Non-associative arrays will be interpreted as
      * a Spanner ARRAY type, and must contain only a single type of value.
-     * Associative arrays or values of type {@see Google\Cloud\Spanner\StructValue}
+     * Associative arrays or values of type {@see \Google\Cloud\Spanner\StructValue}
      * will be interpreted as Spanner STRUCT type. Structs MUST always explicitly
      * define their field types.
      *
@@ -1396,18 +1398,18 @@ class Database
      * explicitly define the parameter's type.
      *
      * With the exception of arrays and structs, types are defined using a type
-     * constant defined on {@see Google\Cloud\Spanner\Database}. Examples include
+     * constant defined on {@see \Google\Cloud\Spanner\Database}. Examples include
      * but are not limited to `Database::TYPE_STRING` and `Database::TYPE_INT64`.
      *
      * Arrays, when explicitly typing, should use an instance of
-     * {@see Google\Cloud\Spanner\ArrayType} to declare their type and the types
+     * {@see \Google\Cloud\Spanner\ArrayType} to declare their type and the types
      * of any values contained within the array elements.
      *
      * Structs must always declare their type using an instance of
-     * {@see Google\Cloud\Spanner\StructType}. Struct values may be expressed as
+     * {@see \Google\Cloud\Spanner\StructType}. Struct values may be expressed as
      * an associative array, however if the struct contains any unnamed fields,
      * or any fields with duplicate names, the struct must be expressed using an
-     * instance of {@see Google\Cloud\Spanner\StructValue}. Struct value types
+     * instance of {@see \Google\Cloud\Spanner\StructValue}. Struct value types
      * may be inferred with the same caveats as top-level parameters (in other
      * words, so long as they are not nullable and do not contain nested structs).
      *
@@ -1491,7 +1493,7 @@ class Database
      *
      * ```
      * // If a struct contains unnamed fields, or multiple fields with the same
-     * // name, it must be defined using {@see Google\Cloud\Spanner\StructValue}.
+     * // name, it must be defined using {@see \Google\Cloud\Spanner\StructValue}.
      * use Google\Cloud\Spanner\Database;
      * use Google\Cloud\Spanner\Result;
      * use Google\Cloud\Spanner\StructValue;
@@ -1573,14 +1575,14 @@ class Database
      *           declarations are required in the case of struct parameters,
      *           or when a null value exists as a parameter.
      *           Accepted values for primitive types are defined as constants on
-     *           {@see Google\Cloud\Spanner\Database}, and are as follows:
+     *           {@see \Google\Cloud\Spanner\Database}, and are as follows:
      *           `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
      *           `Database::TYPE_FLOAT64`, `Database::TYPE_TIMESTAMP`,
      *           `Database::TYPE_DATE`, `Database::TYPE_STRING`,
      *           `Database::TYPE_BYTES`. If the value is an array, use
-     *           {@see Google\Cloud\Spanner\ArrayType} to declare the array
+     *           {@see \Google\Cloud\Spanner\ArrayType} to declare the array
      *           parameter types. Likewise, for structs, use
-     *           {@see Google\Cloud\Spanner\StructType}.
+     *           {@see \Google\Cloud\Spanner\StructType}.
      *     @type bool $returnReadTimestamp If true, the Cloud Spanner-selected
      *           read timestamp is included in the Transaction message that
      *           describes the transaction.
@@ -1623,7 +1625,7 @@ class Database
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for read-only
      *         transactions.
      * }
@@ -1657,7 +1659,7 @@ class Database
      * Returns the lower bound of rows modified by the DML statement.
      *
      * **PLEASE NOTE** Most use cases for DML are better served by using
-     * {@see Google\Cloud\Spanner\Transaction::executeUpdate()}. Please read and
+     * {@see \Google\Cloud\Spanner\Transaction::executeUpdate()}. Please read and
      * understand the documentation for partitioned DML before implementing it
      * in your application.
      *
@@ -1666,7 +1668,7 @@ class Database
      * rows).
      *
      * To execute a SELECT statement, use
-     * {@see Google\Cloud\Spanner\Database::execute()}.
+     * {@see \Google\Cloud\Spanner\Database::execute()}.
      *
      * The method will block until the update is complete. Running a DML
      * statement with this method does not offer exactly once semantics, and
@@ -1682,7 +1684,7 @@ class Database
      * into transaction size limits or accidentally locking the entire table in
      * one large transaction. Smaller scoped statements, such as an OLTP
      * workload, should prefer using
-     * {@see Google\Cloud\Spanner\Transaction::executeUpdate()}.
+     * {@see \Google\Cloud\Spanner\Transaction::executeUpdate()}.
      *
      * * The DML statement must be fully-partitionable. Specifically, the
      *   statement must be expressible as the union of many statements which
@@ -1751,19 +1753,19 @@ class Database
      *           declarations are required in the case of struct parameters,
      *           or when a null value exists as a parameter.
      *           Accepted values for primitive types are defined as constants on
-     *           {@see Google\Cloud\Spanner\Database}, and are as follows:
+     *           {@see \Google\Cloud\Spanner\Database}, and are as follows:
      *           `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
      *           `Database::TYPE_FLOAT64`, `Database::TYPE_TIMESTAMP`,
      *           `Database::TYPE_DATE`, `Database::TYPE_STRING`,
      *           `Database::TYPE_BYTES`. If the value is an array, use
-     *           {@see Google\Cloud\Spanner\ArrayType} to declare the array
+     *           {@see \Google\Cloud\Spanner\ArrayType} to declare the array
      *           parameter types. Likewise, for structs, use
-     *           {@see Google\Cloud\Spanner\StructType}.
+     *           {@see \Google\Cloud\Spanner\StructType}.
      *     @type array $requestOptions Request options.
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for partitioned DML.
      * }
      * @return int The number of rows modified.
@@ -1895,7 +1897,7 @@ class Database
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for read-only transactions.
      * }
      * @codingStandardsIgnoreEnd
@@ -1941,7 +1943,7 @@ class Database
      * associated.
      *
      * It is highly important to ensure this is called as it is not always safe
-     * to rely soley on {@see Google\Cloud\Spanner\Database::__destruct()}.
+     * to rely soley on {@see \Google\Cloud\Spanner\Database::__destruct()}.
      *
      * Example:
      * ```
@@ -1993,7 +1995,7 @@ class Database
     /**
      * Lazily instantiates a session. There are no network requests made at this
      * point. To see the operations that can be performed on a session please
-     * see {@see Google\Cloud\Spanner\Session\Session}.
+     * see {@see \Google\Cloud\Spanner\Session\Session}.
      *
      * Sessions are handled behind the scenes and this method does not need to
      * be called directly.
@@ -2093,7 +2095,7 @@ class Database
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use transactions.
      * }
      * @return Timestamp The commit timestamp.

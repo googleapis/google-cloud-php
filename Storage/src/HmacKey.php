@@ -34,6 +34,7 @@ class HmacKey
 {
     /**
      * @var ConnectionInterface
+     * @internal
      */
     private $connection;
 
@@ -54,6 +55,8 @@ class HmacKey
 
     /**
      * @param ConnectionInterface $connection A connection to Cloud Storage.
+     *        This object is created by StorageClient,
+     *        and should not be instantiated outside of this client.
      * @param string $projectId The current project ID.
      * @param string $accessId The key identifier.
      * @param array|null $info The key metadata.
@@ -170,7 +173,7 @@ class HmacKey
      * Delete the HMAC Key.
      *
      * Key state must be set to `INACTIVE` prior to deletion. See
-     * {@see Google\Cloud\Storage\HmacKey::update()} for details.
+     * {@see HmacKey::update()} for details.
      *
      * Example:
      * ```

@@ -30,8 +30,13 @@ use Google\Cloud\Monitoring\V3\AlertPolicyServiceClient;
 /**
  * Creates a new alerting policy.
  *
- * @param string $name The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
- *                     which to create the alerting policy. The format is:
+ * Design your application to single-thread API calls that modify the state of
+ * alerting policies in a single project. This includes calls to
+ * CreateAlertPolicy, DeleteAlertPolicy and UpdateAlertPolicy.
+ *
+ * @param string $name The
+ *                     [project](https://cloud.google.com/monitoring/api/v3#project_name) in which
+ *                     to create the alerting policy. The format is:
  *
  *                     projects/[PROJECT_ID_OR_NUMBER]
  *

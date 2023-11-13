@@ -78,8 +78,7 @@ class BatchPublisher
     /**
      * @param string $topicName The topic name.
      * @param array $options [optional] {
-     *        Please {@see PubSub\Topic::batchPublisher()} for
-     *        configuration details.
+     *        Please see {@see Topic::batchPublisher()} for configuration details.
      *        @type bool $enableCompression Flag to enable compression of messages
      *              before publishing. Set the flag to `true` to enable compression.
      *              Defaults to `false`. Messsages are compressed if their total
@@ -103,9 +102,6 @@ class BatchPublisher
     }
 
     /**
-    }
-
-    /**
      * Send messages to a batch queue.
      *
      * Example:
@@ -116,7 +112,7 @@ class BatchPublisher
      * ```
      *
      * @param Message|array $message An instance of
-     *        {@see Google\Cloud\PubSub\Message}, or an array in the correct
+     *        {@see Message}, or an array in the correct
      *        [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage).
      * @return void
      */

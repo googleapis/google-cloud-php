@@ -69,6 +69,21 @@ return [
                     'conversion_workspace_id',
                 ],
             ],
+            'CreateMappingRule' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/conversionWorkspaces/*}/mappingRules',
+                'body' => 'mapping_rule',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'mapping_rule_id',
+                ],
+            ],
             'CreateMigrationJob' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/migrationJobs',
@@ -113,6 +128,17 @@ return [
             'DeleteConversionWorkspace' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/conversionWorkspaces/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteMappingRule' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/conversionWorkspaces/*/mappingRules/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -188,6 +214,18 @@ return [
                     ],
                 ],
             ],
+            'GenerateTcpProxyScript' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{migration_job=projects/*/locations/*/migrationJobs/*}:generateTcpProxyScript',
+                'body' => '*',
+                'placeholders' => [
+                    'migration_job' => [
+                        'getters' => [
+                            'getMigrationJob',
+                        ],
+                    ],
+                ],
+            ],
             'GetConnectionProfile' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/connectionProfiles/*}',
@@ -202,6 +240,17 @@ return [
             'GetConversionWorkspace' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/conversionWorkspaces/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetMappingRule' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/conversionWorkspaces/*/mappingRules/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -258,6 +307,17 @@ return [
             'ListConversionWorkspaces' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/conversionWorkspaces',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListMappingRules' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/conversionWorkspaces/*}/mappingRules',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

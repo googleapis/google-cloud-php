@@ -42,6 +42,14 @@ class FailureCause
      */
     const CLOUD_BUILD_REQUEST_FAILED = 3;
     /**
+     * The render operation did not complete successfully because the
+     * verification stanza required for verify was not found on the skaffold
+     * configuration.
+     *
+     * Generated from protobuf enum <code>VERIFICATION_CONFIG_NOT_FOUND = 4;</code>
+     */
+    const VERIFICATION_CONFIG_NOT_FOUND = 4;
+    /**
      * The render operation did not complete successfully because the custom
      * action required for predeploy or postdeploy was not found in the
      * skaffold configuration. See failure_message for additional details.
@@ -55,6 +63,7 @@ class FailureCause
         self::CLOUD_BUILD_UNAVAILABLE => 'CLOUD_BUILD_UNAVAILABLE',
         self::EXECUTION_FAILED => 'EXECUTION_FAILED',
         self::CLOUD_BUILD_REQUEST_FAILED => 'CLOUD_BUILD_REQUEST_FAILED',
+        self::VERIFICATION_CONFIG_NOT_FOUND => 'VERIFICATION_CONFIG_NOT_FOUND',
         self::CUSTOM_ACTION_NOT_FOUND => 'CUSTOM_ACTION_NOT_FOUND',
     ];
 

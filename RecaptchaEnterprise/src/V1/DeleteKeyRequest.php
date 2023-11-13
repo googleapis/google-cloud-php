@@ -17,7 +17,7 @@ class DeleteKeyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the key to be deleted, in the format
-     * "projects/{project}/keys/{key}".
+     * `projects/{project}/keys/{key}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -25,7 +25,7 @@ class DeleteKeyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the key to be deleted, in the format
-     *                     "projects/{project}/keys/{key}". Please see
+     *                     `projects/{project}/keys/{key}`. Please see
      *                     {@see RecaptchaEnterpriseServiceClient::keyName()} for help formatting this field.
      *
      * @return \Google\Cloud\RecaptchaEnterprise\V1\DeleteKeyRequest
@@ -46,7 +46,7 @@ class DeleteKeyRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the key to be deleted, in the format
-     *           "projects/{project}/keys/{key}".
+     *           `projects/{project}/keys/{key}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +56,7 @@ class DeleteKeyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the key to be deleted, in the format
-     * "projects/{project}/keys/{key}".
+     * `projects/{project}/keys/{key}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,7 +68,7 @@ class DeleteKeyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the key to be deleted, in the format
-     * "projects/{project}/keys/{key}".
+     * `projects/{project}/keys/{key}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

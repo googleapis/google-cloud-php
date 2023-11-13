@@ -23,13 +23,13 @@ use Google\Cloud\Spanner\KeySet;
  * Represents a Read Partition.
  *
  * Partitions can be shared with other servers or processes by casting the
- * object to a string, or by calling {@see Google\Cloud\Spanner\Batch\ReadPartition::serialize()}.
+ * object to a string, or by calling {@see \Google\Cloud\Spanner\Batch\ReadPartition::serialize()}.
  *
  * Note that when reading or querying against a partition, the request MUST be
  * made using the same Batch Snapshot with which the partition was initialized.
  * In practice, this means that a shared partition must be accompanied by its
  * corresponding snapshot. For more information, refer to usage notes on
- * {@see Google\Cloud\Spanner\Batch\BatchClient}.
+ * {@see \Google\Cloud\Spanner\Batch\BatchClient}.
  *
  * Example:
  * ```

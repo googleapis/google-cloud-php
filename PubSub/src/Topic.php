@@ -56,6 +56,7 @@ class Topic
 
     /**
      * @var ConnectionInterface A connection to the Google Cloud Platform API
+     * @internal
      */
     protected $connection;
 
@@ -103,7 +104,8 @@ class Topic
      * Create a PubSub topic.
      *
      * @param ConnectionInterface $connection A connection to the Google Cloud
-     *        Platform service
+     *        Platform service. This object is created by PubSubClient,
+     *        and should not be instantiated outside of this client.
      * @param string $projectId The project Id
      * @param string $name The topic name
      * @param bool $encode Whether messages should be base64 encoded.
@@ -212,10 +214,10 @@ class Topic
      *           allowed, and is not a valid configuration.
      *     @type string|Schema $schemaSettings.schema The name of a schema that
      *           messages published should be validated against, or an instance
-     *           of {@see Google\Cloud\PubSub\Schema}.
+     *           of {@see Schema}.
      *     @type string $schemaSettings.encoding The encoding of messages
      *           validated against schema. For allowed values, see constants
-     *           defined on {@see Google\Cloud\PubSub\V1\Encoding}.
+     *           defined on {@see Encoding}.
      * }
      *
      * @return array Topic information
@@ -279,10 +281,10 @@ class Topic
      *          allowed, and is not a valid configuration.
      *     @type string|Schema $schemaSettings.schema The name of a schema that
      *           messages published should be validated against, or an instance
-     *           of {@see Google\Cloud\PubSub\Schema}.
+     *           of {@see Schema}.
      *     @type string $schemaSettings.encoding The encoding of messages
      *           validated against schema. For allowed values, see constants
-     *           defined on {@see Google\Cloud\PubSub\V1\Encoding}.
+     *           defined on {@see V1\Encoding}.
      * }
      * @param array $options [optional] {
      *     Configuration options.
@@ -361,7 +363,7 @@ class Topic
      *
      * Service errors will NOT bubble up from this method. It will always return
      * a boolean value. If you want to check for errors, use
-     * {@see Google\Cloud\PubSub\Topic::info()}.
+     * {@see Topic::info()}.
      *
      * Example:
      * ```
@@ -393,7 +395,7 @@ class Topic
      * may find that Topic::exists() is a better fit for a true/false check.
      *
      * This method will use the previously cached result, if available. To force
-     * a refresh from the API, use {@see Google\Cloud\PubSub\Topic::reload()}.
+     * a refresh from the API, use {@see Topic::reload()}.
      *
      * Example:
      * ```
@@ -427,7 +429,7 @@ class Topic
      * may find that Topic::exists() is a better fit for a true/false check.
      *
      * This method will retrieve a new result from the API. To use a previously
-     * cached result, if one exists, use {@see Google\Cloud\PubSub\Topic::info()}.
+     * cached result, if one exists, use {@see Topic::info()}.
      *
      * Example:
      * ```
@@ -470,7 +472,7 @@ class Topic
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/publish Publish Message
      *
      * @param Message|array $message An instance of
-     *        {@see Google\Cloud\PubSub\Message}, or an array in the correct
+     *        {@see Message}, or an array in the correct
      *        [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage).
      * @param array $options [optional] Configuration Options
      * @return array A list of message IDs
@@ -512,7 +514,7 @@ class Topic
      *
      * @param Message[]|array[] $messages A list of messages. Each message must be in the correct
      *        [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage),
-     *        or be an instance of {@see Google\Cloud\PubSub\Message}.
+     *        or be an instance of {@see Message}.
      * @param array $options [optional] Configuration Options
      * @return array A list of message IDs.
      */
@@ -578,7 +580,7 @@ class Topic
      *           responsible for serializing closures used in the
      *           `$clientConfig`. This is especially important when using the
      *           batch daemon. **Defaults to**
-     *           {@see Google\Cloud\Core\Batch\OpisClosureSerializer} if the
+     *           {@see \Google\Cloud\Core\Batch\OpisClosureSerializer} if the
      *           `opis/closure` library is installed.
      *     @type bool $enableCompression Flag to enable compression of messages
      *           before publishing. Set the flag to `true` to enable compression.
@@ -617,7 +619,7 @@ class Topic
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/create Create Subscription
      *
      * @param string $name The subscription name
-     * @param array $options [optional] Please see {@see Google\Cloud\PubSub\Subscription::create()}
+     * @param array $options [optional] Please see {@see Subscription::create()}
      *        for configuration details.
      * @return Subscription
      */
