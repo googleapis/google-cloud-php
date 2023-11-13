@@ -27,6 +27,7 @@ use Symfony\Component\Finder\Finder;
 
 /**
  * Update package dependencies
+ *
  * @internal
  */
 class UpdateDepsCommand extends Command
@@ -37,9 +38,9 @@ class UpdateDepsCommand extends Command
             ->setDescription('update a dependency across all components')
             ->addArgument('package', InputArgument::REQUIRED, 'Package name to update, e.g. "google/gax"')
             ->addArgument('version', InputArgument::OPTIONAL, 'Package version to update to, e.g. "1.4.0"', '')
-            ->addOption('file', 'f', InputOption::VALUE_REQUIRED|InputOption::VALUE_IS_ARRAY, 'bumps deps for a single composer file')
+            ->addOption('component', 'c', InputOption::VALUE_REQUIRED|InputOption::VALUE_IS_ARRAY, 'bumps deps for the specified component/file')
             ->addOption('bump', '', InputOption::VALUE_NONE, 'Bump to latest version of the package')
-            ->addOption('add', '', InputOption::VALUE_OPTIONAL, 'Adds the dep if it doesn\'t exist (--add=dev for require-dev)')
+            ->addOption('add', '', InputOption::VALUE_OPTIONAL, 'Adds the dep if it doesn\'t exist (--add=dev for require-dev)', false)
             ->addOption('local', '', InputOption::VALUE_NONE, 'Add a link to the local component')
         ;
     }
@@ -65,13 +66,16 @@ class UpdateDepsCommand extends Command
 
         $componentPath = $input->getOption('local') ? $this->getComponentName($paths, $package) : null;
         $updateCount = 0;
-        foreach ($input->getOption('file') ?: $paths as $jsonFile) {
+        foreach ($input->getOption('component') ?: $paths as $jsonFile) {
+            if (is_dir($jsonFile) && file_exists($jsonFile . '/composer.json')) {
+                $jsonFile .= '/composer.json';
+            }
             $composerJson = json_decode(file_get_contents($jsonFile), true);
             $require = 'require';
             if (!isset($composerJson['require'][$package])) {
                 if (isset($composerJson['require-dev'][$package])) {
                     $require = 'require-dev';
-                } elseif (!$input->getOption('add')) {
+                } elseif (false === $input->getOption('add')) {
                     continue;
                 } elseif ('dev' === $input->getOption('add')) {
                     $require = 'require-dev';

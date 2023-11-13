@@ -35,7 +35,7 @@ class UpdateDepsCommandTest extends TestCase
     {
         $tmpFile = sys_get_temp_dir() . '/composer.json';
         file_put_contents($tmpFile, json_encode($json));
-        $cmdOptions['--file'] = [$tmpFile];
+        $cmdOptions['--component'] = [$tmpFile];
         $commandTester = new CommandTester(new UpdateDepsCommand());
         $commandTester->execute($cmdOptions);
 
