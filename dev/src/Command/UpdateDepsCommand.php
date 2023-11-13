@@ -26,7 +26,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 
 /**
- * List repo details
+ * Update package dependencies
  * @internal
  */
 class UpdateDepsCommand extends Command
@@ -92,7 +92,7 @@ class UpdateDepsCommand extends Command
             file_put_contents($jsonFile, json_encode($composerJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . "\n");
             $updateCount++;
         }
-        $output->writeln("Updated <fg=white>$updateCount files</> to use <comment>$package</>: <info>$version</>");
+        $output->writeln("Updated <fg=white>$updateCount packages</> to use <comment>$package</>: <info>$version</>");
 
         return 0;
     }
