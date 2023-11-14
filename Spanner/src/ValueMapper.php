@@ -90,7 +90,7 @@ class ValueMapper
     private static $typeCodes = [
         self::TYPE_PG_NUMERIC => self::TYPE_NUMERIC,
         self::TYPE_PG_JSONB => self::TYPE_JSON,
-        self::Type_PG_OID => self::TYPE_INT64,
+        self::TYPE_PG_OID => self::TYPE_INT64,
     ];
 
     /*
