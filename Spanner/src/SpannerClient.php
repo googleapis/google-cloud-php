@@ -835,7 +835,7 @@ class SpannerClient
      */
     public function pgOid($value)
     {
-        return new pgOid($value);
+        return new PgOid($value);
     }
 
     /**
