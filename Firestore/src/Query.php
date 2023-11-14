@@ -203,9 +203,10 @@ class Query
      * $sum = $query->sum();
      * ```
      *
-     * Sum of integers which exceed maxinum integer value returns a float.
+     * Sum of integers which exceed maximum integer value returns a float.
      * Sum of numbers exceeding max float value returns `INF`.
      * Sum of data which contains `NaN` returns `NaN`.
+     * Non numeric values are ignored.
      *
      * @param string $field The relative path of the field to aggregate upon.
      * @param array $options [optional] {
@@ -234,6 +235,7 @@ class Query
      * Average of empty valid data set return `null`.
      * Average of numbers exceeding max float value returns `INF`.
      * Average of data which contains `NaN` returns `NaN`.
+     * Non numeric values are ignored.
      *
      * @param string $field The relative path of the field to aggregate upon.
      * @param array $options [optional] {
