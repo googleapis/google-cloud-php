@@ -24,11 +24,17 @@ class ReleaseRenderEvent extends \Google\Protobuf\Internal\Message
      */
     private $message = '';
     /**
-     * The name of the `Release`.
+     * The name of the release.
      *
      * Generated from protobuf field <code>string release = 2;</code>
      */
     private $release = '';
+    /**
+     * The state of the release render.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Release.RenderState release_render_state = 3;</code>
+     */
+    private $release_render_state = 0;
 
     /**
      * Constructor.
@@ -40,7 +46,9 @@ class ReleaseRenderEvent extends \Google\Protobuf\Internal\Message
      *           Debug message for when a render transition occurs. Provides further
      *           details as rendering progresses through render states.
      *     @type string $release
-     *           The name of the `Release`.
+     *           The name of the release.
+     *     @type int $release_render_state
+     *           The state of the release render.
      * }
      */
     public function __construct($data = NULL) {
@@ -77,7 +85,7 @@ class ReleaseRenderEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the `Release`.
+     * The name of the release.
      *
      * Generated from protobuf field <code>string release = 2;</code>
      * @return string
@@ -88,7 +96,7 @@ class ReleaseRenderEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the `Release`.
+     * The name of the release.
      *
      * Generated from protobuf field <code>string release = 2;</code>
      * @param string $var
@@ -98,6 +106,32 @@ class ReleaseRenderEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->release = $var;
+
+        return $this;
+    }
+
+    /**
+     * The state of the release render.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Release.RenderState release_render_state = 3;</code>
+     * @return int
+     */
+    public function getReleaseRenderState()
+    {
+        return $this->release_render_state;
+    }
+
+    /**
+     * The state of the release render.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Release.RenderState release_render_state = 3;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setReleaseRenderState($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Deploy\V1\Release\RenderState::class);
+        $this->release_render_state = $var;
 
         return $this;
     }

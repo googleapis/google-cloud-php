@@ -55,6 +55,8 @@ use Google\Cloud\DataCatalog\Lineage\V1\ListProcessesResponse;
 use Google\Cloud\DataCatalog\Lineage\V1\ListRunsRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\ListRunsResponse;
 use Google\Cloud\DataCatalog\Lineage\V1\Process;
+use Google\Cloud\DataCatalog\Lineage\V1\ProcessOpenLineageRunEventRequest;
+use Google\Cloud\DataCatalog\Lineage\V1\ProcessOpenLineageRunEventResponse;
 use Google\Cloud\DataCatalog\Lineage\V1\Run;
 use Google\Cloud\DataCatalog\Lineage\V1\SearchLinksRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\SearchLinksResponse;
@@ -63,6 +65,7 @@ use Google\Cloud\DataCatalog\Lineage\V1\UpdateRunRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
+use Google\Protobuf\Struct;
 
 /**
  * Service Description: Lineage is used to track data flows between assets over time. You can
@@ -461,7 +464,7 @@ class LineageGapicClient
      * }
      * ```
      *
-     * @param string   $parent       Required. The project and location you want search in the format `projects/&#42;/locations/*`
+     * @param string   $parent       Required. The project and location where you want to search.
      * @param string[] $links        Required. An array of links to check for their associated LineageProcesses.
      *
      *                               The maximum number of items in this array is 100.
@@ -1171,6 +1174,61 @@ class LineageGapicClient
     }
 
     /**
+     * Creates new lineage events together with their parents: process and run.
+     * Updates the process and run if they already exist.
+     * Mapped from Open Lineage specification:
+     * https://github.com/OpenLineage/OpenLineage/blob/main/spec/OpenLineage.json.
+     *
+     * Sample code:
+     * ```
+     * $lineageClient = new LineageClient();
+     * try {
+     *     $parent = 'parent';
+     *     $openLineage = new Struct();
+     *     $response = $lineageClient->processOpenLineageRunEvent($parent, $openLineage);
+     * } finally {
+     *     $lineageClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The name of the project and its location that should own the
+     *                             process, run, and lineage event.
+     * @param Struct $openLineage  Required. OpenLineage message following OpenLineage format:
+     *                             https://github.com/OpenLineage/OpenLineage/blob/main/spec/OpenLineage.json
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           A unique identifier for this request. Restricted to 36 ASCII characters.
+     *           A random UUID is recommended. This request is idempotent only if a
+     *           `request_id` is provided.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\DataCatalog\Lineage\V1\ProcessOpenLineageRunEventResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function processOpenLineageRunEvent($parent, $openLineage, array $optionalArgs = [])
+    {
+        $request = new ProcessOpenLineageRunEventRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setOpenLineage($openLineage);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('ProcessOpenLineageRunEvent', ProcessOpenLineageRunEventResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Retrieve a list of links connected to a specific asset.
      * Links represent the data flow between **source** (upstream)
      * and **target** (downstream) assets in transformation pipelines.
@@ -1204,7 +1262,7 @@ class LineageGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project and location you want search in the format `projects/&#42;/locations/*`
+     * @param string $parent       Required. The project and location you want search in.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1340,6 +1398,8 @@ class LineageGapicClient
      *     @type FieldMask $updateMask
      *           The list of fields to update. Currently not used. The whole message is
      *           updated.
+     *     @type bool $allowMissing
+     *           If set to true and the run is not found, the request creates it.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1358,6 +1418,10 @@ class LineageGapicClient
         $requestParamHeaders['run.name'] = $run->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['allowMissing'])) {
+            $request->setAllowMissing($optionalArgs['allowMissing']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

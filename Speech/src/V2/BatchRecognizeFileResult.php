@@ -16,12 +16,6 @@ use Google\Protobuf\Internal\GPBUtil;
 class BatchRecognizeFileResult extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The Cloud Storage URI to which recognition results were written.
-     *
-     * Generated from protobuf field <code>string uri = 1;</code>
-     */
-    private $uri = '';
-    /**
      * Error if one was encountered.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 2;</code>
@@ -32,14 +26,20 @@ class BatchRecognizeFileResult extends \Google\Protobuf\Internal\Message
      */
     private $metadata = null;
     /**
-     * The transcript for the audio file. This is populated only when
-     * [InlineOutputConfig][google.cloud.speech.v2.InlineOutputConfig] is set in
-     * the
-     * [RecognitionOutputConfig][[google.cloud.speech.v2.RecognitionOutputConfig].
+     * Deprecated. Use `cloud_storage_result.native_format_uri` instead.
      *
-     * Generated from protobuf field <code>.google.cloud.speech.v2.BatchRecognizeResults transcript = 4;</code>
+     * Generated from protobuf field <code>string uri = 1 [deprecated = true];</code>
+     * @deprecated
      */
-    private $transcript = null;
+    protected $uri = '';
+    /**
+     * Deprecated. Use `inline_result.transcript` instead.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v2.BatchRecognizeResults transcript = 4 [deprecated = true];</code>
+     * @deprecated
+     */
+    protected $transcript = null;
+    protected $result;
 
     /**
      * Constructor.
@@ -47,47 +47,29 @@ class BatchRecognizeFileResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $uri
-     *           The Cloud Storage URI to which recognition results were written.
      *     @type \Google\Rpc\Status $error
      *           Error if one was encountered.
      *     @type \Google\Cloud\Speech\V2\RecognitionResponseMetadata $metadata
-     *     @type \Google\Cloud\Speech\V2\BatchRecognizeResults $transcript
-     *           The transcript for the audio file. This is populated only when
+     *     @type \Google\Cloud\Speech\V2\CloudStorageResult $cloud_storage_result
+     *           Recognition results written to Cloud Storage. This is
+     *           populated only when
+     *           [GcsOutputConfig][google.cloud.speech.v2.GcsOutputConfig] is set in
+     *           the
+     *           [RecognitionOutputConfig][[google.cloud.speech.v2.RecognitionOutputConfig].
+     *     @type \Google\Cloud\Speech\V2\InlineResult $inline_result
+     *           Recognition results. This is populated only when
      *           [InlineOutputConfig][google.cloud.speech.v2.InlineOutputConfig] is set in
      *           the
      *           [RecognitionOutputConfig][[google.cloud.speech.v2.RecognitionOutputConfig].
+     *     @type string $uri
+     *           Deprecated. Use `cloud_storage_result.native_format_uri` instead.
+     *     @type \Google\Cloud\Speech\V2\BatchRecognizeResults $transcript
+     *           Deprecated. Use `inline_result.transcript` instead.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Speech\V2\CloudSpeech::initOnce();
         parent::__construct($data);
-    }
-
-    /**
-     * The Cloud Storage URI to which recognition results were written.
-     *
-     * Generated from protobuf field <code>string uri = 1;</code>
-     * @return string
-     */
-    public function getUri()
-    {
-        return $this->uri;
-    }
-
-    /**
-     * The Cloud Storage URI to which recognition results were written.
-     *
-     * Generated from protobuf field <code>string uri = 1;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setUri($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->uri = $var;
-
-        return $this;
     }
 
     /**
@@ -159,45 +141,159 @@ class BatchRecognizeFileResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The transcript for the audio file. This is populated only when
+     * Recognition results written to Cloud Storage. This is
+     * populated only when
+     * [GcsOutputConfig][google.cloud.speech.v2.GcsOutputConfig] is set in
+     * the
+     * [RecognitionOutputConfig][[google.cloud.speech.v2.RecognitionOutputConfig].
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v2.CloudStorageResult cloud_storage_result = 5;</code>
+     * @return \Google\Cloud\Speech\V2\CloudStorageResult|null
+     */
+    public function getCloudStorageResult()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasCloudStorageResult()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Recognition results written to Cloud Storage. This is
+     * populated only when
+     * [GcsOutputConfig][google.cloud.speech.v2.GcsOutputConfig] is set in
+     * the
+     * [RecognitionOutputConfig][[google.cloud.speech.v2.RecognitionOutputConfig].
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v2.CloudStorageResult cloud_storage_result = 5;</code>
+     * @param \Google\Cloud\Speech\V2\CloudStorageResult $var
+     * @return $this
+     */
+    public function setCloudStorageResult($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Speech\V2\CloudStorageResult::class);
+        $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Recognition results. This is populated only when
      * [InlineOutputConfig][google.cloud.speech.v2.InlineOutputConfig] is set in
      * the
      * [RecognitionOutputConfig][[google.cloud.speech.v2.RecognitionOutputConfig].
      *
-     * Generated from protobuf field <code>.google.cloud.speech.v2.BatchRecognizeResults transcript = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v2.InlineResult inline_result = 6;</code>
+     * @return \Google\Cloud\Speech\V2\InlineResult|null
+     */
+    public function getInlineResult()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasInlineResult()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Recognition results. This is populated only when
+     * [InlineOutputConfig][google.cloud.speech.v2.InlineOutputConfig] is set in
+     * the
+     * [RecognitionOutputConfig][[google.cloud.speech.v2.RecognitionOutputConfig].
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v2.InlineResult inline_result = 6;</code>
+     * @param \Google\Cloud\Speech\V2\InlineResult $var
+     * @return $this
+     */
+    public function setInlineResult($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Speech\V2\InlineResult::class);
+        $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Deprecated. Use `cloud_storage_result.native_format_uri` instead.
+     *
+     * Generated from protobuf field <code>string uri = 1 [deprecated = true];</code>
+     * @return string
+     * @deprecated
+     */
+    public function getUri()
+    {
+        @trigger_error('uri is deprecated.', E_USER_DEPRECATED);
+        return $this->uri;
+    }
+
+    /**
+     * Deprecated. Use `cloud_storage_result.native_format_uri` instead.
+     *
+     * Generated from protobuf field <code>string uri = 1 [deprecated = true];</code>
+     * @param string $var
+     * @return $this
+     * @deprecated
+     */
+    public function setUri($var)
+    {
+        @trigger_error('uri is deprecated.', E_USER_DEPRECATED);
+        GPBUtil::checkString($var, True);
+        $this->uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Deprecated. Use `inline_result.transcript` instead.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v2.BatchRecognizeResults transcript = 4 [deprecated = true];</code>
      * @return \Google\Cloud\Speech\V2\BatchRecognizeResults|null
+     * @deprecated
      */
     public function getTranscript()
     {
+        @trigger_error('transcript is deprecated.', E_USER_DEPRECATED);
         return $this->transcript;
     }
 
     public function hasTranscript()
     {
+        @trigger_error('transcript is deprecated.', E_USER_DEPRECATED);
         return isset($this->transcript);
     }
 
     public function clearTranscript()
     {
+        @trigger_error('transcript is deprecated.', E_USER_DEPRECATED);
         unset($this->transcript);
     }
 
     /**
-     * The transcript for the audio file. This is populated only when
-     * [InlineOutputConfig][google.cloud.speech.v2.InlineOutputConfig] is set in
-     * the
-     * [RecognitionOutputConfig][[google.cloud.speech.v2.RecognitionOutputConfig].
+     * Deprecated. Use `inline_result.transcript` instead.
      *
-     * Generated from protobuf field <code>.google.cloud.speech.v2.BatchRecognizeResults transcript = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v2.BatchRecognizeResults transcript = 4 [deprecated = true];</code>
      * @param \Google\Cloud\Speech\V2\BatchRecognizeResults $var
      * @return $this
+     * @deprecated
      */
     public function setTranscript($var)
     {
+        @trigger_error('transcript is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\Speech\V2\BatchRecognizeResults::class);
         $this->transcript = $var;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResult()
+    {
+        return $this->whichOneof("result");
     }
 
 }

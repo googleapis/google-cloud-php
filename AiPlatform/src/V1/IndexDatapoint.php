@@ -38,6 +38,14 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
      */
     private $restricts;
     /**
+     * Optional. List of Restrict of the datapoint, used to perform "restricted
+     * searches" where boolean rule are used to filter the subset of the database
+     * eligible for matching. This uses numeric comparisons.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.IndexDatapoint.NumericRestriction numeric_restricts = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $numeric_restricts;
+    /**
      * Optional. CrowdingTag of the datapoint, the number of neighbors to return
      * in each crowding can be configured during query.
      *
@@ -61,6 +69,10 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
      *           searches" where boolean rule are used to filter the subset of the database
      *           eligible for matching. This uses categorical tokens. See:
      *           https://cloud.google.com/vertex-ai/docs/matching-engine/filtering
+     *     @type array<\Google\Cloud\AIPlatform\V1\IndexDatapoint\NumericRestriction>|\Google\Protobuf\Internal\RepeatedField $numeric_restricts
+     *           Optional. List of Restrict of the datapoint, used to perform "restricted
+     *           searches" where boolean rule are used to filter the subset of the database
+     *           eligible for matching. This uses numeric comparisons.
      *     @type \Google\Cloud\AIPlatform\V1\IndexDatapoint\CrowdingTag $crowding_tag
      *           Optional. CrowdingTag of the datapoint, the number of neighbors to return
      *           in each crowding can be configured during query.
@@ -153,6 +165,36 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\IndexDatapoint\Restriction::class);
         $this->restricts = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. List of Restrict of the datapoint, used to perform "restricted
+     * searches" where boolean rule are used to filter the subset of the database
+     * eligible for matching. This uses numeric comparisons.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.IndexDatapoint.NumericRestriction numeric_restricts = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getNumericRestricts()
+    {
+        return $this->numeric_restricts;
+    }
+
+    /**
+     * Optional. List of Restrict of the datapoint, used to perform "restricted
+     * searches" where boolean rule are used to filter the subset of the database
+     * eligible for matching. This uses numeric comparisons.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.IndexDatapoint.NumericRestriction numeric_restricts = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\IndexDatapoint\NumericRestriction>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setNumericRestricts($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\IndexDatapoint\NumericRestriction::class);
+        $this->numeric_restricts = $arr;
 
         return $this;
     }

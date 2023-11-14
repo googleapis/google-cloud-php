@@ -20,7 +20,7 @@ class SummarizationModel
      */
     const SUMMARIZATION_MODEL_UNSPECIFIED = 0;
     /**
-     * The Insights baseline model.
+     * The CCAI baseline model.
      *
      * Generated from protobuf enum <code>BASELINE_MODEL = 1;</code>
      */

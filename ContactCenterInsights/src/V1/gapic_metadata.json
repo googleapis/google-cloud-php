@@ -15,6 +15,11 @@
                                 "bulkAnalyzeConversations"
                             ]
                         },
+                        "BulkDeleteConversations": {
+                            "methods": [
+                                "bulkDeleteConversations"
+                            ]
+                        },
                         "CalculateIssueModelStats": {
                             "methods": [
                                 "calculateIssueModelStats"

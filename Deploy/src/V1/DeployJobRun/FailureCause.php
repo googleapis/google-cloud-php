@@ -35,7 +35,7 @@ class FailureCause
      */
     const EXECUTION_FAILED = 2;
     /**
-     * The deploy build did not complete within the alloted time.
+     * The deploy job run did not complete within the alloted time.
      *
      * Generated from protobuf enum <code>DEADLINE_EXCEEDED = 3;</code>
      */

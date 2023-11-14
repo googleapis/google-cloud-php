@@ -24,16 +24,16 @@ class Key extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Human-readable display name of this key. Modifiable by user.
+     * Required. Human-readable display name of this key. Modifiable by user.
      *
-     * Generated from protobuf field <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $display_name = '';
     /**
-     * See [Creating and managing labels]
+     * Optional. See [Creating and managing labels]
      * (https://cloud.google.com/recaptcha-enterprise/docs/labels).
      *
-     * Generated from protobuf field <code>map<string, string> labels = 6;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
     /**
@@ -43,15 +43,15 @@ class Key extends \Google\Protobuf\Internal\Message
      */
     private $create_time = null;
     /**
-     * Options for user acceptance testing.
+     * Optional. Options for user acceptance testing.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TestingOptions testing_options = 9;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TestingOptions testing_options = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $testing_options = null;
     /**
-     * Settings for WAF
+     * Optional. Settings for WAF
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WafSettings waf_settings = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WafSettings waf_settings = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $waf_settings = null;
     protected $platform_settings;
@@ -66,7 +66,7 @@ class Key extends \Google\Protobuf\Internal\Message
      *           The resource name for the Key in the format
      *           `projects/{project}/keys/{key}`.
      *     @type string $display_name
-     *           Human-readable display name of this key. Modifiable by user.
+     *           Required. Human-readable display name of this key. Modifiable by user.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\WebKeySettings $web_settings
      *           Settings for keys that can be used by websites.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\AndroidKeySettings $android_settings
@@ -74,14 +74,14 @@ class Key extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\IOSKeySettings $ios_settings
      *           Settings for keys that can be used by iOS apps.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           See [Creating and managing labels]
+     *           Optional. See [Creating and managing labels]
      *           (https://cloud.google.com/recaptcha-enterprise/docs/labels).
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The timestamp corresponding to the creation of this key.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\TestingOptions $testing_options
-     *           Options for user acceptance testing.
+     *           Optional. Options for user acceptance testing.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\WafSettings $waf_settings
-     *           Settings for WAF
+     *           Optional. Settings for WAF
      * }
      */
     public function __construct($data = NULL) {
@@ -118,9 +118,9 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Human-readable display name of this key. Modifiable by user.
+     * Required. Human-readable display name of this key. Modifiable by user.
      *
-     * Generated from protobuf field <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDisplayName()
@@ -129,9 +129,9 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Human-readable display name of this key. Modifiable by user.
+     * Required. Human-readable display name of this key. Modifiable by user.
      *
-     * Generated from protobuf field <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -237,10 +237,10 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [Creating and managing labels]
+     * Optional. See [Creating and managing labels]
      * (https://cloud.google.com/recaptcha-enterprise/docs/labels).
      *
-     * Generated from protobuf field <code>map<string, string> labels = 6;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -249,10 +249,10 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [Creating and managing labels]
+     * Optional. See [Creating and managing labels]
      * (https://cloud.google.com/recaptcha-enterprise/docs/labels).
      *
-     * Generated from protobuf field <code>map<string, string> labels = 6;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -301,9 +301,9 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Options for user acceptance testing.
+     * Optional. Options for user acceptance testing.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TestingOptions testing_options = 9;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TestingOptions testing_options = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\RecaptchaEnterprise\V1\TestingOptions|null
      */
     public function getTestingOptions()
@@ -322,9 +322,9 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Options for user acceptance testing.
+     * Optional. Options for user acceptance testing.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TestingOptions testing_options = 9;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TestingOptions testing_options = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\RecaptchaEnterprise\V1\TestingOptions $var
      * @return $this
      */
@@ -337,9 +337,9 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Settings for WAF
+     * Optional. Settings for WAF
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WafSettings waf_settings = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WafSettings waf_settings = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\RecaptchaEnterprise\V1\WafSettings|null
      */
     public function getWafSettings()
@@ -358,9 +358,9 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Settings for WAF
+     * Optional. Settings for WAF
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WafSettings waf_settings = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WafSettings waf_settings = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\RecaptchaEnterprise\V1\WafSettings $var
      * @return $this
      */

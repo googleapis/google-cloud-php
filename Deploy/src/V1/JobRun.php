@@ -18,9 +18,7 @@ class JobRun extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Name of the `JobRun`. Format is
-     * projects/{project}/locations/{location}/
-     * deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/
-     * {rollouts}/jobRuns/{uuid}.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/{rollouts}/jobRuns/{uuid}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -85,9 +83,7 @@ class JobRun extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Optional. Name of the `JobRun`. Format is
-     *           projects/{project}/locations/{location}/
-     *           deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/
-     *           {rollouts}/jobRuns/{uuid}.
+     *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/{rollouts}/jobRuns/{uuid}`.
      *     @type string $uid
      *           Output only. Unique identifier of the `JobRun`.
      *     @type string $phase_id
@@ -127,9 +123,7 @@ class JobRun extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Name of the `JobRun`. Format is
-     * projects/{project}/locations/{location}/
-     * deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/
-     * {rollouts}/jobRuns/{uuid}.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/{rollouts}/jobRuns/{uuid}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -141,9 +135,7 @@ class JobRun extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Name of the `JobRun`. Format is
-     * projects/{project}/locations/{location}/
-     * deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/
-     * {rollouts}/jobRuns/{uuid}.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/{rollouts}/jobRuns/{uuid}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

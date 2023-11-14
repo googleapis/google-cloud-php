@@ -34,8 +34,10 @@ class Process extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * Optional. The attributes of the process. Can be anything, for example,
-     * "author". Up to 100 attributes are allowed.
+     * Optional. The attributes of the process. Should only be used for the
+     * purpose of non-semantic management (classifying, describing or labeling the
+     * process).
+     * Up to 100 attributes are allowed.
      *
      * Generated from protobuf field <code>map<string, .google.protobuf.Value> attributes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -64,8 +66,10 @@ class Process extends \Google\Protobuf\Internal\Message
      *           Must be not longer than 200 characters and only contain UTF-8 letters
      *           or numbers, spaces or characters like `_-:&.`
      *     @type array|\Google\Protobuf\Internal\MapField $attributes
-     *           Optional. The attributes of the process. Can be anything, for example,
-     *           "author". Up to 100 attributes are allowed.
+     *           Optional. The attributes of the process. Should only be used for the
+     *           purpose of non-semantic management (classifying, describing or labeling the
+     *           process).
+     *           Up to 100 attributes are allowed.
      *     @type \Google\Cloud\DataCatalog\Lineage\V1\Origin $origin
      *           Optional. The origin of this process and its runs and lineage events.
      * }
@@ -140,8 +144,10 @@ class Process extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The attributes of the process. Can be anything, for example,
-     * "author". Up to 100 attributes are allowed.
+     * Optional. The attributes of the process. Should only be used for the
+     * purpose of non-semantic management (classifying, describing or labeling the
+     * process).
+     * Up to 100 attributes are allowed.
      *
      * Generated from protobuf field <code>map<string, .google.protobuf.Value> attributes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -152,8 +158,10 @@ class Process extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The attributes of the process. Can be anything, for example,
-     * "author". Up to 100 attributes are allowed.
+     * Optional. The attributes of the process. Should only be used for the
+     * purpose of non-semantic management (classifying, describing or labeling the
+     * process).
+     * Up to 100 attributes are allowed.
      *
      * Generated from protobuf field <code>map<string, .google.protobuf.Value> attributes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

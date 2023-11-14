@@ -32,8 +32,7 @@ use Google\Cloud\Deploy\V1\IgnoreJobResponse;
  * Ignores the specified Job in a Rollout.
  *
  * @param string $formattedRollout Name of the Rollout. Format is
- *                                 projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
- *                                 releases/{release}/rollouts/{rollout}. Please see
+ *                                 `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`. Please see
  *                                 {@see CloudDeployClient::rolloutName()} for help formatting this field.
  * @param string $phaseId          The phase ID the Job to ignore belongs to.
  * @param string $jobId            The job ID for the Job to ignore.

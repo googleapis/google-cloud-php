@@ -18,7 +18,7 @@ class CreateTargetRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent collection in which the `Target` should be created.
      * Format should be
-     * projects/{project_id}/locations/{location_name}.
+     * `projects/{project_id}/locations/{location_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -62,7 +62,7 @@ class CreateTargetRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                         $parent   Required. The parent collection in which the `Target` should be created.
      *                                                 Format should be
-     *                                                 projects/{project_id}/locations/{location_name}. Please see
+     *                                                 `projects/{project_id}/locations/{location_name}`. Please see
      *                                                 {@see CloudDeployClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Deploy\V1\Target $target   Required. The `Target` to create.
      * @param string                         $targetId Required. ID of the `Target`.
@@ -88,7 +88,7 @@ class CreateTargetRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The parent collection in which the `Target` should be created.
      *           Format should be
-     *           projects/{project_id}/locations/{location_name}.
+     *           `projects/{project_id}/locations/{location_name}`.
      *     @type string $target_id
      *           Required. ID of the `Target`.
      *     @type \Google\Cloud\Deploy\V1\Target $target
@@ -118,7 +118,7 @@ class CreateTargetRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent collection in which the `Target` should be created.
      * Format should be
-     * projects/{project_id}/locations/{location_name}.
+     * `projects/{project_id}/locations/{location_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -131,7 +131,7 @@ class CreateTargetRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent collection in which the `Target` should be created.
      * Format should be
-     * projects/{project_id}/locations/{location_name}.
+     * `projects/{project_id}/locations/{location_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

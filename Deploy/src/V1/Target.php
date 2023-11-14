@@ -19,7 +19,7 @@ class Target extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Name of the `Target`. Format is
-     * projects/{project}/locations/{location}/targets/[a-z][a-z0-9\-]{0,62}.
+     * `projects/{project}/locations/{location}/targets/[a-z][a-z0-9\-]{0,62}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -119,7 +119,7 @@ class Target extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Optional. Name of the `Target`. Format is
-     *           projects/{project}/locations/{location}/targets/[a-z][a-z0-9\-]{0,62}.
+     *           `projects/{project}/locations/{location}/targets/[a-z][a-z0-9\-]{0,62}`.
      *     @type string $target_id
      *           Output only. Resource id of the `Target`.
      *     @type string $uid
@@ -178,7 +178,7 @@ class Target extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Name of the `Target`. Format is
-     * projects/{project}/locations/{location}/targets/[a-z][a-z0-9\-]{0,62}.
+     * `projects/{project}/locations/{location}/targets/[a-z][a-z0-9\-]{0,62}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -190,7 +190,7 @@ class Target extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Name of the `Target`. Format is
-     * projects/{project}/locations/{location}/targets/[a-z][a-z0-9\-]{0,62}.
+     * `projects/{project}/locations/{location}/targets/[a-z][a-z0-9\-]{0,62}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

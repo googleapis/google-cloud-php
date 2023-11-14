@@ -32,8 +32,7 @@ use Google\Cloud\Deploy\V1\TerminateJobRunResponse;
  * Terminates a Job Run in a given project and location.
  *
  * @param string $formattedName Name of the `JobRun`. Format must be
- *                              projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
- *                              releases/{release}/rollouts/{rollout}/jobRuns/{jobRun}. Please see
+ *                              `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}/jobRuns/{jobRun}`. Please see
  *                              {@see CloudDeployClient::jobRunName()} for help formatting this field.
  */
 function terminate_job_run_sample(string $formattedName): void

@@ -25,10 +25,17 @@ class Type
      * Generated from protobuf enum <code>DELETE = 1;</code>
      */
     const DELETE = 1;
+    /**
+     * The resource creation operation.
+     *
+     * Generated from protobuf enum <code>CREATE = 2;</code>
+     */
+    const CREATE = 2;
 
     private static $valueToName = [
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
         self::DELETE => 'DELETE',
+        self::CREATE => 'CREATE',
     ];
 
     public static function name($value)

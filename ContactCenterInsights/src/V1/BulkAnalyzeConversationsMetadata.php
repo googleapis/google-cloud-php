@@ -52,6 +52,13 @@ class BulkAnalyzeConversationsMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 total_requested_analyses_count = 6;</code>
      */
     private $total_requested_analyses_count = 0;
+    /**
+     * Output only. Partial errors during bulk analyze operation that might cause
+     * the operation output to be incomplete.
+     *
+     * Generated from protobuf field <code>repeated .google.rpc.Status partial_errors = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $partial_errors;
 
     /**
      * Constructor.
@@ -72,6 +79,9 @@ class BulkAnalyzeConversationsMetadata extends \Google\Protobuf\Internal\Message
      *     @type int $total_requested_analyses_count
      *           Total number of analyses requested. Computed by the number of conversations
      *           returned by `filter` multiplied by `analysis_percentage` in the request.
+     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $partial_errors
+     *           Output only. Partial errors during bulk analyze operation that might cause
+     *           the operation output to be incomplete.
      * }
      */
     public function __construct($data = NULL) {
@@ -263,6 +273,34 @@ class BulkAnalyzeConversationsMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->total_requested_analyses_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Partial errors during bulk analyze operation that might cause
+     * the operation output to be incomplete.
+     *
+     * Generated from protobuf field <code>repeated .google.rpc.Status partial_errors = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPartialErrors()
+    {
+        return $this->partial_errors;
+    }
+
+    /**
+     * Output only. Partial errors during bulk analyze operation that might cause
+     * the operation output to be incomplete.
+     *
+     * Generated from protobuf field <code>repeated .google.rpc.Status partial_errors = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPartialErrors($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Rpc\Status::class);
+        $this->partial_errors = $arr;
 
         return $this;
     }
