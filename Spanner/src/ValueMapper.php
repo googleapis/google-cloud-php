@@ -44,6 +44,7 @@ class ValueMapper
     const TYPE_JSON = TypeCode::JSON;
     const TYPE_PG_NUMERIC = 'pgNumeric';
     const TYPE_PG_JSONB = 'pgJsonb';
+    const TYPE_PG_OID = 'pgOid';
 
     /**
      * @var array
@@ -62,6 +63,7 @@ class ValueMapper
         self::TYPE_JSON,
         self::TYPE_PG_NUMERIC,
         self::TYPE_PG_JSONB,
+        self::TYPE_PG_OID,
     ];
 
     /*
@@ -76,6 +78,7 @@ class ValueMapper
     private static $typeToClassMap = [
         self::TYPE_PG_NUMERIC => PgNumeric::class,
         self::TYPE_PG_JSONB => PgJsonb::class,
+        self::TYPE_PG_OID => PgOid::class,
     ];
 
     /*
@@ -87,6 +90,7 @@ class ValueMapper
     private static $typeCodes = [
         self::TYPE_PG_NUMERIC => self::TYPE_NUMERIC,
         self::TYPE_PG_JSONB => self::TYPE_JSON,
+        self::Type_PG_OID => self::TYPE_INT64,
     ];
 
     /*
@@ -98,6 +102,7 @@ class ValueMapper
     private static $typeAnnotations = [
         self::TYPE_PG_NUMERIC => TypeAnnotationCode::PG_NUMERIC,
         self::TYPE_PG_JSONB => TypeAnnotationCode::PG_JSONB,
+        self::TYPE_PG_OID => TypeAnnotationCode::PG_OID,
     ];
 
     /**
@@ -277,9 +282,13 @@ class ValueMapper
 
         switch ($type['code']) {
             case self::TYPE_INT64:
-                $value = $this->returnInt64AsObject
-                    ? new Int64($value)
-                    : (int) $value;
+                if (isset($type['typeAnnotation']) && $type['typeAnnotation'] === TypeAnnotationCode::PG_OID) {
+                    $value = new PgOid($value);
+                } else {
+                    $value = $this->returnInt64AsObject
+                        ? new Int64($value)
+                        : (int) $value;
+                }
                 break;
 
             case self::TYPE_TIMESTAMP:
