@@ -438,27 +438,7 @@ class Transaction implements TransactionalReadInterface
      */
     public function executeUpdate($sql, array $options = [])
     {
-        unset($options['requestOptions']['transactionTag']);
-        if (isset($this->tag)) {
-            $options += [
-                'requestOptions' => []
-            ];
-            $options['requestOptions']['transactionTag'] = $this->tag;
-        }
-        $options['seqno'] = $this->seqno;
-        $this->seqno++;
-
-        $options['transactionType'] = $this->context;
-        if (is_null($this->transactionId) && isset($this->options['begin'])) {
-            $options['begin'] = $this->options['begin'];
-        } else {
-            $options['transactionId'] = $this->transactionId;
-        }
-        $selector = $this->transactionSelector($options);
-
-        $options['transaction'] = $selector[0];
-        $options['transactionHandle'] = $this;
-          
+        $options = $this->buildUpdateOptions($options);
         return $this->operation
             ->executeUpdate($this->session, $this, $sql, $options);
     }
@@ -548,27 +528,7 @@ class Transaction implements TransactionalReadInterface
      */
     public function executeUpdateBatch(array $statements, array $options = [])
     {
-        unset($options['requestOptions']['transactionTag']);
-        if (isset($this->tag)) {
-            $options += [
-                'requestOptions' => []
-            ];
-            $options['requestOptions']['transactionTag'] = $this->tag;
-        }
-        $options['seqno'] = $this->seqno;
-        $this->seqno++;
-    
-        $options['transactionType'] = $this->context;
-        if (is_null($this->transactionId) && isset($this->options['begin'])) {
-            $options['begin'] = $this->options['begin'];
-        } else {
-            $options['transactionId'] = $this->transactionId;
-        }
-        $selector = $this->transactionSelector($options);
-
-        $options['transaction'] = $selector[0];
-        $options['transactionHandle'] = $this;
-
+        $options = $this->buildUpdateOptions($options);
         return $this->operation
             ->executeUpdateBatch(
                 $this->session,
@@ -746,5 +706,35 @@ class Transaction implements TransactionalReadInterface
                 $this->mutations[] = $this->operation->mutation($op, $table, $data);
             }
         }
+    }
+
+    /**
+     * Build the update options.
+     *
+     * @param array $options The update options
+     * @return array
+     */
+    private function buildUpdateOptions(array $options): array
+    {
+        unset($options['requestOptions']['transactionTag']);
+        if (isset($this->tag)) {
+            $options += [
+                'requestOptions' => []
+            ];
+            $options['requestOptions']['transactionTag'] = $this->tag;
+        }
+        $options['seqno'] = $this->seqno;
+        $this->seqno++;
+
+        $options['transactionType'] = $this->context;
+        if (is_null($this->transactionId) && isset($this->options['begin'])) {
+            $options['begin'] = $this->options['begin'];
+        } else {
+            $options['transactionId'] = $this->transactionId;
+        }
+        $selector = $this->transactionSelector($options);
+        $options['transaction'] = $selector[0];
+
+        return $options;
     }
 }

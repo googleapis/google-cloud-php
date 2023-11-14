@@ -453,10 +453,7 @@ class DatabaseTest extends SnippetTestCase
     public function testRunTransactionRollback()
     {
         $this->connection->beginTransaction(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'id' => self::TRANSACTION
-            ]);
+            ->shouldNotBeCalled();
 
         $this->connection->commit(Argument::any())
             ->shouldNotBeCalled();
@@ -466,7 +463,24 @@ class DatabaseTest extends SnippetTestCase
 
         $this->connection->executeStreamingSql(Argument::any())
             ->shouldBeCalled()
-            ->willReturn($this->resultGeneratorData([]));
+            ->willReturn($this->resultGeneratorData([
+                'metadata' => [
+                    'rowType' => [
+                        'fields' => [
+                            [
+                                'name' => 'timestamp',
+                                'type' => [
+                                    'code' => Database::TYPE_TIMESTAMP
+                                ]
+                            ]
+                        ]
+                    ],
+                    'transaction' => [
+                        'id' => self::TRANSACTION
+                    ]
+                ],
+                'values' => [null]
+            ]));
 
         $this->refreshOperation($this->database, $this->connection->reveal());
 

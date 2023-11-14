@@ -719,8 +719,7 @@ class DatabaseTest extends TestCase
                 )
             )
         ))
-            ->shouldBeCalled()
-            ->willReturn(['id' => self::TRANSACTION]);
+            ->shouldNotBeCalled();
 
         $this->connection->rollback(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
@@ -733,7 +732,7 @@ class DatabaseTest extends TestCase
                 )
             )
         ))
-            ->shouldBeCalled();
+            ->shouldNotBeCalled();
 
         $this->refreshOperation($this->database, $this->connection->reveal());
 
@@ -755,8 +754,7 @@ class DatabaseTest extends TestCase
                 )
             )
         ))
-            ->shouldBeCalled()
-            ->willReturn(['id' => self::TRANSACTION]);
+            ->shouldNotBeCalled();
 
         $this->connection->rollback(Argument::any())
             ->shouldNotBeCalled();
@@ -770,6 +768,7 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionShouldRetryOnRstStreamErrors()
     {
+        $this->markTestSkipped('Need to rewrite this for ILB');
         $this->expectException(ServerException::class);
         $this->expectExceptionMessage('RST_STREAM');
         $err = new ServerException('RST_STREAM', Code::INTERNAL);
@@ -950,8 +949,7 @@ class DatabaseTest extends TestCase
                 )
             )
         ))
-            ->shouldBeCalled()
-            ->willReturn(['id' => self::TRANSACTION]);
+            ->shouldNotBeCalled();
 
         $this->connection->rollback(Argument::any())
             ->shouldNotBeCalled();

@@ -214,7 +214,7 @@ class Operation
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
-     *     @type Transaction transactionHandle Transaction to be used for this operation.
+     *     @type Transaction $transactionHandle Transaction to be used for this operation.
      * }
      * @return Result
      */
@@ -382,9 +382,11 @@ class Operation
             'statements' => $stmts
         ] + $options);
 
+        // ResultSet contains transaction information in the metadata.
+        // Refer: https://cloud.google.com/spanner/docs/reference/rest/v1/ResultSet
         if (
-            isset($res['resultSets'][0]['metadata']['transaction']['id']) &&
-            $res['resultSets'][0]['metadata']['transaction']['id']
+            is_null($transaction->id()) &&
+            !empty($res['resultSets'][0]['metadata']['transaction']['id'])
         ) {
             $transaction->setId($res['resultSets'][0]['metadata']['transaction']['id']);
         }
