@@ -158,6 +158,23 @@ class ValueMapperTest extends TestCase
         $this->assertEquals(TypeAnnotationCode::PG_JSONB, $res['paramTypes']['json']['typeAnnotation']);
     }
 
+    public function testFormatParamsForExecuteSqlJsonB()
+    {
+        $val = '123';
+        $params = [
+            'oid' => $val
+        ];
+        $types = [
+            'oid' => Database::TYPE_PG_OID
+        ];
+
+        $res = $this->mapper->formatParamsForExecuteSql($params, $types);
+
+        $this->assertEquals($val, $res['params']['oid']);
+        $this->assertEquals(TypeCode::INT64, $res['paramTypes']['oid']['code']);
+        $this->assertEquals(TypeAnnotationCode::PG_OID, $res['paramTypes']['oid']['typeAnnotation']);
+    }
+
     public function testFormatParamsForExecuteSqlValueInterface()
     {
         $val = 'hello world';
@@ -1018,6 +1035,16 @@ class ValueMapperTest extends TestCase
             Result::RETURN_ASSOCIATIVE
         );
         $this->assertEquals('{\"rating\":9,\"open\":true}', $res['rowName']);
+    }
+
+    public function testDecodeValuesOid()
+    {
+        $res = $this->mapper->decodeValues(
+            $this->createField(Database::TYPE_PG_OID),
+            $this->createRow('123'),
+            Result::RETURN_ASSOCIATIVE
+        );
+        $this->assertEquals('123', $res['rowName']);
     }
 
     public function testDecodeValuesAnonymousField()

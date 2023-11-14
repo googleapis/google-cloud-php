@@ -433,6 +433,12 @@ class SpannerClientTest extends TestCase
         $this->assertInstanceOf(PgJsonb::class, $objVal);
     }
 
+    public function testPgOid()
+    {
+        $oidVal = $this->client->pgOid('123');
+        $this->assertInstanceOf(PgOid::class, $oidVal);
+    }
+
     public function testInt64()
     {
         $i64 = $this->client->int64('123');
