@@ -158,7 +158,7 @@ class ValueMapperTest extends TestCase
         $this->assertEquals(TypeAnnotationCode::PG_JSONB, $res['paramTypes']['json']['typeAnnotation']);
     }
 
-    public function testFormatParamsForExecuteSqlJsonB()
+    public function testFormatParamsForExecuteSqlOid()
     {
         $val = '123';
         $params = [
