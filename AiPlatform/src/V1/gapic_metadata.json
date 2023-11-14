@@ -965,6 +965,104 @@
                 }
             }
         },
+        "PredictionService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "PredictionServiceGapicClient",
+                    "rpcs": {
+                        "Explain": {
+                            "methods": [
+                                "explain"
+                            ]
+                        },
+                        "Predict": {
+                            "methods": [
+                                "predict"
+                            ]
+                        },
+                        "RawPredict": {
+                            "methods": [
+                                "rawPredict"
+                            ]
+                        },
+                        "ServerStreamingPredict": {
+                            "methods": [
+                                "serverStreamingPredict"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "LlmUtilityService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "LlmUtilityServiceGapicClient",
+                    "rpcs": {
+                        "ComputeTokens": {
+                            "methods": [
+                                "computeTokens"
+                            ]
+                        },
+                        "CountTokens": {
+                            "methods": [
+                                "countTokens"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "MatchService": {
             "clients": {
                 "grpc": {
@@ -1463,60 +1561,6 @@
                         "ListTrainingPipelines": {
                             "methods": [
                                 "listTrainingPipelines"
-                            ]
-                        },
-                        "GetLocation": {
-                            "methods": [
-                                "getLocation"
-                            ]
-                        },
-                        "ListLocations": {
-                            "methods": [
-                                "listLocations"
-                            ]
-                        },
-                        "GetIamPolicy": {
-                            "methods": [
-                                "getIamPolicy"
-                            ]
-                        },
-                        "SetIamPolicy": {
-                            "methods": [
-                                "setIamPolicy"
-                            ]
-                        },
-                        "TestIamPermissions": {
-                            "methods": [
-                                "testIamPermissions"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "PredictionService": {
-            "clients": {
-                "grpc": {
-                    "libraryClient": "PredictionServiceGapicClient",
-                    "rpcs": {
-                        "Explain": {
-                            "methods": [
-                                "explain"
-                            ]
-                        },
-                        "Predict": {
-                            "methods": [
-                                "predict"
-                            ]
-                        },
-                        "RawPredict": {
-                            "methods": [
-                                "rawPredict"
-                            ]
-                        },
-                        "ServerStreamingPredict": {
-                            "methods": [
-                                "serverStreamingPredict"
                             ]
                         },
                         "GetLocation": {
