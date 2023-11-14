@@ -23,9 +23,9 @@ class Assessment extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * The event being assessed.
+     * Optional. The event being assessed.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.Event event = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.Event event = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $event = null;
     /**
@@ -41,37 +41,39 @@ class Assessment extends \Google\Protobuf\Internal\Message
      */
     private $token_properties = null;
     /**
-     * Account verification information for identity verification. The assessment
-     * event must include a token and site key to use this feature.
+     * Optional. Account verification information for identity verification. The
+     * assessment event must include a token and site key to use this feature.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountVerificationInfo account_verification = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountVerificationInfo account_verification = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $account_verification = null;
     /**
-     * Assessment returned by account defender when a hashed_account_id is
-     * provided.
+     * Output only. Assessment returned by account defender when a
+     * hashed_account_id is provided.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment account_defender_assessment = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment account_defender_assessment = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $account_defender_assessment = null;
     /**
-     * The private password leak verification field contains the parameters that
-     * are used to to check for leaks privately without sharing user credentials.
+     * Optional. The private password leak verification field contains the
+     * parameters that are used to to check for leaks privately without sharing
+     * user credentials.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PrivatePasswordLeakVerification private_password_leak_verification = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PrivatePasswordLeakVerification private_password_leak_verification = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $private_password_leak_verification = null;
     /**
-     * Assessment returned when firewall policies belonging to the project are
-     * evaluated using the field firewall_policy_evaluation.
+     * Output only. Assessment returned when firewall policies belonging to the
+     * project are evaluated using the field firewall_policy_evaluation.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FirewallPolicyAssessment firewall_policy_assessment = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FirewallPolicyAssessment firewall_policy_assessment = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $firewall_policy_assessment = null;
     /**
-     * Assessment returned by Fraud Prevention when TransactionData is provided.
+     * Output only. Assessment returned by Fraud Prevention when TransactionData
+     * is provided.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment fraud_prevention_assessment = 11;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment fraud_prevention_assessment = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $fraud_prevention_assessment = null;
     /**
@@ -92,25 +94,27 @@ class Assessment extends \Google\Protobuf\Internal\Message
      *           Output only. The resource name for the Assessment in the format
      *           `projects/{project}/assessments/{assessment}`.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\Event $event
-     *           The event being assessed.
+     *           Optional. The event being assessed.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\RiskAnalysis $risk_analysis
      *           Output only. The risk analysis result for the event being assessed.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\TokenProperties $token_properties
      *           Output only. Properties of the provided event token.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\AccountVerificationInfo $account_verification
-     *           Account verification information for identity verification. The assessment
-     *           event must include a token and site key to use this feature.
+     *           Optional. Account verification information for identity verification. The
+     *           assessment event must include a token and site key to use this feature.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\AccountDefenderAssessment $account_defender_assessment
-     *           Assessment returned by account defender when a hashed_account_id is
-     *           provided.
+     *           Output only. Assessment returned by account defender when a
+     *           hashed_account_id is provided.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\PrivatePasswordLeakVerification $private_password_leak_verification
-     *           The private password leak verification field contains the parameters that
-     *           are used to to check for leaks privately without sharing user credentials.
+     *           Optional. The private password leak verification field contains the
+     *           parameters that are used to to check for leaks privately without sharing
+     *           user credentials.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicyAssessment $firewall_policy_assessment
-     *           Assessment returned when firewall policies belonging to the project are
-     *           evaluated using the field firewall_policy_evaluation.
+     *           Output only. Assessment returned when firewall policies belonging to the
+     *           project are evaluated using the field firewall_policy_evaluation.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment $fraud_prevention_assessment
-     *           Assessment returned by Fraud Prevention when TransactionData is provided.
+     *           Output only. Assessment returned by Fraud Prevention when TransactionData
+     *           is provided.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\FraudSignals $fraud_signals
      *           Output only. Fraud Signals specific to the users involved in a payment
      *           transaction.
@@ -150,9 +154,9 @@ class Assessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The event being assessed.
+     * Optional. The event being assessed.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.Event event = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.Event event = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\RecaptchaEnterprise\V1\Event|null
      */
     public function getEvent()
@@ -171,9 +175,9 @@ class Assessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The event being assessed.
+     * Optional. The event being assessed.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.Event event = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.Event event = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\RecaptchaEnterprise\V1\Event $var
      * @return $this
      */
@@ -258,10 +262,10 @@ class Assessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Account verification information for identity verification. The assessment
-     * event must include a token and site key to use this feature.
+     * Optional. Account verification information for identity verification. The
+     * assessment event must include a token and site key to use this feature.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountVerificationInfo account_verification = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountVerificationInfo account_verification = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\RecaptchaEnterprise\V1\AccountVerificationInfo|null
      */
     public function getAccountVerification()
@@ -280,10 +284,10 @@ class Assessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Account verification information for identity verification. The assessment
-     * event must include a token and site key to use this feature.
+     * Optional. Account verification information for identity verification. The
+     * assessment event must include a token and site key to use this feature.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountVerificationInfo account_verification = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountVerificationInfo account_verification = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\RecaptchaEnterprise\V1\AccountVerificationInfo $var
      * @return $this
      */
@@ -296,10 +300,10 @@ class Assessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Assessment returned by account defender when a hashed_account_id is
-     * provided.
+     * Output only. Assessment returned by account defender when a
+     * hashed_account_id is provided.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment account_defender_assessment = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment account_defender_assessment = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\RecaptchaEnterprise\V1\AccountDefenderAssessment|null
      */
     public function getAccountDefenderAssessment()
@@ -318,10 +322,10 @@ class Assessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Assessment returned by account defender when a hashed_account_id is
-     * provided.
+     * Output only. Assessment returned by account defender when a
+     * hashed_account_id is provided.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment account_defender_assessment = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment account_defender_assessment = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\RecaptchaEnterprise\V1\AccountDefenderAssessment $var
      * @return $this
      */
@@ -334,10 +338,11 @@ class Assessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The private password leak verification field contains the parameters that
-     * are used to to check for leaks privately without sharing user credentials.
+     * Optional. The private password leak verification field contains the
+     * parameters that are used to to check for leaks privately without sharing
+     * user credentials.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PrivatePasswordLeakVerification private_password_leak_verification = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PrivatePasswordLeakVerification private_password_leak_verification = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\RecaptchaEnterprise\V1\PrivatePasswordLeakVerification|null
      */
     public function getPrivatePasswordLeakVerification()
@@ -356,10 +361,11 @@ class Assessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The private password leak verification field contains the parameters that
-     * are used to to check for leaks privately without sharing user credentials.
+     * Optional. The private password leak verification field contains the
+     * parameters that are used to to check for leaks privately without sharing
+     * user credentials.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PrivatePasswordLeakVerification private_password_leak_verification = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PrivatePasswordLeakVerification private_password_leak_verification = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\RecaptchaEnterprise\V1\PrivatePasswordLeakVerification $var
      * @return $this
      */
@@ -372,10 +378,10 @@ class Assessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Assessment returned when firewall policies belonging to the project are
-     * evaluated using the field firewall_policy_evaluation.
+     * Output only. Assessment returned when firewall policies belonging to the
+     * project are evaluated using the field firewall_policy_evaluation.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FirewallPolicyAssessment firewall_policy_assessment = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FirewallPolicyAssessment firewall_policy_assessment = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicyAssessment|null
      */
     public function getFirewallPolicyAssessment()
@@ -394,10 +400,10 @@ class Assessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Assessment returned when firewall policies belonging to the project are
-     * evaluated using the field firewall_policy_evaluation.
+     * Output only. Assessment returned when firewall policies belonging to the
+     * project are evaluated using the field firewall_policy_evaluation.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FirewallPolicyAssessment firewall_policy_assessment = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FirewallPolicyAssessment firewall_policy_assessment = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicyAssessment $var
      * @return $this
      */
@@ -410,9 +416,10 @@ class Assessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Assessment returned by Fraud Prevention when TransactionData is provided.
+     * Output only. Assessment returned by Fraud Prevention when TransactionData
+     * is provided.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment fraud_prevention_assessment = 11;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment fraud_prevention_assessment = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment|null
      */
     public function getFraudPreventionAssessment()
@@ -431,9 +438,10 @@ class Assessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Assessment returned by Fraud Prevention when TransactionData is provided.
+     * Output only. Assessment returned by Fraud Prevention when TransactionData
+     * is provided.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment fraud_prevention_assessment = 11;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment fraud_prevention_assessment = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment $var
      * @return $this
      */

@@ -17,10 +17,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class SubstituteAction extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The address to redirect to. The target is a relative path in the
-     * current host. Example: "/blog/404.html".
+     * Optional. The address to redirect to. The target is a relative path in
+     * the current host. Example: "/blog/404.html".
      *
-     * Generated from protobuf field <code>string path = 1;</code>
+     * Generated from protobuf field <code>string path = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $path = '';
 
@@ -31,8 +31,8 @@ class SubstituteAction extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $path
-     *           The address to redirect to. The target is a relative path in the
-     *           current host. Example: "/blog/404.html".
+     *           Optional. The address to redirect to. The target is a relative path in
+     *           the current host. Example: "/blog/404.html".
      * }
      */
     public function __construct($data = NULL) {
@@ -41,10 +41,10 @@ class SubstituteAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The address to redirect to. The target is a relative path in the
-     * current host. Example: "/blog/404.html".
+     * Optional. The address to redirect to. The target is a relative path in
+     * the current host. Example: "/blog/404.html".
      *
-     * Generated from protobuf field <code>string path = 1;</code>
+     * Generated from protobuf field <code>string path = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPath()
@@ -53,10 +53,10 @@ class SubstituteAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The address to redirect to. The target is a relative path in the
-     * current host. Example: "/blog/404.html".
+     * Optional. The address to redirect to. The target is a relative path in
+     * the current host. Example: "/blog/404.html".
      *
-     * Generated from protobuf field <code>string path = 1;</code>
+     * Generated from protobuf field <code>string path = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

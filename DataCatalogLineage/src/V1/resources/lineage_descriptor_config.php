@@ -205,6 +205,18 @@ return [
                     ],
                 ],
             ],
+            'ProcessOpenLineageRunEvent' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\DataCatalog\Lineage\V1\ProcessOpenLineageRunEventResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'SearchLinks' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

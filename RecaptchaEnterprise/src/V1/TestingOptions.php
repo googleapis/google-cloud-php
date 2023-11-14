@@ -16,18 +16,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class TestingOptions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * All assessments for this Key will return this score. Must be between 0
-     * (likely not legitimate) and 1 (likely legitimate) inclusive.
+     * Optional. All assessments for this Key will return this score. Must be
+     * between 0 (likely not legitimate) and 1 (likely legitimate) inclusive.
      *
-     * Generated from protobuf field <code>float testing_score = 1;</code>
+     * Generated from protobuf field <code>float testing_score = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $testing_score = 0.0;
     /**
-     * For challenge-based keys only (CHECKBOX, INVISIBLE), all challenge requests
-     * for this site will return nocaptcha if NOCAPTCHA, or an unsolvable
-     * challenge if CHALLENGE.
+     * Optional. For challenge-based keys only (CHECKBOX, INVISIBLE), all
+     * challenge requests for this site will return nocaptcha if NOCAPTCHA, or an
+     * unsolvable challenge if CHALLENGE.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TestingOptions.TestingChallenge testing_challenge = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TestingOptions.TestingChallenge testing_challenge = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $testing_challenge = 0;
 
@@ -38,12 +38,12 @@ class TestingOptions extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type float $testing_score
-     *           All assessments for this Key will return this score. Must be between 0
-     *           (likely not legitimate) and 1 (likely legitimate) inclusive.
+     *           Optional. All assessments for this Key will return this score. Must be
+     *           between 0 (likely not legitimate) and 1 (likely legitimate) inclusive.
      *     @type int $testing_challenge
-     *           For challenge-based keys only (CHECKBOX, INVISIBLE), all challenge requests
-     *           for this site will return nocaptcha if NOCAPTCHA, or an unsolvable
-     *           challenge if CHALLENGE.
+     *           Optional. For challenge-based keys only (CHECKBOX, INVISIBLE), all
+     *           challenge requests for this site will return nocaptcha if NOCAPTCHA, or an
+     *           unsolvable challenge if CHALLENGE.
      * }
      */
     public function __construct($data = NULL) {
@@ -52,10 +52,10 @@ class TestingOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * All assessments for this Key will return this score. Must be between 0
-     * (likely not legitimate) and 1 (likely legitimate) inclusive.
+     * Optional. All assessments for this Key will return this score. Must be
+     * between 0 (likely not legitimate) and 1 (likely legitimate) inclusive.
      *
-     * Generated from protobuf field <code>float testing_score = 1;</code>
+     * Generated from protobuf field <code>float testing_score = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
      */
     public function getTestingScore()
@@ -64,10 +64,10 @@ class TestingOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * All assessments for this Key will return this score. Must be between 0
-     * (likely not legitimate) and 1 (likely legitimate) inclusive.
+     * Optional. All assessments for this Key will return this score. Must be
+     * between 0 (likely not legitimate) and 1 (likely legitimate) inclusive.
      *
-     * Generated from protobuf field <code>float testing_score = 1;</code>
+     * Generated from protobuf field <code>float testing_score = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
      * @return $this
      */
@@ -80,11 +80,11 @@ class TestingOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For challenge-based keys only (CHECKBOX, INVISIBLE), all challenge requests
-     * for this site will return nocaptcha if NOCAPTCHA, or an unsolvable
-     * challenge if CHALLENGE.
+     * Optional. For challenge-based keys only (CHECKBOX, INVISIBLE), all
+     * challenge requests for this site will return nocaptcha if NOCAPTCHA, or an
+     * unsolvable challenge if CHALLENGE.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TestingOptions.TestingChallenge testing_challenge = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TestingOptions.TestingChallenge testing_challenge = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getTestingChallenge()
@@ -93,11 +93,11 @@ class TestingOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For challenge-based keys only (CHECKBOX, INVISIBLE), all challenge requests
-     * for this site will return nocaptcha if NOCAPTCHA, or an unsolvable
-     * challenge if CHALLENGE.
+     * Optional. For challenge-based keys only (CHECKBOX, INVISIBLE), all
+     * challenge requests for this site will return nocaptcha if NOCAPTCHA, or an
+     * unsolvable challenge if CHALLENGE.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TestingOptions.TestingChallenge testing_challenge = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TestingOptions.TestingChallenge testing_challenge = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

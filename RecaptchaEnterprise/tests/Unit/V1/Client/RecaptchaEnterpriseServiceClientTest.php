@@ -323,6 +323,8 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $key = new Key();
+        $keyDisplayName = 'keyDisplayName-302940530';
+        $key->setDisplayName($keyDisplayName);
         $request = (new CreateKeyRequest())
             ->setParent($formattedParent)
             ->setKey($key);
@@ -361,6 +363,8 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $key = new Key();
+        $keyDisplayName = 'keyDisplayName-302940530';
+        $key->setDisplayName($keyDisplayName);
         $request = (new CreateKeyRequest())
             ->setParent($formattedParent)
             ->setKey($key);
@@ -1276,6 +1280,8 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $key = new Key();
+        $keyDisplayName = 'keyDisplayName-302940530';
+        $key->setDisplayName($keyDisplayName);
         $request = (new UpdateKeyRequest())
             ->setKey($key);
         $response = $gapicClient->updateKey($request);
@@ -1310,6 +1316,8 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $key = new Key();
+        $keyDisplayName = 'keyDisplayName-302940530';
+        $key->setDisplayName($keyDisplayName);
         $request = (new UpdateKeyRequest())
             ->setKey($key);
         try {

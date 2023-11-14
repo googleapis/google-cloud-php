@@ -287,6 +287,8 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $key = new Key();
+        $keyDisplayName = 'keyDisplayName-302940530';
+        $key->setDisplayName($keyDisplayName);
         $response = $gapicClient->createKey($formattedParent, $key);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -322,6 +324,8 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $key = new Key();
+        $keyDisplayName = 'keyDisplayName-302940530';
+        $key->setDisplayName($keyDisplayName);
         try {
             $gapicClient->createKey($formattedParent, $key);
             // If the $gapicClient method call did not throw, fail the test
@@ -1182,6 +1186,8 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $key = new Key();
+        $keyDisplayName = 'keyDisplayName-302940530';
+        $key->setDisplayName($keyDisplayName);
         $response = $gapicClient->updateKey($key);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1214,6 +1220,8 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $key = new Key();
+        $keyDisplayName = 'keyDisplayName-302940530';
+        $key->setDisplayName($keyDisplayName);
         try {
             $gapicClient->updateKey($key);
             // If the $gapicClient method call did not throw, fail the test
