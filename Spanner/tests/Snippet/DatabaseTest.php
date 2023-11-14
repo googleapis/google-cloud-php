@@ -478,8 +478,7 @@ class DatabaseTest extends SnippetTestCase
                     'transaction' => [
                         'id' => self::TRANSACTION
                     ]
-                ],
-                'values' => [null]
+                ]
             ]));
 
         $this->refreshOperation($this->database, $this->connection->reveal());
