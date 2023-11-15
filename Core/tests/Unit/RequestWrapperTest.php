@@ -682,18 +682,23 @@ class RequestWrapperTest extends TestCase
         $credentialsFetcher->willImplement(UpdateMetadataInterface::class);
 
         $accessToken = 'abc';
-        $credentialsFetcher->updateMetadata(Argument::cetera())->willReturn([
-            'authorization' => ['Bearer ' . $accessToken]
-        ]);
+        $credentialsFetcher->updateMetadata(Argument::cetera())
+            ->shouldBeCalledOnce()
+            ->willReturn([
+                'authorization' => ['Bearer ' . $accessToken]
+            ]);
 
         // We have to mock this message because RequestWrapper wraps the credentials using the
         // FetchAuthTokenCache class
         $credentialsFetcher->getCacheKey()
+            ->shouldBeCalledOnce()
             ->willReturn(null);
 
         // We have to mock this message because FetchAuthTokenCache class' updateMetadata()
         // internally calls getLastReceivedToken() as a part of token fetching.
-        $credentialsFetcher->getLastReceivedToken()->willReturn(null);
+        $credentialsFetcher->getLastReceivedToken()
+            ->shouldBeCalledOnce()
+            ->willReturn(null);
 
         $requestWrapper = new RequestWrapper([
             'credentialsFetcher' => $credentialsFetcher->reveal(),
@@ -717,14 +722,17 @@ class RequestWrapperTest extends TestCase
         $accessToken = 'abc';
         $credentialsFetcher->updateMetadata(Argument::that(function ($arg) {
             return array_key_exists('x-goog-api-client', $arg);
-        }), Argument::cetera())->willReturn([
-            'authorization' => ['Bearer ' . $accessToken],
-            'x-goog-api-client' => ['xyz']
-        ]);
+        }), Argument::cetera())
+            ->shouldBeCalledOnce()
+            ->willReturn([
+                'authorization' => ['Bearer ' . $accessToken],
+                'x-goog-api-client' => ['xyz']
+            ]);
 
         // We have to mock this message because RequestWrapper wraps the credentials using the
         // FetchAuthTokenCache class
         $credentialsFetcher->getCacheKey()
+            ->shouldBeCalledOnce()
             ->willReturn(null);
 
         // We have to mock this message because FetchAuthTokenCache class' updateMetadata()
