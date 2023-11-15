@@ -1,0 +1,33 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.devtools.cloudprofiler.v2",
+    "libraryPackage": "Google\\Cloud\\Profiler\\V2",
+    "services": {
+        "ProfilerService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ProfilerServiceGapicClient",
+                    "rpcs": {
+                        "CreateOfflineProfile": {
+                            "methods": [
+                                "createOfflineProfile"
+                            ]
+                        },
+                        "CreateProfile": {
+                            "methods": [
+                                "createProfile"
+                            ]
+                        },
+                        "UpdateProfile": {
+                            "methods": [
+                                "updateProfile"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
