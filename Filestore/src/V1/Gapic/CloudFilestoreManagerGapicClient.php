@@ -53,6 +53,7 @@ use Google\Cloud\Filestore\V1\ListInstancesResponse;
 use Google\Cloud\Filestore\V1\ListSnapshotsRequest;
 use Google\Cloud\Filestore\V1\ListSnapshotsResponse;
 use Google\Cloud\Filestore\V1\RestoreInstanceRequest;
+use Google\Cloud\Filestore\V1\RevertInstanceRequest;
 use Google\Cloud\Filestore\V1\Snapshot;
 use Google\Cloud\Filestore\V1\UpdateBackupRequest;
 use Google\Cloud\Filestore\V1\UpdateInstanceRequest;
@@ -1476,6 +1477,89 @@ class CloudFilestoreManagerGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'RestoreInstance',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Revert an existing instance's file system to a specified snapshot.
+     *
+     * Sample code:
+     * ```
+     * $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
+     * try {
+     *     $formattedName = $cloudFilestoreManagerClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $targetSnapshotId = 'target_snapshot_id';
+     *     $operationResponse = $cloudFilestoreManagerClient->revertInstance($formattedName, $targetSnapshotId);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $cloudFilestoreManagerClient->revertInstance($formattedName, $targetSnapshotId);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $cloudFilestoreManagerClient->resumeOperation($operationName, 'revertInstance');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $cloudFilestoreManagerClient->close();
+     * }
+     * ```
+     *
+     * @param string $name             Required.
+     *                                 `projects/{project_id}/locations/{location_id}/instances/{instance_id}`.
+     *                                 The resource name of the instance, in the format
+     * @param string $targetSnapshotId Required. The snapshot resource ID, in the format 'my-snapshot', where the
+     *                                 specified ID is the {snapshot_id} of the fully qualified name like
+     *                                 `projects/{project_id}/locations/{location_id}/instances/{instance_id}/snapshots/{snapshot_id}`
+     * @param array  $optionalArgs     {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function revertInstance(
+        $name,
+        $targetSnapshotId,
+        array $optionalArgs = []
+    ) {
+        $request = new RevertInstanceRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setTargetSnapshotId($targetSnapshotId);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'RevertInstance',
             $optionalArgs,
             $request,
             $this->getOperationsClient()
