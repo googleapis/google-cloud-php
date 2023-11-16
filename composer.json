@@ -209,6 +209,7 @@
         "google/cloud-support": "0.1.2",
         "google/cloud-talent": "1.2.2",
         "google/cloud-tasks": "1.13.2",
+        "google/cloud-telcoautomation": "0.0.0",
         "google/cloud-text-to-speech": "1.7.2",
         "google/cloud-tpu": "1.3.2",
         "google/cloud-trace": "1.6.5",
@@ -226,9 +227,9 @@
         "google/cloud-workflows": "0.4.2",
         "google/grafeas": "0.8.3",
         "google/longrunning": "0.2.6",
+        "google/shopping-common-protos": "0.2.0",
         "google/shopping-merchant-inventories": "0.1.1",
-        "google/shopping-merchant-reports": "0.3.0",
-        "google/shopping-common-protos": "0.2.0"
+        "google/shopping-merchant-reports": "0.3.0"
     },
     "suggest": {
         "opis/closure": "May be used to serialize closures to process jobs in the batch daemon. Please require version ^3.",
@@ -359,6 +360,7 @@
             "GPBMetadata\\Google\\Cloud\\Support\\": "Support/metadata",
             "GPBMetadata\\Google\\Cloud\\Talent\\": "Talent/metadata",
             "GPBMetadata\\Google\\Cloud\\Tasks\\": "Tasks/metadata",
+            "GPBMetadata\\Google\\Cloud\\Telcoautomation\\": "TelcoAutomation/metadata",
             "GPBMetadata\\Google\\Cloud\\Texttospeech\\": "TextToSpeech/metadata",
             "GPBMetadata\\Google\\Cloud\\Tpu\\": "Tpu/metadata",
             "GPBMetadata\\Google\\Cloud\\Translate\\": "Translate/metadata",
@@ -548,6 +550,7 @@
             "Google\\Cloud\\Support\\": "Support/src",
             "Google\\Cloud\\Talent\\": "Talent/src",
             "Google\\Cloud\\Tasks\\": "Tasks/src",
+            "Google\\Cloud\\TelcoAutomation\\": "TelcoAutomation/src",
             "Google\\Cloud\\TextToSpeech\\": "TextToSpeech/src",
             "Google\\Cloud\\Tpu\\": "Tpu/src",
             "Google\\Cloud\\Trace\\": "Trace/src",
