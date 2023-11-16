@@ -47,6 +47,25 @@ class SetSslCertificatesRegionTargetHttpsProxyRequest extends \Google\Protobuf\I
     private $target_https_proxy = '';
 
     /**
+     * @param string                                                                     $project                                                   Project ID for this request.
+     * @param string                                                                     $region                                                    Name of the region scoping this request.
+     * @param string                                                                     $targetHttpsProxy                                          Name of the TargetHttpsProxy resource to set an SslCertificates resource for.
+     * @param \Google\Cloud\Compute\V1\RegionTargetHttpsProxiesSetSslCertificatesRequest $regionTargetHttpsProxiesSetSslCertificatesRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\SetSslCertificatesRegionTargetHttpsProxyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $targetHttpsProxy, \Google\Cloud\Compute\V1\RegionTargetHttpsProxiesSetSslCertificatesRequest $regionTargetHttpsProxiesSetSslCertificatesRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetHttpsProxy($targetHttpsProxy)
+            ->setRegionTargetHttpsProxiesSetSslCertificatesRequestResource($regionTargetHttpsProxiesSetSslCertificatesRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

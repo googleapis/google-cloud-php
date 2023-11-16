@@ -28,7 +28,7 @@ class Revision
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ó
+◊
 "google/cloud/run/v2/revision.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/launch_stage.protogoogle/api/resource.protogoogle/api/routing.proto#google/cloud/run/v2/condition.proto!google/cloud/run/v2/k8s.min.proto)google/cloud/run/v2/vendor_settings.proto#google/longrunning/operations.protogoogle/protobuf/duration.protogoogle/protobuf/timestamp.proto"G
 GetRevisionRequest1
 name (	B#‡A˙A
@@ -46,14 +46,14 @@ page_token (	
 name (	B#‡A˙A
 run.googleapis.com/Revision
 validate_only (
-etag (	"‰
+etag (	"§
 Revision
 name (	B‡A
 uid (	B‡A
 
-generation (B‡A9
-labels (2).google.cloud.run.v2.Revision.LabelsEntryC
-annotations (2..google.cloud.run.v2.Revision.AnnotationsEntry4
+generation (B‡A>
+labels (2).google.cloud.run.v2.Revision.LabelsEntryB‡AH
+annotations (2..google.cloud.run.v2.Revision.AnnotationsEntryB‡A4
 create_time (2.google.protobuf.TimestampB‡A4
 update_time (2.google.protobuf.TimestampB‡A4
 delete_time (2.google.protobuf.TimestampB‡A4
@@ -80,7 +80,9 @@ containers (2.google.cloud.run.v2.Container,
 
 conditions (2.google.cloud.run.v2.ConditionB‡A 
 observed_generation  (B‡A
-log_uri! (	B‡A
+log_uri! (	B‡A
+satisfies_pzs% (B‡A
+session_affinity& (
 etagc (	B‡A-
 LabelsEntry
 key (	

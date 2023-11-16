@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START clouderrorreporting_v1beta1_generated_ErrorStatsService_DeleteEvents_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\ErrorReporting\V1beta1\Client\ErrorStatsServiceClient;
+use Google\Cloud\ErrorReporting\V1beta1\DeleteEventsRequest;
 use Google\Cloud\ErrorReporting\V1beta1\DeleteEventsResponse;
-use Google\Cloud\ErrorReporting\V1beta1\ErrorStatsServiceClient;
 
 /**
  * Deletes all error events of a given project.
@@ -43,10 +44,14 @@ function delete_events_sample(string $formattedProjectName): void
     // Create a client.
     $errorStatsServiceClient = new ErrorStatsServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteEventsRequest())
+        ->setProjectName($formattedProjectName);
+
     // Call the API and handle any network failures.
     try {
         /** @var DeleteEventsResponse $response */
-        $response = $errorStatsServiceClient->deleteEvents($formattedProjectName);
+        $response = $errorStatsServiceClient->deleteEvents($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

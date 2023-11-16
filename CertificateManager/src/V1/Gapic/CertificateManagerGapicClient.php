@@ -149,6 +149,10 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\CertificateManager\V1\Client\CertificateManagerClient} to use the
+ * new surface.
  */
 class CertificateManagerGapicClient
 {
@@ -170,6 +174,8 @@ class CertificateManagerGapicClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
+
+    private static $caPoolNameTemplate;
 
     private static $certificateNameTemplate;
 
@@ -212,6 +218,17 @@ class CertificateManagerGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getCaPoolNameTemplate()
+    {
+        if (self::$caPoolNameTemplate == null) {
+            self::$caPoolNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/caPools/{ca_pool}'
+            );
+        }
+
+        return self::$caPoolNameTemplate;
     }
 
     private static function getCertificateNameTemplate()
@@ -284,6 +301,7 @@ class CertificateManagerGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'caPool' => self::getCaPoolNameTemplate(),
                 'certificate' => self::getCertificateNameTemplate(),
                 'certificateIssuanceConfig' => self::getCertificateIssuanceConfigNameTemplate(),
                 'certificateMap' => self::getCertificateMapNameTemplate(),
@@ -294,6 +312,25 @@ class CertificateManagerGapicClient
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a ca_pool
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $caPool
+     *
+     * @return string The formatted ca_pool resource.
+     */
+    public static function caPoolName($project, $location, $caPool)
+    {
+        return self::getCaPoolNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'ca_pool' => $caPool,
+        ]);
     }
 
     /**
@@ -427,6 +464,7 @@ class CertificateManagerGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - caPool: projects/{project}/locations/{location}/caPools/{ca_pool}
      * - certificate: projects/{project}/locations/{location}/certificates/{certificate}
      * - certificateIssuanceConfig: projects/{project}/locations/{location}/certificateIssuanceConfigs/{certificate_issuance_config}
      * - certificateMap: projects/{project}/locations/{location}/certificateMaps/{certificate_map}

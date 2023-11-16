@@ -17,11 +17,26 @@ class GetDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the `DeliveryPipeline`. Format must be
-     * projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}.
+     * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. Name of the `DeliveryPipeline`. Format must be
+     *                     `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`. Please see
+     *                     {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Deploy\V1\GetDeliveryPipelineRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.
@@ -31,7 +46,7 @@ class GetDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Name of the `DeliveryPipeline`. Format must be
-     *           projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}.
+     *           `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,7 +56,7 @@ class GetDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the `DeliveryPipeline`. Format must be
-     * projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}.
+     * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -53,7 +68,7 @@ class GetDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the `DeliveryPipeline`. Format must be
-     * projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}.
+     * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

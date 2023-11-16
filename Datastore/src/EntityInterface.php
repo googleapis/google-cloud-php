@@ -20,7 +20,7 @@ namespace Google\Cloud\Datastore;
 /**
  * Defines an interface for Datastore Entities.
  *
- * This interface is fulfilled by {@see Google\Cloud\Datastore\EntityTrait},
+ * This interface is fulfilled by {@see \Google\Cloud\Datastore\EntityTrait},
  * and it is recommended that classes implementing EntityInterface make use of that
  * trait to ensure proper configuration.
  */
@@ -44,10 +44,10 @@ interface EntityInterface
      *
      *     @type string $cursor Set only when the entity is obtained by a query
      *           result. If set, the entity cursor can be retrieved from
-     *           {@see Google\Cloud\Datastore\EntityInterface::cursor()}.
+     *           {@see \Google\Cloud\Datastore\EntityInterface::cursor()}.
      *     @type string $baseVersion Set only when the entity is obtained by a
      *           query result. If set, the entity cursor can be retrieved from
-     *           {@see Google\Cloud\Datastore\EntityInterface::baseVersion()}.
+     *           {@see \Google\Cloud\Datastore\EntityInterface::baseVersion()}.
      *     @type array $excludeFromIndexes A list of entity keys to exclude from
      *           datastore indexes.
      *     @type array $meanings A list of meaning values for entity properties.
@@ -61,14 +61,14 @@ interface EntityInterface
      * Defines embedded entity mappings.
      *
      * Embedded entities are converted to instances of
-     * {@see Google\Cloud\Datastore\Entity}, or to associative arrays by default.
+     * {@see \Google\Cloud\Datastore\Entity}, or to associative arrays by default.
      * By providing mappings, you can define the types to use in your application.
      *
-     * Types must implement {@see Google\Cloud\Datastore\EntityInterface}.
+     * Types must implement {@see \Google\Cloud\Datastore\EntityInterface}.
      *
      * @return array An associative array, where the key is the property name,
      *         and the value is the fully-qualified name of a PHP class
-     *         implementing {@see Google\Cloud\Datastore\EntityInterface}.
+     *         implementing {@see \Google\Cloud\Datastore\EntityInterface}.
      */
     public static function mappings();
 

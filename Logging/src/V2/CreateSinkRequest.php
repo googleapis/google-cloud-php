@@ -45,11 +45,39 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
      * If this field is set to true, or if the sink is owned by a non-project
      * resource such as an organization, then the value of `writer_identity` will
      * be a unique service account used only for exports from the new sink. For
-     * more information, see `writer_identity` in [LogSink][google.logging.v2.LogSink].
+     * more information, see `writer_identity` in
+     * [LogSink][google.logging.v2.LogSink].
      *
      * Generated from protobuf field <code>bool unique_writer_identity = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $unique_writer_identity = false;
+
+    /**
+     * @param string                           $parent Required. The resource in which to create the sink:
+     *
+     *                                                 "projects/[PROJECT_ID]"
+     *                                                 "organizations/[ORGANIZATION_ID]"
+     *                                                 "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *                                                 "folders/[FOLDER_ID]"
+     *
+     *                                                 For examples:
+     *
+     *                                                 `"projects/my-project"`
+     *                                                 `"organizations/123456789"`
+     *                                                 Please see {@see ConfigServiceV2Client::projectName()} for help formatting this field.
+     * @param \Google\Cloud\Logging\V2\LogSink $sink   Required. The new sink, whose `name` parameter is a sink identifier that
+     *                                                 is not already in use.
+     *
+     * @return \Google\Cloud\Logging\V2\CreateSinkRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Logging\V2\LogSink $sink): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setSink($sink);
+    }
 
     /**
      * Constructor.
@@ -79,7 +107,8 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
      *           If this field is set to true, or if the sink is owned by a non-project
      *           resource such as an organization, then the value of `writer_identity` will
      *           be a unique service account used only for exports from the new sink. For
-     *           more information, see `writer_identity` in [LogSink][google.logging.v2.LogSink].
+     *           more information, see `writer_identity` in
+     *           [LogSink][google.logging.v2.LogSink].
      * }
      */
     public function __construct($data = NULL) {
@@ -175,7 +204,8 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
      * If this field is set to true, or if the sink is owned by a non-project
      * resource such as an organization, then the value of `writer_identity` will
      * be a unique service account used only for exports from the new sink. For
-     * more information, see `writer_identity` in [LogSink][google.logging.v2.LogSink].
+     * more information, see `writer_identity` in
+     * [LogSink][google.logging.v2.LogSink].
      *
      * Generated from protobuf field <code>bool unique_writer_identity = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -195,7 +225,8 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
      * If this field is set to true, or if the sink is owned by a non-project
      * resource such as an organization, then the value of `writer_identity` will
      * be a unique service account used only for exports from the new sink. For
-     * more information, see `writer_identity` in [LogSink][google.logging.v2.LogSink].
+     * more information, see `writer_identity` in
+     * [LogSink][google.logging.v2.LogSink].
      *
      * Generated from protobuf field <code>bool unique_writer_identity = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

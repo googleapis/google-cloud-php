@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START apigeeregistry_v1_generated_Provisioning_CreateInstance_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\ApigeeRegistry\V1\Client\ProvisioningClient;
+use Google\Cloud\ApigeeRegistry\V1\CreateInstanceRequest;
 use Google\Cloud\ApigeeRegistry\V1\Instance;
 use Google\Cloud\ApigeeRegistry\V1\Instance\Config;
-use Google\Cloud\ApigeeRegistry\V1\ProvisioningClient;
 use Google\Rpc\Status;
 
 /**
@@ -50,16 +51,20 @@ function create_instance_sample(
     // Create a client.
     $provisioningClient = new ProvisioningClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceConfig = (new Config())
         ->setCmekKeyName($instanceConfigCmekKeyName);
     $instance = (new Instance())
         ->setConfig($instanceConfig);
+    $request = (new CreateInstanceRequest())
+        ->setParent($formattedParent)
+        ->setInstanceId($instanceId)
+        ->setInstance($instance);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $provisioningClient->createInstance($formattedParent, $instanceId, $instance);
+        $response = $provisioningClient->createInstance($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

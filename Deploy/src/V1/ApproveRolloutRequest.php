@@ -17,8 +17,7 @@ class ApproveRolloutRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the Rollout. Format is
-     * projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     * releases/{release}/rollouts/{rollout}.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -31,6 +30,21 @@ class ApproveRolloutRequest extends \Google\Protobuf\Internal\Message
     private $approved = false;
 
     /**
+     * @param string $name Required. Name of the Rollout. Format is
+     *                     `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`. Please see
+     *                     {@see CloudDeployClient::rolloutName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Deploy\V1\ApproveRolloutRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -38,8 +52,7 @@ class ApproveRolloutRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Name of the Rollout. Format is
-     *           projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     *           releases/{release}/rollouts/{rollout}.
+     *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      *     @type bool $approved
      *           Required. True = approve; false = reject
      * }
@@ -51,8 +64,7 @@ class ApproveRolloutRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the Rollout. Format is
-     * projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     * releases/{release}/rollouts/{rollout}.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -64,8 +76,7 @@ class ApproveRolloutRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the Rollout. Format is
-     * projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     * releases/{release}/rollouts/{rollout}.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

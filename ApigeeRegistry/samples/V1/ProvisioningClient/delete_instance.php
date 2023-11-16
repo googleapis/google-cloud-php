@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START apigeeregistry_v1_generated_Provisioning_DeleteInstance_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\ApigeeRegistry\V1\ProvisioningClient;
+use Google\Cloud\ApigeeRegistry\V1\Client\ProvisioningClient;
+use Google\Cloud\ApigeeRegistry\V1\DeleteInstanceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,14 @@ function delete_instance_sample(string $formattedName): void
     // Create a client.
     $provisioningClient = new ProvisioningClient();
 
+    // Prepare the request message.
+    $request = (new DeleteInstanceRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $provisioningClient->deleteInstance($formattedName);
+        $response = $provisioningClient->deleteInstance($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -70,6 +70,13 @@ class StreamingDetectIntentResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 6;</code>
      */
     private $output_audio_config = null;
+    /**
+     * Debugging info that would get populated when
+     * `StreamingDetectIntentRequest.enable_debugging_info` is set to true.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.CloudConversationDebuggingInfo debugging_info = 8;</code>
+     */
+    private $debugging_info = null;
 
     /**
      * Constructor.
@@ -98,6 +105,9 @@ class StreamingDetectIntentResponse extends \Google\Protobuf\Internal\Message
      *           has content.
      *     @type \Google\Cloud\Dialogflow\V2\OutputAudioConfig $output_audio_config
      *           The config used by the speech synthesizer to generate the output audio.
+     *     @type \Google\Cloud\Dialogflow\V2\CloudConversationDebuggingInfo $debugging_info
+     *           Debugging info that would get populated when
+     *           `StreamingDetectIntentRequest.enable_debugging_info` is set to true.
      * }
      */
     public function __construct($data = NULL) {
@@ -315,6 +325,44 @@ class StreamingDetectIntentResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\OutputAudioConfig::class);
         $this->output_audio_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Debugging info that would get populated when
+     * `StreamingDetectIntentRequest.enable_debugging_info` is set to true.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.CloudConversationDebuggingInfo debugging_info = 8;</code>
+     * @return \Google\Cloud\Dialogflow\V2\CloudConversationDebuggingInfo|null
+     */
+    public function getDebuggingInfo()
+    {
+        return $this->debugging_info;
+    }
+
+    public function hasDebuggingInfo()
+    {
+        return isset($this->debugging_info);
+    }
+
+    public function clearDebuggingInfo()
+    {
+        unset($this->debugging_info);
+    }
+
+    /**
+     * Debugging info that would get populated when
+     * `StreamingDetectIntentRequest.enable_debugging_info` is set to true.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.CloudConversationDebuggingInfo debugging_info = 8;</code>
+     * @param \Google\Cloud\Dialogflow\V2\CloudConversationDebuggingInfo $var
+     * @return $this
+     */
+    public function setDebuggingInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\CloudConversationDebuggingInfo::class);
+        $this->debugging_info = $var;
 
         return $this;
     }

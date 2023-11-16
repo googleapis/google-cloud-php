@@ -23,6 +23,7 @@ use Google\Cloud\PubSub\BatchPublisher;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\PubSubClient;
+use Google\Cloud\PubSub\Topic;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -147,6 +148,80 @@ class BatchPublisherTest extends TestCase
         $publisher->___setProperty('client', $client);
         $res = $publisher->publishDeferred($messages);
         $this->assertEquals(array_fill(0, count($messages), 1), $res);
+    }
+
+    /**
+     * @dataProvider compressionOptionsProvider
+     */
+    public function testPublisherCompression(
+        $enableCompression,
+        $compressionBytesThreshold,
+        $processedEnableCompression,
+        $processedCompressionBytesThreshold
+    ) {
+        $client = TestHelpers::stub(PubSubClient::class, [
+            ['suppressKeyFileNotice' => true, 'projectId' => 'example-project']
+        ], [
+            'encode', 'connection'
+        ]);
+        $client->___setProperty('encode', false);
+
+        $publisher = TestHelpers::stub(BatchPublisher::class, [
+            self::TOPIC_NAME, [
+                'identifier' => uniqid(),
+                'enableCompression' => $enableCompression,
+                'compressionBytesThreshold' => $compressionBytesThreshold
+            ]
+        ], ['client', 'topics']);
+
+        $connection = $this->prophesize(ConnectionInterface::class);
+
+        $messages = [[
+            'data' => 'foo'
+        ]];
+
+        $connection->publishMessage(Argument::that(
+            function ($args) use (
+                $processedEnableCompression,
+                $processedCompressionBytesThreshold
+            ) {
+                $result = is_array($args) &&
+                    array_key_exists('messages', $args) &&
+                    array_key_exists('topic', $args) &&
+                    array_key_exists('compressionOptions', $args);
+
+                if ($result &&
+                    ($args['compressionOptions']['enableCompression'] === $processedEnableCompression) &&
+                    ($args['compressionOptions']['compressionBytesThreshold'] === $processedCompressionBytesThreshold)
+                ) {
+                    return true;
+                }
+
+                return false;
+            }
+        ))->shouldBeCalled(1)->willReturn([]);
+
+        $client->___setProperty('connection', $connection->reveal());
+        $publisher->___setProperty('client', $client);
+        $publisher->publishDeferred($messages);
+    }
+
+    public function compressionOptionsProvider()
+    {
+        // Each data is of the form
+        // [
+        //  $enableCompression                      Input option
+        //  $compressionBytesThreshold              Input option
+        //  $processedEnableCompression             Expected set option
+        //  $processedCompressionBytesThreshold     Expected set option
+        // ]
+        return [
+            [null, null, false, Topic::DEFAULT_COMPRESSION_BYTES_THRESHOLD],
+            [false, null, false, Topic::DEFAULT_COMPRESSION_BYTES_THRESHOLD],
+            [false, 10000, false, Topic::DEFAULT_COMPRESSION_BYTES_THRESHOLD],
+            [true, null, true, Topic::DEFAULT_COMPRESSION_BYTES_THRESHOLD],
+            [true, 10000, true, 10000],
+        ];
     }
 }
 

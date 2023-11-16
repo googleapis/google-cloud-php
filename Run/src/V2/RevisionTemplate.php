@@ -24,7 +24,13 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      */
     private $revision = '';
     /**
-     * KRM-style labels for the resource.
+     * Unstructured key value map that can be used to organize and categorize
+     * objects.
+     * User-provided labels are shared with Google's billing system, so they can
+     * be used to filter, or break down billing charges by team, component,
+     * environment, state, etc. For more information, visit
+     * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
+     * https://cloud.google.com/run/docs/configuring/labels.
      * <p>Cloud Run API v2 does not support labels with `run.googleapis.com`,
      * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
      * namespaces, and they will be rejected. All system labels in v1 now have a
@@ -34,11 +40,15 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * KRM-style annotations for the resource.
+     * Unstructured key value map that may be set by external tools to store and
+     * arbitrary metadata. They are not queryable and should be preserved
+     * when modifying objects.
      * <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
      * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
      * namespaces, and they will be rejected. All system annotations in v1 now
      * have a corresponding field in v2 RevisionTemplate.
+     * <p>This field follows Kubernetes annotations' namespacing, limits, and
+     * rules.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 3;</code>
      */
@@ -104,6 +114,12 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 max_instance_request_concurrency = 15;</code>
      */
     private $max_instance_request_concurrency = 0;
+    /**
+     * Enable session affinity.
+     *
+     * Generated from protobuf field <code>bool session_affinity = 19;</code>
+     */
+    private $session_affinity = false;
 
     /**
      * Constructor.
@@ -115,17 +131,27 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      *           The unique name for the revision. If this field is omitted, it will be
      *           automatically generated based on the Service name.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           KRM-style labels for the resource.
+     *           Unstructured key value map that can be used to organize and categorize
+     *           objects.
+     *           User-provided labels are shared with Google's billing system, so they can
+     *           be used to filter, or break down billing charges by team, component,
+     *           environment, state, etc. For more information, visit
+     *           https://cloud.google.com/resource-manager/docs/creating-managing-labels or
+     *           https://cloud.google.com/run/docs/configuring/labels.
      *           <p>Cloud Run API v2 does not support labels with `run.googleapis.com`,
      *           `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
      *           namespaces, and they will be rejected. All system labels in v1 now have a
      *           corresponding field in v2 RevisionTemplate.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
-     *           KRM-style annotations for the resource.
+     *           Unstructured key value map that may be set by external tools to store and
+     *           arbitrary metadata. They are not queryable and should be preserved
+     *           when modifying objects.
      *           <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
      *           `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
      *           namespaces, and they will be rejected. All system annotations in v1 now
      *           have a corresponding field in v2 RevisionTemplate.
+     *           <p>This field follows Kubernetes annotations' namespacing, limits, and
+     *           rules.
      *     @type \Google\Cloud\Run\V2\RevisionScaling $scaling
      *           Scaling settings for this Revision.
      *     @type \Google\Cloud\Run\V2\VpcAccess $vpc_access
@@ -151,6 +177,8 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      *           https://cloud.google.com/run/docs/securing/using-cmek
      *     @type int $max_instance_request_concurrency
      *           Sets the maximum number of requests that each serving instance can receive.
+     *     @type bool $session_affinity
+     *           Enable session affinity.
      * }
      */
     public function __construct($data = NULL) {
@@ -187,7 +215,13 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style labels for the resource.
+     * Unstructured key value map that can be used to organize and categorize
+     * objects.
+     * User-provided labels are shared with Google's billing system, so they can
+     * be used to filter, or break down billing charges by team, component,
+     * environment, state, etc. For more information, visit
+     * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
+     * https://cloud.google.com/run/docs/configuring/labels.
      * <p>Cloud Run API v2 does not support labels with `run.googleapis.com`,
      * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
      * namespaces, and they will be rejected. All system labels in v1 now have a
@@ -202,7 +236,13 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style labels for the resource.
+     * Unstructured key value map that can be used to organize and categorize
+     * objects.
+     * User-provided labels are shared with Google's billing system, so they can
+     * be used to filter, or break down billing charges by team, component,
+     * environment, state, etc. For more information, visit
+     * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
+     * https://cloud.google.com/run/docs/configuring/labels.
      * <p>Cloud Run API v2 does not support labels with `run.googleapis.com`,
      * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
      * namespaces, and they will be rejected. All system labels in v1 now have a
@@ -221,11 +261,15 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style annotations for the resource.
+     * Unstructured key value map that may be set by external tools to store and
+     * arbitrary metadata. They are not queryable and should be preserved
+     * when modifying objects.
      * <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
      * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
      * namespaces, and they will be rejected. All system annotations in v1 now
      * have a corresponding field in v2 RevisionTemplate.
+     * <p>This field follows Kubernetes annotations' namespacing, limits, and
+     * rules.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 3;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -236,11 +280,15 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style annotations for the resource.
+     * Unstructured key value map that may be set by external tools to store and
+     * arbitrary metadata. They are not queryable and should be preserved
+     * when modifying objects.
      * <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
      * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
      * namespaces, and they will be rejected. All system annotations in v1 now
      * have a corresponding field in v2 RevisionTemplate.
+     * <p>This field follows Kubernetes annotations' namespacing, limits, and
+     * rules.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 3;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -528,6 +576,32 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->max_instance_request_concurrency = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enable session affinity.
+     *
+     * Generated from protobuf field <code>bool session_affinity = 19;</code>
+     * @return bool
+     */
+    public function getSessionAffinity()
+    {
+        return $this->session_affinity;
+    }
+
+    /**
+     * Enable session affinity.
+     *
+     * Generated from protobuf field <code>bool session_affinity = 19;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSessionAffinity($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->session_affinity = $var;
 
         return $this;
     }

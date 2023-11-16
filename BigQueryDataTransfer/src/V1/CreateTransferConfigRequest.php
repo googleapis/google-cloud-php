@@ -87,6 +87,26 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
     private $service_account_name = '';
 
     /**
+     * @param string                                                $parent         Required. The BigQuery project id where the transfer configuration should
+     *                                                                              be created. Must be in the format
+     *                                                                              projects/{project_id}/locations/{location_id} or projects/{project_id}. If
+     *                                                                              specified location and location of the destination bigquery dataset do not
+     *                                                                              match - the request will fail. Please see
+     *                                                                              {@see DataTransferServiceClient::projectName()} for help formatting this field.
+     * @param \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig $transferConfig Required. Data transfer configuration to create.
+     *
+     * @return \Google\Cloud\BigQuery\DataTransfer\V1\CreateTransferConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig $transferConfig): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setTransferConfig($transferConfig);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

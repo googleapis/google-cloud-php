@@ -38,6 +38,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Bigtable\Admin\V2\Backup;
 use Google\Cloud\Bigtable\Admin\V2\CheckConsistencyRequest;
 use Google\Cloud\Bigtable\Admin\V2\CheckConsistencyResponse;
+use Google\Cloud\Bigtable\Admin\V2\CopyBackupRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateBackupMetadata;
 use Google\Cloud\Bigtable\Admin\V2\CreateBackupRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateTableFromSnapshotRequest;
@@ -79,6 +80,7 @@ use Google\LongRunning\Operation;
 use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
+use Google\Protobuf\Timestamp;
 
 /**
  * Service Description: Service for creating, configuring, and deleting Cloud Bigtable tables.
@@ -105,6 +107,10 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Bigtable\Admin\V2\Client\BigtableTableAdminClient} to use the new
+ * surface.
  */
 class BigtableTableAdminGapicClient
 {
@@ -135,6 +141,8 @@ class BigtableTableAdminGapicClient
     private static $backupNameTemplate;
 
     private static $clusterNameTemplate;
+
+    private static $cryptoKeyVersionNameTemplate;
 
     private static $instanceNameTemplate;
 
@@ -183,6 +191,15 @@ class BigtableTableAdminGapicClient
         return self::$clusterNameTemplate;
     }
 
+    private static function getCryptoKeyVersionNameTemplate()
+    {
+        if (self::$cryptoKeyVersionNameTemplate == null) {
+            self::$cryptoKeyVersionNameTemplate = new PathTemplate('projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}');
+        }
+
+        return self::$cryptoKeyVersionNameTemplate;
+    }
+
     private static function getInstanceNameTemplate()
     {
         if (self::$instanceNameTemplate == null) {
@@ -216,6 +233,7 @@ class BigtableTableAdminGapicClient
             self::$pathTemplateMap = [
                 'backup' => self::getBackupNameTemplate(),
                 'cluster' => self::getClusterNameTemplate(),
+                'cryptoKeyVersion' => self::getCryptoKeyVersionNameTemplate(),
                 'instance' => self::getInstanceNameTemplate(),
                 'snapshot' => self::getSnapshotNameTemplate(),
                 'table' => self::getTableNameTemplate(),
@@ -262,6 +280,29 @@ class BigtableTableAdminGapicClient
             'project' => $project,
             'instance' => $instance,
             'cluster' => $cluster,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * crypto_key_version resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     * @param string $cryptoKeyVersion
+     *
+     * @return string The formatted crypto_key_version resource.
+     */
+    public static function cryptoKeyVersionName($project, $location, $keyRing, $cryptoKey, $cryptoKeyVersion)
+    {
+        return self::getCryptoKeyVersionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+            'crypto_key_version' => $cryptoKeyVersion,
         ]);
     }
 
@@ -328,6 +369,7 @@ class BigtableTableAdminGapicClient
      * Template: Pattern
      * - backup: projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}
      * - cluster: projects/{project}/instances/{instance}/clusters/{cluster}
+     * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
      * - instance: projects/{project}/instances/{instance}
      * - snapshot: projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}
      * - table: projects/{project}/instances/{instance}/tables/{table}
@@ -474,8 +516,8 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $name             Required. The unique name of the Table for which to check replication consistency.
-     *                                 Values are of the form
+     * @param string $name             Required. The unique name of the Table for which to check replication
+     *                                 consistency. Values are of the form
      *                                 `projects/{project}/instances/{instance}/tables/{table}`.
      * @param string $consistencyToken Required. The token created using GenerateConsistencyToken for the Table.
      * @param array  $optionalArgs     {
@@ -504,14 +546,105 @@ class BigtableTableAdminGapicClient
     }
 
     /**
+     * Copy a Cloud Bigtable backup to a new backup in the destination cluster
+     * located in the destination instance and project.
+     *
+     * Sample code:
+     * ```
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
+     * try {
+     *     $formattedParent = $bigtableTableAdminClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
+     *     $backupId = 'backup_id';
+     *     $formattedSourceBackup = $bigtableTableAdminClient->backupName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[BACKUP]');
+     *     $expireTime = new Timestamp();
+     *     $operationResponse = $bigtableTableAdminClient->copyBackup($formattedParent, $backupId, $formattedSourceBackup, $expireTime);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $bigtableTableAdminClient->copyBackup($formattedParent, $backupId, $formattedSourceBackup, $expireTime);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $bigtableTableAdminClient->resumeOperation($operationName, 'copyBackup');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $bigtableTableAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string    $parent       Required. The name of the destination cluster that will contain the backup
+     *                                copy. The cluster must already exists. Values are of the form:
+     *                                `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     * @param string    $backupId     Required. The id of the new backup. The `backup_id` along with `parent`
+     *                                are combined as {parent}/backups/{backup_id} to create the full backup
+     *                                name, of the form:
+     *                                `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup_id}`.
+     *                                This string must be between 1 and 50 characters in length and match the
+     *                                regex [_a-zA-Z0-9][-_.a-zA-Z0-9]*.
+     * @param string    $sourceBackup Required. The source backup to be copied from.
+     *                                The source backup needs to be in READY state for it to be copied.
+     *                                Copying a copied backup is not allowed.
+     *                                Once CopyBackup is in progress, the source backup cannot be deleted or
+     *                                cleaned up on expiration until CopyBackup is finished.
+     *                                Values are of the form:
+     *                                `projects/<project>/instances/<instance>/clusters/<cluster>/backups/<backup>`.
+     * @param Timestamp $expireTime   Required. Required. The expiration time of the copied backup with
+     *                                microsecond granularity that must be at least 6 hours and at most 30 days
+     *                                from the time the request is received. Once the `expire_time` has
+     *                                passed, Cloud Bigtable will delete the backup and free the resources used
+     *                                by the backup.
+     * @param array     $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function copyBackup($parent, $backupId, $sourceBackup, $expireTime, array $optionalArgs = [])
+    {
+        $request = new CopyBackupRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setBackupId($backupId);
+        $request->setSourceBackup($sourceBackup);
+        $request->setExpireTime($expireTime);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('CopyBackup', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
      * Starts creating a new Cloud Bigtable Backup.  The returned backup
      * [long-running operation][google.longrunning.Operation] can be used to
      * track creation of the backup. The
      * [metadata][google.longrunning.Operation.metadata] field type is
      * [CreateBackupMetadata][google.bigtable.admin.v2.CreateBackupMetadata]. The
      * [response][google.longrunning.Operation.response] field type is
-     * [Backup][google.bigtable.admin.v2.Backup], if successful. Cancelling the returned operation will stop the
-     * creation and delete the backup.
+     * [Backup][google.bigtable.admin.v2.Backup], if successful. Cancelling the
+     * returned operation will stop the creation and delete the backup.
      *
      * Sample code:
      * ```
@@ -607,8 +740,8 @@ class BigtableTableAdminGapicClient
      *
      * @param string $parent       Required. The unique name of the instance in which to create the table.
      *                             Values are of the form `projects/{project}/instances/{instance}`.
-     * @param string $tableId      Required. The name by which the new table should be referred to within the parent
-     *                             instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
+     * @param string $tableId      Required. The name by which the new table should be referred to within the
+     *                             parent instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
      *                             Maximum 50 characters.
      * @param Table  $table        Required. The Table to create.
      * @param array  $optionalArgs {
@@ -708,11 +841,11 @@ class BigtableTableAdminGapicClient
      *
      * @param string $parent         Required. The unique name of the instance in which to create the table.
      *                               Values are of the form `projects/{project}/instances/{instance}`.
-     * @param string $tableId        Required. The name by which the new table should be referred to within the parent
-     *                               instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
-     * @param string $sourceSnapshot Required. The unique name of the snapshot from which to restore the table. The
-     *                               snapshot and the table must be in the same instance.
-     *                               Values are of the form
+     * @param string $tableId        Required. The name by which the new table should be referred to within the
+     *                               parent instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
+     * @param string $sourceSnapshot Required. The unique name of the snapshot from which to restore the table.
+     *                               The snapshot and the table must be in the same instance. Values are of the
+     *                               form
      *                               `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}`.
      * @param array  $optionalArgs   {
      *     Optional.
@@ -934,8 +1067,8 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The unique name of the Table for which to create a consistency token.
-     *                             Values are of the form
+     * @param string $name         Required. The unique name of the Table for which to create a consistency
+     *                             token. Values are of the form
      *                             `projects/{project}/instances/{instance}/tables/{table}`.
      * @param array  $optionalArgs {
      *     Optional.
@@ -1190,6 +1323,7 @@ class BigtableTableAdminGapicClient
      *           roughly synonymous with equality. Filter rules are case insensitive.
      *
      *           The fields eligible for filtering are:
+     *
      *           * `name`
      *           * `source_table`
      *           * `state`
@@ -1216,10 +1350,12 @@ class BigtableTableAdminGapicClient
      *           * `size_bytes > 10000000000` --> The backup's size is greater than 10GB
      *     @type string $orderBy
      *           An expression for specifying the sort order of the results of the request.
-     *           The string value should specify one or more fields in [Backup][google.bigtable.admin.v2.Backup]. The full
-     *           syntax is described at https://aip.dev/132#ordering.
+     *           The string value should specify one or more fields in
+     *           [Backup][google.bigtable.admin.v2.Backup]. The full syntax is described at
+     *           https://aip.dev/132#ordering.
      *
      *           Fields supported are:
+     *
      *           * name
      *           * source_table
      *           * expire_time
@@ -1313,8 +1449,8 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The unique name of the cluster for which snapshots should be listed.
-     *                             Values are of the form
+     * @param string $parent       Required. The unique name of the cluster for which snapshots should be
+     *                             listed. Values are of the form
      *                             `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *                             Use `{cluster} = '-'` to list snapshots for all clusters in an instance,
      *                             e.g., `projects/{project}/instances/{instance}/clusters/-`.
@@ -1385,14 +1521,14 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The unique name of the instance for which tables should be listed.
-     *                             Values are of the form `projects/{project}/instances/{instance}`.
+     * @param string $parent       Required. The unique name of the instance for which tables should be
+     *                             listed. Values are of the form `projects/{project}/instances/{instance}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type int $view
      *           The view to be applied to the returned tables' fields.
-     *           Only NAME_ONLY view (default) and REPLICATION_VIEW are supported.
+     *           NAME_ONLY view (default) and REPLICATION_VIEW are supported.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Table\View}
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
@@ -1457,10 +1593,10 @@ class BigtableTableAdminGapicClient
      * @param string         $name          Required. The unique name of the table whose families should be modified.
      *                                      Values are of the form
      *                                      `projects/{project}/instances/{instance}/tables/{table}`.
-     * @param Modification[] $modifications Required. Modifications to be atomically applied to the specified table's families.
-     *                                      Entries are applied in order, meaning that earlier modifications can be
-     *                                      masked by later ones (in the case of repeated updates to the same family,
-     *                                      for example).
+     * @param Modification[] $modifications Required. Modifications to be atomically applied to the specified table's
+     *                                      families. Entries are applied in order, meaning that earlier modifications
+     *                                      can be masked by later ones (in the case of repeated updates to the same
+     *                                      family, for example).
      * @param array          $optionalArgs  {
      *     Optional.
      *
@@ -1487,8 +1623,7 @@ class BigtableTableAdminGapicClient
     }
 
     /**
-     * Create a new table by restoring from a completed backup. The new table
-     * must be in the same project as the instance containing the backup.  The
+     * Create a new table by restoring from a completed backup.  The
      * returned table [long-running operation][google.longrunning.Operation] can
      * be used to track the progress of the operation, and to cancel it.  The
      * [metadata][google.longrunning.Operation.metadata] field type is
@@ -1534,8 +1669,7 @@ class BigtableTableAdminGapicClient
      * ```
      *
      * @param string $parent       Required. The name of the instance in which to create the restored
-     *                             table. This instance must be in the same project as the source backup.
-     *                             Values are of the form `projects/<project>/instances/<instance>`.
+     *                             table. Values are of the form `projects/<project>/instances/<instance>`.
      * @param string $tableId      Required. The id of the table to create and restore to. This
      *                             table must not already exist. The `table_id` appended to
      *                             `parent` forms the full table name of the form
@@ -1683,9 +1817,9 @@ class BigtableTableAdminGapicClient
      * @param string $cluster      Required. The name of the cluster where the snapshot will be created in.
      *                             Values are of the form
      *                             `projects/{project}/instances/{instance}/clusters/{cluster}`.
-     * @param string $snapshotId   Required. The ID by which the new snapshot should be referred to within the parent
-     *                             cluster, e.g., `mysnapshot` of the form: `[_a-zA-Z0-9][-_.a-zA-Z0-9]*`
-     *                             rather than
+     * @param string $snapshotId   Required. The ID by which the new snapshot should be referred to within the
+     *                             parent cluster, e.g., `mysnapshot` of the form:
+     *                             `[_a-zA-Z0-9][-_.a-zA-Z0-9]*` rather than
      *                             `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/mysnapshot`.
      * @param array  $optionalArgs {
      *     Optional.
@@ -1729,7 +1863,8 @@ class BigtableTableAdminGapicClient
     }
 
     /**
-     * Returns permissions that the caller has on the specified Table or Backup resource.
+     * Returns permissions that the caller has on the specified Table or Backup
+     * resource.
      *
      * Sample code:
      * ```
@@ -1858,6 +1993,7 @@ class BigtableTableAdminGapicClient
      * @param Backup    $backup       Required. The backup to update. `backup.name`, and the fields to be updated
      *                                as specified by `update_mask` are required. Other fields are ignored.
      *                                Update is only supported for the following fields:
+     *
      *                                * `backup.expire_time`.
      * @param FieldMask $updateMask   Required. A mask specifying which fields (e.g. `expire_time`) in the
      *                                Backup resource should be updated. This mask is relative to the Backup
@@ -1932,11 +2068,15 @@ class BigtableTableAdminGapicClient
      * @param Table     $table        Required. The table to update.
      *                                The table's `name` field is used to identify the table to update.
      * @param FieldMask $updateMask   Required. The list of fields to update.
-     *                                A mask specifying which fields (e.g. `deletion_protection`) in the `table`
+     *                                A mask specifying which fields (e.g. `change_stream_config`) in the `table`
      *                                field should be updated. This mask is relative to the `table` field, not to
      *                                the request message. The wildcard (*) path is currently not supported.
-     *                                Currently UpdateTable is only supported for the following field:
+     *                                Currently UpdateTable is only supported for the following fields:
+     *
+     *                                * `change_stream_config`
+     *                                * `change_stream_config.retention_period`
      *                                * `deletion_protection`
+     *
      *                                If `column_families` is set in `update_mask`, it will return an
      *                                UNIMPLEMENTED error.
      * @param array     $optionalArgs {

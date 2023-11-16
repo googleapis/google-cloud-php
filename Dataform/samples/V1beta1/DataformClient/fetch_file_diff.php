@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataform_v1beta1_generated_Dataform_FetchFileDiff_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dataform\V1beta1\DataformClient;
+use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
+use Google\Cloud\Dataform\V1beta1\FetchFileDiffRequest;
 use Google\Cloud\Dataform\V1beta1\FetchFileDiffResponse;
 
 /**
@@ -32,17 +33,23 @@ use Google\Cloud\Dataform\V1beta1\FetchFileDiffResponse;
  *
  * @param string $formattedWorkspace The workspace's name. Please see
  *                                   {@see DataformClient::workspaceName()} for help formatting this field.
- * @param string $path               The file's full path including filename, relative to the workspace root.
+ * @param string $path               The file's full path including filename, relative to the
+ *                                   workspace root.
  */
 function fetch_file_diff_sample(string $formattedWorkspace, string $path): void
 {
     // Create a client.
     $dataformClient = new DataformClient();
 
+    // Prepare the request message.
+    $request = (new FetchFileDiffRequest())
+        ->setWorkspace($formattedWorkspace)
+        ->setPath($path);
+
     // Call the API and handle any network failures.
     try {
         /** @var FetchFileDiffResponse $response */
-        $response = $dataformClient->fetchFileDiff($formattedWorkspace, $path);
+        $response = $dataformClient->fetchFileDiff($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

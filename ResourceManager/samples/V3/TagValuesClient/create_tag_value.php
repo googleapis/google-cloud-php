@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudresourcemanager_v3_generated_TagValues_CreateTagValue_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\ResourceManager\V3\Client\TagValuesClient;
+use Google\Cloud\ResourceManager\V3\CreateTagValueRequest;
 use Google\Cloud\ResourceManager\V3\TagValue;
-use Google\Cloud\ResourceManager\V3\TagValuesClient;
 use Google\Rpc\Status;
 
 /**
@@ -47,14 +48,16 @@ function create_tag_value_sample(string $tagValueShortName): void
     // Create a client.
     $tagValuesClient = new TagValuesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $tagValue = (new TagValue())
         ->setShortName($tagValueShortName);
+    $request = (new CreateTagValueRequest())
+        ->setTagValue($tagValue);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $tagValuesClient->createTagValue($tagValue);
+        $response = $tagValuesClient->createTagValue($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

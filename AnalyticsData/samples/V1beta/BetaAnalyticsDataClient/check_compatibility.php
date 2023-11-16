@@ -23,8 +23,9 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsdata_v1beta_generated_BetaAnalyticsData_CheckCompatibility_sync]
-use Google\Analytics\Data\V1beta\BetaAnalyticsDataClient;
+use Google\Analytics\Data\V1beta\CheckCompatibilityRequest;
 use Google\Analytics\Data\V1beta\CheckCompatibilityResponse;
+use Google\Analytics\Data\V1beta\Client\BetaAnalyticsDataClient;
 use Google\ApiCore\ApiException;
 
 /**
@@ -50,10 +51,13 @@ function check_compatibility_sample(): void
     // Create a client.
     $betaAnalyticsDataClient = new BetaAnalyticsDataClient();
 
+    // Prepare the request message.
+    $request = new CheckCompatibilityRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var CheckCompatibilityResponse $response */
-        $response = $betaAnalyticsDataClient->checkCompatibility();
+        $response = $betaAnalyticsDataClient->checkCompatibility($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

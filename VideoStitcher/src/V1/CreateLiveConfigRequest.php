@@ -52,6 +52,25 @@ class CreateLiveConfigRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string                                     $parent       Required. The project in which the live config should be created, in
+     *                                                                 the form of `projects/{project_number}/locations/{location}`. Please see
+     *                                                                 {@see VideoStitcherServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Video\Stitcher\V1\LiveConfig $liveConfig   Required. The live config resource to create.
+     * @param string                                     $liveConfigId Required. The unique identifier ID to use for the live config.
+     *
+     * @return \Google\Cloud\Video\Stitcher\V1\CreateLiveConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Video\Stitcher\V1\LiveConfig $liveConfig, string $liveConfigId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setLiveConfig($liveConfig)
+            ->setLiveConfigId($liveConfigId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

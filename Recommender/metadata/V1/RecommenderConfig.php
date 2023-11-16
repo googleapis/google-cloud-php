@@ -20,8 +20,8 @@ class RecommenderConfig
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ù
-4google/cloud/recommender/v1/recommender_config.protogoogle.cloud.recommender.v1google/api/resource.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"Ó
+Ó
+4google/cloud/recommender/v1/recommender_config.protogoogle.cloud.recommender.v1google/api/resource.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"­
 RecommenderConfig
 name (	_
 recommender_generation_config (28.google.cloud.recommender.v1.RecommenderGenerationConfig
@@ -32,8 +32,8 @@ class RecommenderConfig
 display_name (	2
 AnnotationsEntry
 key (	
-value (	:8:ÒêAÎ
-,recommender.googleapis.com/RecommenderConfigIprojects/{project}/locations/{location}/recommenders/{recommender}/configSorganizations/{organization}/locations/{location}/recommenders/{recommender}/config"F
+value (	:8:¬êA¨
+,recommender.googleapis.com/RecommenderConfigIprojects/{project}/locations/{location}/recommenders/{recommender}/configSorganizations/{organization}/locations/{location}/recommenders/{recommender}/configXbillingAccounts/{billing_account}/locations/{location}/recommenders/{recommender}/config"F
 RecommenderGenerationConfig\'
 params (2.google.protobuf.StructB£
 com.google.cloud.recommender.v1BRecommenderConfigProtoPZAcloud.google.com/go/recommender/apiv1/recommenderpb;recommenderpb¢CRECªGoogle.Cloud.Recommender.V1bproto3'

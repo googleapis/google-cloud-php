@@ -47,6 +47,25 @@ class SimulateMaintenanceEventNodeGroupRequest extends \Google\Protobuf\Internal
     private $zone = '';
 
     /**
+     * @param string                                                             $project                                           Project ID for this request.
+     * @param string                                                             $zone                                              The name of the zone for this request.
+     * @param string                                                             $nodeGroup                                         Name of the NodeGroup resource whose nodes will go under maintenance simulation.
+     * @param \Google\Cloud\Compute\V1\NodeGroupsSimulateMaintenanceEventRequest $nodeGroupsSimulateMaintenanceEventRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\SimulateMaintenanceEventNodeGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $nodeGroup, \Google\Cloud\Compute\V1\NodeGroupsSimulateMaintenanceEventRequest $nodeGroupsSimulateMaintenanceEventRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setNodeGroup($nodeGroup)
+            ->setNodeGroupsSimulateMaintenanceEventRequestResource($nodeGroupsSimulateMaintenanceEventRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A new persistent disk or a local ssd.
  * A VM can only have one local SSD setting but multiple local SSD partitions.
- * https://cloud.google.com/compute/docs/disks#pdspecs.
+ * See https://cloud.google.com/compute/docs/disks#pdspecs and
  * https://cloud.google.com/compute/docs/disks#localssds.
  *
  * Generated from protobuf message <code>google.cloud.batch.v1.AllocationPolicy.Disk</code>
@@ -29,14 +29,22 @@ class Disk extends \Google\Protobuf\Internal\Message
     private $type = '';
     /**
      * Disk size in GB.
-     * For persistent disk, this field is ignored if `data_source` is `image` or
-     * `snapshot`.
-     * For local SSD, size_gb should be a multiple of 375GB,
-     * otherwise, the final size will be the next greater multiple of 375 GB.
-     * For boot disk, Batch will calculate the boot disk size based on source
+     * **Non-Boot Disk**:
+     * If the `type` specifies a persistent disk, this field
+     * is ignored if `data_source` is set as `image` or `snapshot`.
+     * If the `type` specifies a local SSD, this field should be a multiple of
+     * 375 GB, otherwise, the final size will be the next greater multiple of
+     * 375 GB.
+     * **Boot Disk**:
+     * Batch will calculate the boot disk size based on source
      * image and task requirements if you do not speicify the size.
-     * If both this field and the boot_disk_mib field in task spec's
-     * compute_resource are defined, Batch will only honor this field.
+     * If both this field and the `boot_disk_mib` field in task spec's
+     * `compute_resource` are defined, Batch will only honor this field.
+     * Also, this field should be no smaller than the source disk's
+     * size when the `data_source` is set as `snapshot` or `image`.
+     * For example, if you set an image as the `data_source` field and the
+     * image's default disk size 30 GB, you can only use this field to make the
+     * disk larger or equal to 30 GB.
      *
      * Generated from protobuf field <code>int64 size_gb = 2;</code>
      */
@@ -44,7 +52,9 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * Local SSDs are available through both "SCSI" and "NVMe" interfaces.
      * If not indicated, "NVMe" will be the default one for local ssds.
-     * We only support "SCSI" for persistent disks now.
+     * This field is ignored for persistent disks as the interface is chosen
+     * automatically. See
+     * https://cloud.google.com/compute/docs/disks/persistent-disks#choose_an_interface.
      *
      * Generated from protobuf field <code>string disk_interface = 6;</code>
      */
@@ -58,19 +68,22 @@ class Disk extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $image
-     *           Name of a public or custom image used as the data source.
+     *           URL for a VM image to use as the data source for this disk.
      *           For example, the following are all valid URLs:
-     *           (1) Specify the image by its family name:
+     *           * Specify the image by its family name:
      *           projects/{project}/global/images/family/{image_family}
-     *           (2) Specify the image version:
+     *           * Specify the image version:
      *           projects/{project}/global/images/{image_version}
      *           You can also use Batch customized image in short names.
      *           The following image values are supported for a boot disk:
-     *           "batch-debian": use Batch Debian images.
-     *           "batch-centos": use Batch CentOS images.
-     *           "batch-cos": use Batch Container-Optimized images.
+     *           * `batch-debian`: use Batch Debian images.
+     *           * `batch-centos`: use Batch CentOS images.
+     *           * `batch-cos`: use Batch Container-Optimized images.
+     *           * `batch-hpc-centos`: use Batch HPC CentOS images.
+     *           * `batch-hpc-rocky`: use Batch HPC Rocky Linux images.
      *     @type string $snapshot
      *           Name of a snapshot used as the data source.
+     *           Snapshot is not supported as boot disk now.
      *     @type string $type
      *           Disk type as shown in `gcloud compute disk-types list`.
      *           For example, local SSD uses type "local-ssd".
@@ -78,18 +91,28 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           or "pd-standard".
      *     @type int|string $size_gb
      *           Disk size in GB.
-     *           For persistent disk, this field is ignored if `data_source` is `image` or
-     *           `snapshot`.
-     *           For local SSD, size_gb should be a multiple of 375GB,
-     *           otherwise, the final size will be the next greater multiple of 375 GB.
-     *           For boot disk, Batch will calculate the boot disk size based on source
+     *           **Non-Boot Disk**:
+     *           If the `type` specifies a persistent disk, this field
+     *           is ignored if `data_source` is set as `image` or `snapshot`.
+     *           If the `type` specifies a local SSD, this field should be a multiple of
+     *           375 GB, otherwise, the final size will be the next greater multiple of
+     *           375 GB.
+     *           **Boot Disk**:
+     *           Batch will calculate the boot disk size based on source
      *           image and task requirements if you do not speicify the size.
-     *           If both this field and the boot_disk_mib field in task spec's
-     *           compute_resource are defined, Batch will only honor this field.
+     *           If both this field and the `boot_disk_mib` field in task spec's
+     *           `compute_resource` are defined, Batch will only honor this field.
+     *           Also, this field should be no smaller than the source disk's
+     *           size when the `data_source` is set as `snapshot` or `image`.
+     *           For example, if you set an image as the `data_source` field and the
+     *           image's default disk size 30 GB, you can only use this field to make the
+     *           disk larger or equal to 30 GB.
      *     @type string $disk_interface
      *           Local SSDs are available through both "SCSI" and "NVMe" interfaces.
      *           If not indicated, "NVMe" will be the default one for local ssds.
-     *           We only support "SCSI" for persistent disks now.
+     *           This field is ignored for persistent disks as the interface is chosen
+     *           automatically. See
+     *           https://cloud.google.com/compute/docs/disks/persistent-disks#choose_an_interface.
      * }
      */
     public function __construct($data = NULL) {
@@ -98,17 +121,19 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of a public or custom image used as the data source.
+     * URL for a VM image to use as the data source for this disk.
      * For example, the following are all valid URLs:
-     * (1) Specify the image by its family name:
+     * * Specify the image by its family name:
      * projects/{project}/global/images/family/{image_family}
-     * (2) Specify the image version:
+     * * Specify the image version:
      * projects/{project}/global/images/{image_version}
      * You can also use Batch customized image in short names.
      * The following image values are supported for a boot disk:
-     * "batch-debian": use Batch Debian images.
-     * "batch-centos": use Batch CentOS images.
-     * "batch-cos": use Batch Container-Optimized images.
+     * * `batch-debian`: use Batch Debian images.
+     * * `batch-centos`: use Batch CentOS images.
+     * * `batch-cos`: use Batch Container-Optimized images.
+     * * `batch-hpc-centos`: use Batch HPC CentOS images.
+     * * `batch-hpc-rocky`: use Batch HPC Rocky Linux images.
      *
      * Generated from protobuf field <code>string image = 4;</code>
      * @return string
@@ -124,17 +149,19 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of a public or custom image used as the data source.
+     * URL for a VM image to use as the data source for this disk.
      * For example, the following are all valid URLs:
-     * (1) Specify the image by its family name:
+     * * Specify the image by its family name:
      * projects/{project}/global/images/family/{image_family}
-     * (2) Specify the image version:
+     * * Specify the image version:
      * projects/{project}/global/images/{image_version}
      * You can also use Batch customized image in short names.
      * The following image values are supported for a boot disk:
-     * "batch-debian": use Batch Debian images.
-     * "batch-centos": use Batch CentOS images.
-     * "batch-cos": use Batch Container-Optimized images.
+     * * `batch-debian`: use Batch Debian images.
+     * * `batch-centos`: use Batch CentOS images.
+     * * `batch-cos`: use Batch Container-Optimized images.
+     * * `batch-hpc-centos`: use Batch HPC CentOS images.
+     * * `batch-hpc-rocky`: use Batch HPC Rocky Linux images.
      *
      * Generated from protobuf field <code>string image = 4;</code>
      * @param string $var
@@ -150,6 +177,7 @@ class Disk extends \Google\Protobuf\Internal\Message
 
     /**
      * Name of a snapshot used as the data source.
+     * Snapshot is not supported as boot disk now.
      *
      * Generated from protobuf field <code>string snapshot = 5;</code>
      * @return string
@@ -166,6 +194,7 @@ class Disk extends \Google\Protobuf\Internal\Message
 
     /**
      * Name of a snapshot used as the data source.
+     * Snapshot is not supported as boot disk now.
      *
      * Generated from protobuf field <code>string snapshot = 5;</code>
      * @param string $var
@@ -213,14 +242,22 @@ class Disk extends \Google\Protobuf\Internal\Message
 
     /**
      * Disk size in GB.
-     * For persistent disk, this field is ignored if `data_source` is `image` or
-     * `snapshot`.
-     * For local SSD, size_gb should be a multiple of 375GB,
-     * otherwise, the final size will be the next greater multiple of 375 GB.
-     * For boot disk, Batch will calculate the boot disk size based on source
+     * **Non-Boot Disk**:
+     * If the `type` specifies a persistent disk, this field
+     * is ignored if `data_source` is set as `image` or `snapshot`.
+     * If the `type` specifies a local SSD, this field should be a multiple of
+     * 375 GB, otherwise, the final size will be the next greater multiple of
+     * 375 GB.
+     * **Boot Disk**:
+     * Batch will calculate the boot disk size based on source
      * image and task requirements if you do not speicify the size.
-     * If both this field and the boot_disk_mib field in task spec's
-     * compute_resource are defined, Batch will only honor this field.
+     * If both this field and the `boot_disk_mib` field in task spec's
+     * `compute_resource` are defined, Batch will only honor this field.
+     * Also, this field should be no smaller than the source disk's
+     * size when the `data_source` is set as `snapshot` or `image`.
+     * For example, if you set an image as the `data_source` field and the
+     * image's default disk size 30 GB, you can only use this field to make the
+     * disk larger or equal to 30 GB.
      *
      * Generated from protobuf field <code>int64 size_gb = 2;</code>
      * @return int|string
@@ -232,14 +269,22 @@ class Disk extends \Google\Protobuf\Internal\Message
 
     /**
      * Disk size in GB.
-     * For persistent disk, this field is ignored if `data_source` is `image` or
-     * `snapshot`.
-     * For local SSD, size_gb should be a multiple of 375GB,
-     * otherwise, the final size will be the next greater multiple of 375 GB.
-     * For boot disk, Batch will calculate the boot disk size based on source
+     * **Non-Boot Disk**:
+     * If the `type` specifies a persistent disk, this field
+     * is ignored if `data_source` is set as `image` or `snapshot`.
+     * If the `type` specifies a local SSD, this field should be a multiple of
+     * 375 GB, otherwise, the final size will be the next greater multiple of
+     * 375 GB.
+     * **Boot Disk**:
+     * Batch will calculate the boot disk size based on source
      * image and task requirements if you do not speicify the size.
-     * If both this field and the boot_disk_mib field in task spec's
-     * compute_resource are defined, Batch will only honor this field.
+     * If both this field and the `boot_disk_mib` field in task spec's
+     * `compute_resource` are defined, Batch will only honor this field.
+     * Also, this field should be no smaller than the source disk's
+     * size when the `data_source` is set as `snapshot` or `image`.
+     * For example, if you set an image as the `data_source` field and the
+     * image's default disk size 30 GB, you can only use this field to make the
+     * disk larger or equal to 30 GB.
      *
      * Generated from protobuf field <code>int64 size_gb = 2;</code>
      * @param int|string $var
@@ -256,7 +301,9 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * Local SSDs are available through both "SCSI" and "NVMe" interfaces.
      * If not indicated, "NVMe" will be the default one for local ssds.
-     * We only support "SCSI" for persistent disks now.
+     * This field is ignored for persistent disks as the interface is chosen
+     * automatically. See
+     * https://cloud.google.com/compute/docs/disks/persistent-disks#choose_an_interface.
      *
      * Generated from protobuf field <code>string disk_interface = 6;</code>
      * @return string
@@ -269,7 +316,9 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * Local SSDs are available through both "SCSI" and "NVMe" interfaces.
      * If not indicated, "NVMe" will be the default one for local ssds.
-     * We only support "SCSI" for persistent disks now.
+     * This field is ignored for persistent disks as the interface is chosen
+     * automatically. See
+     * https://cloud.google.com/compute/docs/disks/persistent-disks#choose_an_interface.
      *
      * Generated from protobuf field <code>string disk_interface = 6;</code>
      * @param string $var

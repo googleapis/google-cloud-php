@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START containeranalysis_v1_generated_Grafeas_ListNoteOccurrences_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Grafeas\V1\GrafeasClient;
+use Grafeas\V1\Client\GrafeasClient;
+use Grafeas\V1\ListNoteOccurrencesRequest;
 use Grafeas\V1\Occurrence;
 
 /**
@@ -42,10 +43,14 @@ function list_note_occurrences_sample(string $formattedName): void
     // Create a client.
     $grafeasClient = new GrafeasClient();
 
+    // Prepare the request message.
+    $request = (new ListNoteOccurrencesRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $grafeasClient->listNoteOccurrences($formattedName);
+        $response = $grafeasClient->listNoteOccurrences($request);
 
         /** @var Occurrence $element */
         foreach ($response as $element) {

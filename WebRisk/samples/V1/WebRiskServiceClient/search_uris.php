@@ -36,7 +36,8 @@ use Google\Cloud\WebRisk\V1\WebRiskServiceClient;
  * empty response will be returned.
  *
  * @param string $uri                The URI to be checked for matches.
- * @param int    $threatTypesElement The ThreatLists to search in. Multiple ThreatLists may be specified.
+ * @param int    $threatTypesElement The ThreatLists to search in. Multiple ThreatLists may be
+ *                                   specified.
  */
 function search_uris_sample(string $uri, int $threatTypesElement): void
 {

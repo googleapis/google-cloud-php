@@ -29,6 +29,28 @@ class GetAzureClusterRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the
+     *                     [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource to
+     *                     describe.
+     *
+     *                     `AzureCluster` names are formatted as
+     *                     `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
+     *
+     *                     See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *                     for more details on Google Cloud Platform resource names. Please see
+     *                     {@see AzureClustersClient::azureClusterName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\GetAzureClusterRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

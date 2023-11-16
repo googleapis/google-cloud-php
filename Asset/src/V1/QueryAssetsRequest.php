@@ -86,8 +86,8 @@ class QueryAssetsRequest extends \Google\Protobuf\Internal\Message
      *           or a folder number (such as "folders/123").
      *           Only assets belonging to the `parent` will be returned.
      *     @type string $statement
-     *           Optional. A SQL statement that's compatible with [BigQuery Standard
-     *           SQL](http://cloud/bigquery/docs/reference/standard-sql/enabling-standard-sql).
+     *           Optional. A SQL statement that's compatible with [BigQuery
+     *           SQL](https://cloud.google.com/bigquery/docs/introduction-sql).
      *     @type string $job_reference
      *           Optional. Reference to the query job, which is from the
      *           `QueryAssetsResponse` of previous `QueryAssets` call.
@@ -169,8 +169,8 @@ class QueryAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A SQL statement that's compatible with [BigQuery Standard
-     * SQL](http://cloud/bigquery/docs/reference/standard-sql/enabling-standard-sql).
+     * Optional. A SQL statement that's compatible with [BigQuery
+     * SQL](https://cloud.google.com/bigquery/docs/introduction-sql).
      *
      * Generated from protobuf field <code>string statement = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -186,8 +186,8 @@ class QueryAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A SQL statement that's compatible with [BigQuery Standard
-     * SQL](http://cloud/bigquery/docs/reference/standard-sql/enabling-standard-sql).
+     * Optional. A SQL statement that's compatible with [BigQuery
+     * SQL](https://cloud.google.com/bigquery/docs/introduction-sql).
      *
      * Generated from protobuf field <code>string statement = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

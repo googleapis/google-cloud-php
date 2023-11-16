@@ -89,6 +89,28 @@ return [
                     ],
                 ],
             ],
+            'Move' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/addresses/{address}/move',
+                'body' => 'region_addresses_move_request_resource',
+                'placeholders' => [
+                    'address' => [
+                        'getters' => [
+                            'getAddress',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
             'SetLabels' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/addresses/{resource}/setLabels',

@@ -48,6 +48,22 @@ class DeleteCustomClassRequest extends \Google\Protobuf\Internal\Message
     private $etag = '';
 
     /**
+     * @param string $name Required. The name of the CustomClass to delete.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/customClasses/{custom_class}`
+     *                     Please see {@see SpeechClient::customClassName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Speech\V2\DeleteCustomClassRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -47,6 +47,27 @@ class ListAwsNodePoolsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The parent `AwsCluster` which owns this collection of
+     *                       [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resources.
+     *
+     *                       `AwsCluster` names are formatted as
+     *                       `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
+     *
+     *                       See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *                       for more details on Google Cloud resource names. Please see
+     *                       {@see AwsClustersClient::awsClusterName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\ListAwsNodePoolsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

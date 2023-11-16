@@ -39,6 +39,29 @@ class CreateFunctionRequest extends \Google\Protobuf\Internal\Message
     private $function_id = '';
 
     /**
+     * @param string                                $parent     Required. The project and location in which the function should be created,
+     *                                                          specified in the format `projects/&#42;/locations/*`
+     *                                                          Please see {@see FunctionServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Functions\V2\PBFunction $function   Required. Function to be created.
+     * @param string                                $functionId The ID to use for the function, which will become the final component of
+     *                                                          the function's resource name.
+     *
+     *                                                          This value should be 4-63 characters, and valid characters
+     *                                                          are /[a-z][0-9]-/.
+     *
+     * @return \Google\Cloud\Functions\V2\CreateFunctionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Functions\V2\PBFunction $function, string $functionId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setFunction($function)
+            ->setFunctionId($functionId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

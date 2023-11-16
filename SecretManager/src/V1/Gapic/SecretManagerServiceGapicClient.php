@@ -86,6 +86,10 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient} to use the new
+ * surface.
  */
 class SecretManagerServiceGapicClient
 {
@@ -113,6 +117,8 @@ class SecretManagerServiceGapicClient
     private static $secretNameTemplate;
 
     private static $secretVersionNameTemplate;
+
+    private static $topicNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -162,6 +168,15 @@ class SecretManagerServiceGapicClient
         return self::$secretVersionNameTemplate;
     }
 
+    private static function getTopicNameTemplate()
+    {
+        if (self::$topicNameTemplate == null) {
+            self::$topicNameTemplate = new PathTemplate('projects/{project}/topics/{topic}');
+        }
+
+        return self::$topicNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -169,6 +184,7 @@ class SecretManagerServiceGapicClient
                 'project' => self::getProjectNameTemplate(),
                 'secret' => self::getSecretNameTemplate(),
                 'secretVersion' => self::getSecretVersionNameTemplate(),
+                'topic' => self::getTopicNameTemplate(),
             ];
         }
 
@@ -227,12 +243,30 @@ class SecretManagerServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a topic
+     * resource.
+     *
+     * @param string $project
+     * @param string $topic
+     *
+     * @return string The formatted topic resource.
+     */
+    public static function topicName($project, $topic)
+    {
+        return self::getTopicNameTemplate()->render([
+            'project' => $project,
+            'topic' => $topic,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - project: projects/{project}
      * - secret: projects/{project}/secrets/{secret}
      * - secretVersion: projects/{project}/secrets/{secret}/versions/{secret_version}
+     * - topic: projects/{project}/topics/{topic}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

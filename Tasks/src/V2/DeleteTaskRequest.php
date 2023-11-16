@@ -25,6 +25,21 @@ class DeleteTaskRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The task name. For example:
+     *                     `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
+     *                     Please see {@see CloudTasksClient::taskName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Tasks\V2\DeleteTaskRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

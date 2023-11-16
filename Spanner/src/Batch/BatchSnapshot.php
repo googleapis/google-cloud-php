@@ -29,11 +29,11 @@ use Google\Cloud\Spanner\TransactionalReadInterface;
  * Represents a Read-Only Batch Transaction in Cloud Spanner.
  *
  * Batch Snapshots can be shared with other servers or processes by casting the
- * object to a string, or by calling {@see Google\Cloud\Spanner\Batch\BatchSnapshot::serialize()}.
+ * object to a string, or by calling {@see \Google\Cloud\Spanner\Batch\BatchSnapshot::serialize()}.
  *
  * Please note that it is important that Snapshots are closed when they are no
  * longer needed. Closing a snapshot is accomplished by calling
- * {@see Google\Cloud\Spanner\Batch\BatchSnapshot::close()}. Snapshots should be
+ * {@see \Google\Cloud\Spanner\Batch\BatchSnapshot::close()}. Snapshots should be
  * closed only after all workers have finished processing. Closing a snapshot
  * before all workers have processed will result in call failures.
  *
@@ -125,6 +125,9 @@ class BatchSnapshot implements TransactionalReadInterface
      *           each partition may be smaller or larger than this size request.
      *           **Defaults to** `1000000000` (i.e. 1 GiB).
      *     @type string $index The name of an index on the table.
+     *     @type bool $dataBoostEnabled This is an optional parameter which can
+     *           be used for partition read and query to execute the request via
+     *           spanner independent compute resources.
      * }
      * @return ReadPartition[]
      */
@@ -176,7 +179,7 @@ class BatchSnapshot implements TransactionalReadInterface
      *           Generally, Google Cloud PHP can infer types. Explicit type
      *           definitions are only necessary for null parameter values.
      *           Accepted values are defined as constants on
-     *           {@see Google\Cloud\Spanner\ValueMapper}, and are as follows:
+     *           {@see \Google\Cloud\Spanner\ValueMapper}, and are as follows:
      *           `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
      *           `Database::TYPE_FLOAT64`, `Database::TYPE_TIMESTAMP`,
      *           `Database::TYPE_DATE`, `Database::TYPE_STRING`,
@@ -185,6 +188,9 @@ class BatchSnapshot implements TransactionalReadInterface
      *           the type should be given as an array, where the first element
      *           is `Database::TYPE_ARRAY` and the second element is the
      *           array type, for instance `[Database::TYPE_ARRAY, Database::TYPE_INT64]`.
+     *     @type bool $dataBoostEnabled This is an optional parameter which can
+     *           be used for partition read and query to execute the request via
+     *           spanner independent compute resources.
      * }
      * @return QueryPartition[]
      */
@@ -201,8 +207,8 @@ class BatchSnapshot implements TransactionalReadInterface
     /**
      * Read rows from a partition.
      *
-     * Partitions are created by calling {@see Google\Cloud\Spanner\Batch\BatchSnapshot::partitionRead()}
-     * or {@see Google\Cloud\Spanner\Batch\BatchSnapshot::partitionQuery()}.
+     * Partitions are created by calling {@see \Google\Cloud\Spanner\Batch\BatchSnapshot::partitionRead()}
+     * or {@see \Google\Cloud\Spanner\Batch\BatchSnapshot::partitionQuery()}.
      * Generally, those partitions will be distributed to worker processes, each
      * of which will call this method with the partition it was given.
      *

@@ -70,7 +70,8 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
     private $endpoints;
     /**
      * Defines the monitored resources used by this service. This is required
-     * by the [Service.monitoring][google.api.Service.monitoring] and [Service.logging][google.api.Service.logging] configurations.
+     * by the [Service.monitoring][google.api.Service.monitoring] and
+     * [Service.logging][google.api.Service.logging] configurations.
      *
      * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor monitored_resources = 25;</code>
      */
@@ -112,7 +113,8 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      *           of the endpoints.
      *     @type array<\Google\Api\MonitoredResourceDescriptor>|\Google\Protobuf\Internal\RepeatedField $monitored_resources
      *           Defines the monitored resources used by this service. This is required
-     *           by the [Service.monitoring][google.api.Service.monitoring] and [Service.logging][google.api.Service.logging] configurations.
+     *           by the [Service.monitoring][google.api.Service.monitoring] and
+     *           [Service.logging][google.api.Service.logging] configurations.
      *     @type \Google\Api\Monitoring $monitoring
      *           Monitoring configuration.
      *           This should not include the 'producer_destinations' field.
@@ -383,7 +385,8 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Defines the monitored resources used by this service. This is required
-     * by the [Service.monitoring][google.api.Service.monitoring] and [Service.logging][google.api.Service.logging] configurations.
+     * by the [Service.monitoring][google.api.Service.monitoring] and
+     * [Service.logging][google.api.Service.logging] configurations.
      *
      * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor monitored_resources = 25;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -395,7 +398,8 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Defines the monitored resources used by this service. This is required
-     * by the [Service.monitoring][google.api.Service.monitoring] and [Service.logging][google.api.Service.logging] configurations.
+     * by the [Service.monitoring][google.api.Service.monitoring] and
+     * [Service.logging][google.api.Service.logging] configurations.
      *
      * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor monitored_resources = 25;</code>
      * @param array<\Google\Api\MonitoredResourceDescriptor>|\Google\Protobuf\Internal\RepeatedField $var

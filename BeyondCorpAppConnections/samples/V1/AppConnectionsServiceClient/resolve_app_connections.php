@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START beyondcorp_v1_generated_AppConnectionsService_ResolveAppConnections_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\BeyondCorp\AppConnections\V1\AppConnectionsServiceClient;
+use Google\Cloud\BeyondCorp\AppConnections\V1\Client\AppConnectionsServiceClient;
+use Google\Cloud\BeyondCorp\AppConnections\V1\ResolveAppConnectionsRequest;
 use Google\Cloud\BeyondCorp\AppConnections\V1\ResolveAppConnectionsResponse\AppConnectionDetails;
 
 /**
@@ -48,13 +49,15 @@ function resolve_app_connections_sample(
     // Create a client.
     $appConnectionsServiceClient = new AppConnectionsServiceClient();
 
+    // Prepare the request message.
+    $request = (new ResolveAppConnectionsRequest())
+        ->setParent($formattedParent)
+        ->setAppConnectorId($formattedAppConnectorId);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $appConnectionsServiceClient->resolveAppConnections(
-            $formattedParent,
-            $formattedAppConnectorId
-        );
+        $response = $appConnectionsServiceClient->resolveAppConnections($request);
 
         /** @var AppConnectionDetails $element */
         foreach ($response as $element) {

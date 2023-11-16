@@ -25,6 +25,22 @@ class DeleteTagBindingRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the TagBinding. This is a String of the form:
+     *                     `tagBindings/{id}` (e.g.
+     *                     `tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Fprojects%2F123/tagValues/456`). Please see
+     *                     {@see TagBindingsClient::tagBindingName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\DeleteTagBindingRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

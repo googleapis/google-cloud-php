@@ -34,6 +34,27 @@ class DeleteSchemaRevisionRequest extends \Google\Protobuf\Internal\Message
     protected $revision_id = '';
 
     /**
+     * @param string $name       Required. The name of the schema revision to be deleted, with a revision ID
+     *                           explicitly included.
+     *
+     *                           Example: `projects/123/schemas/my-schema&#64;c7cfa2a8`
+     *                           Please see {@see SchemaServiceClient::schemaName()} for help formatting this field.
+     * @param string $revisionId Optional. This field is deprecated and should not be used for specifying
+     *                           the revision ID. The revision ID should be specified via the `name`
+     *                           parameter.
+     *
+     * @return \Google\Cloud\PubSub\V1\DeleteSchemaRevisionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, string $revisionId): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setRevisionId($revisionId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

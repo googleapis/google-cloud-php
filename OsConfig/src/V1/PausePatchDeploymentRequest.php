@@ -24,6 +24,21 @@ class PausePatchDeploymentRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The resource name of the patch deployment in the form
+     *                     `projects/&#42;/patchDeployments/*`. Please see
+     *                     {@see OsConfigServiceClient::patchDeploymentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\OsConfig\V1\PausePatchDeploymentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

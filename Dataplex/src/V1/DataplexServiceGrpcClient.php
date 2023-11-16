@@ -400,6 +400,21 @@ class DataplexServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Run an on demand execution of a Task.
+     * @param \Google\Cloud\Dataplex\V1\RunTaskRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function RunTask(\Google\Cloud\Dataplex\V1\RunTaskRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.dataplex.v1.DataplexService/RunTask',
+        $argument,
+        ['\Google\Cloud\Dataplex\V1\RunTaskResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Get job resource.
      * @param \Google\Cloud\Dataplex\V1\GetJobRequest $argument input argument
      * @param array $metadata metadata

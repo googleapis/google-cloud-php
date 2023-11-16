@@ -45,6 +45,22 @@ class ExportFeatureValuesRequest extends \Google\Protobuf\Internal\Message
     protected $mode;
 
     /**
+     * @param string $entityType Required. The resource name of the EntityType from which to export Feature
+     *                           values. Format:
+     *                           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+     *                           Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ExportFeatureValuesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $entityType): self
+    {
+        return (new self())
+            ->setEntityType($entityType);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

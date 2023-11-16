@@ -29,9 +29,10 @@ use Google\Cloud\GkeMultiCloud\V1\AzureAuthorization;
 use Google\Cloud\GkeMultiCloud\V1\AzureCluster;
 use Google\Cloud\GkeMultiCloud\V1\AzureClusterNetworking;
 use Google\Cloud\GkeMultiCloud\V1\AzureClusterUser;
-use Google\Cloud\GkeMultiCloud\V1\AzureClustersClient;
 use Google\Cloud\GkeMultiCloud\V1\AzureControlPlane;
 use Google\Cloud\GkeMultiCloud\V1\AzureSshConfig;
+use Google\Cloud\GkeMultiCloud\V1\Client\AzureClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\CreateAzureClusterRequest;
 use Google\Cloud\GkeMultiCloud\V1\Fleet;
 use Google\Rpc\Status;
 
@@ -126,7 +127,7 @@ function create_azure_cluster_sample(
     // Create a client.
     $azureClustersClient = new AzureClustersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $azureClusterNetworkingPodAddressCidrBlocks = [
         $azureClusterNetworkingPodAddressCidrBlocksElement,
     ];
@@ -156,15 +157,15 @@ function create_azure_cluster_sample(
         ->setControlPlane($azureClusterControlPlane)
         ->setAuthorization($azureClusterAuthorization)
         ->setFleet($azureClusterFleet);
+    $request = (new CreateAzureClusterRequest())
+        ->setParent($formattedParent)
+        ->setAzureCluster($azureCluster)
+        ->setAzureClusterId($azureClusterId);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $azureClustersClient->createAzureCluster(
-            $formattedParent,
-            $azureCluster,
-            $azureClusterId
-        );
+        $response = $azureClustersClient->createAzureCluster($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

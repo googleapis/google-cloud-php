@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START metastore_v1_generated_DataprocMetastore_UpdateMetadataImport_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Metastore\V1\DataprocMetastoreClient;
+use Google\Cloud\Metastore\V1\Client\DataprocMetastoreClient;
 use Google\Cloud\Metastore\V1\MetadataImport;
+use Google\Cloud\Metastore\V1\UpdateMetadataImportRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -45,14 +46,17 @@ function update_metadata_import_sample(): void
     // Create a client.
     $dataprocMetastoreClient = new DataprocMetastoreClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $metadataImport = new MetadataImport();
+    $request = (new UpdateMetadataImportRequest())
+        ->setUpdateMask($updateMask)
+        ->setMetadataImport($metadataImport);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataprocMetastoreClient->updateMetadataImport($updateMask, $metadataImport);
+        $response = $dataprocMetastoreClient->updateMetadataImport($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -35,8 +35,10 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\ConfidentialComputing\V1\Challenge;
+use Google\Cloud\ConfidentialComputing\V1\ConfidentialSpaceInfo;
 use Google\Cloud\ConfidentialComputing\V1\CreateChallengeRequest;
 use Google\Cloud\ConfidentialComputing\V1\GcpCredentials;
+use Google\Cloud\ConfidentialComputing\V1\TokenOptions;
 use Google\Cloud\ConfidentialComputing\V1\TpmAttestation;
 use Google\Cloud\ConfidentialComputing\V1\VerifyAttestationRequest;
 use Google\Cloud\ConfidentialComputing\V1\VerifyAttestationResponse;
@@ -66,6 +68,10 @@ use Google\Cloud\Location\Location;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\ConfidentialComputing\V1\Client\ConfidentialComputingClient} to
+ * use the new surface.
  */
 class ConfidentialComputingGapicClient
 {
@@ -380,6 +386,11 @@ class ConfidentialComputingGapicClient
      *     @type GcpCredentials $gcpCredentials
      *           Optional. Credentials used to populate the "emails" claim in the
      *           claims_token.
+     *     @type ConfidentialSpaceInfo $confidentialSpaceInfo
+     *           Optional. Optional information related to the Confidential Space TEE.
+     *     @type TokenOptions $tokenOptions
+     *           Optional. A collection of optional, workload-specified claims that modify
+     *           the token output.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -402,6 +413,16 @@ class ConfidentialComputingGapicClient
         $requestParamHeaders['challenge'] = $challenge;
         if (isset($optionalArgs['gcpCredentials'])) {
             $request->setGcpCredentials($optionalArgs['gcpCredentials']);
+        }
+
+        if (isset($optionalArgs['confidentialSpaceInfo'])) {
+            $request->setConfidentialSpaceInfo(
+                $optionalArgs['confidentialSpaceInfo']
+            );
+        }
+
+        if (isset($optionalArgs['tokenOptions'])) {
+            $request->setTokenOptions($optionalArgs['tokenOptions']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

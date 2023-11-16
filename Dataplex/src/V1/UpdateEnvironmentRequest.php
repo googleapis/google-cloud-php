@@ -37,6 +37,22 @@ class UpdateEnvironmentRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param \Google\Cloud\Dataplex\V1\Environment $environment Required. Update description.
+     *                                                           Only fields specified in `update_mask` are updated.
+     * @param \Google\Protobuf\FieldMask            $updateMask  Required. Mask of fields to update.
+     *
+     * @return \Google\Cloud\Dataplex\V1\UpdateEnvironmentRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dataplex\V1\Environment $environment, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setEnvironment($environment)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

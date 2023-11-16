@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START orgpolicy_v2_generated_OrgPolicy_ListConstraints_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\OrgPolicy\V2\Client\OrgPolicyClient;
 use Google\Cloud\OrgPolicy\V2\Constraint;
-use Google\Cloud\OrgPolicy\V2\OrgPolicyClient;
+use Google\Cloud\OrgPolicy\V2\ListConstraintsRequest;
 
 /**
  * Lists `Constraints` that could be applied on the specified resource.
@@ -44,10 +45,14 @@ function list_constraints_sample(string $formattedParent): void
     // Create a client.
     $orgPolicyClient = new OrgPolicyClient();
 
+    // Prepare the request message.
+    $request = (new ListConstraintsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $orgPolicyClient->listConstraints($formattedParent);
+        $response = $orgPolicyClient->listConstraints($request);
 
         /** @var Constraint $element */
         foreach ($response as $element) {

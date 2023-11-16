@@ -75,6 +75,8 @@ use Google\Cloud\Dataplex\V1\ListTasksResponse;
 use Google\Cloud\Dataplex\V1\ListZoneActionsRequest;
 use Google\Cloud\Dataplex\V1\ListZonesRequest;
 use Google\Cloud\Dataplex\V1\ListZonesResponse;
+use Google\Cloud\Dataplex\V1\RunTaskRequest;
+use Google\Cloud\Dataplex\V1\RunTaskResponse;
 use Google\Cloud\Dataplex\V1\Task;
 use Google\Cloud\Dataplex\V1\UpdateAssetRequest;
 use Google\Cloud\Dataplex\V1\UpdateEnvironmentRequest;
@@ -120,6 +122,9 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Dataplex\V1\Client\DataplexServiceClient} to use the new surface.
  */
 class DataplexServiceGapicClient
 {
@@ -2616,6 +2621,79 @@ class DataplexServiceGapicClient
             ListZonesResponse::class,
             $request
         );
+    }
+
+    /**
+     * Run an on demand execution of a Task.
+     *
+     * Sample code:
+     * ```
+     * $dataplexServiceClient = new DataplexServiceClient();
+     * try {
+     *     $formattedName = $dataplexServiceClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
+     *     $response = $dataplexServiceClient->runTask($formattedName);
+     * } finally {
+     *     $dataplexServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the task:
+     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/tasks/{task_id}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type array $labels
+     *           Optional. User-defined labels for the task. If the map is left empty, the
+     *           task will run with existing labels from task definition. If the map
+     *           contains an entry with a new key, the same will be added to existing set of
+     *           labels. If the map contains an entry with an existing label key in task
+     *           definition, the task will run with new label value for that entry. Clearing
+     *           an existing label will require label value to be explicitly set to a hyphen
+     *           "-". The label value cannot be empty.
+     *     @type array $args
+     *           Optional. Execution spec arguments. If the map is left empty, the task will
+     *           run with existing execution spec args from task definition. If the map
+     *           contains an entry with a new key, the same will be added to existing set of
+     *           args. If the map contains an entry with an existing arg key in task
+     *           definition, the task will run with new arg value for that entry. Clearing
+     *           an existing arg will require arg value to be explicitly set to a hyphen
+     *           "-". The arg value cannot be empty.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dataplex\V1\RunTaskResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function runTask($name, array $optionalArgs = [])
+    {
+        $request = new RunTaskRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['labels'])) {
+            $request->setLabels($optionalArgs['labels']);
+        }
+
+        if (isset($optionalArgs['args'])) {
+            $request->setArgs($optionalArgs['args']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'RunTask',
+            RunTaskResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**

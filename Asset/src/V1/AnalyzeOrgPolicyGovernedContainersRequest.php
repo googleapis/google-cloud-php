@@ -61,6 +61,36 @@ class AnalyzeOrgPolicyGovernedContainersRequest extends \Google\Protobuf\Interna
     private $page_token = '';
 
     /**
+     * @param string $scope      Required. The organization to scope the request. Only organization
+     *                           policies within the scope will be analyzed. The output containers will
+     *                           also be limited to the ones governed by those in-scope organization
+     *                           policies.
+     *
+     *                           * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
+     * @param string $constraint Required. The name of the constraint to analyze governed containers for.
+     *                           The analysis only contains organization policies for the provided
+     *                           constraint.
+     * @param string $filter     The expression to filter the governed containers in result.
+     *                           The only supported field is `parent`, and the only supported operator is
+     *                           `=`.
+     *
+     *                           Example:
+     *                           parent="//cloudresourcemanager.googleapis.com/folders/001" will return all
+     *                           containers under "folders/001".
+     *
+     * @return \Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedContainersRequest
+     *
+     * @experimental
+     */
+    public static function build(string $scope, string $constraint, string $filter): self
+    {
+        return (new self())
+            ->setScope($scope)
+            ->setConstraint($constraint)
+            ->setFilter($filter);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

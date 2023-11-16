@@ -46,6 +46,21 @@ class ListMigrationWorkflowsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The project and location of the migration workflows to list.
+     *                       Example: `projects/123/locations/us`
+     *                       Please see {@see MigrationServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\BigQuery\Migration\V2\ListMigrationWorkflowsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -35,7 +35,8 @@ use Google\Cloud\WebRisk\V1\WebRiskServiceClient;
  * so the client must query this method to determine if there is a full
  * hash match of a threat.
  *
- * @param int $threatTypesElement The ThreatLists to search in. Multiple ThreatLists may be specified.
+ * @param int $threatTypesElement The ThreatLists to search in. Multiple ThreatLists may be
+ *                                specified.
  */
 function search_hashes_sample(int $threatTypesElement): void
 {

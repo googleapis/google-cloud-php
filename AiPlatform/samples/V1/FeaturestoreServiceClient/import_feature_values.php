@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_FeaturestoreService_ImportFeatureValues_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AIPlatform\V1\FeaturestoreServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\FeaturestoreServiceClient;
+use Google\Cloud\AIPlatform\V1\ImportFeatureValuesRequest;
 use Google\Cloud\AIPlatform\V1\ImportFeatureValuesRequest\FeatureSpec;
 use Google\Cloud\AIPlatform\V1\ImportFeatureValuesResponse;
 use Google\Rpc\Status;
@@ -64,15 +65,18 @@ function import_feature_values_sample(string $formattedEntityType, string $featu
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $featureSpec = (new FeatureSpec())
         ->setId($featureSpecsId);
     $featureSpecs = [$featureSpec,];
+    $request = (new ImportFeatureValuesRequest())
+        ->setEntityType($formattedEntityType)
+        ->setFeatureSpecs($featureSpecs);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $featurestoreServiceClient->importFeatureValues($formattedEntityType, $featureSpecs);
+        $response = $featurestoreServiceClient->importFeatureValues($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

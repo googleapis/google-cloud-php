@@ -47,6 +47,25 @@ class PatchRegionTargetHttpsProxyRequest extends \Google\Protobuf\Internal\Messa
     private $target_https_proxy_resource = null;
 
     /**
+     * @param string                                    $project                  Project ID for this request.
+     * @param string                                    $region                   Name of the region for this request.
+     * @param string                                    $targetHttpsProxy         Name of the TargetHttpsProxy resource to patch.
+     * @param \Google\Cloud\Compute\V1\TargetHttpsProxy $targetHttpsProxyResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\PatchRegionTargetHttpsProxyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $targetHttpsProxy, \Google\Cloud\Compute\V1\TargetHttpsProxy $targetHttpsProxyResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetHttpsProxy($targetHttpsProxy)
+            ->setTargetHttpsProxyResource($targetHttpsProxyResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

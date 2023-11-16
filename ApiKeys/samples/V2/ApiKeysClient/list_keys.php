@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START apikeys_v2_generated_ApiKeys_ListKeys_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\ApiKeys\V2\ApiKeysClient;
+use Google\Cloud\ApiKeys\V2\Client\ApiKeysClient;
 use Google\Cloud\ApiKeys\V2\Key;
+use Google\Cloud\ApiKeys\V2\ListKeysRequest;
 
 /**
  * Lists the API keys owned by a project. The key string of the API key
@@ -43,10 +44,14 @@ function list_keys_sample(string $formattedParent): void
     // Create a client.
     $apiKeysClient = new ApiKeysClient();
 
+    // Prepare the request message.
+    $request = (new ListKeysRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $apiKeysClient->listKeys($formattedParent);
+        $response = $apiKeysClient->listKeys($request);
 
         /** @var Key $element */
         foreach ($response as $element) {

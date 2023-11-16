@@ -19,8 +19,8 @@ class ExplanationSpecOverride extends \Google\Protobuf\Internal\Message
 {
     /**
      * The parameters to be overridden. Note that the
-     * [method][google.cloud.aiplatform.v1.ExplanationParameters.method] cannot be
-     * changed. If not specified, no parameter is overridden.
+     * attribution method cannot be changed. If not specified,
+     * no parameter is overridden.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationParameters parameters = 1;</code>
      */
@@ -46,8 +46,8 @@ class ExplanationSpecOverride extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\AIPlatform\V1\ExplanationParameters $parameters
      *           The parameters to be overridden. Note that the
-     *           [method][google.cloud.aiplatform.v1.ExplanationParameters.method] cannot be
-     *           changed. If not specified, no parameter is overridden.
+     *           attribution method cannot be changed. If not specified,
+     *           no parameter is overridden.
      *     @type \Google\Cloud\AIPlatform\V1\ExplanationMetadataOverride $metadata
      *           The metadata to be overridden. If not specified, no metadata is overridden.
      *     @type \Google\Cloud\AIPlatform\V1\ExamplesOverride $examples_override
@@ -61,8 +61,8 @@ class ExplanationSpecOverride extends \Google\Protobuf\Internal\Message
 
     /**
      * The parameters to be overridden. Note that the
-     * [method][google.cloud.aiplatform.v1.ExplanationParameters.method] cannot be
-     * changed. If not specified, no parameter is overridden.
+     * attribution method cannot be changed. If not specified,
+     * no parameter is overridden.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationParameters parameters = 1;</code>
      * @return \Google\Cloud\AIPlatform\V1\ExplanationParameters|null
@@ -84,8 +84,8 @@ class ExplanationSpecOverride extends \Google\Protobuf\Internal\Message
 
     /**
      * The parameters to be overridden. Note that the
-     * [method][google.cloud.aiplatform.v1.ExplanationParameters.method] cannot be
-     * changed. If not specified, no parameter is overridden.
+     * attribution method cannot be changed. If not specified,
+     * no parameter is overridden.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationParameters parameters = 1;</code>
      * @param \Google\Cloud\AIPlatform\V1\ExplanationParameters $var

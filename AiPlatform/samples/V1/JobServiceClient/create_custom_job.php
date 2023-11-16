@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_JobService_CreateCustomJob_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\CreateCustomJobRequest;
 use Google\Cloud\AIPlatform\V1\CustomJob;
 use Google\Cloud\AIPlatform\V1\CustomJobSpec;
-use Google\Cloud\AIPlatform\V1\JobServiceClient;
 use Google\Cloud\AIPlatform\V1\WorkerPoolSpec;
 
 /**
@@ -45,18 +46,21 @@ function create_custom_job_sample(string $formattedParent, string $customJobDisp
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $customJobJobSpecWorkerPoolSpecs = [new WorkerPoolSpec()];
     $customJobJobSpec = (new CustomJobSpec())
         ->setWorkerPoolSpecs($customJobJobSpecWorkerPoolSpecs);
     $customJob = (new CustomJob())
         ->setDisplayName($customJobDisplayName)
         ->setJobSpec($customJobJobSpec);
+    $request = (new CreateCustomJobRequest())
+        ->setParent($formattedParent)
+        ->setCustomJob($customJob);
 
     // Call the API and handle any network failures.
     try {
         /** @var CustomJob $response */
-        $response = $jobServiceClient->createCustomJob($formattedParent, $customJob);
+        $response = $jobServiceClient->createCustomJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

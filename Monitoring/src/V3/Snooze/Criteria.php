@@ -21,7 +21,7 @@ class Criteria extends \Google\Protobuf\Internal\Message
      * The specific `AlertPolicy` names for the alert that should be snoozed.
      * The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID]
-     * There is a limit of 10 policies per snooze. This limit is checked during
+     * There is a limit of 16 policies per snooze. This limit is checked during
      * snooze creation.
      *
      * Generated from protobuf field <code>repeated string policies = 1 [(.google.api.resource_reference) = {</code>
@@ -38,7 +38,7 @@ class Criteria extends \Google\Protobuf\Internal\Message
      *           The specific `AlertPolicy` names for the alert that should be snoozed.
      *           The format is:
      *               projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID]
-     *           There is a limit of 10 policies per snooze. This limit is checked during
+     *           There is a limit of 16 policies per snooze. This limit is checked during
      *           snooze creation.
      * }
      */
@@ -51,7 +51,7 @@ class Criteria extends \Google\Protobuf\Internal\Message
      * The specific `AlertPolicy` names for the alert that should be snoozed.
      * The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID]
-     * There is a limit of 10 policies per snooze. This limit is checked during
+     * There is a limit of 16 policies per snooze. This limit is checked during
      * snooze creation.
      *
      * Generated from protobuf field <code>repeated string policies = 1 [(.google.api.resource_reference) = {</code>
@@ -66,7 +66,7 @@ class Criteria extends \Google\Protobuf\Internal\Message
      * The specific `AlertPolicy` names for the alert that should be snoozed.
      * The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID]
-     * There is a limit of 10 policies per snooze. This limit is checked during
+     * There is a limit of 16 policies per snooze. This limit is checked during
      * snooze creation.
      *
      * Generated from protobuf field <code>repeated string policies = 1 [(.google.api.resource_reference) = {</code>

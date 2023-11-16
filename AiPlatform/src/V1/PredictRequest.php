@@ -50,6 +50,38 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
     private $parameters = null;
 
     /**
+     * @param string                   $endpoint   Required. The name of the Endpoint requested to serve the prediction.
+     *                                             Format:
+     *                                             `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     *                                             Please see {@see PredictionServiceClient::endpointName()} for help formatting this field.
+     * @param \Google\Protobuf\Value[] $instances  Required. The instances that are the input to the prediction call.
+     *                                             A DeployedModel may have an upper limit on the number of instances it
+     *                                             supports per request, and when it is exceeded the prediction call errors
+     *                                             in case of AutoML Models, or, in case of customer created Models, the
+     *                                             behaviour is as documented by that Model.
+     *                                             The schema of any single instance may be specified via Endpoint's
+     *                                             DeployedModels' [Model's][google.cloud.aiplatform.v1.DeployedModel.model]
+     *                                             [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
+     *                                             [instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].
+     * @param \Google\Protobuf\Value   $parameters The parameters that govern the prediction. The schema of the parameters may
+     *                                             be specified via Endpoint's DeployedModels' [Model's
+     *                                             ][google.cloud.aiplatform.v1.DeployedModel.model]
+     *                                             [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
+     *                                             [parameters_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri].
+     *
+     * @return \Google\Cloud\AIPlatform\V1\PredictRequest
+     *
+     * @experimental
+     */
+    public static function build(string $endpoint, array $instances, \Google\Protobuf\Value $parameters): self
+    {
+        return (new self())
+            ->setEndpoint($endpoint)
+            ->setInstances($instances)
+            ->setParameters($parameters);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START beyondcorp_v1_generated_AppGatewaysService_DeleteAppGateway_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\BeyondCorp\AppGateways\V1\AppGatewaysServiceClient;
+use Google\Cloud\BeyondCorp\AppGateways\V1\Client\AppGatewaysServiceClient;
+use Google\Cloud\BeyondCorp\AppGateways\V1\DeleteAppGatewayRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,14 @@ function delete_app_gateway_sample(string $formattedName): void
     // Create a client.
     $appGatewaysServiceClient = new AppGatewaysServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteAppGatewayRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $appGatewaysServiceClient->deleteAppGateway($formattedName);
+        $response = $appGatewaysServiceClient->deleteAppGateway($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

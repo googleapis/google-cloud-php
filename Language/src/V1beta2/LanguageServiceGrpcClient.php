@@ -66,8 +66,10 @@ class LanguageServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Finds entities, similar to [AnalyzeEntities][google.cloud.language.v1beta2.LanguageService.AnalyzeEntities] in the text and analyzes
-     * sentiment associated with each entity and its mentions.
+     * Finds entities, similar to
+     * [AnalyzeEntities][google.cloud.language.v1beta2.LanguageService.AnalyzeEntities]
+     * in the text and analyzes sentiment associated with each entity and its
+     * mentions.
      * @param \Google\Cloud\Language\V1beta2\AnalyzeEntitySentimentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -110,6 +112,21 @@ class LanguageServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.language.v1beta2.LanguageService/ClassifyText',
         $argument,
         ['\Google\Cloud\Language\V1beta2\ClassifyTextResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Moderates a document for harmful and sensitive categories.
+     * @param \Google\Cloud\Language\V1beta2\ModerateTextRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ModerateText(\Google\Cloud\Language\V1beta2\ModerateTextRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.language.v1beta2.LanguageService/ModerateText',
+        $argument,
+        ['\Google\Cloud\Language\V1beta2\ModerateTextResponse', 'decode'],
         $metadata, $options);
     }
 

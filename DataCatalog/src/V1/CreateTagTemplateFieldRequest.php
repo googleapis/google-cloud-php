@@ -42,6 +42,32 @@ class CreateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
     private $tag_template_field = null;
 
     /**
+     * @param string                                        $parent             Required. The name of the project and the template location
+     *                                                                          [region](https://cloud.google.com/data-catalog/docs/concepts/regions). Please see
+     *                                                                          {@see DataCatalogClient::tagTemplateName()} for help formatting this field.
+     * @param string                                        $tagTemplateFieldId Required. The ID of the tag template field to create.
+     *
+     *                                                                          Note: Adding a required field to an existing template is *not* allowed.
+     *
+     *                                                                          Field IDs can contain letters (both uppercase and lowercase), numbers
+     *                                                                          (0-9), underscores (_) and dashes (-). Field IDs must be at least 1
+     *                                                                          character long and at most 128 characters long. Field IDs must also be
+     *                                                                          unique within their template.
+     * @param \Google\Cloud\DataCatalog\V1\TagTemplateField $tagTemplateField   Required. The tag template field to create.
+     *
+     * @return \Google\Cloud\DataCatalog\V1\CreateTagTemplateFieldRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $tagTemplateFieldId, \Google\Cloud\DataCatalog\V1\TagTemplateField $tagTemplateField): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setTagTemplateFieldId($tagTemplateFieldId)
+            ->setTagTemplateField($tagTemplateField);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

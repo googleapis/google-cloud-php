@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START accesscontextmanager_v1_generated_AccessContextManager_CreateAccessLevel_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Identity\AccessContextManager\V1\AccessContextManagerClient;
 use Google\Identity\AccessContextManager\V1\AccessLevel;
+use Google\Identity\AccessContextManager\V1\Client\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\CreateAccessLevelRequest;
 use Google\Rpc\Status;
 
 /**
@@ -49,13 +50,16 @@ function create_access_level_sample(string $formattedParent): void
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $accessLevel = new AccessLevel();
+    $request = (new CreateAccessLevelRequest())
+        ->setParent($formattedParent)
+        ->setAccessLevel($accessLevel);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $accessContextManagerClient->createAccessLevel($formattedParent, $accessLevel);
+        $response = $accessContextManagerClient->createAccessLevel($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

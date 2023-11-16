@@ -33,7 +33,7 @@ use Google\Rpc\Status;
 /**
  * Creates a new migration job in a given project and location.
  *
- * @param string $formattedParent         The parent, which owns this collection of migration jobs. Please see
+ * @param string $formattedParent         The parent which owns this collection of migration jobs. Please see
  *                                        {@see DataMigrationServiceClient::locationName()} for help formatting this field.
  * @param string $migrationJobId          The ID of the instance to create.
  * @param int    $migrationJobType        The migration job type.

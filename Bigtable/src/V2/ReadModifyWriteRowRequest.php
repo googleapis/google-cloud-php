@@ -47,6 +47,55 @@ class ReadModifyWriteRowRequest extends \Google\Protobuf\Internal\Message
     private $rules;
 
     /**
+     * @param string                                          $tableName Required. The unique name of the table to which the read/modify/write rules
+     *                                                                   should be applied. Values are of the form
+     *                                                                   `projects/<project>/instances/<instance>/tables/<table>`. Please see
+     *                                                                   {@see BigtableClient::tableName()} for help formatting this field.
+     * @param string                                          $rowKey    Required. The key of the row to which the read/modify/write rules should be
+     *                                                                   applied.
+     * @param \Google\Cloud\Bigtable\V2\ReadModifyWriteRule[] $rules     Required. Rules specifying how the specified row's contents are to be
+     *                                                                   transformed into writes. Entries are applied in order, meaning that earlier
+     *                                                                   rules will affect the results of later ones.
+     *
+     * @return \Google\Cloud\Bigtable\V2\ReadModifyWriteRowRequest
+     *
+     * @experimental
+     */
+    public static function build(string $tableName, string $rowKey, array $rules): self
+    {
+        return (new self())
+            ->setTableName($tableName)
+            ->setRowKey($rowKey)
+            ->setRules($rules);
+    }
+
+    /**
+     * @param string                                          $tableName    Required. The unique name of the table to which the read/modify/write rules
+     *                                                                      should be applied. Values are of the form
+     *                                                                      `projects/<project>/instances/<instance>/tables/<table>`. Please see
+     *                                                                      {@see BigtableClient::tableName()} for help formatting this field.
+     * @param string                                          $rowKey       Required. The key of the row to which the read/modify/write rules should be
+     *                                                                      applied.
+     * @param \Google\Cloud\Bigtable\V2\ReadModifyWriteRule[] $rules        Required. Rules specifying how the specified row's contents are to be
+     *                                                                      transformed into writes. Entries are applied in order, meaning that earlier
+     *                                                                      rules will affect the results of later ones.
+     * @param string                                          $appProfileId This value specifies routing for replication. If not specified, the
+     *                                                                      "default" application profile will be used.
+     *
+     * @return \Google\Cloud\Bigtable\V2\ReadModifyWriteRowRequest
+     *
+     * @experimental
+     */
+    public static function buildFromTableNameRowKeyRulesAppProfileId(string $tableName, string $rowKey, array $rules, string $appProfileId): self
+    {
+        return (new self())
+            ->setTableName($tableName)
+            ->setRowKey($rowKey)
+            ->setRules($rules)
+            ->setAppProfileId($appProfileId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

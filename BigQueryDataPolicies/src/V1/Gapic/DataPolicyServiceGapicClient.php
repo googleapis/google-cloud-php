@@ -71,6 +71,10 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\BigQuery\DataPolicies\V1\Client\DataPolicyServiceClient} to use
+ * the new surface.
  */
 class DataPolicyServiceGapicClient
 {
@@ -557,9 +561,10 @@ class DataPolicyServiceGapicClient
      *           are associated with. Currently filter only supports
      *           "policy<span></span>_tag" based filtering and OR based predicates. Sample
      *           filter can be "policy<span></span>_tag:
-     *           `'projects/1/locations/us/taxonomies/2/policyTags/3'`". You may use
-     *           wildcard such as "policy<span></span>_tag:
-     *           `'projects/1/locations/us/taxonomies/2/*'`".
+     *           projects/1/locations/us/taxonomies/2/policyTags/3".
+     *           You may also use wildcard such as "policy<span></span>_tag:
+     *           projects/1/locations/us/taxonomies/2*". Please note that OR predicates
+     *           cannot be used with wildcard filters.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

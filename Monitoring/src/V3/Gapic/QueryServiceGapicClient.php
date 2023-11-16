@@ -65,6 +65,9 @@ use Google\Cloud\Monitoring\V3\QueryTimeSeriesResponse;
  *     $queryServiceClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Monitoring\V3\Client\QueryServiceClient} to use the new surface.
  */
 class QueryServiceGapicClient
 {

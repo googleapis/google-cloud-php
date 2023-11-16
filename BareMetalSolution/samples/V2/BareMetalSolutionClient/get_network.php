@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START baremetalsolution_v2_generated_BareMetalSolution_GetNetwork_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\BareMetalSolution\V2\BareMetalSolutionClient;
+use Google\Cloud\BareMetalSolution\V2\Client\BareMetalSolutionClient;
+use Google\Cloud\BareMetalSolution\V2\GetNetworkRequest;
 use Google\Cloud\BareMetalSolution\V2\Network;
 
 /**
@@ -38,10 +39,14 @@ function get_network_sample(string $formattedName): void
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
+    // Prepare the request message.
+    $request = (new GetNetworkRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Network $response */
-        $response = $bareMetalSolutionClient->getNetwork($formattedName);
+        $response = $bareMetalSolutionClient->getNetwork($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

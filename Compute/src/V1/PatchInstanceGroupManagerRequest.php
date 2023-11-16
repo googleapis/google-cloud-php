@@ -47,6 +47,25 @@ class PatchInstanceGroupManagerRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string                                        $project                      Project ID for this request.
+     * @param string                                        $zone                         The name of the zone where you want to create the managed instance group.
+     * @param string                                        $instanceGroupManager         The name of the instance group manager.
+     * @param \Google\Cloud\Compute\V1\InstanceGroupManager $instanceGroupManagerResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\PatchInstanceGroupManagerRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $instanceGroupManager, \Google\Cloud\Compute\V1\InstanceGroupManager $instanceGroupManagerResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setInstanceGroupManagerResource($instanceGroupManagerResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

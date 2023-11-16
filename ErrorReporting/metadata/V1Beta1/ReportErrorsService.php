@@ -22,7 +22,7 @@ class ReportErrorsService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¤
+•
 Ggoogle/devtools/clouderrorreporting/v1beta1/report_errors_service.proto+google.devtools.clouderrorreporting.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto8google/devtools/clouderrorreporting/v1beta1/common.protogoogle/protobuf/timestamp.proto"¹
 ReportErrorEventRequestI
 project_name (	B3àAúA-
@@ -36,8 +36,8 @@ event_time (2.google.protobuf.TimestampBàAY
 message (	BàAO
 context (29.google.devtools.clouderrorreporting.v1beta1.ErrorContextBàA2å
 ReportErrorsServiceõ
-ReportErrorEventD.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventRequestE.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventResponse"T‚Óä“9"0/v1beta1/{project_name=projects/*}/events:report:eventÚAproject_name,eventVÊA"clouderrorreporting.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¥
-/com.google.devtools.clouderrorreporting.v1beta1BReportErrorsServiceProtoPZ^google.golang.org/genproto/googleapis/devtools/clouderrorreporting/v1beta1;clouderrorreportingøª#Google.Cloud.ErrorReporting.V1Beta1Ê#Google\\Cloud\\ErrorReporting\\V1beta1ê&Google::Cloud::ErrorReporting::V1beta1bproto3'
+ReportErrorEventD.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventRequestE.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventResponse"T‚Óä“9"0/v1beta1/{project_name=projects/*}/events:report:eventÚAproject_name,eventVÊA"clouderrorreporting.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB–
+/com.google.devtools.clouderrorreporting.v1beta1BReportErrorsServiceProtoPZOcloud.google.com/go/errorreporting/apiv1beta1/errorreportingpb;errorreportingpbøª#Google.Cloud.ErrorReporting.V1Beta1Ê#Google\\Cloud\\ErrorReporting\\V1beta1ê&Google::Cloud::ErrorReporting::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

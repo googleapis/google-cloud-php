@@ -32,6 +32,24 @@ class WriteTensorboardExperimentDataRequest extends \Google\Protobuf\Internal\Me
     private $write_run_data_requests;
 
     /**
+     * @param string                                                       $tensorboardExperiment Required. The resource name of the TensorboardExperiment to write data to.
+     *                                                                                            Format:
+     *                                                                                            `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
+     *                                                                                            Please see {@see TensorboardServiceClient::tensorboardExperimentName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\WriteTensorboardRunDataRequest[] $writeRunDataRequests  Required. Requests containing per-run TensorboardTimeSeries data to write.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\WriteTensorboardExperimentDataRequest
+     *
+     * @experimental
+     */
+    public static function build(string $tensorboardExperiment, array $writeRunDataRequests): self
+    {
+        return (new self())
+            ->setTensorboardExperiment($tensorboardExperiment)
+            ->setWriteRunDataRequests($writeRunDataRequests);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

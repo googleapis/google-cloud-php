@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudresourcemanager_v3_generated_Folders_SearchFolders_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\ResourceManager\V3\Client\FoldersClient;
 use Google\Cloud\ResourceManager\V3\Folder;
-use Google\Cloud\ResourceManager\V3\FoldersClient;
+use Google\Cloud\ResourceManager\V3\SearchFoldersRequest;
 
 /**
  * Search for folders that match specific filter criteria.
@@ -47,10 +48,13 @@ function search_folders_sample(): void
     // Create a client.
     $foldersClient = new FoldersClient();
 
+    // Prepare the request message.
+    $request = new SearchFoldersRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $foldersClient->searchFolders();
+        $response = $foldersClient->searchFolders($request);
 
         /** @var Folder $element */
         foreach ($response as $element) {

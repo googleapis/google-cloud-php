@@ -31,6 +31,23 @@ class UpdateDataExchangeRequest extends \Google\Protobuf\Internal\Message
     private $data_exchange = null;
 
     /**
+     * @param \Google\Cloud\BigQuery\DataExchange\V1beta1\DataExchange $dataExchange Required. The data exchange to update.
+     * @param \Google\Protobuf\FieldMask                               $updateMask   Required. Field mask specifies the fields to update in the data exchange
+     *                                                                               resource. The fields specified in the
+     *                                                                               `updateMask` are relative to the resource and are not a full request.
+     *
+     * @return \Google\Cloud\BigQuery\DataExchange\V1beta1\UpdateDataExchangeRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\BigQuery\DataExchange\V1beta1\DataExchange $dataExchange, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setDataExchange($dataExchange)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

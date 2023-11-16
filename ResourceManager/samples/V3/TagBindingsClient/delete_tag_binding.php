@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudresourcemanager_v3_generated_TagBindings_DeleteTagBinding_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\ResourceManager\V3\TagBindingsClient;
+use Google\Cloud\ResourceManager\V3\Client\TagBindingsClient;
+use Google\Cloud\ResourceManager\V3\DeleteTagBindingRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,10 +42,14 @@ function delete_tag_binding_sample(string $formattedName): void
     // Create a client.
     $tagBindingsClient = new TagBindingsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteTagBindingRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $tagBindingsClient->deleteTagBinding($formattedName);
+        $response = $tagBindingsClient->deleteTagBinding($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

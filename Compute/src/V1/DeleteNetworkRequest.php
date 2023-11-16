@@ -35,6 +35,21 @@ class DeleteNetworkRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string $project Project ID for this request.
+     * @param string $network Name of the network to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteNetworkRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $network): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setNetwork($network);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

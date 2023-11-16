@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START gsuiteaddons_v1_generated_GSuiteAddOns_ListDeployments_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\GSuiteAddOns\V1\Client\GSuiteAddOnsClient;
 use Google\Cloud\GSuiteAddOns\V1\Deployment;
-use Google\Cloud\GSuiteAddOns\V1\GSuiteAddOnsClient;
+use Google\Cloud\GSuiteAddOns\V1\ListDeploymentsRequest;
 
 /**
  * Lists all deployments in a particular project.
@@ -41,10 +42,14 @@ function list_deployments_sample(string $formattedParent): void
     // Create a client.
     $gSuiteAddOnsClient = new GSuiteAddOnsClient();
 
+    // Prepare the request message.
+    $request = (new ListDeploymentsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $gSuiteAddOnsClient->listDeployments($formattedParent);
+        $response = $gSuiteAddOnsClient->listDeployments($request);
 
         /** @var Deployment $element */
         foreach ($response as $element) {

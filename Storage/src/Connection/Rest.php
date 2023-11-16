@@ -17,10 +17,10 @@
 
 namespace Google\Cloud\Storage\Connection;
 
-use Google\ApiCore\AgentHeader;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\RestTrait;
+use Google\Cloud\Core\Retry;
 use Google\Cloud\Storage\Connection\RetryTrait;
 use Google\Cloud\Core\Upload\AbstractUploader;
 use Google\Cloud\Core\Upload\MultipartUploader;
@@ -29,8 +29,6 @@ use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Core\UriTrait;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\StorageClient;
-use Google\CRC32\Builtin;
-use Google\CRC32\CRC32;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MimeType;
 use GuzzleHttp\Psr7\Request;
@@ -43,6 +41,8 @@ use Ramsey\Uuid\Uuid;
 /**
  * Implementation of the
  * [Google Cloud Storage JSON API](https://cloud.google.com/storage/docs/json_api/).
+ *
+ * @internal
  */
 class Rest implements ConnectionInterface
 {
@@ -660,21 +660,15 @@ class Rest implements ConnectionInterface
     private function crcFromStream(StreamInterface $data)
     {
         $pos = $data->tell();
-
-        if ($pos > 0) {
-            $data->rewind();
-        }
-
-        $crc32c = CRC32::create(CRC32::CASTAGNOLI);
-
         $data->rewind();
+        $crc32c = hash_init('crc32c');
         while (!$data->eof()) {
-            $crc32c->update($data->read(1048576));
+            $buffer = $data->read(1048576);
+            hash_update($crc32c, $buffer);
         }
-
         $data->seek($pos);
-
-        return base64_encode($crc32c->hash(true));
+        $hash = hash_final($crc32c, true);
+        return base64_encode($hash);
     }
 
     /**
@@ -692,13 +686,12 @@ class Rest implements ConnectionInterface
     /**
      * Check if hash() supports crc32c.
      *
-     * Protected access for unit testing.
-     *
+     * @deprecated
      * @return bool
      */
     protected function supportsBuiltinCrc32c()
     {
-        return Builtin::supports(CRC32::CASTAGNOLI);
+        return extension_loaded('hash') && in_array('crc32c', hash_algos());
     }
 
     /**
@@ -765,7 +758,7 @@ class Rest implements ConnectionInterface
         string $invocationId
     ) {
         $changes = self::getRetryHeaders($invocationId, $retryAttempt + 1);
-        $headerLine = $request->getHeaderLine(AgentHeader::AGENT_HEADER_KEY);
+        $headerLine = $request->getHeaderLine(Retry::RETRY_HEADER_KEY);
 
         // An associative array to contain final header values as
         // $headerValueKey => $headerValue
@@ -785,7 +778,7 @@ class Rest implements ConnectionInterface
         }
 
         return $request->withHeader(
-            AgentHeader::AGENT_HEADER_KEY,
+            Retry::RETRY_HEADER_KEY,
             implode(' ', $headerElements)
         );
     }

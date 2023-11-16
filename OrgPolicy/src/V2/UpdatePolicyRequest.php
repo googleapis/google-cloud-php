@@ -32,6 +32,19 @@ class UpdatePolicyRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\OrgPolicy\V2\Policy $policy Required. `Policy` to update.
+     *
+     * @return \Google\Cloud\OrgPolicy\V2\UpdatePolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\OrgPolicy\V2\Policy $policy): self
+    {
+        return (new self())
+            ->setPolicy($policy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

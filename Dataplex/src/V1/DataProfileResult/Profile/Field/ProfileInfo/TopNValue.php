@@ -9,25 +9,31 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The TopNValue defines the structure of output of top N values of a
- * field.
+ * Top N non-null values in the scanned data.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo.TopNValue</code>
  */
 class TopNValue extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The value is the string value of the actual value from the field.
+     * String value of a top N non-null value.
      *
      * Generated from protobuf field <code>string value = 1;</code>
      */
     private $value = '';
     /**
-     * The frequency count of the corresponding value in the field.
+     * Count of the corresponding value in the scanned data.
      *
      * Generated from protobuf field <code>int64 count = 2;</code>
      */
     private $count = 0;
+    /**
+     * Ratio of the corresponding value in the field against the total
+     * number of rows in the scanned data.
+     *
+     * Generated from protobuf field <code>double ratio = 3;</code>
+     */
+    private $ratio = 0.0;
 
     /**
      * Constructor.
@@ -36,9 +42,12 @@ class TopNValue extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $value
-     *           The value is the string value of the actual value from the field.
+     *           String value of a top N non-null value.
      *     @type int|string $count
-     *           The frequency count of the corresponding value in the field.
+     *           Count of the corresponding value in the scanned data.
+     *     @type float $ratio
+     *           Ratio of the corresponding value in the field against the total
+     *           number of rows in the scanned data.
      * }
      */
     public function __construct($data = NULL) {
@@ -47,7 +56,7 @@ class TopNValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value is the string value of the actual value from the field.
+     * String value of a top N non-null value.
      *
      * Generated from protobuf field <code>string value = 1;</code>
      * @return string
@@ -58,7 +67,7 @@ class TopNValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value is the string value of the actual value from the field.
+     * String value of a top N non-null value.
      *
      * Generated from protobuf field <code>string value = 1;</code>
      * @param string $var
@@ -73,7 +82,7 @@ class TopNValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The frequency count of the corresponding value in the field.
+     * Count of the corresponding value in the scanned data.
      *
      * Generated from protobuf field <code>int64 count = 2;</code>
      * @return int|string
@@ -84,7 +93,7 @@ class TopNValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The frequency count of the corresponding value in the field.
+     * Count of the corresponding value in the scanned data.
      *
      * Generated from protobuf field <code>int64 count = 2;</code>
      * @param int|string $var
@@ -94,6 +103,34 @@ class TopNValue extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Ratio of the corresponding value in the field against the total
+     * number of rows in the scanned data.
+     *
+     * Generated from protobuf field <code>double ratio = 3;</code>
+     * @return float
+     */
+    public function getRatio()
+    {
+        return $this->ratio;
+    }
+
+    /**
+     * Ratio of the corresponding value in the field against the total
+     * number of rows in the scanned data.
+     *
+     * Generated from protobuf field <code>double ratio = 3;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setRatio($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->ratio = $var;
 
         return $this;
     }

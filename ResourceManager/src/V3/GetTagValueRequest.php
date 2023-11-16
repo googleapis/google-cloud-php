@@ -24,6 +24,21 @@ class GetTagValueRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Resource name for TagValue to be fetched in the format
+     *                     `tagValues/456`. Please see
+     *                     {@see TagValuesClient::tagValueName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\GetTagValueRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -18,7 +18,7 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     /**
      * Immutable. The ID of the DeployedModel. If not provided upon deployment,
      * Vertex AI will generate a value for this ID.
-     * This value should be 1-10 characters, and valid characters are /[0-9]/.
+     * This value should be 1-10 characters, and valid characters are `/[0-9]/`.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -91,20 +91,20 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     /**
      * For custom-trained Models and AutoML Tabular Models, the container of the
      * DeployedModel instances will send `stderr` and `stdout` streams to
-     * Stackdriver Logging by default. Please note that the logs incur cost,
+     * Cloud Logging by default. Please note that the logs incur cost,
      * which are subject to [Cloud Logging
-     * pricing](https://cloud.google.com/stackdriver/pricing).
+     * pricing](https://cloud.google.com/logging/pricing).
      * User can disable container logging by setting this flag to true.
      *
      * Generated from protobuf field <code>bool disable_container_logging = 15;</code>
      */
     private $disable_container_logging = false;
     /**
-     * If true, online prediction access logs are sent to StackDriver
+     * If true, online prediction access logs are sent to Cloud
      * Logging.
      * These logs are like standard server access logs, containing
      * information like timestamp and latency for each prediction request.
-     * Note that Stackdriver logs may incur a cost, especially if your project
+     * Note that logs may incur a cost, especially if your project
      * receives prediction requests at a high queries per second rate (QPS).
      * Estimate your costs before enabling this option.
      *
@@ -137,7 +137,7 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *     @type string $id
      *           Immutable. The ID of the DeployedModel. If not provided upon deployment,
      *           Vertex AI will generate a value for this ID.
-     *           This value should be 1-10 characters, and valid characters are /[0-9]/.
+     *           This value should be 1-10 characters, and valid characters are `/[0-9]/`.
      *     @type string $model
      *           Required. The resource name of the Model that this is the deployment of.
      *           Note that the Model may be in a different location than the DeployedModel's
@@ -182,16 +182,16 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *     @type bool $disable_container_logging
      *           For custom-trained Models and AutoML Tabular Models, the container of the
      *           DeployedModel instances will send `stderr` and `stdout` streams to
-     *           Stackdriver Logging by default. Please note that the logs incur cost,
+     *           Cloud Logging by default. Please note that the logs incur cost,
      *           which are subject to [Cloud Logging
-     *           pricing](https://cloud.google.com/stackdriver/pricing).
+     *           pricing](https://cloud.google.com/logging/pricing).
      *           User can disable container logging by setting this flag to true.
      *     @type bool $enable_access_logging
-     *           If true, online prediction access logs are sent to StackDriver
+     *           If true, online prediction access logs are sent to Cloud
      *           Logging.
      *           These logs are like standard server access logs, containing
      *           information like timestamp and latency for each prediction request.
-     *           Note that Stackdriver logs may incur a cost, especially if your project
+     *           Note that logs may incur a cost, especially if your project
      *           receives prediction requests at a high queries per second rate (QPS).
      *           Estimate your costs before enabling this option.
      *     @type \Google\Cloud\AIPlatform\V1\PrivateEndpoints $private_endpoints
@@ -275,7 +275,7 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     /**
      * Immutable. The ID of the DeployedModel. If not provided upon deployment,
      * Vertex AI will generate a value for this ID.
-     * This value should be 1-10 characters, and valid characters are /[0-9]/.
+     * This value should be 1-10 characters, and valid characters are `/[0-9]/`.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -288,7 +288,7 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     /**
      * Immutable. The ID of the DeployedModel. If not provided upon deployment,
      * Vertex AI will generate a value for this ID.
-     * This value should be 1-10 characters, and valid characters are /[0-9]/.
+     * This value should be 1-10 characters, and valid characters are `/[0-9]/`.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -539,9 +539,9 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     /**
      * For custom-trained Models and AutoML Tabular Models, the container of the
      * DeployedModel instances will send `stderr` and `stdout` streams to
-     * Stackdriver Logging by default. Please note that the logs incur cost,
+     * Cloud Logging by default. Please note that the logs incur cost,
      * which are subject to [Cloud Logging
-     * pricing](https://cloud.google.com/stackdriver/pricing).
+     * pricing](https://cloud.google.com/logging/pricing).
      * User can disable container logging by setting this flag to true.
      *
      * Generated from protobuf field <code>bool disable_container_logging = 15;</code>
@@ -555,9 +555,9 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     /**
      * For custom-trained Models and AutoML Tabular Models, the container of the
      * DeployedModel instances will send `stderr` and `stdout` streams to
-     * Stackdriver Logging by default. Please note that the logs incur cost,
+     * Cloud Logging by default. Please note that the logs incur cost,
      * which are subject to [Cloud Logging
-     * pricing](https://cloud.google.com/stackdriver/pricing).
+     * pricing](https://cloud.google.com/logging/pricing).
      * User can disable container logging by setting this flag to true.
      *
      * Generated from protobuf field <code>bool disable_container_logging = 15;</code>
@@ -573,11 +573,11 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, online prediction access logs are sent to StackDriver
+     * If true, online prediction access logs are sent to Cloud
      * Logging.
      * These logs are like standard server access logs, containing
      * information like timestamp and latency for each prediction request.
-     * Note that Stackdriver logs may incur a cost, especially if your project
+     * Note that logs may incur a cost, especially if your project
      * receives prediction requests at a high queries per second rate (QPS).
      * Estimate your costs before enabling this option.
      *
@@ -590,11 +590,11 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, online prediction access logs are sent to StackDriver
+     * If true, online prediction access logs are sent to Cloud
      * Logging.
      * These logs are like standard server access logs, containing
      * information like timestamp and latency for each prediction request.
-     * Note that Stackdriver logs may incur a cost, especially if your project
+     * Note that logs may incur a cost, especially if your project
      * receives prediction requests at a high queries per second rate (QPS).
      * Estimate your costs before enabling this option.
      *

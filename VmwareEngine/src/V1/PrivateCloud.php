@@ -102,6 +102,12 @@ class PrivateCloud extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string uid = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $uid = '';
+    /**
+     * Optional. Type of the private cloud. Defaults to STANDARD.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.PrivateCloud.Type type = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $type = 0;
 
     /**
      * Constructor.
@@ -144,6 +150,8 @@ class PrivateCloud extends \Google\Protobuf\Internal\Message
      *           Output only. Vcenter appliance.
      *     @type string $uid
      *           Output only. System-generated unique identifier for the resource.
+     *     @type int $type
+     *           Optional. Type of the private cloud. Defaults to STANDARD.
      * }
      */
     public function __construct($data = NULL) {
@@ -593,6 +601,32 @@ class PrivateCloud extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->uid = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Type of the private cloud. Defaults to STANDARD.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.PrivateCloud.Type type = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Optional. Type of the private cloud. Defaults to STANDARD.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.PrivateCloud.Type type = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\VmwareEngine\V1\PrivateCloud\Type::class);
+        $this->type = $var;
 
         return $this;
     }

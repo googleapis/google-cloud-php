@@ -26,6 +26,23 @@ class DeleteMuteConfigRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Name of the mute config to delete. Its format is
+     *                     organizations/{organization}/muteConfigs/{config_id},
+     *                     folders/{folder}/muteConfigs/{config_id}, or
+     *                     projects/{project}/muteConfigs/{config_id}
+     *                     Please see {@see SecurityCenterClient::muteConfigName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\DeleteMuteConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

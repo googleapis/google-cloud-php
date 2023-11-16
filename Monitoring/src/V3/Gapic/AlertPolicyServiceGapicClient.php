@@ -72,6 +72,10 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Monitoring\V3\Client\AlertPolicyServiceClient} to use the new
+ * surface.
  */
 class AlertPolicyServiceGapicClient
 {
@@ -98,11 +102,19 @@ class AlertPolicyServiceGapicClient
 
     private static $alertPolicyNameTemplate;
 
+    private static $alertPolicyConditionNameTemplate;
+
     private static $folderAlertPolicyNameTemplate;
+
+    private static $folderAlertPolicyConditionNameTemplate;
 
     private static $organizationAlertPolicyNameTemplate;
 
+    private static $organizationAlertPolicyConditionNameTemplate;
+
     private static $projectAlertPolicyNameTemplate;
+
+    private static $projectAlertPolicyConditionNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -134,6 +146,15 @@ class AlertPolicyServiceGapicClient
         return self::$alertPolicyNameTemplate;
     }
 
+    private static function getAlertPolicyConditionNameTemplate()
+    {
+        if (self::$alertPolicyConditionNameTemplate == null) {
+            self::$alertPolicyConditionNameTemplate = new PathTemplate('projects/{project}/alertPolicies/{alert_policy}/conditions/{condition}');
+        }
+
+        return self::$alertPolicyConditionNameTemplate;
+    }
+
     private static function getFolderAlertPolicyNameTemplate()
     {
         if (self::$folderAlertPolicyNameTemplate == null) {
@@ -141,6 +162,15 @@ class AlertPolicyServiceGapicClient
         }
 
         return self::$folderAlertPolicyNameTemplate;
+    }
+
+    private static function getFolderAlertPolicyConditionNameTemplate()
+    {
+        if (self::$folderAlertPolicyConditionNameTemplate == null) {
+            self::$folderAlertPolicyConditionNameTemplate = new PathTemplate('folders/{folder}/alertPolicies/{alert_policy}/conditions/{condition}');
+        }
+
+        return self::$folderAlertPolicyConditionNameTemplate;
     }
 
     private static function getOrganizationAlertPolicyNameTemplate()
@@ -152,6 +182,15 @@ class AlertPolicyServiceGapicClient
         return self::$organizationAlertPolicyNameTemplate;
     }
 
+    private static function getOrganizationAlertPolicyConditionNameTemplate()
+    {
+        if (self::$organizationAlertPolicyConditionNameTemplate == null) {
+            self::$organizationAlertPolicyConditionNameTemplate = new PathTemplate('organizations/{organization}/alertPolicies/{alert_policy}/conditions/{condition}');
+        }
+
+        return self::$organizationAlertPolicyConditionNameTemplate;
+    }
+
     private static function getProjectAlertPolicyNameTemplate()
     {
         if (self::$projectAlertPolicyNameTemplate == null) {
@@ -161,14 +200,27 @@ class AlertPolicyServiceGapicClient
         return self::$projectAlertPolicyNameTemplate;
     }
 
+    private static function getProjectAlertPolicyConditionNameTemplate()
+    {
+        if (self::$projectAlertPolicyConditionNameTemplate == null) {
+            self::$projectAlertPolicyConditionNameTemplate = new PathTemplate('projects/{project}/alertPolicies/{alert_policy}/conditions/{condition}');
+        }
+
+        return self::$projectAlertPolicyConditionNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'alertPolicy' => self::getAlertPolicyNameTemplate(),
+                'alertPolicyCondition' => self::getAlertPolicyConditionNameTemplate(),
                 'folderAlertPolicy' => self::getFolderAlertPolicyNameTemplate(),
+                'folderAlertPolicyCondition' => self::getFolderAlertPolicyConditionNameTemplate(),
                 'organizationAlertPolicy' => self::getOrganizationAlertPolicyNameTemplate(),
+                'organizationAlertPolicyCondition' => self::getOrganizationAlertPolicyConditionNameTemplate(),
                 'projectAlertPolicy' => self::getProjectAlertPolicyNameTemplate(),
+                'projectAlertPolicyCondition' => self::getProjectAlertPolicyConditionNameTemplate(),
             ];
         }
 
@@ -194,6 +246,25 @@ class AlertPolicyServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * alert_policy_condition resource.
+     *
+     * @param string $project
+     * @param string $alertPolicy
+     * @param string $condition
+     *
+     * @return string The formatted alert_policy_condition resource.
+     */
+    public static function alertPolicyConditionName($project, $alertPolicy, $condition)
+    {
+        return self::getAlertPolicyConditionNameTemplate()->render([
+            'project' => $project,
+            'alert_policy' => $alertPolicy,
+            'condition' => $condition,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * folder_alert_policy resource.
      *
      * @param string $folder
@@ -206,6 +277,25 @@ class AlertPolicyServiceGapicClient
         return self::getFolderAlertPolicyNameTemplate()->render([
             'folder' => $folder,
             'alert_policy' => $alertPolicy,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * folder_alert_policy_condition resource.
+     *
+     * @param string $folder
+     * @param string $alertPolicy
+     * @param string $condition
+     *
+     * @return string The formatted folder_alert_policy_condition resource.
+     */
+    public static function folderAlertPolicyConditionName($folder, $alertPolicy, $condition)
+    {
+        return self::getFolderAlertPolicyConditionNameTemplate()->render([
+            'folder' => $folder,
+            'alert_policy' => $alertPolicy,
+            'condition' => $condition,
         ]);
     }
 
@@ -228,6 +318,25 @@ class AlertPolicyServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * organization_alert_policy_condition resource.
+     *
+     * @param string $organization
+     * @param string $alertPolicy
+     * @param string $condition
+     *
+     * @return string The formatted organization_alert_policy_condition resource.
+     */
+    public static function organizationAlertPolicyConditionName($organization, $alertPolicy, $condition)
+    {
+        return self::getOrganizationAlertPolicyConditionNameTemplate()->render([
+            'organization' => $organization,
+            'alert_policy' => $alertPolicy,
+            'condition' => $condition,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_alert_policy resource.
      *
      * @param string $project
@@ -244,13 +353,36 @@ class AlertPolicyServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_alert_policy_condition resource.
+     *
+     * @param string $project
+     * @param string $alertPolicy
+     * @param string $condition
+     *
+     * @return string The formatted project_alert_policy_condition resource.
+     */
+    public static function projectAlertPolicyConditionName($project, $alertPolicy, $condition)
+    {
+        return self::getProjectAlertPolicyConditionNameTemplate()->render([
+            'project' => $project,
+            'alert_policy' => $alertPolicy,
+            'condition' => $condition,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - alertPolicy: projects/{project}/alertPolicies/{alert_policy}
+     * - alertPolicyCondition: projects/{project}/alertPolicies/{alert_policy}/conditions/{condition}
      * - folderAlertPolicy: folders/{folder}/alertPolicies/{alert_policy}
+     * - folderAlertPolicyCondition: folders/{folder}/alertPolicies/{alert_policy}/conditions/{condition}
      * - organizationAlertPolicy: organizations/{organization}/alertPolicies/{alert_policy}
+     * - organizationAlertPolicyCondition: organizations/{organization}/alertPolicies/{alert_policy}/conditions/{condition}
      * - projectAlertPolicy: projects/{project}/alertPolicies/{alert_policy}
+     * - projectAlertPolicyCondition: projects/{project}/alertPolicies/{alert_policy}/conditions/{condition}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -350,6 +482,10 @@ class AlertPolicyServiceGapicClient
     /**
      * Creates a new alerting policy.
      *
+     * Design your application to single-thread API calls that modify the state of
+     * alerting policies in a single project. This includes calls to
+     * CreateAlertPolicy, DeleteAlertPolicy and UpdateAlertPolicy.
+     *
      * Sample code:
      * ```
      * $alertPolicyServiceClient = new Google\Cloud\Monitoring\V3\AlertPolicyServiceClient();
@@ -362,8 +498,9 @@ class AlertPolicyServiceGapicClient
      * }
      * ```
      *
-     * @param string      $name         Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
-     *                                  which to create the alerting policy. The format is:
+     * @param string      $name         Required. The
+     *                                  [project](https://cloud.google.com/monitoring/api/v3#project_name) in which
+     *                                  to create the alerting policy. The format is:
      *
      *                                  projects/[PROJECT_ID_OR_NUMBER]
      *
@@ -374,9 +511,9 @@ class AlertPolicyServiceGapicClient
      *                                  a normalized representation of this name as a prefix but adds a suffix of
      *                                  the form `/alertPolicies/[ALERT_POLICY_ID]`, identifying the policy in the
      *                                  container.
-     * @param AlertPolicy $alertPolicy  Required. The requested alerting policy. You should omit the `name` field in this
-     *                                  policy. The name will be returned in the new policy, including
-     *                                  a new `[ALERT_POLICY_ID]` value.
+     * @param AlertPolicy $alertPolicy  Required. The requested alerting policy. You should omit the `name` field
+     *                                  in this policy. The name will be returned in the new policy, including a
+     *                                  new `[ALERT_POLICY_ID]` value.
      * @param array       $optionalArgs {
      *     Optional.
      *
@@ -404,6 +541,10 @@ class AlertPolicyServiceGapicClient
 
     /**
      * Deletes an alerting policy.
+     *
+     * Design your application to single-thread API calls that modify the state of
+     * alerting policies in a single project. This includes calls to
+     * CreateAlertPolicy, DeleteAlertPolicy and UpdateAlertPolicy.
      *
      * Sample code:
      * ```
@@ -510,8 +651,9 @@ class AlertPolicyServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name)
-     *                             whose alert policies are to be listed. The format is:
+     * @param string $name         Required. The
+     *                             [project](https://cloud.google.com/monitoring/api/v3#project_name) whose
+     *                             alert policies are to be listed. The format is:
      *
      *                             projects/[PROJECT_ID_OR_NUMBER]
      *
@@ -587,6 +729,10 @@ class AlertPolicyServiceGapicClient
      * a new one or replace only certain fields in the current alerting policy by
      * specifying the fields to be updated via `updateMask`. Returns the
      * updated alerting policy.
+     *
+     * Design your application to single-thread API calls that modify the state of
+     * alerting policies in a single project. This includes calls to
+     * CreateAlertPolicy, DeleteAlertPolicy and UpdateAlertPolicy.
      *
      * Sample code:
      * ```

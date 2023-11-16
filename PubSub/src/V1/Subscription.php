@@ -9,9 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A subscription resource. If none of `push_config` or `bigquery_config` is
- * set, then the subscriber will pull and ack messages using API methods. At
- * most one of these fields may be set.
+ * A subscription resource. If none of `push_config`, `bigquery_config`, or
+ * `cloud_storage_config` is set, then the subscriber will pull and ack messages
+ * using API methods. At most one of these fields may be set.
  *
  * Generated from protobuf message <code>google.pubsub.v1.Subscription</code>
  */
@@ -50,6 +50,13 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.pubsub.v1.BigQueryConfig bigquery_config = 18;</code>
      */
     private $bigquery_config = null;
+    /**
+     * If delivery to Google Cloud Storage is used with this subscription, this
+     * field is used to configure it.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.CloudStorageConfig cloud_storage_config = 22;</code>
+     */
+    private $cloud_storage_config = null;
     /**
      * The approximate amount of time (on a best-effort basis) Pub/Sub waits for
      * the subscriber to acknowledge receipt before resending the message. In the
@@ -199,6 +206,53 @@ class Subscription extends \Google\Protobuf\Internal\Message
     private $state = 0;
 
     /**
+     * @param string                             $name               Required. The name of the subscription. It must have the format
+     *                                                               `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must
+     *                                                               start with a letter, and contain only letters (`[A-Za-z]`), numbers
+     *                                                               (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
+     *                                                               plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
+     *                                                               in length, and it must not start with `"goog"`.
+     * @param string                             $topic              Required. The name of the topic from which this subscription is receiving
+     *                                                               messages. Format is `projects/{project}/topics/{topic}`. The value of this
+     *                                                               field will be `_deleted-topic_` if the topic has been deleted. Please see
+     *                                                               {@see SubscriberClient::topicName()} for help formatting this field.
+     * @param \Google\Cloud\PubSub\V1\PushConfig $pushConfig         If push delivery is used with this subscription, this field is
+     *                                                               used to configure it.
+     * @param int                                $ackDeadlineSeconds The approximate amount of time (on a best-effort basis) Pub/Sub waits for
+     *                                                               the subscriber to acknowledge receipt before resending the message. In the
+     *                                                               interval after the message is delivered and before it is acknowledged, it
+     *                                                               is considered to be _outstanding_. During that time period, the
+     *                                                               message will not be redelivered (on a best-effort basis).
+     *
+     *                                                               For pull subscriptions, this value is used as the initial value for the ack
+     *                                                               deadline. To override this value for a given message, call
+     *                                                               `ModifyAckDeadline` with the corresponding `ack_id` if using
+     *                                                               non-streaming pull or send the `ack_id` in a
+     *                                                               `StreamingModifyAckDeadlineRequest` if using streaming pull.
+     *                                                               The minimum custom deadline you can specify is 10 seconds.
+     *                                                               The maximum custom deadline you can specify is 600 seconds (10 minutes).
+     *                                                               If this parameter is 0, a default value of 10 seconds is used.
+     *
+     *                                                               For push delivery, this value is also used to set the request timeout for
+     *                                                               the call to the push endpoint.
+     *
+     *                                                               If the subscriber never acknowledges the message, the Pub/Sub
+     *                                                               system will eventually redeliver the message.
+     *
+     * @return \Google\Cloud\PubSub\V1\Subscription
+     *
+     * @experimental
+     */
+    public static function build(string $name, string $topic, \Google\Cloud\PubSub\V1\PushConfig $pushConfig, int $ackDeadlineSeconds): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setTopic($topic)
+            ->setPushConfig($pushConfig)
+            ->setAckDeadlineSeconds($ackDeadlineSeconds);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -221,6 +275,9 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\PubSub\V1\BigQueryConfig $bigquery_config
      *           If delivery to BigQuery is used with this subscription, this field is
      *           used to configure it.
+     *     @type \Google\Cloud\PubSub\V1\CloudStorageConfig $cloud_storage_config
+     *           If delivery to Google Cloud Storage is used with this subscription, this
+     *           field is used to configure it.
      *     @type int $ack_deadline_seconds
      *           The approximate amount of time (on a best-effort basis) Pub/Sub waits for
      *           the subscriber to acknowledge receipt before resending the message. In the
@@ -461,6 +518,44 @@ class Subscription extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\BigQueryConfig::class);
         $this->bigquery_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * If delivery to Google Cloud Storage is used with this subscription, this
+     * field is used to configure it.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.CloudStorageConfig cloud_storage_config = 22;</code>
+     * @return \Google\Cloud\PubSub\V1\CloudStorageConfig|null
+     */
+    public function getCloudStorageConfig()
+    {
+        return $this->cloud_storage_config;
+    }
+
+    public function hasCloudStorageConfig()
+    {
+        return isset($this->cloud_storage_config);
+    }
+
+    public function clearCloudStorageConfig()
+    {
+        unset($this->cloud_storage_config);
+    }
+
+    /**
+     * If delivery to Google Cloud Storage is used with this subscription, this
+     * field is used to configure it.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.CloudStorageConfig cloud_storage_config = 22;</code>
+     * @param \Google\Cloud\PubSub\V1\CloudStorageConfig $var
+     * @return $this
+     */
+    public function setCloudStorageConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\CloudStorageConfig::class);
+        $this->cloud_storage_config = $var;
 
         return $this;
     }

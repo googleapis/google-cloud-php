@@ -118,6 +118,7 @@ class Query
 
     /**
      * @var ConnectionInterface
+     * @internal
      */
     private $connection;
 
@@ -143,6 +144,8 @@ class Query
 
     /**
      * @param ConnectionInterface $connection A Connection to Cloud Firestore.
+     *        This object is created by FirestoreClient,
+     *        and should not be instantiated outside of this client.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param string $parent The parent of the query.
      * @param array $query The Query object
@@ -190,6 +193,64 @@ class Query
 
         $aggregationResult = $aggregateQuery->getSnapshot($options);
         return $aggregationResult->get('count');
+    }
+
+    /**
+     * Gets the sum of all documents matching the provided query filters.
+     *
+     * Example:
+     * ```
+     * $sum = $query->sum();
+     * ```
+     *
+     * Sum of integers which exceed maximum integer value returns a float.
+     * Sum of numbers exceeding max float value returns `INF`.
+     * Sum of data which contains `NaN` returns `NaN`.
+     * Non numeric values are ignored.
+     *
+     * @param string $field The relative path of the field to aggregate upon.
+     * @param array $options [optional] {
+     *     Configuration options is an array.
+     *
+     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
+     * }
+     * @return int|float
+     */
+    public function sum(string $field, array $options = [])
+    {
+        $aggregateQuery = $this->addAggregation(Aggregate::sum($field)->alias('sum'));
+
+        $aggregationResult = $aggregateQuery->getSnapshot($options);
+        return $aggregationResult->get('sum');
+    }
+
+    /**
+     * Gets the average of all documents matching the provided query filters.
+     *
+     * Example:
+     * ```
+     * $avg = $query->avg();
+     * ```
+     *
+     * Average of empty valid data set return `null`.
+     * Average of numbers exceeding max float value returns `INF`.
+     * Average of data which contains `NaN` returns `NaN`.
+     * Non numeric values are ignored.
+     *
+     * @param string $field The relative path of the field to aggregate upon.
+     * @param array $options [optional] {
+     *     Configuration options is an array.
+     *
+     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
+     * }
+     * @return float|null
+     */
+    public function avg(string $field, array $options = [])
+    {
+        $aggregateQuery = $this->addAggregation(Aggregate::avg($field)->alias('avg'));
+
+        $aggregationResult = $aggregateQuery->getSnapshot($options);
+        return $aggregationResult->get('avg');
     }
 
     /**
@@ -360,12 +421,12 @@ class Query
      * Add a WHERE clause to the Query.
      *
      * For a list of all available operators, see
-     * {@see Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator}.
+     * {@see \Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator}.
      * This method also supports a number of comparison operators which you will
      * be familiar with, such as `=`, `>`, `<`, `<=` and `>=`. For array fields,
      * the `array-contains`, `IN` and `array-contains-any` operators are also
      * available.
-     * This method also supports usage of Filters (see {@see Google\Cloud\Firestore\Filter}).
+     * This method also supports usage of Filters (see {@see \Google\Cloud\Firestore\Filter}).
      * The Filter class helps to create complex queries using AND and OR operators.
      *
      * Example:
@@ -555,7 +616,7 @@ class Query
      * ```
      *
      * @param mixed[]|DocumentSnapshot $fieldValues A list of values, or an
-     *        instance of {@see Google\Cloud\Firestore\DocumentSnapshot}
+     *        instance of {@see \Google\Cloud\Firestore\DocumentSnapshot}
      *        defining the query starting point.
      * @return Query A new instance of Query with the given changes applied.
      */
@@ -583,7 +644,7 @@ class Query
      * ```
      *
      * @param mixed[]|DocumentSnapshot $fieldValues A list of values, or an
-     *        instance of {@see Google\Cloud\Firestore\DocumentSnapshot}
+     *        instance of {@see \Google\Cloud\Firestore\DocumentSnapshot}
      *        defining the query starting point.
      * @return Query A new instance of Query with the given changes applied.
      */
@@ -611,7 +672,7 @@ class Query
      * ```
      *
      * @param mixed[]|DocumentSnapshot $fieldValues A list of values, or an
-     *        instance of {@see Google\Cloud\Firestore\DocumentSnapshot}
+     *        instance of {@see \Google\Cloud\Firestore\DocumentSnapshot}
      *        defining the query end point.
      * @return Query A new instance of Query with the given changes applied.
      */
@@ -639,7 +700,7 @@ class Query
      * ```
      *
      * @param mixed[]|DocumentSnapshot $fieldValues A list of values, or an
-     *        instance of {@see Google\Cloud\Firestore\DocumentSnapshot}
+     *        instance of {@see \Google\Cloud\Firestore\DocumentSnapshot}
      *        defining the query end point.
      * @return Query A new instance of Query with the given changes applied.
      */
@@ -679,7 +740,7 @@ class Query
      *
      * @param string $key The query key.
      * @param mixed[]|DocumentSnapshot $fieldValues An array of values, or an
-     *        instance of {@see Google\Cloud\Firestore\DocumentSnapshot}
+     *        instance of {@see \Google\Cloud\Firestore\DocumentSnapshot}
      *        to use as the query boundary.
      * @param bool $before Whether the query boundary lies just before or after
      *        the provided data.
@@ -1034,14 +1095,14 @@ class Query
             }
         }
 
-        if ((is_float($value) && is_nan($value)) || is_null($value)) {
+        if (is_null($value) || (is_float($value) && is_nan($value))) {
             if ($operator !== FieldFilterOperator::EQUAL) {
                 throw new \InvalidArgumentException('Null and NaN are allowed only with operator EQUALS.');
             }
 
-            $unaryOperator = is_nan($value)
-                ? self::OP_NAN
-                : self::OP_NULL;
+            $unaryOperator = is_null($value)
+                ? self::OP_NULL
+                : self::OP_NAN;
 
             $filter = [
                 'unaryFilter' => [

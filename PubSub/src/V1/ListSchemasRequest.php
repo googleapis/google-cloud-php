@@ -46,6 +46,21 @@ class ListSchemasRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The name of the project in which to list schemas.
+     *                       Format is `projects/{project-id}`. Please see
+     *                       {@see SchemaServiceClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\PubSub\V1\ListSchemasRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

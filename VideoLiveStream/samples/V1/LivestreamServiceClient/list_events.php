@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START livestream_v1_generated_LivestreamService_ListEvents_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Video\LiveStream\V1\Client\LivestreamServiceClient;
 use Google\Cloud\Video\LiveStream\V1\Event;
-use Google\Cloud\Video\LiveStream\V1\LivestreamServiceClient;
+use Google\Cloud\Video\LiveStream\V1\ListEventsRequest;
 
 /**
  * Returns a list of all events in the specified channel.
@@ -40,10 +41,14 @@ function list_events_sample(string $formattedParent): void
     // Create a client.
     $livestreamServiceClient = new LivestreamServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListEventsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $livestreamServiceClient->listEvents($formattedParent);
+        $response = $livestreamServiceClient->listEvents($request);
 
         /** @var Event $element */
         foreach ($response as $element) {

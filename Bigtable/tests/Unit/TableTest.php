@@ -44,6 +44,7 @@ use InvalidArgumentException;
 use Google\Rpc\Status;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Prophecy\Argument;
 
 /**
  * @group bigtable
@@ -378,7 +379,9 @@ class TableTest extends TestCase
             ->willReturn(
                 $this->arrayAsGenerator([])
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($expectedArgs) {
+            return $argument['rows']->serializeToJsonString() === $expectedArgs['rows']->serializeToJsonString();
+        }))
             ->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()
@@ -401,7 +404,10 @@ class TableTest extends TestCase
             ->willReturn(
                 $this->arrayAsGenerator([])
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($expectedArgs) {
+            return $argument['rows']->serializeToJsonString() === $expectedArgs['rows']->serializeToJsonString()
+                && $argument['filter']->serializeToJsonString() === $expectedArgs['filter']->serializeToJsonString();
+        }))
             ->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()
@@ -425,7 +431,9 @@ class TableTest extends TestCase
             ->willReturn(
                 $this->arrayAsGenerator([])
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($expectedArgs) {
+            return $argument['rows']->serializeToJsonString() === $expectedArgs['rows']->serializeToJsonString();
+        }))
             ->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()
@@ -451,7 +459,10 @@ class TableTest extends TestCase
             ->willReturn(
                 $this->arrayAsGenerator([])
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($expectedArgs) {
+            return $argument['rows']->serializeToJsonString() === $expectedArgs['rows']->serializeToJsonString()
+                && $argument['rowsLimit'] === $expectedArgs['rowsLimit'];
+        }))
             ->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()
@@ -480,7 +491,9 @@ class TableTest extends TestCase
             ->willReturn(
                 $this->arrayAsGenerator([])
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($expectedArgs) {
+            return $argument['rows']->serializeToJsonString() === $expectedArgs['rows']->serializeToJsonString();
+        }))
             ->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()
@@ -513,7 +526,9 @@ class TableTest extends TestCase
             ->willReturn(
                 $this->arrayAsGenerator([])
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($expectedArgs) {
+            return $argument['rows']->serializeToJsonString() === $expectedArgs['rows']->serializeToJsonString();
+        }))
             ->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()
@@ -546,7 +561,9 @@ class TableTest extends TestCase
             ->willReturn(
                 $this->arrayAsGenerator([])
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($expectedArgs) {
+            return $argument['rows']->serializeToJsonString() === $expectedArgs['rows']->serializeToJsonString();
+        }))
             ->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()
@@ -579,7 +596,9 @@ class TableTest extends TestCase
             ->willReturn(
                 $this->arrayAsGenerator([])
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($expectedArgs) {
+            return $argument['rows']->serializeToJsonString() === $expectedArgs['rows']->serializeToJsonString();
+        }))
             ->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()
@@ -617,7 +636,9 @@ class TableTest extends TestCase
             ->willReturn(
                 $this->arrayAsGenerator([])
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($expectedArgs) {
+            return $argument['rows']->serializeToJsonString() === $expectedArgs['rows']->serializeToJsonString();
+        }))
             ->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()

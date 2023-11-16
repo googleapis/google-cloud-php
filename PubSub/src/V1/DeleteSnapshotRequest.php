@@ -24,6 +24,21 @@ class DeleteSnapshotRequest extends \Google\Protobuf\Internal\Message
     private $snapshot = '';
 
     /**
+     * @param string $snapshot Required. The name of the snapshot to delete.
+     *                         Format is `projects/{project}/snapshots/{snap}`. Please see
+     *                         {@see SubscriberClient::snapshotName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\PubSub\V1\DeleteSnapshotRequest
+     *
+     * @experimental
+     */
+    public static function build(string $snapshot): self
+    {
+        return (new self())
+            ->setSnapshot($snapshot);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

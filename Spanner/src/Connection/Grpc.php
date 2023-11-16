@@ -79,6 +79,8 @@ use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type as Replica
 
 /**
  * Connection to Cloud Spanner over gRPC
+ *
+ * @internal
  */
 class Grpc implements ConnectionInterface
 {
@@ -687,6 +689,21 @@ class Grpc implements ConnectionInterface
     /**
      * @param array $args
      */
+    public function updateDatabase(array $args)
+    {
+        $databaseInfo = $this->serializer->decodeMessage(new Database(), $this->pluck('database', $args));
+        $databaseName = $databaseInfo->getName();
+        $updateMask = $this->serializer->decodeMessage(new FieldMask(), $this->pluck('updateMask', $args));
+        return $this->send([$this->getDatabaseAdminClient(), 'updateDatabase'], [
+            $databaseInfo,
+            $updateMask,
+            $this->addResourcePrefixHeader($args, $databaseName)
+        ]);
+    }
+
+    /**
+     * @param array $args
+     */
     public function updateDatabaseDdl(array $args)
     {
         $databaseName = $this->pluck('name', $args);
@@ -1040,7 +1057,7 @@ class Grpc implements ConnectionInterface
                 ? PBReadOnly::class
                 : 'Google\Cloud\Spanner\V1\TransactionOptions\ReadOnly';
             $readOnly = $this->serializer->decodeMessage(
-                new $readOnlyClass(),
+                new $readOnlyClass(), // @phpstan-ignore-line
                 $transactionOptions['readOnly']
             );
             $options->setReadOnly($readOnly);

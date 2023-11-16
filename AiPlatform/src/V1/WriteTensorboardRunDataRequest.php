@@ -36,6 +36,28 @@ class WriteTensorboardRunDataRequest extends \Google\Protobuf\Internal\Message
     private $time_series_data;
 
     /**
+     * @param string                                       $tensorboardRun Required. The resource name of the TensorboardRun to write data to.
+     *                                                                     Format:
+     *                                                                     `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
+     *                                                                     Please see {@see TensorboardServiceClient::tensorboardRunName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\TimeSeriesData[] $timeSeriesData Required. The TensorboardTimeSeries data to write.
+     *                                                                     Values with in a time series are indexed by their step value.
+     *                                                                     Repeated writes to the same step will overwrite the existing value for that
+     *                                                                     step.
+     *                                                                     The upper limit of data points per write request is 5000.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\WriteTensorboardRunDataRequest
+     *
+     * @experimental
+     */
+    public static function build(string $tensorboardRun, array $timeSeriesData): self
+    {
+        return (new self())
+            ->setTensorboardRun($tensorboardRun)
+            ->setTimeSeriesData($timeSeriesData);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

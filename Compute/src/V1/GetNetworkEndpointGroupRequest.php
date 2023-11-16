@@ -35,6 +35,23 @@ class GetNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string $project              Project ID for this request.
+     * @param string $zone                 The name of the zone where the network endpoint group is located. It should comply with RFC1035.
+     * @param string $networkEndpointGroup The name of the network endpoint group. It should comply with RFC1035.
+     *
+     * @return \Google\Cloud\Compute\V1\GetNetworkEndpointGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $networkEndpointGroup): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setNetworkEndpointGroup($networkEndpointGroup);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

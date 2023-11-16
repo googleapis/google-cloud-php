@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmwareengine_v1_generated_VmwareEngine_ResetNsxCredentials_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VmwareEngine\V1\Client\VmwareEngineClient;
 use Google\Cloud\VmwareEngine\V1\PrivateCloud;
-use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
+use Google\Cloud\VmwareEngine\V1\ResetNsxCredentialsRequest;
 use Google\Rpc\Status;
 
 /**
@@ -45,10 +46,14 @@ function reset_nsx_credentials_sample(string $formattedPrivateCloud): void
     // Create a client.
     $vmwareEngineClient = new VmwareEngineClient();
 
+    // Prepare the request message.
+    $request = (new ResetNsxCredentialsRequest())
+        ->setPrivateCloud($formattedPrivateCloud);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $vmwareEngineClient->resetNsxCredentials($formattedPrivateCloud);
+        $response = $vmwareEngineClient->resetNsxCredentials($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

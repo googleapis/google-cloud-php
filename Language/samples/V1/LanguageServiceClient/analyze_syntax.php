@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START language_v1_generated_LanguageService_AnalyzeSyntax_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Language\V1\AnalyzeSyntaxRequest;
 use Google\Cloud\Language\V1\AnalyzeSyntaxResponse;
+use Google\Cloud\Language\V1\Client\LanguageServiceClient;
 use Google\Cloud\Language\V1\Document;
-use Google\Cloud\Language\V1\LanguageServiceClient;
 
 /**
  * Analyzes the syntax of the text and provides sentence boundaries and
@@ -44,13 +45,15 @@ function analyze_syntax_sample(): void
     // Create a client.
     $languageServiceClient = new LanguageServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $document = new Document();
+    $request = (new AnalyzeSyntaxRequest())
+        ->setDocument($document);
 
     // Call the API and handle any network failures.
     try {
         /** @var AnalyzeSyntaxResponse $response */
-        $response = $languageServiceClient->analyzeSyntax($document);
+        $response = $languageServiceClient->analyzeSyntax($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

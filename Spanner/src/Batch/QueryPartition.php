@@ -23,13 +23,13 @@ use Google\Cloud\Spanner\Session\Session;
  * Represents a Query Partition.
  *
  * Partitions can be shared with other servers or processes by casting the
- * object to a string, or by calling {@see Google\Cloud\Spanner\Batch\QueryPartition::serialize()}.
+ * object to a string, or by calling {@see \Google\Cloud\Spanner\Batch\QueryPartition::serialize()}.
  *
  * Note that when reading or querying against a partition, the request MUST be
  * made using the same Batch Snapshot with which the partition was initialized.
  * In practice, this means that a shared partition must be accompanied by its
  * corresponding snapshot. For more information, refer to usage notes on
- * {@see Google\Cloud\Spanner\Batch\BatchClient}.
+ * {@see \Google\Cloud\Spanner\Batch\BatchClient}.
  *
  * Example:
  * ```
@@ -91,7 +91,7 @@ class QueryPartition implements PartitionInterface
      *           Generally, Google Cloud PHP can infer types. Explicit type
      *           definitions are only necessary for null parameter values.
      *           Accepted values are defined as constants on
-     *           {@see Google\Cloud\Spanner\ValueMapper}, and are as follows:
+     *           {@see \Google\Cloud\Spanner\ValueMapper}, and are as follows:
      *           `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
      *           `Database::TYPE_FLOAT64`, `Database::TYPE_TIMESTAMP`,
      *           `Database::TYPE_DATE`, `Database::TYPE_STRING`,

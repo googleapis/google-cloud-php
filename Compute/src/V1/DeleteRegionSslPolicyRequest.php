@@ -41,6 +41,23 @@ class DeleteRegionSslPolicyRequest extends \Google\Protobuf\Internal\Message
     private $ssl_policy = '';
 
     /**
+     * @param string $project   Project ID for this request.
+     * @param string $region    Name of the region scoping this request.
+     * @param string $sslPolicy Name of the SSL policy to delete. The name must be 1-63 characters long, and comply with RFC1035.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteRegionSslPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $sslPolicy): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setSslPolicy($sslPolicy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

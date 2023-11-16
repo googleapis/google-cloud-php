@@ -62,6 +62,21 @@ class ListImportJobsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing]
+     *                       to list, in the format `projects/&#42;/locations/&#42;/keyRings/*`. Please see
+     *                       {@see KeyManagementServiceClient::keyRingName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Kms\V1\ListImportJobsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

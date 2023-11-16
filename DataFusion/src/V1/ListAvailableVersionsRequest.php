@@ -45,6 +45,21 @@ class ListAvailableVersionsRequest extends \Google\Protobuf\Internal\Message
     private $latest_patch_only = false;
 
     /**
+     * @param string $parent Required. The project and location for which to retrieve instance information
+     *                       in the format projects/{project}/locations/{location}. Please see
+     *                       {@see DataFusionClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\DataFusion\V1\ListAvailableVersionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

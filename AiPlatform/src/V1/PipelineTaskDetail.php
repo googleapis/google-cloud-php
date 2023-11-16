@@ -30,7 +30,7 @@ class PipelineTaskDetail extends \Google\Protobuf\Internal\Message
     private $parent_task_id = 0;
     /**
      * Output only. The user specified name of the task that is defined in
-     * [PipelineJob.spec][].
+     * [pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec].
      *
      * Generated from protobuf field <code>string task_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -111,7 +111,7 @@ class PipelineTaskDetail extends \Google\Protobuf\Internal\Message
      *           scope. Empty if the task is at the root level.
      *     @type string $task_name
      *           Output only. The user specified name of the task that is defined in
-     *           [PipelineJob.spec][].
+     *           [pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec].
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Task create time.
      *     @type \Google\Protobuf\Timestamp $start_time
@@ -197,7 +197,7 @@ class PipelineTaskDetail extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The user specified name of the task that is defined in
-     * [PipelineJob.spec][].
+     * [pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec].
      *
      * Generated from protobuf field <code>string task_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -209,7 +209,7 @@ class PipelineTaskDetail extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The user specified name of the task that is defined in
-     * [PipelineJob.spec][].
+     * [pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec].
      *
      * Generated from protobuf field <code>string task_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

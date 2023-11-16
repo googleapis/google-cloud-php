@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START apikeys_v2_generated_ApiKeys_UndeleteKey_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\ApiKeys\V2\ApiKeysClient;
+use Google\Cloud\ApiKeys\V2\Client\ApiKeysClient;
 use Google\Cloud\ApiKeys\V2\Key;
+use Google\Cloud\ApiKeys\V2\UndeleteKeyRequest;
 use Google\Rpc\Status;
 
 /**
@@ -43,10 +44,14 @@ function undelete_key_sample(string $formattedName): void
     // Create a client.
     $apiKeysClient = new ApiKeysClient();
 
+    // Prepare the request message.
+    $request = (new UndeleteKeyRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $apiKeysClient->undeleteKey($formattedName);
+        $response = $apiKeysClient->undeleteKey($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

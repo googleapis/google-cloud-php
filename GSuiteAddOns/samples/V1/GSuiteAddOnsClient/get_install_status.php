@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START gsuiteaddons_v1_generated_GSuiteAddOns_GetInstallStatus_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\GSuiteAddOns\V1\GSuiteAddOnsClient;
+use Google\Cloud\GSuiteAddOns\V1\Client\GSuiteAddOnsClient;
+use Google\Cloud\GSuiteAddOns\V1\GetInstallStatusRequest;
 use Google\Cloud\GSuiteAddOns\V1\InstallStatus;
 
 /**
@@ -40,10 +41,14 @@ function get_install_status_sample(string $formattedName): void
     // Create a client.
     $gSuiteAddOnsClient = new GSuiteAddOnsClient();
 
+    // Prepare the request message.
+    $request = (new GetInstallStatusRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var InstallStatus $response */
-        $response = $gSuiteAddOnsClient->getInstallStatus($formattedName);
+        $response = $gSuiteAddOnsClient->getInstallStatus($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

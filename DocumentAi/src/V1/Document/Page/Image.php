@@ -22,7 +22,9 @@ class Image extends \Google\Protobuf\Internal\Message
      */
     private $content = '';
     /**
-     * Encoding mime type for the image.
+     * Encoding [media type (MIME
+     * type)](https://www.iana.org/assignments/media-types/media-types.xhtml)
+     * for the image.
      *
      * Generated from protobuf field <code>string mime_type = 2;</code>
      */
@@ -49,7 +51,9 @@ class Image extends \Google\Protobuf\Internal\Message
      *     @type string $content
      *           Raw byte content of the image.
      *     @type string $mime_type
-     *           Encoding mime type for the image.
+     *           Encoding [media type (MIME
+     *           type)](https://www.iana.org/assignments/media-types/media-types.xhtml)
+     *           for the image.
      *     @type int $width
      *           Width of the image in pixels.
      *     @type int $height
@@ -88,7 +92,9 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Encoding mime type for the image.
+     * Encoding [media type (MIME
+     * type)](https://www.iana.org/assignments/media-types/media-types.xhtml)
+     * for the image.
      *
      * Generated from protobuf field <code>string mime_type = 2;</code>
      * @return string
@@ -99,7 +105,9 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Encoding mime type for the image.
+     * Encoding [media type (MIME
+     * type)](https://www.iana.org/assignments/media-types/media-types.xhtml)
+     * for the image.
      *
      * Generated from protobuf field <code>string mime_type = 2;</code>
      * @param string $var

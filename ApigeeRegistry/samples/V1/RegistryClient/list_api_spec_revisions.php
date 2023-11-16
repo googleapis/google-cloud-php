@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\ApigeeRegistry\V1\ApiSpec;
-use Google\Cloud\ApigeeRegistry\V1\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\Client\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\ListApiSpecRevisionsRequest;
 
 /**
  * Lists all revisions of a spec.
@@ -40,10 +41,14 @@ function list_api_spec_revisions_sample(string $formattedName): void
     // Create a client.
     $registryClient = new RegistryClient();
 
+    // Prepare the request message.
+    $request = (new ListApiSpecRevisionsRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $registryClient->listApiSpecRevisions($formattedName);
+        $response = $registryClient->listApiSpecRevisions($request);
 
         /** @var ApiSpec $element */
         foreach ($response as $element) {

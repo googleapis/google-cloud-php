@@ -24,12 +24,13 @@ class Gkebackup
         \GPBMetadata\Google\Cloud\Gkebackup\V1\RestorePlan::initOnce();
         \GPBMetadata\Google\Cloud\Gkebackup\V1\Volume::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
+        \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‚O
-)google/cloud/gkebackup/v1/gkebackup.protogoogle.cloud.gkebackup.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/gkebackup/v1/backup.proto+google/cloud/gkebackup/v1/backup_plan.proto\'google/cloud/gkebackup/v1/restore.proto,google/cloud/gkebackup/v1/restore_plan.proto&google/cloud/gkebackup/v1/volume.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Ä
+ˇO
+)google/cloud/gkebackup/v1/gkebackup.protogoogle.cloud.gkebackup.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/gkebackup/v1/backup.proto+google/cloud/gkebackup/v1/backup_plan.proto\'google/cloud/gkebackup/v1/restore.proto,google/cloud/gkebackup/v1/restore_plan.proto&google/cloud/gkebackup/v1/volume.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Ä
 OperationMetadata4
 create_time (2.google.protobuf.TimestampB‡A1
 end_time (2.google.protobuf.TimestampB‡A

@@ -17,10 +17,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class AllUpdatesRule extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The name of the Pub/Sub topic where budget related messages will be
-     * published, in the form `projects/{project_id}/topics/{topic_id}`. Updates
-     * are sent at regular intervals to the topic.
-     * The topic needs to be created before the budget is created; see
+     * Optional. The name of the Pub/Sub topic where budget related messages will
+     * be published, in the form `projects/{project_id}/topics/{topic_id}`.
+     * Updates are sent at regular intervals to the topic. The topic needs to be
+     * created before the budget is created; see
      * https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications
      * for more details.
      * Caller is expected to have
@@ -33,19 +33,21 @@ class AllUpdatesRule extends \Google\Protobuf\Internal\Message
      */
     private $pubsub_topic = '';
     /**
-     * Optional. Required when [AllUpdatesRule.pubsub_topic][google.cloud.billing.budgets.v1beta1.AllUpdatesRule.pubsub_topic] is set. The schema version of
-     * the notification sent to [AllUpdatesRule.pubsub_topic][google.cloud.billing.budgets.v1beta1.AllUpdatesRule.pubsub_topic]. Only "1.0" is
-     * accepted. It represents the JSON schema as defined in
+     * Optional. Required when
+     * [AllUpdatesRule.pubsub_topic][google.cloud.billing.budgets.v1beta1.AllUpdatesRule.pubsub_topic]
+     * is set. The schema version of the notification sent to
+     * [AllUpdatesRule.pubsub_topic][google.cloud.billing.budgets.v1beta1.AllUpdatesRule.pubsub_topic].
+     * Only "1.0" is accepted. It represents the JSON schema as defined in
      * https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#notification_format.
      *
      * Generated from protobuf field <code>string schema_version = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $schema_version = '';
     /**
-     * Optional. Targets to send notifications to when a threshold is exceeded. This is in
-     * addition to default recipients who have billing account IAM roles.
-     * The value is the full REST resource name of a monitoring notification
-     * channel with the form
+     * Optional. Targets to send notifications to when a threshold is exceeded.
+     * This is in addition to default recipients who have billing account IAM
+     * roles. The value is the full REST resource name of a monitoring
+     * notification channel with the form
      * `projects/{project_id}/notificationChannels/{channel_id}`. A maximum of 5
      * channels are allowed. See
      * https://cloud.google.com/billing/docs/how-to/budgets-notification-recipients
@@ -55,13 +57,25 @@ class AllUpdatesRule extends \Google\Protobuf\Internal\Message
      */
     private $monitoring_notification_channels;
     /**
-     * Optional. When set to true, disables default notifications sent when a threshold is
-     * exceeded. Default notifications are sent to those with Billing Account
-     * Administrator and Billing Account User IAM roles for the target account.
+     * Optional. When set to true, disables default notifications sent when a
+     * threshold is exceeded. Default notifications are sent to those with Billing
+     * Account Administrator and Billing Account User IAM roles for the target
+     * account.
      *
      * Generated from protobuf field <code>bool disable_default_iam_recipients = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $disable_default_iam_recipients = false;
+    /**
+     * Optional. When set to true, and when the budget has a single project
+     * configured, notifications will be sent to project level recipients of that
+     * project. This field will be ignored if the budget has multiple or no
+     * project configured.
+     * Currently, project level recipients are the users with `Owner` role on a
+     * cloud project.
+     *
+     * Generated from protobuf field <code>bool enable_project_level_recipients = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $enable_project_level_recipients = false;
 
     /**
      * Constructor.
@@ -70,10 +84,10 @@ class AllUpdatesRule extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $pubsub_topic
-     *           Optional. The name of the Pub/Sub topic where budget related messages will be
-     *           published, in the form `projects/{project_id}/topics/{topic_id}`. Updates
-     *           are sent at regular intervals to the topic.
-     *           The topic needs to be created before the budget is created; see
+     *           Optional. The name of the Pub/Sub topic where budget related messages will
+     *           be published, in the form `projects/{project_id}/topics/{topic_id}`.
+     *           Updates are sent at regular intervals to the topic. The topic needs to be
+     *           created before the budget is created; see
      *           https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications
      *           for more details.
      *           Caller is expected to have
@@ -82,23 +96,33 @@ class AllUpdatesRule extends \Google\Protobuf\Internal\Message
      *           https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#permissions_required_for_this_task
      *           for more details on Pub/Sub roles and permissions.
      *     @type string $schema_version
-     *           Optional. Required when [AllUpdatesRule.pubsub_topic][google.cloud.billing.budgets.v1beta1.AllUpdatesRule.pubsub_topic] is set. The schema version of
-     *           the notification sent to [AllUpdatesRule.pubsub_topic][google.cloud.billing.budgets.v1beta1.AllUpdatesRule.pubsub_topic]. Only "1.0" is
-     *           accepted. It represents the JSON schema as defined in
+     *           Optional. Required when
+     *           [AllUpdatesRule.pubsub_topic][google.cloud.billing.budgets.v1beta1.AllUpdatesRule.pubsub_topic]
+     *           is set. The schema version of the notification sent to
+     *           [AllUpdatesRule.pubsub_topic][google.cloud.billing.budgets.v1beta1.AllUpdatesRule.pubsub_topic].
+     *           Only "1.0" is accepted. It represents the JSON schema as defined in
      *           https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#notification_format.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $monitoring_notification_channels
-     *           Optional. Targets to send notifications to when a threshold is exceeded. This is in
-     *           addition to default recipients who have billing account IAM roles.
-     *           The value is the full REST resource name of a monitoring notification
-     *           channel with the form
+     *           Optional. Targets to send notifications to when a threshold is exceeded.
+     *           This is in addition to default recipients who have billing account IAM
+     *           roles. The value is the full REST resource name of a monitoring
+     *           notification channel with the form
      *           `projects/{project_id}/notificationChannels/{channel_id}`. A maximum of 5
      *           channels are allowed. See
      *           https://cloud.google.com/billing/docs/how-to/budgets-notification-recipients
      *           for more details.
      *     @type bool $disable_default_iam_recipients
-     *           Optional. When set to true, disables default notifications sent when a threshold is
-     *           exceeded. Default notifications are sent to those with Billing Account
-     *           Administrator and Billing Account User IAM roles for the target account.
+     *           Optional. When set to true, disables default notifications sent when a
+     *           threshold is exceeded. Default notifications are sent to those with Billing
+     *           Account Administrator and Billing Account User IAM roles for the target
+     *           account.
+     *     @type bool $enable_project_level_recipients
+     *           Optional. When set to true, and when the budget has a single project
+     *           configured, notifications will be sent to project level recipients of that
+     *           project. This field will be ignored if the budget has multiple or no
+     *           project configured.
+     *           Currently, project level recipients are the users with `Owner` role on a
+     *           cloud project.
      * }
      */
     public function __construct($data = NULL) {
@@ -107,10 +131,10 @@ class AllUpdatesRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the Pub/Sub topic where budget related messages will be
-     * published, in the form `projects/{project_id}/topics/{topic_id}`. Updates
-     * are sent at regular intervals to the topic.
-     * The topic needs to be created before the budget is created; see
+     * Optional. The name of the Pub/Sub topic where budget related messages will
+     * be published, in the form `projects/{project_id}/topics/{topic_id}`.
+     * Updates are sent at regular intervals to the topic. The topic needs to be
+     * created before the budget is created; see
      * https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications
      * for more details.
      * Caller is expected to have
@@ -128,10 +152,10 @@ class AllUpdatesRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the Pub/Sub topic where budget related messages will be
-     * published, in the form `projects/{project_id}/topics/{topic_id}`. Updates
-     * are sent at regular intervals to the topic.
-     * The topic needs to be created before the budget is created; see
+     * Optional. The name of the Pub/Sub topic where budget related messages will
+     * be published, in the form `projects/{project_id}/topics/{topic_id}`.
+     * Updates are sent at regular intervals to the topic. The topic needs to be
+     * created before the budget is created; see
      * https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications
      * for more details.
      * Caller is expected to have
@@ -153,9 +177,11 @@ class AllUpdatesRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Required when [AllUpdatesRule.pubsub_topic][google.cloud.billing.budgets.v1beta1.AllUpdatesRule.pubsub_topic] is set. The schema version of
-     * the notification sent to [AllUpdatesRule.pubsub_topic][google.cloud.billing.budgets.v1beta1.AllUpdatesRule.pubsub_topic]. Only "1.0" is
-     * accepted. It represents the JSON schema as defined in
+     * Optional. Required when
+     * [AllUpdatesRule.pubsub_topic][google.cloud.billing.budgets.v1beta1.AllUpdatesRule.pubsub_topic]
+     * is set. The schema version of the notification sent to
+     * [AllUpdatesRule.pubsub_topic][google.cloud.billing.budgets.v1beta1.AllUpdatesRule.pubsub_topic].
+     * Only "1.0" is accepted. It represents the JSON schema as defined in
      * https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#notification_format.
      *
      * Generated from protobuf field <code>string schema_version = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -167,9 +193,11 @@ class AllUpdatesRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Required when [AllUpdatesRule.pubsub_topic][google.cloud.billing.budgets.v1beta1.AllUpdatesRule.pubsub_topic] is set. The schema version of
-     * the notification sent to [AllUpdatesRule.pubsub_topic][google.cloud.billing.budgets.v1beta1.AllUpdatesRule.pubsub_topic]. Only "1.0" is
-     * accepted. It represents the JSON schema as defined in
+     * Optional. Required when
+     * [AllUpdatesRule.pubsub_topic][google.cloud.billing.budgets.v1beta1.AllUpdatesRule.pubsub_topic]
+     * is set. The schema version of the notification sent to
+     * [AllUpdatesRule.pubsub_topic][google.cloud.billing.budgets.v1beta1.AllUpdatesRule.pubsub_topic].
+     * Only "1.0" is accepted. It represents the JSON schema as defined in
      * https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#notification_format.
      *
      * Generated from protobuf field <code>string schema_version = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -185,10 +213,10 @@ class AllUpdatesRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Targets to send notifications to when a threshold is exceeded. This is in
-     * addition to default recipients who have billing account IAM roles.
-     * The value is the full REST resource name of a monitoring notification
-     * channel with the form
+     * Optional. Targets to send notifications to when a threshold is exceeded.
+     * This is in addition to default recipients who have billing account IAM
+     * roles. The value is the full REST resource name of a monitoring
+     * notification channel with the form
      * `projects/{project_id}/notificationChannels/{channel_id}`. A maximum of 5
      * channels are allowed. See
      * https://cloud.google.com/billing/docs/how-to/budgets-notification-recipients
@@ -203,10 +231,10 @@ class AllUpdatesRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Targets to send notifications to when a threshold is exceeded. This is in
-     * addition to default recipients who have billing account IAM roles.
-     * The value is the full REST resource name of a monitoring notification
-     * channel with the form
+     * Optional. Targets to send notifications to when a threshold is exceeded.
+     * This is in addition to default recipients who have billing account IAM
+     * roles. The value is the full REST resource name of a monitoring
+     * notification channel with the form
      * `projects/{project_id}/notificationChannels/{channel_id}`. A maximum of 5
      * channels are allowed. See
      * https://cloud.google.com/billing/docs/how-to/budgets-notification-recipients
@@ -225,9 +253,10 @@ class AllUpdatesRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. When set to true, disables default notifications sent when a threshold is
-     * exceeded. Default notifications are sent to those with Billing Account
-     * Administrator and Billing Account User IAM roles for the target account.
+     * Optional. When set to true, disables default notifications sent when a
+     * threshold is exceeded. Default notifications are sent to those with Billing
+     * Account Administrator and Billing Account User IAM roles for the target
+     * account.
      *
      * Generated from protobuf field <code>bool disable_default_iam_recipients = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -238,9 +267,10 @@ class AllUpdatesRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. When set to true, disables default notifications sent when a threshold is
-     * exceeded. Default notifications are sent to those with Billing Account
-     * Administrator and Billing Account User IAM roles for the target account.
+     * Optional. When set to true, disables default notifications sent when a
+     * threshold is exceeded. Default notifications are sent to those with Billing
+     * Account Administrator and Billing Account User IAM roles for the target
+     * account.
      *
      * Generated from protobuf field <code>bool disable_default_iam_recipients = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -250,6 +280,42 @@ class AllUpdatesRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->disable_default_iam_recipients = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. When set to true, and when the budget has a single project
+     * configured, notifications will be sent to project level recipients of that
+     * project. This field will be ignored if the budget has multiple or no
+     * project configured.
+     * Currently, project level recipients are the users with `Owner` role on a
+     * cloud project.
+     *
+     * Generated from protobuf field <code>bool enable_project_level_recipients = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableProjectLevelRecipients()
+    {
+        return $this->enable_project_level_recipients;
+    }
+
+    /**
+     * Optional. When set to true, and when the budget has a single project
+     * configured, notifications will be sent to project level recipients of that
+     * project. This field will be ignored if the budget has multiple or no
+     * project configured.
+     * Currently, project level recipients are the users with `Owner` role on a
+     * cloud project.
+     *
+     * Generated from protobuf field <code>bool enable_project_level_recipients = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableProjectLevelRecipients($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_project_level_recipients = $var;
 
         return $this;
     }

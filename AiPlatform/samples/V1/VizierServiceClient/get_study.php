@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_VizierService_GetStudy_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\VizierServiceClient;
+use Google\Cloud\AIPlatform\V1\GetStudyRequest;
 use Google\Cloud\AIPlatform\V1\Study;
-use Google\Cloud\AIPlatform\V1\VizierServiceClient;
 
 /**
  * Gets a Study by name.
@@ -39,10 +40,14 @@ function get_study_sample(string $formattedName): void
     // Create a client.
     $vizierServiceClient = new VizierServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetStudyRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Study $response */
-        $response = $vizierServiceClient->getStudy($formattedName);
+        $response = $vizierServiceClient->getStudy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

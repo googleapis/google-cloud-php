@@ -105,6 +105,9 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Dialogflow\V2\Client\DocumentsClient} to use the new surface.
  */
 class DocumentsGapicClient
 {
@@ -826,7 +829,7 @@ class DocumentsGapicClient
      *     Optional.
      *
      *     @type GcsSources $gcsSource
-     *           The Google Cloud Storage location for the documents.
+     *           Optional. The Google Cloud Storage location for the documents.
      *           The path can include a wildcard.
      *
      *           These URIs may have the forms

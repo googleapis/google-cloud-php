@@ -28,8 +28,9 @@ use Google\Cloud\DocumentAI\V1\DocumentProcessorServiceClient;
 use Google\Cloud\DocumentAI\V1\Processor;
 
 /**
- * Creates a processor from the type processor that the user chose.
- * The processor will be at "ENABLED" state by default after its creation.
+ * Creates a processor from the
+ * [ProcessorType][google.cloud.documentai.v1.ProcessorType] provided. The
+ * processor will be at `ENABLED` state by default after its creation.
  *
  * @param string $formattedParent The parent (project and location) under which to create the
  *                                processor. Format: `projects/{project}/locations/{location}`

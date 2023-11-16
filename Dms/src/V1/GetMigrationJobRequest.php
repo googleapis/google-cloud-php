@@ -23,6 +23,20 @@ class GetMigrationJobRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Name of the migration job resource to get. Please see
+     *                     {@see DataMigrationServiceClient::migrationJobName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\CloudDms\V1\GetMigrationJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

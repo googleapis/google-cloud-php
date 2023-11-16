@@ -88,6 +88,9 @@ use Google\LongRunning\Operation;
  *     $serviceUsageClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\ServiceUsage\V1\Client\ServiceUsageClient} to use the new surface.
  */
 class ServiceUsageGapicClient
 {

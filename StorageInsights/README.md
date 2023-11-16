@@ -42,4 +42,4 @@ This component is considered alpha. As such, it is still a work-in-progress and 
 
 ### Next Steps
 
-1. Understand the [official documentation](https://cloud.google.com/storage/docs/insights/using-inventory-reports).
+1. Understand the [official documentation](https://cloud.google.com/php/docs/reference/cloud-storageinsights/latest).

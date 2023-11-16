@@ -74,6 +74,10 @@ use Google\Cloud\Compute\V1\SetLabelsInterconnectAttachmentRequest;
  *     $interconnectAttachmentsClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\InterconnectAttachmentsClient} to use the new
+ * surface.
  */
 class InterconnectAttachmentsGapicClient
 {

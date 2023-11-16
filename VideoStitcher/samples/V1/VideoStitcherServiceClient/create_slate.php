@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START videostitcher_v1_generated_VideoStitcherService_CreateSlate_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Video\Stitcher\V1\Client\VideoStitcherServiceClient;
+use Google\Cloud\Video\Stitcher\V1\CreateSlateRequest;
 use Google\Cloud\Video\Stitcher\V1\Slate;
-use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -45,13 +46,17 @@ function create_slate_sample(string $formattedParent, string $slateId): void
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $slate = new Slate();
+    $request = (new CreateSlateRequest())
+        ->setParent($formattedParent)
+        ->setSlateId($slateId)
+        ->setSlate($slate);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $videoStitcherServiceClient->createSlate($formattedParent, $slateId, $slate);
+        $response = $videoStitcherServiceClient->createSlate($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

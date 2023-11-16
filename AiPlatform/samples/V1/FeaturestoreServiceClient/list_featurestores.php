@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_FeaturestoreService_ListFeaturestores_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\AIPlatform\V1\Client\FeaturestoreServiceClient;
 use Google\Cloud\AIPlatform\V1\Featurestore;
-use Google\Cloud\AIPlatform\V1\FeaturestoreServiceClient;
+use Google\Cloud\AIPlatform\V1\ListFeaturestoresRequest;
 
 /**
  * Lists Featurestores in a given project and location.
@@ -41,10 +42,14 @@ function list_featurestores_sample(string $formattedParent): void
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListFeaturestoresRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $featurestoreServiceClient->listFeaturestores($formattedParent);
+        $response = $featurestoreServiceClient->listFeaturestores($request);
 
         /** @var Featurestore $element */
         foreach ($response as $element) {

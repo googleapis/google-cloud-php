@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Video\LiveStream\V1\Channel;
-use Google\Cloud\Video\LiveStream\V1\LivestreamServiceClient;
+use Google\Cloud\Video\LiveStream\V1\Client\LivestreamServiceClient;
+use Google\Cloud\Video\LiveStream\V1\ListChannelsRequest;
 
 /**
  * Returns a list of all channels in the specified region.
@@ -40,10 +41,14 @@ function list_channels_sample(string $formattedParent): void
     // Create a client.
     $livestreamServiceClient = new LivestreamServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListChannelsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $livestreamServiceClient->listChannels($formattedParent);
+        $response = $livestreamServiceClient->listChannels($request);
 
         /** @var Channel $element */
         foreach ($response as $element) {

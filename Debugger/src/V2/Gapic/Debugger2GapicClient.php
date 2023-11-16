@@ -73,6 +73,9 @@ use Google\Protobuf\GPBEmpty;
  *     $debugger2Client->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Debugger\V2\Client\Debugger2Client} to use the new surface.
  */
 class Debugger2GapicClient
 {

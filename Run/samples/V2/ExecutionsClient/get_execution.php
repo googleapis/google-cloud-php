@@ -24,16 +24,17 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START run_v2_generated_Executions_GetExecution_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Run\V2\Client\ExecutionsClient;
 use Google\Cloud\Run\V2\Execution;
-use Google\Cloud\Run\V2\ExecutionsClient;
+use Google\Cloud\Run\V2\GetExecutionRequest;
 
 /**
  * Gets information about an Execution.
  *
  * @param string $formattedName The full name of the Execution.
  *                              Format:
- *                              projects/{project}/locations/{location}/jobs/{job}/executions/{execution},
- *                              where {project} can be project id or number. Please see
+ *                              `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
+ *                              where `{project}` can be project id or number. Please see
  *                              {@see ExecutionsClient::executionName()} for help formatting this field.
  */
 function get_execution_sample(string $formattedName): void
@@ -41,10 +42,14 @@ function get_execution_sample(string $formattedName): void
     // Create a client.
     $executionsClient = new ExecutionsClient();
 
+    // Prepare the request message.
+    $request = (new GetExecutionRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Execution $response */
-        $response = $executionsClient->getExecution($formattedName);
+        $response = $executionsClient->getExecution($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

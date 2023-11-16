@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\AIPlatform\V1\Annotation;
-use Google\Cloud\AIPlatform\V1\DatasetServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\DatasetServiceClient;
+use Google\Cloud\AIPlatform\V1\ListAnnotationsRequest;
 
 /**
  * Lists Annotations belongs to a dataitem
@@ -41,10 +42,14 @@ function list_annotations_sample(string $formattedParent): void
     // Create a client.
     $datasetServiceClient = new DatasetServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListAnnotationsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $datasetServiceClient->listAnnotations($formattedParent);
+        $response = $datasetServiceClient->listAnnotations($request);
 
         /** @var Annotation $element */
         foreach ($response as $element) {

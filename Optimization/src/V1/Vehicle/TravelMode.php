@@ -28,10 +28,17 @@ class TravelMode
      * Generated from protobuf enum <code>DRIVING = 1;</code>
      */
     const DRIVING = 1;
+    /**
+     * Travel mode corresponding to walking directions.
+     *
+     * Generated from protobuf enum <code>WALKING = 2;</code>
+     */
+    const WALKING = 2;
 
     private static $valueToName = [
         self::TRAVEL_MODE_UNSPECIFIED => 'TRAVEL_MODE_UNSPECIFIED',
         self::DRIVING => 'DRIVING',
+        self::WALKING => 'WALKING',
     ];
 
     public static function name($value)

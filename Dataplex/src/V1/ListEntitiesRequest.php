@@ -60,6 +60,21 @@ class ListEntitiesRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $parent Required. The resource name of the parent zone:
+     *                       `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`. Please see
+     *                       {@see MetadataServiceClient::zoneName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dataplex\V1\ListEntitiesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

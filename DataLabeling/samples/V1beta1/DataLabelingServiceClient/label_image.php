@@ -26,8 +26,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\DataLabeling\V1beta1\AnnotatedDataset;
-use Google\Cloud\DataLabeling\V1beta1\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\Client\DataLabelingServiceClient;
 use Google\Cloud\DataLabeling\V1beta1\HumanAnnotationConfig;
+use Google\Cloud\DataLabeling\V1beta1\LabelImageRequest;
 use Google\Cloud\DataLabeling\V1beta1\LabelImageRequest\Feature;
 use Google\Rpc\Status;
 
@@ -53,15 +54,19 @@ function label_image_sample(
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $basicConfig = (new HumanAnnotationConfig())
         ->setInstruction($basicConfigInstruction)
         ->setAnnotatedDatasetDisplayName($basicConfigAnnotatedDatasetDisplayName);
+    $request = (new LabelImageRequest())
+        ->setParent($formattedParent)
+        ->setBasicConfig($basicConfig)
+        ->setFeature($feature);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataLabelingServiceClient->labelImage($formattedParent, $basicConfig, $feature);
+        $response = $dataLabelingServiceClient->labelImage($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -18,6 +18,7 @@
 namespace Google\Cloud\Dev\Tests\Unit\Command;
 
 use Google\Cloud\Dev\Command\AddComponentCommand;
+use Google\Cloud\Dev\Composer;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
@@ -29,17 +30,16 @@ use Symfony\Component\Console\Tester\CommandTester;
 class AddComponentCommandTest extends TestCase
 {
     private static $expectedFiles = [
-        '.OwlBot.yaml',
-        '.gitattributes',
-        '.github/pull_request_template.md',
-        '.repo-metadata.json',
-        'CONTRIBUTING.md',
-        'LICENSE',
-        'README.md',
-        'VERSION',
-        'composer.json',
-        'owlbot.py',
-        'phpunit.xml.dist',
+        '.OwlBot.yaml' => '.OwlBot.yaml.test', // so OwlBot doesn't read the test file
+        '.gitattributes' => null,
+        '.github/pull_request_template.md' => null,
+        '.repo-metadata.json' => null,
+        'CONTRIBUTING.md' => null,
+        'LICENSE' => null,
+        'README.md' => null,
+        'VERSION' => null,
+        'owlbot.py' => null,
+        'phpunit.xml.dist' => null,
     ];
 
     private static string $tmpDir;
@@ -86,13 +86,15 @@ class AddComponentCommandTest extends TestCase
             $this->assertStringContainsString($expectedLine, $display);
         }
 
-        foreach (self::$expectedFiles as $file) {
+        foreach (self::$expectedFiles as $file => $fixtureFile) {
             $this->assertFileExists(self::$tmpDir . '/SecretManager/' . $file);
             $this->assertFileEquals(
-                __DIR__ . '/../../fixtures/component/SecretManager/' . $file,
+                __DIR__ . '/../../fixtures/component/SecretManager/' . ($fixtureFile ?: $file),
                 self::$tmpDir . '/SecretManager/' . $file
             );
         }
+
+        $this->assertComposerJson('SecretManager');
     }
 
     public function testAddComponentWithCustomOptions()
@@ -138,12 +140,28 @@ class AddComponentCommandTest extends TestCase
             $this->assertStringContainsString($expectedLine, $display);
         }
 
-        foreach (self::$expectedFiles as $file) {
+        foreach (self::$expectedFiles as $file => $fixtureFile) {
             $this->assertFileExists(self::$tmpDir . '/CustomInput/' . $file);
             $this->assertFileEquals(
-                __DIR__ . '/../../fixtures/component/CustomInput/' . $file,
+                __DIR__ . '/../../fixtures/component/CustomInput/' . ($fixtureFile ?: $file),
                 self::$tmpDir . '/CustomInput/' . $file
             );
         }
+
+        $this->assertComposerJson('CustomInput');
+    }
+
+    private function assertComposerJson(string $componentName)
+    {
+        $composerPath = sprintf('%s/../../fixtures/component/%s/composer.json', __DIR__, $componentName);
+        $this->assertFileExists($composerPath);
+        $this->assertEquals(
+            file_get_contents(sprintf('%s/%s/composer.json', self::$tmpDir, $componentName)),
+            str_replace(
+                'GAX_VERSION',
+                Composer::getLatestVersion('google/gax'),
+                file_get_contents($composerPath)
+            )
+        );
     }
 }

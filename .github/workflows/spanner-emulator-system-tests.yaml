@@ -18,14 +18,14 @@ jobs:
 
     services:
       emulator:
-        image: gcr.io/cloud-spanner-emulator/emulator:1.5.4
+        image: gcr.io/cloud-spanner-emulator/emulator:1.5.12
         ports:
           - 9010:9010
           - 9020:9020
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Create Spanner instance
         uses: google-github-actions/setup-gcloud@v1
@@ -43,7 +43,7 @@ jobs:
         with:
           php-version: '7.4'
           tools: pecl
-          extensions: bcmath, grpc-1.49.0
+          extensions: bcmath, grpc
 
       - name: Install dependencies
         run: |
@@ -56,3 +56,5 @@ jobs:
           Spanner/vendor/bin/phpunit -c Spanner/phpunit-system.xml.dist
         env:
           SPANNER_EMULATOR_HOST: localhost:9010
+          GOOGLE_CLOUD_PHP_TESTS_KEY_PATH: '.github/emulator/example-key.json'
+          GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH: '.github/emulator/example-key.json'

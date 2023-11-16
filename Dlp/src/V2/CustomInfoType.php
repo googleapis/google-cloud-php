@@ -50,6 +50,16 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.ExclusionType exclusion_type = 8;</code>
      */
     private $exclusion_type = 0;
+    /**
+     * Sensitivity for this CustomInfoType. If this CustomInfoType extends an
+     * existing InfoType, the sensitivity here will take precedence over that of
+     * the original InfoType. If unset for a CustomInfoType, it will default to
+     * HIGH.
+     * This only applies to data profiling.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.SensitivityScore sensitivity_score = 9;</code>
+     */
+    private $sensitivity_score = null;
     protected $type;
 
     /**
@@ -86,6 +96,12 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      *     @type int $exclusion_type
      *           If set to EXCLUSION_TYPE_EXCLUDE this infoType will not cause a finding
      *           to be returned. It still can be used for rules matching.
+     *     @type \Google\Cloud\Dlp\V2\SensitivityScore $sensitivity_score
+     *           Sensitivity for this CustomInfoType. If this CustomInfoType extends an
+     *           existing InfoType, the sensitivity here will take precedence over that of
+     *           the original InfoType. If unset for a CustomInfoType, it will default to
+     *           HIGH.
+     *           This only applies to data profiling.
      * }
      */
     public function __construct($data = NULL) {
@@ -351,6 +367,50 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\CustomInfoType\ExclusionType::class);
         $this->exclusion_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sensitivity for this CustomInfoType. If this CustomInfoType extends an
+     * existing InfoType, the sensitivity here will take precedence over that of
+     * the original InfoType. If unset for a CustomInfoType, it will default to
+     * HIGH.
+     * This only applies to data profiling.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.SensitivityScore sensitivity_score = 9;</code>
+     * @return \Google\Cloud\Dlp\V2\SensitivityScore|null
+     */
+    public function getSensitivityScore()
+    {
+        return $this->sensitivity_score;
+    }
+
+    public function hasSensitivityScore()
+    {
+        return isset($this->sensitivity_score);
+    }
+
+    public function clearSensitivityScore()
+    {
+        unset($this->sensitivity_score);
+    }
+
+    /**
+     * Sensitivity for this CustomInfoType. If this CustomInfoType extends an
+     * existing InfoType, the sensitivity here will take precedence over that of
+     * the original InfoType. If unset for a CustomInfoType, it will default to
+     * HIGH.
+     * This only applies to data profiling.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.SensitivityScore sensitivity_score = 9;</code>
+     * @param \Google\Cloud\Dlp\V2\SensitivityScore $var
+     * @return $this
+     */
+    public function setSensitivityScore($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\SensitivityScore::class);
+        $this->sensitivity_score = $var;
 
         return $this;
     }

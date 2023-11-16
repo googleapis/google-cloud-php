@@ -29,6 +29,28 @@ class GetAzureServerConfigRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the
+     *                     [AzureServerConfig][google.cloud.gkemulticloud.v1.AzureServerConfig]
+     *                     resource to describe.
+     *
+     *                     `AzureServerConfig` names are formatted as
+     *                     `projects/<project-id>/locations/<region>/azureServerConfig`.
+     *
+     *                     See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *                     for more details on Google Cloud resource names. Please see
+     *                     {@see AzureClustersClient::azureServerConfigName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\GetAzureServerConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

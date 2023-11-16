@@ -17,17 +17,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class TaggedEntry extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Tags that should be ingested into the Data Catalog.
+     * Optional. Tags that should be ingested into the Data Catalog.
      * Caller should populate template name, column and fields.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Tag present_tags = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Tag present_tags = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $present_tags;
     /**
-     * Tags that should be deleted from the Data Catalog.
+     * Optional. Tags that should be deleted from the Data Catalog.
      * Caller should populate template name and column only.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Tag absent_tags = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Tag absent_tags = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $absent_tags;
     protected $entry;
@@ -41,10 +41,10 @@ class TaggedEntry extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DataCatalog\V1\Entry $v1_entry
      *           Non-encrypted Data Catalog v1 Entry.
      *     @type array<\Google\Cloud\DataCatalog\V1\Tag>|\Google\Protobuf\Internal\RepeatedField $present_tags
-     *           Tags that should be ingested into the Data Catalog.
+     *           Optional. Tags that should be ingested into the Data Catalog.
      *           Caller should populate template name, column and fields.
      *     @type array<\Google\Cloud\DataCatalog\V1\Tag>|\Google\Protobuf\Internal\RepeatedField $absent_tags
-     *           Tags that should be deleted from the Data Catalog.
+     *           Optional. Tags that should be deleted from the Data Catalog.
      *           Caller should populate template name and column only.
      * }
      */
@@ -85,10 +85,10 @@ class TaggedEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Tags that should be ingested into the Data Catalog.
+     * Optional. Tags that should be ingested into the Data Catalog.
      * Caller should populate template name, column and fields.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Tag present_tags = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Tag present_tags = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getPresentTags()
@@ -97,10 +97,10 @@ class TaggedEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Tags that should be ingested into the Data Catalog.
+     * Optional. Tags that should be ingested into the Data Catalog.
      * Caller should populate template name, column and fields.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Tag present_tags = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Tag present_tags = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\DataCatalog\V1\Tag>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -113,10 +113,10 @@ class TaggedEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Tags that should be deleted from the Data Catalog.
+     * Optional. Tags that should be deleted from the Data Catalog.
      * Caller should populate template name and column only.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Tag absent_tags = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Tag absent_tags = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAbsentTags()
@@ -125,10 +125,10 @@ class TaggedEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Tags that should be deleted from the Data Catalog.
+     * Optional. Tags that should be deleted from the Data Catalog.
      * Caller should populate template name and column only.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Tag absent_tags = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Tag absent_tags = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\DataCatalog\V1\Tag>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

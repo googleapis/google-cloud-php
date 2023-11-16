@@ -65,6 +65,23 @@ class ListNodesNodeGroupsRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string $project   Project ID for this request.
+     * @param string $zone      The name of the zone for this request.
+     * @param string $nodeGroup Name of the NodeGroup resource whose nodes you want to list.
+     *
+     * @return \Google\Cloud\Compute\V1\ListNodesNodeGroupsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $nodeGroup): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setNodeGroup($nodeGroup);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

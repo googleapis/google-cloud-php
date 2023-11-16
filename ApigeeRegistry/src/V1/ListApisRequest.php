@@ -49,6 +49,21 @@ class ListApisRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $parent Required. The parent, which owns this collection of APIs.
+     *                       Format: `projects/&#42;/locations/*`
+     *                       Please see {@see RegistryClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ApigeeRegistry\V1\ListApisRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

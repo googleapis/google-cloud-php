@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START apikeys_v2_generated_ApiKeys_UpdateKey_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\ApiKeys\V2\ApiKeysClient;
+use Google\Cloud\ApiKeys\V2\Client\ApiKeysClient;
 use Google\Cloud\ApiKeys\V2\Key;
+use Google\Cloud\ApiKeys\V2\UpdateKeyRequest;
 use Google\Rpc\Status;
 
 /**
@@ -47,13 +48,15 @@ function update_key_sample(): void
     // Create a client.
     $apiKeysClient = new ApiKeysClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $key = new Key();
+    $request = (new UpdateKeyRequest())
+        ->setKey($key);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $apiKeysClient->updateKey($key);
+        $response = $apiKeysClient->updateKey($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

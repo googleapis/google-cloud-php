@@ -30,6 +30,22 @@ class UpdateBigQueryExportRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\SecurityCenter\V1\BigQueryExport $bigQueryExport Required. The BigQuery export being updated.
+     * @param \Google\Protobuf\FieldMask                     $updateMask     The list of fields to be updated.
+     *                                                                       If empty all mutable fields will be updated.
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\UpdateBigQueryExportRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\SecurityCenter\V1\BigQueryExport $bigQueryExport, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setBigQueryExport($bigQueryExport)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

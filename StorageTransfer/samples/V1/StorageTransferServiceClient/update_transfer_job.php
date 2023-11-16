@@ -31,8 +31,8 @@ use Google\Cloud\StorageTransfer\V1\TransferJob;
  * Updates a transfer job. Updating a job's transfer spec does not affect
  * transfer operations that are running already.
  *
- * **Note:** The job's [status][google.storagetransfer.v1.TransferJob.status] field can be modified
- * using this RPC (for example, to set a job's status to
+ * **Note:** The job's [status][google.storagetransfer.v1.TransferJob.status]
+ * field can be modified using this RPC (for example, to set a job's status to
  * [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED],
  * [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], or
  * [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED]).

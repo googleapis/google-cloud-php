@@ -26,8 +26,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\GkeMultiCloud\V1\AttachedCluster;
-use Google\Cloud\GkeMultiCloud\V1\AttachedClustersClient;
 use Google\Cloud\GkeMultiCloud\V1\AttachedOidcConfig;
+use Google\Cloud\GkeMultiCloud\V1\Client\AttachedClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\CreateAttachedClusterRequest;
 use Google\Cloud\GkeMultiCloud\V1\Fleet;
 use Google\Rpc\Status;
 
@@ -82,7 +83,7 @@ function create_attached_cluster_sample(
     // Create a client.
     $attachedClustersClient = new AttachedClustersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $attachedClusterOidcConfig = new AttachedOidcConfig();
     $attachedClusterFleet = (new Fleet())
         ->setProject($attachedClusterFleetProject);
@@ -91,15 +92,15 @@ function create_attached_cluster_sample(
         ->setPlatformVersion($attachedClusterPlatformVersion)
         ->setDistribution($attachedClusterDistribution)
         ->setFleet($attachedClusterFleet);
+    $request = (new CreateAttachedClusterRequest())
+        ->setParent($formattedParent)
+        ->setAttachedCluster($attachedCluster)
+        ->setAttachedClusterId($attachedClusterId);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $attachedClustersClient->createAttachedCluster(
-            $formattedParent,
-            $attachedCluster,
-            $attachedClusterId
-        );
+        $response = $attachedClustersClient->createAttachedCluster($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

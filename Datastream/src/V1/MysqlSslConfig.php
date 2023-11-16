@@ -44,8 +44,8 @@ class MysqlSslConfig extends \Google\Protobuf\Internal\Message
      */
     private $client_certificate_set = false;
     /**
-     * Input only. PEM-encoded certificate of the CA that signed the source database
-     * server's certificate.
+     * Input only. PEM-encoded certificate of the CA that signed the source
+     * database server's certificate.
      *
      * Generated from protobuf field <code>string ca_certificate = 5 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
@@ -76,8 +76,8 @@ class MysqlSslConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $client_certificate_set
      *           Output only. Indicates whether the client_certificate field is set.
      *     @type string $ca_certificate
-     *           Input only. PEM-encoded certificate of the CA that signed the source database
-     *           server's certificate.
+     *           Input only. PEM-encoded certificate of the CA that signed the source
+     *           database server's certificate.
      *     @type bool $ca_certificate_set
      *           Output only. Indicates whether the ca_certificate field is set.
      * }
@@ -200,8 +200,8 @@ class MysqlSslConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. PEM-encoded certificate of the CA that signed the source database
-     * server's certificate.
+     * Input only. PEM-encoded certificate of the CA that signed the source
+     * database server's certificate.
      *
      * Generated from protobuf field <code>string ca_certificate = 5 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return string
@@ -212,8 +212,8 @@ class MysqlSslConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. PEM-encoded certificate of the CA that signed the source database
-     * server's certificate.
+     * Input only. PEM-encoded certificate of the CA that signed the source
+     * database server's certificate.
      *
      * Generated from protobuf field <code>string ca_certificate = 5 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param string $var

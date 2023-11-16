@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_ModelService_MergeVersionAliases_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\ModelServiceClient;
+use Google\Cloud\AIPlatform\V1\MergeVersionAliasesRequest;
 use Google\Cloud\AIPlatform\V1\Model;
-use Google\Cloud\AIPlatform\V1\ModelServiceClient;
 
 /**
  * Merges a set of aliases for a Model version.
@@ -53,13 +54,16 @@ function merge_version_aliases_sample(string $formattedName, string $versionAlia
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $versionAliases = [$versionAliasesElement,];
+    $request = (new MergeVersionAliasesRequest())
+        ->setName($formattedName)
+        ->setVersionAliases($versionAliases);
 
     // Call the API and handle any network failures.
     try {
         /** @var Model $response */
-        $response = $modelServiceClient->mergeVersionAliases($formattedName, $versionAliases);
+        $response = $modelServiceClient->mergeVersionAliases($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

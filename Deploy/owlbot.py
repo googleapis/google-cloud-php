@@ -48,8 +48,6 @@ s.replace(
     '')
 
 
-
-
 ### [START] protoc backwards compatibility fixes
 
 # roll back to private properties.

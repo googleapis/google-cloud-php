@@ -31,6 +31,24 @@ class BatchWriteSpansRequest extends \Google\Protobuf\Internal\Message
     private $spans;
 
     /**
+     * @param string                        $name  Required. The name of the project where the spans belong. The format is
+     *                                             `projects/[PROJECT_ID]`. Please see
+     *                                             {@see TraceServiceClient::projectName()} for help formatting this field.
+     * @param \Google\Cloud\Trace\V2\Span[] $spans Required. A list of new spans. The span names must not match existing
+     *                                             spans, otherwise the results are undefined.
+     *
+     * @return \Google\Cloud\Trace\V2\BatchWriteSpansRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, array $spans): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setSpans($spans);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datalabeling_v1beta1_generated_DataLabelingService_CreateInstruction_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\DataLabeling\V1beta1\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\Client\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\CreateInstructionRequest;
 use Google\Cloud\DataLabeling\V1beta1\Instruction;
 use Google\Rpc\Status;
 
@@ -41,13 +42,16 @@ function create_instruction_sample(string $formattedParent): void
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instruction = new Instruction();
+    $request = (new CreateInstructionRequest())
+        ->setParent($formattedParent)
+        ->setInstruction($instruction);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataLabelingServiceClient->createInstruction($formattedParent, $instruction);
+        $response = $dataLabelingServiceClient->createInstruction($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

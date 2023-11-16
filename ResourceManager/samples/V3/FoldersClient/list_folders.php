@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudresourcemanager_v3_generated_Folders_ListFolders_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\ResourceManager\V3\Client\FoldersClient;
 use Google\Cloud\ResourceManager\V3\Folder;
-use Google\Cloud\ResourceManager\V3\FoldersClient;
+use Google\Cloud\ResourceManager\V3\ListFoldersRequest;
 
 /**
  * Lists the folders that are direct descendants of supplied parent resource.
@@ -52,10 +53,14 @@ function list_folders_sample(string $parent): void
     // Create a client.
     $foldersClient = new FoldersClient();
 
+    // Prepare the request message.
+    $request = (new ListFoldersRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $foldersClient->listFolders($parent);
+        $response = $foldersClient->listFolders($request);
 
         /** @var Folder $element */
         foreach ($response as $element) {

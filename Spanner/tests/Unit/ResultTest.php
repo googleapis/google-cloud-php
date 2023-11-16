@@ -159,6 +159,77 @@ class ResultTest extends TestCase
         $this->assertEquals(2, $timesCalled);
     }
 
+    public function testRowsRetriesWithoutResumeTokenWhenNotYieldedRows()
+    {
+        $timesCalled = 0;
+        $chunks = [
+            [
+                'metadata' => $this->metadata,
+                'values' => ['a']
+            ],
+            [
+                'values' => ['b']
+            ],
+            [
+                'values' => ['c']
+            ]
+        ];
+
+        $result = $this->getResultClass(
+            null,
+            'r',
+            null,
+            function () use ($chunks, &$timesCalled) {
+                $timesCalled++;
+                foreach ($chunks as $key => $chunk) {
+                    if ($key === 1 && $timesCalled < 2) {
+                        throw new ServiceException('Unavailable', 14);
+                    }
+                    yield $chunk;
+                }
+            }
+        );
+
+        iterator_to_array($result->rows());
+        $this->assertEquals(2, $timesCalled);
+    }
+
+    public function testRowsRetriesWithResumeTokenWhenNotYieldedRows()
+    {
+        $timesCalled = 0;
+        $chunks = [
+            [
+                'metadata' => $this->metadata,
+                'values' => ['a'],
+                'resumeToken' => 'abc'
+            ],
+            [
+                'values' => ['b']
+            ],
+            [
+                'values' => ['c']
+            ]
+        ];
+
+        $result = $this->getResultClass(
+            null,
+            'r',
+            null,
+            function () use ($chunks, &$timesCalled) {
+                $timesCalled++;
+                foreach ($chunks as $key => $chunk) {
+                    if ($key === 1 && $timesCalled < 2) {
+                        throw new ServiceException('Unavailable', 14);
+                    }
+                    yield $chunk;
+                }
+            }
+        );
+
+        iterator_to_array($result->rows());
+        $this->assertEquals(2, $timesCalled);
+    }
+
     public function testThrowsExceptionWhenCannotRetry()
     {
         $this->expectException(ServiceException::class);

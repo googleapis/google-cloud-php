@@ -40,11 +40,11 @@ class ExportTensorboardTimeSeriesDataRequest extends \Google\Protobuf\Internal\M
     private $page_size = 0;
     /**
      * A page token, received from a previous
-     * [TensorboardService.ExportTensorboardTimeSeries][] call.
-     * Provide this to retrieve the subsequent page.
+     * [ExportTensorboardTimeSeriesData][google.cloud.aiplatform.v1.TensorboardService.ExportTensorboardTimeSeriesData]
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
-     * [TensorboardService.ExportTensorboardTimeSeries][] must
-     * match the call that provided the page token.
+     * [ExportTensorboardTimeSeriesData][google.cloud.aiplatform.v1.TensorboardService.ExportTensorboardTimeSeriesData]
+     * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
@@ -57,6 +57,22 @@ class ExportTensorboardTimeSeriesDataRequest extends \Google\Protobuf\Internal\M
      * Generated from protobuf field <code>string order_by = 5;</code>
      */
     private $order_by = '';
+
+    /**
+     * @param string $tensorboardTimeSeries Required. The resource name of the TensorboardTimeSeries to export data
+     *                                      from. Format:
+     *                                      `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
+     *                                      Please see {@see TensorboardServiceClient::tensorboardTimeSeriesName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ExportTensorboardTimeSeriesDataRequest
+     *
+     * @experimental
+     */
+    public static function build(string $tensorboardTimeSeries): self
+    {
+        return (new self())
+            ->setTensorboardTimeSeries($tensorboardTimeSeries);
+    }
 
     /**
      * Constructor.
@@ -76,11 +92,11 @@ class ExportTensorboardTimeSeriesDataRequest extends \Google\Protobuf\Internal\M
      *           Values above 10000 are coerced to 10000.
      *     @type string $page_token
      *           A page token, received from a previous
-     *           [TensorboardService.ExportTensorboardTimeSeries][] call.
-     *           Provide this to retrieve the subsequent page.
+     *           [ExportTensorboardTimeSeriesData][google.cloud.aiplatform.v1.TensorboardService.ExportTensorboardTimeSeriesData]
+     *           call. Provide this to retrieve the subsequent page.
      *           When paginating, all other parameters provided to
-     *           [TensorboardService.ExportTensorboardTimeSeries][] must
-     *           match the call that provided the page token.
+     *           [ExportTensorboardTimeSeriesData][google.cloud.aiplatform.v1.TensorboardService.ExportTensorboardTimeSeriesData]
+     *           must match the call that provided the page token.
      *     @type string $order_by
      *           Field to use to sort the TensorboardTimeSeries' data.
      *           By default, TensorboardTimeSeries' data is returned in a pseudo random
@@ -180,11 +196,11 @@ class ExportTensorboardTimeSeriesDataRequest extends \Google\Protobuf\Internal\M
 
     /**
      * A page token, received from a previous
-     * [TensorboardService.ExportTensorboardTimeSeries][] call.
-     * Provide this to retrieve the subsequent page.
+     * [ExportTensorboardTimeSeriesData][google.cloud.aiplatform.v1.TensorboardService.ExportTensorboardTimeSeriesData]
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
-     * [TensorboardService.ExportTensorboardTimeSeries][] must
-     * match the call that provided the page token.
+     * [ExportTensorboardTimeSeriesData][google.cloud.aiplatform.v1.TensorboardService.ExportTensorboardTimeSeriesData]
+     * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @return string
@@ -196,11 +212,11 @@ class ExportTensorboardTimeSeriesDataRequest extends \Google\Protobuf\Internal\M
 
     /**
      * A page token, received from a previous
-     * [TensorboardService.ExportTensorboardTimeSeries][] call.
-     * Provide this to retrieve the subsequent page.
+     * [ExportTensorboardTimeSeriesData][google.cloud.aiplatform.v1.TensorboardService.ExportTensorboardTimeSeriesData]
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
-     * [TensorboardService.ExportTensorboardTimeSeries][] must
-     * match the call that provided the page token.
+     * [ExportTensorboardTimeSeriesData][google.cloud.aiplatform.v1.TensorboardService.ExportTensorboardTimeSeriesData]
+     * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @param string $var

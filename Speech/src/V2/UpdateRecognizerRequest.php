@@ -40,6 +40,25 @@ class UpdateRecognizerRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param \Google\Cloud\Speech\V2\Recognizer $recognizer Required. The Recognizer to update.
+     *
+     *                                                       The Recognizer's `name` field is used to identify the Recognizer to update.
+     *                                                       Format: `projects/{project}/locations/{location}/recognizers/{recognizer}`.
+     * @param \Google\Protobuf\FieldMask         $updateMask The list of fields to update. If empty, all non-default valued fields are
+     *                                                       considered for update. Use `*` to update the entire Recognizer resource.
+     *
+     * @return \Google\Cloud\Speech\V2\UpdateRecognizerRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Speech\V2\Recognizer $recognizer, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setRecognizer($recognizer)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -23,8 +23,8 @@ class ListDeidentifyTemplatesResponse extends \Google\Protobuf\Internal\Message
      */
     private $deidentify_templates;
     /**
-     * If the next page is available then the next page token to be used
-     * in following ListDeidentifyTemplates request.
+     * If the next page is available then the next page token to be used in the
+     * following ListDeidentifyTemplates request.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -40,8 +40,8 @@ class ListDeidentifyTemplatesResponse extends \Google\Protobuf\Internal\Message
      *           List of deidentify templates, up to page_size in
      *           ListDeidentifyTemplatesRequest.
      *     @type string $next_page_token
-     *           If the next page is available then the next page token to be used
-     *           in following ListDeidentifyTemplates request.
+     *           If the next page is available then the next page token to be used in the
+     *           following ListDeidentifyTemplates request.
      * }
      */
     public function __construct($data = NULL) {
@@ -78,8 +78,8 @@ class ListDeidentifyTemplatesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If the next page is available then the next page token to be used
-     * in following ListDeidentifyTemplates request.
+     * If the next page is available then the next page token to be used in the
+     * following ListDeidentifyTemplates request.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -90,8 +90,8 @@ class ListDeidentifyTemplatesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If the next page is available then the next page token to be used
-     * in following ListDeidentifyTemplates request.
+     * If the next page is available then the next page token to be used in the
+     * following ListDeidentifyTemplates request.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

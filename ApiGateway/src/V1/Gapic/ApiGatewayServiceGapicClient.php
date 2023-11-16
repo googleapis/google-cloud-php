@@ -106,6 +106,10 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\ApiGateway\V1\Client\ApiGatewayServiceClient} to use the new
+ * surface.
  */
 class ApiGatewayServiceGapicClient
 {

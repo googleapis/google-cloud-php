@@ -97,6 +97,10 @@ use Google\Protobuf\Timestamp;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Bigtable\Admin\V2\Client\BigtableInstanceAdminClient} to use the
+ * new surface.
  */
 class BigtableInstanceAdminGapicClient
 {
@@ -128,6 +132,8 @@ class BigtableInstanceAdminGapicClient
     private static $appProfileNameTemplate;
 
     private static $clusterNameTemplate;
+
+    private static $cryptoKeyNameTemplate;
 
     private static $instanceNameTemplate;
 
@@ -176,6 +182,15 @@ class BigtableInstanceAdminGapicClient
         return self::$clusterNameTemplate;
     }
 
+    private static function getCryptoKeyNameTemplate()
+    {
+        if (self::$cryptoKeyNameTemplate == null) {
+            self::$cryptoKeyNameTemplate = new PathTemplate('projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}');
+        }
+
+        return self::$cryptoKeyNameTemplate;
+    }
+
     private static function getInstanceNameTemplate()
     {
         if (self::$instanceNameTemplate == null) {
@@ -209,6 +224,7 @@ class BigtableInstanceAdminGapicClient
             self::$pathTemplateMap = [
                 'appProfile' => self::getAppProfileNameTemplate(),
                 'cluster' => self::getClusterNameTemplate(),
+                'cryptoKey' => self::getCryptoKeyNameTemplate(),
                 'instance' => self::getInstanceNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
@@ -253,6 +269,27 @@ class BigtableInstanceAdminGapicClient
             'project' => $project,
             'instance' => $instance,
             'cluster' => $cluster,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_key resource.
+     */
+    public static function cryptoKeyName($project, $location, $keyRing, $cryptoKey)
+    {
+        return self::getCryptoKeyNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
         ]);
     }
 
@@ -311,6 +348,7 @@ class BigtableInstanceAdminGapicClient
      * Template: Pattern
      * - appProfile: projects/{project}/instances/{instance}/appProfiles/{app_profile}
      * - cluster: projects/{project}/instances/{instance}/clusters/{cluster}
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - instance: projects/{project}/instances/{instance}
      * - location: projects/{project}/locations/{location}
      * - project: projects/{project}
@@ -456,11 +494,10 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string     $parent       Required. The unique name of the instance in which to create the new app profile.
-     *                                 Values are of the form
-     *                                 `projects/{project}/instances/{instance}`.
-     * @param string     $appProfileId Required. The ID to be used when referring to the new app profile within its
-     *                                 instance, e.g., just `myprofile` rather than
+     * @param string     $parent       Required. The unique name of the instance in which to create the new app
+     *                                 profile. Values are of the form `projects/{project}/instances/{instance}`.
+     * @param string     $appProfileId Required. The ID to be used when referring to the new app profile within
+     *                                 its instance, e.g., just `myprofile` rather than
      *                                 `projects/myproject/instances/myinstance/appProfiles/myprofile`.
      * @param AppProfile $appProfile   Required. The app profile to be created.
      *                                 Fields marked `OutputOnly` will be ignored.
@@ -543,11 +580,10 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string  $parent       Required. The unique name of the instance in which to create the new cluster.
-     *                              Values are of the form
-     *                              `projects/{project}/instances/{instance}`.
-     * @param string  $clusterId    Required. The ID to be used when referring to the new cluster within its instance,
-     *                              e.g., just `mycluster` rather than
+     * @param string  $parent       Required. The unique name of the instance in which to create the new
+     *                              cluster. Values are of the form `projects/{project}/instances/{instance}`.
+     * @param string  $clusterId    Required. The ID to be used when referring to the new cluster within its
+     *                              instance, e.g., just `mycluster` rather than
      *                              `projects/myproject/instances/myinstance/clusters/mycluster`.
      * @param Cluster $cluster      Required. The cluster to be created.
      *                              Fields marked `OutputOnly` must be left blank.
@@ -625,10 +661,10 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string   $parent       Required. The unique name of the project in which to create the new instance.
-     *                               Values are of the form `projects/{project}`.
-     * @param string   $instanceId   Required. The ID to be used when referring to the new instance within its project,
-     *                               e.g., just `myinstance` rather than
+     * @param string   $parent       Required. The unique name of the project in which to create the new
+     *                               instance. Values are of the form `projects/{project}`.
+     * @param string   $instanceId   Required. The ID to be used when referring to the new instance within its
+     *                               project, e.g., just `myinstance` rather than
      *                               `projects/myproject/instances/myinstance`.
      * @param Instance $instance     Required. The instance to create.
      *                               Fields marked `OutputOnly` must be left blank.
@@ -679,7 +715,8 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $name           Required. The unique name of the app profile to be deleted. Values are of the form
+     * @param string $name           Required. The unique name of the app profile to be deleted. Values are of
+     *                               the form
      *                               `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
      * @param bool   $ignoreWarnings Required. If true, ignore safety checks when deleting the app profile.
      * @param array  $optionalArgs   {
@@ -719,8 +756,8 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The unique name of the cluster to be deleted. Values are of the form
-     *                             `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     * @param string $name         Required. The unique name of the cluster to be deleted. Values are of the
+     *                             form `projects/{project}/instances/{instance}/clusters/{cluster}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -795,8 +832,8 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The unique name of the requested app profile. Values are of the form
-     *                             `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
+     * @param string $name         Required. The unique name of the requested app profile. Values are of the
+     *                             form `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -975,8 +1012,8 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The unique name of the instance for which a list of app profiles is
-     *                             requested. Values are of the form
+     * @param string $parent       Required. The unique name of the instance for which a list of app profiles
+     *                             is requested. Values are of the form
      *                             `projects/{project}/instances/{instance}`.
      *                             Use `{instance} = '-'` to list AppProfiles for all Instances in a project,
      *                             e.g., `projects/myproject/instances/-`.
@@ -1035,10 +1072,11 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The unique name of the instance for which a list of clusters is requested.
-     *                             Values are of the form `projects/{project}/instances/{instance}`.
-     *                             Use `{instance} = '-'` to list Clusters for all Instances in a project,
-     *                             e.g., `projects/myproject/instances/-`.
+     * @param string $parent       Required. The unique name of the instance for which a list of clusters is
+     *                             requested. Values are of the form
+     *                             `projects/{project}/instances/{instance}`. Use `{instance} = '-'` to list
+     *                             Clusters for all Instances in a project, e.g.,
+     *                             `projects/myproject/instances/-`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1171,8 +1209,8 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The unique name of the project for which a list of instances is requested.
-     *                             Values are of the form `projects/{project}`.
+     * @param string $parent       Required. The unique name of the project for which a list of instances is
+     *                             requested. Values are of the form `projects/{project}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1254,8 +1292,8 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param Cluster   $cluster      Required. The Cluster which contains the partial updates to be applied, subject to
-     *                                the update_mask.
+     * @param Cluster   $cluster      Required. The Cluster which contains the partial updates to be applied,
+     *                                subject to the update_mask.
      * @param FieldMask $updateMask   Required. The subset of Cluster fields which should be replaced.
      * @param array     $optionalArgs {
      *     Optional.
@@ -1580,8 +1618,8 @@ class BigtableInstanceAdminGapicClient
      *     Optional.
      *
      *     @type string $location
-     *           Immutable. The location where this cluster's nodes and storage reside. For best
-     *           performance, clients should be located as close as possible to this
+     *           Immutable. The location where this cluster's nodes and storage reside. For
+     *           best performance, clients should be located as close as possible to this
      *           cluster. Currently only zones are supported, so values should be of the
      *           form `projects/{project}/locations/{zone}`.
      *     @type int $state
@@ -1682,9 +1720,9 @@ class BigtableInstanceAdminGapicClient
      *           The current state of the instance.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Instance\State}
      *     @type Timestamp $createTime
-     *           Output only. A server-assigned timestamp representing when this Instance was created.
-     *           For instances created before this field was added (August 2021), this value
-     *           is `seconds: 0, nanos: 1`.
+     *           Output only. A server-assigned timestamp representing when this Instance
+     *           was created. For instances created before this field was added (August
+     *           2021), this value is `seconds: 0, nanos: 1`.
      *     @type bool $satisfiesPzs
      *           Output only. Reserved for future use.
      *     @type RetrySettings|array $retrySettings

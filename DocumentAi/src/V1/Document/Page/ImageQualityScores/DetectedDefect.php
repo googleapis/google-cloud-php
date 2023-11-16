@@ -30,8 +30,8 @@ class DetectedDefect extends \Google\Protobuf\Internal\Message
      */
     private $type = '';
     /**
-     * Confidence of detected defect. Range `[0, 1]` where 1 indicates
-     * strong confidence of that the defect exists.
+     * Confidence of detected defect. Range `[0, 1]` where `1` indicates
+     * strong confidence that the defect exists.
      *
      * Generated from protobuf field <code>float confidence = 2;</code>
      */
@@ -54,8 +54,8 @@ class DetectedDefect extends \Google\Protobuf\Internal\Message
      *           - `quality/defect_text_cutoff`
      *           - `quality/defect_glare`
      *     @type float $confidence
-     *           Confidence of detected defect. Range `[0, 1]` where 1 indicates
-     *           strong confidence of that the defect exists.
+     *           Confidence of detected defect. Range `[0, 1]` where `1` indicates
+     *           strong confidence that the defect exists.
      * }
      */
     public function __construct($data = NULL) {
@@ -106,8 +106,8 @@ class DetectedDefect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Confidence of detected defect. Range `[0, 1]` where 1 indicates
-     * strong confidence of that the defect exists.
+     * Confidence of detected defect. Range `[0, 1]` where `1` indicates
+     * strong confidence that the defect exists.
      *
      * Generated from protobuf field <code>float confidence = 2;</code>
      * @return float
@@ -118,8 +118,8 @@ class DetectedDefect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Confidence of detected defect. Range `[0, 1]` where 1 indicates
-     * strong confidence of that the defect exists.
+     * Confidence of detected defect. Range `[0, 1]` where `1` indicates
+     * strong confidence that the defect exists.
      *
      * Generated from protobuf field <code>float confidence = 2;</code>
      * @param float $var

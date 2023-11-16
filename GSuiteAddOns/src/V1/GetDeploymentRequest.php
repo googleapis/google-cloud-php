@@ -24,6 +24,22 @@ class GetDeploymentRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The full resource name of the deployment to get.
+     *
+     *                     Example:  `projects/my_project/deployments/my_deployment`. Please see
+     *                     {@see GSuiteAddOnsClient::deploymentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\GSuiteAddOns\V1\GetDeploymentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

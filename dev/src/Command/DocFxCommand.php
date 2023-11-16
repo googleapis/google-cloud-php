@@ -94,7 +94,7 @@ class DocFxCommand extends Command
 
         $tocItems = [];
         $packageDescription = $component->getDescription();
-        foreach ($component->getNamespaces() as $namespace) {
+        foreach ($component->getNamespaces() as $namespace => $dir) {
             $pageTree = new PageTree(
                 $xml,
                 $namespace,
@@ -176,12 +176,16 @@ class DocFxCommand extends Command
             $process->mustRun();
             $output->writeln('Done.');
         }
+
+        return 0;
     }
 
     public static function getPhpDocCommand(string $componentPath, string $outDir): Process
     {
-        return new Process([
+        $process = new Process([
             'phpdoc',
+            '--visibility',
+            'public,protected,private,internal',
             '-d',
             sprintf('%s/src', $componentPath),
             '--template',
@@ -189,5 +193,10 @@ class DocFxCommand extends Command
             '--target',
             $outDir
         ]);
+
+        // The Compute component can exceed the default timeout of 60 seconds.
+        $process->setTimeout(120);
+
+        return $process;
     }
 }

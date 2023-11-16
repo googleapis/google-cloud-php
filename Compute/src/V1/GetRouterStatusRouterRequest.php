@@ -35,6 +35,23 @@ class GetRouterStatusRouterRequest extends \Google\Protobuf\Internal\Message
     private $router = '';
 
     /**
+     * @param string $project Project ID for this request.
+     * @param string $region  Name of the region for this request.
+     * @param string $router  Name of the Router resource to query.
+     *
+     * @return \Google\Cloud\Compute\V1\GetRouterStatusRouterRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $router): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setRouter($router);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

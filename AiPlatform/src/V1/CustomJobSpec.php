@@ -88,6 +88,15 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      */
     private $base_output_directory = null;
     /**
+     * The ID of the location to store protected artifacts. e.g. us-central1.
+     * Populate only when the location is different than CustomJob location.
+     * List of supported locations:
+     * https://cloud.google.com/vertex-ai/docs/general/locations
+     *
+     * Generated from protobuf field <code>string protected_artifact_location_id = 19;</code>
+     */
+    private $protected_artifact_location_id = '';
+    /**
      * Optional. The name of a Vertex AI
      * [Tensorboard][google.cloud.aiplatform.v1.Tensorboard] resource to which
      * this CustomJob will upload Tensorboard logs. Format:
@@ -125,6 +134,22 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enable_dashboard_access = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $enable_dashboard_access = false;
+    /**
+     * Optional. The Experiment associated with this job.
+     * Format:
+     * `projects/{project}/locations/{location}/metadataStores/{metadataStores}/contexts/{experiment-name}`
+     *
+     * Generated from protobuf field <code>string experiment = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $experiment = '';
+    /**
+     * Optional. The Experiment Run associated with this job.
+     * Format:
+     * `projects/{project}/locations/{location}/metadataStores/{metadataStores}/contexts/{experiment-name}-{experiment-run-name}`
+     *
+     * Generated from protobuf field <code>string experiment_run = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $experiment_run = '';
 
     /**
      * Constructor.
@@ -180,6 +205,11 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *             * AIP_MODEL_DIR = `<base_output_directory>/<trial_id>/model/`
      *             * AIP_CHECKPOINT_DIR = `<base_output_directory>/<trial_id>/checkpoints/`
      *             * AIP_TENSORBOARD_LOG_DIR = `<base_output_directory>/<trial_id>/logs/`
+     *     @type string $protected_artifact_location_id
+     *           The ID of the location to store protected artifacts. e.g. us-central1.
+     *           Populate only when the location is different than CustomJob location.
+     *           List of supported locations:
+     *           https://cloud.google.com/vertex-ai/docs/general/locations
      *     @type string $tensorboard
      *           Optional. The name of a Vertex AI
      *           [Tensorboard][google.cloud.aiplatform.v1.Tensorboard] resource to which
@@ -206,6 +236,14 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *           [Trial.web_access_uris][google.cloud.aiplatform.v1.Trial.web_access_uris]
      *           (within
      *           [HyperparameterTuningJob.trials][google.cloud.aiplatform.v1.HyperparameterTuningJob.trials]).
+     *     @type string $experiment
+     *           Optional. The Experiment associated with this job.
+     *           Format:
+     *           `projects/{project}/locations/{location}/metadataStores/{metadataStores}/contexts/{experiment-name}`
+     *     @type string $experiment_run
+     *           Optional. The Experiment Run associated with this job.
+     *           Format:
+     *           `projects/{project}/locations/{location}/metadataStores/{metadataStores}/contexts/{experiment-name}-{experiment-run-name}`
      * }
      */
     public function __construct($data = NULL) {
@@ -462,6 +500,38 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The ID of the location to store protected artifacts. e.g. us-central1.
+     * Populate only when the location is different than CustomJob location.
+     * List of supported locations:
+     * https://cloud.google.com/vertex-ai/docs/general/locations
+     *
+     * Generated from protobuf field <code>string protected_artifact_location_id = 19;</code>
+     * @return string
+     */
+    public function getProtectedArtifactLocationId()
+    {
+        return $this->protected_artifact_location_id;
+    }
+
+    /**
+     * The ID of the location to store protected artifacts. e.g. us-central1.
+     * Populate only when the location is different than CustomJob location.
+     * List of supported locations:
+     * https://cloud.google.com/vertex-ai/docs/general/locations
+     *
+     * Generated from protobuf field <code>string protected_artifact_location_id = 19;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setProtectedArtifactLocationId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->protected_artifact_location_id = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. The name of a Vertex AI
      * [Tensorboard][google.cloud.aiplatform.v1.Tensorboard] resource to which
      * this CustomJob will upload Tensorboard logs. Format:
@@ -575,6 +645,66 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_dashboard_access = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The Experiment associated with this job.
+     * Format:
+     * `projects/{project}/locations/{location}/metadataStores/{metadataStores}/contexts/{experiment-name}`
+     *
+     * Generated from protobuf field <code>string experiment = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getExperiment()
+    {
+        return $this->experiment;
+    }
+
+    /**
+     * Optional. The Experiment associated with this job.
+     * Format:
+     * `projects/{project}/locations/{location}/metadataStores/{metadataStores}/contexts/{experiment-name}`
+     *
+     * Generated from protobuf field <code>string experiment = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setExperiment($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->experiment = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The Experiment Run associated with this job.
+     * Format:
+     * `projects/{project}/locations/{location}/metadataStores/{metadataStores}/contexts/{experiment-name}-{experiment-run-name}`
+     *
+     * Generated from protobuf field <code>string experiment_run = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getExperimentRun()
+    {
+        return $this->experiment_run;
+    }
+
+    /**
+     * Optional. The Experiment Run associated with this job.
+     * Format:
+     * `projects/{project}/locations/{location}/metadataStores/{metadataStores}/contexts/{experiment-name}-{experiment-run-name}`
+     *
+     * Generated from protobuf field <code>string experiment_run = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setExperimentRun($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->experiment_run = $var;
 
         return $this;
     }

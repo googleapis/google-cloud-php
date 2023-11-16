@@ -39,6 +39,29 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
     private $snapshot = null;
 
     /**
+     * @param string                              $parent     Required. The Filestore Instance to create the snapshots of, in the format
+     *                                                        `projects/{project_id}/locations/{location}/instances/{instance_id}`
+     *                                                        Please see {@see CloudFilestoreManagerClient::instanceName()} for help formatting this field.
+     * @param \Google\Cloud\Filestore\V1\Snapshot $snapshot   Required. A snapshot resource.
+     * @param string                              $snapshotId Required. The ID to use for the snapshot.
+     *                                                        The ID must be unique within the specified instance.
+     *
+     *                                                        This value must start with a lowercase letter followed by up to 62
+     *                                                        lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
+     *
+     * @return \Google\Cloud\Filestore\V1\CreateSnapshotRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Filestore\V1\Snapshot $snapshot, string $snapshotId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setSnapshot($snapshot)
+            ->setSnapshotId($snapshotId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

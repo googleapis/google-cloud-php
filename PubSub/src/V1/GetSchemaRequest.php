@@ -31,6 +31,21 @@ class GetSchemaRequest extends \Google\Protobuf\Internal\Message
     private $view = 0;
 
     /**
+     * @param string $name Required. The name of the schema to get.
+     *                     Format is `projects/{project}/schemas/{schema}`. Please see
+     *                     {@see SchemaServiceClient::schemaName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\PubSub\V1\GetSchemaRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

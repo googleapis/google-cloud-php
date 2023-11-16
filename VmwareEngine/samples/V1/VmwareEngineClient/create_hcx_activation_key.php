@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmwareengine_v1_generated_VmwareEngine_CreateHcxActivationKey_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VmwareEngine\V1\Client\VmwareEngineClient;
+use Google\Cloud\VmwareEngine\V1\CreateHcxActivationKeyRequest;
 use Google\Cloud\VmwareEngine\V1\HcxActivationKey;
-use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
 use Google\Rpc\Status;
 
 /**
@@ -57,17 +58,17 @@ function create_hcx_activation_key_sample(
     // Create a client.
     $vmwareEngineClient = new VmwareEngineClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $hcxActivationKey = new HcxActivationKey();
+    $request = (new CreateHcxActivationKeyRequest())
+        ->setParent($formattedParent)
+        ->setHcxActivationKey($hcxActivationKey)
+        ->setHcxActivationKeyId($hcxActivationKeyId);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $vmwareEngineClient->createHcxActivationKey(
-            $formattedParent,
-            $hcxActivationKey,
-            $hcxActivationKeyId
-        );
+        $response = $vmwareEngineClient->createHcxActivationKey($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

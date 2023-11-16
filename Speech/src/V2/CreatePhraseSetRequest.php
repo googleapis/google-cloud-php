@@ -47,6 +47,29 @@ class CreatePhraseSetRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
 
     /**
+     * @param string                            $parent      Required. The project and location where this PhraseSet will be created.
+     *                                                       The expected format is `projects/{project}/locations/{location}`. Please see
+     *                                                       {@see SpeechClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Speech\V2\PhraseSet $phraseSet   Required. The PhraseSet to create.
+     * @param string                            $phraseSetId The ID to use for the PhraseSet, which will become the final component of
+     *                                                       the PhraseSet's resource name.
+     *
+     *                                                       This value should be 4-63 characters, and valid characters
+     *                                                       are /[a-z][0-9]-/.
+     *
+     * @return \Google\Cloud\Speech\V2\CreatePhraseSetRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Speech\V2\PhraseSet $phraseSet, string $phraseSetId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setPhraseSet($phraseSet)
+            ->setPhraseSetId($phraseSetId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START baremetalsolution_v2_generated_BareMetalSolution_ResetInstance_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\BareMetalSolution\V2\BareMetalSolutionClient;
+use Google\Cloud\BareMetalSolution\V2\Client\BareMetalSolutionClient;
+use Google\Cloud\BareMetalSolution\V2\ResetInstanceRequest;
 use Google\Cloud\BareMetalSolution\V2\ResetInstanceResponse;
 use Google\Rpc\Status;
 
@@ -41,10 +42,14 @@ function reset_instance_sample(string $formattedName): void
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
+    // Prepare the request message.
+    $request = (new ResetInstanceRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $bareMetalSolutionClient->resetInstance($formattedName);
+        $response = $bareMetalSolutionClient->resetInstance($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

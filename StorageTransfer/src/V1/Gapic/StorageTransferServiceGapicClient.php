@@ -83,6 +83,10 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\StorageTransfer\V1\Client\StorageTransferServiceClient} to use the
+ * new surface.
  */
 class StorageTransferServiceGapicClient
 {
@@ -954,9 +958,10 @@ class StorageTransferServiceGapicClient
     }
 
     /**
-     * Attempts to start a new TransferOperation for the current TransferJob. A
-     * TransferJob has a maximum of one active TransferOperation. If this method
-     * is called while a TransferOperation is active, an error will be returned.
+     * Starts a new operation for the specified transfer job.
+     * A `TransferJob` has a maximum of one active `TransferOperation`. If this
+     * method is called while a `TransferOperation` is active, an error is
+     * returned.
      *
      * Sample code:
      * ```
@@ -1047,8 +1052,8 @@ class StorageTransferServiceGapicClient
      * }
      * ```
      *
-     * @param AgentPool $agentPool    Required. The agent pool to update. `agent_pool` is expected to specify following
-     *                                fields:
+     * @param AgentPool $agentPool    Required. The agent pool to update. `agent_pool` is expected to specify
+     *                                following fields:
      *
      *                                *  [name][google.storagetransfer.v1.AgentPool.name]
      *
@@ -1107,8 +1112,8 @@ class StorageTransferServiceGapicClient
      * Updates a transfer job. Updating a job's transfer spec does not affect
      * transfer operations that are running already.
      *
-     * **Note:** The job's [status][google.storagetransfer.v1.TransferJob.status] field can be modified
-     * using this RPC (for example, to set a job's status to
+     * **Note:** The job's [status][google.storagetransfer.v1.TransferJob.status]
+     * field can be modified using this RPC (for example, to set a job's status to
      * [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED],
      * [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], or
      * [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED]).
@@ -1129,15 +1134,17 @@ class StorageTransferServiceGapicClient
      * @param string      $jobName      Required. The name of job to update.
      * @param string      $projectId    Required. The ID of the Google Cloud project that owns the
      *                                  job.
-     * @param TransferJob $transferJob  Required. The job to update. `transferJob` is expected to specify one or more of
-     *                                  five fields: [description][google.storagetransfer.v1.TransferJob.description],
+     * @param TransferJob $transferJob  Required. The job to update. `transferJob` is expected to specify one or
+     *                                  more of five fields:
+     *                                  [description][google.storagetransfer.v1.TransferJob.description],
      *                                  [transfer_spec][google.storagetransfer.v1.TransferJob.transfer_spec],
      *                                  [notification_config][google.storagetransfer.v1.TransferJob.notification_config],
      *                                  [logging_config][google.storagetransfer.v1.TransferJob.logging_config], and
-     *                                  [status][google.storagetransfer.v1.TransferJob.status].  An `UpdateTransferJobRequest` that specifies
-     *                                  other fields are rejected with the error
-     *                                  [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. Updating a job status
-     *                                  to [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED] requires
+     *                                  [status][google.storagetransfer.v1.TransferJob.status].  An
+     *                                  `UpdateTransferJobRequest` that specifies other fields are rejected with
+     *                                  the error [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. Updating a
+     *                                  job status to
+     *                                  [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED] requires
      *                                  `storagetransfer.jobs.delete` permission.
      * @param array       $optionalArgs {
      *     Optional.
@@ -1149,9 +1156,10 @@ class StorageTransferServiceGapicClient
      *           [transfer_spec][google.storagetransfer.v1.TransferJob.transfer_spec],
      *           [notification_config][google.storagetransfer.v1.TransferJob.notification_config],
      *           [logging_config][google.storagetransfer.v1.TransferJob.logging_config], and
-     *           [status][google.storagetransfer.v1.TransferJob.status].  To update the `transfer_spec` of the job, a
-     *           complete transfer specification must be provided. An incomplete
-     *           specification missing any required fields is rejected with the error
+     *           [status][google.storagetransfer.v1.TransferJob.status].  To update the
+     *           `transfer_spec` of the job, a complete transfer specification must be
+     *           provided. An incomplete specification missing any required fields is
+     *           rejected with the error
      *           [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an

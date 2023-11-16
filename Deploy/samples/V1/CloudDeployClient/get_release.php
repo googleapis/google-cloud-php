@@ -24,14 +24,15 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START clouddeploy_v1_generated_CloudDeploy_GetRelease_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Deploy\V1\CloudDeployClient;
+use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
+use Google\Cloud\Deploy\V1\GetReleaseRequest;
 use Google\Cloud\Deploy\V1\Release;
 
 /**
  * Gets details of a single Release.
  *
  * @param string $formattedName Name of the `Release`. Format must be
- *                              projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}. Please see
+ *                              `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}`. Please see
  *                              {@see CloudDeployClient::releaseName()} for help formatting this field.
  */
 function get_release_sample(string $formattedName): void
@@ -39,10 +40,14 @@ function get_release_sample(string $formattedName): void
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
+    // Prepare the request message.
+    $request = (new GetReleaseRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Release $response */
-        $response = $cloudDeployClient->getRelease($formattedName);
+        $response = $cloudDeployClient->getRelease($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

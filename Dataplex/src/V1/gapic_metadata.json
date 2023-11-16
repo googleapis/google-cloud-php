@@ -64,159 +64,6 @@
                 }
             }
         },
-        "DataScanService": {
-            "clients": {
-                "grpc": {
-                    "libraryClient": "DataScanServiceGapicClient",
-                    "rpcs": {
-                        "CreateDataScan": {
-                            "methods": [
-                                "createDataScan"
-                            ]
-                        },
-                        "DeleteDataScan": {
-                            "methods": [
-                                "deleteDataScan"
-                            ]
-                        },
-                        "GetDataScan": {
-                            "methods": [
-                                "getDataScan"
-                            ]
-                        },
-                        "GetDataScanJob": {
-                            "methods": [
-                                "getDataScanJob"
-                            ]
-                        },
-                        "ListDataScanJobs": {
-                            "methods": [
-                                "listDataScanJobs"
-                            ]
-                        },
-                        "ListDataScans": {
-                            "methods": [
-                                "listDataScans"
-                            ]
-                        },
-                        "RunDataScan": {
-                            "methods": [
-                                "runDataScan"
-                            ]
-                        },
-                        "UpdateDataScan": {
-                            "methods": [
-                                "updateDataScan"
-                            ]
-                        },
-                        "GetIamPolicy": {
-                            "methods": [
-                                "getIamPolicy"
-                            ]
-                        },
-                        "SetIamPolicy": {
-                            "methods": [
-                                "setIamPolicy"
-                            ]
-                        },
-                        "TestIamPermissions": {
-                            "methods": [
-                                "testIamPermissions"
-                            ]
-                        },
-                        "GetLocation": {
-                            "methods": [
-                                "getLocation"
-                            ]
-                        },
-                        "ListLocations": {
-                            "methods": [
-                                "listLocations"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "MetadataService": {
-            "clients": {
-                "grpc": {
-                    "libraryClient": "MetadataServiceGapicClient",
-                    "rpcs": {
-                        "CreateEntity": {
-                            "methods": [
-                                "createEntity"
-                            ]
-                        },
-                        "CreatePartition": {
-                            "methods": [
-                                "createPartition"
-                            ]
-                        },
-                        "DeleteEntity": {
-                            "methods": [
-                                "deleteEntity"
-                            ]
-                        },
-                        "DeletePartition": {
-                            "methods": [
-                                "deletePartition"
-                            ]
-                        },
-                        "GetEntity": {
-                            "methods": [
-                                "getEntity"
-                            ]
-                        },
-                        "GetPartition": {
-                            "methods": [
-                                "getPartition"
-                            ]
-                        },
-                        "ListEntities": {
-                            "methods": [
-                                "listEntities"
-                            ]
-                        },
-                        "ListPartitions": {
-                            "methods": [
-                                "listPartitions"
-                            ]
-                        },
-                        "UpdateEntity": {
-                            "methods": [
-                                "updateEntity"
-                            ]
-                        },
-                        "GetIamPolicy": {
-                            "methods": [
-                                "getIamPolicy"
-                            ]
-                        },
-                        "SetIamPolicy": {
-                            "methods": [
-                                "setIamPolicy"
-                            ]
-                        },
-                        "TestIamPermissions": {
-                            "methods": [
-                                "testIamPermissions"
-                            ]
-                        },
-                        "GetLocation": {
-                            "methods": [
-                                "getLocation"
-                            ]
-                        },
-                        "ListLocations": {
-                            "methods": [
-                                "listLocations"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
         "DataplexService": {
             "clients": {
                 "grpc": {
@@ -357,6 +204,11 @@
                                 "listZones"
                             ]
                         },
+                        "RunTask": {
+                            "methods": [
+                                "runTask"
+                            ]
+                        },
                         "UpdateAsset": {
                             "methods": [
                                 "updateAsset"
@@ -380,6 +232,268 @@
                         "UpdateZone": {
                             "methods": [
                                 "updateZone"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "DataTaxonomyService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DataTaxonomyServiceGapicClient",
+                    "rpcs": {
+                        "CreateDataAttribute": {
+                            "methods": [
+                                "createDataAttribute"
+                            ]
+                        },
+                        "CreateDataAttributeBinding": {
+                            "methods": [
+                                "createDataAttributeBinding"
+                            ]
+                        },
+                        "CreateDataTaxonomy": {
+                            "methods": [
+                                "createDataTaxonomy"
+                            ]
+                        },
+                        "DeleteDataAttribute": {
+                            "methods": [
+                                "deleteDataAttribute"
+                            ]
+                        },
+                        "DeleteDataAttributeBinding": {
+                            "methods": [
+                                "deleteDataAttributeBinding"
+                            ]
+                        },
+                        "DeleteDataTaxonomy": {
+                            "methods": [
+                                "deleteDataTaxonomy"
+                            ]
+                        },
+                        "GetDataAttribute": {
+                            "methods": [
+                                "getDataAttribute"
+                            ]
+                        },
+                        "GetDataAttributeBinding": {
+                            "methods": [
+                                "getDataAttributeBinding"
+                            ]
+                        },
+                        "GetDataTaxonomy": {
+                            "methods": [
+                                "getDataTaxonomy"
+                            ]
+                        },
+                        "ListDataAttributeBindings": {
+                            "methods": [
+                                "listDataAttributeBindings"
+                            ]
+                        },
+                        "ListDataAttributes": {
+                            "methods": [
+                                "listDataAttributes"
+                            ]
+                        },
+                        "ListDataTaxonomies": {
+                            "methods": [
+                                "listDataTaxonomies"
+                            ]
+                        },
+                        "UpdateDataAttribute": {
+                            "methods": [
+                                "updateDataAttribute"
+                            ]
+                        },
+                        "UpdateDataAttributeBinding": {
+                            "methods": [
+                                "updateDataAttributeBinding"
+                            ]
+                        },
+                        "UpdateDataTaxonomy": {
+                            "methods": [
+                                "updateDataTaxonomy"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "DataScanService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DataScanServiceGapicClient",
+                    "rpcs": {
+                        "CreateDataScan": {
+                            "methods": [
+                                "createDataScan"
+                            ]
+                        },
+                        "DeleteDataScan": {
+                            "methods": [
+                                "deleteDataScan"
+                            ]
+                        },
+                        "GetDataScan": {
+                            "methods": [
+                                "getDataScan"
+                            ]
+                        },
+                        "GetDataScanJob": {
+                            "methods": [
+                                "getDataScanJob"
+                            ]
+                        },
+                        "ListDataScanJobs": {
+                            "methods": [
+                                "listDataScanJobs"
+                            ]
+                        },
+                        "ListDataScans": {
+                            "methods": [
+                                "listDataScans"
+                            ]
+                        },
+                        "RunDataScan": {
+                            "methods": [
+                                "runDataScan"
+                            ]
+                        },
+                        "UpdateDataScan": {
+                            "methods": [
+                                "updateDataScan"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "MetadataService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "MetadataServiceGapicClient",
+                    "rpcs": {
+                        "CreateEntity": {
+                            "methods": [
+                                "createEntity"
+                            ]
+                        },
+                        "CreatePartition": {
+                            "methods": [
+                                "createPartition"
+                            ]
+                        },
+                        "DeleteEntity": {
+                            "methods": [
+                                "deleteEntity"
+                            ]
+                        },
+                        "DeletePartition": {
+                            "methods": [
+                                "deletePartition"
+                            ]
+                        },
+                        "GetEntity": {
+                            "methods": [
+                                "getEntity"
+                            ]
+                        },
+                        "GetPartition": {
+                            "methods": [
+                                "getPartition"
+                            ]
+                        },
+                        "ListEntities": {
+                            "methods": [
+                                "listEntities"
+                            ]
+                        },
+                        "ListPartitions": {
+                            "methods": [
+                                "listPartitions"
+                            ]
+                        },
+                        "UpdateEntity": {
+                            "methods": [
+                                "updateEntity"
                             ]
                         },
                         "GetIamPolicy": {

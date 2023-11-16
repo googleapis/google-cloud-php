@@ -17,15 +17,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListTablesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The unique name of the instance for which tables should be listed.
-     * Values are of the form `projects/{project}/instances/{instance}`.
+     * Required. The unique name of the instance for which tables should be
+     * listed. Values are of the form `projects/{project}/instances/{instance}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
      * The view to be applied to the returned tables' fields.
-     * Only NAME_ONLY view (default) and REPLICATION_VIEW are supported.
+     * NAME_ONLY view (default) and REPLICATION_VIEW are supported.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.View view = 2;</code>
      */
@@ -50,17 +50,32 @@ class ListTablesRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The unique name of the instance for which tables should be
+     *                       listed. Values are of the form `projects/{project}/instances/{instance}`. Please see
+     *                       {@see BigtableTableAdminClient::instanceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\ListTablesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The unique name of the instance for which tables should be listed.
-     *           Values are of the form `projects/{project}/instances/{instance}`.
+     *           Required. The unique name of the instance for which tables should be
+     *           listed. Values are of the form `projects/{project}/instances/{instance}`.
      *     @type int $view
      *           The view to be applied to the returned tables' fields.
-     *           Only NAME_ONLY view (default) and REPLICATION_VIEW are supported.
+     *           NAME_ONLY view (default) and REPLICATION_VIEW are supported.
      *     @type int $page_size
      *           Maximum number of results per page.
      *           A page_size of zero lets the server choose the number of items to return.
@@ -79,8 +94,8 @@ class ListTablesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the instance for which tables should be listed.
-     * Values are of the form `projects/{project}/instances/{instance}`.
+     * Required. The unique name of the instance for which tables should be
+     * listed. Values are of the form `projects/{project}/instances/{instance}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -91,8 +106,8 @@ class ListTablesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the instance for which tables should be listed.
-     * Values are of the form `projects/{project}/instances/{instance}`.
+     * Required. The unique name of the instance for which tables should be
+     * listed. Values are of the form `projects/{project}/instances/{instance}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -108,7 +123,7 @@ class ListTablesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The view to be applied to the returned tables' fields.
-     * Only NAME_ONLY view (default) and REPLICATION_VIEW are supported.
+     * NAME_ONLY view (default) and REPLICATION_VIEW are supported.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.View view = 2;</code>
      * @return int
@@ -120,7 +135,7 @@ class ListTablesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The view to be applied to the returned tables' fields.
-     * Only NAME_ONLY view (default) and REPLICATION_VIEW are supported.
+     * NAME_ONLY view (default) and REPLICATION_VIEW are supported.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.View view = 2;</code>
      * @param int $var

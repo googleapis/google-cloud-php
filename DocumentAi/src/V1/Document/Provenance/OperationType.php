@@ -34,9 +34,9 @@ class OperationType
     const REMOVE = 2;
     /**
      * Updates any fields within the given provenance scope of the message. It
-     * 'overwrites'  the fields rather than replacing them.  This is
-     * especially relevant when we just want to update a field value of an
-     * entity without also affecting all the child properties.
+     * overwrites the fields rather than replacing them.  Use this when you
+     * want to update a field value of an entity without also updating all the
+     * child properties.
      *
      * Generated from protobuf enum <code>UPDATE = 7;</code>
      */

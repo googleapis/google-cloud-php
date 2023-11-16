@@ -43,9 +43,6 @@ class SpannerTestCase extends SystemTestCase
     protected static $database;
     protected static $database2;
     protected static $dbName;
-    protected static $databaseWithReaderDatabaseRole;
-    protected static $databaseWithRestrictiveDatabaseRole;
-    protected static $databaseWithSessionPoolRestrictiveDatabaseRole;
 
     private static $hasSetUp = false;
 
@@ -69,17 +66,18 @@ class SpannerTestCase extends SystemTestCase
             $db->drop();
         });
 
-        $db->updateDdlBatch(
+        $op = $db->updateDdlBatch(
             [
                 'CREATE TABLE ' . self::TEST_TABLE_NAME . ' (
                   id INT64 NOT NULL,
                   name STRING(MAX) NOT NULL,
-                  birthday DATE NOT NULL
+                  birthday DATE
                 ) PRIMARY KEY (id)',
                 'CREATE UNIQUE INDEX ' . self::TEST_INDEX_NAME . '
                 ON ' . self::TEST_TABLE_NAME . ' (name)',
             ]
-        )->pollUntilComplete();
+        );
+        $op->pollUntilComplete();
 
         self::$database = $db;
         self::$database2 = self::getDatabaseInstance(self::$dbName);
@@ -95,22 +93,6 @@ class SpannerTestCase extends SystemTestCase
                     . self::TEST_TABLE_NAME . ' TO ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
                 ]
             )->pollUntilComplete();
-
-            self::$databaseWithReaderDatabaseRole = self::getDatabaseFromInstance(
-                self::INSTANCE_NAME,
-                self::$dbName,
-                ['databaseRole' => self::DATABASE_ROLE]
-            );
-
-            self::$databaseWithRestrictiveDatabaseRole = self::getDatabaseInstance(
-                self::$dbName,
-                ['databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
-            );
-
-            self::$databaseWithSessionPoolRestrictiveDatabaseRole = self::getDatabaseWithSessionPool(
-                self::$dbName,
-                ['minSessions' => 1, 'maxSession' => 2, 'databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
-            );
         }
 
         self::$hasSetUp = true;
@@ -181,5 +163,31 @@ class SpannerTestCase extends SystemTestCase
         if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
             self::markTestSkipped('This test is not supported by the emulator.');
         }
+    }
+
+    public static function getDbWithReaderRole()
+    {
+        return self::getDatabaseFromInstance(
+            self::INSTANCE_NAME,
+            self::$dbName,
+            ['databaseRole' => self::DATABASE_ROLE]
+        );
+    }
+
+    public static function getDbWithRestrictiveRole()
+    {
+        return self::getDatabaseFromInstance(
+            self::INSTANCE_NAME,
+            self::$dbName,
+            ['databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
+        );
+    }
+
+    public static function getDbWithSessionPoolRestrictiveRole()
+    {
+        return self::getDatabaseWithSessionPool(
+            self::$dbName,
+            ['minSessions' => 1, 'maxSession' => 2, 'databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
+        );
     }
 }

@@ -59,9 +59,10 @@ tasksBrokenGapics = [
 ]
 s.replace(
     tasksBrokenGapics,
-    r"private static \$locationNameTemplate;\n\s{4}private static \$queueNameTemplate;",
+    r"private static \$locationNameTemplate;\n\n\s{4}private static \$queueNameTemplate;",
     """private static $locationNameTemplate;
     private static $projectNameTemplate;
+
     private static $queueNameTemplate;"""
 )
 s.replace(

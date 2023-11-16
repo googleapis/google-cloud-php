@@ -26,6 +26,24 @@ class DeleteCompanyRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The resource name of the company to be deleted.
+     *
+     *                     The format is
+     *                     "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
+     *                     example, "projects/foo/tenants/bar/companies/baz". Please see
+     *                     {@see CompanyServiceClient::companyName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Talent\V4\DeleteCompanyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

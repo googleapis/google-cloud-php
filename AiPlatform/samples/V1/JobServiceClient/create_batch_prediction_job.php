@@ -27,7 +27,8 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\AIPlatform\V1\BatchPredictionJob;
 use Google\Cloud\AIPlatform\V1\BatchPredictionJob\InputConfig;
 use Google\Cloud\AIPlatform\V1\BatchPredictionJob\OutputConfig;
-use Google\Cloud\AIPlatform\V1\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\CreateBatchPredictionJobRequest;
 
 /**
  * Creates a BatchPredictionJob. A BatchPredictionJob once created will
@@ -53,7 +54,7 @@ function create_batch_prediction_job_sample(
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $batchPredictionJobInputConfig = (new InputConfig())
         ->setInstancesFormat($batchPredictionJobInputConfigInstancesFormat);
     $batchPredictionJobOutputConfig = (new OutputConfig())
@@ -62,11 +63,14 @@ function create_batch_prediction_job_sample(
         ->setDisplayName($batchPredictionJobDisplayName)
         ->setInputConfig($batchPredictionJobInputConfig)
         ->setOutputConfig($batchPredictionJobOutputConfig);
+    $request = (new CreateBatchPredictionJobRequest())
+        ->setParent($formattedParent)
+        ->setBatchPredictionJob($batchPredictionJob);
 
     // Call the API and handle any network failures.
     try {
         /** @var BatchPredictionJob $response */
-        $response = $jobServiceClient->createBatchPredictionJob($formattedParent, $batchPredictionJob);
+        $response = $jobServiceClient->createBatchPredictionJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

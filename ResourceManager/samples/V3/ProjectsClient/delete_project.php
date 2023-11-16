@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudresourcemanager_v3_generated_Projects_DeleteProject_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\ResourceManager\V3\Client\ProjectsClient;
+use Google\Cloud\ResourceManager\V3\DeleteProjectRequest;
 use Google\Cloud\ResourceManager\V3\Project;
-use Google\Cloud\ResourceManager\V3\ProjectsClient;
 use Google\Rpc\Status;
 
 /**
@@ -72,10 +73,14 @@ function delete_project_sample(string $formattedName): void
     // Create a client.
     $projectsClient = new ProjectsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteProjectRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $projectsClient->deleteProject($formattedName);
+        $response = $projectsClient->deleteProject($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

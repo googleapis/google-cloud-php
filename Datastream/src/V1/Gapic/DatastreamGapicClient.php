@@ -133,6 +133,9 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Datastream\V1\Client\DatastreamClient} to use the new surface.
  */
 class DatastreamGapicClient
 {
@@ -158,6 +161,8 @@ class DatastreamGapicClient
     private static $connectionProfileNameTemplate;
 
     private static $locationNameTemplate;
+
+    private static $networksNameTemplate;
 
     private static $privateConnectionNameTemplate;
 
@@ -218,6 +223,17 @@ class DatastreamGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getNetworksNameTemplate()
+    {
+        if (self::$networksNameTemplate == null) {
+            self::$networksNameTemplate = new PathTemplate(
+                'projects/{project}/global/networks/{network}'
+            );
+        }
+
+        return self::$networksNameTemplate;
+    }
+
     private static function getPrivateConnectionNameTemplate()
     {
         if (self::$privateConnectionNameTemplate == null) {
@@ -268,6 +284,7 @@ class DatastreamGapicClient
             self::$pathTemplateMap = [
                 'connectionProfile' => self::getConnectionProfileNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'networks' => self::getNetworksNameTemplate(),
                 'privateConnection' => self::getPrivateConnectionNameTemplate(),
                 'route' => self::getRouteNameTemplate(),
                 'stream' => self::getStreamNameTemplate(),
@@ -314,6 +331,23 @@ class DatastreamGapicClient
         return self::getLocationNameTemplate()->render([
             'project' => $project,
             'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a networks
+     * resource.
+     *
+     * @param string $project
+     * @param string $network
+     *
+     * @return string The formatted networks resource.
+     */
+    public static function networksName($project, $network)
+    {
+        return self::getNetworksNameTemplate()->render([
+            'project' => $project,
+            'network' => $network,
         ]);
     }
 
@@ -414,6 +448,7 @@ class DatastreamGapicClient
      * Template: Pattern
      * - connectionProfile: projects/{project}/locations/{location}/connectionProfiles/{connection_profile}
      * - location: projects/{project}/locations/{location}
+     * - networks: projects/{project}/global/networks/{network}
      * - privateConnection: projects/{project}/locations/{location}/privateConnections/{private_connection}
      * - route: projects/{project}/locations/{location}/privateConnections/{private_connection}/routes/{route}
      * - stream: projects/{project}/locations/{location}/streams/{stream}
@@ -616,8 +651,8 @@ class DatastreamGapicClient
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $validateOnly
-     *           Optional. Only validate the connection profile, but don't create any resources.
-     *           The default is false.
+     *           Optional. Only validate the connection profile, but don't create any
+     *           resources. The default is false.
      *     @type bool $force
      *           Optional. Create the connection profile without validating it.
      *     @type RetrySettings|array $retrySettings
@@ -729,6 +764,8 @@ class DatastreamGapicClient
      *
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type bool $force
+     *           Optional. If set to true, will skip validations.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -753,6 +790,10 @@ class DatastreamGapicClient
         $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['force'])) {
+            $request->setForce($optionalArgs['force']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1130,8 +1171,8 @@ class DatastreamGapicClient
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $force
-     *           Optional. If set to true, any child routes that belong to this PrivateConnection will
-     *           also be deleted.
+     *           Optional. If set to true, any child routes that belong to this
+     *           PrivateConnection will also be deleted.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1365,8 +1406,8 @@ class DatastreamGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource of the connection profile type. Must be in the
-     *                             format `projects/&#42;/locations/*`.
+     * @param string $parent       Required. The parent resource of the connection profile type. Must be in
+     *                             the format `projects/&#42;/locations/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1472,8 +1513,8 @@ class DatastreamGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name for the location for which static IPs should be returned.
-     *                             Must be in the format `projects/&#42;/locations/*`.
+     * @param string $name         Required. The resource name for the location for which static IPs should be
+     *                             returned. Must be in the format `projects/&#42;/locations/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1881,7 +1922,8 @@ class DatastreamGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent that owns the collection of private connectivity configurations.
+     * @param string $parent       Required. The parent that owns the collection of private connectivity
+     *                             configurations.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2268,7 +2310,8 @@ class DatastreamGapicClient
      * }
      * ```
      *
-     * @param string $object       Required. The name of the stream object resource to start a backfill job for.
+     * @param string $object       Required. The name of the stream object resource to start a backfill job
+     *                             for.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2316,7 +2359,8 @@ class DatastreamGapicClient
      * }
      * ```
      *
-     * @param string $object       Required. The name of the stream object resource to stop the backfill job for.
+     * @param string $object       Required. The name of the stream object resource to stop the backfill job
+     *                             for.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2414,8 +2458,8 @@ class DatastreamGapicClient
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $validateOnly
-     *           Optional. Only validate the connection profile, but don't update any resources.
-     *           The default is false.
+     *           Optional. Only validate the connection profile, but don't update any
+     *           resources. The default is false.
      *     @type bool $force
      *           Optional. Update the connection profile without validating it.
      *     @type RetrySettings|array $retrySettings
@@ -2532,8 +2576,8 @@ class DatastreamGapicClient
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $validateOnly
-     *           Optional. Only validate the stream with the changes, without actually updating it.
-     *           The default is false.
+     *           Optional. Only validate the stream with the changes, without actually
+     *           updating it. The default is false.
      *     @type bool $force
      *           Optional. Update the stream without validating it.
      *     @type RetrySettings|array $retrySettings

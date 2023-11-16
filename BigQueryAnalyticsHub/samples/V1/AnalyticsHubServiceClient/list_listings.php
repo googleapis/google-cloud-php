@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START analyticshub_v1_generated_AnalyticsHubService_ListListings_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\BigQuery\AnalyticsHub\V1\AnalyticsHubServiceClient;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\Client\AnalyticsHubServiceClient;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\ListListingsRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing;
 
 /**
@@ -40,10 +41,14 @@ function list_listings_sample(string $formattedParent): void
     // Create a client.
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListListingsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $analyticsHubServiceClient->listListings($formattedParent);
+        $response = $analyticsHubServiceClient->listListings($request);
 
         /** @var Listing $element */
         foreach ($response as $element) {

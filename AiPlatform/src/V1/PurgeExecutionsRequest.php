@@ -41,6 +41,22 @@ class PurgeExecutionsRequest extends \Google\Protobuf\Internal\Message
     private $force = false;
 
     /**
+     * @param string $parent Required. The metadata store to purge Executions from.
+     *                       Format:
+     *                       `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
+     *                       Please see {@see MetadataServiceClient::metadataStoreName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\PurgeExecutionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

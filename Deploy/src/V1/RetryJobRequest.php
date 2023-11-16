@@ -17,8 +17,7 @@ class RetryJobRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the Rollout. Format is
-     * projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     * releases/{release}/rollouts/{rollout}.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      *
      * Generated from protobuf field <code>string rollout = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -37,6 +36,25 @@ class RetryJobRequest extends \Google\Protobuf\Internal\Message
     private $job_id = '';
 
     /**
+     * @param string $rollout Required. Name of the Rollout. Format is
+     *                        `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`. Please see
+     *                        {@see CloudDeployClient::rolloutName()} for help formatting this field.
+     * @param string $phaseId Required. The phase ID the Job to retry belongs to.
+     * @param string $jobId   Required. The job ID for the Job to retry.
+     *
+     * @return \Google\Cloud\Deploy\V1\RetryJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $rollout, string $phaseId, string $jobId): self
+    {
+        return (new self())
+            ->setRollout($rollout)
+            ->setPhaseId($phaseId)
+            ->setJobId($jobId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -44,8 +62,7 @@ class RetryJobRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $rollout
      *           Required. Name of the Rollout. Format is
-     *           projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     *           releases/{release}/rollouts/{rollout}.
+     *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      *     @type string $phase_id
      *           Required. The phase ID the Job to retry belongs to.
      *     @type string $job_id
@@ -59,8 +76,7 @@ class RetryJobRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the Rollout. Format is
-     * projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     * releases/{release}/rollouts/{rollout}.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      *
      * Generated from protobuf field <code>string rollout = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -72,8 +88,7 @@ class RetryJobRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the Rollout. Format is
-     * projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     * releases/{release}/rollouts/{rollout}.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      *
      * Generated from protobuf field <code>string rollout = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

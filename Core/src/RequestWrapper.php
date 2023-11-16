@@ -19,7 +19,6 @@ namespace Google\Cloud\Core;
 
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GetQuotaProjectInterface;
-use Google\Auth\HttpHandler\Guzzle5HttpHandler;
 use Google\Auth\HttpHandler\Guzzle6HttpHandler;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\Core\Exception\ServiceException;
@@ -30,7 +29,6 @@ use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
-use Google\ApiCore\AgentHeader;
 
 /**
  * The RequestWrapper is responsible for delivering and signing requests.
@@ -97,12 +95,13 @@ class RequestWrapper
     /**
      * @param array $config [optional] {
      *     Configuration options. Please see
-     *     {@see Google\Cloud\Core\RequestWrapperTrait::setCommonDefaults()} for
+     *     {@see \Google\Cloud\Core\RequestWrapperTrait::setCommonDefaults()} for
      *     the other available options.
      *
      *     @type string $componentVersion The current version of the component from
      *           which the request originated.
      *     @type string $accessToken Access token used to sign requests.
+     *           Deprecated: This option is no longer supported. Use the `$credentialsFetcher` option instead.
      *     @type callable $asyncHttpHandler *Experimental* A handler used to
      *           deliver PSR-7 requests asynchronously. Function signature should match:
      *           `function (RequestInterface $request, array $options = []) : PromiseInterface<ResponseInterface>`.
@@ -290,7 +289,7 @@ class RequestWrapper
     {
         $headers = [
             'User-Agent' => 'gcloud-php/' . $this->componentVersion,
-            AgentHeader::AGENT_HEADER_KEY => sprintf(
+            Retry::RETRY_HEADER_KEY => sprintf(
                 'gl-php/%s gccl/%s',
                 PHP_VERSION,
                 $this->componentVersion
@@ -298,9 +297,9 @@ class RequestWrapper
         ];
 
         if (isset($options['retryHeaders'])) {
-            $headers[AgentHeader::AGENT_HEADER_KEY] = sprintf(
+            $headers[Retry::RETRY_HEADER_KEY] = sprintf(
                 '%s %s',
-                $headers[AgentHeader::AGENT_HEADER_KEY],
+                $headers[Retry::RETRY_HEADER_KEY],
                 implode(' ', $options['retryHeaders'])
             );
             unset($options['retryHeaders']);
@@ -467,10 +466,7 @@ class RequestWrapper
      */
     private function buildDefaultAsyncHandler()
     {
-        $isGuzzleHandler = $this->httpHandler instanceof Guzzle6HttpHandler
-            || $this->httpHandler instanceof Guzzle5HttpHandler;
-
-        return $isGuzzleHandler
+        return $this->httpHandler instanceof Guzzle6HttpHandler
             ? [$this->httpHandler, 'async']
             : [HttpHandlerFactory::build(), 'async'];
     }

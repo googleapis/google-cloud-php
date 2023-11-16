@@ -34,7 +34,7 @@ class AudienceSequenceStep extends \Google\Protobuf\Internal\Message
     private $immediately_follows = false;
     /**
      * Optional. When set, this step must be satisfied within the
-     * constraint_duration of the previous step (i.e., t[i] - t[i-1] <=
+     * constraint_duration of the previous step (For example,  t[i] - t[i-1] <=
      * constraint_duration). If not set, there is no duration requirement (the
      * duration is effectively unlimited). It is ignored for the first step.
      *
@@ -65,7 +65,7 @@ class AudienceSequenceStep extends \Google\Protobuf\Internal\Message
      *           first step.
      *     @type \Google\Protobuf\Duration $constraint_duration
      *           Optional. When set, this step must be satisfied within the
-     *           constraint_duration of the previous step (i.e., t[i] - t[i-1] <=
+     *           constraint_duration of the previous step (For example,  t[i] - t[i-1] <=
      *           constraint_duration). If not set, there is no duration requirement (the
      *           duration is effectively unlimited). It is ignored for the first step.
      *     @type \Google\Analytics\Admin\V1alpha\AudienceFilterExpression $filter_expression
@@ -140,7 +140,7 @@ class AudienceSequenceStep extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. When set, this step must be satisfied within the
-     * constraint_duration of the previous step (i.e., t[i] - t[i-1] <=
+     * constraint_duration of the previous step (For example,  t[i] - t[i-1] <=
      * constraint_duration). If not set, there is no duration requirement (the
      * duration is effectively unlimited). It is ignored for the first step.
      *
@@ -164,7 +164,7 @@ class AudienceSequenceStep extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. When set, this step must be satisfied within the
-     * constraint_duration of the previous step (i.e., t[i] - t[i-1] <=
+     * constraint_duration of the previous step (For example,  t[i] - t[i-1] <=
      * constraint_duration). If not set, there is no duration requirement (the
      * duration is effectively unlimited). It is ignored for the first step.
      *

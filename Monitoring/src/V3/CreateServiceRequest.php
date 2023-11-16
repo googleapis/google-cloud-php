@@ -38,6 +38,24 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
     private $service = null;
 
     /**
+     * @param string                              $parent  Required. Resource [name](https://cloud.google.com/monitoring/api/v3#project_name) of
+     *                                                     the parent workspace. The format is:
+     *
+     *                                                     projects/[PROJECT_ID_OR_NUMBER]
+     * @param \Google\Cloud\Monitoring\V3\Service $service Required. The `Service` to create.
+     *
+     * @return \Google\Cloud\Monitoring\V3\CreateServiceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Monitoring\V3\Service $service): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setService($service);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

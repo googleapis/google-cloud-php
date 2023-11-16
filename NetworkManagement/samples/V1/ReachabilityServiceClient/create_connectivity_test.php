@@ -56,7 +56,7 @@ use Google\Rpc\Status;
  *                             * Must end with a number or a letter.
  *                             * Must be unique within the customer project
  * @param string $resourceName Unique name of the resource using the form:
- *                             `projects/{project_id}/locations/global/connectivityTests/{test_id}`
+ *                             `projects/{project_id}/locations/global/connectivityTests/{test}`
  */
 function create_connectivity_test_sample(
     string $parent,

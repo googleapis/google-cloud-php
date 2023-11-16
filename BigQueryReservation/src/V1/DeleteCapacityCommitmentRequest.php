@@ -33,6 +33,21 @@ class DeleteCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
     private $force = false;
 
     /**
+     * @param string $name Required. Resource name of the capacity commitment to delete. E.g.,
+     *                     `projects/myproject/locations/US/capacityCommitments/123`
+     *                     Please see {@see ReservationServiceClient::capacityCommitmentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\BigQuery\Reservation\V1\DeleteCapacityCommitmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -27,6 +27,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Channel\V1\BillableSku;
 use Google\Cloud\Channel\V1\ChannelPartnerLink;
 use Google\Cloud\Channel\V1\ChannelPartnerLinkState;
 use Google\Cloud\Channel\V1\ChannelPartnerRepricingConfig;
@@ -47,6 +48,8 @@ use Google\Cloud\Channel\V1\ListOffersResponse;
 use Google\Cloud\Channel\V1\ListProductsResponse;
 use Google\Cloud\Channel\V1\ListPurchasableOffersResponse;
 use Google\Cloud\Channel\V1\ListPurchasableSkusResponse;
+use Google\Cloud\Channel\V1\ListSkuGroupBillableSkusResponse;
+use Google\Cloud\Channel\V1\ListSkuGroupsResponse;
 use Google\Cloud\Channel\V1\ListSkusResponse;
 use Google\Cloud\Channel\V1\ListSubscribersResponse;
 use Google\Cloud\Channel\V1\ListTransferableOffersResponse;
@@ -55,12 +58,14 @@ use Google\Cloud\Channel\V1\Offer;
 use Google\Cloud\Channel\V1\Product;
 use Google\Cloud\Channel\V1\PurchasableOffer;
 use Google\Cloud\Channel\V1\PurchasableSku;
+use Google\Cloud\Channel\V1\QueryEligibleBillingAccountsResponse;
 use Google\Cloud\Channel\V1\RebillingBasis;
 use Google\Cloud\Channel\V1\RegisterSubscriberResponse;
 use Google\Cloud\Channel\V1\RenewalSettings;
 use Google\Cloud\Channel\V1\RepricingAdjustment;
 use Google\Cloud\Channel\V1\RepricingConfig;
 use Google\Cloud\Channel\V1\Sku;
+use Google\Cloud\Channel\V1\SkuGroup;
 use Google\Cloud\Channel\V1\TransferEntitlementsResponse;
 use Google\Cloud\Channel\V1\TransferableOffer;
 use Google\Cloud\Channel\V1\TransferableSku;
@@ -127,10 +132,12 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $offer = 'offer105650780';
         $purchaseOrderId = 'purchaseOrderId548224298';
+        $billingAccount = 'billingAccount-545871767';
         $expectedResponse = new Entitlement();
         $expectedResponse->setName($name2);
         $expectedResponse->setOffer($offer);
         $expectedResponse->setPurchaseOrderId($purchaseOrderId);
+        $expectedResponse->setBillingAccount($billingAccount);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -367,10 +374,12 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $offer2 = 'offer2-1548812529';
         $purchaseOrderId2 = 'purchaseOrderId2-1437424035';
+        $billingAccount2 = 'billingAccount2-596754980';
         $expectedResponse = new Entitlement();
         $expectedResponse->setName($name2);
         $expectedResponse->setOffer($offer2);
         $expectedResponse->setPurchaseOrderId($purchaseOrderId2);
+        $expectedResponse->setBillingAccount($billingAccount2);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -494,10 +503,12 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $offer = 'offer105650780';
         $purchaseOrderId2 = 'purchaseOrderId2-1437424035';
+        $billingAccount = 'billingAccount-545871767';
         $expectedResponse = new Entitlement();
         $expectedResponse->setName($name2);
         $expectedResponse->setOffer($offer);
         $expectedResponse->setPurchaseOrderId($purchaseOrderId2);
+        $expectedResponse->setBillingAccount($billingAccount);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -621,10 +632,12 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $offer = 'offer105650780';
         $purchaseOrderId = 'purchaseOrderId548224298';
+        $billingAccount = 'billingAccount-545871767';
         $expectedResponse = new Entitlement();
         $expectedResponse->setName($name2);
         $expectedResponse->setOffer($offer);
         $expectedResponse->setPurchaseOrderId($purchaseOrderId);
+        $expectedResponse->setBillingAccount($billingAccount);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1138,10 +1151,12 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $offer = 'offer105650780';
         $purchaseOrderId = 'purchaseOrderId548224298';
+        $billingAccount = 'billingAccount-545871767';
         $expectedResponse = new Entitlement();
         $expectedResponse->setName($name);
         $expectedResponse->setOffer($offer);
         $expectedResponse->setPurchaseOrderId($purchaseOrderId);
+        $expectedResponse->setBillingAccount($billingAccount);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1688,10 +1703,12 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $offer = 'offer105650780';
         $purchaseOrderId = 'purchaseOrderId548224298';
+        $billingAccount = 'billingAccount-545871767';
         $expectedResponse = new Entitlement();
         $expectedResponse->setName($name2);
         $expectedResponse->setOffer($offer);
         $expectedResponse->setPurchaseOrderId($purchaseOrderId);
+        $expectedResponse->setBillingAccount($billingAccount);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
@@ -2505,6 +2522,142 @@ class CloudChannelServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listSkuGroupBillableSkusTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $billableSkusElement = new BillableSku();
+        $billableSkus = [
+            $billableSkusElement,
+        ];
+        $expectedResponse = new ListSkuGroupBillableSkusResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setBillableSkus($billableSkus);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->skuGroupName('[ACCOUNT]', '[SKU_GROUP]');
+        $response = $gapicClient->listSkuGroupBillableSkus($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getBillableSkus()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ListSkuGroupBillableSkus', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listSkuGroupBillableSkusExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->skuGroupName('[ACCOUNT]', '[SKU_GROUP]');
+        try {
+            $gapicClient->listSkuGroupBillableSkus($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listSkuGroupsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $skuGroupsElement = new SkuGroup();
+        $skuGroups = [
+            $skuGroupsElement,
+        ];
+        $expectedResponse = new ListSkuGroupsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setSkuGroups($skuGroups);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $parent = 'parent-995424086';
+        $response = $gapicClient->listSkuGroups($parent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getSkuGroups()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ListSkuGroups', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($parent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listSkuGroupsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $parent = 'parent-995424086';
+        try {
+            $gapicClient->listSkuGroups($parent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listSkusTest()
     {
         $transport = $this->createTransport();
@@ -2982,6 +3135,68 @@ class CloudChannelServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function queryEligibleBillingAccountsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new QueryEligibleBillingAccountsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedCustomer = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
+        $skus = [];
+        $response = $gapicClient->queryEligibleBillingAccounts($formattedCustomer, $skus);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.channel.v1.CloudChannelService/QueryEligibleBillingAccounts', $actualFuncCall);
+        $actualValue = $actualRequestObject->getCustomer();
+        $this->assertProtobufEquals($formattedCustomer, $actualValue);
+        $actualValue = $actualRequestObject->getSkus();
+        $this->assertProtobufEquals($skus, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function queryEligibleBillingAccountsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedCustomer = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
+        $skus = [];
+        try {
+            $gapicClient->queryEligibleBillingAccounts($formattedCustomer, $skus);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function registerSubscriberTest()
     {
         $transport = $this->createTransport();
@@ -3069,10 +3284,12 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $offer = 'offer105650780';
         $purchaseOrderId = 'purchaseOrderId548224298';
+        $billingAccount = 'billingAccount-545871767';
         $expectedResponse = new Entitlement();
         $expectedResponse->setName($name2);
         $expectedResponse->setOffer($offer);
         $expectedResponse->setPurchaseOrderId($purchaseOrderId);
+        $expectedResponse->setBillingAccount($billingAccount);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -3192,10 +3409,12 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $offer = 'offer105650780';
         $purchaseOrderId = 'purchaseOrderId548224298';
+        $billingAccount = 'billingAccount-545871767';
         $expectedResponse = new Entitlement();
         $expectedResponse->setName($name2);
         $expectedResponse->setOffer($offer);
         $expectedResponse->setPurchaseOrderId($purchaseOrderId);
+        $expectedResponse->setBillingAccount($billingAccount);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datalineage_v1_generated_Lineage_ListRuns_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\DataCatalog\Lineage\V1\LineageClient;
+use Google\Cloud\DataCatalog\Lineage\V1\Client\LineageClient;
+use Google\Cloud\DataCatalog\Lineage\V1\ListRunsRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\Run;
 
 /**
@@ -40,10 +41,14 @@ function list_runs_sample(string $formattedParent): void
     // Create a client.
     $lineageClient = new LineageClient();
 
+    // Prepare the request message.
+    $request = (new ListRunsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $lineageClient->listRuns($formattedParent);
+        $response = $lineageClient->listRuns($request);
 
         /** @var Run $element */
         foreach ($response as $element) {

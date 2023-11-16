@@ -68,6 +68,21 @@ class ListSkusRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The name of the service.
+     *                       Example: "services/DA34-426B-A397"
+     *                       Please see {@see CloudCatalogClient::serviceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Billing\V1\ListSkusRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

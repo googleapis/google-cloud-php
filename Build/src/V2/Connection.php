@@ -89,6 +89,9 @@ class Connection extends \Google\Protobuf\Internal\Message
      *           Configuration for connections to github.com.
      *     @type \Google\Cloud\Build\V2\GitHubEnterpriseConfig $github_enterprise_config
      *           Configuration for connections to an instance of GitHub Enterprise.
+     *     @type \Google\Cloud\Build\V2\GitLabConfig $gitlab_config
+     *           Configuration for connections to gitlab.com or an instance of GitLab
+     *           Enterprise.
      *     @type \Google\Cloud\Build\V2\InstallationState $installation_state
      *           Output only. Installation state of the Connection.
      *     @type bool $disabled
@@ -269,6 +272,39 @@ class Connection extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Build\V2\GitHubEnterpriseConfig::class);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Configuration for connections to gitlab.com or an instance of GitLab
+     * Enterprise.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.GitLabConfig gitlab_config = 7;</code>
+     * @return \Google\Cloud\Build\V2\GitLabConfig|null
+     */
+    public function getGitlabConfig()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasGitlabConfig()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Configuration for connections to gitlab.com or an instance of GitLab
+     * Enterprise.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.GitLabConfig gitlab_config = 7;</code>
+     * @param \Google\Cloud\Build\V2\GitLabConfig $var
+     * @return $this
+     */
+    public function setGitlabConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Build\V2\GitLabConfig::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }

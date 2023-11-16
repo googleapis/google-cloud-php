@@ -30,6 +30,8 @@ trait IncomingMessageTrait
      *
      * @param array $message The message data
      * @param ConnectionInterface $connection The service connection.
+     *        This should not be instantiated outside of
+     *        the PubSubClient.
      * @param string $projectId The current project ID.
      * @param bool $encode Whether to base64_encode.
      * @return Message

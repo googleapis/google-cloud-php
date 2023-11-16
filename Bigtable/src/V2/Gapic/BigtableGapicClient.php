@@ -83,6 +83,9 @@ use Google\Protobuf\Timestamp;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Bigtable\V2\Client\BigtableClient} to use the new surface.
  */
 class BigtableGapicClient
 {
@@ -818,8 +821,8 @@ class BigtableGapicClient
      *     Optional.
      *
      *     @type string $appProfileId
-     *           This value specifies routing for replication. This API only accepts the
-     *           empty value of app_profile_id.
+     *           This value specifies routing for replication. If not specified, the
+     *           "default" application profile will be used.
      *     @type RowSet $rows
      *           The row keys and/or ranges to read sequentially. If not specified, reads
      *           from all rows.
@@ -832,6 +835,19 @@ class BigtableGapicClient
      *     @type int $requestStatsView
      *           The view into RequestStats, as described above.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\V2\ReadRowsRequest\RequestStatsView}
+     *     @type bool $reversed
+     *           Experimental API - Please note that this API is currently experimental
+     *           and can change in the future.
+     *
+     *           Return rows in lexiographical descending order of the row keys. The row
+     *           contents will not be affected by this flag.
+     *
+     *           Example result set:
+     *
+     *           [
+     *           {key: "k2", "f:col1": "v1", "f:col2": "v1"},
+     *           {key: "k1", "f:col1": "v2", "f:col2": "v2"}
+     *           ]
      *     @type int $timeoutMillis
      *           Timeout to use for this call.
      * }
@@ -869,6 +885,10 @@ class BigtableGapicClient
 
         if (isset($optionalArgs['requestStatsView'])) {
             $request->setRequestStatsView($optionalArgs['requestStatsView']);
+        }
+
+        if (isset($optionalArgs['reversed'])) {
+            $request->setReversed($optionalArgs['reversed']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

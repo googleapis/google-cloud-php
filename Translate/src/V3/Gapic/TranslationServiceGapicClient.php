@@ -109,6 +109,10 @@ use Google\LongRunning\Operation;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Translate\V3\Client\TranslationServiceClient} to use the new
+ * surface.
  */
 class TranslationServiceGapicClient
 {
@@ -464,6 +468,13 @@ class TranslationServiceGapicClient
      *           If not provided, the default is `Machine Translated by Google`.
      *           Customized attribution should follow rules in
      *           https://cloud.google.com/translate/attribution#attribution_and_logos
+     *     @type bool $enableShadowRemovalNativePdf
+     *           Optional. If true, use the text removal server to remove the shadow text on
+     *           background image for native pdf translation.
+     *           Shadow removal feature can only be enabled when
+     *           is_translate_native_pdf_only: false && pdf_native_only: false
+     *     @type bool $enableRotationCorrection
+     *           Optional. If true, enable auto rotation correction in DVS.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -498,6 +509,14 @@ class TranslationServiceGapicClient
 
         if (isset($optionalArgs['customizedAttribution'])) {
             $request->setCustomizedAttribution($optionalArgs['customizedAttribution']);
+        }
+
+        if (isset($optionalArgs['enableShadowRemovalNativePdf'])) {
+            $request->setEnableShadowRemovalNativePdf($optionalArgs['enableShadowRemovalNativePdf']);
+        }
+
+        if (isset($optionalArgs['enableRotationCorrection'])) {
+            $request->setEnableRotationCorrection($optionalArgs['enableRotationCorrection']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1153,13 +1172,16 @@ class TranslationServiceGapicClient
      *           Customized attribution should follow rules in
      *           https://cloud.google.com/translate/attribution#attribution_and_logos
      *     @type bool $isTranslateNativePdfOnly
-     *           Optional. If true, the page limit of online native pdf translation is 300
-     *           and only native pdf pages will be translated.
+     *           Optional. is_translate_native_pdf_only field for external customers.
+     *           If true, the page limit of online native pdf translation is 300 and only
+     *           native pdf pages will be translated.
      *     @type bool $enableShadowRemovalNativePdf
-     *           Optional. If true, use the text removal to remove the shadow text on
+     *           Optional. If true, use the text removal server to remove the shadow text on
      *           background image for native pdf translation.
      *           Shadow removal feature can only be enabled when
-     *           is_translate_native_pdf_only is false
+     *           is_translate_native_pdf_only: false && pdf_native_only: false
+     *     @type bool $enableRotationCorrection
+     *           Optional. If true, enable auto rotation correction in DVS.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1208,6 +1230,10 @@ class TranslationServiceGapicClient
 
         if (isset($optionalArgs['enableShadowRemovalNativePdf'])) {
             $request->setEnableShadowRemovalNativePdf($optionalArgs['enableShadowRemovalNativePdf']);
+        }
+
+        if (isset($optionalArgs['enableRotationCorrection'])) {
+            $request->setEnableRotationCorrection($optionalArgs['enableRotationCorrection']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1278,7 +1304,7 @@ class TranslationServiceGapicClient
      *           For example,
      *           `projects/{project-number-or-id}/locations/global/models/general/nmt`.
      *
-     *           If not provided, the default Google model (NMT) will be used.
+     *           If not provided, the default Google model (NMT) will be used
      *     @type TranslateTextGlossaryConfig $glossaryConfig
      *           Optional. Glossary to be applied. The glossary must be
      *           within the same region (have the same location-id) as the model, otherwise

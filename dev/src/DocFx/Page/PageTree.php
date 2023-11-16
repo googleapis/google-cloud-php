@@ -28,6 +28,8 @@ use SimpleXMLElement;
 class PageTree
 {
     private array $pages;
+    public bool $hasV1Client = false;
+    public bool $hasV2Client = false;
 
     public function __construct(
         private string $xmlPath,
@@ -76,24 +78,27 @@ class PageTree
                 continue;
             }
 
+            // Manually skip GAPIC base clients
+            if ($classNode->isServiceBaseClass()) {
+                $gapicClients[] = $classNode;
+                continue;
+            }
+
             // Skip internal classes
             if ($classNode->isInternal()) {
                 continue;
             }
 
+            $this->hasV1Client |= $classNode->isV1ServiceClass();
+            $this->hasV2Client |= $classNode->isV2ServiceClass();
+
             // Manually skip protobuf enums in favor of Gapic enums (see below).
             // @TODO: Do not generate them in V2, eventually mark them as deprecated
             $isDiregapic = $isDiregapic || $classNode->isGapicEnumClass();
 
-            $fullName = $classNode->getFullname();
-            // Manually skip GAPIC clients
-            if ('GapicClient' === substr($fullName, -11)) {
-                $gapicClients[] = $classNode;
-                continue;
-            }
-
             // Manually skip Grpc classes
             // @TODO: Do not generate Grpc classes in V2, eventually mark these as deprecated
+            $fullName = $classNode->getFullname();
             if (
                 'GrpcClient' === substr($fullName, -10)
                 && '\Grpc\BaseStub' === $classNode->getExtends()
@@ -132,15 +137,31 @@ class PageTree
         // We no longer need the array keys
         $pages = array_values($pageMap);
 
+        // Mark V2 services as "beta" if they have a V1 client
+        if ($this->hasV1Client && $this->hasV2Client) {
+            foreach ($pages as $page) {
+                if ($page->getClassNode()->isV2ServiceClass()) {
+                    $page->getClassNode()->setTocName(sprintf(
+                        '%s (beta)',
+                        $page->getClassNode()->getName()
+                    ));
+                }
+            }
+        }
+
         /**
          * Set a map of protobuf package names to PHP namespaces for Xrefs.
          * This MUST be done after combining GAPIC clients.
          */
-        $protoPackages = [];
+        $protoPackages = [
+            // shared packages
+            'google.longrunning' => 'Google\\LongRunning'
+        ];
         foreach ($pages as $page) {
             $classNode = $page->getClassNode();
             if ($protoPackage = $classNode->getProtoPackage()) {
-                $protoPackages[$protoPackage] = ltrim($classNode->getNamespace(), '\\');
+                $package = rtrim(ltrim($classNode->getNamespace(), '\\'), '\\Client');
+                $protoPackages[$protoPackage] = $package;
             }
         }
 
@@ -161,12 +182,13 @@ class PageTree
         foreach ($gapicClients as $gapicClient) {
             // Find  Classname
             $parts = explode('\\', $gapicClient->getFullName());
-            $clientClassName = substr(array_pop($parts), 0, -11) . 'Client';
+            $clientClassName = str_replace('GapicClient', 'Client', array_pop($parts));
             array_pop($parts); // remove "Gapic" namespace
             $parts[] = $clientClassName;
             $clientFullName = implode('\\', $parts);
             if (isset($pageMap[$clientFullName])) {
-                $pageMap[$clientFullName]->getClassNode()->setChildNode($gapicClient);
+                $parentClassNode = $pageMap[$clientFullName]->getClassNode();
+                $parentClassNode->setChildNode($gapicClient);
             }
         }
 

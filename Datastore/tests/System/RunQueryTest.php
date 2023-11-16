@@ -304,6 +304,22 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
     /**
      * @dataProvider defaultDbClientProvider
      */
+    public function testQueryWithEmptyResult(DatastoreClient $client)
+    {
+        $query = $client->query()
+            ->kind(self::$kind)
+            ->filter('lastName', '=', 'does_not_exist');
+
+        $results = $this->runQueryAndSortResults($client, $query);
+        $resultsWithLimit = $this->runQueryAndSortResults($client, $query->limit(1));
+
+        $this->assertCount(0, $results);
+        $this->assertCount(0, $resultsWithLimit);
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
     public function testGqlQueryWithBindings(DatastoreClient $client)
     {
         $query = $client->gqlQuery('SELECT * From Person WHERE lastName = @lastName', [

@@ -83,6 +83,17 @@ return [
                     'update_mask',
                 ],
             ],
+            'VerifyConnectivity' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/ekmConnections/*}:verifyConnectivity',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.location.Locations' => [
             'GetLocation' => [

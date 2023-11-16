@@ -25,22 +25,23 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START alloydb_v1_generated_AlloyDBAdmin_CreateCluster_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AlloyDb\V1\AlloyDBAdminClient;
+use Google\Cloud\AlloyDb\V1\Client\AlloyDBAdminClient;
 use Google\Cloud\AlloyDb\V1\Cluster;
+use Google\Cloud\AlloyDb\V1\CreateClusterRequest;
 use Google\Rpc\Status;
 
 /**
  * Creates a new Cluster in a given project and location.
  *
- * @param string $formattedParent         The name of the parent resource. For the required format, see the
+ * @param string $formattedParent         The location of the new cluster. For the required format, see the
  *                                        comment on the Cluster.name field. Please see
  *                                        {@see AlloyDBAdminClient::locationName()} for help formatting this field.
  * @param string $clusterId               ID of the requesting object.
  * @param string $formattedClusterNetwork The resource link for the VPC network in which cluster resources
  *                                        are created and from which they are accessible via Private IP. The network
  *                                        must belong to the same project as the cluster. It is specified in the
- *                                        form: "projects/{project_number}/global/networks/{network_id}". This is
- *                                        required to create a cluster. It can be updated, but it cannot be removed. Please see
+ *                                        form: "projects/{project}/global/networks/{network_id}". This is required
+ *                                        to create a cluster. Deprecated, use network_config.network instead. Please see
  *                                        {@see AlloyDBAdminClient::networkName()} for help formatting this field.
  */
 function create_cluster_sample(
@@ -51,14 +52,18 @@ function create_cluster_sample(
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $cluster = (new Cluster())
         ->setNetwork($formattedClusterNetwork);
+    $request = (new CreateClusterRequest())
+        ->setParent($formattedParent)
+        ->setClusterId($clusterId)
+        ->setCluster($cluster);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $alloyDBAdminClient->createCluster($formattedParent, $clusterId, $cluster);
+        $response = $alloyDBAdminClient->createCluster($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START videostitcher_v1_generated_VideoStitcherService_GetLiveConfig_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Video\Stitcher\V1\Client\VideoStitcherServiceClient;
+use Google\Cloud\Video\Stitcher\V1\GetLiveConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\LiveConfig;
-use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
 
 /**
  * Returns the specified live config managed by the Video
@@ -41,10 +42,14 @@ function get_live_config_sample(string $formattedName): void
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetLiveConfigRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var LiveConfig $response */
-        $response = $videoStitcherServiceClient->getLiveConfig($formattedName);
+        $response = $videoStitcherServiceClient->getLiveConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

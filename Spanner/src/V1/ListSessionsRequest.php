@@ -30,7 +30,8 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
     /**
      * If non-empty, `page_token` should contain a
-     * [next_page_token][google.spanner.v1.ListSessionsResponse.next_page_token] from a previous
+     * [next_page_token][google.spanner.v1.ListSessionsResponse.next_page_token]
+     * from a previous
      * [ListSessionsResponse][google.spanner.v1.ListSessionsResponse].
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
@@ -50,6 +51,20 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $database Required. The database in which to list sessions. Please see
+     *                         {@see SpannerClient::databaseName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Spanner\V1\ListSessionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $database): self
+    {
+        return (new self())
+            ->setDatabase($database);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -62,7 +77,8 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
      *           to the server's maximum allowed page size.
      *     @type string $page_token
      *           If non-empty, `page_token` should contain a
-     *           [next_page_token][google.spanner.v1.ListSessionsResponse.next_page_token] from a previous
+     *           [next_page_token][google.spanner.v1.ListSessionsResponse.next_page_token]
+     *           from a previous
      *           [ListSessionsResponse][google.spanner.v1.ListSessionsResponse].
      *     @type string $filter
      *           An expression for filtering the results of the request. Filter rules are
@@ -135,7 +151,8 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If non-empty, `page_token` should contain a
-     * [next_page_token][google.spanner.v1.ListSessionsResponse.next_page_token] from a previous
+     * [next_page_token][google.spanner.v1.ListSessionsResponse.next_page_token]
+     * from a previous
      * [ListSessionsResponse][google.spanner.v1.ListSessionsResponse].
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
@@ -148,7 +165,8 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If non-empty, `page_token` should contain a
-     * [next_page_token][google.spanner.v1.ListSessionsResponse.next_page_token] from a previous
+     * [next_page_token][google.spanner.v1.ListSessionsResponse.next_page_token]
+     * from a previous
      * [ListSessionsResponse][google.spanner.v1.ListSessionsResponse].
      *
      * Generated from protobuf field <code>string page_token = 3;</code>

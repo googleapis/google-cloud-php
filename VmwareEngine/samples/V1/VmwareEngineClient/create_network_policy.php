@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmwareengine_v1_generated_VmwareEngine_CreateNetworkPolicy_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VmwareEngine\V1\Client\VmwareEngineClient;
+use Google\Cloud\VmwareEngine\V1\CreateNetworkPolicyRequest;
 use Google\Cloud\VmwareEngine\V1\NetworkPolicy;
-use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
 use Google\Rpc\Status;
 
 /**
@@ -66,18 +67,18 @@ function create_network_policy_sample(
     // Create a client.
     $vmwareEngineClient = new VmwareEngineClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $networkPolicy = (new NetworkPolicy())
         ->setEdgeServicesCidr($networkPolicyEdgeServicesCidr);
+    $request = (new CreateNetworkPolicyRequest())
+        ->setParent($formattedParent)
+        ->setNetworkPolicyId($networkPolicyId)
+        ->setNetworkPolicy($networkPolicy);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $vmwareEngineClient->createNetworkPolicy(
-            $formattedParent,
-            $networkPolicyId,
-            $networkPolicy
-        );
+        $response = $vmwareEngineClient->createNetworkPolicy($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -30,6 +30,23 @@ class CreateInstructionRequest extends \Google\Protobuf\Internal\Message
     private $instruction = null;
 
     /**
+     * @param string                                         $parent      Required. Instruction resource parent, format:
+     *                                                                    projects/{project_id}
+     *                                                                    Please see {@see DataLabelingServiceClient::projectName()} for help formatting this field.
+     * @param \Google\Cloud\DataLabeling\V1beta1\Instruction $instruction Required. Instruction of how to perform the labeling task.
+     *
+     * @return \Google\Cloud\DataLabeling\V1beta1\CreateInstructionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\DataLabeling\V1beta1\Instruction $instruction): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setInstruction($instruction);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START recommendationengine_v1beta1_generated_UserEventService_ListUserEvents_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\RecommendationEngine\V1beta1\Client\UserEventServiceClient;
+use Google\Cloud\RecommendationEngine\V1beta1\ListUserEventsRequest;
 use Google\Cloud\RecommendationEngine\V1beta1\UserEvent;
-use Google\Cloud\RecommendationEngine\V1beta1\UserEventServiceClient;
 
 /**
  * Gets a list of user events within a time range, with potential filtering.
@@ -40,10 +41,14 @@ function list_user_events_sample(string $formattedParent): void
     // Create a client.
     $userEventServiceClient = new UserEventServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListUserEventsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $userEventServiceClient->listUserEvents($formattedParent);
+        $response = $userEventServiceClient->listUserEvents($request);
 
         /** @var UserEvent $element */
         foreach ($response as $element) {

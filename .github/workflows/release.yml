@@ -13,14 +13,14 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - name: Checkout
-          uses: actions/checkout@v3
+          uses: actions/checkout@v4
           with:
             persist-credentials: false
             fetch-depth: 0
         - name: Setup PHP
           uses: shivammathur/setup-php@v2
           with:
-            php-version: '8.0'
+            php-version: '8.1'
             ini-values: memory_limit=2048M
         - name: Install Dependencies
           uses: nick-fields/retry@v2
@@ -35,4 +35,7 @@ jobs:
           env:
             tagName: ${{ steps.getTag.outputs.tag }}
           run: |
-            ./dev/google-cloud split $GITHUB_REPOSITORY $tagName -t ${{ secrets.SPLIT_TOKEN }}
+            ./dev/google-cloud split $GITHUB_REPOSITORY $tagName \
+              -t ${{ secrets.SPLIT_TOKEN }} \
+              --packagist-username=${{ vars.PACKAGIST_USERNAME }} \
+              --packagist-token=${{ secrets.PACKAGIST_TOKEN }}

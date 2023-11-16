@@ -24,6 +24,21 @@ class GetBillingAccountRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The resource name of the billing account to retrieve. For
+     *                     example, `billingAccounts/012345-567890-ABCDEF`. Please see
+     *                     {@see CloudBillingClient::billingAccountName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Billing\V1\GetBillingAccountRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

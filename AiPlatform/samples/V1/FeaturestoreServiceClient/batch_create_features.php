@@ -25,55 +25,57 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_FeaturestoreService_BatchCreateFeatures_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AIPlatform\V1\BatchCreateFeaturesRequest;
 use Google\Cloud\AIPlatform\V1\BatchCreateFeaturesResponse;
+use Google\Cloud\AIPlatform\V1\Client\FeaturestoreServiceClient;
 use Google\Cloud\AIPlatform\V1\CreateFeatureRequest;
 use Google\Cloud\AIPlatform\V1\Feature;
-use Google\Cloud\AIPlatform\V1\Feature\ValueType;
-use Google\Cloud\AIPlatform\V1\FeaturestoreServiceClient;
 use Google\Rpc\Status;
 
 /**
  * Creates a batch of Features in a given EntityType.
  *
- * @param string $formattedParent          The resource name of the EntityType to create the batch of
- *                                         Features under. Format:
- *                                         `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
- *                                         Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
- * @param string $formattedRequestsParent  The resource name of the EntityType to create a Feature.
- *                                         Format:
- *                                         `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
- *                                         Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
- * @param int    $requestsFeatureValueType Immutable. Type of Feature value.
- * @param string $requestsFeatureId        The ID to use for the Feature, which will become the final
- *                                         component of the Feature's resource name.
+ * @param string $formattedParent         The resource name of the EntityType to create the batch of
+ *                                        Features under. Format:
+ *                                        `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+ *                                        Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
+ * @param string $formattedRequestsParent The resource name of the EntityType or FeatureGroup to create a
+ *                                        Feature. Format for entity_type as parent:
+ *                                        `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+ *                                        Format for feature_group as parent:
+ *                                        `projects/{project}/locations/{location}/featureGroups/{feature_group}`
+ *                                        Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
+ * @param string $requestsFeatureId       The ID to use for the Feature, which will become the final
+ *                                        component of the Feature's resource name.
  *
- *                                         This value may be up to 128 characters, and valid characters are
- *                                         `[a-z0-9_]`. The first character cannot be a number.
+ *                                        This value may be up to 128 characters, and valid characters are
+ *                                        `[a-z0-9_]`. The first character cannot be a number.
  *
- *                                         The value must be unique within an EntityType.
+ *                                        The value must be unique within an EntityType/FeatureGroup.
  */
 function batch_create_features_sample(
     string $formattedParent,
     string $formattedRequestsParent,
-    int $requestsFeatureValueType,
     string $requestsFeatureId
 ): void {
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $requestsFeature = (new Feature())
-        ->setValueType($requestsFeatureValueType);
+    // Prepare the request message.
+    $requestsFeature = new Feature();
     $createFeatureRequest = (new CreateFeatureRequest())
         ->setParent($formattedRequestsParent)
         ->setFeature($requestsFeature)
         ->setFeatureId($requestsFeatureId);
     $requests = [$createFeatureRequest,];
+    $request = (new BatchCreateFeaturesRequest())
+        ->setParent($formattedParent)
+        ->setRequests($requests);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $featurestoreServiceClient->batchCreateFeatures($formattedParent, $requests);
+        $response = $featurestoreServiceClient->batchCreateFeatures($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -113,14 +115,8 @@ function callSample(): void
         '[FEATURESTORE]',
         '[ENTITY_TYPE]'
     );
-    $requestsFeatureValueType = ValueType::VALUE_TYPE_UNSPECIFIED;
     $requestsFeatureId = '[FEATURE_ID]';
 
-    batch_create_features_sample(
-        $formattedParent,
-        $formattedRequestsParent,
-        $requestsFeatureValueType,
-        $requestsFeatureId
-    );
+    batch_create_features_sample($formattedParent, $formattedRequestsParent, $requestsFeatureId);
 }
 // [END aiplatform_v1_generated_FeaturestoreService_BatchCreateFeatures_sync]

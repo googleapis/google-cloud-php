@@ -39,6 +39,20 @@ class DeleteUtilizationReportRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string $name Required. The Utilization Report name. Please see
+     *                     {@see VmMigrationClient::utilizationReportName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VMMigration\V1\DeleteUtilizationReportRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

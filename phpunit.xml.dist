@@ -16,18 +16,7 @@
   <testsuites>
     <testsuite name="Unit Test Suite">
       <directory>*/tests/Unit</directory>
-      <exclude>dev/tests/Unit/Command/AddComponentCommandTest.php</exclude>
-      <exclude>dev/tests/Unit/Command/DocFxCommandTest.php</exclude>
-      <exclude>dev/tests/Unit/DocFx/PageTest.php</exclude>
-      <exclude>dev/tests/Unit/DocFx/NodeTest.php</exclude>
-      <exclude>dev/tests/Unit/SplitTest.php</exclude>
-      <exclude>dev/tests/Unit/GitHubTest.php</exclude>
-      <exclude>dev/tests/Unit/ReleaseNotesTest.php</exclude>
-      <exclude>dev/tests/Unit/RunShellTest.php</exclude>
-      <exclude>dev/tests/Unit/JsonFileTest.php</exclude>
-      <exclude>dev/tests/Unit/NewComponentTest.php</exclude>
-      <exclude>dev/tests/Unit/SplitInstallTest.php</exclude>
-      <exclude>dev/tests/Unit/ComponentTest.php</exclude>
+      <exclude>dev/tests/Unit</exclude>
     </testsuite>
   </testsuites>
   <php>

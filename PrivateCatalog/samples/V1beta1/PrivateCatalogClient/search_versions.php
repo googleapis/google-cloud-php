@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudprivatecatalog_v1beta1_generated_PrivateCatalog_SearchVersions_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\PrivateCatalog\V1beta1\PrivateCatalogClient;
+use Google\Cloud\PrivateCatalog\V1beta1\Client\PrivateCatalogClient;
+use Google\Cloud\PrivateCatalog\V1beta1\SearchVersionsRequest;
 use Google\Cloud\PrivateCatalog\V1beta1\Version;
 
 /**
@@ -47,10 +48,15 @@ function search_versions_sample(string $resource, string $query): void
     // Create a client.
     $privateCatalogClient = new PrivateCatalogClient();
 
+    // Prepare the request message.
+    $request = (new SearchVersionsRequest())
+        ->setResource($resource)
+        ->setQuery($query);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $privateCatalogClient->searchVersions($resource, $query);
+        $response = $privateCatalogClient->searchVersions($request);
 
         /** @var Version $element */
         foreach ($response as $element) {

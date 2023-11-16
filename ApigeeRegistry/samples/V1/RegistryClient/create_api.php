@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START apigeeregistry_v1_generated_Registry_CreateApi_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\ApigeeRegistry\V1\Api;
-use Google\Cloud\ApigeeRegistry\V1\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\Client\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\CreateApiRequest;
 
 /**
  * Creates a specified API.
@@ -46,13 +47,17 @@ function create_api_sample(string $formattedParent, string $apiId): void
     // Create a client.
     $registryClient = new RegistryClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $api = new Api();
+    $request = (new CreateApiRequest())
+        ->setParent($formattedParent)
+        ->setApi($api)
+        ->setApiId($apiId);
 
     // Call the API and handle any network failures.
     try {
         /** @var Api $response */
-        $response = $registryClient->createApi($formattedParent, $api, $apiId);
+        $response = $registryClient->createApi($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

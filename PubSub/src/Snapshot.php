@@ -37,6 +37,7 @@ class Snapshot
 
     /**
      * @var ConnectionInterface
+     * @internal
      */
     protected $connection;
 
@@ -67,6 +68,8 @@ class Snapshot
 
     /**
      * @param ConnectionInterface $connection A connection to Cloud Pub/Sub
+     *        This object is created by PubSubClient,
+     *        and should not be instantiated outside of this client.
      * @param string $projectId The current Project ID.
      * @param string $name The snapshot name.
      * @param bool $encode Whether certain request arguments should be base64-encoded.

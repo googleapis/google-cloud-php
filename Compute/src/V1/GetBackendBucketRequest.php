@@ -29,6 +29,21 @@ class GetBackendBucketRequest extends \Google\Protobuf\Internal\Message
     private $project = '';
 
     /**
+     * @param string $project       Project ID for this request.
+     * @param string $backendBucket Name of the BackendBucket resource to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetBackendBucketRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $backendBucket): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setBackendBucket($backendBucket);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

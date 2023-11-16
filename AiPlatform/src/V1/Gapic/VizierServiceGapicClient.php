@@ -59,6 +59,7 @@ use Google\Cloud\AIPlatform\V1\Study;
 use Google\Cloud\AIPlatform\V1\SuggestTrialsRequest;
 use Google\Cloud\AIPlatform\V1\SuggestTrialsResponse;
 use Google\Cloud\AIPlatform\V1\Trial;
+use Google\Cloud\AIPlatform\V1\TrialContext;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\GetPolicyOptions;
 use Google\Cloud\Iam\V1\Policy;
@@ -98,6 +99,9 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AIPlatform\V1\Client\VizierServiceClient} to use the new surface.
  */
 class VizierServiceGapicClient
 {
@@ -1258,7 +1262,8 @@ class VizierServiceGapicClient
      * suggested by Vertex AI Vizier. Returns a long-running
      * operation associated with the generation of Trial suggestions.
      * When this long-running operation succeeds, it will contain
-     * a [SuggestTrialsResponse][google.cloud.ml.v1.SuggestTrialsResponse].
+     * a
+     * [SuggestTrialsResponse][google.cloud.aiplatform.v1.SuggestTrialsResponse].
      *
      * Sample code:
      * ```
@@ -1309,6 +1314,43 @@ class VizierServiceGapicClient
      * @param array  $optionalArgs    {
      *     Optional.
      *
+     *     @type TrialContext[] $contexts
+     *           Optional. This allows you to specify the "context" for a Trial; a context
+     *           is a slice (a subspace) of the search space.
+     *
+     *           Typical uses for contexts:
+     *           1) You are using Vizier to tune a server for best performance, but there's
+     *           a strong weekly cycle.  The context specifies the day-of-week.
+     *           This allows Tuesday to generalize from Wednesday without assuming that
+     *           everything is identical.
+     *           2) Imagine you're optimizing some medical treatment for people.
+     *           As they walk in the door, you know certain facts about them
+     *           (e.g. sex, weight, height, blood-pressure).  Put that information in the
+     *           context, and Vizier will adapt its suggestions to the patient.
+     *           3) You want to do a fair A/B test efficiently.  Specify the "A" and "B"
+     *           conditions as contexts, and Vizier will generalize between "A" and "B"
+     *           conditions.  If they are similar, this will allow Vizier to converge
+     *           to the optimum faster than if "A" and "B" were separate Studies.
+     *           NOTE: You can also enter contexts as REQUESTED Trials, e.g. via the
+     *           CreateTrial() RPC; that's the asynchronous option where you don't need a
+     *           close association between contexts and suggestions.
+     *
+     *           NOTE: All the Parameters you set in a context MUST be defined in the
+     *           Study.
+     *           NOTE: You must supply 0 or $suggestion_count contexts.
+     *           If you don't supply any contexts, Vizier will make suggestions
+     *           from the full search space specified in the StudySpec; if you supply
+     *           a full set of context, each suggestion will match the corresponding
+     *           context.
+     *           NOTE: A Context with no features set matches anything, and allows
+     *           suggestions from the full search space.
+     *           NOTE: Contexts MUST lie within the search space specified in the
+     *           StudySpec.  It's an error if they don't.
+     *           NOTE: Contexts preferentially match ACTIVE then REQUESTED trials before
+     *           new suggestions are generated.
+     *           NOTE: Generation of suggestions involves a match between a Context and
+     *           (optionally) a REQUESTED trial; if that match is not fully specified, a
+     *           suggestion will be geneated in the merged subspace.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1331,6 +1373,10 @@ class VizierServiceGapicClient
         $request->setSuggestionCount($suggestionCount);
         $request->setClientId($clientId);
         $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['contexts'])) {
+            $request->setContexts($optionalArgs['contexts']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_PredictionService_Predict_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\PredictionServiceClient;
+use Google\Cloud\AIPlatform\V1\PredictRequest;
 use Google\Cloud\AIPlatform\V1\PredictResponse;
-use Google\Cloud\AIPlatform\V1\PredictionServiceClient;
 use Google\Protobuf\Value;
 
 /**
@@ -41,13 +42,16 @@ function predict_sample(string $formattedEndpoint): void
     // Create a client.
     $predictionServiceClient = new PredictionServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instances = [new Value()];
+    $request = (new PredictRequest())
+        ->setEndpoint($formattedEndpoint)
+        ->setInstances($instances);
 
     // Call the API and handle any network failures.
     try {
         /** @var PredictResponse $response */
-        $response = $predictionServiceClient->predict($formattedEndpoint, $instances);
+        $response = $predictionServiceClient->predict($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

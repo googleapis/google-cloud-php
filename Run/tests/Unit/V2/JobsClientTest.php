@@ -100,6 +100,7 @@ class JobsClientTest extends GeneratedTest
         $observedGeneration = 900833007;
         $executionCount = 1646136616;
         $reconciling = false;
+        $satisfiesPzs = false;
         $etag = 'etag3123477';
         $expectedResponse = new Job();
         $expectedResponse->setName($name);
@@ -112,6 +113,7 @@ class JobsClientTest extends GeneratedTest
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setExecutionCount($executionCount);
         $expectedResponse->setReconciling($reconciling);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setEtag($etag);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -255,6 +257,7 @@ class JobsClientTest extends GeneratedTest
         $observedGeneration = 900833007;
         $executionCount = 1646136616;
         $reconciling = false;
+        $satisfiesPzs = false;
         $etag2 = 'etag2-1293302904';
         $expectedResponse = new Job();
         $expectedResponse->setName($name2);
@@ -267,6 +270,7 @@ class JobsClientTest extends GeneratedTest
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setExecutionCount($executionCount);
         $expectedResponse->setReconciling($reconciling);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setEtag($etag2);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -444,6 +448,7 @@ class JobsClientTest extends GeneratedTest
         $observedGeneration = 900833007;
         $executionCount = 1646136616;
         $reconciling = false;
+        $satisfiesPzs = false;
         $etag = 'etag3123477';
         $expectedResponse = new Job();
         $expectedResponse->setName($name2);
@@ -456,6 +461,7 @@ class JobsClientTest extends GeneratedTest
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setExecutionCount($executionCount);
         $expectedResponse->setReconciling($reconciling);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -608,6 +614,7 @@ class JobsClientTest extends GeneratedTest
         $cancelledCount = 1921113249;
         $retriedCount = 1654679545;
         $logUri = 'logUri342054385';
+        $satisfiesPzs = false;
         $etag2 = 'etag2-1293302904';
         $expectedResponse = new Execution();
         $expectedResponse->setName($name2);
@@ -624,6 +631,7 @@ class JobsClientTest extends GeneratedTest
         $expectedResponse->setCancelledCount($cancelledCount);
         $expectedResponse->setRetriedCount($retriedCount);
         $expectedResponse->setLogUri($logUri);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setEtag($etag2);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -879,6 +887,7 @@ class JobsClientTest extends GeneratedTest
         $observedGeneration = 900833007;
         $executionCount = 1646136616;
         $reconciling = false;
+        $satisfiesPzs = false;
         $etag = 'etag3123477';
         $expectedResponse = new Job();
         $expectedResponse->setName($name);
@@ -891,6 +900,7 @@ class JobsClientTest extends GeneratedTest
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setExecutionCount($executionCount);
         $expectedResponse->setReconciling($reconciling);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setEtag($etag);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());

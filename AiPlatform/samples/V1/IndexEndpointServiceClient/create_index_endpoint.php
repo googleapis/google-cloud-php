@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_IndexEndpointService_CreateIndexEndpoint_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AIPlatform\V1\Client\IndexEndpointServiceClient;
+use Google\Cloud\AIPlatform\V1\CreateIndexEndpointRequest;
 use Google\Cloud\AIPlatform\V1\IndexEndpoint;
-use Google\Cloud\AIPlatform\V1\IndexEndpointServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -46,14 +47,17 @@ function create_index_endpoint_sample(
     // Create a client.
     $indexEndpointServiceClient = new IndexEndpointServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $indexEndpoint = (new IndexEndpoint())
         ->setDisplayName($indexEndpointDisplayName);
+    $request = (new CreateIndexEndpointRequest())
+        ->setParent($formattedParent)
+        ->setIndexEndpoint($indexEndpoint);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $indexEndpointServiceClient->createIndexEndpoint($formattedParent, $indexEndpoint);
+        $response = $indexEndpointServiceClient->createIndexEndpoint($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

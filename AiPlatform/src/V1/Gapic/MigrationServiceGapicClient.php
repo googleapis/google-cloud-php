@@ -100,6 +100,10 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AIPlatform\V1\Client\MigrationServiceClient} to use the new
+ * surface.
  */
 class MigrationServiceGapicClient
 {
@@ -122,7 +126,15 @@ class MigrationServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $annotatedDatasetNameTemplate;
+
+    private static $datasetNameTemplate;
+
     private static $locationNameTemplate;
+
+    private static $modelNameTemplate;
+
+    private static $versionNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -154,6 +166,28 @@ class MigrationServiceGapicClient
         ];
     }
 
+    private static function getAnnotatedDatasetNameTemplate()
+    {
+        if (self::$annotatedDatasetNameTemplate == null) {
+            self::$annotatedDatasetNameTemplate = new PathTemplate(
+                'projects/{project}/datasets/{dataset}/annotatedDatasets/{annotated_dataset}'
+            );
+        }
+
+        return self::$annotatedDatasetNameTemplate;
+    }
+
+    private static function getDatasetNameTemplate()
+    {
+        if (self::$datasetNameTemplate == null) {
+            self::$datasetNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/datasets/{dataset}'
+            );
+        }
+
+        return self::$datasetNameTemplate;
+    }
+
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
@@ -165,15 +199,82 @@ class MigrationServiceGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getModelNameTemplate()
+    {
+        if (self::$modelNameTemplate == null) {
+            self::$modelNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/models/{model}'
+            );
+        }
+
+        return self::$modelNameTemplate;
+    }
+
+    private static function getVersionNameTemplate()
+    {
+        if (self::$versionNameTemplate == null) {
+            self::$versionNameTemplate = new PathTemplate(
+                'projects/{project}/models/{model}/versions/{version}'
+            );
+        }
+
+        return self::$versionNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'annotatedDataset' => self::getAnnotatedDatasetNameTemplate(),
+                'dataset' => self::getDatasetNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'model' => self::getModelNameTemplate(),
+                'version' => self::getVersionNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * annotated_dataset resource.
+     *
+     * @param string $project
+     * @param string $dataset
+     * @param string $annotatedDataset
+     *
+     * @return string The formatted annotated_dataset resource.
+     */
+    public static function annotatedDatasetName(
+        $project,
+        $dataset,
+        $annotatedDataset
+    ) {
+        return self::getAnnotatedDatasetNameTemplate()->render([
+            'project' => $project,
+            'dataset' => $dataset,
+            'annotated_dataset' => $annotatedDataset,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a dataset
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataset
+     *
+     * @return string The formatted dataset resource.
+     */
+    public static function datasetName($project, $location, $dataset)
+    {
+        return self::getDatasetNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'dataset' => $dataset,
+        ]);
     }
 
     /**
@@ -194,10 +295,52 @@ class MigrationServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a model
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $model
+     *
+     * @return string The formatted model resource.
+     */
+    public static function modelName($project, $location, $model)
+    {
+        return self::getModelNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a version
+     * resource.
+     *
+     * @param string $project
+     * @param string $model
+     * @param string $version
+     *
+     * @return string The formatted version resource.
+     */
+    public static function versionName($project, $model, $version)
+    {
+        return self::getVersionNameTemplate()->render([
+            'project' => $project,
+            'model' => $model,
+            'version' => $version,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - annotatedDataset: projects/{project}/datasets/{dataset}/annotatedDatasets/{annotated_dataset}
+     * - dataset: projects/{project}/locations/{location}/datasets/{dataset}
      * - location: projects/{project}/locations/{location}
+     * - model: projects/{project}/locations/{location}/models/{model}
+     * - version: projects/{project}/models/{model}/versions/{version}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

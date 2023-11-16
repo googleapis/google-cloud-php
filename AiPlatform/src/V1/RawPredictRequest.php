@@ -44,6 +44,38 @@ class RawPredictRequest extends \Google\Protobuf\Internal\Message
     private $http_body = null;
 
     /**
+     * @param string               $endpoint Required. The name of the Endpoint requested to serve the prediction.
+     *                                       Format:
+     *                                       `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     *                                       Please see {@see PredictionServiceClient::endpointName()} for help formatting this field.
+     * @param \Google\Api\HttpBody $httpBody The prediction input. Supports HTTP headers and arbitrary data payload.
+     *
+     *                                       A [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] may have an
+     *                                       upper limit on the number of instances it supports per request. When this
+     *                                       limit it is exceeded for an AutoML model, the
+     *                                       [RawPredict][google.cloud.aiplatform.v1.PredictionService.RawPredict]
+     *                                       method returns an error. When this limit is exceeded for a custom-trained
+     *                                       model, the behavior varies depending on the model.
+     *
+     *                                       You can specify the schema for each instance in the
+     *                                       [predict_schemata.instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]
+     *                                       field when you create a [Model][google.cloud.aiplatform.v1.Model]. This
+     *                                       schema applies when you deploy the `Model` as a `DeployedModel` to an
+     *                                       [Endpoint][google.cloud.aiplatform.v1.Endpoint] and use the `RawPredict`
+     *                                       method.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\RawPredictRequest
+     *
+     * @experimental
+     */
+    public static function build(string $endpoint, \Google\Api\HttpBody $httpBody): self
+    {
+        return (new self())
+            ->setEndpoint($endpoint)
+            ->setHttpBody($httpBody);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

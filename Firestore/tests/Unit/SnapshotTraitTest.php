@@ -45,6 +45,7 @@ class SnapshotTraitTest extends TestCase
     private $connection;
     private $mapper;
     private $impl;
+    private $valueMapper;
 
     public function setUp(): void
     {

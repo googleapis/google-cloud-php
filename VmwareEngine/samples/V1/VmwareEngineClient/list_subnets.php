@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmwareengine_v1_generated_VmwareEngine_ListSubnets_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\VmwareEngine\V1\Client\VmwareEngineClient;
+use Google\Cloud\VmwareEngine\V1\ListSubnetsRequest;
 use Google\Cloud\VmwareEngine\V1\Subnet;
-use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
 
 /**
  * Lists subnets in a given private cloud.
@@ -44,10 +45,14 @@ function list_subnets_sample(string $formattedParent): void
     // Create a client.
     $vmwareEngineClient = new VmwareEngineClient();
 
+    // Prepare the request message.
+    $request = (new ListSubnetsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $vmwareEngineClient->listSubnets($formattedParent);
+        $response = $vmwareEngineClient->listSubnets($request);
 
         /** @var Subnet $element */
         foreach ($response as $element) {

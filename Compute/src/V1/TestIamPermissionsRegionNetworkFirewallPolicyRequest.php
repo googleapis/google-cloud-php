@@ -41,6 +41,25 @@ class TestIamPermissionsRegionNetworkFirewallPolicyRequest extends \Google\Proto
     private $test_permissions_request_resource = null;
 
     /**
+     * @param string                                          $project                        Project ID for this request.
+     * @param string                                          $region                         The name of the region for this request.
+     * @param string                                          $resource                       Name or id of the resource for this request.
+     * @param \Google\Cloud\Compute\V1\TestPermissionsRequest $testPermissionsRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\TestIamPermissionsRegionNetworkFirewallPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $resource, \Google\Cloud\Compute\V1\TestPermissionsRequest $testPermissionsRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setResource($resource)
+            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

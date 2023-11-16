@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_TensorboardService_CreateTensorboardExperiment_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\TensorboardServiceClient;
+use Google\Cloud\AIPlatform\V1\CreateTensorboardExperimentRequest;
 use Google\Cloud\AIPlatform\V1\TensorboardExperiment;
-use Google\Cloud\AIPlatform\V1\TensorboardServiceClient;
 
 /**
  * Creates a TensorboardExperiment.
@@ -38,7 +39,7 @@ use Google\Cloud\AIPlatform\V1\TensorboardServiceClient;
  *                                        final component of the Tensorboard experiment's resource name.
  *
  *                                        This value should be 1-128 characters, and valid characters
- *                                        are /[a-z][0-9]-/.
+ *                                        are `/[a-z][0-9]-/`.
  */
 function create_tensorboard_experiment_sample(
     string $formattedParent,
@@ -47,13 +48,15 @@ function create_tensorboard_experiment_sample(
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
+    // Prepare the request message.
+    $request = (new CreateTensorboardExperimentRequest())
+        ->setParent($formattedParent)
+        ->setTensorboardExperimentId($tensorboardExperimentId);
+
     // Call the API and handle any network failures.
     try {
         /** @var TensorboardExperiment $response */
-        $response = $tensorboardServiceClient->createTensorboardExperiment(
-            $formattedParent,
-            $tensorboardExperimentId
-        );
+        $response = $tensorboardServiceClient->createTensorboardExperiment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

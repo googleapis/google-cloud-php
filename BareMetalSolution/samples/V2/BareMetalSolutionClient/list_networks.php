@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START baremetalsolution_v2_generated_BareMetalSolution_ListNetworks_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\BareMetalSolution\V2\BareMetalSolutionClient;
+use Google\Cloud\BareMetalSolution\V2\Client\BareMetalSolutionClient;
+use Google\Cloud\BareMetalSolution\V2\ListNetworksRequest;
 use Google\Cloud\BareMetalSolution\V2\Network;
 
 /**
@@ -39,10 +40,14 @@ function list_networks_sample(string $formattedParent): void
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
+    // Prepare the request message.
+    $request = (new ListNetworksRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $bareMetalSolutionClient->listNetworks($formattedParent);
+        $response = $bareMetalSolutionClient->listNetworks($request);
 
         /** @var Network $element */
         foreach ($response as $element) {

@@ -30,6 +30,19 @@ class CreateTagBindingRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param \Google\Cloud\ResourceManager\V3\TagBinding $tagBinding Required. The TagBinding to be created.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\CreateTagBindingRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\ResourceManager\V3\TagBinding $tagBinding): self
+    {
+        return (new self())
+            ->setTagBinding($tagBinding);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

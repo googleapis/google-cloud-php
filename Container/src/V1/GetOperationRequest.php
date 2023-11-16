@@ -51,6 +51,43 @@ class GetOperationRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $projectId   Deprecated. The Google Developers Console [project ID or project
+     *                            number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
+     *                            This field has been deprecated and replaced by the name field.
+     * @param string $zone        Deprecated. The name of the Google Compute Engine
+     *                            [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *                            cluster resides. This field has been deprecated and replaced by the name
+     *                            field.
+     * @param string $operationId Deprecated. The server-assigned `name` of the operation.
+     *                            This field has been deprecated and replaced by the name field.
+     *
+     * @return \Google\Cloud\Container\V1\GetOperationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectId, string $zone, string $operationId): self
+    {
+        return (new self())
+            ->setProjectId($projectId)
+            ->setZone($zone)
+            ->setOperationId($operationId);
+    }
+
+    /**
+     * @param string $name The name (project, location, operation id) of the operation to get.
+     *                     Specified in the format `projects/&#42;/locations/&#42;/operations/*`.
+     *
+     * @return \Google\Cloud\Container\V1\GetOperationRequest
+     *
+     * @experimental
+     */
+    public static function buildFromName(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

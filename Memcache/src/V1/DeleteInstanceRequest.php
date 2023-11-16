@@ -25,6 +25,22 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Memcached instance resource name in the format:
+     *                     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     *                     where `location_id` refers to a GCP region
+     *                     Please see {@see CloudMemcacheClient::instanceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Memcache\V1\DeleteInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

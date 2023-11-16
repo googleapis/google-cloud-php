@@ -33,6 +33,11 @@ return [
                 'uriTemplate' => '/v1/documents:classifyText',
                 'body' => '*',
             ],
+            'ModerateText' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/documents:moderateText',
+                'body' => '*',
+            ],
         ],
     ],
     'numericEnums' => true,

@@ -59,6 +59,21 @@ class ListRegionInstanceTemplatesRequest extends \Google\Protobuf\Internal\Messa
     private $return_partial_success = null;
 
     /**
+     * @param string $project Project ID for this request.
+     * @param string $region  The name of the regions for this request.
+     *
+     * @return \Google\Cloud\Compute\V1\ListRegionInstanceTemplatesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

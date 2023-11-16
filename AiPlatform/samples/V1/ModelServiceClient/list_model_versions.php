@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_ModelService_ListModelVersions_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\AIPlatform\V1\Client\ModelServiceClient;
+use Google\Cloud\AIPlatform\V1\ListModelVersionsRequest;
 use Google\Cloud\AIPlatform\V1\Model;
-use Google\Cloud\AIPlatform\V1\ModelServiceClient;
 
 /**
  * Lists versions of the specified model.
@@ -39,10 +40,14 @@ function list_model_versions_sample(string $formattedName): void
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListModelVersionsRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $modelServiceClient->listModelVersions($formattedName);
+        $response = $modelServiceClient->listModelVersions($request);
 
         /** @var Model $element */
         foreach ($response as $element) {

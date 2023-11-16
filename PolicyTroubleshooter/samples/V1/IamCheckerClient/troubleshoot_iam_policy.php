@@ -28,8 +28,9 @@ use Google\Cloud\PolicyTroubleshooter\V1\IamCheckerClient;
 use Google\Cloud\PolicyTroubleshooter\V1\TroubleshootIamPolicyResponse;
 
 /**
- * Checks whether a member has a specific permission for a specific resource,
- * and explains why the member does or does not have that permission.
+ * Checks whether a principal has a specific permission for a specific
+ * resource, and explains why the principal does or does not have that
+ * permission.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

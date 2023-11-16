@@ -100,6 +100,13 @@ class StreamingAnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.DtmfParameters dtmf_parameters = 10;</code>
      */
     private $dtmf_parameters = null;
+    /**
+     * Debugging info that would get populated when
+     * `StreamingAnalyzeContentRequest.enable_debugging_info` is set to true.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.CloudConversationDebuggingInfo debugging_info = 11;</code>
+     */
+    private $debugging_info = null;
 
     /**
      * Constructor.
@@ -143,6 +150,9 @@ class StreamingAnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      *           [HumanAgentAssistantConfig.end_user_suggestion_config][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.end_user_suggestion_config].
      *     @type \Google\Cloud\Dialogflow\V2\DtmfParameters $dtmf_parameters
      *           Indicates the parameters of DTMF.
+     *     @type \Google\Cloud\Dialogflow\V2\CloudConversationDebuggingInfo $debugging_info
+     *           Debugging info that would get populated when
+     *           `StreamingAnalyzeContentRequest.enable_debugging_info` is set to true.
      * }
      */
     public function __construct($data = NULL) {
@@ -444,6 +454,44 @@ class StreamingAnalyzeContentResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\DtmfParameters::class);
         $this->dtmf_parameters = $var;
+
+        return $this;
+    }
+
+    /**
+     * Debugging info that would get populated when
+     * `StreamingAnalyzeContentRequest.enable_debugging_info` is set to true.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.CloudConversationDebuggingInfo debugging_info = 11;</code>
+     * @return \Google\Cloud\Dialogflow\V2\CloudConversationDebuggingInfo|null
+     */
+    public function getDebuggingInfo()
+    {
+        return $this->debugging_info;
+    }
+
+    public function hasDebuggingInfo()
+    {
+        return isset($this->debugging_info);
+    }
+
+    public function clearDebuggingInfo()
+    {
+        unset($this->debugging_info);
+    }
+
+    /**
+     * Debugging info that would get populated when
+     * `StreamingAnalyzeContentRequest.enable_debugging_info` is set to true.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.CloudConversationDebuggingInfo debugging_info = 11;</code>
+     * @param \Google\Cloud\Dialogflow\V2\CloudConversationDebuggingInfo $var
+     * @return $this
+     */
+    public function setDebuggingInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\CloudConversationDebuggingInfo::class);
+        $this->debugging_info = $var;
 
         return $this;
     }

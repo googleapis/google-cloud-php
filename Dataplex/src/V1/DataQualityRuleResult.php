@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * DataQualityRuleResult provides a more detailed, per-rule level view of the
- * results.
+ * DataQualityRuleResult provides a more detailed, per-rule view of the results.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.DataQualityRuleResult</code>
  */
@@ -30,18 +29,19 @@ class DataQualityRuleResult extends \Google\Protobuf\Internal\Message
     private $passed = false;
     /**
      * The number of rows a rule was evaluated against.
-     * This field is only valid for ColumnMap type rules.
+     * This field is only valid for row-level type rules.
      * Evaluated count can be configured to either
-     * (1) include all rows (default) - with null rows automatically failing rule
-     * evaluation  OR (2) exclude null rows from the evaluated_count, by setting
-     * ignore_nulls = true
+     * * include all rows (default) - with `null` rows automatically failing rule
+     * evaluation, or
+     * * exclude `null` rows from the `evaluated_count`, by setting
+     * `ignore_nulls = true`.
      *
      * Generated from protobuf field <code>int64 evaluated_count = 9;</code>
      */
     private $evaluated_count = 0;
     /**
      * The number of rows which passed a rule evaluation.
-     * This field is only valid for ColumnMap type rules.
+     * This field is only valid for row-level type rules.
      *
      * Generated from protobuf field <code>int64 passed_count = 8;</code>
      */
@@ -53,15 +53,15 @@ class DataQualityRuleResult extends \Google\Protobuf\Internal\Message
      */
     private $null_count = 0;
     /**
-     * The ratio of passed_count / evaluated_count.
-     * This field is only valid for ColumnMap type rules.
+     * The ratio of **passed_count / evaluated_count**.
+     * This field is only valid for row-level type rules.
      *
      * Generated from protobuf field <code>double pass_ratio = 6;</code>
      */
     private $pass_ratio = 0.0;
     /**
      * The query to find rows that did not pass this rule.
-     * Only applies to ColumnMap and RowCondition rules.
+     * This field is only valid for row-level type rules.
      *
      * Generated from protobuf field <code>string failing_rows_query = 10;</code>
      */
@@ -79,22 +79,23 @@ class DataQualityRuleResult extends \Google\Protobuf\Internal\Message
      *           Whether the rule passed or failed.
      *     @type int|string $evaluated_count
      *           The number of rows a rule was evaluated against.
-     *           This field is only valid for ColumnMap type rules.
+     *           This field is only valid for row-level type rules.
      *           Evaluated count can be configured to either
-     *           (1) include all rows (default) - with null rows automatically failing rule
-     *           evaluation  OR (2) exclude null rows from the evaluated_count, by setting
-     *           ignore_nulls = true
+     *           * include all rows (default) - with `null` rows automatically failing rule
+     *           evaluation, or
+     *           * exclude `null` rows from the `evaluated_count`, by setting
+     *           `ignore_nulls = true`.
      *     @type int|string $passed_count
      *           The number of rows which passed a rule evaluation.
-     *           This field is only valid for ColumnMap type rules.
+     *           This field is only valid for row-level type rules.
      *     @type int|string $null_count
      *           The number of rows with null values in the specified column.
      *     @type float $pass_ratio
-     *           The ratio of passed_count / evaluated_count.
-     *           This field is only valid for ColumnMap type rules.
+     *           The ratio of **passed_count / evaluated_count**.
+     *           This field is only valid for row-level type rules.
      *     @type string $failing_rows_query
      *           The query to find rows that did not pass this rule.
-     *           Only applies to ColumnMap and RowCondition rules.
+     *           This field is only valid for row-level type rules.
      * }
      */
     public function __construct($data = NULL) {
@@ -166,11 +167,12 @@ class DataQualityRuleResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The number of rows a rule was evaluated against.
-     * This field is only valid for ColumnMap type rules.
+     * This field is only valid for row-level type rules.
      * Evaluated count can be configured to either
-     * (1) include all rows (default) - with null rows automatically failing rule
-     * evaluation  OR (2) exclude null rows from the evaluated_count, by setting
-     * ignore_nulls = true
+     * * include all rows (default) - with `null` rows automatically failing rule
+     * evaluation, or
+     * * exclude `null` rows from the `evaluated_count`, by setting
+     * `ignore_nulls = true`.
      *
      * Generated from protobuf field <code>int64 evaluated_count = 9;</code>
      * @return int|string
@@ -182,11 +184,12 @@ class DataQualityRuleResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The number of rows a rule was evaluated against.
-     * This field is only valid for ColumnMap type rules.
+     * This field is only valid for row-level type rules.
      * Evaluated count can be configured to either
-     * (1) include all rows (default) - with null rows automatically failing rule
-     * evaluation  OR (2) exclude null rows from the evaluated_count, by setting
-     * ignore_nulls = true
+     * * include all rows (default) - with `null` rows automatically failing rule
+     * evaluation, or
+     * * exclude `null` rows from the `evaluated_count`, by setting
+     * `ignore_nulls = true`.
      *
      * Generated from protobuf field <code>int64 evaluated_count = 9;</code>
      * @param int|string $var
@@ -202,7 +205,7 @@ class DataQualityRuleResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The number of rows which passed a rule evaluation.
-     * This field is only valid for ColumnMap type rules.
+     * This field is only valid for row-level type rules.
      *
      * Generated from protobuf field <code>int64 passed_count = 8;</code>
      * @return int|string
@@ -214,7 +217,7 @@ class DataQualityRuleResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The number of rows which passed a rule evaluation.
-     * This field is only valid for ColumnMap type rules.
+     * This field is only valid for row-level type rules.
      *
      * Generated from protobuf field <code>int64 passed_count = 8;</code>
      * @param int|string $var
@@ -255,8 +258,8 @@ class DataQualityRuleResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ratio of passed_count / evaluated_count.
-     * This field is only valid for ColumnMap type rules.
+     * The ratio of **passed_count / evaluated_count**.
+     * This field is only valid for row-level type rules.
      *
      * Generated from protobuf field <code>double pass_ratio = 6;</code>
      * @return float
@@ -267,8 +270,8 @@ class DataQualityRuleResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ratio of passed_count / evaluated_count.
-     * This field is only valid for ColumnMap type rules.
+     * The ratio of **passed_count / evaluated_count**.
+     * This field is only valid for row-level type rules.
      *
      * Generated from protobuf field <code>double pass_ratio = 6;</code>
      * @param float $var
@@ -284,7 +287,7 @@ class DataQualityRuleResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The query to find rows that did not pass this rule.
-     * Only applies to ColumnMap and RowCondition rules.
+     * This field is only valid for row-level type rules.
      *
      * Generated from protobuf field <code>string failing_rows_query = 10;</code>
      * @return string
@@ -296,7 +299,7 @@ class DataQualityRuleResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The query to find rows that did not pass this rule.
-     * Only applies to ColumnMap and RowCondition rules.
+     * This field is only valid for row-level type rules.
      *
      * Generated from protobuf field <code>string failing_rows_query = 10;</code>
      * @param string $var

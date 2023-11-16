@@ -49,6 +49,18 @@ class HttpMethod
      * Generated from protobuf enum <code>DELETE = 5;</code>
      */
     const DELETE = 5;
+    /**
+     * HTTP PATCH
+     *
+     * Generated from protobuf enum <code>PATCH = 6;</code>
+     */
+    const PATCH = 6;
+    /**
+     * HTTP OPTIONS
+     *
+     * Generated from protobuf enum <code>OPTIONS = 7;</code>
+     */
+    const OPTIONS = 7;
 
     private static $valueToName = [
         self::HTTP_METHOD_UNSPECIFIED => 'HTTP_METHOD_UNSPECIFIED',
@@ -57,6 +69,8 @@ class HttpMethod
         self::HEAD => 'HEAD',
         self::PUT => 'PUT',
         self::DELETE => 'DELETE',
+        self::PATCH => 'PATCH',
+        self::OPTIONS => 'OPTIONS',
     ];
 
     public static function name($value)

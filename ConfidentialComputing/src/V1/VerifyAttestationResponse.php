@@ -22,6 +22,13 @@ class VerifyAttestationResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string oidc_claims_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $oidc_claims_token = '';
+    /**
+     * Output only. A list of messages that carry the partial error details
+     * related to VerifyAttestation.
+     *
+     * Generated from protobuf field <code>repeated .google.rpc.Status partial_errors = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $partial_errors;
 
     /**
      * Constructor.
@@ -31,6 +38,9 @@ class VerifyAttestationResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string $oidc_claims_token
      *           Output only. Same as claims_token, but as a string.
+     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $partial_errors
+     *           Output only. A list of messages that carry the partial error details
+     *           related to VerifyAttestation.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,6 +70,34 @@ class VerifyAttestationResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->oidc_claims_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A list of messages that carry the partial error details
+     * related to VerifyAttestation.
+     *
+     * Generated from protobuf field <code>repeated .google.rpc.Status partial_errors = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPartialErrors()
+    {
+        return $this->partial_errors;
+    }
+
+    /**
+     * Output only. A list of messages that carry the partial error details
+     * related to VerifyAttestation.
+     *
+     * Generated from protobuf field <code>repeated .google.rpc.Status partial_errors = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPartialErrors($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Rpc\Status::class);
+        $this->partial_errors = $arr;
 
         return $this;
     }

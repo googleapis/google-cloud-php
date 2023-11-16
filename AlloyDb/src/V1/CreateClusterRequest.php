@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateClusterRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the parent resource. For the required format, see the
+     * Required. The location of the new cluster. For the required format, see the
      * comment on the Cluster.name field.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -60,13 +60,32 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     protected $validate_only = false;
 
     /**
+     * @param string                           $parent    Required. The location of the new cluster. For the required format, see the
+     *                                                    comment on the Cluster.name field. Please see
+     *                                                    {@see AlloyDBAdminClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\AlloyDb\V1\Cluster $cluster   Required. The resource being created
+     * @param string                           $clusterId Required. ID of the requesting object.
+     *
+     * @return \Google\Cloud\AlloyDb\V1\CreateClusterRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\AlloyDb\V1\Cluster $cluster, string $clusterId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setCluster($cluster)
+            ->setClusterId($clusterId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The name of the parent resource. For the required format, see the
+     *           Required. The location of the new cluster. For the required format, see the
      *           comment on the Cluster.name field.
      *     @type string $cluster_id
      *           Required. ID of the requesting object.
@@ -96,7 +115,7 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the parent resource. For the required format, see the
+     * Required. The location of the new cluster. For the required format, see the
      * comment on the Cluster.name field.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -108,7 +127,7 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the parent resource. For the required format, see the
+     * Required. The location of the new cluster. For the required format, see the
      * comment on the Cluster.name field.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

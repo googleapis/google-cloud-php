@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START bigquerydatapolicy_v1_generated_DataPolicyService_CreateDataPolicy_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\BigQuery\DataPolicies\V1\Client\DataPolicyServiceClient;
+use Google\Cloud\BigQuery\DataPolicies\V1\CreateDataPolicyRequest;
 use Google\Cloud\BigQuery\DataPolicies\V1\DataPolicy;
-use Google\Cloud\BigQuery\DataPolicies\V1\DataPolicyServiceClient;
 
 /**
  * Creates a new data policy under a project with the given `dataPolicyId`
@@ -40,13 +41,16 @@ function create_data_policy_sample(string $formattedParent): void
     // Create a client.
     $dataPolicyServiceClient = new DataPolicyServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $dataPolicy = new DataPolicy();
+    $request = (new CreateDataPolicyRequest())
+        ->setParent($formattedParent)
+        ->setDataPolicy($dataPolicy);
 
     // Call the API and handle any network failures.
     try {
         /** @var DataPolicy $response */
-        $response = $dataPolicyServiceClient->createDataPolicy($formattedParent, $dataPolicy);
+        $response = $dataPolicyServiceClient->createDataPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

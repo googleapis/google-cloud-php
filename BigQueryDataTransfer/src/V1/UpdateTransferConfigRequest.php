@@ -79,6 +79,21 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
     private $service_account_name = '';
 
     /**
+     * @param \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig $transferConfig Required. Data transfer configuration to create.
+     * @param \Google\Protobuf\FieldMask                            $updateMask     Required. Required list of fields to be updated in this request.
+     *
+     * @return \Google\Cloud\BigQuery\DataTransfer\V1\UpdateTransferConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig $transferConfig, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setTransferConfig($transferConfig)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

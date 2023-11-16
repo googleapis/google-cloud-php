@@ -54,6 +54,27 @@ class CreateDatacenterConnectorRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string                                           $parent                Required. The DatacenterConnector's parent.
+     *                                                                                Required. The Source in where the new DatacenterConnector will be created.
+     *                                                                                For example:
+     *                                                                                `projects/my-project/locations/us-central1/sources/my-source`
+     *                                                                                Please see {@see VmMigrationClient::sourceName()} for help formatting this field.
+     * @param \Google\Cloud\VMMigration\V1\DatacenterConnector $datacenterConnector   Required. The create request body.
+     * @param string                                           $datacenterConnectorId Required. The datacenterConnector identifier.
+     *
+     * @return \Google\Cloud\VMMigration\V1\CreateDatacenterConnectorRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\VMMigration\V1\DatacenterConnector $datacenterConnector, string $datacenterConnectorId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setDatacenterConnector($datacenterConnector)
+            ->setDatacenterConnectorId($datacenterConnectorId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

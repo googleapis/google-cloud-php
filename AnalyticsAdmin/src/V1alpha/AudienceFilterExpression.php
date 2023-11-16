@@ -31,9 +31,9 @@ class AudienceFilterExpression extends \Google\Protobuf\Internal\Message
      *           A list of expressions to OR’ed together. It cannot contain
      *           AudienceFilterExpressions with and_group or or_group.
      *     @type \Google\Analytics\Admin\V1alpha\AudienceFilterExpression $not_expression
-     *           A filter expression to be NOT'ed (i.e., inverted, complemented). It
-     *           can only include a dimension_or_metric_filter. This cannot be set on the
-     *           top level AudienceFilterExpression.
+     *           A filter expression to be NOT'ed (For example, inverted, complemented).
+     *           It can only include a dimension_or_metric_filter. This cannot be set on
+     *           the top level AudienceFilterExpression.
      *     @type \Google\Analytics\Admin\V1alpha\AudienceDimensionOrMetricFilter $dimension_or_metric_filter
      *           A filter on a single dimension or metric. This cannot be set on the top
      *           level AudienceFilterExpression.
@@ -116,9 +116,9 @@ class AudienceFilterExpression extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A filter expression to be NOT'ed (i.e., inverted, complemented). It
-     * can only include a dimension_or_metric_filter. This cannot be set on the
-     * top level AudienceFilterExpression.
+     * A filter expression to be NOT'ed (For example, inverted, complemented).
+     * It can only include a dimension_or_metric_filter. This cannot be set on
+     * the top level AudienceFilterExpression.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AudienceFilterExpression not_expression = 3;</code>
      * @return \Google\Analytics\Admin\V1alpha\AudienceFilterExpression|null
@@ -134,9 +134,9 @@ class AudienceFilterExpression extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A filter expression to be NOT'ed (i.e., inverted, complemented). It
-     * can only include a dimension_or_metric_filter. This cannot be set on the
-     * top level AudienceFilterExpression.
+     * A filter expression to be NOT'ed (For example, inverted, complemented).
+     * It can only include a dimension_or_metric_filter. This cannot be set on
+     * the top level AudienceFilterExpression.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AudienceFilterExpression not_expression = 3;</code>
      * @param \Google\Analytics\Admin\V1alpha\AudienceFilterExpression $var

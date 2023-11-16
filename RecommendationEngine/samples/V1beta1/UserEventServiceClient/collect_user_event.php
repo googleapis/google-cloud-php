@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START recommendationengine_v1beta1_generated_UserEventService_CollectUserEvent_sync]
 use Google\ApiCore\ApiException;
 use Google\Api\HttpBody;
-use Google\Cloud\RecommendationEngine\V1beta1\UserEventServiceClient;
+use Google\Cloud\RecommendationEngine\V1beta1\Client\UserEventServiceClient;
+use Google\Cloud\RecommendationEngine\V1beta1\CollectUserEventRequest;
 
 /**
  * Writes a single user event from the browser. This uses a GET request to
@@ -44,10 +45,15 @@ function collect_user_event_sample(string $formattedParent, string $userEvent): 
     // Create a client.
     $userEventServiceClient = new UserEventServiceClient();
 
+    // Prepare the request message.
+    $request = (new CollectUserEventRequest())
+        ->setParent($formattedParent)
+        ->setUserEvent($userEvent);
+
     // Call the API and handle any network failures.
     try {
         /** @var HttpBody $response */
-        $response = $userEventServiceClient->collectUserEvent($formattedParent, $userEvent);
+        $response = $userEventServiceClient->collectUserEvent($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

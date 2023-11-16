@@ -127,7 +127,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Resource name of the Model Monitoring job associated with this
      * Endpoint if monitoring is enabled by
-     * [CreateModelDeploymentMonitoringJob][]. Format:
+     * [JobService.CreateModelDeploymentMonitoringJob][google.cloud.aiplatform.v1.JobService.CreateModelDeploymentMonitoringJob].
+     * Format:
      * `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
      *
      * Generated from protobuf field <code>string model_deployment_monitoring_job = 14 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
@@ -208,7 +209,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *     @type string $model_deployment_monitoring_job
      *           Output only. Resource name of the Model Monitoring job associated with this
      *           Endpoint if monitoring is enabled by
-     *           [CreateModelDeploymentMonitoringJob][]. Format:
+     *           [JobService.CreateModelDeploymentMonitoringJob][google.cloud.aiplatform.v1.JobService.CreateModelDeploymentMonitoringJob].
+     *           Format:
      *           `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
      *     @type \Google\Cloud\AIPlatform\V1\PredictRequestResponseLoggingConfig $predict_request_response_logging_config
      *           Configures the request-response logging for online prediction.
@@ -638,7 +640,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Resource name of the Model Monitoring job associated with this
      * Endpoint if monitoring is enabled by
-     * [CreateModelDeploymentMonitoringJob][]. Format:
+     * [JobService.CreateModelDeploymentMonitoringJob][google.cloud.aiplatform.v1.JobService.CreateModelDeploymentMonitoringJob].
+     * Format:
      * `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
      *
      * Generated from protobuf field <code>string model_deployment_monitoring_job = 14 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
@@ -652,7 +655,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Resource name of the Model Monitoring job associated with this
      * Endpoint if monitoring is enabled by
-     * [CreateModelDeploymentMonitoringJob][]. Format:
+     * [JobService.CreateModelDeploymentMonitoringJob][google.cloud.aiplatform.v1.JobService.CreateModelDeploymentMonitoringJob].
+     * Format:
      * `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
      *
      * Generated from protobuf field <code>string model_deployment_monitoring_job = 14 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>

@@ -108,7 +108,8 @@ class QueryResultsTest extends SnippetTestCase
 
         $this->info['jobComplete'] = true;
         $this->connection->getQueryResults(Argument::any())
-            ->willReturn($this->info);
+            ->willReturn($this->info)
+            ->shouldBeCalledTimes(1);
 
         $this->qr->___setProperty('connection', $this->connection->reveal());
 

@@ -83,6 +83,9 @@ use Google\Protobuf\FieldMask;
  *     $versionsClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AppEngine\V1\Client\VersionsClient} to use the new surface.
  */
 class VersionsGapicClient
 {

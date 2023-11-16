@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START beyondcorp_v1_generated_ClientGatewaysService_GetClientGateway_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\BeyondCorp\ClientGateways\V1\ClientGateway;
-use Google\Cloud\BeyondCorp\ClientGateways\V1\ClientGatewaysServiceClient;
+use Google\Cloud\BeyondCorp\ClientGateways\V1\Client\ClientGatewaysServiceClient;
+use Google\Cloud\BeyondCorp\ClientGateways\V1\GetClientGatewayRequest;
 
 /**
  * Gets details of a single ClientGateway.
@@ -38,10 +39,14 @@ function get_client_gateway_sample(string $formattedName): void
     // Create a client.
     $clientGatewaysServiceClient = new ClientGatewaysServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetClientGatewayRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var ClientGateway $response */
-        $response = $clientGatewaysServiceClient->getClientGateway($formattedName);
+        $response = $clientGatewaysServiceClient->getClientGateway($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

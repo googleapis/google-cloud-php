@@ -41,6 +41,23 @@ class PatchNetworkRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string                           $project         Project ID for this request.
+     * @param string                           $network         Name of the network to update.
+     * @param \Google\Cloud\Compute\V1\Network $networkResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\PatchNetworkRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $network, \Google\Cloud\Compute\V1\Network $networkResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setNetwork($network)
+            ->setNetworkResource($networkResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

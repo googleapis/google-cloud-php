@@ -39,6 +39,13 @@ class Container extends \Google\Protobuf\Internal\Message
      * Volumes to mount (bind mount) from the host machine files or directories
      * into the container, formatted to match docker run's --volume option,
      * e.g. /foo:/bar, or /foo:/bar:ro
+     * If the `TaskSpec.Volumes` field is specified but this field is not, Batch
+     * will mount each volume from the host machine to the container with the
+     * same mount path by default. In this case, the default mount option for
+     * containers will be read-only (ro) for existing persistent disks and
+     * read-write (rw) for other volume types, regardless of the original mount
+     * options specified in `TaskSpec.Volumes`. If you need different mount
+     * settings, you can explicitly configure them in this field.
      *
      * Generated from protobuf field <code>repeated string volumes = 7;</code>
      */
@@ -52,8 +59,9 @@ class Container extends \Google\Protobuf\Internal\Message
     private $options = '';
     /**
      * If set to true, external network access to and from container will be
-     * blocked. The container will use the default internal network
-     * 'goog-internal'.
+     * blocked, containers that are with block_external_network as true can
+     * still communicate with each other, network cannot be specified in the
+     * `container.options` field.
      *
      * Generated from protobuf field <code>bool block_external_network = 9;</code>
      */
@@ -93,13 +101,21 @@ class Container extends \Google\Protobuf\Internal\Message
      *           Volumes to mount (bind mount) from the host machine files or directories
      *           into the container, formatted to match docker run's --volume option,
      *           e.g. /foo:/bar, or /foo:/bar:ro
+     *           If the `TaskSpec.Volumes` field is specified but this field is not, Batch
+     *           will mount each volume from the host machine to the container with the
+     *           same mount path by default. In this case, the default mount option for
+     *           containers will be read-only (ro) for existing persistent disks and
+     *           read-write (rw) for other volume types, regardless of the original mount
+     *           options specified in `TaskSpec.Volumes`. If you need different mount
+     *           settings, you can explicitly configure them in this field.
      *     @type string $options
      *           Arbitrary additional options to include in the "docker run" command when
      *           running this container, e.g. "--network host".
      *     @type bool $block_external_network
      *           If set to true, external network access to and from container will be
-     *           blocked. The container will use the default internal network
-     *           'goog-internal'.
+     *           blocked, containers that are with block_external_network as true can
+     *           still communicate with each other, network cannot be specified in the
+     *           `container.options` field.
      *     @type string $username
      *           Optional username for logging in to a docker registry. If username
      *           matches `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` then Batch will read the
@@ -201,6 +217,13 @@ class Container extends \Google\Protobuf\Internal\Message
      * Volumes to mount (bind mount) from the host machine files or directories
      * into the container, formatted to match docker run's --volume option,
      * e.g. /foo:/bar, or /foo:/bar:ro
+     * If the `TaskSpec.Volumes` field is specified but this field is not, Batch
+     * will mount each volume from the host machine to the container with the
+     * same mount path by default. In this case, the default mount option for
+     * containers will be read-only (ro) for existing persistent disks and
+     * read-write (rw) for other volume types, regardless of the original mount
+     * options specified in `TaskSpec.Volumes`. If you need different mount
+     * settings, you can explicitly configure them in this field.
      *
      * Generated from protobuf field <code>repeated string volumes = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -214,6 +237,13 @@ class Container extends \Google\Protobuf\Internal\Message
      * Volumes to mount (bind mount) from the host machine files or directories
      * into the container, formatted to match docker run's --volume option,
      * e.g. /foo:/bar, or /foo:/bar:ro
+     * If the `TaskSpec.Volumes` field is specified but this field is not, Batch
+     * will mount each volume from the host machine to the container with the
+     * same mount path by default. In this case, the default mount option for
+     * containers will be read-only (ro) for existing persistent disks and
+     * read-write (rw) for other volume types, regardless of the original mount
+     * options specified in `TaskSpec.Volumes`. If you need different mount
+     * settings, you can explicitly configure them in this field.
      *
      * Generated from protobuf field <code>repeated string volumes = 7;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -257,8 +287,9 @@ class Container extends \Google\Protobuf\Internal\Message
 
     /**
      * If set to true, external network access to and from container will be
-     * blocked. The container will use the default internal network
-     * 'goog-internal'.
+     * blocked, containers that are with block_external_network as true can
+     * still communicate with each other, network cannot be specified in the
+     * `container.options` field.
      *
      * Generated from protobuf field <code>bool block_external_network = 9;</code>
      * @return bool
@@ -270,8 +301,9 @@ class Container extends \Google\Protobuf\Internal\Message
 
     /**
      * If set to true, external network access to and from container will be
-     * blocked. The container will use the default internal network
-     * 'goog-internal'.
+     * blocked, containers that are with block_external_network as true can
+     * still communicate with each other, network cannot be specified in the
+     * `container.options` field.
      *
      * Generated from protobuf field <code>bool block_external_network = 9;</code>
      * @param bool $var

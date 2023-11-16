@@ -36,14 +36,16 @@ use Google\Rpc\Status;
  *
  * @param string $formattedParent                       The parent resource's name of the PolicyBasedRoute. Please see
  *                                                      {@see PolicyBasedRoutingServiceClient::locationName()} for help formatting this field.
- * @param string $formattedPolicyBasedRouteNetwork      Fully-qualified URL of the network that this route applies to. e.g.
- *                                                      projects/my-project/global/networks/my-network. Please see
+ * @param string $policyBasedRouteId                    Unique id for the Policy Based Route to create.
+ * @param string $formattedPolicyBasedRouteNetwork      Fully-qualified URL of the network that this route applies to.
+ *                                                      e.g. projects/my-project/global/networks/my-network. Please see
  *                                                      {@see PolicyBasedRoutingServiceClient::networkName()} for help formatting this field.
- * @param int    $policyBasedRouteFilterProtocolVersion Internet protocol versions this policy based route applies to. For this
- *                                                      version, only IPV4 is supported.
+ * @param int    $policyBasedRouteFilterProtocolVersion Internet protocol versions this policy based route applies to.
+ *                                                      For this version, only IPV4 is supported.
  */
 function create_policy_based_route_sample(
     string $formattedParent,
+    string $policyBasedRouteId,
     string $formattedPolicyBasedRouteNetwork,
     int $policyBasedRouteFilterProtocolVersion
 ): void {
@@ -62,6 +64,7 @@ function create_policy_based_route_sample(
         /** @var OperationResponse $response */
         $response = $policyBasedRoutingServiceClient->createPolicyBasedRoute(
             $formattedParent,
+            $policyBasedRouteId,
             $policyBasedRoute
         );
         $response->pollUntilComplete();
@@ -92,6 +95,7 @@ function create_policy_based_route_sample(
 function callSample(): void
 {
     $formattedParent = PolicyBasedRoutingServiceClient::locationName('[PROJECT]', '[LOCATION]');
+    $policyBasedRouteId = '[POLICY_BASED_ROUTE_ID]';
     $formattedPolicyBasedRouteNetwork = PolicyBasedRoutingServiceClient::networkName(
         '[PROJECT]',
         '[RESOURCE_ID]'
@@ -100,6 +104,7 @@ function callSample(): void
 
     create_policy_based_route_sample(
         $formattedParent,
+        $policyBasedRouteId,
         $formattedPolicyBasedRouteNetwork,
         $policyBasedRouteFilterProtocolVersion
     );

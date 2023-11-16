@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START essentialcontacts_v1_generated_EssentialContactsService_SendTestMessage_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\EssentialContacts\V1\EssentialContactsServiceClient;
+use Google\Cloud\EssentialContacts\V1\Client\EssentialContactsServiceClient;
 use Google\Cloud\EssentialContacts\V1\NotificationCategory;
+use Google\Cloud\EssentialContacts\V1\SendTestMessageRequest;
 
 /**
  * Allows a contact admin to send a test message to contact to verify that it
@@ -53,16 +54,16 @@ function send_test_message_sample(
     // Create a client.
     $essentialContactsServiceClient = new EssentialContactsServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $formattedContacts = [$formattedContactsElement,];
+    $request = (new SendTestMessageRequest())
+        ->setContacts($formattedContacts)
+        ->setResource($formattedResource)
+        ->setNotificationCategory($notificationCategory);
 
     // Call the API and handle any network failures.
     try {
-        $essentialContactsServiceClient->sendTestMessage(
-            $formattedContacts,
-            $formattedResource,
-            $notificationCategory
-        );
+        $essentialContactsServiceClient->sendTestMessage($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

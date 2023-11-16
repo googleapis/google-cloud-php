@@ -27,6 +27,7 @@ namespace Google\Cloud\Retail\V2\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -52,6 +53,14 @@ use Google\Cloud\Retail\V2\UserEvent;
  *     $predictionServiceClient->close();
  * }
  * ```
+ *
+ * Many parameters require resource names to be formatted in a particular way. To
+ * assist with these names, this class includes a format method for each type of
+ * name, and additionally a parseName method to extract the individual identifiers
+ * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Retail\V2\Client\PredictionServiceClient} to use the new surface.
  */
 class PredictionServiceGapicClient
 {
@@ -73,6 +82,10 @@ class PredictionServiceGapicClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
+
+    private static $productNameTemplate;
+
+    private static $pathTemplateMap;
 
     private static function getClientDefaults()
     {
@@ -98,6 +111,101 @@ class PredictionServiceGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getProductNameTemplate()
+    {
+        if (self::$productNameTemplate == null) {
+            self::$productNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/catalogs/{catalog}/branches/{branch}/products/{product}'
+            );
+        }
+
+        return self::$productNameTemplate;
+    }
+
+    private static function getPathTemplateMap()
+    {
+        if (self::$pathTemplateMap == null) {
+            self::$pathTemplateMap = [
+                'product' => self::getProductNameTemplate(),
+            ];
+        }
+
+        return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a product
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $catalog
+     * @param string $branch
+     * @param string $product
+     *
+     * @return string The formatted product resource.
+     */
+    public static function productName(
+        $project,
+        $location,
+        $catalog,
+        $branch,
+        $product
+    ) {
+        return self::getProductNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'catalog' => $catalog,
+            'branch' => $branch,
+            'product' => $product,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * Template: Pattern
+     * - product: projects/{project}/locations/{location}/catalogs/{catalog}/branches/{branch}/products/{product}
+     *
+     * The optional $template argument can be supplied to specify a particular pattern,
+     * and must match one of the templates listed above. If no $template argument is
+     * provided, or if the $template argument does not match one of the templates
+     * listed, then parseName will check each of the supported templates, and return
+     * the first match.
+     *
+     * @param string $formattedName The formatted name string
+     * @param string $template      Optional name of template to match
+     *
+     * @return array An associative array from name component IDs to component values.
+     *
+     * @throws ValidationException If $formattedName could not be matched.
+     */
+    public static function parseName($formattedName, $template = null)
+    {
+        $templateMap = self::getPathTemplateMap();
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException(
+                    "Template name $template does not exist"
+                );
+            }
+
+            return $templateMap[$template]->match($formattedName);
+        }
+
+        foreach ($templateMap as $templateName => $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+
+        throw new ValidationException(
+            "Input did not match any known format. Input: $formattedName"
+        );
     }
 
     /**

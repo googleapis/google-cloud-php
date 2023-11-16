@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource of the connection profile type. Must be in the
-     * format `projects/&#42;&#47;locations/&#42;`.
+     * Required. The parent resource of the connection profile type. Must be in
+     * the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -33,8 +33,8 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent resource of the connection profile type. Must be in the
-     *           format `projects/&#42;&#47;locations/&#42;`.
+     *           Required. The parent resource of the connection profile type. Must be in
+     *           the format `projects/&#42;&#47;locations/&#42;`.
      *     @type \Google\Cloud\Datastream\V1\ConnectionProfile $connection_profile
      *           An ad-hoc connection profile configuration.
      *     @type string $connection_profile_name
@@ -58,8 +58,8 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource of the connection profile type. Must be in the
-     * format `projects/&#42;&#47;locations/&#42;`.
+     * Required. The parent resource of the connection profile type. Must be in
+     * the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -70,8 +70,8 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource of the connection profile type. Must be in the
-     * format `projects/&#42;&#47;locations/&#42;`.
+     * Required. The parent resource of the connection profile type. Must be in
+     * the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataplex_v1_generated_ContentService_GetContent_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dataplex\V1\Client\ContentServiceClient;
 use Google\Cloud\Dataplex\V1\Content;
-use Google\Cloud\Dataplex\V1\ContentServiceClient;
+use Google\Cloud\Dataplex\V1\GetContentRequest;
 
 /**
  * Get a content resource.
@@ -39,10 +40,14 @@ function get_content_sample(string $formattedName): void
     // Create a client.
     $contentServiceClient = new ContentServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetContentRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Content $response */
-        $response = $contentServiceClient->getContent($formattedName);
+        $response = $contentServiceClient->getContent($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

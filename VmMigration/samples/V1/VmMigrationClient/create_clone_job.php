@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmmigration_v1_generated_VmMigration_CreateCloneJob_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VMMigration\V1\Client\VmMigrationClient;
 use Google\Cloud\VMMigration\V1\CloneJob;
-use Google\Cloud\VMMigration\V1\VmMigrationClient;
+use Google\Cloud\VMMigration\V1\CreateCloneJobRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,13 +42,17 @@ function create_clone_job_sample(string $formattedParent, string $cloneJobId): v
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $cloneJob = new CloneJob();
+    $request = (new CreateCloneJobRequest())
+        ->setParent($formattedParent)
+        ->setCloneJobId($cloneJobId)
+        ->setCloneJob($cloneJob);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $vmMigrationClient->createCloneJob($formattedParent, $cloneJobId, $cloneJob);
+        $response = $vmMigrationClient->createCloneJob($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

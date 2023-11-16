@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START baremetalsolution_v2_generated_BareMetalSolution_ResizeVolume_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\BareMetalSolution\V2\BareMetalSolutionClient;
+use Google\Cloud\BareMetalSolution\V2\Client\BareMetalSolutionClient;
+use Google\Cloud\BareMetalSolution\V2\ResizeVolumeRequest;
 use Google\Cloud\BareMetalSolution\V2\Volume;
 use Google\Rpc\Status;
 
@@ -40,10 +41,14 @@ function resize_volume_sample(string $formattedVolume): void
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
+    // Prepare the request message.
+    $request = (new ResizeVolumeRequest())
+        ->setVolume($formattedVolume);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $bareMetalSolutionClient->resizeVolume($formattedVolume);
+        $response = $bareMetalSolutionClient->resizeVolume($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -38,7 +38,9 @@ use Google\Cloud\Logging\V2\LogView;
  *                       For example:
  *
  *                       `"projects/my-project/locations/global/buckets/my-bucket"`
- * @param string $viewId The id to use for this view.
+ * @param string $viewId A client-assigned identifier such as `"my-view"`. Identifiers are
+ *                       limited to 100 characters and can include only letters, digits,
+ *                       underscores, hyphens, and periods.
  */
 function create_view_sample(string $parent, string $viewId): void
 {

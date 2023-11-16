@@ -184,6 +184,16 @@
                                 "listPurchasableSkus"
                             ]
                         },
+                        "ListSkuGroupBillableSkus": {
+                            "methods": [
+                                "listSkuGroupBillableSkus"
+                            ]
+                        },
+                        "ListSkuGroups": {
+                            "methods": [
+                                "listSkuGroups"
+                            ]
+                        },
                         "ListSkus": {
                             "methods": [
                                 "listSkus"
@@ -212,6 +222,11 @@
                         "ProvisionCloudIdentity": {
                             "methods": [
                                 "provisionCloudIdentity"
+                            ]
+                        },
+                        "QueryEligibleBillingAccounts": {
+                            "methods": [
+                                "queryEligibleBillingAccounts"
                             ]
                         },
                         "RegisterSubscriber": {

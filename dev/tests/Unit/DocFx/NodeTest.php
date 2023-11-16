@@ -101,6 +101,37 @@ class NodeTest extends TestCase
         $this->assertEquals('google.cloud.vision.v1', $class->getProtoPackage());
     }
 
+    public function testSeeTagsInMethodDescription()
+    {
+        $serviceXml = <<<EOF
+<method>
+<docblock>
+    <description></description>
+    <long-description></long-description>
+    <tag name="see"
+         description="Cool External Resource"
+         link="https://wwww.testlink.com"/>
+    <tag name="see"
+         description=""
+         link="\Google\Cloud\Vision\V1\ImageAnnotatorClient"/>
+    <tag name="see"
+         description="Resume Operation method"
+         link="\Google\Cloud\Vision\V1\ImageAnnotatorClient::resumeOperation()"/>
+</docblock>
+</method>
+EOF;
+        $method = new MethodNode(new SimpleXMLElement($serviceXml));
+
+        $content = $method->getContent();
+        $this->assertStringContainsString(
+            'See also:' . "\n" .
+            ' - <a href="https://wwww.testlink.com">Cool External Resource</a>' . "\n" .
+            ' - <xref uid="\Google\Cloud\Vision\V1\ImageAnnotatorClient">\Google\Cloud\Vision\V1\ImageAnnotatorClient</xref>' . "\n" .
+            ' - <xref uid="\Google\Cloud\Vision\V1\ImageAnnotatorClient::resumeOperation()">Resume Operation method</xref>',
+            $content
+        );
+    }
+
     /**
      * @dataProvider provideReplaceProtoRefWithXref
      */
@@ -168,13 +199,31 @@ class NodeTest extends TestCase
                 'Output only. The service account that will be used by the Log Router to access your Cloud KMS key. Before enabling CMEK for Log Router, you must first assign the cloudkms.cryptoKeyEncrypterDecrypter role to the service account that the Log Router will use to access your Cloud KMS key. Use <xref uid="\Google\Logging\V2\ConfigServiceV2Client::getCmekSettings()">GetCmekSettings</xref> to obtain the service account ID. See [Enabling CMEK for Log Router](https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.'
             ],
             [
-                // Separation using newlines
+                // Separation between links using newlines
                 'Required. The [Model\'s][google.cloud.aiplatform.v1.BatchPredictionJob.model]' . PHP_EOL
                 . '[PredictSchemata\'s][google.cloud.aiplatform.v1.Model.predict_schemata]' . PHP_EOL
                 . '[instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].',
                 'Required. The <xref uid="\Google\Cloud\Aiplatform\V1\BatchPredictionJob::getModel()">Model\'s</xref>' . PHP_EOL
                 . '<xref uid="\Google\Cloud\Aiplatform\V1\Model::getPredictSchemata()">PredictSchemata\'s</xref>' . PHP_EOL
                 . '<xref uid="\Google\Cloud\Aiplatform\V1\PredictSchemata::getInstanceSchemaUri()">instance_schema_uri</xref>.'
+            ],
+            [
+                // Separation within links using newlines
+                'Required. The [Model\'s]' . PHP_EOL . '[google.cloud.aiplatform.v1.BatchPredictionJob.model]'
+                . ' [PredictSchemata\'s]' . PHP_EOL . '[google.cloud.aiplatform.v1.Model.predict_schemata]'
+                . ' [instance_schema_uri]' . PHP_EOL . '[google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].',
+                'Required. The <xref uid="\Google\Cloud\Aiplatform\V1\BatchPredictionJob::getModel()">Model\'s</xref>'
+                . ' <xref uid="\Google\Cloud\Aiplatform\V1\Model::getPredictSchemata()">PredictSchemata\'s</xref>'
+                . ' <xref uid="\Google\Cloud\Aiplatform\V1\PredictSchemata::getInstanceSchemaUri()">instance_schema_uri</xref>.'
+            ],
+            [
+                // Separation within links using a space - some APIs do this :/
+                'Required. The [Model\'s] [google.cloud.aiplatform.v1.BatchPredictionJob.model]'
+                . ' [PredictSchemata\'s] [google.cloud.aiplatform.v1.Model.predict_schemata]'
+                . ' [instance_schema_uri] [google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].',
+                'Required. The <xref uid="\Google\Cloud\Aiplatform\V1\BatchPredictionJob::getModel()">Model\'s</xref>'
+                . ' <xref uid="\Google\Cloud\Aiplatform\V1\Model::getPredictSchemata()">PredictSchemata\'s</xref>'
+                . ' <xref uid="\Google\Cloud\Aiplatform\V1\PredictSchemata::getInstanceSchemaUri()">instance_schema_uri</xref>.'
             ],
             [
                 'Testing that a code sample like $foo["bar"]["baz"] does not get replaced',
@@ -272,6 +321,75 @@ EOF;
         $this->assertStringContainsString(
             "\n    ```\n",
             $fencedCodeBlock->replace($descriptionWithIndent)
+        );
+
+        $descriptionWithMultipleCodeblocks = <<<EOF
+This is a test fenced codeblock
+
+```
+// first codeblock
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+
+```
+// second codeblock
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+EOF;
+
+        $expected = <<<EOF
+This is a test fenced codeblock
+
+```php
+// first codeblock
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+
+```php
+// second codeblock
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+EOF;
+        // Ensure the "php" language hint is added to both fenced code blocks.
+        $this->assertEquals(
+            $expected,
+            $fencedCodeBlock->replace($descriptionWithMultipleCodeblocks)
+        );
+
+        $descriptionWithDifferentLanguageHint = <<<EOF
+This is a test fenced codeblock
+
+```sh
+pecl install grpc
+```
+
+```
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+EOF;
+
+        $expected = <<<EOF
+This is a test fenced codeblock
+
+```sh
+pecl install grpc
+```
+
+```php
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+EOF;
+
+        // Ensure the "php" language hint is added only to the second fenced code block.
+        $this->assertEquals(
+            $expected,
+            $fencedCodeBlock->replace($descriptionWithDifferentLanguageHint)
         );
     }
 

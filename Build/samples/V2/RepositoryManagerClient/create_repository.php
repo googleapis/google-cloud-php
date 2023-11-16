@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudbuild_v2_generated_RepositoryManager_CreateRepository_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Build\V2\Client\RepositoryManagerClient;
+use Google\Cloud\Build\V2\CreateRepositoryRequest;
 use Google\Cloud\Build\V2\Repository;
-use Google\Cloud\Build\V2\RepositoryManagerClient;
 use Google\Rpc\Status;
 
 /**
@@ -50,18 +51,18 @@ function create_repository_sample(
     // Create a client.
     $repositoryManagerClient = new RepositoryManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $repository = (new Repository())
         ->setRemoteUri($repositoryRemoteUri);
+    $request = (new CreateRepositoryRequest())
+        ->setParent($formattedParent)
+        ->setRepository($repository)
+        ->setRepositoryId($repositoryId);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $repositoryManagerClient->createRepository(
-            $formattedParent,
-            $repository,
-            $repositoryId
-        );
+        $response = $repositoryManagerClient->createRepository($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

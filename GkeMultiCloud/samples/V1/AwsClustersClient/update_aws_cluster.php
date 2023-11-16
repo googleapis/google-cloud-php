@@ -29,12 +29,13 @@ use Google\Cloud\GkeMultiCloud\V1\AwsAuthorization;
 use Google\Cloud\GkeMultiCloud\V1\AwsCluster;
 use Google\Cloud\GkeMultiCloud\V1\AwsClusterNetworking;
 use Google\Cloud\GkeMultiCloud\V1\AwsClusterUser;
-use Google\Cloud\GkeMultiCloud\V1\AwsClustersClient;
 use Google\Cloud\GkeMultiCloud\V1\AwsConfigEncryption;
 use Google\Cloud\GkeMultiCloud\V1\AwsControlPlane;
 use Google\Cloud\GkeMultiCloud\V1\AwsDatabaseEncryption;
 use Google\Cloud\GkeMultiCloud\V1\AwsServicesAuthentication;
+use Google\Cloud\GkeMultiCloud\V1\Client\AwsClustersClient;
 use Google\Cloud\GkeMultiCloud\V1\Fleet;
+use Google\Cloud\GkeMultiCloud\V1\UpdateAwsClusterRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -97,7 +98,7 @@ function update_aws_cluster_sample(
     // Create a client.
     $awsClustersClient = new AwsClustersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $awsClusterNetworkingPodAddressCidrBlocks = [$awsClusterNetworkingPodAddressCidrBlocksElement,];
     $awsClusterNetworkingServiceAddressCidrBlocks = [
         $awsClusterNetworkingServiceAddressCidrBlocksElement,
@@ -134,11 +135,14 @@ function update_aws_cluster_sample(
         ->setAuthorization($awsClusterAuthorization)
         ->setFleet($awsClusterFleet);
     $updateMask = new FieldMask();
+    $request = (new UpdateAwsClusterRequest())
+        ->setAwsCluster($awsCluster)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $awsClustersClient->updateAwsCluster($awsCluster, $updateMask);
+        $response = $awsClustersClient->updateAwsCluster($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

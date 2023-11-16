@@ -23,6 +23,18 @@ class Disk extends \Google\Protobuf\Internal\Message
      */
     private $architecture = null;
     /**
+     * Disk asynchronously replicated into this disk.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.DiskAsyncReplication async_primary_disk = 180517533;</code>
+     */
+    private $async_primary_disk = null;
+    /**
+     * [Output Only] A list of disks this disk is asynchronously replicated to.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.DiskAsyncReplicationList> async_secondary_disks = 322925608;</code>
+     */
+    private $async_secondary_disks;
+    /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -131,6 +143,12 @@ class Disk extends \Google\Protobuf\Internal\Message
      */
     private $provisioned_iops = null;
     /**
+     * Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must be between 1 and 7,124.
+     *
+     * Generated from protobuf field <code>optional int64 provisioned_throughput = 526524181;</code>
+     */
+    private $provisioned_throughput = null;
+    /**
      * [Output Only] URL of the region where the disk resides. Only applicable for regional resources. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -149,6 +167,12 @@ class Disk extends \Google\Protobuf\Internal\Message
      */
     private $resource_policies;
     /**
+     * [Output Only] Status information for the disk resource.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.DiskResourceStatus resource_status = 249429315;</code>
+     */
+    private $resource_status = null;
+    /**
      * [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
@@ -166,6 +190,18 @@ class Disk extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional int64 size_gb = 494929369;</code>
      */
     private $size_gb = null;
+    /**
+     * [Output Only] URL of the DiskConsistencyGroupPolicy for a secondary disk that was created using a consistency group.
+     *
+     * Generated from protobuf field <code>optional string source_consistency_group_policy = 19616093;</code>
+     */
+    private $source_consistency_group_policy = null;
+    /**
+     * [Output Only] ID of the DiskConsistencyGroupPolicy for a secondary disk that was created using a consistency group.
+     *
+     * Generated from protobuf field <code>optional string source_consistency_group_policy_id = 267568957;</code>
+     */
+    private $source_consistency_group_policy_id = null;
     /**
      * The source disk used to create this disk. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /disks/disk - https://www.googleapis.com/compute/v1/projects/project/regions/region /disks/disk - projects/project/zones/zone/disks/disk - projects/project/regions/region/disks/disk - zones/zone/disks/disk - regions/region/disks/disk 
      *
@@ -255,6 +291,10 @@ class Disk extends \Google\Protobuf\Internal\Message
      *     @type string $architecture
      *           The architecture of the disk. Valid values are ARM64 or X86_64.
      *           Check the Architecture enum for the list of possible values.
+     *     @type \Google\Cloud\Compute\V1\DiskAsyncReplication $async_primary_disk
+     *           Disk asynchronously replicated into this disk.
+     *     @type array|\Google\Protobuf\Internal\MapField $async_secondary_disks
+     *           [Output Only] A list of disks this disk is asynchronously replicated to.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
@@ -291,18 +331,26 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           Physical block size of the persistent disk, in bytes. If not present in a request, a default value is used. The currently supported size is 4096, other sizes may be added in the future. If an unsupported value is requested, the error message will list the supported values for the caller's project.
      *     @type int|string $provisioned_iops
      *           Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. Values must be between 10,000 and 120,000. For more details, see the Extreme persistent disk documentation.
+     *     @type int|string $provisioned_throughput
+     *           Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must be between 1 and 7,124.
      *     @type string $region
      *           [Output Only] URL of the region where the disk resides. Only applicable for regional resources. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $replica_zones
      *           URLs of the zones where the disk should be replicated to. Only applicable for regional resources.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_policies
      *           Resource policies applied to this disk for automatic snapshot creations.
+     *     @type \Google\Cloud\Compute\V1\DiskResourceStatus $resource_status
+     *           [Output Only] Status information for the disk resource.
      *     @type bool $satisfies_pzs
      *           [Output Only] Reserved for future use.
      *     @type string $self_link
      *           [Output Only] Server-defined fully-qualified URL for this resource.
      *     @type int|string $size_gb
      *           Size, in GB, of the persistent disk. You can specify this field when creating a persistent disk using the sourceImage, sourceSnapshot, or sourceDisk parameter, or specify it alone to create an empty persistent disk. If you specify this field along with a source, the value of sizeGb must not be less than the size of the source. Acceptable values are 1 to 65536, inclusive.
+     *     @type string $source_consistency_group_policy
+     *           [Output Only] URL of the DiskConsistencyGroupPolicy for a secondary disk that was created using a consistency group.
+     *     @type string $source_consistency_group_policy_id
+     *           [Output Only] ID of the DiskConsistencyGroupPolicy for a secondary disk that was created using a consistency group.
      *     @type string $source_disk
      *           The source disk used to create this disk. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /disks/disk - https://www.googleapis.com/compute/v1/projects/project/regions/region /disks/disk - projects/project/zones/zone/disks/disk - projects/project/regions/region/disks/disk - zones/zone/disks/disk - regions/region/disks/disk 
      *     @type string $source_disk_id
@@ -371,6 +419,68 @@ class Disk extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->architecture = $var;
+
+        return $this;
+    }
+
+    /**
+     * Disk asynchronously replicated into this disk.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.DiskAsyncReplication async_primary_disk = 180517533;</code>
+     * @return \Google\Cloud\Compute\V1\DiskAsyncReplication|null
+     */
+    public function getAsyncPrimaryDisk()
+    {
+        return $this->async_primary_disk;
+    }
+
+    public function hasAsyncPrimaryDisk()
+    {
+        return isset($this->async_primary_disk);
+    }
+
+    public function clearAsyncPrimaryDisk()
+    {
+        unset($this->async_primary_disk);
+    }
+
+    /**
+     * Disk asynchronously replicated into this disk.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.DiskAsyncReplication async_primary_disk = 180517533;</code>
+     * @param \Google\Cloud\Compute\V1\DiskAsyncReplication $var
+     * @return $this
+     */
+    public function setAsyncPrimaryDisk($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\DiskAsyncReplication::class);
+        $this->async_primary_disk = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] A list of disks this disk is asynchronously replicated to.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.DiskAsyncReplicationList> async_secondary_disks = 322925608;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getAsyncSecondaryDisks()
+    {
+        return $this->async_secondary_disks;
+    }
+
+    /**
+     * [Output Only] A list of disks this disk is asynchronously replicated to.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.DiskAsyncReplicationList> async_secondary_disks = 322925608;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setAsyncSecondaryDisks($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\DiskAsyncReplicationList::class);
+        $this->async_secondary_disks = $arr;
 
         return $this;
     }
@@ -984,6 +1094,42 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must be between 1 and 7,124.
+     *
+     * Generated from protobuf field <code>optional int64 provisioned_throughput = 526524181;</code>
+     * @return int|string
+     */
+    public function getProvisionedThroughput()
+    {
+        return isset($this->provisioned_throughput) ? $this->provisioned_throughput : 0;
+    }
+
+    public function hasProvisionedThroughput()
+    {
+        return isset($this->provisioned_throughput);
+    }
+
+    public function clearProvisionedThroughput()
+    {
+        unset($this->provisioned_throughput);
+    }
+
+    /**
+     * Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must be between 1 and 7,124.
+     *
+     * Generated from protobuf field <code>optional int64 provisioned_throughput = 526524181;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setProvisionedThroughput($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->provisioned_throughput = $var;
+
+        return $this;
+    }
+
+    /**
      * [Output Only] URL of the region where the disk resides. Only applicable for regional resources. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -1067,6 +1213,42 @@ class Disk extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->resource_policies = $arr;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Status information for the disk resource.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.DiskResourceStatus resource_status = 249429315;</code>
+     * @return \Google\Cloud\Compute\V1\DiskResourceStatus|null
+     */
+    public function getResourceStatus()
+    {
+        return $this->resource_status;
+    }
+
+    public function hasResourceStatus()
+    {
+        return isset($this->resource_status);
+    }
+
+    public function clearResourceStatus()
+    {
+        unset($this->resource_status);
+    }
+
+    /**
+     * [Output Only] Status information for the disk resource.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.DiskResourceStatus resource_status = 249429315;</code>
+     * @param \Google\Cloud\Compute\V1\DiskResourceStatus $var
+     * @return $this
+     */
+    public function setResourceStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\DiskResourceStatus::class);
+        $this->resource_status = $var;
 
         return $this;
     }
@@ -1175,6 +1357,78 @@ class Disk extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->size_gb = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] URL of the DiskConsistencyGroupPolicy for a secondary disk that was created using a consistency group.
+     *
+     * Generated from protobuf field <code>optional string source_consistency_group_policy = 19616093;</code>
+     * @return string
+     */
+    public function getSourceConsistencyGroupPolicy()
+    {
+        return isset($this->source_consistency_group_policy) ? $this->source_consistency_group_policy : '';
+    }
+
+    public function hasSourceConsistencyGroupPolicy()
+    {
+        return isset($this->source_consistency_group_policy);
+    }
+
+    public function clearSourceConsistencyGroupPolicy()
+    {
+        unset($this->source_consistency_group_policy);
+    }
+
+    /**
+     * [Output Only] URL of the DiskConsistencyGroupPolicy for a secondary disk that was created using a consistency group.
+     *
+     * Generated from protobuf field <code>optional string source_consistency_group_policy = 19616093;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceConsistencyGroupPolicy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_consistency_group_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] ID of the DiskConsistencyGroupPolicy for a secondary disk that was created using a consistency group.
+     *
+     * Generated from protobuf field <code>optional string source_consistency_group_policy_id = 267568957;</code>
+     * @return string
+     */
+    public function getSourceConsistencyGroupPolicyId()
+    {
+        return isset($this->source_consistency_group_policy_id) ? $this->source_consistency_group_policy_id : '';
+    }
+
+    public function hasSourceConsistencyGroupPolicyId()
+    {
+        return isset($this->source_consistency_group_policy_id);
+    }
+
+    public function clearSourceConsistencyGroupPolicyId()
+    {
+        unset($this->source_consistency_group_policy_id);
+    }
+
+    /**
+     * [Output Only] ID of the DiskConsistencyGroupPolicy for a secondary disk that was created using a consistency group.
+     *
+     * Generated from protobuf field <code>optional string source_consistency_group_policy_id = 267568957;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceConsistencyGroupPolicyId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_consistency_group_policy_id = $var;
 
         return $this;
     }

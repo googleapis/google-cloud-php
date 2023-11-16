@@ -31,6 +31,22 @@ class DeleteDeploymentRequest extends \Google\Protobuf\Internal\Message
     private $etag = '';
 
     /**
+     * @param string $name Required. The full resource name of the deployment to delete.
+     *
+     *                     Example:  `projects/my_project/deployments/my_deployment`. Please see
+     *                     {@see GSuiteAddOnsClient::deploymentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\GSuiteAddOns\V1\DeleteDeploymentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

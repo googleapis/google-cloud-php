@@ -40,6 +40,11 @@
                                 "updateEkmConnection"
                             ]
                         },
+                        "VerifyConnectivity": {
+                            "methods": [
+                                "verifyConnectivity"
+                            ]
+                        },
                         "GetLocation": {
                             "methods": [
                                 "getLocation"
@@ -182,6 +187,16 @@
                         "MacVerify": {
                             "methods": [
                                 "macVerify"
+                            ]
+                        },
+                        "RawDecrypt": {
+                            "methods": [
+                                "rawDecrypt"
+                            ]
+                        },
+                        "RawEncrypt": {
+                            "methods": [
+                                "rawEncrypt"
                             ]
                         },
                         "RestoreCryptoKeyVersion": {

@@ -36,6 +36,28 @@ class BatchCreateFeaturesRequest extends \Google\Protobuf\Internal\Message
     private $requests;
 
     /**
+     * @param string                                             $parent   Required. The resource name of the EntityType to create the batch of
+     *                                                                     Features under. Format:
+     *                                                                     `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+     *                                                                     Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\CreateFeatureRequest[] $requests Required. The request message specifying the Features to create. All
+     *                                                                     Features must be created under the same parent EntityType. The `parent`
+     *                                                                     field in each child request message can be omitted. If `parent` is set in a
+     *                                                                     child request, then the value must match the `parent` value in this request
+     *                                                                     message.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\BatchCreateFeaturesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, array $requests): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setRequests($requests);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

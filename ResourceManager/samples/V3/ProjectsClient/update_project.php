@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudresourcemanager_v3_generated_Projects_UpdateProject_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\ResourceManager\V3\Client\ProjectsClient;
 use Google\Cloud\ResourceManager\V3\Project;
-use Google\Cloud\ResourceManager\V3\ProjectsClient;
+use Google\Cloud\ResourceManager\V3\UpdateProjectRequest;
 use Google\Rpc\Status;
 
 /**
@@ -48,13 +49,15 @@ function update_project_sample(): void
     // Create a client.
     $projectsClient = new ProjectsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $project = new Project();
+    $request = (new UpdateProjectRequest())
+        ->setProject($project);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $projectsClient->updateProject($project);
+        $response = $projectsClient->updateProject($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

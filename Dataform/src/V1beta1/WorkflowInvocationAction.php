@@ -16,14 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class WorkflowInvocationAction extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. This action's identifier. Unique within the workflow invocation.
+     * Output only. This action's identifier. Unique within the workflow
+     * invocation.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Target target = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $target = null;
     /**
-     * Output only. The action's identifier if the project had been compiled without any
-     * overrides configured. Unique within the compilation result.
+     * Output only. The action's identifier if the project had been compiled
+     * without any overrides configured. Unique within the compilation result.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Target canonical_target = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -35,7 +36,8 @@ class WorkflowInvocationAction extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
-     * Output only. If and only if action's state is FAILED a failure reason is set.
+     * Output only. If and only if action's state is FAILED a failure reason is
+     * set.
      *
      * Generated from protobuf field <code>string failure_reason = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -64,14 +66,16 @@ class WorkflowInvocationAction extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dataform\V1beta1\Target $target
-     *           Output only. This action's identifier. Unique within the workflow invocation.
+     *           Output only. This action's identifier. Unique within the workflow
+     *           invocation.
      *     @type \Google\Cloud\Dataform\V1beta1\Target $canonical_target
-     *           Output only. The action's identifier if the project had been compiled without any
-     *           overrides configured. Unique within the compilation result.
+     *           Output only. The action's identifier if the project had been compiled
+     *           without any overrides configured. Unique within the compilation result.
      *     @type int $state
      *           Output only. This action's current state.
      *     @type string $failure_reason
-     *           Output only. If and only if action's state is FAILED a failure reason is set.
+     *           Output only. If and only if action's state is FAILED a failure reason is
+     *           set.
      *     @type \Google\Type\Interval $invocation_timing
      *           Output only. This action's timing details.
      *           `start_time` will be set if the action is in [RUNNING, SUCCEEDED,
@@ -88,7 +92,8 @@ class WorkflowInvocationAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. This action's identifier. Unique within the workflow invocation.
+     * Output only. This action's identifier. Unique within the workflow
+     * invocation.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Target target = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dataform\V1beta1\Target|null
@@ -109,7 +114,8 @@ class WorkflowInvocationAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. This action's identifier. Unique within the workflow invocation.
+     * Output only. This action's identifier. Unique within the workflow
+     * invocation.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Target target = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataform\V1beta1\Target $var
@@ -124,8 +130,8 @@ class WorkflowInvocationAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The action's identifier if the project had been compiled without any
-     * overrides configured. Unique within the compilation result.
+     * Output only. The action's identifier if the project had been compiled
+     * without any overrides configured. Unique within the compilation result.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Target canonical_target = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dataform\V1beta1\Target|null
@@ -146,8 +152,8 @@ class WorkflowInvocationAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The action's identifier if the project had been compiled without any
-     * overrides configured. Unique within the compilation result.
+     * Output only. The action's identifier if the project had been compiled
+     * without any overrides configured. Unique within the compilation result.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Target canonical_target = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataform\V1beta1\Target $var
@@ -188,7 +194,8 @@ class WorkflowInvocationAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If and only if action's state is FAILED a failure reason is set.
+     * Output only. If and only if action's state is FAILED a failure reason is
+     * set.
      *
      * Generated from protobuf field <code>string failure_reason = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -199,7 +206,8 @@ class WorkflowInvocationAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If and only if action's state is FAILED a failure reason is set.
+     * Output only. If and only if action's state is FAILED a failure reason is
+     * set.
      *
      * Generated from protobuf field <code>string failure_reason = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

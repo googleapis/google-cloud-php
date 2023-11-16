@@ -50,6 +50,32 @@ class CreateAssetRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param string                          $parent  Required. The resource name of the parent zone:
+     *                                                 `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`. Please see
+     *                                                 {@see DataplexServiceClient::zoneName()} for help formatting this field.
+     * @param \Google\Cloud\Dataplex\V1\Asset $asset   Required. Asset resource.
+     * @param string                          $assetId Required. Asset identifier.
+     *                                                 This ID will be used to generate names such as table names when publishing
+     *                                                 metadata to Hive Metastore and BigQuery.
+     *                                                 * Must contain only lowercase letters, numbers and hyphens.
+     *                                                 * Must start with a letter.
+     *                                                 * Must end with a number or a letter.
+     *                                                 * Must be between 1-63 characters.
+     *                                                 * Must be unique within the zone.
+     *
+     * @return \Google\Cloud\Dataplex\V1\CreateAssetRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dataplex\V1\Asset $asset, string $assetId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setAsset($asset)
+            ->setAssetId($assetId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -17,6 +17,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class Runnable extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Optional. DisplayName is an optional field that can be provided by the
+     * caller. If provided, it will be used in logs and other outputs to identify
+     * the script, making it easier for users to understand the logs. If not
+     * provided the index of the runnable will be used for outputs.
+     *
+     * Generated from protobuf field <code>string display_name = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $display_name = '';
+    /**
      * Normally, a non-zero exit status causes the Task to fail. This flag allows
      * execution of other Runnables to continue instead.
      *
@@ -56,6 +65,12 @@ class Runnable extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 8;</code>
      */
     private $timeout = null;
+    /**
+     * Labels for this Runnable.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 9;</code>
+     */
+    private $labels;
     protected $executable;
 
     /**
@@ -70,6 +85,11 @@ class Runnable extends \Google\Protobuf\Internal\Message
      *           Script runnable.
      *     @type \Google\Cloud\Batch\V1\Runnable\Barrier $barrier
      *           Barrier runnable.
+     *     @type string $display_name
+     *           Optional. DisplayName is an optional field that can be provided by the
+     *           caller. If provided, it will be used in logs and other outputs to identify
+     *           the script, making it easier for users to understand the logs. If not
+     *           provided the index of the runnable will be used for outputs.
      *     @type bool $ignore_exit_status
      *           Normally, a non-zero exit status causes the Task to fail. This flag allows
      *           execution of other Runnables to continue instead.
@@ -90,6 +110,8 @@ class Runnable extends \Google\Protobuf\Internal\Message
      *           whole Task or TaskGroup).
      *     @type \Google\Protobuf\Duration $timeout
      *           Timeout for this Runnable.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Labels for this Runnable.
      * }
      */
     public function __construct($data = NULL) {
@@ -186,6 +208,38 @@ class Runnable extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Batch\V1\Runnable\Barrier::class);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. DisplayName is an optional field that can be provided by the
+     * caller. If provided, it will be used in logs and other outputs to identify
+     * the script, making it easier for users to understand the logs. If not
+     * provided the index of the runnable will be used for outputs.
+     *
+     * Generated from protobuf field <code>string display_name = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getDisplayName()
+    {
+        return $this->display_name;
+    }
+
+    /**
+     * Optional. DisplayName is an optional field that can be provided by the
+     * caller. If provided, it will be used in logs and other outputs to identify
+     * the script, making it easier for users to understand the logs. If not
+     * provided the index of the runnable will be used for outputs.
+     *
+     * Generated from protobuf field <code>string display_name = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->display_name = $var;
 
         return $this;
     }
@@ -356,6 +410,32 @@ class Runnable extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->timeout = $var;
+
+        return $this;
+    }
+
+    /**
+     * Labels for this Runnable.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 9;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * Labels for this Runnable.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 9;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->labels = $arr;
 
         return $this;
     }

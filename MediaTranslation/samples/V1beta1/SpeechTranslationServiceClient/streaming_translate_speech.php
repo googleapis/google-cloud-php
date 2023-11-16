@@ -25,7 +25,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START mediatranslation_v1beta1_generated_SpeechTranslationService_StreamingTranslateSpeech_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
-use Google\Cloud\MediaTranslation\V1beta1\SpeechTranslationServiceClient;
+use Google\Cloud\MediaTranslation\V1beta1\Client\SpeechTranslationServiceClient;
 use Google\Cloud\MediaTranslation\V1beta1\StreamingTranslateSpeechRequest;
 use Google\Cloud\MediaTranslation\V1beta1\StreamingTranslateSpeechResponse;
 
@@ -44,7 +44,7 @@ function streaming_translate_speech_sample(): void
     // Create a client.
     $speechTranslationServiceClient = new SpeechTranslationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $request = new StreamingTranslateSpeechRequest();
 
     // Call the API and handle any network failures.

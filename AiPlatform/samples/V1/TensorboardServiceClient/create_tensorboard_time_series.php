@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_TensorboardService_CreateTensorboardTimeSeries_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AIPlatform\V1\TensorboardServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\TensorboardServiceClient;
+use Google\Cloud\AIPlatform\V1\CreateTensorboardTimeSeriesRequest;
 use Google\Cloud\AIPlatform\V1\TensorboardTimeSeries;
 use Google\Cloud\AIPlatform\V1\TensorboardTimeSeries\ValueType;
 
@@ -49,18 +50,18 @@ function create_tensorboard_time_series_sample(
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $tensorboardTimeSeries = (new TensorboardTimeSeries())
         ->setDisplayName($tensorboardTimeSeriesDisplayName)
         ->setValueType($tensorboardTimeSeriesValueType);
+    $request = (new CreateTensorboardTimeSeriesRequest())
+        ->setParent($formattedParent)
+        ->setTensorboardTimeSeries($tensorboardTimeSeries);
 
     // Call the API and handle any network failures.
     try {
         /** @var TensorboardTimeSeries $response */
-        $response = $tensorboardServiceClient->createTensorboardTimeSeries(
-            $formattedParent,
-            $tensorboardTimeSeries
-        );
+        $response = $tensorboardServiceClient->createTensorboardTimeSeries($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

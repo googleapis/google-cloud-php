@@ -12,7 +12,11 @@ use Google\Protobuf\Internal\GPBUtil;
  * Applies the repricing configuration at the channel partner level.
  * The channel partner value is derived from the resource name. Takes an
  * empty json object.
+ * Deprecated: This is no longer supported. Use
+ * [RepricingConfig.EntitlementGranularity][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity]
+ * instead.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.channel.v1.RepricingConfig.ChannelPartnerGranularity</code>
  */
 class ChannelPartnerGranularity extends \Google\Protobuf\Internal\Message

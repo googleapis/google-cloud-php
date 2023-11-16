@@ -23,9 +23,9 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. Maximum number of repositories to return. The server may return fewer
-     * items than requested. If unspecified, the server will pick an appropriate
-     * default.
+     * Optional. Maximum number of repositories to return. The server may return
+     * fewer items than requested. If unspecified, the server will pick an
+     * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -40,9 +40,9 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
     /**
-     * Optional. This field only supports ordering by `name`. If unspecified, the server
-     * will choose the ordering. If specified, the default order is ascending for
-     * the `name` field.
+     * Optional. This field only supports ordering by `name`. If unspecified, the
+     * server will choose the ordering. If specified, the default order is
+     * ascending for the `name` field.
      *
      * Generated from protobuf field <code>string order_by = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -55,6 +55,21 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $parent Required. The location in which to list repositories. Must be in the format
+     *                       `projects/&#42;/locations/*`. Please see
+     *                       {@see DataformClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dataform\V1beta1\ListRepositoriesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -64,18 +79,18 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
      *           Required. The location in which to list repositories. Must be in the format
      *           `projects/&#42;&#47;locations/&#42;`.
      *     @type int $page_size
-     *           Optional. Maximum number of repositories to return. The server may return fewer
-     *           items than requested. If unspecified, the server will pick an appropriate
-     *           default.
+     *           Optional. Maximum number of repositories to return. The server may return
+     *           fewer items than requested. If unspecified, the server will pick an
+     *           appropriate default.
      *     @type string $page_token
      *           Optional. Page token received from a previous `ListRepositories` call.
      *           Provide this to retrieve the subsequent page.
      *           When paginating, all other parameters provided to `ListRepositories`
      *           must match the call that provided the page token.
      *     @type string $order_by
-     *           Optional. This field only supports ordering by `name`. If unspecified, the server
-     *           will choose the ordering. If specified, the default order is ascending for
-     *           the `name` field.
+     *           Optional. This field only supports ordering by `name`. If unspecified, the
+     *           server will choose the ordering. If specified, the default order is
+     *           ascending for the `name` field.
      *     @type string $filter
      *           Optional. Filter for the returned list.
      * }
@@ -114,9 +129,9 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Maximum number of repositories to return. The server may return fewer
-     * items than requested. If unspecified, the server will pick an appropriate
-     * default.
+     * Optional. Maximum number of repositories to return. The server may return
+     * fewer items than requested. If unspecified, the server will pick an
+     * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -127,9 +142,9 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Maximum number of repositories to return. The server may return fewer
-     * items than requested. If unspecified, the server will pick an appropriate
-     * default.
+     * Optional. Maximum number of repositories to return. The server may return
+     * fewer items than requested. If unspecified, the server will pick an
+     * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -176,9 +191,9 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This field only supports ordering by `name`. If unspecified, the server
-     * will choose the ordering. If specified, the default order is ascending for
-     * the `name` field.
+     * Optional. This field only supports ordering by `name`. If unspecified, the
+     * server will choose the ordering. If specified, the default order is
+     * ascending for the `name` field.
      *
      * Generated from protobuf field <code>string order_by = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -189,9 +204,9 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This field only supports ordering by `name`. If unspecified, the server
-     * will choose the ordering. If specified, the default order is ascending for
-     * the `name` field.
+     * Optional. This field only supports ordering by `name`. If unspecified, the
+     * server will choose the ordering. If specified, the default order is
+     * ascending for the `name` field.
      *
      * Generated from protobuf field <code>string order_by = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

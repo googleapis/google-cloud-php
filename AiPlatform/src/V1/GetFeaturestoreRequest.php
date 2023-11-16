@@ -24,6 +24,20 @@ class GetFeaturestoreRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the Featurestore resource. Please see
+     *                     {@see FeaturestoreServiceClient::featurestoreName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\GetFeaturestoreRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

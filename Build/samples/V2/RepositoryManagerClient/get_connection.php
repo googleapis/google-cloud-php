@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudbuild_v2_generated_RepositoryManager_GetConnection_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Build\V2\Client\RepositoryManagerClient;
 use Google\Cloud\Build\V2\Connection;
-use Google\Cloud\Build\V2\RepositoryManagerClient;
+use Google\Cloud\Build\V2\GetConnectionRequest;
 
 /**
  * Gets details of a single connection.
@@ -39,10 +40,14 @@ function get_connection_sample(string $formattedName): void
     // Create a client.
     $repositoryManagerClient = new RepositoryManagerClient();
 
+    // Prepare the request message.
+    $request = (new GetConnectionRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Connection $response */
-        $response = $repositoryManagerClient->getConnection($formattedName);
+        $response = $repositoryManagerClient->getConnection($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

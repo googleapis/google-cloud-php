@@ -307,7 +307,7 @@ class Query implements QueryInterface
     /**
      * Query for entities by their ancestors.
      *
-     * Keys can be provided either via a {@see Google\Cloud\Datastore\Key}
+     * Keys can be provided either via a {@see \Google\Cloud\Datastore\Key}
      * object, or by providing a kind, identifier and (optionally) an identifier
      * type.
      *

@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START run_v2_generated_Jobs_CreateJob_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Run\V2\Client\JobsClient;
+use Google\Cloud\Run\V2\CreateJobRequest;
 use Google\Cloud\Run\V2\ExecutionTemplate;
 use Google\Cloud\Run\V2\Job;
-use Google\Cloud\Run\V2\JobsClient;
 use Google\Cloud\Run\V2\TaskTemplate;
 use Google\Rpc\Status;
 
@@ -46,17 +47,21 @@ function create_job_sample(string $formattedParent, string $jobId): void
     // Create a client.
     $jobsClient = new JobsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $jobTemplateTemplate = new TaskTemplate();
     $jobTemplate = (new ExecutionTemplate())
         ->setTemplate($jobTemplateTemplate);
     $job = (new Job())
         ->setTemplate($jobTemplate);
+    $request = (new CreateJobRequest())
+        ->setParent($formattedParent)
+        ->setJob($job)
+        ->setJobId($jobId);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $jobsClient->createJob($formattedParent, $job, $jobId);
+        $response = $jobsClient->createJob($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -31,6 +31,21 @@ class DeleteTagHoldRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param string $name Required. The resource name of the TagHold to delete. Must be of the form:
+     *                     `tagValues/{tag-value-id}/tagHolds/{tag-hold-id}`. Please see
+     *                     {@see TagHoldsClient::tagHoldName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\DeleteTagHoldRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

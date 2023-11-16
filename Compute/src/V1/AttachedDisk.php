@@ -103,6 +103,13 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      */
     private $mode = null;
     /**
+     * For LocalSSD disks on VM Instances in STOPPED or SUSPENDED state, this field is set to PRESERVED if the LocalSSD data has been saved to a persistent location by customer request. (see the discard_local_ssd option on Stop/Suspend). Read-only in the api.
+     * Check the SavedState enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string saved_state = 411587801;</code>
+     */
+    private $saved_state = null;
+    /**
      * [Output Only] shielded vm initial state stored on disk
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InitialStateConfig shielded_instance_initial_state = 192356867;</code>
@@ -159,6 +166,9 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      *     @type string $mode
      *           The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode.
      *           Check the Mode enum for the list of possible values.
+     *     @type string $saved_state
+     *           For LocalSSD disks on VM Instances in STOPPED or SUSPENDED state, this field is set to PRESERVED if the LocalSSD data has been saved to a persistent location by customer request. (see the discard_local_ssd option on Stop/Suspend). Read-only in the api.
+     *           Check the SavedState enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\InitialStateConfig $shielded_instance_initial_state
      *           [Output Only] shielded vm initial state stored on disk
      *     @type string $source
@@ -659,6 +669,44 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * For LocalSSD disks on VM Instances in STOPPED or SUSPENDED state, this field is set to PRESERVED if the LocalSSD data has been saved to a persistent location by customer request. (see the discard_local_ssd option on Stop/Suspend). Read-only in the api.
+     * Check the SavedState enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string saved_state = 411587801;</code>
+     * @return string
+     */
+    public function getSavedState()
+    {
+        return isset($this->saved_state) ? $this->saved_state : '';
+    }
+
+    public function hasSavedState()
+    {
+        return isset($this->saved_state);
+    }
+
+    public function clearSavedState()
+    {
+        unset($this->saved_state);
+    }
+
+    /**
+     * For LocalSSD disks on VM Instances in STOPPED or SUSPENDED state, this field is set to PRESERVED if the LocalSSD data has been saved to a persistent location by customer request. (see the discard_local_ssd option on Stop/Suspend). Read-only in the api.
+     * Check the SavedState enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string saved_state = 411587801;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSavedState($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->saved_state = $var;
 
         return $this;
     }

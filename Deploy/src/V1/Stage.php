@@ -39,6 +39,12 @@ class Stage extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Strategy strategy = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $strategy = null;
+    /**
+     * Optional. The deploy parameters to use for the target in this stage.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.DeployParameters deploy_parameters = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $deploy_parameters;
 
     /**
      * Constructor.
@@ -58,6 +64,8 @@ class Stage extends \Google\Protobuf\Internal\Message
      *           `Target`.
      *     @type \Google\Cloud\Deploy\V1\Strategy $strategy
      *           Optional. The strategy to use for a `Rollout` to this stage.
+     *     @type array<\Google\Cloud\Deploy\V1\DeployParameters>|\Google\Protobuf\Internal\RepeatedField $deploy_parameters
+     *           Optional. The deploy parameters to use for the target in this stage.
      * }
      */
     public function __construct($data = NULL) {
@@ -161,6 +169,32 @@ class Stage extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\Strategy::class);
         $this->strategy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The deploy parameters to use for the target in this stage.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.DeployParameters deploy_parameters = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDeployParameters()
+    {
+        return $this->deploy_parameters;
+    }
+
+    /**
+     * Optional. The deploy parameters to use for the target in this stage.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.DeployParameters deploy_parameters = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\Deploy\V1\DeployParameters>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDeployParameters($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Deploy\V1\DeployParameters::class);
+        $this->deploy_parameters = $arr;
 
         return $this;
     }

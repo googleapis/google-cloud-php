@@ -25,14 +25,15 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataform_v1beta1_generated_Dataform_ListWorkflowInvocations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Dataform\V1beta1\DataformClient;
+use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
+use Google\Cloud\Dataform\V1beta1\ListWorkflowInvocationsRequest;
 use Google\Cloud\Dataform\V1beta1\WorkflowInvocation;
 
 /**
  * Lists WorkflowInvocations in a given Repository.
  *
- * @param string $formattedParent The parent resource of the WorkflowInvocation type. Must be in the
- *                                format `projects/&#42;/locations/&#42;/repositories/*`. Please see
+ * @param string $formattedParent The parent resource of the WorkflowInvocation type. Must be in
+ *                                the format `projects/&#42;/locations/&#42;/repositories/*`. Please see
  *                                {@see DataformClient::repositoryName()} for help formatting this field.
  */
 function list_workflow_invocations_sample(string $formattedParent): void
@@ -40,10 +41,14 @@ function list_workflow_invocations_sample(string $formattedParent): void
     // Create a client.
     $dataformClient = new DataformClient();
 
+    // Prepare the request message.
+    $request = (new ListWorkflowInvocationsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataformClient->listWorkflowInvocations($formattedParent);
+        $response = $dataformClient->listWorkflowInvocations($request);
 
         /** @var WorkflowInvocation $element */
         foreach ($response as $element) {

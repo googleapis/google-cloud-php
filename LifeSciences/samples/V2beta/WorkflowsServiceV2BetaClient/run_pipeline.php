@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START lifesciences_v2beta_generated_WorkflowsServiceV2Beta_RunPipeline_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\LifeSciences\V2beta\Client\WorkflowsServiceV2BetaClient;
 use Google\Cloud\LifeSciences\V2beta\Pipeline;
+use Google\Cloud\LifeSciences\V2beta\RunPipelineRequest;
 use Google\Cloud\LifeSciences\V2beta\RunPipelineResponse;
-use Google\Cloud\LifeSciences\V2beta\WorkflowsServiceV2BetaClient;
 use Google\Rpc\Status;
 
 /**
@@ -60,13 +61,15 @@ function run_pipeline_sample(): void
     // Create a client.
     $workflowsServiceV2BetaClient = new WorkflowsServiceV2BetaClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $pipeline = new Pipeline();
+    $request = (new RunPipelineRequest())
+        ->setPipeline($pipeline);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $workflowsServiceV2BetaClient->runPipeline($pipeline);
+        $response = $workflowsServiceV2BetaClient->runPipeline($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

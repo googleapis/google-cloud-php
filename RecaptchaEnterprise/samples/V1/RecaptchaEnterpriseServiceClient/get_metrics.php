@@ -32,7 +32,7 @@ use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
  * dashboards.
  *
  * @param string $formattedName The name of the requested metrics, in the format
- *                              "projects/{project}/keys/{key}/metrics". Please see
+ *                              `projects/{project}/keys/{key}/metrics`. Please see
  *                              {@see RecaptchaEnterpriseServiceClient::metricsName()} for help formatting this field.
  */
 function get_metrics_sample(string $formattedName): void

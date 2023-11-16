@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_PipelineService_ListPipelineJobs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\AIPlatform\V1\Client\PipelineServiceClient;
+use Google\Cloud\AIPlatform\V1\ListPipelineJobsRequest;
 use Google\Cloud\AIPlatform\V1\PipelineJob;
-use Google\Cloud\AIPlatform\V1\PipelineServiceClient;
 
 /**
  * Lists PipelineJobs in a Location.
@@ -40,10 +41,14 @@ function list_pipeline_jobs_sample(string $formattedParent): void
     // Create a client.
     $pipelineServiceClient = new PipelineServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListPipelineJobsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $pipelineServiceClient->listPipelineJobs($formattedParent);
+        $response = $pipelineServiceClient->listPipelineJobs($request);
 
         /** @var PipelineJob $element */
         foreach ($response as $element) {

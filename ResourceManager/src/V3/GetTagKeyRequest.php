@@ -24,6 +24,21 @@ class GetTagKeyRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. A resource name in the format `tagKeys/{id}`, such as
+     *                     `tagKeys/123`. Please see
+     *                     {@see TagKeysClient::tagKeyName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\GetTagKeyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

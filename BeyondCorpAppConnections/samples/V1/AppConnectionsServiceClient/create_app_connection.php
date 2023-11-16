@@ -28,7 +28,8 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\BeyondCorp\AppConnections\V1\AppConnection;
 use Google\Cloud\BeyondCorp\AppConnections\V1\AppConnection\ApplicationEndpoint;
 use Google\Cloud\BeyondCorp\AppConnections\V1\AppConnection\Type;
-use Google\Cloud\BeyondCorp\AppConnections\V1\AppConnectionsServiceClient;
+use Google\Cloud\BeyondCorp\AppConnections\V1\Client\AppConnectionsServiceClient;
+use Google\Cloud\BeyondCorp\AppConnections\V1\CreateAppConnectionRequest;
 use Google\Rpc\Status;
 
 /**
@@ -53,7 +54,7 @@ function create_app_connection_sample(
     // Create a client.
     $appConnectionsServiceClient = new AppConnectionsServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $appConnectionApplicationEndpoint = (new ApplicationEndpoint())
         ->setHost($appConnectionApplicationEndpointHost)
         ->setPort($appConnectionApplicationEndpointPort);
@@ -61,11 +62,14 @@ function create_app_connection_sample(
         ->setName($appConnectionName)
         ->setType($appConnectionType)
         ->setApplicationEndpoint($appConnectionApplicationEndpoint);
+    $request = (new CreateAppConnectionRequest())
+        ->setParent($formattedParent)
+        ->setAppConnection($appConnection);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $appConnectionsServiceClient->createAppConnection($formattedParent, $appConnection);
+        $response = $appConnectionsServiceClient->createAppConnection($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

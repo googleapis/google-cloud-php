@@ -41,6 +41,23 @@ class PatchUrlMapRequest extends \Google\Protobuf\Internal\Message
     private $url_map_resource = null;
 
     /**
+     * @param string                          $project        Project ID for this request.
+     * @param string                          $urlMap         Name of the UrlMap resource to patch.
+     * @param \Google\Cloud\Compute\V1\UrlMap $urlMapResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\PatchUrlMapRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $urlMap, \Google\Cloud\Compute\V1\UrlMap $urlMapResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setUrlMap($urlMap)
+            ->setUrlMapResource($urlMapResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

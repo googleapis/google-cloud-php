@@ -36,11 +36,41 @@ class UpdateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
      *   * `labels`
      *   * `online_serving_config.fixed_node_count`
      *   * `online_serving_config.scaling`
-     *   * `online_storage_ttl_days` (available in Preview)
+     *   * `online_storage_ttl_days`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
     private $update_mask = null;
+
+    /**
+     * @param \Google\Cloud\AIPlatform\V1\Featurestore $featurestore Required. The Featurestore's `name` field is used to identify the
+     *                                                               Featurestore to be updated. Format:
+     *                                                               `projects/{project}/locations/{location}/featurestores/{featurestore}`
+     * @param \Google\Protobuf\FieldMask               $updateMask   Field mask is used to specify the fields to be overwritten in the
+     *                                                               Featurestore resource by the update.
+     *                                                               The fields specified in the update_mask are relative to the resource, not
+     *                                                               the full request. A field will be overwritten if it is in the mask. If the
+     *                                                               user does not provide a mask then only the non-empty fields present in the
+     *                                                               request will be overwritten. Set the update_mask to `*` to override all
+     *                                                               fields.
+     *
+     *                                                               Updatable fields:
+     *
+     *                                                               * `labels`
+     *                                                               * `online_serving_config.fixed_node_count`
+     *                                                               * `online_serving_config.scaling`
+     *                                                               * `online_storage_ttl_days`
+     *
+     * @return \Google\Cloud\AIPlatform\V1\UpdateFeaturestoreRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\AIPlatform\V1\Featurestore $featurestore, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setFeaturestore($featurestore)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.
@@ -64,7 +94,7 @@ class UpdateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
      *             * `labels`
      *             * `online_serving_config.fixed_node_count`
      *             * `online_serving_config.scaling`
-     *             * `online_storage_ttl_days` (available in Preview)
+     *             * `online_storage_ttl_days`
      * }
      */
     public function __construct($data = NULL) {
@@ -124,7 +154,7 @@ class UpdateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
      *   * `labels`
      *   * `online_serving_config.fixed_node_count`
      *   * `online_serving_config.scaling`
-     *   * `online_storage_ttl_days` (available in Preview)
+     *   * `online_storage_ttl_days`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -156,7 +186,7 @@ class UpdateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
      *   * `labels`
      *   * `online_serving_config.fixed_node_count`
      *   * `online_serving_config.scaling`
-     *   * `online_storage_ttl_days` (available in Preview)
+     *   * `online_storage_ttl_days`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

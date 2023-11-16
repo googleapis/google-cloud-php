@@ -71,9 +71,8 @@ class TriggerSpec extends \Google\Protobuf\Internal\Message
      *           tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE}" or
      *           "TZ=${IANA_TIME_ZONE}". The ${IANA_TIME_ZONE} may only be a valid
      *           string from IANA time zone database. For example,
-     *           `CRON_TZ=America/New_York 1 * * * *`,
-     *           or `TZ=America/New_York 1 * * * *`.
-     *           This field is required for RECURRING tasks.
+     *           `CRON_TZ=America/New_York 1 * * * *`, or `TZ=America/New_York 1 * * *
+     *           *`. This field is required for RECURRING tasks.
      * }
      */
     public function __construct($data = NULL) {
@@ -211,9 +210,8 @@ class TriggerSpec extends \Google\Protobuf\Internal\Message
      * tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE}" or
      * "TZ=${IANA_TIME_ZONE}". The ${IANA_TIME_ZONE} may only be a valid
      * string from IANA time zone database. For example,
-     * `CRON_TZ=America/New_York 1 * * * *`,
-     * or `TZ=America/New_York 1 * * * *`.
-     * This field is required for RECURRING tasks.
+     * `CRON_TZ=America/New_York 1 * * * *`, or `TZ=America/New_York 1 * * *
+     * *`. This field is required for RECURRING tasks.
      *
      * Generated from protobuf field <code>string schedule = 100 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -234,9 +232,8 @@ class TriggerSpec extends \Google\Protobuf\Internal\Message
      * tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE}" or
      * "TZ=${IANA_TIME_ZONE}". The ${IANA_TIME_ZONE} may only be a valid
      * string from IANA time zone database. For example,
-     * `CRON_TZ=America/New_York 1 * * * *`,
-     * or `TZ=America/New_York 1 * * * *`.
-     * This field is required for RECURRING tasks.
+     * `CRON_TZ=America/New_York 1 * * * *`, or `TZ=America/New_York 1 * * *
+     * *`. This field is required for RECURRING tasks.
      *
      * Generated from protobuf field <code>string schedule = 100 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

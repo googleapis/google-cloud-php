@@ -28,6 +28,25 @@ class DeleteVersionRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the version to delete.
+     *                     Supported formats:
+     *
+     *                     - `projects/<Project ID>/agent/versions/<Version ID>`
+     *                     - `projects/<Project ID>/locations/<Location ID>/agent/versions/<Version
+     *                     ID>`
+     *                     Please see {@see VersionsClient::versionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\DeleteVersionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

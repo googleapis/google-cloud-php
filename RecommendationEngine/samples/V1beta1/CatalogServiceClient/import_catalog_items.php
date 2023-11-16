@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START recommendationengine_v1beta1_generated_CatalogService_ImportCatalogItems_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\RecommendationEngine\V1beta1\CatalogServiceClient;
+use Google\Cloud\RecommendationEngine\V1beta1\Client\CatalogServiceClient;
+use Google\Cloud\RecommendationEngine\V1beta1\ImportCatalogItemsRequest;
 use Google\Cloud\RecommendationEngine\V1beta1\ImportCatalogItemsResponse;
 use Google\Cloud\RecommendationEngine\V1beta1\InputConfig;
 use Google\Rpc\Status;
@@ -46,13 +47,16 @@ function import_catalog_items_sample(string $formattedParent): void
     // Create a client.
     $catalogServiceClient = new CatalogServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $inputConfig = new InputConfig();
+    $request = (new ImportCatalogItemsRequest())
+        ->setParent($formattedParent)
+        ->setInputConfig($inputConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $catalogServiceClient->importCatalogItems($formattedParent, $inputConfig);
+        $response = $catalogServiceClient->importCatalogItems($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

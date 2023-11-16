@@ -25,15 +25,18 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_FeaturestoreService_ListFeatures_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\AIPlatform\V1\Client\FeaturestoreServiceClient;
 use Google\Cloud\AIPlatform\V1\Feature;
-use Google\Cloud\AIPlatform\V1\FeaturestoreServiceClient;
+use Google\Cloud\AIPlatform\V1\ListFeaturesRequest;
 
 /**
  * Lists Features in a given EntityType.
  *
  * @param string $formattedParent The resource name of the Location to list Features.
- *                                Format:
+ *                                Format for entity_type as parent:
  *                                `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+ *                                Format for feature_group as parent:
+ *                                `projects/{project}/locations/{location}/featureGroups/{feature_group}`
  *                                Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
  */
 function list_features_sample(string $formattedParent): void
@@ -41,10 +44,14 @@ function list_features_sample(string $formattedParent): void
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListFeaturesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $featurestoreServiceClient->listFeatures($formattedParent);
+        $response = $featurestoreServiceClient->listFeatures($request);
 
         /** @var Feature $element */
         foreach ($response as $element) {

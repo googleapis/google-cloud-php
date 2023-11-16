@@ -31,8 +31,14 @@ use Google\Cloud\Monitoring\V3\NotificationChannelServiceClient;
  * Creates a new notification channel, representing a single notification
  * endpoint such as an email address, SMS number, or PagerDuty service.
  *
- * @param string $name The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
- *                     which to execute the request. The format is:
+ * Design your application to single-thread API calls that modify the state of
+ * notification channels in a single project. This includes calls to
+ * CreateNotificationChannel, DeleteNotificationChannel and
+ * UpdateNotificationChannel.
+ *
+ * @param string $name The
+ *                     [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
+ *                     to execute the request. The format is:
  *
  *                     projects/[PROJECT_ID_OR_NUMBER]
  *

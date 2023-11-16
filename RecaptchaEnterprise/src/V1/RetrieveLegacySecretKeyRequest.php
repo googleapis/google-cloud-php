@@ -17,11 +17,26 @@ class RetrieveLegacySecretKeyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The public key name linked to the requested secret key in the
-     * format "projects/{project}/keys/{key}".
+     * format `projects/{project}/keys/{key}`.
      *
      * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $key = '';
+
+    /**
+     * @param string $key Required. The public key name linked to the requested secret key in the
+     *                    format `projects/{project}/keys/{key}`. Please see
+     *                    {@see RecaptchaEnterpriseServiceClient::keyName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $key): self
+    {
+        return (new self())
+            ->setKey($key);
+    }
 
     /**
      * Constructor.
@@ -31,7 +46,7 @@ class RetrieveLegacySecretKeyRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $key
      *           Required. The public key name linked to the requested secret key in the
-     *           format "projects/{project}/keys/{key}".
+     *           format `projects/{project}/keys/{key}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,7 +56,7 @@ class RetrieveLegacySecretKeyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The public key name linked to the requested secret key in the
-     * format "projects/{project}/keys/{key}".
+     * format `projects/{project}/keys/{key}`.
      *
      * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -53,7 +68,7 @@ class RetrieveLegacySecretKeyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The public key name linked to the requested secret key in the
-     * format "projects/{project}/keys/{key}".
+     * format `projects/{project}/keys/{key}`.
      *
      * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

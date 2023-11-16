@@ -44,11 +44,11 @@ use Psr\Cache\CacheItemPoolInterface;
  * for the pool to handle.
  *
  * Please note that when
- * {@see Google\Cloud\Spanner\Session\CacheSessionPool::acquire()} is called at
+ * {@see \Google\Cloud\Spanner\Session\CacheSessionPool::acquire()} is called at
  * most only a single session is created. Due to this, it is possible to sit
  * under the minimum session value declared when constructing this instance. In
  * order to have the pool match the minimum session value please use the
- * {@see Google\Cloud\Spanner\Session\CacheSessionPool::warmup()} method. This
+ * {@see \Google\Cloud\Spanner\Session\CacheSessionPool::warmup()} method. This
  * will create as many sessions as needed to match the minimum value, and is the
  * recommended way to bootstrap the session pool.
  *
@@ -57,7 +57,7 @@ use Psr\Cache\CacheItemPoolInterface;
  * required are managed by the pool, attempts will be made to automatically
  * downsize after every 10 minute window. This feature is configurable and one
  * may also downsize at their own choosing via
- * {@see Google\Cloud\Spanner\Session\CacheSessionPool::downsize()}. Downsizing
+ * {@see \Google\Cloud\Spanner\Session\CacheSessionPool::downsize()}. Downsizing
  * will help ensure you never run into issues where the Spanner backend is
  * locked up after having met the maximum number of sessions assigned per node.
  * For reference, the current maximum sessions per database per node is 10k. For
@@ -66,7 +66,7 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * When expecting a long period of inactivity (such as a
  * maintenance window), please make sure to call
- * {@see Google\Cloud\Spanner\Session\CacheSessionPool::clear()} in order to
+ * {@see \Google\Cloud\Spanner\Session\CacheSessionPool::clear()} in order to
  * delete any active sessions.
  *
  * If you're on Windows, or your PHP doesn't have `sysvshm` extension,

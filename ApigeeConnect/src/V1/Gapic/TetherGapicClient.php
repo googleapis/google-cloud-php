@@ -80,6 +80,9 @@ use Google\Cloud\ApigeeConnect\V1\EgressResponse;
  *     $tetherClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\ApigeeConnect\V1\Client\TetherClient} to use the new surface.
  */
 class TetherGapicClient
 {

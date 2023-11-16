@@ -25,6 +25,21 @@ class GetPolicyRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Resource name of the policy. See `Policy` for naming
+     *                     requirements. Please see
+     *                     {@see OrgPolicyClient::policyName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\OrgPolicy\V2\GetPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

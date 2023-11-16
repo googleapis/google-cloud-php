@@ -44,10 +44,10 @@ use Google\Cloud\Logging\V2\LogExclusion;
  *                                `"projects/my-logging-project"`
  *                                `"organizations/123456789"`
  *                                Please see {@see ConfigServiceV2Client::projectName()} for help formatting this field.
- * @param string $exclusionName   A client-assigned identifier, such as `"load-balancer-exclusion"`.
- *                                Identifiers are limited to 100 characters and can include only letters,
- *                                digits, underscores, hyphens, and periods. First character has to be
- *                                alphanumeric.
+ * @param string $exclusionName   A client-assigned identifier, such as
+ *                                `"load-balancer-exclusion"`. Identifiers are limited to 100 characters and
+ *                                can include only letters, digits, underscores, hyphens, and periods. First
+ *                                character has to be alphanumeric.
  * @param string $exclusionFilter An [advanced logs
  *                                filter](https://cloud.google.com/logging/docs/view/advanced-queries) that
  *                                matches the log entries to be excluded. By using the [sample

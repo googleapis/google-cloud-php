@@ -168,6 +168,8 @@ class DataprocMetastoreGapicClient
 
     private static $backupNameTemplate;
 
+    private static $lakeNameTemplate;
+
     private static $locationNameTemplate;
 
     private static $metadataImportNameTemplate;
@@ -175,6 +177,8 @@ class DataprocMetastoreGapicClient
     private static $networkNameTemplate;
 
     private static $serviceNameTemplate;
+
+    private static $subnetworkNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -206,6 +210,15 @@ class DataprocMetastoreGapicClient
         }
 
         return self::$backupNameTemplate;
+    }
+
+    private static function getLakeNameTemplate()
+    {
+        if (self::$lakeNameTemplate == null) {
+            self::$lakeNameTemplate = new PathTemplate('projects/{project}/locations/{location}/lakes/{lake}');
+        }
+
+        return self::$lakeNameTemplate;
     }
 
     private static function getLocationNameTemplate()
@@ -244,15 +257,26 @@ class DataprocMetastoreGapicClient
         return self::$serviceNameTemplate;
     }
 
+    private static function getSubnetworkNameTemplate()
+    {
+        if (self::$subnetworkNameTemplate == null) {
+            self::$subnetworkNameTemplate = new PathTemplate('projects/{project}/regions/{region}/subnetworks/{subnetwork}');
+        }
+
+        return self::$subnetworkNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'backup' => self::getBackupNameTemplate(),
+                'lake' => self::getLakeNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'metadataImport' => self::getMetadataImportNameTemplate(),
                 'network' => self::getNetworkNameTemplate(),
                 'service' => self::getServiceNameTemplate(),
+                'subnetwork' => self::getSubnetworkNameTemplate(),
             ];
         }
 
@@ -279,6 +303,27 @@ class DataprocMetastoreGapicClient
             'location' => $location,
             'service' => $service,
             'backup' => $backup,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a lake
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $lake
+     *
+     * @return string The formatted lake resource.
+     *
+     * @experimental
+     */
+    public static function lakeName($project, $location, $lake)
+    {
+        return self::getLakeNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'lake' => $lake,
         ]);
     }
 
@@ -365,14 +410,37 @@ class DataprocMetastoreGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a subnetwork
+     * resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $subnetwork
+     *
+     * @return string The formatted subnetwork resource.
+     *
+     * @experimental
+     */
+    public static function subnetworkName($project, $region, $subnetwork)
+    {
+        return self::getSubnetworkNameTemplate()->render([
+            'project' => $project,
+            'region' => $region,
+            'subnetwork' => $subnetwork,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - backup: projects/{project}/locations/{location}/services/{service}/backups/{backup}
+     * - lake: projects/{project}/locations/{location}/lakes/{lake}
      * - location: projects/{project}/locations/{location}
      * - metadataImport: projects/{project}/locations/{location}/services/{service}/metadataImports/{metadata_import}
      * - network: projects/{project}/global/networks/{network}
      * - service: projects/{project}/locations/{location}/services/{service}
+     * - subnetwork: projects/{project}/regions/{region}/subnetworks/{subnetwork}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

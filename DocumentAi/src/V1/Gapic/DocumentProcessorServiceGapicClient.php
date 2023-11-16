@@ -51,6 +51,7 @@ use Google\Cloud\DocumentAI\V1\EvaluateProcessorVersionRequest;
 use Google\Cloud\DocumentAI\V1\Evaluation;
 use Google\Cloud\DocumentAI\V1\FetchProcessorTypesRequest;
 use Google\Cloud\DocumentAI\V1\FetchProcessorTypesResponse;
+use Google\Cloud\DocumentAI\V1\GcsDocument;
 use Google\Cloud\DocumentAI\V1\GetEvaluationRequest;
 use Google\Cloud\DocumentAI\V1\GetProcessorRequest;
 use Google\Cloud\DocumentAI\V1\GetProcessorTypeRequest;
@@ -63,6 +64,7 @@ use Google\Cloud\DocumentAI\V1\ListProcessorVersionsRequest;
 use Google\Cloud\DocumentAI\V1\ListProcessorVersionsResponse;
 use Google\Cloud\DocumentAI\V1\ListProcessorsRequest;
 use Google\Cloud\DocumentAI\V1\ListProcessorsResponse;
+use Google\Cloud\DocumentAI\V1\ProcessOptions;
 use Google\Cloud\DocumentAI\V1\ProcessRequest;
 use Google\Cloud\DocumentAI\V1\ProcessResponse;
 use Google\Cloud\DocumentAI\V1\Processor;
@@ -74,6 +76,7 @@ use Google\Cloud\DocumentAI\V1\ReviewDocumentRequest\Priority;
 use Google\Cloud\DocumentAI\V1\SetDefaultProcessorVersionRequest;
 use Google\Cloud\DocumentAI\V1\TrainProcessorVersionMetadata;
 use Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest;
+use Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\CustomDocumentExtractionOptions;
 use Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\InputData;
 use Google\Cloud\DocumentAI\V1\UndeployProcessorVersionRequest;
 use Google\Cloud\Location\GetLocationRequest;
@@ -84,7 +87,7 @@ use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
- * Service Description: Service to call Cloud DocumentAI to process documents according to the
+ * Service Description: Service to call Document AI to process documents according to the
  * processor's definition. Processors are built using state-of-the-art Google
  * AI such as natural language, computer vision, and translation to extract
  * structured information from unstructured or semi-structured documents.
@@ -131,6 +134,10 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\DocumentAI\V1\Client\DocumentProcessorServiceClient} to use the
+ * new surface.
  */
 class DocumentProcessorServiceGapicClient
 {
@@ -608,12 +615,18 @@ class DocumentProcessorServiceGapicClient
      *     Optional.
      *
      *     @type BatchDocumentsInputConfig $inputDocuments
-     *           The input documents for batch process.
+     *           The input documents for the
+     *           [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]
+     *           method.
      *     @type DocumentOutputConfig $documentOutputConfig
-     *           The overall output config for batch process.
+     *           The output configuration for the
+     *           [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]
+     *           method.
      *     @type bool $skipHumanReview
-     *           Whether Human Review feature should be skipped for this request. Default to
-     *           false.
+     *           Whether human review should be skipped for this request. Default to
+     *           `false`.
+     *     @type ProcessOptions $processOptions
+     *           Inference-time options for the process API
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -644,6 +657,10 @@ class DocumentProcessorServiceGapicClient
             $request->setSkipHumanReview($optionalArgs['skipHumanReview']);
         }
 
+        if (isset($optionalArgs['processOptions'])) {
+            $request->setProcessOptions($optionalArgs['processOptions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -659,8 +676,9 @@ class DocumentProcessorServiceGapicClient
     }
 
     /**
-     * Creates a processor from the type processor that the user chose.
-     * The processor will be at "ENABLED" state by default after its creation.
+     * Creates a processor from the
+     * [ProcessorType][google.cloud.documentai.v1.ProcessorType] provided. The
+     * processor will be at `ENABLED` state by default after its creation.
      *
      * Sample code:
      * ```
@@ -676,9 +694,11 @@ class DocumentProcessorServiceGapicClient
      *
      * @param string    $parent       Required. The parent (project and location) under which to create the
      *                                processor. Format: `projects/{project}/locations/{location}`
-     * @param Processor $processor    Required. The processor to be created, requires [processor_type] and
-     *                                [display_name] to be set. Also, the processor is under CMEK if CMEK fields
-     *                                are set.
+     * @param Processor $processor    Required. The processor to be created, requires
+     *                                [Processor.type][google.cloud.documentai.v1.Processor.type] and
+     *                                [Processor.display_name]][] to be set. Also, the
+     *                                [Processor.kms_key_name][google.cloud.documentai.v1.Processor.kms_key_name]
+     *                                field must be set if the processor is under CMEK.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -1168,8 +1188,9 @@ class DocumentProcessorServiceGapicClient
     }
 
     /**
-     * Fetches processor types. Note that we do not use ListProcessorTypes here
-     * because it is not paginated.
+     * Fetches processor types. Note that we don't use
+     * [ListProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.ListProcessorTypes]
+     * here, because it isn't paginated.
      *
      * Sample code:
      * ```
@@ -1182,9 +1203,8 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project of processor type to list.
-     *                             The available processor types may depend on the allow-listing on projects.
-     *                             Format: `projects/{project}/locations/{location}`
+     * @param string $parent       Required. The location of processor types to list.
+     *                             Format: `projects/{project}/locations/{location}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1518,9 +1538,8 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The location of processor type to list.
-     *                             The available processor types may depend on the allow-listing on projects.
-     *                             Format: `projects/{project}/locations/{location}`
+     * @param string $parent       Required. The location of processor types to list.
+     *                             Format: `projects/{project}/locations/{location}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1759,13 +1778,18 @@ class DocumentProcessorServiceGapicClient
      *           An inline document proto.
      *     @type RawDocument $rawDocument
      *           A raw document content (bytes).
+     *     @type GcsDocument $gcsDocument
+     *           A raw document on Google Cloud Storage.
      *     @type bool $skipHumanReview
-     *           Whether Human Review feature should be skipped for this request. Default to
-     *           false.
+     *           Whether human review should be skipped for this request. Default to
+     *           `false`.
      *     @type FieldMask $fieldMask
-     *           Specifies which fields to include in ProcessResponse's document.
-     *           Only supports top level document and pages field so it must be in the form
-     *           of `{document_field_name}` or `pages.{page_field_name}`.
+     *           Specifies which fields to include in the
+     *           [ProcessResponse.document][google.cloud.documentai.v1.ProcessResponse.document]
+     *           output. Only supports top-level document and pages field, so it must be in
+     *           the form of `{document_field_name}` or `pages.{page_field_name}`.
+     *     @type ProcessOptions $processOptions
+     *           Inference-time options for the process API
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1790,12 +1814,20 @@ class DocumentProcessorServiceGapicClient
             $request->setRawDocument($optionalArgs['rawDocument']);
         }
 
+        if (isset($optionalArgs['gcsDocument'])) {
+            $request->setGcsDocument($optionalArgs['gcsDocument']);
+        }
+
         if (isset($optionalArgs['skipHumanReview'])) {
             $request->setSkipHumanReview($optionalArgs['skipHumanReview']);
         }
 
         if (isset($optionalArgs['fieldMask'])) {
             $request->setFieldMask($optionalArgs['fieldMask']);
+        }
+
+        if (isset($optionalArgs['processOptions'])) {
+            $request->setProcessOptions($optionalArgs['processOptions']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1852,8 +1884,9 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string $humanReviewConfig Required. The resource name of the HumanReviewConfig that the document will
-     *                                  be reviewed with.
+     * @param string $humanReviewConfig Required. The resource name of the
+     *                                  [HumanReviewConfig][google.cloud.documentai.v1.HumanReviewConfig] that the
+     *                                  document will be reviewed with.
      * @param array  $optionalArgs      {
      *     Optional.
      *
@@ -2005,7 +2038,7 @@ class DocumentProcessorServiceGapicClient
     /**
      * Trains a new processor version.
      * Operation metadata is returned as
-     * cloud_documentai_core.TrainProcessorVersionMetadata.
+     * [TrainProcessorVersionMetadata][google.cloud.documentai.v1.TrainProcessorVersionMetadata].
      *
      * Sample code:
      * ```
@@ -2051,10 +2084,13 @@ class DocumentProcessorServiceGapicClient
      * @param array            $optionalArgs     {
      *     Optional.
      *
+     *     @type CustomDocumentExtractionOptions $customDocumentExtractionOptions
+     *           Options to control Custom Document Extraction (CDE) Processor.
      *     @type DocumentSchema $documentSchema
      *           Optional. The schema the processor version will be trained with.
      *     @type InputData $inputData
-     *           Optional. The input data used to train the `ProcessorVersion`.
+     *           Optional. The input data used to train the
+     *           [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
      *     @type string $baseProcessorVersion
      *           Optional. The processor version to use as a base for training. This
      *           processor version must be a child of `parent`. Format:
@@ -2079,6 +2115,12 @@ class DocumentProcessorServiceGapicClient
         $request->setParent($parent);
         $request->setProcessorVersion($processorVersion);
         $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['customDocumentExtractionOptions'])) {
+            $request->setCustomDocumentExtractionOptions(
+                $optionalArgs['customDocumentExtractionOptions']
+            );
+        }
+
         if (isset($optionalArgs['documentSchema'])) {
             $request->setDocumentSchema($optionalArgs['documentSchema']);
         }

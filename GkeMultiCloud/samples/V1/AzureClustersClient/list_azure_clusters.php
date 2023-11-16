@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\GkeMultiCloud\V1\AzureCluster;
-use Google\Cloud\GkeMultiCloud\V1\AzureClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\Client\AzureClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\ListAzureClustersRequest;
 
 /**
  * Lists all [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
@@ -46,10 +47,14 @@ function list_azure_clusters_sample(string $formattedParent): void
     // Create a client.
     $azureClustersClient = new AzureClustersClient();
 
+    // Prepare the request message.
+    $request = (new ListAzureClustersRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $azureClustersClient->listAzureClusters($formattedParent);
+        $response = $azureClustersClient->listAzureClusters($request);
 
         /** @var AzureCluster $element */
         foreach ($response as $element) {

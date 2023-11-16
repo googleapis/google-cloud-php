@@ -29,22 +29,45 @@ class ListBucketsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. If present, then retrieve the next batch of results from the preceding call
-     * to this method. `pageToken` must be the value of `nextPageToken` from the
-     * previous response. The values of other method parameters should be
-     * identical to those in the previous call.
+     * Optional. If present, then retrieve the next batch of results from the
+     * preceding call to this method. `pageToken` must be the value of
+     * `nextPageToken` from the previous response. The values of other method
+     * parameters should be identical to those in the previous call.
      *
      * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
     /**
-     * Optional. The maximum number of results to return from this request. Non-positive
-     * values are ignored. The presence of `nextPageToken` in the response
-     * indicates that more results might be available.
+     * Optional. The maximum number of results to return from this request.
+     * Non-positive values are ignored. The presence of `nextPageToken` in the
+     * response indicates that more results might be available.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
+
+    /**
+     * @param string $parent Required. The parent resource whose buckets are to be listed:
+     *
+     *                       "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
+     *                       "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]"
+     *                       "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]"
+     *                       "folders/[FOLDER_ID]/locations/[LOCATION_ID]"
+     *
+     *                       Note: The locations portion of the resource must be specified, but
+     *                       supplying the character `-` in place of [LOCATION_ID] will return all
+     *                       buckets. Please see
+     *                       {@see ConfigServiceV2Client::organizationLocationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Logging\V2\ListBucketsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.
@@ -62,14 +85,14 @@ class ListBucketsRequest extends \Google\Protobuf\Internal\Message
      *           supplying the character `-` in place of [LOCATION_ID] will return all
      *           buckets.
      *     @type string $page_token
-     *           Optional. If present, then retrieve the next batch of results from the preceding call
-     *           to this method. `pageToken` must be the value of `nextPageToken` from the
-     *           previous response. The values of other method parameters should be
-     *           identical to those in the previous call.
+     *           Optional. If present, then retrieve the next batch of results from the
+     *           preceding call to this method. `pageToken` must be the value of
+     *           `nextPageToken` from the previous response. The values of other method
+     *           parameters should be identical to those in the previous call.
      *     @type int $page_size
-     *           Optional. The maximum number of results to return from this request. Non-positive
-     *           values are ignored. The presence of `nextPageToken` in the response
-     *           indicates that more results might be available.
+     *           Optional. The maximum number of results to return from this request.
+     *           Non-positive values are ignored. The presence of `nextPageToken` in the
+     *           response indicates that more results might be available.
      * }
      */
     public function __construct($data = NULL) {
@@ -118,10 +141,10 @@ class ListBucketsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If present, then retrieve the next batch of results from the preceding call
-     * to this method. `pageToken` must be the value of `nextPageToken` from the
-     * previous response. The values of other method parameters should be
-     * identical to those in the previous call.
+     * Optional. If present, then retrieve the next batch of results from the
+     * preceding call to this method. `pageToken` must be the value of
+     * `nextPageToken` from the previous response. The values of other method
+     * parameters should be identical to those in the previous call.
      *
      * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -132,10 +155,10 @@ class ListBucketsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If present, then retrieve the next batch of results from the preceding call
-     * to this method. `pageToken` must be the value of `nextPageToken` from the
-     * previous response. The values of other method parameters should be
-     * identical to those in the previous call.
+     * Optional. If present, then retrieve the next batch of results from the
+     * preceding call to this method. `pageToken` must be the value of
+     * `nextPageToken` from the previous response. The values of other method
+     * parameters should be identical to those in the previous call.
      *
      * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -150,9 +173,9 @@ class ListBucketsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of results to return from this request. Non-positive
-     * values are ignored. The presence of `nextPageToken` in the response
-     * indicates that more results might be available.
+     * Optional. The maximum number of results to return from this request.
+     * Non-positive values are ignored. The presence of `nextPageToken` in the
+     * response indicates that more results might be available.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -163,9 +186,9 @@ class ListBucketsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of results to return from this request. Non-positive
-     * values are ignored. The presence of `nextPageToken` in the response
-     * indicates that more results might be available.
+     * Optional. The maximum number of results to return from this request.
+     * Non-positive values are ignored. The presence of `nextPageToken` in the
+     * response indicates that more results might be available.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

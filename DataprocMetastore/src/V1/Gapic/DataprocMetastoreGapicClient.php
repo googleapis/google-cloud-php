@@ -46,6 +46,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\Cloud\Metastore\V1\AlterMetadataResourceLocationRequest;
 use Google\Cloud\Metastore\V1\Backup;
 use Google\Cloud\Metastore\V1\CreateBackupRequest;
 use Google\Cloud\Metastore\V1\CreateMetadataImportRequest;
@@ -64,6 +65,8 @@ use Google\Cloud\Metastore\V1\ListMetadataImportsResponse;
 use Google\Cloud\Metastore\V1\ListServicesRequest;
 use Google\Cloud\Metastore\V1\ListServicesResponse;
 use Google\Cloud\Metastore\V1\MetadataImport;
+use Google\Cloud\Metastore\V1\MoveTableToDatabaseRequest;
+use Google\Cloud\Metastore\V1\QueryMetadataRequest;
 use Google\Cloud\Metastore\V1\Restore;
 use Google\Cloud\Metastore\V1\RestoreServiceRequest;
 use Google\Cloud\Metastore\V1\Service;
@@ -97,10 +100,10 @@ use Google\Protobuf\FieldMask;
  * ```
  * $dataprocMetastoreClient = new DataprocMetastoreClient();
  * try {
- *     $formattedParent = $dataprocMetastoreClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
- *     $backupId = 'backup_id';
- *     $backup = new Backup();
- *     $operationResponse = $dataprocMetastoreClient->createBackup($formattedParent, $backupId, $backup);
+ *     $formattedService = $dataprocMetastoreClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+ *     $resourceName = 'resource_name';
+ *     $locationUri = 'location_uri';
+ *     $operationResponse = $dataprocMetastoreClient->alterMetadataResourceLocation($formattedService, $resourceName, $locationUri);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -111,10 +114,10 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $dataprocMetastoreClient->createBackup($formattedParent, $backupId, $backup);
+ *     $operationResponse = $dataprocMetastoreClient->alterMetadataResourceLocation($formattedService, $resourceName, $locationUri);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
- *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'createBackup');
+ *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'alterMetadataResourceLocation');
  *     while (!$newOperationResponse->isDone()) {
  *         // ... do other work
  *         $newOperationResponse->reload();
@@ -135,6 +138,10 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Metastore\V1\Client\DataprocMetastoreClient} to use the new
+ * surface.
  */
 class DataprocMetastoreGapicClient
 {
@@ -166,6 +173,8 @@ class DataprocMetastoreGapicClient
     private static $networkNameTemplate;
 
     private static $serviceNameTemplate;
+
+    private static $subnetworkNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -235,6 +244,15 @@ class DataprocMetastoreGapicClient
         return self::$serviceNameTemplate;
     }
 
+    private static function getSubnetworkNameTemplate()
+    {
+        if (self::$subnetworkNameTemplate == null) {
+            self::$subnetworkNameTemplate = new PathTemplate('projects/{project}/regions/{region}/subnetworks/{subnetwork}');
+        }
+
+        return self::$subnetworkNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -244,6 +262,7 @@ class DataprocMetastoreGapicClient
                 'metadataImport' => self::getMetadataImportNameTemplate(),
                 'network' => self::getNetworkNameTemplate(),
                 'service' => self::getServiceNameTemplate(),
+                'subnetwork' => self::getSubnetworkNameTemplate(),
             ];
         }
 
@@ -346,6 +365,25 @@ class DataprocMetastoreGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a subnetwork
+     * resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $subnetwork
+     *
+     * @return string The formatted subnetwork resource.
+     */
+    public static function subnetworkName($project, $region, $subnetwork)
+    {
+        return self::getSubnetworkNameTemplate()->render([
+            'project' => $project,
+            'region' => $region,
+            'subnetwork' => $subnetwork,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -354,6 +392,7 @@ class DataprocMetastoreGapicClient
      * - metadataImport: projects/{project}/locations/{location}/services/{service}/metadataImports/{metadata_import}
      * - network: projects/{project}/global/networks/{network}
      * - service: projects/{project}/locations/{location}/services/{service}
+     * - subnetwork: projects/{project}/regions/{region}/subnetworks/{subnetwork}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -478,6 +517,88 @@ class DataprocMetastoreGapicClient
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
         $this->operationsClient = $this->createOperationsClient($clientOptions);
+    }
+
+    /**
+     * Alter metadata resource location. The metadata resource can be a database,
+     * table, or partition. This functionality only updates the parent directory
+     * for the respective metadata resource and does not transfer any existing
+     * data to the new location.
+     *
+     * Sample code:
+     * ```
+     * $dataprocMetastoreClient = new DataprocMetastoreClient();
+     * try {
+     *     $formattedService = $dataprocMetastoreClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+     *     $resourceName = 'resource_name';
+     *     $locationUri = 'location_uri';
+     *     $operationResponse = $dataprocMetastoreClient->alterMetadataResourceLocation($formattedService, $resourceName, $locationUri);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $dataprocMetastoreClient->alterMetadataResourceLocation($formattedService, $resourceName, $locationUri);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'alterMetadataResourceLocation');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $dataprocMetastoreClient->close();
+     * }
+     * ```
+     *
+     * @param string $service      Required. The relative resource name of the metastore service to mutate
+     *                             metadata, in the following format:
+     *
+     *                             `projects/{project_id}/locations/{location_id}/services/{service_id}`.
+     * @param string $resourceName Required. The relative metadata resource name in the following format.
+     *
+     *                             `databases/{database_id}`
+     *                             or
+     *                             `databases/{database_id}/tables/{table_id}`
+     *                             or
+     *                             `databases/{database_id}/tables/{table_id}/partitions/{partition_id}`
+     * @param string $locationUri  Required. The new location URI for the metadata resource.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function alterMetadataResourceLocation($service, $resourceName, $locationUri, array $optionalArgs = [])
+    {
+        $request = new AlterMetadataResourceLocationRequest();
+        $requestParamHeaders = [];
+        $request->setService($service);
+        $request->setResourceName($resourceName);
+        $request->setLocationUri($locationUri);
+        $requestParamHeaders['service'] = $service;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('AlterMetadataResourceLocation', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -1413,6 +1534,153 @@ class DataprocMetastoreGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListServices', $optionalArgs, ListServicesResponse::class, $request);
+    }
+
+    /**
+     * Move a table to another database.
+     *
+     * Sample code:
+     * ```
+     * $dataprocMetastoreClient = new DataprocMetastoreClient();
+     * try {
+     *     $formattedService = $dataprocMetastoreClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+     *     $tableName = 'table_name';
+     *     $dbName = 'db_name';
+     *     $destinationDbName = 'destination_db_name';
+     *     $operationResponse = $dataprocMetastoreClient->moveTableToDatabase($formattedService, $tableName, $dbName, $destinationDbName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $dataprocMetastoreClient->moveTableToDatabase($formattedService, $tableName, $dbName, $destinationDbName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'moveTableToDatabase');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $dataprocMetastoreClient->close();
+     * }
+     * ```
+     *
+     * @param string $service           Required. The relative resource name of the metastore service to mutate
+     *                                  metadata, in the following format:
+     *
+     *                                  `projects/{project_id}/locations/{location_id}/services/{service_id}`.
+     * @param string $tableName         Required. The name of the table to be moved.
+     * @param string $dbName            Required. The name of the database where the table resides.
+     * @param string $destinationDbName Required. The name of the database where the table should be moved.
+     * @param array  $optionalArgs      {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function moveTableToDatabase($service, $tableName, $dbName, $destinationDbName, array $optionalArgs = [])
+    {
+        $request = new MoveTableToDatabaseRequest();
+        $requestParamHeaders = [];
+        $request->setService($service);
+        $request->setTableName($tableName);
+        $request->setDbName($dbName);
+        $request->setDestinationDbName($destinationDbName);
+        $requestParamHeaders['service'] = $service;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('MoveTableToDatabase', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Query DPMS metadata.
+     *
+     * Sample code:
+     * ```
+     * $dataprocMetastoreClient = new DataprocMetastoreClient();
+     * try {
+     *     $formattedService = $dataprocMetastoreClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+     *     $query = 'query';
+     *     $operationResponse = $dataprocMetastoreClient->queryMetadata($formattedService, $query);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $dataprocMetastoreClient->queryMetadata($formattedService, $query);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'queryMetadata');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $dataprocMetastoreClient->close();
+     * }
+     * ```
+     *
+     * @param string $service      Required. The relative resource name of the metastore service to query
+     *                             metadata, in the following format:
+     *
+     *                             `projects/{project_id}/locations/{location_id}/services/{service_id}`.
+     * @param string $query        Required. A read-only SQL query to execute against the metadata database.
+     *                             The query cannot change or mutate the data.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function queryMetadata($service, $query, array $optionalArgs = [])
+    {
+        $request = new QueryMetadataRequest();
+        $requestParamHeaders = [];
+        $request->setService($service);
+        $request->setQuery($query);
+        $requestParamHeaders['service'] = $service;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('QueryMetadata', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**

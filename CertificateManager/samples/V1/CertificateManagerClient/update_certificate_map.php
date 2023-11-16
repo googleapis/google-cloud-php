@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START certificatemanager_v1_generated_CertificateManager_UpdateCertificateMap_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\CertificateManager\V1\CertificateManagerClient;
 use Google\Cloud\CertificateManager\V1\CertificateMap;
+use Google\Cloud\CertificateManager\V1\Client\CertificateManagerClient;
+use Google\Cloud\CertificateManager\V1\UpdateCertificateMapRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -44,14 +45,17 @@ function update_certificate_map_sample(): void
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $certificateMap = new CertificateMap();
     $updateMask = new FieldMask();
+    $request = (new UpdateCertificateMapRequest())
+        ->setCertificateMap($certificateMap)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $certificateManagerClient->updateCertificateMap($certificateMap, $updateMask);
+        $response = $certificateManagerClient->updateCertificateMap($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

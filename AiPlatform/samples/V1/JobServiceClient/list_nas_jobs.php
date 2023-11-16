@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_JobService_ListNasJobs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\AIPlatform\V1\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\ListNasJobsRequest;
 use Google\Cloud\AIPlatform\V1\NasJob;
 
 /**
@@ -40,10 +41,14 @@ function list_nas_jobs_sample(string $formattedParent): void
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListNasJobsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $jobServiceClient->listNasJobs($formattedParent);
+        $response = $jobServiceClient->listNasJobs($request);
 
         /** @var NasJob $element */
         foreach ($response as $element) {

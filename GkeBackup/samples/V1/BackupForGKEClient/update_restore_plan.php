@@ -25,25 +25,26 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START gkebackup_v1_generated_BackupForGKE_UpdateRestorePlan_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\GkeBackup\V1\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\Client\BackupForGKEClient;
 use Google\Cloud\GkeBackup\V1\RestoreConfig;
 use Google\Cloud\GkeBackup\V1\RestorePlan;
+use Google\Cloud\GkeBackup\V1\UpdateRestorePlanRequest;
 use Google\Rpc\Status;
 
 /**
  * Update a RestorePlan.
  *
- * @param string $formattedRestorePlanBackupPlan Immutable. A reference to the [BackupPlan][google.cloud.gkebackup.v1.BackupPlan] from which Backups may be used as the
- *                                               source for Restores created via this RestorePlan.
- *                                               Format: projects/&#42;/locations/&#42;/backupPlans/*. Please see
+ * @param string $formattedRestorePlanBackupPlan Immutable. A reference to the
+ *                                               [BackupPlan][google.cloud.gkebackup.v1.BackupPlan] from which Backups may
+ *                                               be used as the source for Restores created via this RestorePlan. Format:
+ *                                               `projects/&#42;/locations/&#42;/backupPlans/*`. Please see
  *                                               {@see BackupForGKEClient::backupPlanName()} for help formatting this field.
- * @param string $formattedRestorePlanCluster    Immutable. The target cluster into which Restores created via this RestorePlan
- *                                               will restore data. NOTE: the cluster's region must be the same as the
- *                                               RestorePlan.
- *                                               Valid formats:
+ * @param string $formattedRestorePlanCluster    Immutable. The target cluster into which Restores created via
+ *                                               this RestorePlan will restore data. NOTE: the cluster's region must be the
+ *                                               same as the RestorePlan. Valid formats:
  *
- *                                               - projects/&#42;/locations/&#42;/clusters/*
- *                                               - projects/&#42;/zones/&#42;/clusters/*
+ *                                               - `projects/&#42;/locations/&#42;/clusters/*`
+ *                                               - `projects/&#42;/zones/&#42;/clusters/*`
  *                                               Please see {@see BackupForGKEClient::clusterName()} for help formatting this field.
  */
 function update_restore_plan_sample(
@@ -53,17 +54,19 @@ function update_restore_plan_sample(
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $restorePlanRestoreConfig = new RestoreConfig();
     $restorePlan = (new RestorePlan())
         ->setBackupPlan($formattedRestorePlanBackupPlan)
         ->setCluster($formattedRestorePlanCluster)
         ->setRestoreConfig($restorePlanRestoreConfig);
+    $request = (new UpdateRestorePlanRequest())
+        ->setRestorePlan($restorePlan);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $backupForGKEClient->updateRestorePlan($restorePlan);
+        $response = $backupForGKEClient->updateRestorePlan($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

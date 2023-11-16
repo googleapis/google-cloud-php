@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_IndexService_ListIndexes_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\AIPlatform\V1\Client\IndexServiceClient;
 use Google\Cloud\AIPlatform\V1\Index;
-use Google\Cloud\AIPlatform\V1\IndexServiceClient;
+use Google\Cloud\AIPlatform\V1\ListIndexesRequest;
 
 /**
  * Lists Indexes in a Location.
@@ -40,10 +41,14 @@ function list_indexes_sample(string $formattedParent): void
     // Create a client.
     $indexServiceClient = new IndexServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListIndexesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $indexServiceClient->listIndexes($formattedParent);
+        $response = $indexServiceClient->listIndexes($request);
 
         /** @var Index $element */
         foreach ($response as $element) {

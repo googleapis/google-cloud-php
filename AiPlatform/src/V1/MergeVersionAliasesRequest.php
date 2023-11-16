@@ -42,6 +42,36 @@ class MergeVersionAliasesRequest extends \Google\Protobuf\Internal\Message
     private $version_aliases;
 
     /**
+     * @param string   $name           Required. The name of the model version to merge aliases, with a version ID
+     *                                 explicitly included.
+     *
+     *                                 Example: `projects/{project}/locations/{location}/models/{model}&#64;1234`
+     *                                 Please see {@see ModelServiceClient::modelName()} for help formatting this field.
+     * @param string[] $versionAliases Required. The set of version aliases to merge.
+     *                                 The alias should be at most 128 characters, and match
+     *                                 `[a-z][a-zA-Z0-9-]{0,126}[a-z-0-9]`.
+     *                                 Add the `-` prefix to an alias means removing that alias from the version.
+     *                                 `-` is NOT counted in the 128 characters. Example: `-golden` means removing
+     *                                 the `golden` alias from the version.
+     *
+     *                                 There is NO ordering in aliases, which means
+     *                                 1) The aliases returned from GetModel API might not have the exactly same
+     *                                 order from this MergeVersionAliases API. 2) Adding and deleting the same
+     *                                 alias in the request is not recommended, and the 2 operations will be
+     *                                 cancelled out.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\MergeVersionAliasesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, array $versionAliases): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setVersionAliases($versionAliases);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

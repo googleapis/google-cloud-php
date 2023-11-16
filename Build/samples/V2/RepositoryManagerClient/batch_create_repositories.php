@@ -25,10 +25,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudbuild_v2_generated_RepositoryManager_BatchCreateRepositories_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Build\V2\BatchCreateRepositoriesRequest;
 use Google\Cloud\Build\V2\BatchCreateRepositoriesResponse;
+use Google\Cloud\Build\V2\Client\RepositoryManagerClient;
 use Google\Cloud\Build\V2\CreateRepositoryRequest;
 use Google\Cloud\Build\V2\Repository;
-use Google\Cloud\Build\V2\RepositoryManagerClient;
 use Google\Rpc\Status;
 
 /**
@@ -58,7 +59,7 @@ function batch_create_repositories_sample(
     // Create a client.
     $repositoryManagerClient = new RepositoryManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $requestsRepository = (new Repository())
         ->setRemoteUri($requestsRepositoryRemoteUri);
     $createRepositoryRequest = (new CreateRepositoryRequest())
@@ -66,11 +67,14 @@ function batch_create_repositories_sample(
         ->setRepository($requestsRepository)
         ->setRepositoryId($requestsRepositoryId);
     $requests = [$createRepositoryRequest,];
+    $request = (new BatchCreateRepositoriesRequest())
+        ->setParent($formattedParent)
+        ->setRequests($requests);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $repositoryManagerClient->batchCreateRepositories($formattedParent, $requests);
+        $response = $repositoryManagerClient->batchCreateRepositories($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

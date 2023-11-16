@@ -22,6 +22,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * If the vehicle does not have a start_ and/or end_location, the
  * corresponding travel metrics are 0 and/or empty.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.optimization.v1.ShipmentRoute.TravelStep</code>
  */
 class TravelStep extends \Google\Protobuf\Internal\Message

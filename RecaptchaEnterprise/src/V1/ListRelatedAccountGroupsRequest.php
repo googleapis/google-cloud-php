@@ -17,7 +17,7 @@ class ListRelatedAccountGroupsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the project to list related account groups from, in
-     * the format "projects/{project}".
+     * the format `projects/{project}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -42,6 +42,21 @@ class ListRelatedAccountGroupsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The name of the project to list related account groups from, in
+     *                       the format `projects/{project}`. Please see
+     *                       {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -49,7 +64,7 @@ class ListRelatedAccountGroupsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The name of the project to list related account groups from, in
-     *           the format "projects/{project}".
+     *           the format `projects/{project}`.
      *     @type int $page_size
      *           Optional. The maximum number of groups to return. The service might return
      *           fewer than this value. If unspecified, at most 50 groups are returned. The
@@ -69,7 +84,7 @@ class ListRelatedAccountGroupsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the project to list related account groups from, in
-     * the format "projects/{project}".
+     * the format `projects/{project}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -81,7 +96,7 @@ class ListRelatedAccountGroupsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the project to list related account groups from, in
-     * the format "projects/{project}".
+     * the format `projects/{project}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

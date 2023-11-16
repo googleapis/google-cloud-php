@@ -17,7 +17,7 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The full name of the BackupPlan resource.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -49,11 +49,10 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Required. Immutable. The source cluster from which Backups will be created via
-     * this BackupPlan.
-     * Valid formats:
-     * - projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;
-     * - projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;
+     * Required. Immutable. The source cluster from which Backups will be created
+     * via this BackupPlan. Valid formats:
+     * - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
+     * - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
      *
      * Generated from protobuf field <code>string cluster = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -77,9 +76,9 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      */
     private $backup_schedule = null;
     /**
-     * Output only. `etag` is used for optimistic concurrency control as a way to help
-     * prevent simultaneous updates of a backup plan from overwriting each other.
-     * It is strongly suggested that systems make use of the 'etag' in the
+     * Output only. `etag` is used for optimistic concurrency control as a way to
+     * help prevent simultaneous updates of a backup plan from overwriting each
+     * other. It is strongly suggested that systems make use of the 'etag' in the
      * read-modify-write cycle to perform BackupPlan updates in order to avoid
      * race conditions: An `etag` is returned in the response to `GetBackupPlan`,
      * and systems are expected to put that etag in the request to
@@ -113,6 +112,22 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 protected_pod_count = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $protected_pod_count = 0;
+    /**
+     * Output only. State of the BackupPlan. This State field reflects the
+     * various stages a BackupPlan can be in
+     * during the Create operation. It will be set to "DEACTIVATED"
+     * if the BackupPlan is deactivated on an Update
+     *
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.BackupPlan.State state = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $state = 0;
+    /**
+     * Output only. Human-readable description of why BackupPlan is in the current
+     * `state`
+     *
+     * Generated from protobuf field <code>string state_reason = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $state_reason = '';
 
     /**
      * Constructor.
@@ -122,7 +137,7 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. The full name of the BackupPlan resource.
-     *           Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;
+     *           Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`
      *     @type string $uid
      *           Output only. Server generated global unique identifier of
      *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.
@@ -134,11 +149,10 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           User specified descriptive string for this BackupPlan.
      *     @type string $cluster
-     *           Required. Immutable. The source cluster from which Backups will be created via
-     *           this BackupPlan.
-     *           Valid formats:
-     *           - projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;
-     *           - projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;
+     *           Required. Immutable. The source cluster from which Backups will be created
+     *           via this BackupPlan. Valid formats:
+     *           - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
+     *           - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
      *     @type \Google\Cloud\GkeBackup\V1\BackupPlan\RetentionPolicy $retention_policy
      *           RetentionPolicy governs lifecycle of Backups created under this plan.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
@@ -146,9 +160,9 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\GkeBackup\V1\BackupPlan\Schedule $backup_schedule
      *           Defines a schedule for automatic Backup creation via this BackupPlan.
      *     @type string $etag
-     *           Output only. `etag` is used for optimistic concurrency control as a way to help
-     *           prevent simultaneous updates of a backup plan from overwriting each other.
-     *           It is strongly suggested that systems make use of the 'etag' in the
+     *           Output only. `etag` is used for optimistic concurrency control as a way to
+     *           help prevent simultaneous updates of a backup plan from overwriting each
+     *           other. It is strongly suggested that systems make use of the 'etag' in the
      *           read-modify-write cycle to perform BackupPlan updates in order to avoid
      *           race conditions: An `etag` is returned in the response to `GetBackupPlan`,
      *           and systems are expected to put that etag in the request to
@@ -166,6 +180,14 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      *     @type int $protected_pod_count
      *           Output only. The number of Kubernetes Pods backed up in the
      *           last successful Backup created via this BackupPlan.
+     *     @type int $state
+     *           Output only. State of the BackupPlan. This State field reflects the
+     *           various stages a BackupPlan can be in
+     *           during the Create operation. It will be set to "DEACTIVATED"
+     *           if the BackupPlan is deactivated on an Update
+     *     @type string $state_reason
+     *           Output only. Human-readable description of why BackupPlan is in the current
+     *           `state`
      * }
      */
     public function __construct($data = NULL) {
@@ -175,7 +197,7 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The full name of the BackupPlan resource.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -187,7 +209,7 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The full name of the BackupPlan resource.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -330,11 +352,10 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The source cluster from which Backups will be created via
-     * this BackupPlan.
-     * Valid formats:
-     * - projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;
-     * - projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;
+     * Required. Immutable. The source cluster from which Backups will be created
+     * via this BackupPlan. Valid formats:
+     * - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
+     * - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
      *
      * Generated from protobuf field <code>string cluster = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -345,11 +366,10 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The source cluster from which Backups will be created via
-     * this BackupPlan.
-     * Valid formats:
-     * - projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;
-     * - projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;
+     * Required. Immutable. The source cluster from which Backups will be created
+     * via this BackupPlan. Valid formats:
+     * - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
+     * - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
      *
      * Generated from protobuf field <code>string cluster = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -462,9 +482,9 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. `etag` is used for optimistic concurrency control as a way to help
-     * prevent simultaneous updates of a backup plan from overwriting each other.
-     * It is strongly suggested that systems make use of the 'etag' in the
+     * Output only. `etag` is used for optimistic concurrency control as a way to
+     * help prevent simultaneous updates of a backup plan from overwriting each
+     * other. It is strongly suggested that systems make use of the 'etag' in the
      * read-modify-write cycle to perform BackupPlan updates in order to avoid
      * race conditions: An `etag` is returned in the response to `GetBackupPlan`,
      * and systems are expected to put that etag in the request to
@@ -480,9 +500,9 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. `etag` is used for optimistic concurrency control as a way to help
-     * prevent simultaneous updates of a backup plan from overwriting each other.
-     * It is strongly suggested that systems make use of the 'etag' in the
+     * Output only. `etag` is used for optimistic concurrency control as a way to
+     * help prevent simultaneous updates of a backup plan from overwriting each
+     * other. It is strongly suggested that systems make use of the 'etag' in the
      * read-modify-write cycle to perform BackupPlan updates in order to avoid
      * race conditions: An `etag` is returned in the response to `GetBackupPlan`,
      * and systems are expected to put that etag in the request to
@@ -597,6 +617,66 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->protected_pod_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. State of the BackupPlan. This State field reflects the
+     * various stages a BackupPlan can be in
+     * during the Create operation. It will be set to "DEACTIVATED"
+     * if the BackupPlan is deactivated on an Update
+     *
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.BackupPlan.State state = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Output only. State of the BackupPlan. This State field reflects the
+     * various stages a BackupPlan can be in
+     * during the Create operation. It will be set to "DEACTIVATED"
+     * if the BackupPlan is deactivated on an Update
+     *
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.BackupPlan.State state = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setState($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\GkeBackup\V1\BackupPlan\State::class);
+        $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Human-readable description of why BackupPlan is in the current
+     * `state`
+     *
+     * Generated from protobuf field <code>string state_reason = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getStateReason()
+    {
+        return $this->state_reason;
+    }
+
+    /**
+     * Output only. Human-readable description of why BackupPlan is in the current
+     * `state`
+     *
+     * Generated from protobuf field <code>string state_reason = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setStateReason($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->state_reason = $var;
 
         return $this;
     }

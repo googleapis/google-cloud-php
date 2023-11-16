@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START videostitcher_v1_generated_VideoStitcherService_ListVodStitchDetails_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
+use Google\Cloud\Video\Stitcher\V1\Client\VideoStitcherServiceClient;
+use Google\Cloud\Video\Stitcher\V1\ListVodStitchDetailsRequest;
 use Google\Cloud\Video\Stitcher\V1\VodStitchDetail;
 
 /**
@@ -41,10 +42,14 @@ function list_vod_stitch_details_sample(string $formattedParent): void
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListVodStitchDetailsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $videoStitcherServiceClient->listVodStitchDetails($formattedParent);
+        $response = $videoStitcherServiceClient->listVodStitchDetails($request);
 
         /** @var VodStitchDetail $element */
         foreach ($response as $element) {

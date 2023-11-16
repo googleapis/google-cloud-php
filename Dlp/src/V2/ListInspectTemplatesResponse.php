@@ -22,8 +22,8 @@ class ListInspectTemplatesResponse extends \Google\Protobuf\Internal\Message
      */
     private $inspect_templates;
     /**
-     * If the next page is available then the next page token to be used
-     * in following ListInspectTemplates request.
+     * If the next page is available then the next page token to be used in the
+     * following ListInspectTemplates request.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -38,8 +38,8 @@ class ListInspectTemplatesResponse extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Dlp\V2\InspectTemplate>|\Google\Protobuf\Internal\RepeatedField $inspect_templates
      *           List of inspectTemplates, up to page_size in ListInspectTemplatesRequest.
      *     @type string $next_page_token
-     *           If the next page is available then the next page token to be used
-     *           in following ListInspectTemplates request.
+     *           If the next page is available then the next page token to be used in the
+     *           following ListInspectTemplates request.
      * }
      */
     public function __construct($data = NULL) {
@@ -74,8 +74,8 @@ class ListInspectTemplatesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If the next page is available then the next page token to be used
-     * in following ListInspectTemplates request.
+     * If the next page is available then the next page token to be used in the
+     * following ListInspectTemplates request.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -86,8 +86,8 @@ class ListInspectTemplatesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If the next page is available then the next page token to be used
-     * in following ListInspectTemplates request.
+     * If the next page is available then the next page token to be used in the
+     * following ListInspectTemplates request.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START certificatemanager_v1_generated_CertificateManager_GetDnsAuthorization_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\CertificateManager\V1\CertificateManagerClient;
+use Google\Cloud\CertificateManager\V1\Client\CertificateManagerClient;
 use Google\Cloud\CertificateManager\V1\DnsAuthorization;
+use Google\Cloud\CertificateManager\V1\GetDnsAuthorizationRequest;
 
 /**
  * Gets details of a single DnsAuthorization.
@@ -39,10 +40,14 @@ function get_dns_authorization_sample(string $formattedName): void
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
+    // Prepare the request message.
+    $request = (new GetDnsAuthorizationRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var DnsAuthorization $response */
-        $response = $certificateManagerClient->getDnsAuthorization($formattedName);
+        $response = $certificateManagerClient->getDnsAuthorization($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

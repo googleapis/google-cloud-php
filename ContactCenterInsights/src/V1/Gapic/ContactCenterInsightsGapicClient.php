@@ -38,6 +38,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\ContactCenterInsights\V1\Analysis;
 use Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector;
 use Google\Cloud\ContactCenterInsights\V1\BulkAnalyzeConversationsRequest;
+use Google\Cloud\ContactCenterInsights\V1\BulkDeleteConversationsRequest;
 use Google\Cloud\ContactCenterInsights\V1\CalculateIssueModelStatsRequest;
 use Google\Cloud\ContactCenterInsights\V1\CalculateIssueModelStatsResponse;
 use Google\Cloud\ContactCenterInsights\V1\CalculateStatsRequest;
@@ -85,6 +86,7 @@ use Google\Cloud\ContactCenterInsights\V1\ListViewsResponse;
 use Google\Cloud\ContactCenterInsights\V1\PhraseMatcher;
 use Google\Cloud\ContactCenterInsights\V1\RedactionConfig;
 use Google\Cloud\ContactCenterInsights\V1\Settings;
+use Google\Cloud\ContactCenterInsights\V1\SpeechConfig;
 use Google\Cloud\ContactCenterInsights\V1\UndeployIssueModelRequest;
 use Google\Cloud\ContactCenterInsights\V1\UpdateConversationRequest;
 use Google\Cloud\ContactCenterInsights\V1\UpdateIssueModelRequest;
@@ -145,6 +147,10 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient} to
+ * use the new surface.
  */
 class ContactCenterInsightsGapicClient
 {
@@ -171,13 +177,23 @@ class ContactCenterInsightsGapicClient
 
     private static $conversationNameTemplate;
 
+    private static $conversationProfileNameTemplate;
+
     private static $issueNameTemplate;
 
     private static $issueModelNameTemplate;
 
     private static $locationNameTemplate;
 
+    private static $participantNameTemplate;
+
     private static $phraseMatcherNameTemplate;
+
+    private static $projectConversationParticipantNameTemplate;
+
+    private static $projectLocationConversationParticipantNameTemplate;
+
+    private static $recognizerNameTemplate;
 
     private static $settingsNameTemplate;
 
@@ -237,6 +253,17 @@ class ContactCenterInsightsGapicClient
         return self::$conversationNameTemplate;
     }
 
+    private static function getConversationProfileNameTemplate()
+    {
+        if (self::$conversationProfileNameTemplate == null) {
+            self::$conversationProfileNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/conversationProfiles/{conversation_profile}'
+            );
+        }
+
+        return self::$conversationProfileNameTemplate;
+    }
+
     private static function getIssueNameTemplate()
     {
         if (self::$issueNameTemplate == null) {
@@ -270,6 +297,17 @@ class ContactCenterInsightsGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getParticipantNameTemplate()
+    {
+        if (self::$participantNameTemplate == null) {
+            self::$participantNameTemplate = new PathTemplate(
+                'projects/{project}/conversations/{conversation}/participants/{participant}'
+            );
+        }
+
+        return self::$participantNameTemplate;
+    }
+
     private static function getPhraseMatcherNameTemplate()
     {
         if (self::$phraseMatcherNameTemplate == null) {
@@ -279,6 +317,39 @@ class ContactCenterInsightsGapicClient
         }
 
         return self::$phraseMatcherNameTemplate;
+    }
+
+    private static function getProjectConversationParticipantNameTemplate()
+    {
+        if (self::$projectConversationParticipantNameTemplate == null) {
+            self::$projectConversationParticipantNameTemplate = new PathTemplate(
+                'projects/{project}/conversations/{conversation}/participants/{participant}'
+            );
+        }
+
+        return self::$projectConversationParticipantNameTemplate;
+    }
+
+    private static function getProjectLocationConversationParticipantNameTemplate()
+    {
+        if (self::$projectLocationConversationParticipantNameTemplate == null) {
+            self::$projectLocationConversationParticipantNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/conversations/{conversation}/participants/{participant}'
+            );
+        }
+
+        return self::$projectLocationConversationParticipantNameTemplate;
+    }
+
+    private static function getRecognizerNameTemplate()
+    {
+        if (self::$recognizerNameTemplate == null) {
+            self::$recognizerNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/recognizers/{recognizer}'
+            );
+        }
+
+        return self::$recognizerNameTemplate;
     }
 
     private static function getSettingsNameTemplate()
@@ -309,10 +380,15 @@ class ContactCenterInsightsGapicClient
             self::$pathTemplateMap = [
                 'analysis' => self::getAnalysisNameTemplate(),
                 'conversation' => self::getConversationNameTemplate(),
+                'conversationProfile' => self::getConversationProfileNameTemplate(),
                 'issue' => self::getIssueNameTemplate(),
                 'issueModel' => self::getIssueModelNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'participant' => self::getParticipantNameTemplate(),
                 'phraseMatcher' => self::getPhraseMatcherNameTemplate(),
+                'projectConversationParticipant' => self::getProjectConversationParticipantNameTemplate(),
+                'projectLocationConversationParticipant' => self::getProjectLocationConversationParticipantNameTemplate(),
+                'recognizer' => self::getRecognizerNameTemplate(),
                 'settings' => self::getSettingsNameTemplate(),
                 'view' => self::getViewNameTemplate(),
             ];
@@ -362,6 +438,28 @@ class ContactCenterInsightsGapicClient
             'project' => $project,
             'location' => $location,
             'conversation' => $conversation,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * conversation_profile resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $conversationProfile
+     *
+     * @return string The formatted conversation_profile resource.
+     */
+    public static function conversationProfileName(
+        $project,
+        $location,
+        $conversationProfile
+    ) {
+        return self::getConversationProfileNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'conversation_profile' => $conversationProfile,
         ]);
     }
 
@@ -423,6 +521,28 @@ class ContactCenterInsightsGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a participant
+     * resource.
+     *
+     * @param string $project
+     * @param string $conversation
+     * @param string $participant
+     *
+     * @return string The formatted participant resource.
+     */
+    public static function participantName(
+        $project,
+        $conversation,
+        $participant
+    ) {
+        return self::getParticipantNameTemplate()->render([
+            'project' => $project,
+            'conversation' => $conversation,
+            'participant' => $participant,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * phrase_matcher resource.
      *
@@ -441,6 +561,74 @@ class ContactCenterInsightsGapicClient
             'project' => $project,
             'location' => $location,
             'phrase_matcher' => $phraseMatcher,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_conversation_participant resource.
+     *
+     * @param string $project
+     * @param string $conversation
+     * @param string $participant
+     *
+     * @return string The formatted project_conversation_participant resource.
+     */
+    public static function projectConversationParticipantName(
+        $project,
+        $conversation,
+        $participant
+    ) {
+        return self::getProjectConversationParticipantNameTemplate()->render([
+            'project' => $project,
+            'conversation' => $conversation,
+            'participant' => $participant,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_conversation_participant resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $conversation
+     * @param string $participant
+     *
+     * @return string The formatted project_location_conversation_participant resource.
+     */
+    public static function projectLocationConversationParticipantName(
+        $project,
+        $location,
+        $conversation,
+        $participant
+    ) {
+        return self::getProjectLocationConversationParticipantNameTemplate()->render(
+            [
+                'project' => $project,
+                'location' => $location,
+                'conversation' => $conversation,
+                'participant' => $participant,
+            ]
+        );
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a recognizer
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $recognizer
+     *
+     * @return string The formatted recognizer resource.
+     */
+    public static function recognizerName($project, $location, $recognizer)
+    {
+        return self::getRecognizerNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'recognizer' => $recognizer,
         ]);
     }
 
@@ -486,10 +674,15 @@ class ContactCenterInsightsGapicClient
      * Template: Pattern
      * - analysis: projects/{project}/locations/{location}/conversations/{conversation}/analyses/{analysis}
      * - conversation: projects/{project}/locations/{location}/conversations/{conversation}
+     * - conversationProfile: projects/{project}/locations/{location}/conversationProfiles/{conversation_profile}
      * - issue: projects/{project}/locations/{location}/issueModels/{issue_model}/issues/{issue}
      * - issueModel: projects/{project}/locations/{location}/issueModels/{issue_model}
      * - location: projects/{project}/locations/{location}
+     * - participant: projects/{project}/conversations/{conversation}/participants/{participant}
      * - phraseMatcher: projects/{project}/locations/{location}/phraseMatchers/{phrase_matcher}
+     * - projectConversationParticipant: projects/{project}/conversations/{conversation}/participants/{participant}
+     * - projectLocationConversationParticipant: projects/{project}/locations/{location}/conversations/{conversation}/participants/{participant}
+     * - recognizer: projects/{project}/locations/{location}/recognizers/{recognizer}
      * - settings: projects/{project}/locations/{location}/settings
      * - view: projects/{project}/locations/{location}/views/{view}
      *
@@ -713,6 +906,102 @@ class ContactCenterInsightsGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'BulkAnalyzeConversations',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Deletes multiple conversations in a single request.
+     *
+     * Sample code:
+     * ```
+     * $contactCenterInsightsClient = new ContactCenterInsightsClient();
+     * try {
+     *     $formattedParent = $contactCenterInsightsClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $operationResponse = $contactCenterInsightsClient->bulkDeleteConversations($formattedParent);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $contactCenterInsightsClient->bulkDeleteConversations($formattedParent);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $contactCenterInsightsClient->resumeOperation($operationName, 'bulkDeleteConversations');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $contactCenterInsightsClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent resource to create analyses in.
+     *                             Format:
+     *                             projects/{project}/locations/{location}
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $filter
+     *           Filter used to select the subset of conversations to analyze.
+     *     @type int $maxDeleteCount
+     *           Maximum number of conversations to delete. The default is 1000. It can be
+     *           changed by setting the `max_delete_count` field.
+     *     @type bool $force
+     *           If set to true, all of this conversation's analyses will also be deleted.
+     *           Otherwise, the request will only succeed if the conversation has no
+     *           analyses.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function bulkDeleteConversations($parent, array $optionalArgs = [])
+    {
+        $request = new BulkDeleteConversationsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['maxDeleteCount'])) {
+            $request->setMaxDeleteCount($optionalArgs['maxDeleteCount']);
+        }
+
+        if (isset($optionalArgs['force'])) {
+            $request->setForce($optionalArgs['force']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'BulkDeleteConversations',
             $optionalArgs,
             $request,
             $this->getOperationsClient()
@@ -2030,11 +2319,18 @@ class ContactCenterInsightsGapicClient
      *     Optional.
      *
      *     @type GcsSource $gcsSource
-     *           A cloud storage bucket source.
+     *           A cloud storage bucket source. Note that any previously ingested objects
+     *           from the source will be skipped to avoid duplication.
      *     @type TranscriptObjectConfig $transcriptObjectConfig
      *           Configuration for when `source` contains conversation transcripts.
      *     @type ConversationConfig $conversationConfig
      *           Configuration that applies to all conversations.
+     *     @type RedactionConfig $redactionConfig
+     *           Optional. DLP settings for transcript redaction. Optional, will default to
+     *           the config specified in Settings.
+     *     @type SpeechConfig $speechConfig
+     *           Optional. Default Speech-to-Text configuration. Optional, will default to
+     *           the config specified in Settings.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2065,6 +2361,14 @@ class ContactCenterInsightsGapicClient
             $request->setConversationConfig(
                 $optionalArgs['conversationConfig']
             );
+        }
+
+        if (isset($optionalArgs['redactionConfig'])) {
+            $request->setRedactionConfig($optionalArgs['redactionConfig']);
+        }
+
+        if (isset($optionalArgs['speechConfig'])) {
+            $request->setSpeechConfig($optionalArgs['speechConfig']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -2970,6 +3274,9 @@ class ContactCenterInsightsGapicClient
      *     @type RedactionConfig $redactionConfig
      *           Optional. DLP settings for transcript redaction. Optional, will default to
      *           the config specified in Settings.
+     *     @type SpeechConfig $speechConfig
+     *           Optional. Default Speech-to-Text configuration. Optional, will default to
+     *           the config specified in Settings.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2996,6 +3303,10 @@ class ContactCenterInsightsGapicClient
 
         if (isset($optionalArgs['redactionConfig'])) {
             $request->setRedactionConfig($optionalArgs['redactionConfig']);
+        }
+
+        if (isset($optionalArgs['speechConfig'])) {
+            $request->setSpeechConfig($optionalArgs['speechConfig']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

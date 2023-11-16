@@ -48,6 +48,22 @@ class ListEntriesRequest extends \Google\Protobuf\Internal\Message
     private $read_mask = null;
 
     /**
+     * @param string $parent Required. The name of the entry group that contains the entries to list.
+     *
+     *                       Can be provided in URL format. Please see
+     *                       {@see DataCatalogClient::entryGroupName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\DataCatalog\V1\ListEntriesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

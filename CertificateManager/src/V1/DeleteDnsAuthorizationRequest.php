@@ -24,6 +24,21 @@ class DeleteDnsAuthorizationRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. A name of the dns authorization to delete. Must be in the format
+     *                     `projects/&#42;/locations/&#42;/dnsAuthorizations/*`. Please see
+     *                     {@see CertificateManagerClient::dnsAuthorizationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\CertificateManager\V1\DeleteDnsAuthorizationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

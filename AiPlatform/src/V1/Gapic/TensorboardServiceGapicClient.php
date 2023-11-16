@@ -66,6 +66,8 @@ use Google\Cloud\AIPlatform\V1\ListTensorboardsRequest;
 use Google\Cloud\AIPlatform\V1\ListTensorboardsResponse;
 use Google\Cloud\AIPlatform\V1\ReadTensorboardBlobDataRequest;
 use Google\Cloud\AIPlatform\V1\ReadTensorboardBlobDataResponse;
+use Google\Cloud\AIPlatform\V1\ReadTensorboardSizeRequest;
+use Google\Cloud\AIPlatform\V1\ReadTensorboardSizeResponse;
 use Google\Cloud\AIPlatform\V1\ReadTensorboardTimeSeriesDataRequest;
 use Google\Cloud\AIPlatform\V1\ReadTensorboardTimeSeriesDataResponse;
 use Google\Cloud\AIPlatform\V1\ReadTensorboardUsageRequest;
@@ -117,6 +119,10 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AIPlatform\V1\Client\TensorboardServiceClient} to use the new
+ * surface.
  */
 class TensorboardServiceGapicClient
 {
@@ -805,7 +811,7 @@ class TensorboardServiceGapicClient
      *                                        final component of the Tensorboard experiment's resource name.
      *
      *                                        This value should be 1-128 characters, and valid characters
-     *                                        are /[a-z][0-9]-/.
+     *                                        are `/[a-z][0-9]-/`.
      * @param array  $optionalArgs            {
      *     Optional.
      *
@@ -875,7 +881,7 @@ class TensorboardServiceGapicClient
      *                                         component of the Tensorboard run's resource name.
      *
      *                                         This value should be 1-128 characters, and valid characters
-     *                                         are /[a-z][0-9]-/.
+     *                                         are `/[a-z][0-9]-/`.
      * @param array          $optionalArgs     {
      *     Optional.
      *
@@ -2025,6 +2031,56 @@ class TensorboardServiceGapicClient
             $request,
             Call::SERVER_STREAMING_CALL
         );
+    }
+
+    /**
+     * Returns the storage size for a given TensorBoard instance.
+     *
+     * Sample code:
+     * ```
+     * $tensorboardServiceClient = new TensorboardServiceClient();
+     * try {
+     *     $formattedTensorboard = $tensorboardServiceClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
+     *     $response = $tensorboardServiceClient->readTensorboardSize($formattedTensorboard);
+     * } finally {
+     *     $tensorboardServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $tensorboard  Required. The name of the Tensorboard resource.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ReadTensorboardSizeResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function readTensorboardSize($tensorboard, array $optionalArgs = [])
+    {
+        $request = new ReadTensorboardSizeRequest();
+        $requestParamHeaders = [];
+        $request->setTensorboard($tensorboard);
+        $requestParamHeaders['tensorboard'] = $tensorboard;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ReadTensorboardSize',
+            ReadTensorboardSizeResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**

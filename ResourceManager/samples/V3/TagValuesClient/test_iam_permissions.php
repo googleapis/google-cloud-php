@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudresourcemanager_v3_generated_TagValues_TestIamPermissions_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
-use Google\Cloud\ResourceManager\V3\TagValuesClient;
+use Google\Cloud\ResourceManager\V3\Client\TagValuesClient;
 
 /**
  * Returns permissions that a caller has on the specified TagValue.
@@ -46,13 +47,16 @@ function test_iam_permissions_sample(string $resource, string $permissionsElemen
     // Create a client.
     $tagValuesClient = new TagValuesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $permissions = [$permissionsElement,];
+    $request = (new TestIamPermissionsRequest())
+        ->setResource($resource)
+        ->setPermissions($permissions);
 
     // Call the API and handle any network failures.
     try {
         /** @var TestIamPermissionsResponse $response */
-        $response = $tagValuesClient->testIamPermissions($resource, $permissions);
+        $response = $tagValuesClient->testIamPermissions($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

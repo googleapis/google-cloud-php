@@ -30,6 +30,23 @@ class BatchCreateOccurrencesRequest extends \Google\Protobuf\Internal\Message
     private $occurrences;
 
     /**
+     * @param string                   $parent      The name of the project in the form of `projects/[PROJECT_ID]`, under which
+     *                                              the occurrences are to be created. Please see
+     *                                              {@see GrafeasClient::projectName()} for help formatting this field.
+     * @param \Grafeas\V1\Occurrence[] $occurrences The occurrences to create. Max allowed length is 1000.
+     *
+     * @return \Grafeas\V1\BatchCreateOccurrencesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, array $occurrences): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setOccurrences($occurrences);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

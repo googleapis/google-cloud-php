@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START baremetalsolution_v2_generated_BareMetalSolution_GetVolume_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\BareMetalSolution\V2\BareMetalSolutionClient;
+use Google\Cloud\BareMetalSolution\V2\Client\BareMetalSolutionClient;
+use Google\Cloud\BareMetalSolution\V2\GetVolumeRequest;
 use Google\Cloud\BareMetalSolution\V2\Volume;
 
 /**
@@ -38,10 +39,14 @@ function get_volume_sample(string $formattedName): void
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
+    // Prepare the request message.
+    $request = (new GetVolumeRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Volume $response */
-        $response = $bareMetalSolutionClient->getVolume($formattedName);
+        $response = $bareMetalSolutionClient->getVolume($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -27,6 +27,7 @@ namespace Google\Cloud\Container\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -34,6 +35,8 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Container\V1\AddonsConfig;
 use Google\Cloud\Container\V1\CancelOperationRequest;
+use Google\Cloud\Container\V1\CheckAutopilotCompatibilityRequest;
+use Google\Cloud\Container\V1\CheckAutopilotCompatibilityResponse;
 use Google\Cloud\Container\V1\Cluster;
 use Google\Cloud\Container\V1\ClusterUpdate;
 use Google\Cloud\Container\V1\CompleteIPRotationRequest;
@@ -75,6 +78,7 @@ use Google\Cloud\Container\V1\NodePool\UpgradeSettings;
 use Google\Cloud\Container\V1\NodeTaints;
 use Google\Cloud\Container\V1\Operation;
 use Google\Cloud\Container\V1\ResourceLabels;
+use Google\Cloud\Container\V1\ResourceManagerTags;
 use Google\Cloud\Container\V1\RollbackNodePoolUpgradeRequest;
 use Google\Cloud\Container\V1\ServerConfig;
 use Google\Cloud\Container\V1\SetAddonsConfigRequest;
@@ -113,6 +117,14 @@ use Google\Protobuf\GPBEmpty;
  *     $clusterManagerClient->close();
  * }
  * ```
+ *
+ * Many parameters require resource names to be formatted in a particular way. To
+ * assist with these names, this class includes a format method for each type of
+ * name, and additionally a parseName method to extract the individual identifiers
+ * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Container\V1\Client\ClusterManagerClient} to use the new surface.
  */
 class ClusterManagerGapicClient
 {
@@ -135,6 +147,10 @@ class ClusterManagerGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $topicNameTemplate;
+
+    private static $pathTemplateMap;
+
     private static function getClientDefaults()
     {
         return [
@@ -152,6 +168,84 @@ class ClusterManagerGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getTopicNameTemplate()
+    {
+        if (self::$topicNameTemplate == null) {
+            self::$topicNameTemplate = new PathTemplate('projects/{project}/topics/{topic}');
+        }
+
+        return self::$topicNameTemplate;
+    }
+
+    private static function getPathTemplateMap()
+    {
+        if (self::$pathTemplateMap == null) {
+            self::$pathTemplateMap = [
+                'topic' => self::getTopicNameTemplate(),
+            ];
+        }
+
+        return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a topic
+     * resource.
+     *
+     * @param string $project
+     * @param string $topic
+     *
+     * @return string The formatted topic resource.
+     */
+    public static function topicName($project, $topic)
+    {
+        return self::getTopicNameTemplate()->render([
+            'project' => $project,
+            'topic' => $topic,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * Template: Pattern
+     * - topic: projects/{project}/topics/{topic}
+     *
+     * The optional $template argument can be supplied to specify a particular pattern,
+     * and must match one of the templates listed above. If no $template argument is
+     * provided, or if the $template argument does not match one of the templates
+     * listed, then parseName will check each of the supported templates, and return
+     * the first match.
+     *
+     * @param string $formattedName The formatted name string
+     * @param string $template      Optional name of template to match
+     *
+     * @return array An associative array from name component IDs to component values.
+     *
+     * @throws ValidationException If $formattedName could not be matched.
+     */
+    public static function parseName($formattedName, $template = null)
+    {
+        $templateMap = self::getPathTemplateMap();
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException("Template name $template does not exist");
+            }
+
+            return $templateMap[$template]->match($formattedName);
+        }
+
+        foreach ($templateMap as $templateName => $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -280,6 +374,50 @@ class ClusterManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CancelOperation', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Checks the cluster compatibility with Autopilot mode, and returns a list of
+     * compatibility issues.
+     *
+     * Sample code:
+     * ```
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
+     * try {
+     *     $response = $clusterManagerClient->checkAutopilotCompatibility();
+     * } finally {
+     *     $clusterManagerClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The name (project, location, cluster) of the cluster to retrieve.
+     *           Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Container\V1\CheckAutopilotCompatibilityResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function checkAutopilotCompatibility(array $optionalArgs = [])
+    {
+        $request = new CheckAutopilotCompatibilityRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CheckAutopilotCompatibility', CheckAutopilotCompatibilityResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2668,6 +2806,25 @@ class ClusterManagerGapicClient
      *           Google Compute Engine resources.
      *     @type WindowsNodeConfig $windowsNodeConfig
      *           Parameters that can be configured on Windows nodes.
+     *     @type string $machineType
+     *           Optional. The desired [Google Compute Engine machine
+     *           type](https://cloud.google.com/compute/docs/machine-types) for nodes in the
+     *           node pool. Initiates an upgrade operation that migrates the nodes in the
+     *           node pool to the specified machine type.
+     *     @type string $diskType
+     *           Optional. The desired disk type (e.g. 'pd-standard', 'pd-ssd' or
+     *           'pd-balanced') for nodes in the node pool.
+     *           Initiates an upgrade operation that migrates the nodes in the
+     *           node pool to the specified disk type.
+     *     @type int $diskSizeGb
+     *           Optional. The desired disk size for nodes in the node pool specified in GB.
+     *           The smallest allowed disk size is 10GB.
+     *           Initiates an upgrade operation that migrates the nodes in the
+     *           node pool to the specified disk size.
+     *     @type ResourceManagerTags $resourceManagerTags
+     *           Desired resource manager tag keys and values to be attached to the nodes
+     *           for managing Compute Engine firewalls using Network Firewall Policies.
+     *           Existing tags will be replaced with new values.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2775,6 +2932,22 @@ class ClusterManagerGapicClient
 
         if (isset($optionalArgs['windowsNodeConfig'])) {
             $request->setWindowsNodeConfig($optionalArgs['windowsNodeConfig']);
+        }
+
+        if (isset($optionalArgs['machineType'])) {
+            $request->setMachineType($optionalArgs['machineType']);
+        }
+
+        if (isset($optionalArgs['diskType'])) {
+            $request->setDiskType($optionalArgs['diskType']);
+        }
+
+        if (isset($optionalArgs['diskSizeGb'])) {
+            $request->setDiskSizeGb($optionalArgs['diskSizeGb']);
+        }
+
+        if (isset($optionalArgs['resourceManagerTags'])) {
+            $request->setResourceManagerTags($optionalArgs['resourceManagerTags']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

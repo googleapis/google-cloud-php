@@ -33,6 +33,22 @@ class DeleteKnowledgeBaseRequest extends \Google\Protobuf\Internal\Message
     private $force = false;
 
     /**
+     * @param string $name Required. The name of the knowledge base to delete.
+     *                     Format: `projects/<Project ID>/locations/<Location
+     *                     ID>/knowledgeBases/<Knowledge Base ID>`. Please see
+     *                     {@see KnowledgeBasesClient::knowledgeBaseName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\DeleteKnowledgeBaseRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

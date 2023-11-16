@@ -53,6 +53,21 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The parent channel for the resource, in the form of:
+     *                       `projects/{project}/locations/{location}/channels/{channelId}`. Please see
+     *                       {@see LivestreamServiceClient::channelName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Video\LiveStream\V1\ListEventsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

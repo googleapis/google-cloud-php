@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [FirestoreAdmin.ExportDocuments][google.firestore.admin.v1.FirestoreAdmin.ExportDocuments].
+ * The request for
+ * [FirestoreAdmin.ExportDocuments][google.firestore.admin.v1.FirestoreAdmin.ExportDocuments].
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.ExportDocumentsRequest</code>
  */
@@ -41,6 +42,21 @@ class ExportDocumentsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string output_uri_prefix = 3;</code>
      */
     private $output_uri_prefix = '';
+
+    /**
+     * @param string $name Required. Database to export. Should be of the form:
+     *                     `projects/{project_id}/databases/{database_id}`. Please see
+     *                     {@see FirestoreAdminClient::databaseName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Firestore\Admin\V1\ExportDocumentsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

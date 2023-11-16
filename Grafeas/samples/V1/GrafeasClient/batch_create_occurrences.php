@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START containeranalysis_v1_generated_Grafeas_BatchCreateOccurrences_sync]
 use Google\ApiCore\ApiException;
+use Grafeas\V1\BatchCreateOccurrencesRequest;
 use Grafeas\V1\BatchCreateOccurrencesResponse;
-use Grafeas\V1\GrafeasClient;
+use Grafeas\V1\Client\GrafeasClient;
 use Grafeas\V1\Occurrence;
 
 /**
@@ -40,13 +41,16 @@ function batch_create_occurrences_sample(string $formattedParent): void
     // Create a client.
     $grafeasClient = new GrafeasClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $occurrences = [new Occurrence()];
+    $request = (new BatchCreateOccurrencesRequest())
+        ->setParent($formattedParent)
+        ->setOccurrences($occurrences);
 
     // Call the API and handle any network failures.
     try {
         /** @var BatchCreateOccurrencesResponse $response */
-        $response = $grafeasClient->batchCreateOccurrences($formattedParent, $occurrences);
+        $response = $grafeasClient->batchCreateOccurrences($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

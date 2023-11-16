@@ -86,6 +86,10 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AIPlatform\V1\Client\PipelineServiceClient} to use the new
+ * surface.
  */
 class PipelineServiceGapicClient
 {
@@ -108,11 +112,29 @@ class PipelineServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $artifactNameTemplate;
+
+    private static $contextNameTemplate;
+
+    private static $customJobNameTemplate;
+
+    private static $endpointNameTemplate;
+
+    private static $executionNameTemplate;
+
     private static $locationNameTemplate;
+
+    private static $metadataStoreNameTemplate;
+
+    private static $modelNameTemplate;
 
     private static $networkNameTemplate;
 
     private static $pipelineJobNameTemplate;
+
+    private static $projectLocationEndpointNameTemplate;
+
+    private static $projectLocationPublisherModelNameTemplate;
 
     private static $trainingPipelineNameTemplate;
 
@@ -146,6 +168,61 @@ class PipelineServiceGapicClient
         ];
     }
 
+    private static function getArtifactNameTemplate()
+    {
+        if (self::$artifactNameTemplate == null) {
+            self::$artifactNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}'
+            );
+        }
+
+        return self::$artifactNameTemplate;
+    }
+
+    private static function getContextNameTemplate()
+    {
+        if (self::$contextNameTemplate == null) {
+            self::$contextNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/metadataStores/{metadata_store}/contexts/{context}'
+            );
+        }
+
+        return self::$contextNameTemplate;
+    }
+
+    private static function getCustomJobNameTemplate()
+    {
+        if (self::$customJobNameTemplate == null) {
+            self::$customJobNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/customJobs/{custom_job}'
+            );
+        }
+
+        return self::$customJobNameTemplate;
+    }
+
+    private static function getEndpointNameTemplate()
+    {
+        if (self::$endpointNameTemplate == null) {
+            self::$endpointNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/endpoints/{endpoint}'
+            );
+        }
+
+        return self::$endpointNameTemplate;
+    }
+
+    private static function getExecutionNameTemplate()
+    {
+        if (self::$executionNameTemplate == null) {
+            self::$executionNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/metadataStores/{metadata_store}/executions/{execution}'
+            );
+        }
+
+        return self::$executionNameTemplate;
+    }
+
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
@@ -155,6 +232,28 @@ class PipelineServiceGapicClient
         }
 
         return self::$locationNameTemplate;
+    }
+
+    private static function getMetadataStoreNameTemplate()
+    {
+        if (self::$metadataStoreNameTemplate == null) {
+            self::$metadataStoreNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/metadataStores/{metadata_store}'
+            );
+        }
+
+        return self::$metadataStoreNameTemplate;
+    }
+
+    private static function getModelNameTemplate()
+    {
+        if (self::$modelNameTemplate == null) {
+            self::$modelNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/models/{model}'
+            );
+        }
+
+        return self::$modelNameTemplate;
     }
 
     private static function getNetworkNameTemplate()
@@ -179,6 +278,28 @@ class PipelineServiceGapicClient
         return self::$pipelineJobNameTemplate;
     }
 
+    private static function getProjectLocationEndpointNameTemplate()
+    {
+        if (self::$projectLocationEndpointNameTemplate == null) {
+            self::$projectLocationEndpointNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/endpoints/{endpoint}'
+            );
+        }
+
+        return self::$projectLocationEndpointNameTemplate;
+    }
+
+    private static function getProjectLocationPublisherModelNameTemplate()
+    {
+        if (self::$projectLocationPublisherModelNameTemplate == null) {
+            self::$projectLocationPublisherModelNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/publishers/{publisher}/models/{model}'
+            );
+        }
+
+        return self::$projectLocationPublisherModelNameTemplate;
+    }
+
     private static function getTrainingPipelineNameTemplate()
     {
         if (self::$trainingPipelineNameTemplate == null) {
@@ -194,14 +315,136 @@ class PipelineServiceGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'artifact' => self::getArtifactNameTemplate(),
+                'context' => self::getContextNameTemplate(),
+                'customJob' => self::getCustomJobNameTemplate(),
+                'endpoint' => self::getEndpointNameTemplate(),
+                'execution' => self::getExecutionNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'metadataStore' => self::getMetadataStoreNameTemplate(),
+                'model' => self::getModelNameTemplate(),
                 'network' => self::getNetworkNameTemplate(),
                 'pipelineJob' => self::getPipelineJobNameTemplate(),
+                'projectLocationEndpoint' => self::getProjectLocationEndpointNameTemplate(),
+                'projectLocationPublisherModel' => self::getProjectLocationPublisherModelNameTemplate(),
                 'trainingPipeline' => self::getTrainingPipelineNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a artifact
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $metadataStore
+     * @param string $artifact
+     *
+     * @return string The formatted artifact resource.
+     */
+    public static function artifactName(
+        $project,
+        $location,
+        $metadataStore,
+        $artifact
+    ) {
+        return self::getArtifactNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'metadata_store' => $metadataStore,
+            'artifact' => $artifact,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a context
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $metadataStore
+     * @param string $context
+     *
+     * @return string The formatted context resource.
+     */
+    public static function contextName(
+        $project,
+        $location,
+        $metadataStore,
+        $context
+    ) {
+        return self::getContextNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'metadata_store' => $metadataStore,
+            'context' => $context,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a custom_job
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $customJob
+     *
+     * @return string The formatted custom_job resource.
+     */
+    public static function customJobName($project, $location, $customJob)
+    {
+        return self::getCustomJobNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'custom_job' => $customJob,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a endpoint
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $endpoint
+     *
+     * @return string The formatted endpoint resource.
+     */
+    public static function endpointName($project, $location, $endpoint)
+    {
+        return self::getEndpointNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'endpoint' => $endpoint,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a execution
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $metadataStore
+     * @param string $execution
+     *
+     * @return string The formatted execution resource.
+     */
+    public static function executionName(
+        $project,
+        $location,
+        $metadataStore,
+        $execution
+    ) {
+        return self::getExecutionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'metadata_store' => $metadataStore,
+            'execution' => $execution,
+        ]);
     }
 
     /**
@@ -218,6 +461,47 @@ class PipelineServiceGapicClient
         return self::getLocationNameTemplate()->render([
             'project' => $project,
             'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * metadata_store resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $metadataStore
+     *
+     * @return string The formatted metadata_store resource.
+     */
+    public static function metadataStoreName(
+        $project,
+        $location,
+        $metadataStore
+    ) {
+        return self::getMetadataStoreNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'metadata_store' => $metadataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a model
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $model
+     *
+     * @return string The formatted model resource.
+     */
+    public static function modelName($project, $location, $model)
+    {
+        return self::getModelNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'model' => $model,
         ]);
     }
 
@@ -259,6 +543,53 @@ class PipelineServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_endpoint resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $endpoint
+     *
+     * @return string The formatted project_location_endpoint resource.
+     */
+    public static function projectLocationEndpointName(
+        $project,
+        $location,
+        $endpoint
+    ) {
+        return self::getProjectLocationEndpointNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'endpoint' => $endpoint,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_publisher_model resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $publisher
+     * @param string $model
+     *
+     * @return string The formatted project_location_publisher_model resource.
+     */
+    public static function projectLocationPublisherModelName(
+        $project,
+        $location,
+        $publisher,
+        $model
+    ) {
+        return self::getProjectLocationPublisherModelNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'publisher' => $publisher,
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * training_pipeline resource.
      *
      * @param string $project
@@ -283,9 +614,18 @@ class PipelineServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - artifact: projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}
+     * - context: projects/{project}/locations/{location}/metadataStores/{metadata_store}/contexts/{context}
+     * - customJob: projects/{project}/locations/{location}/customJobs/{custom_job}
+     * - endpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
+     * - execution: projects/{project}/locations/{location}/metadataStores/{metadata_store}/executions/{execution}
      * - location: projects/{project}/locations/{location}
+     * - metadataStore: projects/{project}/locations/{location}/metadataStores/{metadata_store}
+     * - model: projects/{project}/locations/{location}/models/{model}
      * - network: projects/{project}/global/networks/{network}
      * - pipelineJob: projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}
+     * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
+     * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
      * - trainingPipeline: projects/{project}/locations/{location}/trainingPipelines/{training_pipeline}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -571,7 +911,7 @@ class PipelineServiceGapicClient
      *           generated.
      *
      *           This value should be less than 128 characters, and valid characters
-     *           are /[a-z][0-9]-/.
+     *           are `/[a-z][0-9]-/`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_MetadataService_ListMetadataStores_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\AIPlatform\V1\MetadataServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\MetadataServiceClient;
+use Google\Cloud\AIPlatform\V1\ListMetadataStoresRequest;
 use Google\Cloud\AIPlatform\V1\MetadataStore;
 
 /**
@@ -41,10 +42,14 @@ function list_metadata_stores_sample(string $formattedParent): void
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListMetadataStoresRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $metadataServiceClient->listMetadataStores($formattedParent);
+        $response = $metadataServiceClient->listMetadataStores($request);
 
         /** @var MetadataStore $element */
         foreach ($response as $element) {

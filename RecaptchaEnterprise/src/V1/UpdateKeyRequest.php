@@ -30,6 +30,22 @@ class UpdateKeyRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\Key $key        Required. The key to update.
+     * @param \Google\Protobuf\FieldMask               $updateMask Optional. The mask to control which fields of the key get updated. If the
+     *                                                             mask is not present, all fields will be updated.
+     *
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\UpdateKeyRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\RecaptchaEnterprise\V1\Key $key, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setKey($key)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

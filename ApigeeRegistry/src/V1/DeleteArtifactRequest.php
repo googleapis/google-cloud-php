@@ -24,6 +24,21 @@ class DeleteArtifactRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the artifact to delete.
+     *                     Format: `{parent}/artifacts/*`
+     *                     Please see {@see RegistryClient::artifactName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ApigeeRegistry\V1\DeleteArtifactRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

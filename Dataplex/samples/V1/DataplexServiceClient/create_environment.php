@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataplex_v1_generated_DataplexService_CreateEnvironment_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Dataplex\V1\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\Client\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\CreateEnvironmentRequest;
 use Google\Cloud\Dataplex\V1\Environment;
 use Google\Cloud\Dataplex\V1\Environment\InfrastructureSpec;
 use Google\Cloud\Dataplex\V1\Environment\InfrastructureSpec\OsImageRuntime;
@@ -53,22 +54,22 @@ function create_environment_sample(
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $environmentInfrastructureSpecOsImage = (new OsImageRuntime())
         ->setImageVersion($environmentInfrastructureSpecOsImageImageVersion);
     $environmentInfrastructureSpec = (new InfrastructureSpec())
         ->setOsImage($environmentInfrastructureSpecOsImage);
     $environment = (new Environment())
         ->setInfrastructureSpec($environmentInfrastructureSpec);
+    $request = (new CreateEnvironmentRequest())
+        ->setParent($formattedParent)
+        ->setEnvironmentId($environmentId)
+        ->setEnvironment($environment);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataplexServiceClient->createEnvironment(
-            $formattedParent,
-            $environmentId,
-            $environment
-        );
+        $response = $dataplexServiceClient->createEnvironment($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

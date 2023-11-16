@@ -25,12 +25,13 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START gkemulticloud_v1_generated_AzureClusters_UpdateAzureNodePool_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\GkeMultiCloud\V1\AzureClustersClient;
 use Google\Cloud\GkeMultiCloud\V1\AzureNodeConfig;
 use Google\Cloud\GkeMultiCloud\V1\AzureNodePool;
 use Google\Cloud\GkeMultiCloud\V1\AzureNodePoolAutoscaling;
 use Google\Cloud\GkeMultiCloud\V1\AzureSshConfig;
+use Google\Cloud\GkeMultiCloud\V1\Client\AzureClustersClient;
 use Google\Cloud\GkeMultiCloud\V1\MaxPodsConstraint;
+use Google\Cloud\GkeMultiCloud\V1\UpdateAzureNodePoolRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -61,7 +62,7 @@ function update_azure_node_pool_sample(
     // Create a client.
     $azureClustersClient = new AzureClustersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $azureNodePoolConfigSshConfig = (new AzureSshConfig())
         ->setAuthorizedKey($azureNodePoolConfigSshConfigAuthorizedKey);
     $azureNodePoolConfig = (new AzureNodeConfig())
@@ -78,11 +79,14 @@ function update_azure_node_pool_sample(
         ->setAutoscaling($azureNodePoolAutoscaling)
         ->setMaxPodsConstraint($azureNodePoolMaxPodsConstraint);
     $updateMask = new FieldMask();
+    $request = (new UpdateAzureNodePoolRequest())
+        ->setAzureNodePool($azureNodePool)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $azureClustersClient->updateAzureNodePool($azureNodePool, $updateMask);
+        $response = $azureClustersClient->updateAzureNodePool($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

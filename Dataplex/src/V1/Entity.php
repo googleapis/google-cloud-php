@@ -52,8 +52,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * published table name. Specifying a new ID in an update entity
      * request will override the existing value.
      * The ID must contain only letters (a-z, A-Z), numbers (0-9), and
-     * underscores. Must begin with a letter and consist of 256 or fewer
-     * characters.
+     * underscores, and consist of 256 or fewer characters.
      *
      * Generated from protobuf field <code>string id = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -123,6 +122,20 @@ class Entity extends \Google\Protobuf\Internal\Message
      */
     private $compatibility = null;
     /**
+     * Output only. Identifies the access mechanism to the entity. Not user
+     * settable.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.StorageAccess access = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $access = null;
+    /**
+     * Output only. System generated unique ID for the Entity. This ID will be
+     * different if the Entity is deleted and re-created with the same name.
+     *
+     * Generated from protobuf field <code>string uid = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $uid = '';
+    /**
      * Required. The description of the data structure and layout.
      * The schema is not included in list responses. It is only included in
      * `SCHEMA` and `FULL` entity views of a `GetEntity` response.
@@ -154,8 +167,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      *           published table name. Specifying a new ID in an update entity
      *           request will override the existing value.
      *           The ID must contain only letters (a-z, A-Z), numbers (0-9), and
-     *           underscores. Must begin with a letter and consist of 256 or fewer
-     *           characters.
+     *           underscores, and consist of 256 or fewer characters.
      *     @type string $etag
      *           Optional. The etag associated with the entity, which can be retrieved with
      *           a [GetEntity][] request. Required for update and delete requests.
@@ -184,6 +196,12 @@ class Entity extends \Google\Protobuf\Internal\Message
      *           It does not apply to entities with data stored in BigQuery.
      *     @type \Google\Cloud\Dataplex\V1\Entity\CompatibilityStatus $compatibility
      *           Output only. Metadata stores that the entity is compatible with.
+     *     @type \Google\Cloud\Dataplex\V1\StorageAccess $access
+     *           Output only. Identifies the access mechanism to the entity. Not user
+     *           settable.
+     *     @type string $uid
+     *           Output only. System generated unique ID for the Entity. This ID will be
+     *           different if the Entity is deleted and re-created with the same name.
      *     @type \Google\Cloud\Dataplex\V1\Schema $schema
      *           Required. The description of the data structure and layout.
      *           The schema is not included in list responses. It is only included in
@@ -354,8 +372,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * published table name. Specifying a new ID in an update entity
      * request will override the existing value.
      * The ID must contain only letters (a-z, A-Z), numbers (0-9), and
-     * underscores. Must begin with a letter and consist of 256 or fewer
-     * characters.
+     * underscores, and consist of 256 or fewer characters.
      *
      * Generated from protobuf field <code>string id = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -370,8 +387,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * published table name. Specifying a new ID in an update entity
      * request will override the existing value.
      * The ID must contain only letters (a-z, A-Z), numbers (0-9), and
-     * underscores. Must begin with a letter and consist of 256 or fewer
-     * characters.
+     * underscores, and consist of 256 or fewer characters.
      *
      * Generated from protobuf field <code>string id = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -655,6 +671,72 @@ class Entity extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\Entity\CompatibilityStatus::class);
         $this->compatibility = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Identifies the access mechanism to the entity. Not user
+     * settable.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.StorageAccess access = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dataplex\V1\StorageAccess|null
+     */
+    public function getAccess()
+    {
+        return $this->access;
+    }
+
+    public function hasAccess()
+    {
+        return isset($this->access);
+    }
+
+    public function clearAccess()
+    {
+        unset($this->access);
+    }
+
+    /**
+     * Output only. Identifies the access mechanism to the entity. Not user
+     * settable.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.StorageAccess access = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataplex\V1\StorageAccess $var
+     * @return $this
+     */
+    public function setAccess($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\StorageAccess::class);
+        $this->access = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. System generated unique ID for the Entity. This ID will be
+     * different if the Entity is deleted and re-created with the same name.
+     *
+     * Generated from protobuf field <code>string uid = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getUid()
+    {
+        return $this->uid;
+    }
+
+    /**
+     * Output only. System generated unique ID for the Entity. This ID will be
+     * different if the Entity is deleted and re-created with the same name.
+     *
+     * Generated from protobuf field <code>string uid = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUid($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->uid = $var;
 
         return $this;
     }

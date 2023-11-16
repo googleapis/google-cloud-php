@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudbuild_v2_generated_RepositoryManager_DeleteRepository_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Build\V2\RepositoryManagerClient;
+use Google\Cloud\Build\V2\Client\RepositoryManagerClient;
+use Google\Cloud\Build\V2\DeleteRepositoryRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,14 @@ function delete_repository_sample(string $formattedName): void
     // Create a client.
     $repositoryManagerClient = new RepositoryManagerClient();
 
+    // Prepare the request message.
+    $request = (new DeleteRepositoryRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $repositoryManagerClient->deleteRepository($formattedName);
+        $response = $repositoryManagerClient->deleteRepository($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

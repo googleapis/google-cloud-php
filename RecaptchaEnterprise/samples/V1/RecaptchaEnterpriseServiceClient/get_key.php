@@ -31,7 +31,7 @@ use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
  * Returns the specified key.
  *
  * @param string $formattedName The name of the requested key, in the format
- *                              "projects/{project}/keys/{key}". Please see
+ *                              `projects/{project}/keys/{key}`. Please see
  *                              {@see RecaptchaEnterpriseServiceClient::keyName()} for help formatting this field.
  */
 function get_key_sample(string $formattedName): void

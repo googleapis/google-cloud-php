@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_JobService_ListCustomJobs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\AIPlatform\V1\Client\JobServiceClient;
 use Google\Cloud\AIPlatform\V1\CustomJob;
-use Google\Cloud\AIPlatform\V1\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\ListCustomJobsRequest;
 
 /**
  * Lists CustomJobs in a Location.
@@ -40,10 +41,14 @@ function list_custom_jobs_sample(string $formattedParent): void
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListCustomJobsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $jobServiceClient->listCustomJobs($formattedParent);
+        $response = $jobServiceClient->listCustomJobs($request);
 
         /** @var CustomJob $element */
         foreach ($response as $element) {

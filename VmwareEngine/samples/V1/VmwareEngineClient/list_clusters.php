@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmwareengine_v1_generated_VmwareEngine_ListClusters_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\VmwareEngine\V1\Client\VmwareEngineClient;
 use Google\Cloud\VmwareEngine\V1\Cluster;
-use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
+use Google\Cloud\VmwareEngine\V1\ListClustersRequest;
 
 /**
  * Lists `Cluster` resources in a given private cloud.
@@ -43,10 +44,14 @@ function list_clusters_sample(string $formattedParent): void
     // Create a client.
     $vmwareEngineClient = new VmwareEngineClient();
 
+    // Prepare the request message.
+    $request = (new ListClustersRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $vmwareEngineClient->listClusters($formattedParent);
+        $response = $vmwareEngineClient->listClusters($request);
 
         /** @var Cluster $element */
         foreach ($response as $element) {

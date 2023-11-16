@@ -17,7 +17,7 @@ class DeleteDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the `DeliveryPipeline` to delete. Format should be
-     * projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}.
+     * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -70,6 +70,21 @@ class DeleteDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
     private $etag = '';
 
     /**
+     * @param string $name Required. The name of the `DeliveryPipeline` to delete. Format should be
+     *                     `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`. Please see
+     *                     {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Deploy\V1\DeleteDeliveryPipelineRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -77,7 +92,7 @@ class DeleteDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the `DeliveryPipeline` to delete. Format should be
-     *           projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}.
+     *           `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *     @type string $request_id
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server will know to ignore
@@ -113,7 +128,7 @@ class DeleteDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the `DeliveryPipeline` to delete. Format should be
-     * projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}.
+     * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -125,7 +140,7 @@ class DeleteDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the `DeliveryPipeline` to delete. Format should be
-     * projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}.
+     * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

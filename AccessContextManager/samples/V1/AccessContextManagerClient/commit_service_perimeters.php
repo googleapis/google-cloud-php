@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START accesscontextmanager_v1_generated_AccessContextManager_CommitServicePerimeters_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Identity\AccessContextManager\V1\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\Client\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\CommitServicePerimetersRequest;
 use Google\Identity\AccessContextManager\V1\CommitServicePerimetersResponse;
 use Google\Rpc\Status;
 
@@ -60,10 +61,14 @@ function commit_service_perimeters_sample(string $formattedParent): void
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
+    // Prepare the request message.
+    $request = (new CommitServicePerimetersRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $accessContextManagerClient->commitServicePerimeters($formattedParent);
+        $response = $accessContextManagerClient->commitServicePerimeters($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

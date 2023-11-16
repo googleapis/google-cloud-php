@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataflow_v1beta3_generated_TemplatesService_LaunchTemplate_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dataflow\V1beta3\Client\TemplatesServiceClient;
+use Google\Cloud\Dataflow\V1beta3\LaunchTemplateRequest;
 use Google\Cloud\Dataflow\V1beta3\LaunchTemplateResponse;
-use Google\Cloud\Dataflow\V1beta3\TemplatesServiceClient;
 
 /**
  * Launch a template.
@@ -41,10 +42,13 @@ function launch_template_sample(): void
     // Create a client.
     $templatesServiceClient = new TemplatesServiceClient();
 
+    // Prepare the request message.
+    $request = new LaunchTemplateRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var LaunchTemplateResponse $response */
-        $response = $templatesServiceClient->launchTemplate();
+        $response = $templatesServiceClient->launchTemplate($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

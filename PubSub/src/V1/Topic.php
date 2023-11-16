@@ -77,6 +77,24 @@ class Topic extends \Google\Protobuf\Internal\Message
     private $message_retention_duration = null;
 
     /**
+     * @param string $name Required. The name of the topic. It must have the format
+     *                     `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
+     *                     and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
+     *                     underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
+     *                     signs (`%`). It must be between 3 and 255 characters in length, and it
+     *                     must not start with `"goog"`.
+     *
+     * @return \Google\Cloud\PubSub\V1\Topic
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

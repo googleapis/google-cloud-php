@@ -26,6 +26,8 @@ use Google\Cloud\Logging\LoggingClient;
 /**
  * Implementation of the
  * [Google Stackdriver Logging JSON API](https://cloud.google.com/logging/docs/api/reference/rest/).
+ *
+ * @internal
  */
 class Rest implements ConnectionInterface
 {

@@ -43,6 +43,20 @@ class ListLineageEventsRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
+     * @param string $parent Required. The name of the run that owns the collection of lineage events to
+     *                       get. Please see {@see LineageClient::runName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\DataCatalog\Lineage\V1\ListLineageEventsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

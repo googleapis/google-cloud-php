@@ -39,6 +39,22 @@ class AllocateIdsRequest extends \Google\Protobuf\Internal\Message
     private $keys;
 
     /**
+     * @param string                           $projectId Required. The ID of the project against which to make the request.
+     * @param \Google\Cloud\Datastore\V1\Key[] $keys      Required. A list of keys with incomplete key paths for which to allocate
+     *                                                    IDs. No key may be reserved/read-only.
+     *
+     * @return \Google\Cloud\Datastore\V1\AllocateIdsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectId, array $keys): self
+    {
+        return (new self())
+            ->setProjectId($projectId)
+            ->setKeys($keys);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

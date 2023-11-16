@@ -307,6 +307,18 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.EphemeralStorageLocalSsdConfig ephemeral_storage_local_ssd_config = 41;</code>
      */
     private $ephemeral_storage_local_ssd_config = null;
+    /**
+     * Parameters for node pools to be backed by shared sole tenant node groups.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SoleTenantConfig sole_tenant_config = 42;</code>
+     */
+    private $sole_tenant_config = null;
+    /**
+     * A map of resource manager tag keys and values to be attached to the nodes.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ResourceManagerTags resource_manager_tags = 45;</code>
+     */
+    private $resource_manager_tags = null;
 
     /**
      * Constructor.
@@ -470,6 +482,10 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\EphemeralStorageLocalSsdConfig $ephemeral_storage_local_ssd_config
      *           Parameters for the node ephemeral storage using Local SSDs.
      *           If unspecified, ephemeral storage is backed by the boot disk.
+     *     @type \Google\Cloud\Container\V1\SoleTenantConfig $sole_tenant_config
+     *           Parameters for node pools to be backed by shared sole tenant node groups.
+     *     @type \Google\Cloud\Container\V1\ResourceManagerTags $resource_manager_tags
+     *           A map of resource manager tag keys and values to be attached to the nodes.
      * }
      */
     public function __construct($data = NULL) {
@@ -1661,6 +1677,78 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\EphemeralStorageLocalSsdConfig::class);
         $this->ephemeral_storage_local_ssd_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Parameters for node pools to be backed by shared sole tenant node groups.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SoleTenantConfig sole_tenant_config = 42;</code>
+     * @return \Google\Cloud\Container\V1\SoleTenantConfig|null
+     */
+    public function getSoleTenantConfig()
+    {
+        return $this->sole_tenant_config;
+    }
+
+    public function hasSoleTenantConfig()
+    {
+        return isset($this->sole_tenant_config);
+    }
+
+    public function clearSoleTenantConfig()
+    {
+        unset($this->sole_tenant_config);
+    }
+
+    /**
+     * Parameters for node pools to be backed by shared sole tenant node groups.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SoleTenantConfig sole_tenant_config = 42;</code>
+     * @param \Google\Cloud\Container\V1\SoleTenantConfig $var
+     * @return $this
+     */
+    public function setSoleTenantConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\SoleTenantConfig::class);
+        $this->sole_tenant_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * A map of resource manager tag keys and values to be attached to the nodes.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ResourceManagerTags resource_manager_tags = 45;</code>
+     * @return \Google\Cloud\Container\V1\ResourceManagerTags|null
+     */
+    public function getResourceManagerTags()
+    {
+        return $this->resource_manager_tags;
+    }
+
+    public function hasResourceManagerTags()
+    {
+        return isset($this->resource_manager_tags);
+    }
+
+    public function clearResourceManagerTags()
+    {
+        unset($this->resource_manager_tags);
+    }
+
+    /**
+     * A map of resource manager tag keys and values to be attached to the nodes.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ResourceManagerTags resource_manager_tags = 45;</code>
+     * @param \Google\Cloud\Container\V1\ResourceManagerTags $var
+     * @return $this
+     */
+    public function setResourceManagerTags($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ResourceManagerTags::class);
+        $this->resource_manager_tags = $var;
 
         return $this;
     }

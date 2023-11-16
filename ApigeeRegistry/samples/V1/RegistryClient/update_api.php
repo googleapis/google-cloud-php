@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START apigeeregistry_v1_generated_Registry_UpdateApi_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\ApigeeRegistry\V1\Api;
-use Google\Cloud\ApigeeRegistry\V1\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\Client\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\UpdateApiRequest;
 
 /**
  * Used to modify a specified API.
@@ -41,13 +42,15 @@ function update_api_sample(): void
     // Create a client.
     $registryClient = new RegistryClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $api = new Api();
+    $request = (new UpdateApiRequest())
+        ->setApi($api);
 
     // Call the API and handle any network failures.
     try {
         /** @var Api $response */
-        $response = $registryClient->updateApi($api);
+        $response = $registryClient->updateApi($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

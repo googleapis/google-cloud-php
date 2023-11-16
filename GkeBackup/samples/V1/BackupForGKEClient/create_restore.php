@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START gkebackup_v1_generated_BackupForGKE_CreateRestore_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\GkeBackup\V1\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\Client\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\CreateRestoreRequest;
 use Google\Cloud\GkeBackup\V1\Restore;
 use Google\Rpc\Status;
 
@@ -33,12 +34,14 @@ use Google\Rpc\Status;
  * Creates a new Restore for the given RestorePlan.
  *
  * @param string $formattedParent        The RestorePlan within which to create the Restore.
- *                                       Format: projects/&#42;/locations/&#42;/restorePlans/*
+ *                                       Format: `projects/&#42;/locations/&#42;/restorePlans/*`
  *                                       Please see {@see BackupForGKEClient::restorePlanName()} for help formatting this field.
- * @param string $formattedRestoreBackup Immutable. A reference to the [Backup][google.cloud.gkebackup.v1.Backup] used as the source from which this Restore
- *                                       will restore. Note that this Backup must be a sub-resource of the
- *                                       RestorePlan's [backup_plan][google.cloud.gkebackup.v1.RestorePlan.backup_plan].
- *                                       Format: projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*. Please see
+ * @param string $formattedRestoreBackup Immutable. A reference to the
+ *                                       [Backup][google.cloud.gkebackup.v1.Backup] used as the source from which
+ *                                       this Restore will restore. Note that this Backup must be a sub-resource of
+ *                                       the RestorePlan's
+ *                                       [backup_plan][google.cloud.gkebackup.v1.RestorePlan.backup_plan]. Format:
+ *                                       `projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*`. Please see
  *                                       {@see BackupForGKEClient::backupName()} for help formatting this field.
  * @param string $restoreId              The client-provided short name for the Restore resource.
  *                                       This name must:
@@ -57,14 +60,18 @@ function create_restore_sample(
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $restore = (new Restore())
         ->setBackup($formattedRestoreBackup);
+    $request = (new CreateRestoreRequest())
+        ->setParent($formattedParent)
+        ->setRestore($restore)
+        ->setRestoreId($restoreId);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $backupForGKEClient->createRestore($formattedParent, $restore, $restoreId);
+        $response = $backupForGKEClient->createRestore($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

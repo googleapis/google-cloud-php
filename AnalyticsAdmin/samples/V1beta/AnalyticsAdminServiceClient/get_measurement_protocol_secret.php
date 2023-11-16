@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1beta_generated_AnalyticsAdminService_GetMeasurementProtocolSecret_sync]
-use Google\Analytics\Admin\V1beta\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1beta\GetMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1beta\MeasurementProtocolSecret;
 use Google\ApiCore\ApiException;
 
@@ -40,10 +41,14 @@ function get_measurement_protocol_secret_sample(string $formattedName): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetMeasurementProtocolSecretRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var MeasurementProtocolSecret $response */
-        $response = $analyticsAdminServiceClient->getMeasurementProtocolSecret($formattedName);
+        $response = $analyticsAdminServiceClient->getMeasurementProtocolSecret($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

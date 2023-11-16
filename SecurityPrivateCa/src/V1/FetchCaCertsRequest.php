@@ -42,6 +42,22 @@ class FetchCaCertsRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string $caPool Required. The resource name for the
+     *                       [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
+     *                       `projects/&#42;/locations/&#42;/caPools/*`. Please see
+     *                       {@see CertificateAuthorityServiceClient::caPoolName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Security\PrivateCA\V1\FetchCaCertsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $caPool): self
+    {
+        return (new self())
+            ->setCaPool($caPool);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

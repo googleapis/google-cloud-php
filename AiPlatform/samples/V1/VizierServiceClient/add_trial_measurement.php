@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_VizierService_AddTrialMeasurement_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\AddTrialMeasurementRequest;
+use Google\Cloud\AIPlatform\V1\Client\VizierServiceClient;
 use Google\Cloud\AIPlatform\V1\Measurement;
 use Google\Cloud\AIPlatform\V1\Trial;
-use Google\Cloud\AIPlatform\V1\VizierServiceClient;
 
 /**
  * Adds a measurement of the objective metrics to a Trial. This measurement
@@ -42,13 +43,16 @@ function add_trial_measurement_sample(string $formattedTrialName): void
     // Create a client.
     $vizierServiceClient = new VizierServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $measurement = new Measurement();
+    $request = (new AddTrialMeasurementRequest())
+        ->setTrialName($formattedTrialName)
+        ->setMeasurement($measurement);
 
     // Call the API and handle any network failures.
     try {
         /** @var Trial $response */
-        $response = $vizierServiceClient->addTrialMeasurement($formattedTrialName, $measurement);
+        $response = $vizierServiceClient->addTrialMeasurement($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

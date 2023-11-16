@@ -31,6 +31,20 @@ class FetchInventoryRequest extends \Google\Protobuf\Internal\Message
     private $force_refresh = false;
 
     /**
+     * @param string $source Required. The name of the Source. Please see
+     *                       {@see VmMigrationClient::sourceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VMMigration\V1\FetchInventoryRequest
+     *
+     * @experimental
+     */
+    public static function build(string $source): self
+    {
+        return (new self())
+            ->setSource($source);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

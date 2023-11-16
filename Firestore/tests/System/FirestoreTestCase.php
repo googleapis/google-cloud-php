@@ -20,14 +20,20 @@ namespace Google\Cloud\Firestore\Tests\System;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Core\Testing\System\DeletionQueue;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
+use Google\Cloud\Firestore\CollectionReference;
+use Google\Cloud\Firestore\DocumentReference;
+use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FirestoreClient;
 
 class FirestoreTestCase extends SystemTestCase
 {
     const COLLECTION_NAME = 'system-test';
+    const TEST_DB_NAME = 'system-tests-named-db';
 
     protected static $client;
+    protected static $multiDbClient;
     protected static $collection;
+    protected static $multiDbCollection;
     protected static $localDeletionQueue;
     private static $hasSetUp = false;
 
@@ -43,9 +49,14 @@ class FirestoreTestCase extends SystemTestCase
         self::$client = new FirestoreClient([
             'keyFilePath' => $keyFilePath
         ]);
+        self::$multiDbClient = new FirestoreClient([
+            'keyFilePath' => $keyFilePath,
+            'database' => self::TEST_DB_NAME
+        ]);
         self::$collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
+        self::$multiDbCollection = self::$multiDbClient->collection(uniqid(self::COLLECTION_NAME));
         self::$localDeletionQueue->add(self::$collection);
-
+        self::$localDeletionQueue->add(self::$multiDbCollection);
 
         self::$hasSetUp = true;
     }

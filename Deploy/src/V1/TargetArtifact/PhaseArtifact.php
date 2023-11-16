@@ -28,6 +28,13 @@ class PhaseArtifact extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string manifest_path = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $manifest_path = '';
+    /**
+     * Output only. File path of the directory of rendered job manifests
+     * relative to the URI. This is only set if it is applicable.
+     *
+     * Generated from protobuf field <code>string job_manifests_path = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $job_manifests_path = '';
 
     /**
      * Constructor.
@@ -40,6 +47,9 @@ class PhaseArtifact extends \Google\Protobuf\Internal\Message
      *           the URI.
      *     @type string $manifest_path
      *           Output only. File path of the rendered manifest relative to the URI.
+     *     @type string $job_manifests_path
+     *           Output only. File path of the directory of rendered job manifests
+     *           relative to the URI. This is only set if it is applicable.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,6 +107,34 @@ class PhaseArtifact extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->manifest_path = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. File path of the directory of rendered job manifests
+     * relative to the URI. This is only set if it is applicable.
+     *
+     * Generated from protobuf field <code>string job_manifests_path = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getJobManifestsPath()
+    {
+        return $this->job_manifests_path;
+    }
+
+    /**
+     * Output only. File path of the directory of rendered job manifests
+     * relative to the URI. This is only set if it is applicable.
+     *
+     * Generated from protobuf field <code>string job_manifests_path = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setJobManifestsPath($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->job_manifests_path = $var;
 
         return $this;
     }

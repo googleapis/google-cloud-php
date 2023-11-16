@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_FeaturestoreService_CreateFeaturestore_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AIPlatform\V1\Client\FeaturestoreServiceClient;
+use Google\Cloud\AIPlatform\V1\CreateFeaturestoreRequest;
 use Google\Cloud\AIPlatform\V1\Featurestore;
-use Google\Cloud\AIPlatform\V1\FeaturestoreServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -34,7 +35,7 @@ use Google\Rpc\Status;
  *
  * @param string $formattedParent The resource name of the Location to create Featurestores.
  *                                Format:
- *                                `projects/{project}/locations/{location}'`
+ *                                `projects/{project}/locations/{location}`
  *                                Please see {@see FeaturestoreServiceClient::locationName()} for help formatting this field.
  * @param string $featurestoreId  The ID to use for this Featurestore, which will become the final
  *                                component of the Featurestore's resource name.
@@ -49,17 +50,17 @@ function create_featurestore_sample(string $formattedParent, string $featurestor
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $featurestore = new Featurestore();
+    $request = (new CreateFeaturestoreRequest())
+        ->setParent($formattedParent)
+        ->setFeaturestore($featurestore)
+        ->setFeaturestoreId($featurestoreId);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $featurestoreServiceClient->createFeaturestore(
-            $formattedParent,
-            $featurestore,
-            $featurestoreId
-        );
+        $response = $featurestoreServiceClient->createFeaturestore($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

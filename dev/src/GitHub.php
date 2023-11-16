@@ -20,6 +20,7 @@ namespace Google\Cloud\Dev;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Response;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Manages GitHub API calls for Subtree Split releases.
@@ -33,29 +34,21 @@ class GitHub
     const GITHUB_RELEASE_CREATE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases';
     const GITHUB_RELEASE_UPDATE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases/%s';
     const GITHUB_RELEASE_GET_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases/tags/%s';
-
-    /**
-     * @var RunShell
-     */
-    private $shell;
-
-    /**
-     * @var Client
-     */
-    private $client;
-
-    /**
-     * @var string
-     */
-    private $token;
+    const GITHUB_WEBHOOK_CREATE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/hooks';
+    private const GITHUB_TEAMS_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/teams';
+    private const GITHUB_TEAMS_ADD_ENDPOINT = 'https://api.github.com/orgs/%s/teams/%s/repos/%s';
 
     /**
      * @var array[]
      */
     private $targetInfoCache = [];
 
-    public function __construct(RunShell $shell, Client $client, $token)
-    {
+    public function __construct(
+        private RunShell $shell,
+        private Client $client,
+        public string $token,
+        private ?OutputInterface $output = null
+    ) {
         $this->shell = $shell;
         $this->client = $client;
         $this->token = $token;
@@ -70,12 +63,7 @@ class GitHub
      */
     public function getDefaultBranch($target)
     {
-        try {
-            $res = $this->getRepo($target);
-            return json_decode((string) $res->getBody(), true)['default_branch'];
-        } catch (\Exception $e) {
-            return null;
-        }
+        return $this->getRepoDetails($target)['default_branch'] ?? null;
     }
 
     /**
@@ -87,12 +75,9 @@ class GitHub
      */
     public function isTargetEmpty($target)
     {
-        try {
-            $res = $this->getRepo($target);
-            return json_decode((string) $res->getBody(), true)['size'] === 0;
-        } catch (\Exception $e) {
-            return null;
-        }
+        $res = $this->getRepoDetails($target);
+
+        return is_null($res) ? null : $res['size'] === 0;
     }
 
     /**
@@ -115,6 +100,10 @@ class GitHub
 
             return ($res->getStatusCode() === 200);
         } catch (\Exception $e) {
+            if ($e->getCode() === 404) {
+                return false;
+            }
+            $this->logException($e);
             return null;
         }
     }
@@ -148,6 +137,7 @@ class GitHub
 
             return $res->getStatusCode() === 201;
         } catch (\Exception $e) {
+            $this->logException($e);
             return false;
         }
     }
@@ -193,6 +183,7 @@ class GitHub
 
             return $res->getStatusCode() === 201;
         } catch (\Exception $e) {
+            $this->logException($e);
             return false;
         }
     }
@@ -218,6 +209,7 @@ class GitHub
 
             return json_decode((string) $res->getBody(), true)['body'];
         } catch (\Exception $e) {
+            $this->logException($e);
             return null;
         }
     }
@@ -254,6 +246,130 @@ class GitHub
     }
 
     /**
+     * Get repository details from the GitHub API.
+     *
+     * @param string $target The GitHub organization and repository ID separated
+     *        by a forward slash, i.e. `organization/repository'.
+     *
+     * @return array|null
+     */
+    public function getRepoDetails($target)
+    {
+        try {
+            if (isset($this->targetInfoCache[$target])) {
+                $res = $this->targetInfoCache[$target];
+            } else {
+                $res = $this->client->get(sprintf(
+                    self::GITHUB_REPO_ENDPOINT,
+                    $this->cleanTarget($target)
+                ), [
+                    'auth' => [null, $this->token]
+                ]);
+
+                $this->targetInfoCache[$target] = $res;
+            }
+
+            return json_decode((string) $res->getBody(), true);
+        } catch (\Exception $e) {
+            $this->logException($e);
+            return null;
+        }
+    }
+
+    public function getTeams(string $repoName)
+    {
+        try {
+            // get team fields
+            $res = $this->client->get(sprintf(
+                self::GITHUB_TEAMS_ENDPOINT,
+                $this->cleanTarget($repoName)
+            ), [
+                'auth' => [null, $this->token]
+            ]);
+
+            return json_decode((string) $res->getBody(), true);
+        } catch (\Exception $e) {
+            $this->logException($e);
+            return null;
+        }
+    }
+
+    public function updateRepoDetails(string $repoName, array $settings): bool
+    {
+        try {
+            $res = $this->client->patch(sprintf(
+                self::GITHUB_REPO_ENDPOINT,
+                $repoName
+            ), [
+                'auth' => [null, $this->token],
+                'body' => json_encode($settings),
+            ]);
+
+            return $res->getStatusCode() === 200;
+        } catch (\Exception $e) {
+            $this->logException($e);
+            return false;
+        }
+    }
+
+    public function updateTeamPermission(
+        string $orgName,
+        string $teamName,
+        string $repoName,
+        string $permission
+    ): bool {
+        try {
+            $res = $this->client->put(sprintf(
+                self::GITHUB_TEAMS_ADD_ENDPOINT,
+                $orgName,
+                $teamName,
+                $repoName,
+            ), [
+                'auth' => [null, $this->token],
+                'body' => json_encode(['permission' => $permission]),
+            ]);
+            return $res->getStatusCode() == 204;
+        } catch (\Exception $e) {
+            $this->logException($e);
+            return false;
+        }
+    }
+
+    /**
+     * Add webhook
+     */
+    public function addWebhook(
+        string $target,
+        string $webhookUrl,
+        string $secret
+    ) {
+        try {
+            $res = $this->client->post(sprintf(
+                self::GITHUB_WEBHOOK_CREATE_ENDPOINT,
+                $this->cleanTarget($target)
+            ), [
+                'auth' => [null, $this->token],
+                'json' => [
+                    'name' => 'web',
+                    'active' => true,
+                    'events' => ['push'],
+                    'config' =>  [
+                        'url' => $webhookUrl,
+                        'content_type' => 'json',
+                        'secret' => $secret,
+                        'insecure_ssl' => false,
+                    ],
+                ],
+            ]);
+
+            return $res->getStatusCode() === 201;
+        } catch (\Exception $e) {
+            $this->logException($e);
+            return false;
+        }
+    }
+
+    /**
      * Make sure the target is formatted properly.
      *
      * @param string $target The GitHub organization and repository ID separated
@@ -266,28 +382,17 @@ class GitHub
     }
 
     /**
-     * Get and cache the repository object from the API
+     * Log an exception
      *
-     * @param string $target The GitHub organization and repository ID separated
-     *        by a forward slash, i.e. `organization/repository'.
-     * @return Response
-     * @throws GuzzleException
+     * @param \Exception $e
      */
-    private function getRepo($target)
+    private function logException(\Exception $e)
     {
-        if (isset($this->targetInfoCache[$target])) {
-            $res = $this->targetInfoCache[$target];
-        } else {
-            $res = $this->client->get(sprintf(
-                self::GITHUB_REPO_ENDPOINT,
-                $this->cleanTarget($target)
-            ), [
-                'auth' => [null, $this->token]
-            ]);
-
-            $this->targetInfoCache[$target] = $res;
+        if ($this->output) {
+            $this->output->writeln(sprintf(
+                '<error>Exception: %s</error>',
+                $e->getMessage()
+            ));
         }
-
-        return $res;
     }
 }

@@ -32,6 +32,24 @@ class UpdateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
     private $notification_channel = null;
 
     /**
+     * @param \Google\Protobuf\FieldMask                      $updateMask          The fields to update.
+     * @param \Google\Cloud\Monitoring\V3\NotificationChannel $notificationChannel Required. A description of the changes to be applied to the specified
+     *                                                                             notification channel. The description must provide a definition for
+     *                                                                             fields to be updated; the names of these fields should also be
+     *                                                                             included in the `update_mask`.
+     *
+     * @return \Google\Cloud\Monitoring\V3\UpdateNotificationChannelRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Protobuf\FieldMask $updateMask, \Google\Cloud\Monitoring\V3\NotificationChannel $notificationChannel): self
+    {
+        return (new self())
+            ->setUpdateMask($updateMask)
+            ->setNotificationChannel($notificationChannel);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

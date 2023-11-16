@@ -17,7 +17,7 @@ class DeleteTargetRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the `Target` to delete. Format should be
-     * projects/{project_id}/locations/{location_name}/targets/{target_name}.
+     * `projects/{project_id}/locations/{location_name}/targets/{target_name}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -40,7 +40,7 @@ class DeleteTargetRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
     /**
      * Optional. If set to true, then deleting an already deleted or non-existing
-     * DeliveryPipeline will succeed.
+     * `Target` will succeed.
      *
      * Generated from protobuf field <code>bool allow_missing = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -62,6 +62,21 @@ class DeleteTargetRequest extends \Google\Protobuf\Internal\Message
     private $etag = '';
 
     /**
+     * @param string $name Required. The name of the `Target` to delete. Format should be
+     *                     `projects/{project_id}/locations/{location_name}/targets/{target_name}`. Please see
+     *                     {@see CloudDeployClient::targetName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Deploy\V1\DeleteTargetRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -69,7 +84,7 @@ class DeleteTargetRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the `Target` to delete. Format should be
-     *           projects/{project_id}/locations/{location_name}/targets/{target_name}.
+     *           `projects/{project_id}/locations/{location_name}/targets/{target_name}`.
      *     @type string $request_id
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server will know to ignore
@@ -84,7 +99,7 @@ class DeleteTargetRequest extends \Google\Protobuf\Internal\Message
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $allow_missing
      *           Optional. If set to true, then deleting an already deleted or non-existing
-     *           DeliveryPipeline will succeed.
+     *           `Target` will succeed.
      *     @type bool $validate_only
      *           Optional. If set, validate the request and preview the review, but do not
      *           actually post it.
@@ -101,7 +116,7 @@ class DeleteTargetRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the `Target` to delete. Format should be
-     * projects/{project_id}/locations/{location_name}/targets/{target_name}.
+     * `projects/{project_id}/locations/{location_name}/targets/{target_name}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -113,7 +128,7 @@ class DeleteTargetRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the `Target` to delete. Format should be
-     * projects/{project_id}/locations/{location_name}/targets/{target_name}.
+     * `projects/{project_id}/locations/{location_name}/targets/{target_name}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -175,7 +190,7 @@ class DeleteTargetRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. If set to true, then deleting an already deleted or non-existing
-     * DeliveryPipeline will succeed.
+     * `Target` will succeed.
      *
      * Generated from protobuf field <code>bool allow_missing = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -187,7 +202,7 @@ class DeleteTargetRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. If set to true, then deleting an already deleted or non-existing
-     * DeliveryPipeline will succeed.
+     * `Target` will succeed.
      *
      * Generated from protobuf field <code>bool allow_missing = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

@@ -41,6 +41,46 @@ class CreateEntityTypeRequest extends \Google\Protobuf\Internal\Message
     private $language_code = '';
 
     /**
+     * @param string                                 $parent     Required. The agent to create a entity type for.
+     *                                                           Format: `projects/<Project ID>/agent`. Please see
+     *                                                           {@see EntityTypesClient::agentName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\V2\EntityType $entityType Required. The entity type to create.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\CreateEntityTypeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dialogflow\V2\EntityType $entityType): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setEntityType($entityType);
+    }
+
+    /**
+     * @param string                                 $parent       Required. The agent to create a entity type for.
+     *                                                             Format: `projects/<Project ID>/agent`. Please see
+     *                                                             {@see EntityTypesClient::agentName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\V2\EntityType $entityType   Required. The entity type to create.
+     * @param string                                 $languageCode Optional. The language used to access language-specific data.
+     *                                                             If not specified, the agent's default language is used.
+     *                                                             For more information, see
+     *                                                             [Multilingual intent and entity
+     *                                                             data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
+     *
+     * @return \Google\Cloud\Dialogflow\V2\CreateEntityTypeRequest
+     *
+     * @experimental
+     */
+    public static function buildFromParentEntityTypeLanguageCode(string $parent, \Google\Cloud\Dialogflow\V2\EntityType $entityType, string $languageCode): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setEntityType($entityType)
+            ->setLanguageCode($languageCode);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

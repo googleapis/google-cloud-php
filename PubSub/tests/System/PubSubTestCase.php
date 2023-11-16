@@ -59,6 +59,7 @@ class PubSubTestCase extends SystemTestCase
             'transport' => 'grpc',
         ]);
         self::setUsingEmulatorForClassPrefix((bool) getenv('PUBSUB_EMULATOR_HOST'));
+        self::setupQueue();
         self::$hasSetUp = true;
     }
 

@@ -57,6 +57,22 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{parent=billingAccounts/*}/logs',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/buckets/*/views/*}/logs',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=organizations/*/locations/*/buckets/*/views/*}/logs',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=folders/*/locations/*/buckets/*/views/*}/logs',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=billingAccounts/*/locations/*/buckets/*/views/*}/logs',
+                    ],
                 ],
                 'placeholders' => [
                     'parent' => [
@@ -129,7 +145,7 @@ return [
                     ],
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v2/{name=billingAccounts/*/operations/*}',
+                        'uriTemplate' => '/v2/{name=billingAccounts/*/locations/*/operations/*}',
                     ],
                 ],
                 'placeholders' => [

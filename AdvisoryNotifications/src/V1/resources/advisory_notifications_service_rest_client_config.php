@@ -14,6 +14,17 @@ return [
                     ],
                 ],
             ],
+            'GetSettings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=organizations/*/locations/*/settings}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListNotifications' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=organizations/*/locations/*}/notifications',
@@ -21,6 +32,19 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateSettings' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{settings.name=organizations/*/locations/*/settings}',
+                'body' => 'settings',
+                'placeholders' => [
+                    'settings.name' => [
+                        'getters' => [
+                            'getSettings',
+                            'getName',
                         ],
                     ],
                 ],

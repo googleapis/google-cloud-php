@@ -13,16 +13,36 @@ jobs:
       matrix:
         platform: [ubuntu-latest, windows-latest]
         php: [ "7.4", "8.0", "8.1", "8.2" ]
-    name: PHP ${{ matrix.php }} Unit Test (${{ matrix.platform }})
+        extensions: ["grpc-1.54.0"]
+        type: ["Unit Test"]
+        include:
+          - platform: "ubuntu-latest"
+            php: "7.4"
+            extensions: "protobuf,grpc-1.54.0"
+            type: "Unit Test + protobuf extension"
+    name: PHP ${{ matrix.php }} ${{ matrix.type }} (${{ matrix.platform }})
     runs-on: ${{ matrix.platform }}
     continue-on-error: true
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+    - name: Setup cache environment
+      id: extcache
+      uses: shivammathur/cache-extensions@v1
+      with:
+        php-version: ${{ matrix.php }}
+        extensions: ${{ matrix.extensions }}
+        key: cache-key-1 # increment to bust the cache
+    - name: Cache extensions
+      uses: actions/cache@v3
+      with:
+        path: ${{ steps.extcache.outputs.dir }}
+        key: ${{ steps.extcache.outputs.key }}
+        restore-keys: ${{ steps.extcache.outputs.key }}
     - name: Setup PHP
       uses: shivammathur/setup-php@verbose
       with:
         php-version: ${{ matrix.php }}
-        extensions: grpc-1.49.0
+        extensions: ${{ matrix.extensions }}
     - name: Install Dependencies
       uses: nick-invision/retry@v2
       with:
@@ -47,16 +67,16 @@ jobs:
       run: |
         vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose
 
-  test_package:
+  test_packages:
     name: Package Tests
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Setup PHP
       uses: shivammathur/setup-php@verbose
       with:
-        php-version: '8.0'
-        extensions: grpc-1.49.0
+        php-version: '8.1'
+        extensions: grpc
     - name: Run Package Test Suites
       run: bash .github/run-package-tests.sh
 
@@ -64,11 +84,11 @@ jobs:
     name: Dev Commands Unit Tests
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Setup PHP
       uses: shivammathur/setup-php@verbose
       with:
-        php-version: "8.0"
+        php-version: "8.1"
     - name: "Install dependencies"
       run: composer  --no-interaction --no-ansi --no-progress update -d dev
     - name: Run Dev Unit Test Suite

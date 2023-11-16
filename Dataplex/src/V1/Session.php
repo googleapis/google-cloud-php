@@ -35,6 +35,8 @@ class Session extends \Google\Protobuf\Internal\Message
      */
     private $create_time = null;
     /**
+     * Output only. State of Session
+     *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
@@ -53,6 +55,7 @@ class Session extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Session start time.
      *     @type int $state
+     *           Output only. State of Session
      * }
      */
     public function __construct($data = NULL) {
@@ -151,6 +154,8 @@ class Session extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. State of Session
+     *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
@@ -160,6 +165,8 @@ class Session extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. State of Session
+     *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this

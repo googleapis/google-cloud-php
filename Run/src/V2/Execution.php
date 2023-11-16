@@ -39,20 +39,23 @@ class Execution extends \Google\Protobuf\Internal\Message
      */
     private $generation = 0;
     /**
-     * KRM-style labels for the resource.
-     * User-provided labels are shared with Google's billing system, so they can
-     * be used to filter, or break down billing charges by team, component,
-     * environment, state, etc. For more information, visit
+     * Output only. Unstructured key value map that can be used to organize and
+     * categorize objects. User-provided labels are shared with Google's billing
+     * system, so they can be used to filter, or break down billing charges by
+     * team, component, environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      * https://cloud.google.com/run/docs/configuring/labels
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $labels;
     /**
-     * KRM-style annotations for the resource.
+     * Output only. Unstructured key value map that may
+     * be set by external tools to store and arbitrary metadata.
+     * They are not queryable and should be preserved
+     * when modifying objects.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 5;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $annotations;
     /**
@@ -100,10 +103,14 @@ class Execution extends \Google\Protobuf\Internal\Message
      */
     private $expire_time = null;
     /**
-     * Set the launch stage to a preview stage on write to allow use of preview
-     * features in that stage. On read, describes whether the resource uses
-     * preview features. Launch Stages are defined at [Google Cloud Platform
-     * Launch Stages](https://cloud.google.com/terms/launch-stages).
+     * The least stable launch stage needed to create this resource, as defined by
+     * [Google Cloud Platform Launch
+     * Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
+     * `ALPHA`, `BETA`, and `GA`.
+     * <p>Note that this value might not be what was used
+     * as input. For example, if ALPHA was provided as input in the parent
+     * resource, but only BETA and GA-level features are were, this field will be
+     * BETA.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 11;</code>
      */
@@ -119,8 +126,7 @@ class Execution extends \Google\Protobuf\Internal\Message
      * should run at any given time. Must be <= task_count. The actual number of
      * tasks running in steady state will be less than this number when
      * ((.spec.task_count - .status.successful) < .spec.parallelism), i.e. when
-     * the work left to do is less than max parallelism. More info:
-     * https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
+     * the work left to do is less than max parallelism.
      *
      * Generated from protobuf field <code>int32 parallelism = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -129,8 +135,6 @@ class Execution extends \Google\Protobuf\Internal\Message
      * Output only. Specifies the desired number of tasks the execution should
      * run. Setting to 1 means that parallelism is limited to 1 and the success of
      * that task signals the success of the execution.
-     * More info:
-     * https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
      *
      * Generated from protobuf field <code>int32 task_count = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -203,6 +207,12 @@ class Execution extends \Google\Protobuf\Internal\Message
      */
     private $log_uri = '';
     /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $satisfies_pzs = false;
+    /**
      * Output only. A system-generated fingerprint for this version of the
      * resource. May be used to detect modification conflict during updates.
      *
@@ -226,14 +236,17 @@ class Execution extends \Google\Protobuf\Internal\Message
      *           Output only. A number that monotonically increases every time the user
      *           modifies the desired state.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           KRM-style labels for the resource.
-     *           User-provided labels are shared with Google's billing system, so they can
-     *           be used to filter, or break down billing charges by team, component,
-     *           environment, state, etc. For more information, visit
+     *           Output only. Unstructured key value map that can be used to organize and
+     *           categorize objects. User-provided labels are shared with Google's billing
+     *           system, so they can be used to filter, or break down billing charges by
+     *           team, component, environment, state, etc. For more information, visit
      *           https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      *           https://cloud.google.com/run/docs/configuring/labels
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
-     *           KRM-style annotations for the resource.
+     *           Output only. Unstructured key value map that may
+     *           be set by external tools to store and arbitrary metadata.
+     *           They are not queryable and should be preserved
+     *           when modifying objects.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Represents time when the execution was acknowledged by the
      *           execution controller. It is not guaranteed to be set in happens-before
@@ -255,10 +268,14 @@ class Execution extends \Google\Protobuf\Internal\Message
      *           permamently deleted. It is only populated as a response to a Delete
      *           request.
      *     @type int $launch_stage
-     *           Set the launch stage to a preview stage on write to allow use of preview
-     *           features in that stage. On read, describes whether the resource uses
-     *           preview features. Launch Stages are defined at [Google Cloud Platform
-     *           Launch Stages](https://cloud.google.com/terms/launch-stages).
+     *           The least stable launch stage needed to create this resource, as defined by
+     *           [Google Cloud Platform Launch
+     *           Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
+     *           `ALPHA`, `BETA`, and `GA`.
+     *           <p>Note that this value might not be what was used
+     *           as input. For example, if ALPHA was provided as input in the parent
+     *           resource, but only BETA and GA-level features are were, this field will be
+     *           BETA.
      *     @type string $job
      *           Output only. The name of the parent Job.
      *     @type int $parallelism
@@ -266,14 +283,11 @@ class Execution extends \Google\Protobuf\Internal\Message
      *           should run at any given time. Must be <= task_count. The actual number of
      *           tasks running in steady state will be less than this number when
      *           ((.spec.task_count - .status.successful) < .spec.parallelism), i.e. when
-     *           the work left to do is less than max parallelism. More info:
-     *           https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
+     *           the work left to do is less than max parallelism.
      *     @type int $task_count
      *           Output only. Specifies the desired number of tasks the execution should
      *           run. Setting to 1 means that parallelism is limited to 1 and the success of
      *           that task signals the success of the execution.
-     *           More info:
-     *           https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
      *     @type \Google\Cloud\Run\V2\TaskTemplate $template
      *           Output only. The template used to create tasks for this execution.
      *     @type bool $reconciling
@@ -301,6 +315,8 @@ class Execution extends \Google\Protobuf\Internal\Message
      *     @type string $log_uri
      *           Output only. URI where logs for this execution can be found in Cloud
      *           Console.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
      *     @type string $etag
      *           Output only. A system-generated fingerprint for this version of the
      *           resource. May be used to detect modification conflict during updates.
@@ -396,14 +412,14 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style labels for the resource.
-     * User-provided labels are shared with Google's billing system, so they can
-     * be used to filter, or break down billing charges by team, component,
-     * environment, state, etc. For more information, visit
+     * Output only. Unstructured key value map that can be used to organize and
+     * categorize objects. User-provided labels are shared with Google's billing
+     * system, so they can be used to filter, or break down billing charges by
+     * team, component, environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      * https://cloud.google.com/run/docs/configuring/labels
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -412,14 +428,14 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style labels for the resource.
-     * User-provided labels are shared with Google's billing system, so they can
-     * be used to filter, or break down billing charges by team, component,
-     * environment, state, etc. For more information, visit
+     * Output only. Unstructured key value map that can be used to organize and
+     * categorize objects. User-provided labels are shared with Google's billing
+     * system, so they can be used to filter, or break down billing charges by
+     * team, component, environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      * https://cloud.google.com/run/docs/configuring/labels
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -432,9 +448,12 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style annotations for the resource.
+     * Output only. Unstructured key value map that may
+     * be set by external tools to store and arbitrary metadata.
+     * They are not queryable and should be preserved
+     * when modifying objects.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 5;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getAnnotations()
@@ -443,9 +462,12 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style annotations for the resource.
+     * Output only. Unstructured key value map that may
+     * be set by external tools to store and arbitrary metadata.
+     * They are not queryable and should be preserved
+     * when modifying objects.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 5;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -690,10 +712,14 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set the launch stage to a preview stage on write to allow use of preview
-     * features in that stage. On read, describes whether the resource uses
-     * preview features. Launch Stages are defined at [Google Cloud Platform
-     * Launch Stages](https://cloud.google.com/terms/launch-stages).
+     * The least stable launch stage needed to create this resource, as defined by
+     * [Google Cloud Platform Launch
+     * Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
+     * `ALPHA`, `BETA`, and `GA`.
+     * <p>Note that this value might not be what was used
+     * as input. For example, if ALPHA was provided as input in the parent
+     * resource, but only BETA and GA-level features are were, this field will be
+     * BETA.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 11;</code>
      * @return int
@@ -704,10 +730,14 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set the launch stage to a preview stage on write to allow use of preview
-     * features in that stage. On read, describes whether the resource uses
-     * preview features. Launch Stages are defined at [Google Cloud Platform
-     * Launch Stages](https://cloud.google.com/terms/launch-stages).
+     * The least stable launch stage needed to create this resource, as defined by
+     * [Google Cloud Platform Launch
+     * Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
+     * `ALPHA`, `BETA`, and `GA`.
+     * <p>Note that this value might not be what was used
+     * as input. For example, if ALPHA was provided as input in the parent
+     * resource, but only BETA and GA-level features are were, this field will be
+     * BETA.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 11;</code>
      * @param int $var
@@ -752,8 +782,7 @@ class Execution extends \Google\Protobuf\Internal\Message
      * should run at any given time. Must be <= task_count. The actual number of
      * tasks running in steady state will be less than this number when
      * ((.spec.task_count - .status.successful) < .spec.parallelism), i.e. when
-     * the work left to do is less than max parallelism. More info:
-     * https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
+     * the work left to do is less than max parallelism.
      *
      * Generated from protobuf field <code>int32 parallelism = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -768,8 +797,7 @@ class Execution extends \Google\Protobuf\Internal\Message
      * should run at any given time. Must be <= task_count. The actual number of
      * tasks running in steady state will be less than this number when
      * ((.spec.task_count - .status.successful) < .spec.parallelism), i.e. when
-     * the work left to do is less than max parallelism. More info:
-     * https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
+     * the work left to do is less than max parallelism.
      *
      * Generated from protobuf field <code>int32 parallelism = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -787,8 +815,6 @@ class Execution extends \Google\Protobuf\Internal\Message
      * Output only. Specifies the desired number of tasks the execution should
      * run. Setting to 1 means that parallelism is limited to 1 and the success of
      * that task signals the success of the execution.
-     * More info:
-     * https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
      *
      * Generated from protobuf field <code>int32 task_count = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -802,8 +828,6 @@ class Execution extends \Google\Protobuf\Internal\Message
      * Output only. Specifies the desired number of tasks the execution should
      * run. Setting to 1 means that parallelism is limited to 1 and the success of
      * that task signals the success of the execution.
-     * More info:
-     * https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
      *
      * Generated from protobuf field <code>int32 task_count = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -1097,6 +1121,32 @@ class Execution extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->log_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
 
         return $this;
     }

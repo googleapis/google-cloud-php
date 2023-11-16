@@ -47,6 +47,12 @@ class Access extends \Google\Protobuf\Internal\Message
      */
     private $user_agent_family = '';
     /**
+     * The caller's user agent string associated with the finding.
+     *
+     * Generated from protobuf field <code>string user_agent = 12;</code>
+     */
+    private $user_agent = '';
+    /**
      * This is the API service that the service account made a call to, e.g.
      * "iam.googleapis.com"
      *
@@ -123,6 +129,8 @@ class Access extends \Google\Protobuf\Internal\Message
      *     @type string $user_agent_family
      *           Type of user agent associated with the finding. For example, an operating
      *           system shell or an embedded or standalone application.
+     *     @type string $user_agent
+     *           The caller's user agent string associated with the finding.
      *     @type string $service_name
      *           This is the API service that the service account made a call to, e.g.
      *           "iam.googleapis.com"
@@ -285,6 +293,32 @@ class Access extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->user_agent_family = $var;
+
+        return $this;
+    }
+
+    /**
+     * The caller's user agent string associated with the finding.
+     *
+     * Generated from protobuf field <code>string user_agent = 12;</code>
+     * @return string
+     */
+    public function getUserAgent()
+    {
+        return $this->user_agent;
+    }
+
+    /**
+     * The caller's user agent string associated with the finding.
+     *
+     * Generated from protobuf field <code>string user_agent = 12;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUserAgent($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->user_agent = $var;
 
         return $this;
     }

@@ -29,6 +29,21 @@ class GetTargetGrpcProxyRequest extends \Google\Protobuf\Internal\Message
     private $target_grpc_proxy = '';
 
     /**
+     * @param string $project         Project ID for this request.
+     * @param string $targetGrpcProxy Name of the TargetGrpcProxy resource to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetTargetGrpcProxyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $targetGrpcProxy): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setTargetGrpcProxy($targetGrpcProxy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

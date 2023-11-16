@@ -17,11 +17,11 @@
 
 namespace Google\Cloud\Storage\Tests\Unit;
 
-use Google\ApiCore\AgentHeader;
 use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Auth\SignBlobInterface;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\RequestWrapper;
+use Google\Cloud\Core\Retry;
 use Google\Cloud\Core\Testing\KeyPairGenerateTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Storage\Acl;
@@ -30,7 +30,7 @@ use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\SigningHelper;
 use Google\Cloud\Storage\StorageObject;
-use GuzzleHttp\Promise;
+use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
@@ -553,7 +553,7 @@ class StorageObjectTest extends TestCase
                 ]
             ]
         ])
-            ->willReturn(Promise\promise_for($stream));
+            ->willReturn(Create::promiseFor($stream));
 
         $object = new StorageObject($this->connection->reveal(), $object, $bucket);
 
@@ -616,7 +616,7 @@ class StorageObjectTest extends TestCase
         $this->assertEquals($expectedRange, $actualOptions['headers']['Range']);
 
         $this->assertNotNull($actualRequest);
-        $this->assertNotNull($agentHeader = $actualRequest->getHeaderLine(AgentHeader::AGENT_HEADER_KEY));
+        $this->assertNotNull($agentHeader = $actualRequest->getHeaderLine(Retry::RETRY_HEADER_KEY));
         $agentHeaderParts = explode(' ', $agentHeader);
         $this->assertStringStartsWith('gccl-invocation-id/', $agentHeaderParts[2]);
         $this->assertEquals('gccl-attempt-count/3', $agentHeaderParts[3]);

@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Dataplex\V1\Action;
-use Google\Cloud\Dataplex\V1\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\Client\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\ListAssetActionsRequest;
 
 /**
  * Lists action resources in an asset.
@@ -40,10 +41,14 @@ function list_asset_actions_sample(string $formattedParent): void
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListAssetActionsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataplexServiceClient->listAssetActions($formattedParent);
+        $response = $dataplexServiceClient->listAssetActions($request);
 
         /** @var Action $element */
         foreach ($response as $element) {

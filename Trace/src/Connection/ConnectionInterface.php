@@ -20,6 +20,8 @@ namespace Google\Cloud\Trace\Connection;
 /**
  * Represents a connection to
  * [Trace](https://cloud.google.com/trace).
+ *
+ * @internal
  */
 interface ConnectionInterface
 {

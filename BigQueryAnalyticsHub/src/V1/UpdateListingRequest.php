@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateListingRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Field mask specifies the fields to update in the listing resource. The
-     * fields specified in the `updateMask` are relative to the resource and are
-     * not a full request.
+     * Required. Field mask specifies the fields to update in the listing
+     * resource. The fields specified in the `updateMask` are relative to the
+     * resource and are not a full request.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -31,15 +31,32 @@ class UpdateListingRequest extends \Google\Protobuf\Internal\Message
     private $listing = null;
 
     /**
+     * @param \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing $listing    Required. The listing to update.
+     * @param \Google\Protobuf\FieldMask                     $updateMask Required. Field mask specifies the fields to update in the listing
+     *                                                                   resource. The fields specified in the `updateMask` are relative to the
+     *                                                                   resource and are not a full request.
+     *
+     * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\UpdateListingRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\BigQuery\AnalyticsHub\V1\Listing $listing, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setListing($listing)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required. Field mask specifies the fields to update in the listing resource. The
-     *           fields specified in the `updateMask` are relative to the resource and are
-     *           not a full request.
+     *           Required. Field mask specifies the fields to update in the listing
+     *           resource. The fields specified in the `updateMask` are relative to the
+     *           resource and are not a full request.
      *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing $listing
      *           Required. The listing to update.
      * }
@@ -50,9 +67,9 @@ class UpdateListingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Field mask specifies the fields to update in the listing resource. The
-     * fields specified in the `updateMask` are relative to the resource and are
-     * not a full request.
+     * Required. Field mask specifies the fields to update in the listing
+     * resource. The fields specified in the `updateMask` are relative to the
+     * resource and are not a full request.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -73,9 +90,9 @@ class UpdateListingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Field mask specifies the fields to update in the listing resource. The
-     * fields specified in the `updateMask` are relative to the resource and are
-     * not a full request.
+     * Required. Field mask specifies the fields to update in the listing
+     * resource. The fields specified in the `updateMask` are relative to the
+     * resource and are not a full request.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

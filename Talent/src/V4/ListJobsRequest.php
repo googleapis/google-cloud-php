@@ -73,6 +73,47 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     private $job_view = 0;
 
     /**
+     * @param string $parent Required. The resource name of the tenant under which the job is created.
+     *
+     *                       The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     *                       "projects/foo/tenants/bar". Please see
+     *                       {@see JobServiceClient::tenantName()} for help formatting this field.
+     * @param string $filter Required. The filter string specifies the jobs to be enumerated.
+     *
+     *                       Supported operator: =, AND
+     *
+     *                       The fields eligible for filtering are:
+     *
+     *                       * `companyName`
+     *                       * `requisitionId`
+     *                       * `status` Available values: OPEN, EXPIRED, ALL. Defaults to
+     *                       OPEN if no value is specified.
+     *
+     *                       At least one of `companyName` and `requisitionId` must present or an
+     *                       INVALID_ARGUMENT error is thrown.
+     *
+     *                       Sample Query:
+     *
+     *                       * companyName = "projects/foo/tenants/bar/companies/baz"
+     *                       * companyName = "projects/foo/tenants/bar/companies/baz" AND
+     *                       requisitionId = "req-1"
+     *                       * companyName = "projects/foo/tenants/bar/companies/baz" AND
+     *                       status = "EXPIRED"
+     *                       * requisitionId = "req-1"
+     *                       * requisitionId = "req-1" AND status = "EXPIRED"
+     *
+     * @return \Google\Cloud\Talent\V4\ListJobsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $filter): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setFilter($filter);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

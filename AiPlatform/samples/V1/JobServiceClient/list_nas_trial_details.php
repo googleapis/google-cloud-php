@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_JobService_ListNasTrialDetails_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\AIPlatform\V1\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\ListNasTrialDetailsRequest;
 use Google\Cloud\AIPlatform\V1\NasTrialDetail;
 
 /**
@@ -41,10 +42,14 @@ function list_nas_trial_details_sample(string $formattedParent): void
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListNasTrialDetailsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $jobServiceClient->listNasTrialDetails($formattedParent);
+        $response = $jobServiceClient->listNasTrialDetails($request);
 
         /** @var NasTrialDetail $element */
         foreach ($response as $element) {

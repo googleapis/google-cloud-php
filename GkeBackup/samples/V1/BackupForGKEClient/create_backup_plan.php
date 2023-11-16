@@ -25,22 +25,22 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START gkebackup_v1_generated_BackupForGKE_CreateBackupPlan_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\GkeBackup\V1\BackupForGKEClient;
 use Google\Cloud\GkeBackup\V1\BackupPlan;
+use Google\Cloud\GkeBackup\V1\Client\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\CreateBackupPlanRequest;
 use Google\Rpc\Status;
 
 /**
  * Creates a new BackupPlan in a given location.
  *
  * @param string $formattedParent            The location within which to create the BackupPlan.
- *                                           Format: projects/&#42;/locations/*
+ *                                           Format: `projects/&#42;/locations/*`
  *                                           Please see {@see BackupForGKEClient::locationName()} for help formatting this field.
- * @param string $formattedBackupPlanCluster Immutable. The source cluster from which Backups will be created via
- *                                           this BackupPlan.
- *                                           Valid formats:
+ * @param string $formattedBackupPlanCluster Immutable. The source cluster from which Backups will be created
+ *                                           via this BackupPlan. Valid formats:
  *
- *                                           - projects/&#42;/locations/&#42;/clusters/*
- *                                           - projects/&#42;/zones/&#42;/clusters/*
+ *                                           - `projects/&#42;/locations/&#42;/clusters/*`
+ *                                           - `projects/&#42;/zones/&#42;/clusters/*`
  *                                           Please see {@see BackupForGKEClient::clusterName()} for help formatting this field.
  * @param string $backupPlanId               The client-provided short name for the BackupPlan resource.
  *                                           This name must:
@@ -59,14 +59,18 @@ function create_backup_plan_sample(
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $backupPlan = (new BackupPlan())
         ->setCluster($formattedBackupPlanCluster);
+    $request = (new CreateBackupPlanRequest())
+        ->setParent($formattedParent)
+        ->setBackupPlan($backupPlan)
+        ->setBackupPlanId($backupPlanId);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $backupForGKEClient->createBackupPlan($formattedParent, $backupPlan, $backupPlanId);
+        $response = $backupForGKEClient->createBackupPlan($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

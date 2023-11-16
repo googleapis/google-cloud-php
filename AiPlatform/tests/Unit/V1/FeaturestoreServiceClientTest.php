@@ -35,7 +35,6 @@ use Google\Cloud\AIPlatform\V1\ExportFeatureValuesResponse;
 use Google\Cloud\AIPlatform\V1\Feature;
 use Google\Cloud\AIPlatform\V1\FeatureSelector;
 use Google\Cloud\AIPlatform\V1\FeatureValueDestination;
-use Google\Cloud\AIPlatform\V1\Feature\ValueType;
 use Google\Cloud\AIPlatform\V1\Featurestore;
 use Google\Cloud\AIPlatform\V1\FeaturestoreServiceClient;
 use Google\Cloud\AIPlatform\V1\IdMatcher;
@@ -353,10 +352,12 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $description = 'description-1724546052';
         $etag = 'etag3123477';
+        $offlineStorageTtlDays = 844678422;
         $expectedResponse = new EntityType();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setOfflineStorageTtlDays($offlineStorageTtlDays);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -481,11 +482,13 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $etag = 'etag3123477';
         $disableMonitoring = false;
+        $versionColumnName = 'versionColumnName-1981743891';
         $expectedResponse = new Feature();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setDisableMonitoring($disableMonitoring);
+        $expectedResponse->setVersionColumnName($versionColumnName);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -496,8 +499,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
         $feature = new Feature();
-        $featureValueType = ValueType::VALUE_TYPE_UNSPECIFIED;
-        $feature->setValueType($featureValueType);
         $featureId = 'featureId-150697212';
         $response = $gapicClient->createFeature($formattedParent, $feature, $featureId);
         $this->assertFalse($response->isDone());
@@ -568,8 +569,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
         $feature = new Feature();
-        $featureValueType = ValueType::VALUE_TYPE_UNSPECIFIED;
-        $feature->setValueType($featureValueType);
         $featureId = 'featureId-150697212';
         $response = $gapicClient->createFeature($formattedParent, $feature, $featureId);
         $this->assertFalse($response->isDone());
@@ -616,9 +615,11 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $etag = 'etag3123477';
+        $onlineStorageTtlDays = 1491501178;
         $expectedResponse = new Featurestore();
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setOnlineStorageTtlDays($onlineStorageTtlDays);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1335,10 +1336,12 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $description = 'description-1724546052';
         $etag = 'etag3123477';
+        $offlineStorageTtlDays = 844678422;
         $expectedResponse = new EntityType();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setOfflineStorageTtlDays($offlineStorageTtlDays);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
@@ -1400,11 +1403,13 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $etag = 'etag3123477';
         $disableMonitoring = false;
+        $versionColumnName = 'versionColumnName-1981743891';
         $expectedResponse = new Feature();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setDisableMonitoring($disableMonitoring);
+        $expectedResponse->setVersionColumnName($versionColumnName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->featureName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]', '[FEATURE]');
@@ -1464,9 +1469,11 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $etag = 'etag3123477';
+        $onlineStorageTtlDays = 1491501178;
         $expectedResponse = new Featurestore();
         $expectedResponse->setName($name2);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setOnlineStorageTtlDays($onlineStorageTtlDays);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->featurestoreName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]');
@@ -1928,10 +1935,12 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $description = 'description-1724546052';
         $etag = 'etag3123477';
+        $offlineStorageTtlDays = 844678422;
         $expectedResponse = new EntityType();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setOfflineStorageTtlDays($offlineStorageTtlDays);
         $transport->addResponse($expectedResponse);
         // Mock request
         $entityType = new EntityType();
@@ -1993,16 +2002,16 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $etag = 'etag3123477';
         $disableMonitoring = false;
+        $versionColumnName = 'versionColumnName-1981743891';
         $expectedResponse = new Feature();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setDisableMonitoring($disableMonitoring);
+        $expectedResponse->setVersionColumnName($versionColumnName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $feature = new Feature();
-        $featureValueType = ValueType::VALUE_TYPE_UNSPECIFIED;
-        $feature->setValueType($featureValueType);
         $response = $gapicClient->updateFeature($feature);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2035,8 +2044,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $feature = new Feature();
-        $featureValueType = ValueType::VALUE_TYPE_UNSPECIFIED;
-        $feature->setValueType($featureValueType);
         try {
             $gapicClient->updateFeature($feature);
             // If the $gapicClient method call did not throw, fail the test
@@ -2073,9 +2080,11 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $etag = 'etag3123477';
+        $onlineStorageTtlDays = 1491501178;
         $expectedResponse = new Featurestore();
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setOnlineStorageTtlDays($onlineStorageTtlDays);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

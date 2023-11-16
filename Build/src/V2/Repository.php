@@ -54,6 +54,12 @@ class Repository extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string etag = 7;</code>
      */
     private $etag = '';
+    /**
+     * Output only. External ID of the webhook created for the repository.
+     *
+     * Generated from protobuf field <code>string webhook_id = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $webhook_id = '';
 
     /**
      * Constructor.
@@ -76,6 +82,8 @@ class Repository extends \Google\Protobuf\Internal\Message
      *           This checksum is computed by the server based on the value of other
      *           fields, and may be sent on update and delete requests to ensure the
      *           client has an up-to-date value before proceeding.
+     *     @type string $webhook_id
+     *           Output only. External ID of the webhook created for the repository.
      * }
      */
     public function __construct($data = NULL) {
@@ -261,6 +269,32 @@ class Repository extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->etag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. External ID of the webhook created for the repository.
+     *
+     * Generated from protobuf field <code>string webhook_id = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getWebhookId()
+    {
+        return $this->webhook_id;
+    }
+
+    /**
+     * Output only. External ID of the webhook created for the repository.
+     *
+     * Generated from protobuf field <code>string webhook_id = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setWebhookId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->webhook_id = $var;
 
         return $this;
     }

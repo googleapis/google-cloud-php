@@ -36,7 +36,7 @@ use Google\Cloud\Storage\Lifecycle;
 use Google\Cloud\Storage\Notification;
 use Google\Cloud\Storage\SigningHelper;
 use Google\Cloud\Storage\StorageObject;
-use GuzzleHttp\Promise;
+use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Promise\PromiseInterface;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -135,7 +135,7 @@ class BucketTest extends TestCase
         $this->multipartUploader
             ->uploadAsync()
             ->willReturn(
-                Promise\promise_for([
+                Create::promiseFor([
                     'name' => $name,
                     'generation' => 'Bar'
                 ])
@@ -351,17 +351,24 @@ class BucketTest extends TestCase
         $this->assertTrue($bucket->info()['versioning']['enabled']);
     }
 
-    public function testUpdateAutoclassConfig()
+    /**
+     * @dataProvider terminalStorageClass
+     */
+    public function testUpdateAutoclassConfig($terminalStorageClass)
     {
         $autoclassConfig = [
             'autoclass' => [
                 'enabled' => true,
+                'terminalStorageClass' => $terminalStorageClass
             ],
         ];
+        $expectedInfo = array_merge_recursive($autoclassConfig, ['autoclass' => [
+            'toggleTime' => '2022-09-18T01:01:01.045123456Z',
+            'terminalStorageClassUpdateTime' => '2022-09-18T01:01:01.045123456Z'
+        ]]);
         $this->connection->patchBucket(Argument::any())->willReturn(
             ['name' => 'bucket'] +
-            $autoclassConfig +
-            ['autoclass' => ['toggleTime' => '2022-09-18T01:01:01.045123456Z']]
+            $expectedInfo
         );
         $bucket = $this->getBucket([
             'name' => 'bucket',
@@ -369,7 +376,12 @@ class BucketTest extends TestCase
 
         $bucket->update($autoclassConfig);
 
-        $this->assertTrue($bucket->info()['autoclass']['enabled']);
+        $this->assertArrayHasKey('autoclass', $bucket->info());
+        $autoclassInfo = $bucket->info()['autoclass'];
+        $this->assertTrue($autoclassInfo['enabled']);
+        $this->assertEquals($terminalStorageClass, $autoclassInfo['terminalStorageClass']);
+        $this->assertArrayHasKey('toggleTime', $autoclassInfo);
+        $this->assertArrayHasKey('terminalStorageClassUpdateTime', $autoclassInfo);
     }
 
     public function testUpdatesDataWithLifecycleBuilder()
@@ -671,6 +683,14 @@ class BucketTest extends TestCase
             [null, SigningHelper::DEFAULT_URL_SIGNING_VERSION . 'Sign'],
             ['v2', 'v2Sign'],
             ['v4', 'v4Sign']
+        ];
+    }
+
+    public function terminalStorageClass()
+    {
+        return [
+            ['NEARLINE'],
+            ['ARCHIVE']
         ];
     }
 

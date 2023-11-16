@@ -23,10 +23,10 @@ class ListVolumeBackupsResponse extends \Google\Protobuf\Internal\Message
     private $volume_backups;
     /**
      * A token which may be sent as
-     * [page_token][google.cloud.gkebackup.v1.ListVolumeBackupsRequest.page_token] in a subsequent
-     * `ListVolumeBackups` call to retrieve the next page of results.
-     * If this field is omitted or empty, then there are no more results to
-     * return.
+     * [page_token][google.cloud.gkebackup.v1.ListVolumeBackupsRequest.page_token]
+     * in a subsequent `ListVolumeBackups` call to retrieve the next page of
+     * results. If this field is omitted or empty, then there are no more results
+     * to return.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -42,10 +42,10 @@ class ListVolumeBackupsResponse extends \Google\Protobuf\Internal\Message
      *           The list of VolumeBackups matching the given criteria.
      *     @type string $next_page_token
      *           A token which may be sent as
-     *           [page_token][google.cloud.gkebackup.v1.ListVolumeBackupsRequest.page_token] in a subsequent
-     *           `ListVolumeBackups` call to retrieve the next page of results.
-     *           If this field is omitted or empty, then there are no more results to
-     *           return.
+     *           [page_token][google.cloud.gkebackup.v1.ListVolumeBackupsRequest.page_token]
+     *           in a subsequent `ListVolumeBackups` call to retrieve the next page of
+     *           results. If this field is omitted or empty, then there are no more results
+     *           to return.
      * }
      */
     public function __construct($data = NULL) {
@@ -81,10 +81,10 @@ class ListVolumeBackupsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token which may be sent as
-     * [page_token][google.cloud.gkebackup.v1.ListVolumeBackupsRequest.page_token] in a subsequent
-     * `ListVolumeBackups` call to retrieve the next page of results.
-     * If this field is omitted or empty, then there are no more results to
-     * return.
+     * [page_token][google.cloud.gkebackup.v1.ListVolumeBackupsRequest.page_token]
+     * in a subsequent `ListVolumeBackups` call to retrieve the next page of
+     * results. If this field is omitted or empty, then there are no more results
+     * to return.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -96,10 +96,10 @@ class ListVolumeBackupsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token which may be sent as
-     * [page_token][google.cloud.gkebackup.v1.ListVolumeBackupsRequest.page_token] in a subsequent
-     * `ListVolumeBackups` call to retrieve the next page of results.
-     * If this field is omitted or empty, then there are no more results to
-     * return.
+     * [page_token][google.cloud.gkebackup.v1.ListVolumeBackupsRequest.page_token]
+     * in a subsequent `ListVolumeBackups` call to retrieve the next page of
+     * results. If this field is omitted or empty, then there are no more results
+     * to return.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

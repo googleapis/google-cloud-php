@@ -23,8 +23,9 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsdata_v1beta_generated_BetaAnalyticsData_BatchRunReports_sync]
+use Google\Analytics\Data\V1beta\BatchRunReportsRequest;
 use Google\Analytics\Data\V1beta\BatchRunReportsResponse;
-use Google\Analytics\Data\V1beta\BetaAnalyticsDataClient;
+use Google\Analytics\Data\V1beta\Client\BetaAnalyticsDataClient;
 use Google\ApiCore\ApiException;
 
 /**
@@ -42,10 +43,13 @@ function batch_run_reports_sample(): void
     // Create a client.
     $betaAnalyticsDataClient = new BetaAnalyticsDataClient();
 
+    // Prepare the request message.
+    $request = new BatchRunReportsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var BatchRunReportsResponse $response */
-        $response = $betaAnalyticsDataClient->batchRunReports();
+        $response = $betaAnalyticsDataClient->batchRunReports($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

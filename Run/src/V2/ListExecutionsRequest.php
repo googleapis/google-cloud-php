@@ -18,8 +18,8 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The Execution from which the Executions should be listed.
      * To list all Executions across Jobs, use "-" instead of Job name.
-     * Format: projects/{project}/locations/{location}/jobs/{job}, where {project}
-     * can be project id or number.
+     * Format: `projects/{project}/locations/{location}/jobs/{job}`, where
+     * `{project}` can be project id or number.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -45,6 +45,23 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
     private $show_deleted = false;
 
     /**
+     * @param string $parent Required. The Execution from which the Executions should be listed.
+     *                       To list all Executions across Jobs, use "-" instead of Job name.
+     *                       Format: `projects/{project}/locations/{location}/jobs/{job}`, where
+     *                       `{project}` can be project id or number. Please see
+     *                       {@see ExecutionsClient::jobName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Run\V2\ListExecutionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -53,8 +70,8 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The Execution from which the Executions should be listed.
      *           To list all Executions across Jobs, use "-" instead of Job name.
-     *           Format: projects/{project}/locations/{location}/jobs/{job}, where {project}
-     *           can be project id or number.
+     *           Format: `projects/{project}/locations/{location}/jobs/{job}`, where
+     *           `{project}` can be project id or number.
      *     @type int $page_size
      *           Maximum number of Executions to return in this call.
      *     @type string $page_token
@@ -72,8 +89,8 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The Execution from which the Executions should be listed.
      * To list all Executions across Jobs, use "-" instead of Job name.
-     * Format: projects/{project}/locations/{location}/jobs/{job}, where {project}
-     * can be project id or number.
+     * Format: `projects/{project}/locations/{location}/jobs/{job}`, where
+     * `{project}` can be project id or number.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -86,8 +103,8 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The Execution from which the Executions should be listed.
      * To list all Executions across Jobs, use "-" instead of Job name.
-     * Format: projects/{project}/locations/{location}/jobs/{job}, where {project}
-     * can be project id or number.
+     * Format: `projects/{project}/locations/{location}/jobs/{job}`, where
+     * `{project}` can be project id or number.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -47,6 +47,25 @@ class SetLabelsDiskRequest extends \Google\Protobuf\Internal\Message
     private $zone_set_labels_request_resource = null;
 
     /**
+     * @param string                                        $project                      Project ID for this request.
+     * @param string                                        $zone                         The name of the zone for this request.
+     * @param string                                        $resource                     Name or id of the resource for this request.
+     * @param \Google\Cloud\Compute\V1\ZoneSetLabelsRequest $zoneSetLabelsRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\SetLabelsDiskRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $resource, \Google\Cloud\Compute\V1\ZoneSetLabelsRequest $zoneSetLabelsRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setResource($resource)
+            ->setZoneSetLabelsRequestResource($zoneSetLabelsRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

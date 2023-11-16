@@ -80,8 +80,8 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
     private $type = 0;
     /**
      * Comma separated list of fields to order by,
-     * followed by `asc` or `desc` postfix. This list is case-insensitive,
-     * default sorting order is ascending, redundant space characters are
+     * followed by `asc` or `desc` postfix. This list is case insensitive. The
+     * default sorting order is ascending. Redundant space characters are
      * insignificant.
      * Example: `name asc, end_time asc, create_time desc`
      * Supported fields are:
@@ -99,6 +99,35 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string location_id = 7;</code>
      */
     private $location_id = '';
+
+    /**
+     * @param string $parent Required. Parent resource name.
+     *
+     *                       The format of this value varies depending on whether you have [specified a
+     *                       processing
+     *                       location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     *                       + Projects scope, location specified:<br/>
+     *                       `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *                       + Projects scope, no location specified (defaults to global):<br/>
+     *                       `projects/`<var>PROJECT_ID</var>
+     *
+     *                       The following example `parent` string specifies a parent project with the
+     *                       identifier `example-project`, and specifies the `europe-west3` location
+     *                       for processing data:
+     *
+     *                       parent=projects/example-project/locations/europe-west3
+     *                       Please see {@see DlpServiceClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dlp\V2\ListDlpJobsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.
@@ -151,8 +180,8 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      *           The type of job. Defaults to `DlpJobType.INSPECT`
      *     @type string $order_by
      *           Comma separated list of fields to order by,
-     *           followed by `asc` or `desc` postfix. This list is case-insensitive,
-     *           default sorting order is ascending, redundant space characters are
+     *           followed by `asc` or `desc` postfix. This list is case insensitive. The
+     *           default sorting order is ascending. Redundant space characters are
      *           insignificant.
      *           Example: `name asc, end_time asc, create_time desc`
      *           Supported fields are:
@@ -367,8 +396,8 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Comma separated list of fields to order by,
-     * followed by `asc` or `desc` postfix. This list is case-insensitive,
-     * default sorting order is ascending, redundant space characters are
+     * followed by `asc` or `desc` postfix. This list is case insensitive. The
+     * default sorting order is ascending. Redundant space characters are
      * insignificant.
      * Example: `name asc, end_time asc, create_time desc`
      * Supported fields are:
@@ -387,8 +416,8 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Comma separated list of fields to order by,
-     * followed by `asc` or `desc` postfix. This list is case-insensitive,
-     * default sorting order is ascending, redundant space characters are
+     * followed by `asc` or `desc` postfix. This list is case insensitive. The
+     * default sorting order is ascending. Redundant space characters are
      * insignificant.
      * Example: `name asc, end_time asc, create_time desc`
      * Supported fields are:

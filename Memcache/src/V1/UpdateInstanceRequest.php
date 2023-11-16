@@ -31,6 +31,24 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
     private $instance = null;
 
     /**
+     * @param \Google\Cloud\Memcache\V1\Instance $instance   Required. A Memcached Instance.
+     *                                                       Only fields specified in update_mask are updated.
+     * @param \Google\Protobuf\FieldMask         $updateMask Required. Mask of fields to update.
+     *
+     *                                                       *   `displayName`
+     *
+     * @return \Google\Cloud\Memcache\V1\UpdateInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Memcache\V1\Instance $instance, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setInstance($instance)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

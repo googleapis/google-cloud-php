@@ -99,6 +99,9 @@ use Google\Cloud\Compute\V1\UpdateBackendServiceRequest;
  *     $backendServicesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\BackendServicesClient} to use the new surface.
  */
 class BackendServicesGapicClient
 {

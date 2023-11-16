@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START gsuiteaddons_v1_generated_GSuiteAddOns_UninstallDeployment_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\GSuiteAddOns\V1\GSuiteAddOnsClient;
+use Google\Cloud\GSuiteAddOns\V1\Client\GSuiteAddOnsClient;
+use Google\Cloud\GSuiteAddOns\V1\UninstallDeploymentRequest;
 
 /**
  * Uninstalls a developer mode deployment.
@@ -41,9 +42,13 @@ function uninstall_deployment_sample(string $formattedName): void
     // Create a client.
     $gSuiteAddOnsClient = new GSuiteAddOnsClient();
 
+    // Prepare the request message.
+    $request = (new UninstallDeploymentRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $gSuiteAddOnsClient->uninstallDeployment($formattedName);
+        $gSuiteAddOnsClient->uninstallDeployment($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

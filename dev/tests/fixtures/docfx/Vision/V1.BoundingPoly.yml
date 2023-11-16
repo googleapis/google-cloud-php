@@ -1,0 +1,106 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\BoundingPoly
+    name: BoundingPoly
+    friendlyApiName: 'Cloud Vision V1 Client'
+    id: BoundingPoly
+    summary: |-
+      A bounding polygon for the detected image annotation.
+
+      Generated from protobuf message <code>google.cloud.vision.v1.BoundingPoly</code>
+    type: class
+    namespace: 'Google \ Cloud \ Vision \ V1'
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\BoundingPoly::__construct()'
+      - '\Google\Cloud\Vision\V1\BoundingPoly::getVertices()'
+      - '\Google\Cloud\Vision\V1\BoundingPoly::setVertices()'
+      - '\Google\Cloud\Vision\V1\BoundingPoly::getNormalizedVertices()'
+      - '\Google\Cloud\Vision\V1\BoundingPoly::setNormalizedVertices()'
+  -
+    uid: '\Google\Cloud\Vision\V1\BoundingPoly::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\BoundingPoly
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ vertices'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Vertex">Google\Cloud\Vision\V1\Vertex</xref>&gt;'
+          description: 'The bounding polygon vertices.'
+        -
+          id: '↳ normalized_vertices'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\NormalizedVertex">Google\Cloud\Vision\V1\NormalizedVertex</xref>&gt;'
+          description: 'The bounding polygon normalized vertices.'
+  -
+    uid: '\Google\Cloud\Vision\V1\BoundingPoly::getVertices()'
+    name: getVertices
+    id: getVertices
+    summary: 'The bounding polygon vertices.'
+    parent: \Google\Cloud\Vision\V1\BoundingPoly
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+  -
+    uid: '\Google\Cloud\Vision\V1\BoundingPoly::setVertices()'
+    name: setVertices
+    id: setVertices
+    summary: 'The bounding polygon vertices.'
+    parent: \Google\Cloud\Vision\V1\BoundingPoly
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Vertex">Google\Cloud\Vision\V1\Vertex</xref>&gt;'
+          description: ''
+      returns:
+        -
+          var_type: $this
+  -
+    uid: '\Google\Cloud\Vision\V1\BoundingPoly::getNormalizedVertices()'
+    name: getNormalizedVertices
+    id: getNormalizedVertices
+    summary: 'The bounding polygon normalized vertices.'
+    parent: \Google\Cloud\Vision\V1\BoundingPoly
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+  -
+    uid: '\Google\Cloud\Vision\V1\BoundingPoly::setNormalizedVertices()'
+    name: setNormalizedVertices
+    id: setNormalizedVertices
+    summary: 'The bounding polygon normalized vertices.'
+    parent: \Google\Cloud\Vision\V1\BoundingPoly
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\NormalizedVertex">Google\Cloud\Vision\V1\NormalizedVertex</xref>&gt;'
+          description: ''
+      returns:
+        -
+          var_type: $this

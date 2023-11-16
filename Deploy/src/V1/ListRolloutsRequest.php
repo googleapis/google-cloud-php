@@ -55,6 +55,20 @@ class ListRolloutsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The `Release` which owns this collection of `Rollout` objects. Please see
+     *                       {@see CloudDeployClient::releaseName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Deploy\V1\ListRolloutsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

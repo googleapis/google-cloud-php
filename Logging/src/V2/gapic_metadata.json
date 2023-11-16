@@ -59,9 +59,19 @@
                                 "createBucket"
                             ]
                         },
+                        "CreateBucketAsync": {
+                            "methods": [
+                                "createBucketAsync"
+                            ]
+                        },
                         "CreateExclusion": {
                             "methods": [
                                 "createExclusion"
+                            ]
+                        },
+                        "CreateLink": {
+                            "methods": [
+                                "createLink"
                             ]
                         },
                         "CreateSink": {
@@ -82,6 +92,11 @@
                         "DeleteExclusion": {
                             "methods": [
                                 "deleteExclusion"
+                            ]
+                        },
+                        "DeleteLink": {
+                            "methods": [
+                                "deleteLink"
                             ]
                         },
                         "DeleteSink": {
@@ -109,6 +124,11 @@
                                 "getExclusion"
                             ]
                         },
+                        "GetLink": {
+                            "methods": [
+                                "getLink"
+                            ]
+                        },
                         "GetSettings": {
                             "methods": [
                                 "getSettings"
@@ -134,6 +154,11 @@
                                 "listExclusions"
                             ]
                         },
+                        "ListLinks": {
+                            "methods": [
+                                "listLinks"
+                            ]
+                        },
                         "ListSinks": {
                             "methods": [
                                 "listSinks"
@@ -152,6 +177,11 @@
                         "UpdateBucket": {
                             "methods": [
                                 "updateBucket"
+                            ]
+                        },
+                        "UpdateBucketAsync": {
+                            "methods": [
+                                "updateBucketAsync"
                             ]
                         },
                         "UpdateCmekSettings": {

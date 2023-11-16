@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A `JobRun` resource in the Google Cloud Deploy API.
+ * A `JobRun` resource in the Cloud Deploy API.
  * A `JobRun` contains information of a single `Rollout` job evaluation.
  *
  * Generated from protobuf message <code>google.cloud.deploy.v1.JobRun</code>
@@ -18,9 +18,7 @@ class JobRun extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Name of the `JobRun`. Format is
-     * projects/{project}/locations/{location}/
-     * deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/
-     * {rollouts}/jobRuns/{uuid}.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/{rollouts}/jobRuns/{uuid}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -85,9 +83,7 @@ class JobRun extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Optional. Name of the `JobRun`. Format is
-     *           projects/{project}/locations/{location}/
-     *           deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/
-     *           {rollouts}/jobRuns/{uuid}.
+     *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/{rollouts}/jobRuns/{uuid}`.
      *     @type string $uid
      *           Output only. Unique identifier of the `JobRun`.
      *     @type string $phase_id
@@ -106,6 +102,10 @@ class JobRun extends \Google\Protobuf\Internal\Message
      *           Output only. Information specific to a deploy `JobRun`.
      *     @type \Google\Cloud\Deploy\V1\VerifyJobRun $verify_job_run
      *           Output only. Information specific to a verify `JobRun`.
+     *     @type \Google\Cloud\Deploy\V1\PredeployJobRun $predeploy_job_run
+     *           Output only. Information specific to a predeploy `JobRun`.
+     *     @type \Google\Cloud\Deploy\V1\PostdeployJobRun $postdeploy_job_run
+     *           Output only. Information specific to a postdeploy `JobRun`.
      *     @type \Google\Cloud\Deploy\V1\CreateChildRolloutJobRun $create_child_rollout_job_run
      *           Output only. Information specific to a createChildRollout `JobRun`.
      *     @type \Google\Cloud\Deploy\V1\AdvanceChildRolloutJobRun $advance_child_rollout_job_run
@@ -123,9 +123,7 @@ class JobRun extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Name of the `JobRun`. Format is
-     * projects/{project}/locations/{location}/
-     * deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/
-     * {rollouts}/jobRuns/{uuid}.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/{rollouts}/jobRuns/{uuid}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -137,9 +135,7 @@ class JobRun extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Name of the `JobRun`. Format is
-     * projects/{project}/locations/{location}/
-     * deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/
-     * {rollouts}/jobRuns/{uuid}.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/{rollouts}/jobRuns/{uuid}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -423,6 +419,68 @@ class JobRun extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\VerifyJobRun::class);
         $this->writeOneof(10, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. Information specific to a predeploy `JobRun`.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.PredeployJobRun predeploy_job_run = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Deploy\V1\PredeployJobRun|null
+     */
+    public function getPredeployJobRun()
+    {
+        return $this->readOneof(14);
+    }
+
+    public function hasPredeployJobRun()
+    {
+        return $this->hasOneof(14);
+    }
+
+    /**
+     * Output only. Information specific to a predeploy `JobRun`.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.PredeployJobRun predeploy_job_run = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Deploy\V1\PredeployJobRun $var
+     * @return $this
+     */
+    public function setPredeployJobRun($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\PredeployJobRun::class);
+        $this->writeOneof(14, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. Information specific to a postdeploy `JobRun`.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.PostdeployJobRun postdeploy_job_run = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Deploy\V1\PostdeployJobRun|null
+     */
+    public function getPostdeployJobRun()
+    {
+        return $this->readOneof(15);
+    }
+
+    public function hasPostdeployJobRun()
+    {
+        return $this->hasOneof(15);
+    }
+
+    /**
+     * Output only. Information specific to a postdeploy `JobRun`.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.PostdeployJobRun postdeploy_job_run = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Deploy\V1\PostdeployJobRun $var
+     * @return $this
+     */
+    public function setPostdeployJobRun($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\PostdeployJobRun::class);
+        $this->writeOneof(15, $var);
 
         return $this;
     }

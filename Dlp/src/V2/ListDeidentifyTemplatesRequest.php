@@ -37,23 +37,23 @@ class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Page token to continue retrieval. Comes from previous call
+     * Page token to continue retrieval. Comes from the previous call
      * to `ListDeidentifyTemplates`.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      */
     private $page_token = '';
     /**
-     * Size of the page, can be limited by the server. If zero server returns
-     * a page of max size 100.
+     * Size of the page. This value can be limited by the server. If zero server
+     * returns a page of max size 100.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
     private $page_size = 0;
     /**
      * Comma separated list of fields to order by,
-     * followed by `asc` or `desc` postfix. This list is case-insensitive,
-     * default sorting order is ascending, redundant space characters are
+     * followed by `asc` or `desc` postfix. This list is case insensitive. The
+     * default sorting order is ascending. Redundant space characters are
      * insignificant.
      * Example: `name asc,update_time, create_time desc`
      * Supported fields are:
@@ -71,6 +71,39 @@ class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string location_id = 5;</code>
      */
     private $location_id = '';
+
+    /**
+     * @param string $parent Required. Parent resource name.
+     *
+     *                       The format of this value varies depending on the scope of the request
+     *                       (project or organization) and whether you have [specified a processing
+     *                       location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     *                       + Projects scope, location specified:<br/>
+     *                       `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *                       + Projects scope, no location specified (defaults to global):<br/>
+     *                       `projects/`<var>PROJECT_ID</var>
+     *                       + Organizations scope, location specified:<br/>
+     *                       `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *                       + Organizations scope, no location specified (defaults to global):<br/>
+     *                       `organizations/`<var>ORG_ID</var>
+     *
+     *                       The following example `parent` string specifies a parent project with the
+     *                       identifier `example-project`, and specifies the `europe-west3` location
+     *                       for processing data:
+     *
+     *                       parent=projects/example-project/locations/europe-west3
+     *                       Please see {@see DlpServiceClient::organizationLocationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dlp\V2\ListDeidentifyTemplatesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.
@@ -96,15 +129,15 @@ class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
      *           for processing data:
      *               parent=projects/example-project/locations/europe-west3
      *     @type string $page_token
-     *           Page token to continue retrieval. Comes from previous call
+     *           Page token to continue retrieval. Comes from the previous call
      *           to `ListDeidentifyTemplates`.
      *     @type int $page_size
-     *           Size of the page, can be limited by the server. If zero server returns
-     *           a page of max size 100.
+     *           Size of the page. This value can be limited by the server. If zero server
+     *           returns a page of max size 100.
      *     @type string $order_by
      *           Comma separated list of fields to order by,
-     *           followed by `asc` or `desc` postfix. This list is case-insensitive,
-     *           default sorting order is ascending, redundant space characters are
+     *           followed by `asc` or `desc` postfix. This list is case insensitive. The
+     *           default sorting order is ascending. Redundant space characters are
      *           insignificant.
      *           Example: `name asc,update_time, create_time desc`
      *           Supported fields are:
@@ -178,7 +211,7 @@ class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Page token to continue retrieval. Comes from previous call
+     * Page token to continue retrieval. Comes from the previous call
      * to `ListDeidentifyTemplates`.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
@@ -190,7 +223,7 @@ class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Page token to continue retrieval. Comes from previous call
+     * Page token to continue retrieval. Comes from the previous call
      * to `ListDeidentifyTemplates`.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
@@ -206,8 +239,8 @@ class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Size of the page, can be limited by the server. If zero server returns
-     * a page of max size 100.
+     * Size of the page. This value can be limited by the server. If zero server
+     * returns a page of max size 100.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      * @return int
@@ -218,8 +251,8 @@ class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Size of the page, can be limited by the server. If zero server returns
-     * a page of max size 100.
+     * Size of the page. This value can be limited by the server. If zero server
+     * returns a page of max size 100.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      * @param int $var
@@ -235,8 +268,8 @@ class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Comma separated list of fields to order by,
-     * followed by `asc` or `desc` postfix. This list is case-insensitive,
-     * default sorting order is ascending, redundant space characters are
+     * followed by `asc` or `desc` postfix. This list is case insensitive. The
+     * default sorting order is ascending. Redundant space characters are
      * insignificant.
      * Example: `name asc,update_time, create_time desc`
      * Supported fields are:
@@ -255,8 +288,8 @@ class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Comma separated list of fields to order by,
-     * followed by `asc` or `desc` postfix. This list is case-insensitive,
-     * default sorting order is ascending, redundant space characters are
+     * followed by `asc` or `desc` postfix. This list is case insensitive. The
+     * default sorting order is ascending. Redundant space characters are
      * insignificant.
      * Example: `name asc,update_time, create_time desc`
      * Supported fields are:

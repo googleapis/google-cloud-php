@@ -26,6 +26,23 @@ class GetNamespacedTagKeyRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. A namespaced tag key name in the format
+     *                     `{parentId}/{tagKeyShort}`, such as `42/foo` for a key with short name
+     *                     "foo" under the organization with ID 42 or `r2-d2/bar` for a key with short
+     *                     name "bar" under the project `r2-d2`. Please see
+     *                     {@see TagKeysClient::tagKeyName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\GetNamespacedTagKeyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

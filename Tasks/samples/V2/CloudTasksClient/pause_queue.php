@@ -32,9 +32,10 @@ use Google\Cloud\Tasks\V2\Queue;
  *
  * If a queue is paused then the system will stop dispatching tasks
  * until the queue is resumed via
- * [ResumeQueue][google.cloud.tasks.v2.CloudTasks.ResumeQueue]. Tasks can still be added
- * when the queue is paused. A queue is paused if its
- * [state][google.cloud.tasks.v2.Queue.state] is [PAUSED][google.cloud.tasks.v2.Queue.State.PAUSED].
+ * [ResumeQueue][google.cloud.tasks.v2.CloudTasks.ResumeQueue]. Tasks can
+ * still be added when the queue is paused. A queue is paused if its
+ * [state][google.cloud.tasks.v2.Queue.state] is
+ * [PAUSED][google.cloud.tasks.v2.Queue.State.PAUSED].
  *
  * @param string $formattedName The queue name. For example:
  *                              `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`

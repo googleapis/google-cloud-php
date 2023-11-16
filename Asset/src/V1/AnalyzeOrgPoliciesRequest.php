@@ -60,6 +60,35 @@ class AnalyzeOrgPoliciesRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $scope      Required. The organization to scope the request. Only organization
+     *                           policies within the scope will be analyzed.
+     *
+     *                           * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
+     * @param string $constraint Required. The name of the constraint to analyze organization policies for.
+     *                           The response only contains analyzed organization policies for the provided
+     *                           constraint.
+     * @param string $filter     The expression to filter
+     *                           [AnalyzeOrgPoliciesResponse.org_policy_results][google.cloud.asset.v1.AnalyzeOrgPoliciesResponse.org_policy_results].
+     *                           The only supported field is `consolidated_policy.attached_resource`, and
+     *                           the only supported operator is `=`.
+     *
+     *                           Example:
+     *                           consolidated_policy.attached_resource="//cloudresourcemanager.googleapis.com/folders/001"
+     *                           will return the org policy results of"folders/001".
+     *
+     * @return \Google\Cloud\Asset\V1\AnalyzeOrgPoliciesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $scope, string $constraint, string $filter): self
+    {
+        return (new self())
+            ->setScope($scope)
+            ->setConstraint($constraint)
+            ->setFilter($filter);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

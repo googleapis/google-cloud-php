@@ -30,7 +30,7 @@ class RetentionPolicy extends \Google\Protobuf\Internal\Message
     private $backup_delete_lock_days = 0;
     /**
      * The default maximum age of a Backup created via this BackupPlan.
-     * This field MUST be an integer value >= 0.
+     * This field MUST be an integer value >= 0 and <= 365.
      * If specified, a Backup created under this BackupPlan will be
      * automatically deleted after its age reaches (create_time +
      * backup_retain_days).
@@ -39,7 +39,12 @@ class RetentionPolicy extends \Google\Protobuf\Internal\Message
      * Updating this field does NOT affect existing Backups under it. Backups
      * created AFTER a successful update will automatically pick up the new
      * value.
-     * NOTE: backup_retain_days must be >= [backup_delete_lock_days][google.cloud.gkebackup.v1.BackupPlan.RetentionPolicy.backup_delete_lock_days].
+     * NOTE: backup_retain_days must be >=
+     * [backup_delete_lock_days][google.cloud.gkebackup.v1.BackupPlan.RetentionPolicy.backup_delete_lock_days].
+     * If
+     * [cron_schedule][google.cloud.gkebackup.v1.BackupPlan.Schedule.cron_schedule]
+     * is defined, then this must be
+     * <= 360 * the creation interval.
      * Default: 0 (no automatic deletion)
      *
      * Generated from protobuf field <code>int32 backup_retain_days = 2;</code>
@@ -72,7 +77,7 @@ class RetentionPolicy extends \Google\Protobuf\Internal\Message
      *           Default: 0 (no delete blocking)
      *     @type int $backup_retain_days
      *           The default maximum age of a Backup created via this BackupPlan.
-     *           This field MUST be an integer value >= 0.
+     *           This field MUST be an integer value >= 0 and <= 365.
      *           If specified, a Backup created under this BackupPlan will be
      *           automatically deleted after its age reaches (create_time +
      *           backup_retain_days).
@@ -81,7 +86,12 @@ class RetentionPolicy extends \Google\Protobuf\Internal\Message
      *           Updating this field does NOT affect existing Backups under it. Backups
      *           created AFTER a successful update will automatically pick up the new
      *           value.
-     *           NOTE: backup_retain_days must be >= [backup_delete_lock_days][google.cloud.gkebackup.v1.BackupPlan.RetentionPolicy.backup_delete_lock_days].
+     *           NOTE: backup_retain_days must be >=
+     *           [backup_delete_lock_days][google.cloud.gkebackup.v1.BackupPlan.RetentionPolicy.backup_delete_lock_days].
+     *           If
+     *           [cron_schedule][google.cloud.gkebackup.v1.BackupPlan.Schedule.cron_schedule]
+     *           is defined, then this must be
+     *           <= 360 * the creation interval.
      *           Default: 0 (no automatic deletion)
      *     @type bool $locked
      *           This flag denotes whether the retention policy of this BackupPlan is
@@ -137,7 +147,7 @@ class RetentionPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * The default maximum age of a Backup created via this BackupPlan.
-     * This field MUST be an integer value >= 0.
+     * This field MUST be an integer value >= 0 and <= 365.
      * If specified, a Backup created under this BackupPlan will be
      * automatically deleted after its age reaches (create_time +
      * backup_retain_days).
@@ -146,7 +156,12 @@ class RetentionPolicy extends \Google\Protobuf\Internal\Message
      * Updating this field does NOT affect existing Backups under it. Backups
      * created AFTER a successful update will automatically pick up the new
      * value.
-     * NOTE: backup_retain_days must be >= [backup_delete_lock_days][google.cloud.gkebackup.v1.BackupPlan.RetentionPolicy.backup_delete_lock_days].
+     * NOTE: backup_retain_days must be >=
+     * [backup_delete_lock_days][google.cloud.gkebackup.v1.BackupPlan.RetentionPolicy.backup_delete_lock_days].
+     * If
+     * [cron_schedule][google.cloud.gkebackup.v1.BackupPlan.Schedule.cron_schedule]
+     * is defined, then this must be
+     * <= 360 * the creation interval.
      * Default: 0 (no automatic deletion)
      *
      * Generated from protobuf field <code>int32 backup_retain_days = 2;</code>
@@ -159,7 +174,7 @@ class RetentionPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * The default maximum age of a Backup created via this BackupPlan.
-     * This field MUST be an integer value >= 0.
+     * This field MUST be an integer value >= 0 and <= 365.
      * If specified, a Backup created under this BackupPlan will be
      * automatically deleted after its age reaches (create_time +
      * backup_retain_days).
@@ -168,7 +183,12 @@ class RetentionPolicy extends \Google\Protobuf\Internal\Message
      * Updating this field does NOT affect existing Backups under it. Backups
      * created AFTER a successful update will automatically pick up the new
      * value.
-     * NOTE: backup_retain_days must be >= [backup_delete_lock_days][google.cloud.gkebackup.v1.BackupPlan.RetentionPolicy.backup_delete_lock_days].
+     * NOTE: backup_retain_days must be >=
+     * [backup_delete_lock_days][google.cloud.gkebackup.v1.BackupPlan.RetentionPolicy.backup_delete_lock_days].
+     * If
+     * [cron_schedule][google.cloud.gkebackup.v1.BackupPlan.Schedule.cron_schedule]
+     * is defined, then this must be
+     * <= 360 * the creation interval.
      * Default: 0 (no automatic deletion)
      *
      * Generated from protobuf field <code>int32 backup_retain_days = 2;</code>

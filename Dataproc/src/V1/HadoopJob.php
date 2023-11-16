@@ -54,7 +54,7 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A mapping of property names to values, used to configure Hadoop.
      * Properties that conflict with values set by the Dataproc API may be
-     * overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site and
+     * overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site` and
      * classes in user code.
      *
      * Generated from protobuf field <code>map<string, string> properties = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -102,7 +102,7 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $properties
      *           Optional. A mapping of property names to values, used to configure Hadoop.
      *           Properties that conflict with values set by the Dataproc API may be
-     *           overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site and
+     *           overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site` and
      *           classes in user code.
      *     @type \Google\Cloud\Dataproc\V1\LoggingConfig $logging_config
      *           Optional. The runtime log config for job execution.
@@ -308,7 +308,7 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A mapping of property names to values, used to configure Hadoop.
      * Properties that conflict with values set by the Dataproc API may be
-     * overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site and
+     * overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site` and
      * classes in user code.
      *
      * Generated from protobuf field <code>map<string, string> properties = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -322,7 +322,7 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A mapping of property names to values, used to configure Hadoop.
      * Properties that conflict with values set by the Dataproc API may be
-     * overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site and
+     * overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site` and
      * classes in user code.
      *
      * Generated from protobuf field <code>map<string, string> properties = 7 [(.google.api.field_behavior) = OPTIONAL];</code>

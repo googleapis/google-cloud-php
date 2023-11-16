@@ -33,8 +33,8 @@ use Google\Cloud\Datastream\V1\DiscoverConnectionProfileResponse;
  * the profile. Typically, a request returns children data objects of a
  * parent data object that's optionally supplied in the request.
  *
- * @param string $formattedParent The parent resource of the connection profile type. Must be in the
- *                                format `projects/&#42;/locations/*`. Please see
+ * @param string $formattedParent The parent resource of the connection profile type. Must be in
+ *                                the format `projects/&#42;/locations/*`. Please see
  *                                {@see DatastreamClient::locationName()} for help formatting this field.
  */
 function discover_connection_profile_sample(string $formattedParent): void

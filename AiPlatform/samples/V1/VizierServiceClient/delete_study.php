@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_VizierService_DeleteStudy_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AIPlatform\V1\VizierServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\VizierServiceClient;
+use Google\Cloud\AIPlatform\V1\DeleteStudyRequest;
 
 /**
  * Deletes a Study.
@@ -38,9 +39,13 @@ function delete_study_sample(string $formattedName): void
     // Create a client.
     $vizierServiceClient = new VizierServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteStudyRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $vizierServiceClient->deleteStudy($formattedName);
+        $vizierServiceClient->deleteStudy($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

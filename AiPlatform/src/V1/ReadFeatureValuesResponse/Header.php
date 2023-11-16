@@ -28,7 +28,7 @@ class Header extends \Google\Protobuf\Internal\Message
     private $entity_type = '';
     /**
      * List of Feature metadata corresponding to each piece of
-     * [ReadFeatureValuesResponse.data][].
+     * [ReadFeatureValuesResponse.EntityView.data][google.cloud.aiplatform.v1.ReadFeatureValuesResponse.EntityView.data].
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ReadFeatureValuesResponse.FeatureDescriptor feature_descriptors = 2;</code>
      */
@@ -47,7 +47,7 @@ class Header extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entityType}`.
      *     @type array<\Google\Cloud\AIPlatform\V1\ReadFeatureValuesResponse\FeatureDescriptor>|\Google\Protobuf\Internal\RepeatedField $feature_descriptors
      *           List of Feature metadata corresponding to each piece of
-     *           [ReadFeatureValuesResponse.data][].
+     *           [ReadFeatureValuesResponse.EntityView.data][google.cloud.aiplatform.v1.ReadFeatureValuesResponse.EntityView.data].
      * }
      */
     public function __construct($data = NULL) {
@@ -89,7 +89,7 @@ class Header extends \Google\Protobuf\Internal\Message
 
     /**
      * List of Feature metadata corresponding to each piece of
-     * [ReadFeatureValuesResponse.data][].
+     * [ReadFeatureValuesResponse.EntityView.data][google.cloud.aiplatform.v1.ReadFeatureValuesResponse.EntityView.data].
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ReadFeatureValuesResponse.FeatureDescriptor feature_descriptors = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -101,7 +101,7 @@ class Header extends \Google\Protobuf\Internal\Message
 
     /**
      * List of Feature metadata corresponding to each piece of
-     * [ReadFeatureValuesResponse.data][].
+     * [ReadFeatureValuesResponse.EntityView.data][google.cloud.aiplatform.v1.ReadFeatureValuesResponse.EntityView.data].
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ReadFeatureValuesResponse.FeatureDescriptor feature_descriptors = 2;</code>
      * @param array<\Google\Cloud\AIPlatform\V1\ReadFeatureValuesResponse\FeatureDescriptor>|\Google\Protobuf\Internal\RepeatedField $var

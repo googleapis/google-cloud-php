@@ -111,6 +111,9 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Functions\V2\Client\FunctionServiceClient} to use the new surface.
  */
 class FunctionServiceGapicClient
 {
@@ -133,11 +136,27 @@ class FunctionServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $buildNameTemplate;
+
+    private static $channelNameTemplate;
+
+    private static $connectorNameTemplate;
+
     private static $cryptoKeyNameTemplate;
 
     private static $functionNameTemplate;
 
     private static $locationNameTemplate;
+
+    private static $repositoryNameTemplate;
+
+    private static $serviceNameTemplate;
+
+    private static $topicNameTemplate;
+
+    private static $triggerNameTemplate;
+
+    private static $workerPoolNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -167,6 +186,39 @@ class FunctionServiceGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getBuildNameTemplate()
+    {
+        if (self::$buildNameTemplate == null) {
+            self::$buildNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/builds/{build}'
+            );
+        }
+
+        return self::$buildNameTemplate;
+    }
+
+    private static function getChannelNameTemplate()
+    {
+        if (self::$channelNameTemplate == null) {
+            self::$channelNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/channels/{channel}'
+            );
+        }
+
+        return self::$channelNameTemplate;
+    }
+
+    private static function getConnectorNameTemplate()
+    {
+        if (self::$connectorNameTemplate == null) {
+            self::$connectorNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/connectors/{connector}'
+            );
+        }
+
+        return self::$connectorNameTemplate;
     }
 
     private static function getCryptoKeyNameTemplate()
@@ -202,17 +254,137 @@ class FunctionServiceGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getRepositoryNameTemplate()
+    {
+        if (self::$repositoryNameTemplate == null) {
+            self::$repositoryNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/repositories/{repository}'
+            );
+        }
+
+        return self::$repositoryNameTemplate;
+    }
+
+    private static function getServiceNameTemplate()
+    {
+        if (self::$serviceNameTemplate == null) {
+            self::$serviceNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/services/{service}'
+            );
+        }
+
+        return self::$serviceNameTemplate;
+    }
+
+    private static function getTopicNameTemplate()
+    {
+        if (self::$topicNameTemplate == null) {
+            self::$topicNameTemplate = new PathTemplate(
+                'projects/{project}/topics/{topic}'
+            );
+        }
+
+        return self::$topicNameTemplate;
+    }
+
+    private static function getTriggerNameTemplate()
+    {
+        if (self::$triggerNameTemplate == null) {
+            self::$triggerNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/triggers/{trigger}'
+            );
+        }
+
+        return self::$triggerNameTemplate;
+    }
+
+    private static function getWorkerPoolNameTemplate()
+    {
+        if (self::$workerPoolNameTemplate == null) {
+            self::$workerPoolNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/workerPools/{worker_pool}'
+            );
+        }
+
+        return self::$workerPoolNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'build' => self::getBuildNameTemplate(),
+                'channel' => self::getChannelNameTemplate(),
+                'connector' => self::getConnectorNameTemplate(),
                 'cryptoKey' => self::getCryptoKeyNameTemplate(),
                 'function' => self::getFunctionNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'repository' => self::getRepositoryNameTemplate(),
+                'service' => self::getServiceNameTemplate(),
+                'topic' => self::getTopicNameTemplate(),
+                'trigger' => self::getTriggerNameTemplate(),
+                'workerPool' => self::getWorkerPoolNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a build
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $build
+     *
+     * @return string The formatted build resource.
+     */
+    public static function buildName($project, $location, $build)
+    {
+        return self::getBuildNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'build' => $build,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a channel
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $channel
+     *
+     * @return string The formatted channel resource.
+     */
+    public static function channelName($project, $location, $channel)
+    {
+        return self::getChannelNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'channel' => $channel,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a connector
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $connector
+     *
+     * @return string The formatted connector resource.
+     */
+    public static function connectorName($project, $location, $connector)
+    {
+        return self::getConnectorNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'connector' => $connector,
+        ]);
     }
 
     /**
@@ -277,12 +449,113 @@ class FunctionServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a repository
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $repository
+     *
+     * @return string The formatted repository resource.
+     */
+    public static function repositoryName($project, $location, $repository)
+    {
+        return self::getRepositoryNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'repository' => $repository,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a service
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $service
+     *
+     * @return string The formatted service resource.
+     */
+    public static function serviceName($project, $location, $service)
+    {
+        return self::getServiceNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'service' => $service,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a topic
+     * resource.
+     *
+     * @param string $project
+     * @param string $topic
+     *
+     * @return string The formatted topic resource.
+     */
+    public static function topicName($project, $topic)
+    {
+        return self::getTopicNameTemplate()->render([
+            'project' => $project,
+            'topic' => $topic,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a trigger
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $trigger
+     *
+     * @return string The formatted trigger resource.
+     */
+    public static function triggerName($project, $location, $trigger)
+    {
+        return self::getTriggerNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'trigger' => $trigger,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a worker_pool
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $workerPool
+     *
+     * @return string The formatted worker_pool resource.
+     */
+    public static function workerPoolName($project, $location, $workerPool)
+    {
+        return self::getWorkerPoolNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'worker_pool' => $workerPool,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - build: projects/{project}/locations/{location}/builds/{build}
+     * - channel: projects/{project}/locations/{location}/channels/{channel}
+     * - connector: projects/{project}/locations/{location}/connectors/{connector}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - function: projects/{project}/locations/{location}/functions/{function}
      * - location: projects/{project}/locations/{location}
+     * - repository: projects/{project}/locations/{location}/repositories/{repository}
+     * - service: projects/{project}/locations/{location}/services/{service}
+     * - topic: projects/{project}/topics/{topic}
+     * - trigger: projects/{project}/locations/{location}/triggers/{trigger}
+     * - workerPool: projects/{project}/locations/{location}/workerPools/{worker_pool}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -676,7 +949,7 @@ class FunctionServiceGapicClient
      *     Optional.
      *
      *     @type string $kmsKeyName
-     *           Resource name of a KMS crypto key (managed by the user) used to
+     *           [Preview] Resource name of a KMS crypto key (managed by the user) used to
      *           encrypt/decrypt function source code objects in intermediate Cloud Storage
      *           buckets. When you generate an upload url and upload your source code, it
      *           gets copied to an intermediate Cloud Storage bucket. The source code is

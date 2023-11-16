@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for [UpgradeInstance][google.cloud.redis.v1.CloudRedis.UpgradeInstance].
+ * Request for
+ * [UpgradeInstance][google.cloud.redis.v1.CloudRedis.UpgradeInstance].
  *
  * Generated from protobuf message <code>google.cloud.redis.v1.UpgradeInstanceRequest</code>
  */
@@ -29,6 +30,24 @@ class UpgradeInstanceRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string redis_version = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $redis_version = '';
+
+    /**
+     * @param string $name         Required. Redis instance resource name using the form:
+     *                             `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     *                             where `location_id` refers to a GCP region. Please see
+     *                             {@see CloudRedisClient::instanceName()} for help formatting this field.
+     * @param string $redisVersion Required. Specifies the target version of Redis software to upgrade to.
+     *
+     * @return \Google\Cloud\Redis\V1\UpgradeInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, string $redisVersion): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setRedisVersion($redisVersion);
+    }
 
     /**
      * Constructor.

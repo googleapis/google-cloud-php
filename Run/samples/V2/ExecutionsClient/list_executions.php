@@ -25,16 +25,17 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START run_v2_generated_Executions_ListExecutions_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Run\V2\Client\ExecutionsClient;
 use Google\Cloud\Run\V2\Execution;
-use Google\Cloud\Run\V2\ExecutionsClient;
+use Google\Cloud\Run\V2\ListExecutionsRequest;
 
 /**
  * Lists Executions from a Job.
  *
  * @param string $formattedParent The Execution from which the Executions should be listed.
  *                                To list all Executions across Jobs, use "-" instead of Job name.
- *                                Format: projects/{project}/locations/{location}/jobs/{job}, where {project}
- *                                can be project id or number. Please see
+ *                                Format: `projects/{project}/locations/{location}/jobs/{job}`, where
+ *                                `{project}` can be project id or number. Please see
  *                                {@see ExecutionsClient::jobName()} for help formatting this field.
  */
 function list_executions_sample(string $formattedParent): void
@@ -42,10 +43,14 @@ function list_executions_sample(string $formattedParent): void
     // Create a client.
     $executionsClient = new ExecutionsClient();
 
+    // Prepare the request message.
+    $request = (new ListExecutionsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $executionsClient->listExecutions($formattedParent);
+        $response = $executionsClient->listExecutions($request);
 
         /** @var Execution $element */
         foreach ($response as $element) {

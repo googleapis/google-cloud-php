@@ -59,6 +59,21 @@ class ListZoneOperationsRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string $project Project ID for this request.
+     * @param string $zone    Name of the zone for request.
+     *
+     * @return \Google\Cloud\Compute\V1\ListZoneOperationsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

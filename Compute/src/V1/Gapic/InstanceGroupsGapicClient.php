@@ -94,6 +94,9 @@ use Google\Cloud\Compute\V1\ZoneOperationsClient;
  *     $instanceGroupsClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\InstanceGroupsClient} to use the new surface.
  */
 class InstanceGroupsGapicClient
 {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START livestream_v1_generated_LivestreamService_ListInputs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Video\LiveStream\V1\Client\LivestreamServiceClient;
 use Google\Cloud\Video\LiveStream\V1\Input;
-use Google\Cloud\Video\LiveStream\V1\LivestreamServiceClient;
+use Google\Cloud\Video\LiveStream\V1\ListInputsRequest;
 
 /**
  * Returns a list of all inputs in the specified region.
@@ -40,10 +41,14 @@ function list_inputs_sample(string $formattedParent): void
     // Create a client.
     $livestreamServiceClient = new LivestreamServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListInputsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $livestreamServiceClient->listInputs($formattedParent);
+        $response = $livestreamServiceClient->listInputs($request);
 
         /** @var Input $element */
         foreach ($response as $element) {

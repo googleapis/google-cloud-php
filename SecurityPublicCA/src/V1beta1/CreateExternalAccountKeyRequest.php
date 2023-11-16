@@ -34,6 +34,27 @@ class CreateExternalAccountKeyRequest extends \Google\Protobuf\Internal\Message
     private $external_account_key = null;
 
     /**
+     * @param string                                                     $parent             Required. The parent resource where this external_account_key will be created.
+     *                                                                                       Format: projects/[project_id]/locations/[location].
+     *                                                                                       At present only the "global" location is supported. Please see
+     *                                                                                       {@see PublicCertificateAuthorityServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Security\PublicCA\V1beta1\ExternalAccountKey $externalAccountKey Required. The external account key to create. This field only exists to future-proof
+     *                                                                                       the API. At present, all fields in ExternalAccountKey are output only and
+     *                                                                                       all values are ignored. For the purpose of the
+     *                                                                                       CreateExternalAccountKeyRequest, set it to a default/empty value.
+     *
+     * @return \Google\Cloud\Security\PublicCA\V1beta1\CreateExternalAccountKeyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Security\PublicCA\V1beta1\ExternalAccountKey $externalAccountKey): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setExternalAccountKey($externalAccountKey);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

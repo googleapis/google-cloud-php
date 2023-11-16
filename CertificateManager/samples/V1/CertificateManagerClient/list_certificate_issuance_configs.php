@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\CertificateManager\V1\CertificateIssuanceConfig;
-use Google\Cloud\CertificateManager\V1\CertificateManagerClient;
+use Google\Cloud\CertificateManager\V1\Client\CertificateManagerClient;
+use Google\Cloud\CertificateManager\V1\ListCertificateIssuanceConfigsRequest;
 
 /**
  * Lists CertificateIssuanceConfigs in a given project and location.
@@ -40,10 +41,14 @@ function list_certificate_issuance_configs_sample(string $formattedParent): void
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
+    // Prepare the request message.
+    $request = (new ListCertificateIssuanceConfigsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $certificateManagerClient->listCertificateIssuanceConfigs($formattedParent);
+        $response = $certificateManagerClient->listCertificateIssuanceConfigs($request);
 
         /** @var CertificateIssuanceConfig $element */
         foreach ($response as $element) {

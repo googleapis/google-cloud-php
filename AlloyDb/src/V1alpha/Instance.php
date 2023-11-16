@@ -88,8 +88,11 @@ class Instance extends \Google\Protobuf\Internal\Message
     protected $machine_config = null;
     /**
      * Availability type of an Instance.
-     * Defaults to REGIONAL for both primary and read instances.
-     * Note that primary and read instances can have different availability types.
+     * If empty, defaults to REGIONAL for primary instances.
+     * For read pools, availability_type is always UNSPECIFIED. Instances in the
+     * read pools are evenly distributed across available zones within the region
+     * (i.e. read pools with more than one node will have a node in at
+     * least two zones).
      *
      * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.Instance.AvailabilityType availability_type = 11;</code>
      */
@@ -179,6 +182,27 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> annotations = 18;</code>
      */
     private $annotations;
+    /**
+     * Update policy that will be applied during instance update.
+     * This field is not persisted when you update the instance.
+     * To use a non-default update policy, you must
+     * specify explicitly specify the value in each update request.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.Instance.UpdatePolicy update_policy = 22;</code>
+     */
+    protected $update_policy = null;
+    /**
+     * Optional. Client connection specific configurations
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.Instance.ClientConnectionConfig client_connection_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $client_connection_config = null;
+    /**
+     * Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 24;</code>
+     */
+    protected $satisfies_pzs = false;
 
     /**
      * Constructor.
@@ -218,8 +242,11 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           database engine.
      *     @type int $availability_type
      *           Availability type of an Instance.
-     *           Defaults to REGIONAL for both primary and read instances.
-     *           Note that primary and read instances can have different availability types.
+     *           If empty, defaults to REGIONAL for primary instances.
+     *           For read pools, availability_type is always UNSPECIFIED. Instances in the
+     *           read pools are evenly distributed across available zones within the region
+     *           (i.e. read pools with more than one node will have a node in at
+     *           least two zones).
      *     @type string $gce_zone
      *           The Compute Engine zone that the instance should serve from, per
      *           https://cloud.google.com/compute/docs/regions-zones
@@ -265,6 +292,15 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Annotations to allow client tools to store small amount of arbitrary data.
      *           This is distinct from labels.
      *           https://google.aip.dev/128
+     *     @type \Google\Cloud\AlloyDb\V1alpha\Instance\UpdatePolicy $update_policy
+     *           Update policy that will be applied during instance update.
+     *           This field is not persisted when you update the instance.
+     *           To use a non-default update policy, you must
+     *           specify explicitly specify the value in each update request.
+     *     @type \Google\Cloud\AlloyDb\V1alpha\Instance\ClientConnectionConfig $client_connection_config
+     *           Optional. Client connection specific configurations
+     *     @type bool $satisfies_pzs
+     *           Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -594,8 +630,11 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Availability type of an Instance.
-     * Defaults to REGIONAL for both primary and read instances.
-     * Note that primary and read instances can have different availability types.
+     * If empty, defaults to REGIONAL for primary instances.
+     * For read pools, availability_type is always UNSPECIFIED. Instances in the
+     * read pools are evenly distributed across available zones within the region
+     * (i.e. read pools with more than one node will have a node in at
+     * least two zones).
      *
      * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.Instance.AvailabilityType availability_type = 11;</code>
      * @return int
@@ -607,8 +646,11 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Availability type of an Instance.
-     * Defaults to REGIONAL for both primary and read instances.
-     * Note that primary and read instances can have different availability types.
+     * If empty, defaults to REGIONAL for primary instances.
+     * For read pools, availability_type is always UNSPECIFIED. Instances in the
+     * read pools are evenly distributed across available zones within the region
+     * (i.e. read pools with more than one node will have a node in at
+     * least two zones).
      *
      * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.Instance.AvailabilityType availability_type = 11;</code>
      * @param int $var
@@ -958,6 +1000,110 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->annotations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Update policy that will be applied during instance update.
+     * This field is not persisted when you update the instance.
+     * To use a non-default update policy, you must
+     * specify explicitly specify the value in each update request.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.Instance.UpdatePolicy update_policy = 22;</code>
+     * @return \Google\Cloud\AlloyDb\V1alpha\Instance\UpdatePolicy|null
+     */
+    public function getUpdatePolicy()
+    {
+        return $this->update_policy;
+    }
+
+    public function hasUpdatePolicy()
+    {
+        return isset($this->update_policy);
+    }
+
+    public function clearUpdatePolicy()
+    {
+        unset($this->update_policy);
+    }
+
+    /**
+     * Update policy that will be applied during instance update.
+     * This field is not persisted when you update the instance.
+     * To use a non-default update policy, you must
+     * specify explicitly specify the value in each update request.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.Instance.UpdatePolicy update_policy = 22;</code>
+     * @param \Google\Cloud\AlloyDb\V1alpha\Instance\UpdatePolicy $var
+     * @return $this
+     */
+    public function setUpdatePolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1alpha\Instance\UpdatePolicy::class);
+        $this->update_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Client connection specific configurations
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.Instance.ClientConnectionConfig client_connection_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AlloyDb\V1alpha\Instance\ClientConnectionConfig|null
+     */
+    public function getClientConnectionConfig()
+    {
+        return $this->client_connection_config;
+    }
+
+    public function hasClientConnectionConfig()
+    {
+        return isset($this->client_connection_config);
+    }
+
+    public function clearClientConnectionConfig()
+    {
+        unset($this->client_connection_config);
+    }
+
+    /**
+     * Optional. Client connection specific configurations
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.Instance.ClientConnectionConfig client_connection_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AlloyDb\V1alpha\Instance\ClientConnectionConfig $var
+     * @return $this
+     */
+    public function setClientConnectionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1alpha\Instance\ClientConnectionConfig::class);
+        $this->client_connection_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 24;</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 24;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
 
         return $this;
     }

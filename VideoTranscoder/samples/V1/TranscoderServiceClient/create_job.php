@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START transcoder_v1_generated_TranscoderService_CreateJob_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Video\Transcoder\V1\Client\TranscoderServiceClient;
+use Google\Cloud\Video\Transcoder\V1\CreateJobRequest;
 use Google\Cloud\Video\Transcoder\V1\Job;
-use Google\Cloud\Video\Transcoder\V1\TranscoderServiceClient;
 
 /**
  * Creates a job in the specified region.
@@ -39,13 +40,16 @@ function create_job_sample(string $formattedParent): void
     // Create a client.
     $transcoderServiceClient = new TranscoderServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $job = new Job();
+    $request = (new CreateJobRequest())
+        ->setParent($formattedParent)
+        ->setJob($job);
 
     // Call the API and handle any network failures.
     try {
         /** @var Job $response */
-        $response = $transcoderServiceClient->createJob($formattedParent, $job);
+        $response = $transcoderServiceClient->createJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

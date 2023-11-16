@@ -53,6 +53,9 @@ class QueryArtifactLineageSubgraphRequest extends \Google\Protobuf\Internal\Mess
      *    To filter on metadata fields use traversal operation as follows:
      *    `metadata.<field_name>.<type_value>`.
      *    For example: `metadata.field_1.number_value = 10.0`
+     *    In case the field name contains special characters (such as colon), one
+     *    can embed it inside double quote.
+     *    For example: `metadata."field:1".number_value = 10.0`
      * Each of the above supported filter types can be combined together using
      * logical operators (`AND` & `OR`). Maximum nested expression depth allowed
      * is 5.
@@ -61,6 +64,26 @@ class QueryArtifactLineageSubgraphRequest extends \Google\Protobuf\Internal\Mess
      * Generated from protobuf field <code>string filter = 3;</code>
      */
     private $filter = '';
+
+    /**
+     * @param string $artifact Required. The resource name of the Artifact whose Lineage needs to be
+     *                         retrieved as a LineageSubgraph. Format:
+     *                         `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
+     *
+     *                         The request may error with FAILED_PRECONDITION if the number of Artifacts,
+     *                         the number of Executions, or the number of Events that would be returned
+     *                         for the Context exceeds 1000. Please see
+     *                         {@see MetadataServiceClient::artifactName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\QueryArtifactLineageSubgraphRequest
+     *
+     * @experimental
+     */
+    public static function build(string $artifact): self
+    {
+        return (new self())
+            ->setArtifact($artifact);
+    }
 
     /**
      * Constructor.
@@ -97,6 +120,9 @@ class QueryArtifactLineageSubgraphRequest extends \Google\Protobuf\Internal\Mess
      *              To filter on metadata fields use traversal operation as follows:
      *              `metadata.<field_name>.<type_value>`.
      *              For example: `metadata.field_1.number_value = 10.0`
+     *              In case the field name contains special characters (such as colon), one
+     *              can embed it inside double quote.
+     *              For example: `metadata."field:1".number_value = 10.0`
      *           Each of the above supported filter types can be combined together using
      *           logical operators (`AND` & `OR`). Maximum nested expression depth allowed
      *           is 5.
@@ -194,6 +220,9 @@ class QueryArtifactLineageSubgraphRequest extends \Google\Protobuf\Internal\Mess
      *    To filter on metadata fields use traversal operation as follows:
      *    `metadata.<field_name>.<type_value>`.
      *    For example: `metadata.field_1.number_value = 10.0`
+     *    In case the field name contains special characters (such as colon), one
+     *    can embed it inside double quote.
+     *    For example: `metadata."field:1".number_value = 10.0`
      * Each of the above supported filter types can be combined together using
      * logical operators (`AND` & `OR`). Maximum nested expression depth allowed
      * is 5.
@@ -223,6 +252,9 @@ class QueryArtifactLineageSubgraphRequest extends \Google\Protobuf\Internal\Mess
      *    To filter on metadata fields use traversal operation as follows:
      *    `metadata.<field_name>.<type_value>`.
      *    For example: `metadata.field_1.number_value = 10.0`
+     *    In case the field name contains special characters (such as colon), one
+     *    can embed it inside double quote.
+     *    For example: `metadata."field:1".number_value = 10.0`
      * Each of the above supported filter types can be combined together using
      * logical operators (`AND` & `OR`). Maximum nested expression depth allowed
      * is 5.

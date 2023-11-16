@@ -25,8 +25,8 @@ class CloudDlpInspection extends \Google\Protobuf\Internal\Message
      */
     private $inspect_job = '';
     /**
-     * The [type of
-     * information](https://cloud.google.com/dlp/docs/infotypes-reference) found,
+     * The type of information (or
+     * *[infoType](https://cloud.google.com/dlp/docs/infotypes-reference)*) found,
      * for example, `EMAIL_ADDRESS` or `STREET_ADDRESS`.
      *
      * Generated from protobuf field <code>string info_type = 2;</code>
@@ -56,8 +56,8 @@ class CloudDlpInspection extends \Google\Protobuf\Internal\Message
      *           Name of the inspection job, for example,
      *           `projects/123/locations/europe/dlpJobs/i-8383929`.
      *     @type string $info_type
-     *           The [type of
-     *           information](https://cloud.google.com/dlp/docs/infotypes-reference) found,
+     *           The type of information (or
+     *           *[infoType](https://cloud.google.com/dlp/docs/infotypes-reference)*) found,
      *           for example, `EMAIL_ADDRESS` or `STREET_ADDRESS`.
      *     @type int|string $info_type_count
      *           The number of times Cloud DLP found this infoType within this job
@@ -100,8 +100,8 @@ class CloudDlpInspection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [type of
-     * information](https://cloud.google.com/dlp/docs/infotypes-reference) found,
+     * The type of information (or
+     * *[infoType](https://cloud.google.com/dlp/docs/infotypes-reference)*) found,
      * for example, `EMAIL_ADDRESS` or `STREET_ADDRESS`.
      *
      * Generated from protobuf field <code>string info_type = 2;</code>
@@ -113,8 +113,8 @@ class CloudDlpInspection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [type of
-     * information](https://cloud.google.com/dlp/docs/infotypes-reference) found,
+     * The type of information (or
+     * *[infoType](https://cloud.google.com/dlp/docs/infotypes-reference)*) found,
      * for example, `EMAIL_ADDRESS` or `STREET_ADDRESS`.
      *
      * Generated from protobuf field <code>string info_type = 2;</code>

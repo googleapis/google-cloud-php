@@ -42,6 +42,31 @@ class CreateConnectivityTestRequest extends \Google\Protobuf\Internal\Message
     private $resource = null;
 
     /**
+     * @param string                                              $parent   Required. The parent resource of the Connectivity Test to create:
+     *                                                                      `projects/{project_id}/locations/global`
+     * @param string                                              $testId   Required. The logical name of the Connectivity Test in your project
+     *                                                                      with the following restrictions:
+     *
+     *                                                                      * Must contain only lowercase letters, numbers, and hyphens.
+     *                                                                      * Must start with a letter.
+     *                                                                      * Must be between 1-40 characters.
+     *                                                                      * Must end with a number or a letter.
+     *                                                                      * Must be unique within the customer project
+     * @param \Google\Cloud\NetworkManagement\V1\ConnectivityTest $resource Required. A `ConnectivityTest` resource
+     *
+     * @return \Google\Cloud\NetworkManagement\V1\CreateConnectivityTestRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $testId, \Google\Cloud\NetworkManagement\V1\ConnectivityTest $resource): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setTestId($testId)
+            ->setResource($resource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

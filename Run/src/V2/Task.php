@@ -37,30 +37,41 @@ class Task extends \Google\Protobuf\Internal\Message
      */
     private $generation = 0;
     /**
-     * KRM-style labels for the resource.
-     * User-provided labels are shared with Google's billing system, so they can
-     * be used to filter, or break down billing charges by team, component,
-     * environment, state, etc. For more information, visit
+     * Output only. Unstructured key value map that can be used to organize and
+     * categorize objects. User-provided labels are shared with Google's billing
+     * system, so they can be used to filter, or break down billing charges by
+     * team, component, environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      * https://cloud.google.com/run/docs/configuring/labels
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $labels;
     /**
-     * KRM-style annotations for the resource.
+     * Output only. Unstructured key value map that may
+     * be set by external tools to store and arbitrary metadata.
+     * They are not queryable and should be preserved
+     * when modifying objects.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 5;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $annotations;
     /**
-     * Output only. Represents time when the task was created by the job
-     * controller. It is not guaranteed to be set in happens-before order across
-     * separate operations.
+     * Output only. Represents time when the task was created by the system.
+     * It is not guaranteed to be set in happens-before order across separate
+     * operations.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
+    /**
+     * Output only. Represents time when the task was scheduled to run by the
+     * system. It is not guaranteed to be set in happens-before order across
+     * separate operations.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp scheduled_time = 34 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $scheduled_time = null;
     /**
      * Output only. Represents time when the task started to run.
      * It is not guaranteed to be set in happens-before order across separate
@@ -216,6 +227,12 @@ class Task extends \Google\Protobuf\Internal\Message
      */
     private $log_uri = '';
     /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $satisfies_pzs = false;
+    /**
      * Output only. A system-generated fingerprint for this version of the
      * resource. May be used to detect modification conflict during updates.
      *
@@ -239,17 +256,24 @@ class Task extends \Google\Protobuf\Internal\Message
      *           Output only. A number that monotonically increases every time the user
      *           modifies the desired state.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           KRM-style labels for the resource.
-     *           User-provided labels are shared with Google's billing system, so they can
-     *           be used to filter, or break down billing charges by team, component,
-     *           environment, state, etc. For more information, visit
+     *           Output only. Unstructured key value map that can be used to organize and
+     *           categorize objects. User-provided labels are shared with Google's billing
+     *           system, so they can be used to filter, or break down billing charges by
+     *           team, component, environment, state, etc. For more information, visit
      *           https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      *           https://cloud.google.com/run/docs/configuring/labels
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
-     *           KRM-style annotations for the resource.
+     *           Output only. Unstructured key value map that may
+     *           be set by external tools to store and arbitrary metadata.
+     *           They are not queryable and should be preserved
+     *           when modifying objects.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. Represents time when the task was created by the job
-     *           controller. It is not guaranteed to be set in happens-before order across
+     *           Output only. Represents time when the task was created by the system.
+     *           It is not guaranteed to be set in happens-before order across separate
+     *           operations.
+     *     @type \Google\Protobuf\Timestamp $scheduled_time
+     *           Output only. Represents time when the task was scheduled to run by the
+     *           system. It is not guaranteed to be set in happens-before order across
      *           separate operations.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Output only. Represents time when the task started to run.
@@ -317,6 +341,8 @@ class Task extends \Google\Protobuf\Internal\Message
      *     @type string $log_uri
      *           Output only. URI where logs for this execution can be found in Cloud
      *           Console.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
      *     @type string $etag
      *           Output only. A system-generated fingerprint for this version of the
      *           resource. May be used to detect modification conflict during updates.
@@ -412,14 +438,14 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style labels for the resource.
-     * User-provided labels are shared with Google's billing system, so they can
-     * be used to filter, or break down billing charges by team, component,
-     * environment, state, etc. For more information, visit
+     * Output only. Unstructured key value map that can be used to organize and
+     * categorize objects. User-provided labels are shared with Google's billing
+     * system, so they can be used to filter, or break down billing charges by
+     * team, component, environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      * https://cloud.google.com/run/docs/configuring/labels
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -428,14 +454,14 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style labels for the resource.
-     * User-provided labels are shared with Google's billing system, so they can
-     * be used to filter, or break down billing charges by team, component,
-     * environment, state, etc. For more information, visit
+     * Output only. Unstructured key value map that can be used to organize and
+     * categorize objects. User-provided labels are shared with Google's billing
+     * system, so they can be used to filter, or break down billing charges by
+     * team, component, environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      * https://cloud.google.com/run/docs/configuring/labels
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -448,9 +474,12 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style annotations for the resource.
+     * Output only. Unstructured key value map that may
+     * be set by external tools to store and arbitrary metadata.
+     * They are not queryable and should be preserved
+     * when modifying objects.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 5;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getAnnotations()
@@ -459,9 +488,12 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style annotations for the resource.
+     * Output only. Unstructured key value map that may
+     * be set by external tools to store and arbitrary metadata.
+     * They are not queryable and should be preserved
+     * when modifying objects.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 5;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -474,9 +506,9 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Represents time when the task was created by the job
-     * controller. It is not guaranteed to be set in happens-before order across
-     * separate operations.
+     * Output only. Represents time when the task was created by the system.
+     * It is not guaranteed to be set in happens-before order across separate
+     * operations.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -497,9 +529,9 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Represents time when the task was created by the job
-     * controller. It is not guaranteed to be set in happens-before order across
-     * separate operations.
+     * Output only. Represents time when the task was created by the system.
+     * It is not guaranteed to be set in happens-before order across separate
+     * operations.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -509,6 +541,46 @@ class Task extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Represents time when the task was scheduled to run by the
+     * system. It is not guaranteed to be set in happens-before order across
+     * separate operations.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp scheduled_time = 34 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getScheduledTime()
+    {
+        return $this->scheduled_time;
+    }
+
+    public function hasScheduledTime()
+    {
+        return isset($this->scheduled_time);
+    }
+
+    public function clearScheduledTime()
+    {
+        unset($this->scheduled_time);
+    }
+
+    /**
+     * Output only. Represents time when the task was scheduled to run by the
+     * system. It is not guaranteed to be set in happens-before order across
+     * separate operations.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp scheduled_time = 34 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setScheduledTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->scheduled_time = $var;
 
         return $this;
     }
@@ -1205,6 +1277,32 @@ class Task extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->log_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
 
         return $this;
     }

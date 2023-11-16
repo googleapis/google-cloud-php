@@ -43,6 +43,42 @@ class Component
      * Generated from protobuf enum <code>CONTROLLER_MANAGER = 5;</code>
      */
     const CONTROLLER_MANAGER = 5;
+    /**
+     * Storage
+     *
+     * Generated from protobuf enum <code>STORAGE = 7;</code>
+     */
+    const STORAGE = 7;
+    /**
+     * Horizontal Pod Autoscaling
+     *
+     * Generated from protobuf enum <code>HPA = 8;</code>
+     */
+    const HPA = 8;
+    /**
+     * Pod
+     *
+     * Generated from protobuf enum <code>POD = 9;</code>
+     */
+    const POD = 9;
+    /**
+     * DaemonSet
+     *
+     * Generated from protobuf enum <code>DAEMONSET = 10;</code>
+     */
+    const DAEMONSET = 10;
+    /**
+     * Deployment
+     *
+     * Generated from protobuf enum <code>DEPLOYMENT = 11;</code>
+     */
+    const DEPLOYMENT = 11;
+    /**
+     * Statefulset
+     *
+     * Generated from protobuf enum <code>STATEFULSET = 12;</code>
+     */
+    const STATEFULSET = 12;
 
     private static $valueToName = [
         self::COMPONENT_UNSPECIFIED => 'COMPONENT_UNSPECIFIED',
@@ -50,6 +86,12 @@ class Component
         self::APISERVER => 'APISERVER',
         self::SCHEDULER => 'SCHEDULER',
         self::CONTROLLER_MANAGER => 'CONTROLLER_MANAGER',
+        self::STORAGE => 'STORAGE',
+        self::HPA => 'HPA',
+        self::POD => 'POD',
+        self::DAEMONSET => 'DAEMONSET',
+        self::DEPLOYMENT => 'DEPLOYMENT',
+        self::STATEFULSET => 'STATEFULSET',
     ];
 
     public static function name($value)

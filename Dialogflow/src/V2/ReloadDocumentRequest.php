@@ -41,6 +41,28 @@ class ReloadDocumentRequest extends \Google\Protobuf\Internal\Message
     protected $source;
 
     /**
+     * @param string $name       Required. The name of the document to reload.
+     *                           Format: `projects/<Project ID>/locations/<Location
+     *                           ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`
+     *                           Please see {@see DocumentsClient::documentName()} for help formatting this field.
+     * @param string $contentUri Optional. The path of gcs source file for reloading document content. For
+     *                           now, only gcs uri is supported.
+     *
+     *                           For documents stored in Google Cloud Storage, these URIs must have
+     *                           the form `gs://<bucket-name>/<object-name>`.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\ReloadDocumentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, string $contentUri): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setContentUri($contentUri);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

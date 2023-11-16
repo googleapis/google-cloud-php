@@ -25,14 +25,15 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START gkebackup_v1_generated_BackupForGKE_ListBackupPlans_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\GkeBackup\V1\BackupForGKEClient;
 use Google\Cloud\GkeBackup\V1\BackupPlan;
+use Google\Cloud\GkeBackup\V1\Client\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\ListBackupPlansRequest;
 
 /**
  * Lists BackupPlans in a given location.
  *
  * @param string $formattedParent The location that contains the BackupPlans to list.
- *                                Format: projects/&#42;/locations/*
+ *                                Format: `projects/&#42;/locations/*`
  *                                Please see {@see BackupForGKEClient::locationName()} for help formatting this field.
  */
 function list_backup_plans_sample(string $formattedParent): void
@@ -40,10 +41,14 @@ function list_backup_plans_sample(string $formattedParent): void
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
+    // Prepare the request message.
+    $request = (new ListBackupPlansRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $backupForGKEClient->listBackupPlans($formattedParent);
+        $response = $backupForGKEClient->listBackupPlans($request);
 
         /** @var BackupPlan $element */
         foreach ($response as $element) {

@@ -23,7 +23,8 @@ class Error extends \Google\Protobuf\Internal\Message
      */
     private $details = null;
     /**
-     * The times the error occurred.
+     * The times the error occurred. List includes the oldest timestamp and the
+     * last 9 timestamps.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Timestamp timestamps = 2;</code>
      */
@@ -38,7 +39,8 @@ class Error extends \Google\Protobuf\Internal\Message
      *     @type \Google\Rpc\Status $details
      *           Detailed error codes and messages.
      *     @type array<\Google\Protobuf\Timestamp>|\Google\Protobuf\Internal\RepeatedField $timestamps
-     *           The times the error occurred.
+     *           The times the error occurred. List includes the oldest timestamp and the
+     *           last 9 timestamps.
      * }
      */
     public function __construct($data = NULL) {
@@ -83,7 +85,8 @@ class Error extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The times the error occurred.
+     * The times the error occurred. List includes the oldest timestamp and the
+     * last 9 timestamps.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Timestamp timestamps = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -94,7 +97,8 @@ class Error extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The times the error occurred.
+     * The times the error occurred. List includes the oldest timestamp and the
+     * last 9 timestamps.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Timestamp timestamps = 2;</code>
      * @param array<\Google\Protobuf\Timestamp>|\Google\Protobuf\Internal\RepeatedField $var

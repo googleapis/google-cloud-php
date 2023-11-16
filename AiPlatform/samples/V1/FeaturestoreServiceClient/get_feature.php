@@ -24,15 +24,18 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_FeaturestoreService_GetFeature_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\FeaturestoreServiceClient;
 use Google\Cloud\AIPlatform\V1\Feature;
-use Google\Cloud\AIPlatform\V1\FeaturestoreServiceClient;
+use Google\Cloud\AIPlatform\V1\GetFeatureRequest;
 
 /**
  * Gets details of a single Feature.
  *
  * @param string $formattedName The name of the Feature resource.
- *                              Format:
+ *                              Format for entity_type as parent:
  *                              `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+ *                              Format for feature_group as parent:
+ *                              `projects/{project}/locations/{location}/featureGroups/{feature_group}`
  *                              Please see {@see FeaturestoreServiceClient::featureName()} for help formatting this field.
  */
 function get_feature_sample(string $formattedName): void
@@ -40,10 +43,14 @@ function get_feature_sample(string $formattedName): void
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetFeatureRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Feature $response */
-        $response = $featurestoreServiceClient->getFeature($formattedName);
+        $response = $featurestoreServiceClient->getFeature($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

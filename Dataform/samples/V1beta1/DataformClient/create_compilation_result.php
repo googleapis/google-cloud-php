@@ -24,14 +24,15 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataform_v1beta1_generated_Dataform_CreateCompilationResult_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
 use Google\Cloud\Dataform\V1beta1\CompilationResult;
-use Google\Cloud\Dataform\V1beta1\DataformClient;
+use Google\Cloud\Dataform\V1beta1\CreateCompilationResultRequest;
 
 /**
  * Creates a new CompilationResult in a given project and location.
  *
- * @param string $formattedParent The repository in which to create the compilation result. Must be in the
- *                                format `projects/&#42;/locations/&#42;/repositories/*`. Please see
+ * @param string $formattedParent The repository in which to create the compilation result. Must be
+ *                                in the format `projects/&#42;/locations/&#42;/repositories/*`. Please see
  *                                {@see DataformClient::repositoryName()} for help formatting this field.
  */
 function create_compilation_result_sample(string $formattedParent): void
@@ -39,13 +40,16 @@ function create_compilation_result_sample(string $formattedParent): void
     // Create a client.
     $dataformClient = new DataformClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $compilationResult = new CompilationResult();
+    $request = (new CreateCompilationResultRequest())
+        ->setParent($formattedParent)
+        ->setCompilationResult($compilationResult);
 
     // Call the API and handle any network failures.
     try {
         /** @var CompilationResult $response */
-        $response = $dataformClient->createCompilationResult($formattedParent, $compilationResult);
+        $response = $dataformClient->createCompilationResult($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

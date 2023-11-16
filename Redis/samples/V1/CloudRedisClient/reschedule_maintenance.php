@@ -38,7 +38,8 @@ use Google\Rpc\Status;
  *                               `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
  *                               where `location_id` refers to a GCP region. Please see
  *                               {@see CloudRedisClient::instanceName()} for help formatting this field.
- * @param int    $rescheduleType If reschedule type is SPECIFIC_TIME, must set up schedule_time as well.
+ * @param int    $rescheduleType If reschedule type is SPECIFIC_TIME, must set up schedule_time as
+ *                               well.
  */
 function reschedule_maintenance_sample(string $formattedName, int $rescheduleType): void
 {

@@ -20,8 +20,8 @@ class RevisionTemplate
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         $pool->internalAddGeneratedFile(
             '
-™
-+google/cloud/run/v2/revision_template.protogoogle.cloud.run.v2!google/cloud/run/v2/k8s.min.proto)google/cloud/run/v2/vendor_settings.protogoogle/protobuf/duration.proto"ÿ
+³
++google/cloud/run/v2/revision_template.protogoogle.cloud.run.v2!google/cloud/run/v2/k8s.min.proto)google/cloud/run/v2/vendor_settings.protogoogle/protobuf/duration.proto"™
 RevisionTemplate2
 revision (	B úA
 run.googleapis.com/RevisionA
@@ -39,7 +39,8 @@ containers
 execution_environment (2).google.cloud.run.v2.ExecutionEnvironment>
 encryption_key (	B&úA#
 !cloudkms.googleapis.com/CryptoKey(
- max_instance_request_concurrency (-
+ max_instance_request_concurrency (
+session_affinity (-
 LabelsEntry
 key (	
 value (	:82

@@ -39,6 +39,29 @@ class CreateServingConfigRequest extends \Google\Protobuf\Internal\Message
     private $serving_config_id = '';
 
     /**
+     * @param string                                $parent          Required. Full resource name of parent. Format:
+     *                                                               `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
+     *                                                               Please see {@see ServingConfigServiceClient::catalogName()} for help formatting this field.
+     * @param \Google\Cloud\Retail\V2\ServingConfig $servingConfig   Required. The ServingConfig to create.
+     * @param string                                $servingConfigId Required. The ID to use for the ServingConfig, which will become the final
+     *                                                               component of the ServingConfig's resource name.
+     *
+     *                                                               This value should be 4-63 characters, and valid characters
+     *                                                               are /[a-z][0-9]-_/.
+     *
+     * @return \Google\Cloud\Retail\V2\CreateServingConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Retail\V2\ServingConfig $servingConfig, string $servingConfigId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setServingConfig($servingConfig)
+            ->setServingConfigId($servingConfigId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

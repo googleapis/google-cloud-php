@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class FetchStaticIpsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name for the location for which static IPs should be returned.
-     * Must be in the format `projects/&#42;&#47;locations/&#42;`.
+     * Required. The resource name for the location for which static IPs should be
+     * returned. Must be in the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -37,14 +37,29 @@ class FetchStaticIpsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $name Required. The resource name for the location for which static IPs should be
+     *                     returned. Must be in the format `projects/&#42;/locations/*`. Please see
+     *                     {@see DatastreamClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Datastream\V1\FetchStaticIpsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name for the location for which static IPs should be returned.
-     *           Must be in the format `projects/&#42;&#47;locations/&#42;`.
+     *           Required. The resource name for the location for which static IPs should be
+     *           returned. Must be in the format `projects/&#42;&#47;locations/&#42;`.
      *     @type int $page_size
      *           Maximum number of Ips to return, will likely not be specified.
      *     @type string $page_token
@@ -58,8 +73,8 @@ class FetchStaticIpsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name for the location for which static IPs should be returned.
-     * Must be in the format `projects/&#42;&#47;locations/&#42;`.
+     * Required. The resource name for the location for which static IPs should be
+     * returned. Must be in the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -70,8 +85,8 @@ class FetchStaticIpsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name for the location for which static IPs should be returned.
-     * Must be in the format `projects/&#42;&#47;locations/&#42;`.
+     * Required. The resource name for the location for which static IPs should be
+     * returned. Must be in the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -12,7 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * A single application container.
  * This specifies both the container to run, the command to run in the container
  * and the arguments to supply to it.
- * Note that additional arguments may be supplied by the system to the container
+ * Note that additional arguments can be supplied by the system to the container
  * at runtime.
  *
  * Generated from protobuf message <code>google.cloud.run.v2.Container</code>
@@ -28,8 +28,7 @@ class Container extends \Google\Protobuf\Internal\Message
     /**
      * Required. Name of the container image in Dockerhub, Google Artifact
      * Registry, or Google Container Registry. If the host is not provided,
-     * Dockerhub is assumed. More info:
-     * https://kubernetes.io/docs/concepts/containers/images
+     * Dockerhub is assumed.
      *
      * Generated from protobuf field <code>string image = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -37,13 +36,6 @@ class Container extends \Google\Protobuf\Internal\Message
     /**
      * Entrypoint array. Not executed within a shell.
      * The docker image's ENTRYPOINT is used if this is not provided.
-     * Variable references $(VAR_NAME) are expanded using the container's
-     * environment. If a variable cannot be resolved, the reference in the input
-     * string will be unchanged. The $(VAR_NAME) syntax can be escaped with a
-     * double $$, ie: $$(VAR_NAME). Escaped references will never be expanded,
-     * regardless of whether the variable exists or not.
-     * More info:
-     * https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
      *
      * Generated from protobuf field <code>repeated string command = 3;</code>
      */
@@ -51,13 +43,6 @@ class Container extends \Google\Protobuf\Internal\Message
     /**
      * Arguments to the entrypoint.
      * The docker image's CMD is used if this is not provided.
-     * Variable references $(VAR_NAME) are expanded using the container's
-     * environment. If a variable cannot be resolved, the reference in the input
-     * string will be unchanged. The $(VAR_NAME) syntax can be escaped with a
-     * double $$, ie: $$(VAR_NAME). Escaped references will never be expanded,
-     * regardless of whether the variable exists or not.
-     * More info:
-     * https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
      *
      * Generated from protobuf field <code>repeated string args = 4;</code>
      */
@@ -70,8 +55,6 @@ class Container extends \Google\Protobuf\Internal\Message
     private $env;
     /**
      * Compute Resource requirements by this container.
-     * More info:
-     * https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.ResourceRequirements resources = 6;</code>
      */
@@ -103,8 +86,6 @@ class Container extends \Google\Protobuf\Internal\Message
     /**
      * Periodic probe of container liveness.
      * Container will be restarted if the probe fails.
-     * More info:
-     * https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.Probe liveness_probe = 10;</code>
      */
@@ -114,12 +95,16 @@ class Container extends \Google\Protobuf\Internal\Message
      * All other probes are disabled if a startup probe is provided, until it
      * succeeds. Container will not be added to service endpoints if the probe
      * fails.
-     * More info:
-     * https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.Probe startup_probe = 11;</code>
      */
     private $startup_probe = null;
+    /**
+     * Names of the containers that must start before this container.
+     *
+     * Generated from protobuf field <code>repeated string depends_on = 12;</code>
+     */
+    private $depends_on;
 
     /**
      * Constructor.
@@ -132,34 +117,17 @@ class Container extends \Google\Protobuf\Internal\Message
      *     @type string $image
      *           Required. Name of the container image in Dockerhub, Google Artifact
      *           Registry, or Google Container Registry. If the host is not provided,
-     *           Dockerhub is assumed. More info:
-     *           https://kubernetes.io/docs/concepts/containers/images
+     *           Dockerhub is assumed.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $command
      *           Entrypoint array. Not executed within a shell.
      *           The docker image's ENTRYPOINT is used if this is not provided.
-     *           Variable references $(VAR_NAME) are expanded using the container's
-     *           environment. If a variable cannot be resolved, the reference in the input
-     *           string will be unchanged. The $(VAR_NAME) syntax can be escaped with a
-     *           double $$, ie: $$(VAR_NAME). Escaped references will never be expanded,
-     *           regardless of whether the variable exists or not.
-     *           More info:
-     *           https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $args
      *           Arguments to the entrypoint.
      *           The docker image's CMD is used if this is not provided.
-     *           Variable references $(VAR_NAME) are expanded using the container's
-     *           environment. If a variable cannot be resolved, the reference in the input
-     *           string will be unchanged. The $(VAR_NAME) syntax can be escaped with a
-     *           double $$, ie: $$(VAR_NAME). Escaped references will never be expanded,
-     *           regardless of whether the variable exists or not.
-     *           More info:
-     *           https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
      *     @type array<\Google\Cloud\Run\V2\EnvVar>|\Google\Protobuf\Internal\RepeatedField $env
      *           List of environment variables to set in the container.
      *     @type \Google\Cloud\Run\V2\ResourceRequirements $resources
      *           Compute Resource requirements by this container.
-     *           More info:
-     *           https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources
      *     @type array<\Google\Cloud\Run\V2\ContainerPort>|\Google\Protobuf\Internal\RepeatedField $ports
      *           List of ports to expose from the container. Only a single port can be
      *           specified. The specified ports must be listening on all interfaces
@@ -175,15 +143,13 @@ class Container extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Run\V2\Probe $liveness_probe
      *           Periodic probe of container liveness.
      *           Container will be restarted if the probe fails.
-     *           More info:
-     *           https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
      *     @type \Google\Cloud\Run\V2\Probe $startup_probe
      *           Startup probe of application within the container.
      *           All other probes are disabled if a startup probe is provided, until it
      *           succeeds. Container will not be added to service endpoints if the probe
      *           fails.
-     *           More info:
-     *           https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $depends_on
+     *           Names of the containers that must start before this container.
      * }
      */
     public function __construct($data = NULL) {
@@ -220,8 +186,7 @@ class Container extends \Google\Protobuf\Internal\Message
     /**
      * Required. Name of the container image in Dockerhub, Google Artifact
      * Registry, or Google Container Registry. If the host is not provided,
-     * Dockerhub is assumed. More info:
-     * https://kubernetes.io/docs/concepts/containers/images
+     * Dockerhub is assumed.
      *
      * Generated from protobuf field <code>string image = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -234,8 +199,7 @@ class Container extends \Google\Protobuf\Internal\Message
     /**
      * Required. Name of the container image in Dockerhub, Google Artifact
      * Registry, or Google Container Registry. If the host is not provided,
-     * Dockerhub is assumed. More info:
-     * https://kubernetes.io/docs/concepts/containers/images
+     * Dockerhub is assumed.
      *
      * Generated from protobuf field <code>string image = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -252,13 +216,6 @@ class Container extends \Google\Protobuf\Internal\Message
     /**
      * Entrypoint array. Not executed within a shell.
      * The docker image's ENTRYPOINT is used if this is not provided.
-     * Variable references $(VAR_NAME) are expanded using the container's
-     * environment. If a variable cannot be resolved, the reference in the input
-     * string will be unchanged. The $(VAR_NAME) syntax can be escaped with a
-     * double $$, ie: $$(VAR_NAME). Escaped references will never be expanded,
-     * regardless of whether the variable exists or not.
-     * More info:
-     * https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
      *
      * Generated from protobuf field <code>repeated string command = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -271,13 +228,6 @@ class Container extends \Google\Protobuf\Internal\Message
     /**
      * Entrypoint array. Not executed within a shell.
      * The docker image's ENTRYPOINT is used if this is not provided.
-     * Variable references $(VAR_NAME) are expanded using the container's
-     * environment. If a variable cannot be resolved, the reference in the input
-     * string will be unchanged. The $(VAR_NAME) syntax can be escaped with a
-     * double $$, ie: $$(VAR_NAME). Escaped references will never be expanded,
-     * regardless of whether the variable exists or not.
-     * More info:
-     * https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
      *
      * Generated from protobuf field <code>repeated string command = 3;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -294,13 +244,6 @@ class Container extends \Google\Protobuf\Internal\Message
     /**
      * Arguments to the entrypoint.
      * The docker image's CMD is used if this is not provided.
-     * Variable references $(VAR_NAME) are expanded using the container's
-     * environment. If a variable cannot be resolved, the reference in the input
-     * string will be unchanged. The $(VAR_NAME) syntax can be escaped with a
-     * double $$, ie: $$(VAR_NAME). Escaped references will never be expanded,
-     * regardless of whether the variable exists or not.
-     * More info:
-     * https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
      *
      * Generated from protobuf field <code>repeated string args = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -313,13 +256,6 @@ class Container extends \Google\Protobuf\Internal\Message
     /**
      * Arguments to the entrypoint.
      * The docker image's CMD is used if this is not provided.
-     * Variable references $(VAR_NAME) are expanded using the container's
-     * environment. If a variable cannot be resolved, the reference in the input
-     * string will be unchanged. The $(VAR_NAME) syntax can be escaped with a
-     * double $$, ie: $$(VAR_NAME). Escaped references will never be expanded,
-     * regardless of whether the variable exists or not.
-     * More info:
-     * https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
      *
      * Generated from protobuf field <code>repeated string args = 4;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -361,8 +297,6 @@ class Container extends \Google\Protobuf\Internal\Message
 
     /**
      * Compute Resource requirements by this container.
-     * More info:
-     * https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.ResourceRequirements resources = 6;</code>
      * @return \Google\Cloud\Run\V2\ResourceRequirements|null
@@ -384,8 +318,6 @@ class Container extends \Google\Protobuf\Internal\Message
 
     /**
      * Compute Resource requirements by this container.
-     * More info:
-     * https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.ResourceRequirements resources = 6;</code>
      * @param \Google\Cloud\Run\V2\ResourceRequirements $var
@@ -492,8 +424,6 @@ class Container extends \Google\Protobuf\Internal\Message
     /**
      * Periodic probe of container liveness.
      * Container will be restarted if the probe fails.
-     * More info:
-     * https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.Probe liveness_probe = 10;</code>
      * @return \Google\Cloud\Run\V2\Probe|null
@@ -516,8 +446,6 @@ class Container extends \Google\Protobuf\Internal\Message
     /**
      * Periodic probe of container liveness.
      * Container will be restarted if the probe fails.
-     * More info:
-     * https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.Probe liveness_probe = 10;</code>
      * @param \Google\Cloud\Run\V2\Probe $var
@@ -536,8 +464,6 @@ class Container extends \Google\Protobuf\Internal\Message
      * All other probes are disabled if a startup probe is provided, until it
      * succeeds. Container will not be added to service endpoints if the probe
      * fails.
-     * More info:
-     * https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.Probe startup_probe = 11;</code>
      * @return \Google\Cloud\Run\V2\Probe|null
@@ -562,8 +488,6 @@ class Container extends \Google\Protobuf\Internal\Message
      * All other probes are disabled if a startup probe is provided, until it
      * succeeds. Container will not be added to service endpoints if the probe
      * fails.
-     * More info:
-     * https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.Probe startup_probe = 11;</code>
      * @param \Google\Cloud\Run\V2\Probe $var
@@ -573,6 +497,32 @@ class Container extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\Probe::class);
         $this->startup_probe = $var;
+
+        return $this;
+    }
+
+    /**
+     * Names of the containers that must start before this container.
+     *
+     * Generated from protobuf field <code>repeated string depends_on = 12;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDependsOn()
+    {
+        return $this->depends_on;
+    }
+
+    /**
+     * Names of the containers that must start before this container.
+     *
+     * Generated from protobuf field <code>repeated string depends_on = 12;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDependsOn($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->depends_on = $arr;
 
         return $this;
     }

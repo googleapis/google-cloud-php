@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START bigquerydatapolicy_v1_generated_DataPolicyService_TestIamPermissions_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\BigQuery\DataPolicies\V1\DataPolicyServiceClient;
+use Google\Cloud\BigQuery\DataPolicies\V1\Client\DataPolicyServiceClient;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 
 /**
@@ -42,13 +43,16 @@ function test_iam_permissions_sample(string $resource, string $permissionsElemen
     // Create a client.
     $dataPolicyServiceClient = new DataPolicyServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $permissions = [$permissionsElement,];
+    $request = (new TestIamPermissionsRequest())
+        ->setResource($resource)
+        ->setPermissions($permissions);
 
     // Call the API and handle any network failures.
     try {
         /** @var TestIamPermissionsResponse $response */
-        $response = $dataPolicyServiceClient->testIamPermissions($resource, $permissions);
+        $response = $dataPolicyServiceClient->testIamPermissions($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

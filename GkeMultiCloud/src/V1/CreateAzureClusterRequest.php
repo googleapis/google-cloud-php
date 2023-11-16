@@ -53,6 +53,40 @@ class CreateAzureClusterRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param string                                      $parent         Required. The parent location where this
+     *                                                                    [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource will be
+     *                                                                    created.
+     *
+     *                                                                    Location names are formatted as `projects/<project-id>/locations/<region>`.
+     *
+     *                                                                    See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *                                                                    for more details on Google Cloud resource names. Please see
+     *                                                                    {@see AzureClustersClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\GkeMultiCloud\V1\AzureCluster $azureCluster   Required. The specification of the
+     *                                                                    [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] to create.
+     * @param string                                      $azureClusterId Required. A client provided ID the resource. Must be unique within the
+     *                                                                    parent resource.
+     *
+     *                                                                    The provided ID will be part of the
+     *                                                                    [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource name
+     *                                                                    formatted as
+     *                                                                    `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
+     *
+     *                                                                    Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\CreateAzureClusterRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\GkeMultiCloud\V1\AzureCluster $azureCluster, string $azureClusterId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setAzureCluster($azureCluster)
+            ->setAzureClusterId($azureClusterId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

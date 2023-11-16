@@ -40,6 +40,20 @@ class ListGcpUserAccessBindingsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. Example: "organizations/256"
+     *                       Please see {@see AccessContextManagerClient::organizationName()} for help formatting this field.
+     *
+     * @return \Google\Identity\AccessContextManager\V1\ListGcpUserAccessBindingsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

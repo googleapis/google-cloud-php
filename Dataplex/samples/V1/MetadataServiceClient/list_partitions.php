@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataplex_v1_generated_MetadataService_ListPartitions_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Dataplex\V1\MetadataServiceClient;
+use Google\Cloud\Dataplex\V1\Client\MetadataServiceClient;
+use Google\Cloud\Dataplex\V1\ListPartitionsRequest;
 use Google\Cloud\Dataplex\V1\Partition;
 
 /**
@@ -40,10 +41,14 @@ function list_partitions_sample(string $formattedParent): void
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListPartitionsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $metadataServiceClient->listPartitions($formattedParent);
+        $response = $metadataServiceClient->listPartitions($request);
 
         /** @var Partition $element */
         foreach ($response as $element) {

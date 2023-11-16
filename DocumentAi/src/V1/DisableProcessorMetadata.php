@@ -9,14 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The long running operation metadata for disable processor method.
+ * The long-running operation metadata for the
+ * [DisableProcessor][google.cloud.documentai.v1.DocumentProcessorService.DisableProcessor]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.DisableProcessorMetadata</code>
  */
 class DisableProcessorMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.CommonOperationMetadata common_metadata = 5;</code>
      */
@@ -29,7 +31,7 @@ class DisableProcessorMetadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DocumentAI\V1\CommonOperationMetadata $common_metadata
-     *           The basic metadata of the long running operation.
+     *           The basic metadata of the long-running operation.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +40,7 @@ class DisableProcessorMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.CommonOperationMetadata common_metadata = 5;</code>
      * @return \Google\Cloud\DocumentAI\V1\CommonOperationMetadata|null
@@ -59,7 +61,7 @@ class DisableProcessorMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.CommonOperationMetadata common_metadata = 5;</code>
      * @param \Google\Cloud\DocumentAI\V1\CommonOperationMetadata $var

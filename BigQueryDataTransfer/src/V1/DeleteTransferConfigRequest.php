@@ -26,6 +26,22 @@ class DeleteTransferConfigRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The field will contain name of the resource requested, for
+     *                     example: `projects/{project_id}/transferConfigs/{config_id}` or
+     *                     `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
+     *                     Please see {@see DataTransferServiceClient::transferConfigName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\BigQuery\DataTransfer\V1\DeleteTransferConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

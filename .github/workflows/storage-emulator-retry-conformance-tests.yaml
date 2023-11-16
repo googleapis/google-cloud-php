@@ -16,13 +16,13 @@ jobs:
 
     services:
       emulator:
-        image: gcr.io/cloud-devrel-public-resources/storage-testbench:v0.35.0
+        image: gcr.io/cloud-devrel-public-resources/storage-testbench:v0.37.0
         ports:
           - 9000:9000
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2

@@ -200,7 +200,9 @@ class TableTest extends SnippetTestCase
             ->setEndKeyOpen('lincoln');
         $rowSet = (new RowSet())
             ->setRowRanges([$rowRange]);
-        $this->bigtableClient->readRows(self::TABLE_NAME, ['rows' => $rowSet])
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($rowSet) {
+            return $argument['rows']->serializeToJsonString() === $rowSet->serializeToJsonString();
+        }))
             ->shouldBeCalled()
             ->willReturn($this->serverStream->reveal());
 
@@ -231,7 +233,9 @@ class TableTest extends SnippetTestCase
             );
         $rowSet = (new RowSet())
             ->setRowKeys(['jefferson']);
-        $this->bigtableClient->readRows(self::TABLE_NAME, ['rows' => $rowSet])
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($rowSet) {
+            return $argument['rows']->serializeToJsonString() === $rowSet->serializeToJsonString();
+        }))
             ->shouldBeCalled()
             ->willReturn($this->serverStream->reveal());
         $snippet = $this->snippetFromMethod(Table::class, 'readRow');

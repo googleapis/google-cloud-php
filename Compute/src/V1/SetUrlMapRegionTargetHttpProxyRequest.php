@@ -47,6 +47,25 @@ class SetUrlMapRegionTargetHttpProxyRequest extends \Google\Protobuf\Internal\Me
     private $url_map_reference_resource = null;
 
     /**
+     * @param string                                   $project                 Project ID for this request.
+     * @param string                                   $region                  Name of the region scoping this request.
+     * @param string                                   $targetHttpProxy         Name of the TargetHttpProxy to set a URL map for.
+     * @param \Google\Cloud\Compute\V1\UrlMapReference $urlMapReferenceResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\SetUrlMapRegionTargetHttpProxyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $targetHttpProxy, \Google\Cloud\Compute\V1\UrlMapReference $urlMapReferenceResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetHttpProxy($targetHttpProxy)
+            ->setUrlMapReferenceResource($urlMapReferenceResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

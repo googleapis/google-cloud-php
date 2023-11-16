@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The location in which to create the repository. Must be in the format
-     * `projects/&#42;&#47;locations/&#42;`.
+     * Required. The location in which to create the repository. Must be in the
+     * format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -29,12 +29,32 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
      */
     private $repository = null;
     /**
-     * Required. The ID to use for the repository, which will become the final component of
-     * the repository's resource name.
+     * Required. The ID to use for the repository, which will become the final
+     * component of the repository's resource name.
      *
      * Generated from protobuf field <code>string repository_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $repository_id = '';
+
+    /**
+     * @param string                                    $parent       Required. The location in which to create the repository. Must be in the
+     *                                                                format `projects/&#42;/locations/*`. Please see
+     *                                                                {@see DataformClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Dataform\V1beta1\Repository $repository   Required. The repository to create.
+     * @param string                                    $repositoryId Required. The ID to use for the repository, which will become the final
+     *                                                                component of the repository's resource name.
+     *
+     * @return \Google\Cloud\Dataform\V1beta1\CreateRepositoryRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dataform\V1beta1\Repository $repository, string $repositoryId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setRepository($repository)
+            ->setRepositoryId($repositoryId);
+    }
 
     /**
      * Constructor.
@@ -43,13 +63,13 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The location in which to create the repository. Must be in the format
-     *           `projects/&#42;&#47;locations/&#42;`.
+     *           Required. The location in which to create the repository. Must be in the
+     *           format `projects/&#42;&#47;locations/&#42;`.
      *     @type \Google\Cloud\Dataform\V1beta1\Repository $repository
      *           Required. The repository to create.
      *     @type string $repository_id
-     *           Required. The ID to use for the repository, which will become the final component of
-     *           the repository's resource name.
+     *           Required. The ID to use for the repository, which will become the final
+     *           component of the repository's resource name.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,8 +78,8 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The location in which to create the repository. Must be in the format
-     * `projects/&#42;&#47;locations/&#42;`.
+     * Required. The location in which to create the repository. Must be in the
+     * format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -70,8 +90,8 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The location in which to create the repository. Must be in the format
-     * `projects/&#42;&#47;locations/&#42;`.
+     * Required. The location in which to create the repository. Must be in the
+     * format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -122,8 +142,8 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID to use for the repository, which will become the final component of
-     * the repository's resource name.
+     * Required. The ID to use for the repository, which will become the final
+     * component of the repository's resource name.
      *
      * Generated from protobuf field <code>string repository_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -134,8 +154,8 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID to use for the repository, which will become the final component of
-     * the repository's resource name.
+     * Required. The ID to use for the repository, which will become the final
+     * component of the repository's resource name.
      *
      * Generated from protobuf field <code>string repository_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

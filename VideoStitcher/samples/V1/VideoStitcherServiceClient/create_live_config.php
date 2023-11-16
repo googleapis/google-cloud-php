@@ -26,8 +26,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Video\Stitcher\V1\AdTracking;
+use Google\Cloud\Video\Stitcher\V1\Client\VideoStitcherServiceClient;
+use Google\Cloud\Video\Stitcher\V1\CreateLiveConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\LiveConfig;
-use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -52,19 +53,19 @@ function create_live_config_sample(
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $liveConfig = (new LiveConfig())
         ->setSourceUri($liveConfigSourceUri)
         ->setAdTracking($liveConfigAdTracking);
+    $request = (new CreateLiveConfigRequest())
+        ->setParent($formattedParent)
+        ->setLiveConfigId($liveConfigId)
+        ->setLiveConfig($liveConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $videoStitcherServiceClient->createLiveConfig(
-            $formattedParent,
-            $liveConfigId,
-            $liveConfig
-        );
+        $response = $videoStitcherServiceClient->createLiveConfig($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

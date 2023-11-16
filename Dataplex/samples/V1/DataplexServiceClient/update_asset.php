@@ -28,7 +28,8 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Dataplex\V1\Asset;
 use Google\Cloud\Dataplex\V1\Asset\ResourceSpec;
 use Google\Cloud\Dataplex\V1\Asset\ResourceSpec\Type;
-use Google\Cloud\Dataplex\V1\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\Client\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\UpdateAssetRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -42,17 +43,20 @@ function update_asset_sample(int $assetResourceSpecType): void
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $assetResourceSpec = (new ResourceSpec())
         ->setType($assetResourceSpecType);
     $asset = (new Asset())
         ->setResourceSpec($assetResourceSpec);
+    $request = (new UpdateAssetRequest())
+        ->setUpdateMask($updateMask)
+        ->setAsset($asset);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataplexServiceClient->updateAsset($updateMask, $asset);
+        $response = $dataplexServiceClient->updateAsset($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -99,6 +99,12 @@ class Conversation extends \Google\Protobuf\Internal\Message
      */
     private $latest_analysis = null;
     /**
+     * Output only. Latest summary of the conversation.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.ConversationSummarizationSuggestionData latest_summary = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $latest_summary = null;
+    /**
      * Output only. The annotations that were generated during the customer and
      * agent interaction.
      *
@@ -167,6 +173,8 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *           Output only. The number of turns in the conversation.
      *     @type \Google\Cloud\ContactCenterInsights\V1\Analysis $latest_analysis
      *           Output only. The conversation's latest analysis, if one exists.
+     *     @type \Google\Cloud\ContactCenterInsights\V1\ConversationSummarizationSuggestionData $latest_summary
+     *           Output only. Latest summary of the conversation.
      *     @type array<\Google\Cloud\ContactCenterInsights\V1\RuntimeAnnotation>|\Google\Protobuf\Internal\RepeatedField $runtime_annotations
      *           Output only. The annotations that were generated during the customer and
      *           agent interaction.
@@ -694,6 +702,42 @@ class Conversation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\Analysis::class);
         $this->latest_analysis = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Latest summary of the conversation.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.ConversationSummarizationSuggestionData latest_summary = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\ContactCenterInsights\V1\ConversationSummarizationSuggestionData|null
+     */
+    public function getLatestSummary()
+    {
+        return $this->latest_summary;
+    }
+
+    public function hasLatestSummary()
+    {
+        return isset($this->latest_summary);
+    }
+
+    public function clearLatestSummary()
+    {
+        unset($this->latest_summary);
+    }
+
+    /**
+     * Output only. Latest summary of the conversation.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.ConversationSummarizationSuggestionData latest_summary = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\ContactCenterInsights\V1\ConversationSummarizationSuggestionData $var
+     * @return $this
+     */
+    public function setLatestSummary($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\ConversationSummarizationSuggestionData::class);
+        $this->latest_summary = $var;
 
         return $this;
     }

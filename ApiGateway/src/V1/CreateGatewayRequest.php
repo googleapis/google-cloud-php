@@ -37,6 +37,26 @@ class CreateGatewayRequest extends \Google\Protobuf\Internal\Message
     private $gateway = null;
 
     /**
+     * @param string                              $parent    Required. Parent resource of the Gateway, of the form:
+     *                                                       `projects/&#42;/locations/*`
+     *                                                       Please see {@see ApiGatewayServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\ApiGateway\V1\Gateway $gateway   Required. Gateway resource.
+     * @param string                              $gatewayId Required. Identifier to assign to the Gateway. Must be unique within scope of
+     *                                                       the parent resource.
+     *
+     * @return \Google\Cloud\ApiGateway\V1\CreateGatewayRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\ApiGateway\V1\Gateway $gateway, string $gatewayId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setGateway($gateway)
+            ->setGatewayId($gatewayId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

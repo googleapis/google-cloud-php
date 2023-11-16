@@ -26,14 +26,15 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\GkeBackup\V1\Backup;
-use Google\Cloud\GkeBackup\V1\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\Client\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\CreateBackupRequest;
 use Google\Rpc\Status;
 
 /**
  * Creates a Backup for the given BackupPlan.
  *
  * @param string $formattedParent The BackupPlan within which to create the Backup.
- *                                Format: projects/&#42;/locations/&#42;/backupPlans/*
+ *                                Format: `projects/&#42;/locations/&#42;/backupPlans/*`
  *                                Please see {@see BackupForGKEClient::backupPlanName()} for help formatting this field.
  */
 function create_backup_sample(string $formattedParent): void
@@ -41,10 +42,14 @@ function create_backup_sample(string $formattedParent): void
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
+    // Prepare the request message.
+    $request = (new CreateBackupRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $backupForGKEClient->createBackup($formattedParent);
+        $response = $backupForGKEClient->createBackup($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

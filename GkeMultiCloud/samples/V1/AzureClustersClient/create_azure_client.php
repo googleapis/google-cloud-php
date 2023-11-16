@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\GkeMultiCloud\V1\AzureClient;
-use Google\Cloud\GkeMultiCloud\V1\AzureClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\Client\AzureClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\CreateAzureClientRequest;
 use Google\Rpc\Status;
 
 /**
@@ -71,15 +72,19 @@ function create_azure_client_sample(
     // Create a client.
     $azureClustersClient = new AzureClustersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $azureClient = (new AzureClient())
         ->setTenantId($azureClientTenantId)
         ->setApplicationId($azureClientApplicationId);
+    $request = (new CreateAzureClientRequest())
+        ->setParent($formattedParent)
+        ->setAzureClient($azureClient)
+        ->setAzureClientId($azureClientId);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $azureClustersClient->createAzureClient($formattedParent, $azureClient, $azureClientId);
+        $response = $azureClustersClient->createAzureClient($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

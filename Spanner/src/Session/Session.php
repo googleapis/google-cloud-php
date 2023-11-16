@@ -28,6 +28,7 @@ class Session
 {
     /**
      * @var ConnectionInterface
+     * @internal
      */
     private $connection;
 
@@ -63,6 +64,8 @@ class Session
 
     /**
      * @param ConnectionInterface $connection A connection to Cloud Spanner.
+     *        This object is created by SpannerClient,
+     *        and should not be instantiated outside of this client.
      * @param string $projectId The project ID.
      * @param string $instance The instance name.
      * @param string $database The database name.
@@ -159,7 +162,7 @@ class Session
      * @param int $expiration [optional] The Unix timestamp in seconds upon
      *        which the session will expire.  **Defaults to** now plus 60
      *        minutes.
-     * @return int
+     * @return void
      */
     public function setExpiration($expiration = null)
     {

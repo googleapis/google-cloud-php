@@ -55,6 +55,28 @@ class CreateSlateRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string                                $parent  Required. The project in which the slate should be created, in the form of
+     *                                                       `projects/{project_number}/locations/{location}`. Please see
+     *                                                       {@see VideoStitcherServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Video\Stitcher\V1\Slate $slate   Required. The slate to create.
+     * @param string                                $slateId Required. The unique identifier for the slate.
+     *                                                       This value should conform to RFC-1034, which restricts to
+     *                                                       lower-case letters, numbers, and hyphen, with the first character a
+     *                                                       letter, the last a letter or a number, and a 63 character maximum.
+     *
+     * @return \Google\Cloud\Video\Stitcher\V1\CreateSlateRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Video\Stitcher\V1\Slate $slate, string $slateId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setSlate($slate)
+            ->setSlateId($slateId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -33,6 +33,16 @@
                     "timeout_millis": 15000,
                     "retry_codes_name": "retry_policy_2_codes",
                     "retry_params_name": "retry_policy_2_params"
+                },
+                "GetLocation": {
+                    "timeout_millis": 15000,
+                    "retry_codes_name": "retry_policy_2_codes",
+                    "retry_params_name": "retry_policy_2_params"
+                },
+                "ListLocations": {
+                    "timeout_millis": 15000,
+                    "retry_codes_name": "retry_policy_2_codes",
+                    "retry_params_name": "retry_policy_2_params"
                 }
             }
         }

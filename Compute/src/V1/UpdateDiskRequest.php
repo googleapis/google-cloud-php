@@ -57,6 +57,25 @@ class UpdateDiskRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string                        $project      Project ID for this request.
+     * @param string                        $zone         The name of the zone for this request.
+     * @param string                        $disk         The disk name for this request.
+     * @param \Google\Cloud\Compute\V1\Disk $diskResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\UpdateDiskRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $disk, \Google\Cloud\Compute\V1\Disk $diskResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setDisk($disk)
+            ->setDiskResource($diskResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

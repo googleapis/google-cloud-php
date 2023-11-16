@@ -30,6 +30,20 @@ class DeleteChannelRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param string $name Required. The name of the channel to be deleted. Please see
+     *                     {@see EventarcClient::channelName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Eventarc\V1\DeleteChannelRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

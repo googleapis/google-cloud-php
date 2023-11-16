@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datalineage_v1_generated_Lineage_SearchLinks_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\DataCatalog\Lineage\V1\LineageClient;
+use Google\Cloud\DataCatalog\Lineage\V1\Client\LineageClient;
 use Google\Cloud\DataCatalog\Lineage\V1\Link;
+use Google\Cloud\DataCatalog\Lineage\V1\SearchLinksRequest;
 
 /**
  * Retrieve a list of links connected to a specific asset.
@@ -39,18 +40,22 @@ use Google\Cloud\DataCatalog\Lineage\V1\Link;
  * `datalineage.events.get` permission. The project provided in the URL
  * is used for Billing and Quota.
  *
- * @param string $formattedParent The project and location you want search in the format `projects/&#42;/locations/*`
- *                                Please see {@see LineageClient::locationName()} for help formatting this field.
+ * @param string $formattedParent The project and location you want search in. Please see
+ *                                {@see LineageClient::locationName()} for help formatting this field.
  */
 function search_links_sample(string $formattedParent): void
 {
     // Create a client.
     $lineageClient = new LineageClient();
 
+    // Prepare the request message.
+    $request = (new SearchLinksRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $lineageClient->searchLinks($formattedParent);
+        $response = $lineageClient->searchLinks($request);
 
         /** @var Link $element */
         foreach ($response as $element) {

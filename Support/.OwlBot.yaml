@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/support/(v2)/.*-php/(.*)
+      dest: /owl-bot-staging/Support/$1/$2
+api-name: Support

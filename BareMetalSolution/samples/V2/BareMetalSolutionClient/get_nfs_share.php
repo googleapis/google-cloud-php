@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START baremetalsolution_v2_generated_BareMetalSolution_GetNfsShare_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\BareMetalSolution\V2\BareMetalSolutionClient;
+use Google\Cloud\BareMetalSolution\V2\Client\BareMetalSolutionClient;
+use Google\Cloud\BareMetalSolution\V2\GetNfsShareRequest;
 use Google\Cloud\BareMetalSolution\V2\NfsShare;
 
 /**
@@ -38,10 +39,14 @@ function get_nfs_share_sample(string $formattedName): void
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
+    // Prepare the request message.
+    $request = (new GetNfsShareRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var NfsShare $response */
-        $response = $bareMetalSolutionClient->getNfsShare($formattedName);
+        $response = $bareMetalSolutionClient->getNfsShare($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

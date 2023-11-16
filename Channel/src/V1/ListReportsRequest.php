@@ -53,6 +53,20 @@ class ListReportsRequest extends \Google\Protobuf\Internal\Message
     private $language_code = '';
 
     /**
+     * @param string $parent Required. The resource name of the partner account to list available
+     *                       reports for. Parent uses the format: accounts/{account_id}
+     *
+     * @return \Google\Cloud\Channel\V1\ListReportsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

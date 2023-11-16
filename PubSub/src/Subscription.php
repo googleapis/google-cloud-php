@@ -90,6 +90,7 @@ class Subscription
 
     /**
      * @var ConnectionInterface
+     * @internal
      */
     protected $connection;
 
@@ -158,6 +159,8 @@ class Subscription
      * but you can instantiate it directly as well.
      *
      * @param ConnectionInterface $connection The service connection object
+     *        This object is created by PubSubClient,
+     *        and should not be instantiated outside of this client.
      * @param string $projectId The current project
      * @param string $name The subscription name
      * @param string $topicName The topic name the subscription is attached to
@@ -238,7 +241,7 @@ class Subscription
      * Execute a service request creating the subscription.
      *
      * The suggested way of creating a subscription is by calling through
-     * {@see Google\Cloud\PubSub\Topic::subscribe()} or {@see Google\Cloud\PubSub\Topic::subscription()}.
+     * {@see Topic::subscribe()} or {@see Topic::subscription()}.
      *
      * Returns subscription info in the format detailed in the documentation
      * for a [subscription](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions#Subscription).
@@ -284,7 +287,7 @@ class Subscription
      *           delivery attempts for any message. The value must be between 5
      *           and 100.
      *     @type bool $enableMessageOrdering If true, messages published with
-     *           the same `orderingKey` in {@see Google\Cloud\PubSub\Message}
+     *           the same `orderingKey` in {@see Message}
      *           will be delivered to the subscribers in the order in which they
      *           are received by the Pub/Sub system. Otherwise, they may be
      *           delivered in any order.
@@ -351,6 +354,35 @@ class Subscription
      *           be between 0 and 600 seconds. Defaults to 600 seconds.
      *     @type bool $enableExactlyOnceDelivery Indicates whether to enable
      *           'Exactly Once Delivery' on the subscription.
+     *     @type array $cloudStorageConfig If provided, messages will be delivered to Google Cloud Storage.
+     *     @type string $cloudStorageConfig.bucket User-provided name for the Cloud Storage bucket.
+     *           The bucket must be created by the user. The bucket name must be without
+     *           any prefix like "gs://". See the [bucket naming
+     *           requirements] (https://cloud.google.com/storage/docs/buckets#naming).
+     *     @type string $cloudStorageConfig.filenamePrefix
+     *           User-provided prefix for Cloud Storage filename. See the [object naming
+     *           requirements](https://cloud.google.com/storage/docs/objects#naming).
+     *     @type string $cloudStorageConfig.filenameSuffix
+     *           User-provided suffix for Cloud Storage filename. See the [object naming
+     *           requirements](https://cloud.google.com/storage/docs/objects#naming). Must
+     *           not end in "/".
+     *     @type array $cloudStorageConfig.textConfig If present, payloads will be written
+     *           to Cloud Storage as raw text, separated by a newline.
+     *     @type array $cloudStorageConfig.avroConfig If set, message payloads and metadata
+     *           will be written to Cloud Storage in Avro format.
+     *     @type bool $cloudStorageConfig.avroConfig.writeMetadata
+     *           When true, write the subscription name, message_id, publish_time,
+     *           attributes, and ordering_key as additional fields in the output.
+     *     @type Duration|string $cloudStorageConfig.maxDuration The maximum duration
+     *           that can elapse before a new Cloud Storage file is created.
+     *           Min 1 minute, max 10 minutes, default 5 minutes. May not exceed the
+     *           subscription's acknowledgement deadline. If a string is provided,
+     *           it should be as a duration in seconds with up to nine fractional digits,
+     *           terminated by 's', e.g "3.5s"
+     *     @type int|string $cloudStorageConfig.maxBytes The maximum bytes that can be
+     *           written to a Cloud Storage file before a new file is created.
+     *           Min 1 KB, max 10 GiB. The max_bytes limit may be exceeded in cases where
+     *           messages are larger than the limit.
      * }
      * @return array An array of subscription info
      * @throws \InvalidArgumentException
@@ -438,7 +470,7 @@ class Subscription
      *           delivery attempts for any message. The value must be between 5
      *           and 100.
      *     @type bool $enableMessageOrdering If true, messages published with
-     *           the same `orderingKey` in {@see Google\Cloud\PubSub\Message}
+     *           the same `orderingKey` in {@see Message}
      *           will be delivered to the subscribers in the order in which they
      *           are received by the Pub/Sub system. Otherwise, they may be
      *           delivered in any order.
@@ -499,6 +531,35 @@ class Subscription
      *           be between 0 and 600 seconds. Defaults to 600 seconds.
      *     @type bool $enableExactlyOnceDelivery Indicates whether to enable
      *           'Exactly Once Delivery' on the subscription.
+     *     @type array $cloudStorageConfig If provided, messages will be delivered to Google Cloud Storage.
+     *     @type string $cloudStorageConfig.bucket User-provided name for the Cloud Storage bucket.
+     *           The bucket must be created by the user. The bucket name must be without
+     *           any prefix like "gs://". See the [bucket naming
+     *           requirements] (https://cloud.google.com/storage/docs/buckets#naming).
+     *     @type string $cloudStorageConfig.filenamePrefix
+     *           User-provided prefix for Cloud Storage filename. See the [object naming
+     *           requirements](https://cloud.google.com/storage/docs/objects#naming).
+     *     @type string $cloudStorageConfig.filenameSuffix
+     *           User-provided suffix for Cloud Storage filename. See the [object naming
+     *           requirements](https://cloud.google.com/storage/docs/objects#naming). Must
+     *           not end in "/".
+     *     @type array $cloudStorageConfig.textConfig If present, payloads will be written
+     *           to Cloud Storage as raw text, separated by a newline.
+     *     @type array $cloudStorageConfig.avroConfig If set, message payloads and metadata
+     *           will be written to Cloud Storage in Avro format.
+     *     @type bool $cloudStorageConfig.avroConfig.writeMetadata
+     *           When true, write the subscription name, message_id, publish_time,
+     *           attributes, and ordering_key as additional fields in the output.
+     *     @type Duration|string $cloudStorageConfig.maxDuration The maximum duration
+     *           that can elapse before a new Cloud Storage file is created.
+     *           Min 1 minute, max 10 minutes, default 5 minutes. May not exceed the
+     *           subscription's acknowledgement deadline. If a string is provided,
+     *           it should be as a duration in seconds with up to nine fractional digits,
+     *           terminated by 's', e.g "3.5s"
+     *     @type int|string $cloudStorageConfig.maxBytes The maximum bytes that can be
+     *           written to a Cloud Storage file before a new file is created.
+     *           Min 1 KB, max 10 GiB. The max_bytes limit may be exceeded in cases where
+     *           messages are larger than the limit.
      * }
      * @param array $options [optional] {
      *     Configuration options.
@@ -578,10 +639,10 @@ class Subscription
      *
      * Service errors will NOT bubble up from this method. It will always return
      * a boolean value. If you want to check for errors, use
-     * {@see Google\Cloud\PubSub\Subscription::info()}.
+     * {@see Subscription::info()}.
      *
      * If you need to re-check the existence of a subscription that is already
-     * downloaded, call {@see Google\Cloud\PubSub\Subscription::reload()} first
+     * downloaded, call {@see Subscription::reload()} first
      * to refresh the cached information.
      *
      * Example:
@@ -608,7 +669,7 @@ class Subscription
      * Get info on a subscription
      *
      * If the info is already cached on the object, it will return that result.
-     * To fetch a fresh result, use {@see Google\Cloud\PubSub\Subscription::reload()}.
+     * To fetch a fresh result, use {@see Subscription::reload()}.
      *
      * Example:
      * ```
@@ -701,7 +762,7 @@ class Subscription
     /**
      * Acknowledge receipt of a message.
      *
-     * Use {@see Google\Cloud\PubSub\Subscription::acknowledgeBatch()} to
+     * Use {@see Subscription::acknowledgeBatch()} to
      * acknowledge multiple messages at once.
      *
      * Example:
@@ -746,7 +807,7 @@ class Subscription
     /**
      * Acknowledge receipt of multiple messages at once.
      *
-     * Use {@see Google\Cloud\PubSub\Subscription::acknowledge()} to acknowledge
+     * Use {@see Subscription::acknowledge()} to acknowledge
      * a single message.
      *
      * Example:
@@ -824,7 +885,7 @@ class Subscription
     /**
      * Set the acknowledge deadline for a single ackId.
      *
-     * Use {@see Google\Cloud\PubSub\Subscription::modifyAckDeadlineBatch()} to
+     * Use {@see Subscription::modifyAckDeadlineBatch()} to
      * modify the ack deadline for multiple messages at once.
      *
      * Example:
@@ -872,7 +933,7 @@ class Subscription
     /**
      * Set the acknowledge deadline for multiple ackIds.
      *
-     * Use {@see Google\Cloud\PubSub\Subscription::modifyAckDeadline()} to
+     * Use {@see Subscription::modifyAckDeadline()} to
      * modify the ack deadline for a single message.
      *
      * Example:
@@ -1257,6 +1318,17 @@ class Subscription
         ) {
             $duration = $options['retryPolicy']['maximumBackoff']->get();
             $options['retryPolicy']['maximumBackoff'] = sprintf(
+                '%s.%ss',
+                $duration['seconds'],
+                $this->convertNanoSecondsToFraction($duration['nanos'], false)
+            );
+        }
+
+        if (isset($options['cloudStorageConfig']['maxDuration']) &&
+            $options['cloudStorageConfig']['maxDuration'] instanceof Duration
+        ) {
+            $duration = $options['cloudStorageConfig']['maxDuration']->get();
+            $options['cloudStorageConfig']['maxDuration'] = sprintf(
                 '%s.%ss',
                 $duration['seconds'],
                 $this->convertNanoSecondsToFraction($duration['nanos'], false)

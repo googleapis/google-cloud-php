@@ -56,6 +56,29 @@ class ImportAttachedClusterRequest extends \Google\Protobuf\Internal\Message
     private $distribution = '';
 
     /**
+     * @param string $parent          Required. The parent location where this
+     *                                [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource
+     *                                will be created.
+     *
+     *                                Location names are formatted as `projects/<project-id>/locations/<region>`.
+     *
+     *                                See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *                                for more details on Google Cloud resource names. Please see
+     *                                {@see AttachedClustersClient::locationName()} for help formatting this field.
+     * @param string $fleetMembership Required. The name of the fleet membership resource to import.
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\ImportAttachedClusterRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $fleetMembership): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setFleetMembership($fleetMembership);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

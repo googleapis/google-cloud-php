@@ -44,6 +44,10 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *              or
      *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
      * if no version is specified, the default version will be deployed.
+     * The model resource could also be a publisher model.
+     *  Example: `publishers/{publisher}/models/{model}`
+     *              or
+     *           `projects/{project}/locations/{location}/publishers/{publisher}/models/{model}`
      *
      * Generated from protobuf field <code>string model = 3 [(.google.api.resource_reference) = {</code>
      */
@@ -266,9 +270,9 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
     /**
      * For custom-trained Models and AutoML Tabular Models, the container of the
      * DeployedModel instances will send `stderr` and `stdout` streams to
-     * Stackdriver Logging by default. Please note that the logs incur cost,
+     * Cloud Logging by default. Please note that the logs incur cost,
      * which are subject to [Cloud Logging
-     * pricing](https://cloud.google.com/stackdriver/pricing).
+     * pricing](https://cloud.google.com/logging/pricing).
      * User can disable container logging by setting this flag to true.
      *
      * Generated from protobuf field <code>bool disable_container_logging = 34;</code>
@@ -297,6 +301,10 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *                        or
      *                      `projects/{project}/locations/{location}/models/{model}&#64;golden`
      *           if no version is specified, the default version will be deployed.
+     *           The model resource could also be a publisher model.
+     *            Example: `publishers/{publisher}/models/{model}`
+     *                        or
+     *                     `projects/{project}/locations/{location}/publishers/{publisher}/models/{model}`
      *     @type string $model_version_id
      *           Output only. The version ID of the Model that produces the predictions via
      *           this job.
@@ -423,9 +431,9 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *     @type bool $disable_container_logging
      *           For custom-trained Models and AutoML Tabular Models, the container of the
      *           DeployedModel instances will send `stderr` and `stdout` streams to
-     *           Stackdriver Logging by default. Please note that the logs incur cost,
+     *           Cloud Logging by default. Please note that the logs incur cost,
      *           which are subject to [Cloud Logging
-     *           pricing](https://cloud.google.com/stackdriver/pricing).
+     *           pricing](https://cloud.google.com/logging/pricing).
      *           User can disable container logging by setting this flag to true.
      * }
      */
@@ -498,6 +506,10 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *              or
      *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
      * if no version is specified, the default version will be deployed.
+     * The model resource could also be a publisher model.
+     *  Example: `publishers/{publisher}/models/{model}`
+     *              or
+     *           `projects/{project}/locations/{location}/publishers/{publisher}/models/{model}`
      *
      * Generated from protobuf field <code>string model = 3 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -519,6 +531,10 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *              or
      *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
      * if no version is specified, the default version will be deployed.
+     * The model resource could also be a publisher model.
+     *  Example: `publishers/{publisher}/models/{model}`
+     *              or
+     *           `projects/{project}/locations/{location}/publishers/{publisher}/models/{model}`
      *
      * Generated from protobuf field <code>string model = 3 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -1457,9 +1473,9 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
     /**
      * For custom-trained Models and AutoML Tabular Models, the container of the
      * DeployedModel instances will send `stderr` and `stdout` streams to
-     * Stackdriver Logging by default. Please note that the logs incur cost,
+     * Cloud Logging by default. Please note that the logs incur cost,
      * which are subject to [Cloud Logging
-     * pricing](https://cloud.google.com/stackdriver/pricing).
+     * pricing](https://cloud.google.com/logging/pricing).
      * User can disable container logging by setting this flag to true.
      *
      * Generated from protobuf field <code>bool disable_container_logging = 34;</code>
@@ -1473,9 +1489,9 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
     /**
      * For custom-trained Models and AutoML Tabular Models, the container of the
      * DeployedModel instances will send `stderr` and `stdout` streams to
-     * Stackdriver Logging by default. Please note that the logs incur cost,
+     * Cloud Logging by default. Please note that the logs incur cost,
      * which are subject to [Cloud Logging
-     * pricing](https://cloud.google.com/stackdriver/pricing).
+     * pricing](https://cloud.google.com/logging/pricing).
      * User can disable container logging by setting this flag to true.
      *
      * Generated from protobuf field <code>bool disable_container_logging = 34;</code>

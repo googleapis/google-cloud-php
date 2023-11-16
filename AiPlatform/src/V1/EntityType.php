@@ -82,6 +82,16 @@ class EntityType extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig monitoring_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $monitoring_config = null;
+    /**
+     * Optional. Config for data retention policy in offline storage.
+     * TTL in days for feature values that will be stored in offline storage.
+     * The Feature Store offline storage periodically removes obsolete feature
+     * values older than `offline_storage_ttl_days` since the feature generation
+     * time. If unset (or explicitly set to 0), default to 4000 days TTL.
+     *
+     * Generated from protobuf field <code>int32 offline_storage_ttl_days = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $offline_storage_ttl_days = 0;
 
     /**
      * Constructor.
@@ -126,6 +136,12 @@ class EntityType extends \Google\Protobuf\Internal\Message
      *           [FeaturestoreMonitoringConfig.monitoring_interval] specified, snapshot
      *           analysis monitoring is enabled. Otherwise, snapshot analysis monitoring is
      *           disabled.
+     *     @type int $offline_storage_ttl_days
+     *           Optional. Config for data retention policy in offline storage.
+     *           TTL in days for feature values that will be stored in offline storage.
+     *           The Feature Store offline storage periodically removes obsolete feature
+     *           values older than `offline_storage_ttl_days` since the feature generation
+     *           time. If unset (or explicitly set to 0), default to 4000 days TTL.
      * }
      */
     public function __construct($data = NULL) {
@@ -387,6 +403,40 @@ class EntityType extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\FeaturestoreMonitoringConfig::class);
         $this->monitoring_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Config for data retention policy in offline storage.
+     * TTL in days for feature values that will be stored in offline storage.
+     * The Feature Store offline storage periodically removes obsolete feature
+     * values older than `offline_storage_ttl_days` since the feature generation
+     * time. If unset (or explicitly set to 0), default to 4000 days TTL.
+     *
+     * Generated from protobuf field <code>int32 offline_storage_ttl_days = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getOfflineStorageTtlDays()
+    {
+        return $this->offline_storage_ttl_days;
+    }
+
+    /**
+     * Optional. Config for data retention policy in offline storage.
+     * TTL in days for feature values that will be stored in offline storage.
+     * The Feature Store offline storage periodically removes obsolete feature
+     * values older than `offline_storage_ttl_days` since the feature generation
+     * time. If unset (or explicitly set to 0), default to 4000 days TTL.
+     *
+     * Generated from protobuf field <code>int32 offline_storage_ttl_days = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setOfflineStorageTtlDays($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->offline_storage_ttl_days = $var;
 
         return $this;
     }

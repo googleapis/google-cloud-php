@@ -68,6 +68,9 @@ use Google\LongRunning\Operation;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Retail\V2\Client\UserEventServiceClient} to use the new surface.
  */
 class UserEventServiceGapicClient
 {
@@ -91,6 +94,8 @@ class UserEventServiceGapicClient
     ];
 
     private static $catalogNameTemplate;
+
+    private static $productNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -133,11 +138,23 @@ class UserEventServiceGapicClient
         return self::$catalogNameTemplate;
     }
 
+    private static function getProductNameTemplate()
+    {
+        if (self::$productNameTemplate == null) {
+            self::$productNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/catalogs/{catalog}/branches/{branch}/products/{product}'
+            );
+        }
+
+        return self::$productNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'catalog' => self::getCatalogNameTemplate(),
+                'product' => self::getProductNameTemplate(),
             ];
         }
 
@@ -164,10 +181,39 @@ class UserEventServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a product
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $catalog
+     * @param string $branch
+     * @param string $product
+     *
+     * @return string The formatted product resource.
+     */
+    public static function productName(
+        $project,
+        $location,
+        $catalog,
+        $branch,
+        $product
+    ) {
+        return self::getProductNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'catalog' => $catalog,
+            'branch' => $branch,
+            'product' => $product,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - catalog: projects/{project}/locations/{location}/catalogs/{catalog}
+     * - product: projects/{project}/locations/{location}/catalogs/{catalog}/branches/{branch}/products/{product}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

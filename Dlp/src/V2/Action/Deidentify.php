@@ -76,10 +76,11 @@ class Deidentify extends \Google\Protobuf\Internal\Message
      *           [TransformationDetails][google.privacy.dlp.v2.TransformationDetails]
      *           message for more information about what is noted).
      *     @type string $cloud_storage_output
-     *           Required. User settable Cloud Storage bucket and folders to store de-identified
-     *           files. This field must be set for cloud storage deidentification. The
-     *           output Cloud Storage bucket must be different from the input bucket.
-     *           De-identified files will overwrite files in the output path.
+     *           Required. User settable Cloud Storage bucket and folders to store
+     *           de-identified files. This field must be set for cloud storage
+     *           deidentification. The output Cloud Storage bucket must be different
+     *           from the input bucket. De-identified files will overwrite files in the
+     *           output path.
      *           Form of: gs://bucket/folder/ or gs://bucket
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $file_types_to_transform
      *           List of user-specified file type groups to transform. If specified, only
@@ -183,10 +184,11 @@ class Deidentify extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. User settable Cloud Storage bucket and folders to store de-identified
-     * files. This field must be set for cloud storage deidentification. The
-     * output Cloud Storage bucket must be different from the input bucket.
-     * De-identified files will overwrite files in the output path.
+     * Required. User settable Cloud Storage bucket and folders to store
+     * de-identified files. This field must be set for cloud storage
+     * deidentification. The output Cloud Storage bucket must be different
+     * from the input bucket. De-identified files will overwrite files in the
+     * output path.
      * Form of: gs://bucket/folder/ or gs://bucket
      *
      * Generated from protobuf field <code>string cloud_storage_output = 9 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -203,10 +205,11 @@ class Deidentify extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. User settable Cloud Storage bucket and folders to store de-identified
-     * files. This field must be set for cloud storage deidentification. The
-     * output Cloud Storage bucket must be different from the input bucket.
-     * De-identified files will overwrite files in the output path.
+     * Required. User settable Cloud Storage bucket and folders to store
+     * de-identified files. This field must be set for cloud storage
+     * deidentification. The output Cloud Storage bucket must be different
+     * from the input bucket. De-identified files will overwrite files in the
+     * output path.
      * Form of: gs://bucket/folder/ or gs://bucket
      *
      * Generated from protobuf field <code>string cloud_storage_output = 9 [(.google.api.field_behavior) = REQUIRED];</code>

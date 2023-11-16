@@ -35,6 +35,23 @@ class GetRegionTargetHttpProxyRequest extends \Google\Protobuf\Internal\Message
     private $target_http_proxy = '';
 
     /**
+     * @param string $project         Project ID for this request.
+     * @param string $region          Name of the region scoping this request.
+     * @param string $targetHttpProxy Name of the TargetHttpProxy resource to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetRegionTargetHttpProxyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $targetHttpProxy): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetHttpProxy($targetHttpProxy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

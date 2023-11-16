@@ -17,13 +17,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class MaintenanceSchedule extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The start time of any upcoming scheduled maintenance for this instance.
+     * Output only. The start time of any upcoming scheduled maintenance for this
+     * instance.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $start_time = null;
     /**
-     * Output only. The end time of any upcoming scheduled maintenance for this instance.
+     * Output only. The end time of any upcoming scheduled maintenance for this
+     * instance.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -36,8 +38,8 @@ class MaintenanceSchedule extends \Google\Protobuf\Internal\Message
      */
     protected $can_reschedule = false;
     /**
-     * Output only. The deadline that the maintenance schedule start time can not go beyond,
-     * including reschedule.
+     * Output only. The deadline that the maintenance schedule start time can not
+     * go beyond, including reschedule.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_deadline_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -50,14 +52,16 @@ class MaintenanceSchedule extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Timestamp $start_time
-     *           Output only. The start time of any upcoming scheduled maintenance for this instance.
+     *           Output only. The start time of any upcoming scheduled maintenance for this
+     *           instance.
      *     @type \Google\Protobuf\Timestamp $end_time
-     *           Output only. The end time of any upcoming scheduled maintenance for this instance.
+     *           Output only. The end time of any upcoming scheduled maintenance for this
+     *           instance.
      *     @type bool $can_reschedule
      *           If the scheduled maintenance can be rescheduled, default is true.
      *     @type \Google\Protobuf\Timestamp $schedule_deadline_time
-     *           Output only. The deadline that the maintenance schedule start time can not go beyond,
-     *           including reschedule.
+     *           Output only. The deadline that the maintenance schedule start time can not
+     *           go beyond, including reschedule.
      * }
      */
     public function __construct($data = NULL) {
@@ -66,7 +70,8 @@ class MaintenanceSchedule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The start time of any upcoming scheduled maintenance for this instance.
+     * Output only. The start time of any upcoming scheduled maintenance for this
+     * instance.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -87,7 +92,8 @@ class MaintenanceSchedule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The start time of any upcoming scheduled maintenance for this instance.
+     * Output only. The start time of any upcoming scheduled maintenance for this
+     * instance.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -102,7 +108,8 @@ class MaintenanceSchedule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The end time of any upcoming scheduled maintenance for this instance.
+     * Output only. The end time of any upcoming scheduled maintenance for this
+     * instance.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -123,7 +130,8 @@ class MaintenanceSchedule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The end time of any upcoming scheduled maintenance for this instance.
+     * Output only. The end time of any upcoming scheduled maintenance for this
+     * instance.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -168,8 +176,8 @@ class MaintenanceSchedule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The deadline that the maintenance schedule start time can not go beyond,
-     * including reschedule.
+     * Output only. The deadline that the maintenance schedule start time can not
+     * go beyond, including reschedule.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_deadline_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -190,8 +198,8 @@ class MaintenanceSchedule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The deadline that the maintenance schedule start time can not go beyond,
-     * including reschedule.
+     * Output only. The deadline that the maintenance schedule start time can not
+     * go beyond, including reschedule.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_deadline_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var

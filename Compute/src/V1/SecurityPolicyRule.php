@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The Action to perform when the rule is matched. The following are the valid actions: - allow: allow access to target. - deny(STATUS): deny access to target, returns the HTTP response code specified. Valid values for `STATUS` are 403, 404, and 502. - rate_based_ban: limit client traffic to the configured threshold and ban the client if the traffic exceeds the threshold. Configure parameters for this action in RateLimitOptions. Requires rate_limit_options to be set. - redirect: redirect to a different target. This can either be an internal reCAPTCHA redirect, or an external URL-based redirect via a 302 response. Parameters for this action can be configured via redirectOptions. - throttle: limit client traffic to the configured threshold. Configure parameters for this action in rateLimitOptions. Requires rate_limit_options to be set for this. 
+     * The Action to perform when the rule is matched. The following are the valid actions: - allow: allow access to target. - deny(STATUS): deny access to target, returns the HTTP response code specified. Valid values for `STATUS` are 403, 404, and 502. - rate_based_ban: limit client traffic to the configured threshold and ban the client if the traffic exceeds the threshold. Configure parameters for this action in RateLimitOptions. Requires rate_limit_options to be set. - redirect: redirect to a different target. This can either be an internal reCAPTCHA redirect, or an external URL-based redirect via a 302 response. Parameters for this action can be configured via redirectOptions. This action is only supported in Global Security Policies of type CLOUD_ARMOR. - throttle: limit client traffic to the configured threshold. Configure parameters for this action in rateLimitOptions. Requires rate_limit_options to be set for this. 
      *
      * Generated from protobuf field <code>optional string action = 187661878;</code>
      */
@@ -28,7 +28,7 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
      */
     private $description = null;
     /**
-     * Optional, additional actions that are performed on headers.
+     * Optional, additional actions that are performed on headers. This field is only supported in Global Security Policies of type CLOUD_ARMOR.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleHttpHeaderAction header_action = 328077352;</code>
      */
@@ -70,7 +70,7 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
      */
     private $rate_limit_options = null;
     /**
-     * Parameters defining the redirect action. Cannot be specified for any other actions.
+     * Parameters defining the redirect action. Cannot be specified for any other actions. This field is only supported in Global Security Policies of type CLOUD_ARMOR.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleRedirectOptions redirect_options = 163285307;</code>
      */
@@ -83,11 +83,11 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $action
-     *           The Action to perform when the rule is matched. The following are the valid actions: - allow: allow access to target. - deny(STATUS): deny access to target, returns the HTTP response code specified. Valid values for `STATUS` are 403, 404, and 502. - rate_based_ban: limit client traffic to the configured threshold and ban the client if the traffic exceeds the threshold. Configure parameters for this action in RateLimitOptions. Requires rate_limit_options to be set. - redirect: redirect to a different target. This can either be an internal reCAPTCHA redirect, or an external URL-based redirect via a 302 response. Parameters for this action can be configured via redirectOptions. - throttle: limit client traffic to the configured threshold. Configure parameters for this action in rateLimitOptions. Requires rate_limit_options to be set for this. 
+     *           The Action to perform when the rule is matched. The following are the valid actions: - allow: allow access to target. - deny(STATUS): deny access to target, returns the HTTP response code specified. Valid values for `STATUS` are 403, 404, and 502. - rate_based_ban: limit client traffic to the configured threshold and ban the client if the traffic exceeds the threshold. Configure parameters for this action in RateLimitOptions. Requires rate_limit_options to be set. - redirect: redirect to a different target. This can either be an internal reCAPTCHA redirect, or an external URL-based redirect via a 302 response. Parameters for this action can be configured via redirectOptions. This action is only supported in Global Security Policies of type CLOUD_ARMOR. - throttle: limit client traffic to the configured threshold. Configure parameters for this action in rateLimitOptions. Requires rate_limit_options to be set for this. 
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type \Google\Cloud\Compute\V1\SecurityPolicyRuleHttpHeaderAction $header_action
-     *           Optional, additional actions that are performed on headers.
+     *           Optional, additional actions that are performed on headers. This field is only supported in Global Security Policies of type CLOUD_ARMOR.
      *     @type string $kind
      *           [Output only] Type of the resource. Always compute#securityPolicyRule for security policy rules
      *     @type \Google\Cloud\Compute\V1\SecurityPolicyRuleMatcher $match
@@ -101,7 +101,7 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\SecurityPolicyRuleRateLimitOptions $rate_limit_options
      *           Must be specified if the action is "rate_based_ban" or "throttle". Cannot be specified for any other actions.
      *     @type \Google\Cloud\Compute\V1\SecurityPolicyRuleRedirectOptions $redirect_options
-     *           Parameters defining the redirect action. Cannot be specified for any other actions.
+     *           Parameters defining the redirect action. Cannot be specified for any other actions. This field is only supported in Global Security Policies of type CLOUD_ARMOR.
      * }
      */
     public function __construct($data = NULL) {
@@ -110,7 +110,7 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Action to perform when the rule is matched. The following are the valid actions: - allow: allow access to target. - deny(STATUS): deny access to target, returns the HTTP response code specified. Valid values for `STATUS` are 403, 404, and 502. - rate_based_ban: limit client traffic to the configured threshold and ban the client if the traffic exceeds the threshold. Configure parameters for this action in RateLimitOptions. Requires rate_limit_options to be set. - redirect: redirect to a different target. This can either be an internal reCAPTCHA redirect, or an external URL-based redirect via a 302 response. Parameters for this action can be configured via redirectOptions. - throttle: limit client traffic to the configured threshold. Configure parameters for this action in rateLimitOptions. Requires rate_limit_options to be set for this. 
+     * The Action to perform when the rule is matched. The following are the valid actions: - allow: allow access to target. - deny(STATUS): deny access to target, returns the HTTP response code specified. Valid values for `STATUS` are 403, 404, and 502. - rate_based_ban: limit client traffic to the configured threshold and ban the client if the traffic exceeds the threshold. Configure parameters for this action in RateLimitOptions. Requires rate_limit_options to be set. - redirect: redirect to a different target. This can either be an internal reCAPTCHA redirect, or an external URL-based redirect via a 302 response. Parameters for this action can be configured via redirectOptions. This action is only supported in Global Security Policies of type CLOUD_ARMOR. - throttle: limit client traffic to the configured threshold. Configure parameters for this action in rateLimitOptions. Requires rate_limit_options to be set for this. 
      *
      * Generated from protobuf field <code>optional string action = 187661878;</code>
      * @return string
@@ -131,7 +131,7 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Action to perform when the rule is matched. The following are the valid actions: - allow: allow access to target. - deny(STATUS): deny access to target, returns the HTTP response code specified. Valid values for `STATUS` are 403, 404, and 502. - rate_based_ban: limit client traffic to the configured threshold and ban the client if the traffic exceeds the threshold. Configure parameters for this action in RateLimitOptions. Requires rate_limit_options to be set. - redirect: redirect to a different target. This can either be an internal reCAPTCHA redirect, or an external URL-based redirect via a 302 response. Parameters for this action can be configured via redirectOptions. - throttle: limit client traffic to the configured threshold. Configure parameters for this action in rateLimitOptions. Requires rate_limit_options to be set for this. 
+     * The Action to perform when the rule is matched. The following are the valid actions: - allow: allow access to target. - deny(STATUS): deny access to target, returns the HTTP response code specified. Valid values for `STATUS` are 403, 404, and 502. - rate_based_ban: limit client traffic to the configured threshold and ban the client if the traffic exceeds the threshold. Configure parameters for this action in RateLimitOptions. Requires rate_limit_options to be set. - redirect: redirect to a different target. This can either be an internal reCAPTCHA redirect, or an external URL-based redirect via a 302 response. Parameters for this action can be configured via redirectOptions. This action is only supported in Global Security Policies of type CLOUD_ARMOR. - throttle: limit client traffic to the configured threshold. Configure parameters for this action in rateLimitOptions. Requires rate_limit_options to be set for this. 
      *
      * Generated from protobuf field <code>optional string action = 187661878;</code>
      * @param string $var
@@ -182,7 +182,7 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional, additional actions that are performed on headers.
+     * Optional, additional actions that are performed on headers. This field is only supported in Global Security Policies of type CLOUD_ARMOR.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleHttpHeaderAction header_action = 328077352;</code>
      * @return \Google\Cloud\Compute\V1\SecurityPolicyRuleHttpHeaderAction|null
@@ -203,7 +203,7 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional, additional actions that are performed on headers.
+     * Optional, additional actions that are performed on headers. This field is only supported in Global Security Policies of type CLOUD_ARMOR.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleHttpHeaderAction header_action = 328077352;</code>
      * @param \Google\Cloud\Compute\V1\SecurityPolicyRuleHttpHeaderAction $var
@@ -434,7 +434,7 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Parameters defining the redirect action. Cannot be specified for any other actions.
+     * Parameters defining the redirect action. Cannot be specified for any other actions. This field is only supported in Global Security Policies of type CLOUD_ARMOR.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleRedirectOptions redirect_options = 163285307;</code>
      * @return \Google\Cloud\Compute\V1\SecurityPolicyRuleRedirectOptions|null
@@ -455,7 +455,7 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Parameters defining the redirect action. Cannot be specified for any other actions.
+     * Parameters defining the redirect action. Cannot be specified for any other actions. This field is only supported in Global Security Policies of type CLOUD_ARMOR.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleRedirectOptions redirect_options = 163285307;</code>
      * @param \Google\Cloud\Compute\V1\SecurityPolicyRuleRedirectOptions $var

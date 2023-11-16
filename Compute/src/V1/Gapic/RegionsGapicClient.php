@@ -53,6 +53,9 @@ use Google\Cloud\Compute\V1\RegionList;
  *     $regionsClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\RegionsClient} to use the new surface.
  */
 class RegionsGapicClient
 {

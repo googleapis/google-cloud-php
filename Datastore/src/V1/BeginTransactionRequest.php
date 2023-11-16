@@ -38,6 +38,19 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
     private $transaction_options = null;
 
     /**
+     * @param string $projectId Required. The ID of the project against which to make the request.
+     *
+     * @return \Google\Cloud\Datastore\V1\BeginTransactionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectId): self
+    {
+        return (new self())
+            ->setProjectId($projectId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

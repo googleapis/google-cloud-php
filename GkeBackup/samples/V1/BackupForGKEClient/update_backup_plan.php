@@ -25,19 +25,19 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START gkebackup_v1_generated_BackupForGKE_UpdateBackupPlan_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\GkeBackup\V1\BackupForGKEClient;
 use Google\Cloud\GkeBackup\V1\BackupPlan;
+use Google\Cloud\GkeBackup\V1\Client\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\UpdateBackupPlanRequest;
 use Google\Rpc\Status;
 
 /**
  * Update a BackupPlan.
  *
- * @param string $formattedBackupPlanCluster Immutable. The source cluster from which Backups will be created via
- *                                           this BackupPlan.
- *                                           Valid formats:
+ * @param string $formattedBackupPlanCluster Immutable. The source cluster from which Backups will be created
+ *                                           via this BackupPlan. Valid formats:
  *
- *                                           - projects/&#42;/locations/&#42;/clusters/*
- *                                           - projects/&#42;/zones/&#42;/clusters/*
+ *                                           - `projects/&#42;/locations/&#42;/clusters/*`
+ *                                           - `projects/&#42;/zones/&#42;/clusters/*`
  *                                           Please see {@see BackupForGKEClient::clusterName()} for help formatting this field.
  */
 function update_backup_plan_sample(string $formattedBackupPlanCluster): void
@@ -45,14 +45,16 @@ function update_backup_plan_sample(string $formattedBackupPlanCluster): void
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $backupPlan = (new BackupPlan())
         ->setCluster($formattedBackupPlanCluster);
+    $request = (new UpdateBackupPlanRequest())
+        ->setBackupPlan($backupPlan);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $backupForGKEClient->updateBackupPlan($backupPlan);
+        $response = $backupForGKEClient->updateBackupPlan($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

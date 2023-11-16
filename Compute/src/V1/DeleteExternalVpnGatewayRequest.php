@@ -35,6 +35,21 @@ class DeleteExternalVpnGatewayRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string $project            Project ID for this request.
+     * @param string $externalVpnGateway Name of the externalVpnGateways to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteExternalVpnGatewayRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $externalVpnGateway): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setExternalVpnGateway($externalVpnGateway);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

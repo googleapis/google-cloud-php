@@ -33,6 +33,27 @@ class UpdateControlRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Retail\V2\Control $control    Required. The Control to update.
+     * @param \Google\Protobuf\FieldMask      $updateMask Indicates which fields in the provided
+     *                                                    [Control][google.cloud.retail.v2.Control] to update. The following are NOT
+     *                                                    supported:
+     *
+     *                                                    * [Control.name][google.cloud.retail.v2.Control.name]
+     *
+     *                                                    If not set or empty, all supported fields are updated.
+     *
+     * @return \Google\Cloud\Retail\V2\UpdateControlRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Retail\V2\Control $control, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setControl($control)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

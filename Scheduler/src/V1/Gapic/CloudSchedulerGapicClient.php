@@ -73,6 +73,9 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Scheduler\V1\Client\CloudSchedulerClient} to use the new surface.
  */
 class CloudSchedulerGapicClient
 {
@@ -96,8 +99,11 @@ class CloudSchedulerGapicClient
     ];
 
     private static $jobNameTemplate;
-
     private static $locationNameTemplate;
+
+    private static $projectNameTemplate;
+
+    private static $topicNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -138,6 +144,15 @@ class CloudSchedulerGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getTopicNameTemplate()
+    {
+        if (self::$topicNameTemplate == null) {
+            self::$topicNameTemplate = new PathTemplate('projects/{project}/topics/{topic}');
+        }
+
+        return self::$topicNameTemplate;
+    }
+
     private static function getProjectNameTemplate()
     {
         if (null == self::$projectNameTemplate) {
@@ -154,6 +169,7 @@ class CloudSchedulerGapicClient
                 'job' => self::getJobNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
+                'topic' => self::getTopicNameTemplate(),
             ];
         }
 
@@ -197,6 +213,23 @@ class CloudSchedulerGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a topic
+     * resource.
+     *
+     * @param string $project
+     * @param string $topic
+     *
+     * @return string The formatted topic resource.
+     */
+    public static function topicName($project, $topic)
+    {
+        return self::getTopicNameTemplate()->render([
+            'project' => $project,
+            'topic' => $topic,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent
      * a project resource.
      *
@@ -217,6 +250,7 @@ class CloudSchedulerGapicClient
      * Template: Pattern
      * - job: projects/{project}/locations/{location}/jobs/{job}
      * - location: projects/{project}/locations/{location}
+     * - topic: projects/{project}/topics/{topic}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

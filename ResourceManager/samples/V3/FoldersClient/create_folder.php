@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudresourcemanager_v3_generated_Folders_CreateFolder_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\ResourceManager\V3\Client\FoldersClient;
+use Google\Cloud\ResourceManager\V3\CreateFolderRequest;
 use Google\Cloud\ResourceManager\V3\Folder;
-use Google\Cloud\ResourceManager\V3\FoldersClient;
 use Google\Rpc\Status;
 
 /**
@@ -67,14 +68,16 @@ function create_folder_sample(string $folderParent): void
     // Create a client.
     $foldersClient = new FoldersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $folder = (new Folder())
         ->setParent($folderParent);
+    $request = (new CreateFolderRequest())
+        ->setFolder($folder);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $foldersClient->createFolder($folder);
+        $response = $foldersClient->createFolder($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

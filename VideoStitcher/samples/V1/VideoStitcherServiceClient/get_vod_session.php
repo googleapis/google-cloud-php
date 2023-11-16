@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START videostitcher_v1_generated_VideoStitcherService_GetVodSession_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
+use Google\Cloud\Video\Stitcher\V1\Client\VideoStitcherServiceClient;
+use Google\Cloud\Video\Stitcher\V1\GetVodSessionRequest;
 use Google\Cloud\Video\Stitcher\V1\VodSession;
 
 /**
@@ -40,10 +41,14 @@ function get_vod_session_sample(string $formattedName): void
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetVodSessionRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var VodSession $response */
-        $response = $videoStitcherServiceClient->getVodSession($formattedName);
+        $response = $videoStitcherServiceClient->getVodSession($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

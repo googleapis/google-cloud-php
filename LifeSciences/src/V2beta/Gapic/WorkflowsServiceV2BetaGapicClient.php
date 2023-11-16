@@ -89,6 +89,10 @@ use Google\LongRunning\Operation;
  * }
  * ```
  *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\LifeSciences\V2beta\Client\WorkflowsServiceV2BetaClient} to use
+ * the new surface.
+ *
  * @experimental
  */
 class WorkflowsServiceV2BetaGapicClient

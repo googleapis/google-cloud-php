@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START orgpolicy_v2_generated_OrgPolicy_DeletePolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\OrgPolicy\V2\OrgPolicyClient;
+use Google\Cloud\OrgPolicy\V2\Client\OrgPolicyClient;
+use Google\Cloud\OrgPolicy\V2\DeletePolicyRequest;
 
 /**
  * Deletes a Policy.
@@ -41,9 +42,13 @@ function delete_policy_sample(string $formattedName): void
     // Create a client.
     $orgPolicyClient = new OrgPolicyClient();
 
+    // Prepare the request message.
+    $request = (new DeletePolicyRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $orgPolicyClient->deletePolicy($formattedName);
+        $orgPolicyClient->deletePolicy($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

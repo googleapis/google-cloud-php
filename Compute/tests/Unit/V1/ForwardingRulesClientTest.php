@@ -275,6 +275,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $iPProtocol = 'iPProtocol488094525';
         $allPorts = true;
         $allowGlobalAccess = true;
+        $allowPscGlobalAccess = false;
         $backendService = 'backendService306946058';
         $baseForwardingRule = 'baseForwardingRule524873104';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -304,6 +305,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $expectedResponse->setIPProtocol($iPProtocol);
         $expectedResponse->setAllPorts($allPorts);
         $expectedResponse->setAllowGlobalAccess($allowGlobalAccess);
+        $expectedResponse->setAllowPscGlobalAccess($allowPscGlobalAccess);
         $expectedResponse->setBackendService($backendService);
         $expectedResponse->setBaseForwardingRule($baseForwardingRule);
         $expectedResponse->setCreationTimestamp($creationTimestamp);

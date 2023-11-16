@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START iam_v2_generated_Policies_CreatePolicy_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Iam\V2\PoliciesClient;
+use Google\Cloud\Iam\V2\Client\PoliciesClient;
+use Google\Cloud\Iam\V2\CreatePolicyRequest;
 use Google\Cloud\Iam\V2\Policy;
 use Google\Rpc\Status;
 
@@ -49,13 +50,16 @@ function create_policy_sample(string $parent): void
     // Create a client.
     $policiesClient = new PoliciesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $policy = new Policy();
+    $request = (new CreatePolicyRequest())
+        ->setParent($parent)
+        ->setPolicy($policy);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $policiesClient->createPolicy($parent, $policy);
+        $response = $policiesClient->createPolicy($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

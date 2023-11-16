@@ -43,6 +43,34 @@ class CreateKeyRequest extends \Google\Protobuf\Internal\Message
     private $key_id = '';
 
     /**
+     * @param string                       $parent Required. The project in which the API key is created. Please see
+     *                                             {@see ApiKeysClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\ApiKeys\V2\Key $key    Required. The API key fields to set at creation time.
+     *                                             You can configure only the `display_name`, `restrictions`, and
+     *                                             `annotations` fields.
+     * @param string                       $keyId  User specified key id (optional). If specified, it will become the final
+     *                                             component of the key resource name.
+     *
+     *                                             The id must be unique within the project, must conform with RFC-1034,
+     *                                             is restricted to lower-cased letters, and has a maximum length of 63
+     *                                             characters. In another word, the id must match the regular
+     *                                             expression: `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.
+     *
+     *                                             The id must NOT be a UUID-like string.
+     *
+     * @return \Google\Cloud\ApiKeys\V2\CreateKeyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\ApiKeys\V2\Key $key, string $keyId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setKey($key)
+            ->setKeyId($keyId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

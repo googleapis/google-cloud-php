@@ -35,6 +35,21 @@ class InsertBackendBucketRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string                                 $project               Project ID for this request.
+     * @param \Google\Cloud\Compute\V1\BackendBucket $backendBucketResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertBackendBucketRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, \Google\Cloud\Compute\V1\BackendBucket $backendBucketResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setBackendBucketResource($backendBucketResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

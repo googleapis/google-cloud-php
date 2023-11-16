@@ -100,6 +100,7 @@ class ServicesClientTest extends GeneratedTest
         $latestReadyRevision = 'latestReadyRevision-853854545';
         $latestCreatedRevision = 'latestCreatedRevision452370698';
         $uri = 'uri116076';
+        $satisfiesPzs = false;
         $reconciling = false;
         $etag = 'etag3123477';
         $expectedResponse = new Service();
@@ -115,6 +116,7 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);
         $expectedResponse->setLatestCreatedRevision($latestCreatedRevision);
         $expectedResponse->setUri($uri);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
         $anyResponse = new Any();
@@ -257,6 +259,7 @@ class ServicesClientTest extends GeneratedTest
         $latestReadyRevision = 'latestReadyRevision-853854545';
         $latestCreatedRevision = 'latestCreatedRevision452370698';
         $uri = 'uri116076';
+        $satisfiesPzs = false;
         $reconciling = false;
         $etag2 = 'etag2-1293302904';
         $expectedResponse = new Service();
@@ -272,6 +275,7 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);
         $expectedResponse->setLatestCreatedRevision($latestCreatedRevision);
         $expectedResponse->setUri($uri);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag2);
         $anyResponse = new Any();
@@ -452,6 +456,7 @@ class ServicesClientTest extends GeneratedTest
         $latestReadyRevision = 'latestReadyRevision-853854545';
         $latestCreatedRevision = 'latestCreatedRevision452370698';
         $uri = 'uri116076';
+        $satisfiesPzs = false;
         $reconciling = false;
         $etag = 'etag3123477';
         $expectedResponse = new Service();
@@ -467,6 +472,7 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);
         $expectedResponse->setLatestCreatedRevision($latestCreatedRevision);
         $expectedResponse->setUri($uri);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
@@ -746,6 +752,7 @@ class ServicesClientTest extends GeneratedTest
         $latestReadyRevision = 'latestReadyRevision-853854545';
         $latestCreatedRevision = 'latestCreatedRevision452370698';
         $uri = 'uri116076';
+        $satisfiesPzs = false;
         $reconciling = false;
         $etag = 'etag3123477';
         $expectedResponse = new Service();
@@ -761,6 +768,7 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);
         $expectedResponse->setLatestCreatedRevision($latestCreatedRevision);
         $expectedResponse->setUri($uri);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
         $anyResponse = new Any();

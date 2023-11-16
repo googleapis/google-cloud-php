@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudresourcemanager_v3_generated_Projects_SearchProjects_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\ResourceManager\V3\Client\ProjectsClient;
 use Google\Cloud\ResourceManager\V3\Project;
-use Google\Cloud\ResourceManager\V3\ProjectsClient;
+use Google\Cloud\ResourceManager\V3\SearchProjectsRequest;
 
 /**
  * Search for projects that the caller has both `resourcemanager.projects.get`
@@ -51,10 +52,13 @@ function search_projects_sample(): void
     // Create a client.
     $projectsClient = new ProjectsClient();
 
+    // Prepare the request message.
+    $request = new SearchProjectsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $projectsClient->searchProjects();
+        $response = $projectsClient->searchProjects($request);
 
         /** @var Project $element */
         foreach ($response as $element) {

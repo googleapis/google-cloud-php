@@ -20,14 +20,29 @@
                                 "createAssessment"
                             ]
                         },
+                        "CreateFirewallPolicy": {
+                            "methods": [
+                                "createFirewallPolicy"
+                            ]
+                        },
                         "CreateKey": {
                             "methods": [
                                 "createKey"
                             ]
                         },
+                        "DeleteFirewallPolicy": {
+                            "methods": [
+                                "deleteFirewallPolicy"
+                            ]
+                        },
                         "DeleteKey": {
                             "methods": [
                                 "deleteKey"
+                            ]
+                        },
+                        "GetFirewallPolicy": {
+                            "methods": [
+                                "getFirewallPolicy"
                             ]
                         },
                         "GetKey": {
@@ -38,6 +53,11 @@
                         "GetMetrics": {
                             "methods": [
                                 "getMetrics"
+                            ]
+                        },
+                        "ListFirewallPolicies": {
+                            "methods": [
+                                "listFirewallPolicies"
                             ]
                         },
                         "ListKeys": {
@@ -68,6 +88,11 @@
                         "SearchRelatedAccountGroupMemberships": {
                             "methods": [
                                 "searchRelatedAccountGroupMemberships"
+                            ]
+                        },
+                        "UpdateFirewallPolicy": {
+                            "methods": [
+                                "updateFirewallPolicy"
                             ]
                         },
                         "UpdateKey": {

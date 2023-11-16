@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START vmmigration_v1_generated_VmMigration_GetCloneJob_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\VMMigration\V1\Client\VmMigrationClient;
 use Google\Cloud\VMMigration\V1\CloneJob;
-use Google\Cloud\VMMigration\V1\VmMigrationClient;
+use Google\Cloud\VMMigration\V1\GetCloneJobRequest;
 
 /**
  * Gets details of a single CloneJob.
@@ -38,10 +39,14 @@ function get_clone_job_sample(string $formattedName): void
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
+    // Prepare the request message.
+    $request = (new GetCloneJobRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var CloneJob $response */
-        $response = $vmMigrationClient->getCloneJob($formattedName);
+        $response = $vmMigrationClient->getCloneJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

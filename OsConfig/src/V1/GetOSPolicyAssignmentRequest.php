@@ -25,6 +25,23 @@ class GetOSPolicyAssignmentRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The resource name of OS policy assignment.
+     *
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/osPolicyAssignments/{os_policy_assignment}&#64;{revisionId}`
+     *                     Please see {@see OsConfigZonalServiceClient::oSPolicyAssignmentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\OsConfig\V1\GetOSPolicyAssignmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticshub_v1beta1_generated_AnalyticsHubService_UpdateDataExchange_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\BigQuery\DataExchange\V1beta1\AnalyticsHubServiceClient;
+use Google\Cloud\BigQuery\DataExchange\V1beta1\Client\AnalyticsHubServiceClient;
 use Google\Cloud\BigQuery\DataExchange\V1beta1\DataExchange;
+use Google\Cloud\BigQuery\DataExchange\V1beta1\UpdateDataExchangeRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -42,15 +43,18 @@ function update_data_exchange_sample(string $dataExchangeDisplayName): void
     // Create a client.
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $dataExchange = (new DataExchange())
         ->setDisplayName($dataExchangeDisplayName);
+    $request = (new UpdateDataExchangeRequest())
+        ->setUpdateMask($updateMask)
+        ->setDataExchange($dataExchange);
 
     // Call the API and handle any network failures.
     try {
         /** @var DataExchange $response */
-        $response = $analyticsHubServiceClient->updateDataExchange($updateMask, $dataExchange);
+        $response = $analyticsHubServiceClient->updateDataExchange($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

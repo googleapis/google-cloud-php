@@ -29,6 +29,21 @@ class GetGlobalAddressRequest extends \Google\Protobuf\Internal\Message
     private $project = '';
 
     /**
+     * @param string $project Project ID for this request.
+     * @param string $address Name of the address resource to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetGlobalAddressRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $address): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setAddress($address);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

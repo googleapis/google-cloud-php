@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataform_v1beta1_generated_Dataform_QueryWorkflowInvocationActions_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Dataform\V1beta1\DataformClient;
+use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
+use Google\Cloud\Dataform\V1beta1\QueryWorkflowInvocationActionsRequest;
 use Google\Cloud\Dataform\V1beta1\WorkflowInvocationAction;
 
 /**
@@ -39,10 +40,14 @@ function query_workflow_invocation_actions_sample(string $formattedName): void
     // Create a client.
     $dataformClient = new DataformClient();
 
+    // Prepare the request message.
+    $request = (new QueryWorkflowInvocationActionsRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataformClient->queryWorkflowInvocationActions($formattedName);
+        $response = $dataformClient->queryWorkflowInvocationActions($request);
 
         /** @var WorkflowInvocationAction $element */
         foreach ($response as $element) {

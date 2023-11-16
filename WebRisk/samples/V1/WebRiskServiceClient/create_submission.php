@@ -36,10 +36,11 @@ use Google\Cloud\WebRisk\V1\WebRiskServiceClient;
  * allowlisted projects can use this method during Early Access. Please reach
  * out to Sales or your customer engineer to obtain access.
  *
- * @param string $formattedParent The name of the project that is making the submission. This string is in
- *                                the format "projects/{project_number}". Please see
+ * @param string $formattedParent The name of the project that is making the submission. This
+ *                                string is in the format "projects/{project_number}". Please see
  *                                {@see WebRiskServiceClient::projectName()} for help formatting this field.
- * @param string $submissionUri   The URI that is being reported for malicious content to be analyzed.
+ * @param string $submissionUri   The URI that is being reported for malicious content to be
+ *                                analyzed.
  */
 function create_submission_sample(string $formattedParent, string $submissionUri): void
 {

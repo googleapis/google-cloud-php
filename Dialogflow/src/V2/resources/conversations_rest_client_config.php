@@ -41,6 +41,26 @@ return [
                     ],
                 ],
             ],
+            'GenerateStatelessSummary' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{stateless_conversation.parent=projects/*}/suggestions:generateStatelessSummary',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{stateless_conversation.parent=projects/*/locations/*}/suggestions:generateStatelessSummary',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'stateless_conversation.parent' => [
+                        'getters' => [
+                            'getStatelessConversation',
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetConversation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=projects/*/conversations/*}',
@@ -85,6 +105,40 @@ return [
                     ],
                 ],
                 'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'SearchKnowledge' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*}/suggestions:searchKnowledge',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/suggestions:searchKnowledge',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{conversation=projects/*/conversations/*}/suggestions:searchKnowledge',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{conversation=projects/*/locations/*/conversations/*}/suggestions:searchKnowledge',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'conversation' => [
+                        'getters' => [
+                            'getConversation',
+                        ],
+                    ],
                     'parent' => [
                         'getters' => [
                             'getParent',

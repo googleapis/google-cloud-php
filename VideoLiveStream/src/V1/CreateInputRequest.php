@@ -54,6 +54,27 @@ class CreateInputRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string                                  $parent  Required. The parent location for the resource, in the form of:
+     *                                                         `projects/{project}/locations/{location}`. Please see
+     *                                                         {@see LivestreamServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Video\LiveStream\V1\Input $input   Required. The input resource to be created.
+     * @param string                                  $inputId Required. The ID of the input resource to be created.
+     *                                                         This value must be 1-63 characters, begin and end with `[a-z0-9]`,
+     *                                                         could contain dashes (-) in between.
+     *
+     * @return \Google\Cloud\Video\LiveStream\V1\CreateInputRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Video\LiveStream\V1\Input $input, string $inputId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setInput($input)
+            ->setInputId($inputId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

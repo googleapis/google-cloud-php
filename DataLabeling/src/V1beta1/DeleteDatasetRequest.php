@@ -24,6 +24,21 @@ class DeleteDatasetRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Dataset resource name, format:
+     *                     projects/{project_id}/datasets/{dataset_id}
+     *                     Please see {@see DataLabelingServiceClient::datasetName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\DataLabeling\V1beta1\DeleteDatasetRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

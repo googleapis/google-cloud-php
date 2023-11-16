@@ -117,6 +117,9 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\DataCatalog\V1\Client\DataCatalogClient} to use the new surface.
  */
 class DataCatalogGapicClient
 {
@@ -1327,6 +1330,9 @@ class DataCatalogGapicClient
      *
      *     @type string $gcsBucketPath
      *           Path to a Cloud Storage bucket that contains a dump ready for ingestion.
+     *     @type string $jobId
+     *           Optional. (Optional) Dataplex task job id, if specified will be used as
+     *           part of ImportEntries LRO ID
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1345,6 +1351,10 @@ class DataCatalogGapicClient
         $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['gcsBucketPath'])) {
             $request->setGcsBucketPath($optionalArgs['gcsBucketPath']);
+        }
+
+        if (isset($optionalArgs['jobId'])) {
+            $request->setJobId($optionalArgs['jobId']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1622,7 +1632,9 @@ class DataCatalogGapicClient
      *           [Lexical structure in Standard SQL]
      *           (https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical).
      *     @type string $fullyQualifiedName
-     *           Fully qualified name (FQN) of the resource.
+     *           [Fully Qualified Name
+     *           (FQN)](https://cloud.google.com//data-catalog/docs/fully-qualified-names)
+     *           of the resource.
      *
      *           FQNs take two forms:
      *
@@ -1637,6 +1649,14 @@ class DataCatalogGapicClient
      *           Example for a DPMS table:
      *
      *           `dataproc_metastore:{PROJECT_ID}.{LOCATION_ID}.{INSTANCE_ID}.{DATABASE_ID}.{TABLE_ID}`
+     *     @type string $project
+     *           Project where the lookup should be performed. Required to lookup
+     *           entry that is not a part of `DPMS` or `DATAPLEX` `integrated_system`
+     *           using its `fully_qualified_name`. Ignored in other cases.
+     *     @type string $location
+     *           Location where the lookup should be performed. Required to lookup
+     *           entry that is not a part of `DPMS` or `DATAPLEX` `integrated_system`
+     *           using its `fully_qualified_name`. Ignored in other cases.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1660,6 +1680,14 @@ class DataCatalogGapicClient
 
         if (isset($optionalArgs['fullyQualifiedName'])) {
             $request->setFullyQualifiedName($optionalArgs['fullyQualifiedName']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+        }
+
+        if (isset($optionalArgs['location'])) {
+            $request->setLocation($optionalArgs['location']);
         }
 
         return $this->startCall('LookupEntry', Entry::class, $optionalArgs, $request)->wait();
@@ -2024,7 +2052,20 @@ class DataCatalogGapicClient
      *           * `last_modified_timestamp [asc|desc]` with descending (`desc`) as default
      *           * `default` that can only be descending
      *
+     *           Search queries don't guarantee full recall. Results that match your query
+     *           might not be returned, even in subsequent result pages. Additionally,
+     *           returned (and not returned) results can vary if you repeat search queries.
+     *           If you are experiencing recall issues and you don't have to fetch the
+     *           results in any specific order, consider setting this parameter to
+     *           `default`.
+     *
      *           If this parameter is omitted, it defaults to the descending `relevance`.
+     *     @type bool $adminSearch
+     *           Optional. If set, use searchAll permission granted on organizations from
+     *           `include_org_ids` and projects from `include_project_ids` instead of the
+     *           fine grained per resource permissions when filtering the search results.
+     *           The only allowed `order_by` criteria for admin_search mode is `default`.
+     *           Using this flags guarantees a full recall of the search results.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2050,6 +2091,10 @@ class DataCatalogGapicClient
 
         if (isset($optionalArgs['orderBy'])) {
             $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        if (isset($optionalArgs['adminSearch'])) {
+            $request->setAdminSearch($optionalArgs['adminSearch']);
         }
 
         return $this->getPagedListResponse('SearchCatalog', $optionalArgs, SearchCatalogResponse::class, $request);

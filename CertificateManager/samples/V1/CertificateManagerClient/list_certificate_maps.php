@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START certificatemanager_v1_generated_CertificateManager_ListCertificateMaps_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\CertificateManager\V1\CertificateManagerClient;
 use Google\Cloud\CertificateManager\V1\CertificateMap;
+use Google\Cloud\CertificateManager\V1\Client\CertificateManagerClient;
+use Google\Cloud\CertificateManager\V1\ListCertificateMapsRequest;
 
 /**
  * Lists CertificateMaps in a given project and location.
@@ -40,10 +41,14 @@ function list_certificate_maps_sample(string $formattedParent): void
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
+    // Prepare the request message.
+    $request = (new ListCertificateMapsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $certificateManagerClient->listCertificateMaps($formattedParent);
+        $response = $certificateManagerClient->listCertificateMaps($request);
 
         /** @var CertificateMap $element */
         foreach ($response as $element) {

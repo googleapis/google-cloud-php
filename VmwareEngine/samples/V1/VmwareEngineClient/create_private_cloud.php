@@ -25,10 +25,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmwareengine_v1_generated_VmwareEngine_CreatePrivateCloud_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VmwareEngine\V1\Client\VmwareEngineClient;
+use Google\Cloud\VmwareEngine\V1\CreatePrivateCloudRequest;
 use Google\Cloud\VmwareEngine\V1\NetworkConfig;
 use Google\Cloud\VmwareEngine\V1\PrivateCloud;
 use Google\Cloud\VmwareEngine\V1\PrivateCloud\ManagementCluster;
-use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
 use Google\Rpc\Status;
 
 /**
@@ -77,7 +78,7 @@ function create_private_cloud_sample(
     // Create a client.
     $vmwareEngineClient = new VmwareEngineClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $privateCloudNetworkConfig = (new NetworkConfig())
         ->setManagementCidr($privateCloudNetworkConfigManagementCidr);
     $privateCloudManagementClusterNodeTypeConfigs = [];
@@ -87,15 +88,15 @@ function create_private_cloud_sample(
     $privateCloud = (new PrivateCloud())
         ->setNetworkConfig($privateCloudNetworkConfig)
         ->setManagementCluster($privateCloudManagementCluster);
+    $request = (new CreatePrivateCloudRequest())
+        ->setParent($formattedParent)
+        ->setPrivateCloudId($privateCloudId)
+        ->setPrivateCloud($privateCloud);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $vmwareEngineClient->createPrivateCloud(
-            $formattedParent,
-            $privateCloudId,
-            $privateCloud
-        );
+        $response = $vmwareEngineClient->createPrivateCloud($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

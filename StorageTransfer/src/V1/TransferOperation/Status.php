@@ -55,6 +55,12 @@ class Status
      * Generated from protobuf enum <code>QUEUED = 6;</code>
      */
     const QUEUED = 6;
+    /**
+     * The operation is suspending and draining the ongoing work to completion.
+     *
+     * Generated from protobuf enum <code>SUSPENDING = 7;</code>
+     */
+    const SUSPENDING = 7;
 
     private static $valueToName = [
         self::STATUS_UNSPECIFIED => 'STATUS_UNSPECIFIED',
@@ -64,6 +70,7 @@ class Status
         self::FAILED => 'FAILED',
         self::ABORTED => 'ABORTED',
         self::QUEUED => 'QUEUED',
+        self::SUSPENDING => 'SUSPENDING',
     ];
 
     public static function name($value)

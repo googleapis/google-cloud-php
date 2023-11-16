@@ -22,16 +22,17 @@ class QueryWorkflowInvocationActionsRequest extends \Google\Protobuf\Internal\Me
      */
     private $name = '';
     /**
-     * Optional. Maximum number of workflow invocations to return. The server may return
-     * fewer items than requested. If unspecified, the server will pick an
+     * Optional. Maximum number of workflow invocations to return. The server may
+     * return fewer items than requested. If unspecified, the server will pick an
      * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. Page token received from a previous `QueryWorkflowInvocationActions` call.
-     * Provide this to retrieve the subsequent page.
+     * Optional. Page token received from a previous
+     * `QueryWorkflowInvocationActions` call. Provide this to retrieve the
+     * subsequent page.
      * When paginating, all other parameters provided to
      * `QueryWorkflowInvocationActions` must match the call that provided the page
      * token.
@@ -49,12 +50,13 @@ class QueryWorkflowInvocationActionsRequest extends \Google\Protobuf\Internal\Me
      *     @type string $name
      *           Required. The workflow invocation's name.
      *     @type int $page_size
-     *           Optional. Maximum number of workflow invocations to return. The server may return
-     *           fewer items than requested. If unspecified, the server will pick an
+     *           Optional. Maximum number of workflow invocations to return. The server may
+     *           return fewer items than requested. If unspecified, the server will pick an
      *           appropriate default.
      *     @type string $page_token
-     *           Optional. Page token received from a previous `QueryWorkflowInvocationActions` call.
-     *           Provide this to retrieve the subsequent page.
+     *           Optional. Page token received from a previous
+     *           `QueryWorkflowInvocationActions` call. Provide this to retrieve the
+     *           subsequent page.
      *           When paginating, all other parameters provided to
      *           `QueryWorkflowInvocationActions` must match the call that provided the page
      *           token.
@@ -92,8 +94,8 @@ class QueryWorkflowInvocationActionsRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * Optional. Maximum number of workflow invocations to return. The server may return
-     * fewer items than requested. If unspecified, the server will pick an
+     * Optional. Maximum number of workflow invocations to return. The server may
+     * return fewer items than requested. If unspecified, the server will pick an
      * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -105,8 +107,8 @@ class QueryWorkflowInvocationActionsRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * Optional. Maximum number of workflow invocations to return. The server may return
-     * fewer items than requested. If unspecified, the server will pick an
+     * Optional. Maximum number of workflow invocations to return. The server may
+     * return fewer items than requested. If unspecified, the server will pick an
      * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -122,8 +124,9 @@ class QueryWorkflowInvocationActionsRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * Optional. Page token received from a previous `QueryWorkflowInvocationActions` call.
-     * Provide this to retrieve the subsequent page.
+     * Optional. Page token received from a previous
+     * `QueryWorkflowInvocationActions` call. Provide this to retrieve the
+     * subsequent page.
      * When paginating, all other parameters provided to
      * `QueryWorkflowInvocationActions` must match the call that provided the page
      * token.
@@ -137,8 +140,9 @@ class QueryWorkflowInvocationActionsRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * Optional. Page token received from a previous `QueryWorkflowInvocationActions` call.
-     * Provide this to retrieve the subsequent page.
+     * Optional. Page token received from a previous
+     * `QueryWorkflowInvocationActions` call. Provide this to retrieve the
+     * subsequent page.
      * When paginating, all other parameters provided to
      * `QueryWorkflowInvocationActions` must match the call that provided the page
      * token.

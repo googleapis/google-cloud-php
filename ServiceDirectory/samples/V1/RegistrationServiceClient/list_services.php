@@ -31,7 +31,7 @@ use Google\Cloud\ServiceDirectory\V1\Service;
 /**
  * Lists all services belonging to a namespace.
  *
- * @param string $formattedParent The resource name of the namespace whose services we'd
+ * @param string $formattedParent The resource name of the namespace whose services you'd
  *                                like to list. Please see
  *                                {@see RegistrationServiceClient::namespaceName()} for help formatting this field.
  */

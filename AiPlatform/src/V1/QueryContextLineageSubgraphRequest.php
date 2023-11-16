@@ -30,6 +30,27 @@ class QueryContextLineageSubgraphRequest extends \Google\Protobuf\Internal\Messa
     private $context = '';
 
     /**
+     * @param string $context Required. The resource name of the Context whose Artifacts and Executions
+     *                        should be retrieved as a LineageSubgraph.
+     *                        Format:
+     *                        `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
+     *
+     *                        The request may error with FAILED_PRECONDITION if the number of Artifacts,
+     *                        the number of Executions, or the number of Events that would be returned
+     *                        for the Context exceeds 1000. Please see
+     *                        {@see MetadataServiceClient::contextName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\QueryContextLineageSubgraphRequest
+     *
+     * @experimental
+     */
+    public static function build(string $context): self
+    {
+        return (new self())
+            ->setContext($context);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -24,6 +24,21 @@ class DeleteDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the device registry. For example,
+     *                     `projects/example-project/locations/us-central1/registries/my-registry`. Please see
+     *                     {@see DeviceManagerClient::registryName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Iot\V1\DeleteDeviceRegistryRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

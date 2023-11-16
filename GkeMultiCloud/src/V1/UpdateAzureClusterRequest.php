@@ -54,6 +54,41 @@ class UpdateAzureClusterRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\GkeMultiCloud\V1\AzureCluster $azureCluster Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
+     *                                                                  resource to update.
+     * @param \Google\Protobuf\FieldMask                  $updateMask   Required. Mask of fields to update. At least one path must be supplied in
+     *                                                                  this field. The elements of the repeated paths field can only include these
+     *                                                                  fields from [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]:
+     *
+     *                                                                  *   `description`.
+     *                                                                  *   `azureClient`.
+     *                                                                  *   `control_plane.version`.
+     *                                                                  *   `control_plane.vm_size`.
+     *                                                                  *   `annotations`.
+     *                                                                  *   `authorization.admin_users`.
+     *                                                                  *   `control_plane.root_volume.size_gib`.
+     *                                                                  *   `azure_services_authentication`.
+     *                                                                  *   `azure_services_authentication.tenant_id`.
+     *                                                                  *   `azure_services_authentication.application_id`.
+     *                                                                  *   `control_plane.proxy_config`.
+     *                                                                  *   `control_plane.proxy_config.resource_group_id`.
+     *                                                                  *   `control_plane.proxy_config.secret_id`.
+     *                                                                  *   `control_plane.ssh_config.authorized_key`.
+     *                                                                  *   `logging_config.component_config.enable_components`
+     *                                                                  *   `monitoring_config.managed_prometheus_config.enabled`.
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\UpdateAzureClusterRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\GkeMultiCloud\V1\AzureCluster $azureCluster, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setAzureCluster($azureCluster)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

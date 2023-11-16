@@ -95,6 +95,8 @@ class RevisionsClientTest extends GeneratedTest
         $reconciling = false;
         $observedGeneration = 900833007;
         $logUri = 'logUri342054385';
+        $satisfiesPzs = false;
+        $sessionAffinity = false;
         $etag2 = 'etag2-1293302904';
         $expectedResponse = new Revision();
         $expectedResponse->setName($name2);
@@ -107,6 +109,8 @@ class RevisionsClientTest extends GeneratedTest
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLogUri($logUri);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSessionAffinity($sessionAffinity);
         $expectedResponse->setEtag($etag2);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -222,6 +226,8 @@ class RevisionsClientTest extends GeneratedTest
         $reconciling = false;
         $observedGeneration = 900833007;
         $logUri = 'logUri342054385';
+        $satisfiesPzs = false;
+        $sessionAffinity = false;
         $etag = 'etag3123477';
         $expectedResponse = new Revision();
         $expectedResponse->setName($name2);
@@ -234,6 +240,8 @@ class RevisionsClientTest extends GeneratedTest
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLogUri($logUri);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSessionAffinity($sessionAffinity);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request

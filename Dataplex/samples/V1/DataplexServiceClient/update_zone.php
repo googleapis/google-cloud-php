@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataplex_v1_generated_DataplexService_UpdateZone_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Dataplex\V1\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\Client\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\UpdateZoneRequest;
 use Google\Cloud\Dataplex\V1\Zone;
 use Google\Cloud\Dataplex\V1\Zone\ResourceSpec;
 use Google\Cloud\Dataplex\V1\Zone\ResourceSpec\LocationType;
@@ -45,18 +46,21 @@ function update_zone_sample(int $zoneType, int $zoneResourceSpecLocationType): v
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $zoneResourceSpec = (new ResourceSpec())
         ->setLocationType($zoneResourceSpecLocationType);
     $zone = (new Zone())
         ->setType($zoneType)
         ->setResourceSpec($zoneResourceSpec);
+    $request = (new UpdateZoneRequest())
+        ->setUpdateMask($updateMask)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataplexServiceClient->updateZone($updateMask, $zone);
+        $response = $dataplexServiceClient->updateZone($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

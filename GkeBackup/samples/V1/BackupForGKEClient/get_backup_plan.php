@@ -24,14 +24,15 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START gkebackup_v1_generated_BackupForGKE_GetBackupPlan_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\GkeBackup\V1\BackupForGKEClient;
 use Google\Cloud\GkeBackup\V1\BackupPlan;
+use Google\Cloud\GkeBackup\V1\Client\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\GetBackupPlanRequest;
 
 /**
  * Retrieve the details of a single BackupPlan.
  *
  * @param string $formattedName Fully qualified BackupPlan name.
- *                              Format: projects/&#42;/locations/&#42;/backupPlans/*
+ *                              Format: `projects/&#42;/locations/&#42;/backupPlans/*`
  *                              Please see {@see BackupForGKEClient::backupPlanName()} for help formatting this field.
  */
 function get_backup_plan_sample(string $formattedName): void
@@ -39,10 +40,14 @@ function get_backup_plan_sample(string $formattedName): void
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
+    // Prepare the request message.
+    $request = (new GetBackupPlanRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var BackupPlan $response */
-        $response = $backupForGKEClient->getBackupPlan($formattedName);
+        $response = $backupForGKEClient->getBackupPlan($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

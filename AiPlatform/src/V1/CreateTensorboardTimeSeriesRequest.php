@@ -42,6 +42,25 @@ class CreateTensorboardTimeSeriesRequest extends \Google\Protobuf\Internal\Messa
     private $tensorboard_time_series = null;
 
     /**
+     * @param string                                            $parent                Required. The resource name of the TensorboardRun to create the
+     *                                                                                 TensorboardTimeSeries in.
+     *                                                                                 Format:
+     *                                                                                 `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
+     *                                                                                 Please see {@see TensorboardServiceClient::tensorboardTimeSeriesName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\TensorboardTimeSeries $tensorboardTimeSeries Required. The TensorboardTimeSeries to create.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CreateTensorboardTimeSeriesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\AIPlatform\V1\TensorboardTimeSeries $tensorboardTimeSeries): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setTensorboardTimeSeries($tensorboardTimeSeries);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

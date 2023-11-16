@@ -24,6 +24,21 @@ class GetBudgetRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Name of budget to get. Values are of the form
+     *                     `billingAccounts/{billingAccountId}/budgets/{budgetId}`. Please see
+     *                     {@see BudgetServiceClient::budgetName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Billing\Budgets\V1\GetBudgetRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

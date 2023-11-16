@@ -233,6 +233,8 @@ trait ClientTrait
                 'and we were unable to detect a default project ID.'
             );
         }
+
+        return '';
     }
 
     /**

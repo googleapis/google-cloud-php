@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_IndexService_UpsertDatapoints_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AIPlatform\V1\IndexServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\IndexServiceClient;
+use Google\Cloud\AIPlatform\V1\UpsertDatapointsRequest;
 use Google\Cloud\AIPlatform\V1\UpsertDatapointsResponse;
 
 /**
@@ -40,10 +41,14 @@ function upsert_datapoints_sample(string $formattedIndex): void
     // Create a client.
     $indexServiceClient = new IndexServiceClient();
 
+    // Prepare the request message.
+    $request = (new UpsertDatapointsRequest())
+        ->setIndex($formattedIndex);
+
     // Call the API and handle any network failures.
     try {
         /** @var UpsertDatapointsResponse $response */
-        $response = $indexServiceClient->upsertDatapoints($formattedIndex);
+        $response = $indexServiceClient->upsertDatapoints($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

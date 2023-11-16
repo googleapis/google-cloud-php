@@ -52,8 +52,24 @@ class CmekSettings extends \Google\Protobuf\Internal\Message
      */
     private $kms_key_name = '';
     /**
-     * Output only. The service account that will be used by the Log Router to access your
-     * Cloud KMS key.
+     * The CryptoKeyVersion resource name for the configured Cloud KMS key.
+     * KMS key name format:
+     *     "projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEYRING]/cryptoKeys/[KEY]/cryptoKeyVersions/[VERSION]"
+     * For example:
+     *   `"projects/my-project/locations/us-central1/keyRings/my-ring/cryptoKeys/my-key/cryptoKeyVersions/1"`
+     * This is a read-only field used to convey the specific configured
+     * CryptoKeyVersion of `kms_key` that has been configured. It will be
+     * populated in cases where the CMEK settings are bound to a single key
+     * version.
+     * If this field is populated, the `kms_key` is tied to a specific
+     * CryptoKeyVersion.
+     *
+     * Generated from protobuf field <code>string kms_key_version_name = 4;</code>
+     */
+    private $kms_key_version_name = '';
+    /**
+     * Output only. The service account that will be used by the Log Router to
+     * access your Cloud KMS key.
      * Before enabling CMEK for Log Router, you must first assign the
      * cloudkms.cryptoKeyEncrypterDecrypter role to the service account that
      * the Log Router will use to access your Cloud KMS key. Use
@@ -94,9 +110,21 @@ class CmekSettings extends \Google\Protobuf\Internal\Message
      *           See [Enabling CMEK for Log
      *           Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
      *           for more information.
+     *     @type string $kms_key_version_name
+     *           The CryptoKeyVersion resource name for the configured Cloud KMS key.
+     *           KMS key name format:
+     *               "projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEYRING]/cryptoKeys/[KEY]/cryptoKeyVersions/[VERSION]"
+     *           For example:
+     *             `"projects/my-project/locations/us-central1/keyRings/my-ring/cryptoKeys/my-key/cryptoKeyVersions/1"`
+     *           This is a read-only field used to convey the specific configured
+     *           CryptoKeyVersion of `kms_key` that has been configured. It will be
+     *           populated in cases where the CMEK settings are bound to a single key
+     *           version.
+     *           If this field is populated, the `kms_key` is tied to a specific
+     *           CryptoKeyVersion.
      *     @type string $service_account_id
-     *           Output only. The service account that will be used by the Log Router to access your
-     *           Cloud KMS key.
+     *           Output only. The service account that will be used by the Log Router to
+     *           access your Cloud KMS key.
      *           Before enabling CMEK for Log Router, you must first assign the
      *           cloudkms.cryptoKeyEncrypterDecrypter role to the service account that
      *           the Log Router will use to access your Cloud KMS key. Use
@@ -199,8 +227,54 @@ class CmekSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The service account that will be used by the Log Router to access your
-     * Cloud KMS key.
+     * The CryptoKeyVersion resource name for the configured Cloud KMS key.
+     * KMS key name format:
+     *     "projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEYRING]/cryptoKeys/[KEY]/cryptoKeyVersions/[VERSION]"
+     * For example:
+     *   `"projects/my-project/locations/us-central1/keyRings/my-ring/cryptoKeys/my-key/cryptoKeyVersions/1"`
+     * This is a read-only field used to convey the specific configured
+     * CryptoKeyVersion of `kms_key` that has been configured. It will be
+     * populated in cases where the CMEK settings are bound to a single key
+     * version.
+     * If this field is populated, the `kms_key` is tied to a specific
+     * CryptoKeyVersion.
+     *
+     * Generated from protobuf field <code>string kms_key_version_name = 4;</code>
+     * @return string
+     */
+    public function getKmsKeyVersionName()
+    {
+        return $this->kms_key_version_name;
+    }
+
+    /**
+     * The CryptoKeyVersion resource name for the configured Cloud KMS key.
+     * KMS key name format:
+     *     "projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEYRING]/cryptoKeys/[KEY]/cryptoKeyVersions/[VERSION]"
+     * For example:
+     *   `"projects/my-project/locations/us-central1/keyRings/my-ring/cryptoKeys/my-key/cryptoKeyVersions/1"`
+     * This is a read-only field used to convey the specific configured
+     * CryptoKeyVersion of `kms_key` that has been configured. It will be
+     * populated in cases where the CMEK settings are bound to a single key
+     * version.
+     * If this field is populated, the `kms_key` is tied to a specific
+     * CryptoKeyVersion.
+     *
+     * Generated from protobuf field <code>string kms_key_version_name = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setKmsKeyVersionName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->kms_key_version_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The service account that will be used by the Log Router to
+     * access your Cloud KMS key.
      * Before enabling CMEK for Log Router, you must first assign the
      * cloudkms.cryptoKeyEncrypterDecrypter role to the service account that
      * the Log Router will use to access your Cloud KMS key. Use
@@ -219,8 +293,8 @@ class CmekSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The service account that will be used by the Log Router to access your
-     * Cloud KMS key.
+     * Output only. The service account that will be used by the Log Router to
+     * access your Cloud KMS key.
      * Before enabling CMEK for Log Router, you must first assign the
      * cloudkms.cryptoKeyEncrypterDecrypter role to the service account that
      * the Log Router will use to access your Cloud KMS key. Use

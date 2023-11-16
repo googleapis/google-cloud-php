@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class TargetHttpsProxiesSetCertificateMapRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * URL of the Certificate Map to associate with this TargetHttpsProxy.
+     * URL of the Certificate Map to associate with this TargetHttpsProxy. Accepted format is //certificatemanager.googleapis.com/projects/{project }/locations/{location}/certificateMaps/{resourceName}.
      *
      * Generated from protobuf field <code>optional string certificate_map = 156463796;</code>
      */
@@ -28,7 +28,7 @@ class TargetHttpsProxiesSetCertificateMapRequest extends \Google\Protobuf\Intern
      *     Optional. Data for populating the Message object.
      *
      *     @type string $certificate_map
-     *           URL of the Certificate Map to associate with this TargetHttpsProxy.
+     *           URL of the Certificate Map to associate with this TargetHttpsProxy. Accepted format is //certificatemanager.googleapis.com/projects/{project }/locations/{location}/certificateMaps/{resourceName}.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +37,7 @@ class TargetHttpsProxiesSetCertificateMapRequest extends \Google\Protobuf\Intern
     }
 
     /**
-     * URL of the Certificate Map to associate with this TargetHttpsProxy.
+     * URL of the Certificate Map to associate with this TargetHttpsProxy. Accepted format is //certificatemanager.googleapis.com/projects/{project }/locations/{location}/certificateMaps/{resourceName}.
      *
      * Generated from protobuf field <code>optional string certificate_map = 156463796;</code>
      * @return string
@@ -58,7 +58,7 @@ class TargetHttpsProxiesSetCertificateMapRequest extends \Google\Protobuf\Intern
     }
 
     /**
-     * URL of the Certificate Map to associate with this TargetHttpsProxy.
+     * URL of the Certificate Map to associate with this TargetHttpsProxy. Accepted format is //certificatemanager.googleapis.com/projects/{project }/locations/{location}/certificateMaps/{resourceName}.
      *
      * Generated from protobuf field <code>optional string certificate_map = 156463796;</code>
      * @param string $var

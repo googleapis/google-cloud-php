@@ -58,6 +58,30 @@ class CreateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
     private $request_id = '';
 
     /**
+     * @param string                                                   $parent                 Required. The resource name of the
+     *                                                                                         [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the
+     *                                                                                         [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority],
+     *                                                                                         in the format `projects/&#42;/locations/&#42;/caPools/*`. Please see
+     *                                                                                         {@see CertificateAuthorityServiceClient::caPoolName()} for help formatting this field.
+     * @param \Google\Cloud\Security\PrivateCA\V1\CertificateAuthority $certificateAuthority   Required. A
+     *                                                                                         [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *                                                                                         with initial field values.
+     * @param string                                                   $certificateAuthorityId Required. It must be unique within a location and match the regular
+     *                                                                                         expression `[a-zA-Z0-9_-]{1,63}`
+     *
+     * @return \Google\Cloud\Security\PrivateCA\V1\CreateCertificateAuthorityRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Security\PrivateCA\V1\CertificateAuthority $certificateAuthority, string $certificateAuthorityId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setCertificateAuthority($certificateAuthority)
+            ->setCertificateAuthorityId($certificateAuthorityId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

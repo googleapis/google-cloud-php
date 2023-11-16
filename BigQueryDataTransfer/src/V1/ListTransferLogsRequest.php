@@ -48,6 +48,22 @@ class ListTransferLogsRequest extends \Google\Protobuf\Internal\Message
     private $message_types;
 
     /**
+     * @param string $parent Required. Transfer run name in the form:
+     *                       `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
+     *                       `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *                       Please see {@see DataTransferServiceClient::runName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\BigQuery\DataTransfer\V1\ListTransferLogsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

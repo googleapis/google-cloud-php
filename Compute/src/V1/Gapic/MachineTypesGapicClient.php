@@ -66,6 +66,9 @@ use Google\Cloud\Compute\V1\MachineTypeList;
  *     $machineTypesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\MachineTypesClient} to use the new surface.
  */
 class MachineTypesGapicClient
 {

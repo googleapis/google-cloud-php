@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START apigeeregistry_v1_generated_Registry_DeleteApiDeploymentRevision_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\ApigeeRegistry\V1\ApiDeployment;
-use Google\Cloud\ApigeeRegistry\V1\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\Client\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\DeleteApiDeploymentRevisionRequest;
 
 /**
  * Deletes a revision of a deployment.
@@ -42,10 +43,14 @@ function delete_api_deployment_revision_sample(string $formattedName): void
     // Create a client.
     $registryClient = new RegistryClient();
 
+    // Prepare the request message.
+    $request = (new DeleteApiDeploymentRevisionRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var ApiDeployment $response */
-        $response = $registryClient->deleteApiDeploymentRevision($formattedName);
+        $response = $registryClient->deleteApiDeploymentRevision($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

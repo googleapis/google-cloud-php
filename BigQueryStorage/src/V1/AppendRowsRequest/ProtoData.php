@@ -17,9 +17,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class ProtoData extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Proto schema used to serialize the data.  This value only needs to be
-     * provided as part of the first request on a gRPC network connection,
-     * and will be ignored for subsequent requests on the connection.
+     * The protocol buffer schema used to serialize the data. Provide this value
+     * whenever:
+     * * You send the first request of an RPC connection.
+     * * You change the input schema.
+     * * You specify a new destination table.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ProtoSchema writer_schema = 1;</code>
      */
@@ -41,9 +43,11 @@ class ProtoData extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\BigQuery\Storage\V1\ProtoSchema $writer_schema
-     *           Proto schema used to serialize the data.  This value only needs to be
-     *           provided as part of the first request on a gRPC network connection,
-     *           and will be ignored for subsequent requests on the connection.
+     *           The protocol buffer schema used to serialize the data. Provide this value
+     *           whenever:
+     *           * You send the first request of an RPC connection.
+     *           * You change the input schema.
+     *           * You specify a new destination table.
      *     @type \Google\Cloud\BigQuery\Storage\V1\ProtoRows $rows
      *           Serialized row data in protobuf message format.
      *           Currently, the backend expects the serialized rows to adhere to
@@ -57,9 +61,11 @@ class ProtoData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Proto schema used to serialize the data.  This value only needs to be
-     * provided as part of the first request on a gRPC network connection,
-     * and will be ignored for subsequent requests on the connection.
+     * The protocol buffer schema used to serialize the data. Provide this value
+     * whenever:
+     * * You send the first request of an RPC connection.
+     * * You change the input schema.
+     * * You specify a new destination table.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ProtoSchema writer_schema = 1;</code>
      * @return \Google\Cloud\BigQuery\Storage\V1\ProtoSchema|null
@@ -80,9 +86,11 @@ class ProtoData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Proto schema used to serialize the data.  This value only needs to be
-     * provided as part of the first request on a gRPC network connection,
-     * and will be ignored for subsequent requests on the connection.
+     * The protocol buffer schema used to serialize the data. Provide this value
+     * whenever:
+     * * You send the first request of an RPC connection.
+     * * You change the input schema.
+     * * You specify a new destination table.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ProtoSchema writer_schema = 1;</code>
      * @param \Google\Cloud\BigQuery\Storage\V1\ProtoSchema $var

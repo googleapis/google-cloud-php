@@ -51,6 +51,23 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
     protected $order_by = '';
 
     /**
+     * @param string $parent Required. The name of the parent resource. For the required format, see the
+     *                       comment on the Cluster.name field. Additionally, you can perform an
+     *                       aggregated list operation by specifying a value with the following format:
+     *                       * projects/{project}/locations/-
+     *                       Please see {@see AlloyDBAdminClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AlloyDb\V1\ListClustersRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

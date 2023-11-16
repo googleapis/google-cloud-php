@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START metastore_v1_generated_DataprocMetastore_ListServices_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Metastore\V1\DataprocMetastoreClient;
+use Google\Cloud\Metastore\V1\Client\DataprocMetastoreClient;
+use Google\Cloud\Metastore\V1\ListServicesRequest;
 use Google\Cloud\Metastore\V1\Service;
 
 /**
@@ -42,10 +43,14 @@ function list_services_sample(string $formattedParent): void
     // Create a client.
     $dataprocMetastoreClient = new DataprocMetastoreClient();
 
+    // Prepare the request message.
+    $request = (new ListServicesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataprocMetastoreClient->listServices($formattedParent);
+        $response = $dataprocMetastoreClient->listServices($request);
 
         /** @var Service $element */
         foreach ($response as $element) {

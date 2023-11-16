@@ -77,11 +77,12 @@ class AddComponentCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $proto = $input->getArgument('proto');
-        $new = NewComponent::fromProto($this->loadProtoContent($proto), $proto);
+        $protoFile = file_exists($proto) ? substr($proto, strpos($proto, 'google/')) : $proto;
+        $new = NewComponent::fromProto($this->loadProtoContent($proto), $protoFile);
         $new->componentPath = $this->rootPath;
 
         $output->writeln(''); // blank line
-        $output->writeln(sprintf('Your package (%s) will have the following info:', $proto));
+        $output->writeln(sprintf('Your package (%s) will have the following info:', $protoFile));
 
         $f = fn($f, $v) => ["<info>$f</info>", $v];
         $newArray = (array) $new;
@@ -152,6 +153,7 @@ class AddComponentCommand extends Command
                 'repo' => $new->githubRepo,
                 'proto_path' => $new->protoPath,
                 'version' => $new->version,
+                'github_repo' => $new->githubRepo,
                 'documentation' => $documentationUrl,
                 'product_homepage' => $productHomepage,
                 'product_documentation' => $productDocumentation,
@@ -161,6 +163,7 @@ class AddComponentCommand extends Command
         // Write repo metadata JSON
         $output->writeln('<info<Repo Metadata</info> Writing .repo-metadata.json');
         $repoMetadata = [
+            'language' => 'php',
             'distribution_name' => $new->composerPackage,
             'release_level' => 'preview',
             'client_documentation' => $documentationUrl,
@@ -184,10 +187,15 @@ class AddComponentCommand extends Command
         $output->writeln('');
         $output->writeln('');
         $output->writeln('Success!');
+
+        return 0;
     }
 
     private function loadProtoContent(string $proto): string
     {
+        if (file_exists($proto)) {
+            return file_get_contents($proto);
+        }
         $protoUrl = 'https://raw.githubusercontent.com/googleapis/googleapis/master/' . $proto;
         $client = new Client();
         $response = $client->get($protoUrl);

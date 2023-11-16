@@ -373,6 +373,28 @@ return [
                     ],
                 ],
             ],
+            'ListSkuGroupBillableSkus' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=accounts/*/skuGroups/*}/billableSkus',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSkuGroups' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=accounts/*}/skuGroups',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListSkus' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=products/*}/skus',
@@ -437,6 +459,17 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{customer=accounts/*/customers/*}:provisionCloudIdentity',
                 'body' => '*',
+                'placeholders' => [
+                    'customer' => [
+                        'getters' => [
+                            'getCustomer',
+                        ],
+                    ],
+                ],
+            ],
+            'QueryEligibleBillingAccounts' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{customer=accounts/*/customers/*}:queryEligibleBillingAccounts',
                 'placeholders' => [
                     'customer' => [
                         'getters' => [

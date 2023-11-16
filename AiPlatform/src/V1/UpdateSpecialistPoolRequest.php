@@ -30,6 +30,21 @@ class UpdateSpecialistPoolRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\AIPlatform\V1\SpecialistPool $specialistPool Required. The SpecialistPool which replaces the resource on the server.
+     * @param \Google\Protobuf\FieldMask                 $updateMask     Required. The update mask applies to the resource.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\UpdateSpecialistPoolRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\AIPlatform\V1\SpecialistPool $specialistPool, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setSpecialistPool($specialistPool)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

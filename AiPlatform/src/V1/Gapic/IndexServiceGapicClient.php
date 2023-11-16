@@ -107,6 +107,9 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AIPlatform\V1\Client\IndexServiceClient} to use the new surface.
  */
 class IndexServiceGapicClient
 {
@@ -130,6 +133,8 @@ class IndexServiceGapicClient
     ];
 
     private static $indexNameTemplate;
+
+    private static $indexEndpointNameTemplate;
 
     private static $locationNameTemplate;
 
@@ -173,6 +178,17 @@ class IndexServiceGapicClient
         return self::$indexNameTemplate;
     }
 
+    private static function getIndexEndpointNameTemplate()
+    {
+        if (self::$indexEndpointNameTemplate == null) {
+            self::$indexEndpointNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}'
+            );
+        }
+
+        return self::$indexEndpointNameTemplate;
+    }
+
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
@@ -189,6 +205,7 @@ class IndexServiceGapicClient
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'index' => self::getIndexNameTemplate(),
+                'indexEndpoint' => self::getIndexEndpointNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
             ];
         }
@@ -216,6 +233,28 @@ class IndexServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * index_endpoint resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $indexEndpoint
+     *
+     * @return string The formatted index_endpoint resource.
+     */
+    public static function indexEndpointName(
+        $project,
+        $location,
+        $indexEndpoint
+    ) {
+        return self::getIndexEndpointNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'index_endpoint' => $indexEndpoint,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -237,6 +276,7 @@ class IndexServiceGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - index: projects/{project}/locations/{location}/indexes/{index}
+     * - indexEndpoint: projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}
      * - location: projects/{project}/locations/{location}
      *
      * The optional $template argument can be supplied to specify a particular pattern,

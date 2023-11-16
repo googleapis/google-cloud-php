@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datalineage_v1_generated_Lineage_BatchSearchLinkProcesses_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\DataCatalog\Lineage\V1\LineageClient;
+use Google\Cloud\DataCatalog\Lineage\V1\BatchSearchLinkProcessesRequest;
+use Google\Cloud\DataCatalog\Lineage\V1\Client\LineageClient;
 use Google\Cloud\DataCatalog\Lineage\V1\ProcessLinks;
 
 /**
@@ -44,8 +45,8 @@ use Google\Cloud\DataCatalog\Lineage\V1\ProcessLinks;
  * have the `datalineage.events.get` permission. The project provided in the
  * URL is used for Billing and Quota.
  *
- * @param string $formattedParent The project and location you want search in the format `projects/&#42;/locations/*`
- *                                Please see {@see LineageClient::locationName()} for help formatting this field.
+ * @param string $formattedParent The project and location where you want to search. Please see
+ *                                {@see LineageClient::locationName()} for help formatting this field.
  * @param string $linksElement    An array of links to check for their associated LineageProcesses.
  *
  *                                The maximum number of items in this array is 100.
@@ -59,13 +60,16 @@ function batch_search_link_processes_sample(string $formattedParent, string $lin
     // Create a client.
     $lineageClient = new LineageClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $links = [$linksElement,];
+    $request = (new BatchSearchLinkProcessesRequest())
+        ->setParent($formattedParent)
+        ->setLinks($links);
 
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $lineageClient->batchSearchLinkProcesses($formattedParent, $links);
+        $response = $lineageClient->batchSearchLinkProcesses($request);
 
         /** @var ProcessLinks $element */
         foreach ($response as $element) {

@@ -41,6 +41,23 @@ class DetachNetworkEndpointsGlobalNetworkEndpointGroupRequest extends \Google\Pr
     private $request_id = null;
 
     /**
+     * @param string                                                                     $project                                                   Project ID for this request.
+     * @param string                                                                     $networkEndpointGroup                                      The name of the network endpoint group where you are removing network endpoints. It should comply with RFC1035.
+     * @param \Google\Cloud\Compute\V1\GlobalNetworkEndpointGroupsDetachEndpointsRequest $globalNetworkEndpointGroupsDetachEndpointsRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\DetachNetworkEndpointsGlobalNetworkEndpointGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $networkEndpointGroup, \Google\Cloud\Compute\V1\GlobalNetworkEndpointGroupsDetachEndpointsRequest $globalNetworkEndpointGroupsDetachEndpointsRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setNetworkEndpointGroup($networkEndpointGroup)
+            ->setGlobalNetworkEndpointGroupsDetachEndpointsRequestResource($globalNetworkEndpointGroupsDetachEndpointsRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

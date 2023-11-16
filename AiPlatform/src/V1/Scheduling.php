@@ -29,6 +29,14 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool restart_job_on_worker_restart = 3;</code>
      */
     private $restart_job_on_worker_restart = false;
+    /**
+     * Optional. Indicates if the job should retry for internal errors after the
+     * job starts running. If true, overrides
+     * `Scheduling.restart_job_on_worker_restart` to false.
+     *
+     * Generated from protobuf field <code>bool disable_retries = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $disable_retries = false;
 
     /**
      * Constructor.
@@ -42,6 +50,10 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      *           Restarts the entire CustomJob if a worker gets restarted.
      *           This feature can be used by distributed training jobs that are not
      *           resilient to workers leaving and joining a job.
+     *     @type bool $disable_retries
+     *           Optional. Indicates if the job should retry for internal errors after the
+     *           job starts running. If true, overrides
+     *           `Scheduling.restart_job_on_worker_restart` to false.
      * }
      */
     public function __construct($data = NULL) {
@@ -111,6 +123,36 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->restart_job_on_worker_restart = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicates if the job should retry for internal errors after the
+     * job starts running. If true, overrides
+     * `Scheduling.restart_job_on_worker_restart` to false.
+     *
+     * Generated from protobuf field <code>bool disable_retries = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDisableRetries()
+    {
+        return $this->disable_retries;
+    }
+
+    /**
+     * Optional. Indicates if the job should retry for internal errors after the
+     * job starts running. If true, overrides
+     * `Scheduling.restart_job_on_worker_restart` to false.
+     *
+     * Generated from protobuf field <code>bool disable_retries = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableRetries($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_retries = $var;
 
         return $this;
     }

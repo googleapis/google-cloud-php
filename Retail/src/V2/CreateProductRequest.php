@@ -49,6 +49,39 @@ class CreateProductRequest extends \Google\Protobuf\Internal\Message
     private $product_id = '';
 
     /**
+     * @param string                          $parent    Required. The parent catalog resource name, such as
+     *                                                   `projects/&#42;/locations/global/catalogs/default_catalog/branches/default_branch`. Please see
+     *                                                   {@see ProductServiceClient::branchName()} for help formatting this field.
+     * @param \Google\Cloud\Retail\V2\Product $product   Required. The [Product][google.cloud.retail.v2.Product] to create.
+     * @param string                          $productId Required. The ID to use for the [Product][google.cloud.retail.v2.Product],
+     *                                                   which will become the final component of the
+     *                                                   [Product.name][google.cloud.retail.v2.Product.name].
+     *
+     *                                                   If the caller does not have permission to create the
+     *                                                   [Product][google.cloud.retail.v2.Product], regardless of whether or not it
+     *                                                   exists, a PERMISSION_DENIED error is returned.
+     *
+     *                                                   This field must be unique among all
+     *                                                   [Product][google.cloud.retail.v2.Product]s with the same
+     *                                                   [parent][google.cloud.retail.v2.CreateProductRequest.parent]. Otherwise, an
+     *                                                   ALREADY_EXISTS error is returned.
+     *
+     *                                                   This field must be a UTF-8 encoded string with a length limit of 128
+     *                                                   characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     *
+     * @return \Google\Cloud\Retail\V2\CreateProductRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Retail\V2\Product $product, string $productId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setProduct($product)
+            ->setProductId($productId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

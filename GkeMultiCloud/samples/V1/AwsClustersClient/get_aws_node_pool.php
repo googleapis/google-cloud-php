@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START gkemulticloud_v1_generated_AwsClusters_GetAwsNodePool_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\GkeMultiCloud\V1\AwsClustersClient;
 use Google\Cloud\GkeMultiCloud\V1\AwsNodePool;
+use Google\Cloud\GkeMultiCloud\V1\Client\AwsClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\GetAwsNodePoolRequest;
 
 /**
  * Describes a specific
@@ -47,10 +48,14 @@ function get_aws_node_pool_sample(string $formattedName): void
     // Create a client.
     $awsClustersClient = new AwsClustersClient();
 
+    // Prepare the request message.
+    $request = (new GetAwsNodePoolRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var AwsNodePool $response */
-        $response = $awsClustersClient->getAwsNodePool($formattedName);
+        $response = $awsClustersClient->getAwsNodePool($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -41,6 +41,25 @@ class GetHealthTargetPoolRequest extends \Google\Protobuf\Internal\Message
     private $target_pool = '';
 
     /**
+     * @param string                                     $project                   Project ID for this request.
+     * @param string                                     $region                    Name of the region scoping this request.
+     * @param string                                     $targetPool                Name of the TargetPool resource to which the queried instance belongs.
+     * @param \Google\Cloud\Compute\V1\InstanceReference $instanceReferenceResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\GetHealthTargetPoolRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $targetPool, \Google\Cloud\Compute\V1\InstanceReference $instanceReferenceResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetPool($targetPool)
+            ->setInstanceReferenceResource($instanceReferenceResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

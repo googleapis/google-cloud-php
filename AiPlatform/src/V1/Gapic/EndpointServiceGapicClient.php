@@ -44,6 +44,7 @@ use Google\Cloud\AIPlatform\V1\Endpoint;
 use Google\Cloud\AIPlatform\V1\GetEndpointRequest;
 use Google\Cloud\AIPlatform\V1\ListEndpointsRequest;
 use Google\Cloud\AIPlatform\V1\ListEndpointsResponse;
+use Google\Cloud\AIPlatform\V1\MutateDeployedModelRequest;
 use Google\Cloud\AIPlatform\V1\UndeployModelRequest;
 use Google\Cloud\AIPlatform\V1\UpdateEndpointRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -105,6 +106,10 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AIPlatform\V1\Client\EndpointServiceClient} to use the new
+ * surface.
  */
 class EndpointServiceGapicClient
 {
@@ -136,6 +141,10 @@ class EndpointServiceGapicClient
     private static $modelDeploymentMonitoringJobNameTemplate;
 
     private static $networkNameTemplate;
+
+    private static $projectLocationEndpointNameTemplate;
+
+    private static $projectLocationPublisherModelNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -222,6 +231,28 @@ class EndpointServiceGapicClient
         return self::$networkNameTemplate;
     }
 
+    private static function getProjectLocationEndpointNameTemplate()
+    {
+        if (self::$projectLocationEndpointNameTemplate == null) {
+            self::$projectLocationEndpointNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/endpoints/{endpoint}'
+            );
+        }
+
+        return self::$projectLocationEndpointNameTemplate;
+    }
+
+    private static function getProjectLocationPublisherModelNameTemplate()
+    {
+        if (self::$projectLocationPublisherModelNameTemplate == null) {
+            self::$projectLocationPublisherModelNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/publishers/{publisher}/models/{model}'
+            );
+        }
+
+        return self::$projectLocationPublisherModelNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -231,6 +262,8 @@ class EndpointServiceGapicClient
                 'model' => self::getModelNameTemplate(),
                 'modelDeploymentMonitoringJob' => self::getModelDeploymentMonitoringJobNameTemplate(),
                 'network' => self::getNetworkNameTemplate(),
+                'projectLocationEndpoint' => self::getProjectLocationEndpointNameTemplate(),
+                'projectLocationPublisherModel' => self::getProjectLocationPublisherModelNameTemplate(),
             ];
         }
 
@@ -332,6 +365,53 @@ class EndpointServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_endpoint resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $endpoint
+     *
+     * @return string The formatted project_location_endpoint resource.
+     */
+    public static function projectLocationEndpointName(
+        $project,
+        $location,
+        $endpoint
+    ) {
+        return self::getProjectLocationEndpointNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'endpoint' => $endpoint,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_publisher_model resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $publisher
+     * @param string $model
+     *
+     * @return string The formatted project_location_publisher_model resource.
+     */
+    public static function projectLocationPublisherModelName(
+        $project,
+        $location,
+        $publisher,
+        $model
+    ) {
+        return self::getProjectLocationPublisherModelNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'publisher' => $publisher,
+            'model' => $model,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -340,6 +420,8 @@ class EndpointServiceGapicClient
      * - model: projects/{project}/locations/{location}/models/{model}
      * - modelDeploymentMonitoringJob: projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}
      * - network: projects/{project}/global/networks/{network}
+     * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
+     * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -843,6 +925,7 @@ class EndpointServiceGapicClient
      *           * A key including a space must be quoted. `labels."a key"`.
      *
      *           Some examples:
+     *
      *           * `endpoint=1`
      *           * `displayName="myDisplayName"`
      *           * `labels.myKey="myValue"`
@@ -861,6 +944,7 @@ class EndpointServiceGapicClient
      *           A comma-separated list of fields to order by, sorted in ascending order.
      *           Use "desc" after a field name for descending.
      *           Supported fields:
+     *
      *           * `display_name`
      *           * `create_time`
      *           * `update_time`
@@ -914,6 +998,106 @@ class EndpointServiceGapicClient
             ListEndpointsResponse::class,
             $request
         );
+    }
+
+    /**
+     * Updates an existing deployed model. Updatable fields include
+     * `min_replica_count`, `max_replica_count`, `autoscaling_metric_specs`,
+     * `disable_container_logging` (v1 only), and `enable_container_logging`
+     * (v1beta1 only).
+     *
+     * Sample code:
+     * ```
+     * $endpointServiceClient = new EndpointServiceClient();
+     * try {
+     *     $formattedEndpoint = $endpointServiceClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+     *     $deployedModel = new DeployedModel();
+     *     $updateMask = new FieldMask();
+     *     $operationResponse = $endpointServiceClient->mutateDeployedModel($formattedEndpoint, $deployedModel, $updateMask);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $endpointServiceClient->mutateDeployedModel($formattedEndpoint, $deployedModel, $updateMask);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $endpointServiceClient->resumeOperation($operationName, 'mutateDeployedModel');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $endpointServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string        $endpoint      Required. The name of the Endpoint resource into which to mutate a
+     *                                     DeployedModel. Format:
+     *                                     `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     * @param DeployedModel $deployedModel Required. The DeployedModel to be mutated within the Endpoint. Only the
+     *                                     following fields can be mutated:
+     *
+     *                                     * `min_replica_count` in either
+     *                                     [DedicatedResources][google.cloud.aiplatform.v1.DedicatedResources] or
+     *                                     [AutomaticResources][google.cloud.aiplatform.v1.AutomaticResources]
+     *                                     * `max_replica_count` in either
+     *                                     [DedicatedResources][google.cloud.aiplatform.v1.DedicatedResources] or
+     *                                     [AutomaticResources][google.cloud.aiplatform.v1.AutomaticResources]
+     *                                     * [autoscaling_metric_specs][google.cloud.aiplatform.v1.DedicatedResources.autoscaling_metric_specs]
+     *                                     * `disable_container_logging` (v1 only)
+     *                                     * `enable_container_logging` (v1beta1 only)
+     * @param FieldMask     $updateMask    Required. The update mask applies to the resource. See
+     *                                     [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     * @param array         $optionalArgs  {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function mutateDeployedModel(
+        $endpoint,
+        $deployedModel,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
+        $request = new MutateDeployedModelRequest();
+        $requestParamHeaders = [];
+        $request->setEndpoint($endpoint);
+        $request->setDeployedModel($deployedModel);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['endpoint'] = $endpoint;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'MutateDeployedModel',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**

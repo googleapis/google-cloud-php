@@ -24,7 +24,9 @@ use SimpleXMLElement;
  */
 class MethodNode
 {
-    use DocblockTrait;
+    use DocblockTrait {
+        getContent as getDocblockContent;
+    }
     use ParentNodeTrait;
     use VisibilityTrait;
 
@@ -69,6 +71,38 @@ class MethodNode
         return '';
     }
 
+    public function getExample(): string
+    {
+        if ($this->xmlNode->docblock) {
+            foreach ($this->xmlNode->docblock->tag as $tag) {
+                if ($tag['name'] == 'example' && (string) $tag['description']) {
+                    return $tag['description'];
+                }
+            }
+        }
+        return '';
+    }
+
+    public function isStatic(): bool
+    {
+        return 'true' === (string) $this->xmlNode['static'];
+    }
+
+    /**
+     * Allows exclusion of some methods we don't want to display in the docs,
+     * such as magic methods. Right now the only such method is "__call".
+     */
+    public function isExcludedMethod(): bool
+    {
+        return $this->getName() === '__call';
+    }
+
+    public function isOperationMethod(): bool
+    {
+        return $this->getName() === 'getOperationsClient'
+            || $this->getName() === 'resumeOperation';
+    }
+
     public function getParameters(): array
     {
         $parameters = [];
@@ -88,7 +122,7 @@ class MethodNode
             $parameter = new ParameterNode(
                 $parameterName,
                 (string) $parameterNode->type,
-                $this->replaceProtoRef($description)
+                $this->replaceSeeTag($this->replaceProtoRef($description))
             );
 
             $parameters[] = $parameter;
@@ -107,5 +141,37 @@ class MethodNode
         }
 
         return $parameters;
+    }
+
+    public function getDisplayName(): string
+    {
+        return $this->isStatic() ? 'static::' . $this->getName() : $this->getName();
+    }
+
+    public function getContent(): string
+    {
+        $content = $this->getDocblockContent();
+        $links = [];
+        if ($this->xmlNode->docblock) {
+            foreach ($this->xmlNode->docblock->tag as $tag) {
+                if ($tag['name'] == 'see') {
+                    $link = (string) $tag['link'];
+                    $description = ((string) $tag['description']) ?: $link;
+                    if (0 === strpos($link, 'http')) {
+                        $links[] = sprintf("<a href=\"%s\">%s</a>", $link, $description);
+                    } else {
+                        $links[] = $this->replaceUidWithLink($link, $description);
+                    }
+
+                }
+            }
+        }
+        if ($links) {
+            // Add links as an unordered list
+            $content = "\nSee also:";
+            $content .= "\n - " . implode("\n - ", $links);
+        }
+
+        return $content;
     }
 }

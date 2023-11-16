@@ -32,15 +32,15 @@ use Google\Rpc\Status;
 /**
  * Creates a new Cluster in a given project and location.
  *
- * @param string $formattedParent         The name of the parent resource. For the required format, see the
+ * @param string $formattedParent         The location of the new cluster. For the required format, see the
  *                                        comment on the Cluster.name field. Please see
  *                                        {@see AlloyDBAdminClient::locationName()} for help formatting this field.
  * @param string $clusterId               ID of the requesting object.
  * @param string $formattedClusterNetwork The resource link for the VPC network in which cluster resources
  *                                        are created and from which they are accessible via Private IP. The network
  *                                        must belong to the same project as the cluster. It is specified in the
- *                                        form: "projects/{project_number}/global/networks/{network_id}". This is
- *                                        required to create a cluster. It can be updated, but it cannot be removed. Please see
+ *                                        form: "projects/{project}/global/networks/{network_id}". This is required
+ *                                        to create a cluster. Deprecated, use network_config.network instead. Please see
  *                                        {@see AlloyDBAdminClient::networkName()} for help formatting this field.
  */
 function create_cluster_sample(

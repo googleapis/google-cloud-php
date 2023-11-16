@@ -21,7 +21,7 @@ use Google\Cloud\Bigtable\V2\RowFilter;
 
 /**
  * A simple filter. Instead of constructing this class manually please
- * utilize the static builders found in {@see Google\Cloud\Bigtable\Filter}.
+ * utilize the static builders found in {@see \Google\Cloud\Bigtable\Filter}.
  *
  * @internal
  */

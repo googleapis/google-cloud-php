@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataplex_v1_generated_ContentService_DeleteContent_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dataplex\V1\ContentServiceClient;
+use Google\Cloud\Dataplex\V1\Client\ContentServiceClient;
+use Google\Cloud\Dataplex\V1\DeleteContentRequest;
 
 /**
  * Delete a content.
@@ -38,9 +39,13 @@ function delete_content_sample(string $formattedName): void
     // Create a client.
     $contentServiceClient = new ContentServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteContentRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $contentServiceClient->deleteContent($formattedName);
+        $contentServiceClient->deleteContent($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

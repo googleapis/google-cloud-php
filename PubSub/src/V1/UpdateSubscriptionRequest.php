@@ -30,6 +30,22 @@ class UpdateSubscriptionRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\PubSub\V1\Subscription $subscription Required. The updated subscription object.
+     * @param \Google\Protobuf\FieldMask           $updateMask   Required. Indicates which fields in the provided subscription to update.
+     *                                                           Must be specified and non-empty.
+     *
+     * @return \Google\Cloud\PubSub\V1\UpdateSubscriptionRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\PubSub\V1\Subscription $subscription, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setSubscription($subscription)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

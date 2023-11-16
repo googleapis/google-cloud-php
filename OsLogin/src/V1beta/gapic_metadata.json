@@ -40,6 +40,11 @@
                                 "importSshPublicKey"
                             ]
                         },
+                        "SignSshPublicKey": {
+                            "methods": [
+                                "signSshPublicKey"
+                            ]
+                        },
                         "UpdateSshPublicKey": {
                             "methods": [
                                 "updateSshPublicKey"

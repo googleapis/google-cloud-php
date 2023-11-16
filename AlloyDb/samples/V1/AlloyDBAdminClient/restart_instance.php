@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START alloydb_v1_generated_AlloyDBAdmin_RestartInstance_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AlloyDb\V1\AlloyDBAdminClient;
+use Google\Cloud\AlloyDb\V1\Client\AlloyDBAdminClient;
 use Google\Cloud\AlloyDb\V1\Instance;
+use Google\Cloud\AlloyDb\V1\RestartInstanceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -42,10 +43,14 @@ function restart_instance_sample(string $formattedName): void
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
 
+    // Prepare the request message.
+    $request = (new RestartInstanceRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $alloyDBAdminClient->restartInstance($formattedName);
+        $response = $alloyDBAdminClient->restartInstance($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

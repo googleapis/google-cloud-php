@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudresourcemanager_v3_generated_TagBindings_ListTagBindings_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\ResourceManager\V3\Client\TagBindingsClient;
+use Google\Cloud\ResourceManager\V3\ListTagBindingsRequest;
 use Google\Cloud\ResourceManager\V3\TagBinding;
-use Google\Cloud\ResourceManager\V3\TagBindingsClient;
 
 /**
  * Lists the TagBindings for the given Google Cloud resource, as specified
@@ -44,10 +45,14 @@ function list_tag_bindings_sample(string $parent): void
     // Create a client.
     $tagBindingsClient = new TagBindingsClient();
 
+    // Prepare the request message.
+    $request = (new ListTagBindingsRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $tagBindingsClient->listTagBindings($parent);
+        $response = $tagBindingsClient->listTagBindings($request);
 
         /** @var TagBinding $element */
         foreach ($response as $element) {

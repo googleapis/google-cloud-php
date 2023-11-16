@@ -16,19 +16,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class Encryption extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. 128 bit encryption key represented as lowercase hexadecimal digits.
+     * Required. Identifier for this set of encryption options.
      *
-     * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string id = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $key = '';
+    private $id = '';
     /**
-     * Required. 128 bit Initialization Vector (IV) represented as lowercase hexadecimal
-     * digits.
+     * Required. DRM system(s) to use; at least one must be specified. If a
+     * DRM system is omitted, it is considered disabled.
      *
-     * Generated from protobuf field <code>string iv = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Encryption.DrmSystems drm_systems = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $iv = '';
+    private $drm_systems = null;
     protected $encryption_mode;
+    protected $secret_source;
 
     /**
      * Constructor.
@@ -36,17 +37,19 @@ class Encryption extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $key
-     *           Required. 128 bit encryption key represented as lowercase hexadecimal digits.
-     *     @type string $iv
-     *           Required. 128 bit Initialization Vector (IV) represented as lowercase hexadecimal
-     *           digits.
+     *     @type string $id
+     *           Required. Identifier for this set of encryption options.
      *     @type \Google\Cloud\Video\Transcoder\V1\Encryption\Aes128Encryption $aes_128
      *           Configuration for AES-128 encryption.
      *     @type \Google\Cloud\Video\Transcoder\V1\Encryption\SampleAesEncryption $sample_aes
      *           Configuration for SAMPLE-AES encryption.
      *     @type \Google\Cloud\Video\Transcoder\V1\Encryption\MpegCommonEncryption $mpeg_cenc
      *           Configuration for MPEG Common Encryption (MPEG-CENC).
+     *     @type \Google\Cloud\Video\Transcoder\V1\Encryption\SecretManagerSource $secret_manager_key_source
+     *           Keys are stored in Google Secret Manager.
+     *     @type \Google\Cloud\Video\Transcoder\V1\Encryption\DrmSystems $drm_systems
+     *           Required. DRM system(s) to use; at least one must be specified. If a
+     *           DRM system is omitted, it is considered disabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -55,55 +58,27 @@ class Encryption extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. 128 bit encryption key represented as lowercase hexadecimal digits.
+     * Required. Identifier for this set of encryption options.
      *
-     * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string id = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
-    public function getKey()
+    public function getId()
     {
-        return $this->key;
+        return $this->id;
     }
 
     /**
-     * Required. 128 bit encryption key represented as lowercase hexadecimal digits.
+     * Required. Identifier for this set of encryption options.
      *
-     * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string id = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
-    public function setKey($var)
+    public function setId($var)
     {
         GPBUtil::checkString($var, True);
-        $this->key = $var;
-
-        return $this;
-    }
-
-    /**
-     * Required. 128 bit Initialization Vector (IV) represented as lowercase hexadecimal
-     * digits.
-     *
-     * Generated from protobuf field <code>string iv = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return string
-     */
-    public function getIv()
-    {
-        return $this->iv;
-    }
-
-    /**
-     * Required. 128 bit Initialization Vector (IV) represented as lowercase hexadecimal
-     * digits.
-     *
-     * Generated from protobuf field <code>string iv = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setIv($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->iv = $var;
+        $this->id = $var;
 
         return $this;
     }
@@ -202,11 +177,88 @@ class Encryption extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Keys are stored in Google Secret Manager.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Encryption.SecretManagerSource secret_manager_key_source = 7;</code>
+     * @return \Google\Cloud\Video\Transcoder\V1\Encryption\SecretManagerSource|null
+     */
+    public function getSecretManagerKeySource()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasSecretManagerKeySource()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Keys are stored in Google Secret Manager.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Encryption.SecretManagerSource secret_manager_key_source = 7;</code>
+     * @param \Google\Cloud\Video\Transcoder\V1\Encryption\SecretManagerSource $var
+     * @return $this
+     */
+    public function setSecretManagerKeySource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\Transcoder\V1\Encryption\SecretManagerSource::class);
+        $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Required. DRM system(s) to use; at least one must be specified. If a
+     * DRM system is omitted, it is considered disabled.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Encryption.DrmSystems drm_systems = 8 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Video\Transcoder\V1\Encryption\DrmSystems|null
+     */
+    public function getDrmSystems()
+    {
+        return $this->drm_systems;
+    }
+
+    public function hasDrmSystems()
+    {
+        return isset($this->drm_systems);
+    }
+
+    public function clearDrmSystems()
+    {
+        unset($this->drm_systems);
+    }
+
+    /**
+     * Required. DRM system(s) to use; at least one must be specified. If a
+     * DRM system is omitted, it is considered disabled.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Encryption.DrmSystems drm_systems = 8 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param \Google\Cloud\Video\Transcoder\V1\Encryption\DrmSystems $var
+     * @return $this
+     */
+    public function setDrmSystems($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\Transcoder\V1\Encryption\DrmSystems::class);
+        $this->drm_systems = $var;
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getEncryptionMode()
     {
         return $this->whichOneof("encryption_mode");
+    }
+
+    /**
+     * @return string
+     */
+    public function getSecretSource()
+    {
+        return $this->whichOneof("secret_source");
     }
 
 }

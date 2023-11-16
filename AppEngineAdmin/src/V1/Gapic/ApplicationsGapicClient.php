@@ -81,6 +81,9 @@ use Google\Protobuf\FieldMask;
  *     $applicationsClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AppEngine\V1\Client\ApplicationsClient} to use the new surface.
  */
 class ApplicationsGapicClient
 {

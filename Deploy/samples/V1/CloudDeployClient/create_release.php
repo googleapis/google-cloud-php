@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START clouddeploy_v1_generated_CloudDeploy_CreateRelease_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Deploy\V1\CloudDeployClient;
+use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
+use Google\Cloud\Deploy\V1\CreateReleaseRequest;
 use Google\Cloud\Deploy\V1\Release;
 use Google\Rpc\Status;
 
@@ -34,7 +35,7 @@ use Google\Rpc\Status;
  *
  * @param string $formattedParent The parent collection in which the `Release` should be created.
  *                                Format should be
- *                                projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}. Please see
+ *                                `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`. Please see
  *                                {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
  * @param string $releaseId       ID of the `Release`.
  */
@@ -43,13 +44,17 @@ function create_release_sample(string $formattedParent, string $releaseId): void
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $release = new Release();
+    $request = (new CreateReleaseRequest())
+        ->setParent($formattedParent)
+        ->setReleaseId($releaseId)
+        ->setRelease($release);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudDeployClient->createRelease($formattedParent, $releaseId, $release);
+        $response = $cloudDeployClient->createRelease($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

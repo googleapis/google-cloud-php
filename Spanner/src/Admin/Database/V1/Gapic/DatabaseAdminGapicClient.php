@@ -74,6 +74,8 @@ use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseMetadata;
+use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
@@ -133,6 +135,10 @@ use Google\Protobuf\Timestamp;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient} to use the
+ * new surface.
  */
 class DatabaseAdminGapicClient
 {
@@ -159,6 +165,8 @@ class DatabaseAdminGapicClient
     private static $backupNameTemplate;
 
     private static $cryptoKeyNameTemplate;
+
+    private static $cryptoKeyVersionNameTemplate;
 
     private static $databaseNameTemplate;
 
@@ -215,6 +223,17 @@ class DatabaseAdminGapicClient
         return self::$cryptoKeyNameTemplate;
     }
 
+    private static function getCryptoKeyVersionNameTemplate()
+    {
+        if (self::$cryptoKeyVersionNameTemplate == null) {
+            self::$cryptoKeyVersionNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}'
+            );
+        }
+
+        return self::$cryptoKeyVersionNameTemplate;
+    }
+
     private static function getDatabaseNameTemplate()
     {
         if (self::$databaseNameTemplate == null) {
@@ -243,6 +262,7 @@ class DatabaseAdminGapicClient
             self::$pathTemplateMap = [
                 'backup' => self::getBackupNameTemplate(),
                 'cryptoKey' => self::getCryptoKeyNameTemplate(),
+                'cryptoKeyVersion' => self::getCryptoKeyVersionNameTemplate(),
                 'database' => self::getDatabaseNameTemplate(),
                 'instance' => self::getInstanceNameTemplate(),
             ];
@@ -296,6 +316,34 @@ class DatabaseAdminGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * crypto_key_version resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     * @param string $cryptoKeyVersion
+     *
+     * @return string The formatted crypto_key_version resource.
+     */
+    public static function cryptoKeyVersionName(
+        $project,
+        $location,
+        $keyRing,
+        $cryptoKey,
+        $cryptoKeyVersion
+    ) {
+        return self::getCryptoKeyVersionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+            'crypto_key_version' => $cryptoKeyVersion,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a database
      * resource.
      *
@@ -337,6 +385,7 @@ class DatabaseAdminGapicClient
      * Template: Pattern
      * - backup: projects/{project}/instances/{instance}/backups/{backup}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
+     * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
      * - database: projects/{project}/instances/{instance}/databases/{database}
      * - instance: projects/{project}/instances/{instance}
      *
@@ -2013,6 +2062,123 @@ class DatabaseAdminGapicClient
             Backup::class,
             $optionalArgs,
             $request
+        )->wait();
+    }
+
+    /**
+     * Updates a Cloud Spanner database. The returned
+     * [long-running operation][google.longrunning.Operation] can be used to track
+     * the progress of updating the database. If the named database does not
+     * exist, returns `NOT_FOUND`.
+     *
+     * While the operation is pending:
+     *
+     * * The database's
+     * [reconciling][google.spanner.admin.database.v1.Database.reconciling]
+     * field is set to true.
+     * * Cancelling the operation is best-effort. If the cancellation succeeds,
+     * the operation metadata's
+     * [cancel_time][google.spanner.admin.database.v1.UpdateDatabaseMetadata.cancel_time]
+     * is set, the updates are reverted, and the operation terminates with a
+     * `CANCELLED` status.
+     * * New UpdateDatabase requests will return a `FAILED_PRECONDITION` error
+     * until the pending operation is done (returns successfully or with
+     * error).
+     * * Reading the database via the API continues to give the pre-request
+     * values.
+     *
+     * Upon completion of the returned operation:
+     *
+     * * The new values are in effect and readable via the API.
+     * * The database's
+     * [reconciling][google.spanner.admin.database.v1.Database.reconciling]
+     * field becomes false.
+     *
+     * The returned [long-running operation][google.longrunning.Operation] will
+     * have a name of the format
+     * `projects/<project>/instances/<instance>/databases/<database>/operations/<operation_id>`
+     * and can be used to track the database modification. The
+     * [metadata][google.longrunning.Operation.metadata] field type is
+     * [UpdateDatabaseMetadata][google.spanner.admin.database.v1.UpdateDatabaseMetadata].
+     * The [response][google.longrunning.Operation.response] field type is
+     * [Database][google.spanner.admin.database.v1.Database], if successful.
+     *
+     * Sample code:
+     * ```
+     * $databaseAdminClient = new DatabaseAdminClient();
+     * try {
+     *     $database = new Database();
+     *     $updateMask = new FieldMask();
+     *     $operationResponse = $databaseAdminClient->updateDatabase($database, $updateMask);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $databaseAdminClient->updateDatabase($database, $updateMask);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $databaseAdminClient->resumeOperation($operationName, 'updateDatabase');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $databaseAdminClient->close();
+     * }
+     * ```
+     *
+     * @param Database  $database     Required. The database to update.
+     *                                The `name` field of the database is of the form
+     *                                `projects/<project>/instances/<instance>/databases/<database>`.
+     * @param FieldMask $updateMask   Required. The list of fields to update. Currently, only
+     *                                `enable_drop_protection` field can be updated.
+     * @param array     $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateDatabase(
+        $database,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdateDatabaseRequest();
+        $requestParamHeaders = [];
+        $request->setDatabase($database);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['database.name'] = $database->getName();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdateDatabase',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 

@@ -51,6 +51,13 @@ class Dataset extends \Google\Protobuf\Internal\Message
      */
     private $metadata = null;
     /**
+     * Output only. The number of DataItems in this Dataset. Only apply for
+     * non-structured Dataset.
+     *
+     * Generated from protobuf field <code>int64 data_item_count = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $data_item_count = 0;
+    /**
      * Output only. Timestamp when this Dataset was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -89,7 +96,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
     private $labels;
     /**
      * All SavedQueries belong to the Dataset will be returned in List/Get
-     * Dataset response. The [annotation_specs][SavedQuery.annotation_specs] field
+     * Dataset response. The annotation_specs field
      * will not be populated except for UI cases which will only use
      * [annotation_spec_count][google.cloud.aiplatform.v1.SavedQuery.annotation_spec_count].
      * In CreateDataset request, a SavedQuery is created together if
@@ -137,6 +144,9 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *           found in gs://google-cloud-aiplatform/schema/dataset/metadata/.
      *     @type \Google\Protobuf\Value $metadata
      *           Required. Additional information about the Dataset.
+     *     @type int|string $data_item_count
+     *           Output only. The number of DataItems in this Dataset. Only apply for
+     *           non-structured Dataset.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp when this Dataset was created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -160,7 +170,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *             title.
      *     @type array<\Google\Cloud\AIPlatform\V1\SavedQuery>|\Google\Protobuf\Internal\RepeatedField $saved_queries
      *           All SavedQueries belong to the Dataset will be returned in List/Get
-     *           Dataset response. The [annotation_specs][SavedQuery.annotation_specs] field
+     *           Dataset response. The annotation_specs field
      *           will not be populated except for UI cases which will only use
      *           [annotation_spec_count][google.cloud.aiplatform.v1.SavedQuery.annotation_spec_count].
      *           In CreateDataset request, a SavedQuery is created together if
@@ -332,6 +342,34 @@ class Dataset extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. The number of DataItems in this Dataset. Only apply for
+     * non-structured Dataset.
+     *
+     * Generated from protobuf field <code>int64 data_item_count = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getDataItemCount()
+    {
+        return $this->data_item_count;
+    }
+
+    /**
+     * Output only. The number of DataItems in this Dataset. Only apply for
+     * non-structured Dataset.
+     *
+     * Generated from protobuf field <code>int64 data_item_count = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setDataItemCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->data_item_count = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. Timestamp when this Dataset was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -483,7 +521,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
 
     /**
      * All SavedQueries belong to the Dataset will be returned in List/Get
-     * Dataset response. The [annotation_specs][SavedQuery.annotation_specs] field
+     * Dataset response. The annotation_specs field
      * will not be populated except for UI cases which will only use
      * [annotation_spec_count][google.cloud.aiplatform.v1.SavedQuery.annotation_spec_count].
      * In CreateDataset request, a SavedQuery is created together if
@@ -500,7 +538,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
 
     /**
      * All SavedQueries belong to the Dataset will be returned in List/Get
-     * Dataset response. The [annotation_specs][SavedQuery.annotation_specs] field
+     * Dataset response. The annotation_specs field
      * will not be populated except for UI cases which will only use
      * [annotation_spec_count][google.cloud.aiplatform.v1.SavedQuery.annotation_spec_count].
      * In CreateDataset request, a SavedQuery is created together if

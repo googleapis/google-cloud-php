@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_SpecialistPoolService_UpdateSpecialistPool_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AIPlatform\V1\Client\SpecialistPoolServiceClient;
 use Google\Cloud\AIPlatform\V1\SpecialistPool;
-use Google\Cloud\AIPlatform\V1\SpecialistPoolServiceClient;
+use Google\Cloud\AIPlatform\V1\UpdateSpecialistPoolRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -46,16 +47,19 @@ function update_specialist_pool_sample(
     // Create a client.
     $specialistPoolServiceClient = new SpecialistPoolServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $specialistPool = (new SpecialistPool())
         ->setName($specialistPoolName)
         ->setDisplayName($specialistPoolDisplayName);
     $updateMask = new FieldMask();
+    $request = (new UpdateSpecialistPoolRequest())
+        ->setSpecialistPool($specialistPool)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $specialistPoolServiceClient->updateSpecialistPool($specialistPool, $updateMask);
+        $response = $specialistPoolServiceClient->updateSpecialistPool($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

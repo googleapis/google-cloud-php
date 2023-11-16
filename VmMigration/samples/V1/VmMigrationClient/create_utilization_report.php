@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmmigration_v1_generated_VmMigration_CreateUtilizationReport_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VMMigration\V1\Client\VmMigrationClient;
+use Google\Cloud\VMMigration\V1\CreateUtilizationReportRequest;
 use Google\Cloud\VMMigration\V1\UtilizationReport;
-use Google\Cloud\VMMigration\V1\VmMigrationClient;
 use Google\Rpc\Status;
 
 /**
@@ -48,17 +49,17 @@ function create_utilization_report_sample(
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $utilizationReport = new UtilizationReport();
+    $request = (new CreateUtilizationReportRequest())
+        ->setParent($formattedParent)
+        ->setUtilizationReport($utilizationReport)
+        ->setUtilizationReportId($utilizationReportId);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $vmMigrationClient->createUtilizationReport(
-            $formattedParent,
-            $utilizationReport,
-            $utilizationReportId
-        );
+        $response = $vmMigrationClient->createUtilizationReport($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudbuild_v2_generated_RepositoryManager_FetchReadToken_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Build\V2\Client\RepositoryManagerClient;
+use Google\Cloud\Build\V2\FetchReadTokenRequest;
 use Google\Cloud\Build\V2\FetchReadTokenResponse;
-use Google\Cloud\Build\V2\RepositoryManagerClient;
 
 /**
  * Fetches read token of a given repository.
@@ -39,10 +40,14 @@ function fetch_read_token_sample(string $formattedRepository): void
     // Create a client.
     $repositoryManagerClient = new RepositoryManagerClient();
 
+    // Prepare the request message.
+    $request = (new FetchReadTokenRequest())
+        ->setRepository($formattedRepository);
+
     // Call the API and handle any network failures.
     try {
         /** @var FetchReadTokenResponse $response */
-        $response = $repositoryManagerClient->fetchReadToken($formattedRepository);
+        $response = $repositoryManagerClient->fetchReadToken($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -134,6 +134,17 @@ class BuildTrigger extends \Google\Protobuf\Internal\Message
      */
     private $filter = '';
     /**
+     * The repo and ref of the repository from which to build. This field
+     * is used only for those triggers that do not respond to SCM events.
+     * Triggers that respond to such events build source at whatever commit
+     * caused the event.
+     * This field is currently only used by Webhook, Pub/Sub, Manual, and Cron
+     * triggers.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.GitRepoSource source_to_build = 26;</code>
+     */
+    private $source_to_build = null;
+    /**
      * The service account used for all user-controlled operations including
      * UpdateBuildTrigger, RunBuildTrigger, CreateBuild, and CancelBuild.
      * If no service account is set, then the standard Cloud Build service account
@@ -143,6 +154,13 @@ class BuildTrigger extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string service_account = 33 [(.google.api.resource_reference) = {</code>
      */
     private $service_account = '';
+    /**
+     * The configuration of a trigger that creates a build whenever an event from
+     * Repo API is received.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.RepositoryEventConfig repository_event_config = 39;</code>
+     */
+    private $repository_event_config = null;
     protected $build_template;
 
     /**
@@ -196,6 +214,8 @@ class BuildTrigger extends \Google\Protobuf\Internal\Message
      *     @type string $filename
      *           Path, from the source root, to the build configuration file
      *           (i.e. cloudbuild.yaml).
+     *     @type \Google\Cloud\Build\V1\GitFileSource $git_file_source
+     *           The file source describing the local or remote Build template.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time when the trigger was created.
      *     @type bool $disabled
@@ -221,12 +241,22 @@ class BuildTrigger extends \Google\Protobuf\Internal\Message
      *           then we do not trigger a build.
      *     @type string $filter
      *           Optional. A Common Expression Language string.
+     *     @type \Google\Cloud\Build\V1\GitRepoSource $source_to_build
+     *           The repo and ref of the repository from which to build. This field
+     *           is used only for those triggers that do not respond to SCM events.
+     *           Triggers that respond to such events build source at whatever commit
+     *           caused the event.
+     *           This field is currently only used by Webhook, Pub/Sub, Manual, and Cron
+     *           triggers.
      *     @type string $service_account
      *           The service account used for all user-controlled operations including
      *           UpdateBuildTrigger, RunBuildTrigger, CreateBuild, and CancelBuild.
      *           If no service account is set, then the standard Cloud Build service account
      *           ([PROJECT_NUM]&#64;system.gserviceaccount.com) will be used instead.
      *           Format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT_ID_OR_EMAIL}`
+     *     @type \Google\Cloud\Build\V1\RepositoryEventConfig $repository_event_config
+     *           The configuration of a trigger that creates a build whenever an event from
+     *           Repo API is received.
      * }
      */
     public function __construct($data = NULL) {
@@ -644,6 +674,37 @@ class BuildTrigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The file source describing the local or remote Build template.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.GitFileSource git_file_source = 24;</code>
+     * @return \Google\Cloud\Build\V1\GitFileSource|null
+     */
+    public function getGitFileSource()
+    {
+        return $this->readOneof(24);
+    }
+
+    public function hasGitFileSource()
+    {
+        return $this->hasOneof(24);
+    }
+
+    /**
+     * The file source describing the local or remote Build template.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.GitFileSource git_file_source = 24;</code>
+     * @param \Google\Cloud\Build\V1\GitFileSource $var
+     * @return $this
+     */
+    public function setGitFileSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Build\V1\GitFileSource::class);
+        $this->writeOneof(24, $var);
+
+        return $this;
+    }
+
+    /**
      * Output only. Time when the trigger was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -836,6 +897,52 @@ class BuildTrigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The repo and ref of the repository from which to build. This field
+     * is used only for those triggers that do not respond to SCM events.
+     * Triggers that respond to such events build source at whatever commit
+     * caused the event.
+     * This field is currently only used by Webhook, Pub/Sub, Manual, and Cron
+     * triggers.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.GitRepoSource source_to_build = 26;</code>
+     * @return \Google\Cloud\Build\V1\GitRepoSource|null
+     */
+    public function getSourceToBuild()
+    {
+        return $this->source_to_build;
+    }
+
+    public function hasSourceToBuild()
+    {
+        return isset($this->source_to_build);
+    }
+
+    public function clearSourceToBuild()
+    {
+        unset($this->source_to_build);
+    }
+
+    /**
+     * The repo and ref of the repository from which to build. This field
+     * is used only for those triggers that do not respond to SCM events.
+     * Triggers that respond to such events build source at whatever commit
+     * caused the event.
+     * This field is currently only used by Webhook, Pub/Sub, Manual, and Cron
+     * triggers.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.GitRepoSource source_to_build = 26;</code>
+     * @param \Google\Cloud\Build\V1\GitRepoSource $var
+     * @return $this
+     */
+    public function setSourceToBuild($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Build\V1\GitRepoSource::class);
+        $this->source_to_build = $var;
+
+        return $this;
+    }
+
+    /**
      * The service account used for all user-controlled operations including
      * UpdateBuildTrigger, RunBuildTrigger, CreateBuild, and CancelBuild.
      * If no service account is set, then the standard Cloud Build service account
@@ -865,6 +972,44 @@ class BuildTrigger extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->service_account = $var;
+
+        return $this;
+    }
+
+    /**
+     * The configuration of a trigger that creates a build whenever an event from
+     * Repo API is received.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.RepositoryEventConfig repository_event_config = 39;</code>
+     * @return \Google\Cloud\Build\V1\RepositoryEventConfig|null
+     */
+    public function getRepositoryEventConfig()
+    {
+        return $this->repository_event_config;
+    }
+
+    public function hasRepositoryEventConfig()
+    {
+        return isset($this->repository_event_config);
+    }
+
+    public function clearRepositoryEventConfig()
+    {
+        unset($this->repository_event_config);
+    }
+
+    /**
+     * The configuration of a trigger that creates a build whenever an event from
+     * Repo API is received.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.RepositoryEventConfig repository_event_config = 39;</code>
+     * @param \Google\Cloud\Build\V1\RepositoryEventConfig $var
+     * @return $this
+     */
+    public function setRepositoryEventConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Build\V1\RepositoryEventConfig::class);
+        $this->repository_event_config = $var;
 
         return $this;
     }

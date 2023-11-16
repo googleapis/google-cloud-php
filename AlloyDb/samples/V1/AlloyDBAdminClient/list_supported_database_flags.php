@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START alloydb_v1_generated_AlloyDBAdmin_ListSupportedDatabaseFlags_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\AlloyDb\V1\AlloyDBAdminClient;
+use Google\Cloud\AlloyDb\V1\Client\AlloyDBAdminClient;
+use Google\Cloud\AlloyDb\V1\ListSupportedDatabaseFlagsRequest;
 use Google\Cloud\AlloyDb\V1\SupportedDatabaseFlag;
 
 /**
@@ -45,10 +46,14 @@ function list_supported_database_flags_sample(string $formattedParent): void
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
 
+    // Prepare the request message.
+    $request = (new ListSupportedDatabaseFlagsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $alloyDBAdminClient->listSupportedDatabaseFlags($formattedParent);
+        $response = $alloyDBAdminClient->listSupportedDatabaseFlags($request);
 
         /** @var SupportedDatabaseFlag $element */
         foreach ($response as $element) {

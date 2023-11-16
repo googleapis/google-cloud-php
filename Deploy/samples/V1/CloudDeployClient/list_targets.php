@@ -25,14 +25,15 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START clouddeploy_v1_generated_CloudDeploy_ListTargets_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Deploy\V1\CloudDeployClient;
+use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
+use Google\Cloud\Deploy\V1\ListTargetsRequest;
 use Google\Cloud\Deploy\V1\Target;
 
 /**
  * Lists Targets in a given project and location.
  *
  * @param string $formattedParent The parent, which owns this collection of targets. Format must be
- *                                projects/{project_id}/locations/{location_name}. Please see
+ *                                `projects/{project_id}/locations/{location_name}`. Please see
  *                                {@see CloudDeployClient::locationName()} for help formatting this field.
  */
 function list_targets_sample(string $formattedParent): void
@@ -40,10 +41,14 @@ function list_targets_sample(string $formattedParent): void
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
+    // Prepare the request message.
+    $request = (new ListTargetsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudDeployClient->listTargets($formattedParent);
+        $response = $cloudDeployClient->listTargets($request);
 
         /** @var Target $element */
         foreach ($response as $element) {

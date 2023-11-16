@@ -97,6 +97,9 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\ResourceManager\V3\Client\TagKeysClient} to use the new surface.
  */
 class TagKeysGapicClient
 {
@@ -622,8 +625,9 @@ class TagKeysGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the new TagKey's parent.
-     *                             Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     * @param string $parent       Required. The resource name of the TagKey's parent.
+     *                             Must be of the form `organizations/{org_id}` or `projects/{project_id}` or
+     *                             `projects/{project_number}`
      * @param array  $optionalArgs {
      *     Optional.
      *

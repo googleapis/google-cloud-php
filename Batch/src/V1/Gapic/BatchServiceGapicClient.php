@@ -75,6 +75,9 @@ use Google\LongRunning\Operation;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Batch\V1\Client\BatchServiceClient} to use the new surface.
  */
 class BatchServiceGapicClient
 {
@@ -731,6 +734,9 @@ class BatchServiceGapicClient
      *           Parent path.
      *     @type string $filter
      *           List filter.
+     *     @type string $orderBy
+     *           Optional. Sort results. Supported are "name", "name desc", "create_time",
+     *           and "create_time desc".
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -761,6 +767,10 @@ class BatchServiceGapicClient
 
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
         }
 
         if (isset($optionalArgs['pageSize'])) {

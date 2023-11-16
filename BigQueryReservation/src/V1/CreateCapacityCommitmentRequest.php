@@ -48,6 +48,23 @@ class CreateCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
     private $capacity_commitment_id = '';
 
     /**
+     * @param string                                                   $parent             Required. Resource name of the parent reservation. E.g.,
+     *                                                                                     `projects/myproject/locations/US`
+     *                                                                                     Please see {@see ReservationServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment $capacityCommitment Content of the capacity commitment to create.
+     *
+     * @return \Google\Cloud\BigQuery\Reservation\V1\CreateCapacityCommitmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment $capacityCommitment): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setCapacityCommitment($capacityCommitment);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

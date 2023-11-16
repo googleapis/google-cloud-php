@@ -83,6 +83,10 @@ use Google\Cloud\Compute\V1\SecurityPolicyList;
  *     $regionSecurityPoliciesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\RegionSecurityPoliciesClient} to use the new
+ * surface.
  */
 class RegionSecurityPoliciesGapicClient
 {
@@ -541,7 +545,7 @@ class RegionSecurityPoliciesGapicClient
     }
 
     /**
-     * Patches the specified policy with the data included in the request. To clear fields in the rule, leave the fields empty and specify them in the updateMask. This cannot be used to be update the rules in the policy. Please use the per rule methods like addRule, patchRule, and removeRule instead.
+     * Patches the specified policy with the data included in the request. To clear fields in the policy, leave the fields empty and specify them in the updateMask. This cannot be used to be update the rules in the policy. Please use the per rule methods like addRule, patchRule, and removeRule instead.
      *
      * Sample code:
      * ```

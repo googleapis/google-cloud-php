@@ -18,6 +18,18 @@ class Target extends \Google\Protobuf\Internal\Message
     /**
      * The target ID that identifies the target on the stream. Must be a positive
      * number and non-zero.
+     * If `target_id` is 0 (or unspecified), the server will assign an ID for this
+     * target and return that in a `TargetChange::ADD` event. Once a target with
+     * `target_id=0` is added, all subsequent targets must also have
+     * `target_id=0`. If an `AddTarget` request with `target_id != 0` is
+     * sent to the server after a target with `target_id=0` is added, the server
+     * will immediately send a response with a `TargetChange::Remove` event.
+     * Note that if the client sends multiple `AddTarget` requests
+     * without an ID, the order of IDs returned in `TargetChage.target_ids` are
+     * undefined. Therefore, clients should provide a target ID instead of relying
+     * on the server to assign one.
+     * If `target_id` is non-zero, there must not be an existing active target on
+     * this stream with the same ID.
      *
      * Generated from protobuf field <code>int32 target_id = 5;</code>
      */
@@ -28,6 +40,16 @@ class Target extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool once = 6;</code>
      */
     private $once = false;
+    /**
+     * The number of documents that last matched the query at the resume token or
+     * read time.
+     * This value is only relevant when a `resume_type` is provided. This value
+     * being present and greater than zero signals that the client wants
+     * `ExistenceFilter.unchanged_names` to be included in the response.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value expected_count = 12;</code>
+     */
+    private $expected_count = null;
     protected $target_type;
     protected $resume_type;
 
@@ -51,8 +73,26 @@ class Target extends \Google\Protobuf\Internal\Message
      *     @type int $target_id
      *           The target ID that identifies the target on the stream. Must be a positive
      *           number and non-zero.
+     *           If `target_id` is 0 (or unspecified), the server will assign an ID for this
+     *           target and return that in a `TargetChange::ADD` event. Once a target with
+     *           `target_id=0` is added, all subsequent targets must also have
+     *           `target_id=0`. If an `AddTarget` request with `target_id != 0` is
+     *           sent to the server after a target with `target_id=0` is added, the server
+     *           will immediately send a response with a `TargetChange::Remove` event.
+     *           Note that if the client sends multiple `AddTarget` requests
+     *           without an ID, the order of IDs returned in `TargetChage.target_ids` are
+     *           undefined. Therefore, clients should provide a target ID instead of relying
+     *           on the server to assign one.
+     *           If `target_id` is non-zero, there must not be an existing active target on
+     *           this stream with the same ID.
      *     @type bool $once
      *           If the target should be removed once it is current and consistent.
+     *     @type \Google\Protobuf\Int32Value $expected_count
+     *           The number of documents that last matched the query at the resume token or
+     *           read time.
+     *           This value is only relevant when a `resume_type` is provided. This value
+     *           being present and greater than zero signals that the client wants
+     *           `ExistenceFilter.unchanged_names` to be included in the response.
      * }
      */
     public function __construct($data = NULL) {
@@ -193,6 +233,18 @@ class Target extends \Google\Protobuf\Internal\Message
     /**
      * The target ID that identifies the target on the stream. Must be a positive
      * number and non-zero.
+     * If `target_id` is 0 (or unspecified), the server will assign an ID for this
+     * target and return that in a `TargetChange::ADD` event. Once a target with
+     * `target_id=0` is added, all subsequent targets must also have
+     * `target_id=0`. If an `AddTarget` request with `target_id != 0` is
+     * sent to the server after a target with `target_id=0` is added, the server
+     * will immediately send a response with a `TargetChange::Remove` event.
+     * Note that if the client sends multiple `AddTarget` requests
+     * without an ID, the order of IDs returned in `TargetChage.target_ids` are
+     * undefined. Therefore, clients should provide a target ID instead of relying
+     * on the server to assign one.
+     * If `target_id` is non-zero, there must not be an existing active target on
+     * this stream with the same ID.
      *
      * Generated from protobuf field <code>int32 target_id = 5;</code>
      * @return int
@@ -205,6 +257,18 @@ class Target extends \Google\Protobuf\Internal\Message
     /**
      * The target ID that identifies the target on the stream. Must be a positive
      * number and non-zero.
+     * If `target_id` is 0 (or unspecified), the server will assign an ID for this
+     * target and return that in a `TargetChange::ADD` event. Once a target with
+     * `target_id=0` is added, all subsequent targets must also have
+     * `target_id=0`. If an `AddTarget` request with `target_id != 0` is
+     * sent to the server after a target with `target_id=0` is added, the server
+     * will immediately send a response with a `TargetChange::Remove` event.
+     * Note that if the client sends multiple `AddTarget` requests
+     * without an ID, the order of IDs returned in `TargetChage.target_ids` are
+     * undefined. Therefore, clients should provide a target ID instead of relying
+     * on the server to assign one.
+     * If `target_id` is non-zero, there must not be an existing active target on
+     * this stream with the same ID.
      *
      * Generated from protobuf field <code>int32 target_id = 5;</code>
      * @param int $var
@@ -243,6 +307,85 @@ class Target extends \Google\Protobuf\Internal\Message
 
         return $this;
     }
+
+    /**
+     * The number of documents that last matched the query at the resume token or
+     * read time.
+     * This value is only relevant when a `resume_type` is provided. This value
+     * being present and greater than zero signals that the client wants
+     * `ExistenceFilter.unchanged_names` to be included in the response.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value expected_count = 12;</code>
+     * @return \Google\Protobuf\Int32Value|null
+     */
+    public function getExpectedCount()
+    {
+        return $this->expected_count;
+    }
+
+    public function hasExpectedCount()
+    {
+        return isset($this->expected_count);
+    }
+
+    public function clearExpectedCount()
+    {
+        unset($this->expected_count);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getExpectedCount()</code>
+
+     * The number of documents that last matched the query at the resume token or
+     * read time.
+     * This value is only relevant when a `resume_type` is provided. This value
+     * being present and greater than zero signals that the client wants
+     * `ExistenceFilter.unchanged_names` to be included in the response.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value expected_count = 12;</code>
+     * @return int|null
+     */
+    public function getExpectedCountValue()
+    {
+        return $this->readWrapperValue("expected_count");
+    }
+
+    /**
+     * The number of documents that last matched the query at the resume token or
+     * read time.
+     * This value is only relevant when a `resume_type` is provided. This value
+     * being present and greater than zero signals that the client wants
+     * `ExistenceFilter.unchanged_names` to be included in the response.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value expected_count = 12;</code>
+     * @param \Google\Protobuf\Int32Value $var
+     * @return $this
+     */
+    public function setExpectedCount($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Int32Value::class);
+        $this->expected_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\Int32Value object.
+
+     * The number of documents that last matched the query at the resume token or
+     * read time.
+     * This value is only relevant when a `resume_type` is provided. This value
+     * being present and greater than zero signals that the client wants
+     * `ExistenceFilter.unchanged_names` to be included in the response.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value expected_count = 12;</code>
+     * @param int|null $var
+     * @return $this
+     */
+    public function setExpectedCountValue($var)
+    {
+        $this->writeWrapperValue("expected_count", $var);
+        return $this;}
 
     /**
      * @return string

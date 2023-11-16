@@ -101,6 +101,59 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string customized_attribution = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $customized_attribution = '';
+    /**
+     * Optional. If true, use the text removal server to remove the shadow text on
+     * background image for native pdf translation.
+     * Shadow removal feature can only be enabled when
+     * is_translate_native_pdf_only: false && pdf_native_only: false
+     *
+     * Generated from protobuf field <code>bool enable_shadow_removal_native_pdf = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $enable_shadow_removal_native_pdf = false;
+    /**
+     * Optional. If true, enable auto rotation correction in DVS.
+     *
+     * Generated from protobuf field <code>bool enable_rotation_correction = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $enable_rotation_correction = false;
+
+    /**
+     * @param string                                                $parent              Required. Location to make a regional call.
+     *
+     *                                                                                   Format: `projects/{project-number-or-id}/locations/{location-id}`.
+     *
+     *                                                                                   The `global` location is not supported for batch translation.
+     *
+     *                                                                                   Only AutoML Translation models or glossaries within the same region (have
+     *                                                                                   the same location-id) can be used, otherwise an INVALID_ARGUMENT (400)
+     *                                                                                   error is returned. Please see
+     *                                                                                   {@see TranslationServiceClient::locationName()} for help formatting this field.
+     * @param string                                                $sourceLanguageCode  Required. The ISO-639 language code of the input document if known, for
+     *                                                                                   example, "en-US" or "sr-Latn". Supported language codes are listed in
+     *                                                                                   [Language Support](https://cloud.google.com/translate/docs/languages).
+     * @param string[]                                              $targetLanguageCodes Required. The ISO-639 language code to use for translation of the input
+     *                                                                                   document. Specify up to 10 language codes here.
+     * @param \Google\Cloud\Translate\V3\BatchDocumentInputConfig[] $inputConfigs        Required. Input configurations.
+     *                                                                                   The total number of files matched should be <= 100.
+     *                                                                                   The total content size to translate should be <= 100M Unicode codepoints.
+     *                                                                                   The files must use UTF-8 encoding.
+     * @param \Google\Cloud\Translate\V3\BatchDocumentOutputConfig  $outputConfig        Required. Output configuration.
+     *                                                                                   If 2 input configs match to the same file (that is, same input path),
+     *                                                                                   we don't generate output for duplicate inputs.
+     *
+     * @return \Google\Cloud\Translate\V3\BatchTranslateDocumentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $sourceLanguageCode, array $targetLanguageCodes, array $inputConfigs, \Google\Cloud\Translate\V3\BatchDocumentOutputConfig $outputConfig): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setSourceLanguageCode($sourceLanguageCode)
+            ->setTargetLanguageCodes($targetLanguageCodes)
+            ->setInputConfigs($inputConfigs)
+            ->setOutputConfig($outputConfig);
+    }
 
     /**
      * Constructor.
@@ -158,6 +211,13 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      *           If not provided, the default is `Machine Translated by Google`.
      *           Customized attribution should follow rules in
      *           https://cloud.google.com/translate/attribution#attribution_and_logos
+     *     @type bool $enable_shadow_removal_native_pdf
+     *           Optional. If true, use the text removal server to remove the shadow text on
+     *           background image for native pdf translation.
+     *           Shadow removal feature can only be enabled when
+     *           is_translate_native_pdf_only: false && pdf_native_only: false
+     *     @type bool $enable_rotation_correction
+     *           Optional. If true, enable auto rotation correction in DVS.
      * }
      */
     public function __construct($data = NULL) {
@@ -469,6 +529,64 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->customized_attribution = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, use the text removal server to remove the shadow text on
+     * background image for native pdf translation.
+     * Shadow removal feature can only be enabled when
+     * is_translate_native_pdf_only: false && pdf_native_only: false
+     *
+     * Generated from protobuf field <code>bool enable_shadow_removal_native_pdf = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableShadowRemovalNativePdf()
+    {
+        return $this->enable_shadow_removal_native_pdf;
+    }
+
+    /**
+     * Optional. If true, use the text removal server to remove the shadow text on
+     * background image for native pdf translation.
+     * Shadow removal feature can only be enabled when
+     * is_translate_native_pdf_only: false && pdf_native_only: false
+     *
+     * Generated from protobuf field <code>bool enable_shadow_removal_native_pdf = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableShadowRemovalNativePdf($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_shadow_removal_native_pdf = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, enable auto rotation correction in DVS.
+     *
+     * Generated from protobuf field <code>bool enable_rotation_correction = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableRotationCorrection()
+    {
+        return $this->enable_rotation_correction;
+    }
+
+    /**
+     * Optional. If true, enable auto rotation correction in DVS.
+     *
+     * Generated from protobuf field <code>bool enable_rotation_correction = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableRotationCorrection($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_rotation_correction = $var;
 
         return $this;
     }

@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * All available features for sentiment, syntax, and semantic analysis.
  * Setting each one to true will enable that specific analysis for the input.
- * Next ID: 11
+ * Next ID: 12
  *
  * Generated from protobuf message <code>google.cloud.language.v1beta2.AnnotateTextRequest.Features</code>
  */
@@ -51,6 +51,12 @@ class Features extends \Google\Protobuf\Internal\Message
      */
     private $classify_text = false;
     /**
+     * Moderate the document for harmful and sensitive categories.
+     *
+     * Generated from protobuf field <code>bool moderate_text = 11;</code>
+     */
+    private $moderate_text = false;
+    /**
      * The model options to use for classification. Defaults to v1 options
      * if not specified. Only used if `classify_text` is set to true.
      *
@@ -77,6 +83,8 @@ class Features extends \Google\Protobuf\Internal\Message
      *           the API will use the default model which classifies into a
      *           [predefined
      *           taxonomy](https://cloud.google.com/natural-language/docs/categories).
+     *     @type bool $moderate_text
+     *           Moderate the document for harmful and sensitive categories.
      *     @type \Google\Cloud\Language\V1beta2\ClassificationModelOptions $classification_model_options
      *           The model options to use for classification. Defaults to v1 options
      *           if not specified. Only used if `classify_text` is set to true.
@@ -219,6 +227,32 @@ class Features extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->classify_text = $var;
+
+        return $this;
+    }
+
+    /**
+     * Moderate the document for harmful and sensitive categories.
+     *
+     * Generated from protobuf field <code>bool moderate_text = 11;</code>
+     * @return bool
+     */
+    public function getModerateText()
+    {
+        return $this->moderate_text;
+    }
+
+    /**
+     * Moderate the document for harmful and sensitive categories.
+     *
+     * Generated from protobuf field <code>bool moderate_text = 11;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setModerateText($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->moderate_text = $var;
 
         return $this;
     }

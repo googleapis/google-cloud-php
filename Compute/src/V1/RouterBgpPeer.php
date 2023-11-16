@@ -47,6 +47,18 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      */
     private $bfd = null;
     /**
+     * A list of user-defined custom learned route IP address ranges for a BGP session.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterBgpPeerCustomLearnedIpRange custom_learned_ip_ranges = 481363012;</code>
+     */
+    private $custom_learned_ip_ranges;
+    /**
+     * The user-defined custom learned route priority for a BGP session. This value is applied to all custom learned route ranges for the session. You can choose a value from `0` to `65335`. If you don't provide a value, Google Cloud assigns a priority of `100` to the ranges.
+     *
+     * Generated from protobuf field <code>optional int32 custom_learned_route_priority = 330412356;</code>
+     */
+    private $custom_learned_route_priority = null;
+    /**
      * The status of the BGP peer connection. If set to FALSE, any active session with the peer is terminated and all associated routing information is removed. If set to TRUE, the peer connection can be established with routing information. The default is TRUE.
      * Check the Enable enum for the list of possible values.
      *
@@ -139,6 +151,10 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      *           The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win.
      *     @type \Google\Cloud\Compute\V1\RouterBgpPeerBfd $bfd
      *           BFD configuration for the BGP peering.
+     *     @type array<\Google\Cloud\Compute\V1\RouterBgpPeerCustomLearnedIpRange>|\Google\Protobuf\Internal\RepeatedField $custom_learned_ip_ranges
+     *           A list of user-defined custom learned route IP address ranges for a BGP session.
+     *     @type int $custom_learned_route_priority
+     *           The user-defined custom learned route priority for a BGP session. This value is applied to all custom learned route ranges for the session. You can choose a value from `0` to `65335`. If you don't provide a value, Google Cloud assigns a priority of `100` to the ranges.
      *     @type string $enable
      *           The status of the BGP peer connection. If set to FALSE, any active session with the peer is terminated and all associated routing information is removed. If set to TRUE, the peer connection can be established with routing information. The default is TRUE.
      *           Check the Enable enum for the list of possible values.
@@ -332,6 +348,68 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\RouterBgpPeerBfd::class);
         $this->bfd = $var;
+
+        return $this;
+    }
+
+    /**
+     * A list of user-defined custom learned route IP address ranges for a BGP session.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterBgpPeerCustomLearnedIpRange custom_learned_ip_ranges = 481363012;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCustomLearnedIpRanges()
+    {
+        return $this->custom_learned_ip_ranges;
+    }
+
+    /**
+     * A list of user-defined custom learned route IP address ranges for a BGP session.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterBgpPeerCustomLearnedIpRange custom_learned_ip_ranges = 481363012;</code>
+     * @param array<\Google\Cloud\Compute\V1\RouterBgpPeerCustomLearnedIpRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCustomLearnedIpRanges($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\RouterBgpPeerCustomLearnedIpRange::class);
+        $this->custom_learned_ip_ranges = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The user-defined custom learned route priority for a BGP session. This value is applied to all custom learned route ranges for the session. You can choose a value from `0` to `65335`. If you don't provide a value, Google Cloud assigns a priority of `100` to the ranges.
+     *
+     * Generated from protobuf field <code>optional int32 custom_learned_route_priority = 330412356;</code>
+     * @return int
+     */
+    public function getCustomLearnedRoutePriority()
+    {
+        return isset($this->custom_learned_route_priority) ? $this->custom_learned_route_priority : 0;
+    }
+
+    public function hasCustomLearnedRoutePriority()
+    {
+        return isset($this->custom_learned_route_priority);
+    }
+
+    public function clearCustomLearnedRoutePriority()
+    {
+        unset($this->custom_learned_route_priority);
+    }
+
+    /**
+     * The user-defined custom learned route priority for a BGP session. This value is applied to all custom learned route ranges for the session. You can choose a value from `0` to `65335`. If you don't provide a value, Google Cloud assigns a priority of `100` to the ranges.
+     *
+     * Generated from protobuf field <code>optional int32 custom_learned_route_priority = 330412356;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCustomLearnedRoutePriority($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->custom_learned_route_priority = $var;
 
         return $this;
     }

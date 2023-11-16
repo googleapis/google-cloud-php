@@ -32,6 +32,41 @@ class SampleRowKeysRequest extends \Google\Protobuf\Internal\Message
     private $app_profile_id = '';
 
     /**
+     * @param string $tableName Required. The unique name of the table from which to sample row keys.
+     *                          Values are of the form
+     *                          `projects/<project>/instances/<instance>/tables/<table>`. Please see
+     *                          {@see BigtableClient::tableName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Bigtable\V2\SampleRowKeysRequest
+     *
+     * @experimental
+     */
+    public static function build(string $tableName): self
+    {
+        return (new self())
+            ->setTableName($tableName);
+    }
+
+    /**
+     * @param string $tableName    Required. The unique name of the table from which to sample row keys.
+     *                             Values are of the form
+     *                             `projects/<project>/instances/<instance>/tables/<table>`. Please see
+     *                             {@see BigtableClient::tableName()} for help formatting this field.
+     * @param string $appProfileId This value specifies routing for replication. If not specified, the
+     *                             "default" application profile will be used.
+     *
+     * @return \Google\Cloud\Bigtable\V2\SampleRowKeysRequest
+     *
+     * @experimental
+     */
+    public static function buildFromTableNameAppProfileId(string $tableName, string $appProfileId): self
+    {
+        return (new self())
+            ->setTableName($tableName)
+            ->setAppProfileId($appProfileId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START bigquerydatapolicy_v1_generated_DataPolicyService_DeleteDataPolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\BigQuery\DataPolicies\V1\DataPolicyServiceClient;
+use Google\Cloud\BigQuery\DataPolicies\V1\Client\DataPolicyServiceClient;
+use Google\Cloud\BigQuery\DataPolicies\V1\DeleteDataPolicyRequest;
 
 /**
  * Deletes the data policy specified by its resource name.
@@ -38,9 +39,13 @@ function delete_data_policy_sample(string $formattedName): void
     // Create a client.
     $dataPolicyServiceClient = new DataPolicyServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteDataPolicyRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $dataPolicyServiceClient->deleteDataPolicy($formattedName);
+        $dataPolicyServiceClient->deleteDataPolicy($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

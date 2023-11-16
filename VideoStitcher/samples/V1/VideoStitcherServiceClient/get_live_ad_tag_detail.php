@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START videostitcher_v1_generated_VideoStitcherService_GetLiveAdTagDetail_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Video\Stitcher\V1\Client\VideoStitcherServiceClient;
+use Google\Cloud\Video\Stitcher\V1\GetLiveAdTagDetailRequest;
 use Google\Cloud\Video\Stitcher\V1\LiveAdTagDetail;
-use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
 
 /**
  * Returns the specified ad tag detail for the specified live session.
@@ -39,10 +40,14 @@ function get_live_ad_tag_detail_sample(string $formattedName): void
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetLiveAdTagDetailRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var LiveAdTagDetail $response */
-        $response = $videoStitcherServiceClient->getLiveAdTagDetail($formattedName);
+        $response = $videoStitcherServiceClient->getLiveAdTagDetail($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

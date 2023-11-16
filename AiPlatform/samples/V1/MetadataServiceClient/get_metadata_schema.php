@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_MetadataService_GetMetadataSchema_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\MetadataServiceClient;
+use Google\Cloud\AIPlatform\V1\GetMetadataSchemaRequest;
 use Google\Cloud\AIPlatform\V1\MetadataSchema;
-use Google\Cloud\AIPlatform\V1\MetadataServiceClient;
 
 /**
  * Retrieves a specific MetadataSchema.
@@ -40,10 +41,14 @@ function get_metadata_schema_sample(string $formattedName): void
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetMetadataSchemaRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var MetadataSchema $response */
-        $response = $metadataServiceClient->getMetadataSchema($formattedName);
+        $response = $metadataServiceClient->getMetadataSchema($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

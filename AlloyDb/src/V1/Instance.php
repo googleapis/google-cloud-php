@@ -88,8 +88,11 @@ class Instance extends \Google\Protobuf\Internal\Message
     protected $machine_config = null;
     /**
      * Availability type of an Instance.
-     * Defaults to REGIONAL for both primary and read instances.
-     * Note that primary and read instances can have different availability types.
+     * If empty, defaults to REGIONAL for primary instances.
+     * For read pools, availability_type is always UNSPECIFIED. Instances in the
+     * read pools are evenly distributed across available zones within the region
+     * (i.e. read pools with more than one node will have a node in at
+     * least two zones).
      *
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.AvailabilityType availability_type = 11;</code>
      */
@@ -143,7 +146,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $query_insights_config = null;
     /**
-     * Read pool specific config.
+     * Read pool instance configuration.
+     * This is required if the value of instanceType is READ_POOL.
      *
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ReadPoolConfig read_pool_config = 14;</code>
      */
@@ -179,6 +183,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> annotations = 18;</code>
      */
     private $annotations;
+    /**
+     * Optional. Client connection specific configurations
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ClientConnectionConfig client_connection_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $client_connection_config = null;
 
     /**
      * Constructor.
@@ -218,8 +228,11 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           database engine.
      *     @type int $availability_type
      *           Availability type of an Instance.
-     *           Defaults to REGIONAL for both primary and read instances.
-     *           Note that primary and read instances can have different availability types.
+     *           If empty, defaults to REGIONAL for primary instances.
+     *           For read pools, availability_type is always UNSPECIFIED. Instances in the
+     *           read pools are evenly distributed across available zones within the region
+     *           (i.e. read pools with more than one node will have a node in at
+     *           least two zones).
      *     @type string $gce_zone
      *           The Compute Engine zone that the instance should serve from, per
      *           https://cloud.google.com/compute/docs/regions-zones
@@ -249,7 +262,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AlloyDb\V1\Instance\QueryInsightsInstanceConfig $query_insights_config
      *           Configuration for query insights.
      *     @type \Google\Cloud\AlloyDb\V1\Instance\ReadPoolConfig $read_pool_config
-     *           Read pool specific config.
+     *           Read pool instance configuration.
+     *           This is required if the value of instanceType is READ_POOL.
      *     @type string $ip_address
      *           Output only. The IP address for the Instance.
      *           This is the connection endpoint for an end-user application.
@@ -265,6 +279,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Annotations to allow client tools to store small amount of arbitrary data.
      *           This is distinct from labels.
      *           https://google.aip.dev/128
+     *     @type \Google\Cloud\AlloyDb\V1\Instance\ClientConnectionConfig $client_connection_config
+     *           Optional. Client connection specific configurations
      * }
      */
     public function __construct($data = NULL) {
@@ -594,8 +610,11 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Availability type of an Instance.
-     * Defaults to REGIONAL for both primary and read instances.
-     * Note that primary and read instances can have different availability types.
+     * If empty, defaults to REGIONAL for primary instances.
+     * For read pools, availability_type is always UNSPECIFIED. Instances in the
+     * read pools are evenly distributed across available zones within the region
+     * (i.e. read pools with more than one node will have a node in at
+     * least two zones).
      *
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.AvailabilityType availability_type = 11;</code>
      * @return int
@@ -607,8 +626,11 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Availability type of an Instance.
-     * Defaults to REGIONAL for both primary and read instances.
-     * Note that primary and read instances can have different availability types.
+     * If empty, defaults to REGIONAL for primary instances.
+     * For read pools, availability_type is always UNSPECIFIED. Instances in the
+     * read pools are evenly distributed across available zones within the region
+     * (i.e. read pools with more than one node will have a node in at
+     * least two zones).
      *
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.AvailabilityType availability_type = 11;</code>
      * @param int $var
@@ -809,7 +831,8 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Read pool specific config.
+     * Read pool instance configuration.
+     * This is required if the value of instanceType is READ_POOL.
      *
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ReadPoolConfig read_pool_config = 14;</code>
      * @return \Google\Cloud\AlloyDb\V1\Instance\ReadPoolConfig|null
@@ -830,7 +853,8 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Read pool specific config.
+     * Read pool instance configuration.
+     * This is required if the value of instanceType is READ_POOL.
      *
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ReadPoolConfig read_pool_config = 14;</code>
      * @param \Google\Cloud\AlloyDb\V1\Instance\ReadPoolConfig $var
@@ -958,6 +982,42 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->annotations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Client connection specific configurations
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ClientConnectionConfig client_connection_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AlloyDb\V1\Instance\ClientConnectionConfig|null
+     */
+    public function getClientConnectionConfig()
+    {
+        return $this->client_connection_config;
+    }
+
+    public function hasClientConnectionConfig()
+    {
+        return isset($this->client_connection_config);
+    }
+
+    public function clearClientConnectionConfig()
+    {
+        unset($this->client_connection_config);
+    }
+
+    /**
+     * Optional. Client connection specific configurations
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ClientConnectionConfig client_connection_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AlloyDb\V1\Instance\ClientConnectionConfig $var
+     * @return $this
+     */
+    public function setClientConnectionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\Instance\ClientConnectionConfig::class);
+        $this->client_connection_config = $var;
 
         return $this;
     }

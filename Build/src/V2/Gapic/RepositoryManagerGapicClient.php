@@ -42,6 +42,8 @@ use Google\Cloud\Build\V2\CreateConnectionRequest;
 use Google\Cloud\Build\V2\CreateRepositoryRequest;
 use Google\Cloud\Build\V2\DeleteConnectionRequest;
 use Google\Cloud\Build\V2\DeleteRepositoryRequest;
+use Google\Cloud\Build\V2\FetchGitRefsRequest;
+use Google\Cloud\Build\V2\FetchGitRefsResponse;
 use Google\Cloud\Build\V2\FetchLinkableRepositoriesRequest;
 use Google\Cloud\Build\V2\FetchLinkableRepositoriesResponse;
 use Google\Cloud\Build\V2\FetchReadTokenRequest;
@@ -66,7 +68,7 @@ use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
- * Service Description: Manages connections to source code repostiories.
+ * Service Description: Manages connections to source code repositories.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -111,6 +113,9 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Build\V2\Client\RepositoryManagerClient} to use the new surface.
  */
 class RepositoryManagerGapicClient
 {
@@ -138,6 +143,10 @@ class RepositoryManagerGapicClient
     private static $locationNameTemplate;
 
     private static $repositoryNameTemplate;
+
+    private static $secretVersionNameTemplate;
+
+    private static $serviceNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -189,6 +198,24 @@ class RepositoryManagerGapicClient
         return self::$repositoryNameTemplate;
     }
 
+    private static function getSecretVersionNameTemplate()
+    {
+        if (self::$secretVersionNameTemplate == null) {
+            self::$secretVersionNameTemplate = new PathTemplate('projects/{project}/secrets/{secret}/versions/{version}');
+        }
+
+        return self::$secretVersionNameTemplate;
+    }
+
+    private static function getServiceNameTemplate()
+    {
+        if (self::$serviceNameTemplate == null) {
+            self::$serviceNameTemplate = new PathTemplate('projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}');
+        }
+
+        return self::$serviceNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -196,6 +223,8 @@ class RepositoryManagerGapicClient
                 'connection' => self::getConnectionNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'repository' => self::getRepositoryNameTemplate(),
+                'secretVersion' => self::getSecretVersionNameTemplate(),
+                'service' => self::getServiceNameTemplate(),
             ];
         }
 
@@ -260,12 +289,54 @@ class RepositoryManagerGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * secret_version resource.
+     *
+     * @param string $project
+     * @param string $secret
+     * @param string $version
+     *
+     * @return string The formatted secret_version resource.
+     */
+    public static function secretVersionName($project, $secret, $version)
+    {
+        return self::getSecretVersionNameTemplate()->render([
+            'project' => $project,
+            'secret' => $secret,
+            'version' => $version,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a service
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $namespace
+     * @param string $service
+     *
+     * @return string The formatted service resource.
+     */
+    public static function serviceName($project, $location, $namespace, $service)
+    {
+        return self::getServiceNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'namespace' => $namespace,
+            'service' => $service,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - connection: projects/{project}/locations/{location}/connections/{connection}
      * - location: projects/{project}/locations/{location}
      * - repository: projects/{project}/locations/{location}/connections/{connection}/repositories/{repository}
+     * - secretVersion: projects/{project}/secrets/{secret}/versions/{version}
+     * - service: projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -763,6 +834,53 @@ class RepositoryManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeleteRepository', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Fetch the list of branches or tags for a given repository.
+     *
+     * Sample code:
+     * ```
+     * $repositoryManagerClient = new RepositoryManagerClient();
+     * try {
+     *     $formattedRepository = $repositoryManagerClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
+     *     $response = $repositoryManagerClient->fetchGitRefs($formattedRepository);
+     * } finally {
+     *     $repositoryManagerClient->close();
+     * }
+     * ```
+     *
+     * @param string $repository   Required. The resource name of the repository in the format
+     *                             `projects/&#42;/locations/&#42;/connections/&#42;/repositories/*`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $refType
+     *           Type of refs to fetch
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Build\V2\FetchGitRefsRequest\RefType}
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Build\V2\FetchGitRefsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function fetchGitRefs($repository, array $optionalArgs = [])
+    {
+        $request = new FetchGitRefsRequest();
+        $requestParamHeaders = [];
+        $request->setRepository($repository);
+        $requestParamHeaders['repository'] = $repository;
+        if (isset($optionalArgs['refType'])) {
+            $request->setRefType($optionalArgs['refType']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('FetchGitRefs', FetchGitRefsResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**

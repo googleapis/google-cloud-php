@@ -39,6 +39,20 @@ class DeleteSourceRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string $name Required. The Source name. Please see
+     *                     {@see VmMigrationClient::sourceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VMMigration\V1\DeleteSourceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

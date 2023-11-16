@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A `DeliveryPipeline` resource in the Google Cloud Deploy API.
+ * A `DeliveryPipeline` resource in the Cloud Deploy API.
  * A `DeliveryPipeline` defines a pipeline through which a Skaffold
  * configuration can progress.
  *
@@ -18,8 +18,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeliveryPipeline extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Name of the `DeliveryPipeline`. Format is projects/{project}/
-     * locations/{location}/deliveryPipelines/[a-z][a-z0-9\-]{0,62}.
+     * Optional. Name of the `DeliveryPipeline`. Format is
+     * `projects/{project}/locations/{location}/deliveryPipelines/[a-z][a-z0-9\-]{0,62}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -38,15 +38,14 @@ class DeliveryPipeline extends \Google\Protobuf\Internal\Message
     private $description = '';
     /**
      * User annotations. These attributes can only be set and used by the
-     * user, and not by Google Cloud Deploy.
+     * user, and not by Cloud Deploy.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 4;</code>
      */
     private $annotations;
     /**
      * Labels are attributes that can be set and used by both the
-     * user and by Google Cloud Deploy. Labels must meet the following
-     * constraints:
+     * user and by Cloud Deploy. Labels must meet the following constraints:
      * * Keys and values can contain only lowercase letters, numeric characters,
      * underscores, and dashes.
      * * All characters must use UTF-8 encoding, and international characters are
@@ -100,19 +99,18 @@ class DeliveryPipeline extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Optional. Name of the `DeliveryPipeline`. Format is projects/{project}/
-     *           locations/{location}/deliveryPipelines/[a-z][a-z0-9\-]{0,62}.
+     *           Optional. Name of the `DeliveryPipeline`. Format is
+     *           `projects/{project}/locations/{location}/deliveryPipelines/[a-z][a-z0-9\-]{0,62}`.
      *     @type string $uid
      *           Output only. Unique identifier of the `DeliveryPipeline`.
      *     @type string $description
      *           Description of the `DeliveryPipeline`. Max length is 255 characters.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           User annotations. These attributes can only be set and used by the
-     *           user, and not by Google Cloud Deploy.
+     *           user, and not by Cloud Deploy.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels are attributes that can be set and used by both the
-     *           user and by Google Cloud Deploy. Labels must meet the following
-     *           constraints:
+     *           user and by Cloud Deploy. Labels must meet the following constraints:
      *           * Keys and values can contain only lowercase letters, numeric characters,
      *           underscores, and dashes.
      *           * All characters must use UTF-8 encoding, and international characters are
@@ -144,8 +142,8 @@ class DeliveryPipeline extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the `DeliveryPipeline`. Format is projects/{project}/
-     * locations/{location}/deliveryPipelines/[a-z][a-z0-9\-]{0,62}.
+     * Optional. Name of the `DeliveryPipeline`. Format is
+     * `projects/{project}/locations/{location}/deliveryPipelines/[a-z][a-z0-9\-]{0,62}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -156,8 +154,8 @@ class DeliveryPipeline extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the `DeliveryPipeline`. Format is projects/{project}/
-     * locations/{location}/deliveryPipelines/[a-z][a-z0-9\-]{0,62}.
+     * Optional. Name of the `DeliveryPipeline`. Format is
+     * `projects/{project}/locations/{location}/deliveryPipelines/[a-z][a-z0-9\-]{0,62}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -225,7 +223,7 @@ class DeliveryPipeline extends \Google\Protobuf\Internal\Message
 
     /**
      * User annotations. These attributes can only be set and used by the
-     * user, and not by Google Cloud Deploy.
+     * user, and not by Cloud Deploy.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 4;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -237,7 +235,7 @@ class DeliveryPipeline extends \Google\Protobuf\Internal\Message
 
     /**
      * User annotations. These attributes can only be set and used by the
-     * user, and not by Google Cloud Deploy.
+     * user, and not by Cloud Deploy.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 4;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -253,8 +251,7 @@ class DeliveryPipeline extends \Google\Protobuf\Internal\Message
 
     /**
      * Labels are attributes that can be set and used by both the
-     * user and by Google Cloud Deploy. Labels must meet the following
-     * constraints:
+     * user and by Cloud Deploy. Labels must meet the following constraints:
      * * Keys and values can contain only lowercase letters, numeric characters,
      * underscores, and dashes.
      * * All characters must use UTF-8 encoding, and international characters are
@@ -273,8 +270,7 @@ class DeliveryPipeline extends \Google\Protobuf\Internal\Message
 
     /**
      * Labels are attributes that can be set and used by both the
-     * user and by Google Cloud Deploy. Labels must meet the following
-     * constraints:
+     * user and by Cloud Deploy. Labels must meet the following constraints:
      * * Keys and values can contain only lowercase letters, numeric characters,
      * underscores, and dashes.
      * * All characters must use UTF-8 encoding, and international characters are

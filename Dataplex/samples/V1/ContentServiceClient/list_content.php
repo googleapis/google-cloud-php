@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataplex_v1_generated_ContentService_ListContent_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dataplex\V1\Client\ContentServiceClient;
 use Google\Cloud\Dataplex\V1\Content;
-use Google\Cloud\Dataplex\V1\ContentServiceClient;
+use Google\Cloud\Dataplex\V1\ListContentRequest;
 
 /**
  * List content.
@@ -40,10 +41,14 @@ function list_content_sample(string $formattedParent): void
     // Create a client.
     $contentServiceClient = new ContentServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListContentRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $contentServiceClient->listContent($formattedParent);
+        $response = $contentServiceClient->listContent($request);
 
         /** @var Content $element */
         foreach ($response as $element) {

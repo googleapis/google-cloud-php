@@ -24,30 +24,35 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataform_v1beta1_generated_Dataform_CreateWorkspace_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dataform\V1beta1\DataformClient;
+use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
+use Google\Cloud\Dataform\V1beta1\CreateWorkspaceRequest;
 use Google\Cloud\Dataform\V1beta1\Workspace;
 
 /**
  * Creates a new Workspace in a given Repository.
  *
- * @param string $formattedParent The repository in which to create the workspace. Must be in the format
- *                                `projects/&#42;/locations/&#42;/repositories/*`. Please see
+ * @param string $formattedParent The repository in which to create the workspace. Must be in the
+ *                                format `projects/&#42;/locations/&#42;/repositories/*`. Please see
  *                                {@see DataformClient::repositoryName()} for help formatting this field.
- * @param string $workspaceId     The ID to use for the workspace, which will become the final component of
- *                                the workspace's resource name.
+ * @param string $workspaceId     The ID to use for the workspace, which will become the final
+ *                                component of the workspace's resource name.
  */
 function create_workspace_sample(string $formattedParent, string $workspaceId): void
 {
     // Create a client.
     $dataformClient = new DataformClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $workspace = new Workspace();
+    $request = (new CreateWorkspaceRequest())
+        ->setParent($formattedParent)
+        ->setWorkspace($workspace)
+        ->setWorkspaceId($workspaceId);
 
     // Call the API and handle any network failures.
     try {
         /** @var Workspace $response */
-        $response = $dataformClient->createWorkspace($formattedParent, $workspace, $workspaceId);
+        $response = $dataformClient->createWorkspace($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

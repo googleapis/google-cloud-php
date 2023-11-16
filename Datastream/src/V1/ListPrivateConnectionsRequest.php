@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListPrivateConnectionsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent that owns the collection of private connectivity configurations.
+     * Required. The parent that owns the collection of private connectivity
+     * configurations.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -54,13 +55,29 @@ class ListPrivateConnectionsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The parent that owns the collection of private connectivity
+     *                       configurations. Please see
+     *                       {@see DatastreamClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Datastream\V1\ListPrivateConnectionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent that owns the collection of private connectivity configurations.
+     *           Required. The parent that owns the collection of private connectivity
+     *           configurations.
      *     @type int $page_size
      *           Maximum number of private connectivity configurations to return.
      *           If unspecified, at most 50 private connectivity configurations that will be
@@ -84,7 +101,8 @@ class ListPrivateConnectionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent that owns the collection of private connectivity configurations.
+     * Required. The parent that owns the collection of private connectivity
+     * configurations.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -95,7 +113,8 @@ class ListPrivateConnectionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent that owns the collection of private connectivity configurations.
+     * Required. The parent that owns the collection of private connectivity
+     * configurations.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

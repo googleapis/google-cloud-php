@@ -40,6 +40,21 @@ class ListTagBindingsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The full resource name of a resource for which you want to list
+     *                       existing TagBindings. E.g.
+     *                       "//cloudresourcemanager.googleapis.com/projects/123"
+     *
+     * @return \Google\Cloud\ResourceManager\V3\ListTagBindingsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

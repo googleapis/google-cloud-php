@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [FirestoreAdmin.CreateIndex][google.firestore.admin.v1.FirestoreAdmin.CreateIndex].
+ * The request for
+ * [FirestoreAdmin.CreateIndex][google.firestore.admin.v1.FirestoreAdmin.CreateIndex].
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.CreateIndexRequest</code>
  */
@@ -28,6 +29,23 @@ class CreateIndexRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.firestore.admin.v1.Index index = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $index = null;
+
+    /**
+     * @param string                                 $parent Required. A parent name of the form
+     *                                                       `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
+     *                                                       Please see {@see FirestoreAdminClient::collectionGroupName()} for help formatting this field.
+     * @param \Google\Cloud\Firestore\Admin\V1\Index $index  Required. The composite index to create.
+     *
+     * @return \Google\Cloud\Firestore\Admin\V1\CreateIndexRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Firestore\Admin\V1\Index $index): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setIndex($index);
+    }
 
     /**
      * Constructor.

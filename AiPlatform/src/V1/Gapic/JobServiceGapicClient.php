@@ -122,6 +122,9 @@ use Google\Protobuf\Timestamp;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AIPlatform\V1\Client\JobServiceClient} to use the new surface.
  */
 class JobServiceGapicClient
 {
@@ -147,6 +150,8 @@ class JobServiceGapicClient
 
     private static $batchPredictionJobNameTemplate;
 
+    private static $contextNameTemplate;
+
     private static $customJobNameTemplate;
 
     private static $dataLabelingJobNameTemplate;
@@ -166,6 +171,18 @@ class JobServiceGapicClient
     private static $nasJobNameTemplate;
 
     private static $nasTrialDetailNameTemplate;
+
+    private static $networkNameTemplate;
+
+    private static $notificationChannelNameTemplate;
+
+    private static $projectLocationEndpointNameTemplate;
+
+    private static $projectLocationPublisherModelNameTemplate;
+
+    private static $tensorboardNameTemplate;
+
+    private static $trialNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -205,6 +222,17 @@ class JobServiceGapicClient
         }
 
         return self::$batchPredictionJobNameTemplate;
+    }
+
+    private static function getContextNameTemplate()
+    {
+        if (self::$contextNameTemplate == null) {
+            self::$contextNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/metadataStores/{metadata_store}/contexts/{context}'
+            );
+        }
+
+        return self::$contextNameTemplate;
     }
 
     private static function getCustomJobNameTemplate()
@@ -317,11 +345,78 @@ class JobServiceGapicClient
         return self::$nasTrialDetailNameTemplate;
     }
 
+    private static function getNetworkNameTemplate()
+    {
+        if (self::$networkNameTemplate == null) {
+            self::$networkNameTemplate = new PathTemplate(
+                'projects/{project}/global/networks/{network}'
+            );
+        }
+
+        return self::$networkNameTemplate;
+    }
+
+    private static function getNotificationChannelNameTemplate()
+    {
+        if (self::$notificationChannelNameTemplate == null) {
+            self::$notificationChannelNameTemplate = new PathTemplate(
+                'projects/{project}/notificationChannels/{notification_channel}'
+            );
+        }
+
+        return self::$notificationChannelNameTemplate;
+    }
+
+    private static function getProjectLocationEndpointNameTemplate()
+    {
+        if (self::$projectLocationEndpointNameTemplate == null) {
+            self::$projectLocationEndpointNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/endpoints/{endpoint}'
+            );
+        }
+
+        return self::$projectLocationEndpointNameTemplate;
+    }
+
+    private static function getProjectLocationPublisherModelNameTemplate()
+    {
+        if (self::$projectLocationPublisherModelNameTemplate == null) {
+            self::$projectLocationPublisherModelNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/publishers/{publisher}/models/{model}'
+            );
+        }
+
+        return self::$projectLocationPublisherModelNameTemplate;
+    }
+
+    private static function getTensorboardNameTemplate()
+    {
+        if (self::$tensorboardNameTemplate == null) {
+            self::$tensorboardNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/tensorboards/{tensorboard}'
+            );
+        }
+
+        return self::$tensorboardNameTemplate;
+    }
+
+    private static function getTrialNameTemplate()
+    {
+        if (self::$trialNameTemplate == null) {
+            self::$trialNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/studies/{study}/trials/{trial}'
+            );
+        }
+
+        return self::$trialNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'batchPredictionJob' => self::getBatchPredictionJobNameTemplate(),
+                'context' => self::getContextNameTemplate(),
                 'customJob' => self::getCustomJobNameTemplate(),
                 'dataLabelingJob' => self::getDataLabelingJobNameTemplate(),
                 'dataset' => self::getDatasetNameTemplate(),
@@ -332,6 +427,12 @@ class JobServiceGapicClient
                 'modelDeploymentMonitoringJob' => self::getModelDeploymentMonitoringJobNameTemplate(),
                 'nasJob' => self::getNasJobNameTemplate(),
                 'nasTrialDetail' => self::getNasTrialDetailNameTemplate(),
+                'network' => self::getNetworkNameTemplate(),
+                'notificationChannel' => self::getNotificationChannelNameTemplate(),
+                'projectLocationEndpoint' => self::getProjectLocationEndpointNameTemplate(),
+                'projectLocationPublisherModel' => self::getProjectLocationPublisherModelNameTemplate(),
+                'tensorboard' => self::getTensorboardNameTemplate(),
+                'trial' => self::getTrialNameTemplate(),
             ];
         }
 
@@ -357,6 +458,31 @@ class JobServiceGapicClient
             'project' => $project,
             'location' => $location,
             'batch_prediction_job' => $batchPredictionJob,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a context
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $metadataStore
+     * @param string $context
+     *
+     * @return string The formatted context resource.
+     */
+    public static function contextName(
+        $project,
+        $location,
+        $metadataStore,
+        $context
+    ) {
+        return self::getContextNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'metadata_store' => $metadataStore,
+            'context' => $context,
         ]);
     }
 
@@ -564,10 +690,134 @@ class JobServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a network
+     * resource.
+     *
+     * @param string $project
+     * @param string $network
+     *
+     * @return string The formatted network resource.
+     */
+    public static function networkName($project, $network)
+    {
+        return self::getNetworkNameTemplate()->render([
+            'project' => $project,
+            'network' => $network,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * notification_channel resource.
+     *
+     * @param string $project
+     * @param string $notificationChannel
+     *
+     * @return string The formatted notification_channel resource.
+     */
+    public static function notificationChannelName(
+        $project,
+        $notificationChannel
+    ) {
+        return self::getNotificationChannelNameTemplate()->render([
+            'project' => $project,
+            'notification_channel' => $notificationChannel,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_endpoint resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $endpoint
+     *
+     * @return string The formatted project_location_endpoint resource.
+     */
+    public static function projectLocationEndpointName(
+        $project,
+        $location,
+        $endpoint
+    ) {
+        return self::getProjectLocationEndpointNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'endpoint' => $endpoint,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_publisher_model resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $publisher
+     * @param string $model
+     *
+     * @return string The formatted project_location_publisher_model resource.
+     */
+    public static function projectLocationPublisherModelName(
+        $project,
+        $location,
+        $publisher,
+        $model
+    ) {
+        return self::getProjectLocationPublisherModelNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'publisher' => $publisher,
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a tensorboard
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $tensorboard
+     *
+     * @return string The formatted tensorboard resource.
+     */
+    public static function tensorboardName($project, $location, $tensorboard)
+    {
+        return self::getTensorboardNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'tensorboard' => $tensorboard,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a trial
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $study
+     * @param string $trial
+     *
+     * @return string The formatted trial resource.
+     */
+    public static function trialName($project, $location, $study, $trial)
+    {
+        return self::getTrialNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'study' => $study,
+            'trial' => $trial,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - batchPredictionJob: projects/{project}/locations/{location}/batchPredictionJobs/{batch_prediction_job}
+     * - context: projects/{project}/locations/{location}/metadataStores/{metadata_store}/contexts/{context}
      * - customJob: projects/{project}/locations/{location}/customJobs/{custom_job}
      * - dataLabelingJob: projects/{project}/locations/{location}/dataLabelingJobs/{data_labeling_job}
      * - dataset: projects/{project}/locations/{location}/datasets/{dataset}
@@ -578,6 +828,12 @@ class JobServiceGapicClient
      * - modelDeploymentMonitoringJob: projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}
      * - nasJob: projects/{project}/locations/{location}/nasJobs/{nas_job}
      * - nasTrialDetail: projects/{project}/locations/{location}/nasJobs/{nas_job}/nasTrialDetails/{nas_trial_detail}
+     * - network: projects/{project}/global/networks/{network}
+     * - notificationChannel: projects/{project}/notificationChannels/{notification_channel}
+     * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
+     * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
+     * - tensorboard: projects/{project}/locations/{location}/tensorboards/{tensorboard}
+     * - trial: projects/{project}/locations/{location}/studies/{study}/trials/{trial}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

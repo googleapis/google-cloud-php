@@ -81,6 +81,10 @@ use Google\Cloud\MediaTranslation\V1beta1\StreamingTranslateSpeechResponse;
  * }
  * ```
  *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\MediaTranslation\V1beta1\Client\SpeechTranslationServiceClient} to
+ * use the new surface.
+ *
  * @experimental
  */
 class SpeechTranslationServiceGapicClient

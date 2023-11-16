@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataplex_v1_generated_MetadataService_DeletePartition_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dataplex\V1\MetadataServiceClient;
+use Google\Cloud\Dataplex\V1\Client\MetadataServiceClient;
+use Google\Cloud\Dataplex\V1\DeletePartitionRequest;
 
 /**
  * Delete a metadata partition.
@@ -41,9 +42,13 @@ function delete_partition_sample(string $formattedName): void
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeletePartitionRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $metadataServiceClient->deletePartition($formattedName);
+        $metadataServiceClient->deletePartition($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

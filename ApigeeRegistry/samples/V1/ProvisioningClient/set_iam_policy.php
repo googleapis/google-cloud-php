@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START apigeeregistry_v1_generated_Provisioning_SetIamPolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\ApigeeRegistry\V1\ProvisioningClient;
+use Google\Cloud\ApigeeRegistry\V1\Client\ProvisioningClient;
 use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 
 /**
  * Sets the access control policy on the specified resource. Replaces
@@ -42,13 +43,16 @@ function set_iam_policy_sample(string $resource): void
     // Create a client.
     $provisioningClient = new ProvisioningClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $policy = new Policy();
+    $request = (new SetIamPolicyRequest())
+        ->setResource($resource)
+        ->setPolicy($policy);
 
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $provisioningClient->setIamPolicy($resource, $policy);
+        $response = $provisioningClient->setIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

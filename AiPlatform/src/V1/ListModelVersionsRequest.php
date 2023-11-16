@@ -31,8 +31,10 @@ class ListModelVersionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * The standard list page token.
      * Typically obtained via
-     * [ListModelVersionsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelVersionsResponse.next_page_token]
-     * of the previous [ModelService.ListModelversions][] call.
+     * [next_page_token][google.cloud.aiplatform.v1.ListModelVersionsResponse.next_page_token]
+     * of the previous
+     * [ListModelVersions][google.cloud.aiplatform.v1.ModelService.ListModelVersions]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
@@ -69,6 +71,20 @@ class ListModelVersionsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $name Required. The name of the model to list versions for. Please see
+     *                     {@see ModelServiceClient::modelName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ListModelVersionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -81,8 +97,10 @@ class ListModelVersionsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           The standard list page token.
      *           Typically obtained via
-     *           [ListModelVersionsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelVersionsResponse.next_page_token]
-     *           of the previous [ModelService.ListModelversions][] call.
+     *           [next_page_token][google.cloud.aiplatform.v1.ListModelVersionsResponse.next_page_token]
+     *           of the previous
+     *           [ListModelVersions][google.cloud.aiplatform.v1.ModelService.ListModelVersions]
+     *           call.
      *     @type string $filter
      *           An expression for filtering the results of the request. For field names
      *           both snake_case and camelCase are supported.
@@ -163,8 +181,10 @@ class ListModelVersionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * The standard list page token.
      * Typically obtained via
-     * [ListModelVersionsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelVersionsResponse.next_page_token]
-     * of the previous [ModelService.ListModelversions][] call.
+     * [next_page_token][google.cloud.aiplatform.v1.ListModelVersionsResponse.next_page_token]
+     * of the previous
+     * [ListModelVersions][google.cloud.aiplatform.v1.ModelService.ListModelVersions]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @return string
@@ -177,8 +197,10 @@ class ListModelVersionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * The standard list page token.
      * Typically obtained via
-     * [ListModelVersionsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelVersionsResponse.next_page_token]
-     * of the previous [ModelService.ListModelversions][] call.
+     * [next_page_token][google.cloud.aiplatform.v1.ListModelVersionsResponse.next_page_token]
+     * of the previous
+     * [ListModelVersions][google.cloud.aiplatform.v1.ModelService.ListModelVersions]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @param string $var

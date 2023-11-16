@@ -17,7 +17,7 @@ class CreateRestorePlanRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The location within which to create the RestorePlan.
-     * Format: projects/&#42;&#47;locations/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -31,15 +31,41 @@ class CreateRestorePlanRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The client-provided short name for the RestorePlan resource.
      * This name must:
-     *  - be between 1 and 63 characters long (inclusive)
-     *  - consist of only lower-case ASCII letters, numbers, and dashes
-     *  - start with a lower-case letter
-     *  - end with a lower-case letter or number
-     *  - be unique within the set of RestorePlans in this location
+     * - be between 1 and 63 characters long (inclusive)
+     * - consist of only lower-case ASCII letters, numbers, and dashes
+     * - start with a lower-case letter
+     * - end with a lower-case letter or number
+     * - be unique within the set of RestorePlans in this location
      *
      * Generated from protobuf field <code>string restore_plan_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $restore_plan_id = '';
+
+    /**
+     * @param string                                 $parent        Required. The location within which to create the RestorePlan.
+     *                                                              Format: `projects/&#42;/locations/*`
+     *                                                              Please see {@see BackupForGKEClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\GkeBackup\V1\RestorePlan $restorePlan   Required. The RestorePlan resource object to create.
+     * @param string                                 $restorePlanId Required. The client-provided short name for the RestorePlan resource.
+     *                                                              This name must:
+     *
+     *                                                              - be between 1 and 63 characters long (inclusive)
+     *                                                              - consist of only lower-case ASCII letters, numbers, and dashes
+     *                                                              - start with a lower-case letter
+     *                                                              - end with a lower-case letter or number
+     *                                                              - be unique within the set of RestorePlans in this location
+     *
+     * @return \Google\Cloud\GkeBackup\V1\CreateRestorePlanRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\GkeBackup\V1\RestorePlan $restorePlan, string $restorePlanId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setRestorePlan($restorePlan)
+            ->setRestorePlanId($restorePlanId);
+    }
 
     /**
      * Constructor.
@@ -49,17 +75,17 @@ class CreateRestorePlanRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The location within which to create the RestorePlan.
-     *           Format: projects/&#42;&#47;locations/&#42;
+     *           Format: `projects/&#42;&#47;locations/&#42;`
      *     @type \Google\Cloud\GkeBackup\V1\RestorePlan $restore_plan
      *           Required. The RestorePlan resource object to create.
      *     @type string $restore_plan_id
      *           Required. The client-provided short name for the RestorePlan resource.
      *           This name must:
-     *            - be between 1 and 63 characters long (inclusive)
-     *            - consist of only lower-case ASCII letters, numbers, and dashes
-     *            - start with a lower-case letter
-     *            - end with a lower-case letter or number
-     *            - be unique within the set of RestorePlans in this location
+     *           - be between 1 and 63 characters long (inclusive)
+     *           - consist of only lower-case ASCII letters, numbers, and dashes
+     *           - start with a lower-case letter
+     *           - end with a lower-case letter or number
+     *           - be unique within the set of RestorePlans in this location
      * }
      */
     public function __construct($data = NULL) {
@@ -69,7 +95,7 @@ class CreateRestorePlanRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The location within which to create the RestorePlan.
-     * Format: projects/&#42;&#47;locations/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -81,7 +107,7 @@ class CreateRestorePlanRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The location within which to create the RestorePlan.
-     * Format: projects/&#42;&#47;locations/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -134,11 +160,11 @@ class CreateRestorePlanRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The client-provided short name for the RestorePlan resource.
      * This name must:
-     *  - be between 1 and 63 characters long (inclusive)
-     *  - consist of only lower-case ASCII letters, numbers, and dashes
-     *  - start with a lower-case letter
-     *  - end with a lower-case letter or number
-     *  - be unique within the set of RestorePlans in this location
+     * - be between 1 and 63 characters long (inclusive)
+     * - consist of only lower-case ASCII letters, numbers, and dashes
+     * - start with a lower-case letter
+     * - end with a lower-case letter or number
+     * - be unique within the set of RestorePlans in this location
      *
      * Generated from protobuf field <code>string restore_plan_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -151,11 +177,11 @@ class CreateRestorePlanRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The client-provided short name for the RestorePlan resource.
      * This name must:
-     *  - be between 1 and 63 characters long (inclusive)
-     *  - consist of only lower-case ASCII letters, numbers, and dashes
-     *  - start with a lower-case letter
-     *  - end with a lower-case letter or number
-     *  - be unique within the set of RestorePlans in this location
+     * - be between 1 and 63 characters long (inclusive)
+     * - consist of only lower-case ASCII letters, numbers, and dashes
+     * - start with a lower-case letter
+     * - end with a lower-case letter or number
+     * - be unique within the set of RestorePlans in this location
      *
      * Generated from protobuf field <code>string restore_plan_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

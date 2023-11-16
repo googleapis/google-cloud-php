@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datastore_v1_generated_DatastoreAdmin_ListIndexes_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Datastore\Admin\V1\DatastoreAdminClient;
+use Google\Cloud\Datastore\Admin\V1\Client\DatastoreAdminClient;
 use Google\Cloud\Datastore\Admin\V1\Index;
+use Google\Cloud\Datastore\Admin\V1\ListIndexesRequest;
 
 /**
  * Lists the indexes that match the specified filters.  Datastore uses an
@@ -44,10 +45,13 @@ function list_indexes_sample(): void
     // Create a client.
     $datastoreAdminClient = new DatastoreAdminClient();
 
+    // Prepare the request message.
+    $request = new ListIndexesRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $datastoreAdminClient->listIndexes();
+        $response = $datastoreAdminClient->listIndexes($request);
 
         /** @var Index $element */
         foreach ($response as $element) {

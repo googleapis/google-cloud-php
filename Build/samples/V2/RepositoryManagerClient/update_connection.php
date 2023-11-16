@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudbuild_v2_generated_RepositoryManager_UpdateConnection_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Build\V2\Client\RepositoryManagerClient;
 use Google\Cloud\Build\V2\Connection;
-use Google\Cloud\Build\V2\RepositoryManagerClient;
+use Google\Cloud\Build\V2\UpdateConnectionRequest;
 use Google\Rpc\Status;
 
 /**
@@ -43,13 +44,15 @@ function update_connection_sample(): void
     // Create a client.
     $repositoryManagerClient = new RepositoryManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $connection = new Connection();
+    $request = (new UpdateConnectionRequest())
+        ->setConnection($connection);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $repositoryManagerClient->updateConnection($connection);
+        $response = $repositoryManagerClient->updateConnection($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

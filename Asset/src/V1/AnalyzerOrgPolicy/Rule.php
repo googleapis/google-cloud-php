@@ -9,7 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a rule defined in an organization policy
+ * This rule message is a customized version of the one defined in the
+ * Organization Policy system. In addition to the fields defined in the
+ * original organization policy, it contains additional field(s) under
+ * specific circumstances to support analysis results.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.AnalyzerOrgPolicy.Rule</code>
  */

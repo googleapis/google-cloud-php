@@ -28,6 +28,30 @@ class UpdateDataScanRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $update_mask = null;
+    /**
+     * Optional. Only validate the request, but do not perform mutations.
+     * The default is `false`.
+     *
+     * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $validate_only = false;
+
+    /**
+     * @param \Google\Cloud\Dataplex\V1\DataScan $dataScan   Required. DataScan resource to be updated.
+     *
+     *                                                       Only fields specified in `update_mask` are updated.
+     * @param \Google\Protobuf\FieldMask         $updateMask Required. Mask of fields to update.
+     *
+     * @return \Google\Cloud\Dataplex\V1\UpdateDataScanRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dataplex\V1\DataScan $dataScan, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setDataScan($dataScan)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.
@@ -40,6 +64,9 @@ class UpdateDataScanRequest extends \Google\Protobuf\Internal\Message
      *           Only fields specified in `update_mask` are updated.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. Mask of fields to update.
+     *     @type bool $validate_only
+     *           Optional. Only validate the request, but do not perform mutations.
+     *           The default is `false`.
      * }
      */
     public function __construct($data = NULL) {
@@ -117,6 +144,34 @@ class UpdateDataScanRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
         $this->update_mask = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Only validate the request, but do not perform mutations.
+     * The default is `false`.
+     *
+     * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getValidateOnly()
+    {
+        return $this->validate_only;
+    }
+
+    /**
+     * Optional. Only validate the request, but do not perform mutations.
+     * The default is `false`.
+     *
+     * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setValidateOnly($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->validate_only = $var;
 
         return $this;
     }

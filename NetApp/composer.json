@@ -1,0 +1,30 @@
+{
+    "name": "google/cloud-netapp",
+    "description": "Google Cloud Net App Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\NetApp\\": "src",
+            "GPBMetadata\\Google\\Cloud\\Netapp\\": "metadata"
+        }
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-netapp",
+            "path": "NetApp",
+            "target": "googleapis/google-cloud-php-netapp"
+        }
+    },
+    "require": {
+        "php": ">=7.4",
+        "google/gax": "^1.24.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "suggest": {
+        "ext-grpc": "Enables use of gRPC, a universal high-performance RPC framework created by Google.",
+        "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."
+    }
+}

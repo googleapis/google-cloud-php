@@ -61,6 +61,20 @@ class ListBatchesRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The parent, which owns this collection of batches. Please see
+     *                       {@see BatchControllerClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dataproc\V1\ListBatchesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

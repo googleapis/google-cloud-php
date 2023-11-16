@@ -27,6 +27,22 @@ class DeleteFeatureValuesRequest extends \Google\Protobuf\Internal\Message
     protected $DeleteOption;
 
     /**
+     * @param string $entityType Required. The resource name of the EntityType grouping the Features for
+     *                           which values are being deleted from. Format:
+     *                           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entityType}`
+     *                           Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\DeleteFeatureValuesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $entityType): self
+    {
+        return (new self())
+            ->setEntityType($entityType);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

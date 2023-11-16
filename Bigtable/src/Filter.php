@@ -34,8 +34,8 @@ use Google\Cloud\Bigtable\V2\RowFilter;
 /**
  * This class houses static factory methods which can be used to create a
  * hierarchy of filters for use with
- * {@see Google\Cloud\Bigtable\Table::checkAndMutateRow()} or
- * {@see Google\Cloud\Bigtable\Table::readRows()}.
+ * {@see \Google\Cloud\Bigtable\Table::checkAndMutateRow()} or
+ * {@see \Google\Cloud\Bigtable\Table::readRows()}.
  *
  * Filters are used to take an input row and produce an alternate view of the
  * row based on the specified rules. For example, a filter might trim down a row
@@ -51,7 +51,7 @@ use Google\Cloud\Bigtable\V2\RowFilter;
  *
  * True filters alter the input row by excluding some of its cells wholesale
  * from the output row. An example of a true filter is
- * {@see Google\Cloud\Bigtable\Filter\Builder\ValueFilter::regex()}, which excludes
+ * {@see \Google\Cloud\Bigtable\Filter\Builder\ValueFilter::regex()}, which excludes
  * cells whose values don't match the specified pattern. All regex true filters
  * use [RE2 syntax](https://github.com/google/re2/wiki/Syntax) in raw byte mode
  * (RE2::Latin1), and are evaluated as full matches. An important point to keep
@@ -60,7 +60,7 @@ use Google\Cloud\Bigtable\V2\RowFilter;
  *
  * Transformers alter the input row by changing the values of some of its cells
  * in the output, without excluding them completely. An example of such a
- * transformer is {@see Google\Cloud\Bigtable\Filter\Builder\ValueFilter::strip()}.
+ * transformer is {@see \Google\Cloud\Bigtable\Filter\Builder\ValueFilter::strip()}.
  *
  * The total serialized size of a filter message must not
  * exceed 4096 bytes, and filters may not be nested within each other
@@ -92,7 +92,7 @@ class Filter
      * Creates an empty chain filter.
      *
      * Filters can be added to the chain by invoking
-     * {@see Google\Cloud\Bigtable\Filter\ChainFilter::addFilter()}.
+     * {@see \Google\Cloud\Bigtable\Filter\ChainFilter::addFilter()}.
      *
      * The filters are applied in sequence, progressively narrowing the results.
      * The full chain is executed atomically.
@@ -120,7 +120,7 @@ class Filter
      * Creates an empty interleave filter.
      *
      * Filters can be added to the interleave by invoking
-     * {@see Google\Cloud\Bigtable\Filter\InterleaveFilter::addFilter()}.
+     * {@see \Google\Cloud\Bigtable\Filter\InterleaveFilter::addFilter()}.
      *
      * The supplied filters all process a copy of the input row, and the
      * results are pooled, sorted, and combined into a single output row. If
@@ -169,19 +169,19 @@ class Filter
      * Creates a condition filter.
      *
      * If the result of predicate filter outputs any cells the filter configured
-     * by {@see Google\Cloud\Bigtable\Filter\ConditionFilter::then()} will be
+     * by {@see \Google\Cloud\Bigtable\Filter\ConditionFilter::then()} will be
      * applied. Conversely, if the predicate results in no cells, the filter
      * configured by
-     * {@see Google\Cloud\Bigtable\Filter\ConditionFilter::otherwise()} will
+     * {@see \Google\Cloud\Bigtable\Filter\ConditionFilter::otherwise()} will
      * then be applied instead.
      *
      * IMPORTANT NOTE: The predicate filter does not execute atomically with the
-     * {@see Google\Cloud\Bigtable\Filter\ConditionFilter::then()}
-     * and {@see Google\Cloud\Bigtable\Filter\ConditionFilter::otherwise()}
+     * {@see \Google\Cloud\Bigtable\Filter\ConditionFilter::then()}
+     * and {@see \Google\Cloud\Bigtable\Filter\ConditionFilter::otherwise()}
      * filters, which may lead to inconsistent or unexpected results.
-     * Additionally, {@see Google\Cloud\Bigtable\Filter\ConditionFilter} may
+     * Additionally, {@see \Google\Cloud\Bigtable\Filter\ConditionFilter} may
      * have poor performance, especially when filters are set for the
-     * {@see Google\Cloud\Bigtable\Filter\ConditionFilter::otherwise()}.
+     * {@see \Google\Cloud\Bigtable\Filter\ConditionFilter::otherwise()}.
      *
      * Example:
      * ```
@@ -397,9 +397,9 @@ class Filter
      *
      * Due to technical limitation, it is not currently possible to apply
      * multiple labels to a cell. As a result, a
-     * {@see Google\Cloud\Bigtable\Filter\ChainFilter} may have no more than one
+     * {@see \Google\Cloud\Bigtable\Filter\ChainFilter} may have no more than one
      * sub-filter which contains a label. It is okay for a
-     * {@see Google\Cloud\Bigtable\Filter\InterleaveFilter} to contain multiple
+     * {@see \Google\Cloud\Bigtable\Filter\InterleaveFilter} to contain multiple
      * labels, as they will be applied to separate copies of the input. This may
      * be relaxed in the future.
      *

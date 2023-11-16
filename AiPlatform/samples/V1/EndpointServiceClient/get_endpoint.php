@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_EndpointService_GetEndpoint_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\EndpointServiceClient;
 use Google\Cloud\AIPlatform\V1\Endpoint;
-use Google\Cloud\AIPlatform\V1\EndpointServiceClient;
+use Google\Cloud\AIPlatform\V1\GetEndpointRequest;
 
 /**
  * Gets an Endpoint.
@@ -40,10 +41,14 @@ function get_endpoint_sample(string $formattedName): void
     // Create a client.
     $endpointServiceClient = new EndpointServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetEndpointRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Endpoint $response */
-        $response = $endpointServiceClient->getEndpoint($formattedName);
+        $response = $endpointServiceClient->getEndpoint($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

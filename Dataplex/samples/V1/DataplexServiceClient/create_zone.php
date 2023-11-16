@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataplex_v1_generated_DataplexService_CreateZone_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Dataplex\V1\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\Client\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\CreateZoneRequest;
 use Google\Cloud\Dataplex\V1\Zone;
 use Google\Cloud\Dataplex\V1\Zone\ResourceSpec;
 use Google\Cloud\Dataplex\V1\Zone\ResourceSpec\LocationType;
@@ -60,17 +61,21 @@ function create_zone_sample(
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $zoneResourceSpec = (new ResourceSpec())
         ->setLocationType($zoneResourceSpecLocationType);
     $zone = (new Zone())
         ->setType($zoneType)
         ->setResourceSpec($zoneResourceSpec);
+    $request = (new CreateZoneRequest())
+        ->setParent($formattedParent)
+        ->setZoneId($zoneId)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataplexServiceClient->createZone($formattedParent, $zoneId, $zone);
+        $response = $dataplexServiceClient->createZone($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

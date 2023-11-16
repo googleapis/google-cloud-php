@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START accesscontextmanager_v1_generated_AccessContextManager_UpdateGcpUserAccessBinding_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Identity\AccessContextManager\V1\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\Client\AccessContextManagerClient;
 use Google\Identity\AccessContextManager\V1\GcpUserAccessBinding;
+use Google\Identity\AccessContextManager\V1\UpdateGcpUserAccessBindingRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -57,7 +58,7 @@ function update_gcp_user_access_binding_sample(
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $formattedGcpUserAccessBindingAccessLevels = [
         $formattedGcpUserAccessBindingAccessLevelsElement,
     ];
@@ -65,14 +66,14 @@ function update_gcp_user_access_binding_sample(
         ->setGroupKey($gcpUserAccessBindingGroupKey)
         ->setAccessLevels($formattedGcpUserAccessBindingAccessLevels);
     $updateMask = new FieldMask();
+    $request = (new UpdateGcpUserAccessBindingRequest())
+        ->setGcpUserAccessBinding($gcpUserAccessBinding)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $accessContextManagerClient->updateGcpUserAccessBinding(
-            $gcpUserAccessBinding,
-            $updateMask
-        );
+        $response = $accessContextManagerClient->updateGcpUserAccessBinding($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

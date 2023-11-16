@@ -36,6 +36,30 @@ class UpdateTenantRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Talent\V4\Tenant $tenant     Required. The tenant resource to replace the current resource in the
+     *                                                   system.
+     * @param \Google\Protobuf\FieldMask     $updateMask Strongly recommended for the best service experience.
+     *
+     *                                                   If [update_mask][google.cloud.talent.v4.UpdateTenantRequest.update_mask] is
+     *                                                   provided, only the specified fields in
+     *                                                   [tenant][google.cloud.talent.v4.UpdateTenantRequest.tenant] are updated.
+     *                                                   Otherwise all the fields are updated.
+     *
+     *                                                   A field mask to specify the tenant fields to be updated. Only
+     *                                                   top level fields of [Tenant][google.cloud.talent.v4.Tenant] are supported.
+     *
+     * @return \Google\Cloud\Talent\V4\UpdateTenantRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Talent\V4\Tenant $tenant, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setTenant($tenant)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

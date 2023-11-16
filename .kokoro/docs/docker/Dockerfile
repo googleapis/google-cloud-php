@@ -1,7 +1,7 @@
 FROM gcr.io/gcp-runtimes/ubuntu_16_0_4
 ENV PHP_DIR=/opt/php80
-ENV PHP_VERSION=8.0.28
-ENV PHP_SRC_DIR=/usr/local/src/php80-build
+ENV PHP_VERSION=8.1.18
+ENV PHP_SRC_DIR=/usr/local/src/php81-build
 ENV PATH=${PATH}:/usr/local/bin:${PHP_DIR}/bin
 
 RUN apt-get update && \
@@ -35,7 +35,7 @@ RUN apt-get update && \
 # Remove old version of PHP
 RUN apt purge -y php7.0-common
 
-# Install PHP 8.0
+# Install PHP 8.1
 RUN ln -s /usr/lib/libc-client.a /usr/lib/x86_64-linux-gnu/libc-client.a && \
     mkdir -p ${PHP_DIR} ${PHP_SRC_DIR} ${PHP_DIR}/lib/conf.d && \
     cd ${PHP_SRC_DIR} && \
@@ -88,7 +88,7 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
 # Use phpDocumentor from HEAD until they create a new release
 # TODO: Remove once phpDocumentor tags a new release
 # @see https://github.com/phpDocumentor/phpDocumentor/issues/3434
-COPY --from=phpdoc/phpdoc:202301112131087e6028 /opt/phpdoc /opt/phpdoc
+COPY --from=phpdoc/phpdoc:20230522201300af6fb5 /opt/phpdoc /opt/phpdoc
 RUN ln -s /opt/phpdoc/bin/phpdoc /usr/local/bin/phpdoc
 ENV PHPDOC_ENV=prod
 
@@ -112,4 +112,3 @@ RUN wget -O /tmp/get-pip.py 'https://bootstrap.pypa.io/get-pip.py' \
 # Install docsuploader
 COPY requirements.txt .
 RUN python3.9 -m pip install --require-hashes -r requirements.txt
-

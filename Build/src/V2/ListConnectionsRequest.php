@@ -36,6 +36,21 @@ class ListConnectionsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The parent, which owns this collection of Connections.
+     *                       Format: `projects/&#42;/locations/*`. Please see
+     *                       {@see RepositoryManagerClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Build\V2\ListConnectionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

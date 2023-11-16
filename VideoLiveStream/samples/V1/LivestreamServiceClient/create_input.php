@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START livestream_v1_generated_LivestreamService_CreateInput_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Video\LiveStream\V1\Client\LivestreamServiceClient;
+use Google\Cloud\Video\LiveStream\V1\CreateInputRequest;
 use Google\Cloud\Video\LiveStream\V1\Input;
-use Google\Cloud\Video\LiveStream\V1\LivestreamServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -44,13 +45,17 @@ function create_input_sample(string $formattedParent, string $inputId): void
     // Create a client.
     $livestreamServiceClient = new LivestreamServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $input = new Input();
+    $request = (new CreateInputRequest())
+        ->setParent($formattedParent)
+        ->setInput($input)
+        ->setInputId($inputId);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $livestreamServiceClient->createInput($formattedParent, $input, $inputId);
+        $response = $livestreamServiceClient->createInput($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

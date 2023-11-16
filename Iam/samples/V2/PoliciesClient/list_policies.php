@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START iam_v2_generated_Policies_ListPolicies_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Iam\V2\PoliciesClient;
+use Google\Cloud\Iam\V2\Client\PoliciesClient;
+use Google\Cloud\Iam\V2\ListPoliciesRequest;
 use Google\Cloud\Iam\V2\Policy;
 
 /**
@@ -53,10 +54,14 @@ function list_policies_sample(string $parent): void
     // Create a client.
     $policiesClient = new PoliciesClient();
 
+    // Prepare the request message.
+    $request = (new ListPoliciesRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $policiesClient->listPolicies($parent);
+        $response = $policiesClient->listPolicies($request);
 
         /** @var Policy $element */
         foreach ($response as $element) {

@@ -41,6 +41,9 @@ use Google\Cloud\AIPlatform\V1\ExplanationSpecOverride;
 use Google\Cloud\AIPlatform\V1\PredictRequest;
 use Google\Cloud\AIPlatform\V1\PredictResponse;
 use Google\Cloud\AIPlatform\V1\RawPredictRequest;
+use Google\Cloud\AIPlatform\V1\StreamingPredictRequest;
+use Google\Cloud\AIPlatform\V1\StreamingPredictResponse;
+use Google\Cloud\AIPlatform\V1\Tensor;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\GetPolicyOptions;
 use Google\Cloud\Iam\V1\Policy;
@@ -75,6 +78,10 @@ use Google\Protobuf\Value;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AIPlatform\V1\Client\PredictionServiceClient} to use the new
+ * surface.
  */
 class PredictionServiceGapicClient
 {
@@ -98,6 +105,10 @@ class PredictionServiceGapicClient
     ];
 
     private static $endpointNameTemplate;
+
+    private static $projectLocationEndpointNameTemplate;
+
+    private static $projectLocationPublisherModelNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -138,11 +149,35 @@ class PredictionServiceGapicClient
         return self::$endpointNameTemplate;
     }
 
+    private static function getProjectLocationEndpointNameTemplate()
+    {
+        if (self::$projectLocationEndpointNameTemplate == null) {
+            self::$projectLocationEndpointNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/endpoints/{endpoint}'
+            );
+        }
+
+        return self::$projectLocationEndpointNameTemplate;
+    }
+
+    private static function getProjectLocationPublisherModelNameTemplate()
+    {
+        if (self::$projectLocationPublisherModelNameTemplate == null) {
+            self::$projectLocationPublisherModelNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/publishers/{publisher}/models/{model}'
+            );
+        }
+
+        return self::$projectLocationPublisherModelNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'endpoint' => self::getEndpointNameTemplate(),
+                'projectLocationEndpoint' => self::getProjectLocationEndpointNameTemplate(),
+                'projectLocationPublisherModel' => self::getProjectLocationPublisherModelNameTemplate(),
             ];
         }
 
@@ -169,10 +204,59 @@ class PredictionServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_endpoint resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $endpoint
+     *
+     * @return string The formatted project_location_endpoint resource.
+     */
+    public static function projectLocationEndpointName(
+        $project,
+        $location,
+        $endpoint
+    ) {
+        return self::getProjectLocationEndpointNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'endpoint' => $endpoint,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_publisher_model resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $publisher
+     * @param string $model
+     *
+     * @return string The formatted project_location_publisher_model resource.
+     */
+    public static function projectLocationPublisherModelName(
+        $project,
+        $location,
+        $publisher,
+        $model
+    ) {
+        return self::getProjectLocationPublisherModelNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'publisher' => $publisher,
+            'model' => $model,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - endpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
+     * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
+     * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -284,8 +368,7 @@ class PredictionServiceGapicClient
      * [deployed_model_id][google.cloud.aiplatform.v1.ExplainRequest.deployed_model_id]
      * is not specified, all DeployedModels must have
      * [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec]
-     * populated. Only deployed AutoML tabular Models have
-     * explanation_spec.
+     * populated.
      *
      * Sample code:
      * ```
@@ -527,6 +610,72 @@ class PredictionServiceGapicClient
             $optionalArgs,
             $request
         )->wait();
+    }
+
+    /**
+     * Perform a server-side streaming online prediction request for Vertex
+     * LLM streaming.
+     *
+     * Sample code:
+     * ```
+     * $predictionServiceClient = new PredictionServiceClient();
+     * try {
+     *     $formattedEndpoint = $predictionServiceClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+     *     // Read all responses until the stream is complete
+     *     $stream = $predictionServiceClient->serverStreamingPredict($formattedEndpoint);
+     *     foreach ($stream->readAll() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $predictionServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $endpoint     Required. The name of the Endpoint requested to serve the prediction.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type Tensor[] $inputs
+     *           The prediction input.
+     *     @type Tensor $parameters
+     *           The parameters that govern the prediction.
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return \Google\ApiCore\ServerStream
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function serverStreamingPredict($endpoint, array $optionalArgs = [])
+    {
+        $request = new StreamingPredictRequest();
+        $requestParamHeaders = [];
+        $request->setEndpoint($endpoint);
+        $requestParamHeaders['endpoint'] = $endpoint;
+        if (isset($optionalArgs['inputs'])) {
+            $request->setInputs($optionalArgs['inputs']);
+        }
+
+        if (isset($optionalArgs['parameters'])) {
+            $request->setParameters($optionalArgs['parameters']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ServerStreamingPredict',
+            StreamingPredictResponse::class,
+            $optionalArgs,
+            $request,
+            Call::SERVER_STREAMING_CALL
+        );
     }
 
     /**

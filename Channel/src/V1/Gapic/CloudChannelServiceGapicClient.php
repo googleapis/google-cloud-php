@@ -86,6 +86,10 @@ use Google\Cloud\Channel\V1\ListPurchasableOffersRequest\CreateEntitlementPurcha
 use Google\Cloud\Channel\V1\ListPurchasableOffersResponse;
 use Google\Cloud\Channel\V1\ListPurchasableSkusRequest;
 use Google\Cloud\Channel\V1\ListPurchasableSkusResponse;
+use Google\Cloud\Channel\V1\ListSkuGroupBillableSkusRequest;
+use Google\Cloud\Channel\V1\ListSkuGroupBillableSkusResponse;
+use Google\Cloud\Channel\V1\ListSkuGroupsRequest;
+use Google\Cloud\Channel\V1\ListSkuGroupsResponse;
 use Google\Cloud\Channel\V1\ListSkusRequest;
 use Google\Cloud\Channel\V1\ListSkusResponse;
 use Google\Cloud\Channel\V1\ListSubscribersRequest;
@@ -99,6 +103,8 @@ use Google\Cloud\Channel\V1\Offer;
 use Google\Cloud\Channel\V1\OperationMetadata;
 use Google\Cloud\Channel\V1\Parameter;
 use Google\Cloud\Channel\V1\ProvisionCloudIdentityRequest;
+use Google\Cloud\Channel\V1\QueryEligibleBillingAccountsRequest;
+use Google\Cloud\Channel\V1\QueryEligibleBillingAccountsResponse;
 use Google\Cloud\Channel\V1\RegisterSubscriberRequest;
 use Google\Cloud\Channel\V1\RegisterSubscriberResponse;
 use Google\Cloud\Channel\V1\RenewalSettings;
@@ -180,6 +186,10 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Channel\V1\Client\CloudChannelServiceClient} to use the new
+ * surface.
  */
 class CloudChannelServiceGapicClient
 {
@@ -215,6 +225,8 @@ class CloudChannelServiceGapicClient
     private static $offerNameTemplate;
 
     private static $productNameTemplate;
+
+    private static $skuGroupNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -302,6 +314,15 @@ class CloudChannelServiceGapicClient
         return self::$productNameTemplate;
     }
 
+    private static function getSkuGroupNameTemplate()
+    {
+        if (self::$skuGroupNameTemplate == null) {
+            self::$skuGroupNameTemplate = new PathTemplate('accounts/{account}/skuGroups/{sku_group}');
+        }
+
+        return self::$skuGroupNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -313,6 +334,7 @@ class CloudChannelServiceGapicClient
                 'entitlement' => self::getEntitlementNameTemplate(),
                 'offer' => self::getOfferNameTemplate(),
                 'product' => self::getProductNameTemplate(),
+                'skuGroup' => self::getSkuGroupNameTemplate(),
             ];
         }
 
@@ -443,6 +465,23 @@ class CloudChannelServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a sku_group
+     * resource.
+     *
+     * @param string $account
+     * @param string $skuGroup
+     *
+     * @return string The formatted sku_group resource.
+     */
+    public static function skuGroupName($account, $skuGroup)
+    {
+        return self::getSkuGroupNameTemplate()->render([
+            'account' => $account,
+            'sku_group' => $skuGroup,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -453,6 +492,7 @@ class CloudChannelServiceGapicClient
      * - entitlement: accounts/{account}/customers/{customer}/entitlements/{entitlement}
      * - offer: accounts/{account}/offers/{offer}
      * - product: products/{product}
+     * - skuGroup: accounts/{account}/skuGroups/{sku_group}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -882,6 +922,12 @@ class CloudChannelServiceGapicClient
      *           The request ID must be a valid [UUID](https://tools.ietf.org/html/rfc4122)
      *           with the exception that zero UUID is not supported
      *           (`00000000-0000-0000-0000-000000000000`).
+     *     @type string $billingAccount
+     *           Optional. The billing account resource name that is used to pay for this
+     *           entitlement when setting up billing on a trial subscription.
+     *
+     *           This field is only relevant for multi-currency accounts. It should be
+     *           left empty for single currency accounts.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -909,6 +955,10 @@ class CloudChannelServiceGapicClient
 
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['billingAccount'])) {
+            $request->setBillingAccount($optionalArgs['billingAccount']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1291,10 +1341,12 @@ class CloudChannelServiceGapicClient
      * * The new config will not modify exports used with other configs.
      * Changes to the config may be immediate, but may take up to 24 hours.
      * * There is a limit of ten configs for any ChannelPartner or
+     * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement],
+     * for any
      * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
      * * The contained
      * [ChannelPartnerRepricingConfig.repricing_config][google.cloud.channel.v1.ChannelPartnerRepricingConfig.repricing_config]
-     * vaule must be different from the value used in the current config for a
+     * value must be different from the value used in the current config for a
      * ChannelPartner.
      *
      * Possible Error Codes:
@@ -1362,8 +1414,11 @@ class CloudChannelServiceGapicClient
      *
      * Possible error codes:
      *
-     * * PERMISSION_DENIED: The reseller account making the request is different
-     * from the reseller account in the API request.
+     * * PERMISSION_DENIED:
+     * * The reseller account making the request is different from the
+     * reseller account in the API request.
+     * * You are not authorized to create a customer. See
+     * https://support.google.com/channelservices/answer/9759265
      * * INVALID_ARGUMENT:
      * * Required request parameters are missing or invalid.
      * * Domain field value doesn't match the primary email domain.
@@ -1429,12 +1484,12 @@ class CloudChannelServiceGapicClient
      * * The new config will not modify exports used with other configs.
      * Changes to the config may be immediate, but may take up to 24 hours.
      * * There is a limit of ten configs for any
-     * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement]
-     * or
+     * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement],
+     * for any
      * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
      * * The contained
      * [CustomerRepricingConfig.repricing_config][google.cloud.channel.v1.CustomerRepricingConfig.repricing_config]
-     * vaule must be different from the value used in the current config for a
+     * value must be different from the value used in the current config for a
      * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement].
      *
      * Possible Error Codes:
@@ -1501,7 +1556,10 @@ class CloudChannelServiceGapicClient
      *
      * Possible error codes:
      *
-     * * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+     * * PERMISSION_DENIED:
+     * * The customer doesn't belong to the reseller.
+     * * The reseller is not authorized to transact on this Product. See
+     * https://support.google.com/channelservices/answer/9759265
      * * INVALID_ARGUMENT:
      * * Required request parameters are missing or invalid.
      * * There is already a customer entitlement for a SKU from the same
@@ -2059,8 +2117,11 @@ class CloudChannelServiceGapicClient
      *
      * Possible error codes:
      *
-     * * PERMISSION_DENIED: The reseller account making the request is different
-     * from the reseller account in the API request.
+     * * PERMISSION_DENIED:
+     * * The reseller account making the request is different from the
+     * reseller account in the API request.
+     * * You are not authorized to import the customer. See
+     * https://support.google.com/channelservices/answer/9759265
      * * NOT_FOUND: Cloud Identity doesn't exist or was deleted.
      * * INVALID_ARGUMENT: Required parameters are missing, or the auth_token is
      * expired or invalid.
@@ -2256,7 +2317,8 @@ class CloudChannelServiceGapicClient
      * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
      * resources. The data for each resource is displayed in the ascending order
      * of:
-     * * channel partner ID
+     *
+     * * Channel Partner ID
      * * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
      * * [ChannelPartnerRepricingConfig.update_time][google.cloud.channel.v1.ChannelPartnerRepricingConfig.update_time]
      *
@@ -2365,7 +2427,8 @@ class CloudChannelServiceGapicClient
      * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
      * resources. The data for each resource is displayed in the ascending order
      * of:
-     * * customer ID
+     *
+     * * Customer ID
      * * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement]
      * * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
      * * [CustomerRepricingConfig.update_time][google.cloud.channel.v1.CustomerRepricingConfig.update_time]
@@ -2899,7 +2962,10 @@ class CloudChannelServiceGapicClient
      *
      * Possible error codes:
      *
-     * * PERMISSION_DENIED: The customer doesn't belong to the reseller
+     * * PERMISSION_DENIED:
+     * * The customer doesn't belong to the reseller
+     * * The reseller is not authorized to transact on this Product. See
+     * https://support.google.com/channelservices/answer/9759265
      * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
      *
      * Sample code:
@@ -3083,6 +3149,180 @@ class CloudChannelServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListPurchasableSkus', $optionalArgs, ListPurchasableSkusResponse::class, $request);
+    }
+
+    /**
+     * Lists the Billable SKUs in a given SKU group.
+     *
+     * Possible error codes:
+     * PERMISSION_DENIED: If the account making the request and the account
+     * being queried for are different, or the account doesn't exist.
+     * INVALID_ARGUMENT: Missing or invalid required parameters in the
+     * request.
+     * INTERNAL: Any non-user error related to technical issue in the
+     * backend. In this case, contact cloud channel support.
+     *
+     * Return Value:
+     * If successful, the [BillableSku][google.cloud.channel.v1.BillableSku]
+     * resources. The data for each resource is displayed in the ascending order
+     * of:
+     *
+     * * [BillableSku.service_display_name][google.cloud.channel.v1.BillableSku.service_display_name]
+     * * [BillableSku.sku_display_name][google.cloud.channel.v1.BillableSku.sku_display_name]
+     *
+     * If unsuccessful, returns an error.
+     *
+     * Sample code:
+     * ```
+     * $cloudChannelServiceClient = new CloudChannelServiceClient();
+     * try {
+     *     $formattedParent = $cloudChannelServiceClient->skuGroupName('[ACCOUNT]', '[SKU_GROUP]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $cloudChannelServiceClient->listSkuGroupBillableSkus($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $cloudChannelServiceClient->listSkuGroupBillableSkus($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $cloudChannelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Resource name of the SKU group.
+     *                             Format: accounts/{account}/skuGroups/{sku_group}.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listSkuGroupBillableSkus($parent, array $optionalArgs = [])
+    {
+        $request = new ListSkuGroupBillableSkusRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListSkuGroupBillableSkus', $optionalArgs, ListSkuGroupBillableSkusResponse::class, $request);
+    }
+
+    /**
+     * Lists the Rebilling supported SKU groups the account is authorized to
+     * sell.
+     * Reference: https://cloud.google.com/skus/sku-groups
+     *
+     * Possible Error Codes:
+     *
+     * * PERMISSION_DENIED: If the account making the request and the account
+     * being queried are different, or the account doesn't exist.
+     * * INTERNAL: Any non-user error related to technical issues in the
+     * backend. In this case, contact Cloud Channel support.
+     *
+     * Return Value:
+     * If successful, the [SkuGroup][google.cloud.channel.v1.SkuGroup] resources.
+     * The data for each resource is displayed in the alphabetical order of SKU
+     * group display name.
+     * The data for each resource is displayed in the ascending order of
+     * [SkuGroup.display_name][google.cloud.channel.v1.SkuGroup.display_name]
+     *
+     * If unsuccessful, returns an error.
+     *
+     * Sample code:
+     * ```
+     * $cloudChannelServiceClient = new CloudChannelServiceClient();
+     * try {
+     *     $parent = 'parent';
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $cloudChannelServiceClient->listSkuGroups($parent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $cloudChannelServiceClient->listSkuGroups($parent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $cloudChannelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the account from which to list SKU groups.
+     *                             Parent uses the format: accounts/{account}.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listSkuGroups($parent, array $optionalArgs = [])
+    {
+        $request = new ListSkuGroupsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListSkuGroups', $optionalArgs, ListSkuGroupsResponse::class, $request);
     }
 
     /**
@@ -3271,6 +3511,8 @@ class CloudChannelServiceGapicClient
      * auth token.
      * * The reseller account making the request is different
      * from the reseller account in the query.
+     * * The reseller is not authorized to transact on this Product. See
+     * https://support.google.com/channelservices/answer/9759265
      * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
      *
      * Return value:
@@ -3324,6 +3566,12 @@ class CloudChannelServiceGapicClient
      *           Optional. The BCP-47 language code. For example, "en-US". The
      *           response will localize in the corresponding language code, if specified.
      *           The default value is "en-US".
+     *     @type string $billingAccount
+     *           Optional. The Billing Account to look up Offers for. Format:
+     *           accounts/{account_id}/billingAccounts/{billing_account_id}.
+     *
+     *           This field is only relevant for multi-currency accounts. It should be left
+     *           empty for single currency accounts.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3359,6 +3607,10 @@ class CloudChannelServiceGapicClient
 
         if (isset($optionalArgs['languageCode'])) {
             $request->setLanguageCode($optionalArgs['languageCode']);
+        }
+
+        if (isset($optionalArgs['billingAccount'])) {
+            $request->setBillingAccount($optionalArgs['billingAccount']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -3542,7 +3794,10 @@ class CloudChannelServiceGapicClient
      *
      * Possible error codes:
      *
-     * *  PERMISSION_DENIED: The customer doesn't belong to the reseller.
+     * *  PERMISSION_DENIED:
+     * * The customer doesn't belong to the reseller.
+     * * You are not authorized to provision cloud identity id. See
+     * https://support.google.com/channelservices/answer/9759265
      * *  INVALID_ARGUMENT: Required request parameters are missing or invalid.
      * *  NOT_FOUND: The customer was not found.
      * *  ALREADY_EXISTS: The customer's primary email already exists. Retry
@@ -3637,6 +3892,61 @@ class CloudChannelServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('ProvisionCloudIdentity', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Lists the billing accounts that are eligible to purchase particular SKUs
+     * for a given customer.
+     *
+     * Possible error codes:
+     *
+     * * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+     * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+     *
+     * Return value:
+     * Based on the provided list of SKUs, returns a list of SKU groups that must
+     * be purchased using the same billing account and the billing accounts
+     * eligible to purchase each SKU group.
+     *
+     * Sample code:
+     * ```
+     * $cloudChannelServiceClient = new CloudChannelServiceClient();
+     * try {
+     *     $formattedCustomer = $cloudChannelServiceClient->customerName('[ACCOUNT]', '[CUSTOMER]');
+     *     $skus = [];
+     *     $response = $cloudChannelServiceClient->queryEligibleBillingAccounts($formattedCustomer, $skus);
+     * } finally {
+     *     $cloudChannelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string   $customer     Required. The resource name of the customer to list eligible billing
+     *                               accounts for. Format: accounts/{account_id}/customers/{customer_id}.
+     * @param string[] $skus         Required. List of SKUs to list eligible billing accounts for. At least one
+     *                               SKU is required. Format: products/{product_id}/skus/{sku_id}.
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Channel\V1\QueryEligibleBillingAccountsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function queryEligibleBillingAccounts($customer, $skus, array $optionalArgs = [])
+    {
+        $request = new QueryEligibleBillingAccountsRequest();
+        $requestParamHeaders = [];
+        $request->setCustomer($customer);
+        $request->setSkus($skus);
+        $requestParamHeaders['customer'] = $customer;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('QueryEligibleBillingAccounts', QueryEligibleBillingAccountsResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -3913,7 +4223,10 @@ class CloudChannelServiceGapicClient
      *
      * Possible error codes:
      *
-     * * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+     * * PERMISSION_DENIED:
+     * * The customer doesn't belong to the reseller.
+     * * The reseller is not authorized to transact on this Product. See
+     * https://support.google.com/channelservices/answer/9759265
      * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
      * * NOT_FOUND: The customer or offer resource was not found.
      * * ALREADY_EXISTS: The SKU was already transferred for the customer.

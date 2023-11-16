@@ -30,6 +30,34 @@ class UpdateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Dialogflow\V2\SessionEntityType $sessionEntityType Required. The session entity type to update.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\UpdateSessionEntityTypeRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\V2\SessionEntityType $sessionEntityType): self
+    {
+        return (new self())
+            ->setSessionEntityType($sessionEntityType);
+    }
+
+    /**
+     * @param \Google\Cloud\Dialogflow\V2\SessionEntityType $sessionEntityType Required. The session entity type to update.
+     * @param \Google\Protobuf\FieldMask                    $updateMask        Optional. The mask to control which fields get updated.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\UpdateSessionEntityTypeRequest
+     *
+     * @experimental
+     */
+    public static function buildFromSessionEntityTypeUpdateMask(\Google\Cloud\Dialogflow\V2\SessionEntityType $sessionEntityType, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setSessionEntityType($sessionEntityType)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

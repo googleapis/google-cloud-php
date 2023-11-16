@@ -7,6 +7,8 @@ namespace Google\Cloud\Dataplex\V1\DataQualityRule\StatisticRangeExpectation;
 use UnexpectedValueException;
 
 /**
+ * The list of aggregate metrics a rule can be evaluated against.
+ *
  * Protobuf type <code>google.cloud.dataplex.v1.DataQualityRule.StatisticRangeExpectation.ColumnStatistic</code>
  */
 class ColumnStatistic

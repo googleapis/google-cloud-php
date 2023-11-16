@@ -81,6 +81,12 @@ class JobState
      * Generated from protobuf enum <code>JOB_STATE_UPDATING = 10;</code>
      */
     const JOB_STATE_UPDATING = 10;
+    /**
+     * The job is partially succeeded, some results may be missing due to errors.
+     *
+     * Generated from protobuf enum <code>JOB_STATE_PARTIALLY_SUCCEEDED = 11;</code>
+     */
+    const JOB_STATE_PARTIALLY_SUCCEEDED = 11;
 
     private static $valueToName = [
         self::JOB_STATE_UNSPECIFIED => 'JOB_STATE_UNSPECIFIED',
@@ -94,6 +100,7 @@ class JobState
         self::JOB_STATE_PAUSED => 'JOB_STATE_PAUSED',
         self::JOB_STATE_EXPIRED => 'JOB_STATE_EXPIRED',
         self::JOB_STATE_UPDATING => 'JOB_STATE_UPDATING',
+        self::JOB_STATE_PARTIALLY_SUCCEEDED => 'JOB_STATE_PARTIALLY_SUCCEEDED',
     ];
 
     public static function name($value)

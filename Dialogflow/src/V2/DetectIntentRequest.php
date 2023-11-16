@@ -43,10 +43,10 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
     private $query_params = null;
     /**
      * Required. The input specification. It can be set to:
-     * 1.  an audio config
-     *     which instructs the speech recognizer how to process the speech audio,
-     * 2.  a conversational query in the form of text, or
-     * 3.  an event that specifies which intent to trigger.
+     * 1. an audio config which instructs the speech recognizer how to process
+     * the speech audio,
+     * 2. a conversational query in the form of text, or
+     * 3. an event that specifies which intent to trigger.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryInput query_input = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -81,6 +81,45 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
     private $input_audio = '';
 
     /**
+     * @param string                                 $session    Required. The name of the session this query is sent to. Format:
+     *                                                           `projects/<Project ID>/agent/sessions/<Session ID>`, or
+     *                                                           `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *                                                           ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     *                                                           default 'draft' environment (`Environment ID` might be referred to as
+     *                                                           environment name at some places). If `User ID` is not specified, we are
+     *                                                           using "-". It's up to the API caller to choose an appropriate `Session ID`
+     *                                                           and `User Id`. They can be a random number or some type of user and session
+     *                                                           identifiers (preferably hashed). The length of the `Session ID` and
+     *                                                           `User ID` must not exceed 36 characters.
+     *
+     *                                                           For more information, see the [API interactions
+     *                                                           guide](https://cloud.google.com/dialogflow/docs/api-overview).
+     *
+     *                                                           Note: Always use agent versions for production traffic.
+     *                                                           See [Versions and
+     *                                                           environments](https://cloud.google.com/dialogflow/es/docs/agents-versions). Please see
+     *                                                           {@see SessionsClient::sessionName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\V2\QueryInput $queryInput Required. The input specification. It can be set to:
+     *
+     *                                                           1. an audio config which instructs the speech recognizer how to process
+     *                                                           the speech audio,
+     *
+     *                                                           2. a conversational query in the form of text, or
+     *
+     *                                                           3. an event that specifies which intent to trigger.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\DetectIntentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $session, \Google\Cloud\Dialogflow\V2\QueryInput $queryInput): self
+    {
+        return (new self())
+            ->setSession($session)
+            ->setQueryInput($queryInput);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -106,10 +145,10 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      *           The parameters of this query.
      *     @type \Google\Cloud\Dialogflow\V2\QueryInput $query_input
      *           Required. The input specification. It can be set to:
-     *           1.  an audio config
-     *               which instructs the speech recognizer how to process the speech audio,
-     *           2.  a conversational query in the form of text, or
-     *           3.  an event that specifies which intent to trigger.
+     *           1. an audio config which instructs the speech recognizer how to process
+     *           the speech audio,
+     *           2. a conversational query in the form of text, or
+     *           3. an event that specifies which intent to trigger.
      *     @type \Google\Cloud\Dialogflow\V2\OutputAudioConfig $output_audio_config
      *           Instructs the speech synthesizer how to generate the output
      *           audio. If this field is not set and agent-level speech synthesizer is not
@@ -225,10 +264,10 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The input specification. It can be set to:
-     * 1.  an audio config
-     *     which instructs the speech recognizer how to process the speech audio,
-     * 2.  a conversational query in the form of text, or
-     * 3.  an event that specifies which intent to trigger.
+     * 1. an audio config which instructs the speech recognizer how to process
+     * the speech audio,
+     * 2. a conversational query in the form of text, or
+     * 3. an event that specifies which intent to trigger.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryInput query_input = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dialogflow\V2\QueryInput|null
@@ -250,10 +289,10 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The input specification. It can be set to:
-     * 1.  an audio config
-     *     which instructs the speech recognizer how to process the speech audio,
-     * 2.  a conversational query in the form of text, or
-     * 3.  an event that specifies which intent to trigger.
+     * 1. an audio config which instructs the speech recognizer how to process
+     * the speech audio,
+     * 2. a conversational query in the form of text, or
+     * 3. an event that specifies which intent to trigger.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryInput query_input = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dialogflow\V2\QueryInput $var

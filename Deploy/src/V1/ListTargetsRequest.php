@@ -17,7 +17,7 @@ class ListTargetsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent, which owns this collection of targets. Format must be
-     * projects/{project_id}/locations/{location_name}.
+     * `projects/{project_id}/locations/{location_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -56,6 +56,21 @@ class ListTargetsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The parent, which owns this collection of targets. Format must be
+     *                       `projects/{project_id}/locations/{location_name}`. Please see
+     *                       {@see CloudDeployClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Deploy\V1\ListTargetsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -63,7 +78,7 @@ class ListTargetsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent, which owns this collection of targets. Format must be
-     *           projects/{project_id}/locations/{location_name}.
+     *           `projects/{project_id}/locations/{location_name}`.
      *     @type int $page_size
      *           Optional. The maximum number of `Target` objects to return. The service may
      *           return fewer than this value. If unspecified, at most 50 `Target` objects
@@ -89,7 +104,7 @@ class ListTargetsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, which owns this collection of targets. Format must be
-     * projects/{project_id}/locations/{location_name}.
+     * `projects/{project_id}/locations/{location_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -101,7 +116,7 @@ class ListTargetsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, which owns this collection of targets. Format must be
-     * projects/{project_id}/locations/{location_name}.
+     * `projects/{project_id}/locations/{location_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

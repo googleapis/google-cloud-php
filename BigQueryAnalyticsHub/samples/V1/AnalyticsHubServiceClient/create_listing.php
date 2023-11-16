@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticshub_v1_generated_AnalyticsHubService_CreateListing_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\BigQuery\AnalyticsHub\V1\AnalyticsHubServiceClient;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\Client\AnalyticsHubServiceClient;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\CreateListingRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource;
 
@@ -39,11 +40,10 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource;
  *                                   Should not use characters that require URL-escaping, or characters
  *                                   outside of ASCII, spaces.
  *                                   Max length: 100 bytes.
- * @param string $listingDisplayName Human-readable display name of the listing. The display name must contain
- *                                   only Unicode letters, numbers (0-9), underscores (_), dashes (-), spaces
- *                                   ( ), ampersands (&) and can't start or end with spaces.
- *                                   Default value is an empty string.
- *                                   Max length: 63 bytes.
+ * @param string $listingDisplayName Human-readable display name of the listing. The display name must
+ *                                   contain only Unicode letters, numbers (0-9), underscores (_), dashes (-),
+ *                                   spaces ( ), ampersands (&) and can't start or end with spaces. Default
+ *                                   value is an empty string. Max length: 63 bytes.
  */
 function create_listing_sample(
     string $formattedParent,
@@ -53,16 +53,20 @@ function create_listing_sample(
     // Create a client.
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $listingBigqueryDataset = new BigQueryDatasetSource();
     $listing = (new Listing())
         ->setBigqueryDataset($listingBigqueryDataset)
         ->setDisplayName($listingDisplayName);
+    $request = (new CreateListingRequest())
+        ->setParent($formattedParent)
+        ->setListingId($listingId)
+        ->setListing($listing);
 
     // Call the API and handle any network failures.
     try {
         /** @var Listing $response */
-        $response = $analyticsHubServiceClient->createListing($formattedParent, $listingId, $listing);
+        $response = $analyticsHubServiceClient->createListing($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

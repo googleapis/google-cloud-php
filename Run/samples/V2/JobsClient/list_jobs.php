@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START run_v2_generated_Jobs_ListJobs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Run\V2\Client\JobsClient;
 use Google\Cloud\Run\V2\Job;
-use Google\Cloud\Run\V2\JobsClient;
+use Google\Cloud\Run\V2\ListJobsRequest;
 
 /**
  * Lists Jobs.
@@ -41,10 +42,14 @@ function list_jobs_sample(string $formattedParent): void
     // Create a client.
     $jobsClient = new JobsClient();
 
+    // Prepare the request message.
+    $request = (new ListJobsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $jobsClient->listJobs($formattedParent);
+        $response = $jobsClient->listJobs($request);
 
         /** @var Job $element */
         foreach ($response as $element) {

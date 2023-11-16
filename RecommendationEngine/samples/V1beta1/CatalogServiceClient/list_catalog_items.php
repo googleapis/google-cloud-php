@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\RecommendationEngine\V1beta1\CatalogItem;
-use Google\Cloud\RecommendationEngine\V1beta1\CatalogServiceClient;
+use Google\Cloud\RecommendationEngine\V1beta1\Client\CatalogServiceClient;
+use Google\Cloud\RecommendationEngine\V1beta1\ListCatalogItemsRequest;
 
 /**
  * Gets a list of catalog items.
@@ -40,10 +41,14 @@ function list_catalog_items_sample(string $formattedParent): void
     // Create a client.
     $catalogServiceClient = new CatalogServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListCatalogItemsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $catalogServiceClient->listCatalogItems($formattedParent);
+        $response = $catalogServiceClient->listCatalogItems($request);
 
         /** @var CatalogItem $element */
         foreach ($response as $element) {

@@ -82,6 +82,9 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\PubSub\V1\Client\PublisherClient} to use the new surface.
  */
 class PublisherGapicClient
 {
@@ -410,7 +413,7 @@ class PublisherGapicClient
 
     /**
      * Creates the given topic with the given name. See the [resource name rules]
-     * (https://cloud.google.com/pubsub/docs/admin#resource_names).
+     * (https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names).
      *
      * Sample code:
      * ```

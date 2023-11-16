@@ -17,7 +17,7 @@ class ListKeysRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the project that contains the keys that will be
-     * listed, in the format "projects/{project}".
+     * listed, in the format `projects/{project}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -38,6 +38,21 @@ class ListKeysRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The name of the project that contains the keys that will be
+     *                       listed, in the format `projects/{project}`. Please see
+     *                       {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\ListKeysRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -45,7 +60,7 @@ class ListKeysRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The name of the project that contains the keys that will be
-     *           listed, in the format "projects/{project}".
+     *           listed, in the format `projects/{project}`.
      *     @type int $page_size
      *           Optional. The maximum number of keys to return. Default is 10. Max limit is
      *           1000.
@@ -61,7 +76,7 @@ class ListKeysRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the project that contains the keys that will be
-     * listed, in the format "projects/{project}".
+     * listed, in the format `projects/{project}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -73,7 +88,7 @@ class ListKeysRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the project that contains the keys that will be
-     * listed, in the format "projects/{project}".
+     * listed, in the format `projects/{project}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudresourcemanager_v3_generated_TagValues_ListTagValues_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\ResourceManager\V3\Client\TagValuesClient;
+use Google\Cloud\ResourceManager\V3\ListTagValuesRequest;
 use Google\Cloud\ResourceManager\V3\TagValue;
-use Google\Cloud\ResourceManager\V3\TagValuesClient;
 
 /**
  * Lists all TagValues for a specific TagKey.
@@ -38,10 +39,14 @@ function list_tag_values_sample(string $parent): void
     // Create a client.
     $tagValuesClient = new TagValuesClient();
 
+    // Prepare the request message.
+    $request = (new ListTagValuesRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $tagValuesClient->listTagValues($parent);
+        $response = $tagValuesClient->listTagValues($request);
 
         /** @var TagValue $element */
         foreach ($response as $element) {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmmigration_v1_generated_VmMigration_CancelCutoverJob_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VMMigration\V1\CancelCutoverJobRequest;
 use Google\Cloud\VMMigration\V1\CancelCutoverJobResponse;
-use Google\Cloud\VMMigration\V1\VmMigrationClient;
+use Google\Cloud\VMMigration\V1\Client\VmMigrationClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,14 @@ function cancel_cutover_job_sample(string $formattedName): void
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
+    // Prepare the request message.
+    $request = (new CancelCutoverJobRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $vmMigrationClient->cancelCutoverJob($formattedName);
+        $response = $vmMigrationClient->cancelCutoverJob($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -36,33 +36,41 @@ class Table extends \Google\Protobuf\Internal\Message
     private $cluster_states;
     /**
      * The column families configured for this table, mapped by column family ID.
-     * Views: `SCHEMA_VIEW`, `FULL`
+     * Views: `SCHEMA_VIEW`, `STATS_VIEW`, `FULL`
      *
      * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.ColumnFamily> column_families = 3;</code>
      */
     private $column_families;
     /**
-     * Immutable. The granularity (i.e. `MILLIS`) at which timestamps are stored in this
-     * table. Timestamps not matching the granularity will be rejected.
-     * If unspecified at creation time, the value will be set to `MILLIS`.
-     * Views: `SCHEMA_VIEW`, `FULL`.
+     * Immutable. The granularity (i.e. `MILLIS`) at which timestamps are stored
+     * in this table. Timestamps not matching the granularity will be rejected. If
+     * unspecified at creation time, the value will be set to `MILLIS`. Views:
+     * `SCHEMA_VIEW`, `FULL`.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.TimestampGranularity granularity = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $granularity = 0;
     /**
-     * Output only. If this table was restored from another data source (e.g. a backup), this
-     * field will be populated with information about the restore.
+     * Output only. If this table was restored from another data source (e.g. a
+     * backup), this field will be populated with information about the restore.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.RestoreInfo restore_info = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $restore_info = null;
     /**
+     * If specified, enable the change stream on this table.
+     * Otherwise, the change stream is disabled and the change stream is not
+     * retained.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.ChangeStreamConfig change_stream_config = 8;</code>
+     */
+    private $change_stream_config = null;
+    /**
      * Set to true to make the table protected against data loss. i.e. deleting
      * the following resources through Admin APIs are prohibited:
-     *   - The table.
-     *   - The column families in the table.
-     *   - The instance containing the table.
+     * * The table.
+     * * The column families in the table.
+     * * The instance containing the table.
      * Note one can still delete the data stored in the table through Data APIs.
      *
      * Generated from protobuf field <code>bool deletion_protection = 9;</code>
@@ -87,21 +95,25 @@ class Table extends \Google\Protobuf\Internal\Message
      *           Views: `REPLICATION_VIEW`, `ENCRYPTION_VIEW`, `FULL`
      *     @type array|\Google\Protobuf\Internal\MapField $column_families
      *           The column families configured for this table, mapped by column family ID.
-     *           Views: `SCHEMA_VIEW`, `FULL`
+     *           Views: `SCHEMA_VIEW`, `STATS_VIEW`, `FULL`
      *     @type int $granularity
-     *           Immutable. The granularity (i.e. `MILLIS`) at which timestamps are stored in this
-     *           table. Timestamps not matching the granularity will be rejected.
-     *           If unspecified at creation time, the value will be set to `MILLIS`.
-     *           Views: `SCHEMA_VIEW`, `FULL`.
+     *           Immutable. The granularity (i.e. `MILLIS`) at which timestamps are stored
+     *           in this table. Timestamps not matching the granularity will be rejected. If
+     *           unspecified at creation time, the value will be set to `MILLIS`. Views:
+     *           `SCHEMA_VIEW`, `FULL`.
      *     @type \Google\Cloud\Bigtable\Admin\V2\RestoreInfo $restore_info
-     *           Output only. If this table was restored from another data source (e.g. a backup), this
-     *           field will be populated with information about the restore.
+     *           Output only. If this table was restored from another data source (e.g. a
+     *           backup), this field will be populated with information about the restore.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\ChangeStreamConfig $change_stream_config
+     *           If specified, enable the change stream on this table.
+     *           Otherwise, the change stream is disabled and the change stream is not
+     *           retained.
      *     @type bool $deletion_protection
      *           Set to true to make the table protected against data loss. i.e. deleting
      *           the following resources through Admin APIs are prohibited:
-     *             - The table.
-     *             - The column families in the table.
-     *             - The instance containing the table.
+     *           * The table.
+     *           * The column families in the table.
+     *           * The instance containing the table.
      *           Note one can still delete the data stored in the table through Data APIs.
      * }
      */
@@ -176,7 +188,7 @@ class Table extends \Google\Protobuf\Internal\Message
 
     /**
      * The column families configured for this table, mapped by column family ID.
-     * Views: `SCHEMA_VIEW`, `FULL`
+     * Views: `SCHEMA_VIEW`, `STATS_VIEW`, `FULL`
      *
      * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.ColumnFamily> column_families = 3;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -188,7 +200,7 @@ class Table extends \Google\Protobuf\Internal\Message
 
     /**
      * The column families configured for this table, mapped by column family ID.
-     * Views: `SCHEMA_VIEW`, `FULL`
+     * Views: `SCHEMA_VIEW`, `STATS_VIEW`, `FULL`
      *
      * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.ColumnFamily> column_families = 3;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -203,10 +215,10 @@ class Table extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The granularity (i.e. `MILLIS`) at which timestamps are stored in this
-     * table. Timestamps not matching the granularity will be rejected.
-     * If unspecified at creation time, the value will be set to `MILLIS`.
-     * Views: `SCHEMA_VIEW`, `FULL`.
+     * Immutable. The granularity (i.e. `MILLIS`) at which timestamps are stored
+     * in this table. Timestamps not matching the granularity will be rejected. If
+     * unspecified at creation time, the value will be set to `MILLIS`. Views:
+     * `SCHEMA_VIEW`, `FULL`.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.TimestampGranularity granularity = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
@@ -217,10 +229,10 @@ class Table extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The granularity (i.e. `MILLIS`) at which timestamps are stored in this
-     * table. Timestamps not matching the granularity will be rejected.
-     * If unspecified at creation time, the value will be set to `MILLIS`.
-     * Views: `SCHEMA_VIEW`, `FULL`.
+     * Immutable. The granularity (i.e. `MILLIS`) at which timestamps are stored
+     * in this table. Timestamps not matching the granularity will be rejected. If
+     * unspecified at creation time, the value will be set to `MILLIS`. Views:
+     * `SCHEMA_VIEW`, `FULL`.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.TimestampGranularity granularity = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var
@@ -235,8 +247,8 @@ class Table extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If this table was restored from another data source (e.g. a backup), this
-     * field will be populated with information about the restore.
+     * Output only. If this table was restored from another data source (e.g. a
+     * backup), this field will be populated with information about the restore.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.RestoreInfo restore_info = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Bigtable\Admin\V2\RestoreInfo|null
@@ -257,8 +269,8 @@ class Table extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If this table was restored from another data source (e.g. a backup), this
-     * field will be populated with information about the restore.
+     * Output only. If this table was restored from another data source (e.g. a
+     * backup), this field will be populated with information about the restore.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.RestoreInfo restore_info = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Bigtable\Admin\V2\RestoreInfo $var
@@ -273,11 +285,51 @@ class Table extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * If specified, enable the change stream on this table.
+     * Otherwise, the change stream is disabled and the change stream is not
+     * retained.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.ChangeStreamConfig change_stream_config = 8;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\ChangeStreamConfig|null
+     */
+    public function getChangeStreamConfig()
+    {
+        return $this->change_stream_config;
+    }
+
+    public function hasChangeStreamConfig()
+    {
+        return isset($this->change_stream_config);
+    }
+
+    public function clearChangeStreamConfig()
+    {
+        unset($this->change_stream_config);
+    }
+
+    /**
+     * If specified, enable the change stream on this table.
+     * Otherwise, the change stream is disabled and the change stream is not
+     * retained.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.ChangeStreamConfig change_stream_config = 8;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\ChangeStreamConfig $var
+     * @return $this
+     */
+    public function setChangeStreamConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\ChangeStreamConfig::class);
+        $this->change_stream_config = $var;
+
+        return $this;
+    }
+
+    /**
      * Set to true to make the table protected against data loss. i.e. deleting
      * the following resources through Admin APIs are prohibited:
-     *   - The table.
-     *   - The column families in the table.
-     *   - The instance containing the table.
+     * * The table.
+     * * The column families in the table.
+     * * The instance containing the table.
      * Note one can still delete the data stored in the table through Data APIs.
      *
      * Generated from protobuf field <code>bool deletion_protection = 9;</code>
@@ -291,9 +343,9 @@ class Table extends \Google\Protobuf\Internal\Message
     /**
      * Set to true to make the table protected against data loss. i.e. deleting
      * the following resources through Admin APIs are prohibited:
-     *   - The table.
-     *   - The column families in the table.
-     *   - The instance containing the table.
+     * * The table.
+     * * The column families in the table.
+     * * The instance containing the table.
      * Note one can still delete the data stored in the table through Data APIs.
      *
      * Generated from protobuf field <code>bool deletion_protection = 9;</code>

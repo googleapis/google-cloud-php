@@ -37,14 +37,21 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Dialogflow\V2\AssistQueryParameters;
 use Google\Cloud\Dialogflow\V2\CompleteConversationRequest;
 use Google\Cloud\Dialogflow\V2\Conversation;
+use Google\Cloud\Dialogflow\V2\ConversationProfile;
 use Google\Cloud\Dialogflow\V2\CreateConversationRequest;
+use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryRequest;
+use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryRequest\MinimalConversation;
+use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryResponse;
 use Google\Cloud\Dialogflow\V2\GetConversationRequest;
 use Google\Cloud\Dialogflow\V2\ListConversationsRequest;
 use Google\Cloud\Dialogflow\V2\ListConversationsResponse;
 use Google\Cloud\Dialogflow\V2\ListMessagesRequest;
 use Google\Cloud\Dialogflow\V2\ListMessagesResponse;
+use Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest;
+use Google\Cloud\Dialogflow\V2\SearchKnowledgeResponse;
 use Google\Cloud\Dialogflow\V2\SuggestConversationSummaryRequest;
 use Google\Cloud\Dialogflow\V2\SuggestConversationSummaryResponse;
+use Google\Cloud\Dialogflow\V2\TextInput;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
@@ -71,6 +78,9 @@ use Google\Cloud\Location\Location;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Dialogflow\V2\Client\ConversationsClient} to use the new surface.
  */
 class ConversationsGapicClient
 {
@@ -94,9 +104,19 @@ class ConversationsGapicClient
         'https://www.googleapis.com/auth/dialogflow',
     ];
 
+    private static $agentNameTemplate;
+
+    private static $cXSecuritySettingsNameTemplate;
+
     private static $conversationNameTemplate;
 
+    private static $conversationModelNameTemplate;
+
     private static $conversationProfileNameTemplate;
+
+    private static $documentNameTemplate;
+
+    private static $knowledgeBaseNameTemplate;
 
     private static $locationNameTemplate;
 
@@ -104,17 +124,33 @@ class ConversationsGapicClient
 
     private static $projectNameTemplate;
 
+    private static $projectAgentNameTemplate;
+
     private static $projectConversationNameTemplate;
 
     private static $projectConversationMessageNameTemplate;
 
+    private static $projectConversationModelNameTemplate;
+
     private static $projectConversationProfileNameTemplate;
+
+    private static $projectKnowledgeBaseNameTemplate;
+
+    private static $projectKnowledgeBaseDocumentNameTemplate;
+
+    private static $projectLocationAgentNameTemplate;
 
     private static $projectLocationConversationNameTemplate;
 
     private static $projectLocationConversationMessageNameTemplate;
 
+    private static $projectLocationConversationModelNameTemplate;
+
     private static $projectLocationConversationProfileNameTemplate;
+
+    private static $projectLocationKnowledgeBaseNameTemplate;
+
+    private static $projectLocationKnowledgeBaseDocumentNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -137,6 +173,24 @@ class ConversationsGapicClient
         ];
     }
 
+    private static function getAgentNameTemplate()
+    {
+        if (self::$agentNameTemplate == null) {
+            self::$agentNameTemplate = new PathTemplate('projects/{project}/agent');
+        }
+
+        return self::$agentNameTemplate;
+    }
+
+    private static function getCXSecuritySettingsNameTemplate()
+    {
+        if (self::$cXSecuritySettingsNameTemplate == null) {
+            self::$cXSecuritySettingsNameTemplate = new PathTemplate('projects/{project}/locations/{location}/securitySettings/{security_settings}');
+        }
+
+        return self::$cXSecuritySettingsNameTemplate;
+    }
+
     private static function getConversationNameTemplate()
     {
         if (self::$conversationNameTemplate == null) {
@@ -146,6 +200,15 @@ class ConversationsGapicClient
         return self::$conversationNameTemplate;
     }
 
+    private static function getConversationModelNameTemplate()
+    {
+        if (self::$conversationModelNameTemplate == null) {
+            self::$conversationModelNameTemplate = new PathTemplate('projects/{project}/locations/{location}/conversationModels/{conversation_model}');
+        }
+
+        return self::$conversationModelNameTemplate;
+    }
+
     private static function getConversationProfileNameTemplate()
     {
         if (self::$conversationProfileNameTemplate == null) {
@@ -153,6 +216,24 @@ class ConversationsGapicClient
         }
 
         return self::$conversationProfileNameTemplate;
+    }
+
+    private static function getDocumentNameTemplate()
+    {
+        if (self::$documentNameTemplate == null) {
+            self::$documentNameTemplate = new PathTemplate('projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}');
+        }
+
+        return self::$documentNameTemplate;
+    }
+
+    private static function getKnowledgeBaseNameTemplate()
+    {
+        if (self::$knowledgeBaseNameTemplate == null) {
+            self::$knowledgeBaseNameTemplate = new PathTemplate('projects/{project}/knowledgeBases/{knowledge_base}');
+        }
+
+        return self::$knowledgeBaseNameTemplate;
     }
 
     private static function getLocationNameTemplate()
@@ -182,6 +263,15 @@ class ConversationsGapicClient
         return self::$projectNameTemplate;
     }
 
+    private static function getProjectAgentNameTemplate()
+    {
+        if (self::$projectAgentNameTemplate == null) {
+            self::$projectAgentNameTemplate = new PathTemplate('projects/{project}/agent');
+        }
+
+        return self::$projectAgentNameTemplate;
+    }
+
     private static function getProjectConversationNameTemplate()
     {
         if (self::$projectConversationNameTemplate == null) {
@@ -200,6 +290,15 @@ class ConversationsGapicClient
         return self::$projectConversationMessageNameTemplate;
     }
 
+    private static function getProjectConversationModelNameTemplate()
+    {
+        if (self::$projectConversationModelNameTemplate == null) {
+            self::$projectConversationModelNameTemplate = new PathTemplate('projects/{project}/conversationModels/{conversation_model}');
+        }
+
+        return self::$projectConversationModelNameTemplate;
+    }
+
     private static function getProjectConversationProfileNameTemplate()
     {
         if (self::$projectConversationProfileNameTemplate == null) {
@@ -207,6 +306,33 @@ class ConversationsGapicClient
         }
 
         return self::$projectConversationProfileNameTemplate;
+    }
+
+    private static function getProjectKnowledgeBaseNameTemplate()
+    {
+        if (self::$projectKnowledgeBaseNameTemplate == null) {
+            self::$projectKnowledgeBaseNameTemplate = new PathTemplate('projects/{project}/knowledgeBases/{knowledge_base}');
+        }
+
+        return self::$projectKnowledgeBaseNameTemplate;
+    }
+
+    private static function getProjectKnowledgeBaseDocumentNameTemplate()
+    {
+        if (self::$projectKnowledgeBaseDocumentNameTemplate == null) {
+            self::$projectKnowledgeBaseDocumentNameTemplate = new PathTemplate('projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}');
+        }
+
+        return self::$projectKnowledgeBaseDocumentNameTemplate;
+    }
+
+    private static function getProjectLocationAgentNameTemplate()
+    {
+        if (self::$projectLocationAgentNameTemplate == null) {
+            self::$projectLocationAgentNameTemplate = new PathTemplate('projects/{project}/locations/{location}/agent');
+        }
+
+        return self::$projectLocationAgentNameTemplate;
     }
 
     private static function getProjectLocationConversationNameTemplate()
@@ -227,6 +353,15 @@ class ConversationsGapicClient
         return self::$projectLocationConversationMessageNameTemplate;
     }
 
+    private static function getProjectLocationConversationModelNameTemplate()
+    {
+        if (self::$projectLocationConversationModelNameTemplate == null) {
+            self::$projectLocationConversationModelNameTemplate = new PathTemplate('projects/{project}/locations/{location}/conversationModels/{conversation_model}');
+        }
+
+        return self::$projectLocationConversationModelNameTemplate;
+    }
+
     private static function getProjectLocationConversationProfileNameTemplate()
     {
         if (self::$projectLocationConversationProfileNameTemplate == null) {
@@ -236,25 +371,90 @@ class ConversationsGapicClient
         return self::$projectLocationConversationProfileNameTemplate;
     }
 
+    private static function getProjectLocationKnowledgeBaseNameTemplate()
+    {
+        if (self::$projectLocationKnowledgeBaseNameTemplate == null) {
+            self::$projectLocationKnowledgeBaseNameTemplate = new PathTemplate('projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}');
+        }
+
+        return self::$projectLocationKnowledgeBaseNameTemplate;
+    }
+
+    private static function getProjectLocationKnowledgeBaseDocumentNameTemplate()
+    {
+        if (self::$projectLocationKnowledgeBaseDocumentNameTemplate == null) {
+            self::$projectLocationKnowledgeBaseDocumentNameTemplate = new PathTemplate('projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}/documents/{document}');
+        }
+
+        return self::$projectLocationKnowledgeBaseDocumentNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'agent' => self::getAgentNameTemplate(),
+                'cXSecuritySettings' => self::getCXSecuritySettingsNameTemplate(),
                 'conversation' => self::getConversationNameTemplate(),
+                'conversationModel' => self::getConversationModelNameTemplate(),
                 'conversationProfile' => self::getConversationProfileNameTemplate(),
+                'document' => self::getDocumentNameTemplate(),
+                'knowledgeBase' => self::getKnowledgeBaseNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'message' => self::getMessageNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
+                'projectAgent' => self::getProjectAgentNameTemplate(),
                 'projectConversation' => self::getProjectConversationNameTemplate(),
                 'projectConversationMessage' => self::getProjectConversationMessageNameTemplate(),
+                'projectConversationModel' => self::getProjectConversationModelNameTemplate(),
                 'projectConversationProfile' => self::getProjectConversationProfileNameTemplate(),
+                'projectKnowledgeBase' => self::getProjectKnowledgeBaseNameTemplate(),
+                'projectKnowledgeBaseDocument' => self::getProjectKnowledgeBaseDocumentNameTemplate(),
+                'projectLocationAgent' => self::getProjectLocationAgentNameTemplate(),
                 'projectLocationConversation' => self::getProjectLocationConversationNameTemplate(),
                 'projectLocationConversationMessage' => self::getProjectLocationConversationMessageNameTemplate(),
+                'projectLocationConversationModel' => self::getProjectLocationConversationModelNameTemplate(),
                 'projectLocationConversationProfile' => self::getProjectLocationConversationProfileNameTemplate(),
+                'projectLocationKnowledgeBase' => self::getProjectLocationKnowledgeBaseNameTemplate(),
+                'projectLocationKnowledgeBaseDocument' => self::getProjectLocationKnowledgeBaseDocumentNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a agent
+     * resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted agent resource.
+     */
+    public static function agentName($project)
+    {
+        return self::getAgentNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * cx_security_settings resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $securitySettings
+     *
+     * @return string The formatted cx_security_settings resource.
+     */
+    public static function cXSecuritySettingsName($project, $location, $securitySettings)
+    {
+        return self::getCXSecuritySettingsNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'security_settings' => $securitySettings,
+        ]);
     }
 
     /**
@@ -276,6 +476,25 @@ class ConversationsGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * conversation_model resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $conversationModel
+     *
+     * @return string The formatted conversation_model resource.
+     */
+    public static function conversationModelName($project, $location, $conversationModel)
+    {
+        return self::getConversationModelNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'conversation_model' => $conversationModel,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * conversation_profile resource.
      *
      * @param string $project
@@ -288,6 +507,42 @@ class ConversationsGapicClient
         return self::getConversationProfileNameTemplate()->render([
             'project' => $project,
             'conversation_profile' => $conversationProfile,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a document
+     * resource.
+     *
+     * @param string $project
+     * @param string $knowledgeBase
+     * @param string $document
+     *
+     * @return string The formatted document resource.
+     */
+    public static function documentName($project, $knowledgeBase, $document)
+    {
+        return self::getDocumentNameTemplate()->render([
+            'project' => $project,
+            'knowledge_base' => $knowledgeBase,
+            'document' => $document,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * knowledge_base resource.
+     *
+     * @param string $project
+     * @param string $knowledgeBase
+     *
+     * @return string The formatted knowledge_base resource.
+     */
+    public static function knowledgeBaseName($project, $knowledgeBase)
+    {
+        return self::getKnowledgeBaseNameTemplate()->render([
+            'project' => $project,
+            'knowledge_base' => $knowledgeBase,
         ]);
     }
 
@@ -344,6 +599,21 @@ class ConversationsGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_agent resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project_agent resource.
+     */
+    public static function projectAgentName($project)
+    {
+        return self::getProjectAgentNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_conversation resource.
      *
      * @param string $project
@@ -380,6 +650,23 @@ class ConversationsGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_conversation_model resource.
+     *
+     * @param string $project
+     * @param string $conversationModel
+     *
+     * @return string The formatted project_conversation_model resource.
+     */
+    public static function projectConversationModelName($project, $conversationModel)
+    {
+        return self::getProjectConversationModelNameTemplate()->render([
+            'project' => $project,
+            'conversation_model' => $conversationModel,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_conversation_profile resource.
      *
      * @param string $project
@@ -392,6 +679,59 @@ class ConversationsGapicClient
         return self::getProjectConversationProfileNameTemplate()->render([
             'project' => $project,
             'conversation_profile' => $conversationProfile,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_knowledge_base resource.
+     *
+     * @param string $project
+     * @param string $knowledgeBase
+     *
+     * @return string The formatted project_knowledge_base resource.
+     */
+    public static function projectKnowledgeBaseName($project, $knowledgeBase)
+    {
+        return self::getProjectKnowledgeBaseNameTemplate()->render([
+            'project' => $project,
+            'knowledge_base' => $knowledgeBase,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_knowledge_base_document resource.
+     *
+     * @param string $project
+     * @param string $knowledgeBase
+     * @param string $document
+     *
+     * @return string The formatted project_knowledge_base_document resource.
+     */
+    public static function projectKnowledgeBaseDocumentName($project, $knowledgeBase, $document)
+    {
+        return self::getProjectKnowledgeBaseDocumentNameTemplate()->render([
+            'project' => $project,
+            'knowledge_base' => $knowledgeBase,
+            'document' => $document,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_agent resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted project_location_agent resource.
+     */
+    public static function projectLocationAgentName($project, $location)
+    {
+        return self::getProjectLocationAgentNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
         ]);
     }
 
@@ -437,6 +777,25 @@ class ConversationsGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_conversation_model resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $conversationModel
+     *
+     * @return string The formatted project_location_conversation_model resource.
+     */
+    public static function projectLocationConversationModelName($project, $location, $conversationModel)
+    {
+        return self::getProjectLocationConversationModelNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'conversation_model' => $conversationModel,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_conversation_profile resource.
      *
      * @param string $project
@@ -455,20 +814,73 @@ class ConversationsGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_knowledge_base resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $knowledgeBase
+     *
+     * @return string The formatted project_location_knowledge_base resource.
+     */
+    public static function projectLocationKnowledgeBaseName($project, $location, $knowledgeBase)
+    {
+        return self::getProjectLocationKnowledgeBaseNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'knowledge_base' => $knowledgeBase,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_knowledge_base_document resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $knowledgeBase
+     * @param string $document
+     *
+     * @return string The formatted project_location_knowledge_base_document resource.
+     */
+    public static function projectLocationKnowledgeBaseDocumentName($project, $location, $knowledgeBase, $document)
+    {
+        return self::getProjectLocationKnowledgeBaseDocumentNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'knowledge_base' => $knowledgeBase,
+            'document' => $document,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - agent: projects/{project}/agent
+     * - cXSecuritySettings: projects/{project}/locations/{location}/securitySettings/{security_settings}
      * - conversation: projects/{project}/conversations/{conversation}
+     * - conversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
      * - conversationProfile: projects/{project}/conversationProfiles/{conversation_profile}
+     * - document: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}
+     * - knowledgeBase: projects/{project}/knowledgeBases/{knowledge_base}
      * - location: projects/{project}/locations/{location}
      * - message: projects/{project}/conversations/{conversation}/messages/{message}
      * - project: projects/{project}
+     * - projectAgent: projects/{project}/agent
      * - projectConversation: projects/{project}/conversations/{conversation}
      * - projectConversationMessage: projects/{project}/conversations/{conversation}/messages/{message}
+     * - projectConversationModel: projects/{project}/conversationModels/{conversation_model}
      * - projectConversationProfile: projects/{project}/conversationProfiles/{conversation_profile}
+     * - projectKnowledgeBase: projects/{project}/knowledgeBases/{knowledge_base}
+     * - projectKnowledgeBaseDocument: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}
+     * - projectLocationAgent: projects/{project}/locations/{location}/agent
      * - projectLocationConversation: projects/{project}/locations/{location}/conversations/{conversation}
      * - projectLocationConversationMessage: projects/{project}/locations/{location}/conversations/{conversation}/messages/{message}
+     * - projectLocationConversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
      * - projectLocationConversationProfile: projects/{project}/locations/{location}/conversationProfiles/{conversation_profile}
+     * - projectLocationKnowledgeBase: projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}
+     * - projectLocationKnowledgeBaseDocument: projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}/documents/{document}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -654,7 +1066,7 @@ class ConversationsGapicClient
      *           auto-generated one to you.
      *
      *           The conversation ID must be compliant with the regression fomula
-     *           "[a-zA-Z][a-zA-Z0-9_-]*" with the characters length in range of [3,64].
+     *           `[a-zA-Z][a-zA-Z0-9_-]*` with the characters length in range of [3,64].
      *           If the field is provided, the caller is resposible for
      *           1. the uniqueness of the ID, otherwise the request will be rejected.
      *           2. the consistency for whether to use custom ID or not under a project to
@@ -683,6 +1095,69 @@ class ConversationsGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateConversation', Conversation::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Generates and returns a summary for a conversation that does not have a
+     * resource created for it.
+     *
+     * Sample code:
+     * ```
+     * $conversationsClient = new ConversationsClient();
+     * try {
+     *     $statelessConversation = new MinimalConversation();
+     *     $conversationProfile = new ConversationProfile();
+     *     $response = $conversationsClient->generateStatelessSummary($statelessConversation, $conversationProfile);
+     * } finally {
+     *     $conversationsClient->close();
+     * }
+     * ```
+     *
+     * @param MinimalConversation $statelessConversation Required. The conversation to suggest a summary for.
+     * @param ConversationProfile $conversationProfile   Required. A ConversationProfile containing information required for Summary
+     *                                                   generation.
+     *                                                   Required fields: {language_code, security_settings}
+     *                                                   Optional fields: {agent_assistant_config}
+     * @param array               $optionalArgs          {
+     *     Optional.
+     *
+     *     @type string $latestMessage
+     *           The name of the latest conversation message used as context for
+     *           generating a Summary. If empty, the latest message of the conversation will
+     *           be used. The format is specific to the user and the names of the messages
+     *           provided.
+     *     @type int $maxContextSize
+     *           Max number of messages prior to and including
+     *           [latest_message] to use as context when compiling the
+     *           suggestion. By default 500 and at most 1000.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function generateStatelessSummary($statelessConversation, $conversationProfile, array $optionalArgs = [])
+    {
+        $request = new GenerateStatelessSummaryRequest();
+        $requestParamHeaders = [];
+        $request->setStatelessConversation($statelessConversation);
+        $request->setConversationProfile($conversationProfile);
+        $requestParamHeaders['stateless_conversation.parent'] = $statelessConversation->getParent();
+        if (isset($optionalArgs['latestMessage'])) {
+            $request->setLatestMessage($optionalArgs['latestMessage']);
+        }
+
+        if (isset($optionalArgs['maxContextSize'])) {
+            $request->setMaxContextSize($optionalArgs['maxContextSize']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GenerateStatelessSummary', GenerateStatelessSummaryResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -905,6 +1380,88 @@ class ConversationsGapicClient
     }
 
     /**
+     * Get answers for the given query based on knowledge documents.
+     *
+     * Sample code:
+     * ```
+     * $conversationsClient = new ConversationsClient();
+     * try {
+     *     $query = new TextInput();
+     *     $formattedConversationProfile = $conversationsClient->conversationProfileName('[PROJECT]', '[CONVERSATION_PROFILE]');
+     *     $response = $conversationsClient->searchKnowledge($query, $formattedConversationProfile);
+     * } finally {
+     *     $conversationsClient->close();
+     * }
+     * ```
+     *
+     * @param TextInput $query               Required. The natural language text query for knowledge search.
+     * @param string    $conversationProfile Required. The conversation profile used to configure the search.
+     *                                       Format: `projects/<Project ID>/locations/<Location
+     *                                       ID>/conversationProfiles/<Conversation Profile ID>`.
+     * @param array     $optionalArgs        {
+     *     Optional.
+     *
+     *     @type string $parent
+     *           The parent resource contains the conversation profile
+     *           Format: 'projects/<Project ID>' or `projects/<Project
+     *           ID>/locations/<Location ID>`.
+     *     @type string $sessionId
+     *           The ID of the search session.
+     *           The session_id can be combined with Dialogflow V3 Agent ID retrieved from
+     *           conversation profile or on its own to identify a search session. The search
+     *           history of the same session will impact the search result. It's up to the
+     *           API caller to choose an appropriate `Session ID`. It can be a random number
+     *           or some type of session identifiers (preferably hashed). The length must
+     *           not exceed 36 characters.
+     *     @type string $conversation
+     *           The conversation (between human agent and end user) where the search
+     *           request is triggered. Format: `projects/<Project ID>/locations/<Location
+     *           ID>/conversations/<Conversation ID>`.
+     *     @type string $latestMessage
+     *           The name of the latest conversation message when the request is
+     *           triggered.
+     *           Format: `projects/<Project ID>/locations/<Location
+     *           ID>/conversations/<Conversation ID>/messages/<Message ID>`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dialogflow\V2\SearchKnowledgeResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function searchKnowledge($query, $conversationProfile, array $optionalArgs = [])
+    {
+        $request = new SearchKnowledgeRequest();
+        $requestParamHeaders = [];
+        $request->setQuery($query);
+        $request->setConversationProfile($conversationProfile);
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['sessionId'])) {
+            $request->setSessionId($optionalArgs['sessionId']);
+        }
+
+        if (isset($optionalArgs['conversation'])) {
+            $request->setConversation($optionalArgs['conversation']);
+            $requestParamHeaders['conversation'] = $optionalArgs['conversation'];
+        }
+
+        if (isset($optionalArgs['latestMessage'])) {
+            $request->setLatestMessage($optionalArgs['latestMessage']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('SearchKnowledge', SearchKnowledgeResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Suggests summary for a conversation based on specific historical messages.
      * The range of the messages to be used for summary can be specified in the
      * request.
@@ -938,7 +1495,7 @@ class ConversationsGapicClient
      *           [latest_message] to use as context when compiling the
      *           suggestion. By default 500 and at most 1000.
      *     @type AssistQueryParameters $assistQueryParams
-     *           Parameters for a human assist query.
+     *           Parameters for a human assist query. Only used for POC/demo purpose.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

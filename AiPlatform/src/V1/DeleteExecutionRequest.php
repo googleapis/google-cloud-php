@@ -34,6 +34,22 @@ class DeleteExecutionRequest extends \Google\Protobuf\Internal\Message
     private $etag = '';
 
     /**
+     * @param string $name Required. The resource name of the Execution to delete.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
+     *                     Please see {@see MetadataServiceClient::executionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\DeleteExecutionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -31,11 +31,18 @@ class BackendType
      * Generated from protobuf enum <code>TARGET_POOL = 2;</code>
      */
     const TARGET_POOL = 2;
+    /**
+     * Target Instance as the load balancer's backend.
+     *
+     * Generated from protobuf enum <code>TARGET_INSTANCE = 3;</code>
+     */
+    const TARGET_INSTANCE = 3;
 
     private static $valueToName = [
         self::BACKEND_TYPE_UNSPECIFIED => 'BACKEND_TYPE_UNSPECIFIED',
         self::BACKEND_SERVICE => 'BACKEND_SERVICE',
         self::TARGET_POOL => 'TARGET_POOL',
+        self::TARGET_INSTANCE => 'TARGET_INSTANCE',
     ];
 
     public static function name($value)

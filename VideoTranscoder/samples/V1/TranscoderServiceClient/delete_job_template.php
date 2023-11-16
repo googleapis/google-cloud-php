@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START transcoder_v1_generated_TranscoderService_DeleteJobTemplate_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Video\Transcoder\V1\TranscoderServiceClient;
+use Google\Cloud\Video\Transcoder\V1\Client\TranscoderServiceClient;
+use Google\Cloud\Video\Transcoder\V1\DeleteJobTemplateRequest;
 
 /**
  * Deletes a job template.
@@ -38,9 +39,13 @@ function delete_job_template_sample(string $formattedName): void
     // Create a client.
     $transcoderServiceClient = new TranscoderServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteJobTemplateRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $transcoderServiceClient->deleteJobTemplate($formattedName);
+        $transcoderServiceClient->deleteJobTemplate($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

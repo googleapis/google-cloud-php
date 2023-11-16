@@ -25,10 +25,12 @@
 namespace Google\Cloud\Dataproc\V1\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -46,9 +48,16 @@ use Google\Cloud\Dataproc\V1\ListClustersResponse;
 use Google\Cloud\Dataproc\V1\StartClusterRequest;
 use Google\Cloud\Dataproc\V1\StopClusterRequest;
 use Google\Cloud\Dataproc\V1\UpdateClusterRequest;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\GetPolicyOptions;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
+use Google\Type\Interval;
 
 /**
  * Service Description: The ClusterControllerService provides methods to manage clusters
@@ -93,6 +102,15 @@ use Google\Protobuf\FieldMask;
  *     $clusterControllerClient->close();
  * }
  * ```
+ *
+ * Many parameters require resource names to be formatted in a particular way. To
+ * assist with these names, this class includes a format method for each type of
+ * name, and additionally a parseName method to extract the individual identifiers
+ * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Dataproc\V1\Client\ClusterControllerClient} to use the new
+ * surface.
  */
 class ClusterControllerGapicClient
 {
@@ -115,6 +133,16 @@ class ClusterControllerGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $clusterNameTemplate;
+
+    private static $clusterRegionNameTemplate;
+
+    private static $nodeGroupNameTemplate;
+
+    private static $serviceNameTemplate;
+
+    private static $pathTemplateMap;
+
     private $operationsClient;
 
     private static function getClientDefaults()
@@ -134,6 +162,178 @@ class ClusterControllerGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getClusterNameTemplate()
+    {
+        if (self::$clusterNameTemplate == null) {
+            self::$clusterNameTemplate = new PathTemplate('projects/{project}/locations/{location}/clusters/{cluster}');
+        }
+
+        return self::$clusterNameTemplate;
+    }
+
+    private static function getClusterRegionNameTemplate()
+    {
+        if (self::$clusterRegionNameTemplate == null) {
+            self::$clusterRegionNameTemplate = new PathTemplate('projects/{project}/regions/{region}/clusters/{cluster}');
+        }
+
+        return self::$clusterRegionNameTemplate;
+    }
+
+    private static function getNodeGroupNameTemplate()
+    {
+        if (self::$nodeGroupNameTemplate == null) {
+            self::$nodeGroupNameTemplate = new PathTemplate('projects/{project}/regions/{region}/clusters/{cluster}/nodeGroups/{node_group}');
+        }
+
+        return self::$nodeGroupNameTemplate;
+    }
+
+    private static function getServiceNameTemplate()
+    {
+        if (self::$serviceNameTemplate == null) {
+            self::$serviceNameTemplate = new PathTemplate('projects/{project}/locations/{location}/services/{service}');
+        }
+
+        return self::$serviceNameTemplate;
+    }
+
+    private static function getPathTemplateMap()
+    {
+        if (self::$pathTemplateMap == null) {
+            self::$pathTemplateMap = [
+                'cluster' => self::getClusterNameTemplate(),
+                'clusterRegion' => self::getClusterRegionNameTemplate(),
+                'nodeGroup' => self::getNodeGroupNameTemplate(),
+                'service' => self::getServiceNameTemplate(),
+            ];
+        }
+
+        return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a cluster
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $cluster
+     *
+     * @return string The formatted cluster resource.
+     */
+    public static function clusterName($project, $location, $cluster)
+    {
+        return self::getClusterNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'cluster' => $cluster,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * cluster_region resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $cluster
+     *
+     * @return string The formatted cluster_region resource.
+     */
+    public static function clusterRegionName($project, $region, $cluster)
+    {
+        return self::getClusterRegionNameTemplate()->render([
+            'project' => $project,
+            'region' => $region,
+            'cluster' => $cluster,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a node_group
+     * resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $cluster
+     * @param string $nodeGroup
+     *
+     * @return string The formatted node_group resource.
+     */
+    public static function nodeGroupName($project, $region, $cluster, $nodeGroup)
+    {
+        return self::getNodeGroupNameTemplate()->render([
+            'project' => $project,
+            'region' => $region,
+            'cluster' => $cluster,
+            'node_group' => $nodeGroup,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a service
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $service
+     *
+     * @return string The formatted service resource.
+     */
+    public static function serviceName($project, $location, $service)
+    {
+        return self::getServiceNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'service' => $service,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * Template: Pattern
+     * - cluster: projects/{project}/locations/{location}/clusters/{cluster}
+     * - clusterRegion: projects/{project}/regions/{region}/clusters/{cluster}
+     * - nodeGroup: projects/{project}/regions/{region}/clusters/{cluster}/nodeGroups/{node_group}
+     * - service: projects/{project}/locations/{location}/services/{service}
+     *
+     * The optional $template argument can be supplied to specify a particular pattern,
+     * and must match one of the templates listed above. If no $template argument is
+     * provided, or if the $template argument does not match one of the templates
+     * listed, then parseName will check each of the supported templates, and return
+     * the first match.
+     *
+     * @param string $formattedName The formatted name string
+     * @param string $template      Optional name of template to match
+     *
+     * @return array An associative array from name component IDs to component values.
+     *
+     * @throws ValidationException If $formattedName could not be matched.
+     */
+    public static function parseName($formattedName, $template = null)
+    {
+        $templateMap = self::getPathTemplateMap();
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException("Template name $template does not exist");
+            }
+
+            return $templateMap[$template]->match($formattedName);
+        }
+
+        foreach ($templateMap as $templateName => $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -475,6 +675,19 @@ class ClusterControllerGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $tarballGcsDir
+     *           Optional. The output Cloud Storage directory for the diagnostic
+     *           tarball. If not specified, a task-specific directory in the cluster's
+     *           staging bucket will be used.
+     *     @type Interval $diagnosisInterval
+     *           Optional. Time interval in which diagnosis should be carried out on the
+     *           cluster.
+     *     @type string[] $jobs
+     *           Optional. Specifies a list of jobs on which diagnosis is to be performed.
+     *           Format: projects/{project}/regions/{region}/jobs/{job}
+     *     @type string[] $yarnApplicationIds
+     *           Optional. Specifies a list of yarn applications on which diagnosis is to be
+     *           performed.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -495,6 +708,22 @@ class ClusterControllerGapicClient
         $requestParamHeaders['project_id'] = $projectId;
         $requestParamHeaders['region'] = $region;
         $requestParamHeaders['cluster_name'] = $clusterName;
+        if (isset($optionalArgs['tarballGcsDir'])) {
+            $request->setTarballGcsDir($optionalArgs['tarballGcsDir']);
+        }
+
+        if (isset($optionalArgs['diagnosisInterval'])) {
+            $request->setDiagnosisInterval($optionalArgs['diagnosisInterval']);
+        }
+
+        if (isset($optionalArgs['jobs'])) {
+            $request->setJobs($optionalArgs['jobs']);
+        }
+
+        if (isset($optionalArgs['yarnApplicationIds'])) {
+            $request->setYarnApplicationIds($optionalArgs['yarnApplicationIds']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DiagnoseCluster', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -1002,5 +1231,165 @@ class ClusterControllerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('UpdateCluster', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy
+    if the resource exists and does not have a policy set.
+     *
+     * Sample code:
+     * ```
+     * $clusterControllerClient = new ClusterControllerClient();
+     * try {
+     *     $resource = 'resource';
+     *     $response = $clusterControllerClient->getIamPolicy($resource);
+     * } finally {
+     *     $clusterControllerClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type GetPolicyOptions $options
+     *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
+     *           `GetIamPolicy`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getIamPolicy($resource, array $optionalArgs = [])
+    {
+        $request = new GetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['options'])) {
+            $request->setOptions($optionalArgs['options']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetIamPolicy', Policy::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces
+    any existing policy.
+
+    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    errors.
+     *
+     * Sample code:
+     * ```
+     * $clusterControllerClient = new ClusterControllerClient();
+     * try {
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $clusterControllerClient->setIamPolicy($resource, $policy);
+     * } finally {
+     *     $clusterControllerClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
+     *           the fields in the mask will be modified. If no mask is provided, the
+     *           following default mask is used:
+     *
+     *           `paths: "bindings, etag"`
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    {
+        $request = new SetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('SetIamPolicy', Policy::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the
+    resource does not exist, this will return an empty set of
+    permissions, not a `NOT_FOUND` error.
+
+    Note: This operation is designed to be used for building
+    permission-aware UIs and command-line tools, not for authorization
+    checking. This operation may "fail open" without warning.
+     *
+     * Sample code:
+     * ```
+     * $clusterControllerClient = new ClusterControllerClient();
+     * try {
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $clusterControllerClient->testIamPermissions($resource, $permissions);
+     * } finally {
+     *     $clusterControllerClient->close();
+     * }
+     * ```
+     *
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
+    {
+        $request = new TestIamPermissionsRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();
     }
 }

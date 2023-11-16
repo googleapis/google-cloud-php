@@ -17,7 +17,8 @@
 
 namespace Google\Cloud\Datastore\Tests\System;
 
-use Google\Auth\ApplicationDefaultCredentials;
+use Google\Auth\CredentialsLoader;
+use Google\Auth\Middleware\AuthTokenMiddleware;
 use Google\Cloud\Datastore\DatastoreClient;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
@@ -130,8 +131,10 @@ class DatastoreMultipleDbTestCase extends DatastoreTestCase
             return $this->getMockedFirestoreAdminClient();
         }
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-        putenv("GOOGLE_APPLICATION_CREDENTIALS=$keyFilePath");
-        $middleware = ApplicationDefaultCredentials::getMiddleware();
+        $jsonKey = json_decode(file_get_contents($keyFilePath), true);
+        $scopes = [DatastoreClient::FULL_CONTROL_SCOPE];
+        $creds = CredentialsLoader::makeCredentials($scopes, $jsonKey);
+        $middleware = new AuthTokenMiddleware($creds);
         if (!class_exists(HandlerStack::class)) {
             throw new \Exception(
                 'HandlerStack is required for Multiple DB tests but was not found.'

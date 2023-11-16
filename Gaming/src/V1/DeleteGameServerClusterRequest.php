@@ -24,6 +24,21 @@ class DeleteGameServerClusterRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the game server cluster to delete, in the following form:
+     *                     `projects/{project}/locations/{location}/gameServerClusters/{cluster}`. Please see
+     *                     {@see GameServerClustersServiceClient::gameServerClusterName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Gaming\V1\DeleteGameServerClusterRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

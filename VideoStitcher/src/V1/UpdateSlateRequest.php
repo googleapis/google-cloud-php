@@ -29,6 +29,21 @@ class UpdateSlateRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Video\Stitcher\V1\Slate $slate      Required. The resource with updated fields.
+     * @param \Google\Protobuf\FieldMask            $updateMask Required. The update mask which specifies fields which should be updated.
+     *
+     * @return \Google\Cloud\Video\Stitcher\V1\UpdateSlateRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Video\Stitcher\V1\Slate $slate, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setSlate($slate)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

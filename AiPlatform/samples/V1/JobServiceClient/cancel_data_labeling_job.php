@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_JobService_CancelDataLabelingJob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AIPlatform\V1\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\CancelDataLabelingJobRequest;
+use Google\Cloud\AIPlatform\V1\Client\JobServiceClient;
 
 /**
  * Cancels a DataLabelingJob. Success of cancellation is not guaranteed.
@@ -39,9 +40,13 @@ function cancel_data_labeling_job_sample(string $formattedName): void
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
+    // Prepare the request message.
+    $request = (new CancelDataLabelingJobRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $jobServiceClient->cancelDataLabelingJob($formattedName);
+        $jobServiceClient->cancelDataLabelingJob($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

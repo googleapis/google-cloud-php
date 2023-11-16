@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START gsuiteaddons_v1_generated_GSuiteAddOns_ReplaceDeployment_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\GSuiteAddOns\V1\Client\GSuiteAddOnsClient;
 use Google\Cloud\GSuiteAddOns\V1\Deployment;
-use Google\Cloud\GSuiteAddOns\V1\GSuiteAddOnsClient;
+use Google\Cloud\GSuiteAddOns\V1\ReplaceDeploymentRequest;
 
 /**
  * Creates or replaces a deployment with the specified name.
@@ -41,13 +42,15 @@ function replace_deployment_sample(): void
     // Create a client.
     $gSuiteAddOnsClient = new GSuiteAddOnsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $deployment = new Deployment();
+    $request = (new ReplaceDeploymentRequest())
+        ->setDeployment($deployment);
 
     // Call the API and handle any network failures.
     try {
         /** @var Deployment $response */
-        $response = $gSuiteAddOnsClient->replaceDeployment($deployment);
+        $response = $gSuiteAddOnsClient->replaceDeployment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

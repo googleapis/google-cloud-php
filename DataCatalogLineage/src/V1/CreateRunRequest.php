@@ -38,6 +38,22 @@ class CreateRunRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
+     * @param string                                   $parent Required. The name of the process that should own the run. Please see
+     *                                                         {@see LineageClient::processName()} for help formatting this field.
+     * @param \Google\Cloud\DataCatalog\Lineage\V1\Run $run    Required. The run to create.
+     *
+     * @return \Google\Cloud\DataCatalog\Lineage\V1\CreateRunRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\DataCatalog\Lineage\V1\Run $run): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setRun($run);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -23,6 +23,20 @@ class GetReplicationCycleRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the ReplicationCycle. Please see
+     *                     {@see VmMigrationClient::replicationCycleName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VMMigration\V1\GetReplicationCycleRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

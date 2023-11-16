@@ -58,6 +58,21 @@ class ListNotificationsRequest extends \Google\Protobuf\Internal\Message
     protected $language_code = '';
 
     /**
+     * @param string $parent Required. The parent, which owns this collection of notifications.
+     *                       Must be of the form "organizations/{organization}/locations/{location}". Please see
+     *                       {@see AdvisoryNotificationsServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AdvisoryNotifications\V1\ListNotificationsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

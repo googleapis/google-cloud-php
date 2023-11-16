@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_MetadataService_AddContextChildren_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\AddContextChildrenRequest;
 use Google\Cloud\AIPlatform\V1\AddContextChildrenResponse;
-use Google\Cloud\AIPlatform\V1\MetadataServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\MetadataServiceClient;
 
 /**
  * Adds a set of Contexts as children to a parent Context. If any of the
@@ -45,10 +46,14 @@ function add_context_children_sample(string $formattedContext): void
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
+    // Prepare the request message.
+    $request = (new AddContextChildrenRequest())
+        ->setContext($formattedContext);
+
     // Call the API and handle any network failures.
     try {
         /** @var AddContextChildrenResponse $response */
-        $response = $metadataServiceClient->addContextChildren($formattedContext);
+        $response = $metadataServiceClient->addContextChildren($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

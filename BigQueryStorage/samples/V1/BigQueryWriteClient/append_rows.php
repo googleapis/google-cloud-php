@@ -62,10 +62,14 @@ use Google\Cloud\BigQuery\Storage\V1\BigQueryWriteClient;
  * finalized (via the `FinalizeWriteStream` rpc), and the stream is explicitly
  * committed via the `BatchCommitWriteStreams` rpc.
  *
- * @param string $formattedWriteStream The write_stream identifies the target of the append operation,
- *                                     and only needs to be specified as part of the first request on the gRPC
- *                                     connection. If provided for subsequent requests, it must match the value of
- *                                     the first request.
+ * @param string $formattedWriteStream The write_stream identifies the append operation. It must be
+ *                                     provided in the following scenarios:
+ *
+ *                                     * In the first request to an AppendRows connection.
+ *
+ *                                     * In all subsequent requests to an AppendRows connection, if you use the
+ *                                     same connection to write to multiple tables or change the input schema for
+ *                                     default streams.
  *
  *                                     For explicitly created write streams, the format is:
  *
@@ -73,7 +77,23 @@ use Google\Cloud\BigQuery\Storage\V1\BigQueryWriteClient;
  *
  *                                     For the special default stream, the format is:
  *
- *                                     * `projects/{project}/datasets/{dataset}/tables/{table}/streams/_default`. Please see
+ *                                     * `projects/{project}/datasets/{dataset}/tables/{table}/streams/_default`.
+ *
+ *                                     An example of a possible sequence of requests with write_stream fields
+ *                                     within a single connection:
+ *
+ *                                     * r1: {write_stream: stream_name_1}
+ *
+ *                                     * r2: {write_stream: /*omit&#42;/}
+ *
+ *                                     * r3: {write_stream: /*omit&#42;/}
+ *
+ *                                     * r4: {write_stream: stream_name_2}
+ *
+ *                                     * r5: {write_stream: stream_name_2}
+ *
+ *                                     The destination changed in request_4, so the write_stream field must be
+ *                                     populated in all subsequent requests in this stream. Please see
  *                                     {@see BigQueryWriteClient::writeStreamName()} for help formatting this field.
  */
 function append_rows_sample(string $formattedWriteStream): void

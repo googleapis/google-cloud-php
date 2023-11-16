@@ -29,6 +29,21 @@ class GetEffectiveFirewallsNetworkRequest extends \Google\Protobuf\Internal\Mess
     private $project = '';
 
     /**
+     * @param string $project Project ID for this request.
+     * @param string $network Name of the network for this request.
+     *
+     * @return \Google\Cloud\Compute\V1\GetEffectiveFirewallsNetworkRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $network): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setNetwork($network);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

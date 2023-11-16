@@ -50,7 +50,7 @@ use Google\Rpc\Status;
  *
  * For builds that specify `StorageSource`:
  *
- * * If the original build pulled source from Google Cloud Storage without
+ * * If the original build pulled source from Cloud Storage without
  * specifying the generation of the object, the new build will use the current
  * object, which may be different from the original build source.
  * * If the original build pulled source from Cloud Storage and specified the

@@ -51,6 +51,22 @@ class DisableCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messa
     private $ignore_dependent_resources = false;
 
     /**
+     * @param string $name Required. The resource name for this
+     *                     [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *                     in the format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`. Please see
+     *                     {@see CertificateAuthorityServiceClient::certificateAuthorityName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Security\PrivateCA\V1\DisableCertificateAuthorityRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -165,7 +165,7 @@ class Result implements \IteratorAggregate
      *        duplicate column names are present a `\RuntimeException` will be
      *        thrown. `Result::RETURN_ZERO_INDEXED` returns items as a 0 indexed
      *        array, with the key representing the column number as found by
-     *        executing {@see Google\Cloud\Spanner\Result::columns()}. Ex:
+     *        executing {@see \Google\Cloud\Spanner\Result::columns()}. Ex:
      *        `[0 => 'my_value']`. **Defaults to** `Result::RETURN_ASSOCIATIVE`.
      * @return \Generator
      * @throws \InvalidArgumentException When an invalid format is provided.
@@ -178,6 +178,7 @@ class Result implements \IteratorAggregate
         $call = $this->call;
         $generator = null;
         $shouldRetry = false;
+        $isResultsYielded = false;
         $backoff = new ExponentialBackoff($this->retries, function ($ex) {
             if ($ex instanceof ServiceException) {
                 return $ex->getCode() === Grpc\STATUS_UNAVAILABLE;
@@ -209,13 +210,13 @@ class Result implements \IteratorAggregate
                         list($yieldableRows, $chunkedResult) = $this->parseRowsFromBufferedResults($bufferedResults);
 
                         foreach ($yieldableRows as $row) {
+                            $isResultsYielded = true;
                             yield $this->mapper->decodeValues($this->columns, $row, $format);
                         }
                     }
 
                     // Now that we've yielded all available rows, flush the buffer.
                     $bufferedResults = [];
-                    $shouldRetry = $hasResumeToken;
 
                     // If the last item in the buffer had a chunked value let's
                     // hold on to it so we can stitch it together into a yieldable
@@ -225,6 +226,8 @@ class Result implements \IteratorAggregate
                     }
                 }
 
+                // retry without resume token when results have not yielded
+                $shouldRetry = !$isResultsYielded || $hasResumeToken;
                 $generator->next();
                 $valid = $generator->valid();
             } catch (ServiceException $ex) {

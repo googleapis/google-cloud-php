@@ -26,11 +26,31 @@ class UpdateNetworkRequest extends \Google\Protobuf\Internal\Message
     /**
      * The list of fields to update.
      * The only currently supported fields are:
-     *   `labels`, `reservations`
+     *   `labels`, `reservations`, `vrf.vlan_attachments`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
     private $update_mask = null;
+
+    /**
+     * @param \Google\Cloud\BareMetalSolution\V2\Network $network    Required. The network to update.
+     *
+     *                                                               The `name` field is used to identify the instance to update.
+     *                                                               Format: projects/{project}/locations/{location}/networks/{network}
+     * @param \Google\Protobuf\FieldMask                 $updateMask The list of fields to update.
+     *                                                               The only currently supported fields are:
+     *                                                               `labels`, `reservations`, `vrf.vlan_attachments`
+     *
+     * @return \Google\Cloud\BareMetalSolution\V2\UpdateNetworkRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\BareMetalSolution\V2\Network $network, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setNetwork($network)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.
@@ -45,7 +65,7 @@ class UpdateNetworkRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           The list of fields to update.
      *           The only currently supported fields are:
-     *             `labels`, `reservations`
+     *             `labels`, `reservations`, `vrf.vlan_attachments`
      * }
      */
     public function __construct($data = NULL) {
@@ -96,7 +116,7 @@ class UpdateNetworkRequest extends \Google\Protobuf\Internal\Message
     /**
      * The list of fields to update.
      * The only currently supported fields are:
-     *   `labels`, `reservations`
+     *   `labels`, `reservations`, `vrf.vlan_attachments`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -119,7 +139,7 @@ class UpdateNetworkRequest extends \Google\Protobuf\Internal\Message
     /**
      * The list of fields to update.
      * The only currently supported fields are:
-     *   `labels`, `reservations`
+     *   `labels`, `reservations`, `vrf.vlan_attachments`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

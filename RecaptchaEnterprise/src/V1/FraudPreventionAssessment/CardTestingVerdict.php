@@ -17,10 +17,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class CardTestingVerdict extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Probability (0-1) of this transaction attempt being part of a card
-     * testing attack.
+     * Output only. Probability of this transaction attempt being part of a card
+     * testing attack. Values are from 0.0 (lowest) to 1.0 (highest).
      *
-     * Generated from protobuf field <code>float risk = 1;</code>
+     * Generated from protobuf field <code>float risk = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $risk = 0.0;
 
@@ -31,8 +31,8 @@ class CardTestingVerdict extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type float $risk
-     *           Probability (0-1) of this transaction attempt being part of a card
-     *           testing attack.
+     *           Output only. Probability of this transaction attempt being part of a card
+     *           testing attack. Values are from 0.0 (lowest) to 1.0 (highest).
      * }
      */
     public function __construct($data = NULL) {
@@ -41,10 +41,10 @@ class CardTestingVerdict extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Probability (0-1) of this transaction attempt being part of a card
-     * testing attack.
+     * Output only. Probability of this transaction attempt being part of a card
+     * testing attack. Values are from 0.0 (lowest) to 1.0 (highest).
      *
-     * Generated from protobuf field <code>float risk = 1;</code>
+     * Generated from protobuf field <code>float risk = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return float
      */
     public function getRisk()
@@ -53,10 +53,10 @@ class CardTestingVerdict extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Probability (0-1) of this transaction attempt being part of a card
-     * testing attack.
+     * Output only. Probability of this transaction attempt being part of a card
+     * testing attack. Values are from 0.0 (lowest) to 1.0 (highest).
      *
-     * Generated from protobuf field <code>float risk = 1;</code>
+     * Generated from protobuf field <code>float risk = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param float $var
      * @return $this
      */

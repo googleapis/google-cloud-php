@@ -9,9 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Feature Metadata information that describes an attribute of an entity type.
- * For example, apple is an entity type, and color is a feature that describes
- * apple.
+ * Feature Metadata information.
+ * For example, color is a feature that describes an apple.
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.Feature</code>
  */
@@ -21,6 +20,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      * Immutable. Name of the Feature.
      * Format:
      * `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
+     * `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
      * The last part feature is assigned by the client. The feature can be up to
      * 64 characters long and can consist only of ASCII Latin letters A-Z and a-z,
      * underscore(_), and ASCII digits 0-9 starting with a letter. The value will
@@ -36,19 +36,22 @@ class Feature extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Required. Immutable. Type of Feature value.
+     * Immutable. Only applicable for Vertex AI Feature Store (Legacy).
+     * Type of Feature value.
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Feature.ValueType value_type = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Feature.ValueType value_type = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $value_type = 0;
     /**
-     * Output only. Timestamp when this EntityType was created.
+     * Output only. Only applicable for Vertex AI Feature Store (Legacy).
+     * Timestamp when this EntityType was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
     /**
-     * Output only. Timestamp when this EntityType was most recently updated.
+     * Output only. Only applicable for Vertex AI Feature Store (Legacy).
+     * Timestamp when this EntityType was most recently updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -75,8 +78,10 @@ class Feature extends \Google\Protobuf\Internal\Message
      */
     private $etag = '';
     /**
-     * Optional. If not set, use the monitoring_config defined for the EntityType
-     * this Feature belongs to. Only Features with type
+     * Optional. Only applicable for Vertex AI Feature Store (Legacy).
+     * If not set, use the monitoring_config defined for the EntityType this
+     * Feature belongs to.
+     * Only Features with type
      * ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL,
      * STRING, DOUBLE or INT64 can enable monitoring.
      * If set to true, all types of data monitoring are disabled despite the
@@ -86,12 +91,20 @@ class Feature extends \Google\Protobuf\Internal\Message
      */
     private $disable_monitoring = false;
     /**
-     * Output only. The list of historical stats and anomalies with specified
-     * objectives.
+     * Output only. Only applicable for Vertex AI Feature Store (Legacy).
+     * The list of historical stats and anomalies with specified objectives.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Feature.MonitoringStatsAnomaly monitoring_stats_anomalies = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $monitoring_stats_anomalies;
+    /**
+     * Only applicable for Vertex AI Feature Store.
+     * The name of the BigQuery Table/View columnn hosting data for this version.
+     * If no value is provided, will use feature_id.
+     *
+     * Generated from protobuf field <code>string version_column_name = 106;</code>
+     */
+    private $version_column_name = '';
 
     /**
      * Constructor.
@@ -103,6 +116,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      *           Immutable. Name of the Feature.
      *           Format:
      *           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
+     *           `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
      *           The last part feature is assigned by the client. The feature can be up to
      *           64 characters long and can consist only of ASCII Latin letters A-Z and a-z,
      *           underscore(_), and ASCII digits 0-9 starting with a letter. The value will
@@ -110,11 +124,14 @@ class Feature extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Description of the Feature.
      *     @type int $value_type
-     *           Required. Immutable. Type of Feature value.
+     *           Immutable. Only applicable for Vertex AI Feature Store (Legacy).
+     *           Type of Feature value.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. Timestamp when this EntityType was created.
+     *           Output only. Only applicable for Vertex AI Feature Store (Legacy).
+     *           Timestamp when this EntityType was created.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           Output only. Timestamp when this EntityType was most recently updated.
+     *           Output only. Only applicable for Vertex AI Feature Store (Legacy).
+     *           Timestamp when this EntityType was most recently updated.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. The labels with user-defined metadata to organize your Features.
      *           Label keys and values can be no longer than 64 characters
@@ -129,15 +146,21 @@ class Feature extends \Google\Protobuf\Internal\Message
      *           Used to perform a consistent read-modify-write updates. If not set, a blind
      *           "overwrite" update happens.
      *     @type bool $disable_monitoring
-     *           Optional. If not set, use the monitoring_config defined for the EntityType
-     *           this Feature belongs to. Only Features with type
+     *           Optional. Only applicable for Vertex AI Feature Store (Legacy).
+     *           If not set, use the monitoring_config defined for the EntityType this
+     *           Feature belongs to.
+     *           Only Features with type
      *           ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL,
      *           STRING, DOUBLE or INT64 can enable monitoring.
      *           If set to true, all types of data monitoring are disabled despite the
      *           config on EntityType.
      *     @type array<\Google\Cloud\AIPlatform\V1\Feature\MonitoringStatsAnomaly>|\Google\Protobuf\Internal\RepeatedField $monitoring_stats_anomalies
-     *           Output only. The list of historical stats and anomalies with specified
-     *           objectives.
+     *           Output only. Only applicable for Vertex AI Feature Store (Legacy).
+     *           The list of historical stats and anomalies with specified objectives.
+     *     @type string $version_column_name
+     *           Only applicable for Vertex AI Feature Store.
+     *           The name of the BigQuery Table/View columnn hosting data for this version.
+     *           If no value is provided, will use feature_id.
      * }
      */
     public function __construct($data = NULL) {
@@ -149,6 +172,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      * Immutable. Name of the Feature.
      * Format:
      * `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
+     * `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
      * The last part feature is assigned by the client. The feature can be up to
      * 64 characters long and can consist only of ASCII Latin letters A-Z and a-z,
      * underscore(_), and ASCII digits 0-9 starting with a letter. The value will
@@ -166,6 +190,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      * Immutable. Name of the Feature.
      * Format:
      * `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
+     * `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
      * The last part feature is assigned by the client. The feature can be up to
      * 64 characters long and can consist only of ASCII Latin letters A-Z and a-z,
      * underscore(_), and ASCII digits 0-9 starting with a letter. The value will
@@ -210,9 +235,10 @@ class Feature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. Type of Feature value.
+     * Immutable. Only applicable for Vertex AI Feature Store (Legacy).
+     * Type of Feature value.
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Feature.ValueType value_type = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Feature.ValueType value_type = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
      */
     public function getValueType()
@@ -221,9 +247,10 @@ class Feature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. Type of Feature value.
+     * Immutable. Only applicable for Vertex AI Feature Store (Legacy).
+     * Type of Feature value.
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Feature.ValueType value_type = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Feature.ValueType value_type = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var
      * @return $this
      */
@@ -236,7 +263,8 @@ class Feature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Timestamp when this EntityType was created.
+     * Output only. Only applicable for Vertex AI Feature Store (Legacy).
+     * Timestamp when this EntityType was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -257,7 +285,8 @@ class Feature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Timestamp when this EntityType was created.
+     * Output only. Only applicable for Vertex AI Feature Store (Legacy).
+     * Timestamp when this EntityType was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -272,7 +301,8 @@ class Feature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Timestamp when this EntityType was most recently updated.
+     * Output only. Only applicable for Vertex AI Feature Store (Legacy).
+     * Timestamp when this EntityType was most recently updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -293,7 +323,8 @@ class Feature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Timestamp when this EntityType was most recently updated.
+     * Output only. Only applicable for Vertex AI Feature Store (Legacy).
+     * Timestamp when this EntityType was most recently updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -378,8 +409,10 @@ class Feature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If not set, use the monitoring_config defined for the EntityType
-     * this Feature belongs to. Only Features with type
+     * Optional. Only applicable for Vertex AI Feature Store (Legacy).
+     * If not set, use the monitoring_config defined for the EntityType this
+     * Feature belongs to.
+     * Only Features with type
      * ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL,
      * STRING, DOUBLE or INT64 can enable monitoring.
      * If set to true, all types of data monitoring are disabled despite the
@@ -394,8 +427,10 @@ class Feature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If not set, use the monitoring_config defined for the EntityType
-     * this Feature belongs to. Only Features with type
+     * Optional. Only applicable for Vertex AI Feature Store (Legacy).
+     * If not set, use the monitoring_config defined for the EntityType this
+     * Feature belongs to.
+     * Only Features with type
      * ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL,
      * STRING, DOUBLE or INT64 can enable monitoring.
      * If set to true, all types of data monitoring are disabled despite the
@@ -414,8 +449,8 @@ class Feature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The list of historical stats and anomalies with specified
-     * objectives.
+     * Output only. Only applicable for Vertex AI Feature Store (Legacy).
+     * The list of historical stats and anomalies with specified objectives.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Feature.MonitoringStatsAnomaly monitoring_stats_anomalies = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -426,8 +461,8 @@ class Feature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The list of historical stats and anomalies with specified
-     * objectives.
+     * Output only. Only applicable for Vertex AI Feature Store (Legacy).
+     * The list of historical stats and anomalies with specified objectives.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Feature.MonitoringStatsAnomaly monitoring_stats_anomalies = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\AIPlatform\V1\Feature\MonitoringStatsAnomaly>|\Google\Protobuf\Internal\RepeatedField $var
@@ -437,6 +472,36 @@ class Feature extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\Feature\MonitoringStatsAnomaly::class);
         $this->monitoring_stats_anomalies = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Only applicable for Vertex AI Feature Store.
+     * The name of the BigQuery Table/View columnn hosting data for this version.
+     * If no value is provided, will use feature_id.
+     *
+     * Generated from protobuf field <code>string version_column_name = 106;</code>
+     * @return string
+     */
+    public function getVersionColumnName()
+    {
+        return $this->version_column_name;
+    }
+
+    /**
+     * Only applicable for Vertex AI Feature Store.
+     * The name of the BigQuery Table/View columnn hosting data for this version.
+     * If no value is provided, will use feature_id.
+     *
+     * Generated from protobuf field <code>string version_column_name = 106;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setVersionColumnName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->version_column_name = $var;
 
         return $this;
     }

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticshub_v1_generated_AnalyticsHubService_CreateDataExchange_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\BigQuery\AnalyticsHub\V1\AnalyticsHubServiceClient;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\Client\AnalyticsHubServiceClient;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\CreateDataExchangeRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\DataExchange;
 
 /**
@@ -38,11 +39,10 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\DataExchange;
  *                                        Should not use characters that require URL-escaping, or characters
  *                                        outside of ASCII, spaces.
  *                                        Max length: 100 bytes.
- * @param string $dataExchangeDisplayName Human-readable display name of the data exchange. The display name must
- *                                        contain only Unicode letters, numbers (0-9), underscores (_), dashes (-),
- *                                        spaces ( ), ampersands (&) and must not start or end with spaces.
- *                                        Default value is an empty string.
- *                                        Max length: 63 bytes.
+ * @param string $dataExchangeDisplayName Human-readable display name of the data exchange. The display
+ *                                        name must contain only Unicode letters, numbers (0-9), underscores (_),
+ *                                        dashes (-), spaces ( ), ampersands (&) and must not start or end with
+ *                                        spaces. Default value is an empty string. Max length: 63 bytes.
  */
 function create_data_exchange_sample(
     string $formattedParent,
@@ -52,18 +52,18 @@ function create_data_exchange_sample(
     // Create a client.
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $dataExchange = (new DataExchange())
         ->setDisplayName($dataExchangeDisplayName);
+    $request = (new CreateDataExchangeRequest())
+        ->setParent($formattedParent)
+        ->setDataExchangeId($dataExchangeId)
+        ->setDataExchange($dataExchange);
 
     // Call the API and handle any network failures.
     try {
         /** @var DataExchange $response */
-        $response = $analyticsHubServiceClient->createDataExchange(
-            $formattedParent,
-            $dataExchangeId,
-            $dataExchange
-        );
+        $response = $analyticsHubServiceClient->createDataExchange($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

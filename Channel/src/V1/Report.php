@@ -10,7 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The ID and description of a report that was used to generate report data.
- * For example, "GCP Daily Spend", "Google Workspace License Activity", etc.
+ * For example, "Google Cloud Daily Spend", "Google Workspace License Activity",
+ * etc.
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.Report</code>
  */

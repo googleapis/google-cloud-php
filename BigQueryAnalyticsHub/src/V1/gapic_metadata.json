@@ -30,6 +30,11 @@
                                 "deleteListing"
                             ]
                         },
+                        "DeleteSubscription": {
+                            "methods": [
+                                "deleteSubscription"
+                            ]
+                        },
                         "GetDataExchange": {
                             "methods": [
                                 "getDataExchange"
@@ -43,6 +48,11 @@
                         "GetListing": {
                             "methods": [
                                 "getListing"
+                            ]
+                        },
+                        "GetSubscription": {
+                            "methods": [
+                                "getSubscription"
                             ]
                         },
                         "ListDataExchanges": {
@@ -60,9 +70,34 @@
                                 "listOrgDataExchanges"
                             ]
                         },
+                        "ListSharedResourceSubscriptions": {
+                            "methods": [
+                                "listSharedResourceSubscriptions"
+                            ]
+                        },
+                        "ListSubscriptions": {
+                            "methods": [
+                                "listSubscriptions"
+                            ]
+                        },
+                        "RefreshSubscription": {
+                            "methods": [
+                                "refreshSubscription"
+                            ]
+                        },
+                        "RevokeSubscription": {
+                            "methods": [
+                                "revokeSubscription"
+                            ]
+                        },
                         "SetIamPolicy": {
                             "methods": [
                                 "setIamPolicy"
+                            ]
+                        },
+                        "SubscribeDataExchange": {
+                            "methods": [
+                                "subscribeDataExchange"
                             ]
                         },
                         "SubscribeListing": {

@@ -31,11 +31,25 @@ class State
      * Generated from protobuf enum <code>PROVISIONED = 2;</code>
      */
     const PROVISIONED = 2;
+    /**
+     * The Network is being deprovisioned.
+     *
+     * Generated from protobuf enum <code>DEPROVISIONING = 3;</code>
+     */
+    const DEPROVISIONING = 3;
+    /**
+     * The Network is being updated.
+     *
+     * Generated from protobuf enum <code>UPDATING = 4;</code>
+     */
+    const UPDATING = 4;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
         self::PROVISIONING => 'PROVISIONING',
         self::PROVISIONED => 'PROVISIONED',
+        self::DEPROVISIONING => 'DEPROVISIONING',
+        self::UPDATING => 'UPDATING',
     ];
 
     public static function name($value)

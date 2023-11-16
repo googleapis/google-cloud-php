@@ -34,7 +34,7 @@ class CreateConversationRequest extends \Google\Protobuf\Internal\Message
      * Google. Only set it if you cannot wait for the response to return a
      * auto-generated one to you.
      * The conversation ID must be compliant with the regression fomula
-     * "[a-zA-Z][a-zA-Z0-9_-]*" with the characters length in range of [3,64].
+     * `[a-zA-Z][a-zA-Z0-9_-]*` with the characters length in range of [3,64].
      * If the field is provided, the caller is resposible for
      * 1. the uniqueness of the ID, otherwise the request will be rejected.
      * 2. the consistency for whether to use custom ID or not under a project to
@@ -43,6 +43,23 @@ class CreateConversationRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string conversation_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $conversation_id = '';
+
+    /**
+     * @param string                                   $parent       Required. Resource identifier of the project creating the conversation.
+     *                                                               Format: `projects/<Project ID>/locations/<Location ID>`. Please see
+     *                                                               {@see ConversationsClient::projectName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\V2\Conversation $conversation Required. The conversation to create.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\CreateConversationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dialogflow\V2\Conversation $conversation): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setConversation($conversation);
+    }
 
     /**
      * Constructor.
@@ -60,7 +77,7 @@ class CreateConversationRequest extends \Google\Protobuf\Internal\Message
      *           Google. Only set it if you cannot wait for the response to return a
      *           auto-generated one to you.
      *           The conversation ID must be compliant with the regression fomula
-     *           "[a-zA-Z][a-zA-Z0-9_-]*" with the characters length in range of [3,64].
+     *           `[a-zA-Z][a-zA-Z0-9_-]*` with the characters length in range of [3,64].
      *           If the field is provided, the caller is resposible for
      *           1. the uniqueness of the ID, otherwise the request will be rejected.
      *           2. the consistency for whether to use custom ID or not under a project to
@@ -141,7 +158,7 @@ class CreateConversationRequest extends \Google\Protobuf\Internal\Message
      * Google. Only set it if you cannot wait for the response to return a
      * auto-generated one to you.
      * The conversation ID must be compliant with the regression fomula
-     * "[a-zA-Z][a-zA-Z0-9_-]*" with the characters length in range of [3,64].
+     * `[a-zA-Z][a-zA-Z0-9_-]*` with the characters length in range of [3,64].
      * If the field is provided, the caller is resposible for
      * 1. the uniqueness of the ID, otherwise the request will be rejected.
      * 2. the consistency for whether to use custom ID or not under a project to
@@ -160,7 +177,7 @@ class CreateConversationRequest extends \Google\Protobuf\Internal\Message
      * Google. Only set it if you cannot wait for the response to return a
      * auto-generated one to you.
      * The conversation ID must be compliant with the regression fomula
-     * "[a-zA-Z][a-zA-Z0-9_-]*" with the characters length in range of [3,64].
+     * `[a-zA-Z][a-zA-Z0-9_-]*` with the characters length in range of [3,64].
      * If the field is provided, the caller is resposible for
      * 1. the uniqueness of the ID, otherwise the request will be rejected.
      * 2. the consistency for whether to use custom ID or not under a project to

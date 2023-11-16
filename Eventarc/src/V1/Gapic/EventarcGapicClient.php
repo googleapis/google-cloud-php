@@ -125,6 +125,9 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Eventarc\V1\Client\EventarcClient} to use the new surface.
  */
 class EventarcGapicClient
 {
@@ -151,6 +154,8 @@ class EventarcGapicClient
 
     private static $channelConnectionNameTemplate;
 
+    private static $cloudFunctionNameTemplate;
+
     private static $cryptoKeyNameTemplate;
 
     private static $googleChannelConfigNameTemplate;
@@ -162,6 +167,8 @@ class EventarcGapicClient
     private static $serviceAccountNameTemplate;
 
     private static $triggerNameTemplate;
+
+    private static $workflowNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -212,6 +219,17 @@ class EventarcGapicClient
         }
 
         return self::$channelConnectionNameTemplate;
+    }
+
+    private static function getCloudFunctionNameTemplate()
+    {
+        if (self::$cloudFunctionNameTemplate == null) {
+            self::$cloudFunctionNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/functions/{function}'
+            );
+        }
+
+        return self::$cloudFunctionNameTemplate;
     }
 
     private static function getCryptoKeyNameTemplate()
@@ -280,18 +298,31 @@ class EventarcGapicClient
         return self::$triggerNameTemplate;
     }
 
+    private static function getWorkflowNameTemplate()
+    {
+        if (self::$workflowNameTemplate == null) {
+            self::$workflowNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/workflows/{workflow}'
+            );
+        }
+
+        return self::$workflowNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'channel' => self::getChannelNameTemplate(),
                 'channelConnection' => self::getChannelConnectionNameTemplate(),
+                'cloudFunction' => self::getCloudFunctionNameTemplate(),
                 'cryptoKey' => self::getCryptoKeyNameTemplate(),
                 'googleChannelConfig' => self::getGoogleChannelConfigNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'provider' => self::getProviderNameTemplate(),
                 'serviceAccount' => self::getServiceAccountNameTemplate(),
                 'trigger' => self::getTriggerNameTemplate(),
+                'workflow' => self::getWorkflowNameTemplate(),
             ];
         }
 
@@ -336,6 +367,25 @@ class EventarcGapicClient
             'project' => $project,
             'location' => $location,
             'channel_connection' => $channelConnection,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * cloud_function resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $function
+     *
+     * @return string The formatted cloud_function resource.
+     */
+    public static function cloudFunctionName($project, $location, $function)
+    {
+        return self::getCloudFunctionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'function' => $function,
         ]);
     }
 
@@ -454,17 +504,38 @@ class EventarcGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a workflow
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $workflow
+     *
+     * @return string The formatted workflow resource.
+     */
+    public static function workflowName($project, $location, $workflow)
+    {
+        return self::getWorkflowNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'workflow' => $workflow,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - channel: projects/{project}/locations/{location}/channels/{channel}
      * - channelConnection: projects/{project}/locations/{location}/channelConnections/{channel_connection}
+     * - cloudFunction: projects/{project}/locations/{location}/functions/{function}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - googleChannelConfig: projects/{project}/locations/{location}/googleChannelConfig
      * - location: projects/{project}/locations/{location}
      * - provider: projects/{project}/locations/{location}/providers/{provider}
      * - serviceAccount: projects/{project}/serviceAccounts/{service_account}
      * - trigger: projects/{project}/locations/{location}/triggers/{trigger}
+     * - workflow: projects/{project}/locations/{location}/workflows/{workflow}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

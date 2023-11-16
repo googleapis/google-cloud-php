@@ -45,6 +45,22 @@ class ListMetadataStoresRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The Location whose MetadataStores should be listed.
+     *                       Format:
+     *                       `projects/{project}/locations/{location}`
+     *                       Please see {@see MetadataServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ListMetadataStoresRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

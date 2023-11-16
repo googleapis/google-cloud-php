@@ -110,8 +110,8 @@ class DocumentSnapshot implements \ArrayAccess
      * `projects/<project-id>/databases/<database-id>/documents/<relative-path>`.
      *
      * Other methods are available to retrieve different parts of a collection name:
-     * * {@see Google\Cloud\Firestore\DocumentSnapshot::id()} Returns the last element.
-     * * {@see Google\Cloud\Firestore\DocumentSnapshot::path()} Returns the path, relative to the database.
+     * * {@see \Google\Cloud\Firestore\DocumentSnapshot::id()} Returns the last element.
+     * * {@see \Google\Cloud\Firestore\DocumentSnapshot::path()} Returns the path, relative to the database.
      *
      * Example:
      * ```
@@ -131,7 +131,7 @@ class DocumentSnapshot implements \ArrayAccess
      * Paths identify the location of a document, relative to the database name.
      *
      * To retrieve the document ID (the last element of the path), use
-     * {@see Google\Cloud\Firestore\DocumentSnapshot::id()}.
+     * {@see \Google\Cloud\Firestore\DocumentSnapshot::id()}.
      *
      * Example:
      * ```
@@ -150,7 +150,7 @@ class DocumentSnapshot implements \ArrayAccess
      *
      * IDs are the path element which identifies a resource. To retrieve the
      * full path to a resource (the resource name), use
-     * {@see Google\Cloud\Firestore\DocumentSnapshot::name()}.
+     * {@see \Google\Cloud\Firestore\DocumentSnapshot::name()}.
      *
      * Example:
      * ```
