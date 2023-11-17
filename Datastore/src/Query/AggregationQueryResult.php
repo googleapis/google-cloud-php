@@ -109,7 +109,7 @@ class AggregationQueryResult
      * ```
      *
      * @param string $alias The aggregation alias.
-     * @return int
+     * @return mixed
      * @throws InvalidArgumentException If provided alias does not exist in result.
      */
     public function get($alias)
@@ -119,7 +119,13 @@ class AggregationQueryResult
         }
         $result = $this->aggregationResults[0]['aggregateProperties'][$alias];
         if (is_array($result)) {
-            return $result['integerValue'];
+            $key = array_key_first($result);
+            if ($key == 'nullValue') {
+                return null;
+            }
+            // `$result` would contain only one of
+            // (@see https://cloud.google.com/firestore/docs/reference/rest/v1/Value)
+            return $result[$key];
         }
         return $result;
     }
