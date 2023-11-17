@@ -159,6 +159,18 @@ return [
                     ],
                 ],
             ],
+            'RevertInstance' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*}:revert',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateBackup' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{backup.name=projects/*/locations/*/backups/*}',
