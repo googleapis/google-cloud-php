@@ -970,6 +970,16 @@
                 "grpc": {
                     "libraryClient": "PredictionServiceGapicClient",
                     "rpcs": {
+                        "DirectPredict": {
+                            "methods": [
+                                "directPredict"
+                            ]
+                        },
+                        "DirectRawPredict": {
+                            "methods": [
+                                "directRawPredict"
+                            ]
+                        },
                         "Explain": {
                             "methods": [
                                 "explain"
@@ -988,6 +998,16 @@
                         "ServerStreamingPredict": {
                             "methods": [
                                 "serverStreamingPredict"
+                            ]
+                        },
+                        "StreamingPredict": {
+                            "methods": [
+                                "streamingPredict"
+                            ]
+                        },
+                        "StreamingRawPredict": {
+                            "methods": [
+                                "streamingRawPredict"
                             ]
                         },
                         "GetLocation": {

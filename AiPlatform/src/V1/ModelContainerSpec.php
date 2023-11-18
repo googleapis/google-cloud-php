@@ -226,6 +226,18 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      */
     private $health_route = '';
     /**
+     * Immutable. List of ports to expose from the container. Vertex AI sends gRPC
+     * prediction requests that it receives to the first port on this list. Vertex
+     * AI also sends liveness and health checks to this port.
+     * If you do not specify this field, gRPC requests to the container will be
+     * disabled.
+     * Vertex AI does not use ports other than the first one listed. This field
+     * corresponds to the `ports` field of the Kubernetes Containers v1 core API.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Port grpc_ports = 9 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $grpc_ports;
+    /**
      * Immutable. Deployment timeout.
      * Limit for deployment timeout is 2 hours.
      *
@@ -438,6 +450,14 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      *             (Vertex AI makes this value available to your container code as the
      *             [`AIP_DEPLOYED_MODEL_ID` environment
      *             variable](https://cloud.google.com/vertex-ai/docs/predictions/custom-container-requirements#aip-variables).)
+     *     @type array<\Google\Cloud\AIPlatform\V1\Port>|\Google\Protobuf\Internal\RepeatedField $grpc_ports
+     *           Immutable. List of ports to expose from the container. Vertex AI sends gRPC
+     *           prediction requests that it receives to the first port on this list. Vertex
+     *           AI also sends liveness and health checks to this port.
+     *           If you do not specify this field, gRPC requests to the container will be
+     *           disabled.
+     *           Vertex AI does not use ports other than the first one listed. This field
+     *           corresponds to the `ports` field of the Kubernetes Containers v1 core API.
      *     @type \Google\Protobuf\Duration $deployment_timeout
      *           Immutable. Deployment timeout.
      *           Limit for deployment timeout is 2 hours.
@@ -965,6 +985,44 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->health_route = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. List of ports to expose from the container. Vertex AI sends gRPC
+     * prediction requests that it receives to the first port on this list. Vertex
+     * AI also sends liveness and health checks to this port.
+     * If you do not specify this field, gRPC requests to the container will be
+     * disabled.
+     * Vertex AI does not use ports other than the first one listed. This field
+     * corresponds to the `ports` field of the Kubernetes Containers v1 core API.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Port grpc_ports = 9 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getGrpcPorts()
+    {
+        return $this->grpc_ports;
+    }
+
+    /**
+     * Immutable. List of ports to expose from the container. Vertex AI sends gRPC
+     * prediction requests that it receives to the first port on this list. Vertex
+     * AI also sends liveness and health checks to this port.
+     * If you do not specify this field, gRPC requests to the container will be
+     * disabled.
+     * Vertex AI does not use ports other than the first one listed. This field
+     * corresponds to the `ports` field of the Kubernetes Containers v1 core API.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Port grpc_ports = 9 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\Port>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setGrpcPorts($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\Port::class);
+        $this->grpc_ports = $arr;
 
         return $this;
     }
