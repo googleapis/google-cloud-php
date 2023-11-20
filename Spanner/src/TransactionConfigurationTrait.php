@@ -64,6 +64,34 @@ trait TransactionConfigurationTrait
     }
 
     /**
+     * Configure the DirectedReadOptions.
+     *
+     * @param array $requestOptions Request level options.
+     * @param array $clientOptions Client level Directed Read Options.
+     * @return array
+     */
+    public function configureDirectedReadOptions(array $requestOptions, array $clientOptions)
+    {
+        if (isset($requestOptions['directedReadOptions'])) {
+            return $requestOptions['directedReadOptions'];
+        }
+
+        if (isset($requestOptions['transaction']['singleUse']) || (
+            isset($requestOptions['transactionContext']) &&
+            $requestOptions['transactionContext'] == SessionPoolInterface::CONTEXT_READ
+            ) || isset($requestOptions['transactionOptions']['readOnly'])
+        ) {
+            if (isset($clientOptions['includeReplicas'])) {
+                return ['includeReplicas' => $clientOptions['includeReplicas']];
+            } elseif (isset($clientOptions['excludeReplicas'])) {
+                return ['excludeReplicas' => $clientOptions['excludeReplicas']];
+            }
+        }
+
+        return [];
+    }
+
+    /**
      * Return transaction options based on given configuration options.
      *
      * @param array $options call options.

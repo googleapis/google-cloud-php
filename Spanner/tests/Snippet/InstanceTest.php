@@ -411,17 +411,4 @@ class InstanceTest extends SnippetTestCase
         $this->assertInstanceOf(Database::class, $res->returnVal());
         $this->assertEquals(self::DATABASE, DatabaseAdminClient::parseName($res->returnVal()->name())['database']);
     }
-
-    public function testDatabaseWithDirectedReadOptions()
-    {
-        $snippet = $this->snippetFromMethod(Instance::class, 'database', 2);
-        $snippet->addLocal('instance', $this->instance);
-
-        $res = $snippet->invoke('database');
-        $this->assertInstanceOf(Database::class, $res->returnVal());
-        $this->assertEquals(
-            self::DATABASE,
-            DatabaseAdminClient::parseName($res->returnVal()->name())['database']
-        );
-    }
 }

@@ -778,6 +778,7 @@ class TransactionTypeTest extends TestCase
         $operation = new Operation($connection, false);
         $instance = $this->prophesize(Instance::class);
         $instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE));
+        $instance->directedReadOptions()->willReturn([]);
 
         $database = TestHelpers::stub(Database::class, [
             $connection,

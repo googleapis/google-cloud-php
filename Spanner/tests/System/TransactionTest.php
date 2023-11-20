@@ -21,6 +21,7 @@ use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type as ReplicaType;
 
 /**
  * @group spanner
@@ -262,6 +263,112 @@ class TransactionTest extends SpannerTestCase
         } else {
             $this->assertEquals($error->getServiceException()->getStatus(), $expected);
         }
+    }
+
+    // @TODO: Need to work on this once the directedRead is available
+    /**
+     * @dataProvider getDirectedReadOptions
+     */
+    public function testRWTransactionExecuteWithDirectedReadOptions($directedReadOptions)
+    {
+        $this->markTestSkipped('fixme');
+        $db = self::$database;
+        $transaction = $db->transaction();
+        $expected = 'Directed reads can only be performed in a read-only transaction.';
+        $exception = null;
+
+        try {
+            $row = $db->execute(
+                'SELECT * FROM ' . self::$tableName,
+                ['transactionId' => $transaction->id()] + $directedReadOptions
+            )->rows()->current();
+        } catch (ServiceException $e) {
+            $exception = $e;
+        }
+        $this->assertEquals($exception->getReason(), $expected);
+        $exception = null;
+
+        try {
+            $row = $transaction->execute(
+                'SELECT * FROM ' . self::$tableName,
+                $directedReadOptions
+            )->rows()->current();
+        } catch (ServiceException $e) {
+            $exception = $e;
+        }
+        $this->assertEquals($exception->getReason(), $expected);
+    }
+
+    // @TODO: Need to work on this once the directedRead is available
+    /**
+     * @dataProvider getDirectedReadOptions
+     */
+    public function testRWTransactionReadWithDirectedReadOptions($directedReadOptions)
+    {
+        $this->markTestSkipped('fixme');
+        $db = self::$database;
+        $transaction = $db->transaction();
+        $expected = 'Directed reads can only be performed in a read-only transaction.';
+        $exception = null;
+
+        list($keySet, $cols) = $this->readArgs();
+        try {
+            $res = $db->read(
+                self::TEST_TABLE_NAME,
+                $keySet,
+                $cols,
+                ['transactionId' => $transaction->id()] + $directedReadOptions
+            )->rows()->current();
+        } catch (ServiceException $e) {
+            $exception = $e;
+        }
+        $this->assertEquals($exception->getReason(), $expected);
+        $exception = null;
+
+        try {
+            $res = $transaction->read(
+                self::TEST_TABLE_NAME,
+                $keySet,
+                $cols,
+                $directedReadOptions
+            )->rows()->current();
+        } catch (ServiceException $e) {
+            $exception = $e;
+        }
+        $this->assertEquals($exception->getReason(), $expected);
+    }
+
+    public function getDirectedReadOptions()
+    {
+        return
+        [
+            [
+                'directedReadOptions' => [
+                    'includeReplicas' => [
+                        'replicaSelections' => [
+                            [
+                                'location' => 'us-central1',
+                                'type' => ReplicaType::READ_WRITE
+                            ]
+                        ],
+                        'autoFailoverDisabled' => false
+                    ]
+                ]
+            ],
+            [
+                'directedReadOptions' => [
+                    'excludeReplicas' => [
+                        'replicaSelections' => [
+                            [
+                                'location' => 'us-central1',
+                                'type' => ReplicaType::READ_WRITE
+                            ]
+                        ],
+                        'autoFailoverDisabled' => false
+                    ]
+                ]
+            ]
+        ];
     }
 
     private function readArgs()

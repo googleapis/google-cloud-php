@@ -73,6 +73,26 @@ use Google\ApiCore\ValidationException;
  * $spanner = new SpannerClient();
  * ```
  *
+ * ```
+ * use Google\Cloud\Spanner\SpannerClient;
+ * use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type as ReplicaType;
+ *
+ * $spanner = new SpanneClient();
+ * $directedOptions = [
+ *     'directedReadOptions' => [
+ *         'includeReplicas' => [
+ *             'replicaSelections' => [
+ *                 [
+ *                     'location' => 'us-central1',
+ *                     'type' => ReplicaType::READ_WRITE
+ *                 ]
+ *             ],
+ *             'autoFailoverDisabled' => false
+ *         ]
+ *     ]
+ * ];
+ * ```
+ *
  * @method resumeOperation() {
  *     Resume a Long Running Operation
  *
@@ -108,6 +128,11 @@ class SpannerClient
      * @var bool
      */
     private $returnInt64AsObject;
+
+    /**
+     * @var array
+     */
+    private $directedReadOptions;
 
     /**
      * Create a Spanner client. Please note that this client requires
@@ -164,6 +189,10 @@ class SpannerClient
      *           (retry every failed request up to `retries` times).
      *           `true`: use discrete backoff settings based on called method name.
      *           **Defaults to** `false`.
+     *     @type array $directedReadOptions Directed read options.
+     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
+     *           If using the `replicaSelection::type` setting, utilize the constants available in
+     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
      * }
      * @throws GoogleException If the gRPC extension is not enabled.
      */
@@ -240,6 +269,8 @@ class SpannerClient
                 }
             ]
         ]);
+
+        $this->directedReadOptions = $config['directedReadOptions'] ?? [];
     }
 
     /**
@@ -518,7 +549,8 @@ class SpannerClient
             $this->projectId,
             $name,
             $this->returnInt64AsObject,
-            $instance
+            $instance,
+            ['directedReadOptions' => $this->directedReadOptions]
         );
     }
 
@@ -587,13 +619,6 @@ class SpannerClient
      * $database = $spanner->connect('instance-id', 'database-id', ['databaseRole' => 'Reader']);
      * ```
      *
-     * Example to configure include replicas:
-     * ```
-     * $database = $spanner->connect('instance-id', 'database-id',[
-     *     'includeReplicas' => ['us-central1']
-     * ]);
-     * ```
-     *
      * @param Instance|string $instance The instance object or instance name.
      * @param string $name The database name.
      * @param array $options [optional] {
@@ -602,19 +627,6 @@ class SpannerClient
      *     @type SessionPoolInterface $sessionPool A pool used to manage
      *           sessions.
      *     @type string $databaseRole The user created database role which creates the session.
-     *     @type array $includeReplicas Regions/Replica to be included for the read query.
-     *           If the specified replicas are not part of instance configuration,
-     *           Spanner will fallback to the default routing algorithm by selecting
-     *           the nearest healthy replica.
-     *           $includeReplicas and $excludeReplicas are mutually exclusive.
-     *           eg: ['us-central1'] means Spanner will include region us-central1.
-     *               ['us-central1:readOnly'] means Spanner will include the read only
-     *                               replica in the us-central1 region.
-     *               ['us-central1:readOnly', 'failover'=false] means Spanner will not failover
-     *                               to other replicas if us-central1:readOnly is unhealthy.
-     *                               default failover value is true.
-     *     @type array $excludeReplicas Regions/Replica to be excluded for the read query.
-     *           $includeReplicas and $excludeReplicas are mutually exclusive.
      * }
      * @return Database
      */

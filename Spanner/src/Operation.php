@@ -203,23 +203,14 @@ class Operation
      *     Configuration options.
      *
      *     @type array $requestOptions Request options.
-     *         For more information on available options, please see
-     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
-     *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
-     *     @type array $includeReplicas Regions/Replica to be included for the read query.
-     *           If the specified replicas are not part of instance configuration,
-     *           Spanner will fallback to the default routing algorithm by selecting
-     *           the nearest healthy replica.
-     *           $includeReplicas and $excludeReplicas are mutually exclusive.
-     *           eg: ['us-central1'] means Spanner will include region us-central1.
-     *               ['us-central1:readOnly'] means Spanner will include the read only
-     *                               replica in the us-central1 region.
-     *               ['us-central1:readOnly', 'failover'=false] means Spanner will not failover
-     *                               to other replicas if us-central1:readOnly is unhealthy.
-     *                               default failover value is true.
-     *     @type array $excludeReplicas Regions/Replica to be excluded for the read query.
-     *           $includeReplicas and $excludeReplicas are mutually exclusive.
+     *           For more information on available options, please see
+     *           [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *           Please note, if using the `priority` setting you may utilize the constants available
+     *           on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *     @type array $directedReadOptions Directed read options.
+     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
+     *           If using the `replicaSelection::type` setting, utilize the constants available in
+     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
      * }
      * @return Result
      */
@@ -382,23 +373,14 @@ class Operation
      *     @type int $offset The number of rows to offset results by.
      *     @type int $limit The number of results to return.
      *     @type array $requestOptions Request options.
-     *         For more information on available options, please see
-     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
-     *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
-     *     @type array $includeReplicas Regions/Replica to be included for the read query.
-     *           If the specified replicas are not part of instance configuration,
-     *           Spanner will fallback to the default routing algorithm by selecting
-     *           the nearest healthy replica.
-     *           $includeReplicas and $excludeReplicas are mutually exclusive.
-     *           eg: ['us-central1'] means Spanner will include region us-central1.
-     *               ['us-central1:readOnly'] means Spanner will include the read only
-     *                               replica in the us-central1 region.
-     *               ['us-central1:readOnly', 'failover'=false] means Spanner will not failover
-     *                               to other replicas if us-central1:readOnly is unhealthy.
-     *                               default failover value is true.
-     *     @type array $excludeReplicas Regions/Replica to be excluded for the read query.
-     *           $includeReplicas and $excludeReplicas are mutually exclusive.
+     *           For more information on available options, please see
+     *           [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *           Please note, if using the `priority` setting you may utilize the constants available
+     *           on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *     @type array $directedReadOptions Directed read options.
+     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
+     *           If using the `replicaSelection::type` setting, utilize the constants available in
+     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
      * }
      * @return Result
      */
@@ -508,6 +490,10 @@ class Operation
      *     @type string $className If set, an instance of the given class will
      *           be instantiated. This setting is intended for internal use.
      *           **Defaults to** `Google\Cloud\Spanner\Snapshot`.
+     *     @type array $directedReadOptions Directed read options.
+     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
+     *           If using the `replicaSelection::type` setting, utilize the constants available in
+     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
      * }
      * @return mixed
      */

@@ -77,8 +77,8 @@ class DatabaseTest extends TestCase
     private $database;
     private $session;
     private $databaseWithDatabaseRole;
-    private $databaseWithIncludeReplicas;
-    private $databaseWithExcludeReplicas;
+    private $directedReadOptionsIncludeReplicas;
+    private $directedReadOptionsExcludeReplicas;
 
 
     public function setUp(): void
@@ -97,13 +97,34 @@ class DatabaseTest extends TestCase
             self::DATABASE,
             self::SESSION
         ]);
+        $this->directedReadOptionsIncludeReplicas = [
+            'includeReplicas' => [
+                'replicaSelections' => [
+                    'location' => 'us-central1',
+                    'type' => 'READ_WRITE',
+                    'autoFailoverDisabled' => false
+                ]
+            ]
+        ];
+        $this->directedReadOptionsExcludeReplicas = [
+            'excludeReplicas' => [
+                'replicaSelections' => [
+                    'location' => 'us-central1',
+                    'type' => 'READ_WRITE',
+                    'autoFailoverDisabled' => false
+                ]
+            ]
+        ];
 
         $this->instance = TestHelpers::stub(Instance::class, [
             $this->connection->reveal(),
             $this->lro->reveal(),
             $this->lroCallables,
             self::PROJECT,
-            self::INSTANCE
+            self::INSTANCE,
+            false,
+            [],
+            ['directedReadOptions' => $this->directedReadOptionsIncludeReplicas]
         ], [
             'info',
             'connection'
@@ -133,20 +154,7 @@ class DatabaseTest extends TestCase
             'connection', 'operation', 'session', 'sessionPool', 'instance'
         ];
 
-        array_push($args, ['includeReplicas' => ['us-central1']]);
         $this->database = TestHelpers::stub(Database::class, $args, $props);
-        $this->databaseWithIncludeReplicas = TestHelpers::stub(
-            Database::class,
-            $args,
-            $props
-        );
-        $args[10] = ['excludeReplicas' => ['us-central1']];
-        $this->databaseWithExcludeReplicas = TestHelpers::stub(
-            Database::class,
-            $args,
-            $props
-        );
-        $args[10] = [];
         $args[6] = null;
         $this->databaseWithDatabaseRole = TestHelpers::stub(Database::class, $args, $props);
     }
@@ -1468,83 +1476,52 @@ class DatabaseTest extends TestCase
         $this->databaseWithDatabaseRole->execute($sql);
     }
 
-    public function testDBExecuteIncludeReplicas()
+    public function testExecuteWithDirectedReadOptions()
     {
         $this->connection->executeStreamingSql(Argument::withEntry(
-            'includeReplicas',
-            ['us-central1']
+            'directedReadOptions',
+            $this->directedReadOptionsIncludeReplicas
         ))
         ->shouldBeCalled()
         ->willReturn($this->resultGenerator());
 
         $sql = 'SELECT * FROM Table';
-        $res = $this->databaseWithIncludeReplicas->execute($sql);
+        $res = $this->database->execute($sql);
         $this->assertInstanceOf(Result::class, $res);
         $rows = iterator_to_array($res->rows());
     }
 
-    public function testDBExecuteExcludeReplicas()
+    public function testPrioritizeExecuteDirectedReadOptions()
     {
         $this->connection->executeStreamingSql(Argument::withEntry(
-            'excludeReplicas',
-            ['us-central1']
+            'directedReadOptions',
+            $this->directedReadOptionsExcludeReplicas
         ))
         ->shouldBeCalled()
         ->willReturn($this->resultGenerator());
 
         $sql = 'SELECT * FROM Table';
-        $res = $this->databaseWithExcludeReplicas->execute($sql);
+        $res = $this->database->execute(
+            $sql,
+            ['directedReadOptions' => $this->directedReadOptionsExcludeReplicas]
+        );
         $this->assertInstanceOf(Result::class, $res);
         $rows = iterator_to_array($res->rows());
     }
 
-    public function testPrioritizeExecuteIncludeReplicas()
-    {
-        $this->connection->executeStreamingSql(Argument::withEntry(
-            'includeReplicas',
-            ['us-central2']
-        ))
-        ->shouldBeCalled()
-        ->willReturn($this->resultGenerator());
-
-        $sql = 'SELECT * FROM Table';
-        $res = $this->databaseWithIncludeReplicas->execute($sql, [
-            'includeReplicas' => ['us-central2']
-        ]);
-        $this->assertInstanceOf(Result::class, $res);
-        $rows = iterator_to_array($res->rows());
-    }
-
-    public function testExecuteExcludeReplicas()
-    {
-        $this->connection->executeStreamingSql(Argument::withEntry(
-            'excludeReplicas',
-            ['us-central2']
-        ))
-        ->shouldBeCalled()
-        ->willReturn($this->resultGenerator());
-
-        $sql = 'SELECT * FROM Table';
-        $res = $this->database->execute($sql, [
-            'excludeReplicas' => ['us-central2']
-        ]);
-        $this->assertInstanceOf(Result::class, $res);
-        $rows = iterator_to_array($res->rows());
-    }
-
-    public function testDBReadIncludeReplicas()
+    public function testReadWithDirectedReadOptions()
     {
         $table = 'foo';
         $keys = [10, 'bar'];
         $columns = ['id', 'name'];
         $this->connection->streamingRead(Argument::withEntry(
-            'includeReplicas',
-            ['us-central1']
+            'directedReadOptions',
+            $this->directedReadOptionsIncludeReplicas
         ))
         ->shouldBeCalled()
         ->willReturn($this->resultGenerator());
 
-        $res = $this->databaseWithIncludeReplicas->read(
+        $res = $this->database->read(
             $table,
             new KeySet(['keys' => $keys]),
             $columns
@@ -1553,57 +1530,14 @@ class DatabaseTest extends TestCase
         $rows = iterator_to_array($res->rows());
     }
 
-    public function testDBReadExcludeReplicas()
+    public function testPrioritizeReadDirectedReadOptions()
     {
         $table = 'foo';
         $keys = [10, 'bar'];
         $columns = ['id', 'name'];
         $this->connection->streamingRead(Argument::withEntry(
-            'excludeReplicas',
-            ['us-central1']
-        ))
-        ->shouldBeCalled()
-        ->willReturn($this->resultGenerator());
-
-        $res = $this->databaseWithExcludeReplicas->read(
-            $table,
-            new KeySet(['keys' => $keys]),
-            $columns
-        );
-        $this->assertInstanceOf(Result::class, $res);
-        $rows = iterator_to_array($res->rows());
-    }
-
-    public function testPrioritizeReadIncludeReplicas()
-    {
-        $table = 'foo';
-        $keys = [10, 'bar'];
-        $columns = ['id', 'name'];
-        $this->connection->streamingRead(Argument::withEntry(
-            'includeReplicas',
-            ['us-central2']
-        ))
-        ->shouldBeCalled()
-        ->willReturn($this->resultGenerator());
-
-        $res = $this->databaseWithIncludeReplicas->read(
-            $table,
-            new KeySet(['keys' => $keys]),
-            $columns,
-            ['includeReplicas' => ['us-central2']]
-        );
-        $this->assertInstanceOf(Result::class, $res);
-        $rows = iterator_to_array($res->rows());
-    }
-
-    public function testReadExcludeReplicas()
-    {
-        $table = 'foo';
-        $keys = [10, 'bar'];
-        $columns = ['id', 'name'];
-        $this->connection->streamingRead(Argument::withEntry(
-            'excludeReplicas',
-            ['us-central2']
+            'directedReadOptions',
+            $this->directedReadOptionsExcludeReplicas
         ))
         ->shouldBeCalled()
         ->willReturn($this->resultGenerator());
@@ -1612,7 +1546,7 @@ class DatabaseTest extends TestCase
             $table,
             new KeySet(['keys' => $keys]),
             $columns,
-            ['excludeReplicas' => ['us-central2']]
+            ['directedReadOptions' => $this->directedReadOptionsExcludeReplicas]
         );
         $this->assertInstanceOf(Result::class, $res);
         $rows = iterator_to_array($res->rows());

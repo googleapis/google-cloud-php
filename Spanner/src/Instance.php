@@ -123,6 +123,11 @@ class Instance
     private $iam;
 
     /**
+     * @var array
+     */
+    private $directedReadOptions;
+
+    /**
      * Create an object representing a Cloud Spanner instance.
      *
      * @param ConnectionInterface $connection The connection to the
@@ -137,6 +142,14 @@ class Instance
      *        returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit platform
      *        compatibility. **Defaults to** false.
      * @param array $info [optional] A representation of the instance object.
+     * @param array $options [optional]{
+     *     Instance options
+     *
+     *     @type array $directedReadOptions Directed read options.
+     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
+     *           If using the `replicaSelection::type` setting, utilize the constants available in
+     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
+     * }
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -145,7 +158,8 @@ class Instance
         $projectId,
         $name,
         $returnInt64AsObject = false,
-        array $info = []
+        array $info = [],
+        array $options = []
     ) {
         $this->connection = $connection;
         $this->projectId = $projectId;
@@ -154,6 +168,7 @@ class Instance
         $this->info = $info;
 
         $this->setLroProperties($lroConnection, $lroCallables, $this->name);
+        $this->directedReadOptions = $options['directedReadOptions'] ?? [];
     }
 
     /**
@@ -490,13 +505,6 @@ class Instance
      * $database = $instance->database('my-database', ['databaseRole' => 'Reader']);
      * ```
      *
-     * Example to configure include replicas:
-     * ```
-     * $database = $instance->database('my-database', [
-     *     'includeReplicas' => ['us-central1']
-     * ]);
-     * ```
-     *
      * @param string $name The database name
      * @param array $options [optional] {
      *     Configuration options.
@@ -504,29 +512,11 @@ class Instance
      *     @type SessionPoolInterface $sessionPool A pool used to manage
      *           sessions.
      *     @type string $databaseRole The user created database role which creates the session.
-     *     @type array $includeReplicas Regions/Replica to be included for the read query.
-     *           If the specified replicas are not part of instance configuration,
-     *           Spanner will fallback to the default routing algorithm by selecting
-     *           the nearest healthy replica.
-     *           $includeReplicas and $excludeReplicas are mutually exclusive.
-     *           eg: ['us-central1'] means Spanner will include region us-central1.
-     *               ['us-central1:readOnly'] means Spanner will include the read only
-     *                               replica in the us-central1 region.
-     *               ['us-central1:readOnly', 'failover'=false] means Spanner will not failover
-     *                               to other replicas if us-central1:readOnly is unhealthy.
-     *                               default failover value is true.
-     *     @type array $excludeReplicas Regions/Replica to be excluded for the read query.
-     *           $includeReplicas and $excludeReplicas are mutually exclusive.
      * }
      * @return Database
      */
     public function database($name, array $options = [])
     {
-        $directedReadOptions = array_intersect_key(
-            $options,
-            array_flip(['includeReplicas', 'excludeReplicas'])
-        );
-
         return new Database(
             $this->connection,
             $this,
@@ -537,8 +527,7 @@ class Instance
             isset($options['sessionPool']) ? $options['sessionPool'] : null,
             $this->returnInt64AsObject,
             isset($options['database']) ? $options['database'] : [],
-            isset($options['databaseRole']) ? $options['databaseRole'] : '',
-            $directedReadOptions
+            isset($options['databaseRole']) ? $options['databaseRole'] : ''
         );
     }
 
@@ -819,5 +808,20 @@ class Instance
             'name' => $this->name,
             'info' => $this->info
         ];
+    }
+
+    /**
+     * Return the directed read options.
+     *
+     * Example:
+     * ```
+     * $name = $instance->directedReadOptions();
+     * ```
+     *
+     * @return array
+     */
+    public function directedReadOptions()
+    {
+        return $this->directedReadOptions;
     }
 }

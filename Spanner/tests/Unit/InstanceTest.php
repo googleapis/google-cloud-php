@@ -58,18 +58,31 @@ class InstanceTest extends TestCase
     private $connection;
     private $instance;
     private $lroConnection;
+    private $directedReadOptionsIncludeReplicas;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->getConnStub();
+        $this->directedReadOptionsIncludeReplicas = [
+            'includeReplicas' => [
+                'replicaSelections' => [
+                    'location' => 'us-central1',
+                    'type' => 'READ_WRITE',
+                    'autoFailoverDisabled' => false
+                ]
+            ]
+        ];
         $this->instance = TestHelpers::stub(Instance::class, [
             $this->connection->reveal(),
             $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
             [],
             self::PROJECT_ID,
-            self::NAME
+            self::NAME,
+            false,
+            [],
+            ['directedReadOptions' => $this->directedReadOptionsIncludeReplicas]
         ], [
             'info',
             'connection'
@@ -587,11 +600,10 @@ class InstanceTest extends TestCase
         $database->execute($sql);
     }
 
-    public function testInstanceExecuteIncludeReplicas()
+    public function testInstanceExecuteWithDirectedReadOptions()
     {
         $database = $this->instance->database(
-            $this::DATABASE,
-            ['includeReplicas' => ['us-central1']]
+            $this::DATABASE
         );
         $this->connection->createSession(Argument::any())
         ->shouldBeCalled()
@@ -600,8 +612,8 @@ class InstanceTest extends TestCase
         ]);
 
         $this->connection->executeStreamingSql(Argument::withEntry(
-            'includeReplicas',
-            ['us-central1']
+            'directedReadOptions',
+            $this->directedReadOptionsIncludeReplicas
         ))
         ->shouldBeCalled()
         ->willReturn(
@@ -614,14 +626,13 @@ class InstanceTest extends TestCase
         $rows = iterator_to_array($res->rows());
     }
 
-    public function testInstanceReadIncludeReplicas()
+    public function testInstanceReadWithDirectedReadOptions()
     {
         $table = 'foo';
         $keys = [10, 'bar'];
         $columns = ['id', 'name'];
         $database = $this->instance->database(
             $this::DATABASE,
-            ['includeReplicas' => ['us-central1']]
         );
         $this->connection->createSession(Argument::any())
         ->shouldBeCalled()
@@ -630,8 +641,8 @@ class InstanceTest extends TestCase
         ]);
 
         $this->connection->streamingRead(Argument::withEntry(
-            'includeReplicas',
-            ['us-central1']
+            'directedReadOptions',
+            $this->directedReadOptionsIncludeReplicas
         ))
         ->shouldBeCalled()
         ->willReturn(

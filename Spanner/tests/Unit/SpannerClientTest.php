@@ -61,14 +61,27 @@ class SpannerClientTest extends TestCase
 
     private $client;
     private $connection;
+    private $directedReadOptionsIncludeReplicas;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->getConnStub();
+        $this->directedReadOptionsIncludeReplicas = [
+            'includeReplicas' => [
+                'replicaSelections' => [
+                    'location' => 'us-central1',
+                    'type' => 'READ_WRITE',
+                    'autoFailoverDisabled' => false
+                ]
+            ]
+        ];
         $this->client = TestHelpers::stub(SpannerClient::class, [
-            ['projectId' => self::PROJECT]
+            [
+                'projectId' => self::PROJECT,
+                'directedReadOptions' => $this->directedReadOptionsIncludeReplicas
+            ]
         ]);
     }
 
@@ -445,29 +458,12 @@ class SpannerClientTest extends TestCase
         $this->client->connect($instance->reveal(), self::DATABASE, ['databaseRole' => 'Reader']);
     }
 
-    public function testSpannerClientIncludeReplicas()
+    public function testSpannerClientWithDirectedReadOptions()
     {
-        $instance = $this->prophesize(Instance::class);
-        $instance->database(Argument::any(), [
-            'includeReplicas' => ['us-central1']
-        ])->shouldBeCalled();
-        $this->client->connect(
-            $instance->reveal(),
-            self::DATABASE,
-            ['includeReplicas' => ['us-central1']]
-        );
-    }
-
-    public function testSpannerClientExcludeReplicas()
-    {
-        $instance = $this->prophesize(Instance::class);
-        $instance->database(Argument::any(), [
-            'excludeReplicas' => ['us-central1']
-        ])->shouldBeCalled();
-        $this->client->connect(
-            $instance->reveal(),
-            self::DATABASE,
-            ['excludeReplicas' => ['us-central1']]
+        $instance = $this->client->instance('testInstance');
+        $this->assertEquals(
+            $instance->directedReadOptions(),
+            $this->directedReadOptionsIncludeReplicas
         );
     }
 }

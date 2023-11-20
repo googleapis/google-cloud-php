@@ -26,6 +26,7 @@ use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Google\Cloud\Spanner\KeySet;
 
 /**
  * @group spanner
@@ -37,6 +38,7 @@ class SnapshotTest extends TestCase
 
     private $timestamp;
     private $snapshot;
+    private $directedReadOptionsIncludeReplicas;
 
     public function setUp(): void
     {
@@ -54,6 +56,13 @@ class SnapshotTest extends TestCase
             $this->prophesize(Session::class)->reveal(),
             $args
         );
+        $this->directedReadOptionsIncludeReplicas = [
+            'includeReplicas' => [
+                'replicaSelections' => [
+                    'location' => 'us-central1'
+                ]
+            ]
+        ];
     }
 
     public function testTypeIsPreAllocated()
@@ -106,5 +115,44 @@ class SnapshotTest extends TestCase
 
         $snapshot->execute('foo');
         $snapshot->execute('foo');
+    }
+
+    public function testExecuteDirectedReadOptions()
+    {
+        $operation = $this->prophesize(Operation::class);
+        $operation->execute(Argument::any(), Argument::any(), Argument::withEntry(
+            'directedReadOptions',
+            $this->directedReadOptionsIncludeReplicas
+        ))->shouldBeCalled();
+
+        $snapshot = new Snapshot(
+            $operation->reveal(),
+            $this->prophesize(Session::class)->reveal(),
+            ['directedReadOptions' => $this->directedReadOptionsIncludeReplicas]
+        );
+
+        $snapshot->execute('foo');
+    }
+
+    public function testReadDirectedReadOptions()
+    {
+        $keySet = new KeySet([
+            'keys' => [1337]
+        ]);
+        $columns = ['ID', 'title', 'content'];
+
+        $operation = $this->prophesize(Operation::class);
+        $operation->read(Argument::any(), Argument::any(), Argument::any(), Argument::any(), Argument::withEntry(
+            'directedReadOptions',
+            $this->directedReadOptionsIncludeReplicas
+        ))->shouldBeCalled();
+
+        $snapshot = new Snapshot(
+            $operation->reveal(),
+            $this->prophesize(Session::class)->reveal(),
+            ['directedReadOptions' => $this->directedReadOptionsIncludeReplicas]
+        );
+
+        $snapshot->read('foo', $keySet, $columns);
     }
 }
