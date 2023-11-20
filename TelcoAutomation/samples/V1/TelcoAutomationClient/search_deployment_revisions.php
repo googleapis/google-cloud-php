@@ -40,10 +40,10 @@ use Google\Cloud\TelcoAutomation\V1\SearchDeploymentRevisionsRequest;
  *                                1. ""                       : Lists all revisions across all deployments.
  *                                2. "latest=true"            : Lists latest revisions across all
  *                                deployments.
- *                                3. "name=<name>"            : Lists all revisions of deployment with name
- *                                <name>.
- *                                4. "name=<name> latest=true": Lists latest revision of deployment with name
- *                                <name>
+ *                                3. "name={name}"            : Lists all revisions of deployment with name
+ *                                {name}.
+ *                                4. "name={name} latest=true": Lists latest revision of deployment with name
+ *                                {name}
  */
 function search_deployment_revisions_sample(string $formattedParent, string $query): void
 {
