@@ -25,11 +25,6 @@ class RequestHandler
     use RequestCallerTrait;
 
     /**
-     * @var array
-     */
-    private $clientConfig;
-
-    /**
      * @var Serializer
      */
     private $serializer;
@@ -42,42 +37,35 @@ class RequestHandler
     public function __construct(
         Serializer $serializer,
         array $gapicClasses,
-        array $config = []
+        array $clientConfig = []
     ) {
         //@codeCoverageIgnoreStart
         $this->serializer = $serializer;
-        $config['serializer'] = $serializer;
-        $config += ['emulatorHost' => null];
-        // TODO: We should be able to swap out the use of
-        // GrpcRequestWrapper with either something in gax, or
-        // have the functionality in this file itself.
-        $this->setRequestWrapper(new GrpcRequestWrapper($config));
-        $grpcConfig = $this->getGaxConfig(
-            $this->pluck('libVersion', $config),
-            isset($config['authHttpHandler'])
-                ? $config['authHttpHandler']
-                : null,
-            $config['transport'] ?? $this->getDefaultTransport()
-        );
+        $clientConfig['serializer'] = $serializer;
 
-        if (isset($config['apiEndpoint'])) {
-            $grpcConfig['apiEndpoint'] = $config['apiEndpoint'];
-        }
+        $this->setRequestWrapper(new GapicRequestWrapper($clientConfig));
 
-        if ((bool) $config['emulatorHost']) {
-            $grpcConfig = array_merge(
-                $grpcConfig,
-                $this->emulatorGapicConfig($config['emulatorHost'])
+        // Adds some defaults
+        // gccl needs to be present for handwritten clients
+        $clientConfig += [
+            'libName' => 'gccl',
+            'transport' => $this->getDefaultTransport(),
+            'emulatorHost' => null
+        ];
+
+        if ((bool) $clientConfig['emulatorHost']) {
+            $emulatorConfig = $this->emulatorGapicConfig($clientConfig['emulatorHost']);
+            $clientConfig = array_merge(
+                $clientConfig,
+                $emulatorConfig
             );
         }
         //@codeCoverageIgnoreEnd
-
-        $this->clientConfig = $grpcConfig;
         
         // Initialize the Gapic classes and store them in memory
         $this->gapics = [];
         foreach ($gapicClasses as $cls => $obj) {
-            $this->gapics[$cls] = is_object($obj) ? $obj : new $cls($this->clientConfig);
+            $this->gapics[$cls] = is_object($obj) ? $obj : new $cls($clientConfig);
         }
     }
 
@@ -106,8 +94,6 @@ class RequestHandler
 
         // we send the optional args in the end, because everything before that is
         // passed on the the `$method` as a positional argument
-        // TODO: If we merge the RequestWrapper funcationality here,
-        // we can modify this behaviour
         $allArgs[] = $optionalArgs;
 
         $gapicObj = $this->getGapicObj($gapicClassOrObj);

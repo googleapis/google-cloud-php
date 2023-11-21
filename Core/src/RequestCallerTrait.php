@@ -17,11 +17,9 @@
 
 namespace Google\Cloud\Core;
 
-use Google\ApiCore\CredentialsWrapper;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
-use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\WhitelistTrait;
 use Google\Protobuf\NullValue;
@@ -37,7 +35,7 @@ trait RequestCallerTrait
     use WhitelistTrait;
 
     /**
-     * @var GrpcRequestWrapper Wrapper used to handle sending requests to the
+     * @var GapicRequestWrapper Wrapper used to handle sending requests to the
      * gRPC/REST API.
      */
     private $requestWrapper;
@@ -45,9 +43,9 @@ trait RequestCallerTrait
     /**
      * Sets the request wrapper.
      *
-     * @param GrpcRequestWrapper $requestWrapper
+     * @param GapicRequestWrapper $requestWrapper
      */
-    public function setRequestWrapper(GrpcRequestWrapper $requestWrapper)
+    public function setRequestWrapper(GapicRequestWrapper $requestWrapper)
     {
         $this->requestWrapper = $requestWrapper;
     }
@@ -55,7 +53,7 @@ trait RequestCallerTrait
     /**
      * Get the RequestWrapper.
      *
-     * @return GrpcRequestWrapper|null
+     * @return GapicRequestWrapper|null
      */
     public function requestWrapper()
     {
@@ -74,10 +72,7 @@ trait RequestCallerTrait
     public function send(callable $request, array $args, $whitelisted = false)
     {
         $requestOptions = $this->pluckArray([
-            'grpcOptions',
-            'retries',
-            'requestTimeout',
-            'grpcRetryFunction'
+            'requestOptions'
         ], $args[count($args) - 1]);
 
         try {
@@ -89,43 +84,6 @@ trait RequestCallerTrait
 
             throw $e;
         }
-    }
-
-    /**
-     * Gets the default configuration for generated clients.
-     *
-     * @param string $version
-     * @param callable|null $authHttpHandler
-     * @return array
-     */
-    private function getGaxConfig(
-        $version,
-        callable $authHttpHandler = null,
-        string $transport = 'grpc'
-    ) {
-        $config = [
-            'libName' => 'gccl',
-            'libVersion' => $version,
-            'transport' => $transport
-        ];
-
-        // GAX v0.32.0 introduced the CredentialsWrapper class and a different
-        // way to configure credentials. If the class exists, use this new method
-        // otherwise default to legacy usage.
-        if (class_exists(CredentialsWrapper::class)) {
-            $config['credentials'] = new CredentialsWrapper(
-                $this->requestWrapper->getCredentialsFetcher(),
-                $authHttpHandler
-            );
-        } else {
-            $config += [
-                'credentialsLoader' => $this->requestWrapper->getCredentialsFetcher(),
-                'authHttpHandler' => $authHttpHandler,
-                'enableCaching' => false
-            ];
-        }
-
-        return $config;
     }
 
     /**
