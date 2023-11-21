@@ -27,10 +27,10 @@ class SearchBlueprintRevisionsRequest extends \Google\Protobuf\Internal\Message
      * Required. Supported queries:
      * 1. ""                       : Lists all revisions across all blueprints.
      * 2. "latest=true"            : Lists latest revisions across all blueprints.
-     * 3. "name=<name>"            : Lists all revisions of blueprint with name
-     * <name>.
-     * 4. "name=<name> latest=true": Lists latest revision of blueprint with name
-     * <name>
+     * 3. "name={name}"            : Lists all revisions of blueprint with name
+     * {name}.
+     * 4. "name={name} latest=true": Lists latest revision of blueprint with name
+     * {name}
      *
      * Generated from protobuf field <code>string query = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -58,10 +58,10 @@ class SearchBlueprintRevisionsRequest extends \Google\Protobuf\Internal\Message
      * @param string $query  Required. Supported queries:
      *                       1. ""                       : Lists all revisions across all blueprints.
      *                       2. "latest=true"            : Lists latest revisions across all blueprints.
-     *                       3. "name=<name>"            : Lists all revisions of blueprint with name
-     *                       <name>.
-     *                       4. "name=<name> latest=true": Lists latest revision of blueprint with name
-     *                       <name>
+     *                       3. "name={name}"            : Lists all revisions of blueprint with name
+     *                       {name}.
+     *                       4. "name={name} latest=true": Lists latest revision of blueprint with name
+     *                       {name}
      *
      * @return \Google\Cloud\TelcoAutomation\V1\SearchBlueprintRevisionsRequest
      *
@@ -88,10 +88,10 @@ class SearchBlueprintRevisionsRequest extends \Google\Protobuf\Internal\Message
      *           Required. Supported queries:
      *           1. ""                       : Lists all revisions across all blueprints.
      *           2. "latest=true"            : Lists latest revisions across all blueprints.
-     *           3. "name=<name>"            : Lists all revisions of blueprint with name
-     *           <name>.
-     *           4. "name=<name> latest=true": Lists latest revision of blueprint with name
-     *           <name>
+     *           3. "name={name}"            : Lists all revisions of blueprint with name
+     *           {name}.
+     *           4. "name={name} latest=true": Lists latest revision of blueprint with name
+     *           {name}
      *     @type int $page_size
      *           Optional. The maximum number of blueprints revisions to return per page.
      *           max page size = 100, default page size = 20.
@@ -139,10 +139,10 @@ class SearchBlueprintRevisionsRequest extends \Google\Protobuf\Internal\Message
      * Required. Supported queries:
      * 1. ""                       : Lists all revisions across all blueprints.
      * 2. "latest=true"            : Lists latest revisions across all blueprints.
-     * 3. "name=<name>"            : Lists all revisions of blueprint with name
-     * <name>.
-     * 4. "name=<name> latest=true": Lists latest revision of blueprint with name
-     * <name>
+     * 3. "name={name}"            : Lists all revisions of blueprint with name
+     * {name}.
+     * 4. "name={name} latest=true": Lists latest revision of blueprint with name
+     * {name}
      *
      * Generated from protobuf field <code>string query = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -156,10 +156,10 @@ class SearchBlueprintRevisionsRequest extends \Google\Protobuf\Internal\Message
      * Required. Supported queries:
      * 1. ""                       : Lists all revisions across all blueprints.
      * 2. "latest=true"            : Lists latest revisions across all blueprints.
-     * 3. "name=<name>"            : Lists all revisions of blueprint with name
-     * <name>.
-     * 4. "name=<name> latest=true": Lists latest revision of blueprint with name
-     * <name>
+     * 3. "name={name}"            : Lists all revisions of blueprint with name
+     * {name}.
+     * 4. "name={name} latest=true": Lists latest revision of blueprint with name
+     * {name}
      *
      * Generated from protobuf field <code>string query = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

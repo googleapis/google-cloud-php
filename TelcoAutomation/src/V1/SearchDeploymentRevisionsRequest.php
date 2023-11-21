@@ -28,10 +28,10 @@ class SearchDeploymentRevisionsRequest extends \Google\Protobuf\Internal\Message
      * 1. ""                       : Lists all revisions across all deployments.
      * 2. "latest=true"            : Lists latest revisions across all
      * deployments.
-     * 3. "name=<name>"            : Lists all revisions of deployment with name
-     * <name>.
-     * 4. "name=<name> latest=true": Lists latest revision of deployment with name
-     * <name>
+     * 3. "name={name}"            : Lists all revisions of deployment with name
+     * {name}.
+     * 4. "name={name} latest=true": Lists latest revision of deployment with name
+     * {name}
      *
      * Generated from protobuf field <code>string query = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -60,10 +60,10 @@ class SearchDeploymentRevisionsRequest extends \Google\Protobuf\Internal\Message
      *                       1. ""                       : Lists all revisions across all deployments.
      *                       2. "latest=true"            : Lists latest revisions across all
      *                       deployments.
-     *                       3. "name=<name>"            : Lists all revisions of deployment with name
-     *                       <name>.
-     *                       4. "name=<name> latest=true": Lists latest revision of deployment with name
-     *                       <name>
+     *                       3. "name={name}"            : Lists all revisions of deployment with name
+     *                       {name}.
+     *                       4. "name={name} latest=true": Lists latest revision of deployment with name
+     *                       {name}
      *
      * @return \Google\Cloud\TelcoAutomation\V1\SearchDeploymentRevisionsRequest
      *
@@ -91,10 +91,10 @@ class SearchDeploymentRevisionsRequest extends \Google\Protobuf\Internal\Message
      *           1. ""                       : Lists all revisions across all deployments.
      *           2. "latest=true"            : Lists latest revisions across all
      *           deployments.
-     *           3. "name=<name>"            : Lists all revisions of deployment with name
-     *           <name>.
-     *           4. "name=<name> latest=true": Lists latest revision of deployment with name
-     *           <name>
+     *           3. "name={name}"            : Lists all revisions of deployment with name
+     *           {name}.
+     *           4. "name={name} latest=true": Lists latest revision of deployment with name
+     *           {name}
      *     @type int $page_size
      *           Optional. The maximum number of deployment revisions to return per page.
      *           max page size = 100, default page size = 20.
@@ -143,10 +143,10 @@ class SearchDeploymentRevisionsRequest extends \Google\Protobuf\Internal\Message
      * 1. ""                       : Lists all revisions across all deployments.
      * 2. "latest=true"            : Lists latest revisions across all
      * deployments.
-     * 3. "name=<name>"            : Lists all revisions of deployment with name
-     * <name>.
-     * 4. "name=<name> latest=true": Lists latest revision of deployment with name
-     * <name>
+     * 3. "name={name}"            : Lists all revisions of deployment with name
+     * {name}.
+     * 4. "name={name} latest=true": Lists latest revision of deployment with name
+     * {name}
      *
      * Generated from protobuf field <code>string query = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -161,10 +161,10 @@ class SearchDeploymentRevisionsRequest extends \Google\Protobuf\Internal\Message
      * 1. ""                       : Lists all revisions across all deployments.
      * 2. "latest=true"            : Lists latest revisions across all
      * deployments.
-     * 3. "name=<name>"            : Lists all revisions of deployment with name
-     * <name>.
-     * 4. "name=<name> latest=true": Lists latest revision of deployment with name
-     * <name>
+     * 3. "name={name}"            : Lists all revisions of deployment with name
+     * {name}.
+     * 4. "name={name} latest=true": Lists latest revision of deployment with name
+     * {name}
      *
      * Generated from protobuf field <code>string query = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
