@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response for a bulk analyze conversations operation.
+ * The response for a bulk delete conversations operation.
  *
  * Generated from protobuf message <code>google.cloud.contactcenterinsights.v1.BulkDeleteConversationsResponse</code>
  */
