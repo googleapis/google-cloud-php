@@ -49,6 +49,9 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
     private $labels;
     /**
      * The network policy.
+     * If you define an instance template in the InstancePolicyOrTemplate field,
+     * Batch will use the network settings in the instance template instead of
+     * this field.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.NetworkPolicy network = 7;</code>
      */
@@ -83,6 +86,9 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
      *           Label names that start with "goog-" or "google-" are reserved.
      *     @type \Google\Cloud\Batch\V1\AllocationPolicy\NetworkPolicy $network
      *           The network policy.
+     *           If you define an instance template in the InstancePolicyOrTemplate field,
+     *           Batch will use the network settings in the instance template instead of
+     *           this field.
      *     @type \Google\Cloud\Batch\V1\AllocationPolicy\PlacementPolicy $placement
      *           The placement policy.
      * }
@@ -232,6 +238,9 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * The network policy.
+     * If you define an instance template in the InstancePolicyOrTemplate field,
+     * Batch will use the network settings in the instance template instead of
+     * this field.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.NetworkPolicy network = 7;</code>
      * @return \Google\Cloud\Batch\V1\AllocationPolicy\NetworkPolicy|null
@@ -253,6 +262,9 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * The network policy.
+     * If you define an instance template in the InstancePolicyOrTemplate field,
+     * Batch will use the network settings in the instance template instead of
+     * this field.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.NetworkPolicy network = 7;</code>
      * @param \Google\Cloud\Batch\V1\AllocationPolicy\NetworkPolicy $var

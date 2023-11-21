@@ -32,6 +32,4 @@ class CloudLoggingOption extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CloudLoggingOption::class, \Google\Cloud\Batch\V1\LogsPolicy_CloudLoggingOption::class);
 
