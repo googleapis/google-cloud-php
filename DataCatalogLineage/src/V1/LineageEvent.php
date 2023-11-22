@@ -34,11 +34,11 @@ class LineageEvent extends \Google\Protobuf\Internal\Message
      */
     private $links;
     /**
-     * Optional. The beginning of the transformation which resulted in this
+     * Required. The beginning of the transformation which resulted in this
      * lineage event. For streaming scenarios, it should be the beginning of the
      * period from which the lineage is being reported.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $start_time = null;
     /**
@@ -66,7 +66,7 @@ class LineageEvent extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\DataCatalog\Lineage\V1\EventLink>|\Google\Protobuf\Internal\RepeatedField $links
      *           Optional. List of source-target pairs. Can't contain more than 100 tuples.
      *     @type \Google\Protobuf\Timestamp $start_time
-     *           Optional. The beginning of the transformation which resulted in this
+     *           Required. The beginning of the transformation which resulted in this
      *           lineage event. For streaming scenarios, it should be the beginning of the
      *           period from which the lineage is being reported.
      *     @type \Google\Protobuf\Timestamp $end_time
@@ -143,11 +143,11 @@ class LineageEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The beginning of the transformation which resulted in this
+     * Required. The beginning of the transformation which resulted in this
      * lineage event. For streaming scenarios, it should be the beginning of the
      * period from which the lineage is being reported.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
@@ -166,11 +166,11 @@ class LineageEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The beginning of the transformation which resulted in this
+     * Required. The beginning of the transformation which resulted in this
      * lineage event. For streaming scenarios, it should be the beginning of the
      * period from which the lineage is being reported.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */

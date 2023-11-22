@@ -86,6 +86,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $satisfies_pzs = null;
     /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $satisfies_pzi = false;
+    /**
      * KMS key name used for data encryption.
      *
      * Generated from protobuf field <code>string kms_key_name = 14;</code>
@@ -130,6 +136,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Server-specified ETag for the instance resource to prevent simultaneous
      *           updates from overwriting each other.
      *     @type \Google\Protobuf\BoolValue $satisfies_pzs
+     *           Output only. Reserved for future use.
+     *     @type bool $satisfies_pzi
      *           Output only. Reserved for future use.
      *     @type string $kms_key_name
      *           KMS key name used for data encryption.
@@ -483,6 +491,32 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         $this->writeWrapperValue("satisfies_pzs", $var);
         return $this;}
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return $this->satisfies_pzi;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
+
+        return $this;
+    }
 
     /**
      * KMS key name used for data encryption.

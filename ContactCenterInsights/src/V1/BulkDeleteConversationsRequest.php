@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class BulkDeleteConversationsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource to create analyses in.
+     * Required. The parent resource to delete conversations from.
      * Format:
      * projects/{project}/locations/{location}
      *
@@ -24,14 +24,13 @@ class BulkDeleteConversationsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Filter used to select the subset of conversations to analyze.
+     * Filter used to select the subset of conversations to delete.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
     private $filter = '';
     /**
-     * Maximum number of conversations to delete. The default is 1000. It can be
-     * changed by setting the `max_delete_count` field.
+     * Maximum number of conversations to delete.
      *
      * Generated from protobuf field <code>int32 max_delete_count = 3;</code>
      */
@@ -46,11 +45,11 @@ class BulkDeleteConversationsRequest extends \Google\Protobuf\Internal\Message
     private $force = false;
 
     /**
-     * @param string $parent Required. The parent resource to create analyses in.
+     * @param string $parent Required. The parent resource to delete conversations from.
      *                       Format:
      *                       projects/{project}/locations/{location}
      *                       Please see {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
-     * @param string $filter Filter used to select the subset of conversations to analyze.
+     * @param string $filter Filter used to select the subset of conversations to delete.
      *
      * @return \Google\Cloud\ContactCenterInsights\V1\BulkDeleteConversationsRequest
      *
@@ -70,14 +69,13 @@ class BulkDeleteConversationsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent resource to create analyses in.
+     *           Required. The parent resource to delete conversations from.
      *           Format:
      *           projects/{project}/locations/{location}
      *     @type string $filter
-     *           Filter used to select the subset of conversations to analyze.
+     *           Filter used to select the subset of conversations to delete.
      *     @type int $max_delete_count
-     *           Maximum number of conversations to delete. The default is 1000. It can be
-     *           changed by setting the `max_delete_count` field.
+     *           Maximum number of conversations to delete.
      *     @type bool $force
      *           If set to true, all of this conversation's analyses will also be deleted.
      *           Otherwise, the request will only succeed if the conversation has no
@@ -90,7 +88,7 @@ class BulkDeleteConversationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource to create analyses in.
+     * Required. The parent resource to delete conversations from.
      * Format:
      * projects/{project}/locations/{location}
      *
@@ -103,7 +101,7 @@ class BulkDeleteConversationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource to create analyses in.
+     * Required. The parent resource to delete conversations from.
      * Format:
      * projects/{project}/locations/{location}
      *
@@ -120,7 +118,7 @@ class BulkDeleteConversationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Filter used to select the subset of conversations to analyze.
+     * Filter used to select the subset of conversations to delete.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @return string
@@ -131,7 +129,7 @@ class BulkDeleteConversationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Filter used to select the subset of conversations to analyze.
+     * Filter used to select the subset of conversations to delete.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @param string $var
@@ -146,8 +144,7 @@ class BulkDeleteConversationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of conversations to delete. The default is 1000. It can be
-     * changed by setting the `max_delete_count` field.
+     * Maximum number of conversations to delete.
      *
      * Generated from protobuf field <code>int32 max_delete_count = 3;</code>
      * @return int
@@ -158,8 +155,7 @@ class BulkDeleteConversationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of conversations to delete. The default is 1000. It can be
-     * changed by setting the `max_delete_count` field.
+     * Maximum number of conversations to delete.
      *
      * Generated from protobuf field <code>int32 max_delete_count = 3;</code>
      * @param int $var

@@ -37,12 +37,15 @@ for DIR in ${DIRS}; do {
         fi
     done
 
-    echo "Running $DIR Unit Tests"
-    composer -q --no-interaction --no-ansi --no-progress update -d ${DIR};
+    echo "Installing composer in $DIR"
+    COMPOSER_ROOT_VERSION=$(cat $DIR/VERSION) composer -q --no-interaction --no-ansi --no-progress update -d ${DIR};
     if [ $? != 0 ]; then
         echo "$DIR: composer install failed" >> "${FAILED_FILE}"
+        # run again but without "-q" so we can see the error
+        COMPOSER_ROOT_VERSION=$(cat $DIR/VERSION) composer --no-interaction --no-ansi --no-progress update -d ${DIR};
         continue
     fi
+    echo "Running $DIR Unit Tests"
     ${DIR}/vendor/bin/phpunit -c ${DIR}/phpunit.xml.dist;
     if [ $? != 0 ]; then
         echo "$DIR: failed" >> "${FAILED_FILE}"

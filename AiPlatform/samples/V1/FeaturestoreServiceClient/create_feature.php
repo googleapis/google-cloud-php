@@ -28,36 +28,32 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\AIPlatform\V1\Client\FeaturestoreServiceClient;
 use Google\Cloud\AIPlatform\V1\CreateFeatureRequest;
 use Google\Cloud\AIPlatform\V1\Feature;
-use Google\Cloud\AIPlatform\V1\Feature\ValueType;
 use Google\Rpc\Status;
 
 /**
  * Creates a new Feature in a given EntityType.
  *
- * @param string $formattedParent  The resource name of the EntityType to create a Feature.
- *                                 Format:
- *                                 `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
- *                                 Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
- * @param int    $featureValueType Immutable. Type of Feature value.
- * @param string $featureId        The ID to use for the Feature, which will become the final
- *                                 component of the Feature's resource name.
+ * @param string $formattedParent The resource name of the EntityType or FeatureGroup to create a
+ *                                Feature. Format for entity_type as parent:
+ *                                `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+ *                                Format for feature_group as parent:
+ *                                `projects/{project}/locations/{location}/featureGroups/{feature_group}`
+ *                                Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
+ * @param string $featureId       The ID to use for the Feature, which will become the final
+ *                                component of the Feature's resource name.
  *
- *                                 This value may be up to 128 characters, and valid characters are
- *                                 `[a-z0-9_]`. The first character cannot be a number.
+ *                                This value may be up to 128 characters, and valid characters are
+ *                                `[a-z0-9_]`. The first character cannot be a number.
  *
- *                                 The value must be unique within an EntityType.
+ *                                The value must be unique within an EntityType/FeatureGroup.
  */
-function create_feature_sample(
-    string $formattedParent,
-    int $featureValueType,
-    string $featureId
-): void {
+function create_feature_sample(string $formattedParent, string $featureId): void
+{
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
     // Prepare the request message.
-    $feature = (new Feature())
-        ->setValueType($featureValueType);
+    $feature = new Feature();
     $request = (new CreateFeatureRequest())
         ->setParent($formattedParent)
         ->setFeature($feature)
@@ -100,9 +96,8 @@ function callSample(): void
         '[FEATURESTORE]',
         '[ENTITY_TYPE]'
     );
-    $featureValueType = ValueType::VALUE_TYPE_UNSPECIFIED;
     $featureId = '[FEATURE_ID]';
 
-    create_feature_sample($formattedParent, $featureValueType, $featureId);
+    create_feature_sample($formattedParent, $featureId);
 }
 // [END aiplatform_v1_generated_FeaturestoreService_CreateFeature_sync]

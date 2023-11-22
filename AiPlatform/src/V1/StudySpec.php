@@ -47,6 +47,13 @@ class StudySpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.StudySpec.MeasurementSelectionType measurement_selection_type = 7;</code>
      */
     private $measurement_selection_type = 0;
+    /**
+     * Conditions for automated stopping of a Study. Enable automated stopping by
+     * configuring at least one condition.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.StudySpec.StudyStoppingConfig study_stopping_config = 11;</code>
+     */
+    private $study_stopping_config = null;
     protected $automated_stopping_spec;
 
     /**
@@ -73,6 +80,9 @@ class StudySpec extends \Google\Protobuf\Internal\Message
      *           HyperparameterTuningJob or TrainingPipeline.
      *     @type int $measurement_selection_type
      *           Describe which measurement selection type will be used
+     *     @type \Google\Cloud\AIPlatform\V1\StudySpec\StudyStoppingConfig $study_stopping_config
+     *           Conditions for automated stopping of a Study. Enable automated stopping by
+     *           configuring at least one condition.
      * }
      */
     public function __construct($data = NULL) {
@@ -303,6 +313,44 @@ class StudySpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\StudySpec\MeasurementSelectionType::class);
         $this->measurement_selection_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Conditions for automated stopping of a Study. Enable automated stopping by
+     * configuring at least one condition.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.StudySpec.StudyStoppingConfig study_stopping_config = 11;</code>
+     * @return \Google\Cloud\AIPlatform\V1\StudySpec\StudyStoppingConfig|null
+     */
+    public function getStudyStoppingConfig()
+    {
+        return $this->study_stopping_config;
+    }
+
+    public function hasStudyStoppingConfig()
+    {
+        return isset($this->study_stopping_config);
+    }
+
+    public function clearStudyStoppingConfig()
+    {
+        unset($this->study_stopping_config);
+    }
+
+    /**
+     * Conditions for automated stopping of a Study. Enable automated stopping by
+     * configuring at least one condition.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.StudySpec.StudyStoppingConfig study_stopping_config = 11;</code>
+     * @param \Google\Cloud\AIPlatform\V1\StudySpec\StudyStoppingConfig $var
+     * @return $this
+     */
+    public function setStudyStoppingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\StudySpec\StudyStoppingConfig::class);
+        $this->study_stopping_config = $var;
 
         return $this;
     }

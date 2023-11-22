@@ -18,15 +18,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class SetHeaderAction extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The header key to set in the request to the backend server.
+     * Optional. The header key to set in the request to the backend server.
      *
-     * Generated from protobuf field <code>string key = 1;</code>
+     * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $key = '';
     /**
-     * The header value to set in the request to the backend server.
+     * Optional. The header value to set in the request to the backend server.
      *
-     * Generated from protobuf field <code>string value = 2;</code>
+     * Generated from protobuf field <code>string value = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $value = '';
 
@@ -37,9 +37,9 @@ class SetHeaderAction extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $key
-     *           The header key to set in the request to the backend server.
+     *           Optional. The header key to set in the request to the backend server.
      *     @type string $value
-     *           The header value to set in the request to the backend server.
+     *           Optional. The header value to set in the request to the backend server.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,9 +48,9 @@ class SetHeaderAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The header key to set in the request to the backend server.
+     * Optional. The header key to set in the request to the backend server.
      *
-     * Generated from protobuf field <code>string key = 1;</code>
+     * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getKey()
@@ -59,9 +59,9 @@ class SetHeaderAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The header key to set in the request to the backend server.
+     * Optional. The header key to set in the request to the backend server.
      *
-     * Generated from protobuf field <code>string key = 1;</code>
+     * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -74,9 +74,9 @@ class SetHeaderAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The header value to set in the request to the backend server.
+     * Optional. The header value to set in the request to the backend server.
      *
-     * Generated from protobuf field <code>string value = 2;</code>
+     * Generated from protobuf field <code>string value = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getValue()
@@ -85,9 +85,9 @@ class SetHeaderAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The header value to set in the request to the backend server.
+     * Optional. The header value to set in the request to the backend server.
      *
-     * Generated from protobuf field <code>string value = 2;</code>
+     * Generated from protobuf field <code>string value = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

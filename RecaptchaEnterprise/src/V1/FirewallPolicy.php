@@ -24,43 +24,45 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * A description of what this policy aims to achieve, for convenience
-     * purposes. The description can at most include 256 UTF-8 characters.
+     * Optional. A description of what this policy aims to achieve, for
+     * convenience purposes. The description can at most include 256 UTF-8
+     * characters.
      *
-     * Generated from protobuf field <code>string description = 2;</code>
+     * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $description = '';
     /**
-     * The path for which this policy applies, specified as a glob pattern.
-     * For more information on glob, see the [manual
+     * Optional. The path for which this policy applies, specified as a glob
+     * pattern. For more information on glob, see the [manual
      * page](https://man7.org/linux/man-pages/man7/glob.7.html).
      * A path has a max length of 200 characters.
      *
-     * Generated from protobuf field <code>string path = 4;</code>
+     * Generated from protobuf field <code>string path = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $path = '';
     /**
-     * A CEL (Common Expression Language) conditional expression that specifies if
-     * this policy applies to an incoming user request. If this condition
-     * evaluates to true and the requested path matched the path pattern, the
-     * associated actions should be executed by the caller. The condition string
-     * is checked for CEL syntax correctness on creation. For more information,
-     * see the [CEL spec](https://github.com/google/cel-spec) and its [language
+     * Optional. A CEL (Common Expression Language) conditional expression that
+     * specifies if this policy applies to an incoming user request. If this
+     * condition evaluates to true and the requested path matched the path
+     * pattern, the associated actions should be executed by the caller. The
+     * condition string is checked for CEL syntax correctness on creation. For
+     * more information, see the [CEL spec](https://github.com/google/cel-spec)
+     * and its [language
      * definition](https://github.com/google/cel-spec/blob/master/doc/langdef.md).
      * A condition has a max length of 500 characters.
      *
-     * Generated from protobuf field <code>string condition = 5;</code>
+     * Generated from protobuf field <code>string condition = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $condition = '';
     /**
-     * The actions that the caller should take regarding user access.
+     * Optional. The actions that the caller should take regarding user access.
      * There should be at most one terminal action. A terminal action is any
      * action that forces a response, such as `AllowAction`,
      * `BlockAction` or `SubstituteAction`.
      * Zero or more non-terminal actions such as `SetHeader` might be
      * specified. A single policy can contain up to 16 actions.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.FirewallAction actions = 6;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.FirewallAction actions = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $actions;
 
@@ -74,24 +76,26 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      *           The resource name for the FirewallPolicy in the format
      *           `projects/{project}/firewallpolicies/{firewallpolicy}`.
      *     @type string $description
-     *           A description of what this policy aims to achieve, for convenience
-     *           purposes. The description can at most include 256 UTF-8 characters.
+     *           Optional. A description of what this policy aims to achieve, for
+     *           convenience purposes. The description can at most include 256 UTF-8
+     *           characters.
      *     @type string $path
-     *           The path for which this policy applies, specified as a glob pattern.
-     *           For more information on glob, see the [manual
+     *           Optional. The path for which this policy applies, specified as a glob
+     *           pattern. For more information on glob, see the [manual
      *           page](https://man7.org/linux/man-pages/man7/glob.7.html).
      *           A path has a max length of 200 characters.
      *     @type string $condition
-     *           A CEL (Common Expression Language) conditional expression that specifies if
-     *           this policy applies to an incoming user request. If this condition
-     *           evaluates to true and the requested path matched the path pattern, the
-     *           associated actions should be executed by the caller. The condition string
-     *           is checked for CEL syntax correctness on creation. For more information,
-     *           see the [CEL spec](https://github.com/google/cel-spec) and its [language
+     *           Optional. A CEL (Common Expression Language) conditional expression that
+     *           specifies if this policy applies to an incoming user request. If this
+     *           condition evaluates to true and the requested path matched the path
+     *           pattern, the associated actions should be executed by the caller. The
+     *           condition string is checked for CEL syntax correctness on creation. For
+     *           more information, see the [CEL spec](https://github.com/google/cel-spec)
+     *           and its [language
      *           definition](https://github.com/google/cel-spec/blob/master/doc/langdef.md).
      *           A condition has a max length of 500 characters.
      *     @type array<\Google\Cloud\RecaptchaEnterprise\V1\FirewallAction>|\Google\Protobuf\Internal\RepeatedField $actions
-     *           The actions that the caller should take regarding user access.
+     *           Optional. The actions that the caller should take regarding user access.
      *           There should be at most one terminal action. A terminal action is any
      *           action that forces a response, such as `AllowAction`,
      *           `BlockAction` or `SubstituteAction`.
@@ -133,10 +137,11 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A description of what this policy aims to achieve, for convenience
-     * purposes. The description can at most include 256 UTF-8 characters.
+     * Optional. A description of what this policy aims to achieve, for
+     * convenience purposes. The description can at most include 256 UTF-8
+     * characters.
      *
-     * Generated from protobuf field <code>string description = 2;</code>
+     * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
@@ -145,10 +150,11 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A description of what this policy aims to achieve, for convenience
-     * purposes. The description can at most include 256 UTF-8 characters.
+     * Optional. A description of what this policy aims to achieve, for
+     * convenience purposes. The description can at most include 256 UTF-8
+     * characters.
      *
-     * Generated from protobuf field <code>string description = 2;</code>
+     * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -161,12 +167,12 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The path for which this policy applies, specified as a glob pattern.
-     * For more information on glob, see the [manual
+     * Optional. The path for which this policy applies, specified as a glob
+     * pattern. For more information on glob, see the [manual
      * page](https://man7.org/linux/man-pages/man7/glob.7.html).
      * A path has a max length of 200 characters.
      *
-     * Generated from protobuf field <code>string path = 4;</code>
+     * Generated from protobuf field <code>string path = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPath()
@@ -175,12 +181,12 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The path for which this policy applies, specified as a glob pattern.
-     * For more information on glob, see the [manual
+     * Optional. The path for which this policy applies, specified as a glob
+     * pattern. For more information on glob, see the [manual
      * page](https://man7.org/linux/man-pages/man7/glob.7.html).
      * A path has a max length of 200 characters.
      *
-     * Generated from protobuf field <code>string path = 4;</code>
+     * Generated from protobuf field <code>string path = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -193,16 +199,17 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A CEL (Common Expression Language) conditional expression that specifies if
-     * this policy applies to an incoming user request. If this condition
-     * evaluates to true and the requested path matched the path pattern, the
-     * associated actions should be executed by the caller. The condition string
-     * is checked for CEL syntax correctness on creation. For more information,
-     * see the [CEL spec](https://github.com/google/cel-spec) and its [language
+     * Optional. A CEL (Common Expression Language) conditional expression that
+     * specifies if this policy applies to an incoming user request. If this
+     * condition evaluates to true and the requested path matched the path
+     * pattern, the associated actions should be executed by the caller. The
+     * condition string is checked for CEL syntax correctness on creation. For
+     * more information, see the [CEL spec](https://github.com/google/cel-spec)
+     * and its [language
      * definition](https://github.com/google/cel-spec/blob/master/doc/langdef.md).
      * A condition has a max length of 500 characters.
      *
-     * Generated from protobuf field <code>string condition = 5;</code>
+     * Generated from protobuf field <code>string condition = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getCondition()
@@ -211,16 +218,17 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A CEL (Common Expression Language) conditional expression that specifies if
-     * this policy applies to an incoming user request. If this condition
-     * evaluates to true and the requested path matched the path pattern, the
-     * associated actions should be executed by the caller. The condition string
-     * is checked for CEL syntax correctness on creation. For more information,
-     * see the [CEL spec](https://github.com/google/cel-spec) and its [language
+     * Optional. A CEL (Common Expression Language) conditional expression that
+     * specifies if this policy applies to an incoming user request. If this
+     * condition evaluates to true and the requested path matched the path
+     * pattern, the associated actions should be executed by the caller. The
+     * condition string is checked for CEL syntax correctness on creation. For
+     * more information, see the [CEL spec](https://github.com/google/cel-spec)
+     * and its [language
      * definition](https://github.com/google/cel-spec/blob/master/doc/langdef.md).
      * A condition has a max length of 500 characters.
      *
-     * Generated from protobuf field <code>string condition = 5;</code>
+     * Generated from protobuf field <code>string condition = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -233,14 +241,14 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The actions that the caller should take regarding user access.
+     * Optional. The actions that the caller should take regarding user access.
      * There should be at most one terminal action. A terminal action is any
      * action that forces a response, such as `AllowAction`,
      * `BlockAction` or `SubstituteAction`.
      * Zero or more non-terminal actions such as `SetHeader` might be
      * specified. A single policy can contain up to 16 actions.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.FirewallAction actions = 6;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.FirewallAction actions = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getActions()
@@ -249,14 +257,14 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The actions that the caller should take regarding user access.
+     * Optional. The actions that the caller should take regarding user access.
      * There should be at most one terminal action. A terminal action is any
      * action that forces a response, such as `AllowAction`,
      * `BlockAction` or `SubstituteAction`.
      * Zero or more non-terminal actions such as `SetHeader` might be
      * specified. A single policy can contain up to 16 actions.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.FirewallAction actions = 6;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.FirewallAction actions = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\RecaptchaEnterprise\V1\FirewallAction>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
