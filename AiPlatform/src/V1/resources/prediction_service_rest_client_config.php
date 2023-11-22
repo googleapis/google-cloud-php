@@ -3,6 +3,30 @@
 return [
     'interfaces' => [
         'google.cloud.aiplatform.v1.PredictionService' => [
+            'DirectPredict' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{endpoint=projects/*/locations/*/endpoints/*}:directPredict',
+                'body' => '*',
+                'placeholders' => [
+                    'endpoint' => [
+                        'getters' => [
+                            'getEndpoint',
+                        ],
+                    ],
+                ],
+            ],
+            'DirectRawPredict' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{endpoint=projects/*/locations/*/endpoints/*}:directRawPredict',
+                'body' => '*',
+                'placeholders' => [
+                    'endpoint' => [
+                        'getters' => [
+                            'getEndpoint',
+                        ],
+                    ],
+                ],
+            ],
             'Explain' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{endpoint=projects/*/locations/*/endpoints/*}:explain',

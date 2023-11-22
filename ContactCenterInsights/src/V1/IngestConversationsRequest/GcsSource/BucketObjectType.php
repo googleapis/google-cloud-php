@@ -12,7 +12,7 @@ use UnexpectedValueException;
 class BucketObjectType
 {
     /**
-     * The object type is unspecified and will default to TRANSCRIPT.
+     * The object type is unspecified and will default to `TRANSCRIPT`.
      *
      * Generated from protobuf enum <code>BUCKET_OBJECT_TYPE_UNSPECIFIED = 0;</code>
      */
