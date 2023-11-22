@@ -54,7 +54,7 @@ class CredentialsWrapper
     use ValidationTrait;
 
     /** @var FetchAuthTokenInterface $credentialsFetcher */
-    private FetchAuthTokenInterface $credentialsFetcher;
+    private ?FetchAuthTokenInterface $credentialsFetcher = null;
     /** @var callable $authHttpHandle */
     private $authHttpHandler;
 
