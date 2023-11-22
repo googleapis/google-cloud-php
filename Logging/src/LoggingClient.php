@@ -469,7 +469,7 @@ class LoggingClient
             unset($options['projectIds']);
         }
         if (isset($options['resourceNames'])) {
-            $options['resourceNames'] = array_merge($resourceNames, $options['projectIds']);
+            $options['resourceNames'] = array_merge($resourceNames, $options['resourceNames']);
         } else {
             $options['resourceNames'] = $resourceNames;
         }
