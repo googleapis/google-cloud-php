@@ -672,7 +672,8 @@ class RequestWrapperTest extends TestCase
 
     public function testAuthHandlerPassingWithFetchAuthTokenInterface()
     {
-        $authHttpHandler = function ($request, $options = []) {};
+        $authHttpHandler = function ($request, $options = []) {
+        };
         $fetcher = $this->prophesize(FetchAuthTokenInterface::class);
         $fetcher->fetchAuthToken($authHttpHandler)
             ->shouldBeCalledOnce()
@@ -690,7 +691,8 @@ class RequestWrapperTest extends TestCase
 
     public function testAuthHandlerPassingWithUpdateMetadataInterface()
     {
-        $authHttpHandler = function ($request, $options = []) {};
+        $authHttpHandler = function ($request, $options = []) {
+        };
         $fetcher = $this->prophesize(FetchAuthTokenInterface::class);
         $fetcher->willImplement(UpdateMetadataInterface::class);
         $fetcher->updateMetadata(Argument::any(), Argument::any(), $authHttpHandler)
