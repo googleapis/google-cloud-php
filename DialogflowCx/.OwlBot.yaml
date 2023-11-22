@@ -1,4 +1,4 @@
 deep-copy-regex:
-    - source: /google/cloud/dialogflow/cx/(v3)/.*-php/(.*)
+    - source: /google/cloud/dialogflow/cx/(v3|v3beta1)/.*-php/(.*)
       dest: /owl-bot-staging/DialogflowCx/$1/$2
 api-name: DialogflowCx
