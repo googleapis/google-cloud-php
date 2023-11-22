@@ -352,8 +352,8 @@ class RequestWrapper
                          )
                     ) {
                         // This covers an edge case where the token fetcher does not implement UpdateMetadataInterface,
-                        // which only would happen if a user implemented a custom fetcher 
-                        if ($token = $fetcher->fetchAuthToken()) {
+                        // which only would happen if a user implemented a custom fetcher
+                        if ($token = $fetcher->fetchAuthToken($this->authHttpHandler)) {
                             return $request->withHeader('authorization', 'Bearer ' . $token['access_token']);
                         }
                     } else {
