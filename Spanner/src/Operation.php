@@ -214,11 +214,11 @@ class Operation
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
-     *     @type Transaction $transactionHandle Transaction to be used for this operation.
      * }
+     * @param Transaction $transaction Transaction to be used for this operation.
      * @return Result
      */
-    public function execute(Session $session, $sql, array $options = [])
+    public function execute(Session $session, $sql, array $options = [], $transaction = null)
     {
         $options += [
             'parameters' => [],
@@ -228,6 +228,7 @@ class Operation
 
         $parameters = $this->pluck('parameters', $options);
         $types = $this->pluck('types', $options);
+
         $options += $this->mapper->formatParamsForExecuteSql($parameters, $types);
 
         $context = $this->pluck('transactionContext', $options);
@@ -235,12 +236,9 @@ class Operation
         // Initially with begin, transactionId will be null.
         // Once generated it will get populated from Result->rows()
         // Incase of stream failure, the transactionId is preserved here to reuse.
-        $call = function ($resumeToken = null) use ($session, $sql, $options) {
-            if (
-                isset($options['transactionHandle']) &&
-                !is_null($options['transactionHandle']->id())
-            ) {
-                $options['transaction'] = ['id' => $options['transactionHandle']->id()];
+        $call = function ($resumeToken = null) use ($session, $sql, $options, $transaction) {
+            if ($transaction && !is_null($transaction->id())) {
+                $options['transaction'] = ['id' => $transaction->id()];
             }
             if ($resumeToken) {
                 $options['resumeToken'] = $resumeToken;
@@ -260,7 +258,7 @@ class Operation
             $context,
             $this->mapper,
             self::DEFAULT_RETRIES,
-            $options['transactionHandle'] ?? null
+            $transaction
         );
     }
 
@@ -293,9 +291,7 @@ class Operation
         if (!is_null($transaction->id())) {
             $options += ['transactionId' => $transaction->id()];
         }
-        $res = $this->execute($session, $sql, $options + [
-            'transactionHandle' => $transaction
-        ]);
+        $res = $this->execute($session, $sql, $options, $transaction);
 
         // Iterate through the result to ensure we have query statistics available.
         iterator_to_array($res->rows());
@@ -348,7 +344,7 @@ class Operation
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *     @type array $begin The begin Transaction options.
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
-     * 
+     *
      * }
      * @return BatchDmlResult
      * @throws \InvalidArgumentException If any statement is missing the `sql` key.
@@ -418,8 +414,8 @@ class Operation
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
-     *     @type Transaction $transactionHandle Transaction to be used for this operation.
      * }
+     * @param Transaction $transaction Transaction to be used for this operation.
      * @return Result
      */
     public function read(
@@ -427,7 +423,8 @@ class Operation
         $table,
         KeySet $keySet,
         array $columns,
-        array $options = []
+        array $options = [],
+        $transaction = null,
     ) {
         $options += [
             'index' => null,
@@ -438,12 +435,9 @@ class Operation
 
         $context = $this->pluck('transactionContext', $options);
 
-        $call = function ($resumeToken = null) use ($table, $session, $columns, $keySet, $options) {
-            if (
-                isset($options['transactionHandle']) &&
-                !is_null($options['transactionHandle']->id())
-            ) {
-                $options['transaction'] = ['id' => $options['transactionHandle']->id()];
+        $call = function ($resumeToken = null) use ($table, $session, $columns, $keySet, $options, $transaction) {
+            if ($transaction && !is_null($transaction->id())) {
+                $options['transaction'] = ['id' => $transaction->id()];
             }
             if ($resumeToken) {
                 $options['resumeToken'] = $resumeToken;
@@ -465,7 +459,7 @@ class Operation
             $context,
             $this->mapper,
             self::DEFAULT_RETRIES,
-            $options['transactionHandle'] ?? null
+            $transaction
         );
     }
 

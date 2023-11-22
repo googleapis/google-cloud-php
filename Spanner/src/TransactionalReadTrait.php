@@ -279,7 +279,6 @@ trait TransactionalReadTrait
         $selector = $this->transactionSelector($options, $this->options);
 
         $options['transaction'] = $selector[0];
-        $options['transactionHandle'] = $this;
 
         unset($options['requestOptions']['transactionTag']);
         if (isset($this->tag)) {
@@ -293,7 +292,8 @@ trait TransactionalReadTrait
         return $this->operation->execute(
             $this->session,
             $sql,
-            $options
+            $options,
+            $this,
         );
     }
 
@@ -350,7 +350,6 @@ trait TransactionalReadTrait
         $selector = $this->transactionSelector($options, $this->options);
 
         $options['transaction'] = $selector[0];
-        $options['transactionHandle'] = $this;
 
         unset($options['requestOptions']['transactionTag']);
         if (isset($this->tag)) {
@@ -365,7 +364,8 @@ trait TransactionalReadTrait
             $table,
             $keySet,
             $columns,
-            $options
+            $options,
+            $this,
         );
     }
 
