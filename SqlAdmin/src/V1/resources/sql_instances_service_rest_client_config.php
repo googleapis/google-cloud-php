@@ -440,6 +440,22 @@ return [
                     ],
                 ],
             ],
+            'Switchover' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project}/instances/{instance}/switchover',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'TruncateLog' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/projects/{project}/instances/{instance}/truncateLog',
