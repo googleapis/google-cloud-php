@@ -18,13 +18,14 @@ class MachineResources
         \GPBMetadata\Google\Cloud\Aiplatform\V1\AcceleratorType::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¨
+«
 
-2google/cloud/aiplatform/v1/machine_resources.protogoogle.cloud.aiplatform.v11google/cloud/aiplatform/v1/accelerator_type.proto"è
+2google/cloud/aiplatform/v1/machine_resources.protogoogle.cloud.aiplatform.v11google/cloud/aiplatform/v1/accelerator_type.proto"™
 MachineSpec
 machine_type (	B‡AJ
 accelerator_type (2+.google.cloud.aiplatform.v1.AcceleratorTypeB‡A
-accelerator_count ("¯
+accelerator_count (
+tpu_topology (	B‡A"¯
 DedicatedResourcesE
 machine_spec (2\'.google.cloud.aiplatform.v1.MachineSpecB‡A‡A!
 min_replica_count (B‡A‡A

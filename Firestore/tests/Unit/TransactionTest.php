@@ -106,7 +106,10 @@ class TransactionTest extends TestCase
         $this->assertInstanceOf(QuerySnapshot::class, $res);
     }
 
-    public function testRunAggregateQuery()
+    /**
+     * @dataProvider aggregationTypes
+     */
+    public function testRunAggregateQuery($type, $arg)
     {
         $this->connection->runAggregationQuery(Argument::any())
             ->shouldBeCalled()
@@ -116,7 +119,7 @@ class TransactionTest extends TestCase
             $this->connection->reveal(),
             self::DOCUMENT,
             ['query' => []],
-            Aggregate::count()
+            $arg ? Aggregate::$type($arg) : Aggregate::$type()
         );
 
         $this->transaction->___setProperty('connection', $this->connection->reveal());
@@ -126,7 +129,10 @@ class TransactionTest extends TestCase
         $this->assertInstanceOf(AggregateQuerySnapshot::class, $res);
     }
 
-    public function testGetAggregateSnapshotReadTime()
+    /**
+     * @dataProvider aggregationTypes
+     */
+    public function testGetAggregateSnapshotReadTime($type, $arg)
     {
         $timestamp = [
             'seconds' => 100,
@@ -137,7 +143,7 @@ class TransactionTest extends TestCase
             $this->connection->reveal(),
             self::DOCUMENT,
             ['query' => []],
-            Aggregate::count()
+            $arg ? Aggregate::$type($arg) : Aggregate::$type()
         );
         $this->connection->runAggregationQuery(
             Argument::withEntry('readTime', $timestamp)
@@ -145,7 +151,7 @@ class TransactionTest extends TestCase
             [
                 'result' => [
                     'aggregateFields' => [
-                        'count' => ['integerValue' => 1]
+                        $type => ['integerValue' => 1]
                     ]
                 ]
             ]
@@ -160,7 +166,7 @@ class TransactionTest extends TestCase
             )
         ]);
 
-        $this->assertEquals(1, $res->get('count'));
+        $this->assertEquals(1, $res->get($type));
     }
 
     public function testGetAggregateSnapshotReadTimeInvalidReadTime()
@@ -360,6 +366,15 @@ class TransactionTest extends TestCase
                         $pathBase . '/a/d'
                     ]
                 ]
+        ];
+    }
+
+    public function aggregationTypes()
+    {
+        return [
+            ['count', null],
+            ['sum', 'testField'],
+            ['avg', 'testField']
         ];
     }
 

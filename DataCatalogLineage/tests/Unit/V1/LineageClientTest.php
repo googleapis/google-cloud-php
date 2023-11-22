@@ -36,6 +36,7 @@ use Google\Cloud\DataCatalog\Lineage\V1\ListProcessesResponse;
 use Google\Cloud\DataCatalog\Lineage\V1\ListRunsResponse;
 use Google\Cloud\DataCatalog\Lineage\V1\Process;
 use Google\Cloud\DataCatalog\Lineage\V1\ProcessLinks;
+use Google\Cloud\DataCatalog\Lineage\V1\ProcessOpenLineageRunEventResponse;
 use Google\Cloud\DataCatalog\Lineage\V1\Run;
 use Google\Cloud\DataCatalog\Lineage\V1\Run\State;
 use Google\Cloud\DataCatalog\Lineage\V1\SearchLinksResponse;
@@ -43,6 +44,7 @@ use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
+use Google\Protobuf\Struct;
 use Google\Protobuf\Timestamp;
 use Google\Rpc\Code;
 use stdClass;
@@ -163,6 +165,8 @@ class LineageClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->runName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]');
         $lineageEvent = new LineageEvent();
+        $lineageEventStartTime = new Timestamp();
+        $lineageEvent->setStartTime($lineageEventStartTime);
         $response = $gapicClient->createLineageEvent($formattedParent, $lineageEvent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -198,6 +202,8 @@ class LineageClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->runName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]');
         $lineageEvent = new LineageEvent();
+        $lineageEventStartTime = new Timestamp();
+        $lineageEvent->setStartTime($lineageEventStartTime);
         try {
             $gapicClient->createLineageEvent($formattedParent, $lineageEvent);
             // If the $gapicClient method call did not throw, fail the test
@@ -1019,6 +1025,72 @@ class LineageClientTest extends GeneratedTest
         $formattedParent = $gapicClient->processName('[PROJECT]', '[LOCATION]', '[PROCESS]');
         try {
             $gapicClient->listRuns($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function processOpenLineageRunEventTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $process = 'process-309518737';
+        $run = 'run113291';
+        $expectedResponse = new ProcessOpenLineageRunEventResponse();
+        $expectedResponse->setProcess($process);
+        $expectedResponse->setRun($run);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $parent = 'parent-995424086';
+        $openLineage = new Struct();
+        $response = $gapicClient->processOpenLineageRunEvent($parent, $openLineage);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.datacatalog.lineage.v1.Lineage/ProcessOpenLineageRunEvent', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($parent, $actualValue);
+        $actualValue = $actualRequestObject->getOpenLineage();
+        $this->assertProtobufEquals($openLineage, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function processOpenLineageRunEventExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $parent = 'parent-995424086';
+        $openLineage = new Struct();
+        try {
+            $gapicClient->processOpenLineageRunEvent($parent, $openLineage);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

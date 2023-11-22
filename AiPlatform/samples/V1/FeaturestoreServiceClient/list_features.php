@@ -33,8 +33,10 @@ use Google\Cloud\AIPlatform\V1\ListFeaturesRequest;
  * Lists Features in a given EntityType.
  *
  * @param string $formattedParent The resource name of the Location to list Features.
- *                                Format:
+ *                                Format for entity_type as parent:
  *                                `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+ *                                Format for feature_group as parent:
+ *                                `projects/{project}/locations/{location}/featureGroups/{feature_group}`
  *                                Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
  */
 function list_features_sample(string $formattedParent): void

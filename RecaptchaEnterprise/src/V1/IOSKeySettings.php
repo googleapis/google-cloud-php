@@ -16,26 +16,26 @@ use Google\Protobuf\Internal\GPBUtil;
 class IOSKeySettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * If set to true, allowed_bundle_ids are not enforced.
+     * Optional. If set to true, allowed_bundle_ids are not enforced.
      *
-     * Generated from protobuf field <code>bool allow_all_bundle_ids = 2;</code>
+     * Generated from protobuf field <code>bool allow_all_bundle_ids = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $allow_all_bundle_ids = false;
     /**
-     * iOS bundle ids of apps allowed to use the key.
+     * Optional. iOS bundle ids of apps allowed to use the key.
      * Example: 'com.companyname.productname.appname'
      *
-     * Generated from protobuf field <code>repeated string allowed_bundle_ids = 1;</code>
+     * Generated from protobuf field <code>repeated string allowed_bundle_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $allowed_bundle_ids;
     /**
-     * Apple Developer account details for the app that is protected by the
-     * reCAPTCHA Key. reCAPTCHA Enterprise leverages platform-specific checks like
-     * Apple App Attest and Apple DeviceCheck to protect your app from abuse.
+     * Optional. Apple Developer account details for the app that is protected by
+     * the reCAPTCHA Key. reCAPTCHA Enterprise leverages platform-specific checks
+     * like Apple App Attest and Apple DeviceCheck to protect your app from abuse.
      * Providing these fields allows reCAPTCHA Enterprise to get a better
      * assessment of the integrity of your app.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AppleDeveloperId apple_developer_id = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AppleDeveloperId apple_developer_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $apple_developer_id = null;
 
@@ -46,14 +46,14 @@ class IOSKeySettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $allow_all_bundle_ids
-     *           If set to true, allowed_bundle_ids are not enforced.
+     *           Optional. If set to true, allowed_bundle_ids are not enforced.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_bundle_ids
-     *           iOS bundle ids of apps allowed to use the key.
+     *           Optional. iOS bundle ids of apps allowed to use the key.
      *           Example: 'com.companyname.productname.appname'
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\AppleDeveloperId $apple_developer_id
-     *           Apple Developer account details for the app that is protected by the
-     *           reCAPTCHA Key. reCAPTCHA Enterprise leverages platform-specific checks like
-     *           Apple App Attest and Apple DeviceCheck to protect your app from abuse.
+     *           Optional. Apple Developer account details for the app that is protected by
+     *           the reCAPTCHA Key. reCAPTCHA Enterprise leverages platform-specific checks
+     *           like Apple App Attest and Apple DeviceCheck to protect your app from abuse.
      *           Providing these fields allows reCAPTCHA Enterprise to get a better
      *           assessment of the integrity of your app.
      * }
@@ -64,9 +64,9 @@ class IOSKeySettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, allowed_bundle_ids are not enforced.
+     * Optional. If set to true, allowed_bundle_ids are not enforced.
      *
-     * Generated from protobuf field <code>bool allow_all_bundle_ids = 2;</code>
+     * Generated from protobuf field <code>bool allow_all_bundle_ids = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getAllowAllBundleIds()
@@ -75,9 +75,9 @@ class IOSKeySettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, allowed_bundle_ids are not enforced.
+     * Optional. If set to true, allowed_bundle_ids are not enforced.
      *
-     * Generated from protobuf field <code>bool allow_all_bundle_ids = 2;</code>
+     * Generated from protobuf field <code>bool allow_all_bundle_ids = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -90,10 +90,10 @@ class IOSKeySettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * iOS bundle ids of apps allowed to use the key.
+     * Optional. iOS bundle ids of apps allowed to use the key.
      * Example: 'com.companyname.productname.appname'
      *
-     * Generated from protobuf field <code>repeated string allowed_bundle_ids = 1;</code>
+     * Generated from protobuf field <code>repeated string allowed_bundle_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAllowedBundleIds()
@@ -102,10 +102,10 @@ class IOSKeySettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * iOS bundle ids of apps allowed to use the key.
+     * Optional. iOS bundle ids of apps allowed to use the key.
      * Example: 'com.companyname.productname.appname'
      *
-     * Generated from protobuf field <code>repeated string allowed_bundle_ids = 1;</code>
+     * Generated from protobuf field <code>repeated string allowed_bundle_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -118,13 +118,13 @@ class IOSKeySettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Apple Developer account details for the app that is protected by the
-     * reCAPTCHA Key. reCAPTCHA Enterprise leverages platform-specific checks like
-     * Apple App Attest and Apple DeviceCheck to protect your app from abuse.
+     * Optional. Apple Developer account details for the app that is protected by
+     * the reCAPTCHA Key. reCAPTCHA Enterprise leverages platform-specific checks
+     * like Apple App Attest and Apple DeviceCheck to protect your app from abuse.
      * Providing these fields allows reCAPTCHA Enterprise to get a better
      * assessment of the integrity of your app.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AppleDeveloperId apple_developer_id = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AppleDeveloperId apple_developer_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\RecaptchaEnterprise\V1\AppleDeveloperId|null
      */
     public function getAppleDeveloperId()
@@ -143,13 +143,13 @@ class IOSKeySettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Apple Developer account details for the app that is protected by the
-     * reCAPTCHA Key. reCAPTCHA Enterprise leverages platform-specific checks like
-     * Apple App Attest and Apple DeviceCheck to protect your app from abuse.
+     * Optional. Apple Developer account details for the app that is protected by
+     * the reCAPTCHA Key. reCAPTCHA Enterprise leverages platform-specific checks
+     * like Apple App Attest and Apple DeviceCheck to protect your app from abuse.
      * Providing these fields allows reCAPTCHA Enterprise to get a better
      * assessment of the integrity of your app.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AppleDeveloperId apple_developer_id = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AppleDeveloperId apple_developer_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\RecaptchaEnterprise\V1\AppleDeveloperId $var
      * @return $this
      */

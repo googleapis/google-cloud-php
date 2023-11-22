@@ -450,8 +450,11 @@ return [
             'templateMap' => [
                 'entityType' => 'projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}',
                 'feature' => 'projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}',
+                'featureGroup' => 'projects/{project}/locations/{location}/featureGroups/{feature_group}',
                 'featurestore' => 'projects/{project}/locations/{location}/featurestores/{featurestore}',
                 'location' => 'projects/{project}/locations/{location}',
+                'projectLocationFeatureGroupFeature' => 'projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}',
+                'projectLocationFeaturestoreEntityTypeFeature' => 'projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}',
             ],
         ],
     ],

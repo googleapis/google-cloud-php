@@ -97,6 +97,12 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     private $satisfies_pzs = null;
     /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $satisfies_pzi = false;
+    /**
      * Immutable. KMS key name used for data encryption.
      *
      * Generated from protobuf field <code>string kms_key = 13 [(.google.api.field_behavior) = IMMUTABLE];</code>
@@ -141,6 +147,8 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           restored. This may be different than storage bytes, since sequential
      *           backups of the same disk will share storage.
      *     @type \Google\Protobuf\BoolValue $satisfies_pzs
+     *           Output only. Reserved for future use.
+     *     @type bool $satisfies_pzi
      *           Output only. Reserved for future use.
      *     @type string $kms_key
      *           Immutable. KMS key name used for data encryption.
@@ -527,6 +535,32 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         $this->writeWrapperValue("satisfies_pzs", $var);
         return $this;}
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return $this->satisfies_pzi;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
+
+        return $this;
+    }
 
     /**
      * Immutable. KMS key name used for data encryption.

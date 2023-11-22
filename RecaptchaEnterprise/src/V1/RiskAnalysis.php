@@ -16,24 +16,24 @@ use Google\Protobuf\Internal\GPBUtil;
 class RiskAnalysis extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Legitimate event score from 0.0 to 1.0.
+     * Output only. Legitimate event score from 0.0 to 1.0.
      * (1.0 means very likely legitimate traffic while 0.0 means very likely
      * non-legitimate traffic).
      *
-     * Generated from protobuf field <code>float score = 1;</code>
+     * Generated from protobuf field <code>float score = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $score = 0.0;
     /**
-     * Reasons contributing to the risk analysis verdict.
+     * Output only. Reasons contributing to the risk analysis verdict.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.RiskAnalysis.ClassificationReason reasons = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.RiskAnalysis.ClassificationReason reasons = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $reasons;
     /**
-     * Extended verdict reasons to be used for experimentation only. The set of
-     * possible reasons is subject to change.
+     * Output only. Extended verdict reasons to be used for experimentation only.
+     * The set of possible reasons is subject to change.
      *
-     * Generated from protobuf field <code>repeated string extended_verdict_reasons = 3;</code>
+     * Generated from protobuf field <code>repeated string extended_verdict_reasons = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $extended_verdict_reasons;
 
@@ -44,14 +44,14 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type float $score
-     *           Legitimate event score from 0.0 to 1.0.
+     *           Output only. Legitimate event score from 0.0 to 1.0.
      *           (1.0 means very likely legitimate traffic while 0.0 means very likely
      *           non-legitimate traffic).
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $reasons
-     *           Reasons contributing to the risk analysis verdict.
+     *           Output only. Reasons contributing to the risk analysis verdict.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $extended_verdict_reasons
-     *           Extended verdict reasons to be used for experimentation only. The set of
-     *           possible reasons is subject to change.
+     *           Output only. Extended verdict reasons to be used for experimentation only.
+     *           The set of possible reasons is subject to change.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,11 +60,11 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Legitimate event score from 0.0 to 1.0.
+     * Output only. Legitimate event score from 0.0 to 1.0.
      * (1.0 means very likely legitimate traffic while 0.0 means very likely
      * non-legitimate traffic).
      *
-     * Generated from protobuf field <code>float score = 1;</code>
+     * Generated from protobuf field <code>float score = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return float
      */
     public function getScore()
@@ -73,11 +73,11 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Legitimate event score from 0.0 to 1.0.
+     * Output only. Legitimate event score from 0.0 to 1.0.
      * (1.0 means very likely legitimate traffic while 0.0 means very likely
      * non-legitimate traffic).
      *
-     * Generated from protobuf field <code>float score = 1;</code>
+     * Generated from protobuf field <code>float score = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param float $var
      * @return $this
      */
@@ -90,9 +90,9 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reasons contributing to the risk analysis verdict.
+     * Output only. Reasons contributing to the risk analysis verdict.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.RiskAnalysis.ClassificationReason reasons = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.RiskAnalysis.ClassificationReason reasons = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getReasons()
@@ -101,9 +101,9 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reasons contributing to the risk analysis verdict.
+     * Output only. Reasons contributing to the risk analysis verdict.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.RiskAnalysis.ClassificationReason reasons = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.RiskAnalysis.ClassificationReason reasons = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -116,10 +116,10 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Extended verdict reasons to be used for experimentation only. The set of
-     * possible reasons is subject to change.
+     * Output only. Extended verdict reasons to be used for experimentation only.
+     * The set of possible reasons is subject to change.
      *
-     * Generated from protobuf field <code>repeated string extended_verdict_reasons = 3;</code>
+     * Generated from protobuf field <code>repeated string extended_verdict_reasons = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getExtendedVerdictReasons()
@@ -128,10 +128,10 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Extended verdict reasons to be used for experimentation only. The set of
-     * possible reasons is subject to change.
+     * Output only. Extended verdict reasons to be used for experimentation only.
+     * The set of possible reasons is subject to change.
      *
-     * Generated from protobuf field <code>repeated string extended_verdict_reasons = 3;</code>
+     * Generated from protobuf field <code>repeated string extended_verdict_reasons = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

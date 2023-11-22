@@ -11,6 +11,8 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Response message for
  * [FeaturestoreService.ListFeatures][google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures].
+ * Response message for
+ * [FeatureRegistryService.ListFeatures][google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatures].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListFeaturesResponse</code>
  */
