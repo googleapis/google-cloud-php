@@ -670,6 +670,45 @@ class RequestWrapperTest extends TestCase
         $this->assertTrue($retryListenerCalled);
     }
 
+    public function testAuthHandlerPassingWithFetchAuthTokenInterface()
+    {
+        $authHttpHandler = function ($request, $options = []) {};
+        $fetcher = $this->prophesize(FetchAuthTokenInterface::class);
+        $fetcher->fetchAuthToken($authHttpHandler)
+            ->shouldBeCalledOnce()
+            ->willReturn(['access_token' => 'xyz']);
+        $fetcher->getCacheKey()
+            ->shouldBeCalledTimes(2)
+            ->willReturn(null);
+        $wrapper = new RequestWrapper([
+            'authHttpHandler' => $authHttpHandler,
+            'credentialsFetcher' => $fetcher->reveal(),
+        ]);
+
+        $wrapper->send(new Request('GET', 'http://www.example.com'));
+    }
+
+    public function testAuthHandlerPassingWithUpdateMetadataInterface()
+    {
+        $authHttpHandler = function ($request, $options = []) {};
+        $fetcher = $this->prophesize(FetchAuthTokenInterface::class);
+        $fetcher->willImplement(UpdateMetadataInterface::class);
+        $fetcher->updateMetadata(Argument::any(), Argument::any(), $authHttpHandler)
+            ->shouldBeCalledOnce()
+            ->willReturn([
+                'authorization' => ['Bearer abc']
+            ]);
+
+        $fetcher = $this->prophesizeUpdateMetadataFetcher($fetcher);
+
+        $wrapper = new RequestWrapper([
+            'authHttpHandler' => $authHttpHandler,
+            'credentialsFetcher' => $fetcher->reveal(),
+        ]);
+
+        $wrapper->send(new Request('GET', 'http://www.example.com'));
+    }
+
     /**
      * Test to verify auth related headers fetching and updation if
      * credential fetcher implements UpdateMetadataInterface too, else
@@ -688,17 +727,8 @@ class RequestWrapperTest extends TestCase
                 'authorization' => ['Bearer ' . $accessToken]
             ]);
 
-        // We have to mock this message because RequestWrapper wraps the credentials using the
-        // FetchAuthTokenCache class
-        $credentialsFetcher->getCacheKey()
-            ->shouldBeCalledOnce()
-            ->willReturn(null);
+        $credentialsFetcher = $this->prophesizeUpdateMetadataFetcher($credentialsFetcher);
 
-        // We have to mock this message because FetchAuthTokenCache class' updateMetadata()
-        // internally calls getLastReceivedToken() as a part of token fetching.
-        $credentialsFetcher->getLastReceivedToken()
-            ->shouldBeCalledOnce()
-            ->willReturn(null);
 
         $requestWrapper = new RequestWrapper([
             'credentialsFetcher' => $credentialsFetcher->reveal(),
@@ -729,15 +759,7 @@ class RequestWrapperTest extends TestCase
                 'x-goog-api-client' => ['xyz']
             ]);
 
-        // We have to mock this message because RequestWrapper wraps the credentials using the
-        // FetchAuthTokenCache class
-        $credentialsFetcher->getCacheKey()
-            ->shouldBeCalledOnce()
-            ->willReturn(null);
-
-        // We have to mock this message because FetchAuthTokenCache class' updateMetadata()
-        // internally calls getLastReceivedToken() as a part of token fetching.
-        $credentialsFetcher->getLastReceivedToken()->willReturn(null);
+        $credentialsFetcher = $this->prophesizeUpdateMetadataFetcher($credentialsFetcher);
 
         $requestWrapper = new RequestWrapper([
             'credentialsFetcher' => $credentialsFetcher->reveal(),
@@ -751,6 +773,23 @@ class RequestWrapperTest extends TestCase
         $requestWrapper->send(
             new Request('GET', 'http://www.example.com')
         );
+    }
+
+    private function prophesizeUpdateMetadataFetcher($credentialsFetcher)
+    {
+        // We have to mock this message because RequestWrapper wraps the credentials using the
+        // FetchAuthTokenCache class
+        $credentialsFetcher->getCacheKey()
+            ->shouldBeCalledOnce()
+            ->willReturn(null);
+
+        // We have to mock this message because FetchAuthTokenCache class' updateMetadata()
+        // internally calls getLastReceivedToken() as a part of token fetching.
+        $credentialsFetcher->getLastReceivedToken()
+            ->shouldBeCalledOnce()
+            ->willReturn(null);
+
+        return $credentialsFetcher;
     }
 }
 
