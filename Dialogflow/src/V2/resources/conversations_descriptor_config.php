@@ -92,6 +92,24 @@ return [
                     ],
                 ],
             ],
+            'SearchKnowledge' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dialogflow\V2\SearchKnowledgeResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'conversation',
+                        'fieldAccessors' => [
+                            'getConversation',
+                        ],
+                    ],
+                ],
+            ],
             'SuggestConversationSummary' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dialogflow\V2\SuggestConversationSummaryResponse',

@@ -101,6 +101,37 @@ class NodeTest extends TestCase
         $this->assertEquals('google.cloud.vision.v1', $class->getProtoPackage());
     }
 
+    public function testSeeTagsInMethodDescription()
+    {
+        $serviceXml = <<<EOF
+<method>
+<docblock>
+    <description></description>
+    <long-description></long-description>
+    <tag name="see"
+         description="Cool External Resource"
+         link="https://wwww.testlink.com"/>
+    <tag name="see"
+         description=""
+         link="\Google\Cloud\Vision\V1\ImageAnnotatorClient"/>
+    <tag name="see"
+         description="Resume Operation method"
+         link="\Google\Cloud\Vision\V1\ImageAnnotatorClient::resumeOperation()"/>
+</docblock>
+</method>
+EOF;
+        $method = new MethodNode(new SimpleXMLElement($serviceXml));
+
+        $content = $method->getContent();
+        $this->assertStringContainsString(
+            'See also:' . "\n" .
+            ' - <a href="https://wwww.testlink.com">Cool External Resource</a>' . "\n" .
+            ' - <xref uid="\Google\Cloud\Vision\V1\ImageAnnotatorClient">\Google\Cloud\Vision\V1\ImageAnnotatorClient</xref>' . "\n" .
+            ' - <xref uid="\Google\Cloud\Vision\V1\ImageAnnotatorClient::resumeOperation()">Resume Operation method</xref>',
+            $content
+        );
+    }
+
     /**
      * @dataProvider provideReplaceProtoRefWithXref
      */
@@ -290,6 +321,75 @@ EOF;
         $this->assertStringContainsString(
             "\n    ```\n",
             $fencedCodeBlock->replace($descriptionWithIndent)
+        );
+
+        $descriptionWithMultipleCodeblocks = <<<EOF
+This is a test fenced codeblock
+
+```
+// first codeblock
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+
+```
+// second codeblock
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+EOF;
+
+        $expected = <<<EOF
+This is a test fenced codeblock
+
+```php
+// first codeblock
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+
+```php
+// second codeblock
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+EOF;
+        // Ensure the "php" language hint is added to both fenced code blocks.
+        $this->assertEquals(
+            $expected,
+            $fencedCodeBlock->replace($descriptionWithMultipleCodeblocks)
+        );
+
+        $descriptionWithDifferentLanguageHint = <<<EOF
+This is a test fenced codeblock
+
+```sh
+pecl install grpc
+```
+
+```
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+EOF;
+
+        $expected = <<<EOF
+This is a test fenced codeblock
+
+```sh
+pecl install grpc
+```
+
+```php
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+EOF;
+
+        // Ensure the "php" language hint is added only to the second fenced code block.
+        $this->assertEquals(
+            $expected,
+            $fencedCodeBlock->replace($descriptionWithDifferentLanguageHint)
         );
     }
 

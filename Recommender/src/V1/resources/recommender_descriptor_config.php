@@ -115,6 +115,18 @@ return [
                     ],
                 ],
             ],
+            'MarkRecommendationDismissed' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Recommender\V1\Recommendation',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'MarkRecommendationFailed' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Recommender\V1\Recommendation',
@@ -167,8 +179,10 @@ return [
             ],
             'templateMap' => [
                 'billingAccountLocationInsightType' => 'billingAccounts/{billing_account}/locations/{location}/insightTypes/{insight_type}',
+                'billingAccountLocationInsightTypeConfig' => 'billingAccounts/{billing_account}/locations/{location}/insightTypes/{insight_type}/config',
                 'billingAccountLocationInsightTypeInsight' => 'billingAccounts/{billing_account}/locations/{location}/insightTypes/{insight_type}/insights/{insight}',
                 'billingAccountLocationRecommender' => 'billingAccounts/{billing_account}/locations/{location}/recommenders/{recommender}',
+                'billingAccountLocationRecommenderConfig' => 'billingAccounts/{billing_account}/locations/{location}/recommenders/{recommender}/config',
                 'billingAccountLocationRecommenderRecommendation' => 'billingAccounts/{billing_account}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}',
                 'folderLocationInsightType' => 'folders/{folder}/locations/{location}/insightTypes/{insight_type}',
                 'folderLocationInsightTypeInsight' => 'folders/{folder}/locations/{location}/insightTypes/{insight_type}/insights/{insight}',

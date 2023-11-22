@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateRepositoryRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Specifies the fields to be updated in the repository. If left unset,
-     * all fields will be updated.
+     * Optional. Specifies the fields to be updated in the repository. If left
+     * unset, all fields will be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -31,8 +31,8 @@ class UpdateRepositoryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param \Google\Cloud\Dataform\V1beta1\Repository $repository Required. The repository to update.
-     * @param \Google\Protobuf\FieldMask                $updateMask Optional. Specifies the fields to be updated in the repository. If left unset,
-     *                                                              all fields will be updated.
+     * @param \Google\Protobuf\FieldMask                $updateMask Optional. Specifies the fields to be updated in the repository. If left
+     *                                                              unset, all fields will be updated.
      *
      * @return \Google\Cloud\Dataform\V1beta1\UpdateRepositoryRequest
      *
@@ -52,8 +52,8 @@ class UpdateRepositoryRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Optional. Specifies the fields to be updated in the repository. If left unset,
-     *           all fields will be updated.
+     *           Optional. Specifies the fields to be updated in the repository. If left
+     *           unset, all fields will be updated.
      *     @type \Google\Cloud\Dataform\V1beta1\Repository $repository
      *           Required. The repository to update.
      * }
@@ -64,8 +64,8 @@ class UpdateRepositoryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specifies the fields to be updated in the repository. If left unset,
-     * all fields will be updated.
+     * Optional. Specifies the fields to be updated in the repository. If left
+     * unset, all fields will be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -86,8 +86,8 @@ class UpdateRepositoryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specifies the fields to be updated in the repository. If left unset,
-     * all fields will be updated.
+     * Optional. Specifies the fields to be updated in the repository. If left
+     * unset, all fields will be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var

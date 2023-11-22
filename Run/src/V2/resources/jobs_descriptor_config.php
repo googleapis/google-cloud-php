@@ -15,10 +15,11 @@ return [
                 'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
                 'headerParams' => [
                     [
-                        'keyName' => 'parent',
+                        'keyName' => 'location',
                         'fieldAccessors' => [
                             'getParent',
                         ],
+                        'matchers' => [],
                     ],
                 ],
             ],
@@ -34,10 +35,11 @@ return [
                 'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
                 'headerParams' => [
                     [
-                        'keyName' => 'name',
+                        'keyName' => 'location',
                         'fieldAccessors' => [
                             'getName',
                         ],
+                        'matchers' => [],
                     ],
                 ],
             ],
@@ -53,10 +55,11 @@ return [
                 'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
                 'headerParams' => [
                     [
-                        'keyName' => 'name',
+                        'keyName' => 'location',
                         'fieldAccessors' => [
                             'getName',
                         ],
+                        'matchers' => [],
                     ],
                 ],
             ],
@@ -72,11 +75,12 @@ return [
                 'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
                 'headerParams' => [
                     [
-                        'keyName' => 'job.name',
+                        'keyName' => 'location',
                         'fieldAccessors' => [
                             'getJob',
                             'getName',
                         ],
+                        'matchers' => [],
                     ],
                 ],
             ],
@@ -97,10 +101,11 @@ return [
                 'responseType' => 'Google\Cloud\Run\V2\Job',
                 'headerParams' => [
                     [
-                        'keyName' => 'name',
+                        'keyName' => 'location',
                         'fieldAccessors' => [
                             'getName',
                         ],
+                        'matchers' => [],
                     ],
                 ],
             ],
@@ -117,10 +122,11 @@ return [
                 'responseType' => 'Google\Cloud\Run\V2\ListJobsResponse',
                 'headerParams' => [
                     [
-                        'keyName' => 'parent',
+                        'keyName' => 'location',
                         'fieldAccessors' => [
                             'getParent',
                         ],
+                        'matchers' => [],
                     ],
                 ],
             ],

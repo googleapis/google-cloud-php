@@ -23,7 +23,7 @@ use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
  * Represents a ServerTimestamp DocumentTransform.
  *
  * This class is not intended to be used directly. See
- * {@see Google\Cloud\Firestore\FieldValue::serverTimestamp()} for usage.
+ * {@see \Google\Cloud\Firestore\FieldValue::serverTimestamp()} for usage.
  *
  * @internal
  */

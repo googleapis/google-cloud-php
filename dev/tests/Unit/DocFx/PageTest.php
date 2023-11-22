@@ -43,6 +43,7 @@ class PageTest extends TestCase
             file_get_contents(__DIR__ . '/../../fixtures/phpdoc/service.xml')
         );
         $classNode = new ClassNode(new SimpleXMLElement($serviceXml));
+        $classNode->setProtoPackages([]);
         $componentPath = __DIR__ . '/../../fixtures/component/Vision';
         $page = new Page($classNode, '', $packageDescription, $componentPath);
 
@@ -76,9 +77,12 @@ class PageTest extends TestCase
         $classNodeReflection = new \ReflectionClass($classNode);
         $protoPackagesProperty = $classNodeReflection->getProperty('protoPackages');
         $protoPackagesProperty->setAccessible(true);
+        $sharedPackages = [
+            'google.longrunning' => 'Google\LongRunning',
+        ];
 
         $this->assertEquals(
-            ['google.cloud.vision.v1' => 'Google\Cloud\Vision\V1'],
+            ['google.cloud.vision.v1' => 'Google\Cloud\Vision\V1'] + $sharedPackages,
             $protoPackagesProperty->getValue($classNode)
         );
     }
@@ -115,6 +119,5 @@ class PageTest extends TestCase
         $this->assertNotEmpty($rpcMethod['example']);
         $this->assertCount(1, $rpcMethod['example']);
         $this->assertStringContainsString('function an_rpc_method_sample', $rpcMethod['example'][0]);
-
     }
 }

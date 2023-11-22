@@ -215,7 +215,7 @@ class Message
      * Get the message ackId.
      *
      * This is only set when message is obtained via
-     * {@see Google\Cloud\PubSub\Subscription::pull()}.
+     * {@see Subscription::pull()}.
      *
      * Example:
      * ```

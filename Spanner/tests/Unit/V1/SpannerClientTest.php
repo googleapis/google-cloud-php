@@ -28,6 +28,7 @@ use Google\ApiCore\ServerStream;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Spanner\V1\BatchCreateSessionsResponse;
+use Google\Cloud\Spanner\V1\BatchWriteResponse;
 use Google\Cloud\Spanner\V1\CommitResponse;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlResponse;
 use Google\Cloud\Spanner\V1\KeySet;
@@ -124,6 +125,80 @@ class SpannerClientTest extends GeneratedTest
         try {
             $gapicClient->batchCreateSessions($formattedDatabase, $sessionCount);
             // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchWriteTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchWriteResponse();
+        $transport->addResponse($expectedResponse);
+        $expectedResponse2 = new BatchWriteResponse();
+        $transport->addResponse($expectedResponse2);
+        $expectedResponse3 = new BatchWriteResponse();
+        $transport->addResponse($expectedResponse3);
+        // Mock request
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $mutationGroups = [];
+        $serverStream = $gapicClient->batchWrite($formattedSession, $mutationGroups);
+        $this->assertInstanceOf(ServerStream::class, $serverStream);
+        $responses = iterator_to_array($serverStream->readAll());
+        $expectedResponses = [];
+        $expectedResponses[] = $expectedResponse;
+        $expectedResponses[] = $expectedResponse2;
+        $expectedResponses[] = $expectedResponse3;
+        $this->assertEquals($expectedResponses, $responses);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.spanner.v1.Spanner/BatchWrite', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSession();
+        $this->assertProtobufEquals($formattedSession, $actualValue);
+        $actualValue = $actualRequestObject->getMutationGroups();
+        $this->assertProtobufEquals($mutationGroups, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchWriteExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->setStreamingStatus($status);
+        $this->assertTrue($transport->isExhausted());
+        // Mock request
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $mutationGroups = [];
+        $serverStream = $gapicClient->batchWrite($formattedSession, $mutationGroups);
+        $results = $serverStream->readAll();
+        try {
+            iterator_to_array($results);
+            // If the close stream method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

@@ -30,9 +30,12 @@ use Google\Cloud\Monitoring\V3\NotificationChannelServiceClient;
 
 /**
  * Lists the notification channels that have been created for the project.
+ * To list the types of notification channels that are supported, use
+ * the `ListNotificationChannelDescriptors` method.
  *
- * @param string $name The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
- *                     which to execute the request. The format is:
+ * @param string $name The
+ *                     [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
+ *                     to execute the request. The format is:
  *
  *                     projects/[PROJECT_ID_OR_NUMBER]
  *

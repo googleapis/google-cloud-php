@@ -25,7 +25,7 @@ class GRPCAction extends \Google\Protobuf\Internal\Message
     private $port = 0;
     /**
      * Service is the name of the service to place in the gRPC HealthCheckRequest
-     * (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If
+     * (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md ). If
      * this is not specified, the default behavior is defined by gRPC.
      *
      * Generated from protobuf field <code>string service = 2;</code>
@@ -44,7 +44,7 @@ class GRPCAction extends \Google\Protobuf\Internal\Message
      *           the value of container.ports[0].containerPort.
      *     @type string $service
      *           Service is the name of the service to place in the gRPC HealthCheckRequest
-     *           (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If
+     *           (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md ). If
      *           this is not specified, the default behavior is defined by gRPC.
      * }
      */
@@ -85,7 +85,7 @@ class GRPCAction extends \Google\Protobuf\Internal\Message
 
     /**
      * Service is the name of the service to place in the gRPC HealthCheckRequest
-     * (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If
+     * (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md ). If
      * this is not specified, the default behavior is defined by gRPC.
      *
      * Generated from protobuf field <code>string service = 2;</code>
@@ -98,7 +98,7 @@ class GRPCAction extends \Google\Protobuf\Internal\Message
 
     /**
      * Service is the name of the service to place in the gRPC HealthCheckRequest
-     * (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If
+     * (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md ). If
      * this is not specified, the default behavior is defined by gRPC.
      *
      * Generated from protobuf field <code>string service = 2;</code>

@@ -33,7 +33,7 @@ use Google\Rpc\Status;
  * Creates a new connection profile in a given project and location.
  *
  * @param string $formattedParent     The parent which owns this collection of connection profiles. Please see
- *                                    {@see DataMigrationServiceClient::connectionProfileName()} for help formatting this field.
+ *                                    {@see DataMigrationServiceClient::locationName()} for help formatting this field.
  * @param string $connectionProfileId The connection profile identifier.
  */
 function create_connection_profile_sample(
@@ -81,11 +81,7 @@ function create_connection_profile_sample(
  */
 function callSample(): void
 {
-    $formattedParent = DataMigrationServiceClient::connectionProfileName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CONNECTION_PROFILE]'
-    );
+    $formattedParent = DataMigrationServiceClient::locationName('[PROJECT]', '[LOCATION]');
     $connectionProfileId = '[CONNECTION_PROFILE_ID]';
 
     create_connection_profile_sample($formattedParent, $connectionProfileId);

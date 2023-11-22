@@ -42,10 +42,12 @@ use Google\Cloud\CloudDms\V1\ConversionWorkspace;
 use Google\Cloud\CloudDms\V1\ConvertConversionWorkspaceRequest;
 use Google\Cloud\CloudDms\V1\CreateConnectionProfileRequest;
 use Google\Cloud\CloudDms\V1\CreateConversionWorkspaceRequest;
+use Google\Cloud\CloudDms\V1\CreateMappingRuleRequest;
 use Google\Cloud\CloudDms\V1\CreateMigrationJobRequest;
 use Google\Cloud\CloudDms\V1\CreatePrivateConnectionRequest;
 use Google\Cloud\CloudDms\V1\DeleteConnectionProfileRequest;
 use Google\Cloud\CloudDms\V1\DeleteConversionWorkspaceRequest;
+use Google\Cloud\CloudDms\V1\DeleteMappingRuleRequest;
 use Google\Cloud\CloudDms\V1\DeleteMigrationJobRequest;
 use Google\Cloud\CloudDms\V1\DeletePrivateConnectionRequest;
 use Google\Cloud\CloudDms\V1\DescribeConversionWorkspaceRevisionsRequest;
@@ -55,8 +57,10 @@ use Google\Cloud\CloudDms\V1\DescribeDatabaseEntitiesResponse;
 use Google\Cloud\CloudDms\V1\FetchStaticIpsRequest;
 use Google\Cloud\CloudDms\V1\FetchStaticIpsResponse;
 use Google\Cloud\CloudDms\V1\GenerateSshScriptRequest;
+use Google\Cloud\CloudDms\V1\GenerateTcpProxyScriptRequest;
 use Google\Cloud\CloudDms\V1\GetConnectionProfileRequest;
 use Google\Cloud\CloudDms\V1\GetConversionWorkspaceRequest;
+use Google\Cloud\CloudDms\V1\GetMappingRuleRequest;
 use Google\Cloud\CloudDms\V1\GetMigrationJobRequest;
 use Google\Cloud\CloudDms\V1\GetPrivateConnectionRequest;
 use Google\Cloud\CloudDms\V1\ImportMappingRulesRequest;
@@ -65,10 +69,13 @@ use Google\Cloud\CloudDms\V1\ListConnectionProfilesRequest;
 use Google\Cloud\CloudDms\V1\ListConnectionProfilesResponse;
 use Google\Cloud\CloudDms\V1\ListConversionWorkspacesRequest;
 use Google\Cloud\CloudDms\V1\ListConversionWorkspacesResponse;
+use Google\Cloud\CloudDms\V1\ListMappingRulesRequest;
+use Google\Cloud\CloudDms\V1\ListMappingRulesResponse;
 use Google\Cloud\CloudDms\V1\ListMigrationJobsRequest;
 use Google\Cloud\CloudDms\V1\ListMigrationJobsResponse;
 use Google\Cloud\CloudDms\V1\ListPrivateConnectionsRequest;
 use Google\Cloud\CloudDms\V1\ListPrivateConnectionsResponse;
+use Google\Cloud\CloudDms\V1\MappingRule;
 use Google\Cloud\CloudDms\V1\MigrationJob;
 use Google\Cloud\CloudDms\V1\PrivateConnection;
 use Google\Cloud\CloudDms\V1\PromoteMigrationJobRequest;
@@ -81,6 +88,7 @@ use Google\Cloud\CloudDms\V1\SeedConversionWorkspaceRequest;
 use Google\Cloud\CloudDms\V1\SshScript;
 use Google\Cloud\CloudDms\V1\StartMigrationJobRequest;
 use Google\Cloud\CloudDms\V1\StopMigrationJobRequest;
+use Google\Cloud\CloudDms\V1\TcpProxyScript;
 use Google\Cloud\CloudDms\V1\UpdateConnectionProfileRequest;
 use Google\Cloud\CloudDms\V1\UpdateConversionWorkspaceRequest;
 use Google\Cloud\CloudDms\V1\UpdateMigrationJobRequest;
@@ -89,6 +97,7 @@ use Google\Cloud\CloudDms\V1\VmCreationConfig;
 use Google\Cloud\CloudDms\V1\VmSelectionConfig;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
+use Google\Protobuf\GPBEmpty;
 use Google\Protobuf\Timestamp;
 
 /**
@@ -105,7 +114,7 @@ use Google\Protobuf\Timestamp;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *         // doSomethingWith($result)
+ *     // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -122,7 +131,7 @@ use Google\Protobuf\Timestamp;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *         // doSomethingWith($result)
+ *     // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -167,6 +176,8 @@ class DataMigrationServiceGapicClient
     private static $conversionWorkspaceNameTemplate;
 
     private static $locationNameTemplate;
+
+    private static $mappingRuleNameTemplate;
 
     private static $migrationJobNameTemplate;
 
@@ -224,6 +235,15 @@ class DataMigrationServiceGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getMappingRuleNameTemplate()
+    {
+        if (self::$mappingRuleNameTemplate == null) {
+            self::$mappingRuleNameTemplate = new PathTemplate('projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}/mappingRules/{mapping_rule}');
+        }
+
+        return self::$mappingRuleNameTemplate;
+    }
+
     private static function getMigrationJobNameTemplate()
     {
         if (self::$migrationJobNameTemplate == null) {
@@ -258,6 +278,7 @@ class DataMigrationServiceGapicClient
                 'connectionProfile' => self::getConnectionProfileNameTemplate(),
                 'conversionWorkspace' => self::getConversionWorkspaceNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'mappingRule' => self::getMappingRuleNameTemplate(),
                 'migrationJob' => self::getMigrationJobNameTemplate(),
                 'networks' => self::getNetworksNameTemplate(),
                 'privateConnection' => self::getPrivateConnectionNameTemplate(),
@@ -323,6 +344,27 @@ class DataMigrationServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a mapping_rule
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $conversionWorkspace
+     * @param string $mappingRule
+     *
+     * @return string The formatted mapping_rule resource.
+     */
+    public static function mappingRuleName($project, $location, $conversionWorkspace, $mappingRule)
+    {
+        return self::getMappingRuleNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'conversion_workspace' => $conversionWorkspace,
+            'mapping_rule' => $mappingRule,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * migration_job resource.
      *
@@ -384,6 +426,7 @@ class DataMigrationServiceGapicClient
      * - connectionProfile: projects/{project}/locations/{location}/connectionProfiles/{connection_profile}
      * - conversionWorkspace: projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}
      * - location: projects/{project}/locations/{location}
+     * - mappingRule: projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}/mappingRules/{mapping_rule}
      * - migrationJob: projects/{project}/locations/{location}/migrationJobs/{migration_job}
      * - networks: projects/{project}/global/networks/{network}
      * - privateConnection: projects/{project}/locations/{location}/privateConnections/{private_connection}
@@ -525,7 +568,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -542,7 +585,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -561,8 +604,16 @@ class DataMigrationServiceGapicClient
      *     @type string $filter
      *           Filter which entities to apply. Leaving this field empty will apply all of
      *           the entities. Supports Google AIP 160 based filtering.
+     *     @type bool $dryRun
+     *           Optional. Only validates the apply process, but doesn't change the
+     *           destination database. Only works for PostgreSQL destination connection
+     *           profile.
+     *     @type bool $autoCommit
+     *           Optional. Specifies whether the conversion workspace is to be committed
+     *           automatically after the apply.
      *     @type string $connectionProfile
-     *           Fully qualified (Uri) name of the destination connection profile.
+     *           Optional. Fully qualified (Uri) name of the destination connection
+     *           profile.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -581,6 +632,14 @@ class DataMigrationServiceGapicClient
         $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['dryRun'])) {
+            $request->setDryRun($optionalArgs['dryRun']);
+        }
+
+        if (isset($optionalArgs['autoCommit'])) {
+            $request->setAutoCommit($optionalArgs['autoCommit']);
         }
 
         if (isset($optionalArgs['connectionProfile'])) {
@@ -604,7 +663,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -621,7 +680,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -673,7 +732,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -690,7 +749,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -707,11 +766,15 @@ class DataMigrationServiceGapicClient
      *           Name of the conversion workspace resource to convert in the form of:
      *           projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}.
      *     @type bool $autoCommit
-     *           Specifies whether the conversion workspace is to be committed automatically
-     *           after the conversion.
+     *           Optional. Specifies whether the conversion workspace is to be committed
+     *           automatically after the conversion.
      *     @type string $filter
-     *           Filter the entities to convert. Leaving this field empty will convert all
-     *           of the entities. Supports Google AIP-160 style filtering.
+     *           Optional. Filter the entities to convert. Leaving this field empty will
+     *           convert all of the entities. Supports Google AIP-160 style filtering.
+     *     @type bool $convertFullPath
+     *           Optional. Automatically convert the full entity path for each entity
+     *           specified by the filter. For example, if the filter specifies a table, that
+     *           table schema (and database if there is one) will also be converted.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -739,6 +802,10 @@ class DataMigrationServiceGapicClient
             $request->setFilter($optionalArgs['filter']);
         }
 
+        if (isset($optionalArgs['convertFullPath'])) {
+            $request->setConvertFullPath($optionalArgs['convertFullPath']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('ConvertConversionWorkspace', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -751,14 +818,14 @@ class DataMigrationServiceGapicClient
      * ```
      * $dataMigrationServiceClient = new DataMigrationServiceClient();
      * try {
-     *     $formattedParent = $dataMigrationServiceClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+     *     $formattedParent = $dataMigrationServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     $connectionProfileId = 'connection_profile_id';
      *     $connectionProfile = new ConnectionProfile();
      *     $operationResponse = $dataMigrationServiceClient->createConnectionProfile($formattedParent, $connectionProfileId, $connectionProfile);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -775,7 +842,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -856,7 +923,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -873,7 +940,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -925,6 +992,65 @@ class DataMigrationServiceGapicClient
     }
 
     /**
+     * Creates a new mapping rule for a given conversion workspace.
+     *
+     * Sample code:
+     * ```
+     * $dataMigrationServiceClient = new DataMigrationServiceClient();
+     * try {
+     *     $formattedParent = $dataMigrationServiceClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
+     *     $mappingRuleId = 'mapping_rule_id';
+     *     $mappingRule = new MappingRule();
+     *     $response = $dataMigrationServiceClient->createMappingRule($formattedParent, $mappingRuleId, $mappingRule);
+     * } finally {
+     *     $dataMigrationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string      $parent        Required. The parent which owns this collection of mapping rules.
+     * @param string      $mappingRuleId Required. The ID of the rule to create.
+     * @param MappingRule $mappingRule   Required. Represents a [mapping rule]
+     *                                   (https://cloud.google.com/database-migration/reference/rest/v1/projects.locations.mappingRules)
+     *                                   object.
+     * @param array       $optionalArgs  {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           A unique ID used to identify the request. If the server receives two
+     *           requests with the same ID, then the second request is ignored.
+     *
+     *           It is recommended to always set this value to a UUID.
+     *
+     *           The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
+     *           (_), and hyphens (-). The maximum length is 40 characters.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\CloudDms\V1\MappingRule
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createMappingRule($parent, $mappingRuleId, $mappingRule, array $optionalArgs = [])
+    {
+        $request = new CreateMappingRuleRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setMappingRuleId($mappingRuleId);
+        $request->setMappingRule($mappingRule);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateMappingRule', MappingRule::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Creates a new migration job in a given project and location.
      *
      * Sample code:
@@ -938,7 +1064,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -955,7 +1081,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -974,8 +1100,8 @@ class DataMigrationServiceGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           A unique ID used to identify the request. If the server receives two
-     *           requests with the same ID, then the second request is ignored.
+     *           Optional. A unique ID used to identify the request. If the server receives
+     *           two requests with the same ID, then the second request is ignored.
      *
      *           It is recommended to always set this value to a UUID.
      *
@@ -1022,7 +1148,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1039,7 +1165,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1228,6 +1354,9 @@ class DataMigrationServiceGapicClient
      *
      *           The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
      *           (_), and hyphens (-). The maximum length is 40 characters.
+     *     @type bool $force
+     *           Force delete the conversion workspace, even if there's a running migration
+     *           that is using the workspace.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1248,9 +1377,62 @@ class DataMigrationServiceGapicClient
             $request->setRequestId($optionalArgs['requestId']);
         }
 
+        if (isset($optionalArgs['force'])) {
+            $request->setForce($optionalArgs['force']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeleteConversionWorkspace', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Deletes a single mapping rule.
+     *
+     * Sample code:
+     * ```
+     * $dataMigrationServiceClient = new DataMigrationServiceClient();
+     * try {
+     *     $formattedName = $dataMigrationServiceClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
+     *     $dataMigrationServiceClient->deleteMappingRule($formattedName);
+     * } finally {
+     *     $dataMigrationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the mapping rule resource to delete.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A unique ID used to identify the request. If the server receives
+     *           two requests with the same ID, then the second request is ignored.
+     *
+     *           It is recommended to always set this value to a UUID.
+     *
+     *           The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
+     *           (_), and hyphens (-). The maximum length is 40 characters.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteMappingRule($name, array $optionalArgs = [])
+    {
+        $request = new DeleteMappingRuleRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteMappingRule', GPBEmpty::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1504,16 +1686,20 @@ class DataMigrationServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type int $tree
-     *           The tree to fetch.
+     *           Required. The tree to fetch.
      *           For allowed values, use constants defined on {@see \Google\Cloud\CloudDms\V1\DescribeDatabaseEntitiesRequest\DBTreeType}
      *     @type bool $uncommitted
-     *           Whether to retrieve the latest committed version of the entities or the
-     *           latest version. This field is ignored if a specific commit_id is specified.
+     *           Optional. Whether to retrieve the latest committed version of the entities
+     *           or the latest version. This field is ignored if a specific commit_id is
+     *           specified.
      *     @type string $commitId
-     *           Request a specific commit ID. If not specified, the entities from the
-     *           latest commit are returned.
+     *           Optional. Request a specific commit ID. If not specified, the entities from
+     *           the latest commit are returned.
      *     @type string $filter
-     *           Filter the returned entities based on AIP-160 standard.
+     *           Optional. Filter the returned entities based on AIP-160 standard.
+     *     @type int $view
+     *           Optional. Results view based on AIP-157
+     *           For allowed values, use constants defined on {@see \Google\Cloud\CloudDms\V1\DatabaseEntityView}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1552,6 +1738,10 @@ class DataMigrationServiceGapicClient
 
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['view'])) {
+            $request->setView($optionalArgs['view']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1694,6 +1884,70 @@ class DataMigrationServiceGapicClient
     }
 
     /**
+     * Generate a TCP Proxy configuration script to configure a cloud-hosted VM
+     * running a TCP Proxy.
+     *
+     * Sample code:
+     * ```
+     * $dataMigrationServiceClient = new DataMigrationServiceClient();
+     * try {
+     *     $vmName = 'vm_name';
+     *     $vmMachineType = 'vm_machine_type';
+     *     $vmSubnet = 'vm_subnet';
+     *     $response = $dataMigrationServiceClient->generateTcpProxyScript($vmName, $vmMachineType, $vmSubnet);
+     * } finally {
+     *     $dataMigrationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $vmName        Required. The name of the Compute instance that will host the proxy.
+     * @param string $vmMachineType Required. The type of the Compute instance that will host the proxy.
+     * @param string $vmSubnet      Required. The name of the subnet the Compute instance will use for private
+     *                              connectivity. Must be supplied in the form of
+     *                              projects/{project}/regions/{region}/subnetworks/{subnetwork}.
+     *                              Note: the region for the subnet must match the Compute instance region.
+     * @param array  $optionalArgs  {
+     *     Optional.
+     *
+     *     @type string $migrationJob
+     *           Name of the migration job resource to generate the TCP Proxy script.
+     *     @type string $vmZone
+     *           Optional. The Google Cloud Platform zone to create the VM in. The fully
+     *           qualified name of the zone must be specified, including the region name,
+     *           for example "us-central1-b". If not specified, uses the "-b" zone of the
+     *           destination Connection Profile's region.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\CloudDms\V1\TcpProxyScript
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function generateTcpProxyScript($vmName, $vmMachineType, $vmSubnet, array $optionalArgs = [])
+    {
+        $request = new GenerateTcpProxyScriptRequest();
+        $requestParamHeaders = [];
+        $request->setVmName($vmName);
+        $request->setVmMachineType($vmMachineType);
+        $request->setVmSubnet($vmSubnet);
+        if (isset($optionalArgs['migrationJob'])) {
+            $request->setMigrationJob($optionalArgs['migrationJob']);
+            $requestParamHeaders['migration_job'] = $optionalArgs['migrationJob'];
+        }
+
+        if (isset($optionalArgs['vmZone'])) {
+            $request->setVmZone($optionalArgs['vmZone']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GenerateTcpProxyScript', TcpProxyScript::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Gets details of a single connection profile.
      *
      * Sample code:
@@ -1769,6 +2023,51 @@ class DataMigrationServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetConversionWorkspace', ConversionWorkspace::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Gets the details of a mapping rule.
+     *
+     * Sample code:
+     * ```
+     * $dataMigrationServiceClient = new DataMigrationServiceClient();
+     * try {
+     *     $formattedName = $dataMigrationServiceClient->mappingRuleName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]', '[MAPPING_RULE]');
+     *     $response = $dataMigrationServiceClient->getMappingRule($formattedName);
+     * } finally {
+     *     $dataMigrationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the mapping rule resource to get.
+     *                             Example: conversionWorkspaces/123/mappingRules/rule123
+     *
+     *                             In order to retrieve a previous revision of the mapping rule, also provide
+     *                             the revision ID.
+     *                             Example:
+     *                             conversionWorkspace/123/mappingRules/rule123&#64;c7cfa2a8c7cfa2a8c7cfa2a8c7cfa2a8
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\CloudDms\V1\MappingRule
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getMappingRule($name, array $optionalArgs = [])
+    {
+        $request = new GetMappingRuleRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetMappingRule', MappingRule::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1862,7 +2161,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1879,7 +2178,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1896,13 +2195,13 @@ class DataMigrationServiceGapicClient
      *     Optional.
      *
      *     @type int $rulesFormat
-     *           The format of the rules content file.
+     *           Required. The format of the rules content file.
      *           For allowed values, use constants defined on {@see \Google\Cloud\CloudDms\V1\ImportRulesFileFormat}
      *     @type RulesFile[] $rulesFiles
-     *           One or more rules files.
+     *           Required. One or more rules files.
      *     @type bool $autoCommit
-     *           Should the conversion workspace be committed automatically after the
-     *           import operation.
+     *           Required. Should the conversion workspace be committed automatically after
+     *           the import operation.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2108,6 +2407,76 @@ class DataMigrationServiceGapicClient
     }
 
     /**
+     * Lists the mapping rules for a specific conversion workspace.
+     *
+     * Sample code:
+     * ```
+     * $dataMigrationServiceClient = new DataMigrationServiceClient();
+     * try {
+     *     $formattedParent = $dataMigrationServiceClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $dataMigrationServiceClient->listMappingRules($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $dataMigrationServiceClient->listMappingRules($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $dataMigrationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Name of the conversion workspace resource whose mapping rules are
+     *                             listed in the form of:
+     *                             projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listMappingRules($parent, array $optionalArgs = [])
+    {
+        $request = new ListMappingRulesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListMappingRules', $optionalArgs, ListMappingRulesResponse::class, $request);
+    }
+
+    /**
      * Lists migration jobs in a given project and location.
      *
      * Sample code:
@@ -2293,7 +2662,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2310,7 +2679,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2362,7 +2731,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2379,7 +2748,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2394,6 +2763,9 @@ class DataMigrationServiceGapicClient
      *
      *     @type string $name
      *           Name of the migration job resource to restart.
+     *     @type bool $skipValidation
+     *           Optional. Restart the migration job without running prior configuration
+     *           verification. Defaults to `false`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2413,6 +2785,10 @@ class DataMigrationServiceGapicClient
             $requestParamHeaders['name'] = $optionalArgs['name'];
         }
 
+        if (isset($optionalArgs['skipValidation'])) {
+            $request->setSkipValidation($optionalArgs['skipValidation']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('RestartMigrationJob', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -2430,7 +2806,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2447,7 +2823,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2498,7 +2874,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2515,7 +2891,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2630,7 +3006,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2647,7 +3023,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2668,9 +3044,10 @@ class DataMigrationServiceGapicClient
      *           Should the conversion workspace be committed automatically after the
      *           seed operation.
      *     @type string $sourceConnectionProfile
-     *           Fully qualified (Uri) name of the source connection profile.
+     *           Optional. Fully qualified (Uri) name of the source connection profile.
      *     @type string $destinationConnectionProfile
-     *           Fully qualified (Uri) name of the destination connection profile.
+     *           Optional. Fully qualified (Uri) name of the destination connection
+     *           profile.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2718,7 +3095,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2735,7 +3112,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2750,6 +3127,9 @@ class DataMigrationServiceGapicClient
      *
      *     @type string $name
      *           Name of the migration job resource to start.
+     *     @type bool $skipValidation
+     *           Optional. Start the migration job without running prior configuration
+     *           verification. Defaults to `false`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2769,6 +3149,10 @@ class DataMigrationServiceGapicClient
             $requestParamHeaders['name'] = $optionalArgs['name'];
         }
 
+        if (isset($optionalArgs['skipValidation'])) {
+            $request->setSkipValidation($optionalArgs['skipValidation']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('StartMigrationJob', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -2785,7 +3169,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2802,7 +3186,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2854,7 +3238,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2871,7 +3255,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2950,7 +3334,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2967,7 +3351,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -3030,7 +3414,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -3047,7 +3431,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -3109,7 +3493,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -3126,7 +3510,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -3141,6 +3525,12 @@ class DataMigrationServiceGapicClient
      *
      *     @type string $name
      *           Name of the migration job resource to verify.
+     *     @type FieldMask $updateMask
+     *           Optional. Field mask is used to specify the changed fields to be verified.
+     *           It will not update the migration job.
+     *     @type MigrationJob $migrationJob
+     *           Optional. The changed migration job parameters to verify.
+     *           It will not update the migration job.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3158,6 +3548,14 @@ class DataMigrationServiceGapicClient
         if (isset($optionalArgs['name'])) {
             $request->setName($optionalArgs['name']);
             $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['migrationJob'])) {
+            $request->setMigrationJob($optionalArgs['migrationJob']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

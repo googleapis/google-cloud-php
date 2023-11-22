@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class ImportRulesJobDetails extends \Google\Protobuf\Internal\Message
 {
     /**
-     * File names used for the import rules job.
+     * Output only. File names used for the import rules job.
      *
-     * Generated from protobuf field <code>repeated string files = 1;</code>
+     * Generated from protobuf field <code>repeated string files = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $files;
     /**
-     * The requested file format.
+     * Output only. The requested file format.
      *
-     * Generated from protobuf field <code>.google.cloud.clouddms.v1.ImportRulesFileFormat file_format = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.ImportRulesFileFormat file_format = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $file_format = 0;
 
@@ -35,9 +35,9 @@ class ImportRulesJobDetails extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $files
-     *           File names used for the import rules job.
+     *           Output only. File names used for the import rules job.
      *     @type int $file_format
-     *           The requested file format.
+     *           Output only. The requested file format.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,9 +46,9 @@ class ImportRulesJobDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * File names used for the import rules job.
+     * Output only. File names used for the import rules job.
      *
-     * Generated from protobuf field <code>repeated string files = 1;</code>
+     * Generated from protobuf field <code>repeated string files = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getFiles()
@@ -57,9 +57,9 @@ class ImportRulesJobDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * File names used for the import rules job.
+     * Output only. File names used for the import rules job.
      *
-     * Generated from protobuf field <code>repeated string files = 1;</code>
+     * Generated from protobuf field <code>repeated string files = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -72,9 +72,9 @@ class ImportRulesJobDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The requested file format.
+     * Output only. The requested file format.
      *
-     * Generated from protobuf field <code>.google.cloud.clouddms.v1.ImportRulesFileFormat file_format = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.ImportRulesFileFormat file_format = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getFileFormat()
@@ -83,9 +83,9 @@ class ImportRulesJobDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The requested file format.
+     * Output only. The requested file format.
      *
-     * Generated from protobuf field <code>.google.cloud.clouddms.v1.ImportRulesFileFormat file_format = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.ImportRulesFileFormat file_format = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */

@@ -75,6 +75,11 @@
                                 "restoreInstance"
                             ]
                         },
+                        "RevertInstance": {
+                            "methods": [
+                                "revertInstance"
+                            ]
+                        },
                         "UpdateBackup": {
                             "methods": [
                                 "updateBackup"

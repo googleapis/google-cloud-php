@@ -32,8 +32,8 @@ use Google\Cloud\Dataform\V1beta1\WorkflowInvocation;
 /**
  * Lists WorkflowInvocations in a given Repository.
  *
- * @param string $formattedParent The parent resource of the WorkflowInvocation type. Must be in the
- *                                format `projects/&#42;/locations/&#42;/repositories/*`. Please see
+ * @param string $formattedParent The parent resource of the WorkflowInvocation type. Must be in
+ *                                the format `projects/&#42;/locations/&#42;/repositories/*`. Please see
  *                                {@see DataformClient::repositoryName()} for help formatting this field.
  */
 function list_workflow_invocations_sample(string $formattedParent): void

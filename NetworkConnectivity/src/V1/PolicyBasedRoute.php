@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * to route their L4 network traffic based on not just destination IP, but also
  * source IP, protocol and more. A PBR always take precedence when it conflicts
  * with other types of routes.
- * Next id: 19
+ * Next id: 22
  *
  * Generated from protobuf message <code>google.cloud.networkconnectivity.v1.PolicyBasedRoute</code>
  */
@@ -45,15 +45,15 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Optional. An optional description of this resource. Provide this field when you
-     * create the resource.
+     * Optional. An optional description of this resource. Provide this field when
+     * you create the resource.
      *
      * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $description = '';
     /**
-     * Required. Fully-qualified URL of the network that this route applies to. e.g.
-     * projects/my-project/global/networks/my-network.
+     * Required. Fully-qualified URL of the network that this route applies to.
+     * e.g. projects/my-project/global/networks/my-network.
      *
      * Generated from protobuf field <code>string network = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -65,11 +65,11 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
      */
     private $filter = null;
     /**
-     * Optional. The priority of this policy based route. Priority is used to break ties in
-     * cases where there are more than one matching policy based routes found. In
-     * cases where multiple policy based routes are matched, the one with the
-     * lowest-numbered priority value wins. The default value is 1000. The
-     * priority value must be from 1 to 65535, inclusive.
+     * Optional. The priority of this policy based route. Priority is used to
+     * break ties in cases where there are more than one matching policy based
+     * routes found. In cases where multiple policy based routes are matched, the
+     * one with the lowest-numbered priority value wins. The default value is
+     * 1000. The priority value must be from 1 to 65535, inclusive.
      *
      * Generated from protobuf field <code>int32 priority = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -88,8 +88,8 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
      */
     private $self_link = '';
     /**
-     * Output only. Type of this resource. Always networkconnectivity#policyBasedRoute for
-     * Policy Based Route resources.
+     * Output only. Type of this resource. Always
+     * networkconnectivity#policyBasedRoute for Policy Based Route resources.
      *
      * Generated from protobuf field <code>string kind = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -108,9 +108,12 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute\InterconnectAttachment $interconnect_attachment
      *           Optional. The interconnect attachments to which this route applies to.
      *     @type string $next_hop_ilb_ip
-     *           Optional. The IP of a global access enabled L4 ILB that should be the next hop to
-     *           handle matching packets. For this version, only next_hop_ilb_ip is
-     *           supported.
+     *           Optional. The IP of a global access enabled L4 ILB that should be the
+     *           next hop to handle matching packets. For this version, only
+     *           next_hop_ilb_ip is supported.
+     *     @type int $next_hop_other_routes
+     *           Optional. Other routes that will be referenced to determine the next hop
+     *           of the packet.
      *     @type string $name
      *           Immutable. A unique name of the resource in the form of
      *           `projects/{project_number}/locations/global/PolicyBasedRoutes/{policy_based_route_id}`
@@ -121,27 +124,27 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           User-defined labels.
      *     @type string $description
-     *           Optional. An optional description of this resource. Provide this field when you
-     *           create the resource.
+     *           Optional. An optional description of this resource. Provide this field when
+     *           you create the resource.
      *     @type string $network
-     *           Required. Fully-qualified URL of the network that this route applies to. e.g.
-     *           projects/my-project/global/networks/my-network.
+     *           Required. Fully-qualified URL of the network that this route applies to.
+     *           e.g. projects/my-project/global/networks/my-network.
      *     @type \Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute\Filter $filter
      *           Required. The filter to match L4 traffic.
      *     @type int $priority
-     *           Optional. The priority of this policy based route. Priority is used to break ties in
-     *           cases where there are more than one matching policy based routes found. In
-     *           cases where multiple policy based routes are matched, the one with the
-     *           lowest-numbered priority value wins. The default value is 1000. The
-     *           priority value must be from 1 to 65535, inclusive.
+     *           Optional. The priority of this policy based route. Priority is used to
+     *           break ties in cases where there are more than one matching policy based
+     *           routes found. In cases where multiple policy based routes are matched, the
+     *           one with the lowest-numbered priority value wins. The default value is
+     *           1000. The priority value must be from 1 to 65535, inclusive.
      *     @type array<\Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute\Warnings>|\Google\Protobuf\Internal\RepeatedField $warnings
      *           Output only. If potential misconfigurations are detected for this route,
      *           this field will be populated with warning messages.
      *     @type string $self_link
      *           Output only. Server-defined fully-qualified URL for this resource.
      *     @type string $kind
-     *           Output only. Type of this resource. Always networkconnectivity#policyBasedRoute for
-     *           Policy Based Route resources.
+     *           Output only. Type of this resource. Always
+     *           networkconnectivity#policyBasedRoute for Policy Based Route resources.
      * }
      */
     public function __construct($data = NULL) {
@@ -212,9 +215,9 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The IP of a global access enabled L4 ILB that should be the next hop to
-     * handle matching packets. For this version, only next_hop_ilb_ip is
-     * supported.
+     * Optional. The IP of a global access enabled L4 ILB that should be the
+     * next hop to handle matching packets. For this version, only
+     * next_hop_ilb_ip is supported.
      *
      * Generated from protobuf field <code>string next_hop_ilb_ip = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -230,9 +233,9 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The IP of a global access enabled L4 ILB that should be the next hop to
-     * handle matching packets. For this version, only next_hop_ilb_ip is
-     * supported.
+     * Optional. The IP of a global access enabled L4 ILB that should be the
+     * next hop to handle matching packets. For this version, only
+     * next_hop_ilb_ip is supported.
      *
      * Generated from protobuf field <code>string next_hop_ilb_ip = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -242,6 +245,39 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(12, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Other routes that will be referenced to determine the next hop
+     * of the packet.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.PolicyBasedRoute.OtherRoutes next_hop_other_routes = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getNextHopOtherRoutes()
+    {
+        return $this->readOneof(21);
+    }
+
+    public function hasNextHopOtherRoutes()
+    {
+        return $this->hasOneof(21);
+    }
+
+    /**
+     * Optional. Other routes that will be referenced to determine the next hop
+     * of the packet.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.PolicyBasedRoute.OtherRoutes next_hop_other_routes = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setNextHopOtherRoutes($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute\OtherRoutes::class);
+        $this->writeOneof(21, $var);
 
         return $this;
     }
@@ -373,8 +409,8 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An optional description of this resource. Provide this field when you
-     * create the resource.
+     * Optional. An optional description of this resource. Provide this field when
+     * you create the resource.
      *
      * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -385,8 +421,8 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An optional description of this resource. Provide this field when you
-     * create the resource.
+     * Optional. An optional description of this resource. Provide this field when
+     * you create the resource.
      *
      * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -401,8 +437,8 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Fully-qualified URL of the network that this route applies to. e.g.
-     * projects/my-project/global/networks/my-network.
+     * Required. Fully-qualified URL of the network that this route applies to.
+     * e.g. projects/my-project/global/networks/my-network.
      *
      * Generated from protobuf field <code>string network = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -413,8 +449,8 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Fully-qualified URL of the network that this route applies to. e.g.
-     * projects/my-project/global/networks/my-network.
+     * Required. Fully-qualified URL of the network that this route applies to.
+     * e.g. projects/my-project/global/networks/my-network.
      *
      * Generated from protobuf field <code>string network = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -465,11 +501,11 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The priority of this policy based route. Priority is used to break ties in
-     * cases where there are more than one matching policy based routes found. In
-     * cases where multiple policy based routes are matched, the one with the
-     * lowest-numbered priority value wins. The default value is 1000. The
-     * priority value must be from 1 to 65535, inclusive.
+     * Optional. The priority of this policy based route. Priority is used to
+     * break ties in cases where there are more than one matching policy based
+     * routes found. In cases where multiple policy based routes are matched, the
+     * one with the lowest-numbered priority value wins. The default value is
+     * 1000. The priority value must be from 1 to 65535, inclusive.
      *
      * Generated from protobuf field <code>int32 priority = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -480,11 +516,11 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The priority of this policy based route. Priority is used to break ties in
-     * cases where there are more than one matching policy based routes found. In
-     * cases where multiple policy based routes are matched, the one with the
-     * lowest-numbered priority value wins. The default value is 1000. The
-     * priority value must be from 1 to 65535, inclusive.
+     * Optional. The priority of this policy based route. Priority is used to
+     * break ties in cases where there are more than one matching policy based
+     * routes found. In cases where multiple policy based routes are matched, the
+     * one with the lowest-numbered priority value wins. The default value is
+     * 1000. The priority value must be from 1 to 65535, inclusive.
      *
      * Generated from protobuf field <code>int32 priority = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -553,8 +589,8 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Type of this resource. Always networkconnectivity#policyBasedRoute for
-     * Policy Based Route resources.
+     * Output only. Type of this resource. Always
+     * networkconnectivity#policyBasedRoute for Policy Based Route resources.
      *
      * Generated from protobuf field <code>string kind = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -565,8 +601,8 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Type of this resource. Always networkconnectivity#policyBasedRoute for
-     * Policy Based Route resources.
+     * Output only. Type of this resource. Always
+     * networkconnectivity#policyBasedRoute for Policy Based Route resources.
      *
      * Generated from protobuf field <code>string kind = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

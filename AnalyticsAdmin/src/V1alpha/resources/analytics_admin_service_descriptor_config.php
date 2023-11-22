@@ -3,16 +3,6 @@
 return [
     'interfaces' => [
         'google.analytics.admin.v1alpha.AnalyticsAdminService' => [
-            'AuditUserLinks' => [
-                'pageStreaming' => [
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getUserLinks',
-                ],
-            ],
             'ListAccessBindings' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -203,6 +193,26 @@ return [
                     'resourcesGetMethod' => 'getProperties',
                 ],
             ],
+            'ListRollupPropertySourceLinks' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getRollupPropertySourceLinks',
+                ],
+            ],
+            'ListSKAdNetworkConversionValueSchemas' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSkadnetworkConversionValueSchemas',
+                ],
+            ],
             'ListSearchAds360Links' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -211,16 +221,6 @@ return [
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getSearchAds360Links',
-                ],
-            ],
-            'ListUserLinks' => [
-                'pageStreaming' => [
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getUserLinks',
                 ],
             ],
             'SearchChangeHistoryEvents' => [

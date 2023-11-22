@@ -15,6 +15,18 @@ return [
                     ],
                 ],
             ],
+            'BulkDeleteConversations' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/conversations:bulkDelete',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CalculateIssueModelStats' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{issue_model=projects/*/locations/*/issueModels/*}:calculateIssueModelStats',

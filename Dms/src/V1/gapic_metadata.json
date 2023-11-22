@@ -35,6 +35,11 @@
                                 "createConversionWorkspace"
                             ]
                         },
+                        "CreateMappingRule": {
+                            "methods": [
+                                "createMappingRule"
+                            ]
+                        },
                         "CreateMigrationJob": {
                             "methods": [
                                 "createMigrationJob"
@@ -53,6 +58,11 @@
                         "DeleteConversionWorkspace": {
                             "methods": [
                                 "deleteConversionWorkspace"
+                            ]
+                        },
+                        "DeleteMappingRule": {
+                            "methods": [
+                                "deleteMappingRule"
                             ]
                         },
                         "DeleteMigrationJob": {
@@ -85,6 +95,11 @@
                                 "generateSshScript"
                             ]
                         },
+                        "GenerateTcpProxyScript": {
+                            "methods": [
+                                "generateTcpProxyScript"
+                            ]
+                        },
                         "GetConnectionProfile": {
                             "methods": [
                                 "getConnectionProfile"
@@ -93,6 +108,11 @@
                         "GetConversionWorkspace": {
                             "methods": [
                                 "getConversionWorkspace"
+                            ]
+                        },
+                        "GetMappingRule": {
+                            "methods": [
+                                "getMappingRule"
                             ]
                         },
                         "GetMigrationJob": {
@@ -118,6 +138,11 @@
                         "ListConversionWorkspaces": {
                             "methods": [
                                 "listConversionWorkspaces"
+                            ]
+                        },
+                        "ListMappingRules": {
+                            "methods": [
+                                "listMappingRules"
                             ]
                         },
                         "ListMigrationJobs": {

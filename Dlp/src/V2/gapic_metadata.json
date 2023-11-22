@@ -25,6 +25,11 @@
                                 "createDeidentifyTemplate"
                             ]
                         },
+                        "CreateDiscoveryConfig": {
+                            "methods": [
+                                "createDiscoveryConfig"
+                            ]
+                        },
                         "CreateDlpJob": {
                             "methods": [
                                 "createDlpJob"
@@ -55,6 +60,11 @@
                                 "deleteDeidentifyTemplate"
                             ]
                         },
+                        "DeleteDiscoveryConfig": {
+                            "methods": [
+                                "deleteDiscoveryConfig"
+                            ]
+                        },
                         "DeleteDlpJob": {
                             "methods": [
                                 "deleteDlpJob"
@@ -83,6 +93,11 @@
                         "GetDeidentifyTemplate": {
                             "methods": [
                                 "getDeidentifyTemplate"
+                            ]
+                        },
+                        "GetDiscoveryConfig": {
+                            "methods": [
+                                "getDiscoveryConfig"
                             ]
                         },
                         "GetDlpJob": {
@@ -125,6 +140,11 @@
                                 "listDeidentifyTemplates"
                             ]
                         },
+                        "ListDiscoveryConfigs": {
+                            "methods": [
+                                "listDiscoveryConfigs"
+                            ]
+                        },
                         "ListDlpJobs": {
                             "methods": [
                                 "listDlpJobs"
@@ -163,6 +183,11 @@
                         "UpdateDeidentifyTemplate": {
                             "methods": [
                                 "updateDeidentifyTemplate"
+                            ]
+                        },
+                        "UpdateDiscoveryConfig": {
+                            "methods": [
+                                "updateDiscoveryConfig"
                             ]
                         },
                         "UpdateInspectTemplate": {

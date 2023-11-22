@@ -38,6 +38,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\ContactCenterInsights\V1\Analysis;
 use Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector;
 use Google\Cloud\ContactCenterInsights\V1\BulkAnalyzeConversationsRequest;
+use Google\Cloud\ContactCenterInsights\V1\BulkDeleteConversationsRequest;
 use Google\Cloud\ContactCenterInsights\V1\CalculateIssueModelStatsRequest;
 use Google\Cloud\ContactCenterInsights\V1\CalculateIssueModelStatsResponse;
 use Google\Cloud\ContactCenterInsights\V1\CalculateStatsRequest;
@@ -85,6 +86,7 @@ use Google\Cloud\ContactCenterInsights\V1\ListViewsResponse;
 use Google\Cloud\ContactCenterInsights\V1\PhraseMatcher;
 use Google\Cloud\ContactCenterInsights\V1\RedactionConfig;
 use Google\Cloud\ContactCenterInsights\V1\Settings;
+use Google\Cloud\ContactCenterInsights\V1\SpeechConfig;
 use Google\Cloud\ContactCenterInsights\V1\UndeployIssueModelRequest;
 use Google\Cloud\ContactCenterInsights\V1\UpdateConversationRequest;
 use Google\Cloud\ContactCenterInsights\V1\UpdateIssueModelRequest;
@@ -114,7 +116,7 @@ use Google\Protobuf\GPBEmpty;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *         // doSomethingWith($result)
+ *     // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -131,7 +133,7 @@ use Google\Protobuf\GPBEmpty;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *         // doSomethingWith($result)
+ *     // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -190,6 +192,8 @@ class ContactCenterInsightsGapicClient
     private static $projectConversationParticipantNameTemplate;
 
     private static $projectLocationConversationParticipantNameTemplate;
+
+    private static $recognizerNameTemplate;
 
     private static $settingsNameTemplate;
 
@@ -337,6 +341,17 @@ class ContactCenterInsightsGapicClient
         return self::$projectLocationConversationParticipantNameTemplate;
     }
 
+    private static function getRecognizerNameTemplate()
+    {
+        if (self::$recognizerNameTemplate == null) {
+            self::$recognizerNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/recognizers/{recognizer}'
+            );
+        }
+
+        return self::$recognizerNameTemplate;
+    }
+
     private static function getSettingsNameTemplate()
     {
         if (self::$settingsNameTemplate == null) {
@@ -373,6 +388,7 @@ class ContactCenterInsightsGapicClient
                 'phraseMatcher' => self::getPhraseMatcherNameTemplate(),
                 'projectConversationParticipant' => self::getProjectConversationParticipantNameTemplate(),
                 'projectLocationConversationParticipant' => self::getProjectLocationConversationParticipantNameTemplate(),
+                'recognizer' => self::getRecognizerNameTemplate(),
                 'settings' => self::getSettingsNameTemplate(),
                 'view' => self::getViewNameTemplate(),
             ];
@@ -598,6 +614,25 @@ class ContactCenterInsightsGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a recognizer
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $recognizer
+     *
+     * @return string The formatted recognizer resource.
+     */
+    public static function recognizerName($project, $location, $recognizer)
+    {
+        return self::getRecognizerNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'recognizer' => $recognizer,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a settings
      * resource.
      *
@@ -647,6 +682,7 @@ class ContactCenterInsightsGapicClient
      * - phraseMatcher: projects/{project}/locations/{location}/phraseMatchers/{phrase_matcher}
      * - projectConversationParticipant: projects/{project}/conversations/{conversation}/participants/{participant}
      * - projectLocationConversationParticipant: projects/{project}/locations/{location}/conversations/{conversation}/participants/{participant}
+     * - recognizer: projects/{project}/locations/{location}/recognizers/{recognizer}
      * - settings: projects/{project}/locations/{location}/settings
      * - view: projects/{project}/locations/{location}/views/{view}
      *
@@ -799,7 +835,7 @@ class ContactCenterInsightsGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -816,7 +852,7 @@ class ContactCenterInsightsGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -870,6 +906,101 @@ class ContactCenterInsightsGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'BulkAnalyzeConversations',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Deletes multiple conversations in a single request.
+     *
+     * Sample code:
+     * ```
+     * $contactCenterInsightsClient = new ContactCenterInsightsClient();
+     * try {
+     *     $formattedParent = $contactCenterInsightsClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $operationResponse = $contactCenterInsightsClient->bulkDeleteConversations($formattedParent);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $contactCenterInsightsClient->bulkDeleteConversations($formattedParent);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $contactCenterInsightsClient->resumeOperation($operationName, 'bulkDeleteConversations');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $contactCenterInsightsClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent resource to delete conversations from.
+     *                             Format:
+     *                             projects/{project}/locations/{location}
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $filter
+     *           Filter used to select the subset of conversations to delete.
+     *     @type int $maxDeleteCount
+     *           Maximum number of conversations to delete.
+     *     @type bool $force
+     *           If set to true, all of this conversation's analyses will also be deleted.
+     *           Otherwise, the request will only succeed if the conversation has no
+     *           analyses.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function bulkDeleteConversations($parent, array $optionalArgs = [])
+    {
+        $request = new BulkDeleteConversationsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['maxDeleteCount'])) {
+            $request->setMaxDeleteCount($optionalArgs['maxDeleteCount']);
+        }
+
+        if (isset($optionalArgs['force'])) {
+            $request->setForce($optionalArgs['force']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'BulkDeleteConversations',
             $optionalArgs,
             $request,
             $this->getOperationsClient()
@@ -995,7 +1126,7 @@ class ContactCenterInsightsGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1012,7 +1143,7 @@ class ContactCenterInsightsGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1136,7 +1267,7 @@ class ContactCenterInsightsGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1153,7 +1284,7 @@ class ContactCenterInsightsGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1635,7 +1766,7 @@ class ContactCenterInsightsGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1652,7 +1783,7 @@ class ContactCenterInsightsGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1708,7 +1839,7 @@ class ContactCenterInsightsGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1725,7 +1856,7 @@ class ContactCenterInsightsGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2155,7 +2286,7 @@ class ContactCenterInsightsGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2172,7 +2303,7 @@ class ContactCenterInsightsGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2187,11 +2318,18 @@ class ContactCenterInsightsGapicClient
      *     Optional.
      *
      *     @type GcsSource $gcsSource
-     *           A cloud storage bucket source.
+     *           A cloud storage bucket source. Note that any previously ingested objects
+     *           from the source will be skipped to avoid duplication.
      *     @type TranscriptObjectConfig $transcriptObjectConfig
      *           Configuration for when `source` contains conversation transcripts.
      *     @type ConversationConfig $conversationConfig
      *           Configuration that applies to all conversations.
+     *     @type RedactionConfig $redactionConfig
+     *           Optional. DLP settings for transcript redaction. Optional, will default to
+     *           the config specified in Settings.
+     *     @type SpeechConfig $speechConfig
+     *           Optional. Default Speech-to-Text configuration. Optional, will default to
+     *           the config specified in Settings.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2222,6 +2360,14 @@ class ContactCenterInsightsGapicClient
             $request->setConversationConfig(
                 $optionalArgs['conversationConfig']
             );
+        }
+
+        if (isset($optionalArgs['redactionConfig'])) {
+            $request->setRedactionConfig($optionalArgs['redactionConfig']);
+        }
+
+        if (isset($optionalArgs['speechConfig'])) {
+            $request->setSpeechConfig($optionalArgs['speechConfig']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -2683,7 +2829,7 @@ class ContactCenterInsightsGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2700,7 +2846,7 @@ class ContactCenterInsightsGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -3085,7 +3231,7 @@ class ContactCenterInsightsGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -3102,7 +3248,7 @@ class ContactCenterInsightsGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *         // doSomethingWith($result)
+     *     // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -3125,8 +3271,11 @@ class ContactCenterInsightsGapicClient
      *           This value should be 4-64 characters and must match the regular
      *           expression `^[a-z0-9-]{4,64}$`. Valid characters are `[a-z][0-9]-`
      *     @type RedactionConfig $redactionConfig
-     *           Optional. DLP settings for transcript redaction. Optional, will default to
-     *           the config specified in Settings.
+     *           Optional. DLP settings for transcript redaction. Will default to the config
+     *           specified in Settings.
+     *     @type SpeechConfig $speechConfig
+     *           Optional. Speech-to-Text configuration. Will default to the config
+     *           specified in Settings.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3153,6 +3302,10 @@ class ContactCenterInsightsGapicClient
 
         if (isset($optionalArgs['redactionConfig'])) {
             $request->setRedactionConfig($optionalArgs['redactionConfig']);
+        }
+
+        if (isset($optionalArgs['speechConfig'])) {
+            $request->setSpeechConfig($optionalArgs['speechConfig']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

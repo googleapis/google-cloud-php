@@ -23,6 +23,8 @@ use Google\Cloud\Debugger\Debuggee;
 /**
  * Represents a connection to
  * [Debugger](https://cloud.google.com/debugger).
+ *
+ * @internal
  */
 interface ConnectionInterface
 {

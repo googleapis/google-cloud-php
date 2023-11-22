@@ -32,7 +32,7 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * Please note this client will be deprecated in our next release. In order
  * to receive the latest features and updates, please take
- * the time to familiarize yourself with {@see Google\Cloud\Speech\V1\SpeechClient}.
+ * the time to familiarize yourself with {@see \Google\Cloud\Speech\V1\SpeechClient}.
  *
  * Example:
  * ```
@@ -50,12 +50,13 @@ class SpeechClient
 {
     use ClientTrait;
 
-    const VERSION = '1.14.0';
+    const VERSION = '1.15.0';
 
     const SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
     /**
      * @var ConnectionInterface
+     * @internal
      */
     protected $connection;
 
@@ -173,7 +174,7 @@ class SpeechClient
      *        be a resource, string of bytes, a URI pointing to a
      *        Google Cloud Storage object in the format of
      *        `gs://{bucket-name}/{object-name}` or a
-     *        {@see Google\Cloud\Storage\StorageObject}.
+     *        {@see \Google\Cloud\Storage\StorageObject}.
      * @param array $options [optional] {
      *     Configuration options.
      *
@@ -302,7 +303,7 @@ class SpeechClient
      *        be a resource, string of bytes, a URI pointing to a
      *        Google Cloud Storage object in the format of
      *        `gs://{bucket-name}/{object-name}` or a
-     *        {@see Google\Cloud\Storage\StorageObject}.
+     *        {@see \Google\Cloud\Storage\StorageObject}.
      * @param array $options [optional] {
      *     Configuration options.
      *
@@ -363,7 +364,7 @@ class SpeechClient
     /**
      * Lazily instantiates an operation. There are no network requests made at
      * this point. To see the operations that can be performed on an operation
-     * please see {@see Google\Cloud\Speech\Operation}.
+     * please see {@see \Google\Cloud\Speech\Operation}.
      *
      * Example:
      * ```

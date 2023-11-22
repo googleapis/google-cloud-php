@@ -487,6 +487,10 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/entryGroups/*}:getIamPolicy',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/governanceRules/*}:getIamPolicy',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -556,6 +560,11 @@ return [
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/entryGroups/*}:setIamPolicy',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/governanceRules/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -623,6 +632,11 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/entryGroups/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/governanceRules/*}:testIamPermissions',
                         'body' => '*',
                     ],
                 ],

@@ -45,6 +45,7 @@ use Google\Cloud\Recommender\V1\ListRecommendationsRequest;
 use Google\Cloud\Recommender\V1\ListRecommendationsResponse;
 use Google\Cloud\Recommender\V1\MarkInsightAcceptedRequest;
 use Google\Cloud\Recommender\V1\MarkRecommendationClaimedRequest;
+use Google\Cloud\Recommender\V1\MarkRecommendationDismissedRequest;
 use Google\Cloud\Recommender\V1\MarkRecommendationFailedRequest;
 use Google\Cloud\Recommender\V1\MarkRecommendationSucceededRequest;
 use Google\Cloud\Recommender\V1\Recommendation;
@@ -103,9 +104,13 @@ class RecommenderGapicClient
 
     private static $billingAccountLocationInsightTypeNameTemplate;
 
+    private static $billingAccountLocationInsightTypeConfigNameTemplate;
+
     private static $billingAccountLocationInsightTypeInsightNameTemplate;
 
     private static $billingAccountLocationRecommenderNameTemplate;
+
+    private static $billingAccountLocationRecommenderConfigNameTemplate;
 
     private static $billingAccountLocationRecommenderRecommendationNameTemplate;
 
@@ -183,6 +188,15 @@ class RecommenderGapicClient
         return self::$billingAccountLocationInsightTypeNameTemplate;
     }
 
+    private static function getBillingAccountLocationInsightTypeConfigNameTemplate()
+    {
+        if (self::$billingAccountLocationInsightTypeConfigNameTemplate == null) {
+            self::$billingAccountLocationInsightTypeConfigNameTemplate = new PathTemplate('billingAccounts/{billing_account}/locations/{location}/insightTypes/{insight_type}/config');
+        }
+
+        return self::$billingAccountLocationInsightTypeConfigNameTemplate;
+    }
+
     private static function getBillingAccountLocationInsightTypeInsightNameTemplate()
     {
         if (self::$billingAccountLocationInsightTypeInsightNameTemplate == null) {
@@ -199,6 +213,15 @@ class RecommenderGapicClient
         }
 
         return self::$billingAccountLocationRecommenderNameTemplate;
+    }
+
+    private static function getBillingAccountLocationRecommenderConfigNameTemplate()
+    {
+        if (self::$billingAccountLocationRecommenderConfigNameTemplate == null) {
+            self::$billingAccountLocationRecommenderConfigNameTemplate = new PathTemplate('billingAccounts/{billing_account}/locations/{location}/recommenders/{recommender}/config');
+        }
+
+        return self::$billingAccountLocationRecommenderConfigNameTemplate;
     }
 
     private static function getBillingAccountLocationRecommenderRecommendationNameTemplate()
@@ -413,8 +436,10 @@ class RecommenderGapicClient
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'billingAccountLocationInsightType' => self::getBillingAccountLocationInsightTypeNameTemplate(),
+                'billingAccountLocationInsightTypeConfig' => self::getBillingAccountLocationInsightTypeConfigNameTemplate(),
                 'billingAccountLocationInsightTypeInsight' => self::getBillingAccountLocationInsightTypeInsightNameTemplate(),
                 'billingAccountLocationRecommender' => self::getBillingAccountLocationRecommenderNameTemplate(),
+                'billingAccountLocationRecommenderConfig' => self::getBillingAccountLocationRecommenderConfigNameTemplate(),
                 'billingAccountLocationRecommenderRecommendation' => self::getBillingAccountLocationRecommenderRecommendationNameTemplate(),
                 'folderLocationInsightType' => self::getFolderLocationInsightTypeNameTemplate(),
                 'folderLocationInsightTypeInsight' => self::getFolderLocationInsightTypeInsightNameTemplate(),
@@ -465,6 +490,25 @@ class RecommenderGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * billing_account_location_insight_type_config resource.
+     *
+     * @param string $billingAccount
+     * @param string $location
+     * @param string $insightType
+     *
+     * @return string The formatted billing_account_location_insight_type_config resource.
+     */
+    public static function billingAccountLocationInsightTypeConfigName($billingAccount, $location, $insightType)
+    {
+        return self::getBillingAccountLocationInsightTypeConfigNameTemplate()->render([
+            'billing_account' => $billingAccount,
+            'location' => $location,
+            'insight_type' => $insightType,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * billing_account_location_insight_type_insight resource.
      *
      * @param string $billingAccount
@@ -497,6 +541,25 @@ class RecommenderGapicClient
     public static function billingAccountLocationRecommenderName($billingAccount, $location, $recommender)
     {
         return self::getBillingAccountLocationRecommenderNameTemplate()->render([
+            'billing_account' => $billingAccount,
+            'location' => $location,
+            'recommender' => $recommender,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * billing_account_location_recommender_config resource.
+     *
+     * @param string $billingAccount
+     * @param string $location
+     * @param string $recommender
+     *
+     * @return string The formatted billing_account_location_recommender_config resource.
+     */
+    public static function billingAccountLocationRecommenderConfigName($billingAccount, $location, $recommender)
+    {
+        return self::getBillingAccountLocationRecommenderConfigNameTemplate()->render([
             'billing_account' => $billingAccount,
             'location' => $location,
             'recommender' => $recommender,
@@ -963,8 +1026,10 @@ class RecommenderGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - billingAccountLocationInsightType: billingAccounts/{billing_account}/locations/{location}/insightTypes/{insight_type}
+     * - billingAccountLocationInsightTypeConfig: billingAccounts/{billing_account}/locations/{location}/insightTypes/{insight_type}/config
      * - billingAccountLocationInsightTypeInsight: billingAccounts/{billing_account}/locations/{location}/insightTypes/{insight_type}/insights/{insight}
      * - billingAccountLocationRecommender: billingAccounts/{billing_account}/locations/{location}/recommenders/{recommender}
+     * - billingAccountLocationRecommenderConfig: billingAccounts/{billing_account}/locations/{location}/recommenders/{recommender}/config
      * - billingAccountLocationRecommenderRecommendation: billingAccounts/{billing_account}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}
      * - folderLocationInsightType: folders/{folder}/locations/{location}/insightTypes/{insight_type}
      * - folderLocationInsightTypeInsight: folders/{folder}/locations/{location}/insightTypes/{insight_type}/insights/{insight}
@@ -1143,11 +1208,13 @@ class RecommenderGapicClient
      *
      *                             Acceptable formats:
      *
-     *                             * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`
+     *                             * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
      *
-     *                             * `projects/[PROJECT_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`
+     *                             * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
      *
-     *                             * `organizations/[ORGANIZATION_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`
+     *                             * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
+     *
+     *                             * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1236,6 +1303,8 @@ class RecommenderGapicClient
      *                             * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
      *
      *                             * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
+     *
+     *                             * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1594,6 +1663,59 @@ class RecommenderGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('MarkRecommendationClaimed', Recommendation::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Mark the Recommendation State as Dismissed. Users can use this method to
+     * indicate to the Recommender API that an ACTIVE recommendation has to
+     * be marked back as DISMISSED.
+     *
+     * MarkRecommendationDismissed can be applied to recommendations in ACTIVE
+     * state.
+     *
+     * Requires the recommender.*.update IAM permission for the specified
+     * recommender.
+     *
+     * Sample code:
+     * ```
+     * $recommenderClient = new RecommenderClient();
+     * try {
+     *     $formattedName = $recommenderClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
+     *     $response = $recommenderClient->markRecommendationDismissed($formattedName);
+     * } finally {
+     *     $recommenderClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Name of the recommendation.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $etag
+     *           Fingerprint of the Recommendation. Provides optimistic locking.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Recommender\V1\Recommendation
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function markRecommendationDismissed($name, array $optionalArgs = [])
+    {
+        $request = new MarkRecommendationDismissedRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['etag'])) {
+            $request->setEtag($optionalArgs['etag']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('MarkRecommendationDismissed', Recommendation::class, $optionalArgs, $request)->wait();
     }
 
     /**

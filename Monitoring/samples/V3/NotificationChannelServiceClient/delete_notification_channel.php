@@ -29,6 +29,11 @@ use Google\Cloud\Monitoring\V3\NotificationChannelServiceClient;
 /**
  * Deletes a notification channel.
  *
+ * Design your application to single-thread API calls that modify the state of
+ * notification channels in a single project. This includes calls to
+ * CreateNotificationChannel, DeleteNotificationChannel and
+ * UpdateNotificationChannel.
+ *
  * @param string $formattedName The channel for which to execute the request. The format is:
  *
  *                              projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]

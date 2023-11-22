@@ -25,7 +25,7 @@ class Execution
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ä
+€
 #google/cloud/run/v2/execution.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/launch_stage.protogoogle/api/resource.proto#google/cloud/run/v2/condition.proto\'google/cloud/run/v2/task_template.proto#google/longrunning/operations.protogoogle/protobuf/timestamp.proto"I
 GetExecutionRequest2
 name (	B$àAúA
@@ -41,6 +41,11 @@ page_token (	
 executions (2.google.cloud.run.v2.Execution
 next_page_token (	"q
 DeleteExecutionRequest2
+name (	B$àAúA
+run.googleapis.com/Execution
+validate_only (
+etag (	"q
+CancelExecutionRequest2
 name (	B$àAúA
 run.googleapis.com/Execution
 validate_only (
@@ -86,12 +91,14 @@ conditions (2.google.cloud.run.v2.ConditionBàA
 AnnotationsEntry
 key (	
 value (	:8:oêAl
-run.googleapis.com/ExecutionIprojects/{project}/locations/{location}/jobs/{job}/executions/{execution}R2è
+run.googleapis.com/ExecutionIprojects/{project}/locations/{location}/jobs/{job}/executions/{execution}R2±
 
 Executionsž
 GetExecution(.google.cloud.run.v2.GetExecutionRequest.google.cloud.run.v2.Execution"D‚Óä“75/v2/{name=projects/*/locations/*/jobs/*/executions/*}ÚAname±
 ListExecutions*.google.cloud.run.v2.ListExecutionsRequest+.google.cloud.run.v2.ListExecutionsResponse"F‚Óä“75/v2/{parent=projects/*/locations/*/jobs/*}/executionsÚAparent¼
 DeleteExecution+.google.cloud.run.v2.DeleteExecutionRequest.google.longrunning.Operation"]‚Óä“7*5/v2/{name=projects/*/locations/*/jobs/*/executions/*}ÚAnameÊA
+	Execution	ExecutionÆ
+CancelExecution+.google.cloud.run.v2.CancelExecutionRequest.google.longrunning.Operation"g‚Óä“A"</v2/{name=projects/*/locations/*/jobs/*/executions/*}:cancel:*ÚAnameÊA
 	Execution	ExecutionFÊArun.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBV
 com.google.cloud.run.v2BExecutionProtoPZ)cloud.google.com/go/run/apiv2/runpb;runpbbproto3'
         , true);

@@ -165,7 +165,7 @@ class Result implements \IteratorAggregate
      *        duplicate column names are present a `\RuntimeException` will be
      *        thrown. `Result::RETURN_ZERO_INDEXED` returns items as a 0 indexed
      *        array, with the key representing the column number as found by
-     *        executing {@see Google\Cloud\Spanner\Result::columns()}. Ex:
+     *        executing {@see \Google\Cloud\Spanner\Result::columns()}. Ex:
      *        `[0 => 'my_value']`. **Defaults to** `Result::RETURN_ASSOCIATIVE`.
      * @return \Generator
      * @throws \InvalidArgumentException When an invalid format is provided.

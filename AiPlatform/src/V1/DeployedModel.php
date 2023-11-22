@@ -18,7 +18,7 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     /**
      * Immutable. The ID of the DeployedModel. If not provided upon deployment,
      * Vertex AI will generate a value for this ID.
-     * This value should be 1-10 characters, and valid characters are /[0-9]/.
+     * This value should be 1-10 characters, and valid characters are `/[0-9]/`.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -137,7 +137,7 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *     @type string $id
      *           Immutable. The ID of the DeployedModel. If not provided upon deployment,
      *           Vertex AI will generate a value for this ID.
-     *           This value should be 1-10 characters, and valid characters are /[0-9]/.
+     *           This value should be 1-10 characters, and valid characters are `/[0-9]/`.
      *     @type string $model
      *           Required. The resource name of the Model that this is the deployment of.
      *           Note that the Model may be in a different location than the DeployedModel's
@@ -275,7 +275,7 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     /**
      * Immutable. The ID of the DeployedModel. If not provided upon deployment,
      * Vertex AI will generate a value for this ID.
-     * This value should be 1-10 characters, and valid characters are /[0-9]/.
+     * This value should be 1-10 characters, and valid characters are `/[0-9]/`.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -288,7 +288,7 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     /**
      * Immutable. The ID of the DeployedModel. If not provided upon deployment,
      * Vertex AI will generate a value for this ID.
-     * This value should be 1-10 characters, and valid characters are /[0-9]/.
+     * This value should be 1-10 characters, and valid characters are `/[0-9]/`.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var

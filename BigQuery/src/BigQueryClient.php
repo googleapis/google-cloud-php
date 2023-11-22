@@ -50,7 +50,7 @@ class BigQueryClient
         ClientTrait::jsonDecode insteadof RetryDeciderTrait;
     }
 
-    const VERSION = '1.26.0';
+    const VERSION = '1.28.2';
 
     const MAX_DELAY_MICROSECONDS = 32000000;
 
@@ -59,6 +59,7 @@ class BigQueryClient
 
     /**
      * @var ConnectionInterface Represents a connection to BigQuery.
+     * @internal
      */
     protected $connection;
 
@@ -145,7 +146,9 @@ class BigQueryClient
     }
 
     /**
-     * Returns a job configuration to be passed to either
+     * Returns a BigQuery job configuration.
+     *
+     * The job configuration is passed to either
      * {@see BigQueryClient::runQuery()} or
      * {@see BigQueryClient::startQuery()}. A
      * configuration can be built using fluent setters or by providing a full
@@ -216,7 +219,9 @@ class BigQueryClient
     }
 
     /**
-     * Returns a job configuration to be passed to either
+     * Returns a BigQuery job configuration.
+     *
+     * The job configuration is passed to either
      * {@see BigQueryClient::runQuery()} or
      * {@see BigQueryClient::startQuery()}. A
      * configuration can be built using fluent setters or by providing a full
@@ -400,7 +405,9 @@ class BigQueryClient
     }
 
     /**
-     * Lazily instantiates a job. There are no network requests made at this
+     * Lazily instantiates a job.
+     *
+     * There are no network requests made at this
      * point. To see the operations that can be performed on a job please
      * see {@see Job}.
      *
@@ -497,7 +504,9 @@ class BigQueryClient
     }
 
     /**
-     * Lazily instantiates a dataset. There are no network requests made at this
+     * Lazily instantiates a dataset.
+     *
+     * There are no network requests made at this
      * point. To see the operations that can be performed on a dataset please
      * see {@see Dataset}.
      *
@@ -898,7 +907,9 @@ class BigQueryClient
     }
 
     /**
-     * Returns a copy job configuration to be passed to either
+     * Returns a BigQuery copy job configuration.
+     *
+     * The copy job configuration is passed to either
      * {@see BigQueryClient::runJob()} or
      * {@see BigQueryClient::startJob()}. A
      * configuration can be built using fluent setters or by providing a full
@@ -935,7 +946,9 @@ class BigQueryClient
     }
 
     /**
-     * Returns an extract job configuration to be passed to either
+     * Returns a BigQuery extract job configuration.
+     *
+     * The extract job configuration is passed to either
      * {@see BigQueryClient::runJob()} or
      * {@see BigQueryClient::startJob()}. A
      * configuration can be built using fluent setters or by providing a full
@@ -972,7 +985,9 @@ class BigQueryClient
     }
 
     /**
-     * Returns a load job configuration to be passed to either
+     * Returns a BigQuery load job configuration.
+     *
+     * The load job configuration is passed to either
      * {@see BigQueryClient::runJob()} or
      * {@see BigQueryClient::startJob()}. A
      * configuration can be built using fluent setters or by providing a full

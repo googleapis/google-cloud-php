@@ -37,6 +37,7 @@ class Debuggee
 {
     /**
      * @var ConnectionInterface $connection Represents a connection to Debugger
+     * @internal
      */
     private $connection;
 
@@ -105,6 +106,8 @@ class Debuggee
      * Instantiate a new Debuggee.
      *
      * @param ConnectionInterface $connection
+     *        This object is created by DebuggerClient,
+     *        and should not be instantiated outside of this client.
      * @param array $info [optional] {
      *      Configuration options.
      *
@@ -287,7 +290,7 @@ class Debuggee
      *
      * @param Breakpoint $breakpoint The modified breakpoint.
      * @param array $options [optional] Configuration options. See
-     *        {@see Google\Cloud\Core\RequestWrapper::__construct()} for
+     *        {@see \Google\Cloud\Core\RequestWrapper::__construct()} for
      *        configuration options which apply to all network requests.
      * @return void
      * @throws ServiceException
@@ -316,9 +319,9 @@ class Debuggee
      * @param string $path Path to the source file.
      * @param int $line Line within the source file.
      * @param array $options [optional] Array of Breakpoint constructor arguments. See
-     *        {@see Google\Cloud\Debugger\Breakpoint::__construct()} for
+     *        {@see \Google\Cloud\Debugger\Breakpoint::__construct()} for
      *        configuration details. See
-     *        {@see Google\Cloud\Core\RequestWrapper::__construct()} for
+     *        {@see \Google\Cloud\Core\RequestWrapper::__construct()} for
      *        configuration options which apply to all network requests.
      */
     public function setBreakpoint($path, $line, array $options = [])
@@ -347,7 +350,7 @@ class Debuggee
      *
      * @param Breakpoint[] $breakpoints The modified breakpoints.
      * @param array $options [optional] Configuration options. See
-     *        {@see Google\Cloud\Core\RequestWrapper::__construct()} for
+     *        {@see \Google\Cloud\Core\RequestWrapper::__construct()} for
      *        configuration options which apply to all network requests.
      * @return void
      * @throws ServiceException

@@ -911,7 +911,7 @@ class PipelineServiceGapicClient
      *           generated.
      *
      *           This value should be less than 128 characters, and valid characters
-     *           are /[a-z][0-9]-/.
+     *           are `/[a-z][0-9]-/`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

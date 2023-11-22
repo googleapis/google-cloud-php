@@ -88,6 +88,26 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      */
     private $cx_parameters = null;
     /**
+     * Optional. Enable full bidirectional streaming. You can keep streaming the
+     * audio until timeout, and there's no need to half close the stream to get
+     * the response.
+     * Restrictions:
+     * - Timeout: 3 mins.
+     * - Audio Encoding: only supports
+     * [AudioEncoding.AUDIO_ENCODING_LINEAR_16][google.cloud.dialogflow.v2.AudioEncoding.AUDIO_ENCODING_LINEAR_16]
+     * and
+     * [AudioEncoding.AUDIO_ENCODING_MULAW][google.cloud.dialogflow.v2.AudioEncoding.AUDIO_ENCODING_MULAW]
+     * - Lifecycle: conversation should be in `Assist Stage`, go to
+     *   [Conversation.CreateConversation][] for more information.
+     * InvalidArgument Error will be returned if the one of restriction checks
+     * failed.
+     * You can find more details in
+     * https://cloud.google.com/agent-assist/docs/extended-streaming
+     *
+     * Generated from protobuf field <code>bool enable_extended_streaming = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $enable_extended_streaming = false;
+    /**
      * Enable partial virtual agent responses. If this flag is not enabled,
      * response stream still contains only one final response even if some
      * `Fulfillment`s in Dialogflow virtual agent have been configured to return
@@ -134,7 +154,7 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      *           The UTF-8 encoded natural language text to be processed. Must be sent if
      *           `text_config` is set in the first message. Text length must not exceed
      *           256 bytes for virtual agent interactions. The `input_text` field can be
-     *           only sent once.
+     *           only sent once, and would cancel the speech recognition if any ongoing.
      *     @type \Google\Cloud\Dialogflow\V2\TelephonyDtmfEvents $input_dtmf
      *           The DTMF digits used to invoke intent and fill in parameter value.
      *           This input is ignored if the previous response indicated that DTMF input
@@ -149,6 +169,22 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      *           parameter value to null.
      *           Note: this field should only be used if you are connecting to a Dialogflow
      *           CX agent.
+     *     @type bool $enable_extended_streaming
+     *           Optional. Enable full bidirectional streaming. You can keep streaming the
+     *           audio until timeout, and there's no need to half close the stream to get
+     *           the response.
+     *           Restrictions:
+     *           - Timeout: 3 mins.
+     *           - Audio Encoding: only supports
+     *           [AudioEncoding.AUDIO_ENCODING_LINEAR_16][google.cloud.dialogflow.v2.AudioEncoding.AUDIO_ENCODING_LINEAR_16]
+     *           and
+     *           [AudioEncoding.AUDIO_ENCODING_MULAW][google.cloud.dialogflow.v2.AudioEncoding.AUDIO_ENCODING_MULAW]
+     *           - Lifecycle: conversation should be in `Assist Stage`, go to
+     *             [Conversation.CreateConversation][] for more information.
+     *           InvalidArgument Error will be returned if the one of restriction checks
+     *           failed.
+     *           You can find more details in
+     *           https://cloud.google.com/agent-assist/docs/extended-streaming
      *     @type bool $enable_partial_automated_agent_reply
      *           Enable partial virtual agent responses. If this flag is not enabled,
      *           response stream still contains only one final response even if some
@@ -339,7 +375,7 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      * The UTF-8 encoded natural language text to be processed. Must be sent if
      * `text_config` is set in the first message. Text length must not exceed
      * 256 bytes for virtual agent interactions. The `input_text` field can be
-     * only sent once.
+     * only sent once, and would cancel the speech recognition if any ongoing.
      *
      * Generated from protobuf field <code>string input_text = 6;</code>
      * @return string
@@ -358,7 +394,7 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      * The UTF-8 encoded natural language text to be processed. Must be sent if
      * `text_config` is set in the first message. Text length must not exceed
      * 256 bytes for virtual agent interactions. The `input_text` field can be
-     * only sent once.
+     * only sent once, and would cancel the speech recognition if any ongoing.
      *
      * Generated from protobuf field <code>string input_text = 6;</code>
      * @param string $var
@@ -519,6 +555,60 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
         $this->cx_parameters = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Enable full bidirectional streaming. You can keep streaming the
+     * audio until timeout, and there's no need to half close the stream to get
+     * the response.
+     * Restrictions:
+     * - Timeout: 3 mins.
+     * - Audio Encoding: only supports
+     * [AudioEncoding.AUDIO_ENCODING_LINEAR_16][google.cloud.dialogflow.v2.AudioEncoding.AUDIO_ENCODING_LINEAR_16]
+     * and
+     * [AudioEncoding.AUDIO_ENCODING_MULAW][google.cloud.dialogflow.v2.AudioEncoding.AUDIO_ENCODING_MULAW]
+     * - Lifecycle: conversation should be in `Assist Stage`, go to
+     *   [Conversation.CreateConversation][] for more information.
+     * InvalidArgument Error will be returned if the one of restriction checks
+     * failed.
+     * You can find more details in
+     * https://cloud.google.com/agent-assist/docs/extended-streaming
+     *
+     * Generated from protobuf field <code>bool enable_extended_streaming = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableExtendedStreaming()
+    {
+        return $this->enable_extended_streaming;
+    }
+
+    /**
+     * Optional. Enable full bidirectional streaming. You can keep streaming the
+     * audio until timeout, and there's no need to half close the stream to get
+     * the response.
+     * Restrictions:
+     * - Timeout: 3 mins.
+     * - Audio Encoding: only supports
+     * [AudioEncoding.AUDIO_ENCODING_LINEAR_16][google.cloud.dialogflow.v2.AudioEncoding.AUDIO_ENCODING_LINEAR_16]
+     * and
+     * [AudioEncoding.AUDIO_ENCODING_MULAW][google.cloud.dialogflow.v2.AudioEncoding.AUDIO_ENCODING_MULAW]
+     * - Lifecycle: conversation should be in `Assist Stage`, go to
+     *   [Conversation.CreateConversation][] for more information.
+     * InvalidArgument Error will be returned if the one of restriction checks
+     * failed.
+     * You can find more details in
+     * https://cloud.google.com/agent-assist/docs/extended-streaming
+     *
+     * Generated from protobuf field <code>bool enable_extended_streaming = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableExtendedStreaming($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_extended_streaming = $var;
 
         return $this;
     }

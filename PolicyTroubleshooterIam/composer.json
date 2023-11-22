@@ -1,0 +1,31 @@
+{
+    "name": "google/cloud-policytroubleshooter-iam",
+    "description": "Google Cloud Policy Troubleshooter Iam Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\PolicyTroubleshooter\\Iam\\": "src",
+            "GPBMetadata\\Google\\Cloud\\Policytroubleshooter\\Iam\\": "metadata"
+        }
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-policytroubleshooter-iam",
+            "path": "PolicyTroubleshooterIam",
+            "target": "googleapis/google-cloud-php-policytroubleshooter-iam"
+        }
+    },
+    "require": {
+        "php": ">=7.4",
+        "google/gax": "^1.24.0",
+        "google/cloud-iam": "^0.4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "suggest": {
+        "ext-grpc": "Enables use of gRPC, a universal high-performance RPC framework created by Google.",
+        "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."
+    }
+}

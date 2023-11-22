@@ -75,6 +75,11 @@
                                 "listRuns"
                             ]
                         },
+                        "ProcessOpenLineageRunEvent": {
+                            "methods": [
+                                "processOpenLineageRunEvent"
+                            ]
+                        },
                         "SearchLinks": {
                             "methods": [
                                 "searchLinks"

@@ -17,19 +17,19 @@ use Google\Protobuf\Internal\GPBUtil;
 class Restriction extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The namespace of this restriction. eg: color.
+     * The namespace of this restriction. e.g.: color.
      *
      * Generated from protobuf field <code>string namespace = 1;</code>
      */
     private $namespace = '';
     /**
-     * The attributes to allow in this namespace. eg: 'red'
+     * The attributes to allow in this namespace. e.g.: 'red'
      *
      * Generated from protobuf field <code>repeated string allow_list = 2;</code>
      */
     private $allow_list;
     /**
-     * The attributes to deny in this namespace. eg: 'blue'
+     * The attributes to deny in this namespace. e.g.: 'blue'
      *
      * Generated from protobuf field <code>repeated string deny_list = 3;</code>
      */
@@ -42,11 +42,11 @@ class Restriction extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $namespace
-     *           The namespace of this restriction. eg: color.
+     *           The namespace of this restriction. e.g.: color.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allow_list
-     *           The attributes to allow in this namespace. eg: 'red'
+     *           The attributes to allow in this namespace. e.g.: 'red'
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $deny_list
-     *           The attributes to deny in this namespace. eg: 'blue'
+     *           The attributes to deny in this namespace. e.g.: 'blue'
      * }
      */
     public function __construct($data = NULL) {
@@ -55,7 +55,7 @@ class Restriction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The namespace of this restriction. eg: color.
+     * The namespace of this restriction. e.g.: color.
      *
      * Generated from protobuf field <code>string namespace = 1;</code>
      * @return string
@@ -66,7 +66,7 @@ class Restriction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The namespace of this restriction. eg: color.
+     * The namespace of this restriction. e.g.: color.
      *
      * Generated from protobuf field <code>string namespace = 1;</code>
      * @param string $var
@@ -81,7 +81,7 @@ class Restriction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The attributes to allow in this namespace. eg: 'red'
+     * The attributes to allow in this namespace. e.g.: 'red'
      *
      * Generated from protobuf field <code>repeated string allow_list = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -92,7 +92,7 @@ class Restriction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The attributes to allow in this namespace. eg: 'red'
+     * The attributes to allow in this namespace. e.g.: 'red'
      *
      * Generated from protobuf field <code>repeated string allow_list = 2;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -107,7 +107,7 @@ class Restriction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The attributes to deny in this namespace. eg: 'blue'
+     * The attributes to deny in this namespace. e.g.: 'blue'
      *
      * Generated from protobuf field <code>repeated string deny_list = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -118,7 +118,7 @@ class Restriction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The attributes to deny in this namespace. eg: 'blue'
+     * The attributes to deny in this namespace. e.g.: 'blue'
      *
      * Generated from protobuf field <code>repeated string deny_list = 3;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

@@ -32,7 +32,7 @@ use Google\Cloud\Deploy\V1\Target;
  * Gets details of a single Target.
  *
  * @param string $formattedName Name of the `Target`. Format must be
- *                              projects/{project_id}/locations/{location_name}/targets/{target_name}. Please see
+ *                              `projects/{project_id}/locations/{location_name}/targets/{target_name}`. Please see
  *                              {@see CloudDeployClient::targetName()} for help formatting this field.
  */
 function get_target_sample(string $formattedName): void

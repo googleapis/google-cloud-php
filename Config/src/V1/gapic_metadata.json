@@ -1,0 +1,123 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.config.v1",
+    "libraryPackage": "Google\\Cloud\\Config\\V1",
+    "services": {
+        "Config": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ConfigGapicClient",
+                    "rpcs": {
+                        "CreateDeployment": {
+                            "methods": [
+                                "createDeployment"
+                            ]
+                        },
+                        "DeleteDeployment": {
+                            "methods": [
+                                "deleteDeployment"
+                            ]
+                        },
+                        "DeleteStatefile": {
+                            "methods": [
+                                "deleteStatefile"
+                            ]
+                        },
+                        "ExportDeploymentStatefile": {
+                            "methods": [
+                                "exportDeploymentStatefile"
+                            ]
+                        },
+                        "ExportLockInfo": {
+                            "methods": [
+                                "exportLockInfo"
+                            ]
+                        },
+                        "ExportRevisionStatefile": {
+                            "methods": [
+                                "exportRevisionStatefile"
+                            ]
+                        },
+                        "GetDeployment": {
+                            "methods": [
+                                "getDeployment"
+                            ]
+                        },
+                        "GetResource": {
+                            "methods": [
+                                "getResource"
+                            ]
+                        },
+                        "GetRevision": {
+                            "methods": [
+                                "getRevision"
+                            ]
+                        },
+                        "ImportStatefile": {
+                            "methods": [
+                                "importStatefile"
+                            ]
+                        },
+                        "ListDeployments": {
+                            "methods": [
+                                "listDeployments"
+                            ]
+                        },
+                        "ListResources": {
+                            "methods": [
+                                "listResources"
+                            ]
+                        },
+                        "ListRevisions": {
+                            "methods": [
+                                "listRevisions"
+                            ]
+                        },
+                        "LockDeployment": {
+                            "methods": [
+                                "lockDeployment"
+                            ]
+                        },
+                        "UnlockDeployment": {
+                            "methods": [
+                                "unlockDeployment"
+                            ]
+                        },
+                        "UpdateDeployment": {
+                            "methods": [
+                                "updateDeployment"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

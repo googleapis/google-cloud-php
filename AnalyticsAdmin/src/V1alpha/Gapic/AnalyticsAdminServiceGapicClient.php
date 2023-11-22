@@ -43,22 +43,13 @@ use Google\Analytics\Admin\V1alpha\ArchiveCustomDimensionRequest;
 use Google\Analytics\Admin\V1alpha\ArchiveCustomMetricRequest;
 use Google\Analytics\Admin\V1alpha\AttributionSettings;
 use Google\Analytics\Admin\V1alpha\Audience;
-use Google\Analytics\Admin\V1alpha\AuditUserLinksRequest;
-use Google\Analytics\Admin\V1alpha\AuditUserLinksResponse;
 use Google\Analytics\Admin\V1alpha\BatchCreateAccessBindingsRequest;
 use Google\Analytics\Admin\V1alpha\BatchCreateAccessBindingsResponse;
-use Google\Analytics\Admin\V1alpha\BatchCreateUserLinksRequest;
-use Google\Analytics\Admin\V1alpha\BatchCreateUserLinksResponse;
 use Google\Analytics\Admin\V1alpha\BatchDeleteAccessBindingsRequest;
-use Google\Analytics\Admin\V1alpha\BatchDeleteUserLinksRequest;
 use Google\Analytics\Admin\V1alpha\BatchGetAccessBindingsRequest;
 use Google\Analytics\Admin\V1alpha\BatchGetAccessBindingsResponse;
-use Google\Analytics\Admin\V1alpha\BatchGetUserLinksRequest;
-use Google\Analytics\Admin\V1alpha\BatchGetUserLinksResponse;
 use Google\Analytics\Admin\V1alpha\BatchUpdateAccessBindingsRequest;
 use Google\Analytics\Admin\V1alpha\BatchUpdateAccessBindingsResponse;
-use Google\Analytics\Admin\V1alpha\BatchUpdateUserLinksRequest;
-use Google\Analytics\Admin\V1alpha\BatchUpdateUserLinksResponse;
 use Google\Analytics\Admin\V1alpha\BigQueryLink;
 use Google\Analytics\Admin\V1alpha\CancelDisplayVideo360AdvertiserLinkProposalRequest;
 use Google\Analytics\Admin\V1alpha\ChannelGroup;
@@ -82,10 +73,17 @@ use Google\Analytics\Admin\V1alpha\CreateFirebaseLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateGoogleAdsLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\CreatePropertyRequest;
+use Google\Analytics\Admin\V1alpha\CreateRollupPropertyRequest;
+use Google\Analytics\Admin\V1alpha\CreateRollupPropertyResponse;
+use Google\Analytics\Admin\V1alpha\CreateRollupPropertySourceLinkRequest;
+use Google\Analytics\Admin\V1alpha\CreateSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\CreateSearchAds360LinkRequest;
-use Google\Analytics\Admin\V1alpha\CreateUserLinkRequest;
+use Google\Analytics\Admin\V1alpha\CreateSubpropertyEventFilterRequest;
+use Google\Analytics\Admin\V1alpha\CreateSubpropertyRequest;
+use Google\Analytics\Admin\V1alpha\CreateSubpropertyResponse;
 use Google\Analytics\Admin\V1alpha\CustomDimension;
 use Google\Analytics\Admin\V1alpha\CustomMetric;
+use Google\Analytics\Admin\V1alpha\DataRedactionSettings;
 use Google\Analytics\Admin\V1alpha\DataRetentionSettings;
 use Google\Analytics\Admin\V1alpha\DataSharingSettings;
 use Google\Analytics\Admin\V1alpha\DataStream;
@@ -104,8 +102,10 @@ use Google\Analytics\Admin\V1alpha\DeleteFirebaseLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteGoogleAdsLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\DeletePropertyRequest;
+use Google\Analytics\Admin\V1alpha\DeleteRollupPropertySourceLinkRequest;
+use Google\Analytics\Admin\V1alpha\DeleteSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\DeleteSearchAds360LinkRequest;
-use Google\Analytics\Admin\V1alpha\DeleteUserLinkRequest;
+use Google\Analytics\Admin\V1alpha\DeleteSubpropertyEventFilterRequest;
 use Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLink;
 use Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal;
 use Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings;
@@ -126,6 +126,7 @@ use Google\Analytics\Admin\V1alpha\GetChannelGroupRequest;
 use Google\Analytics\Admin\V1alpha\GetConversionEventRequest;
 use Google\Analytics\Admin\V1alpha\GetCustomDimensionRequest;
 use Google\Analytics\Admin\V1alpha\GetCustomMetricRequest;
+use Google\Analytics\Admin\V1alpha\GetDataRedactionSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetDataRetentionSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetDataSharingSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetDataStreamRequest;
@@ -138,8 +139,9 @@ use Google\Analytics\Admin\V1alpha\GetGlobalSiteTagRequest;
 use Google\Analytics\Admin\V1alpha\GetGoogleSignalsSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\GetPropertyRequest;
+use Google\Analytics\Admin\V1alpha\GetRollupPropertySourceLinkRequest;
+use Google\Analytics\Admin\V1alpha\GetSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\GetSearchAds360LinkRequest;
-use Google\Analytics\Admin\V1alpha\GetUserLinkRequest;
 use Google\Analytics\Admin\V1alpha\GlobalSiteTag;
 use Google\Analytics\Admin\V1alpha\GoogleAdsLink;
 use Google\Analytics\Admin\V1alpha\GoogleSignalsSettings;
@@ -183,21 +185,26 @@ use Google\Analytics\Admin\V1alpha\ListMeasurementProtocolSecretsRequest;
 use Google\Analytics\Admin\V1alpha\ListMeasurementProtocolSecretsResponse;
 use Google\Analytics\Admin\V1alpha\ListPropertiesRequest;
 use Google\Analytics\Admin\V1alpha\ListPropertiesResponse;
+use Google\Analytics\Admin\V1alpha\ListRollupPropertySourceLinksRequest;
+use Google\Analytics\Admin\V1alpha\ListRollupPropertySourceLinksResponse;
+use Google\Analytics\Admin\V1alpha\ListSKAdNetworkConversionValueSchemasRequest;
+use Google\Analytics\Admin\V1alpha\ListSKAdNetworkConversionValueSchemasResponse;
 use Google\Analytics\Admin\V1alpha\ListSearchAds360LinksRequest;
 use Google\Analytics\Admin\V1alpha\ListSearchAds360LinksResponse;
-use Google\Analytics\Admin\V1alpha\ListUserLinksRequest;
-use Google\Analytics\Admin\V1alpha\ListUserLinksResponse;
 use Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret;
 use Google\Analytics\Admin\V1alpha\Property;
 use Google\Analytics\Admin\V1alpha\ProvisionAccountTicketRequest;
 use Google\Analytics\Admin\V1alpha\ProvisionAccountTicketResponse;
+use Google\Analytics\Admin\V1alpha\RollupPropertySourceLink;
 use Google\Analytics\Admin\V1alpha\RunAccessReportRequest;
 use Google\Analytics\Admin\V1alpha\RunAccessReportResponse;
+use Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema;
 use Google\Analytics\Admin\V1alpha\SearchAds360Link;
 use Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsRequest;
 use Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsResponse;
 use Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutRequest;
 use Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutResponse;
+use Google\Analytics\Admin\V1alpha\SubpropertyEventFilter;
 use Google\Analytics\Admin\V1alpha\UpdateAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAccountRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAttributionSettingsRequest;
@@ -206,6 +213,7 @@ use Google\Analytics\Admin\V1alpha\UpdateChannelGroupRequest;
 use Google\Analytics\Admin\V1alpha\UpdateConversionEventRequest;
 use Google\Analytics\Admin\V1alpha\UpdateCustomDimensionRequest;
 use Google\Analytics\Admin\V1alpha\UpdateCustomMetricRequest;
+use Google\Analytics\Admin\V1alpha\UpdateDataRedactionSettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateDataRetentionSettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\UpdateDisplayVideo360AdvertiserLinkRequest;
@@ -216,9 +224,8 @@ use Google\Analytics\Admin\V1alpha\UpdateGoogleAdsLinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateGoogleSignalsSettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\UpdatePropertyRequest;
+use Google\Analytics\Admin\V1alpha\UpdateSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSearchAds360LinkRequest;
-use Google\Analytics\Admin\V1alpha\UpdateUserLinkRequest;
-use Google\Analytics\Admin\V1alpha\UserLink;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
@@ -286,8 +293,6 @@ class AnalyticsAdminServiceGapicClient
 
     private static $accountAccessBindingNameTemplate;
 
-    private static $accountUserLinkNameTemplate;
-
     private static $adSenseLinkNameTemplate;
 
     private static $attributionSettingsNameTemplate;
@@ -303,6 +308,8 @@ class AnalyticsAdminServiceGapicClient
     private static $customDimensionNameTemplate;
 
     private static $customMetricNameTemplate;
+
+    private static $dataRedactionSettingsNameTemplate;
 
     private static $dataRetentionSettingsNameTemplate;
 
@@ -334,11 +341,13 @@ class AnalyticsAdminServiceGapicClient
 
     private static $propertyAccessBindingNameTemplate;
 
-    private static $propertyUserLinkNameTemplate;
+    private static $rollupPropertySourceLinkNameTemplate;
+
+    private static $sKAdNetworkConversionValueSchemaNameTemplate;
 
     private static $searchAds360LinkNameTemplate;
 
-    private static $userLinkNameTemplate;
+    private static $subpropertyEventFilterNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -386,15 +395,6 @@ class AnalyticsAdminServiceGapicClient
         }
 
         return self::$accountAccessBindingNameTemplate;
-    }
-
-    private static function getAccountUserLinkNameTemplate()
-    {
-        if (self::$accountUserLinkNameTemplate == null) {
-            self::$accountUserLinkNameTemplate = new PathTemplate('accounts/{account}/userLinks/{user_link}');
-        }
-
-        return self::$accountUserLinkNameTemplate;
     }
 
     private static function getAdSenseLinkNameTemplate()
@@ -467,6 +467,15 @@ class AnalyticsAdminServiceGapicClient
         }
 
         return self::$customMetricNameTemplate;
+    }
+
+    private static function getDataRedactionSettingsNameTemplate()
+    {
+        if (self::$dataRedactionSettingsNameTemplate == null) {
+            self::$dataRedactionSettingsNameTemplate = new PathTemplate('properties/{property}/dataStreams/{data_stream}/dataRedactionSettings');
+        }
+
+        return self::$dataRedactionSettingsNameTemplate;
     }
 
     private static function getDataRetentionSettingsNameTemplate()
@@ -604,13 +613,22 @@ class AnalyticsAdminServiceGapicClient
         return self::$propertyAccessBindingNameTemplate;
     }
 
-    private static function getPropertyUserLinkNameTemplate()
+    private static function getRollupPropertySourceLinkNameTemplate()
     {
-        if (self::$propertyUserLinkNameTemplate == null) {
-            self::$propertyUserLinkNameTemplate = new PathTemplate('properties/{property}/userLinks/{user_link}');
+        if (self::$rollupPropertySourceLinkNameTemplate == null) {
+            self::$rollupPropertySourceLinkNameTemplate = new PathTemplate('properties/{property}/rollupPropertySourceLinks/{rollup_property_source_link}');
         }
 
-        return self::$propertyUserLinkNameTemplate;
+        return self::$rollupPropertySourceLinkNameTemplate;
+    }
+
+    private static function getSKAdNetworkConversionValueSchemaNameTemplate()
+    {
+        if (self::$sKAdNetworkConversionValueSchemaNameTemplate == null) {
+            self::$sKAdNetworkConversionValueSchemaNameTemplate = new PathTemplate('properties/{property}/dataStreams/{data_stream}/sKAdNetworkConversionValueSchema/{skadnetwork_conversion_value_schema}');
+        }
+
+        return self::$sKAdNetworkConversionValueSchemaNameTemplate;
     }
 
     private static function getSearchAds360LinkNameTemplate()
@@ -622,13 +640,13 @@ class AnalyticsAdminServiceGapicClient
         return self::$searchAds360LinkNameTemplate;
     }
 
-    private static function getUserLinkNameTemplate()
+    private static function getSubpropertyEventFilterNameTemplate()
     {
-        if (self::$userLinkNameTemplate == null) {
-            self::$userLinkNameTemplate = new PathTemplate('accounts/{account}/userLinks/{user_link}');
+        if (self::$subpropertyEventFilterNameTemplate == null) {
+            self::$subpropertyEventFilterNameTemplate = new PathTemplate('properties/{property}/subpropertyEventFilters/{sub_property_event_filter}');
         }
 
-        return self::$userLinkNameTemplate;
+        return self::$subpropertyEventFilterNameTemplate;
     }
 
     private static function getPathTemplateMap()
@@ -638,7 +656,6 @@ class AnalyticsAdminServiceGapicClient
                 'accessBinding' => self::getAccessBindingNameTemplate(),
                 'account' => self::getAccountNameTemplate(),
                 'accountAccessBinding' => self::getAccountAccessBindingNameTemplate(),
-                'accountUserLink' => self::getAccountUserLinkNameTemplate(),
                 'adSenseLink' => self::getAdSenseLinkNameTemplate(),
                 'attributionSettings' => self::getAttributionSettingsNameTemplate(),
                 'audience' => self::getAudienceNameTemplate(),
@@ -647,6 +664,7 @@ class AnalyticsAdminServiceGapicClient
                 'conversionEvent' => self::getConversionEventNameTemplate(),
                 'customDimension' => self::getCustomDimensionNameTemplate(),
                 'customMetric' => self::getCustomMetricNameTemplate(),
+                'dataRedactionSettings' => self::getDataRedactionSettingsNameTemplate(),
                 'dataRetentionSettings' => self::getDataRetentionSettingsNameTemplate(),
                 'dataSharingSettings' => self::getDataSharingSettingsNameTemplate(),
                 'dataStream' => self::getDataStreamNameTemplate(),
@@ -662,9 +680,10 @@ class AnalyticsAdminServiceGapicClient
                 'measurementProtocolSecret' => self::getMeasurementProtocolSecretNameTemplate(),
                 'property' => self::getPropertyNameTemplate(),
                 'propertyAccessBinding' => self::getPropertyAccessBindingNameTemplate(),
-                'propertyUserLink' => self::getPropertyUserLinkNameTemplate(),
+                'rollupPropertySourceLink' => self::getRollupPropertySourceLinkNameTemplate(),
+                'sKAdNetworkConversionValueSchema' => self::getSKAdNetworkConversionValueSchemaNameTemplate(),
                 'searchAds360Link' => self::getSearchAds360LinkNameTemplate(),
-                'userLink' => self::getUserLinkNameTemplate(),
+                'subpropertyEventFilter' => self::getSubpropertyEventFilterNameTemplate(),
             ];
         }
 
@@ -723,25 +742,6 @@ class AnalyticsAdminServiceGapicClient
         return self::getAccountAccessBindingNameTemplate()->render([
             'account' => $account,
             'access_binding' => $accessBinding,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent a
-     * account_user_link resource.
-     *
-     * @param string $account
-     * @param string $userLink
-     *
-     * @return string The formatted account_user_link resource.
-     *
-     * @experimental
-     */
-    public static function accountUserLinkName($account, $userLink)
-    {
-        return self::getAccountUserLinkNameTemplate()->render([
-            'account' => $account,
-            'user_link' => $userLink,
         ]);
     }
 
@@ -892,6 +892,25 @@ class AnalyticsAdminServiceGapicClient
         return self::getCustomMetricNameTemplate()->render([
             'property' => $property,
             'custom_metric' => $customMetric,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * data_redaction_settings resource.
+     *
+     * @param string $property
+     * @param string $dataStream
+     *
+     * @return string The formatted data_redaction_settings resource.
+     *
+     * @experimental
+     */
+    public static function dataRedactionSettingsName($property, $dataStream)
+    {
+        return self::getDataRedactionSettingsNameTemplate()->render([
+            'property' => $property,
+            'data_stream' => $dataStream,
         ]);
     }
 
@@ -1178,20 +1197,41 @@ class AnalyticsAdminServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
-     * property_user_link resource.
+     * rollup_property_source_link resource.
      *
      * @param string $property
-     * @param string $userLink
+     * @param string $rollupPropertySourceLink
      *
-     * @return string The formatted property_user_link resource.
+     * @return string The formatted rollup_property_source_link resource.
      *
      * @experimental
      */
-    public static function propertyUserLinkName($property, $userLink)
+    public static function rollupPropertySourceLinkName($property, $rollupPropertySourceLink)
     {
-        return self::getPropertyUserLinkNameTemplate()->render([
+        return self::getRollupPropertySourceLinkNameTemplate()->render([
             'property' => $property,
-            'user_link' => $userLink,
+            'rollup_property_source_link' => $rollupPropertySourceLink,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * sk_ad_network_conversion_value_schema resource.
+     *
+     * @param string $property
+     * @param string $dataStream
+     * @param string $skadnetworkConversionValueSchema
+     *
+     * @return string The formatted sk_ad_network_conversion_value_schema resource.
+     *
+     * @experimental
+     */
+    public static function sKAdNetworkConversionValueSchemaName($property, $dataStream, $skadnetworkConversionValueSchema)
+    {
+        return self::getSKAdNetworkConversionValueSchemaNameTemplate()->render([
+            'property' => $property,
+            'data_stream' => $dataStream,
+            'skadnetwork_conversion_value_schema' => $skadnetworkConversionValueSchema,
         ]);
     }
 
@@ -1215,21 +1255,21 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
-     * Formats a string containing the fully-qualified path to represent a user_link
-     * resource.
+     * Formats a string containing the fully-qualified path to represent a
+     * subproperty_event_filter resource.
      *
-     * @param string $account
-     * @param string $userLink
+     * @param string $property
+     * @param string $subPropertyEventFilter
      *
-     * @return string The formatted user_link resource.
+     * @return string The formatted subproperty_event_filter resource.
      *
      * @experimental
      */
-    public static function userLinkName($account, $userLink)
+    public static function subpropertyEventFilterName($property, $subPropertyEventFilter)
     {
-        return self::getUserLinkNameTemplate()->render([
-            'account' => $account,
-            'user_link' => $userLink,
+        return self::getSubpropertyEventFilterNameTemplate()->render([
+            'property' => $property,
+            'sub_property_event_filter' => $subPropertyEventFilter,
         ]);
     }
 
@@ -1240,7 +1280,6 @@ class AnalyticsAdminServiceGapicClient
      * - accessBinding: accounts/{account}/accessBindings/{access_binding}
      * - account: accounts/{account}
      * - accountAccessBinding: accounts/{account}/accessBindings/{access_binding}
-     * - accountUserLink: accounts/{account}/userLinks/{user_link}
      * - adSenseLink: properties/{property}/adSenseLinks/{adsense_link}
      * - attributionSettings: properties/{property}/attributionSettings
      * - audience: properties/{property}/audiences/{audience}
@@ -1249,6 +1288,7 @@ class AnalyticsAdminServiceGapicClient
      * - conversionEvent: properties/{property}/conversionEvents/{conversion_event}
      * - customDimension: properties/{property}/customDimensions/{custom_dimension}
      * - customMetric: properties/{property}/customMetrics/{custom_metric}
+     * - dataRedactionSettings: properties/{property}/dataStreams/{data_stream}/dataRedactionSettings
      * - dataRetentionSettings: properties/{property}/dataRetentionSettings
      * - dataSharingSettings: accounts/{account}/dataSharingSettings
      * - dataStream: properties/{property}/dataStreams/{data_stream}
@@ -1264,9 +1304,10 @@ class AnalyticsAdminServiceGapicClient
      * - measurementProtocolSecret: properties/{property}/dataStreams/{data_stream}/measurementProtocolSecrets/{measurement_protocol_secret}
      * - property: properties/{property}
      * - propertyAccessBinding: properties/{property}/accessBindings/{access_binding}
-     * - propertyUserLink: properties/{property}/userLinks/{user_link}
+     * - rollupPropertySourceLink: properties/{property}/rollupPropertySourceLinks/{rollup_property_source_link}
+     * - sKAdNetworkConversionValueSchema: properties/{property}/dataStreams/{data_stream}/sKAdNetworkConversionValueSchema/{skadnetwork_conversion_value_schema}
      * - searchAds360Link: properties/{property}/searchAds360Links/{search_ads_360_link}
-     * - userLink: accounts/{account}/userLinks/{user_link}
+     * - subpropertyEventFilter: properties/{property}/subpropertyEventFilters/{sub_property_event_filter}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -1586,84 +1627,6 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
-     * Lists all user links on an account or property, including implicit ones
-     * that come from effective permissions granted by groups or organization
-     * admin roles.
-     *
-     * If a returned user link does not have direct permissions, they cannot
-     * be removed from the account or property directly with the DeleteUserLink
-     * command. They have to be removed from the group/etc that gives them
-     * permissions, which is currently only usable/discoverable in the GA or GMP
-     * UIs.
-     *
-     * Sample code:
-     * ```
-     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
-     * try {
-     *     $formattedParent = $analyticsAdminServiceClient->accountName('[ACCOUNT]');
-     *     // Iterate over pages of elements
-     *     $pagedResponse = $analyticsAdminServiceClient->auditUserLinks($formattedParent);
-     *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
-     *             // doSomethingWith($element);
-     *         }
-     *     }
-     *     // Alternatively:
-     *     // Iterate through all elements
-     *     $pagedResponse = $analyticsAdminServiceClient->auditUserLinks($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     * } finally {
-     *     $analyticsAdminServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $parent       Required. Example format: accounts/1234
-     * @param array  $optionalArgs {
-     *     Optional.
-     *
-     *     @type int $pageSize
-     *           The maximum number of resources contained in the underlying API
-     *           response. The API may return fewer values in a page, even if
-     *           there are additional values to be retrieved.
-     *     @type string $pageToken
-     *           A page token is used to specify a page of values to be returned.
-     *           If no page token is specified (the default), the first page
-     *           of values will be returned. Any page token used here must have
-     *           been generated by a previous call to the API.
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\PagedListResponse
-     *
-     * @throws ApiException if the remote call fails
-     *
-     * @experimental
-     */
-    public function auditUserLinks($parent, array $optionalArgs = [])
-    {
-        $request = new AuditUserLinksRequest();
-        $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
-        if (isset($optionalArgs['pageSize'])) {
-            $request->setPageSize($optionalArgs['pageSize']);
-        }
-
-        if (isset($optionalArgs['pageToken'])) {
-            $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('AuditUserLinks', $optionalArgs, AuditUserLinksResponse::class, $request);
-    }
-
-    /**
      * Creates information about multiple access bindings to an account or
      * property.
      *
@@ -1717,65 +1680,6 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
-     * Creates information about multiple users' links to an account or property.
-     *
-     * This method is transactional. If any UserLink cannot be created, none of
-     * the UserLinks will be created.
-     *
-     * Sample code:
-     * ```
-     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
-     * try {
-     *     $formattedParent = $analyticsAdminServiceClient->accountName('[ACCOUNT]');
-     *     $requests = [];
-     *     $response = $analyticsAdminServiceClient->batchCreateUserLinks($formattedParent, $requests);
-     * } finally {
-     *     $analyticsAdminServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string                  $parent       Required. The account or property that all user links in the request are
-     *                                              for. This field is required. The parent field in the CreateUserLinkRequest
-     *                                              messages must either be empty or match this field.
-     *                                              Example format: accounts/1234
-     * @param CreateUserLinkRequest[] $requests     Required. The requests specifying the user links to create.
-     *                                              A maximum of 1000 user links can be created in a batch.
-     * @param array                   $optionalArgs {
-     *     Optional.
-     *
-     *     @type bool $notifyNewUsers
-     *           Optional. If set, then email the new users notifying them that they've been
-     *           granted permissions to the resource. Regardless of whether this is set or
-     *           not, notify_new_user field inside each individual request is ignored.
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Analytics\Admin\V1alpha\BatchCreateUserLinksResponse
-     *
-     * @throws ApiException if the remote call fails
-     *
-     * @experimental
-     */
-    public function batchCreateUserLinks($parent, $requests, array $optionalArgs = [])
-    {
-        $request = new BatchCreateUserLinksRequest();
-        $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setRequests($requests);
-        $requestParamHeaders['parent'] = $parent;
-        if (isset($optionalArgs['notifyNewUsers'])) {
-            $request->setNotifyNewUsers($optionalArgs['notifyNewUsers']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('BatchCreateUserLinks', BatchCreateUserLinksResponse::class, $optionalArgs, $request)->wait();
-    }
-
-    /**
      * Deletes information about multiple users' links to an account or property.
      *
      * Sample code:
@@ -1820,52 +1724,6 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('BatchDeleteAccessBindings', GPBEmpty::class, $optionalArgs, $request)->wait();
-    }
-
-    /**
-     * Deletes information about multiple users' links to an account or property.
-     *
-     * Sample code:
-     * ```
-     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
-     * try {
-     *     $formattedParent = $analyticsAdminServiceClient->accountName('[ACCOUNT]');
-     *     $requests = [];
-     *     $analyticsAdminServiceClient->batchDeleteUserLinks($formattedParent, $requests);
-     * } finally {
-     *     $analyticsAdminServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string                  $parent       Required. The account or property that all user links in the request are
-     *                                              for. The parent of all values for user link names to delete must match this
-     *                                              field.
-     *                                              Example format: accounts/1234
-     * @param DeleteUserLinkRequest[] $requests     Required. The requests specifying the user links to update.
-     *                                              A maximum of 1000 user links can be updated in a batch.
-     * @param array                   $optionalArgs {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     *
-     * @experimental
-     */
-    public function batchDeleteUserLinks($parent, $requests, array $optionalArgs = [])
-    {
-        $request = new BatchDeleteUserLinksRequest();
-        $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setRequests($requests);
-        $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('BatchDeleteUserLinks', GPBEmpty::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1923,57 +1781,6 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
-     * Gets information about multiple users' links to an account or property.
-     *
-     * Sample code:
-     * ```
-     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
-     * try {
-     *     $formattedParent = $analyticsAdminServiceClient->accountName('[ACCOUNT]');
-     *     $formattedNames = [
-     *         $analyticsAdminServiceClient->userLinkName('[ACCOUNT]', '[USER_LINK]'),
-     *     ];
-     *     $response = $analyticsAdminServiceClient->batchGetUserLinks($formattedParent, $formattedNames);
-     * } finally {
-     *     $analyticsAdminServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string   $parent       Required. The account or property that all user links in the request are
-     *                               for. The parent of all provided values for the 'names' field must match
-     *                               this field.
-     *                               Example format: accounts/1234
-     * @param string[] $names        Required. The names of the user links to retrieve.
-     *                               A maximum of 1000 user links can be retrieved in a batch.
-     *                               Format: accounts/{accountId}/userLinks/{userLinkId}
-     * @param array    $optionalArgs {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Analytics\Admin\V1alpha\BatchGetUserLinksResponse
-     *
-     * @throws ApiException if the remote call fails
-     *
-     * @experimental
-     */
-    public function batchGetUserLinks($parent, $names, array $optionalArgs = [])
-    {
-        $request = new BatchGetUserLinksRequest();
-        $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setNames($names);
-        $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('BatchGetUserLinks', BatchGetUserLinksResponse::class, $optionalArgs, $request)->wait();
-    }
-
-    /**
      * Updates information about multiple access bindings to an account or
      * property.
      *
@@ -2022,54 +1829,6 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('BatchUpdateAccessBindings', BatchUpdateAccessBindingsResponse::class, $optionalArgs, $request)->wait();
-    }
-
-    /**
-     * Updates information about multiple users' links to an account or property.
-     *
-     * Sample code:
-     * ```
-     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
-     * try {
-     *     $formattedParent = $analyticsAdminServiceClient->accountName('[ACCOUNT]');
-     *     $requests = [];
-     *     $response = $analyticsAdminServiceClient->batchUpdateUserLinks($formattedParent, $requests);
-     * } finally {
-     *     $analyticsAdminServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string                  $parent       Required. The account or property that all user links in the request are
-     *                                              for. The parent field in the UpdateUserLinkRequest messages must either be
-     *                                              empty or match this field.
-     *                                              Example format: accounts/1234
-     * @param UpdateUserLinkRequest[] $requests     Required. The requests specifying the user links to update.
-     *                                              A maximum of 1000 user links can be updated in a batch.
-     * @param array                   $optionalArgs {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Analytics\Admin\V1alpha\BatchUpdateUserLinksResponse
-     *
-     * @throws ApiException if the remote call fails
-     *
-     * @experimental
-     */
-    public function batchUpdateUserLinks($parent, $requests, array $optionalArgs = [])
-    {
-        $request = new BatchUpdateUserLinksRequest();
-        $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setRequests($requests);
-        $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('BatchUpdateUserLinks', BatchUpdateUserLinksResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2879,6 +2638,142 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Create a roll-up property and all roll-up property source links.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $rollupProperty = new Property();
+     *     $response = $analyticsAdminServiceClient->createRollupProperty($rollupProperty);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param Property $rollupProperty Required. The roll-up property to create.
+     * @param array    $optionalArgs   {
+     *     Optional.
+     *
+     *     @type string[] $sourceProperties
+     *           Optional. The resource names of properties that will be sources to the
+     *           created roll-up property.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\CreateRollupPropertyResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function createRollupProperty($rollupProperty, array $optionalArgs = [])
+    {
+        $request = new CreateRollupPropertyRequest();
+        $request->setRollupProperty($rollupProperty);
+        if (isset($optionalArgs['sourceProperties'])) {
+            $request->setSourceProperties($optionalArgs['sourceProperties']);
+        }
+
+        return $this->startCall('CreateRollupProperty', CreateRollupPropertyResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Creates a roll-up property source link.
+     * Only roll-up properties can have source links, so this method will throw an
+     * error if used on other types of properties.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     $rollupPropertySourceLink = new RollupPropertySourceLink();
+     *     $response = $analyticsAdminServiceClient->createRollupPropertySourceLink($formattedParent, $rollupPropertySourceLink);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string                   $parent                   Required. Format: properties/{property_id}
+     *                                                           Example: properties/1234
+     * @param RollupPropertySourceLink $rollupPropertySourceLink Required. The roll-up property source link to create.
+     * @param array                    $optionalArgs             {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\RollupPropertySourceLink
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function createRollupPropertySourceLink($parent, $rollupPropertySourceLink, array $optionalArgs = [])
+    {
+        $request = new CreateRollupPropertySourceLinkRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setRollupPropertySourceLink($rollupPropertySourceLink);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateRollupPropertySourceLink', RollupPropertySourceLink::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Creates a SKAdNetworkConversionValueSchema.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
+     *     $skadnetworkConversionValueSchema = new SKAdNetworkConversionValueSchema();
+     *     $response = $analyticsAdminServiceClient->createSKAdNetworkConversionValueSchema($formattedParent, $skadnetworkConversionValueSchema);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string                           $parent                           Required. The parent resource where this schema will be created.
+     *                                                                           Format: properties/{property}/dataStreams/{dataStream}
+     * @param SKAdNetworkConversionValueSchema $skadnetworkConversionValueSchema Required. SKAdNetwork conversion value schema to create.
+     * @param array                            $optionalArgs                     {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function createSKAdNetworkConversionValueSchema($parent, $skadnetworkConversionValueSchema, array $optionalArgs = [])
+    {
+        $request = new CreateSKAdNetworkConversionValueSchemaRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setSkadnetworkConversionValueSchema($skadnetworkConversionValueSchema);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateSKAdNetworkConversionValueSchema', SKAdNetworkConversionValueSchema::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Creates a SearchAds360Link.
      *
      * Sample code:
@@ -2923,58 +2818,97 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
-     * Creates a user link on an account or property.
-     *
-     * If the user with the specified email already has permissions on the
-     * account or property, then the user's existing permissions will be unioned
-     * with the permissions specified in the new UserLink.
+     * Create a subproperty and a subproperty event filter that applies to the
+     * created subproperty.
      *
      * Sample code:
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedParent = $analyticsAdminServiceClient->accountName('[ACCOUNT]');
-     *     $userLink = new UserLink();
-     *     $response = $analyticsAdminServiceClient->createUserLink($formattedParent, $userLink);
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     $subproperty = new Property();
+     *     $response = $analyticsAdminServiceClient->createSubproperty($formattedParent, $subproperty);
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string   $parent       Required. Example format: accounts/1234
-     * @param UserLink $userLink     Required. The user link to create.
+     * @param string   $parent       Required. The ordinary property for which to create a subproperty.
+     *                               Format: properties/property_id
+     *                               Example: properties/123
+     * @param Property $subproperty  Required. The subproperty to create.
      * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type bool $notifyNewUser
-     *           Optional. If set, then email the new user notifying them that they've been
-     *           granted permissions to the resource.
+     *     @type SubpropertyEventFilter $subpropertyEventFilter
+     *           Optional. The subproperty event filter to create on an ordinary property.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Analytics\Admin\V1alpha\UserLink
+     * @return \Google\Analytics\Admin\V1alpha\CreateSubpropertyResponse
      *
      * @throws ApiException if the remote call fails
      *
      * @experimental
      */
-    public function createUserLink($parent, $userLink, array $optionalArgs = [])
+    public function createSubproperty($parent, $subproperty, array $optionalArgs = [])
     {
-        $request = new CreateUserLinkRequest();
-        $requestParamHeaders = [];
+        $request = new CreateSubpropertyRequest();
         $request->setParent($parent);
-        $request->setUserLink($userLink);
-        $requestParamHeaders['parent'] = $parent;
-        if (isset($optionalArgs['notifyNewUser'])) {
-            $request->setNotifyNewUser($optionalArgs['notifyNewUser']);
+        $request->setSubproperty($subproperty);
+        if (isset($optionalArgs['subpropertyEventFilter'])) {
+            $request->setSubpropertyEventFilter($optionalArgs['subpropertyEventFilter']);
         }
 
+        return $this->startCall('CreateSubproperty', CreateSubpropertyResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Creates a subproperty Event Filter.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     $subpropertyEventFilter = new SubpropertyEventFilter();
+     *     $response = $analyticsAdminServiceClient->createSubpropertyEventFilter($formattedParent, $subpropertyEventFilter);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string                 $parent                 Required. The ordinary property for which to create a subproperty event
+     *                                                       filter. Format: properties/property_id Example: properties/123
+     * @param SubpropertyEventFilter $subpropertyEventFilter Required. The subproperty event filter to create.
+     * @param array                  $optionalArgs           {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\SubpropertyEventFilter
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function createSubpropertyEventFilter($parent, $subpropertyEventFilter, array $optionalArgs = [])
+    {
+        $request = new CreateSubpropertyEventFilterRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setSubpropertyEventFilter($subpropertyEventFilter);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateUserLink', UserLink::class, $optionalArgs, $request)->wait();
+        return $this->startCall('CreateSubpropertyEventFilter', SubpropertyEventFilter::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -3026,7 +2960,7 @@ class AnalyticsAdminServiceGapicClient
      *
      * If the accounts are not restored before the expiration time, the account
      * and all child resources (eg: Properties, GoogleAdsLinks, Streams,
-     * UserLinks) will be permanently purged.
+     * AccessBindings) will be permanently purged.
      * https://support.google.com/analytics/answer/6154772
      *
      * Returns an error if the target is not found.
@@ -3567,7 +3501,7 @@ class AnalyticsAdminServiceGapicClient
      * However, they can be restored using the Trash Can UI.
      *
      * If the properties are not restored before the expiration time, the Property
-     * and all child resources (eg: GoogleAdsLinks, Streams, UserLinks)
+     * and all child resources (eg: GoogleAdsLinks, Streams, AccessBindings)
      * will be permanently purged.
      * https://support.google.com/analytics/answer/6154772
      *
@@ -3614,6 +3548,90 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Deletes a roll-up property source link.
+     * Only roll-up properties can have source links, so this method will throw an
+     * error if used on other types of properties.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->rollupPropertySourceLinkName('[PROPERTY]', '[ROLLUP_PROPERTY_SOURCE_LINK]');
+     *     $analyticsAdminServiceClient->deleteRollupPropertySourceLink($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Format:
+     *                             properties/{property_id}/rollupPropertySourceLinks/{rollup_property_source_link_id}
+     *                             Example: properties/1234/rollupPropertySourceLinks/5678
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function deleteRollupPropertySourceLink($name, array $optionalArgs = [])
+    {
+        $request = new DeleteRollupPropertySourceLinkRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteRollupPropertySourceLink', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Deletes target SKAdNetworkConversionValueSchema.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->sKAdNetworkConversionValueSchemaName('[PROPERTY]', '[DATA_STREAM]', '[SKADNETWORK_CONVERSION_VALUE_SCHEMA]');
+     *     $analyticsAdminServiceClient->deleteSKAdNetworkConversionValueSchema($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the SKAdNetworkConversionValueSchema to delete.
+     *                             Format:
+     *                             properties/{property}/dataStreams/{dataStream}/sKAdNetworkConversionValueSchema/{skadnetwork_conversion_value_schema}
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function deleteSKAdNetworkConversionValueSchema($name, array $optionalArgs = [])
+    {
+        $request = new DeleteSKAdNetworkConversionValueSchemaRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteSKAdNetworkConversionValueSchema', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Deletes a SearchAds360Link on a property.
      *
      * Sample code:
@@ -3654,20 +3672,23 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
-     * Deletes a user link on an account or property.
+     * Deletes a subproperty event filter.
      *
      * Sample code:
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedName = $analyticsAdminServiceClient->userLinkName('[ACCOUNT]', '[USER_LINK]');
-     *     $analyticsAdminServiceClient->deleteUserLink($formattedName);
+     *     $formattedName = $analyticsAdminServiceClient->subpropertyEventFilterName('[PROPERTY]', '[SUB_PROPERTY_EVENT_FILTER]');
+     *     $analyticsAdminServiceClient->deleteSubpropertyEventFilter($formattedName);
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Example format: accounts/1234/userLinks/5678
+     * @param string $name         Required. Resource name of the subproperty event filter to delete.
+     *                             Format:
+     *                             properties/property_id/subpropertyEventFilters/subproperty_event_filter
+     *                             Example: properties/123/subpropertyEventFilters/456
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -3681,15 +3702,15 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function deleteUserLink($name, array $optionalArgs = [])
+    public function deleteSubpropertyEventFilter($name, array $optionalArgs = [])
     {
-        $request = new DeleteUserLinkRequest();
+        $request = new DeleteSubpropertyEventFilterRequest();
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DeleteUserLink', GPBEmpty::class, $optionalArgs, $request)->wait();
+        return $this->startCall('DeleteSubpropertyEventFilter', GPBEmpty::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -4202,6 +4223,50 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetCustomMetric', CustomMetric::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Lookup for a single DataRedactionSettings.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->dataRedactionSettingsName('[PROPERTY]', '[DATA_STREAM]');
+     *     $response = $analyticsAdminServiceClient->getDataRedactionSettings($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the settings to lookup.
+     *                             Format:
+     *                             properties/{property}/dataStreams/{data_stream}/dataRedactionSettings
+     *                             Example: "properties/1000/dataStreams/2000/dataRedactionSettings"
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\DataRedactionSettings
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getDataRedactionSettings($name, array $optionalArgs = [])
+    {
+        $request = new GetDataRedactionSettingsRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetDataRedactionSettings', DataRedactionSettings::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -4722,6 +4787,95 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Lookup for a single roll-up property source Link.
+     * Only roll-up properties can have source links, so this method will throw an
+     * error if used on other types of properties.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->rollupPropertySourceLinkName('[PROPERTY]', '[ROLLUP_PROPERTY_SOURCE_LINK]');
+     *     $response = $analyticsAdminServiceClient->getRollupPropertySourceLink($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the roll-up property source link to lookup.
+     *                             Format:
+     *                             properties/{property_id}/rollupPropertySourceLinks/{rollup_property_source_link_id}
+     *                             Example: properties/123/rollupPropertySourceLinks/456
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\RollupPropertySourceLink
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getRollupPropertySourceLink($name, array $optionalArgs = [])
+    {
+        $request = new GetRollupPropertySourceLinkRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetRollupPropertySourceLink', RollupPropertySourceLink::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Looks up a single SKAdNetworkConversionValueSchema.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->sKAdNetworkConversionValueSchemaName('[PROPERTY]', '[DATA_STREAM]', '[SKADNETWORK_CONVERSION_VALUE_SCHEMA]');
+     *     $response = $analyticsAdminServiceClient->getSKAdNetworkConversionValueSchema($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of SKAdNetwork conversion value schema to look
+     *                             up. Format:
+     *                             properties/{property}/dataStreams/{dataStream}/sKAdNetworkConversionValueSchema/{skadnetwork_conversion_value_schema}
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getSKAdNetworkConversionValueSchema($name, array $optionalArgs = [])
+    {
+        $request = new GetSKAdNetworkConversionValueSchemaRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetSKAdNetworkConversionValueSchema', SKAdNetworkConversionValueSchema::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Look up a single SearchAds360Link
      *
      * Sample code:
@@ -4761,47 +4915,6 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetSearchAds360Link', SearchAds360Link::class, $optionalArgs, $request)->wait();
-    }
-
-    /**
-     * Gets information about a user's link to an account or property.
-     *
-     * Sample code:
-     * ```
-     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
-     * try {
-     *     $formattedName = $analyticsAdminServiceClient->userLinkName('[ACCOUNT]', '[USER_LINK]');
-     *     $response = $analyticsAdminServiceClient->getUserLink($formattedName);
-     * } finally {
-     *     $analyticsAdminServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. Example format: accounts/1234/userLinks/5678
-     * @param array  $optionalArgs {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Analytics\Admin\V1alpha\UserLink
-     *
-     * @throws ApiException if the remote call fails
-     *
-     * @experimental
-     */
-    public function getUserLink($name, array $optionalArgs = [])
-    {
-        $request = new GetUserLinkRequest();
-        $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetUserLink', UserLink::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -6219,6 +6332,153 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Lists roll-up property source Links on a property.
+     * Only roll-up properties can have source links, so this method will throw an
+     * error if used on other types of properties.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listRollupPropertySourceLinks($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listRollupPropertySourceLinks($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The name of the roll-up property to list roll-up property source
+     *                             links under. Format: properties/{property_id} Example: properties/1234
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listRollupPropertySourceLinks($parent, array $optionalArgs = [])
+    {
+        $request = new ListRollupPropertySourceLinksRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListRollupPropertySourceLinks', $optionalArgs, ListRollupPropertySourceLinksResponse::class, $request);
+    }
+
+    /**
+     * Lists SKAdNetworkConversionValueSchema on a stream.
+     * Properties can have at most one SKAdNetworkConversionValueSchema.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listSKAdNetworkConversionValueSchemas($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listSKAdNetworkConversionValueSchemas($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The DataStream resource to list schemas for.
+     *                             Format:
+     *                             properties/{property_id}/dataStreams/{dataStream}
+     *                             Example: properties/1234/dataStreams/5678
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listSKAdNetworkConversionValueSchemas($parent, array $optionalArgs = [])
+    {
+        $request = new ListSKAdNetworkConversionValueSchemasRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListSKAdNetworkConversionValueSchemas', $optionalArgs, ListSKAdNetworkConversionValueSchemasResponse::class, $request);
+    }
+
+    /**
      * Lists all SearchAds360Links on a property.
      *
      * Sample code:
@@ -6286,76 +6546,6 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListSearchAds360Links', $optionalArgs, ListSearchAds360LinksResponse::class, $request);
-    }
-
-    /**
-     * Lists all user links on an account or property.
-     *
-     * Sample code:
-     * ```
-     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
-     * try {
-     *     $formattedParent = $analyticsAdminServiceClient->accountName('[ACCOUNT]');
-     *     // Iterate over pages of elements
-     *     $pagedResponse = $analyticsAdminServiceClient->listUserLinks($formattedParent);
-     *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
-     *             // doSomethingWith($element);
-     *         }
-     *     }
-     *     // Alternatively:
-     *     // Iterate through all elements
-     *     $pagedResponse = $analyticsAdminServiceClient->listUserLinks($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     * } finally {
-     *     $analyticsAdminServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $parent       Required. Example format: accounts/1234
-     * @param array  $optionalArgs {
-     *     Optional.
-     *
-     *     @type int $pageSize
-     *           The maximum number of resources contained in the underlying API
-     *           response. The API may return fewer values in a page, even if
-     *           there are additional values to be retrieved.
-     *     @type string $pageToken
-     *           A page token is used to specify a page of values to be returned.
-     *           If no page token is specified (the default), the first page
-     *           of values will be returned. Any page token used here must have
-     *           been generated by a previous call to the API.
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\PagedListResponse
-     *
-     * @throws ApiException if the remote call fails
-     *
-     * @experimental
-     */
-    public function listUserLinks($parent, array $optionalArgs = [])
-    {
-        $request = new ListUserLinksRequest();
-        $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
-        if (isset($optionalArgs['pageSize'])) {
-            $request->setPageSize($optionalArgs['pageSize']);
-        }
-
-        if (isset($optionalArgs['pageToken'])) {
-            $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListUserLinks', $optionalArgs, ListUserLinksResponse::class, $request);
     }
 
     /**
@@ -6499,6 +6689,17 @@ class AnalyticsAdminServiceGapicClient
      *           Toggles whether to return the current state of this Analytics Property's
      *           quota. Quota is returned in [AccessQuota](#AccessQuota). For account-level
      *           requests, this field must be false.
+     *     @type bool $includeAllUsers
+     *           Optional. Determines whether to include users who have never made an API
+     *           call in the response. If true, all users with access to the specified
+     *           property or account are included in the response, regardless of whether
+     *           they have made an API call or not. If false, only the users who have made
+     *           an API call will be included.
+     *     @type bool $expandGroups
+     *           Optional. Decides whether to return the users within user groups. This
+     *           field works only when include_all_users is set to true. If true, it will
+     *           return all users with access to the specified property or account.
+     *           If false, only the users with direct access will be returned.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -6558,6 +6759,14 @@ class AnalyticsAdminServiceGapicClient
 
         if (isset($optionalArgs['returnEntityQuota'])) {
             $request->setReturnEntityQuota($optionalArgs['returnEntityQuota']);
+        }
+
+        if (isset($optionalArgs['includeAllUsers'])) {
+            $request->setIncludeAllUsers($optionalArgs['includeAllUsers']);
+        }
+
+        if (isset($optionalArgs['expandGroups'])) {
+            $request->setExpandGroups($optionalArgs['expandGroups']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -7106,6 +7315,54 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Updates a DataRedactionSettings on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $dataRedactionSettings = new DataRedactionSettings();
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateDataRedactionSettings($dataRedactionSettings, $updateMask);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param DataRedactionSettings $dataRedactionSettings Required. The settings to update.
+     *                                                     The `name` field is used to identify the settings to be updated.
+     * @param FieldMask             $updateMask            Required. The list of fields to be updated. Field names must be in snake
+     *                                                     case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *                                                     replace the entire entity, use one path with the string "*" to match all
+     *                                                     fields.
+     * @param array                 $optionalArgs          {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\DataRedactionSettings
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function updateDataRedactionSettings($dataRedactionSettings, $updateMask, array $optionalArgs = [])
+    {
+        $request = new UpdateDataRedactionSettingsRequest();
+        $requestParamHeaders = [];
+        $request->setDataRedactionSettings($dataRedactionSettings);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['data_redaction_settings.name'] = $dataRedactionSettings->getName();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateDataRedactionSettings', DataRedactionSettings::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Updates the singleton data retention settings for this property.
      *
      * Sample code:
@@ -7589,6 +7846,51 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Updates a SKAdNetworkConversionValueSchema.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $skadnetworkConversionValueSchema = new SKAdNetworkConversionValueSchema();
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateSKAdNetworkConversionValueSchema($skadnetworkConversionValueSchema, $updateMask);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param SKAdNetworkConversionValueSchema $skadnetworkConversionValueSchema Required. SKAdNetwork conversion value schema to update.
+     * @param FieldMask                        $updateMask                       Required. The list of fields to be updated. Omitted fields will not be
+     *                                                                           updated.
+     * @param array                            $optionalArgs                     {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function updateSKAdNetworkConversionValueSchema($skadnetworkConversionValueSchema, $updateMask, array $optionalArgs = [])
+    {
+        $request = new UpdateSKAdNetworkConversionValueSchemaRequest();
+        $requestParamHeaders = [];
+        $request->setSkadnetworkConversionValueSchema($skadnetworkConversionValueSchema);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['skadnetwork_conversion_value_schema.name'] = $skadnetworkConversionValueSchema->getName();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateSKAdNetworkConversionValueSchema', SKAdNetworkConversionValueSchema::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Updates a SearchAds360Link on a property.
      *
      * Sample code:
@@ -7634,46 +7936,5 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateSearchAds360Link', SearchAds360Link::class, $optionalArgs, $request)->wait();
-    }
-
-    /**
-     * Updates a user link on an account or property.
-     *
-     * Sample code:
-     * ```
-     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
-     * try {
-     *     $userLink = new UserLink();
-     *     $response = $analyticsAdminServiceClient->updateUserLink($userLink);
-     * } finally {
-     *     $analyticsAdminServiceClient->close();
-     * }
-     * ```
-     *
-     * @param UserLink $userLink     Required. The user link to update.
-     * @param array    $optionalArgs {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Analytics\Admin\V1alpha\UserLink
-     *
-     * @throws ApiException if the remote call fails
-     *
-     * @experimental
-     */
-    public function updateUserLink($userLink, array $optionalArgs = [])
-    {
-        $request = new UpdateUserLinkRequest();
-        $requestParamHeaders = [];
-        $request->setUserLink($userLink);
-        $requestParamHeaders['user_link.name'] = $userLink->getName();
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('UpdateUserLink', UserLink::class, $optionalArgs, $request)->wait();
     }
 }

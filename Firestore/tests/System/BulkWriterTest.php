@@ -35,6 +35,7 @@ class BulkWriterTest extends FirestoreTestCase
 
     private $document;
     private $bulkwriter;
+    private $batch;
 
     public function setUp(): void
     {

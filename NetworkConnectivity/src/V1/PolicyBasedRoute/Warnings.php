@@ -22,12 +22,12 @@ class Warnings extends \Google\Protobuf\Internal\Message
      */
     private $code = 0;
     /**
-     * Output only. Metadata about this warning in key: value format. The key should provides
-     * more detail on the warning being returned. For example, for warnings
-     * where there are no results in a list request for a particular zone, this
-     * key might be scope and the key value might be the zone name. Other
-     * examples might be a key indicating a deprecated resource and a suggested
-     * replacement.
+     * Output only. Metadata about this warning in key: value format. The key
+     * should provides more detail on the warning being returned. For example,
+     * for warnings where there are no results in a list request for a
+     * particular zone, this key might be scope and the key value might be the
+     * zone name. Other examples might be a key indicating a deprecated resource
+     * and a suggested replacement.
      *
      * Generated from protobuf field <code>map<string, string> data = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -48,12 +48,12 @@ class Warnings extends \Google\Protobuf\Internal\Message
      *     @type int $code
      *           Output only. A warning code, if applicable.
      *     @type array|\Google\Protobuf\Internal\MapField $data
-     *           Output only. Metadata about this warning in key: value format. The key should provides
-     *           more detail on the warning being returned. For example, for warnings
-     *           where there are no results in a list request for a particular zone, this
-     *           key might be scope and the key value might be the zone name. Other
-     *           examples might be a key indicating a deprecated resource and a suggested
-     *           replacement.
+     *           Output only. Metadata about this warning in key: value format. The key
+     *           should provides more detail on the warning being returned. For example,
+     *           for warnings where there are no results in a list request for a
+     *           particular zone, this key might be scope and the key value might be the
+     *           zone name. Other examples might be a key indicating a deprecated resource
+     *           and a suggested replacement.
      *     @type string $warning_message
      *           Output only. A human-readable description of the warning code.
      * }
@@ -90,12 +90,12 @@ class Warnings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Metadata about this warning in key: value format. The key should provides
-     * more detail on the warning being returned. For example, for warnings
-     * where there are no results in a list request for a particular zone, this
-     * key might be scope and the key value might be the zone name. Other
-     * examples might be a key indicating a deprecated resource and a suggested
-     * replacement.
+     * Output only. Metadata about this warning in key: value format. The key
+     * should provides more detail on the warning being returned. For example,
+     * for warnings where there are no results in a list request for a
+     * particular zone, this key might be scope and the key value might be the
+     * zone name. Other examples might be a key indicating a deprecated resource
+     * and a suggested replacement.
      *
      * Generated from protobuf field <code>map<string, string> data = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -106,12 +106,12 @@ class Warnings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Metadata about this warning in key: value format. The key should provides
-     * more detail on the warning being returned. For example, for warnings
-     * where there are no results in a list request for a particular zone, this
-     * key might be scope and the key value might be the zone name. Other
-     * examples might be a key indicating a deprecated resource and a suggested
-     * replacement.
+     * Output only. Metadata about this warning in key: value format. The key
+     * should provides more detail on the warning being returned. For example,
+     * for warnings where there are no results in a list request for a
+     * particular zone, this key might be scope and the key value might be the
+     * zone name. Other examples might be a key indicating a deprecated resource
+     * and a suggested replacement.
      *
      * Generated from protobuf field <code>map<string, string> data = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

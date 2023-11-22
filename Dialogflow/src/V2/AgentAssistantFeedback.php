@@ -55,6 +55,12 @@ class AgentAssistantFeedback extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentAssistantFeedback.SummarizationFeedback summarization_feedback = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $summarization_feedback = null;
+    /**
+     * Optional. Feedback for knowledge search.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentAssistantFeedback.KnowledgeSearchFeedback knowledge_search_feedback = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $knowledge_search_feedback = null;
 
     /**
      * Constructor.
@@ -86,6 +92,8 @@ class AgentAssistantFeedback extends \Google\Protobuf\Internal\Message
      *           [DocumentEfficiency.INEFFICIENT][google.cloud.dialogflow.v2.AgentAssistantFeedback.DocumentEfficiency.INEFFICIENT].
      *     @type \Google\Cloud\Dialogflow\V2\AgentAssistantFeedback\SummarizationFeedback $summarization_feedback
      *           Optional. Feedback for conversation summarization.
+     *     @type \Google\Cloud\Dialogflow\V2\AgentAssistantFeedback\KnowledgeSearchFeedback $knowledge_search_feedback
+     *           Optional. Feedback for knowledge search.
      * }
      */
     public function __construct($data = NULL) {
@@ -235,6 +243,42 @@ class AgentAssistantFeedback extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\AgentAssistantFeedback\SummarizationFeedback::class);
         $this->summarization_feedback = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Feedback for knowledge search.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentAssistantFeedback.KnowledgeSearchFeedback knowledge_search_feedback = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\V2\AgentAssistantFeedback\KnowledgeSearchFeedback|null
+     */
+    public function getKnowledgeSearchFeedback()
+    {
+        return $this->knowledge_search_feedback;
+    }
+
+    public function hasKnowledgeSearchFeedback()
+    {
+        return isset($this->knowledge_search_feedback);
+    }
+
+    public function clearKnowledgeSearchFeedback()
+    {
+        unset($this->knowledge_search_feedback);
+    }
+
+    /**
+     * Optional. Feedback for knowledge search.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentAssistantFeedback.KnowledgeSearchFeedback knowledge_search_feedback = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\V2\AgentAssistantFeedback\KnowledgeSearchFeedback $var
+     * @return $this
+     */
+    public function setKnowledgeSearchFeedback($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\AgentAssistantFeedback\KnowledgeSearchFeedback::class);
+        $this->knowledge_search_feedback = $var;
 
         return $this;
     }

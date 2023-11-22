@@ -27,6 +27,8 @@ use Google\Cloud\Trace\V2\Span;
 /**
  * Implementation of the
  * [Google Trace gRPC API](https://cloud.google.com/trace/docs/).
+ *
+ * @internal
  */
 class Grpc implements ConnectionInterface
 {

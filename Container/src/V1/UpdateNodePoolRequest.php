@@ -196,6 +196,41 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.WindowsNodeConfig windows_node_config = 34;</code>
      */
     private $windows_node_config = null;
+    /**
+     * Optional. The desired [Google Compute Engine machine
+     * type](https://cloud.google.com/compute/docs/machine-types) for nodes in the
+     * node pool. Initiates an upgrade operation that migrates the nodes in the
+     * node pool to the specified machine type.
+     *
+     * Generated from protobuf field <code>string machine_type = 36 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $machine_type = '';
+    /**
+     * Optional. The desired disk type (e.g. 'pd-standard', 'pd-ssd' or
+     * 'pd-balanced') for nodes in the node pool.
+     * Initiates an upgrade operation that migrates the nodes in the
+     * node pool to the specified disk type.
+     *
+     * Generated from protobuf field <code>string disk_type = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $disk_type = '';
+    /**
+     * Optional. The desired disk size for nodes in the node pool specified in GB.
+     * The smallest allowed disk size is 10GB.
+     * Initiates an upgrade operation that migrates the nodes in the
+     * node pool to the specified disk size.
+     *
+     * Generated from protobuf field <code>int64 disk_size_gb = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $disk_size_gb = 0;
+    /**
+     * Desired resource manager tag keys and values to be attached to the nodes
+     * for managing Compute Engine firewalls using Network Firewall Policies.
+     * Existing tags will be replaced with new values.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ResourceManagerTags resource_manager_tags = 39;</code>
+     */
+    private $resource_manager_tags = null;
 
     /**
      * Constructor.
@@ -284,6 +319,25 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           Google Compute Engine resources.
      *     @type \Google\Cloud\Container\V1\WindowsNodeConfig $windows_node_config
      *           Parameters that can be configured on Windows nodes.
+     *     @type string $machine_type
+     *           Optional. The desired [Google Compute Engine machine
+     *           type](https://cloud.google.com/compute/docs/machine-types) for nodes in the
+     *           node pool. Initiates an upgrade operation that migrates the nodes in the
+     *           node pool to the specified machine type.
+     *     @type string $disk_type
+     *           Optional. The desired disk type (e.g. 'pd-standard', 'pd-ssd' or
+     *           'pd-balanced') for nodes in the node pool.
+     *           Initiates an upgrade operation that migrates the nodes in the
+     *           node pool to the specified disk type.
+     *     @type int|string $disk_size_gb
+     *           Optional. The desired disk size for nodes in the node pool specified in GB.
+     *           The smallest allowed disk size is 10GB.
+     *           Initiates an upgrade operation that migrates the nodes in the
+     *           node pool to the specified disk size.
+     *     @type \Google\Cloud\Container\V1\ResourceManagerTags $resource_manager_tags
+     *           Desired resource manager tag keys and values to be attached to the nodes
+     *           for managing Compute Engine firewalls using Network Firewall Policies.
+     *           Existing tags will be replaced with new values.
      * }
      */
     public function __construct($data = NULL) {
@@ -1143,6 +1197,142 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\WindowsNodeConfig::class);
         $this->windows_node_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The desired [Google Compute Engine machine
+     * type](https://cloud.google.com/compute/docs/machine-types) for nodes in the
+     * node pool. Initiates an upgrade operation that migrates the nodes in the
+     * node pool to the specified machine type.
+     *
+     * Generated from protobuf field <code>string machine_type = 36 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getMachineType()
+    {
+        return $this->machine_type;
+    }
+
+    /**
+     * Optional. The desired [Google Compute Engine machine
+     * type](https://cloud.google.com/compute/docs/machine-types) for nodes in the
+     * node pool. Initiates an upgrade operation that migrates the nodes in the
+     * node pool to the specified machine type.
+     *
+     * Generated from protobuf field <code>string machine_type = 36 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMachineType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->machine_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The desired disk type (e.g. 'pd-standard', 'pd-ssd' or
+     * 'pd-balanced') for nodes in the node pool.
+     * Initiates an upgrade operation that migrates the nodes in the
+     * node pool to the specified disk type.
+     *
+     * Generated from protobuf field <code>string disk_type = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getDiskType()
+    {
+        return $this->disk_type;
+    }
+
+    /**
+     * Optional. The desired disk type (e.g. 'pd-standard', 'pd-ssd' or
+     * 'pd-balanced') for nodes in the node pool.
+     * Initiates an upgrade operation that migrates the nodes in the
+     * node pool to the specified disk type.
+     *
+     * Generated from protobuf field <code>string disk_type = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDiskType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->disk_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The desired disk size for nodes in the node pool specified in GB.
+     * The smallest allowed disk size is 10GB.
+     * Initiates an upgrade operation that migrates the nodes in the
+     * node pool to the specified disk size.
+     *
+     * Generated from protobuf field <code>int64 disk_size_gb = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getDiskSizeGb()
+    {
+        return $this->disk_size_gb;
+    }
+
+    /**
+     * Optional. The desired disk size for nodes in the node pool specified in GB.
+     * The smallest allowed disk size is 10GB.
+     * Initiates an upgrade operation that migrates the nodes in the
+     * node pool to the specified disk size.
+     *
+     * Generated from protobuf field <code>int64 disk_size_gb = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setDiskSizeGb($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->disk_size_gb = $var;
+
+        return $this;
+    }
+
+    /**
+     * Desired resource manager tag keys and values to be attached to the nodes
+     * for managing Compute Engine firewalls using Network Firewall Policies.
+     * Existing tags will be replaced with new values.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ResourceManagerTags resource_manager_tags = 39;</code>
+     * @return \Google\Cloud\Container\V1\ResourceManagerTags|null
+     */
+    public function getResourceManagerTags()
+    {
+        return $this->resource_manager_tags;
+    }
+
+    public function hasResourceManagerTags()
+    {
+        return isset($this->resource_manager_tags);
+    }
+
+    public function clearResourceManagerTags()
+    {
+        unset($this->resource_manager_tags);
+    }
+
+    /**
+     * Desired resource manager tag keys and values to be attached to the nodes
+     * for managing Compute Engine firewalls using Network Firewall Policies.
+     * Existing tags will be replaced with new values.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ResourceManagerTags resource_manager_tags = 39;</code>
+     * @param \Google\Cloud\Container\V1\ResourceManagerTags $var
+     * @return $this
+     */
+    public function setResourceManagerTags($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ResourceManagerTags::class);
+        $this->resource_manager_tags = $var;
 
         return $this;
     }

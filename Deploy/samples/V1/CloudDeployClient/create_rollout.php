@@ -35,7 +35,7 @@ use Google\Rpc\Status;
  *
  * @param string $formattedParent The parent collection in which the `Rollout` should be created.
  *                                Format should be
- *                                projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}. Please see
+ *                                `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}`. Please see
  *                                {@see CloudDeployClient::releaseName()} for help formatting this field.
  * @param string $rolloutId       ID of the `Rollout`.
  * @param string $rolloutTargetId The ID of Target to which this `Rollout` is deploying.

@@ -20,6 +20,8 @@ namespace Google\Cloud\Storage\Connection;
 /**
  * Represents a connection to
  * [Cloud Storage](https://cloud.google.com/storage/).
+ *
+ * @internal
  */
 interface ConnectionInterface
 {

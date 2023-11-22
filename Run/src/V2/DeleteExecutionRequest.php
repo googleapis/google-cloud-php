@@ -18,8 +18,8 @@ class DeleteExecutionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the Execution to delete.
      * Format:
-     * projects/{project}/locations/{location}/jobs/{job}/executions/{execution},
-     * where {project} can be project id or number.
+     * `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
+     * where `{project}` can be project id or number.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -42,8 +42,8 @@ class DeleteExecutionRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the Execution to delete.
      *                     Format:
-     *                     projects/{project}/locations/{location}/jobs/{job}/executions/{execution},
-     *                     where {project} can be project id or number. Please see
+     *                     `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
+     *                     where `{project}` can be project id or number. Please see
      *                     {@see ExecutionsClient::executionName()} for help formatting this field.
      *
      * @return \Google\Cloud\Run\V2\DeleteExecutionRequest
@@ -65,8 +65,8 @@ class DeleteExecutionRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the Execution to delete.
      *           Format:
-     *           projects/{project}/locations/{location}/jobs/{job}/executions/{execution},
-     *           where {project} can be project id or number.
+     *           `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
+     *           where `{project}` can be project id or number.
      *     @type bool $validate_only
      *           Indicates that the request should be validated without actually
      *           deleting any resources.
@@ -83,8 +83,8 @@ class DeleteExecutionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the Execution to delete.
      * Format:
-     * projects/{project}/locations/{location}/jobs/{job}/executions/{execution},
-     * where {project} can be project id or number.
+     * `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
+     * where `{project}` can be project id or number.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -97,8 +97,8 @@ class DeleteExecutionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the Execution to delete.
      * Format:
-     * projects/{project}/locations/{location}/jobs/{job}/executions/{execution},
-     * where {project} can be project id or number.
+     * `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
+     * where `{project}` can be project id or number.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

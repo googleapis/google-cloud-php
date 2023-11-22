@@ -32,8 +32,8 @@ use Google\Cloud\Dlp\V2\HybridInspectResponse;
  * will be processed asynchronously. To review the findings monitor the
  * jobs within the trigger.
  *
- * @param string $formattedName Resource name of the trigger to execute a hybrid inspect on, for example
- *                              `projects/dlp-test-project/jobTriggers/53234423`. Please see
+ * @param string $formattedName Resource name of the trigger to execute a hybrid inspect on, for
+ *                              example `projects/dlp-test-project/jobTriggers/53234423`. Please see
  *                              {@see DlpServiceClient::jobTriggerName()} for help formatting this field.
  */
 function hybrid_inspect_job_trigger_sample(string $formattedName): void

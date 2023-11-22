@@ -42,7 +42,7 @@ use Google\Cloud\Billing\V1\CloudBillingClient;
  * typically given to billing account
  * [administrators](https://cloud.google.com/billing/docs/how-to/billing-access).
  * This method will return an error if the parent account has not been
- * provisioned as a reseller account.
+ * provisioned for subaccounts.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

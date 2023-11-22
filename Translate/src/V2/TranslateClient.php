@@ -63,6 +63,7 @@ class TranslateClient
 
     /**
      * @var ConnectionInterface
+     * @internal
      */
     protected $connection;
 

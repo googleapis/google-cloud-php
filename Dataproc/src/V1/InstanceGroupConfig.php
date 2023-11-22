@@ -119,22 +119,18 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      */
     private $min_cpu_platform = '';
     /**
-     * Optional. The minimum number of instances to create.
-     * If min_num_instances is set, min_num_instances is used for a criteria to
-     * decide the cluster. Cluster creation will be failed by being an error state
-     * if the total number of instances created is less than the
-     * min_num_instances.
-     * For example, given that num_instances = 5 and min_num_instances = 3,
-     * * if 4 instances are created and then registered successfully but one
-     * instance is failed, the failed VM will be deleted and the cluster will be
-     * resized to 4 instances in running state.
-     * * if 2 instances are created successfully and 3 instances are failed,
-     * the cluster will be in an error state and does not delete failed VMs for
-     * debugging.
-     * * if 2 instance are created and then registered successfully but 3
-     * instances are failed to initialize, the cluster will be in an error state
-     * and does not delete failed VMs for debugging.
-     * NB: This can only be set for primary workers now.
+     * Optional. The minimum number of primary worker instances to create.
+     * If `min_num_instances` is set, cluster creation will succeed if
+     * the number of primary workers created is at least equal to the
+     * `min_num_instances` number.
+     * Example: Cluster creation request with `num_instances` = `5` and
+     * `min_num_instances` = `3`:
+     * *  If 4 VMs are created and 1 instance fails,
+     *    the failed VM is deleted. The cluster is
+     *    resized to 4 instances and placed in a `RUNNING` state.
+     * *  If 2 instances are created and 3 instances fail,
+     *    the cluster in placed in an `ERROR` state. The failed VMs
+     *    are not deleted.
      *
      * Generated from protobuf field <code>int32 min_num_instances = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -146,6 +142,13 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceFlexibilityPolicy instance_flexibility_policy = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $instance_flexibility_policy = null;
+    /**
+     * Optional. Configuration to handle the startup of instances during cluster
+     * create and update process.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.StartupConfig startup_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $startup_config = null;
 
     /**
      * Constructor.
@@ -212,25 +215,24 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *           See [Dataproc -> Minimum CPU
      *           Platform](https://cloud.google.com/dataproc/docs/concepts/compute/dataproc-min-cpu).
      *     @type int $min_num_instances
-     *           Optional. The minimum number of instances to create.
-     *           If min_num_instances is set, min_num_instances is used for a criteria to
-     *           decide the cluster. Cluster creation will be failed by being an error state
-     *           if the total number of instances created is less than the
-     *           min_num_instances.
-     *           For example, given that num_instances = 5 and min_num_instances = 3,
-     *           * if 4 instances are created and then registered successfully but one
-     *           instance is failed, the failed VM will be deleted and the cluster will be
-     *           resized to 4 instances in running state.
-     *           * if 2 instances are created successfully and 3 instances are failed,
-     *           the cluster will be in an error state and does not delete failed VMs for
-     *           debugging.
-     *           * if 2 instance are created and then registered successfully but 3
-     *           instances are failed to initialize, the cluster will be in an error state
-     *           and does not delete failed VMs for debugging.
-     *           NB: This can only be set for primary workers now.
+     *           Optional. The minimum number of primary worker instances to create.
+     *           If `min_num_instances` is set, cluster creation will succeed if
+     *           the number of primary workers created is at least equal to the
+     *           `min_num_instances` number.
+     *           Example: Cluster creation request with `num_instances` = `5` and
+     *           `min_num_instances` = `3`:
+     *           *  If 4 VMs are created and 1 instance fails,
+     *              the failed VM is deleted. The cluster is
+     *              resized to 4 instances and placed in a `RUNNING` state.
+     *           *  If 2 instances are created and 3 instances fail,
+     *              the cluster in placed in an `ERROR` state. The failed VMs
+     *              are not deleted.
      *     @type \Google\Cloud\Dataproc\V1\InstanceFlexibilityPolicy $instance_flexibility_policy
      *           Optional. Instance flexibility Policy allowing a mixture of VM shapes and
      *           provisioning models.
+     *     @type \Google\Cloud\Dataproc\V1\StartupConfig $startup_config
+     *           Optional. Configuration to handle the startup of instances during cluster
+     *           create and update process.
      * }
      */
     public function __construct($data = NULL) {
@@ -617,22 +619,18 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The minimum number of instances to create.
-     * If min_num_instances is set, min_num_instances is used for a criteria to
-     * decide the cluster. Cluster creation will be failed by being an error state
-     * if the total number of instances created is less than the
-     * min_num_instances.
-     * For example, given that num_instances = 5 and min_num_instances = 3,
-     * * if 4 instances are created and then registered successfully but one
-     * instance is failed, the failed VM will be deleted and the cluster will be
-     * resized to 4 instances in running state.
-     * * if 2 instances are created successfully and 3 instances are failed,
-     * the cluster will be in an error state and does not delete failed VMs for
-     * debugging.
-     * * if 2 instance are created and then registered successfully but 3
-     * instances are failed to initialize, the cluster will be in an error state
-     * and does not delete failed VMs for debugging.
-     * NB: This can only be set for primary workers now.
+     * Optional. The minimum number of primary worker instances to create.
+     * If `min_num_instances` is set, cluster creation will succeed if
+     * the number of primary workers created is at least equal to the
+     * `min_num_instances` number.
+     * Example: Cluster creation request with `num_instances` = `5` and
+     * `min_num_instances` = `3`:
+     * *  If 4 VMs are created and 1 instance fails,
+     *    the failed VM is deleted. The cluster is
+     *    resized to 4 instances and placed in a `RUNNING` state.
+     * *  If 2 instances are created and 3 instances fail,
+     *    the cluster in placed in an `ERROR` state. The failed VMs
+     *    are not deleted.
      *
      * Generated from protobuf field <code>int32 min_num_instances = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -643,22 +641,18 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The minimum number of instances to create.
-     * If min_num_instances is set, min_num_instances is used for a criteria to
-     * decide the cluster. Cluster creation will be failed by being an error state
-     * if the total number of instances created is less than the
-     * min_num_instances.
-     * For example, given that num_instances = 5 and min_num_instances = 3,
-     * * if 4 instances are created and then registered successfully but one
-     * instance is failed, the failed VM will be deleted and the cluster will be
-     * resized to 4 instances in running state.
-     * * if 2 instances are created successfully and 3 instances are failed,
-     * the cluster will be in an error state and does not delete failed VMs for
-     * debugging.
-     * * if 2 instance are created and then registered successfully but 3
-     * instances are failed to initialize, the cluster will be in an error state
-     * and does not delete failed VMs for debugging.
-     * NB: This can only be set for primary workers now.
+     * Optional. The minimum number of primary worker instances to create.
+     * If `min_num_instances` is set, cluster creation will succeed if
+     * the number of primary workers created is at least equal to the
+     * `min_num_instances` number.
+     * Example: Cluster creation request with `num_instances` = `5` and
+     * `min_num_instances` = `3`:
+     * *  If 4 VMs are created and 1 instance fails,
+     *    the failed VM is deleted. The cluster is
+     *    resized to 4 instances and placed in a `RUNNING` state.
+     * *  If 2 instances are created and 3 instances fail,
+     *    the cluster in placed in an `ERROR` state. The failed VMs
+     *    are not deleted.
      *
      * Generated from protobuf field <code>int32 min_num_instances = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -706,6 +700,44 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\InstanceFlexibilityPolicy::class);
         $this->instance_flexibility_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration to handle the startup of instances during cluster
+     * create and update process.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.StartupConfig startup_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\StartupConfig|null
+     */
+    public function getStartupConfig()
+    {
+        return $this->startup_config;
+    }
+
+    public function hasStartupConfig()
+    {
+        return isset($this->startup_config);
+    }
+
+    public function clearStartupConfig()
+    {
+        unset($this->startup_config);
+    }
+
+    /**
+     * Optional. Configuration to handle the startup of instances during cluster
+     * create and update process.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.StartupConfig startup_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\StartupConfig $var
+     * @return $this
+     */
+    public function setStartupConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\StartupConfig::class);
+        $this->startup_config = $var;
 
         return $this;
     }

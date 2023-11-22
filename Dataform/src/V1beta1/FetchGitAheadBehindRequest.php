@@ -22,9 +22,9 @@ class FetchGitAheadBehindRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Optional. The name of the branch in the Git remote against which this workspace
-     * should be compared. If left unset, the repository's default branch name
-     * will be used.
+     * Optional. The name of the branch in the Git remote against which this
+     * workspace should be compared. If left unset, the repository's default
+     * branch name will be used.
      *
      * Generated from protobuf field <code>string remote_branch = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -39,9 +39,9 @@ class FetchGitAheadBehindRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The workspace's name.
      *     @type string $remote_branch
-     *           Optional. The name of the branch in the Git remote against which this workspace
-     *           should be compared. If left unset, the repository's default branch name
-     *           will be used.
+     *           Optional. The name of the branch in the Git remote against which this
+     *           workspace should be compared. If left unset, the repository's default
+     *           branch name will be used.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,9 +76,9 @@ class FetchGitAheadBehindRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the branch in the Git remote against which this workspace
-     * should be compared. If left unset, the repository's default branch name
-     * will be used.
+     * Optional. The name of the branch in the Git remote against which this
+     * workspace should be compared. If left unset, the repository's default
+     * branch name will be used.
      *
      * Generated from protobuf field <code>string remote_branch = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -89,9 +89,9 @@ class FetchGitAheadBehindRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the branch in the Git remote against which this workspace
-     * should be compared. If left unset, the repository's default branch name
-     * will be used.
+     * Optional. The name of the branch in the Git remote against which this
+     * workspace should be compared. If left unset, the repository's default
+     * branch name will be used.
      *
      * Generated from protobuf field <code>string remote_branch = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

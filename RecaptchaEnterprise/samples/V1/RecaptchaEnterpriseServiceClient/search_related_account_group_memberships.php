@@ -33,7 +33,7 @@ use Google\Cloud\RecaptchaEnterprise\V1\RelatedAccountGroupMembership;
  *
  * @param string $formattedProject The name of the project to search related account group
  *                                 memberships from. Specify the project name in the following format:
- *                                 "projects/{project}". Please see
+ *                                 `projects/{project}`. Please see
  *                                 {@see RecaptchaEnterpriseServiceClient::relatedAccountGroupName()} for help formatting this field.
  */
 function search_related_account_group_memberships_sample(string $formattedProject): void

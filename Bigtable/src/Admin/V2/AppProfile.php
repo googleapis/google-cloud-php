@@ -43,6 +43,7 @@ class AppProfile extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     protected $routing_policy;
+    protected $isolation;
 
     /**
      * Constructor.
@@ -68,6 +69,13 @@ class AppProfile extends \Google\Protobuf\Internal\Message
      *           Use a multi-cluster routing policy.
      *     @type \Google\Cloud\Bigtable\Admin\V2\AppProfile\SingleClusterRouting $single_cluster_routing
      *           Use a single-cluster routing policy.
+     *     @type int $priority
+     *           This field has been deprecated in favor of `standard_isolation.priority`.
+     *           If you set this field, `standard_isolation.priority` will be set instead.
+     *           The priority of requests sent using this app profile.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\AppProfile\StandardIsolation $standard_isolation
+     *           The standard options used for isolating this app profile's traffic from
+     *           other use cases.
      * }
      */
     public function __construct($data = NULL) {
@@ -232,11 +240,92 @@ class AppProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * This field has been deprecated in favor of `standard_isolation.priority`.
+     * If you set this field, `standard_isolation.priority` will be set instead.
+     * The priority of requests sent using this app profile.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile.Priority priority = 7 [deprecated = true];</code>
+     * @return int
+     * @deprecated
+     */
+    public function getPriority()
+    {
+        @trigger_error('priority is deprecated.', E_USER_DEPRECATED);
+        return $this->readOneof(7);
+    }
+
+    public function hasPriority()
+    {
+        @trigger_error('priority is deprecated.', E_USER_DEPRECATED);
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * This field has been deprecated in favor of `standard_isolation.priority`.
+     * If you set this field, `standard_isolation.priority` will be set instead.
+     * The priority of requests sent using this app profile.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile.Priority priority = 7 [deprecated = true];</code>
+     * @param int $var
+     * @return $this
+     * @deprecated
+     */
+    public function setPriority($var)
+    {
+        @trigger_error('priority is deprecated.', E_USER_DEPRECATED);
+        GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\Admin\V2\AppProfile\Priority::class);
+        $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * The standard options used for isolating this app profile's traffic from
+     * other use cases.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile.StandardIsolation standard_isolation = 11;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\AppProfile\StandardIsolation|null
+     */
+    public function getStandardIsolation()
+    {
+        return $this->readOneof(11);
+    }
+
+    public function hasStandardIsolation()
+    {
+        return $this->hasOneof(11);
+    }
+
+    /**
+     * The standard options used for isolating this app profile's traffic from
+     * other use cases.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile.StandardIsolation standard_isolation = 11;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\AppProfile\StandardIsolation $var
+     * @return $this
+     */
+    public function setStandardIsolation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\AppProfile\StandardIsolation::class);
+        $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getRoutingPolicy()
     {
         return $this->whichOneof("routing_policy");
+    }
+
+    /**
+     * @return string
+     */
+    public function getIsolation()
+    {
+        return $this->whichOneof("isolation");
     }
 
 }

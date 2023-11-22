@@ -24,7 +24,7 @@ class Rapidmigrationassessment
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ì&
+¢&
 Ggoogle/cloud/rapidmigrationassessment/v1/rapidmigrationassessment.proto(google.cloud.rapidmigrationassessment.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto;google/cloud/rapidmigrationassessment/v1/api_entities.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"¼
 CreateAnnotationRequest9
 parent (	B)àAúA#
@@ -91,13 +91,14 @@ request_id (	BàA"€
 verb (	BàA
 status_message (	BàA#
 requested_cancellation (BàA
-api_version (	BàA2á
+api_version (	BàA2·
 RapidMigrationAssessment÷
 CreateCollector@.google.cloud.rapidmigrationassessment.v1.CreateCollectorRequest.google.longrunning.Operation"‚‚Óä“;"./v1/{parent=projects/*/locations/*}/collectors:	collectorÚAparent,collector,collector_idÊA
-	CollectorOperationMetadata™
-CreateAnnotationA.google.cloud.rapidmigrationassessment.v1.CreateAnnotationRequest.google.longrunning.Operation"¢‚Óä“="//v1/{parent=projects/*/locations/*}/annotations:
-annotationÚAparent,annotationÊAH
-3google.cloud.rapidmigrationassessment.v1.AnnotationOperationMetadataÅ
+	CollectorOperationMetadataï
+CreateAnnotationA.google.cloud.rapidmigrationassessment.v1.CreateAnnotationRequest.google.longrunning.Operation"y‚Óä“="//v1/{parent=projects/*/locations/*}/annotations:
+annotationÚAparent,annotationÊA
+
+AnnotationOperationMetadataÅ
 GetAnnotation>.google.cloud.rapidmigrationassessment.v1.GetAnnotationRequest4.google.cloud.rapidmigrationassessment.v1.Annotation">‚Óä“1//v1/{name=projects/*/locations/*/annotations/*}ÚAnameÔ
 ListCollectors?.google.cloud.rapidmigrationassessment.v1.ListCollectorsRequest@.google.cloud.rapidmigrationassessment.v1.ListCollectorsResponse"?‚Óä“0./v1/{parent=projects/*/locations/*}/collectorsÚAparentÁ
 GetCollector=.google.cloud.rapidmigrationassessment.v1.GetCollectorRequest3.google.cloud.rapidmigrationassessment.v1.Collector"=‚Óä“0./v1/{name=projects/*/locations/*/collectors/*}ÚAnameù

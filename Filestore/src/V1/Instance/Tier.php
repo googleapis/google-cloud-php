@@ -61,6 +61,20 @@ class Tier
      * Generated from protobuf enum <code>ENTERPRISE = 6;</code>
      */
     const ENTERPRISE = 6;
+    /**
+     * ZONAL instances offer expanded capacity and performance scaling
+     * capabilities.
+     *
+     * Generated from protobuf enum <code>ZONAL = 7;</code>
+     */
+    const ZONAL = 7;
+    /**
+     * REGIONAL instances offer the features and availability needed for
+     * mission-critical workloads.
+     *
+     * Generated from protobuf enum <code>REGIONAL = 8;</code>
+     */
+    const REGIONAL = 8;
 
     private static $valueToName = [
         self::TIER_UNSPECIFIED => 'TIER_UNSPECIFIED',
@@ -70,6 +84,8 @@ class Tier
         self::BASIC_SSD => 'BASIC_SSD',
         self::HIGH_SCALE_SSD => 'HIGH_SCALE_SSD',
         self::ENTERPRISE => 'ENTERPRISE',
+        self::ZONAL => 'ZONAL',
+        self::REGIONAL => 'REGIONAL',
     ];
 
     public static function name($value)

@@ -59,12 +59,25 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      * Output only. A distinct integer value is assigned for every speaker within
      * the audio. This field specifies which one of those speakers was detected to
      * have spoken this word. Value ranges from '1' to diarization_speaker_count.
-     * speaker_tag is set if enable_speaker_diarization = 'true' and only in the
+     * speaker_tag is set if enable_speaker_diarization = 'true' and only for the
      * top alternative.
+     * Note: Use speaker_label instead.
      *
-     * Generated from protobuf field <code>int32 speaker_tag = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int32 speaker_tag = 5 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
-    private $speaker_tag = 0;
+    protected $speaker_tag = 0;
+    /**
+     * Output only. A label value assigned for every unique speaker within the
+     * audio. This field specifies which speaker was detected to have spoken this
+     * word. For some models, like medical_conversation this can be actual speaker
+     * role, for example "patient" or "provider", but generally this would be a
+     * number identifying a speaker. This field is only set if
+     * enable_speaker_diarization = 'true' and only for the top alternative.
+     *
+     * Generated from protobuf field <code>string speaker_label = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $speaker_label = '';
 
     /**
      * Constructor.
@@ -100,8 +113,16 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      *           Output only. A distinct integer value is assigned for every speaker within
      *           the audio. This field specifies which one of those speakers was detected to
      *           have spoken this word. Value ranges from '1' to diarization_speaker_count.
-     *           speaker_tag is set if enable_speaker_diarization = 'true' and only in the
+     *           speaker_tag is set if enable_speaker_diarization = 'true' and only for the
      *           top alternative.
+     *           Note: Use speaker_label instead.
+     *     @type string $speaker_label
+     *           Output only. A label value assigned for every unique speaker within the
+     *           audio. This field specifies which speaker was detected to have spoken this
+     *           word. For some models, like medical_conversation this can be actual speaker
+     *           role, for example "patient" or "provider", but generally this would be a
+     *           number identifying a speaker. This field is only set if
+     *           enable_speaker_diarization = 'true' and only for the top alternative.
      * }
      */
     public function __construct($data = NULL) {
@@ -269,14 +290,17 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      * Output only. A distinct integer value is assigned for every speaker within
      * the audio. This field specifies which one of those speakers was detected to
      * have spoken this word. Value ranges from '1' to diarization_speaker_count.
-     * speaker_tag is set if enable_speaker_diarization = 'true' and only in the
+     * speaker_tag is set if enable_speaker_diarization = 'true' and only for the
      * top alternative.
+     * Note: Use speaker_label instead.
      *
-     * Generated from protobuf field <code>int32 speaker_tag = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int32 speaker_tag = 5 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
+     * @deprecated
      */
     public function getSpeakerTag()
     {
+        @trigger_error('speaker_tag is deprecated.', E_USER_DEPRECATED);
         return $this->speaker_tag;
     }
 
@@ -284,17 +308,56 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      * Output only. A distinct integer value is assigned for every speaker within
      * the audio. This field specifies which one of those speakers was detected to
      * have spoken this word. Value ranges from '1' to diarization_speaker_count.
-     * speaker_tag is set if enable_speaker_diarization = 'true' and only in the
+     * speaker_tag is set if enable_speaker_diarization = 'true' and only for the
      * top alternative.
+     * Note: Use speaker_label instead.
      *
-     * Generated from protobuf field <code>int32 speaker_tag = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int32 speaker_tag = 5 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
+     * @deprecated
      */
     public function setSpeakerTag($var)
     {
+        @trigger_error('speaker_tag is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt32($var);
         $this->speaker_tag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A label value assigned for every unique speaker within the
+     * audio. This field specifies which speaker was detected to have spoken this
+     * word. For some models, like medical_conversation this can be actual speaker
+     * role, for example "patient" or "provider", but generally this would be a
+     * number identifying a speaker. This field is only set if
+     * enable_speaker_diarization = 'true' and only for the top alternative.
+     *
+     * Generated from protobuf field <code>string speaker_label = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getSpeakerLabel()
+    {
+        return $this->speaker_label;
+    }
+
+    /**
+     * Output only. A label value assigned for every unique speaker within the
+     * audio. This field specifies which speaker was detected to have spoken this
+     * word. For some models, like medical_conversation this can be actual speaker
+     * role, for example "patient" or "provider", but generally this would be a
+     * number identifying a speaker. This field is only set if
+     * enable_speaker_diarization = 'true' and only for the top alternative.
+     *
+     * Generated from protobuf field <code>string speaker_label = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSpeakerLabel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->speaker_label = $var;
 
         return $this;
     }

@@ -21,7 +21,7 @@ class IndexUpdateMethod
     const INDEX_UPDATE_METHOD_UNSPECIFIED = 0;
     /**
      * BatchUpdate: user can call UpdateIndex with files on Cloud Storage of
-     * datapoints to update.
+     * Datapoints to update.
      *
      * Generated from protobuf enum <code>BATCH_UPDATE = 1;</code>
      */

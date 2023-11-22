@@ -34,6 +34,35 @@ class DiagnoseClusterRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string cluster_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $cluster_name = '';
+    /**
+     * Optional. The output Cloud Storage directory for the diagnostic
+     * tarball. If not specified, a task-specific directory in the cluster's
+     * staging bucket will be used.
+     *
+     * Generated from protobuf field <code>string tarball_gcs_dir = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $tarball_gcs_dir = '';
+    /**
+     * Optional. Time interval in which diagnosis should be carried out on the
+     * cluster.
+     *
+     * Generated from protobuf field <code>.google.type.Interval diagnosis_interval = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $diagnosis_interval = null;
+    /**
+     * Optional. Specifies a list of jobs on which diagnosis is to be performed.
+     * Format: projects/{project}/regions/{region}/jobs/{job}
+     *
+     * Generated from protobuf field <code>repeated string jobs = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $jobs;
+    /**
+     * Optional. Specifies a list of yarn applications on which diagnosis is to be
+     * performed.
+     *
+     * Generated from protobuf field <code>repeated string yarn_application_ids = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $yarn_application_ids;
 
     /**
      * @param string $projectId   Required. The ID of the Google Cloud Platform project that the cluster
@@ -66,6 +95,19 @@ class DiagnoseClusterRequest extends \Google\Protobuf\Internal\Message
      *           Required. The Dataproc region in which to handle the request.
      *     @type string $cluster_name
      *           Required. The cluster name.
+     *     @type string $tarball_gcs_dir
+     *           Optional. The output Cloud Storage directory for the diagnostic
+     *           tarball. If not specified, a task-specific directory in the cluster's
+     *           staging bucket will be used.
+     *     @type \Google\Type\Interval $diagnosis_interval
+     *           Optional. Time interval in which diagnosis should be carried out on the
+     *           cluster.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $jobs
+     *           Optional. Specifies a list of jobs on which diagnosis is to be performed.
+     *           Format: projects/{project}/regions/{region}/jobs/{job}
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $yarn_application_ids
+     *           Optional. Specifies a list of yarn applications on which diagnosis is to be
+     *           performed.
      * }
      */
     public function __construct($data = NULL) {
@@ -149,6 +191,130 @@ class DiagnoseClusterRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->cluster_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The output Cloud Storage directory for the diagnostic
+     * tarball. If not specified, a task-specific directory in the cluster's
+     * staging bucket will be used.
+     *
+     * Generated from protobuf field <code>string tarball_gcs_dir = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getTarballGcsDir()
+    {
+        return $this->tarball_gcs_dir;
+    }
+
+    /**
+     * Optional. The output Cloud Storage directory for the diagnostic
+     * tarball. If not specified, a task-specific directory in the cluster's
+     * staging bucket will be used.
+     *
+     * Generated from protobuf field <code>string tarball_gcs_dir = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTarballGcsDir($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->tarball_gcs_dir = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Time interval in which diagnosis should be carried out on the
+     * cluster.
+     *
+     * Generated from protobuf field <code>.google.type.Interval diagnosis_interval = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Type\Interval|null
+     */
+    public function getDiagnosisInterval()
+    {
+        return $this->diagnosis_interval;
+    }
+
+    public function hasDiagnosisInterval()
+    {
+        return isset($this->diagnosis_interval);
+    }
+
+    public function clearDiagnosisInterval()
+    {
+        unset($this->diagnosis_interval);
+    }
+
+    /**
+     * Optional. Time interval in which diagnosis should be carried out on the
+     * cluster.
+     *
+     * Generated from protobuf field <code>.google.type.Interval diagnosis_interval = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Type\Interval $var
+     * @return $this
+     */
+    public function setDiagnosisInterval($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Type\Interval::class);
+        $this->diagnosis_interval = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies a list of jobs on which diagnosis is to be performed.
+     * Format: projects/{project}/regions/{region}/jobs/{job}
+     *
+     * Generated from protobuf field <code>repeated string jobs = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getJobs()
+    {
+        return $this->jobs;
+    }
+
+    /**
+     * Optional. Specifies a list of jobs on which diagnosis is to be performed.
+     * Format: projects/{project}/regions/{region}/jobs/{job}
+     *
+     * Generated from protobuf field <code>repeated string jobs = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setJobs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->jobs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies a list of yarn applications on which diagnosis is to be
+     * performed.
+     *
+     * Generated from protobuf field <code>repeated string yarn_application_ids = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getYarnApplicationIds()
+    {
+        return $this->yarn_application_ids;
+    }
+
+    /**
+     * Optional. Specifies a list of yarn applications on which diagnosis is to be
+     * performed.
+     *
+     * Generated from protobuf field <code>repeated string yarn_application_ids = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setYarnApplicationIds($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->yarn_application_ids = $arr;
 
         return $this;
     }

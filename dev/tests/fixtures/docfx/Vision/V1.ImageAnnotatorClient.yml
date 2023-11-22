@@ -21,7 +21,7 @@ items:
           $operationResponse->pollUntilComplete();
           if ($operationResponse->operationSucceeded()) {
               $result = $operationResponse->getResult();
-          // doSomethingWith($result)
+              // doSomethingWith($result)
           } else {
               $error = $operationResponse->getError();
               // handleError($error)
@@ -38,7 +38,7 @@ items:
           }
           if ($newOperationResponse->operationSucceeded()) {
               $result = $newOperationResponse->getResult();
-          // doSomethingWith($result)
+              // doSomethingWith($result)
           } else {
               $error = $newOperationResponse->getError();
               // handleError($error)
@@ -47,6 +47,13 @@ items:
           $imageAnnotatorClient->close();
       }
       ```
+
+      Many parameters require resource names to be formatted in a particular way. To
+      assist with these names, this class includes a format method for each type of
+      name, and additionally a parseName method to extract the individual identifiers
+      contained within formatted names that are returned by the API.
+
+      This service has a new (beta) implementation. See <xref uid="\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient">Google\Cloud\Vision\V1\Client\ImageAnnotatorClient</xref> to use the new surface.
     type: class
     namespace: 'Google \ Cloud \ Vision \ V1'
     langs:
@@ -73,6 +80,8 @@ items:
       - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::batchAnnotateImages()'
       - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::getOperationsClient()'
       - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::resumeOperation()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::productSetName()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::parseName()'
       - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::SERVICE_NAME'
       - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::SERVICE_ADDRESS'
       - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::DEFAULT_SERVICE_PORT'
@@ -91,13 +100,13 @@ items:
       $response = $imageAnnotatorClient->faceDetection($image);
       ```
 
-      ```
+      ```php
       $imageData = file_get_contents('path/to/image.jpg');
       $image = $imageAnnotatorClient->createImageObject($imageData);
       $response = $imageAnnotatorClient->faceDetection($image);
       ```
 
-      ```
+      ```php
       $imageUri = "gs://my-bucket/image.jpg";
       $image = $imageAnnotatorClient->createImageObject($imageUri);
       $response = $imageAnnotatorClient->faceDetection($image);
@@ -1023,6 +1032,69 @@ items:
       returns:
         -
           var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/OperationResponse">Google\ApiCore\OperationResponse</a>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::productSetName()'
+    name: 'static::productSetName'
+    id: productSetName
+    summary: |-
+      Formats a string containing the fully-qualified path to represent a product_set
+      resource.
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: project
+          var_type: string
+          description: ''
+        -
+          id: location
+          var_type: string
+          description: ''
+        -
+          id: productSet
+          var_type: string
+          description: ''
+      returns:
+        -
+          var_type: string
+          description: 'The formatted product_set resource.'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::parseName()'
+    name: 'static::parseName'
+    id: parseName
+    summary: |-
+      Parses a formatted name string and returns an associative array of the components in the name.
+
+      The following name formats are supported:
+      Template: Pattern
+      - productSet: projects/{project}/locations/{location}/productSets/{product_set}
+
+      The optional $template argument can be supplied to specify a particular pattern,
+      and must match one of the templates listed above. If no $template argument is
+      provided, or if the $template argument does not match one of the templates
+      listed, then parseName will check each of the supported templates, and return
+      the first match.
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: formattedName
+          var_type: string
+          description: 'The formatted name string'
+        -
+          id: template
+          var_type: string
+          description: 'Optional name of template to match'
+      returns:
+        -
+          var_type: array
+          description: 'An associative array from name component IDs to component values.'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::SERVICE_NAME'
     name: SERVICE_NAME

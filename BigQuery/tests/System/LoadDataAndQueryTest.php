@@ -884,6 +884,47 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         $this->assertTrue($insertResponse->isSuccessful());
     }
 
+    public function testLoadWithSession()
+    {
+        $dataset = self::$client->dataset('_SESSION');
+        $table = $dataset->table(uniqid(self::TESTING_PREFIX));
+        $source = __DIR__ . '/data/table-data.json';
+        $schema = [
+            'fields' => [
+                [
+                    'name' => 'name',
+                    'type' => 'STRING'
+                ],
+                [
+                    'name' => 'post_abbr',
+                    'type' => 'STRING'
+                ]
+            ]
+        ];
+        $loadJobConfig = $table->load(fopen($source, 'r'))
+            ->sourceFormat('NEWLINE_DELIMITED_JSON')
+            ->autodetect(true)
+            ->createSession(true);
+
+        $job = self::$client->runJob($loadJobConfig);
+
+        $this->assertTrue(isset($job->info()['statistics']['sessionInfo']['sessionId']));
+
+        $sessionId = $job->info()['statistics']['sessionInfo']['sessionId'];
+        $loadJobConfig = $table->load(fopen($source, 'r'))
+            ->sourceFormat('NEWLINE_DELIMITED_JSON')
+            ->connectionProperties(
+                ['key' => 'session_id', 'value' =>$sessionId]
+            );
+        $job = self::$client->runJob($loadJobConfig);
+        $this->assertFalse(isset($job->info()['status']['errorResult']));
+        $queryJobConfig = self::$client->query(
+            sprintf("CALL BQ.ABORT_SESSION('%s')", $sessionId)
+        );
+        $job = self::$client->runJob($queryJobConfig);
+        $this->assertFalse(isset($job->info()['status']['errorResult']));
+    }
+
     public function invalidJsonProvider()
     {
         return[

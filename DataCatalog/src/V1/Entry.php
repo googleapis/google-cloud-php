@@ -219,11 +219,15 @@ class Entry extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DataCatalog\V1\RoutineSpec $routine_spec
      *           Specification that applies to a user-defined function or procedure. Valid
      *           only for entries with the `ROUTINE` type.
+     *     @type \Google\Cloud\DataCatalog\V1\DatasetSpec $dataset_spec
+     *           Specification that applies to a dataset.
      *     @type \Google\Cloud\DataCatalog\V1\FilesetSpec $fileset_spec
      *           Specification that applies to a fileset resource. Valid only
      *           for entries with the `FILESET` type.
      *     @type \Google\Cloud\DataCatalog\V1\ServiceSpec $service_spec
      *           Specification that applies to a Service resource.
+     *     @type \Google\Cloud\DataCatalog\V1\ModelSpec $model_spec
+     *           Model specification.
      *     @type string $display_name
      *           Display name of an entry.
      *           The maximum size is 500 bytes when encoded in UTF-8.
@@ -839,6 +843,37 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Specification that applies to a dataset.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DatasetSpec dataset_spec = 32;</code>
+     * @return \Google\Cloud\DataCatalog\V1\DatasetSpec|null
+     */
+    public function getDatasetSpec()
+    {
+        return $this->readOneof(32);
+    }
+
+    public function hasDatasetSpec()
+    {
+        return $this->hasOneof(32);
+    }
+
+    /**
+     * Specification that applies to a dataset.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DatasetSpec dataset_spec = 32;</code>
+     * @param \Google\Cloud\DataCatalog\V1\DatasetSpec $var
+     * @return $this
+     */
+    public function setDatasetSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\DatasetSpec::class);
+        $this->writeOneof(32, $var);
+
+        return $this;
+    }
+
+    /**
      * Specification that applies to a fileset resource. Valid only
      * for entries with the `FILESET` type.
      *
@@ -898,6 +933,37 @@ class Entry extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\ServiceSpec::class);
         $this->writeOneof(42, $var);
+
+        return $this;
+    }
+
+    /**
+     * Model specification.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.ModelSpec model_spec = 43;</code>
+     * @return \Google\Cloud\DataCatalog\V1\ModelSpec|null
+     */
+    public function getModelSpec()
+    {
+        return $this->readOneof(43);
+    }
+
+    public function hasModelSpec()
+    {
+        return $this->hasOneof(43);
+    }
+
+    /**
+     * Model specification.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.ModelSpec model_spec = 43;</code>
+     * @param \Google\Cloud\DataCatalog\V1\ModelSpec $var
+     * @return $this
+     */
+    public function setModelSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\ModelSpec::class);
+        $this->writeOneof(43, $var);
 
         return $this;
     }

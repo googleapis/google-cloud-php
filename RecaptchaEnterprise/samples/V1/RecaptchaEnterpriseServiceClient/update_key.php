@@ -30,19 +30,16 @@ use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
 /**
  * Updates the specified key.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $keyDisplayName Human-readable display name of this key. Modifiable by user.
  */
-function update_key_sample(): void
+function update_key_sample(string $keyDisplayName): void
 {
     // Create a client.
     $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
 
     // Prepare any non-scalar elements to be passed along with the request.
-    $key = new Key();
+    $key = (new Key())
+        ->setDisplayName($keyDisplayName);
 
     // Call the API and handle any network failures.
     try {
@@ -52,5 +49,21 @@ function update_key_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $keyDisplayName = '[DISPLAY_NAME]';
+
+    update_key_sample($keyDisplayName);
 }
 // [END recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_UpdateKey_sync]

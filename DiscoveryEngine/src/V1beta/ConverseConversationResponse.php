@@ -30,6 +30,12 @@ class ConverseConversationResponse extends \Google\Protobuf\Internal\Message
      */
     protected $conversation = null;
     /**
+     * Suggested related questions.
+     *
+     * Generated from protobuf field <code>repeated string related_questions = 6;</code>
+     */
+    private $related_questions;
+    /**
      * Search Results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1beta.SearchResponse.SearchResult search_results = 3;</code>
@@ -46,6 +52,8 @@ class ConverseConversationResponse extends \Google\Protobuf\Internal\Message
      *           Answer to the current query.
      *     @type \Google\Cloud\DiscoveryEngine\V1beta\Conversation $conversation
      *           Updated conversation including the answer.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $related_questions
+     *           Suggested related questions.
      *     @type array<\Google\Cloud\DiscoveryEngine\V1beta\SearchResponse\SearchResult>|\Google\Protobuf\Internal\RepeatedField $search_results
      *           Search Results.
      * }
@@ -123,6 +131,32 @@ class ConverseConversationResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1beta\Conversation::class);
         $this->conversation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Suggested related questions.
+     *
+     * Generated from protobuf field <code>repeated string related_questions = 6;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getRelatedQuestions()
+    {
+        return $this->related_questions;
+    }
+
+    /**
+     * Suggested related questions.
+     *
+     * Generated from protobuf field <code>repeated string related_questions = 6;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setRelatedQuestions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->related_questions = $arr;
 
         return $this;
     }

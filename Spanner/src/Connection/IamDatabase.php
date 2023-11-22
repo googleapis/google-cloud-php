@@ -21,6 +21,8 @@ use Google\Cloud\Core\Iam\IamConnectionInterface;
 
 /**
  * Represents a connection to the Cloud Spanner Database IAM API.
+ *
+ * @internal
  */
 class IamDatabase implements IamConnectionInterface
 {

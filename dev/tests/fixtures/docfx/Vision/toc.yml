@@ -19,6 +19,14 @@
             -
               uid: \Google\Cloud\Vision\V1\ProductSearchClient
               name: ProductSearchClient
+            -
+              uid: \Google\Cloud\Vision\V1\Client\ImageAnnotatorClient
+              name: 'ImageAnnotatorClient (beta)'
+              status: beta
+            -
+              uid: \Google\Cloud\Vision\V1\Client\ProductSearchClient
+              name: 'ProductSearchClient (beta)'
+              status: beta
         -
           name: Messages
           uid: 'messages:Google\Cloud\Vision\V1'

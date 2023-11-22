@@ -137,6 +137,12 @@ class ErrorCode
      */
     const CANT_RESTART_RUNNING_MIGRATION = 21;
     /**
+     * The source already has a replication setup.
+     *
+     * Generated from protobuf enum <code>SOURCE_ALREADY_SETUP = 23;</code>
+     */
+    const SOURCE_ALREADY_SETUP = 23;
+    /**
      * The source has tables with limited support.
      * E.g. PostgreSQL tables without primary keys.
      *
@@ -168,6 +174,19 @@ class ErrorCode
      * Generated from protobuf enum <code>SOURCE_SIZE_EXCEEDS_THRESHOLD = 28;</code>
      */
     const SOURCE_SIZE_EXCEEDS_THRESHOLD = 28;
+    /**
+     * The destination DB contains existing databases that are conflicting with
+     * those in the source DB.
+     *
+     * Generated from protobuf enum <code>EXISTING_CONFLICTING_DATABASES = 29;</code>
+     */
+    const EXISTING_CONFLICTING_DATABASES = 29;
+    /**
+     * Insufficient privilege to enable the parallelism configuration.
+     *
+     * Generated from protobuf enum <code>PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE = 30;</code>
+     */
+    const PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE = 30;
 
     private static $valueToName = [
         self::ERROR_CODE_UNSPECIFIED => 'ERROR_CODE_UNSPECIFIED',
@@ -190,11 +209,14 @@ class ErrorCode
         self::UNSUPPORTED_TABLE_DEFINITION => 'UNSUPPORTED_TABLE_DEFINITION',
         self::UNSUPPORTED_DEFINER => 'UNSUPPORTED_DEFINER',
         self::CANT_RESTART_RUNNING_MIGRATION => 'CANT_RESTART_RUNNING_MIGRATION',
+        self::SOURCE_ALREADY_SETUP => 'SOURCE_ALREADY_SETUP',
         self::TABLES_WITH_LIMITED_SUPPORT => 'TABLES_WITH_LIMITED_SUPPORT',
         self::UNSUPPORTED_DATABASE_LOCALE => 'UNSUPPORTED_DATABASE_LOCALE',
         self::UNSUPPORTED_DATABASE_FDW_CONFIG => 'UNSUPPORTED_DATABASE_FDW_CONFIG',
         self::ERROR_RDBMS => 'ERROR_RDBMS',
         self::SOURCE_SIZE_EXCEEDS_THRESHOLD => 'SOURCE_SIZE_EXCEEDS_THRESHOLD',
+        self::EXISTING_CONFLICTING_DATABASES => 'EXISTING_CONFLICTING_DATABASES',
+        self::PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE => 'PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE',
     ];
 
     public static function name($value)

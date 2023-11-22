@@ -79,24 +79,18 @@ class PageTree
             }
 
             // Manually skip GAPIC base clients
-            $fullName = $classNode->getFullname();
-            if ('GapicClient' === substr($fullName, -11)
-                || 'BaseClient' === substr($fullName, -10)) {
+            if ($classNode->isServiceBaseClass()) {
                 $gapicClients[] = $classNode;
                 continue;
             }
 
             // Skip internal classes
-            // Do this after the GAPIC check because new base clients are internal
             if ($classNode->isInternal()) {
                 continue;
             }
 
-            if ($classNode->isV1ServiceClass()) {
-                $this->hasV1Client = true;
-            } elseif ($classNode->isV2ServiceClass()) {
-                $this->hasV2Client = true;
-            }
+            $this->hasV1Client |= $classNode->isV1ServiceClass();
+            $this->hasV2Client |= $classNode->isV2ServiceClass();
 
             // Manually skip protobuf enums in favor of Gapic enums (see below).
             // @TODO: Do not generate them in V2, eventually mark them as deprecated
@@ -104,6 +98,7 @@ class PageTree
 
             // Manually skip Grpc classes
             // @TODO: Do not generate Grpc classes in V2, eventually mark these as deprecated
+            $fullName = $classNode->getFullname();
             if (
                 'GrpcClient' === substr($fullName, -10)
                 && '\Grpc\BaseStub' === $classNode->getExtends()
@@ -142,15 +137,31 @@ class PageTree
         // We no longer need the array keys
         $pages = array_values($pageMap);
 
+        // Mark V2 services as "beta" if they have a V1 client
+        if ($this->hasV1Client && $this->hasV2Client) {
+            foreach ($pages as $page) {
+                if ($page->getClassNode()->isV2ServiceClass()) {
+                    $page->getClassNode()->setTocName(sprintf(
+                        '%s (beta)',
+                        $page->getClassNode()->getName()
+                    ));
+                }
+            }
+        }
+
         /**
          * Set a map of protobuf package names to PHP namespaces for Xrefs.
          * This MUST be done after combining GAPIC clients.
          */
-        $protoPackages = [];
+        $protoPackages = [
+            // shared packages
+            'google.longrunning' => 'Google\\LongRunning'
+        ];
         foreach ($pages as $page) {
             $classNode = $page->getClassNode();
             if ($protoPackage = $classNode->getProtoPackage()) {
-                $protoPackages[$protoPackage] = ltrim($classNode->getNamespace(), '\\');
+                $package = rtrim(ltrim($classNode->getNamespace(), '\\'), '\\Client');
+                $protoPackages[$protoPackage] = $package;
             }
         }
 
@@ -171,25 +182,13 @@ class PageTree
         foreach ($gapicClients as $gapicClient) {
             // Find  Classname
             $parts = explode('\\', $gapicClient->getFullName());
-            $clientClassName = str_replace(
-                ['BaseClient', 'GapicClient'],
-                'Client',
-                array_pop($parts)
-            );
-            array_pop($parts); // remove "Gapic" or "Client" namespace
+            $clientClassName = str_replace('GapicClient', 'Client', array_pop($parts));
+            array_pop($parts); // remove "Gapic" namespace
             $parts[] = $clientClassName;
             $clientFullName = implode('\\', $parts);
             if (isset($pageMap[$clientFullName])) {
                 $parentClassNode = $pageMap[$clientFullName]->getClassNode();
                 $parentClassNode->setChildNode($gapicClient);
-                if ($this->hasV1Client && $this->hasV2Client) {
-                    if ($parentClassNode->isV2ServiceClass()) {
-                        $parentClassNode->setTocName(sprintf(
-                            '%s (beta)',
-                            $parentClassNode->getName()
-                        ));
-                    }
-                }
             }
         }
 
