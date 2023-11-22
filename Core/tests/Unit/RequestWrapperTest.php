@@ -731,7 +731,6 @@ class RequestWrapperTest extends TestCase
 
         $credentialsFetcher = $this->prophesizeUpdateMetadataFetcher($credentialsFetcher);
 
-
         $requestWrapper = new RequestWrapper([
             'credentialsFetcher' => $credentialsFetcher->reveal(),
             'httpHandler' => function ($request, $options = []) use ($accessToken) {
