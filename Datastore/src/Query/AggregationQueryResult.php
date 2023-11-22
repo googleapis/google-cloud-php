@@ -19,6 +19,7 @@ namespace Google\Cloud\Datastore\Query;
 
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimestampTrait;
+use Google\Cloud\Datastore\EntityMapper;
 use InvalidArgumentException;
 
 /**
@@ -69,12 +70,19 @@ class AggregationQueryResult
     private $transaction;
 
     /**
+     * @var EntityMapper
+     */
+    private $mapper;
+
+    /**
      * Create AggregationQueryResult object.
      *
      * @param array $result Response of
      *        [RunAggregationQuery](https://cloud.google.com/datastore/docs/reference/data/rest/v1/projects/runAggregationQuery)
+     * @param EntityMapper $mapper [Optional] Entity mapper to map datastore values
+     * to simple values incase of `null`, `NAN`, `INF` and `-INF`
      */
-    public function __construct($result = [])
+    public function __construct($result = [], $mapper = null)
     {
         // When executing an Agggregation query nested with GqlQuery, the server will return
         // the parsed query with the first response batch.
@@ -93,6 +101,8 @@ class AggregationQueryResult
         if (isset($result['batch']['readTime'])) {
             $this->readTime = $result['batch']['readTime'];
         }
+
+        $this->mapper = $mapper ?? new EntityMapper('foo', true, false);
     }
 
     /**
@@ -120,12 +130,7 @@ class AggregationQueryResult
         $result = $this->aggregationResults[0]['aggregateProperties'][$alias];
         if (is_array($result)) {
             $key = array_key_first($result);
-            if ($key == 'nullValue') {
-                return null;
-            }
-            // `$result` would contain only one of
-            // (@see https://cloud.google.com/firestore/docs/reference/rest/v1/Value)
-            return $result[$key];
+            return $this->mapper->convertValue($key, $result[$key]);
         }
         return $result;
     }

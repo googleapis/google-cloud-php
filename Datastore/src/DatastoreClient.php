@@ -176,7 +176,12 @@ class DatastoreClient
 
         // The second parameter here should change to a variable
         // when gRPC support is added for variable encoding.
-        $this->entityMapper = new EntityMapper($this->projectId, true, $config['returnInt64AsObject']);
+        $this->entityMapper = new EntityMapper(
+            $this->projectId,
+            true,
+            $config['returnInt64AsObject'],
+            $connectionType
+        );
         $this->operation = new Operation(
             $this->connection,
             $this->projectId,
