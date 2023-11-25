@@ -812,7 +812,7 @@ class DatastoreClientTest extends TestCase
     {
         if (is_null($expected)) {
             $this->assertNull($actual);
-        } else if (is_float($expected) && is_nan($expected)) {
+        } elseif (is_float($expected) && is_nan($expected)) {
             $this->assertNan($actual);
         } else {
             $this->assertEquals($expected, $actual);

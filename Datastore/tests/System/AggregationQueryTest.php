@@ -31,7 +31,15 @@ class AggregationQueryTest extends DatastoreMultipleDbTestCase
         ['score' => 1],
         ['score' => 2],
         ['score' => 3],
-        ['score' => 4]
+        ['score' => 4],
+        ['maxScore' => PHP_FLOAT_MAX],
+        ['maxScore' => PHP_FLOAT_MAX],
+        ['minScore' => -PHP_FLOAT_MAX],
+        ['minScore' => -PHP_FLOAT_MAX],
+        ['nullScore' => null],
+        ['nanScore' => NAN],
+        ['arrayScore' => [1, 2, 3]],
+        ['arrayScore' => [10]]
     ];
 
     public static function setUpBeforeClass(): void
@@ -62,7 +70,7 @@ class AggregationQueryTest extends DatastoreMultipleDbTestCase
     /**
      * @dataProvider filterCases
      */
-    public function testAggregationQueryShouldFailForIncorrectAlias(
+    public function testQueryShouldFailForIncorrectAlias(
         DatastoreClient $client,
         $type,
         $property,
@@ -83,8 +91,9 @@ class AggregationQueryTest extends DatastoreMultipleDbTestCase
 
     /**
      * @dataProvider filterCases
+     * @dataProvider cornerCases
      */
-    public function testAggregationQueryWithFilter(DatastoreClient $client, $type, $property, $expected)
+    public function testQueryWithFilter(DatastoreClient $client, $type, $property, $expected)
     {
         $this->skipEmulatorTests();
         $aggregation = (is_null($property) ? Aggregation::$type() : Aggregation::$type($property));
@@ -100,7 +109,7 @@ class AggregationQueryTest extends DatastoreMultipleDbTestCase
     /**
      * @dataProvider filterCases
      */
-    public function testAggregationOverQueryWithFilter(DatastoreClient $client, $type, $property, $expected)
+    public function testOverQueryWithFilter(DatastoreClient $client, $type, $property, $expected)
     {
         $this->skipEmulatorTests();
         $aggregation = (is_null($property) ? Aggregation::$type() : Aggregation::$type($property));
@@ -118,7 +127,7 @@ class AggregationQueryTest extends DatastoreMultipleDbTestCase
     /**
      * @dataProvider filterCases
      */
-    public function testAggregationGqlQueryWithFilter(DatastoreClient $client, $type, $property, $expected)
+    public function testGqlQueryWithFilter(DatastoreClient $client, $type, $property, $expected)
     {
         $this->skipEmulatorTests();
         $aggregationQuery = $client->gqlQuery(
@@ -134,7 +143,7 @@ class AggregationQueryTest extends DatastoreMultipleDbTestCase
     /**
      * @dataProvider filterCases
      */
-    public function testAggregationOverGqlQueryWithFilter(DatastoreClient $client, $type, $property, $expected)
+    public function testOverGqlQueryWithFilter(DatastoreClient $client, $type, $property, $expected)
     {
         $this->skipEmulatorTests();
         $query = $client->gqlQuery(
@@ -152,7 +161,7 @@ class AggregationQueryTest extends DatastoreMultipleDbTestCase
     /**
      * @dataProvider limitCases
      */
-    public function testAggregationQueryWithLimit(DatastoreClient $client, $type, $property, $expected)
+    public function testQueryWithLimit(DatastoreClient $client, $type, $property, $expected)
     {
         $this->skipEmulatorTests();
         $aggregation = (is_null($property) ? Aggregation::$type() : Aggregation::$type($property));
@@ -171,7 +180,7 @@ class AggregationQueryTest extends DatastoreMultipleDbTestCase
     /**
      * @dataProvider limitCases
      */
-    public function testAggregationGqlQueryWithLimit(DatastoreClient $client, $type, $property, $expected)
+    public function testGqlQueryWithLimit(DatastoreClient $client, $type, $property, $expected)
     {
         $this->skipEmulatorTests();
         $queryString = sprintf(
@@ -199,7 +208,7 @@ class AggregationQueryTest extends DatastoreMultipleDbTestCase
     /**
      * @dataProvider multipleAggregationCases
      */
-    public function testAggregationQueryWithMultipleAggregations(
+    public function testQueryWithMultipleAggregations(
         DatastoreClient $client,
         $types,
         $properties,
@@ -230,7 +239,7 @@ class AggregationQueryTest extends DatastoreMultipleDbTestCase
     /**
      * @dataProvider multipleAggregationCases
      */
-    public function testAggregationGqlQueryWithMultipleAggregations(
+    public function testGqlQueryWithMultipleAggregations(
         DatastoreClient $client,
         $types,
         $properties,
@@ -285,7 +294,7 @@ class AggregationQueryTest extends DatastoreMultipleDbTestCase
         $clients = $this->defaultDbClientProvider();
         $cases = [];
         foreach ($clients as $name => $client) {
-            $cases[] = [$client[0], 'count', null, 4];
+            $cases[] = [$client[0], 'count', null, count(self::$data)];
             $cases[] = [$client[0], 'sum', 'score', 10];
             $cases[] = [$client[0], 'avg', 'score', 2.5];
         }
@@ -316,6 +325,50 @@ class AggregationQueryTest extends DatastoreMultipleDbTestCase
             $cases[] = [$client[0], 'count', null, 2];
             $cases[] = [$client[0], 'sum', 'score', 3];
             $cases[] = [$client[0], 'avg', 'score', 1.5];
+        }
+        return $cases;
+    }
+
+    /**
+     * Each case is of the format:
+     * [
+     *      // Datastore client
+     *      DatastoreClient $client,
+     *
+     *      // Aggregation Type to test
+     *      string $type,
+     *
+     *      // Property to aggregate upon
+     *      string $property
+     *
+     *      // Expected results
+     *      array $expected
+     * ]
+     */
+    public function cornerCases()
+    {
+        $clients = $this->defaultDbClientProvider();
+
+        // An array of the format:
+        // ['casename' => [expectedSum, expectedAvg], ...]
+        $caseNamesWithExpectedValues = [
+            'max' => [INF, INF],
+            'min' => [-INF, -INF],
+            'null' => [0, null],
+            'nan' => [NAN, NAN],
+
+            // Datastore considers each value of array type as single
+            // element (on contrary, firestore considers array type as
+            // non numeric data type and ignores for sum / avg)
+            'array' => [16, 4],
+        ];
+        $cases = [];
+        foreach ($clients as $name => $client) {
+            foreach ($caseNamesWithExpectedValues as $name => $expected) {
+                // These corner cases are not applicable for COUNT hence omitted.
+                $cases[] = [$client[0], 'sum', $name . 'Score', $expected[0]];
+                $cases[] = [$client[0], 'avg', $name . 'Score', $expected[1]];
+            }
         }
         return $cases;
     }

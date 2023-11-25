@@ -87,7 +87,6 @@ class RunTransactionTest extends DatastoreMultipleDbTestCase
     public function testRunAggregationQueryWithTransactions(DatastoreClient $client, $type, $property, $expected)
     {
         $this->skipEmulatorTests();
-        // $kind = 'Person';
         $kind = uniqid('Person');
         $key1 = $client->key($kind, 1);
         $key2 = $client->key($kind, 2);
