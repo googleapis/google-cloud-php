@@ -221,8 +221,7 @@ class Operation
     public function execute(
         Session $session,
         $sql,
-        array $options = [],
-        TransactionalReadInterface $transaction = null
+        array $options = []
     ) {
         $options += [
             'parameters' => [],
@@ -239,7 +238,7 @@ class Operation
         // Initially with begin, transactionId will be null.
         // Once generated it will get populated from Result->rows()
         // Incase of stream failure, the transactionId is preserved here to reuse.
-        $call = function ($resumeToken = null) use ($session, $sql, $options, $transaction) {
+        $call = function ($resumeToken = null, $transaction = null) use ($session, $sql, $options) {
             if ($transaction && !is_null($transaction->id())) {
                 $options['transaction'] = ['id' => $transaction->id()];
             }
@@ -260,8 +259,7 @@ class Operation
             $call,
             $context,
             $this->mapper,
-            self::DEFAULT_RETRIES,
-            $transaction
+            self::DEFAULT_RETRIES
         );
     }
 
@@ -294,7 +292,7 @@ class Operation
         if (!is_null($transaction->id())) {
             $options += ['transactionId' => $transaction->id()];
         }
-        $res = $this->execute($session, $sql, $options, $transaction);
+        $res = $this->execute($session, $sql, $options);
 
         // Iterate through the result to ensure we have query statistics available.
         iterator_to_array($res->rows());
@@ -428,8 +426,7 @@ class Operation
         $table,
         KeySet $keySet,
         array $columns,
-        array $options = [],
-        TransactionalReadInterface $transaction = null
+        array $options = []
     ) {
         $options += [
             'index' => null,
@@ -440,13 +437,12 @@ class Operation
 
         $context = $this->pluck('transactionContext', $options);
 
-        $call = function ($resumeToken = null) use (
+        $call = function ($resumeToken = null, $transaction = null) use (
             $table,
             $session,
             $columns,
             $keySet,
-            $options,
-            $transaction
+            $options
         ) {
             if ($transaction && !is_null($transaction->id())) {
                 $options['transaction'] = ['id' => $transaction->id()];
@@ -470,8 +466,7 @@ class Operation
             $call,
             $context,
             $this->mapper,
-            self::DEFAULT_RETRIES,
-            $transaction
+            self::DEFAULT_RETRIES
         );
     }
 

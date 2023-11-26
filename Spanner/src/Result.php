@@ -120,6 +120,7 @@ class Result implements \IteratorAggregate
      * @var callable
      */
     private $call;
+    private $generator;
 
     /**
      * @param Operation $operation Runs operations against Google Cloud Spanner.
@@ -137,8 +138,7 @@ class Result implements \IteratorAggregate
         callable $call,
         $transactionContext,
         ValueMapper $mapper,
-        $retries = 3,
-        TransactionalReadInterface $transaction = null
+        $retries = 3
     ) {
         $this->operation = $operation;
         $this->session = $session;
@@ -146,7 +146,7 @@ class Result implements \IteratorAggregate
         $this->transactionContext = $transactionContext;
         $this->mapper = $mapper;
         $this->retries = $retries;
-        $this->transaction = $transaction;
+        $this->generator = null;
     }
 
     /**
@@ -179,20 +179,16 @@ class Result implements \IteratorAggregate
     {
         $bufferedResults = [];
         $call = $this->call;
-        $generator = null;
         $shouldRetry = false;
         $isResultsYielded = false;
+        $valid = !is_null($this->generator) ? $this->generator->valid() : $this->createGenerator();
+        $generator = $this->generator;
         $backoff = new ExponentialBackoff($this->retries, function ($ex) {
             if ($ex instanceof ServiceException) {
                 return $ex->getCode() === Grpc\STATUS_UNAVAILABLE;
             }
 
             return false;
-        });
-
-        $valid = $backoff->execute(function () use ($call, &$generator) {
-            $generator = $call();
-            return $generator->valid();
         });
 
         while ($valid) {
@@ -237,7 +233,7 @@ class Result implements \IteratorAggregate
                 if ($shouldRetry && $ex->getCode() === Grpc\STATUS_UNAVAILABLE) {
                     // Attempt to resume using our last stored resume token. If we
                     // successfully resume, flush the buffer.
-                    $generator = $backoff->execute($call, [$this->resumeToken]);
+                    $generator = $backoff->execute($call, [$this->resumeToken, $this->transaction()]);
                     $bufferedResults = [];
 
                     continue;
@@ -387,6 +383,59 @@ class Result implements \IteratorAggregate
     }
 
     /**
+     * Create the ResultSet generator and use it to set the transaction.
+     */
+    public function createGenerator()
+    {
+        $call = $this->call;
+        $generator = null;
+        $valid = false;
+
+        if (!is_null($this->generator)) {
+            return $this->generator;
+        }
+        $backoff = new ExponentialBackoff($this->retries, function ($ex) {
+            if ($ex instanceof ServiceException) {
+                return $ex->getCode() === Grpc\STATUS_UNAVAILABLE;
+            }
+
+            return false;
+        });
+
+        $valid = $backoff->execute(function () use ($call, &$generator) {
+            $generator = $call();
+            return $generator->valid();
+        });
+        if ($valid) {
+            // Multiple calls to the current method yields the same value.
+            $result = $generator->current();
+            $this->setSnapshotOrTransaction($result);
+            $this->generator = $generator;
+        }
+        return $valid;
+    }
+
+    /**
+     * Set the Result's snapshot or transaction.
+     */
+    private function setSnapshotOrTransaction($result)
+    {
+        if (isset($result['metadata']['transaction']['id']) && $result['metadata']['transaction']['id']) {
+            if ($this->transactionContext === SessionPoolInterface::CONTEXT_READ) {
+                $this->snapshot = $this->snapshot ?? $this->operation->createSnapshot(
+                    $this->session,
+                    $result['metadata']['transaction']
+                );
+            } else {
+                $this->transaction = $this->transaction ?? $this->operation->createTransaction(
+                    $this->session,
+                    $result['metadata']['transaction']
+                );
+            }
+        }
+    }
+
+    /**
      * @param array $bufferedResults
      * @return array
      */
@@ -469,22 +518,7 @@ class Result implements \IteratorAggregate
             }
         }
 
-        if (isset($result['metadata']['transaction']['id']) && $result['metadata']['transaction']['id']) {
-            if (!is_null($this->transaction) && is_null($this->transaction->id())) {
-                $this->transaction->setId($result['metadata']['transaction']['id']);
-            }
-            if ($this->transactionContext === SessionPoolInterface::CONTEXT_READ) {
-                $this->snapshot = $this->operation->createSnapshot(
-                    $this->session,
-                    $result['metadata']['transaction']
-                );
-            } elseif (is_null($this->transaction)) {
-                $this->transaction = $this->operation->createTransaction(
-                    $this->session,
-                    $result['metadata']['transaction']
-                );
-            }
-        }
+        $this->setSnapshotOrTransaction($result);
     }
 
     /**
