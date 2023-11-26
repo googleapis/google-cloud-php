@@ -706,7 +706,7 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionNoCommit()
     {
-        $this->expectException(\RuntimeException::class);
+        $this->expectException(\InvalidArgumentException::class);
 
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),

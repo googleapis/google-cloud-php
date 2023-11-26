@@ -107,7 +107,7 @@ class Result implements \IteratorAggregate
     private $stats;
 
     /**
-     * @var Transaction|null
+     * @var TransactionalReadInterface|null
      */
     private $transaction;
 
@@ -122,11 +122,6 @@ class Result implements \IteratorAggregate
     private $call;
 
     /**
-     * @var Transaction|null
-     */
-    private $transactionHandle;
-
-    /**
      * @param Operation $operation Runs operations against Google Cloud Spanner.
      * @param Session $session The session used for any operations executed.
      * @param callable $call A callable, yielding a generator filled with results.
@@ -134,7 +129,7 @@ class Result implements \IteratorAggregate
      * @param ValueMapper $mapper Maps values.
      * @param int $retries Number of attempts to resume a broken stream, assuming
      *        a resume token is present. **Defaults to** 3.
-     * @param Transaction $transactionHandle The transaction of the Result.
+     * @param Transaction $transaction The transaction of the Result.
      */
     public function __construct(
         Operation $operation,
@@ -143,7 +138,7 @@ class Result implements \IteratorAggregate
         $transactionContext,
         ValueMapper $mapper,
         $retries = 3,
-        $transactionHandle = null
+        TransactionalReadInterface $transaction = null
     ) {
         $this->operation = $operation;
         $this->session = $session;
@@ -151,7 +146,7 @@ class Result implements \IteratorAggregate
         $this->transactionContext = $transactionContext;
         $this->mapper = $mapper;
         $this->retries = $retries;
-        $this->transactionHandle = $transactionHandle;
+        $this->transaction = $transaction;
     }
 
     /**
@@ -374,7 +369,7 @@ class Result implements \IteratorAggregate
      * $transaction = $result->transaction();
      * ```
      *
-     * @return Transaction|null
+     * @return TransactionalReadInterface|null
      */
     public function transaction()
     {
@@ -475,15 +470,15 @@ class Result implements \IteratorAggregate
         }
 
         if (isset($result['metadata']['transaction']['id']) && $result['metadata']['transaction']['id']) {
-            if (!is_null($this->transactionHandle) && is_null($this->transactionHandle->id())) {
-                $this->transactionHandle->setId($result['metadata']['transaction']['id']);
+            if (!is_null($this->transaction) && is_null($this->transaction->id())) {
+                $this->transaction->setId($result['metadata']['transaction']['id']);
             }
             if ($this->transactionContext === SessionPoolInterface::CONTEXT_READ) {
                 $this->snapshot = $this->operation->createSnapshot(
                     $this->session,
                     $result['metadata']['transaction']
                 );
-            } else {
+            } elseif (is_null($this->transaction)) {
                 $this->transaction = $this->operation->createTransaction(
                     $this->session,
                     $result['metadata']['transaction']

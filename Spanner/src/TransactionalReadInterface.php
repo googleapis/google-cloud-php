@@ -64,4 +64,9 @@ interface TransactionalReadInterface
      * @return int
      */
     public function type();
+
+    /**
+     * Set the transaction ID.
+     */
+    public function setId(string $transactionId);
 }

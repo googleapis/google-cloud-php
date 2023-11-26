@@ -79,10 +79,6 @@ class TransactionTest extends SpannerTestCase
 
             $t->commit();
         });
-
-        $db->runTransaction(function ($t) {
-            $t->rollback();
-        });
     }
 
     /**

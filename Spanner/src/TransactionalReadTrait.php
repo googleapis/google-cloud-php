@@ -279,7 +279,6 @@ trait TransactionalReadTrait
         $selector = $this->transactionSelector($options, $this->options);
 
         $options['transaction'] = $selector[0];
-        $options['transactionHandle'] = $this;
 
         unset($options['requestOptions']['transactionTag']);
         if (isset($this->tag)) {
@@ -289,11 +288,11 @@ trait TransactionalReadTrait
             $options['requestOptions']['transactionTag'] = $this->tag;
         }
 
-        // Send the reference of the transactionId to populate it when the transaction gets generated
         return $this->operation->execute(
             $this->session,
             $sql,
-            $options
+            $options,
+            $this
         );
     }
 
@@ -350,7 +349,6 @@ trait TransactionalReadTrait
         $selector = $this->transactionSelector($options, $this->options);
 
         $options['transaction'] = $selector[0];
-        $options['transactionHandle'] = $this;
 
         unset($options['requestOptions']['transactionTag']);
         if (isset($this->tag)) {
@@ -365,7 +363,8 @@ trait TransactionalReadTrait
             $table,
             $keySet,
             $columns,
-            $options
+            $options,
+            $this
         );
     }
 
@@ -384,6 +383,9 @@ trait TransactionalReadTrait
         return $this->transactionId;
     }
 
+    /**
+     * Set the transaction ID.
+     */
     public function setId(string $transactionId)
     {
         $this->transactionId = $transactionId;
