@@ -68,6 +68,9 @@ class DatabaseTest extends TestCase
     const TRANSACTION = 'my-transaction';
     const BACKUP = 'my-backup';
     const TRANSACTION_TAG = 'my-transaction-tag';
+    const TEST_TABLE_NAME = 'Users';
+    const TIMESTAMP = '2017-01-09T18:05:22.534799Z';
+    const BEGIN_RW_OPTIONS = ['begin' => ['readWrite' => []]];
 
     private $connection;
     private $instance;
@@ -1454,5 +1457,178 @@ class DatabaseTest extends TestCase
             ->shouldBeCalled()->willReturn($this->resultGenerator());
 
         $this->databaseWithDatabaseRole->execute($sql);
+    }
+
+    public function testRunTransactionWithUpdate()
+    {
+        $sql = 'UPDATE foo SET bar = @bar';
+
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldNotBeCalled();
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry(
+                'database',
+                DatabaseAdminClient::databaseName(
+                    self::PROJECT,
+                    self::INSTANCE,
+                    self::DATABASE
+                )
+            ),
+            Argument::withEntry('requestOptions', [
+                'transactionTag' => self::TRANSACTION_TAG,
+            ]),
+            Argument::withEntry('transactionId', self::TRANSACTION)
+        ))
+            ->shouldBeCalled()
+            ->willReturn(['commitTimestamp' => self::TIMESTAMP]);
+        $this->connection->executeStreamingSql(Argument::allOf(
+            Argument::withEntry('sql', $sql),
+            Argument::withEntry('transaction', self::BEGIN_RW_OPTIONS),
+            Argument::withEntry('requestOptions', [
+                'transactionTag' => self::TRANSACTION_TAG
+            ])
+        ))->shouldBeCalled()->willReturn($this->resultGenerator(true, self::TRANSACTION));
+
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $this->database->runTransaction(function (Transaction $t) use ($sql) {
+            $t->executeUpdate($sql);
+            $timeStamp = $t->commit();
+            $this->assertEquals($timeStamp->formatAsString(), self::TIMESTAMP);
+        }, ['tag' => self::TRANSACTION_TAG]);
+    }
+
+    public function testRunTransactionWithQuery()
+    {
+        $sql = 'SELECT * FROM foo WHERE id = 1';
+
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldNotBeCalled();
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry(
+                'database',
+                DatabaseAdminClient::databaseName(
+                    self::PROJECT,
+                    self::INSTANCE,
+                    self::DATABASE
+                )
+            ),
+            Argument::withEntry('requestOptions', [
+                'transactionTag' => self::TRANSACTION_TAG,
+            ]),
+            Argument::withEntry('transactionId', self::TRANSACTION)
+        ))
+            ->shouldBeCalled()
+            ->willReturn(['commitTimestamp' => self::TIMESTAMP]);
+        $this->connection->executeStreamingSql(Argument::allOf(
+            Argument::withEntry('sql', $sql),
+            Argument::withEntry('transaction', self::BEGIN_RW_OPTIONS),
+            Argument::withEntry('requestOptions', [
+                'transactionTag' => self::TRANSACTION_TAG
+            ])
+        ))->shouldBeCalled()->willReturn($this->resultGenerator(true, self::TRANSACTION));
+
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $this->database->runTransaction(function (Transaction $t) use ($sql) {
+            $t->execute($sql)->rows()->current();
+            $timeStamp = $t->commit();
+            $this->assertEquals($timeStamp->formatAsString(), self::TIMESTAMP);
+        }, ['tag' => self::TRANSACTION_TAG]);
+    }
+
+    public function testRunTransactionWithRead()
+    {
+        list($keySet, $cols) = $this->readArgs();
+
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldNotBeCalled();
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry(
+                'database',
+                DatabaseAdminClient::databaseName(
+                    self::PROJECT,
+                    self::INSTANCE,
+                    self::DATABASE
+                )
+            ),
+            Argument::withEntry('requestOptions', [
+                'transactionTag' => self::TRANSACTION_TAG,
+            ]),
+            Argument::withEntry('transactionId', self::TRANSACTION)
+        ))
+            ->shouldBeCalled()
+            ->willReturn(['commitTimestamp' => self::TIMESTAMP]);
+        $this->connection->streamingRead(Argument::allOf(
+            Argument::withEntry('transaction', self::BEGIN_RW_OPTIONS),
+            Argument::withEntry('requestOptions', [
+                'transactionTag' => self::TRANSACTION_TAG
+            ]),
+            Argument::withEntry('table', self::TEST_TABLE_NAME),
+            Argument::withEntry('columns', $cols)
+        ))->shouldBeCalled()->willReturn($this->resultGenerator(true, self::TRANSACTION));
+
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $this->database->runTransaction(function (Transaction $t) use ($keySet, $cols) {
+            $t->read(self::TEST_TABLE_NAME, $keySet, $cols)->rows()->current();
+            $timeStamp = $t->commit();
+            $this->assertEquals($timeStamp->formatAsString(), self::TIMESTAMP);
+        }, ['tag' => self::TRANSACTION_TAG]);
+    }
+
+    public function testRunTransactionWithUpdateBatch()
+    {
+        $sql = 'SELECT * FROM foo WHERE id = 1';
+
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldNotBeCalled();
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry(
+                'database',
+                DatabaseAdminClient::databaseName(
+                    self::PROJECT,
+                    self::INSTANCE,
+                    self::DATABASE
+                )
+            ),
+            Argument::withEntry('requestOptions', [
+                'transactionTag' => self::TRANSACTION_TAG,
+            ]),
+            Argument::withEntry('transactionId', self::TRANSACTION)
+        ))
+            ->shouldBeCalled()
+            ->willReturn(['commitTimestamp' => self::TIMESTAMP]);
+        $this->connection->executeBatchDml(Argument::allOf(
+            Argument::withEntry('requestOptions', [
+                'transactionTag' => self::TRANSACTION_TAG
+            ]),
+            Argument::withEntry('transaction', self::BEGIN_RW_OPTIONS),
+        ))->shouldBeCalled()->willReturn([
+            'resultSets' => [['metadata' => ['transaction' => ['id' => self::TRANSACTION]]]]
+        ]);
+
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $this->database->runTransaction(function (Transaction $t) use ($sql) {
+            $t->executeUpdateBatch([['sql' => $sql]]);
+            $timeStamp = $t->commit();
+            $this->assertEquals($timeStamp->formatAsString(), self::TIMESTAMP);
+        }, ['tag' => self::TRANSACTION_TAG]);
+    }
+
+    private function readArgs()
+    {
+        $row = ['id' => 1];
+        return [
+            new KeySet([
+                'keys' => [$row['id']]
+            ]),
+            array_keys($row)
+        ];
     }
 }
