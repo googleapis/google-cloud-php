@@ -389,7 +389,6 @@ class Result implements \IteratorAggregate
         if (!is_null($this->generator)) {
             return true;
         }
-
         $call = $this->call;
         $generator = null;
 
@@ -405,14 +404,14 @@ class Result implements \IteratorAggregate
             $generator = $call();
             return $generator->valid();
         });
-        if (!$valid) {
-            return false;
+        if ($valid) {
+            // Multiple calls to the current method yields the same value.
+            $result = $generator->current();
+            $this->setSnapshotOrTransaction($result);
+            $this->generator = $generator;
+            return true;
         }
-        // Multiple calls to the current method yields the same value.
-        $result = $generator->current();
-        $this->setSnapshotOrTransaction($result);
-        $this->generator = $generator;
-        return true;
+        return false;
     }
 
     /**

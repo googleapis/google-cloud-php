@@ -614,7 +614,7 @@ class Transaction implements TransactionalReadInterface
             unset($this->options['begin']);
             $transaction = $this->operation->transaction($this->session, $this->options);
             if (!is_null($transaction->id())) {
-                $this->transactionId = $transaction->id();
+                $this->setId($transaction->id());
             }
         }
 
