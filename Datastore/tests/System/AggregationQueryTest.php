@@ -147,8 +147,11 @@ class AggregationQueryTest extends DatastoreMultipleDbTestCase
     {
         $this->skipEmulatorTests();
         $query = $client->gqlQuery(
-            sprintf("SELECT %s(%s) as result From %s", $type, ($property ?? '*'), self::$kind),
-            ['allowLiterals' => true]
+            sprintf(
+                "AGGREGATE %s(%s) as result OVER"
+                . " (SELECT * FROM %s)",
+                $type, ($property ?? '*'), self::$kind
+            )
         );
         $aggregationQuery = $client->aggregationQuery()
             ->over($query);
