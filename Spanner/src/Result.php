@@ -120,7 +120,6 @@ class Result implements \IteratorAggregate
      * @var callable
      */
     private $call;
-    private $generator;
 
     /**
      * @param Operation $operation Runs operations against Google Cloud Spanner.
@@ -146,7 +145,6 @@ class Result implements \IteratorAggregate
         $this->transactionContext = $transactionContext;
         $this->mapper = $mapper;
         $this->retries = $retries;
-        $this->generator = null;
     }
 
     /**
@@ -181,15 +179,8 @@ class Result implements \IteratorAggregate
         $call = $this->call;
         $shouldRetry = false;
         $isResultsYielded = false;
-        $valid = !is_null($this->generator) ? $this->generator->valid() : $this->createGenerator();
-        $generator = $this->generator;
-        $backoff = new ExponentialBackoff($this->retries, function ($ex) {
-            if ($ex instanceof ServiceException) {
-                return $ex->getCode() === Grpc\STATUS_UNAVAILABLE;
-            }
-
-            return false;
-        });
+        $generator = $this->createGenerator();
+        $valid = $generator !== null;
 
         while ($valid) {
             try {
@@ -233,6 +224,13 @@ class Result implements \IteratorAggregate
                 if ($shouldRetry && $ex->getCode() === Grpc\STATUS_UNAVAILABLE) {
                     // Attempt to resume using our last stored resume token. If we
                     // successfully resume, flush the buffer.
+                    $backoff = new ExponentialBackoff($this->retries, function ($ex) {
+                        if ($ex instanceof ServiceException) {
+                            return $ex->getCode() === Grpc\STATUS_UNAVAILABLE;
+                        }
+
+                        return false;
+                    });
                     $generator = $backoff->execute($call, [$this->resumeToken, $this->transaction()]);
                     $bufferedResults = [];
 
@@ -385,15 +383,11 @@ class Result implements \IteratorAggregate
     /**
      * Create the ResultSet generator and use it to set the transaction.
      */
-    public function createGenerator()
+    private function createGenerator()
     {
         $call = $this->call;
         $generator = null;
-        $valid = false;
 
-        if (!is_null($this->generator)) {
-            return $this->generator;
-        }
         $backoff = new ExponentialBackoff($this->retries, function ($ex) {
             if ($ex instanceof ServiceException) {
                 return $ex->getCode() === Grpc\STATUS_UNAVAILABLE;
@@ -410,9 +404,8 @@ class Result implements \IteratorAggregate
             // Multiple calls to the current method yields the same value.
             $result = $generator->current();
             $this->setSnapshotOrTransaction($result);
-            $this->generator = $generator;
         }
-        return $valid;
+        return $generator;
     }
 
     /**

@@ -48,7 +48,6 @@ class Operation
     const OP_INSERT_OR_UPDATE = 'insertOrUpdate';
     const OP_REPLACE = 'replace';
     const OP_DELETE = 'delete';
-    private const DEFAULT_RETRIES = 3;
 
     /**
      * @var ConnectionInterface
@@ -259,7 +258,6 @@ class Operation
             $call,
             $context,
             $this->mapper,
-            self::DEFAULT_RETRIES
         );
     }
 
@@ -466,7 +464,6 @@ class Operation
             $call,
             $context,
             $this->mapper,
-            self::DEFAULT_RETRIES
         );
     }
 
