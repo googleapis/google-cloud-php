@@ -17,8 +17,8 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * If 'true', enables speaker detection for each recognized word in
-     * the top alternative of the recognition result using a speaker_tag provided
-     * in the WordInfo.
+     * the top alternative of the recognition result using a speaker_label
+     * provided in the WordInfo.
      *
      * Generated from protobuf field <code>bool enable_speaker_diarization = 1;</code>
      */
@@ -55,8 +55,8 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $enable_speaker_diarization
      *           If 'true', enables speaker detection for each recognized word in
-     *           the top alternative of the recognition result using a speaker_tag provided
-     *           in the WordInfo.
+     *           the top alternative of the recognition result using a speaker_label
+     *           provided in the WordInfo.
      *     @type int $min_speaker_count
      *           Minimum number of speakers in the conversation. This range gives you more
      *           flexibility by allowing the system to automatically determine the correct
@@ -76,8 +76,8 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * If 'true', enables speaker detection for each recognized word in
-     * the top alternative of the recognition result using a speaker_tag provided
-     * in the WordInfo.
+     * the top alternative of the recognition result using a speaker_label
+     * provided in the WordInfo.
      *
      * Generated from protobuf field <code>bool enable_speaker_diarization = 1;</code>
      * @return bool
@@ -89,8 +89,8 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * If 'true', enables speaker detection for each recognized word in
-     * the top alternative of the recognition result using a speaker_tag provided
-     * in the WordInfo.
+     * the top alternative of the recognition result using a speaker_label
+     * provided in the WordInfo.
      *
      * Generated from protobuf field <code>bool enable_speaker_diarization = 1;</code>
      * @param bool $var

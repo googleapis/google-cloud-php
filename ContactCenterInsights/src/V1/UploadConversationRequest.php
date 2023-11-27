@@ -38,15 +38,15 @@ class UploadConversationRequest extends \Google\Protobuf\Internal\Message
      */
     private $conversation_id = '';
     /**
-     * Optional. DLP settings for transcript redaction. Optional, will default to
-     * the config specified in Settings.
+     * Optional. DLP settings for transcript redaction. Will default to the config
+     * specified in Settings.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.RedactionConfig redaction_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $redaction_config = null;
     /**
-     * Optional. Default Speech-to-Text configuration. Optional, will default to
-     * the config specified in Settings.
+     * Optional. Speech-to-Text configuration. Will default to the config
+     * specified in Settings.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.SpeechConfig speech_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -69,11 +69,11 @@ class UploadConversationRequest extends \Google\Protobuf\Internal\Message
      *           This value should be 4-64 characters and must match the regular
      *           expression `^[a-z0-9-]{4,64}$`. Valid characters are `[a-z][0-9]-`
      *     @type \Google\Cloud\ContactCenterInsights\V1\RedactionConfig $redaction_config
-     *           Optional. DLP settings for transcript redaction. Optional, will default to
-     *           the config specified in Settings.
+     *           Optional. DLP settings for transcript redaction. Will default to the config
+     *           specified in Settings.
      *     @type \Google\Cloud\ContactCenterInsights\V1\SpeechConfig $speech_config
-     *           Optional. Default Speech-to-Text configuration. Optional, will default to
-     *           the config specified in Settings.
+     *           Optional. Speech-to-Text configuration. Will default to the config
+     *           specified in Settings.
      * }
      */
     public function __construct($data = NULL) {
@@ -178,8 +178,8 @@ class UploadConversationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. DLP settings for transcript redaction. Optional, will default to
-     * the config specified in Settings.
+     * Optional. DLP settings for transcript redaction. Will default to the config
+     * specified in Settings.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.RedactionConfig redaction_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\ContactCenterInsights\V1\RedactionConfig|null
@@ -200,8 +200,8 @@ class UploadConversationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. DLP settings for transcript redaction. Optional, will default to
-     * the config specified in Settings.
+     * Optional. DLP settings for transcript redaction. Will default to the config
+     * specified in Settings.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.RedactionConfig redaction_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\ContactCenterInsights\V1\RedactionConfig $var
@@ -216,8 +216,8 @@ class UploadConversationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Default Speech-to-Text configuration. Optional, will default to
-     * the config specified in Settings.
+     * Optional. Speech-to-Text configuration. Will default to the config
+     * specified in Settings.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.SpeechConfig speech_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\ContactCenterInsights\V1\SpeechConfig|null
@@ -238,8 +238,8 @@ class UploadConversationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Default Speech-to-Text configuration. Optional, will default to
-     * the config specified in Settings.
+     * Optional. Speech-to-Text configuration. Will default to the config
+     * specified in Settings.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.SpeechConfig speech_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\ContactCenterInsights\V1\SpeechConfig $var

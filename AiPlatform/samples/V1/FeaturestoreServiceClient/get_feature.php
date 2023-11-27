@@ -32,8 +32,10 @@ use Google\Cloud\AIPlatform\V1\GetFeatureRequest;
  * Gets details of a single Feature.
  *
  * @param string $formattedName The name of the Feature resource.
- *                              Format:
+ *                              Format for entity_type as parent:
  *                              `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+ *                              Format for feature_group as parent:
+ *                              `projects/{project}/locations/{location}/featureGroups/{feature_group}`
  *                              Please see {@see FeaturestoreServiceClient::featureName()} for help formatting this field.
  */
 function get_feature_sample(string $formattedName): void

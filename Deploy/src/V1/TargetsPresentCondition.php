@@ -24,7 +24,7 @@ class TargetsPresentCondition extends \Google\Protobuf\Internal\Message
     private $status = false;
     /**
      * The list of Target names that do not exist. For example,
-     * projects/{project_id}/locations/{location_name}/targets/{target_name}.
+     * `projects/{project_id}/locations/{location_name}/targets/{target_name}`.
      *
      * Generated from protobuf field <code>repeated string missing_targets = 2 [(.google.api.resource_reference) = {</code>
      */
@@ -46,7 +46,7 @@ class TargetsPresentCondition extends \Google\Protobuf\Internal\Message
      *           True if there aren't any missing Targets.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $missing_targets
      *           The list of Target names that do not exist. For example,
-     *           projects/{project_id}/locations/{location_name}/targets/{target_name}.
+     *           `projects/{project_id}/locations/{location_name}/targets/{target_name}`.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Last time the condition was updated.
      * }
@@ -84,7 +84,7 @@ class TargetsPresentCondition extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of Target names that do not exist. For example,
-     * projects/{project_id}/locations/{location_name}/targets/{target_name}.
+     * `projects/{project_id}/locations/{location_name}/targets/{target_name}`.
      *
      * Generated from protobuf field <code>repeated string missing_targets = 2 [(.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -96,7 +96,7 @@ class TargetsPresentCondition extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of Target names that do not exist. For example,
-     * projects/{project_id}/locations/{location_name}/targets/{target_name}.
+     * `projects/{project_id}/locations/{location_name}/targets/{target_name}`.
      *
      * Generated from protobuf field <code>repeated string missing_targets = 2 [(.google.api.resource_reference) = {</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

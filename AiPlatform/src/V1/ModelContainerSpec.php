@@ -225,6 +225,44 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string health_route = 7 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $health_route = '';
+    /**
+     * Immutable. List of ports to expose from the container. Vertex AI sends gRPC
+     * prediction requests that it receives to the first port on this list. Vertex
+     * AI also sends liveness and health checks to this port.
+     * If you do not specify this field, gRPC requests to the container will be
+     * disabled.
+     * Vertex AI does not use ports other than the first one listed. This field
+     * corresponds to the `ports` field of the Kubernetes Containers v1 core API.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Port grpc_ports = 9 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $grpc_ports;
+    /**
+     * Immutable. Deployment timeout.
+     * Limit for deployment timeout is 2 hours.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration deployment_timeout = 10 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $deployment_timeout = null;
+    /**
+     * Immutable. The amount of the VM memory to reserve as the shared memory for
+     * the model in megabytes.
+     *
+     * Generated from protobuf field <code>int64 shared_memory_size_mb = 11 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $shared_memory_size_mb = 0;
+    /**
+     * Immutable. Specification for Kubernetes startup probe.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Probe startup_probe = 12 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $startup_probe = null;
+    /**
+     * Immutable. Specification for Kubernetes readiness probe.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Probe health_probe = 13 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $health_probe = null;
 
     /**
      * Constructor.
@@ -412,6 +450,24 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      *             (Vertex AI makes this value available to your container code as the
      *             [`AIP_DEPLOYED_MODEL_ID` environment
      *             variable](https://cloud.google.com/vertex-ai/docs/predictions/custom-container-requirements#aip-variables).)
+     *     @type array<\Google\Cloud\AIPlatform\V1\Port>|\Google\Protobuf\Internal\RepeatedField $grpc_ports
+     *           Immutable. List of ports to expose from the container. Vertex AI sends gRPC
+     *           prediction requests that it receives to the first port on this list. Vertex
+     *           AI also sends liveness and health checks to this port.
+     *           If you do not specify this field, gRPC requests to the container will be
+     *           disabled.
+     *           Vertex AI does not use ports other than the first one listed. This field
+     *           corresponds to the `ports` field of the Kubernetes Containers v1 core API.
+     *     @type \Google\Protobuf\Duration $deployment_timeout
+     *           Immutable. Deployment timeout.
+     *           Limit for deployment timeout is 2 hours.
+     *     @type int|string $shared_memory_size_mb
+     *           Immutable. The amount of the VM memory to reserve as the shared memory for
+     *           the model in megabytes.
+     *     @type \Google\Cloud\AIPlatform\V1\Probe $startup_probe
+     *           Immutable. Specification for Kubernetes startup probe.
+     *     @type \Google\Cloud\AIPlatform\V1\Probe $health_probe
+     *           Immutable. Specification for Kubernetes readiness probe.
      * }
      */
     public function __construct($data = NULL) {
@@ -929,6 +985,182 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->health_route = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. List of ports to expose from the container. Vertex AI sends gRPC
+     * prediction requests that it receives to the first port on this list. Vertex
+     * AI also sends liveness and health checks to this port.
+     * If you do not specify this field, gRPC requests to the container will be
+     * disabled.
+     * Vertex AI does not use ports other than the first one listed. This field
+     * corresponds to the `ports` field of the Kubernetes Containers v1 core API.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Port grpc_ports = 9 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getGrpcPorts()
+    {
+        return $this->grpc_ports;
+    }
+
+    /**
+     * Immutable. List of ports to expose from the container. Vertex AI sends gRPC
+     * prediction requests that it receives to the first port on this list. Vertex
+     * AI also sends liveness and health checks to this port.
+     * If you do not specify this field, gRPC requests to the container will be
+     * disabled.
+     * Vertex AI does not use ports other than the first one listed. This field
+     * corresponds to the `ports` field of the Kubernetes Containers v1 core API.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Port grpc_ports = 9 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\Port>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setGrpcPorts($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\Port::class);
+        $this->grpc_ports = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. Deployment timeout.
+     * Limit for deployment timeout is 2 hours.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration deployment_timeout = 10 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getDeploymentTimeout()
+    {
+        return $this->deployment_timeout;
+    }
+
+    public function hasDeploymentTimeout()
+    {
+        return isset($this->deployment_timeout);
+    }
+
+    public function clearDeploymentTimeout()
+    {
+        unset($this->deployment_timeout);
+    }
+
+    /**
+     * Immutable. Deployment timeout.
+     * Limit for deployment timeout is 2 hours.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration deployment_timeout = 10 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setDeploymentTimeout($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->deployment_timeout = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The amount of the VM memory to reserve as the shared memory for
+     * the model in megabytes.
+     *
+     * Generated from protobuf field <code>int64 shared_memory_size_mb = 11 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return int|string
+     */
+    public function getSharedMemorySizeMb()
+    {
+        return $this->shared_memory_size_mb;
+    }
+
+    /**
+     * Immutable. The amount of the VM memory to reserve as the shared memory for
+     * the model in megabytes.
+     *
+     * Generated from protobuf field <code>int64 shared_memory_size_mb = 11 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setSharedMemorySizeMb($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->shared_memory_size_mb = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. Specification for Kubernetes startup probe.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Probe startup_probe = 12 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return \Google\Cloud\AIPlatform\V1\Probe|null
+     */
+    public function getStartupProbe()
+    {
+        return $this->startup_probe;
+    }
+
+    public function hasStartupProbe()
+    {
+        return isset($this->startup_probe);
+    }
+
+    public function clearStartupProbe()
+    {
+        unset($this->startup_probe);
+    }
+
+    /**
+     * Immutable. Specification for Kubernetes startup probe.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Probe startup_probe = 12 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param \Google\Cloud\AIPlatform\V1\Probe $var
+     * @return $this
+     */
+    public function setStartupProbe($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Probe::class);
+        $this->startup_probe = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. Specification for Kubernetes readiness probe.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Probe health_probe = 13 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return \Google\Cloud\AIPlatform\V1\Probe|null
+     */
+    public function getHealthProbe()
+    {
+        return $this->health_probe;
+    }
+
+    public function hasHealthProbe()
+    {
+        return isset($this->health_probe);
+    }
+
+    public function clearHealthProbe()
+    {
+        unset($this->health_probe);
+    }
+
+    /**
+     * Immutable. Specification for Kubernetes readiness probe.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Probe health_probe = 13 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param \Google\Cloud\AIPlatform\V1\Probe $var
+     * @return $this
+     */
+    public function setHealthProbe($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Probe::class);
+        $this->health_probe = $var;
 
         return $this;
     }

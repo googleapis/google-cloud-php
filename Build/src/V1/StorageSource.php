@@ -38,6 +38,12 @@ class StorageSource extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 generation = 3;</code>
      */
     private $generation = 0;
+    /**
+     * Option to specify the tool to fetch the source file for the build.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.StorageSource.SourceFetcher source_fetcher = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $source_fetcher = 0;
 
     /**
      * Constructor.
@@ -56,6 +62,8 @@ class StorageSource extends \Google\Protobuf\Internal\Message
      *     @type int|string $generation
      *           Cloud Storage generation for the object. If the generation is
      *           omitted, the latest generation will be used.
+     *     @type int $source_fetcher
+     *           Option to specify the tool to fetch the source file for the build.
      * }
      */
     public function __construct($data = NULL) {
@@ -147,6 +155,32 @@ class StorageSource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->generation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Option to specify the tool to fetch the source file for the build.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.StorageSource.SourceFetcher source_fetcher = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getSourceFetcher()
+    {
+        return $this->source_fetcher;
+    }
+
+    /**
+     * Option to specify the tool to fetch the source file for the build.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.StorageSource.SourceFetcher source_fetcher = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSourceFetcher($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Build\V1\StorageSource\SourceFetcher::class);
+        $this->source_fetcher = $var;
 
         return $this;
     }

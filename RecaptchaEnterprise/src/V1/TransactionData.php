@@ -10,7 +10,6 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Transaction data associated with a payment protected by reCAPTCHA Enterprise.
- * All fields are optional.
  *
  * Generated from protobuf message <code>google.cloud.recaptchaenterprise.v1.TransactionData</code>
  */
@@ -26,7 +25,7 @@ class TransactionData extends \Google\Protobuf\Internal\Message
      */
     private $transaction_id = null;
     /**
-     * The payment method for the transaction. The allowed values are:
+     * Optional. The payment method for the transaction. The allowed values are:
      * * credit-card
      * * debit-card
      * * gift-card
@@ -35,74 +34,77 @@ class TransactionData extends \Google\Protobuf\Internal\Message
      * * custom-{name} (If an alternative method is used, for example,
      * custom-crypto)
      *
-     * Generated from protobuf field <code>string payment_method = 1;</code>
+     * Generated from protobuf field <code>string payment_method = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $payment_method = '';
     /**
-     * The Bank Identification Number - generally the first 6 or 8 digits of the
-     * card.
+     * Optional. The Bank Identification Number - generally the first 6 or 8
+     * digits of the card.
      *
-     * Generated from protobuf field <code>string card_bin = 2;</code>
+     * Generated from protobuf field <code>string card_bin = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $card_bin = '';
     /**
-     * The last four digits of the card.
+     * Optional. The last four digits of the card.
      *
-     * Generated from protobuf field <code>string card_last_four = 3;</code>
+     * Generated from protobuf field <code>string card_last_four = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $card_last_four = '';
     /**
-     * The currency code in ISO-4217 format.
+     * Optional. The currency code in ISO-4217 format.
      *
-     * Generated from protobuf field <code>string currency_code = 4;</code>
+     * Generated from protobuf field <code>string currency_code = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $currency_code = '';
     /**
-     * The decimal value of the transaction in the specified currency.
+     * Optional. The decimal value of the transaction in the specified currency.
      *
-     * Generated from protobuf field <code>double value = 5;</code>
+     * Generated from protobuf field <code>double value = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $value = 0.0;
     /**
-     * The value of shipping in the specified currency. 0 for free or no shipping.
+     * Optional. The value of shipping in the specified currency. 0 for free or no
+     * shipping.
      *
-     * Generated from protobuf field <code>double shipping_value = 12;</code>
+     * Generated from protobuf field <code>double shipping_value = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $shipping_value = 0.0;
     /**
-     * Destination address if this transaction involves shipping a physical item.
+     * Optional. Destination address if this transaction involves shipping a
+     * physical item.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData.Address shipping_address = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData.Address shipping_address = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $shipping_address = null;
     /**
-     * Address associated with the payment method when applicable.
+     * Optional. Address associated with the payment method when applicable.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData.Address billing_address = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData.Address billing_address = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $billing_address = null;
     /**
-     * Information about the user paying/initiating the transaction.
+     * Optional. Information about the user paying/initiating the transaction.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData.User user = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData.User user = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $user = null;
     /**
-     * Information about the user or users fulfilling the transaction.
+     * Optional. Information about the user or users fulfilling the transaction.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.TransactionData.User merchants = 13;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.TransactionData.User merchants = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $merchants;
     /**
-     * Items purchased in this transaction.
+     * Optional. Items purchased in this transaction.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.TransactionData.Item items = 14;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.TransactionData.Item items = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $items;
     /**
-     * Information about the payment gateway's response to the transaction.
+     * Optional. Information about the payment gateway's response to the
+     * transaction.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData.GatewayInfo gateway_info = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData.GatewayInfo gateway_info = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $gateway_info = null;
 
@@ -118,7 +120,7 @@ class TransactionData extends \Google\Protobuf\Internal\Message
      *           or chargeback event. Two attempts at the same transaction should use the
      *           same transaction id.
      *     @type string $payment_method
-     *           The payment method for the transaction. The allowed values are:
+     *           Optional. The payment method for the transaction. The allowed values are:
      *           * credit-card
      *           * debit-card
      *           * gift-card
@@ -127,28 +129,31 @@ class TransactionData extends \Google\Protobuf\Internal\Message
      *           * custom-{name} (If an alternative method is used, for example,
      *           custom-crypto)
      *     @type string $card_bin
-     *           The Bank Identification Number - generally the first 6 or 8 digits of the
-     *           card.
+     *           Optional. The Bank Identification Number - generally the first 6 or 8
+     *           digits of the card.
      *     @type string $card_last_four
-     *           The last four digits of the card.
+     *           Optional. The last four digits of the card.
      *     @type string $currency_code
-     *           The currency code in ISO-4217 format.
+     *           Optional. The currency code in ISO-4217 format.
      *     @type float $value
-     *           The decimal value of the transaction in the specified currency.
+     *           Optional. The decimal value of the transaction in the specified currency.
      *     @type float $shipping_value
-     *           The value of shipping in the specified currency. 0 for free or no shipping.
+     *           Optional. The value of shipping in the specified currency. 0 for free or no
+     *           shipping.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\TransactionData\Address $shipping_address
-     *           Destination address if this transaction involves shipping a physical item.
+     *           Optional. Destination address if this transaction involves shipping a
+     *           physical item.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\TransactionData\Address $billing_address
-     *           Address associated with the payment method when applicable.
+     *           Optional. Address associated with the payment method when applicable.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\TransactionData\User $user
-     *           Information about the user paying/initiating the transaction.
+     *           Optional. Information about the user paying/initiating the transaction.
      *     @type array<\Google\Cloud\RecaptchaEnterprise\V1\TransactionData\User>|\Google\Protobuf\Internal\RepeatedField $merchants
-     *           Information about the user or users fulfilling the transaction.
+     *           Optional. Information about the user or users fulfilling the transaction.
      *     @type array<\Google\Cloud\RecaptchaEnterprise\V1\TransactionData\Item>|\Google\Protobuf\Internal\RepeatedField $items
-     *           Items purchased in this transaction.
+     *           Optional. Items purchased in this transaction.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\TransactionData\GatewayInfo $gateway_info
-     *           Information about the payment gateway's response to the transaction.
+     *           Optional. Information about the payment gateway's response to the
+     *           transaction.
      * }
      */
     public function __construct($data = NULL) {
@@ -199,7 +204,7 @@ class TransactionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The payment method for the transaction. The allowed values are:
+     * Optional. The payment method for the transaction. The allowed values are:
      * * credit-card
      * * debit-card
      * * gift-card
@@ -208,7 +213,7 @@ class TransactionData extends \Google\Protobuf\Internal\Message
      * * custom-{name} (If an alternative method is used, for example,
      * custom-crypto)
      *
-     * Generated from protobuf field <code>string payment_method = 1;</code>
+     * Generated from protobuf field <code>string payment_method = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPaymentMethod()
@@ -217,7 +222,7 @@ class TransactionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The payment method for the transaction. The allowed values are:
+     * Optional. The payment method for the transaction. The allowed values are:
      * * credit-card
      * * debit-card
      * * gift-card
@@ -226,7 +231,7 @@ class TransactionData extends \Google\Protobuf\Internal\Message
      * * custom-{name} (If an alternative method is used, for example,
      * custom-crypto)
      *
-     * Generated from protobuf field <code>string payment_method = 1;</code>
+     * Generated from protobuf field <code>string payment_method = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -239,10 +244,10 @@ class TransactionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Bank Identification Number - generally the first 6 or 8 digits of the
-     * card.
+     * Optional. The Bank Identification Number - generally the first 6 or 8
+     * digits of the card.
      *
-     * Generated from protobuf field <code>string card_bin = 2;</code>
+     * Generated from protobuf field <code>string card_bin = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getCardBin()
@@ -251,10 +256,10 @@ class TransactionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Bank Identification Number - generally the first 6 or 8 digits of the
-     * card.
+     * Optional. The Bank Identification Number - generally the first 6 or 8
+     * digits of the card.
      *
-     * Generated from protobuf field <code>string card_bin = 2;</code>
+     * Generated from protobuf field <code>string card_bin = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -267,9 +272,9 @@ class TransactionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The last four digits of the card.
+     * Optional. The last four digits of the card.
      *
-     * Generated from protobuf field <code>string card_last_four = 3;</code>
+     * Generated from protobuf field <code>string card_last_four = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getCardLastFour()
@@ -278,9 +283,9 @@ class TransactionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The last four digits of the card.
+     * Optional. The last four digits of the card.
      *
-     * Generated from protobuf field <code>string card_last_four = 3;</code>
+     * Generated from protobuf field <code>string card_last_four = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -293,9 +298,9 @@ class TransactionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The currency code in ISO-4217 format.
+     * Optional. The currency code in ISO-4217 format.
      *
-     * Generated from protobuf field <code>string currency_code = 4;</code>
+     * Generated from protobuf field <code>string currency_code = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getCurrencyCode()
@@ -304,9 +309,9 @@ class TransactionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The currency code in ISO-4217 format.
+     * Optional. The currency code in ISO-4217 format.
      *
-     * Generated from protobuf field <code>string currency_code = 4;</code>
+     * Generated from protobuf field <code>string currency_code = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -319,9 +324,9 @@ class TransactionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The decimal value of the transaction in the specified currency.
+     * Optional. The decimal value of the transaction in the specified currency.
      *
-     * Generated from protobuf field <code>double value = 5;</code>
+     * Generated from protobuf field <code>double value = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
      */
     public function getValue()
@@ -330,9 +335,9 @@ class TransactionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The decimal value of the transaction in the specified currency.
+     * Optional. The decimal value of the transaction in the specified currency.
      *
-     * Generated from protobuf field <code>double value = 5;</code>
+     * Generated from protobuf field <code>double value = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
      * @return $this
      */
@@ -345,9 +350,10 @@ class TransactionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value of shipping in the specified currency. 0 for free or no shipping.
+     * Optional. The value of shipping in the specified currency. 0 for free or no
+     * shipping.
      *
-     * Generated from protobuf field <code>double shipping_value = 12;</code>
+     * Generated from protobuf field <code>double shipping_value = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
      */
     public function getShippingValue()
@@ -356,9 +362,10 @@ class TransactionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value of shipping in the specified currency. 0 for free or no shipping.
+     * Optional. The value of shipping in the specified currency. 0 for free or no
+     * shipping.
      *
-     * Generated from protobuf field <code>double shipping_value = 12;</code>
+     * Generated from protobuf field <code>double shipping_value = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
      * @return $this
      */
@@ -371,9 +378,10 @@ class TransactionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Destination address if this transaction involves shipping a physical item.
+     * Optional. Destination address if this transaction involves shipping a
+     * physical item.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData.Address shipping_address = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData.Address shipping_address = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\RecaptchaEnterprise\V1\TransactionData\Address|null
      */
     public function getShippingAddress()
@@ -392,9 +400,10 @@ class TransactionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Destination address if this transaction involves shipping a physical item.
+     * Optional. Destination address if this transaction involves shipping a
+     * physical item.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData.Address shipping_address = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData.Address shipping_address = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\RecaptchaEnterprise\V1\TransactionData\Address $var
      * @return $this
      */
@@ -407,9 +416,9 @@ class TransactionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Address associated with the payment method when applicable.
+     * Optional. Address associated with the payment method when applicable.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData.Address billing_address = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData.Address billing_address = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\RecaptchaEnterprise\V1\TransactionData\Address|null
      */
     public function getBillingAddress()
@@ -428,9 +437,9 @@ class TransactionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Address associated with the payment method when applicable.
+     * Optional. Address associated with the payment method when applicable.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData.Address billing_address = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData.Address billing_address = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\RecaptchaEnterprise\V1\TransactionData\Address $var
      * @return $this
      */
@@ -443,9 +452,9 @@ class TransactionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Information about the user paying/initiating the transaction.
+     * Optional. Information about the user paying/initiating the transaction.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData.User user = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData.User user = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\RecaptchaEnterprise\V1\TransactionData\User|null
      */
     public function getUser()
@@ -464,9 +473,9 @@ class TransactionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Information about the user paying/initiating the transaction.
+     * Optional. Information about the user paying/initiating the transaction.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData.User user = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData.User user = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\RecaptchaEnterprise\V1\TransactionData\User $var
      * @return $this
      */
@@ -479,9 +488,9 @@ class TransactionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Information about the user or users fulfilling the transaction.
+     * Optional. Information about the user or users fulfilling the transaction.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.TransactionData.User merchants = 13;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.TransactionData.User merchants = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getMerchants()
@@ -490,9 +499,9 @@ class TransactionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Information about the user or users fulfilling the transaction.
+     * Optional. Information about the user or users fulfilling the transaction.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.TransactionData.User merchants = 13;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.TransactionData.User merchants = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\RecaptchaEnterprise\V1\TransactionData\User>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -505,9 +514,9 @@ class TransactionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Items purchased in this transaction.
+     * Optional. Items purchased in this transaction.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.TransactionData.Item items = 14;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.TransactionData.Item items = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getItems()
@@ -516,9 +525,9 @@ class TransactionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Items purchased in this transaction.
+     * Optional. Items purchased in this transaction.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.TransactionData.Item items = 14;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.TransactionData.Item items = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\RecaptchaEnterprise\V1\TransactionData\Item>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -531,9 +540,10 @@ class TransactionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Information about the payment gateway's response to the transaction.
+     * Optional. Information about the payment gateway's response to the
+     * transaction.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData.GatewayInfo gateway_info = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData.GatewayInfo gateway_info = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\RecaptchaEnterprise\V1\TransactionData\GatewayInfo|null
      */
     public function getGatewayInfo()
@@ -552,9 +562,10 @@ class TransactionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Information about the payment gateway's response to the transaction.
+     * Optional. Information about the payment gateway's response to the
+     * transaction.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData.GatewayInfo gateway_info = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData.GatewayInfo gateway_info = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\RecaptchaEnterprise\V1\TransactionData\GatewayInfo $var
      * @return $this
      */

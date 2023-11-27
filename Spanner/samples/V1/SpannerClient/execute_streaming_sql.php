@@ -29,11 +29,11 @@ use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\SpannerClient;
 
 /**
- * Like [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql], except returns the result
- * set as a stream. Unlike [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql], there
- * is no limit on the size of the returned result set. However, no
- * individual row in the result set can exceed 100 MiB, and no
- * column value can exceed 10 MiB.
+ * Like [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql], except returns the
+ * result set as a stream. Unlike
+ * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql], there is no limit on
+ * the size of the returned result set. However, no individual row in the
+ * result set can exceed 100 MiB, and no column value can exceed 10 MiB.
  *
  * @param string $formattedSession The session in which the SQL query should be performed. Please see
  *                                 {@see SpannerClient::sessionName()} for help formatting this field.

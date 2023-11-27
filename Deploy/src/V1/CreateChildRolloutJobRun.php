@@ -17,9 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateChildRolloutJobRun extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Name of the `ChildRollout`. Format is projects/{project}/
-     * locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     * releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}.
+     * Output only. Name of the `ChildRollout`. Format is
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}`.
      *
      * Generated from protobuf field <code>string rollout = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -38,9 +37,8 @@ class CreateChildRolloutJobRun extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $rollout
-     *           Output only. Name of the `ChildRollout`. Format is projects/{project}/
-     *           locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     *           releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}.
+     *           Output only. Name of the `ChildRollout`. Format is
+     *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}`.
      *     @type string $rollout_phase_id
      *           Output only. The ID of the childRollout Phase initiated by this JobRun.
      * }
@@ -51,9 +49,8 @@ class CreateChildRolloutJobRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Name of the `ChildRollout`. Format is projects/{project}/
-     * locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     * releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}.
+     * Output only. Name of the `ChildRollout`. Format is
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}`.
      *
      * Generated from protobuf field <code>string rollout = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -64,9 +61,8 @@ class CreateChildRolloutJobRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Name of the `ChildRollout`. Format is projects/{project}/
-     * locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     * releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}.
+     * Output only. Name of the `ChildRollout`. Format is
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}`.
      *
      * Generated from protobuf field <code>string rollout = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

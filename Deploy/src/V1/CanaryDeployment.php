@@ -31,14 +31,14 @@ class CanaryDeployment extends \Google\Protobuf\Internal\Message
     private $verify = false;
     /**
      * Optional. Configuration for the predeploy job of the first phase. If this
-     * is not configured, predeploy job will not be present.
+     * is not configured, there will be no predeploy job for this phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Predeploy predeploy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $predeploy = null;
     /**
      * Optional. Configuration for the postdeploy job of the last phase. If this
-     * is not configured, postdeploy job will not be present.
+     * is not configured, there will be no postdeploy job for this phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Postdeploy postdeploy = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -58,10 +58,10 @@ class CanaryDeployment extends \Google\Protobuf\Internal\Message
      *           Whether to run verify tests after each percentage deployment.
      *     @type \Google\Cloud\Deploy\V1\Predeploy $predeploy
      *           Optional. Configuration for the predeploy job of the first phase. If this
-     *           is not configured, predeploy job will not be present.
+     *           is not configured, there will be no predeploy job for this phase.
      *     @type \Google\Cloud\Deploy\V1\Postdeploy $postdeploy
      *           Optional. Configuration for the postdeploy job of the last phase. If this
-     *           is not configured, postdeploy job will not be present.
+     *           is not configured, there will be no postdeploy job for this phase.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,7 +127,7 @@ class CanaryDeployment extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Configuration for the predeploy job of the first phase. If this
-     * is not configured, predeploy job will not be present.
+     * is not configured, there will be no predeploy job for this phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Predeploy predeploy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Deploy\V1\Predeploy|null
@@ -149,7 +149,7 @@ class CanaryDeployment extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Configuration for the predeploy job of the first phase. If this
-     * is not configured, predeploy job will not be present.
+     * is not configured, there will be no predeploy job for this phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Predeploy predeploy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Deploy\V1\Predeploy $var
@@ -165,7 +165,7 @@ class CanaryDeployment extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Configuration for the postdeploy job of the last phase. If this
-     * is not configured, postdeploy job will not be present.
+     * is not configured, there will be no postdeploy job for this phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Postdeploy postdeploy = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Deploy\V1\Postdeploy|null
@@ -187,7 +187,7 @@ class CanaryDeployment extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Configuration for the postdeploy job of the last phase. If this
-     * is not configured, postdeploy job will not be present.
+     * is not configured, there will be no postdeploy job for this phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Postdeploy postdeploy = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Deploy\V1\Postdeploy $var
