@@ -120,6 +120,7 @@ class Result implements \IteratorAggregate
      * @var callable
      */
     private $call;
+    private $generator;
 
     /**
      * @param Operation $operation Runs operations against Google Cloud Spanner.
@@ -179,12 +180,11 @@ class Result implements \IteratorAggregate
         $call = $this->call;
         $shouldRetry = false;
         $isResultsYielded = false;
-        $generator = $this->createGenerator();
-        $valid = $generator !== null;
+        $valid = $this->createGenerator();
 
         while ($valid) {
             try {
-                $result = $generator->current();
+                $result = $this->generator->current();
                 $bufferedResults[] = $result;
                 $this->setResultData($result, $format);
 
@@ -218,8 +218,8 @@ class Result implements \IteratorAggregate
 
                 // retry without resume token when results have not yielded
                 $shouldRetry = !$isResultsYielded || $hasResumeToken;
-                $generator->next();
-                $valid = $generator->valid();
+                $this->generator->next();
+                $valid = $this->generator->valid();
             } catch (ServiceException $ex) {
                 if ($shouldRetry && $ex->getCode() === Grpc\STATUS_UNAVAILABLE) {
                     // Attempt to resume using our last stored resume token. If we
@@ -231,7 +231,7 @@ class Result implements \IteratorAggregate
 
                         return false;
                     });
-                    $generator = $backoff->execute($call, [$this->resumeToken, $this->transaction()]);
+                    $this->generator = $backoff->execute($call, [$this->resumeToken, $this->transaction()]);
                     $bufferedResults = [];
 
                     continue;
@@ -382,9 +382,14 @@ class Result implements \IteratorAggregate
 
     /**
      * Create the ResultSet generator and use it to set the transaction.
+     * @return bool whether or not creating the generator was successful
      */
-    private function createGenerator()
+    public function createGenerator()
     {
+        if (!is_null($this->generator)) {
+            return true;
+        }
+
         $call = $this->call;
         $generator = null;
 
@@ -400,12 +405,14 @@ class Result implements \IteratorAggregate
             $generator = $call();
             return $generator->valid();
         });
-        if ($valid) {
-            // Multiple calls to the current method yields the same value.
-            $result = $generator->current();
-            $this->setSnapshotOrTransaction($result);
+        if (!$valid) {
+            return false;
         }
-        return $generator;
+        // Multiple calls to the current method yields the same value.
+        $result = $generator->current();
+        $this->setSnapshotOrTransaction($result);
+        $this->generator = $generator;
+        return true;
     }
 
     /**

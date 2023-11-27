@@ -293,6 +293,10 @@ trait TransactionalReadTrait
             $sql,
             $options
         );
+        $result->createGenerator();
+        if ($result->transaction() && $result->transaction()->id()) {
+            $this->setId($result->transaction()->id());
+        }
         return $result;
     }
 
@@ -365,6 +369,10 @@ trait TransactionalReadTrait
             $columns,
             $options
         );
+        $result->createGenerator();
+        if ($result->transaction() && $result->transaction()->id()) {
+            $this->setId($result->transaction()->id());
+        }
         return $result;
     }
 
