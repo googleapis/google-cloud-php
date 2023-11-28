@@ -126,10 +126,7 @@ class TransactionTest extends SpannerTestCase
         $ex = false;
         try {
             $db->runTransaction(function ($t) {
-                $result = $t->execute('SELECT * FROM ' . self::$tableName)->rows();
-                foreach ($result as $row) {
-                    break;
-                }
+                $t->execute('SELECT * FROM ' . self::$tableName);
             });
         } catch (\RuntimeException $e) {
             $this->assertEquals('Transactions must be rolled back or committed.', $e->getMessage());
