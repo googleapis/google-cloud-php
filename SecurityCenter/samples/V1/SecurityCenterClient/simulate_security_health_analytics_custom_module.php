@@ -33,11 +33,12 @@ use Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleRe
  * Simulates a given SecurityHealthAnalyticsCustomModule and Resource.
  *
  * @param string $parent               The relative resource name of the organization, project, or
- *                                     folder. See:
- *                                     https://cloud.google.com/apis/design/resource_names#relative_resource_name
- *                                     An example is:
- *                                     "organizations/{organization_id}".
- * @param string $resourceResourceType The type of the resource, e.g. `compute.googleapis.com/Disk`.
+ *                                     folder. For more information about relative resource names, see [Relative
+ *                                     Resource
+ *                                     Name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
+ *                                     Example: `organizations/{organization_id}`
+ * @param string $resourceResourceType The type of the resource, for example,
+ *                                     `compute.googleapis.com/Disk`.
  */
 function simulate_security_health_analytics_custom_module_sample(
     string $parent,
