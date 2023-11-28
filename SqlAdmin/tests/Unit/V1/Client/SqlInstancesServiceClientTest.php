@@ -28,6 +28,8 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Sql\V1\Client\SqlInstancesServiceClient;
 use Google\Cloud\Sql\V1\DatabaseInstance;
+use Google\Cloud\Sql\V1\DemoteContext;
+use Google\Cloud\Sql\V1\InstancesDemoteRequest;
 use Google\Cloud\Sql\V1\InstancesListResponse;
 use Google\Cloud\Sql\V1\InstancesListServerCasResponse;
 use Google\Cloud\Sql\V1\Operation;
@@ -36,6 +38,7 @@ use Google\Cloud\Sql\V1\SqlInstancesCloneRequest;
 use Google\Cloud\Sql\V1\SqlInstancesCreateEphemeralCertRequest;
 use Google\Cloud\Sql\V1\SqlInstancesDeleteRequest;
 use Google\Cloud\Sql\V1\SqlInstancesDemoteMasterRequest;
+use Google\Cloud\Sql\V1\SqlInstancesDemoteRequest;
 use Google\Cloud\Sql\V1\SqlInstancesExportRequest;
 use Google\Cloud\Sql\V1\SqlInstancesFailoverRequest;
 use Google\Cloud\Sql\V1\SqlInstancesGetDiskShrinkConfigRequest;
@@ -358,6 +361,102 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $request = new SqlInstancesDeleteRequest();
         try {
             $gapicClient->delete($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function demoteTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $kind = 'kind3292052';
+        $targetLink = 'targetLink-2084812312';
+        $user = 'user3599307';
+        $name = 'name3373707';
+        $targetId = 'targetId-815576439';
+        $selfLink = 'selfLink-1691268851';
+        $targetProject = 'targetProject392184427';
+        $expectedResponse = new Operation();
+        $expectedResponse->setKind($kind);
+        $expectedResponse->setTargetLink($targetLink);
+        $expectedResponse->setUser($user);
+        $expectedResponse->setName($name);
+        $expectedResponse->setTargetId($targetId);
+        $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setTargetProject($targetProject);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $instance = 'instance555127957';
+        $project = 'project-309310695';
+        $body = new InstancesDemoteRequest();
+        $bodyDemoteContext = new DemoteContext();
+        $demoteContextSourceRepresentativeInstanceName = 'demoteContextSourceRepresentativeInstanceName1566063379';
+        $bodyDemoteContext->setSourceRepresentativeInstanceName($demoteContextSourceRepresentativeInstanceName);
+        $body->setDemoteContext($bodyDemoteContext);
+        $request = (new SqlInstancesDemoteRequest())
+            ->setInstance($instance)
+            ->setProject($project)
+            ->setBody($body);
+        $response = $gapicClient->demote($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.sql.v1.SqlInstancesService/Demote', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInstance();
+        $this->assertProtobufEquals($instance, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getBody();
+        $this->assertProtobufEquals($body, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function demoteExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $instance = 'instance555127957';
+        $project = 'project-309310695';
+        $body = new InstancesDemoteRequest();
+        $bodyDemoteContext = new DemoteContext();
+        $demoteContextSourceRepresentativeInstanceName = 'demoteContextSourceRepresentativeInstanceName1566063379';
+        $bodyDemoteContext->setSourceRepresentativeInstanceName($demoteContextSourceRepresentativeInstanceName);
+        $body->setDemoteContext($bodyDemoteContext);
+        $request = (new SqlInstancesDemoteRequest())
+            ->setInstance($instance)
+            ->setProject($project)
+            ->setBody($body);
+        try {
+            $gapicClient->demote($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
