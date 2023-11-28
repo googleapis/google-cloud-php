@@ -48,8 +48,8 @@ class Assessment extends \Google\Protobuf\Internal\Message
      */
     private $account_verification = null;
     /**
-     * Output only. Assessment returned by account defender when a
-     * hashed_account_id is provided.
+     * Output only. Assessment returned by account defender when an account
+     * identifier is provided.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment account_defender_assessment = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -103,8 +103,8 @@ class Assessment extends \Google\Protobuf\Internal\Message
      *           Optional. Account verification information for identity verification. The
      *           assessment event must include a token and site key to use this feature.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\AccountDefenderAssessment $account_defender_assessment
-     *           Output only. Assessment returned by account defender when a
-     *           hashed_account_id is provided.
+     *           Output only. Assessment returned by account defender when an account
+     *           identifier is provided.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\PrivatePasswordLeakVerification $private_password_leak_verification
      *           Optional. The private password leak verification field contains the
      *           parameters that are used to to check for leaks privately without sharing
@@ -300,8 +300,8 @@ class Assessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Assessment returned by account defender when a
-     * hashed_account_id is provided.
+     * Output only. Assessment returned by account defender when an account
+     * identifier is provided.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment account_defender_assessment = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\RecaptchaEnterprise\V1\AccountDefenderAssessment|null
@@ -322,8 +322,8 @@ class Assessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Assessment returned by account defender when a
-     * hashed_account_id is provided.
+     * Output only. Assessment returned by account defender when an account
+     * identifier is provided.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment account_defender_assessment = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\RecaptchaEnterprise\V1\AccountDefenderAssessment $var
