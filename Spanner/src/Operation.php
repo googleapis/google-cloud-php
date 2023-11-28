@@ -285,6 +285,9 @@ class Operation
             $options += ['transactionId' => $transaction->id()];
         }
         $res = $this->execute($session, $sql, $options);
+        if (is_null($transaction->id()) && $res->transaction()) {
+            $transaction->setId($res->transaction()->id());
+        }
 
         // Iterate through the result to ensure we have query statistics available.
         iterator_to_array($res->rows());
