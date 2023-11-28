@@ -48,6 +48,7 @@ use Google\Rpc\Code;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Google\Cloud\Core\Exception\ServiceException;
 
 /**
  * @group spanner
@@ -771,7 +772,6 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionShouldRetryOnRstStreamErrors()
     {
-        $this->markTestSkipped('Need to rewrite this for ILB');
         $this->expectException(ServerException::class);
         $this->expectExceptionMessage('RST_STREAM');
         $err = new ServerException('RST_STREAM', Code::INTERNAL);
@@ -791,7 +791,7 @@ class DatabaseTest extends TestCase
             ->willThrow($err);
 
         $this->database->runTransaction(function ($t) {
-            // do nothing
+            $t->commit();
         }, ['maxRetries' => 2]);
     }
 
@@ -1444,7 +1444,7 @@ class DatabaseTest extends TestCase
 
     public function testDBDatabaseRole()
     {
-        $sql = 'SELECT * FROM Table';
+        $sql = $this->readArgs('sql');
         $this->connection->createSession(Argument::withEntry(
             'session',
             ['labels' => [], 'creator_role' => 'Reader']
@@ -1578,7 +1578,6 @@ class DatabaseTest extends TestCase
     public function testRunTransactionWithFirstFailedStatement()
     {
         $sql = $this->readArgs('sql');
-        $numOfRetries = 2;
         $error = new ServerException('RST_STREAM', Code::INTERNAL);
 
         // First call with ILB fails
@@ -1653,6 +1652,134 @@ class DatabaseTest extends TestCase
                 return ['commitTimestamp' => TransactionTest::TIMESTAMP];
             });
 
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $this->database->runTransaction(function ($t) use ($sql) {
+            $t->execute($sql);
+            $t->commit();
+        }, ['tag' => self::TRANSACTION_TAG]);
+    }
+
+    public function testRunTransactionWithBeginTransactionFailure()
+    {
+        $this->expectException(ServerException::class);
+        $error = new ServerException('RST_STREAM', Code::INTERNAL);
+        $sql = $this->readArgs('sql');
+
+        $this->connection->executeStreamingSql(Argument::allOf(
+            Argument::withEntry('sql', $sql),
+            Argument::withEntry('transaction', self::BEGIN_RW_OPTIONS),
+            Argument::withEntry('requestOptions', [
+                'transactionTag' => self::TRANSACTION_TAG
+            ])
+        ))->shouldBeCalled()->willThrow($error);
+        $this->connection->beginTransaction(Argument::allOf(
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry(
+                'database',
+                DatabaseAdminClient::databaseName(
+                    self::PROJECT,
+                    self::INSTANCE,
+                    self::DATABASE
+                )
+            )
+        ))
+            ->shouldBeCalledTimes(Database::MAX_RETRIES)
+            ->willThrow($error);
+        $this->connection->commit(Argument::any())->shouldNotBeCalled();
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $this->database->runTransaction(function ($t) use ($sql) {
+            $t->execute($sql);
+            $t->commit();
+        }, ['tag' => self::TRANSACTION_TAG]);
+    }
+
+    public function testRunTransactionWithBlindCommit()
+    {
+        $this->stubCommit(false);
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $this->database->runTransaction(function ($t) {
+            $t->insert('Posts', [
+                'ID' => 10,
+                'title' => 'My New Post',
+                'content' => 'Hello World'
+            ]);
+            $t->commit();
+        }, ['tag' => self::TRANSACTION_TAG]);
+    }
+
+    public function testRunTransactionWithUnavailableErrorRetry()
+    {
+        $sql = $this->readArgs('sql');
+        $numOfRetries = 2;
+        $unavailable = new ServiceException('Unavailable', 14);
+        $result = $this->resultGenerator(true, self::TRANSACTION);
+
+        $it = 0;
+        // First call with ILB results in unavailable error.
+        // Second call also made with ILB, returns ResultSet.
+        $this->connection->executeStreamingSql(Argument::allOf(
+            Argument::withEntry('sql', $sql),
+            Argument::withEntry('transaction', self::BEGIN_RW_OPTIONS),
+            Argument::withEntry('requestOptions', [
+                'transactionTag' => self::TRANSACTION_TAG
+            ])
+        ))
+            ->shouldBeCalledTimes($numOfRetries)
+            ->will(function () use (&$it, $unavailable, $numOfRetries, $result) {
+                $it++;
+                if ($it < $numOfRetries) {
+                    throw $unavailable;
+                }
+                return $result;
+            });
+        $this->stubCommit();
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $this->database->runTransaction(function ($t) use ($sql) {
+            $t->execute($sql);
+            $t->commit();
+        }, ['tag' => self::TRANSACTION_TAG]);
+    }
+
+    public function testRunTransactionWithUnavailableAndAbortErrorRetry()
+    {
+        $sql = $this->readArgs('sql');
+        $numOfRetries = 2;
+        $unavailable = new ServiceException('Unavailable', 14);
+        $abort = new AbortedException('foo', 409, null, [
+            [
+                'retryDelay' => [
+                    'seconds' => 0,
+                    'nanos' => 500
+                ]
+            ]
+        ]);
+
+        $it = 0;
+        // First call with ILB results in unavailable error.
+        // Second call also made with ILB, gets aborted.
+        $this->connection->executeStreamingSql(Argument::allOf(
+            Argument::withEntry('sql', $sql),
+            Argument::withEntry('transaction', self::BEGIN_RW_OPTIONS),
+            Argument::withEntry('requestOptions', [
+                'transactionTag' => self::TRANSACTION_TAG
+            ])
+        ))
+            ->shouldBeCalledTimes($numOfRetries)
+            ->will(function () use (&$it, $unavailable, $numOfRetries, $abort) {
+                $it++;
+                if ($it < $numOfRetries) {
+                    throw $unavailable;
+                } else {
+                    throw $abort;
+                }
+            });
+        // Should retry with beginTransaction RPC.
+        $this->stubExecuteStreamingSql(['id' => self::TRANSACTION]);
+        $this->stubCommit(false);
         $this->refreshOperation($this->database, $this->connection->reveal());
 
         $this->database->runTransaction(function ($t) use ($sql) {
