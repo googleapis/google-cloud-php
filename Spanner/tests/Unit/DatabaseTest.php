@@ -1575,6 +1575,92 @@ class DatabaseTest extends TestCase
         }, ['tag' => self::TRANSACTION_TAG]);
     }
 
+    public function testRunTransactionWithFirstFailedStatement()
+    {
+        $sql = $this->readArgs('sql');
+        $numOfRetries = 2;
+        $error = new ServerException('RST_STREAM', Code::INTERNAL);
+
+        // First call with ILB fails
+        $this->connection->executeStreamingSql(Argument::allOf(
+            Argument::withEntry('sql', $sql),
+            Argument::withEntry('transaction', self::BEGIN_RW_OPTIONS),
+            Argument::withEntry('requestOptions', [
+                'transactionTag' => self::TRANSACTION_TAG
+            ])
+        ))->shouldBeCalled()->willThrow($error);
+        $this->stubCommit(false);
+        // Second call with non ILB return result
+        $this->stubExecuteStreamingSql(['id' => self::TRANSACTION]);
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $this->database->runTransaction(function ($t) use ($sql) {
+            $t->execute($sql);
+            $t->commit();
+        }, ['tag' => self::TRANSACTION_TAG]);
+    }
+
+    public function testRunTransactionWithCommitAborted()
+    {
+        $sql = $this->readArgs('sql');
+        $numOfRetries = 2;
+
+        $abort = new AbortedException('foo', 409, null, [
+            [
+                'retryDelay' => [
+                    'seconds' => 0,
+                    'nanos' => 500
+                ]
+            ]
+        ]);
+
+        // First call with ILB
+        $this->stubExecuteStreamingSql();
+        // Second onwards non ILB
+        $this->stubExecuteStreamingSql(['id' => self::TRANSACTION]);
+        $this->connection->beginTransaction(Argument::allOf(
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry(
+                'database',
+                DatabaseAdminClient::databaseName(
+                    self::PROJECT,
+                    self::INSTANCE,
+                    self::DATABASE
+                )
+            )
+        ))
+            ->shouldBeCalledTimes($numOfRetries)
+            ->willReturn(['id' => self::TRANSACTION]);
+
+        $it = 0;
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry(
+                'database',
+                DatabaseAdminClient::databaseName(
+                    self::PROJECT,
+                    self::INSTANCE,
+                    self::DATABASE
+                )
+            )
+        ))
+            ->shouldBeCalledTimes($numOfRetries + 1)
+            ->will(function () use (&$it, $abort, $numOfRetries) {
+                $it++;
+                if ($it <= $numOfRetries) {
+                    throw $abort;
+                }
+                return ['commitTimestamp' => TransactionTest::TIMESTAMP];
+            });
+
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $this->database->runTransaction(function ($t) use ($sql) {
+            $t->execute($sql);
+            $t->commit();
+        }, ['tag' => self::TRANSACTION_TAG]);
+    }
+
     private function readArgs($argType = 'keySet')
     {
         if ($argType === 'sql') {
@@ -1591,7 +1677,7 @@ class DatabaseTest extends TestCase
         }
     }
 
-    private function stubCommit($withTransaction = True)
+    private function stubCommit($withTransaction = true)
     {
         if ($withTransaction) {
             $this->connection->beginTransaction(Argument::any())
@@ -1645,7 +1731,8 @@ class DatabaseTest extends TestCase
         ))->shouldBeCalled()->willReturn($this->resultGenerator(true, self::TRANSACTION));
     }
 
-    private function stubExecuteBatchDml($transactionOptions = self::BEGIN_RW_OPTIONS) {
+    private function stubExecuteBatchDml($transactionOptions = self::BEGIN_RW_OPTIONS)
+    {
         $this->connection->executeBatchDml(Argument::allOf(
             Argument::withEntry('requestOptions', [
                 'transactionTag' => self::TRANSACTION_TAG
