@@ -288,12 +288,11 @@ trait TransactionalReadTrait
             $options['requestOptions']['transactionTag'] = $this->tag;
         }
 
-        return $this->operation->execute(
-            $this->session,
-            $sql,
-            $options,
-            $this
-        );
+        $result = $this->operation->execute($this->session, $sql, $options);
+        if (is_null($this->id()) && $result->transaction()) {
+            $this->setId($result->transaction()->id());
+        }
+        return $result;
     }
 
     /**
@@ -358,14 +357,11 @@ trait TransactionalReadTrait
             $options['requestOptions']['transactionTag'] = $this->tag;
         }
 
-        return $this->operation->read(
-            $this->session,
-            $table,
-            $keySet,
-            $columns,
-            $options,
-            $this
-        );
+        $result = $this->operation->read($this->session, $table, $keySet, $columns, $options);
+        if (is_null($this->id()) && $result->transaction()) {
+            $this->setId($result->transaction()->id());
+        }
+        return $result;
     }
 
     /**

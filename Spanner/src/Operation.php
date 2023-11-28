@@ -48,7 +48,6 @@ class Operation
     const OP_INSERT_OR_UPDATE = 'insertOrUpdate';
     const OP_REPLACE = 'replace';
     const OP_DELETE = 'delete';
-    private const DEFAULT_RETRIES = 3;
 
     /**
      * @var ConnectionInterface
@@ -215,15 +214,10 @@ class Operation
      *     @type array $begin The begin Transaction options.
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
      * }
-     * @param Transaction $transaction Transaction to be used for this operation.
      * @return Result
      */
-    public function execute(
-        Session $session,
-        $sql,
-        array $options = [],
-        TransactionalReadInterface $transaction = null
-    ) {
+    public function execute(Session $session, $sql, array $options = [])
+    {
         $options += [
             'parameters' => [],
             'types' => [],
@@ -237,9 +231,13 @@ class Operation
         $context = $this->pluck('transactionContext', $options);
 
         // Initially with begin, transactionId will be null.
-        // Once generated it will get populated from Result->rows()
-        // Incase of stream failure, the transactionId is preserved here to reuse.
-        $call = function ($resumeToken = null) use ($session, $sql, $options, $transaction) {
+        // Once transaction is generated, even in the case of stream failure,
+        // transaction will be passed to this callable by the Result class.
+        $call = function ($resumeToken = null, $transaction = null) use (
+            $session,
+            $sql,
+            $options
+        ) {
             if ($transaction && !is_null($transaction->id())) {
                 $options['transaction'] = ['id' => $transaction->id()];
             }
@@ -254,15 +252,7 @@ class Operation
             ] + $options);
         };
 
-        return new Result(
-            $this,
-            $session,
-            $call,
-            $context,
-            $this->mapper,
-            self::DEFAULT_RETRIES,
-            $transaction
-        );
+        return new Result($this, $session, $call, $context, $this->mapper);
     }
 
     /**
@@ -294,7 +284,7 @@ class Operation
         if (!is_null($transaction->id())) {
             $options += ['transactionId' => $transaction->id()];
         }
-        $res = $this->execute($session, $sql, $options, $transaction);
+        $res = $this->execute($session, $sql, $options);
 
         // Iterate through the result to ensure we have query statistics available.
         iterator_to_array($res->rows());
@@ -420,7 +410,6 @@ class Operation
      *     @type array $begin The begin Transaction options.
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
      * }
-     * @param Transaction $transaction Transaction to be used for this operation.
      * @return Result
      */
     public function read(
@@ -428,8 +417,7 @@ class Operation
         $table,
         KeySet $keySet,
         array $columns,
-        array $options = [],
-        TransactionalReadInterface $transaction = null
+        array $options = []
     ) {
         $options += [
             'index' => null,
@@ -440,13 +428,12 @@ class Operation
 
         $context = $this->pluck('transactionContext', $options);
 
-        $call = function ($resumeToken = null) use (
+        $call = function ($resumeToken = null, $transaction = null) use (
             $table,
             $session,
             $columns,
             $keySet,
-            $options,
-            $transaction
+            $options
         ) {
             if ($transaction && !is_null($transaction->id())) {
                 $options['transaction'] = ['id' => $transaction->id()];
@@ -464,15 +451,7 @@ class Operation
             ] + $options);
         };
 
-        return new Result(
-            $this,
-            $session,
-            $call,
-            $context,
-            $this->mapper,
-            self::DEFAULT_RETRIES,
-            $transaction
-        );
+        return new Result($this, $session, $call, $context, $this->mapper);
     }
 
     /**
