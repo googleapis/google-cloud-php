@@ -60,6 +60,7 @@ use Google\Cloud\Sql\V1\SqlInstancesRotateServerCaRequest;
 use Google\Cloud\Sql\V1\SqlInstancesStartExternalSyncRequest;
 use Google\Cloud\Sql\V1\SqlInstancesStartReplicaRequest;
 use Google\Cloud\Sql\V1\SqlInstancesStopReplicaRequest;
+use Google\Cloud\Sql\V1\SqlInstancesSwitchoverRequest;
 use Google\Cloud\Sql\V1\SqlInstancesTruncateLogRequest;
 use Google\Cloud\Sql\V1\SqlInstancesUpdateRequest;
 use Google\Cloud\Sql\V1\SqlInstancesVerifyExternalSyncSettingsRequest;
@@ -599,6 +600,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $pscServiceAttachmentLink = 'pscServiceAttachmentLink309057421';
         $dnsName = 'dnsName411992033';
         $primaryDnsName = 'primaryDnsName-1306966658';
+        $writeEndpoint = 'writeEndpoint-1575656971';
         $expectedResponse = new DatabaseInstance();
         $expectedResponse->setKind($kind);
         $expectedResponse->setEtag($etag);
@@ -618,6 +620,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $expectedResponse->setPscServiceAttachmentLink($pscServiceAttachmentLink);
         $expectedResponse->setDnsName($dnsName);
         $expectedResponse->setPrimaryDnsName($primaryDnsName);
+        $expectedResponse->setWriteEndpoint($writeEndpoint);
         $transport->addResponse($expectedResponse);
         $request = new SqlInstancesGetRequest();
         $response = $gapicClient->get($request);
@@ -1903,6 +1906,74 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $request = new SqlInstancesStopReplicaRequest();
         try {
             $gapicClient->stopReplica($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function switchoverTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $kind = 'kind3292052';
+        $targetLink = 'targetLink-2084812312';
+        $user = 'user3599307';
+        $name = 'name3373707';
+        $targetId = 'targetId-815576439';
+        $selfLink = 'selfLink-1691268851';
+        $targetProject = 'targetProject392184427';
+        $expectedResponse = new Operation();
+        $expectedResponse->setKind($kind);
+        $expectedResponse->setTargetLink($targetLink);
+        $expectedResponse->setUser($user);
+        $expectedResponse->setName($name);
+        $expectedResponse->setTargetId($targetId);
+        $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setTargetProject($targetProject);
+        $transport->addResponse($expectedResponse);
+        $request = new SqlInstancesSwitchoverRequest();
+        $response = $gapicClient->switchover($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.sql.v1.SqlInstancesService/Switchover', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function switchoverExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        $request = new SqlInstancesSwitchoverRequest();
+        try {
+            $gapicClient->switchover($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

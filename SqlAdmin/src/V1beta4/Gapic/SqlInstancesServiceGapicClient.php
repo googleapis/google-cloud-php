@@ -79,12 +79,14 @@ use Google\Cloud\Sql\V1beta4\SqlInstancesRotateServerCaRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesStartExternalSyncRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesStartReplicaRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesStopReplicaRequest;
+use Google\Cloud\Sql\V1beta4\SqlInstancesSwitchoverRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesTruncateLogRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesUpdateRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesVerifyExternalSyncSettingsRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesVerifyExternalSyncSettingsResponse;
 use Google\Cloud\Sql\V1beta4\SslCert;
 use Google\Cloud\Sql\V1beta4\SslCertsCreateEphemeralRequest;
+use Google\Protobuf\Duration;
 
 /**
  * Service Description:
@@ -1283,6 +1285,10 @@ class SqlInstancesServiceGapicClient
      *           Cloud SQL read replica instance name.
      *     @type string $project
      *           ID of the project that contains the read replica.
+     *     @type bool $failover
+     *           Set to true if the promote operation should attempt to re-add the original
+     *           primary as a replica when it comes back online. Otherwise, if this value is
+     *           false or not set, the original primary will be a standalone instance.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1307,6 +1313,10 @@ class SqlInstancesServiceGapicClient
         if (isset($optionalArgs['project'])) {
             $request->setProject($optionalArgs['project']);
             $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['failover'])) {
+            $request->setFailover($optionalArgs['failover']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1968,6 +1978,74 @@ class SqlInstancesServiceGapicClient
             : $requestParams->getHeader();
         return $this->startCall(
             'StopReplica',
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Switches over from the primary instance to a replica instance.
+     *
+     * Sample code:
+     * ```
+     * $sqlInstancesServiceClient = new SqlInstancesServiceClient();
+     * try {
+     *     $response = $sqlInstancesServiceClient->switchover();
+     * } finally {
+     *     $sqlInstancesServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $instance
+     *           Cloud SQL read replica instance name.
+     *     @type string $project
+     *           ID of the project that contains the replica.
+     *     @type Duration $dbTimeout
+     *           Optional. (MySQL only) Cloud SQL instance operations timeout, which is a
+     *           sum of all database operations. Default value is 10 minutes and can be
+     *           modified to a maximum value of 24 hours.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Sql\V1beta4\Operation
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function switchover(array $optionalArgs = [])
+    {
+        $request = new SqlInstancesSwitchoverRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['instance'])) {
+            $request->setInstance($optionalArgs['instance']);
+            $requestParamHeaders['instance'] = $optionalArgs['instance'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['dbTimeout'])) {
+            $request->setDbTimeout($optionalArgs['dbTimeout']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'Switchover',
             Operation::class,
             $optionalArgs,
             $request
