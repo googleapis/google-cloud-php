@@ -233,7 +233,7 @@ class Result implements \IteratorAggregate
                     return false;
                 });
                 if ($shouldRetry && $ex->getCode() === Grpc\STATUS_UNAVAILABLE) {
-                    // Attempt to resume using our last stored resume token and the transaction.
+                    // Attempt to resume using the last stored resume token and the transaction.
                     // If we successfully resume, flush the buffer.
                     $this->generator = $backoff->execute($call, [$this->resumeToken, $this->transaction()]);
                     $bufferedResults = [];

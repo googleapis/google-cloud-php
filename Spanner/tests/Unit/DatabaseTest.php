@@ -1441,6 +1441,7 @@ class DatabaseTest extends TestCase
 
     public function testDBDatabaseRole()
     {
+        $sql = 'SELECT * FROM Table';
         $this->connection->createSession(Argument::withEntry(
             'session',
             ['labels' => [], 'creator_role' => 'Reader']
@@ -1449,8 +1450,9 @@ class DatabaseTest extends TestCase
         ->willReturn([
                 'name' => $this->session->name()
             ]);
+        $this->connection->executeStreamingSql(Argument::withEntry('sql', $sql))
+            ->shouldBeCalled()->willReturn($this->resultGenerator());
 
-        $sql = 'SELECT * FROM Table';
         $this->databaseWithDatabaseRole->execute($sql);
     }
 }

@@ -97,7 +97,7 @@ class SnapshotTest extends TestCase
         $this->expectException(\BadMethodCallException::class);
 
         $operation = $this->prophesize(Operation::class);
-        $result = $this->propehsize(Result::class);
+        $result = $this->prophesize(Result::class);
         $operation->execute(Argument::any(), Argument::any(), Argument::any())
             ->shouldBeCalled()
             ->willReturn($result);
