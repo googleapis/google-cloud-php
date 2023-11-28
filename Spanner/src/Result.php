@@ -107,7 +107,7 @@ class Result implements \IteratorAggregate
     private $stats;
 
     /**
-     * @var TransactionalReadInterface|null
+     * @var Transaction|null
      */
     private $transaction;
 
@@ -367,7 +367,7 @@ class Result implements \IteratorAggregate
      * $transaction = $result->transaction();
      * ```
      *
-     * @return TransactionalReadInterface|null
+     * @return Transaction|null
      */
     public function transaction()
     {
