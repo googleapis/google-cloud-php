@@ -1575,6 +1575,35 @@ class DatabaseTest extends TestCase
         }, ['tag' => self::TRANSACTION_TAG]);
     }
 
+    public function testRunTransactionWithUpdateBatchError()
+    {
+        $sql = $this->readArgs('sql');
+        list($keySet, $cols) = $this->readArgs();
+
+        $this->stubCommit();
+        $this->stubStreamingRead(['id' => self::TRANSACTION]);
+        $this->stubExecuteStreamingSql(['id' => self::TRANSACTION]);
+        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->connection->executeBatchDml(Argument::allOf(
+            Argument::withEntry('requestOptions', [
+                'transactionTag' => self::TRANSACTION_TAG
+            ]),
+            Argument::withEntry('transaction', self::BEGIN_RW_OPTIONS),
+        ))->shouldBeCalled()->willReturn([
+            'status' => ['code' => Code::INVALID_ARGUMENT],
+            'resultSets' => [['metadata' => ['transaction' => ['id' => self::TRANSACTION]]]]
+        ]);
+
+        $this->database->runTransaction(function (Transaction $t) use ($keySet, $cols, $sql) {
+            $result = $t->executeUpdateBatch([['sql' => $sql], ['sql' => $sql]]);
+            $this->assertEquals($result->error()['status']['code'], Code::INVALID_ARGUMENT);
+            $t->execute($sql)->rows()->current();
+            $t->read(self::TEST_TABLE_NAME, $keySet, $cols)->rows()->current();
+            $timeStamp = $t->commit();
+            $this->assertEquals($timeStamp->formatAsString(), self::TIMESTAMP);
+        }, ['tag' => self::TRANSACTION_TAG]);
+    }
+
     public function testRunTransactionWithFirstFailedStatement()
     {
         $sql = $this->readArgs('sql');
@@ -1746,7 +1775,7 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionWithUnavailableAndAbortErrorRetry()
     {
-        $sql = $this->readArgs('sql');
+        [$keySet, $cols] = $this->readArgs();
         $numOfRetries = 2;
         $unavailable = new ServiceException('Unavailable', 14);
         $abort = new AbortedException('foo', 409, null, [
@@ -1761,12 +1790,13 @@ class DatabaseTest extends TestCase
         $it = 0;
         // First call with ILB results in unavailable error.
         // Second call also made with ILB, gets aborted.
-        $this->connection->executeStreamingSql(Argument::allOf(
-            Argument::withEntry('sql', $sql),
+        $this->connection->streamingRead(Argument::allOf(
             Argument::withEntry('transaction', self::BEGIN_RW_OPTIONS),
             Argument::withEntry('requestOptions', [
                 'transactionTag' => self::TRANSACTION_TAG
-            ])
+            ]),
+            Argument::withEntry('table', self::TEST_TABLE_NAME),
+            Argument::withEntry('columns', $cols)
         ))
             ->shouldBeCalledTimes($numOfRetries)
             ->will(function () use (&$it, $unavailable, $numOfRetries, $abort) {
@@ -1778,13 +1808,58 @@ class DatabaseTest extends TestCase
                 }
             });
         // Should retry with beginTransaction RPC.
-        $this->stubExecuteStreamingSql(['id' => self::TRANSACTION]);
-        $this->stubCommit(false);
+        $this->stubStreamingRead(['id' => self::TRANSACTION]);
+        $this->connection->beginTransaction(Argument::any())
+            ->willReturn(['id' => self::TRANSACTION])
+            ->shouldBeCalled();
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry(
+                'database',
+                DatabaseAdminClient::databaseName(
+                    self::PROJECT,
+                    self::INSTANCE,
+                    self::DATABASE
+                )
+            ),
+            Argument::withEntry('requestOptions', [
+                'transactionTag' => self::TRANSACTION_TAG,
+            ]),
+            Argument::withEntry('transactionId', self::TRANSACTION),
+            Argument::withEntry('mutations', [['insert' => [
+                'table' => self::TEST_TABLE_NAME,
+                'columns' => ['ID', 'title', 'content'],
+                'values' => ['10', 'My New Post', 'Hello World']
+            ]]])
+        ))
+            ->shouldBeCalledTimes(1)
+            ->willReturn(['commitTimestamp' => self::TIMESTAMP]);
         $this->refreshOperation($this->database, $this->connection->reveal());
 
-        $this->database->runTransaction(function ($t) use ($sql) {
-            $t->execute($sql);
+        $this->database->runTransaction(function ($t) use ($keySet, $cols) {
+            $t->insert(self::TEST_TABLE_NAME, [
+                'ID' => 10,
+                'title' => 'My New Post',
+                'content' => 'Hello World'
+            ]);
+            $t->read(self::TEST_TABLE_NAME, $keySet, $cols);
             $t->commit();
+        }, ['tag' => self::TRANSACTION_TAG]);
+    }
+
+    public function testRunTransactionWithRollback()
+    {
+        $sql = $this->readArgs('sql');
+
+        $this->stubExecuteStreamingSql();
+        $this->connection->rollback(Argument::allOf(
+            Argument::withEntry('transactionId', self::TRANSACTION)
+        ))->shouldBeCalled()->willReturn(null);
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $this->database->runTransaction(function (Transaction $t) use ($sql) {
+            $t->execute($sql);
+            $t->rollback();
         }, ['tag' => self::TRANSACTION_TAG]);
     }
 
