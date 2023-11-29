@@ -431,7 +431,9 @@ class Rest implements ConnectionInterface
         }
 
         $args['metadata']['name'] = $args['name'];
-        $args['metadata']['retention'] = $args['retention'] ?? [];
+        if (isset($args['retention'])) {
+            $args['metadata']['retention'] = $args['retention'];
+        }
         unset($args['name']);
         unset($args['retention']);
         $args['contentType'] = $args['metadata']['contentType']
