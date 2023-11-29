@@ -51,7 +51,7 @@ class EntityMapper
 
     /**
      * The connection type of the client. Required while mapping
-     * `INF`, `-INF` and `NAN` to datastore values.
+     * `INF`, `-INF` and `NAN` to datastore equivalent values.
      *
      * @var string
      */
@@ -204,6 +204,9 @@ class EntityMapper
                 break;
 
             case 'doubleValue':
+                // Flow will enter this logic only when REST transport is used
+                // because gRPC response values are always parsed correctly. Therefore
+                // the default $connectionType is set to 'grpc'
                 if (is_string($value)) {
                     switch ($value) {
                         case 'Infinity':
@@ -358,7 +361,7 @@ class EntityMapper
             case 'double':
                 // The mappings happen automatically for grpc hence
                 // this is required only incase of rest as grpc
-                // doesn't recognises `'Infinity'`, `'-Infinity'` and `'NaN'`.
+                // doesn't recognises 'Infinity', '-Infinity' and 'NaN'.
                 if ($this->connectionType == 'rest') {
                     if ($value == INF) {
                         $value = 'Infinity';

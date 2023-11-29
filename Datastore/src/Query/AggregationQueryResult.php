@@ -80,7 +80,7 @@ class AggregationQueryResult
      * @param array $result Response of
      *        [RunAggregationQuery](https://cloud.google.com/datastore/docs/reference/data/rest/v1/projects/runAggregationQuery)
      * @param EntityMapper $mapper [Optional] Entity mapper to map datastore values
-     * to simple values incase of `null`, `NAN`, `INF` and `-INF`
+     *        to their equivalent php values incase of `null`, `NAN`, `INF` and `-INF`
      */
     public function __construct($result = [], $mapper = null)
     {
@@ -102,7 +102,14 @@ class AggregationQueryResult
             $this->readTime = $result['batch']['readTime'];
         }
 
-        $this->mapper = $mapper ?? new EntityMapper('foo', true, false);
+        // Though this library always passes a entity mapper object, we need to
+        // instantiate an entity mapper incase a user creates an instance of
+        // AggregationQueryResult themselves withing supplying the `$entityMapper` argument.
+        // Here, entity mapper is used to parse response + - 'Infinity' to + - `INF`,
+        // 'NaN' to `NAN` and ['nullValue' => 0] to ['nullValue' => null]. Therefore the
+        // usage is independent `$projectId`, '$encode`, `$returnInt64AsObject` and
+        // `$connectionType` arguments.
+        $this->mapper = $mapper ?? new EntityMapper('', true, false);
     }
 
     /**

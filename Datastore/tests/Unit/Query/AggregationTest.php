@@ -28,7 +28,7 @@ class AggregationTest extends TestCase
     /**
      * @dataProvider aggregationTypes
      */
-    public function testCountType($type)
+    public function testAggregationType($type)
     {
         $expectedQuery = [
             $type => ($type == 'count' ? [] : ['property' => ['name' => 'foo']]),

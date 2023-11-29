@@ -150,7 +150,9 @@ class AggregationQueryTest extends DatastoreMultipleDbTestCase
             sprintf(
                 "AGGREGATE %s(%s) as result OVER"
                 . " (SELECT * FROM %s)",
-                $type, ($property ?? '*'), self::$kind
+                $type,
+                ($property ?? '*'),
+                self::$kind
             )
         );
         $aggregationQuery = $client->aggregationQuery()

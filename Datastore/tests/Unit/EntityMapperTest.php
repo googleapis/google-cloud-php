@@ -960,7 +960,7 @@ class EntityMapperTest extends TestCase
         if (is_string($expected)) {
             $this->assertEquals($expected, $result);
         } elseif (is_nan($expected)) {
-            $this->assertNan($expected);
+            $this->assertNan($result);
         } else {
             $this->assertEquals($expected, $result);
         }

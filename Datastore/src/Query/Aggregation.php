@@ -18,7 +18,7 @@
 namespace Google\Cloud\Datastore\Query;
 
 /**
- * Represents Count Aggregation properties.
+ * Represents Aggregation properties.
  *
  * Example:
  * ```
@@ -28,6 +28,8 @@ namespace Google\Cloud\Datastore\Query;
  *
  * echo json_encode($count->getProps());
  * ```
+ *
+ * Aggregations considers non existing property name as an empty query set
  */
 class Aggregation
 {
@@ -106,7 +108,7 @@ class Aggregation
      *
      * Example:
      * ```
-     * $sum = Aggregate::avg('property_to_aggregate_upon');
+     * $avg = Aggregate::avg('property_to_aggregate_upon');
      * ```
      * Result of AVG aggregation can be a float or a null.
      * Average of empty valid data set return `null`.
