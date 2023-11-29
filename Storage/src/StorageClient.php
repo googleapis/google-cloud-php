@@ -271,6 +271,10 @@ class StorageClient
      *           `"projectPrivate"`, and `"publicRead"`.
      *     @type string $predefinedDefaultObjectAcl Apply a predefined set of
      *           default object access controls to this bucket.
+     *     @type bool $enableObjectRetention Whether object retention should
+     *          be enabled on this bucket. For more information, refer to the
+     *          [Object Retention Lock](https://cloud.google.com/storage/docs/object-lock)
+     *          documentation.
      *     @type string $projection Determines which properties to return. May
      *           be either `"full"` or `"noAcl"`. **Defaults to** `"noAcl"`,
      *           unless the bucket resource specifies acl or defaultObjectAcl

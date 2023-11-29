@@ -84,6 +84,36 @@ class ManageObjectsTest extends StorageTestCase
         }
     }
 
+    public function testObjectRetentionLock()
+    {
+        // Test bucket created with object retention enabled
+        $bucket = self::createBucket(self::$client, uniqid('object_retention-'), [
+            'enableObjectRetention' => true
+        ]);
+        $this->assertEquals($bucket->info()['objectRetention']['mode'], 'Enabled');
+
+        // Test create object with object retention enabled
+        $objectName = "object-retention-lock";
+        $expires = (new \DateTime)->add(
+            \DateInterval::createFromDateString('+2 hours')
+        );
+        $object = $bucket->upload(self::DATA, [
+            'name' => $objectName,
+            'retention' => [
+                'mode' => 'Unlocked',
+                'retainUntilTime' => $expires->format(\DateTime::RFC3339)
+            ]
+        ]);
+        $this->assertEquals($object->info()['retention']['mode'], 'Unlocked');
+
+        // Test patch object to disable object retention
+        $object->update([
+            'retention' => [],
+            'overrideUnlockedRetention' => true
+        ]);
+        $this->assertNotContains('retention', $object->info());
+    }
+
     public function testObjectExists()
     {
         $object = self::$bucket->upload(self::DATA, ['name' => uniqid(self::TESTING_PREFIX)]);
