@@ -26,6 +26,7 @@ use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 use Google\Rpc\Code;
+use InvalidArgumentException;
 
 /**
  * Common interface for running operations against Cloud Spanner. This class is
@@ -184,12 +185,12 @@ class Operation
      * @param string $transactionId The transaction to roll back.
      * @param array $options [optional] Configuration Options.
      * @return void
-     * @throws \InvalidArgumentException If the transaction is not yet initialized.
+     * @throws InvalidArgumentException If the transaction is not yet initialized.
      */
     public function rollback(Session $session, $transactionId, array $options = [])
     {
         if (is_null($transactionId)) {
-            throw new \InvalidArgumentException('Rollback failed: Transaction not initiated.');
+            throw new InvalidArgumentException('Rollback failed: Transaction not initiated.');
         }
         $this->connection->rollback([
             'transactionId' => $transactionId,
@@ -273,7 +274,7 @@ class Operation
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
      * }
      * @return int
-     * @throws \InvalidArgumentException If the SQL string isn't an update operation.
+     * @throws InvalidArgumentException If the SQL string isn't an update operation.
      */
     public function executeUpdate(
         Session $session,
@@ -281,8 +282,8 @@ class Operation
         $sql,
         array $options = []
     ) {
-        if (!is_null($transaction->id())) {
-            $options += ['transactionId' => $transaction->id()];
+        if (!isset($options['transaction']['begin'])) {
+            $options = ['transactionId' => $transaction->id()] + $options;
         }
         $res = $this->execute($session, $sql, $options);
         if (is_null($transaction->id()) && $res->transaction()) {
@@ -294,7 +295,7 @@ class Operation
 
         $stats = $res->stats();
         if (!$stats) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Partitioned DML response missing stats, possible due to non-DML statement as input.'
             );
         }
@@ -342,7 +343,7 @@ class Operation
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
      * }
      * @return BatchDmlResult
-     * @throws \InvalidArgumentException If any statement is missing the `sql` key.
+     * @throws InvalidArgumentException If any statement is missing the `sql` key.
      */
     public function executeUpdateBatch(
         Session $session,
@@ -353,7 +354,7 @@ class Operation
         $stmts = [];
         foreach ($statements as $statement) {
             if (!isset($statement['sql'])) {
-                throw new \InvalidArgumentException('Each statement must contain a SQL key.');
+                throw new InvalidArgumentException('Each statement must contain a SQL key.');
             }
 
             $parameters = $this->pluck('parameters', $statement, false) ?: [];
@@ -363,8 +364,8 @@ class Operation
             ] + $this->mapper->formatParamsForExecuteSql($parameters, $types);
         }
 
-        if (!is_null($transaction->id())) {
-            $options += ['transactionId' => $transaction->id()];
+        if (!isset($options['transaction']['begin'])) {
+            $options = ['transactionId' => $transaction->id()] + $options;
         }
 
         $res = $this->connection->executeBatchDml([
@@ -502,7 +503,11 @@ class Operation
         return $this->createTransaction(
             $session,
             $res,
-            ['tag' => $transactionTag, 'isRetry' => $options['isRetry'], 'options' => $options]
+            [
+                'tag' => $transactionTag,
+                'isRetry' => $options['isRetry'],
+                'transactionOptions' => $options
+            ]
         );
     }
 
@@ -523,7 +528,7 @@ class Operation
         ];
         $options += [
             'tag' => null,
-            'options' => null
+            'transactionOptions' => null
         ];
 
         $options['isRetry'] = $options['isRetry'] ?? false;
@@ -534,7 +539,7 @@ class Operation
             $res['id'],
             $options['isRetry'],
             $options['tag'],
-            $options['options']
+            $options['transactionOptions']
         );
     }
 

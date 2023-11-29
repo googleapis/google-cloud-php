@@ -610,9 +610,14 @@ class Transaction implements TransactionalReadInterface
             throw new \BadMethodCallException('The transaction cannot be committed because it is not active');
         }
 
+        // For commit, A transaction ID is mandatory for non-single-use transactions,
+        // and the `begin` option is not supported.
         if (is_null($this->transactionId) && isset($this->options['begin'])) {
+            // Since the begin option is not supported in commit, unset it.
             unset($this->options['begin']);
+            // Execute the beginTransaction RPC if the transaction is not single-use.
             $transaction = $this->operation->transaction($this->session, $this->options);
+            // If a transaction is returned, set it as the ID of the current transaction.
             if (!is_null($transaction->id())) {
                 $this->setId($transaction->id());
             }
