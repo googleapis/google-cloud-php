@@ -517,12 +517,12 @@ class Result implements \IteratorAggregate
     /**
      * Create the ResultSet generator and use it to set the transaction.
      *
-     * @return bool Whether or not creating the generator was successful.
+     * @return bool Whether or not the created generator is valid.
      */
     private function createGenerator()
     {
         if (!is_null($this->generator)) {
-            return true;
+            return $this->generator->valid();
         }
         $call = $this->call;
         $generator = null;
