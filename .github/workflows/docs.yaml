@@ -21,7 +21,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@verbose
       with:
-        php-version: "8.1"
+        php-version: "8.2"
     - name: Extract phpDocumentor
       id: extract
       uses: shrink/actions-docker-extract@v2
