@@ -955,7 +955,7 @@ class EntityMapperTest extends TestCase
         ];
     }
 
-    private function compareResult($result, $expected)
+    private function compareResult($expected, $result)
     {
         if (is_string($expected)) {
             $this->assertEquals($expected, $result);

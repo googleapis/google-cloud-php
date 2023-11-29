@@ -102,13 +102,12 @@ class AggregationQueryResult
             $this->readTime = $result['batch']['readTime'];
         }
 
-        // Though this library always passes a entity mapper object, we need to
-        // instantiate an entity mapper incase a user creates an instance of
-        // AggregationQueryResult themselves withing supplying the `$entityMapper` argument.
-        // Here, entity mapper is used to parse response + - 'Infinity' to + - `INF`,
+        // Though the client always passes an entity mapper object, we need to
+        // re-instantiate an entity mapper incase a user creates an instance of
+        // AggregationQueryResult manually without supplying the `$entityMapper`.
+        // Here, entity mapper is used to parse response +/- 'Infinity' to +/- `INF`,
         // 'NaN' to `NAN` and ['nullValue' => 0] to ['nullValue' => null]. Therefore the
-        // usage is independent `$projectId`, '$encode`, `$returnInt64AsObject` and
-        // `$connectionType` arguments.
+        // usage is independent of `$projectId` or other arguments.
         $this->mapper = $mapper ?? new EntityMapper('', true, false);
     }
 
