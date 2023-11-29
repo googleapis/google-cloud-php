@@ -1773,6 +1773,36 @@ class DatabaseTest extends TestCase
         }, ['tag' => self::TRANSACTION_TAG]);
     }
 
+    public function testRunTransactionWithFirstUnavailableErrorRetry()
+    {
+        $sql = $this->readArgs('sql');
+        $unavailable = new ServiceException('Unavailable', 14);
+
+        // First call with ILB results in a transaction.
+        // Then the stream fails, Second call needs to use the
+        // transaction created by the first call.
+        $this->connection->executeStreamingSql(Argument::allOf(
+            Argument::withEntry('sql', $sql),
+            Argument::withEntry('transaction', self::BEGIN_RW_OPTIONS),
+            Argument::withEntry('requestOptions', [
+                'transactionTag' => self::TRANSACTION_TAG
+            ])
+        ))
+            ->shouldBeCalledTimes(1)
+            ->willreturn($this->resultGeneratorWithError());
+        $this->stubExecuteStreamingSql(['id' => self::TRANSACTION]);
+        $this->stubCommit();
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $this->database->runTransaction(function ($t) use ($sql) {
+            $result = $t->execute($sql);
+            foreach ($result as $res) {
+                continue;
+            }
+            $t->commit();
+        }, ['tag' => self::TRANSACTION_TAG]);
+    }
+
     public function testRunTransactionWithUnavailableAndAbortErrorRetry()
     {
         [$keySet, $cols] = $this->readArgs();
@@ -1877,6 +1907,29 @@ class DatabaseTest extends TestCase
                 'SELECT * FROM foo WHERE id = 1'
             ];
         }
+    }
+
+    private function resultGeneratorWithError()
+    {
+        $fields = [
+            'name' => 'ID',
+            'value' => ['code' => Database::TYPE_INT64]
+        ];
+        $values = [10];
+        $result = [
+            'metadata' => [
+                'rowType' => [
+                    'fields' => $fields
+                ]
+            ],
+            'values' => $values
+        ];
+        $result['metadata']['transaction'] = [
+            'id' => self::TRANSACTION
+        ];
+
+        yield $result;
+        throw new ServiceException('Unavailable', 14);
     }
 
     private function stubCommit($withTransaction = true)
