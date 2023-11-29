@@ -367,9 +367,14 @@ class PgQueryTest extends SpannerPgTestCase
                 'p1' => self::$timestampVal
             ]
         ]);
-
         $this->assertCount(2, iterator_to_array($res));
 
+        $res = self::$database->execute("SELECT * FROM " . self::TABLE_NAME . " WHERE dt BETWEEN $1 AND $2", [
+            'parameters' => [
+                'p1' => new Date(new \DateTime('2020-01-01')),
+                'p2' => new Date(new \DateTime('2021-01-01'))
+            ]
+        ]);
         $row = $res->rows()->current();
         $this->assertInstanceOf(Timestamp::class, $row['created_at']);
         $this->assertEquals(self::$timestampVal->get()->format('r'), $row['created_at']->get()->format('r'));
@@ -412,9 +417,14 @@ class PgQueryTest extends SpannerPgTestCase
                 'p2' => new Date(new \DateTime('2021-01-01'))
             ]
         ]);
-
         $this->assertCount(2, iterator_to_array($res));
 
+        $res = self::$database->execute("SELECT * FROM " . self::TABLE_NAME . " WHERE dt BETWEEN $1 AND $2", [
+            'parameters' => [
+                'p1' => new Date(new \DateTime('2020-01-01')),
+                'p2' => new Date(new \DateTime('2021-01-01'))
+            ]
+        ]);
         $row = $res->rows()->current();
         $this->assertInstanceOf(Date::class, $row['dt']);
         $this->assertEquals('2020-01-01', $row['dt']->get()->format('Y-m-d'));

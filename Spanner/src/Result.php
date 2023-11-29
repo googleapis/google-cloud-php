@@ -185,9 +185,9 @@ class Result implements \IteratorAggregate
         $shouldRetry = false;
         $isResultsYielded = false;
 
-        $valid = $this->createGenerator();
+        $generated = $this->createGenerator();
 
-        while ($valid) {
+        while ($generated && $this->generator->valid()) {
             try {
                 $result = $this->generator->current();
                 $bufferedResults[] = $result;
