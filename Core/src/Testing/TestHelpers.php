@@ -24,6 +24,7 @@ use Google\Cloud\Core\Testing\Snippet\Coverage\Coverage;
 use Google\Cloud\Core\Testing\Snippet\Coverage\Scanner;
 use Google\Cloud\Core\Testing\Snippet\Parser\Parser;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
+use PHPUnit\Framework\Assert;
 
 /**
  * Class TestHelpers is used to hold static functions required for testing
@@ -254,6 +255,26 @@ class TestHelpers
         }, null, $className);
 
         return $c($class);
+    }
+
+    /**
+     * Compare actual and expected results when the requirement for comparision
+     * is `===` including outlier cases like:
+     *  - Comparing NAN
+     *  - Comparing floating point values with some delta
+     */
+    public static function compareResult($expected, $actual)
+    {
+        if (is_float($expected)) {
+            if (is_nan($expected)) {
+                Assert::assertNan($actual);
+            } else {
+                Assert::assertEqualsWithDelta($expected, $actual, 0.01);
+            }
+        } else {
+            // Used because assertEquals(null, '') doesn't fails
+            Assert::assertSame($expected, $actual);
+        }
     }
 
     /**

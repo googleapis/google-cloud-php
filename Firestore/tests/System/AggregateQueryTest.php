@@ -19,6 +19,7 @@ namespace Google\Cloud\Firestore\Tests\System;
 
 use Exception;
 use Google\Cloud\Core\Exception\BadRequestException;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Aggregate;
 use Google\Cloud\Firestore\Filter;
@@ -111,7 +112,7 @@ class AggregateQueryTest extends FirestoreTestCase
 
         $querySnapshot = $query->getSnapshot();
         foreach ($expectedResults as $key => $value) {
-            $this->compareResult($value, $querySnapshot->get($key));
+            TestHelpers::compareResult($value, $querySnapshot->get($key));
         }
     }
 
@@ -144,7 +145,7 @@ class AggregateQueryTest extends FirestoreTestCase
 
         $actual = $arg ? $query->$type($arg) : $query->$type();
 
-        $this->compareResult($expected, $actual);
+        TestHelpers::compareResult($expected, $actual);
         $this->assertQueryWithMultipleAggregations($query, $type, $arg, $expected);
     }
 
@@ -174,7 +175,7 @@ class AggregateQueryTest extends FirestoreTestCase
 
         foreach ($expectedResults as $key => $expectedResult) {
             $actualResult = $snapshot->get($key);
-            $this->compareResult($expected, $actualResult);
+            TestHelpers::compareResult($expected, $actualResult);
         }
 
         $this->assertEquals(0, strlen($snapshot->getTransaction()));
@@ -288,7 +289,7 @@ class AggregateQueryTest extends FirestoreTestCase
             // For testing where: equality for random value
             ['count', null, '=', $randomVal, 1, [['value' => $randomVal]]],
             ['sum', 'value', '=', $randomInt, $randomInt, [['value' => $randomInt]]],
-            ['avg', 'value', '=', $randomInt, $randomInt, [['value' => $randomInt]]],
+            ['avg', 'value', '=', $randomInt, (float)$randomInt, [['value' => $randomInt]]],
 
             // For testing where: equality for null
             ['count', null, '=', null, 1, [['value' => null]]],
@@ -341,7 +342,7 @@ class AggregateQueryTest extends FirestoreTestCase
         return [
             ['count', null, [4, 3, 3, 4], $docsToAdd],
             ['sum', 'value', [10, 9, 6, 10], $docsToAdd],
-            ['avg', 'value', [2.5, 3, 2, 2.5], $docsToAdd]
+            ['avg', 'value', [2.5, 3.0, 2.0, 2.5], $docsToAdd]
         ];
     }
 
