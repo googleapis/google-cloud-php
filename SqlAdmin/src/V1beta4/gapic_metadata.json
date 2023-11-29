@@ -112,6 +112,11 @@
                                 "delete"
                             ]
                         },
+                        "Demote": {
+                            "methods": [
+                                "demote"
+                            ]
+                        },
                         "DemoteMaster": {
                             "methods": [
                                 "demoteMaster"
