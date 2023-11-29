@@ -226,13 +226,13 @@ class Result implements \IteratorAggregate
                 $this->generator->next();
                 $valid = $this->generator->valid();
             } catch (ServiceException $ex) {
-                $backoff = new ExponentialBackoff($this->retries, function ($ex) {
-                    if ($ex instanceof ServiceException) {
-                        return $ex->getCode() === Grpc\STATUS_UNAVAILABLE;
-                    }
-                    return false;
-                });
                 if ($shouldRetry && $ex->getCode() === Grpc\STATUS_UNAVAILABLE) {
+                    $backoff = new ExponentialBackoff($this->retries, function ($ex) {
+                        if ($ex instanceof ServiceException) {
+                            return $ex->getCode() === Grpc\STATUS_UNAVAILABLE;
+                        }
+                        return false;
+                    });
                     // Attempt to resume using the last stored resume token and the transaction.
                     // If we successfully resume, flush the buffer.
                     $this->generator = $backoff->execute($call, [$this->resumeToken, $this->transaction()]);

@@ -283,7 +283,7 @@ class Operation
         array $options = []
     ) {
         if (!isset($options['transaction']['begin'])) {
-            $options = ['transactionId' => $transaction->id()] + $options;
+            $options['transactionId'] = $transaction->id();
         }
         $res = $this->execute($session, $sql, $options);
         if (is_null($transaction->id()) && $res->transaction()) {
@@ -365,7 +365,7 @@ class Operation
         }
 
         if (!isset($options['transaction']['begin'])) {
-            $options = ['transactionId' => $transaction->id()] + $options;
+            $options['transactionId'] = $transaction->id();
         }
 
         $res = $this->connection->executeBatchDml([
