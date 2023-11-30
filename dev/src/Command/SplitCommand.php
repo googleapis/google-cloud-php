@@ -116,6 +116,12 @@ class SplitCommand extends Command
                 '',
                 InputOption::VALUE_NONE,
                 'Update the release notes if the release already exists.'
+            )
+            ->addOption(
+                'dry-run',
+                '',
+                InputOption::VALUE_NONE,
+                'split the repositories but do not push the changes.'
             );
     }
 
@@ -135,17 +141,20 @@ class SplitCommand extends Command
         $token = $this->githubToken($input->getOption('token'));
 
         $shell = new RunShell();
+        if ($dryRun = $input->getOption('dry-run')) {
+            $output->writeln('<comment>[info] Dry run enabled.</comment>');
+        }
+
         $guzzle = $this->guzzleClient();
-        $github = $this->githubClient($output, $shell, $guzzle, $token);
+        $github = $this->githubClient($output, $shell, $guzzle, $token, $dryRun);
         $split = $this->splitWrapper($output, $shell);
         $packagist = null;
         if ($packagistUsername = $input->getOption('packagist-username')) {
             if (!$packagistToken = $input->getOption('packagist-token')) {
                 throw new \InvalidArgumentException('A packagist token must be provided if a username is provided.');
             }
-            $packagist = new Packagist($guzzle, $packagistUsername, $packagistToken, $output);
+            $packagist = new Packagist($guzzle, $packagistUsername, $packagistToken, $output, $dryRun);
         }
-
 
         @mkdir($execDir);
         $splitBinaryPath = $this->splitshInstall($output, $shell, $execDir, $input->getOption('splitsh'));
@@ -432,13 +441,14 @@ class SplitCommand extends Command
      * @param RunShell $shell A wrapper for executing shell commands.
      * @param Client $guzzle A guzzle client for executing HTTP requests.
      * @param string $token A Github auth token.
+     * @param bool $dryRun Whether or not to execute "push" and "post" commands.
      * @return GitHub
      */
-    protected function githubClient(OutputInterface $output, RunShell $shell, Client $guzzle, $token)
+    protected function githubClient(OutputInterface $output, RunShell $shell, Client $guzzle, $token, bool $dryRun)
     {
         $output->writeln('<comment>[info]</comment> Instantiating GitHub API Wrapper.');
 
-        return new GitHub($shell, $guzzle, $token, $output);
+        return new GitHub($shell, $guzzle, $token, $output, $dryRun);
     }
 
     /**

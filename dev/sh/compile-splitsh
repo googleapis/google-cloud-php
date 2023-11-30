@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo 'we should not get here';
+exit 1;
+
 set -x
 
 mkdir $1

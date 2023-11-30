@@ -47,7 +47,8 @@ class GitHub
         private RunShell $shell,
         private Client $client,
         public string $token,
-        private ?OutputInterface $output = null
+        private ?OutputInterface $output = null,
+        private bool $dryRun = false,
     ) {
         $this->shell = $shell;
         $this->client = $client;
@@ -120,6 +121,10 @@ class GitHub
      */
     public function createRelease($target, $tagName, $display, $notes)
     {
+        if ($this->dryRun) {
+            return true;
+        }
+
         $requestBody = [
             'tag_name' => $tagName,
             'name' => $display,
@@ -169,6 +174,10 @@ class GitHub
             $tagId = $release['id'];
         } else {
             throw new \LogicException('Tag ID not found!');
+        }
+
+        if ($this->dryRun) {
+            return true;
         }
 
         try {
@@ -318,6 +327,10 @@ class GitHub
         string $repoName,
         string $permission
     ): bool {
+        if ($this->dryRun) {
+            return true;
+        }
+
         try {
             $res = $this->client->put(sprintf(
                 self::GITHUB_TEAMS_ADD_ENDPOINT,
@@ -343,6 +356,10 @@ class GitHub
         string $webhookUrl,
         string $secret
     ) {
+        if ($this->dryRun) {
+            return true;
+        }
+
         try {
             $res = $this->client->post(sprintf(
                 self::GITHUB_WEBHOOK_CREATE_ENDPOINT,

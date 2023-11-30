@@ -36,7 +36,8 @@ class Packagist
         private Client $client,
         private string $username,
         private string $apiToken,
-        private ?OutputInterface $output = null
+        private ?OutputInterface $output = null,
+        private bool $dryRun = false,
     ) {
     }
 
@@ -48,6 +49,10 @@ class Packagist
      */
     public function submitPackage(string $url): bool
     {
+        if ($this->dryRun) {
+            return true;
+        }
+
         $requestBody = [
             'repository' => ['url' => $url],
         ];
