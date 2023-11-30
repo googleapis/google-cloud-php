@@ -109,9 +109,11 @@ jobs:
           php-version: '8.1'
           ini-values: memory_limit=2048M
       - name: install libgit2
-        run: sudo apt-get install -y libgit2-dev=1.5
+        run: sudo apt-get install -y libgit2=1.5
       - name: compile splitsh
-        run: go build -o splitsh-lite github.com/splitsh/lite
+        run: |
+          go get github.com/splitsh/lite
+          go build -o splitsh-lite github.com/splitsh/lite
       - name: Install Dependencies
         uses: nick-fields/retry@v2
         with:
