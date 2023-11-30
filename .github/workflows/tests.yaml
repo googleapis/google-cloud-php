@@ -112,6 +112,8 @@ jobs:
         run: sudo apt-get install -y libgit2-dev=1.5*
       - name: compile splitsh
         run: |
+          sed -i -e 's/v34/v31/g' go.mod $GOPATH/*.go
+          go mod tidy
           go get github.com/splitsh/lite
           go build -o splitsh-lite github.com/splitsh/lite
       - name: Install Dependencies
