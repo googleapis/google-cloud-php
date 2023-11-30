@@ -17,13 +17,20 @@ jobs:
     #     with:
     #       php-version: '8.1'
     #       ini-values: memory_limit=2048M
-      - name: install libgit2
-        run: |
-          sudo apt-get update -y
-          sudo apt-get install -y libgit2-dev
+    #   - name: install libgit2
+    #     run: |
+    #       sudo apt-get update -y
+    #       sudo apt-get install -y libgit2-dev
       - name: compile splitsh
         run: |
           set -x
+          git clone https://github.com/libgit2/libgit2
+          cd libgit2
+          git checkout v1.5.1
+          mkdir build && cd build
+          cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local
+          cmake --build . --target install
+          cd ../..
           go get github.com/splitsh/lite
           go build -o splitsh-lite github.com/splitsh/lite
         # env:
