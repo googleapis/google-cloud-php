@@ -23,6 +23,10 @@ jobs:
           go env -w GO111MODULE=off
           go get github.com/splitsh/lite
           go build -o /usr/local/bin/splitsh-lite github.com/splitsh/lite
+        env:
+          LDFLAGS: "-L/usr/local/lib"
+          CPPFLAGS: "-I/usr/local/include/git2"
+          PKG_CONFIG_PATH: "/usr/local/lib/pkgconfig"
       - name: Checkout
         uses: actions/checkout@v4
         with:
