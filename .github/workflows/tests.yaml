@@ -115,7 +115,7 @@ jobs:
           set -x
           go env -w GO111MODULE=off
           echo $GOPATH
-          sed -i -e 's/v34/v31/g' go.mod splitter/*.go
+          sed -i -e 's/v34/v31/g' go.mod $GOPATH/*.go
           go get github.com/splitsh/lite
           go mod tidy
           go build -o splitsh-lite github.com/splitsh/lite
