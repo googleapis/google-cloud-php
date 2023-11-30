@@ -15,8 +15,7 @@ jobs:
           path: libgit2
       - name: install libgit2
         run: |
-          cd libgit2
-          mkdir build && cd build
+          mkdir libgit2/build && cd libgit2/build
           cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local
           sudo cmake --build . --target install
       - name: compile splitsh
@@ -41,9 +40,9 @@ jobs:
           max_attempts: 3
           command: composer update -d dev
       - name: Run Subtree Split and Release
-        # run with "--dry-run" and previous (0.266.0) release to test
+        # run with "--dry-run" and previous (0.226.0) release to test
         run: |
-          ./dev/google-cloud split $GITHUB_REPOSITORY v0.266.0 \
+          ./dev/google-cloud split $GITHUB_REPOSITORY v0.226.0 \
             -t ${{ secrets.SPLIT_TOKEN }} \
             --splitsh=./splitsh-lite \
             --dry-run
