@@ -7,20 +7,20 @@ jobs:
     name: Test Compile Splitsh
     runs-on: ubuntu-latest
     steps:
-    #   - name: Checkout
-    #     uses: actions/checkout@v4
-    #     with:
-    #       persist-credentials: false
-    #       fetch-depth: 0
-    #   - name: Setup PHP
-    #     uses: shivammathur/setup-php@v2
-    #     with:
-    #       php-version: '8.1'
-    #       ini-values: memory_limit=2048M
-    #   - name: install libgit2
-    #     run: |
-    #       sudo apt-get update -y
-    #       sudo apt-get install -y libgit2-dev
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          ini-values: memory_limit=2048M
+      - name: install libgit2
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y libgit2-dev
       - name: compile splitsh
         run: |
           set -x
@@ -36,16 +36,16 @@ jobs:
           go build -o splitsh-lite github.com/splitsh/lite
         # env:
         #   GOPATH: /home/runner/go
-    #   - name: Install Dependencies
-    #     uses: nick-fields/retry@v2
-    #     with:
-    #       timeout_minutes: 10
-    #       max_attempts: 3
-    #       command: composer update -d dev
-    #   - name: Run Subtree Split and Release
-    #     # run with "--dry-run" and previous (0.266.0) release to test
-    #     run: |
-    #       ./dev/google-cloud split $GITHUB_REPOSITORY 0.266.0 \
-    #         -t ${{ secrets.SPLIT_TOKEN }} \
-    #         --splitsh=./splitsh-lite \
-    #         --dry-run
+      - name: Install Dependencies
+        uses: nick-fields/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: composer update -d dev
+      - name: Run Subtree Split and Release
+        # run with "--dry-run" and previous (0.266.0) release to test
+        run: |
+          ./dev/google-cloud split $GITHUB_REPOSITORY 0.266.0 \
+            -t ${{ secrets.SPLIT_TOKEN }} \
+            --splitsh=./splitsh-lite \
+            --dry-run
