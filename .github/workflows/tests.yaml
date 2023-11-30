@@ -109,7 +109,7 @@ jobs:
           php-version: '8.1'
           ini-values: memory_limit=2048M
       - name: install libgit2
-        run: sudo apt-get install -y libgit2-dev=1.5*
+        run: sudo apt-get install -y libgit2-dev
       - name: compile splitsh
         run: |
           sed -i -e 's/v34/v31/g' go.mod $GOPATH/*.go
