@@ -419,12 +419,15 @@ class AggregationQueryTest extends DatastoreMultipleDbTestCase
 
     private function compareResult($expected, $actual)
     {
-        if (!is_null($expected) && is_nan($expected)) {
-            $this->assertNan($actual);
-        } elseif (is_double($expected)) {
-            $this->assertEqualsWithDelta($expected, $actual, 0.01);
+        if (is_float($expected)) {
+            if (is_nan($expected)) {
+                $this->assertNan($actual);
+            } else {
+                $this->assertEqualsWithDelta($expected, $actual, 0.01);
+            }
         } else {
-            $this->assertEquals($expected, $actual);
+            // Used because assertEquals(null, '') doesn't fails
+            $this->assertSame($expected, $actual);
         }
     }
 }

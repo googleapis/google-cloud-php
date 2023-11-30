@@ -810,12 +810,15 @@ class DatastoreClientTest extends TestCase
 
     private function compareResult($expected, $actual)
     {
-        if (is_null($expected)) {
-            $this->assertNull($actual);
-        } elseif (is_float($expected) && is_nan($expected)) {
-            $this->assertNan($actual);
+        if (is_float($expected)) {
+            if (is_nan($expected)) {
+                $this->assertNan($actual);
+            } else {
+                $this->assertEqualsWithDelta($expected, $actual, 0.01);
+            }
         } else {
-            $this->assertEquals($expected, $actual);
+            // Used because assertEquals(null, '') doesn't fails
+            $this->assertSame($expected, $actual);
         }
     }
 }

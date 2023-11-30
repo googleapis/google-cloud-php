@@ -130,12 +130,17 @@ class LookupTest extends DatastoreMultipleDbTestCase
         }
     }
 
-    private function compareResult($result, $expected)
+    private function compareResult($expected, $actual)
     {
-        if (is_nan($expected)) {
-            $this->assertNan($result);
+        if (is_float($expected)) {
+            if (is_nan($expected)) {
+                $this->assertNan($actual);
+            } else {
+                $this->assertEqualsWithDelta($expected, $actual, 0.01);
+            }
         } else {
-            $this->assertEquals($expected, $result);
+            // Used because assertEquals(null, '') doesn't fails
+            $this->assertSame($expected, $actual);
         }
     }
 }
