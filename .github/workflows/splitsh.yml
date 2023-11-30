@@ -31,6 +31,7 @@ jobs:
           cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local
           sudo cmake --build . --target install
           cd ../..
+          go env -w GO111MODULE=off
           go get github.com/splitsh/lite
           go build -o splitsh-lite github.com/splitsh/lite
         # env:
