@@ -27,7 +27,6 @@ use Google\Protobuf\Internal\Message;
 use Google\Rpc\BadRequest;
 use Google\Rpc\Code;
 use Google\Rpc\RetryInfo;
-use LogicException;
 
 /**
  * The GapicRequestWrapper is responsible for delivering REST/gRPC requests.
@@ -39,12 +38,6 @@ class GapicRequestWrapper
      * @var Serializer A serializer used to encode responses.
      */
     private $serializer;
-
-    /**
-     * @var array gRPC specific configuration options passed off to the ApiCore
-     * library.
-     */
-    private $requestOptions;
 
     /**
      * @var array Map of error metadata types to RPC wrappers.
@@ -61,8 +54,6 @@ class GapicRequestWrapper
      *     the other available options.
      *
      *     @type Serializer $serializer A serializer used to encode responses.
-     *     @type array $requestOptions Configuration options passed
-     *           off to the ApiCore library.
      * }
      */
     public function __construct(array $config = [])
@@ -70,12 +61,7 @@ class GapicRequestWrapper
         // @TODO: Do we need this?
         $this->setCommonDefaults($config);
 
-        // convert retry params to general params here
-        // @TODO: Do we need this?
-        $config = $this->convertConfigParams($config);
-
         $this->serializer = $config['serializer'] ?? new Serializer;
-        $this->requestOptions = $config['requestOptions'] ?? [];
     }
 
     /**
@@ -83,19 +69,11 @@ class GapicRequestWrapper
      *
      * @param callable $request The request to execute.
      * @param array $args The arguments for the request.
-     * @param array $options [optional] {
-     *     Request options.
-     * }
      * @return array
      * @throws Exception\ServiceException
      */
-    public function send(callable $request, array $args, array $options = [])
+    public function send(callable $request, array $args)
     {
-        $requestOptions = $options['requestOptions'] ?? $this->requestOptions;
-
-        $optionalArgs = &$args[count($args) - 1];
-        $optionalArgs += $requestOptions;
-
         try {
             $response = call_user_func_array($request, $args);
             return $this->handleResponse($response);
@@ -214,35 +192,5 @@ class GapicRequestWrapper
         }
 
         return new $exception($ex->getMessage(), $ex->getCode(), $ex, $metadata);
-    }
-
-    /**
-     * Helper function that transforms some $config params to another.
-     * 
-     * @param array $config Input config params to be transformed.
-     * @return array
-     */
-    private function convertConfigParams(array $config)
-    {
-        // We can either convert restOptions to requestOptions
-        // or grpcOptions to requestOptions, if both are supplied,
-        // then it's ambiguous so we throw an exception.
-        if(isset($config['restOptions']) && isset($config['grpcOptions'])) {
-            throw new LogicException("Can't set both restOptions and grpcOptions in the same request.");
-        }
-
-        $conversionMap = [
-            'restOptions' => 'requestOptions',
-            'grpcOptions' => 'requestOptions',
-        ];
-
-        foreach($conversionMap as $key => $replace) {
-            if(isset($config[$key])) {
-                $config[$replace] = $config[$key];
-                unset($config[$key]);
-            }
-        }
-
-        return $config;
     }
 }

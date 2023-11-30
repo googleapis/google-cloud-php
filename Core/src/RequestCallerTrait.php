@@ -22,7 +22,6 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\WhitelistTrait;
-use Google\Protobuf\NullValue;
 
 /**
  * Provides shared functionality for making requests to GAPIC clients
@@ -71,12 +70,8 @@ trait RequestCallerTrait
      */
     public function send(callable $request, array $args, $whitelisted = false)
     {
-        $requestOptions = $this->pluckArray([
-            'requestOptions'
-        ], $args[count($args) - 1]);
-
         try {
-            return $this->requestWrapper->send($request, $args, $requestOptions);
+            return $this->requestWrapper->send($request, $args);
         } catch (NotFoundException $e) {
             if ($whitelisted) {
                 throw $this->modifyWhitelistedError($e);
