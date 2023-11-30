@@ -265,45 +265,44 @@ class TransactionTest extends SpannerTestCase
         }
     }
 
+    // @TODO: Need to work on this once the directedRead is available
+    // Need multi-region instance with asia1 (Tokyo/Osaka/Seoul) config to work properly.
     /**
      * @dataProvider getDirectedReadOptions
      */
     public function testTransactionExecuteWithDirectedRead($directedReadOptions)
     {
+        $this->markTestSkipped('Enable this after the directedRead is available');
         $db = self::$database;
+        $id = $this->randId();
+
+        $db->insert(self::$tableName, [
+            'id' => $id,
+            'number' => 0
+        ]);
+
         $snapshot = $db->snapshot();
-        $expected = 'Directed reads can only be performed in a read-only transaction.';
-        $exception = null;
+        $rows = iterator_to_array($snapshot->execute(
+            'SELECT * FROM ' . self::$tableName . ' WHERE id = ' . $id,
+            $directedReadOptions
+        ));
+        $this->assertCount(1, $rows);
 
-        try {
-            $row = $db->execute(
-                'SELECT * FROM ' . self::$tableName,
-                ['transactionId' => $snapshot->id()] + $directedReadOptions
-            )->rows()->current();
-        } catch (ServiceException $e) {
-            $exception = $e;
-        }
-        $this->assertNull($exception);
-        $exception = null;
-
-        try {
-            $row = $snapshot->execute(
-                'SELECT * FROM ' . self::$tableName,
-                $directedReadOptions
-            )->rows()->current();
-        } catch (ServiceException $e) {
-            $exception = $e;
-        }
-        $this->assertNull($exception);
+        $rows = iterator_to_array($db->execute(
+            'SELECT * FROM ' . self::$tableName . ' WHERE id = ' . $id,
+            ['transactionId' => $snapshot->id()] + $directedReadOptions
+        ));
+        $this->assertCount(1, $rows);
     }
 
     // @TODO: Need to work on this once the directedRead is available
+    // Need multi-region instance with asia1 (Tokyo/Osaka/Seoul) config to work properly.
     /**
      * @dataProvider getDirectedReadOptions
      */
     public function testRWTransactionExecuteFailsWithDirectedRead($directedReadOptions)
     {
-        $this->markTestSkipped('fixme');
+        $this->markTestSkipped('Enable this after the directedRead is available');
         $db = self::$database;
         $transaction = $db->transaction();
         $expected = 'Directed reads can only be performed in a read-only transaction.';
@@ -332,12 +331,13 @@ class TransactionTest extends SpannerTestCase
     }
 
     // @TODO: Need to work on this once the directedRead is available
+    // Need multi-region instance with asia1 (Tokyo/Osaka/Seoul) config to work properly.
     /**
      * @dataProvider getDirectedReadOptions
      */
     public function testRWTransactionReadFailsWithDirectedRead($directedReadOptions)
     {
-        $this->markTestSkipped('fixme');
+        $this->markTestSkipped('Enable this after the directedRead is available');
         $db = self::$database;
         $transaction = $db->transaction();
         $expected = 'Directed reads can only be performed in a read-only transaction.';
@@ -379,7 +379,7 @@ class TransactionTest extends SpannerTestCase
                     'includeReplicas' => [
                         'replicaSelections' => [
                             [
-                                'location' => 'us-central1',
+                                'location' => 'asia-northeast1',
                                 'type' => ReplicaType::READ_WRITE
                             ]
                         ],
@@ -392,7 +392,7 @@ class TransactionTest extends SpannerTestCase
                     'excludeReplicas' => [
                         'replicaSelections' => [
                             [
-                                'location' => 'us-central1',
+                                'location' => 'asia-northeast1',
                                 'type' => ReplicaType::READ_WRITE
                             ]
                         ],
