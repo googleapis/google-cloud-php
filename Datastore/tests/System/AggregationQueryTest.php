@@ -299,9 +299,10 @@ class AggregationQueryTest extends DatastoreMultipleDbTestCase
         $clients = $this->defaultDbClientProvider();
         $cases = [];
         foreach ($clients as $name => $client) {
-            $cases[] = [$client[0], 'count', null, count(self::$data)];
-            $cases[] = [$client[0], 'sum', 'score', 10];
-            $cases[] = [$client[0], 'avg', 'score', 2.5];
+            $client = $client[0];
+            $cases[] = [$client, 'count', null, count(self::$data)];
+            $cases[] = [$client, 'sum', 'score', 10];
+            $cases[] = [$client, 'avg', 'score', 2.5];
         }
         return $cases;
     }
@@ -327,9 +328,10 @@ class AggregationQueryTest extends DatastoreMultipleDbTestCase
         $clients = $this->defaultDbClientProvider();
         $cases = [];
         foreach ($clients as $name => $client) {
-            $cases[] = [$client[0], 'count', null, 2];
-            $cases[] = [$client[0], 'sum', 'score', 3];
-            $cases[] = [$client[0], 'avg', 'score', 1.5];
+            $client = $client[0];
+            $cases[] = [$client, 'count', null, 2];
+            $cases[] = [$client, 'sum', 'score', 3];
+            $cases[] = [$client, 'avg', 'score', 1.5];
         }
         return $cases;
     }
@@ -365,14 +367,15 @@ class AggregationQueryTest extends DatastoreMultipleDbTestCase
             // Datastore considers each value of array type as single
             // element (on contrary, firestore considers array type as
             // non numeric data type and ignores for sum / avg)
-            'array' => [16, 4],
+            'array' => [16, 4.0],
         ];
         $cases = [];
         foreach ($clients as $name => $client) {
+            $client = $client[0];
             foreach ($caseNamesWithExpectedValues as $name => $expected) {
-                // These corner cases are not applicable for COUNT hence omitted.
-                $cases[] = [$client[0], 'sum', $name . 'Score', $expected[0]];
-                $cases[] = [$client[0], 'avg', $name . 'Score', $expected[1]];
+            // These corner cases are not applicable for COUNT hence omitted.
+                $cases[] = [$client, 'sum', $name . 'Score', $expected[0]];
+                $cases[] = [$client, 'avg', $name . 'Score', $expected[1]];
             }
         }
         return $cases;
