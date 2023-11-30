@@ -2,8 +2,7 @@ name: Test Suite
 on:
   push:
     branches: [ main ]
-  # comment out for now so we don't needlessly run these tests
-  # pull_request:
+  pull_request:
   workflow_dispatch:
 
 permissions:

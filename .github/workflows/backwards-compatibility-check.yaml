@@ -1,12 +1,8 @@
 name: Backwards Compatibility Check
 on:
-  push:
-    branches:
-      - main
-  # comment out for now so we don't needlessly run these tests
-  # pull_request:
-  #   types: [opened, synchronize, reopened, edited]
-  #   branches: ['main']
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+    branches: ['main']
 jobs:
   # More info at https://github.com/Roave/BackwardCompatibilityCheck.
   backwards-compatibility-check:
