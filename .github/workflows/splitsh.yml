@@ -25,9 +25,7 @@ jobs:
         run: |
           set -x
           go env -w GO111MODULE=off
-          go mod init
-          go mod tidy
-          go get github.com/libgit2/git2go/v34
+          go get github.com/libgit2/git2go
           sed -i -e 's/v34/v31/g' go.mod $GOPATH/*.go
           go get github.com/splitsh/lite
           go mod tidy
