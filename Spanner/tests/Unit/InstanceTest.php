@@ -600,7 +600,7 @@ class InstanceTest extends TestCase
         $database->execute($sql);
     }
 
-    public function testInstanceExecuteWithDirectedReadOptions()
+    public function testInstanceExecuteWithDirectedRead()
     {
         $database = $this->instance->database(
             $this::DATABASE
@@ -624,9 +624,10 @@ class InstanceTest extends TestCase
         $res = $database->execute($sql);
         $this->assertInstanceOf(Result::class, $res);
         $rows = iterator_to_array($res->rows());
+        $this->assertCount(1, $rows);
     }
 
-    public function testInstanceReadWithDirectedReadOptions()
+    public function testInstanceReadWithDirectedRead()
     {
         $table = 'foo';
         $keys = [10, 'bar'];
@@ -656,6 +657,7 @@ class InstanceTest extends TestCase
         );
         $this->assertInstanceOf(Result::class, $res);
         $rows = iterator_to_array($res->rows());
+        $this->assertCount(1, $rows);
     }
 
     // ************** //

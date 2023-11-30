@@ -66,11 +66,14 @@ trait TransactionConfigurationTrait
     /**
      * Configure the DirectedReadOptions.
      *
+     * Request level DirectedReadOptions takes precedence over client level DirectedReadOptions.
+     * Client level DirectedReadOptions apply only to read-only and single-use transactions.
+     *
      * @param array $requestOptions Request level options.
      * @param array $clientOptions Client level Directed Read Options.
      * @return array
      */
-    public function configureDirectedReadOptions(array $requestOptions, array $clientOptions)
+    private function configureDirectedReadOptions(array $requestOptions, array $clientOptions)
     {
         if (isset($requestOptions['directedReadOptions'])) {
             return $requestOptions['directedReadOptions'];

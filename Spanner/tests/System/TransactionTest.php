@@ -265,11 +265,43 @@ class TransactionTest extends SpannerTestCase
         }
     }
 
+    /**
+     * @dataProvider getDirectedReadOptions
+     */
+    public function testTransactionExecuteWithDirectedRead($directedReadOptions)
+    {
+        $db = self::$database;
+        $snapshot = $db->snapshot();
+        $expected = 'Directed reads can only be performed in a read-only transaction.';
+        $exception = null;
+
+        try {
+            $row = $db->execute(
+                'SELECT * FROM ' . self::$tableName,
+                ['transactionId' => $snapshot->id()] + $directedReadOptions
+            )->rows()->current();
+        } catch (ServiceException $e) {
+            $exception = $e;
+        }
+        $this->assertNull($exception);
+        $exception = null;
+
+        try {
+            $row = $snapshot->execute(
+                'SELECT * FROM ' . self::$tableName,
+                $directedReadOptions
+            )->rows()->current();
+        } catch (ServiceException $e) {
+            $exception = $e;
+        }
+        $this->assertNull($exception);
+    }
+
     // @TODO: Need to work on this once the directedRead is available
     /**
      * @dataProvider getDirectedReadOptions
      */
-    public function testRWTransactionExecuteWithDirectedReadOptions($directedReadOptions)
+    public function testRWTransactionExecuteFailsWithDirectedRead($directedReadOptions)
     {
         $this->markTestSkipped('fixme');
         $db = self::$database;
@@ -303,7 +335,7 @@ class TransactionTest extends SpannerTestCase
     /**
      * @dataProvider getDirectedReadOptions
      */
-    public function testRWTransactionReadWithDirectedReadOptions($directedReadOptions)
+    public function testRWTransactionReadFailsWithDirectedRead($directedReadOptions)
     {
         $this->markTestSkipped('fixme');
         $db = self::$database;

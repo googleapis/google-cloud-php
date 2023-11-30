@@ -77,7 +77,6 @@ use Google\ApiCore\ValidationException;
  * use Google\Cloud\Spanner\SpannerClient;
  * use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type as ReplicaType;
  *
- * $spanner = new SpanneClient();
  * $directedOptions = [
  *     'directedReadOptions' => [
  *         'includeReplicas' => [
@@ -91,6 +90,7 @@ use Google\ApiCore\ValidationException;
  *         ]
  *     ]
  * ];
+ * $spanner = new SpannerClient($directedOptions);
  * ```
  *
  * @method resumeOperation() {

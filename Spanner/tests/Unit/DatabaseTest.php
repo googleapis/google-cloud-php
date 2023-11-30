@@ -1476,7 +1476,7 @@ class DatabaseTest extends TestCase
         $this->databaseWithDatabaseRole->execute($sql);
     }
 
-    public function testExecuteWithDirectedReadOptions()
+    public function testExecuteWithDirectedRead()
     {
         $this->connection->executeStreamingSql(Argument::withEntry(
             'directedReadOptions',
@@ -1489,6 +1489,7 @@ class DatabaseTest extends TestCase
         $res = $this->database->execute($sql);
         $this->assertInstanceOf(Result::class, $res);
         $rows = iterator_to_array($res->rows());
+        $this->assertCount(1, $rows);
     }
 
     public function testPrioritizeExecuteDirectedReadOptions()
@@ -1507,9 +1508,10 @@ class DatabaseTest extends TestCase
         );
         $this->assertInstanceOf(Result::class, $res);
         $rows = iterator_to_array($res->rows());
+        $this->assertCount(1, $rows);
     }
 
-    public function testReadWithDirectedReadOptions()
+    public function testReadWithDirectedRead()
     {
         $table = 'foo';
         $keys = [10, 'bar'];
@@ -1528,6 +1530,7 @@ class DatabaseTest extends TestCase
         );
         $this->assertInstanceOf(Result::class, $res);
         $rows = iterator_to_array($res->rows());
+        $this->assertCount(1, $rows);
     }
 
     public function testPrioritizeReadDirectedReadOptions()
@@ -1550,5 +1553,6 @@ class DatabaseTest extends TestCase
         );
         $this->assertInstanceOf(Result::class, $res);
         $rows = iterator_to_array($res->rows());
+        $this->assertCount(1, $rows);
     }
 }

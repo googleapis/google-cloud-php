@@ -458,7 +458,7 @@ class SpannerClientTest extends TestCase
         $this->client->connect($instance->reveal(), self::DATABASE, ['databaseRole' => 'Reader']);
     }
 
-    public function testSpannerClientWithDirectedReadOptions()
+    public function testSpannerClientWithDirectedRead()
     {
         $instance = $this->client->instance('testInstance');
         $this->assertEquals(
