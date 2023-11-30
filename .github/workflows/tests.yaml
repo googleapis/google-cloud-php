@@ -112,10 +112,11 @@ jobs:
         run: sudo apt-get install -y libgit2-dev
       - name: compile splitsh
         run: |
+          set -x
           go env -w GO111MODULE=off
-          go get github.com/splitsh/lite
           echo $GOPATH
-          sed -i -e 's/v34/v31/g' go.mod $GOPATH/*.go
+          sed -i -e 's/v34/v31/g' go.mod splitter/*.go
+          go get github.com/splitsh/lite
           go mod tidy
           go build -o splitsh-lite github.com/splitsh/lite
         env:
