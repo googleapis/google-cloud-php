@@ -95,7 +95,7 @@ jobs:
       run: dev/vendor/bin/phpunit -c dev/phpunit.xml.dist
 
   compile_splitsh_test:
-    name: Compile SplitSH
+    name: Test Compile Splitsh
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -103,7 +103,5 @@ jobs:
       uses: shivammathur/setup-php@verbose
       with:
         php-version: "8.1"
-    - name: "Install dependencies"
-      run: composer  --no-interaction --no-ansi --no-progress update -d dev
-    - name: Run Dev Unit Test Suite
-      run: dev/vendor/bin/phpunit -c dev/phpunit.xml.dist
+    - name: Compile Splitsh
+      run: dev/sh/compile-splitsh $(pwd)/.split
