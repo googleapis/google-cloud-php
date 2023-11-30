@@ -61,6 +61,18 @@ return [
                     ],
                 ],
             ],
+            'SubmitAnswerFeedback' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/{session=projects/*/locations/*/agents/*/sessions/*}:submitAnswerFeedback',
+                'body' => '*',
+                'placeholders' => [
+                    'session' => [
+                        'getters' => [
+                            'getSession',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.location.Locations' => [
             'GetLocation' => [

@@ -34,6 +34,7 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Dialogflow\Cx\V3\AnswerFeedback;
 use Google\Cloud\Dialogflow\Cx\V3\DetectIntentRequest;
 use Google\Cloud\Dialogflow\Cx\V3\DetectIntentResponse;
 use Google\Cloud\Dialogflow\Cx\V3\FulfillIntentRequest;
@@ -46,10 +47,12 @@ use Google\Cloud\Dialogflow\Cx\V3\QueryInput;
 use Google\Cloud\Dialogflow\Cx\V3\QueryParameters;
 use Google\Cloud\Dialogflow\Cx\V3\StreamingDetectIntentRequest;
 use Google\Cloud\Dialogflow\Cx\V3\StreamingDetectIntentResponse;
+use Google\Cloud\Dialogflow\Cx\V3\SubmitAnswerFeedbackRequest;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\Protobuf\FieldMask;
 
 /**
  * Service Description: A session represents an interaction with a user. You retrieve user input
@@ -100,6 +103,8 @@ class SessionsGapicClient
 
     private static $agentNameTemplate;
 
+    private static $dataStoreNameTemplate;
+
     private static $entityTypeNameTemplate;
 
     private static $intentNameTemplate;
@@ -113,6 +118,10 @@ class SessionsGapicClient
     private static $projectLocationAgentSessionNameTemplate;
 
     private static $projectLocationAgentSessionEntityTypeNameTemplate;
+
+    private static $projectLocationCollectionDataStoreNameTemplate;
+
+    private static $projectLocationDataStoreNameTemplate;
 
     private static $sessionNameTemplate;
 
@@ -148,6 +157,15 @@ class SessionsGapicClient
         }
 
         return self::$agentNameTemplate;
+    }
+
+    private static function getDataStoreNameTemplate()
+    {
+        if (self::$dataStoreNameTemplate == null) {
+            self::$dataStoreNameTemplate = new PathTemplate('projects/{project}/locations/{location}/dataStores/{data_store}');
+        }
+
+        return self::$dataStoreNameTemplate;
     }
 
     private static function getEntityTypeNameTemplate()
@@ -213,6 +231,24 @@ class SessionsGapicClient
         return self::$projectLocationAgentSessionEntityTypeNameTemplate;
     }
 
+    private static function getProjectLocationCollectionDataStoreNameTemplate()
+    {
+        if (self::$projectLocationCollectionDataStoreNameTemplate == null) {
+            self::$projectLocationCollectionDataStoreNameTemplate = new PathTemplate('projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}');
+        }
+
+        return self::$projectLocationCollectionDataStoreNameTemplate;
+    }
+
+    private static function getProjectLocationDataStoreNameTemplate()
+    {
+        if (self::$projectLocationDataStoreNameTemplate == null) {
+            self::$projectLocationDataStoreNameTemplate = new PathTemplate('projects/{project}/locations/{location}/dataStores/{data_store}');
+        }
+
+        return self::$projectLocationDataStoreNameTemplate;
+    }
+
     private static function getSessionNameTemplate()
     {
         if (self::$sessionNameTemplate == null) {
@@ -245,6 +281,7 @@ class SessionsGapicClient
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'agent' => self::getAgentNameTemplate(),
+                'dataStore' => self::getDataStoreNameTemplate(),
                 'entityType' => self::getEntityTypeNameTemplate(),
                 'intent' => self::getIntentNameTemplate(),
                 'page' => self::getPageNameTemplate(),
@@ -252,6 +289,8 @@ class SessionsGapicClient
                 'projectLocationAgentEnvironmentSessionEntityType' => self::getProjectLocationAgentEnvironmentSessionEntityTypeNameTemplate(),
                 'projectLocationAgentSession' => self::getProjectLocationAgentSessionNameTemplate(),
                 'projectLocationAgentSessionEntityType' => self::getProjectLocationAgentSessionEntityTypeNameTemplate(),
+                'projectLocationCollectionDataStore' => self::getProjectLocationCollectionDataStoreNameTemplate(),
+                'projectLocationDataStore' => self::getProjectLocationDataStoreNameTemplate(),
                 'session' => self::getSessionNameTemplate(),
                 'sessionEntityType' => self::getSessionEntityTypeNameTemplate(),
                 'version' => self::getVersionNameTemplate(),
@@ -277,6 +316,25 @@ class SessionsGapicClient
             'project' => $project,
             'location' => $location,
             'agent' => $agent,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a data_store
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     *
+     * @return string The formatted data_store resource.
+     */
+    public static function dataStoreName($project, $location, $dataStore)
+    {
+        return self::getDataStoreNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
         ]);
     }
 
@@ -438,6 +496,46 @@ class SessionsGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_data_store resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     *
+     * @return string The formatted project_location_collection_data_store resource.
+     */
+    public static function projectLocationCollectionDataStoreName($project, $location, $collection, $dataStore)
+    {
+        return self::getProjectLocationCollectionDataStoreNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_data_store resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     *
+     * @return string The formatted project_location_data_store resource.
+     */
+    public static function projectLocationDataStoreName($project, $location, $dataStore)
+    {
+        return self::getProjectLocationDataStoreNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a session
      * resource.
      *
@@ -509,6 +607,7 @@ class SessionsGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - agent: projects/{project}/locations/{location}/agents/{agent}
+     * - dataStore: projects/{project}/locations/{location}/dataStores/{data_store}
      * - entityType: projects/{project}/locations/{location}/agents/{agent}/entityTypes/{entity_type}
      * - intent: projects/{project}/locations/{location}/agents/{agent}/intents/{intent}
      * - page: projects/{project}/locations/{location}/agents/{agent}/flows/{flow}/pages/{page}
@@ -516,6 +615,8 @@ class SessionsGapicClient
      * - projectLocationAgentEnvironmentSessionEntityType: projects/{project}/locations/{location}/agents/{agent}/environments/{environment}/sessions/{session}/entityTypes/{entity_type}
      * - projectLocationAgentSession: projects/{project}/locations/{location}/agents/{agent}/sessions/{session}
      * - projectLocationAgentSessionEntityType: projects/{project}/locations/{location}/agents/{agent}/sessions/{session}/entityTypes/{entity_type}
+     * - projectLocationCollectionDataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
+     * - projectLocationDataStore: projects/{project}/locations/{location}/dataStores/{data_store}
      * - session: projects/{project}/locations/{location}/agents/{agent}/sessions/{session}
      * - sessionEntityType: projects/{project}/locations/{location}/agents/{agent}/sessions/{session}/entityTypes/{entity_type}
      * - version: projects/{project}/locations/{location}/agents/{agent}/flows/{flow}/versions/{version}
@@ -882,6 +983,60 @@ class SessionsGapicClient
     public function streamingDetectIntent(array $optionalArgs = [])
     {
         return $this->startCall('StreamingDetectIntent', StreamingDetectIntentResponse::class, $optionalArgs, null, Call::BIDI_STREAMING_CALL);
+    }
+
+    /**
+     * Updates the feedback received from the user for a single turn of the bot
+     * response.
+     *
+     * Sample code:
+     * ```
+     * $sessionsClient = new SessionsClient();
+     * try {
+     *     $formattedSession = $sessionsClient->sessionName('[PROJECT]', '[LOCATION]', '[AGENT]', '[SESSION]');
+     *     $responseId = 'response_id';
+     *     $answerFeedback = new AnswerFeedback();
+     *     $response = $sessionsClient->submitAnswerFeedback($formattedSession, $responseId, $answerFeedback);
+     * } finally {
+     *     $sessionsClient->close();
+     * }
+     * ```
+     *
+     * @param string         $session        Required. The name of the session the feedback was sent to.
+     * @param string         $responseId     Required. ID of the response to update its feedback. This is the same as
+     *                                       DetectIntentResponse.response_id.
+     * @param AnswerFeedback $answerFeedback Required. Feedback provided for a bot answer.
+     * @param array          $optionalArgs   {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           Optional. The mask to control which fields to update. If the mask is not
+     *           present, all fields will be updated.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\AnswerFeedback
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function submitAnswerFeedback($session, $responseId, $answerFeedback, array $optionalArgs = [])
+    {
+        $request = new SubmitAnswerFeedbackRequest();
+        $requestParamHeaders = [];
+        $request->setSession($session);
+        $request->setResponseId($responseId);
+        $request->setAnswerFeedback($answerFeedback);
+        $requestParamHeaders['session'] = $session;
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('SubmitAnswerFeedback', AnswerFeedback::class, $optionalArgs, $request)->wait();
     }
 
     /**

@@ -27,6 +27,7 @@ use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Dialogflow\Cx\V3\AnswerFeedback;
 use Google\Cloud\Dialogflow\Cx\V3\DetectIntentResponse;
 use Google\Cloud\Dialogflow\Cx\V3\FulfillIntentResponse;
 use Google\Cloud\Dialogflow\Cx\V3\MatchIntentResponse;
@@ -353,6 +354,74 @@ class SessionsClientTest extends GeneratedTest
         try {
             iterator_to_array($results);
             // If the close stream method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function submitAnswerFeedbackTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $customRating = 'customRating1123127851';
+        $expectedResponse = new AnswerFeedback();
+        $expectedResponse->setCustomRating($customRating);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[LOCATION]', '[AGENT]', '[SESSION]');
+        $responseId = 'responseId1847552473';
+        $answerFeedback = new AnswerFeedback();
+        $response = $gapicClient->submitAnswerFeedback($formattedSession, $responseId, $answerFeedback);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dialogflow.cx.v3.Sessions/SubmitAnswerFeedback', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSession();
+        $this->assertProtobufEquals($formattedSession, $actualValue);
+        $actualValue = $actualRequestObject->getResponseId();
+        $this->assertProtobufEquals($responseId, $actualValue);
+        $actualValue = $actualRequestObject->getAnswerFeedback();
+        $this->assertProtobufEquals($answerFeedback, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function submitAnswerFeedbackExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[LOCATION]', '[AGENT]', '[SESSION]');
+        $responseId = 'responseId1847552473';
+        $answerFeedback = new AnswerFeedback();
+        try {
+            $gapicClient->submitAnswerFeedback($formattedSession, $responseId, $answerFeedback);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

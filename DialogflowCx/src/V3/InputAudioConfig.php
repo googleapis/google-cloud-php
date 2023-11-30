@@ -55,8 +55,8 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Which Speech model to select for the given request. Select the
      * model best suited to your domain to get best results. If a model is not
-     * explicitly specified, then we auto-select a model based on the parameters
-     * in the InputAudioConfig.
+     * explicitly specified, then Dialogflow auto-selects a model based on other
+     * parameters in the InputAudioConfig and Agent settings.
      * If enhanced speech model is enabled for the agent and an enhanced
      * version of the specified model for the language does not exist, then the
      * speech is recognized using the standard version of the specified model.
@@ -68,7 +68,11 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * performance:
      * - phone_call (best for Agent Assist and telephony)
      * - latest_short (best for Dialogflow non-telephony)
-     * - command_and_search (best for very short utterances and commands)
+     * - command_and_search
+     * Leave this field unspecified to use
+     * [Agent Speech
+     * settings](https://cloud.google.com/dialogflow/cx/docs/concept/agent#settings-speech)
+     * for model selection.
      *
      * Generated from protobuf field <code>string model = 7;</code>
      */
@@ -93,6 +97,12 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool single_utterance = 8;</code>
      */
     protected $single_utterance = false;
+    /**
+     * Configuration of barge-in behavior during the streaming of input audio.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.BargeInConfig barge_in_config = 15;</code>
+     */
+    protected $barge_in_config = null;
 
     /**
      * Constructor.
@@ -124,8 +134,8 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *     @type string $model
      *           Optional. Which Speech model to select for the given request. Select the
      *           model best suited to your domain to get best results. If a model is not
-     *           explicitly specified, then we auto-select a model based on the parameters
-     *           in the InputAudioConfig.
+     *           explicitly specified, then Dialogflow auto-selects a model based on other
+     *           parameters in the InputAudioConfig and Agent settings.
      *           If enhanced speech model is enabled for the agent and an enhanced
      *           version of the specified model for the language does not exist, then the
      *           speech is recognized using the standard version of the specified model.
@@ -137,7 +147,11 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           performance:
      *           - phone_call (best for Agent Assist and telephony)
      *           - latest_short (best for Dialogflow non-telephony)
-     *           - command_and_search (best for very short utterances and commands)
+     *           - command_and_search
+     *           Leave this field unspecified to use
+     *           [Agent Speech
+     *           settings](https://cloud.google.com/dialogflow/cx/docs/concept/agent#settings-speech)
+     *           for model selection.
      *     @type int $model_variant
      *           Optional. Which variant of the [Speech
      *           model][google.cloud.dialogflow.cx.v3.InputAudioConfig.model] to use.
@@ -150,6 +164,8 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           client should close the stream and start a new request with a new stream as
      *           needed.
      *           Note: This setting is relevant only for streaming methods.
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\BargeInConfig $barge_in_config
+     *           Configuration of barge-in behavior during the streaming of input audio.
      * }
      */
     public function __construct($data = NULL) {
@@ -290,8 +306,8 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Which Speech model to select for the given request. Select the
      * model best suited to your domain to get best results. If a model is not
-     * explicitly specified, then we auto-select a model based on the parameters
-     * in the InputAudioConfig.
+     * explicitly specified, then Dialogflow auto-selects a model based on other
+     * parameters in the InputAudioConfig and Agent settings.
      * If enhanced speech model is enabled for the agent and an enhanced
      * version of the specified model for the language does not exist, then the
      * speech is recognized using the standard version of the specified model.
@@ -303,7 +319,11 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * performance:
      * - phone_call (best for Agent Assist and telephony)
      * - latest_short (best for Dialogflow non-telephony)
-     * - command_and_search (best for very short utterances and commands)
+     * - command_and_search
+     * Leave this field unspecified to use
+     * [Agent Speech
+     * settings](https://cloud.google.com/dialogflow/cx/docs/concept/agent#settings-speech)
+     * for model selection.
      *
      * Generated from protobuf field <code>string model = 7;</code>
      * @return string
@@ -316,8 +336,8 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Which Speech model to select for the given request. Select the
      * model best suited to your domain to get best results. If a model is not
-     * explicitly specified, then we auto-select a model based on the parameters
-     * in the InputAudioConfig.
+     * explicitly specified, then Dialogflow auto-selects a model based on other
+     * parameters in the InputAudioConfig and Agent settings.
      * If enhanced speech model is enabled for the agent and an enhanced
      * version of the specified model for the language does not exist, then the
      * speech is recognized using the standard version of the specified model.
@@ -329,7 +349,11 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * performance:
      * - phone_call (best for Agent Assist and telephony)
      * - latest_short (best for Dialogflow non-telephony)
-     * - command_and_search (best for very short utterances and commands)
+     * - command_and_search
+     * Leave this field unspecified to use
+     * [Agent Speech
+     * settings](https://cloud.google.com/dialogflow/cx/docs/concept/agent#settings-speech)
+     * for model selection.
      *
      * Generated from protobuf field <code>string model = 7;</code>
      * @param string $var
@@ -407,6 +431,42 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->single_utterance = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration of barge-in behavior during the streaming of input audio.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.BargeInConfig barge_in_config = 15;</code>
+     * @return \Google\Cloud\Dialogflow\Cx\V3\BargeInConfig|null
+     */
+    public function getBargeInConfig()
+    {
+        return $this->barge_in_config;
+    }
+
+    public function hasBargeInConfig()
+    {
+        return isset($this->barge_in_config);
+    }
+
+    public function clearBargeInConfig()
+    {
+        unset($this->barge_in_config);
+    }
+
+    /**
+     * Configuration of barge-in behavior during the streaming of input audio.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.BargeInConfig barge_in_config = 15;</code>
+     * @param \Google\Cloud\Dialogflow\Cx\V3\BargeInConfig $var
+     * @return $this
+     */
+    public function setBargeInConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\BargeInConfig::class);
+        $this->barge_in_config = $var;
 
         return $this;
     }

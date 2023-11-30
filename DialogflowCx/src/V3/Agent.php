@@ -161,6 +161,12 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.dialogflow.cx.v3.Agent.GenAppBuilderSettings gen_app_builder_settings = 33;</code>
      */
     protected $gen_app_builder_settings = null;
+    /**
+     * Optional. Answer feedback collection settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Agent.AnswerFeedbackSettings answer_feedback_settings = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $answer_feedback_settings = null;
 
     /**
      * Constructor.
@@ -234,6 +240,8 @@ class Agent extends \Google\Protobuf\Internal\Message
      *           output audio content.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Agent\GenAppBuilderSettings $gen_app_builder_settings
      *           Gen App Builder-related agent-level settings.
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Agent\AnswerFeedbackSettings $answer_feedback_settings
+     *           Optional. Answer feedback collection settings.
      * }
      */
     public function __construct($data = NULL) {
@@ -797,6 +805,42 @@ class Agent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\Agent\GenAppBuilderSettings::class);
         $this->gen_app_builder_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Answer feedback collection settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Agent.AnswerFeedbackSettings answer_feedback_settings = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\Cx\V3\Agent\AnswerFeedbackSettings|null
+     */
+    public function getAnswerFeedbackSettings()
+    {
+        return $this->answer_feedback_settings;
+    }
+
+    public function hasAnswerFeedbackSettings()
+    {
+        return isset($this->answer_feedback_settings);
+    }
+
+    public function clearAnswerFeedbackSettings()
+    {
+        unset($this->answer_feedback_settings);
+    }
+
+    /**
+     * Optional. Answer feedback collection settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Agent.AnswerFeedbackSettings answer_feedback_settings = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Agent\AnswerFeedbackSettings $var
+     * @return $this
+     */
+    public function setAnswerFeedbackSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\Agent\AnswerFeedbackSettings::class);
+        $this->answer_feedback_settings = $var;
 
         return $this;
     }
