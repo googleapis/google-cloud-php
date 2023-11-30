@@ -5,7 +5,7 @@ on:
 jobs:
   splitsh_test:
     name: Test Compile Splitsh
-    runs-on: ubuntu-23.04
+    runs-on: ubuntu-latest
     steps:
     #   - name: Checkout
     #     uses: actions/checkout@v4
