@@ -112,11 +112,14 @@ jobs:
         run: sudo apt-get install -y libgit2-dev
       - name: compile splitsh
         run: |
+          go env -w GO111MODULE=off
           go get github.com/splitsh/lite
           echo $GOPATH
           sed -i -e 's/v34/v31/g' go.mod $GOPATH/*.go
           go mod tidy
           go build -o splitsh-lite github.com/splitsh/lite
+        env:
+          GOPATH: /home/runner/go
       - name: Install Dependencies
         uses: nick-fields/retry@v2
         with:
