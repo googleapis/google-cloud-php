@@ -1,13 +1,11 @@
-name: Test Suite
+name: Test Compiling Splitsh
 on:
   push:
-    branches: [ main ]
-  pull_request:
-  workflow_dispatch:
+    branches: [ debug-release-job ]
 jobs:
   splitsh_test:
     name: Test Compile Splitsh
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-23.04
     steps:
     #   - name: Checkout
     #     uses: actions/checkout@v4
@@ -20,15 +18,13 @@ jobs:
     #       php-version: '8.1'
     #       ini-values: memory_limit=2048M
       - name: install libgit2
-        run: sudo apt-get install -y libgit2-dev
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y libgit2-dev
       - name: compile splitsh
         run: |
           set -x
-          go env -w GO111MODULE=off
-          go get github.com/libgit2/git2go
-          sed -i -e 's/v34/v31/g' go.mod $GOPATH/*.go
           go get github.com/splitsh/lite
-          go mod tidy
           go build -o splitsh-lite github.com/splitsh/lite
         # env:
         #   GOPATH: /home/runner/go
