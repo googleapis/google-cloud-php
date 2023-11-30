@@ -17,10 +17,12 @@
 
 namespace Google\Cloud\Core;
 
+use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GetQuotaProjectInterface;
 use Google\Auth\HttpHandler\Guzzle6HttpHandler;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
+use Google\Auth\UpdateMetadataInterface;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\RequestWrapperTrait;
 use GuzzleHttp\Exception\RequestException;
@@ -305,48 +307,60 @@ class RequestWrapper
             unset($options['retryHeaders']);
         }
 
+        $request = Utils::modifyRequest($request, ['set_headers' => $headers]);
+
         if ($this->shouldSignRequest) {
             $quotaProject = $this->quotaProject;
-            $token = null;
 
             if ($this->accessToken) {
-                $token = $this->accessToken;
+                $request = $request->withHeader('authorization', 'Bearer ' . $this->accessToken);
             } else {
                 $credentialsFetcher = $this->getCredentialsFetcher();
-                $token = $this->fetchCredentials($credentialsFetcher)['access_token'];
+                $request = $this->addAuthHeaders($request, $credentialsFetcher);
 
                 if ($credentialsFetcher instanceof GetQuotaProjectInterface) {
                     $quotaProject = $credentialsFetcher->getQuotaProject();
                 }
             }
 
-            $headers['Authorization'] = 'Bearer ' . $token;
-
             if ($quotaProject) {
-                $headers['X-Goog-User-Project'] = [$quotaProject];
+                $request = $request->withHeader('X-Goog-User-Project', $quotaProject);
             }
         }
 
-        return Utils::modifyRequest($request, ['set_headers' => $headers]);
+        return $request;
     }
 
     /**
-     * Fetches credentials.
+     * Adds auth headers to the request.
      *
-     * @param FetchAuthTokenInterface $credentialsFetcher
+     * @param RequestInterface $request
+     * @param FetchAuthTokenInterface $fetcher
      * @return array
      * @throws ServiceException
      */
-    private function fetchCredentials(FetchAuthTokenInterface $credentialsFetcher)
+    private function addAuthHeaders(RequestInterface $request, FetchAuthTokenInterface $fetcher)
     {
         $backoff = new ExponentialBackoff($this->retries, $this->getRetryFunction());
 
         try {
             return $backoff->execute(
-                function () use ($credentialsFetcher) {
-                    if ($token = $credentialsFetcher->fetchAuthToken($this->authHttpHandler)) {
-                        return $token;
+                function () use ($request, $fetcher) {
+                    if (!$fetcher instanceof UpdateMetadataInterface ||
+                         ($fetcher instanceof FetchAuthTokenCache &&
+                            !$fetcher->getFetcher() instanceof UpdateMetadataInterface
+                         )
+                    ) {
+                        // This covers an edge case where the token fetcher does not implement UpdateMetadataInterface,
+                        // which only would happen if a user implemented a custom fetcher
+                        if ($token = $fetcher->fetchAuthToken($this->authHttpHandler)) {
+                            return $request->withHeader('authorization', 'Bearer ' . $token['access_token']);
+                        }
+                    } else {
+                        $headers = $fetcher->updateMetadata($request->getHeaders(), null, $this->authHttpHandler);
+                        return Utils::modifyRequest($request, ['set_headers' => $headers]);
                     }
+
                     // As we do not know the reason the credentials fetcher could not fetch the
                     // token, we should not retry.
                     throw new \RuntimeException('Unable to fetch token');

@@ -52,6 +52,12 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoTypeCategory categories = 10;</code>
      */
     private $categories;
+    /**
+     * The default sensitivity of the infoType.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.SensitivityScore sensitivity_score = 11;</code>
+     */
+    private $sensitivity_score = null;
 
     /**
      * Constructor.
@@ -72,6 +78,8 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
      *           A list of available versions for the infotype.
      *     @type array<\Google\Cloud\Dlp\V2\InfoTypeCategory>|\Google\Protobuf\Internal\RepeatedField $categories
      *           The category of the infoType.
+     *     @type \Google\Cloud\Dlp\V2\SensitivityScore $sensitivity_score
+     *           The default sensitivity of the infoType.
      * }
      */
     public function __construct($data = NULL) {
@@ -233,6 +241,42 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\InfoTypeCategory::class);
         $this->categories = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The default sensitivity of the infoType.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.SensitivityScore sensitivity_score = 11;</code>
+     * @return \Google\Cloud\Dlp\V2\SensitivityScore|null
+     */
+    public function getSensitivityScore()
+    {
+        return $this->sensitivity_score;
+    }
+
+    public function hasSensitivityScore()
+    {
+        return isset($this->sensitivity_score);
+    }
+
+    public function clearSensitivityScore()
+    {
+        unset($this->sensitivity_score);
+    }
+
+    /**
+     * The default sensitivity of the infoType.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.SensitivityScore sensitivity_score = 11;</code>
+     * @param \Google\Cloud\Dlp\V2\SensitivityScore $var
+     * @return $this
+     */
+    public function setSensitivityScore($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\SensitivityScore::class);
+        $this->sensitivity_score = $var;
 
         return $this;
     }

@@ -27,6 +27,18 @@ return [
             ],
         ],
         'google.devtools.artifactregistry.v1.ArtifactRegistry' => [
+            'BatchDeleteVersions' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/repositories/*/packages/*}/versions:batchDelete',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateRepository' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/repositories',

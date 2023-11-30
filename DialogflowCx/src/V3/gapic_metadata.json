@@ -1,0 +1,818 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.dialogflow.cx.v3",
+    "libraryPackage": "Google\\Cloud\\Dialogflow\\Cx\\V3",
+    "services": {
+        "Pages": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "PagesGapicClient",
+                    "rpcs": {
+                        "CreatePage": {
+                            "methods": [
+                                "createPage"
+                            ]
+                        },
+                        "DeletePage": {
+                            "methods": [
+                                "deletePage"
+                            ]
+                        },
+                        "GetPage": {
+                            "methods": [
+                                "getPage"
+                            ]
+                        },
+                        "ListPages": {
+                            "methods": [
+                                "listPages"
+                            ]
+                        },
+                        "UpdatePage": {
+                            "methods": [
+                                "updatePage"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Flows": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "FlowsGapicClient",
+                    "rpcs": {
+                        "CreateFlow": {
+                            "methods": [
+                                "createFlow"
+                            ]
+                        },
+                        "DeleteFlow": {
+                            "methods": [
+                                "deleteFlow"
+                            ]
+                        },
+                        "ExportFlow": {
+                            "methods": [
+                                "exportFlow"
+                            ]
+                        },
+                        "GetFlow": {
+                            "methods": [
+                                "getFlow"
+                            ]
+                        },
+                        "GetFlowValidationResult": {
+                            "methods": [
+                                "getFlowValidationResult"
+                            ]
+                        },
+                        "ImportFlow": {
+                            "methods": [
+                                "importFlow"
+                            ]
+                        },
+                        "ListFlows": {
+                            "methods": [
+                                "listFlows"
+                            ]
+                        },
+                        "TrainFlow": {
+                            "methods": [
+                                "trainFlow"
+                            ]
+                        },
+                        "UpdateFlow": {
+                            "methods": [
+                                "updateFlow"
+                            ]
+                        },
+                        "ValidateFlow": {
+                            "methods": [
+                                "validateFlow"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Agents": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AgentsGapicClient",
+                    "rpcs": {
+                        "CreateAgent": {
+                            "methods": [
+                                "createAgent"
+                            ]
+                        },
+                        "DeleteAgent": {
+                            "methods": [
+                                "deleteAgent"
+                            ]
+                        },
+                        "ExportAgent": {
+                            "methods": [
+                                "exportAgent"
+                            ]
+                        },
+                        "GetAgent": {
+                            "methods": [
+                                "getAgent"
+                            ]
+                        },
+                        "GetAgentValidationResult": {
+                            "methods": [
+                                "getAgentValidationResult"
+                            ]
+                        },
+                        "GetGenerativeSettings": {
+                            "methods": [
+                                "getGenerativeSettings"
+                            ]
+                        },
+                        "ListAgents": {
+                            "methods": [
+                                "listAgents"
+                            ]
+                        },
+                        "RestoreAgent": {
+                            "methods": [
+                                "restoreAgent"
+                            ]
+                        },
+                        "UpdateAgent": {
+                            "methods": [
+                                "updateAgent"
+                            ]
+                        },
+                        "UpdateGenerativeSettings": {
+                            "methods": [
+                                "updateGenerativeSettings"
+                            ]
+                        },
+                        "ValidateAgent": {
+                            "methods": [
+                                "validateAgent"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Changelogs": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ChangelogsGapicClient",
+                    "rpcs": {
+                        "GetChangelog": {
+                            "methods": [
+                                "getChangelog"
+                            ]
+                        },
+                        "ListChangelogs": {
+                            "methods": [
+                                "listChangelogs"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Deployments": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DeploymentsGapicClient",
+                    "rpcs": {
+                        "GetDeployment": {
+                            "methods": [
+                                "getDeployment"
+                            ]
+                        },
+                        "ListDeployments": {
+                            "methods": [
+                                "listDeployments"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "EntityTypes": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "EntityTypesGapicClient",
+                    "rpcs": {
+                        "CreateEntityType": {
+                            "methods": [
+                                "createEntityType"
+                            ]
+                        },
+                        "DeleteEntityType": {
+                            "methods": [
+                                "deleteEntityType"
+                            ]
+                        },
+                        "GetEntityType": {
+                            "methods": [
+                                "getEntityType"
+                            ]
+                        },
+                        "ListEntityTypes": {
+                            "methods": [
+                                "listEntityTypes"
+                            ]
+                        },
+                        "UpdateEntityType": {
+                            "methods": [
+                                "updateEntityType"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Intents": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "IntentsGapicClient",
+                    "rpcs": {
+                        "CreateIntent": {
+                            "methods": [
+                                "createIntent"
+                            ]
+                        },
+                        "DeleteIntent": {
+                            "methods": [
+                                "deleteIntent"
+                            ]
+                        },
+                        "ExportIntents": {
+                            "methods": [
+                                "exportIntents"
+                            ]
+                        },
+                        "GetIntent": {
+                            "methods": [
+                                "getIntent"
+                            ]
+                        },
+                        "ImportIntents": {
+                            "methods": [
+                                "importIntents"
+                            ]
+                        },
+                        "ListIntents": {
+                            "methods": [
+                                "listIntents"
+                            ]
+                        },
+                        "UpdateIntent": {
+                            "methods": [
+                                "updateIntent"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SessionEntityTypes": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SessionEntityTypesGapicClient",
+                    "rpcs": {
+                        "CreateSessionEntityType": {
+                            "methods": [
+                                "createSessionEntityType"
+                            ]
+                        },
+                        "DeleteSessionEntityType": {
+                            "methods": [
+                                "deleteSessionEntityType"
+                            ]
+                        },
+                        "GetSessionEntityType": {
+                            "methods": [
+                                "getSessionEntityType"
+                            ]
+                        },
+                        "ListSessionEntityTypes": {
+                            "methods": [
+                                "listSessionEntityTypes"
+                            ]
+                        },
+                        "UpdateSessionEntityType": {
+                            "methods": [
+                                "updateSessionEntityType"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Sessions": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SessionsGapicClient",
+                    "rpcs": {
+                        "DetectIntent": {
+                            "methods": [
+                                "detectIntent"
+                            ]
+                        },
+                        "FulfillIntent": {
+                            "methods": [
+                                "fulfillIntent"
+                            ]
+                        },
+                        "MatchIntent": {
+                            "methods": [
+                                "matchIntent"
+                            ]
+                        },
+                        "StreamingDetectIntent": {
+                            "methods": [
+                                "streamingDetectIntent"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "TransitionRouteGroups": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "TransitionRouteGroupsGapicClient",
+                    "rpcs": {
+                        "CreateTransitionRouteGroup": {
+                            "methods": [
+                                "createTransitionRouteGroup"
+                            ]
+                        },
+                        "DeleteTransitionRouteGroup": {
+                            "methods": [
+                                "deleteTransitionRouteGroup"
+                            ]
+                        },
+                        "GetTransitionRouteGroup": {
+                            "methods": [
+                                "getTransitionRouteGroup"
+                            ]
+                        },
+                        "ListTransitionRouteGroups": {
+                            "methods": [
+                                "listTransitionRouteGroups"
+                            ]
+                        },
+                        "UpdateTransitionRouteGroup": {
+                            "methods": [
+                                "updateTransitionRouteGroup"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "TestCases": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "TestCasesGapicClient",
+                    "rpcs": {
+                        "BatchDeleteTestCases": {
+                            "methods": [
+                                "batchDeleteTestCases"
+                            ]
+                        },
+                        "BatchRunTestCases": {
+                            "methods": [
+                                "batchRunTestCases"
+                            ]
+                        },
+                        "CalculateCoverage": {
+                            "methods": [
+                                "calculateCoverage"
+                            ]
+                        },
+                        "CreateTestCase": {
+                            "methods": [
+                                "createTestCase"
+                            ]
+                        },
+                        "ExportTestCases": {
+                            "methods": [
+                                "exportTestCases"
+                            ]
+                        },
+                        "GetTestCase": {
+                            "methods": [
+                                "getTestCase"
+                            ]
+                        },
+                        "GetTestCaseResult": {
+                            "methods": [
+                                "getTestCaseResult"
+                            ]
+                        },
+                        "ImportTestCases": {
+                            "methods": [
+                                "importTestCases"
+                            ]
+                        },
+                        "ListTestCaseResults": {
+                            "methods": [
+                                "listTestCaseResults"
+                            ]
+                        },
+                        "ListTestCases": {
+                            "methods": [
+                                "listTestCases"
+                            ]
+                        },
+                        "RunTestCase": {
+                            "methods": [
+                                "runTestCase"
+                            ]
+                        },
+                        "UpdateTestCase": {
+                            "methods": [
+                                "updateTestCase"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Webhooks": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "WebhooksGapicClient",
+                    "rpcs": {
+                        "CreateWebhook": {
+                            "methods": [
+                                "createWebhook"
+                            ]
+                        },
+                        "DeleteWebhook": {
+                            "methods": [
+                                "deleteWebhook"
+                            ]
+                        },
+                        "GetWebhook": {
+                            "methods": [
+                                "getWebhook"
+                            ]
+                        },
+                        "ListWebhooks": {
+                            "methods": [
+                                "listWebhooks"
+                            ]
+                        },
+                        "UpdateWebhook": {
+                            "methods": [
+                                "updateWebhook"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Environments": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "EnvironmentsGapicClient",
+                    "rpcs": {
+                        "CreateEnvironment": {
+                            "methods": [
+                                "createEnvironment"
+                            ]
+                        },
+                        "DeleteEnvironment": {
+                            "methods": [
+                                "deleteEnvironment"
+                            ]
+                        },
+                        "DeployFlow": {
+                            "methods": [
+                                "deployFlow"
+                            ]
+                        },
+                        "GetEnvironment": {
+                            "methods": [
+                                "getEnvironment"
+                            ]
+                        },
+                        "ListContinuousTestResults": {
+                            "methods": [
+                                "listContinuousTestResults"
+                            ]
+                        },
+                        "ListEnvironments": {
+                            "methods": [
+                                "listEnvironments"
+                            ]
+                        },
+                        "LookupEnvironmentHistory": {
+                            "methods": [
+                                "lookupEnvironmentHistory"
+                            ]
+                        },
+                        "RunContinuousTest": {
+                            "methods": [
+                                "runContinuousTest"
+                            ]
+                        },
+                        "UpdateEnvironment": {
+                            "methods": [
+                                "updateEnvironment"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Experiments": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ExperimentsGapicClient",
+                    "rpcs": {
+                        "CreateExperiment": {
+                            "methods": [
+                                "createExperiment"
+                            ]
+                        },
+                        "DeleteExperiment": {
+                            "methods": [
+                                "deleteExperiment"
+                            ]
+                        },
+                        "GetExperiment": {
+                            "methods": [
+                                "getExperiment"
+                            ]
+                        },
+                        "ListExperiments": {
+                            "methods": [
+                                "listExperiments"
+                            ]
+                        },
+                        "StartExperiment": {
+                            "methods": [
+                                "startExperiment"
+                            ]
+                        },
+                        "StopExperiment": {
+                            "methods": [
+                                "stopExperiment"
+                            ]
+                        },
+                        "UpdateExperiment": {
+                            "methods": [
+                                "updateExperiment"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SecuritySettingsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SecuritySettingsServiceGapicClient",
+                    "rpcs": {
+                        "CreateSecuritySettings": {
+                            "methods": [
+                                "createSecuritySettings"
+                            ]
+                        },
+                        "DeleteSecuritySettings": {
+                            "methods": [
+                                "deleteSecuritySettings"
+                            ]
+                        },
+                        "GetSecuritySettings": {
+                            "methods": [
+                                "getSecuritySettings"
+                            ]
+                        },
+                        "ListSecuritySettings": {
+                            "methods": [
+                                "listSecuritySettings"
+                            ]
+                        },
+                        "UpdateSecuritySettings": {
+                            "methods": [
+                                "updateSecuritySettings"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Versions": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "VersionsGapicClient",
+                    "rpcs": {
+                        "CompareVersions": {
+                            "methods": [
+                                "compareVersions"
+                            ]
+                        },
+                        "CreateVersion": {
+                            "methods": [
+                                "createVersion"
+                            ]
+                        },
+                        "DeleteVersion": {
+                            "methods": [
+                                "deleteVersion"
+                            ]
+                        },
+                        "GetVersion": {
+                            "methods": [
+                                "getVersion"
+                            ]
+                        },
+                        "ListVersions": {
+                            "methods": [
+                                "listVersions"
+                            ]
+                        },
+                        "LoadVersion": {
+                            "methods": [
+                                "loadVersion"
+                            ]
+                        },
+                        "UpdateVersion": {
+                            "methods": [
+                                "updateVersion"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

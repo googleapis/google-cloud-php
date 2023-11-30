@@ -15,9 +15,19 @@
                                 "cancelWorkflowInvocation"
                             ]
                         },
+                        "CommitRepositoryChanges": {
+                            "methods": [
+                                "commitRepositoryChanges"
+                            ]
+                        },
                         "CommitWorkspaceChanges": {
                             "methods": [
                                 "commitWorkspaceChanges"
+                            ]
+                        },
+                        "ComputeRepositoryAccessTokenStatus": {
+                            "methods": [
+                                "computeRepositoryAccessTokenStatus"
                             ]
                         },
                         "CreateCompilationResult": {
@@ -25,9 +35,19 @@
                                 "createCompilationResult"
                             ]
                         },
+                        "CreateReleaseConfig": {
+                            "methods": [
+                                "createReleaseConfig"
+                            ]
+                        },
                         "CreateRepository": {
                             "methods": [
                                 "createRepository"
+                            ]
+                        },
+                        "CreateWorkflowConfig": {
+                            "methods": [
+                                "createWorkflowConfig"
                             ]
                         },
                         "CreateWorkflowInvocation": {
@@ -40,9 +60,19 @@
                                 "createWorkspace"
                             ]
                         },
+                        "DeleteReleaseConfig": {
+                            "methods": [
+                                "deleteReleaseConfig"
+                            ]
+                        },
                         "DeleteRepository": {
                             "methods": [
                                 "deleteRepository"
+                            ]
+                        },
+                        "DeleteWorkflowConfig": {
+                            "methods": [
+                                "deleteWorkflowConfig"
                             ]
                         },
                         "DeleteWorkflowInvocation": {
@@ -75,14 +105,29 @@
                                 "fetchRemoteBranches"
                             ]
                         },
+                        "FetchRepositoryHistory": {
+                            "methods": [
+                                "fetchRepositoryHistory"
+                            ]
+                        },
                         "GetCompilationResult": {
                             "methods": [
                                 "getCompilationResult"
                             ]
                         },
+                        "GetReleaseConfig": {
+                            "methods": [
+                                "getReleaseConfig"
+                            ]
+                        },
                         "GetRepository": {
                             "methods": [
                                 "getRepository"
+                            ]
+                        },
+                        "GetWorkflowConfig": {
+                            "methods": [
+                                "getWorkflowConfig"
                             ]
                         },
                         "GetWorkflowInvocation": {
@@ -105,9 +150,19 @@
                                 "listCompilationResults"
                             ]
                         },
+                        "ListReleaseConfigs": {
+                            "methods": [
+                                "listReleaseConfigs"
+                            ]
+                        },
                         "ListRepositories": {
                             "methods": [
                                 "listRepositories"
+                            ]
+                        },
+                        "ListWorkflowConfigs": {
+                            "methods": [
+                                "listWorkflowConfigs"
                             ]
                         },
                         "ListWorkflowInvocations": {
@@ -155,6 +210,11 @@
                                 "queryDirectoryContents"
                             ]
                         },
+                        "QueryRepositoryDirectoryContents": {
+                            "methods": [
+                                "queryRepositoryDirectoryContents"
+                            ]
+                        },
                         "QueryWorkflowInvocationActions": {
                             "methods": [
                                 "queryWorkflowInvocationActions"
@@ -163,6 +223,11 @@
                         "ReadFile": {
                             "methods": [
                                 "readFile"
+                            ]
+                        },
+                        "ReadRepositoryFile": {
+                            "methods": [
+                                "readRepositoryFile"
                             ]
                         },
                         "RemoveDirectory": {
@@ -180,9 +245,19 @@
                                 "resetWorkspaceChanges"
                             ]
                         },
+                        "UpdateReleaseConfig": {
+                            "methods": [
+                                "updateReleaseConfig"
+                            ]
+                        },
                         "UpdateRepository": {
                             "methods": [
                                 "updateRepository"
+                            ]
+                        },
+                        "UpdateWorkflowConfig": {
+                            "methods": [
+                                "updateWorkflowConfig"
                             ]
                         },
                         "WriteFile": {
@@ -198,6 +273,21 @@
                         "ListLocations": {
                             "methods": [
                                 "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
                             ]
                         }
                     }

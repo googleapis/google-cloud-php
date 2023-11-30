@@ -31,11 +31,32 @@ class SqlUserType
      * Generated from protobuf enum <code>CLOUD_IAM_SERVICE_ACCOUNT = 2;</code>
      */
     const CLOUD_IAM_SERVICE_ACCOUNT = 2;
+    /**
+     * Cloud IAM Group non-login user.
+     *
+     * Generated from protobuf enum <code>CLOUD_IAM_GROUP = 3;</code>
+     */
+    const CLOUD_IAM_GROUP = 3;
+    /**
+     * Cloud IAM Group login user.
+     *
+     * Generated from protobuf enum <code>CLOUD_IAM_GROUP_USER = 4;</code>
+     */
+    const CLOUD_IAM_GROUP_USER = 4;
+    /**
+     * Cloud IAM Group service account.
+     *
+     * Generated from protobuf enum <code>CLOUD_IAM_GROUP_SERVICE_ACCOUNT = 5;</code>
+     */
+    const CLOUD_IAM_GROUP_SERVICE_ACCOUNT = 5;
 
     private static $valueToName = [
         self::BUILT_IN => 'BUILT_IN',
         self::CLOUD_IAM_USER => 'CLOUD_IAM_USER',
         self::CLOUD_IAM_SERVICE_ACCOUNT => 'CLOUD_IAM_SERVICE_ACCOUNT',
+        self::CLOUD_IAM_GROUP => 'CLOUD_IAM_GROUP',
+        self::CLOUD_IAM_GROUP_USER => 'CLOUD_IAM_GROUP_USER',
+        self::CLOUD_IAM_GROUP_SERVICE_ACCOUNT => 'CLOUD_IAM_GROUP_SERVICE_ACCOUNT',
     ];
 
     public static function name($value)

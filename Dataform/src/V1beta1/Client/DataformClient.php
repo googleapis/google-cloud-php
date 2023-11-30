@@ -36,13 +36,20 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Dataform\V1beta1\CancelWorkflowInvocationRequest;
+use Google\Cloud\Dataform\V1beta1\CommitRepositoryChangesRequest;
 use Google\Cloud\Dataform\V1beta1\CommitWorkspaceChangesRequest;
 use Google\Cloud\Dataform\V1beta1\CompilationResult;
+use Google\Cloud\Dataform\V1beta1\ComputeRepositoryAccessTokenStatusRequest;
+use Google\Cloud\Dataform\V1beta1\ComputeRepositoryAccessTokenStatusResponse;
 use Google\Cloud\Dataform\V1beta1\CreateCompilationResultRequest;
+use Google\Cloud\Dataform\V1beta1\CreateReleaseConfigRequest;
 use Google\Cloud\Dataform\V1beta1\CreateRepositoryRequest;
+use Google\Cloud\Dataform\V1beta1\CreateWorkflowConfigRequest;
 use Google\Cloud\Dataform\V1beta1\CreateWorkflowInvocationRequest;
 use Google\Cloud\Dataform\V1beta1\CreateWorkspaceRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteReleaseConfigRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteRepositoryRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteWorkflowConfigRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteWorkflowInvocationRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteWorkspaceRequest;
 use Google\Cloud\Dataform\V1beta1\FetchFileDiffRequest;
@@ -53,14 +60,19 @@ use Google\Cloud\Dataform\V1beta1\FetchGitAheadBehindRequest;
 use Google\Cloud\Dataform\V1beta1\FetchGitAheadBehindResponse;
 use Google\Cloud\Dataform\V1beta1\FetchRemoteBranchesRequest;
 use Google\Cloud\Dataform\V1beta1\FetchRemoteBranchesResponse;
+use Google\Cloud\Dataform\V1beta1\FetchRepositoryHistoryRequest;
 use Google\Cloud\Dataform\V1beta1\GetCompilationResultRequest;
+use Google\Cloud\Dataform\V1beta1\GetReleaseConfigRequest;
 use Google\Cloud\Dataform\V1beta1\GetRepositoryRequest;
+use Google\Cloud\Dataform\V1beta1\GetWorkflowConfigRequest;
 use Google\Cloud\Dataform\V1beta1\GetWorkflowInvocationRequest;
 use Google\Cloud\Dataform\V1beta1\GetWorkspaceRequest;
 use Google\Cloud\Dataform\V1beta1\InstallNpmPackagesRequest;
 use Google\Cloud\Dataform\V1beta1\InstallNpmPackagesResponse;
 use Google\Cloud\Dataform\V1beta1\ListCompilationResultsRequest;
+use Google\Cloud\Dataform\V1beta1\ListReleaseConfigsRequest;
 use Google\Cloud\Dataform\V1beta1\ListRepositoriesRequest;
+use Google\Cloud\Dataform\V1beta1\ListWorkflowConfigsRequest;
 use Google\Cloud\Dataform\V1beta1\ListWorkflowInvocationsRequest;
 use Google\Cloud\Dataform\V1beta1\ListWorkspacesRequest;
 use Google\Cloud\Dataform\V1beta1\MakeDirectoryRequest;
@@ -73,18 +85,30 @@ use Google\Cloud\Dataform\V1beta1\PullGitCommitsRequest;
 use Google\Cloud\Dataform\V1beta1\PushGitCommitsRequest;
 use Google\Cloud\Dataform\V1beta1\QueryCompilationResultActionsRequest;
 use Google\Cloud\Dataform\V1beta1\QueryDirectoryContentsRequest;
+use Google\Cloud\Dataform\V1beta1\QueryRepositoryDirectoryContentsRequest;
 use Google\Cloud\Dataform\V1beta1\QueryWorkflowInvocationActionsRequest;
 use Google\Cloud\Dataform\V1beta1\ReadFileRequest;
 use Google\Cloud\Dataform\V1beta1\ReadFileResponse;
+use Google\Cloud\Dataform\V1beta1\ReadRepositoryFileRequest;
+use Google\Cloud\Dataform\V1beta1\ReadRepositoryFileResponse;
+use Google\Cloud\Dataform\V1beta1\ReleaseConfig;
 use Google\Cloud\Dataform\V1beta1\RemoveDirectoryRequest;
 use Google\Cloud\Dataform\V1beta1\RemoveFileRequest;
 use Google\Cloud\Dataform\V1beta1\Repository;
 use Google\Cloud\Dataform\V1beta1\ResetWorkspaceChangesRequest;
+use Google\Cloud\Dataform\V1beta1\UpdateReleaseConfigRequest;
 use Google\Cloud\Dataform\V1beta1\UpdateRepositoryRequest;
+use Google\Cloud\Dataform\V1beta1\UpdateWorkflowConfigRequest;
+use Google\Cloud\Dataform\V1beta1\WorkflowConfig;
 use Google\Cloud\Dataform\V1beta1\WorkflowInvocation;
 use Google\Cloud\Dataform\V1beta1\Workspace;
 use Google\Cloud\Dataform\V1beta1\WriteFileRequest;
 use Google\Cloud\Dataform\V1beta1\WriteFileResponse;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
@@ -107,25 +131,36 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @experimental
  *
  * @method PromiseInterface cancelWorkflowInvocationAsync(CancelWorkflowInvocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface commitRepositoryChangesAsync(CommitRepositoryChangesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface commitWorkspaceChangesAsync(CommitWorkspaceChangesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface computeRepositoryAccessTokenStatusAsync(ComputeRepositoryAccessTokenStatusRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createCompilationResultAsync(CreateCompilationResultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createReleaseConfigAsync(CreateReleaseConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createRepositoryAsync(CreateRepositoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createWorkflowConfigAsync(CreateWorkflowConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createWorkflowInvocationAsync(CreateWorkflowInvocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createWorkspaceAsync(CreateWorkspaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteReleaseConfigAsync(DeleteReleaseConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteRepositoryAsync(DeleteRepositoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteWorkflowConfigAsync(DeleteWorkflowConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteWorkflowInvocationAsync(DeleteWorkflowInvocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteWorkspaceAsync(DeleteWorkspaceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface fetchFileDiffAsync(FetchFileDiffRequest $request, array $optionalArgs = [])
  * @method PromiseInterface fetchFileGitStatusesAsync(FetchFileGitStatusesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface fetchGitAheadBehindAsync(FetchGitAheadBehindRequest $request, array $optionalArgs = [])
  * @method PromiseInterface fetchRemoteBranchesAsync(FetchRemoteBranchesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface fetchRepositoryHistoryAsync(FetchRepositoryHistoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getCompilationResultAsync(GetCompilationResultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getReleaseConfigAsync(GetReleaseConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getRepositoryAsync(GetRepositoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getWorkflowConfigAsync(GetWorkflowConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getWorkflowInvocationAsync(GetWorkflowInvocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getWorkspaceAsync(GetWorkspaceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface installNpmPackagesAsync(InstallNpmPackagesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listCompilationResultsAsync(ListCompilationResultsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listReleaseConfigsAsync(ListReleaseConfigsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listRepositoriesAsync(ListRepositoriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listWorkflowConfigsAsync(ListWorkflowConfigsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listWorkflowInvocationsAsync(ListWorkflowInvocationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listWorkspacesAsync(ListWorkspacesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface makeDirectoryAsync(MakeDirectoryRequest $request, array $optionalArgs = [])
@@ -135,15 +170,22 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface pushGitCommitsAsync(PushGitCommitsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface queryCompilationResultActionsAsync(QueryCompilationResultActionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface queryDirectoryContentsAsync(QueryDirectoryContentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface queryRepositoryDirectoryContentsAsync(QueryRepositoryDirectoryContentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface queryWorkflowInvocationActionsAsync(QueryWorkflowInvocationActionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface readFileAsync(ReadFileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface readRepositoryFileAsync(ReadRepositoryFileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface removeDirectoryAsync(RemoveDirectoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface removeFileAsync(RemoveFileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface resetWorkspaceChangesAsync(ResetWorkspaceChangesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateReleaseConfigAsync(UpdateReleaseConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateRepositoryAsync(UpdateRepositoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateWorkflowConfigAsync(UpdateWorkflowConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface writeFileAsync(WriteFileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class DataformClient
 {
@@ -229,6 +271,29 @@ final class DataformClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * release_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $repository
+     * @param string $releaseConfig
+     *
+     * @return string The formatted release_config resource.
+     *
+     * @experimental
+     */
+    public static function releaseConfigName(string $project, string $location, string $repository, string $releaseConfig): string
+    {
+        return self::getPathTemplate('releaseConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'repository' => $repository,
+            'release_config' => $releaseConfig,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a repository
      * resource.
      *
@@ -267,6 +332,29 @@ final class DataformClient
             'project' => $project,
             'secret' => $secret,
             'version' => $version,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * workflow_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $repository
+     * @param string $workflowConfig
+     *
+     * @return string The formatted workflow_config resource.
+     *
+     * @experimental
+     */
+    public static function workflowConfigName(string $project, string $location, string $repository, string $workflowConfig): string
+    {
+        return self::getPathTemplate('workflowConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'repository' => $repository,
+            'workflow_config' => $workflowConfig,
         ]);
     }
 
@@ -322,8 +410,10 @@ final class DataformClient
      * Template: Pattern
      * - compilationResult: projects/{project}/locations/{location}/repositories/{repository}/compilationResults/{compilation_result}
      * - location: projects/{project}/locations/{location}
+     * - releaseConfig: projects/{project}/locations/{location}/repositories/{repository}/releaseConfigs/{release_config}
      * - repository: projects/{project}/locations/{location}/repositories/{repository}
      * - secretVersion: projects/{project}/secrets/{secret}/versions/{version}
+     * - workflowConfig: projects/{project}/locations/{location}/repositories/{repository}/workflowConfigs/{workflow_config}
      * - workflowInvocation: projects/{project}/locations/{location}/repositories/{repository}/workflowInvocations/{workflow_invocation}
      * - workspace: projects/{project}/locations/{location}/repositories/{repository}/workspaces/{workspace}
      *
@@ -447,6 +537,33 @@ final class DataformClient
     }
 
     /**
+     * Applies a Git commit to a Repository. The Repository must not have a value
+     * for `git_remote_settings.url`.
+     *
+     * The async variant is {@see DataformClient::commitRepositoryChangesAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/commit_repository_changes.php
+     *
+     * @param CommitRepositoryChangesRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function commitRepositoryChanges(CommitRepositoryChangesRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('CommitRepositoryChanges', $request, $callOptions)->wait();
+    }
+
+    /**
      * Applies a Git commit for uncommitted files in a Workspace.
      *
      * The async variant is {@see DataformClient::commitWorkspaceChangesAsync()} .
@@ -470,6 +587,35 @@ final class DataformClient
     public function commitWorkspaceChanges(CommitWorkspaceChangesRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('CommitWorkspaceChanges', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Computes a Repository's Git access token status.
+     *
+     * The async variant is
+     * {@see DataformClient::computeRepositoryAccessTokenStatusAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/compute_repository_access_token_status.php
+     *
+     * @param ComputeRepositoryAccessTokenStatusRequest $request     A request to house fields associated with the call.
+     * @param array                                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ComputeRepositoryAccessTokenStatusResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function computeRepositoryAccessTokenStatus(ComputeRepositoryAccessTokenStatusRequest $request, array $callOptions = []): ComputeRepositoryAccessTokenStatusResponse
+    {
+        return $this->startApiCall('ComputeRepositoryAccessTokenStatus', $request, $callOptions)->wait();
     }
 
     /**
@@ -501,6 +647,34 @@ final class DataformClient
     }
 
     /**
+     * Creates a new ReleaseConfig in a given Repository.
+     *
+     * The async variant is {@see DataformClient::createReleaseConfigAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/create_release_config.php
+     *
+     * @param CreateReleaseConfigRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ReleaseConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function createReleaseConfig(CreateReleaseConfigRequest $request, array $callOptions = []): ReleaseConfig
+    {
+        return $this->startApiCall('CreateReleaseConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new Repository in a given project and location.
      *
      * The async variant is {@see DataformClient::createRepositoryAsync()} .
@@ -526,6 +700,34 @@ final class DataformClient
     public function createRepository(CreateRepositoryRequest $request, array $callOptions = []): Repository
     {
         return $this->startApiCall('CreateRepository', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new WorkflowConfig in a given Repository.
+     *
+     * The async variant is {@see DataformClient::createWorkflowConfigAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/create_workflow_config.php
+     *
+     * @param CreateWorkflowConfigRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return WorkflowConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function createWorkflowConfig(CreateWorkflowConfigRequest $request, array $callOptions = []): WorkflowConfig
+    {
+        return $this->startApiCall('CreateWorkflowConfig', $request, $callOptions)->wait();
     }
 
     /**
@@ -585,6 +787,32 @@ final class DataformClient
     }
 
     /**
+     * Deletes a single ReleaseConfig.
+     *
+     * The async variant is {@see DataformClient::deleteReleaseConfigAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/delete_release_config.php
+     *
+     * @param DeleteReleaseConfigRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteReleaseConfig(DeleteReleaseConfigRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteReleaseConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a single Repository.
      *
      * The async variant is {@see DataformClient::deleteRepositoryAsync()} .
@@ -608,6 +836,32 @@ final class DataformClient
     public function deleteRepository(DeleteRepositoryRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('DeleteRepository', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single WorkflowConfig.
+     *
+     * The async variant is {@see DataformClient::deleteWorkflowConfigAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/delete_workflow_config.php
+     *
+     * @param DeleteWorkflowConfigRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteWorkflowConfig(DeleteWorkflowConfigRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteWorkflowConfig', $request, $callOptions)->wait();
     }
 
     /**
@@ -775,6 +1029,35 @@ final class DataformClient
     }
 
     /**
+     * Fetches a Repository's history of commits.  The Repository must not have a
+     * value for `git_remote_settings.url`.
+     *
+     * The async variant is {@see DataformClient::fetchRepositoryHistoryAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/fetch_repository_history.php
+     *
+     * @param FetchRepositoryHistoryRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function fetchRepositoryHistory(FetchRepositoryHistoryRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('FetchRepositoryHistory', $request, $callOptions);
+    }
+
+    /**
      * Fetches a single CompilationResult.
      *
      * The async variant is {@see DataformClient::getCompilationResultAsync()} .
@@ -803,6 +1086,34 @@ final class DataformClient
     }
 
     /**
+     * Fetches a single ReleaseConfig.
+     *
+     * The async variant is {@see DataformClient::getReleaseConfigAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/get_release_config.php
+     *
+     * @param GetReleaseConfigRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ReleaseConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getReleaseConfig(GetReleaseConfigRequest $request, array $callOptions = []): ReleaseConfig
+    {
+        return $this->startApiCall('GetReleaseConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Fetches a single Repository.
      *
      * The async variant is {@see DataformClient::getRepositoryAsync()} .
@@ -828,6 +1139,34 @@ final class DataformClient
     public function getRepository(GetRepositoryRequest $request, array $callOptions = []): Repository
     {
         return $this->startApiCall('GetRepository', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fetches a single WorkflowConfig.
+     *
+     * The async variant is {@see DataformClient::getWorkflowConfigAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/get_workflow_config.php
+     *
+     * @param GetWorkflowConfigRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return WorkflowConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getWorkflowConfig(GetWorkflowConfigRequest $request, array $callOptions = []): WorkflowConfig
+    {
+        return $this->startApiCall('GetWorkflowConfig', $request, $callOptions)->wait();
     }
 
     /**
@@ -943,6 +1282,34 @@ final class DataformClient
     }
 
     /**
+     * Lists ReleaseConfigs in a given Repository.
+     *
+     * The async variant is {@see DataformClient::listReleaseConfigsAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/list_release_configs.php
+     *
+     * @param ListReleaseConfigsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listReleaseConfigs(ListReleaseConfigsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListReleaseConfigs', $request, $callOptions);
+    }
+
+    /**
      * Lists Repositories in a given project and location.
      *
      * The async variant is {@see DataformClient::listRepositoriesAsync()} .
@@ -968,6 +1335,34 @@ final class DataformClient
     public function listRepositories(ListRepositoriesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListRepositories', $request, $callOptions);
+    }
+
+    /**
+     * Lists WorkflowConfigs in a given Repository.
+     *
+     * The async variant is {@see DataformClient::listWorkflowConfigsAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/list_workflow_configs.php
+     *
+     * @param ListWorkflowConfigsRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listWorkflowConfigs(ListWorkflowConfigsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListWorkflowConfigs', $request, $callOptions);
     }
 
     /**
@@ -1221,6 +1616,36 @@ final class DataformClient
     }
 
     /**
+     * Returns the contents of a given Repository directory. The Repository must
+     * not have a value for `git_remote_settings.url`.
+     *
+     * The async variant is
+     * {@see DataformClient::queryRepositoryDirectoryContentsAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/query_repository_directory_contents.php
+     *
+     * @param QueryRepositoryDirectoryContentsRequest $request     A request to house fields associated with the call.
+     * @param array                                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function queryRepositoryDirectoryContents(QueryRepositoryDirectoryContentsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('QueryRepositoryDirectoryContents', $request, $callOptions);
+    }
+
+    /**
      * Returns WorkflowInvocationActions in a given WorkflowInvocation.
      *
      * The async variant is
@@ -1275,6 +1700,35 @@ final class DataformClient
     public function readFile(ReadFileRequest $request, array $callOptions = []): ReadFileResponse
     {
         return $this->startApiCall('ReadFile', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns the contents of a file (inside a Repository). The Repository
+     * must not have a value for `git_remote_settings.url`.
+     *
+     * The async variant is {@see DataformClient::readRepositoryFileAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/read_repository_file.php
+     *
+     * @param ReadRepositoryFileRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ReadRepositoryFileResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function readRepositoryFile(ReadRepositoryFileRequest $request, array $callOptions = []): ReadRepositoryFileResponse
+    {
+        return $this->startApiCall('ReadRepositoryFile', $request, $callOptions)->wait();
     }
 
     /**
@@ -1356,6 +1810,34 @@ final class DataformClient
     }
 
     /**
+     * Updates a single ReleaseConfig.
+     *
+     * The async variant is {@see DataformClient::updateReleaseConfigAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/update_release_config.php
+     *
+     * @param UpdateReleaseConfigRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ReleaseConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateReleaseConfig(UpdateReleaseConfigRequest $request, array $callOptions = []): ReleaseConfig
+    {
+        return $this->startApiCall('UpdateReleaseConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Updates a single Repository.
      *
      * The async variant is {@see DataformClient::updateRepositoryAsync()} .
@@ -1381,6 +1863,34 @@ final class DataformClient
     public function updateRepository(UpdateRepositoryRequest $request, array $callOptions = []): Repository
     {
         return $this->startApiCall('UpdateRepository', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a single WorkflowConfig.
+     *
+     * The async variant is {@see DataformClient::updateWorkflowConfigAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/update_workflow_config.php
+     *
+     * @param UpdateWorkflowConfigRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return WorkflowConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateWorkflowConfig(UpdateWorkflowConfigRequest $request, array $callOptions = []): WorkflowConfig
+    {
+        return $this->startApiCall('UpdateWorkflowConfig', $request, $callOptions)->wait();
     }
 
     /**
@@ -1465,5 +1975,100 @@ final class DataformClient
     public function listLocations(ListLocationsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListLocations', $request, $callOptions);
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy
+    if the resource exists and does not have a policy set.
+     *
+     * The async variant is {@see DataformClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/get_iam_policy.php
+     *
+     * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getIamPolicy(GetIamPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces
+    any existing policy.
+
+    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    errors.
+     *
+     * The async variant is {@see DataformClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/set_iam_policy.php
+     *
+     * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function setIamPolicy(SetIamPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the
+    resource does not exist, this will return an empty set of
+    permissions, not a `NOT_FOUND` error.
+
+    Note: This operation is designed to be used for building
+    permission-aware UIs and command-line tools, not for authorization
+    checking. This operation may "fail open" without warning.
+     *
+     * The async variant is {@see DataformClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/test_iam_permissions.php
+     *
+     * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestIamPermissionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
+    {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

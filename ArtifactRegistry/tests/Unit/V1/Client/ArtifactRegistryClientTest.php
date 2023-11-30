@@ -27,6 +27,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\ArtifactRegistry\V1\BatchDeleteVersionsRequest;
 use Google\Cloud\ArtifactRegistry\V1\Client\ArtifactRegistryClient;
 use Google\Cloud\ArtifactRegistry\V1\CreateRepositoryRequest;
 use Google\Cloud\ArtifactRegistry\V1\CreateTagRequest;
@@ -127,6 +128,131 @@ class ArtifactRegistryClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function batchDeleteVersionsTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/batchDeleteVersionsTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/batchDeleteVersionsTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedNames = [
+            $gapicClient->versionName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[PACKAGE]', '[VERSION]'),
+        ];
+        $request = (new BatchDeleteVersionsRequest())
+            ->setNames($formattedNames);
+        $response = $gapicClient->batchDeleteVersions($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/BatchDeleteVersions', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/batchDeleteVersionsTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function batchDeleteVersionsExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/batchDeleteVersionsTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedNames = [
+            $gapicClient->versionName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[PACKAGE]', '[VERSION]'),
+        ];
+        $request = (new BatchDeleteVersionsRequest())
+            ->setNames($formattedNames);
+        $response = $gapicClient->batchDeleteVersions($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/batchDeleteVersionsTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function createRepositoryTest()
     {
         $operationsTransport = $this->createTransport();
@@ -150,10 +276,16 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $name = 'name3373707';
         $description = 'description-1724546052';
         $kmsKeyName = 'kmsKeyName2094986649';
+        $sizeBytes = 1796325715;
+        $satisfiesPzs = false;
+        $cleanupPolicyDryRun = false;
         $expectedResponse = new Repository();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setSizeBytes($sizeBytes);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setCleanupPolicyDryRun($cleanupPolicyDryRun);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1275,10 +1407,16 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $description = 'description-1724546052';
         $kmsKeyName = 'kmsKeyName2094986649';
+        $sizeBytes = 1796325715;
+        $satisfiesPzs = false;
+        $cleanupPolicyDryRun = false;
         $expectedResponse = new Repository();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setSizeBytes($sizeBytes);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setCleanupPolicyDryRun($cleanupPolicyDryRun);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
@@ -2577,10 +2715,16 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $name = 'name3373707';
         $description = 'description-1724546052';
         $kmsKeyName = 'kmsKeyName2094986649';
+        $sizeBytes = 1796325715;
+        $satisfiesPzs = false;
+        $cleanupPolicyDryRun = false;
         $expectedResponse = new Repository();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setSizeBytes($sizeBytes);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setCleanupPolicyDryRun($cleanupPolicyDryRun);
         $transport->addResponse($expectedResponse);
         $request = new UpdateRepositoryRequest();
         $response = $gapicClient->updateRepository($request);
@@ -2864,7 +3008,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createRepositoryAsyncTest()
+    public function batchDeleteVersionsAsyncTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -2881,28 +3025,24 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createRepositoryTest');
+        $incompleteOperation->setName('operations/batchDeleteVersionsTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
-        $name = 'name3373707';
-        $description = 'description-1724546052';
-        $kmsKeyName = 'kmsKeyName2094986649';
-        $expectedResponse = new Repository();
-        $expectedResponse->setName($name);
-        $expectedResponse->setDescription($description);
-        $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse = new GPBEmpty();
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/createRepositoryTest');
+        $completeOperation->setName('operations/batchDeleteVersionsTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new CreateRepositoryRequest())
-            ->setParent($formattedParent);
-        $response = $gapicClient->createRepositoryAsync($request)->wait();
+        $formattedNames = [
+            $gapicClient->versionName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[PACKAGE]', '[VERSION]'),
+        ];
+        $request = (new BatchDeleteVersionsRequest())
+            ->setNames($formattedNames);
+        $response = $gapicClient->batchDeleteVersionsAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2911,11 +3051,11 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/CreateRepository', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/BatchDeleteVersions', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createRepositoryTest');
+        $expectedOperationsRequestObject->setName('operations/batchDeleteVersionsTest');
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

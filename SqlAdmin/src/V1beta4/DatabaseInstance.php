@@ -284,11 +284,18 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     private $dns_name = null;
     /**
+     * Output only. DEPRECATED: please use write_endpoint instead.
+     *
+     * Generated from protobuf field <code>optional string primary_dns_name = 51 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
+     */
+    protected $primary_dns_name = null;
+    /**
      * Output only. The dns name of the primary instance in a replication group.
      *
-     * Generated from protobuf field <code>optional string primary_dns_name = 51 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string write_endpoint = 52 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $primary_dns_name = null;
+    private $write_endpoint = null;
 
     /**
      * Constructor.
@@ -410,6 +417,8 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *     @type string $dns_name
      *           Output only. The dns name of the instance.
      *     @type string $primary_dns_name
+     *           Output only. DEPRECATED: please use write_endpoint instead.
+     *     @type string $write_endpoint
      *           Output only. The dns name of the primary instance in a replication group.
      * }
      */
@@ -1742,37 +1751,79 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The dns name of the primary instance in a replication group.
+     * Output only. DEPRECATED: please use write_endpoint instead.
      *
-     * Generated from protobuf field <code>optional string primary_dns_name = 51 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string primary_dns_name = 51 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
+     * @deprecated
      */
     public function getPrimaryDnsName()
     {
+        @trigger_error('primary_dns_name is deprecated.', E_USER_DEPRECATED);
         return isset($this->primary_dns_name) ? $this->primary_dns_name : '';
     }
 
     public function hasPrimaryDnsName()
     {
+        @trigger_error('primary_dns_name is deprecated.', E_USER_DEPRECATED);
         return isset($this->primary_dns_name);
     }
 
     public function clearPrimaryDnsName()
     {
+        @trigger_error('primary_dns_name is deprecated.', E_USER_DEPRECATED);
         unset($this->primary_dns_name);
+    }
+
+    /**
+     * Output only. DEPRECATED: please use write_endpoint instead.
+     *
+     * Generated from protobuf field <code>optional string primary_dns_name = 51 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     * @deprecated
+     */
+    public function setPrimaryDnsName($var)
+    {
+        @trigger_error('primary_dns_name is deprecated.', E_USER_DEPRECATED);
+        GPBUtil::checkString($var, True);
+        $this->primary_dns_name = $var;
+
+        return $this;
     }
 
     /**
      * Output only. The dns name of the primary instance in a replication group.
      *
-     * Generated from protobuf field <code>optional string primary_dns_name = 51 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string write_endpoint = 52 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getWriteEndpoint()
+    {
+        return isset($this->write_endpoint) ? $this->write_endpoint : '';
+    }
+
+    public function hasWriteEndpoint()
+    {
+        return isset($this->write_endpoint);
+    }
+
+    public function clearWriteEndpoint()
+    {
+        unset($this->write_endpoint);
+    }
+
+    /**
+     * Output only. The dns name of the primary instance in a replication group.
+     *
+     * Generated from protobuf field <code>optional string write_endpoint = 52 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
-    public function setPrimaryDnsName($var)
+    public function setWriteEndpoint($var)
     {
         GPBUtil::checkString($var, True);
-        $this->primary_dns_name = $var;
+        $this->write_endpoint = $var;
 
         return $this;
     }

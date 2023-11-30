@@ -64,6 +64,7 @@ use Google\Cloud\Sql\V1\SqlInstancesRotateServerCaRequest;
 use Google\Cloud\Sql\V1\SqlInstancesStartExternalSyncRequest;
 use Google\Cloud\Sql\V1\SqlInstancesStartReplicaRequest;
 use Google\Cloud\Sql\V1\SqlInstancesStopReplicaRequest;
+use Google\Cloud\Sql\V1\SqlInstancesSwitchoverRequest;
 use Google\Cloud\Sql\V1\SqlInstancesTruncateLogRequest;
 use Google\Cloud\Sql\V1\SqlInstancesUpdateRequest;
 use Google\Cloud\Sql\V1\SqlInstancesVerifyExternalSyncSettingsRequest;
@@ -108,6 +109,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface startExternalSyncAsync(SqlInstancesStartExternalSyncRequest $request, array $optionalArgs = [])
  * @method PromiseInterface startReplicaAsync(SqlInstancesStartReplicaRequest $request, array $optionalArgs = [])
  * @method PromiseInterface stopReplicaAsync(SqlInstancesStopReplicaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface switchoverAsync(SqlInstancesSwitchoverRequest $request, array $optionalArgs = [])
  * @method PromiseInterface truncateLogAsync(SqlInstancesTruncateLogRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateAsync(SqlInstancesUpdateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface verifyExternalSyncSettingsAsync(SqlInstancesVerifyExternalSyncSettingsRequest $request, array $optionalArgs = [])
@@ -956,6 +958,32 @@ final class SqlInstancesServiceClient
     public function stopReplica(SqlInstancesStopReplicaRequest $request, array $callOptions = []): Operation
     {
         return $this->startApiCall('StopReplica', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Switches over from the primary instance to the replica instance.
+     *
+     * The async variant is {@see SqlInstancesServiceClient::switchoverAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/switchover.php
+     *
+     * @param SqlInstancesSwitchoverRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Operation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function switchover(SqlInstancesSwitchoverRequest $request, array $callOptions = []): Operation
+    {
+        return $this->startApiCall('Switchover', $request, $callOptions)->wait();
     }
 
     /**

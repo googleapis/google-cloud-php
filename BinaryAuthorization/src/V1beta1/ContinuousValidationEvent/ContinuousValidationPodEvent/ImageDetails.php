@@ -22,6 +22,18 @@ class ImageDetails extends \Google\Protobuf\Internal\Message
      */
     private $image = '';
     /**
+     * The name of the container.
+     *
+     * Generated from protobuf field <code>string container_name = 5;</code>
+     */
+    private $container_name = '';
+    /**
+     * The container type that this image belongs to.
+     *
+     * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1beta1.ContinuousValidationEvent.ContinuousValidationPodEvent.ImageDetails.ContainerType container_type = 6;</code>
+     */
+    private $container_type = 0;
+    /**
      * The result of the audit for this image.
      *
      * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1beta1.ContinuousValidationEvent.ContinuousValidationPodEvent.ImageDetails.AuditResult result = 2;</code>
@@ -48,6 +60,10 @@ class ImageDetails extends \Google\Protobuf\Internal\Message
      *
      *     @type string $image
      *           The name of the image.
+     *     @type string $container_name
+     *           The name of the container.
+     *     @type int $container_type
+     *           The container type that this image belongs to.
      *     @type int $result
      *           The result of the audit for this image.
      *     @type string $description
@@ -83,6 +99,58 @@ class ImageDetails extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->image = $var;
+
+        return $this;
+    }
+
+    /**
+     * The name of the container.
+     *
+     * Generated from protobuf field <code>string container_name = 5;</code>
+     * @return string
+     */
+    public function getContainerName()
+    {
+        return $this->container_name;
+    }
+
+    /**
+     * The name of the container.
+     *
+     * Generated from protobuf field <code>string container_name = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setContainerName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->container_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The container type that this image belongs to.
+     *
+     * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1beta1.ContinuousValidationEvent.ContinuousValidationPodEvent.ImageDetails.ContainerType container_type = 6;</code>
+     * @return int
+     */
+    public function getContainerType()
+    {
+        return $this->container_type;
+    }
+
+    /**
+     * The container type that this image belongs to.
+     *
+     * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1beta1.ContinuousValidationEvent.ContinuousValidationPodEvent.ImageDetails.ContainerType container_type = 6;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setContainerType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\BinaryAuthorization\V1beta1\ContinuousValidationEvent\ContinuousValidationPodEvent\ImageDetails\ContainerType::class);
+        $this->container_type = $var;
 
         return $this;
     }

@@ -227,6 +227,11 @@
                                 "stopReplica"
                             ]
                         },
+                        "Switchover": {
+                            "methods": [
+                                "switchover"
+                            ]
+                        },
                         "TruncateLog": {
                             "methods": [
                                 "truncateLog"

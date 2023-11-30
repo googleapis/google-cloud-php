@@ -18,7 +18,7 @@ class PostdeployJobRun extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name of the Cloud Build `Build` object that is
      * used to execute the custom actions associated with the postdeploy Job.
-     * Format is projects/{project}/locations/{location}/builds/{build}.
+     * Format is `projects/{project}/locations/{location}/builds/{build}`.
      *
      * Generated from protobuf field <code>string build = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -47,7 +47,7 @@ class PostdeployJobRun extends \Google\Protobuf\Internal\Message
      *     @type string $build
      *           Output only. The resource name of the Cloud Build `Build` object that is
      *           used to execute the custom actions associated with the postdeploy Job.
-     *           Format is projects/{project}/locations/{location}/builds/{build}.
+     *           Format is `projects/{project}/locations/{location}/builds/{build}`.
      *     @type int $failure_cause
      *           Output only. The reason the postdeploy failed. This will always be
      *           unspecified while the postdeploy is in progress or if it succeeded.
@@ -64,7 +64,7 @@ class PostdeployJobRun extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name of the Cloud Build `Build` object that is
      * used to execute the custom actions associated with the postdeploy Job.
-     * Format is projects/{project}/locations/{location}/builds/{build}.
+     * Format is `projects/{project}/locations/{location}/builds/{build}`.
      *
      * Generated from protobuf field <code>string build = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -77,7 +77,7 @@ class PostdeployJobRun extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name of the Cloud Build `Build` object that is
      * used to execute the custom actions associated with the postdeploy Job.
-     * Format is projects/{project}/locations/{location}/builds/{build}.
+     * Format is `projects/{project}/locations/{location}/builds/{build}`.
      *
      * Generated from protobuf field <code>string build = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -41,7 +41,7 @@ use Google\Cloud\PubSub\V1\SubscriberClient;
  * the request, the server will assign a random
  * name for this snapshot on the same project as the subscription, conforming
  * to the [resource name format]
- * (https://cloud.google.com/pubsub/docs/admin#resource_names). The
+ * (https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names). The
  * generated name is populated in the returned Snapshot object. Note that for
  * REST API requests, you must specify a name in the request.
  *
@@ -49,8 +49,8 @@ use Google\Cloud\PubSub\V1\SubscriberClient;
  *                                      in the request, the server will assign a random name for this snapshot on
  *                                      the same project as the subscription. Note that for REST API requests, you
  *                                      must specify a name.  See the [resource name
- *                                      rules](https://cloud.google.com/pubsub/docs/admin#resource_names). Format
- *                                      is `projects/{project}/snapshots/{snap}`. Please see
+ *                                      rules](https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names).
+ *                                      Format is `projects/{project}/snapshots/{snap}`. Please see
  *                                      {@see SubscriberClient::snapshotName()} for help formatting this field.
  * @param string $formattedSubscription The subscription whose backlog the snapshot retains.
  *                                      Specifically, the created snapshot is guaranteed to retain:

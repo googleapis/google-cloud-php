@@ -14,7 +14,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ProfileStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Profiling status code and optional message
+     * Profiling status code and optional message. The `status.code` value is 0
+     * (default value) for OK.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 1;</code>
      */
@@ -33,7 +34,8 @@ class ProfileStatus extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Rpc\Status $status
-     *           Profiling status code and optional message
+     *           Profiling status code and optional message. The `status.code` value is 0
+     *           (default value) for OK.
      *     @type \Google\Protobuf\Timestamp $timestamp
      *           Time when the profile generation status was updated
      * }
@@ -44,7 +46,8 @@ class ProfileStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Profiling status code and optional message
+     * Profiling status code and optional message. The `status.code` value is 0
+     * (default value) for OK.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 1;</code>
      * @return \Google\Rpc\Status|null
@@ -65,7 +68,8 @@ class ProfileStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Profiling status code and optional message
+     * Profiling status code and optional message. The `status.code` value is 0
+     * (default value) for OK.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 1;</code>
      * @param \Google\Rpc\Status $var

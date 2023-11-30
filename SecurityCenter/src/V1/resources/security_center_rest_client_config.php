@@ -709,6 +709,30 @@ return [
                     ],
                 ],
             ],
+            'SimulateSecurityHealthAnalyticsCustomModule' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=organizations/*/securityHealthAnalyticsSettings}/customModules:simulate',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=folders/*/securityHealthAnalyticsSettings}/customModules:simulate',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/securityHealthAnalyticsSettings}/customModules:simulate',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'TestIamPermissions' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{resource=organizations/*/sources/*}:testIamPermissions',

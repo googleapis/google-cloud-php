@@ -3,6 +3,25 @@
 return [
     'interfaces' => [
         'google.cloud.deploy.v1.CloudDeploy' => [
+            'CreateAutomation' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Deploy\V1\Automation',
+                    'metadataReturnType' => '\Google\Cloud\Deploy\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateDeliveryPipeline' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Deploy\V1\DeliveryPipeline',
@@ -79,6 +98,25 @@ return [
                     ],
                 ],
             ],
+            'DeleteAutomation' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\Deploy\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteDeliveryPipeline' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
@@ -112,6 +150,26 @@ return [
                     [
                         'keyName' => 'name',
                         'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateAutomation' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Deploy\V1\Automation',
+                    'metadataReturnType' => '\Google\Cloud\Deploy\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'automation.name',
+                        'fieldAccessors' => [
+                            'getAutomation',
                             'getName',
                         ],
                     ],
@@ -193,9 +251,45 @@ return [
                     ],
                 ],
             ],
+            'CancelAutomationRun' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Deploy\V1\CancelAutomationRunResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CancelRollout' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Deploy\V1\CancelRolloutResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAutomation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Deploy\V1\Automation',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAutomationRun' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Deploy\V1\AutomationRun',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -285,6 +379,46 @@ return [
                         'keyName' => 'rollout',
                         'fieldAccessors' => [
                             'getRollout',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAutomationRuns' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getAutomationRuns',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Deploy\V1\ListAutomationRunsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAutomations' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getAutomations',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Deploy\V1\ListAutomationsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -401,6 +535,18 @@ return [
                     ],
                 ],
             ],
+            'RollbackTarget' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Deploy\V1\RollbackTargetResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'TerminateJobRun' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Deploy\V1\TerminateJobRunResponse',
@@ -487,10 +633,13 @@ return [
                 'interfaceOverride' => 'google.iam.v1.IAMPolicy',
             ],
             'templateMap' => [
+                'automation' => 'projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/automations/{automation}',
+                'automationRun' => 'projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/automationRuns/{automation_run}',
                 'build' => 'projects/{project}/locations/{location}/builds/{build}',
                 'cluster' => 'projects/{project}/locations/{location}/clusters/{cluster}',
                 'config' => 'projects/{project}/locations/{location}/config',
                 'deliveryPipeline' => 'projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}',
+                'job' => 'projects/{project}/locations/{location}/jobs/{job}',
                 'jobRun' => 'projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/releases/{release}/rollouts/{rollout}/jobRuns/{job_run}',
                 'location' => 'projects/{project}/locations/{location}',
                 'membership' => 'projects/{project}/locations/{location}/memberships/{membership}',

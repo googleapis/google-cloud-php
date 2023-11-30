@@ -35,6 +35,10 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Api\HttpBody;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\AIPlatform\V1\DirectPredictRequest;
+use Google\Cloud\AIPlatform\V1\DirectPredictResponse;
+use Google\Cloud\AIPlatform\V1\DirectRawPredictRequest;
+use Google\Cloud\AIPlatform\V1\DirectRawPredictResponse;
 use Google\Cloud\AIPlatform\V1\ExplainRequest;
 use Google\Cloud\AIPlatform\V1\ExplainResponse;
 use Google\Cloud\AIPlatform\V1\ExplanationSpecOverride;
@@ -43,6 +47,8 @@ use Google\Cloud\AIPlatform\V1\PredictResponse;
 use Google\Cloud\AIPlatform\V1\RawPredictRequest;
 use Google\Cloud\AIPlatform\V1\StreamingPredictRequest;
 use Google\Cloud\AIPlatform\V1\StreamingPredictResponse;
+use Google\Cloud\AIPlatform\V1\StreamingRawPredictRequest;
+use Google\Cloud\AIPlatform\V1\StreamingRawPredictResponse;
 use Google\Cloud\AIPlatform\V1\Tensor;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\GetPolicyOptions;
@@ -67,8 +73,7 @@ use Google\Protobuf\Value;
  * $predictionServiceClient = new PredictionServiceClient();
  * try {
  *     $formattedEndpoint = $predictionServiceClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
- *     $instances = [];
- *     $response = $predictionServiceClient->explain($formattedEndpoint, $instances);
+ *     $response = $predictionServiceClient->directPredict($formattedEndpoint);
  * } finally {
  *     $predictionServiceClient->close();
  * }
@@ -355,6 +360,137 @@ class PredictionServiceGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+    }
+
+    /**
+     * Perform an unary online prediction request for Vertex first-party products
+     * and frameworks.
+     *
+     * Sample code:
+     * ```
+     * $predictionServiceClient = new PredictionServiceClient();
+     * try {
+     *     $formattedEndpoint = $predictionServiceClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+     *     $response = $predictionServiceClient->directPredict($formattedEndpoint);
+     * } finally {
+     *     $predictionServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $endpoint     Required. The name of the Endpoint requested to serve the prediction.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type Tensor[] $inputs
+     *           The prediction input.
+     *     @type Tensor $parameters
+     *           The parameters that govern the prediction.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AIPlatform\V1\DirectPredictResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function directPredict($endpoint, array $optionalArgs = [])
+    {
+        $request = new DirectPredictRequest();
+        $requestParamHeaders = [];
+        $request->setEndpoint($endpoint);
+        $requestParamHeaders['endpoint'] = $endpoint;
+        if (isset($optionalArgs['inputs'])) {
+            $request->setInputs($optionalArgs['inputs']);
+        }
+
+        if (isset($optionalArgs['parameters'])) {
+            $request->setParameters($optionalArgs['parameters']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DirectPredict',
+            DirectPredictResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Perform an online prediction request through gRPC.
+     *
+     * Sample code:
+     * ```
+     * $predictionServiceClient = new PredictionServiceClient();
+     * try {
+     *     $formattedEndpoint = $predictionServiceClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+     *     $response = $predictionServiceClient->directRawPredict($formattedEndpoint);
+     * } finally {
+     *     $predictionServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $endpoint     Required. The name of the Endpoint requested to serve the prediction.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $methodName
+     *           Fully qualified name of the API method being invoked to perform
+     *           predictions.
+     *
+     *           Format:
+     *           `/namespace.Service/Method/`
+     *           Example:
+     *           `/tensorflow.serving.PredictionService/Predict`
+     *     @type string $input
+     *           The prediction input.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AIPlatform\V1\DirectRawPredictResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function directRawPredict($endpoint, array $optionalArgs = [])
+    {
+        $request = new DirectRawPredictRequest();
+        $requestParamHeaders = [];
+        $request->setEndpoint($endpoint);
+        $requestParamHeaders['endpoint'] = $endpoint;
+        if (isset($optionalArgs['methodName'])) {
+            $request->setMethodName($optionalArgs['methodName']);
+        }
+
+        if (isset($optionalArgs['input'])) {
+            $request->setInput($optionalArgs['input']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DirectRawPredict',
+            DirectRawPredictResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -675,6 +811,141 @@ class PredictionServiceGapicClient
             $optionalArgs,
             $request,
             Call::SERVER_STREAMING_CALL
+        );
+    }
+
+    /**
+     * Perform a streaming online prediction request for Vertex first-party
+     * products and frameworks.
+     *
+     * Sample code:
+     * ```
+     * $predictionServiceClient = new PredictionServiceClient();
+     * try {
+     *     $endpoint = 'endpoint';
+     *     $request = new StreamingPredictRequest();
+     *     $request->setEndpoint($endpoint);
+     *     // Write all requests to the server, then read all responses until the
+     *     // stream is complete
+     *     $requests = [
+     *         $request,
+     *     ];
+     *     $stream = $predictionServiceClient->streamingPredict();
+     *     $stream->writeAll($requests);
+     *     foreach ($stream->closeWriteAndReadAll() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     *     // Alternatively:
+     *     // Write requests individually, making read() calls if
+     *     // required. Call closeWrite() once writes are complete, and read the
+     *     // remaining responses from the server.
+     *     $requests = [
+     *         $request,
+     *     ];
+     *     $stream = $predictionServiceClient->streamingPredict();
+     *     foreach ($requests as $request) {
+     *         $stream->write($request);
+     *         // if required, read a single response from the stream
+     *         $element = $stream->read();
+     *         // doSomethingWith($element)
+     *     }
+     *     $stream->closeWrite();
+     *     $element = $stream->read();
+     *     while (!is_null($element)) {
+     *         // doSomethingWith($element)
+     *         $element = $stream->read();
+     *     }
+     * } finally {
+     *     $predictionServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return \Google\ApiCore\BidiStream
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function streamingPredict(array $optionalArgs = [])
+    {
+        return $this->startCall(
+            'StreamingPredict',
+            StreamingPredictResponse::class,
+            $optionalArgs,
+            null,
+            Call::BIDI_STREAMING_CALL
+        );
+    }
+
+    /**
+     * Perform a streaming online prediction request through gRPC.
+     *
+     * Sample code:
+     * ```
+     * $predictionServiceClient = new PredictionServiceClient();
+     * try {
+     *     $endpoint = 'endpoint';
+     *     $request = new StreamingRawPredictRequest();
+     *     $request->setEndpoint($endpoint);
+     *     // Write all requests to the server, then read all responses until the
+     *     // stream is complete
+     *     $requests = [
+     *         $request,
+     *     ];
+     *     $stream = $predictionServiceClient->streamingRawPredict();
+     *     $stream->writeAll($requests);
+     *     foreach ($stream->closeWriteAndReadAll() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     *     // Alternatively:
+     *     // Write requests individually, making read() calls if
+     *     // required. Call closeWrite() once writes are complete, and read the
+     *     // remaining responses from the server.
+     *     $requests = [
+     *         $request,
+     *     ];
+     *     $stream = $predictionServiceClient->streamingRawPredict();
+     *     foreach ($requests as $request) {
+     *         $stream->write($request);
+     *         // if required, read a single response from the stream
+     *         $element = $stream->read();
+     *         // doSomethingWith($element)
+     *     }
+     *     $stream->closeWrite();
+     *     $element = $stream->read();
+     *     while (!is_null($element)) {
+     *         // doSomethingWith($element)
+     *         $element = $stream->read();
+     *     }
+     * } finally {
+     *     $predictionServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return \Google\ApiCore\BidiStream
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function streamingRawPredict(array $optionalArgs = [])
+    {
+        return $this->startCall(
+            'StreamingRawPredict',
+            StreamingRawPredictResponse::class,
+            $optionalArgs,
+            null,
+            Call::BIDI_STREAMING_CALL
         );
     }
 

@@ -16,9 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListSKAdNetworkConversionValueSchemasRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Format:
-     * properties/{property_id}/dataStreams/{dataStream}/sKAdNetworkConversionValueSchema
-     * Example: properties/1234/dataStreams/5678/sKAdNetworkConversionValueSchema
+     * Required. The DataStream resource to list schemas for.
+     * Format:
+     * properties/{property_id}/dataStreams/{dataStream}
+     * Example: properties/1234/dataStreams/5678
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -50,9 +51,10 @@ class ListSKAdNetworkConversionValueSchemasRequest extends \Google\Protobuf\Inte
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Format:
-     *           properties/{property_id}/dataStreams/{dataStream}/sKAdNetworkConversionValueSchema
-     *           Example: properties/1234/dataStreams/5678/sKAdNetworkConversionValueSchema
+     *           Required. The DataStream resource to list schemas for.
+     *           Format:
+     *           properties/{property_id}/dataStreams/{dataStream}
+     *           Example: properties/1234/dataStreams/5678
      *     @type int $page_size
      *           The maximum number of resources to return. The service may return
      *           fewer than this value, even if there are additional pages.
@@ -72,9 +74,10 @@ class ListSKAdNetworkConversionValueSchemasRequest extends \Google\Protobuf\Inte
     }
 
     /**
-     * Required. Format:
-     * properties/{property_id}/dataStreams/{dataStream}/sKAdNetworkConversionValueSchema
-     * Example: properties/1234/dataStreams/5678/sKAdNetworkConversionValueSchema
+     * Required. The DataStream resource to list schemas for.
+     * Format:
+     * properties/{property_id}/dataStreams/{dataStream}
+     * Example: properties/1234/dataStreams/5678
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -85,9 +88,10 @@ class ListSKAdNetworkConversionValueSchemasRequest extends \Google\Protobuf\Inte
     }
 
     /**
-     * Required. Format:
-     * properties/{property_id}/dataStreams/{dataStream}/sKAdNetworkConversionValueSchema
-     * Example: properties/1234/dataStreams/5678/sKAdNetworkConversionValueSchema
+     * Required. The DataStream resource to list schemas for.
+     * Format:
+     * properties/{property_id}/dataStreams/{dataStream}
+     * Example: properties/1234/dataStreams/5678
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

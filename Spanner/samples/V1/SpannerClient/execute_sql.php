@@ -35,10 +35,12 @@ use Google\Cloud\Spanner\V1\SpannerClient;
  *
  * Operations inside read-write transactions might return `ABORTED`. If
  * this occurs, the application should restart the transaction from
- * the beginning. See [Transaction][google.spanner.v1.Transaction] for more details.
+ * the beginning. See [Transaction][google.spanner.v1.Transaction] for more
+ * details.
  *
  * Larger result sets can be fetched in streaming fashion by calling
- * [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] instead.
+ * [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql]
+ * instead.
  *
  * @param string $formattedSession The session in which the SQL query should be performed. Please see
  *                                 {@see SpannerClient::sessionName()} for help formatting this field.

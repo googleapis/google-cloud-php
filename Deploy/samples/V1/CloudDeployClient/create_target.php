@@ -35,7 +35,7 @@ use Google\Rpc\Status;
  *
  * @param string $formattedParent The parent collection in which the `Target` should be created.
  *                                Format should be
- *                                projects/{project_id}/locations/{location_name}. Please see
+ *                                `projects/{project_id}/locations/{location_name}`. Please see
  *                                {@see CloudDeployClient::locationName()} for help formatting this field.
  * @param string $targetId        ID of the `Target`.
  */

@@ -28,14 +28,15 @@ class CompilationError extends \Google\Protobuf\Internal\Message
      */
     private $stack = '';
     /**
-     * Output only. The path of the file where this error occurred, if available, relative to
-     * the project root.
+     * Output only. The path of the file where this error occurred, if
+     * available, relative to the project root.
      *
      * Generated from protobuf field <code>string path = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $path = '';
     /**
-     * Output only. The identifier of the action where this error occurred, if available.
+     * Output only. The identifier of the action where this error occurred, if
+     * available.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Target action_target = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -52,10 +53,11 @@ class CompilationError extends \Google\Protobuf\Internal\Message
      *     @type string $stack
      *           Output only. The error's full stack trace.
      *     @type string $path
-     *           Output only. The path of the file where this error occurred, if available, relative to
-     *           the project root.
+     *           Output only. The path of the file where this error occurred, if
+     *           available, relative to the project root.
      *     @type \Google\Cloud\Dataform\V1beta1\Target $action_target
-     *           Output only. The identifier of the action where this error occurred, if available.
+     *           Output only. The identifier of the action where this error occurred, if
+     *           available.
      * }
      */
     public function __construct($data = NULL) {
@@ -116,8 +118,8 @@ class CompilationError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The path of the file where this error occurred, if available, relative to
-     * the project root.
+     * Output only. The path of the file where this error occurred, if
+     * available, relative to the project root.
      *
      * Generated from protobuf field <code>string path = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -128,8 +130,8 @@ class CompilationError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The path of the file where this error occurred, if available, relative to
-     * the project root.
+     * Output only. The path of the file where this error occurred, if
+     * available, relative to the project root.
      *
      * Generated from protobuf field <code>string path = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -144,7 +146,8 @@ class CompilationError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The identifier of the action where this error occurred, if available.
+     * Output only. The identifier of the action where this error occurred, if
+     * available.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Target action_target = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dataform\V1beta1\Target|null
@@ -165,7 +168,8 @@ class CompilationError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The identifier of the action where this error occurred, if available.
+     * Output only. The identifier of the action where this error occurred, if
+     * available.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Target action_target = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataform\V1beta1\Target $var
