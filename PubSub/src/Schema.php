@@ -197,4 +197,77 @@ class Schema
             return false;
         }
     }
+
+    /**
+     * Get list  schema revisions.
+     *
+     * Example:
+     * ```
+     * $revisions = $schema->listRevisions();
+     * foreach ($revisions['schemas'] as $revision) {
+     *     echo $revisions['definition'];
+     * }
+     * ```
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.schemas/listRevisions List revisions
+     * @param array $options [optional] Configuration Options
+     * @return array
+     */
+    public function listRevisions(array $options = [])
+    {
+        return $this->connection->listRevisions([
+                'name' => $this->name,
+            ] + $options);
+    }
+
+    /**
+     * Commit schema revision.
+     *
+     * Example:
+     * ```
+     * $definition = file_get_contents('my-schema.txt');
+     * $revision = $schema->commit($definition, 'AVRO);
+     *
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.schemas/commit Commit Schema revision.
+     * ```
+     *
+     * @param string $definition The definition of the schema. This should
+     *     contain a string representing the full definition of the schema that
+     *     is a valid schema definition of the type specified in `type`. See
+     *     [Schema](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.schemas#Schema)
+     *     for details.
+     * @param string $type The schema type. Allowed values are `AVRO` and `PROTOCOL_BUFFER`.
+     * @param array $options [optional] Configuration options
+     * @return array revision created
+     */
+    public function commit($definition, $type, array $options = [])
+    {
+        return $this->connection->commitSchema([
+                'schema' => [
+                    'definition' => $definition,
+                    'type' => $type,
+                ],
+                'name' => $this->name
+            ] + $options);
+    }
+
+    /**
+     * Commit schema revision.
+     *
+     * Example:
+     * ```
+     * $definition = file_get_contents('my-schema.txt');
+     * $revision = $schema->commit($definition, 'AVRO);
+     *
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.schemas/deleteRevision Delete revision.
+     * ```
+     *
+     * @param string $revisionId The revisionId
+     * @return array deleted revision
+     */
+    public function deleteRevision($revisionId)
+    {
+        return $this->connection->deleteRevision([
+            'name' => $this->name .'@' . $revisionId
+        ]);
+    }
 }

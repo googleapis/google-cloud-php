@@ -761,4 +761,48 @@ class Grpc implements ConnectionInterface
         $this->schemaClient = $this->constructGapic(SchemaServiceClient::class, $this->clientConfig);
         return $this->schemaClient;
     }
+
+    /**
+     * Retrieve schema revisions
+     *
+     * @param array $args
+     * @return array
+     */
+    public function listRevisions(array $args)
+    {
+        return $this->send([$this->getSchemaClient(), 'listSchemaRevisions'], [
+            $this->pluck('name', $args),
+            $args,
+        ]);
+    }
+
+    /**
+     * Create schema revisions
+     *
+     * @param array $args
+     * @return array
+     */
+    public function commitSchema(array $args)
+    {
+        return $this->send([$this->getSchemaClient(), 'commitSchema'], [
+            $this->pluck('name', $args),
+            new Schema($this->pluck('schema', $args)),
+            $args,
+        ]);
+    }
+
+    /**
+     * Delete schema revision
+     *
+     * @param array $args
+     * @return array
+     */
+    public function deleteRevision(array $args)
+    {
+        return $this->send([$this->getSchemaClient(), 'deleteSchemaRevision'], [
+            $this->pluck('name', $args),
+            null,
+            $args,
+        ]);
+    }
 }
