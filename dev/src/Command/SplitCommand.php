@@ -249,7 +249,7 @@ class SplitCommand extends Command
         $tagName = 'v' . $component->getPackageVersion();
         $repoName = $component->getRepoName();
         $componentId = $component->getId();
-        $isAlreadyTagged = false; //$github->doesTagExist($repoName, $tagName); // for testing
+        $isAlreadyTagged = $github->doesTagExist($repoName, $tagName);
         $defaultBranch = $github->getDefaultBranch($repoName) ?: 'main';
 
         // If the repo is empty, it's new and we don't want to force-push.
