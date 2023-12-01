@@ -69,6 +69,23 @@ return [
                     ],
                 ],
             ],
+            'Demote' => [
+                'method' => 'post',
+                'uriTemplate' => '/sql/v1beta4/projects/{project}/instances/{instance}/demote',
+                'body' => 'body',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'DemoteMaster' => [
                 'method' => 'post',
                 'uriTemplate' => '/sql/v1beta4/projects/{project}/instances/{instance}/demoteMaster',

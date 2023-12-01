@@ -40,6 +40,7 @@ use Google\Cloud\Sql\V1\SqlInstancesCloneRequest;
 use Google\Cloud\Sql\V1\SqlInstancesCreateEphemeralCertRequest;
 use Google\Cloud\Sql\V1\SqlInstancesDeleteRequest;
 use Google\Cloud\Sql\V1\SqlInstancesDemoteMasterRequest;
+use Google\Cloud\Sql\V1\SqlInstancesDemoteRequest;
 use Google\Cloud\Sql\V1\SqlInstancesExportRequest;
 use Google\Cloud\Sql\V1\SqlInstancesFailoverRequest;
 use Google\Cloud\Sql\V1\SqlInstancesGetDiskShrinkConfigRequest;
@@ -86,6 +87,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface cloneAsync(SqlInstancesCloneRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createEphemeralAsync(SqlInstancesCreateEphemeralCertRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteAsync(SqlInstancesDeleteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface demoteAsync(SqlInstancesDemoteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface demoteMasterAsync(SqlInstancesDemoteMasterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface exportAsync(SqlInstancesExportRequest $request, array $optionalArgs = [])
  * @method PromiseInterface failoverAsync(SqlInstancesFailoverRequest $request, array $optionalArgs = [])
@@ -336,6 +338,33 @@ final class SqlInstancesServiceClient
     public function delete(SqlInstancesDeleteRequest $request, array $callOptions = []): Operation
     {
         return $this->startApiCall('Delete', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Demotes an existing standalone instance to be a Cloud SQL read replica
+     * for an external database server.
+     *
+     * The async variant is {@see SqlInstancesServiceClient::demoteAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/demote.php
+     *
+     * @param SqlInstancesDemoteRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Operation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function demote(SqlInstancesDemoteRequest $request, array $callOptions = []): Operation
+    {
+        return $this->startApiCall('Demote', $request, $callOptions)->wait();
     }
 
     /**

@@ -37,6 +37,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Sql\V1beta4\DatabaseInstance;
 use Google\Cloud\Sql\V1beta4\InstancesCloneRequest;
 use Google\Cloud\Sql\V1beta4\InstancesDemoteMasterRequest;
+use Google\Cloud\Sql\V1beta4\InstancesDemoteRequest;
 use Google\Cloud\Sql\V1beta4\InstancesExportRequest;
 use Google\Cloud\Sql\V1beta4\InstancesFailoverRequest;
 use Google\Cloud\Sql\V1beta4\InstancesImportRequest;
@@ -54,6 +55,7 @@ use Google\Cloud\Sql\V1beta4\SqlInstancesCloneRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesCreateEphemeralCertRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesDeleteRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesDemoteMasterRequest;
+use Google\Cloud\Sql\V1beta4\SqlInstancesDemoteRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesExportRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesFailoverRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesGetDiskShrinkConfigRequest;
@@ -470,6 +472,67 @@ class SqlInstancesServiceGapicClient
             : $requestParams->getHeader();
         return $this->startCall(
             'Delete',
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Demotes an existing standalone instance to be a Cloud SQL read replica
+     * for an external database server.
+     *
+     * Sample code:
+     * ```
+     * $sqlInstancesServiceClient = new SqlInstancesServiceClient();
+     * try {
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $response = $sqlInstancesServiceClient->demote($instance, $project);
+     * } finally {
+     *     $sqlInstancesServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $instance     Required. The name of the Cloud SQL instance.
+     * @param string $project      Required. The project ID of the project that contains the instance.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type InstancesDemoteRequest $body
+     *           The request body.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Sql\V1beta4\Operation
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function demote($instance, $project, array $optionalArgs = [])
+    {
+        $request = new SqlInstancesDemoteRequest();
+        $requestParamHeaders = [];
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['body'])) {
+            $request->setBody($optionalArgs['body']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'Demote',
             Operation::class,
             $optionalArgs,
             $request
