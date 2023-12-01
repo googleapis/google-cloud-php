@@ -612,12 +612,12 @@ class Transaction implements TransactionalReadInterface
 
         // For commit, A transaction ID is mandatory for non-single-use transactions,
         // and the `begin` option is not supported.
-        if (is_null($this->transactionId) && isset($this->options['begin'])) {
+        if (empty($this->transactionId) && isset($this->options['begin'])) {
             // Since the begin option is not supported in commit, unset it.
             unset($this->options['begin']);
 
             // A transaction ID is mandatory for non-single-use transactions.
-            if ($this->type !== self::TYPE_SINGLE_USE && is_null($this->transactionId)) {
+            if ($this->type !== self::TYPE_SINGLE_USE) {
                 // Execute the beginTransaction RPC.
                 $transaction = $this->operation->transaction($this->session, $this->options);
                 // Set the transaction ID of the current transaction.
@@ -734,7 +734,7 @@ class Transaction implements TransactionalReadInterface
         $this->seqno++;
 
         $options['transactionType'] = $this->context;
-        if (is_null($this->transactionId) && isset($this->options['begin'])) {
+        if (empty($this->transactionId) && isset($this->options['begin'])) {
             $options['begin'] = $this->options['begin'];
         } else {
             $options['transactionId'] = $this->transactionId;

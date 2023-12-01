@@ -189,7 +189,7 @@ class Operation
      */
     public function rollback(Session $session, $transactionId, array $options = [])
     {
-        if (is_null($transactionId)) {
+        if (empty($transactionId)) {
             throw new InvalidArgumentException('Rollback failed: Transaction not initiated.');
         }
         $this->connection->rollback([
@@ -239,7 +239,7 @@ class Operation
             $sql,
             $options
         ) {
-            if ($transaction && !is_null($transaction->id())) {
+            if ($transaction && !empty($transaction->id())) {
                 $options['transaction'] = ['id' => $transaction->id()];
             }
             if ($resumeToken) {
@@ -286,7 +286,7 @@ class Operation
             $options['transactionId'] = $transaction->id();
         }
         $res = $this->execute($session, $sql, $options);
-        if (is_null($transaction->id()) && $res->transaction()) {
+        if (empty($transaction->id()) && $res->transaction()) {
             $transaction->setId($res->transaction()->id());
         }
 
@@ -375,7 +375,7 @@ class Operation
         ] + $options);
 
         if (
-            is_null($transaction->id()) &&
+            empty($transaction->id()) &&
             !empty($res['resultSets'][0]['metadata']['transaction']['id'])
         ) {
             // Get the transaction from array of ResultSets.
@@ -439,7 +439,7 @@ class Operation
             $keySet,
             $options
         ) {
-            if ($transaction && !is_null($transaction->id())) {
+            if ($transaction && !empty($transaction->id())) {
                 $options['transaction'] = ['id' => $transaction->id()];
             }
             if ($resumeToken) {

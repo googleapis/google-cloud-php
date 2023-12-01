@@ -267,7 +267,7 @@ trait TransactionalReadTrait
         $this->singleUseState();
         $this->checkReadContext();
 
-        if (is_null($this->transactionId) && isset($this->options['begin'])) {
+        if (empty($this->transactionId) && isset($this->options['begin'])) {
             $options['begin'] = $this->options['begin'];
         } else {
             $options['transactionId'] = $this->transactionId;
@@ -289,7 +289,7 @@ trait TransactionalReadTrait
         }
 
         $result = $this->operation->execute($this->session, $sql, $options);
-        if (is_null($this->id()) && $result->transaction()) {
+        if (empty($this->id()) && $result->transaction()) {
             $this->setId($result->transaction()->id());
         }
         return $result;
@@ -338,7 +338,7 @@ trait TransactionalReadTrait
         $this->singleUseState();
         $this->checkReadContext();
 
-        if (is_null($this->transactionId) && isset($this->options['begin'])) {
+        if (empty($this->transactionId) && isset($this->options['begin'])) {
             $options['begin'] = $this->options['begin'];
         } else {
             $options['transactionId'] = $this->transactionId;
@@ -358,7 +358,7 @@ trait TransactionalReadTrait
         }
 
         $result = $this->operation->read($this->session, $table, $keySet, $columns, $options);
-        if (is_null($this->id()) && $result->transaction()) {
+        if (empty($this->id()) && $result->transaction()) {
             $this->setId($result->transaction()->id());
         }
         return $result;

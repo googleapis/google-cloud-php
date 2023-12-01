@@ -528,10 +528,8 @@ class Result implements \IteratorAggregate
         $generator = null;
 
         $backoff = new ExponentialBackoff($this->retries, function ($ex) {
-            if ($ex instanceof ServiceException) {
-                return $ex->getCode() === Grpc\STATUS_UNAVAILABLE;
-            }
-            return false;
+            return $ex instanceof ServiceException &&
+                $ex->getCode() === Grpc\STATUS_UNAVAILABLE;
         });
 
         $valid = $backoff->execute(function () use ($call, &$generator) {

@@ -461,7 +461,9 @@ class DatabaseTest extends SnippetTestCase
         $this->connection->rollback(Argument::any())
             ->shouldBeCalled();
 
-        $this->connection->executeStreamingSql(Argument::any())
+        $this->connection->executeStreamingSql(
+            Argument::withEntry('transaction', ['begin' => ['readWrite' => []]])
+        )
             ->shouldBeCalled()
             ->willReturn($this->resultGeneratorData([
                 'metadata' => [

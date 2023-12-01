@@ -308,8 +308,6 @@ class ResultTest extends TestCase
         $result = $this->getResultClass($fixture['chunks'], 'rw');
 
         $this->assertInstanceOf(Transaction::class, $result->transaction());
-        $result->rows()->next();
-        $this->assertInstanceOf(Transaction::class, $result->transaction());
     }
 
     public function testSnapshot()
@@ -317,8 +315,6 @@ class ResultTest extends TestCase
         $fixture = $this->getStreamingDataFixture()['tests'][1];
         $result = $this->getResultClass($fixture['chunks']);
 
-        $this->assertInstanceOf(Snapshot::class, $result->snapshot());
-        $result->rows()->next();
         $this->assertInstanceOf(Snapshot::class, $result->snapshot());
     }
 

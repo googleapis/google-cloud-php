@@ -635,19 +635,8 @@ class DatabaseTest extends TestCase
         // Begin transaction RPC is skipped when begin is inlined
         // and invoked only if `begin` fails or if commit is the
         // sole operation in the transaction.
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry(
-                'database',
-                DatabaseAdminClient::databaseName(
-                    self::PROJECT,
-                    self::INSTANCE,
-                    self::DATABASE
-                )
-            )
-        ))
-            ->shouldNotBeCalled()
-            ->willReturn(['id' => self::TRANSACTION]);
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldNotBeCalled();
 
         $this->connection->rollback(Argument::any())
             ->shouldNotBeCalled();
@@ -712,31 +701,10 @@ class DatabaseTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry(
-                'database',
-                DatabaseAdminClient::databaseName(
-                    self::PROJECT,
-                    self::INSTANCE,
-                    self::DATABASE
-                )
-            )
-        ))
+        $this->connection->beginTransaction(Argument::any())
             ->shouldNotBeCalled();
 
-        $this->connection->rollback(Argument::allOf(
-            Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry(
-                'database',
-                DatabaseAdminClient::databaseName(
-                    self::PROJECT,
-                    self::INSTANCE,
-                    self::DATABASE
-                )
-            )
-        ))
-            ->shouldNotBeCalled();
+        $this->connection->rollback(Argument::any())->shouldNotBeCalled();
 
         $this->refreshOperation($this->database, $this->connection->reveal());
 
@@ -747,17 +715,7 @@ class DatabaseTest extends TestCase
     {
         $this->expectException(\BadMethodCallException::class);
 
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry(
-                'database',
-                DatabaseAdminClient::databaseName(
-                    self::PROJECT,
-                    self::INSTANCE,
-                    self::DATABASE
-                )
-            )
-        ))
+        $this->connection->beginTransaction(Argument::any())
             ->shouldNotBeCalled();
 
         $this->connection->rollback(Argument::any())
@@ -941,17 +899,7 @@ class DatabaseTest extends TestCase
     {
         $this->expectException(\BadMethodCallException::class);
 
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry(
-                'database',
-                DatabaseAdminClient::databaseName(
-                    self::PROJECT,
-                    self::INSTANCE,
-                    self::DATABASE
-                )
-            )
-        ))
+        $this->connection->beginTransaction(Argument::any())
             ->shouldNotBeCalled();
 
         $this->connection->rollback(Argument::any())
