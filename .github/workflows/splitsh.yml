@@ -2,12 +2,18 @@ name: Test Compiling Splitsh
 on:
   push:
     branches: [ debug-release-job ]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to release'
+        required: true
 jobs:
   splitsh_test:
     name: Test Compile Splitsh
     runs-on: ubuntu-latest
     env:
       LD_LIBRARY_PATH: /usr/local/lib
+      TAGNAME: ${{ inputs.tag }}
     steps:
       - name: clone libgit2
         uses: actions/checkout@master
@@ -22,7 +28,6 @@ jobs:
           sudo cmake --build . --target install
       - name: compile splitsh
         run: |
-          echo $LD_LIBRARY_PATH
           go env -w GO111MODULE=off
           go get github.com/splitsh/lite
           go build -o /usr/local/bin/splitsh-lite github.com/splitsh/lite

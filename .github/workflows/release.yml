@@ -14,6 +14,9 @@ jobs:
   docs:
     name: "Split and Release Components"
     runs-on: ubuntu-latest
+    env:
+      LD_LIBRARY_PATH: /usr/local/lib
+      TAGNAME: ${{ inputs.tag }}
     steps:
       - name: Clone libgit2
         uses: actions/checkout@master
@@ -47,12 +50,9 @@ jobs:
           timeout_minutes: 10
           max_attempts: 3
           command: composer update -d dev
-      - id: getTag
-        name: Get Tag
-        run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
       - name: Run Subtree Split and Release
         env:
-          tagName: ${{ steps.getTag.outputs.tag }}
+          TAGNAME: ${{ inputs.tag != '' && inputs.tag || steps.getTag.outputs.tag }}
         run: |
           ./dev/google-cloud split $GITHUB_REPOSITORY $tagName \
             -t ${{ secrets.SPLIT_TOKEN }} \
