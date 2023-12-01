@@ -6,6 +6,8 @@ jobs:
   splitsh_test:
     name: Test Compile Splitsh
     runs-on: ubuntu-latest
+    env:
+      LD_LIBRARY_PATH: /usr/local/lib
     steps:
       - name: clone libgit2
         uses: actions/checkout@master
@@ -20,13 +22,10 @@ jobs:
           sudo cmake --build . --target install
       - name: compile splitsh
         run: |
+          echo $LD_LIBRARY_PATH
           go env -w GO111MODULE=off
           go get github.com/splitsh/lite
           go build -o /usr/local/bin/splitsh-lite github.com/splitsh/lite
-        env:
-          LDFLAGS: "-L/usr/local/lib"
-          CPPFLAGS: "-I/usr/local/include/git2"
-          PKG_CONFIG_PATH: "/usr/local/lib/pkgconfig"
       - name: Checkout
         uses: actions/checkout@v4
         with:
