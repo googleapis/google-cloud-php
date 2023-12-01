@@ -33,7 +33,7 @@ jobs:
         run: |
           go env -w GO111MODULE=off
           go get github.com/splitsh/lite
-          go build -o splitsh-lite github.com/splitsh/lite
+          go build -o /usr/local/bin/splitsh-lite github.com/splitsh/lite
       - name: Checkout google/cloud
         uses: actions/checkout@v4
         with:
@@ -57,7 +57,8 @@ jobs:
         env:
           TAGNAME: ${{ inputs.tag != '' && inputs.tag || steps.getTag.outputs.tag }}
         run: |
-          ./dev/google-cloud split $GITHUB_REPOSITORY $tagName \
+          ./dev/google-cloud split $GITHUB_REPOSITORY $TAGNAME \
+            --splitsh=/usr/local/bin/splitsh-lite \
             -t ${{ secrets.SPLIT_TOKEN }} \
             --packagist-username=${{ vars.PACKAGIST_USERNAME }} \
             --packagist-token=${{ secrets.PACKAGIST_TOKEN }}
