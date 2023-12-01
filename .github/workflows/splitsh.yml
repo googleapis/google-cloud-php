@@ -15,42 +15,47 @@ jobs:
       LD_LIBRARY_PATH: /usr/local/lib
       TAGNAME: ${{ inputs.tag }}
     steps:
-      - name: clone libgit2
-        uses: actions/checkout@master
-        with:
-          repository: libgit2/libgit2
-          ref: v1.5.1
-          path: libgit2
-      - name: install libgit2
+      - name: test env
         run: |
-          mkdir libgit2/build && cd libgit2/build
-          cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local
-          sudo cmake --build . --target install
-      - name: compile splitsh
-        run: |
-          go env -w GO111MODULE=off
-          go get github.com/splitsh/lite
-          go build -o /usr/local/bin/splitsh-lite github.com/splitsh/lite
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-          fetch-depth: 0
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.1'
-          ini-values: memory_limit=2048M
-      - name: Install Dependencies
-        uses: nick-fields/retry@v2
-        with:
-          timeout_minutes: 10
-          max_attempts: 3
-          command: composer update -d dev
-      - name: Run Subtree Split and Release
-        # run with "--dry-run" and previous (0.226.0) release to test
-        run: |
-          ./dev/google-cloud split $GITHUB_REPOSITORY v0.226.0 \
-            -t ${{ secrets.SPLIT_TOKEN }} \
-            --splitsh=/usr/local/bin/splitsh-lite \
-            --dry-run
+          echo $TAGNAME
+        env:
+          TAGNAME: ${{ inputs.tag != '' && inputs.tag || 'foo' }}
+      # - name: clone libgit2
+      #   uses: actions/checkout@master
+      #   with:
+      #     repository: libgit2/libgit2
+      #     ref: v1.5.1
+      #     path: libgit2
+      # - name: install libgit2
+      #   run: |
+      #     mkdir libgit2/build && cd libgit2/build
+      #     cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local
+      #     sudo cmake --build . --target install
+      # - name: compile splitsh
+      #   run: |
+      #     go env -w GO111MODULE=off
+      #     go get github.com/splitsh/lite
+      #     go build -o /usr/local/bin/splitsh-lite github.com/splitsh/lite
+      # - name: Checkout
+      #   uses: actions/checkout@v4
+      #   with:
+      #     persist-credentials: false
+      #     fetch-depth: 0
+      # - name: Setup PHP
+      #   uses: shivammathur/setup-php@v2
+      #   with:
+      #     php-version: '8.1'
+      #     ini-values: memory_limit=2048M
+      # - name: Install Dependencies
+      #   uses: nick-fields/retry@v2
+      #   with:
+      #     timeout_minutes: 10
+      #     max_attempts: 3
+      #     command: composer update -d dev
+      # - name: Run Subtree Split and Release
+      #   # run with "--dry-run" and previous (0.226.0) release to test
+      #   run: |
+      #     ./dev/google-cloud split $GITHUB_REPOSITORY v0.226.0 \
+      #       -t ${{ secrets.SPLIT_TOKEN }} \
+      #       --splitsh=/usr/local/bin/splitsh-lite \
+      #       --dry-run

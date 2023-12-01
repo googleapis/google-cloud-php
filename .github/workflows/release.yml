@@ -50,6 +50,9 @@ jobs:
           timeout_minutes: 10
           max_attempts: 3
           command: composer update -d dev
+      - id: getTag
+        name: Get Tag
+        run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
       - name: Run Subtree Split and Release
         env:
           TAGNAME: ${{ inputs.tag != '' && inputs.tag || steps.getTag.outputs.tag }}
