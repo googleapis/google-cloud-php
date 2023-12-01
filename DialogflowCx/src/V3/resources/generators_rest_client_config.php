@@ -2,73 +2,61 @@
 
 return [
     'interfaces' => [
-        'google.cloud.dialogflow.cx.v3.Sessions' => [
-            'DetectIntent' => [
+        'google.cloud.dialogflow.cx.v3.Generators' => [
+            'CreateGenerator' => [
                 'method' => 'post',
-                'uriTemplate' => '/v3/{session=projects/*/locations/*/agents/*/sessions/*}:detectIntent',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v3/{session=projects/*/locations/*/agents/*/environments/*/sessions/*}:detectIntent',
-                        'body' => '*',
-                    ],
-                ],
+                'uriTemplate' => '/v3/{parent=projects/*/locations/*/agents/*}/generators',
+                'body' => 'generator',
                 'placeholders' => [
-                    'session' => [
+                    'parent' => [
                         'getters' => [
-                            'getSession',
+                            'getParent',
                         ],
                     ],
                 ],
             ],
-            'FulfillIntent' => [
-                'method' => 'post',
-                'uriTemplate' => '/v3/{match_intent_request.session=projects/*/locations/*/agents/*/sessions/*}:fulfillIntent',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v3/{match_intent_request.session=projects/*/locations/*/agents/*/environments/*/sessions/*}:fulfillIntent',
-                        'body' => '*',
-                    ],
-                ],
+            'DeleteGenerator' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v3/{name=projects/*/locations/*/agents/*/generators/*}',
                 'placeholders' => [
-                    'match_intent_request.session' => [
+                    'name' => [
                         'getters' => [
-                            'getMatchIntentRequest',
-                            'getSession',
+                            'getName',
                         ],
                     ],
                 ],
             ],
-            'MatchIntent' => [
-                'method' => 'post',
-                'uriTemplate' => '/v3/{session=projects/*/locations/*/agents/*/sessions/*}:matchIntent',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v3/{session=projects/*/locations/*/agents/*/environments/*/sessions/*}:matchIntent',
-                        'body' => '*',
-                    ],
-                ],
+            'GetGenerator' => [
+                'method' => 'get',
+                'uriTemplate' => '/v3/{name=projects/*/locations/*/agents/*/generators/*}',
                 'placeholders' => [
-                    'session' => [
+                    'name' => [
                         'getters' => [
-                            'getSession',
+                            'getName',
                         ],
                     ],
                 ],
             ],
-            'SubmitAnswerFeedback' => [
-                'method' => 'post',
-                'uriTemplate' => '/v3/{session=projects/*/locations/*/agents/*/sessions/*}:submitAnswerFeedback',
-                'body' => '*',
+            'ListGenerators' => [
+                'method' => 'get',
+                'uriTemplate' => '/v3/{parent=projects/*/locations/*/agents/*}/generators',
                 'placeholders' => [
-                    'session' => [
+                    'parent' => [
                         'getters' => [
-                            'getSession',
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateGenerator' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v3/{generator.name=projects/*/locations/*/agents/*/generators/*}',
+                'body' => 'generator',
+                'placeholders' => [
+                    'generator.name' => [
+                        'getters' => [
+                            'getGenerator',
+                            'getName',
                         ],
                     ],
                 ],

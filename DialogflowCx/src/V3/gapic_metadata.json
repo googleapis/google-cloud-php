@@ -417,6 +417,11 @@
                                 "streamingDetectIntent"
                             ]
                         },
+                        "SubmitAnswerFeedback": {
+                            "methods": [
+                                "submitAnswerFeedback"
+                            ]
+                        },
                         "GetLocation": {
                             "methods": [
                                 "getLocation"
@@ -700,6 +705,50 @@
                         "UpdateExperiment": {
                             "methods": [
                                 "updateExperiment"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Generators": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "GeneratorsGapicClient",
+                    "rpcs": {
+                        "CreateGenerator": {
+                            "methods": [
+                                "createGenerator"
+                            ]
+                        },
+                        "DeleteGenerator": {
+                            "methods": [
+                                "deleteGenerator"
+                            ]
+                        },
+                        "GetGenerator": {
+                            "methods": [
+                                "getGenerator"
+                            ]
+                        },
+                        "ListGenerators": {
+                            "methods": [
+                                "listGenerators"
+                            ]
+                        },
+                        "UpdateGenerator": {
+                            "methods": [
+                                "updateGenerator"
                             ]
                         },
                         "GetLocation": {

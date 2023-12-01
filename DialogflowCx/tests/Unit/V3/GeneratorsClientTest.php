@@ -23,20 +23,16 @@
 namespace Google\Cloud\Dialogflow\Cx\Tests\Unit\V3;
 
 use Google\ApiCore\ApiException;
-use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\Dialogflow\Cx\V3\AnswerFeedback;
-use Google\Cloud\Dialogflow\Cx\V3\DetectIntentResponse;
-use Google\Cloud\Dialogflow\Cx\V3\FulfillIntentResponse;
-use Google\Cloud\Dialogflow\Cx\V3\MatchIntentResponse;
-use Google\Cloud\Dialogflow\Cx\V3\QueryInput;
-use Google\Cloud\Dialogflow\Cx\V3\SessionsClient;
-use Google\Cloud\Dialogflow\Cx\V3\StreamingDetectIntentRequest;
-use Google\Cloud\Dialogflow\Cx\V3\StreamingDetectIntentResponse;
+use Google\Cloud\Dialogflow\Cx\V3\Generator;
+use Google\Cloud\Dialogflow\Cx\V3\GeneratorsClient;
+use Google\Cloud\Dialogflow\Cx\V3\ListGeneratorsResponse;
+use Google\Cloud\Dialogflow\Cx\V3\Phrase;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -45,7 +41,7 @@ use stdClass;
  *
  * @group gapic
  */
-class SessionsClientTest extends GeneratedTest
+class GeneratorsClientTest extends GeneratedTest
 {
     /** @return TransportInterface */
     private function createTransport($deserialize = null)
@@ -59,17 +55,17 @@ class SessionsClientTest extends GeneratedTest
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /** @return SessionsClient */
+    /** @return GeneratorsClient */
     private function createClient(array $options = [])
     {
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-        return new SessionsClient($options);
+        return new GeneratorsClient($options);
     }
 
     /** @test */
-    public function detectIntentTest()
+    public function createGeneratorTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -77,35 +73,37 @@ class SessionsClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $responseId = 'responseId1847552473';
-        $outputAudio = '24';
-        $allowCancellation = false;
-        $expectedResponse = new DetectIntentResponse();
-        $expectedResponse->setResponseId($responseId);
-        $expectedResponse->setOutputAudio($outputAudio);
-        $expectedResponse->setAllowCancellation($allowCancellation);
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $expectedResponse = new Generator();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[LOCATION]', '[AGENT]', '[SESSION]');
-        $queryInput = new QueryInput();
-        $queryInputLanguageCode = 'queryInputLanguageCode478766695';
-        $queryInput->setLanguageCode($queryInputLanguageCode);
-        $response = $gapicClient->detectIntent($formattedSession, $queryInput);
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $generator = new Generator();
+        $generatorDisplayName = 'generatorDisplayName421654938';
+        $generator->setDisplayName($generatorDisplayName);
+        $generatorPromptText = new Phrase();
+        $promptTextText = 'promptTextText-1712080514';
+        $generatorPromptText->setText($promptTextText);
+        $generator->setPromptText($generatorPromptText);
+        $response = $gapicClient->createGenerator($formattedParent, $generator);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.dialogflow.cx.v3.Sessions/DetectIntent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSession();
-        $this->assertProtobufEquals($formattedSession, $actualValue);
-        $actualValue = $actualRequestObject->getQueryInput();
-        $this->assertProtobufEquals($queryInput, $actualValue);
+        $this->assertSame('/google.cloud.dialogflow.cx.v3.Generators/CreateGenerator', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getGenerator();
+        $this->assertProtobufEquals($generator, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function detectIntentExceptionTest()
+    public function createGeneratorExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -123,12 +121,16 @@ class SessionsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[LOCATION]', '[AGENT]', '[SESSION]');
-        $queryInput = new QueryInput();
-        $queryInputLanguageCode = 'queryInputLanguageCode478766695';
-        $queryInput->setLanguageCode($queryInputLanguageCode);
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $generator = new Generator();
+        $generatorDisplayName = 'generatorDisplayName421654938';
+        $generator->setDisplayName($generatorDisplayName);
+        $generatorPromptText = new Phrase();
+        $promptTextText = 'promptTextText-1712080514';
+        $generatorPromptText->setText($promptTextText);
+        $generator->setPromptText($generatorPromptText);
         try {
-            $gapicClient->detectIntent($formattedSession, $queryInput);
+            $gapicClient->createGenerator($formattedParent, $generator);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -141,7 +143,7 @@ class SessionsClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function fulfillIntentTest()
+    public function deleteGeneratorTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -149,24 +151,23 @@ class SessionsClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $responseId = 'responseId1847552473';
-        $outputAudio = '24';
-        $expectedResponse = new FulfillIntentResponse();
-        $expectedResponse->setResponseId($responseId);
-        $expectedResponse->setOutputAudio($outputAudio);
+        $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->fulfillIntent();
-        $this->assertEquals($expectedResponse, $response);
+        // Mock request
+        $formattedName = $gapicClient->generatorName('[PROJECT]', '[LOCATION]', '[AGENT]', '[GENERATOR]');
+        $gapicClient->deleteGenerator($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.dialogflow.cx.v3.Sessions/FulfillIntent', $actualFuncCall);
+        $this->assertSame('/google.cloud.dialogflow.cx.v3.Generators/DeleteGenerator', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function fulfillIntentExceptionTest()
+    public function deleteGeneratorExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -183,8 +184,10 @@ class SessionsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->generatorName('[PROJECT]', '[LOCATION]', '[AGENT]', '[GENERATOR]');
         try {
-            $gapicClient->fulfillIntent();
+            $gapicClient->deleteGenerator($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -197,7 +200,7 @@ class SessionsClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function matchIntentTest()
+    public function getGeneratorTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -205,31 +208,28 @@ class SessionsClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $text = 'text3556653';
-        $expectedResponse = new MatchIntentResponse();
-        $expectedResponse->setText($text);
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $expectedResponse = new Generator();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[LOCATION]', '[AGENT]', '[SESSION]');
-        $queryInput = new QueryInput();
-        $queryInputLanguageCode = 'queryInputLanguageCode478766695';
-        $queryInput->setLanguageCode($queryInputLanguageCode);
-        $response = $gapicClient->matchIntent($formattedSession, $queryInput);
+        $formattedName = $gapicClient->generatorName('[PROJECT]', '[LOCATION]', '[AGENT]', '[GENERATOR]');
+        $response = $gapicClient->getGenerator($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.dialogflow.cx.v3.Sessions/MatchIntent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSession();
-        $this->assertProtobufEquals($formattedSession, $actualValue);
-        $actualValue = $actualRequestObject->getQueryInput();
-        $this->assertProtobufEquals($queryInput, $actualValue);
+        $this->assertSame('/google.cloud.dialogflow.cx.v3.Generators/GetGenerator', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function matchIntentExceptionTest()
+    public function getGeneratorExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -247,12 +247,9 @@ class SessionsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[LOCATION]', '[AGENT]', '[SESSION]');
-        $queryInput = new QueryInput();
-        $queryInputLanguageCode = 'queryInputLanguageCode478766695';
-        $queryInput->setLanguageCode($queryInputLanguageCode);
+        $formattedName = $gapicClient->generatorName('[PROJECT]', '[LOCATION]', '[AGENT]', '[GENERATOR]');
         try {
-            $gapicClient->matchIntent($formattedSession, $queryInput);
+            $gapicClient->getGenerator($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -265,7 +262,7 @@ class SessionsClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function streamingDetectIntentTest()
+    public function listGeneratorsTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -273,132 +270,34 @@ class SessionsClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $expectedResponse = new StreamingDetectIntentResponse();
-        $transport->addResponse($expectedResponse);
-        $expectedResponse2 = new StreamingDetectIntentResponse();
-        $transport->addResponse($expectedResponse2);
-        $expectedResponse3 = new StreamingDetectIntentResponse();
-        $transport->addResponse($expectedResponse3);
-        // Mock request
-        $queryInput = new QueryInput();
-        $queryInputLanguageCode = 'queryInputLanguageCode478766695';
-        $queryInput->setLanguageCode($queryInputLanguageCode);
-        $request = new StreamingDetectIntentRequest();
-        $request->setQueryInput($queryInput);
-        $queryInput2 = new QueryInput();
-        $queryInputLanguageCode = 'queryInputLanguageCode478766695';
-        $queryInput2->setLanguageCode($queryInputLanguageCode);
-        $request2 = new StreamingDetectIntentRequest();
-        $request2->setQueryInput($queryInput2);
-        $queryInput3 = new QueryInput();
-        $queryInputLanguageCode = 'queryInputLanguageCode478766695';
-        $queryInput3->setLanguageCode($queryInputLanguageCode);
-        $request3 = new StreamingDetectIntentRequest();
-        $request3->setQueryInput($queryInput3);
-        $bidi = $gapicClient->streamingDetectIntent();
-        $this->assertInstanceOf(BidiStream::class, $bidi);
-        $bidi->write($request);
-        $responses = [];
-        $responses[] = $bidi->read();
-        $bidi->writeAll([
-            $request2,
-            $request3,
-        ]);
-        foreach ($bidi->closeWriteAndReadAll() as $response) {
-            $responses[] = $response;
-        }
-
-        $expectedResponses = [];
-        $expectedResponses[] = $expectedResponse;
-        $expectedResponses[] = $expectedResponse2;
-        $expectedResponses[] = $expectedResponse3;
-        $this->assertEquals($expectedResponses, $responses);
-        $createStreamRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($createStreamRequests));
-        $streamFuncCall = $createStreamRequests[0]->getFuncCall();
-        $streamRequestObject = $createStreamRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.dialogflow.cx.v3.Sessions/StreamingDetectIntent', $streamFuncCall);
-        $this->assertNull($streamRequestObject);
-        $callObjects = $transport->popCallObjects();
-        $this->assertSame(1, count($callObjects));
-        $bidiCall = $callObjects[0];
-        $writeRequests = $bidiCall->popReceivedCalls();
-        $expectedRequests = [];
-        $expectedRequests[] = $request;
-        $expectedRequests[] = $request2;
-        $expectedRequests[] = $request3;
-        $this->assertEquals($expectedRequests, $writeRequests);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function streamingDetectIntentExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->setStreamingStatus($status);
-        $this->assertTrue($transport->isExhausted());
-        $bidi = $gapicClient->streamingDetectIntent();
-        $results = $bidi->closeWriteAndReadAll();
-        try {
-            iterator_to_array($results);
-            // If the close stream method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function submitAnswerFeedbackTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $customRating = 'customRating1123127851';
-        $expectedResponse = new AnswerFeedback();
-        $expectedResponse->setCustomRating($customRating);
+        $nextPageToken = '';
+        $generatorsElement = new Generator();
+        $generators = [
+            $generatorsElement,
+        ];
+        $expectedResponse = new ListGeneratorsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setGenerators($generators);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[LOCATION]', '[AGENT]', '[SESSION]');
-        $responseId = 'responseId1847552473';
-        $answerFeedback = new AnswerFeedback();
-        $response = $gapicClient->submitAnswerFeedback($formattedSession, $responseId, $answerFeedback);
-        $this->assertEquals($expectedResponse, $response);
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $response = $gapicClient->listGenerators($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getGenerators()[0], $resources[0]);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.dialogflow.cx.v3.Sessions/SubmitAnswerFeedback', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSession();
-        $this->assertProtobufEquals($formattedSession, $actualValue);
-        $actualValue = $actualRequestObject->getResponseId();
-        $this->assertProtobufEquals($responseId, $actualValue);
-        $actualValue = $actualRequestObject->getAnswerFeedback();
-        $this->assertProtobufEquals($answerFeedback, $actualValue);
+        $this->assertSame('/google.cloud.dialogflow.cx.v3.Generators/ListGenerators', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function submitAnswerFeedbackExceptionTest()
+    public function listGeneratorsExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -416,11 +315,83 @@ class SessionsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[LOCATION]', '[AGENT]', '[SESSION]');
-        $responseId = 'responseId1847552473';
-        $answerFeedback = new AnswerFeedback();
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
         try {
-            $gapicClient->submitAnswerFeedback($formattedSession, $responseId, $answerFeedback);
+            $gapicClient->listGenerators($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateGeneratorTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $expectedResponse = new Generator();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $generator = new Generator();
+        $generatorDisplayName = 'generatorDisplayName421654938';
+        $generator->setDisplayName($generatorDisplayName);
+        $generatorPromptText = new Phrase();
+        $promptTextText = 'promptTextText-1712080514';
+        $generatorPromptText->setText($promptTextText);
+        $generator->setPromptText($generatorPromptText);
+        $response = $gapicClient->updateGenerator($generator);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dialogflow.cx.v3.Generators/UpdateGenerator', $actualFuncCall);
+        $actualValue = $actualRequestObject->getGenerator();
+        $this->assertProtobufEquals($generator, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateGeneratorExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $generator = new Generator();
+        $generatorDisplayName = 'generatorDisplayName421654938';
+        $generator->setDisplayName($generatorDisplayName);
+        $generatorPromptText = new Phrase();
+        $promptTextText = 'promptTextText-1712080514';
+        $generatorPromptText->setText($promptTextText);
+        $generator->setPromptText($generatorPromptText);
+        try {
+            $gapicClient->updateGenerator($generator);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

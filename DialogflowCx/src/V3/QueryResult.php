@@ -145,6 +145,13 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.AdvancedSettings advanced_settings = 21;</code>
      */
     protected $advanced_settings = null;
+    /**
+     * Indicates whether the Thumbs up/Thumbs down rating controls are need to be
+     * shown for the response in the Dialogflow Messenger widget.
+     *
+     * Generated from protobuf field <code>bool allow_answer_feedback = 32;</code>
+     */
+    protected $allow_answer_feedback = false;
     protected $query;
 
     /**
@@ -252,6 +259,9 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *           the client may need to perform special logic at the moment. For example, if
      *           Dialogflow exports audio to Google Cloud Storage, then the client may need
      *           to wait for the resulting object to appear in the bucket before proceeding.
+     *     @type bool $allow_answer_feedback
+     *           Indicates whether the Thumbs up/Thumbs down rating controls are need to be
+     *           shown for the response in the Dialogflow Messenger widget.
      * }
      */
     public function __construct($data = NULL) {
@@ -932,6 +942,34 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\AdvancedSettings::class);
         $this->advanced_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates whether the Thumbs up/Thumbs down rating controls are need to be
+     * shown for the response in the Dialogflow Messenger widget.
+     *
+     * Generated from protobuf field <code>bool allow_answer_feedback = 32;</code>
+     * @return bool
+     */
+    public function getAllowAnswerFeedback()
+    {
+        return $this->allow_answer_feedback;
+    }
+
+    /**
+     * Indicates whether the Thumbs up/Thumbs down rating controls are need to be
+     * shown for the response in the Dialogflow Messenger widget.
+     *
+     * Generated from protobuf field <code>bool allow_answer_feedback = 32;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAllowAnswerFeedback($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->allow_answer_feedback = $var;
 
         return $this;
     }

@@ -158,6 +158,31 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration session_ttl = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $session_ttl = null;
+    /**
+     * Optional. Information about the end-user to improve the relevance and
+     * accuracy of generative answers.
+     * This will be interpreted and used by a language model, so, for good
+     * results, the data should be self-descriptive, and in a simple structure.
+     * Example:
+     * ```json
+     * {
+     *   "subscription plan": "Business Premium Plus",
+     *   "devices owned": [
+     *     {"model": "Google Pixel 7"},
+     *     {"model": "Google Pixel Tablet"}
+     *   ]
+     * }
+     * ```
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct end_user_metadata = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $end_user_metadata = null;
+    /**
+     * Optional. Search configuration for UCS search queries.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.SearchConfig search_config = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $search_config = null;
 
     /**
      * Constructor.
@@ -260,6 +285,23 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      *           By default, a Dialogflow session remains active and its data is stored for
      *           30 minutes after the last request is sent for the session.
      *           This value should be no longer than 1 day.
+     *     @type \Google\Protobuf\Struct $end_user_metadata
+     *           Optional. Information about the end-user to improve the relevance and
+     *           accuracy of generative answers.
+     *           This will be interpreted and used by a language model, so, for good
+     *           results, the data should be self-descriptive, and in a simple structure.
+     *           Example:
+     *           ```json
+     *           {
+     *             "subscription plan": "Business Premium Plus",
+     *             "devices owned": [
+     *               {"model": "Google Pixel 7"},
+     *               {"model": "Google Pixel Tablet"}
+     *             ]
+     *           }
+     *           ```
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\SearchConfig $search_config
+     *           Optional. Search configuration for UCS search queries.
      * }
      */
     public function __construct($data = NULL) {
@@ -757,6 +799,104 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->session_ttl = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Information about the end-user to improve the relevance and
+     * accuracy of generative answers.
+     * This will be interpreted and used by a language model, so, for good
+     * results, the data should be self-descriptive, and in a simple structure.
+     * Example:
+     * ```json
+     * {
+     *   "subscription plan": "Business Premium Plus",
+     *   "devices owned": [
+     *     {"model": "Google Pixel 7"},
+     *     {"model": "Google Pixel Tablet"}
+     *   ]
+     * }
+     * ```
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct end_user_metadata = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Struct|null
+     */
+    public function getEndUserMetadata()
+    {
+        return $this->end_user_metadata;
+    }
+
+    public function hasEndUserMetadata()
+    {
+        return isset($this->end_user_metadata);
+    }
+
+    public function clearEndUserMetadata()
+    {
+        unset($this->end_user_metadata);
+    }
+
+    /**
+     * Optional. Information about the end-user to improve the relevance and
+     * accuracy of generative answers.
+     * This will be interpreted and used by a language model, so, for good
+     * results, the data should be self-descriptive, and in a simple structure.
+     * Example:
+     * ```json
+     * {
+     *   "subscription plan": "Business Premium Plus",
+     *   "devices owned": [
+     *     {"model": "Google Pixel 7"},
+     *     {"model": "Google Pixel Tablet"}
+     *   ]
+     * }
+     * ```
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct end_user_metadata = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setEndUserMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->end_user_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Search configuration for UCS search queries.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.SearchConfig search_config = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\Cx\V3\SearchConfig|null
+     */
+    public function getSearchConfig()
+    {
+        return $this->search_config;
+    }
+
+    public function hasSearchConfig()
+    {
+        return isset($this->search_config);
+    }
+
+    public function clearSearchConfig()
+    {
+        unset($this->search_config);
+    }
+
+    /**
+     * Optional. Search configuration for UCS search queries.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.SearchConfig search_config = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\Cx\V3\SearchConfig $var
+     * @return $this
+     */
+    public function setSearchConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\SearchConfig::class);
+        $this->search_config = $var;
 
         return $this;
     }
