@@ -1392,7 +1392,7 @@ class DatabaseTest extends TestCase
 
     public function testDBDatabaseRole()
     {
-        $sql = $this->readArgs('sql');
+        $sql = $this->createStreamingAPIArgs()['sql'];
         $this->connection->createSession(Argument::withEntry(
             'session',
             ['labels' => [], 'creator_role' => 'Reader']
@@ -1409,7 +1409,7 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionWithUpdate()
     {
-        $sql = $this->readArgs('sql');
+        $sql = $this->createStreamingAPIArgs()['sql'];
 
         $this->stubCommit();
         $this->stubExecuteStreamingSql();
@@ -1424,7 +1424,7 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionWithQuery()
     {
-        $sql = $this->readArgs('sql');
+        $sql = $this->createStreamingAPIArgs()['sql'];
 
         $this->stubCommit();
         $this->stubExecuteStreamingSql();
@@ -1439,7 +1439,8 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionWithRead()
     {
-        list($keySet, $cols) = $this->readArgs();
+        $keySet = $this->createStreamingAPIArgs()['keySet'];
+        $cols = $this->createStreamingAPIArgs()['cols'];
 
         $this->stubCommit();
         $this->stubStreamingRead();
@@ -1454,7 +1455,7 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionWithUpdateBatch()
     {
-        $sql = $this->readArgs('sql');
+        $sql = $this->createStreamingAPIArgs()['sql'];
 
         $this->stubCommit();
         $this->stubExecuteBatchDml();
@@ -1469,8 +1470,9 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionWithReadFirst()
     {
-        $sql = $this->readArgs('sql');
-        list($keySet, $cols) = $this->readArgs();
+        $sql = $this->createStreamingAPIArgs()['sql'];
+        $keySet = $this->createStreamingAPIArgs()['keySet'];
+        $cols = $this->createStreamingAPIArgs()['cols'];
 
         $this->stubCommit();
         $this->stubStreamingRead();
@@ -1487,8 +1489,9 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionWithExecuteFirst()
     {
-        $sql = $this->readArgs('sql');
-        list($keySet, $cols) = $this->readArgs();
+        $sql = $this->createStreamingAPIArgs()['sql'];
+        $keySet = $this->createStreamingAPIArgs()['keySet'];
+        $cols = $this->createStreamingAPIArgs()['cols'];
 
         $this->stubCommit();
         $this->stubStreamingRead(['id' => self::TRANSACTION]);
@@ -1505,8 +1508,9 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionWithUpdateBatchFirst()
     {
-        $sql = $this->readArgs('sql');
-        list($keySet, $cols) = $this->readArgs();
+        $sql = $this->createStreamingAPIArgs()['sql'];
+        $keySet = $this->createStreamingAPIArgs()['keySet'];
+        $cols = $this->createStreamingAPIArgs()['cols'];
 
         $this->stubCommit();
         $this->stubExecuteBatchDml();
@@ -1525,8 +1529,9 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionWithUpdateBatchError()
     {
-        $sql = $this->readArgs('sql');
-        list($keySet, $cols) = $this->readArgs();
+        $sql = $this->createStreamingAPIArgs()['sql'];
+        $keySet = $this->createStreamingAPIArgs()['keySet'];
+        $cols = $this->createStreamingAPIArgs()['cols'];
 
         $this->stubCommit();
         $this->stubStreamingRead(['id' => self::TRANSACTION]);
@@ -1554,7 +1559,7 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionWithFirstFailedStatement()
     {
-        $sql = $this->readArgs('sql');
+        $sql = $this->createStreamingAPIArgs()['sql'];
         $error = new ServerException('RST_STREAM', Code::INTERNAL);
 
         // First call with ILB fails
@@ -1578,7 +1583,7 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionWithCommitAborted()
     {
-        $sql = $this->readArgs('sql');
+        $sql = $this->createStreamingAPIArgs()['sql'];
         $numOfRetries = 2;
 
         $abort = new AbortedException('foo', 409, null, [
@@ -1641,7 +1646,7 @@ class DatabaseTest extends TestCase
     {
         $this->expectException(ServerException::class);
         $error = new ServerException('RST_STREAM', Code::INTERNAL);
-        $sql = $this->readArgs('sql');
+        $sql = $this->createStreamingAPIArgs()['sql'];
 
         $this->connection->executeStreamingSql(Argument::allOf(
             Argument::withEntry('sql', $sql),
@@ -1689,7 +1694,7 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionWithUnavailableErrorRetry()
     {
-        $sql = $this->readArgs('sql');
+        $sql = $this->createStreamingAPIArgs()['sql'];
         $numOfRetries = 2;
         $unavailable = new ServiceException('Unavailable', 14);
         $result = $this->resultGenerator(true, self::TRANSACTION);
@@ -1723,7 +1728,7 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionWithFirstUnavailableErrorRetry()
     {
-        $sql = $this->readArgs('sql');
+        $sql = $this->createStreamingAPIArgs()['sql'];
         $unavailable = new ServiceException('Unavailable', 14);
 
         // First call with ILB results in a transaction.
@@ -1744,16 +1749,16 @@ class DatabaseTest extends TestCase
 
         $this->database->runTransaction(function ($t) use ($sql) {
             $result = $t->execute($sql);
-            foreach ($result as $res) {
-                continue;
-            }
+            // Need to fetch all the rows from iterator to see the retryable errors.
+            iterator_to_array($result);
             $t->commit();
         }, ['tag' => self::TRANSACTION_TAG]);
     }
 
     public function testRunTransactionWithUnavailableAndAbortErrorRetry()
     {
-        [$keySet, $cols] = $this->readArgs();
+        $keySet = $this->createStreamingAPIArgs()['keySet'];
+        $cols = $this->createStreamingAPIArgs()['cols'];
         $numOfRetries = 2;
         $unavailable = new ServiceException('Unavailable', 14);
         $abort = new AbortedException('foo', 409, null, [
@@ -1827,7 +1832,7 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionWithRollback()
     {
-        $sql = $this->readArgs('sql');
+        $sql = $this->createStreamingAPIArgs()['sql'];
 
         $this->stubExecuteStreamingSql();
         $this->connection->rollback(Argument::allOf(
@@ -1841,20 +1846,16 @@ class DatabaseTest extends TestCase
         }, ['tag' => self::TRANSACTION_TAG]);
     }
 
-    private function readArgs($argType = 'keySet')
+    private function createStreamingAPIArgs()
     {
-        if ($argType === 'sql') {
-            return 'SELECT * FROM foo WHERE id = 1';
-        } else {
-            $row = ['id' => 1];
-            return [
-                new KeySet([
-                    'keys' => [$row['id']]
-                ]),
-                array_keys($row),
-                'SELECT * FROM foo WHERE id = 1'
-            ];
-        }
+        $row = ['id' => 1];
+        return [
+            'keySet' => new KeySet([
+                'keys' => [$row['id']]
+            ]),
+            'cols' => array_keys($row),
+            'sql' => 'SELECT * FROM foo WHERE id = 1'
+        ];
     }
 
     private function resultGeneratorWithError()
@@ -1911,7 +1912,8 @@ class DatabaseTest extends TestCase
 
     private function stubStreamingRead($transactionOptions = self::BEGIN_RW_OPTIONS)
     {
-        list($keySet, $cols) = $this->readArgs();
+        $keySet = $this->createStreamingAPIArgs()['keySet'];
+        $cols = $this->createStreamingAPIArgs()['cols'];
         $this->connection->streamingRead(Argument::allOf(
             Argument::withEntry('transaction', $transactionOptions),
             Argument::withEntry('requestOptions', [
@@ -1924,7 +1926,7 @@ class DatabaseTest extends TestCase
 
     private function stubExecuteStreamingSql($transactionOptions = self::BEGIN_RW_OPTIONS)
     {
-        $sql = $this->readArgs('sql');
+        $sql = $this->createStreamingAPIArgs()['sql'];
         $this->connection->executeStreamingSql(Argument::allOf(
             Argument::withEntry('sql', $sql),
             Argument::withEntry('transaction', $transactionOptions),

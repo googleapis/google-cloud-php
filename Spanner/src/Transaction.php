@@ -725,9 +725,6 @@ class Transaction implements TransactionalReadInterface
     {
         unset($options['requestOptions']['transactionTag']);
         if (isset($this->tag)) {
-            $options += [
-                'requestOptions' => []
-            ];
             $options['requestOptions']['transactionTag'] = $this->tag;
         }
         $options['seqno'] = $this->seqno;
