@@ -382,7 +382,7 @@ trait TransactionalReadTrait
     /**
      * Set the transaction ID.
      */
-    public function setId(string $transactionId)
+    public function setId(?string $transactionId)
     {
         $this->transactionId = $transactionId;
     }

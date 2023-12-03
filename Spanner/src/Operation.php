@@ -374,12 +374,11 @@ class Operation
             'statements' => $stmts
         ] + $options);
 
-        if (empty($transaction->id()) &&
-            !empty($res['resultSets'][0]['metadata']['transaction']['id'])) {
+        if (empty($transaction->id())) {
             // Get the transaction from array of ResultSets.
             // ResultSet contains transaction in the metadata.
             // @see https://cloud.google.com/spanner/docs/reference/rest/v1/ResultSet
-            $transaction->setId($res['resultSets'][0]['metadata']['transaction']['id']);
+            $transaction->setId($res['resultSets'][0]['metadata']['transaction']['id'] ?? null);
         }
 
         $errorStatement = null;

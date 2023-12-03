@@ -69,5 +69,5 @@ interface TransactionalReadInterface
     /**
      * Set the transaction ID.
      */
-    public function setId(string $transactionId);
+    public function setId(?string $transactionId);
 }
