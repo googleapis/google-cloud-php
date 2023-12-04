@@ -33,7 +33,6 @@ use Google\Rpc\RetryInfo;
  */
 class GapicRequestWrapper
 {
-    use RequestWrapperTrait;
     /**
      * @var Serializer A serializer used to encode responses.
      */
@@ -49,18 +48,11 @@ class GapicRequestWrapper
 
     /**
      * @param array $config [optional] {
-     *     Configuration options. Please see
-     *     {@see Google\Cloud\Core\RequestWrapperTrait::setCommonDefaults()} for
-     *     the other available options.
-     *
      *     @type Serializer $serializer A serializer used to encode responses.
      * }
      */
     public function __construct(array $config = [])
     {
-        // @TODO: Do we need this?
-        $this->setCommonDefaults($config);
-
         $this->serializer = $config['serializer'] ?? new Serializer;
     }
 
