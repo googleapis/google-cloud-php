@@ -93,7 +93,6 @@ class TransactionTest extends SpannerTestCase
             $resRow['birthday']->formatAsString(),
             $row['birthday']->formatAsString()
         );
-
     }
 
     /**
