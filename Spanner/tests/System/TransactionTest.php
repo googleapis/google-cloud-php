@@ -68,17 +68,32 @@ class TransactionTest extends SpannerTestCase
     public function testRunTransaction()
     {
         $db = self::$database;
+        $id = rand(1, 346464);
+        $keySet = new KeySet([
+            'keys' => [$id]
+        ]);
+        $row = [
+            'id' => $id,
+            'name' => uniqid(self::TESTING_PREFIX),
+            'birthday' => new Date(new \DateTime)
+        ];
+        $cols = array_keys($row);
 
-        $db->runTransaction(function ($t) {
-            $id = rand(1, 346464);
-            $t->insert(self::TEST_TABLE_NAME, [
-                'id' => $id,
-                'name' => uniqid(self::TESTING_PREFIX),
-                'birthday' => new Date(new \DateTime)
-            ]);
-
+        $db->runTransaction(function ($t) use ($row) {
+            $t->insert(self::TEST_TABLE_NAME, $row);
             $t->commit();
         });
+
+        $snapshot = $db->snapshot();
+        $res = $snapshot->read(self::TEST_TABLE_NAME, $keySet, $cols);
+        $resRow = $res->rows()->current();
+        $this->assertEquals($resRow['id'], $row['id']);
+        $this->assertEquals($resRow['name'], $row['name']);
+        $this->assertEquals(
+            $resRow['birthday']->formatAsString(),
+            $row['birthday']->formatAsString()
+        );
+
     }
 
     /**

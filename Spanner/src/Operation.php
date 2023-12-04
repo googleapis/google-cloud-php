@@ -488,10 +488,9 @@ class Operation
             $options['requestOptions']['transactionTag'] = $transactionTag;
         }
 
-        if (!$options['singleUse'] && (
-            !isset($options['begin']) ||
-            isset($options['transactionOptions']['partitionedDml'])
-        )) {
+        if (!$options['singleUse'] && (!isset($options['begin']) ||
+            isset($options['transactionOptions']['partitionedDml']))
+        ) {
             $res = $this->beginTransaction($session, $options);
         } else {
             $res = [];
