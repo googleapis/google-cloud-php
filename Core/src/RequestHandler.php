@@ -72,7 +72,7 @@ class RequestHandler
     /**
      * Helper function that forwards the request to a gapic client obj.
      *
-     * @param $gapicClassOrObj The request will be forwarded to this GAPIC.
+     * @param $gapicClassOrObject The request will be forwarded to this GAPIC.
      * @param $method This method needs to be called on the gapic obj.
      * @param $requiredArgs The positional arguments to be passed on the $method
      * @param $args The optional args.
@@ -82,8 +82,8 @@ class RequestHandler
      * If a GAPIC object is supplied,then we use the object as is.
      * This is useful to override the GAPIC object used for one specific request.
      */
-    public function sendReq(
-        $gapicClassOrObj,
+    public function sendRequest(
+        $gapicClassOrObject,
         string $method,
         array $requiredArgs,
         array $optionalArgs,
@@ -96,7 +96,7 @@ class RequestHandler
         // passed on the the `$method` as a positional argument
         $allArgs[] = $optionalArgs;
 
-        $gapicObj = $this->getGapicObj($gapicClassOrObj);
+        $gapicObj = $this->getGapicObject($gapicClassOrObject);
 
         // TODO: check how can we simplify the use of $whitelisted
         return $this->send([$gapicObj, $method], $allArgs, $whitelisted);
@@ -128,13 +128,13 @@ class RequestHandler
      * Alternatively, if a GAPIC object is supplied, then that object is returned
      * as is.
      */
-    private function getGapicObj($gapicClassOrObj)
+    private function getGapicObject($gapicClassOrObject)
     {
-        if (is_object($gapicClassOrObj)) {
-            return $gapicClassOrObj;
+        if (is_object($gapicClassOrObject)) {
+            return $gapicClassOrObject;
         }
 
-        return $this->gapics[$gapicClassOrObj];
+        return $this->gapics[$gapicClassOrObject];
     }
 
     private function getDefaultTransport()
