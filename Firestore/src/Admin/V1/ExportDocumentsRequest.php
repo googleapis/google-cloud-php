@@ -42,6 +42,28 @@ class ExportDocumentsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string output_uri_prefix = 3;</code>
      */
     private $output_uri_prefix = '';
+    /**
+     * Unspecified means all namespaces. This is the preferred
+     * usage for databases that don't use namespaces.
+     * An empty string element represents the default namespace. This should be
+     * used if the database has data in non-default namespaces, but doesn't want
+     * to include them. Each namespace in this list must be unique.
+     *
+     * Generated from protobuf field <code>repeated string namespace_ids = 4;</code>
+     */
+    private $namespace_ids;
+    /**
+     * The timestamp that corresponds to the version of the database to be
+     * exported. The timestamp must be in the past, rounded to the minute and not
+     * older than
+     * [earliestVersionTime][google.firestore.admin.v1.Database.earliest_version_time].
+     * If specified, then the exported documents will represent a consistent view
+     * of the database at the provided time. Otherwise, there are no guarantees
+     * about the consistency of the exported documents.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp snapshot_time = 5;</code>
+     */
+    private $snapshot_time = null;
 
     /**
      * @param string $name Required. Database to export. Should be of the form:
@@ -78,6 +100,20 @@ class ExportDocumentsRequest extends \Google\Protobuf\Internal\Message
      *           guidelines: https://cloud.google.com/storage/docs/naming.
      *           If the URI is a bucket (without a namespace path), a prefix will be
      *           generated based on the start time.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $namespace_ids
+     *           Unspecified means all namespaces. This is the preferred
+     *           usage for databases that don't use namespaces.
+     *           An empty string element represents the default namespace. This should be
+     *           used if the database has data in non-default namespaces, but doesn't want
+     *           to include them. Each namespace in this list must be unique.
+     *     @type \Google\Protobuf\Timestamp $snapshot_time
+     *           The timestamp that corresponds to the version of the database to be
+     *           exported. The timestamp must be in the past, rounded to the minute and not
+     *           older than
+     *           [earliestVersionTime][google.firestore.admin.v1.Database.earliest_version_time].
+     *           If specified, then the exported documents will represent a consistent view
+     *           of the database at the provided time. Otherwise, there are no guarantees
+     *           about the consistency of the exported documents.
      * }
      */
     public function __construct($data = NULL) {
@@ -175,6 +211,88 @@ class ExportDocumentsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->output_uri_prefix = $var;
+
+        return $this;
+    }
+
+    /**
+     * Unspecified means all namespaces. This is the preferred
+     * usage for databases that don't use namespaces.
+     * An empty string element represents the default namespace. This should be
+     * used if the database has data in non-default namespaces, but doesn't want
+     * to include them. Each namespace in this list must be unique.
+     *
+     * Generated from protobuf field <code>repeated string namespace_ids = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getNamespaceIds()
+    {
+        return $this->namespace_ids;
+    }
+
+    /**
+     * Unspecified means all namespaces. This is the preferred
+     * usage for databases that don't use namespaces.
+     * An empty string element represents the default namespace. This should be
+     * used if the database has data in non-default namespaces, but doesn't want
+     * to include them. Each namespace in this list must be unique.
+     *
+     * Generated from protobuf field <code>repeated string namespace_ids = 4;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setNamespaceIds($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->namespace_ids = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The timestamp that corresponds to the version of the database to be
+     * exported. The timestamp must be in the past, rounded to the minute and not
+     * older than
+     * [earliestVersionTime][google.firestore.admin.v1.Database.earliest_version_time].
+     * If specified, then the exported documents will represent a consistent view
+     * of the database at the provided time. Otherwise, there are no guarantees
+     * about the consistency of the exported documents.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp snapshot_time = 5;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getSnapshotTime()
+    {
+        return $this->snapshot_time;
+    }
+
+    public function hasSnapshotTime()
+    {
+        return isset($this->snapshot_time);
+    }
+
+    public function clearSnapshotTime()
+    {
+        unset($this->snapshot_time);
+    }
+
+    /**
+     * The timestamp that corresponds to the version of the database to be
+     * exported. The timestamp must be in the past, rounded to the minute and not
+     * older than
+     * [earliestVersionTime][google.firestore.admin.v1.Database.earliest_version_time].
+     * If specified, then the exported documents will represent a consistent view
+     * of the database at the provided time. Otherwise, there are no guarantees
+     * about the consistency of the exported documents.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp snapshot_time = 5;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setSnapshotTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->snapshot_time = $var;
 
         return $this;
     }

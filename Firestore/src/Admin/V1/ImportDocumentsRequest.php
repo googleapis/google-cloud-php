@@ -40,6 +40,16 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string input_uri_prefix = 3;</code>
      */
     private $input_uri_prefix = '';
+    /**
+     * Unspecified means all namespaces. This is the preferred
+     * usage for databases that don't use namespaces.
+     * An empty string element represents the default namespace. This should be
+     * used if the database has data in non-default namespaces, but doesn't want
+     * to include them. Each namespace in this list must be unique.
+     *
+     * Generated from protobuf field <code>repeated string namespace_ids = 4;</code>
+     */
+    private $namespace_ids;
 
     /**
      * @param string $name Required. Database to import into. Should be of the form:
@@ -74,6 +84,12 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
      *           an export that has completed successfully.
      *           See:
      *           [google.firestore.admin.v1.ExportDocumentsResponse.output_uri_prefix][google.firestore.admin.v1.ExportDocumentsResponse.output_uri_prefix].
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $namespace_ids
+     *           Unspecified means all namespaces. This is the preferred
+     *           usage for databases that don't use namespaces.
+     *           An empty string element represents the default namespace. This should be
+     *           used if the database has data in non-default namespaces, but doesn't want
+     *           to include them. Each namespace in this list must be unique.
      * }
      */
     public function __construct($data = NULL) {
@@ -167,6 +183,40 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->input_uri_prefix = $var;
+
+        return $this;
+    }
+
+    /**
+     * Unspecified means all namespaces. This is the preferred
+     * usage for databases that don't use namespaces.
+     * An empty string element represents the default namespace. This should be
+     * used if the database has data in non-default namespaces, but doesn't want
+     * to include them. Each namespace in this list must be unique.
+     *
+     * Generated from protobuf field <code>repeated string namespace_ids = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getNamespaceIds()
+    {
+        return $this->namespace_ids;
+    }
+
+    /**
+     * Unspecified means all namespaces. This is the preferred
+     * usage for databases that don't use namespaces.
+     * An empty string element represents the default namespace. This should be
+     * used if the database has data in non-default namespaces, but doesn't want
+     * to include them. Each namespace in this list must be unique.
+     *
+     * Generated from protobuf field <code>repeated string namespace_ids = 4;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setNamespaceIds($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->namespace_ids = $arr;
 
         return $this;
     }
