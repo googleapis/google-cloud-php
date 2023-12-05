@@ -25,7 +25,7 @@ class Service
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‘W
+•W
 )google/cloud/edgenetwork/v1/service.protogoogle.cloud.edgenetwork.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto+google/cloud/edgenetwork/v1/resources.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"”
 ListZonesRequest7
 parent (	B\'àAúA!edgenetwork.googleapis.com/Zone
@@ -235,8 +235,8 @@ GetNetwork..google.cloud.edgenetwork.v1.GetNetworkRequest$.google.cloud.edgene
 UpdateRouter0.google.cloud.edgenetwork.v1.UpdateRouterRequest.google.longrunning.Operation"}‚Óä“D2:/v1/{router.name=projects/*/locations/*/zones/*/routers/*}:routerÚArouter,update_maskÊA
 RouterOperationMetadataÐ
 DeleteRouter0.google.cloud.edgenetwork.v1.DeleteRouterRequest.google.longrunning.Operation"o‚Óä“5*3/v1/{name=projects/*/locations/*/zones/*/routers/*}ÚAnameÊA*
-google.protobuf.EmptyOperationMetadataNÊAedgenetwork.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÍ
-google.cloud.edgenetwork.v1BServiceProtoPZAcloud.google.com/go/edgenetwork/apiv1/edgenetworkpb;edgenetworkpbªGoogle.Cloud.EdgeNetwork.V1ÊGoogle\\Cloud\\EdgeNetwork\\V1êGoogle::Cloud::EdgeNetwork::V1bproto3'
+google.protobuf.EmptyOperationMetadataNÊAedgenetwork.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÑ
+com.google.cloud.edgenetwork.v1BServiceProtoPZAcloud.google.com/go/edgenetwork/apiv1/edgenetworkpb;edgenetworkpbªGoogle.Cloud.EdgeNetwork.V1ÊGoogle\\Cloud\\EdgeNetwork\\V1êGoogle::Cloud::EdgeNetwork::V1bproto3'
         , true);
 
         static::$is_initialized = true;
