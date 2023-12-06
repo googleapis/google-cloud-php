@@ -28,6 +28,12 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig extends \Goo
      * Generated from protobuf field <code>optional string rule_visibility = 453258293;</code>
      */
     private $rule_visibility = null;
+    /**
+     * Configuration options for layer7 adaptive protection for various customizable thresholds.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfig threshold_configs = 60347805;</code>
+     */
+    private $threshold_configs;
 
     /**
      * Constructor.
@@ -40,6 +46,8 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig extends \Goo
      *     @type string $rule_visibility
      *           Rule visibility can be one of the following: STANDARD - opaque rules. (default) PREMIUM - transparent rules. This field is only supported in Global Security Policies of type CLOUD_ARMOR.
      *           Check the RuleVisibility enum for the list of possible values.
+     *     @type array<\Google\Cloud\Compute\V1\SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfig>|\Google\Protobuf\Internal\RepeatedField $threshold_configs
+     *           Configuration options for layer7 adaptive protection for various customizable thresholds.
      * }
      */
     public function __construct($data = NULL) {
@@ -117,6 +125,32 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig extends \Goo
     {
         GPBUtil::checkString($var, True);
         $this->rule_visibility = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration options for layer7 adaptive protection for various customizable thresholds.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfig threshold_configs = 60347805;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getThresholdConfigs()
+    {
+        return $this->threshold_configs;
+    }
+
+    /**
+     * Configuration options for layer7 adaptive protection for various customizable thresholds.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfig threshold_configs = 60347805;</code>
+     * @param array<\Google\Cloud\Compute\V1\SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setThresholdConfigs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfig::class);
+        $this->threshold_configs = $arr;
 
         return $this;
     }

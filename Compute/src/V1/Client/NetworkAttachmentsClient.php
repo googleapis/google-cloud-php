@@ -40,6 +40,7 @@ use Google\Cloud\Compute\V1\GetNetworkAttachmentRequest;
 use Google\Cloud\Compute\V1\InsertNetworkAttachmentRequest;
 use Google\Cloud\Compute\V1\ListNetworkAttachmentsRequest;
 use Google\Cloud\Compute\V1\NetworkAttachment;
+use Google\Cloud\Compute\V1\PatchNetworkAttachmentRequest;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\SetIamPolicyNetworkAttachmentRequest;
@@ -64,6 +65,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface getIamPolicyAsync(GetIamPolicyNetworkAttachmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface insertAsync(InsertNetworkAttachmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAsync(ListNetworkAttachmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface patchAsync(PatchNetworkAttachmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setIamPolicyAsync(SetIamPolicyNetworkAttachmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsNetworkAttachmentRequest $request, array $optionalArgs = [])
  */
@@ -384,6 +386,30 @@ final class NetworkAttachmentsClient
     public function list(ListNetworkAttachmentsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('List', $request, $callOptions);
+    }
+
+    /**
+     * Patches the specified NetworkAttachment resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
+     *
+     * The async variant is {@see NetworkAttachmentsClient::patchAsync()} .
+     *
+     * @param PatchNetworkAttachmentRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function patch(PatchNetworkAttachmentRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('Patch', $request, $callOptions)->wait();
     }
 
     /**

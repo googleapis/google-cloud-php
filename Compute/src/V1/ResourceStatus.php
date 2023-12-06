@@ -21,6 +21,10 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string physical_host = 464370704;</code>
      */
     private $physical_host = null;
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.UpcomingMaintenance upcoming_maintenance = 227348592;</code>
+     */
+    private $upcoming_maintenance = null;
 
     /**
      * Constructor.
@@ -30,6 +34,7 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
      *
      *     @type string $physical_host
      *           [Output Only] An opaque ID of the host on which the VM is running.
+     *     @type \Google\Cloud\Compute\V1\UpcomingMaintenance $upcoming_maintenance
      * }
      */
     public function __construct($data = NULL) {
@@ -69,6 +74,38 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->physical_host = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.UpcomingMaintenance upcoming_maintenance = 227348592;</code>
+     * @return \Google\Cloud\Compute\V1\UpcomingMaintenance|null
+     */
+    public function getUpcomingMaintenance()
+    {
+        return $this->upcoming_maintenance;
+    }
+
+    public function hasUpcomingMaintenance()
+    {
+        return isset($this->upcoming_maintenance);
+    }
+
+    public function clearUpcomingMaintenance()
+    {
+        unset($this->upcoming_maintenance);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.UpcomingMaintenance upcoming_maintenance = 227348592;</code>
+     * @param \Google\Cloud\Compute\V1\UpcomingMaintenance $var
+     * @return $this
+     */
+    public function setUpcomingMaintenance($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\UpcomingMaintenance::class);
+        $this->upcoming_maintenance = $var;
 
         return $this;
     }

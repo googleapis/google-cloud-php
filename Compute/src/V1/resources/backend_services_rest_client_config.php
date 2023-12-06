@@ -138,6 +138,17 @@ return [
                     ],
                 ],
             ],
+            'ListUsable' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/backendServices/listUsable',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'Patch' => [
                 'method' => 'patch',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/backendServices/{backend_service}',
@@ -202,6 +213,23 @@ return [
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'TestIamPermissions' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/backendServices/{resource}/testIamPermissions',
+                'body' => 'test_permissions_request_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
                         ],
                     ],
                 ],

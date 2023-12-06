@@ -19,19 +19,19 @@ class LoadBalancingSchemes
      */
     const UNDEFINED_LOAD_BALANCING_SCHEMES = 0;
     /**
-     * Signifies that this will be used for Classic L7 External Load Balancing.
+     * Signifies that this will be used for classic Application Load Balancers.
      *
      * Generated from protobuf enum <code>EXTERNAL = 35607499;</code>
      */
     const EXTERNAL = 35607499;
     /**
-     * Signifies that this will be used for Envoy-based L7 External Load Balancing.
+     * Signifies that this will be used for Envoy-based global external Application Load Balancers.
      *
      * Generated from protobuf enum <code>EXTERNAL_MANAGED = 512006923;</code>
      */
     const EXTERNAL_MANAGED = 512006923;
     /**
-     * If unspecified, the validation will try to infer the scheme from the backend service resources this Url map references. If the inferrence is not possible, EXTERNAL will be used as the default type.
+     * If unspecified, the validation will try to infer the scheme from the backend service resources this Url map references. If the inference is not possible, EXTERNAL will be used as the default type.
      *
      * Generated from protobuf enum <code>LOAD_BALANCING_SCHEME_UNSPECIFIED = 526507452;</code>
      */

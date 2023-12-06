@@ -76,6 +76,12 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      */
     private $region = null;
     /**
+     * [Output Only] The resource URL for the security policy associated with this target pool.
+     *
+     * Generated from protobuf field <code>optional string security_policy = 171082513;</code>
+     */
+    private $security_policy = null;
+    /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
@@ -115,6 +121,8 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type string $region
      *           [Output Only] URL of the region where the target pool resides.
+     *     @type string $security_policy
+     *           [Output Only] The resource URL for the security policy associated with this target pool.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $session_affinity
@@ -463,6 +471,42 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->region = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The resource URL for the security policy associated with this target pool.
+     *
+     * Generated from protobuf field <code>optional string security_policy = 171082513;</code>
+     * @return string
+     */
+    public function getSecurityPolicy()
+    {
+        return isset($this->security_policy) ? $this->security_policy : '';
+    }
+
+    public function hasSecurityPolicy()
+    {
+        return isset($this->security_policy);
+    }
+
+    public function clearSecurityPolicy()
+    {
+        unset($this->security_policy);
+    }
+
+    /**
+     * [Output Only] The resource URL for the security policy associated with this target pool.
+     *
+     * Generated from protobuf field <code>optional string security_policy = 171082513;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSecurityPolicy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->security_policy = $var;
 
         return $this;
     }

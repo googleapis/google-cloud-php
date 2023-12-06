@@ -45,6 +45,7 @@ use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\RemoveHealthCheckTargetPoolRequest;
 use Google\Cloud\Compute\V1\RemoveInstanceTargetPoolRequest;
 use Google\Cloud\Compute\V1\SetBackupTargetPoolRequest;
+use Google\Cloud\Compute\V1\SetSecurityPolicyTargetPoolRequest;
 use Google\Cloud\Compute\V1\TargetPool;
 use Google\Cloud\Compute\V1\TargetPoolInstanceHealth;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -71,6 +72,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface removeHealthCheckAsync(RemoveHealthCheckTargetPoolRequest $request, array $optionalArgs = [])
  * @method PromiseInterface removeInstanceAsync(RemoveInstanceTargetPoolRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setBackupAsync(SetBackupTargetPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface setSecurityPolicyAsync(SetSecurityPolicyTargetPoolRequest $request, array $optionalArgs = [])
  */
 final class TargetPoolsClient
 {
@@ -509,5 +511,29 @@ final class TargetPoolsClient
     public function setBackup(SetBackupTargetPoolRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('SetBackup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Sets the Google Cloud Armor security policy for the specified target pool. For more information, see Google Cloud Armor Overview
+     *
+     * The async variant is {@see TargetPoolsClient::setSecurityPolicyAsync()} .
+     *
+     * @param SetSecurityPolicyTargetPoolRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function setSecurityPolicy(SetSecurityPolicyTargetPoolRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('SetSecurityPolicy', $request, $callOptions)->wait();
     }
 }
