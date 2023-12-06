@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class Metrics extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The name of the metrics, in the format
+     * Output only. Identifier. The name of the metrics, in the format
      * `projects/{project}/keys/{key}/metrics`.
      *
-     * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $name = '';
     /**
@@ -51,7 +51,7 @@ class Metrics extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The name of the metrics, in the format
+     *           Output only. Identifier. The name of the metrics, in the format
      *           `projects/{project}/keys/{key}/metrics`.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Inclusive start time aligned to a day (UTC).
@@ -70,10 +70,10 @@ class Metrics extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the metrics, in the format
+     * Output only. Identifier. The name of the metrics, in the format
      * `projects/{project}/keys/{key}/metrics`.
      *
-     * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -82,10 +82,10 @@ class Metrics extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the metrics, in the format
+     * Output only. Identifier. The name of the metrics, in the format
      * `projects/{project}/keys/{key}/metrics`.
      *
-     * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
