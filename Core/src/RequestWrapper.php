@@ -20,6 +20,7 @@ namespace Google\Cloud\Core;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GetQuotaProjectInterface;
+use Google\Auth\GetUniverseDomainInterface;
 use Google\Auth\HttpHandler\Guzzle6HttpHandler;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Auth\UpdateMetadataInterface;
@@ -140,7 +141,8 @@ class RequestWrapper
             'componentVersion' => null,
             'restRetryFunction' => null,
             'restDelayFunction' => null,
-            'restCalcDelayFunction' => null
+            'restCalcDelayFunction' => null,
+            'universeDomain' => GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN,
         ];
 
         $this->componentVersion = $config['componentVersion'];
@@ -155,6 +157,7 @@ class RequestWrapper
         $this->httpHandler = $config['httpHandler'] ?: HttpHandlerFactory::build();
         $this->authHttpHandler = $config['authHttpHandler'] ?: $this->httpHandler;
         $this->asyncHttpHandler = $config['asyncHttpHandler'] ?: $this->buildDefaultAsyncHandler();
+        $this->universeDomain = $config['universeDomain'];
 
         if ($this->credentialsFetcher instanceof AnonymousCredentials) {
             $this->shouldSignRequest = false;
@@ -311,11 +314,12 @@ class RequestWrapper
 
         if ($this->shouldSignRequest) {
             $quotaProject = $this->quotaProject;
+            $credentialsFetcher = $this->accessToken ? null : $this->getCredentialsFetcher();
+            $this->checkUniverseDomain($credentialsFetcher);
 
             if ($this->accessToken) {
                 $request = $request->withHeader('authorization', 'Bearer ' . $this->accessToken);
             } else {
-                $credentialsFetcher = $this->getCredentialsFetcher();
                 $request = $this->addAuthHeaders($request, $credentialsFetcher);
 
                 if ($credentialsFetcher instanceof GetQuotaProjectInterface) {

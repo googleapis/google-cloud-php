@@ -18,11 +18,13 @@
 namespace Google\Cloud\Core;
 
 use Google\Auth\ApplicationDefaultCredentials;
+use Google\Auth\GetUniverseDomainInterface;
 use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Core\GoogleException;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
@@ -72,6 +74,9 @@ trait RequestWrapperTrait
      *      with the request.
      */
     private $quotaProject;
+
+    private string $universeDomain;
+    private bool $hasCheckedUniverse = false;
 
     /**
      * Sets common defaults between request wrappers.
@@ -200,6 +205,35 @@ trait RequestWrapperTrait
                 $this->authCacheOptions,
                 $this->authCache
             );
+        }
+    }
+
+    /**
+     * Verify that the expected universe domain matches the universe domain from the credentials.
+     */
+    private function checkUniverseDomain(FetchAuthTokenInterface $credentialsFetcher = null)
+    {
+        if (false === $this->hasCheckedUniverse) {
+            if (is_null($credentialsFetcher)) {
+                if ($this->universeDomain !== GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN) {
+                    throw new GoogleException(sprintf(
+                        'The accessToken option is not supported outside of the default universe domain (%s).',
+                        GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN
+                    ));
+                }
+            } else {
+                $credentialsUniverse = $this->credentialsFetcher instanceof GetUniverseDomainInterface
+                    ? $this->credentialsFetcher->getUniverseDomain()
+                    : GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN;
+                if ($credentialsUniverse !== $this->universeDomain) {
+                    throw new GoogleException(sprintf(
+                        'The configured universe domain (%s) does not match the credential universe domain (%s)',
+                        $this->universeDomain,
+                        $credentialsUniverse
+                    ));
+                }
+            }
+            $this->hasCheckedUniverse = true;
         }
     }
 

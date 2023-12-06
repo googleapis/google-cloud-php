@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Storage\Connection;
 
+use Google\Auth\GetUniverseDomainInterface;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\RestTrait;
@@ -64,7 +65,12 @@ class Rest implements ConnectionInterface
      */
     const BASE_URI = 'https://storage.googleapis.com/storage/v1/';
 
+    /**
+     * @deprecated
+     */
     const DEFAULT_API_ENDPOINT = 'https://storage.googleapis.com';
+
+    const DEFAULT_API_ENDPOINT_TEMPLATE = 'https://storage.UNIVERSE_DOMAIN';
 
     /**
      * @deprecated
@@ -104,13 +110,14 @@ class Rest implements ConnectionInterface
         $config += [
             'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/storage-v1.json',
             'componentVersion' => StorageClient::VERSION,
-            'apiEndpoint' => self::DEFAULT_API_ENDPOINT,
+            'apiEndpoint' => null,
+            'universeDomain' => GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN,
             // Cloud Storage needs to provide a default scope because the Storage
             // API does not accept JWTs with "audience"
             'scopes' => StorageClient::FULL_CONTROL_SCOPE,
         ];
 
-        $this->apiEndpoint = $this->getApiEndpoint(self::DEFAULT_API_ENDPOINT, $config);
+        $this->apiEndpoint = $this->getApiEndpoint(null, $config, self::DEFAULT_API_ENDPOINT_TEMPLATE);
 
         $this->setRequestWrapper(new RequestWrapper($config));
         $this->setRequestBuilder(new RequestBuilder(
