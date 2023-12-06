@@ -72,6 +72,7 @@ use Google\Cloud\Compute\V1\SetMetadataInstanceRequest;
 use Google\Cloud\Compute\V1\SetMinCpuPlatformInstanceRequest;
 use Google\Cloud\Compute\V1\SetNameInstanceRequest;
 use Google\Cloud\Compute\V1\SetSchedulingInstanceRequest;
+use Google\Cloud\Compute\V1\SetSecurityPolicyInstanceRequest;
 use Google\Cloud\Compute\V1\SetServiceAccountInstanceRequest;
 use Google\Cloud\Compute\V1\SetShieldedInstanceIntegrityPolicyInstanceRequest;
 use Google\Cloud\Compute\V1\SetTagsInstanceRequest;
@@ -134,6 +135,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface setMinCpuPlatformAsync(SetMinCpuPlatformInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setNameAsync(SetNameInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setSchedulingAsync(SetSchedulingInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface setSecurityPolicyAsync(SetSecurityPolicyInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setServiceAccountAsync(SetServiceAccountInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setShieldedInstanceIntegrityPolicyAsync(SetShieldedInstanceIntegrityPolicyInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setTagsAsync(SetTagsInstanceRequest $request, array $optionalArgs = [])
@@ -1091,6 +1093,30 @@ final class InstancesClient
     public function setScheduling(SetSchedulingInstanceRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('SetScheduling', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Sets the Google Cloud Armor security policy for the specified instance. For more information, see Google Cloud Armor Overview
+     *
+     * The async variant is {@see InstancesClient::setSecurityPolicyAsync()} .
+     *
+     * @param SetSecurityPolicyInstanceRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function setSecurityPolicy(SetSecurityPolicyInstanceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('SetSecurityPolicy', $request, $callOptions)->wait();
     }
 
     /**

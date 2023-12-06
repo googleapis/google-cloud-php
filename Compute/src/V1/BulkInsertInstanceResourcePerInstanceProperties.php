@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class BulkInsertInstanceResourcePerInstanceProperties extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Specifies the hostname of the instance. More details in: https://cloud.google.com/compute/docs/instances/custom-hostname-vm#naming_convention
+     *
+     * Generated from protobuf field <code>optional string hostname = 237067315;</code>
+     */
+    private $hostname = null;
+    /**
      * This field is only temporary. It will be removed. Do not use it.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
@@ -28,6 +34,8 @@ class BulkInsertInstanceResourcePerInstanceProperties extends \Google\Protobuf\I
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $hostname
+     *           Specifies the hostname of the instance. More details in: https://cloud.google.com/compute/docs/instances/custom-hostname-vm#naming_convention
      *     @type string $name
      *           This field is only temporary. It will be removed. Do not use it.
      * }
@@ -35,6 +43,42 @@ class BulkInsertInstanceResourcePerInstanceProperties extends \Google\Protobuf\I
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Specifies the hostname of the instance. More details in: https://cloud.google.com/compute/docs/instances/custom-hostname-vm#naming_convention
+     *
+     * Generated from protobuf field <code>optional string hostname = 237067315;</code>
+     * @return string
+     */
+    public function getHostname()
+    {
+        return isset($this->hostname) ? $this->hostname : '';
+    }
+
+    public function hasHostname()
+    {
+        return isset($this->hostname);
+    }
+
+    public function clearHostname()
+    {
+        unset($this->hostname);
+    }
+
+    /**
+     * Specifies the hostname of the instance. More details in: https://cloud.google.com/compute/docs/instances/custom-hostname-vm#naming_convention
+     *
+     * Generated from protobuf field <code>optional string hostname = 237067315;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setHostname($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->hostname = $var;
+
+        return $this;
     }
 
     /**

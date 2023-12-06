@@ -65,6 +65,12 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     private $download_bytes = null;
     /**
+     * [Output Only] A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestOsFeature guest_os_features = 79294545;</code>
+     */
+    private $guest_os_features;
+    /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -150,6 +156,12 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     private $source_disk_encryption_key = null;
     /**
+     * The source disk whose recovery checkpoint will be used to create this snapshot.
+     *
+     * Generated from protobuf field <code>optional string source_disk_for_recovery_checkpoint = 359837950;</code>
+     */
+    private $source_disk_for_recovery_checkpoint = null;
+    /**
      * [Output Only] The ID value of the disk used to create this snapshot. This value may be used to determine whether the snapshot was taken from the current or a previous instance of a given disk name.
      *
      * Generated from protobuf field <code>optional string source_disk_id = 454190809;</code>
@@ -217,6 +229,8 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *           [Output Only] Size of the source disk, specified in GB.
      *     @type int|string $download_bytes
      *           [Output Only] Number of bytes downloaded to restore a snapshot to a disk.
+     *     @type array<\Google\Cloud\Compute\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $guest_os_features
+     *           [Output Only] A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
@@ -246,6 +260,8 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *           The source disk used to create this snapshot.
      *     @type \Google\Cloud\Compute\V1\CustomerEncryptionKey $source_disk_encryption_key
      *           The customer-supplied encryption key of the source disk. Required if the source disk is protected by a customer-supplied encryption key.
+     *     @type string $source_disk_for_recovery_checkpoint
+     *           The source disk whose recovery checkpoint will be used to create this snapshot.
      *     @type string $source_disk_id
      *           [Output Only] The ID value of the disk used to create this snapshot. This value may be used to determine whether the snapshot was taken from the current or a previous instance of a given disk name.
      *     @type string $source_snapshot_schedule_policy
@@ -555,6 +571,32 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->download_bytes = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestOsFeature guest_os_features = 79294545;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getGuestOsFeatures()
+    {
+        return $this->guest_os_features;
+    }
+
+    /**
+     * [Output Only] A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestOsFeature guest_os_features = 79294545;</code>
+     * @param array<\Google\Cloud\Compute\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setGuestOsFeatures($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\GuestOsFeature::class);
+        $this->guest_os_features = $arr;
 
         return $this;
     }
@@ -1031,6 +1073,42 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\CustomerEncryptionKey::class);
         $this->source_disk_encryption_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * The source disk whose recovery checkpoint will be used to create this snapshot.
+     *
+     * Generated from protobuf field <code>optional string source_disk_for_recovery_checkpoint = 359837950;</code>
+     * @return string
+     */
+    public function getSourceDiskForRecoveryCheckpoint()
+    {
+        return isset($this->source_disk_for_recovery_checkpoint) ? $this->source_disk_for_recovery_checkpoint : '';
+    }
+
+    public function hasSourceDiskForRecoveryCheckpoint()
+    {
+        return isset($this->source_disk_for_recovery_checkpoint);
+    }
+
+    public function clearSourceDiskForRecoveryCheckpoint()
+    {
+        unset($this->source_disk_for_recovery_checkpoint);
+    }
+
+    /**
+     * The source disk whose recovery checkpoint will be used to create this snapshot.
+     *
+     * Generated from protobuf field <code>optional string source_disk_for_recovery_checkpoint = 359837950;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceDiskForRecoveryCheckpoint($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_disk_for_recovery_checkpoint = $var;
 
         return $this;
     }

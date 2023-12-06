@@ -38,6 +38,7 @@ use Google\Cloud\Compute\V1\DeleteTargetInstanceRequest;
 use Google\Cloud\Compute\V1\GetTargetInstanceRequest;
 use Google\Cloud\Compute\V1\InsertTargetInstanceRequest;
 use Google\Cloud\Compute\V1\ListTargetInstancesRequest;
+use Google\Cloud\Compute\V1\SetSecurityPolicyTargetInstanceRequest;
 use Google\Cloud\Compute\V1\TargetInstance;
 use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -58,6 +59,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface getAsync(GetTargetInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface insertAsync(InsertTargetInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAsync(ListTargetInstancesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface setSecurityPolicyAsync(SetSecurityPolicyTargetInstanceRequest $request, array $optionalArgs = [])
  */
 final class TargetInstancesClient
 {
@@ -352,5 +354,29 @@ final class TargetInstancesClient
     public function list(ListTargetInstancesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('List', $request, $callOptions);
+    }
+
+    /**
+     * Sets the Google Cloud Armor security policy for the specified target instance. For more information, see Google Cloud Armor Overview
+     *
+     * The async variant is {@see TargetInstancesClient::setSecurityPolicyAsync()} .
+     *
+     * @param SetSecurityPolicyTargetInstanceRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function setSecurityPolicy(SetSecurityPolicyTargetInstanceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('SetSecurityPolicy', $request, $callOptions)->wait();
     }
 }

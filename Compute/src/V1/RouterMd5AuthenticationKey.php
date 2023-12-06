@@ -21,7 +21,7 @@ class RouterMd5AuthenticationKey extends \Google\Protobuf\Internal\Message
      */
     private $key = null;
     /**
-     * Name used to identify the key. Must be unique within a router. Must be referenced by at least one bgpPeer. Must comply with RFC1035.
+     * Name used to identify the key. Must be unique within a router. Must be referenced by exactly one bgpPeer. Must comply with RFC1035.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
@@ -36,7 +36,7 @@ class RouterMd5AuthenticationKey extends \Google\Protobuf\Internal\Message
      *     @type string $key
      *           [Input only] Value of the key. For patch and update calls, it can be skipped to copy the value from the previous configuration. This is allowed if the key with the same name existed before the operation. Maximum length is 80 characters. Can only contain printable ASCII characters.
      *     @type string $name
-     *           Name used to identify the key. Must be unique within a router. Must be referenced by at least one bgpPeer. Must comply with RFC1035.
+     *           Name used to identify the key. Must be unique within a router. Must be referenced by exactly one bgpPeer. Must comply with RFC1035.
      * }
      */
     public function __construct($data = NULL) {
@@ -81,7 +81,7 @@ class RouterMd5AuthenticationKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name used to identify the key. Must be unique within a router. Must be referenced by at least one bgpPeer. Must comply with RFC1035.
+     * Name used to identify the key. Must be unique within a router. Must be referenced by exactly one bgpPeer. Must comply with RFC1035.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -102,7 +102,7 @@ class RouterMd5AuthenticationKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name used to identify the key. Must be unique within a router. Must be referenced by at least one bgpPeer. Must comply with RFC1035.
+     * Name used to identify the key. Must be unique within a router. Must be referenced by exactly one bgpPeer. Must comply with RFC1035.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var

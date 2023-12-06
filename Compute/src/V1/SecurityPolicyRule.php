@@ -46,6 +46,12 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
      */
     private $match = null;
     /**
+     * A match condition that incoming packets are evaluated against for CLOUD_ARMOR_NETWORK security policies. If it matches, the corresponding 'action' is enforced. The match criteria for a rule consists of built-in match fields (like 'srcIpRanges') and potentially multiple user-defined match fields ('userDefinedFields'). Field values may be extracted directly from the packet or derived from it (e.g. 'srcRegionCodes'). Some fields may not be present in every packet (e.g. 'srcPorts'). A user-defined field is only present if the base header is found in the packet and the entire field is in bounds. Each match field may specify which values can match it, listing one or more ranges, prefixes, or exact values that are considered a match for the field. A field value must be present in order to match a specified match field. If no match values are specified for a match field, then any field value is considered to match it, and it's not required to be present. For strings specifying '*' is also equivalent to match all. For a packet to match a rule, all specified match fields must match the corresponding field values derived from the packet. Example: networkMatch: srcIpRanges: - "192.0.2.0/24" - "198.51.100.0/24" userDefinedFields: - name: "ipv4_fragment_offset" values: - "1-0x1fff" The above match condition matches packets with a source IP in 192.0.2.0/24 or 198.51.100.0/24 and a user-defined field named "ipv4_fragment_offset" with a value between 1 and 0x1fff inclusive.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleNetworkMatcher network_match = 463387764;</code>
+     */
+    private $network_match = null;
+    /**
      * Preconfigured WAF configuration to be applied for the rule. If the rule does not evaluate preconfigured WAF rules, i.e., if evaluatePreconfiguredWaf() is not used, this field will have no effect.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRulePreconfiguredWafConfig preconfigured_waf_config = 117805027;</code>
@@ -92,6 +98,8 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
      *           [Output only] Type of the resource. Always compute#securityPolicyRule for security policy rules
      *     @type \Google\Cloud\Compute\V1\SecurityPolicyRuleMatcher $match
      *           A match condition that incoming traffic is evaluated against. If it evaluates to true, the corresponding 'action' is enforced.
+     *     @type \Google\Cloud\Compute\V1\SecurityPolicyRuleNetworkMatcher $network_match
+     *           A match condition that incoming packets are evaluated against for CLOUD_ARMOR_NETWORK security policies. If it matches, the corresponding 'action' is enforced. The match criteria for a rule consists of built-in match fields (like 'srcIpRanges') and potentially multiple user-defined match fields ('userDefinedFields'). Field values may be extracted directly from the packet or derived from it (e.g. 'srcRegionCodes'). Some fields may not be present in every packet (e.g. 'srcPorts'). A user-defined field is only present if the base header is found in the packet and the entire field is in bounds. Each match field may specify which values can match it, listing one or more ranges, prefixes, or exact values that are considered a match for the field. A field value must be present in order to match a specified match field. If no match values are specified for a match field, then any field value is considered to match it, and it's not required to be present. For strings specifying '*' is also equivalent to match all. For a packet to match a rule, all specified match fields must match the corresponding field values derived from the packet. Example: networkMatch: srcIpRanges: - "192.0.2.0/24" - "198.51.100.0/24" userDefinedFields: - name: "ipv4_fragment_offset" values: - "1-0x1fff" The above match condition matches packets with a source IP in 192.0.2.0/24 or 198.51.100.0/24 and a user-defined field named "ipv4_fragment_offset" with a value between 1 and 0x1fff inclusive.
      *     @type \Google\Cloud\Compute\V1\SecurityPolicyRulePreconfiguredWafConfig $preconfigured_waf_config
      *           Preconfigured WAF configuration to be applied for the rule. If the rule does not evaluate preconfigured WAF rules, i.e., if evaluatePreconfiguredWaf() is not used, this field will have no effect.
      *     @type bool $preview
@@ -285,6 +293,42 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\SecurityPolicyRuleMatcher::class);
         $this->match = $var;
+
+        return $this;
+    }
+
+    /**
+     * A match condition that incoming packets are evaluated against for CLOUD_ARMOR_NETWORK security policies. If it matches, the corresponding 'action' is enforced. The match criteria for a rule consists of built-in match fields (like 'srcIpRanges') and potentially multiple user-defined match fields ('userDefinedFields'). Field values may be extracted directly from the packet or derived from it (e.g. 'srcRegionCodes'). Some fields may not be present in every packet (e.g. 'srcPorts'). A user-defined field is only present if the base header is found in the packet and the entire field is in bounds. Each match field may specify which values can match it, listing one or more ranges, prefixes, or exact values that are considered a match for the field. A field value must be present in order to match a specified match field. If no match values are specified for a match field, then any field value is considered to match it, and it's not required to be present. For strings specifying '*' is also equivalent to match all. For a packet to match a rule, all specified match fields must match the corresponding field values derived from the packet. Example: networkMatch: srcIpRanges: - "192.0.2.0/24" - "198.51.100.0/24" userDefinedFields: - name: "ipv4_fragment_offset" values: - "1-0x1fff" The above match condition matches packets with a source IP in 192.0.2.0/24 or 198.51.100.0/24 and a user-defined field named "ipv4_fragment_offset" with a value between 1 and 0x1fff inclusive.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleNetworkMatcher network_match = 463387764;</code>
+     * @return \Google\Cloud\Compute\V1\SecurityPolicyRuleNetworkMatcher|null
+     */
+    public function getNetworkMatch()
+    {
+        return $this->network_match;
+    }
+
+    public function hasNetworkMatch()
+    {
+        return isset($this->network_match);
+    }
+
+    public function clearNetworkMatch()
+    {
+        unset($this->network_match);
+    }
+
+    /**
+     * A match condition that incoming packets are evaluated against for CLOUD_ARMOR_NETWORK security policies. If it matches, the corresponding 'action' is enforced. The match criteria for a rule consists of built-in match fields (like 'srcIpRanges') and potentially multiple user-defined match fields ('userDefinedFields'). Field values may be extracted directly from the packet or derived from it (e.g. 'srcRegionCodes'). Some fields may not be present in every packet (e.g. 'srcPorts'). A user-defined field is only present if the base header is found in the packet and the entire field is in bounds. Each match field may specify which values can match it, listing one or more ranges, prefixes, or exact values that are considered a match for the field. A field value must be present in order to match a specified match field. If no match values are specified for a match field, then any field value is considered to match it, and it's not required to be present. For strings specifying '*' is also equivalent to match all. For a packet to match a rule, all specified match fields must match the corresponding field values derived from the packet. Example: networkMatch: srcIpRanges: - "192.0.2.0/24" - "198.51.100.0/24" userDefinedFields: - name: "ipv4_fragment_offset" values: - "1-0x1fff" The above match condition matches packets with a source IP in 192.0.2.0/24 or 198.51.100.0/24 and a user-defined field named "ipv4_fragment_offset" with a value between 1 and 0x1fff inclusive.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleNetworkMatcher network_match = 463387764;</code>
+     * @param \Google\Cloud\Compute\V1\SecurityPolicyRuleNetworkMatcher $var
+     * @return $this
+     */
+    public function setNetworkMatch($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\SecurityPolicyRuleNetworkMatcher::class);
+        $this->network_match = $var;
 
         return $this;
     }

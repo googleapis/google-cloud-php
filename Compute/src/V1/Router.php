@@ -52,7 +52,7 @@ class Router extends \Google\Protobuf\Internal\Message
      */
     private $id = null;
     /**
-     * Router interfaces. Each interface requires either one linked resource, (for example, linkedVpnTunnel), or IP address and IP address range (for example, ipRange), or both.
+     * Router interfaces. To create a BGP peer that uses a router interface, the interface must have one of the following fields specified: - linkedVpnTunnel - linkedInterconnectAttachment - subnetwork You can create a router interface without any of these fields specified. However, you cannot create a BGP peer that uses that interface.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterInterface interfaces = 12073562;</code>
      */
@@ -119,7 +119,7 @@ class Router extends \Google\Protobuf\Internal\Message
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type array<\Google\Cloud\Compute\V1\RouterInterface>|\Google\Protobuf\Internal\RepeatedField $interfaces
-     *           Router interfaces. Each interface requires either one linked resource, (for example, linkedVpnTunnel), or IP address and IP address range (for example, ipRange), or both.
+     *           Router interfaces. To create a BGP peer that uses a router interface, the interface must have one of the following fields specified: - linkedVpnTunnel - linkedInterconnectAttachment - subnetwork You can create a router interface without any of these fields specified. However, you cannot create a BGP peer that uses that interface.
      *     @type string $kind
      *           [Output Only] Type of resource. Always compute#router for routers.
      *     @type array<\Google\Cloud\Compute\V1\RouterMd5AuthenticationKey>|\Google\Protobuf\Internal\RepeatedField $md5_authentication_keys
@@ -348,7 +348,7 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Router interfaces. Each interface requires either one linked resource, (for example, linkedVpnTunnel), or IP address and IP address range (for example, ipRange), or both.
+     * Router interfaces. To create a BGP peer that uses a router interface, the interface must have one of the following fields specified: - linkedVpnTunnel - linkedInterconnectAttachment - subnetwork You can create a router interface without any of these fields specified. However, you cannot create a BGP peer that uses that interface.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterInterface interfaces = 12073562;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -359,7 +359,7 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Router interfaces. Each interface requires either one linked resource, (for example, linkedVpnTunnel), or IP address and IP address range (for example, ipRange), or both.
+     * Router interfaces. To create a BGP peer that uses a router interface, the interface must have one of the following fields specified: - linkedVpnTunnel - linkedInterconnectAttachment - subnetwork You can create a router interface without any of these fields specified. However, you cannot create a BGP peer that uses that interface.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterInterface interfaces = 12073562;</code>
      * @param array<\Google\Cloud\Compute\V1\RouterInterface>|\Google\Protobuf\Internal\RepeatedField $var

@@ -22,6 +22,12 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      */
     private $ip_address = null;
     /**
+     * The IPv6 address assigned to the producer instance network interface. This is only assigned when the stack types of both the instance network interface and the consumer subnet are IPv4_IPv6.
+     *
+     * Generated from protobuf field <code>optional string ipv6_address = 341563804;</code>
+     */
+    private $ipv6_address = null;
+    /**
      * The project id or number of the interface to which the IP was assigned.
      *
      * Generated from protobuf field <code>optional string project_id_or_num = 349783336;</code>
@@ -46,6 +52,12 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      * Generated from protobuf field <code>optional string subnetwork = 307827694;</code>
      */
     private $subnetwork = null;
+    /**
+     * [Output Only] The CIDR range of the subnet from which the IPv4 internal IP was allocated from.
+     *
+     * Generated from protobuf field <code>optional string subnetwork_cidr_range = 383249827;</code>
+     */
+    private $subnetwork_cidr_range = null;
 
     /**
      * Constructor.
@@ -55,6 +67,8 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      *
      *     @type string $ip_address
      *           The IPv4 address assigned to the producer instance network interface. This value will be a range in case of Serverless.
+     *     @type string $ipv6_address
+     *           The IPv6 address assigned to the producer instance network interface. This is only assigned when the stack types of both the instance network interface and the consumer subnet are IPv4_IPv6.
      *     @type string $project_id_or_num
      *           The project id or number of the interface to which the IP was assigned.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $secondary_ip_cidr_ranges
@@ -64,6 +78,8 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      *           Check the Status enum for the list of possible values.
      *     @type string $subnetwork
      *           The subnetwork used to assign the IP to the producer instance network interface.
+     *     @type string $subnetwork_cidr_range
+     *           [Output Only] The CIDR range of the subnet from which the IPv4 internal IP was allocated from.
      * }
      */
     public function __construct($data = NULL) {
@@ -103,6 +119,42 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     {
         GPBUtil::checkString($var, True);
         $this->ip_address = $var;
+
+        return $this;
+    }
+
+    /**
+     * The IPv6 address assigned to the producer instance network interface. This is only assigned when the stack types of both the instance network interface and the consumer subnet are IPv4_IPv6.
+     *
+     * Generated from protobuf field <code>optional string ipv6_address = 341563804;</code>
+     * @return string
+     */
+    public function getIpv6Address()
+    {
+        return isset($this->ipv6_address) ? $this->ipv6_address : '';
+    }
+
+    public function hasIpv6Address()
+    {
+        return isset($this->ipv6_address);
+    }
+
+    public function clearIpv6Address()
+    {
+        unset($this->ipv6_address);
+    }
+
+    /**
+     * The IPv6 address assigned to the producer instance network interface. This is only assigned when the stack types of both the instance network interface and the consumer subnet are IPv4_IPv6.
+     *
+     * Generated from protobuf field <code>optional string ipv6_address = 341563804;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIpv6Address($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ipv6_address = $var;
 
         return $this;
     }
@@ -239,6 +291,42 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     {
         GPBUtil::checkString($var, True);
         $this->subnetwork = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The CIDR range of the subnet from which the IPv4 internal IP was allocated from.
+     *
+     * Generated from protobuf field <code>optional string subnetwork_cidr_range = 383249827;</code>
+     * @return string
+     */
+    public function getSubnetworkCidrRange()
+    {
+        return isset($this->subnetwork_cidr_range) ? $this->subnetwork_cidr_range : '';
+    }
+
+    public function hasSubnetworkCidrRange()
+    {
+        return isset($this->subnetwork_cidr_range);
+    }
+
+    public function clearSubnetworkCidrRange()
+    {
+        unset($this->subnetwork_cidr_range);
+    }
+
+    /**
+     * [Output Only] The CIDR range of the subnet from which the IPv4 internal IP was allocated from.
+     *
+     * Generated from protobuf field <code>optional string subnetwork_cidr_range = 383249827;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSubnetworkCidrRange($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->subnetwork_cidr_range = $var;
 
         return $this;
     }

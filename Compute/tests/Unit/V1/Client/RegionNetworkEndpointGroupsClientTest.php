@@ -26,16 +26,23 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Compute\V1\AttachNetworkEndpointsRegionNetworkEndpointGroupRequest;
 use Google\Cloud\Compute\V1\Client\RegionNetworkEndpointGroupsClient;
 use Google\Cloud\Compute\V1\DeleteRegionNetworkEndpointGroupRequest;
+use Google\Cloud\Compute\V1\DetachNetworkEndpointsRegionNetworkEndpointGroupRequest;
 use Google\Cloud\Compute\V1\GetRegionNetworkEndpointGroupRequest;
 use Google\Cloud\Compute\V1\GetRegionOperationRequest;
 use Google\Cloud\Compute\V1\InsertRegionNetworkEndpointGroupRequest;
+use Google\Cloud\Compute\V1\ListNetworkEndpointsRegionNetworkEndpointGroupsRequest;
 use Google\Cloud\Compute\V1\ListRegionNetworkEndpointGroupsRequest;
 use Google\Cloud\Compute\V1\NetworkEndpointGroup;
 use Google\Cloud\Compute\V1\NetworkEndpointGroupList;
+use Google\Cloud\Compute\V1\NetworkEndpointGroupsListNetworkEndpoints;
+use Google\Cloud\Compute\V1\NetworkEndpointWithHealthStatus;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
+use Google\Cloud\Compute\V1\RegionNetworkEndpointGroupsAttachEndpointsRequest;
+use Google\Cloud\Compute\V1\RegionNetworkEndpointGroupsDetachEndpointsRequest;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Rpc\Code;
 use stdClass;
@@ -66,6 +73,139 @@ class RegionNetworkEndpointGroupsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new RegionNetworkEndpointGroupsClient($options);
+    }
+
+    /** @test */
+    public function attachNetworkEndpointsTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new RegionOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/attachNetworkEndpointsTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/attachNetworkEndpointsTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $networkEndpointGroup = 'networkEndpointGroup-639834746';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionNetworkEndpointGroupsAttachEndpointsRequestResource = new RegionNetworkEndpointGroupsAttachEndpointsRequest();
+        $request = (new AttachNetworkEndpointsRegionNetworkEndpointGroupRequest())
+            ->setNetworkEndpointGroup($networkEndpointGroup)
+            ->setProject($project)
+            ->setRegion($region)
+            ->setRegionNetworkEndpointGroupsAttachEndpointsRequestResource($regionNetworkEndpointGroupsAttachEndpointsRequestResource);
+        $response = $gapicClient->attachNetworkEndpoints($request);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionNetworkEndpointGroups/AttachNetworkEndpoints', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNetworkEndpointGroup();
+        $this->assertProtobufEquals($networkEndpointGroup, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegionNetworkEndpointGroupsAttachEndpointsRequestResource();
+        $this->assertProtobufEquals($regionNetworkEndpointGroupsAttachEndpointsRequestResource, $actualValue);
+        $expectedOperationsRequestObject = new GetRegionOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function attachNetworkEndpointsExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new RegionOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/attachNetworkEndpointsExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $networkEndpointGroup = 'networkEndpointGroup-639834746';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionNetworkEndpointGroupsAttachEndpointsRequestResource = new RegionNetworkEndpointGroupsAttachEndpointsRequest();
+        $request = (new AttachNetworkEndpointsRegionNetworkEndpointGroupRequest())
+            ->setNetworkEndpointGroup($networkEndpointGroup)
+            ->setProject($project)
+            ->setRegion($region)
+            ->setRegionNetworkEndpointGroupsAttachEndpointsRequestResource($regionNetworkEndpointGroupsAttachEndpointsRequestResource);
+        $response = $gapicClient->attachNetworkEndpoints($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
@@ -176,6 +316,139 @@ class RegionNetworkEndpointGroupsClientTest extends GeneratedTest
             ->setProject($project)
             ->setRegion($region);
         $response = $gapicClient->delete($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function detachNetworkEndpointsTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new RegionOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/detachNetworkEndpointsTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/detachNetworkEndpointsTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $networkEndpointGroup = 'networkEndpointGroup-639834746';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionNetworkEndpointGroupsDetachEndpointsRequestResource = new RegionNetworkEndpointGroupsDetachEndpointsRequest();
+        $request = (new DetachNetworkEndpointsRegionNetworkEndpointGroupRequest())
+            ->setNetworkEndpointGroup($networkEndpointGroup)
+            ->setProject($project)
+            ->setRegion($region)
+            ->setRegionNetworkEndpointGroupsDetachEndpointsRequestResource($regionNetworkEndpointGroupsDetachEndpointsRequestResource);
+        $response = $gapicClient->detachNetworkEndpoints($request);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionNetworkEndpointGroups/DetachNetworkEndpoints', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNetworkEndpointGroup();
+        $this->assertProtobufEquals($networkEndpointGroup, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegionNetworkEndpointGroupsDetachEndpointsRequestResource();
+        $this->assertProtobufEquals($regionNetworkEndpointGroupsDetachEndpointsRequestResource, $actualValue);
+        $expectedOperationsRequestObject = new GetRegionOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function detachNetworkEndpointsExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new RegionOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/detachNetworkEndpointsExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $networkEndpointGroup = 'networkEndpointGroup-639834746';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionNetworkEndpointGroupsDetachEndpointsRequestResource = new RegionNetworkEndpointGroupsDetachEndpointsRequest();
+        $request = (new DetachNetworkEndpointsRegionNetworkEndpointGroupRequest())
+            ->setNetworkEndpointGroup($networkEndpointGroup)
+            ->setProject($project)
+            ->setRegion($region)
+            ->setRegionNetworkEndpointGroupsDetachEndpointsRequestResource($regionNetworkEndpointGroupsDetachEndpointsRequestResource);
+        $response = $gapicClient->detachNetworkEndpoints($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -509,7 +782,95 @@ class RegionNetworkEndpointGroupsClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function deleteAsyncTest()
+    public function listNetworkEndpointsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $id = 'id3355';
+        $kind = 'kind3292052';
+        $nextPageToken = '';
+        $itemsElement = new NetworkEndpointWithHealthStatus();
+        $items = [
+            $itemsElement,
+        ];
+        $expectedResponse = new NetworkEndpointGroupsListNetworkEndpoints();
+        $expectedResponse->setId($id);
+        $expectedResponse->setKind($kind);
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setItems($items);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $networkEndpointGroup = 'networkEndpointGroup-639834746';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new ListNetworkEndpointsRegionNetworkEndpointGroupsRequest())
+            ->setNetworkEndpointGroup($networkEndpointGroup)
+            ->setProject($project)
+            ->setRegion($region);
+        $response = $gapicClient->listNetworkEndpoints($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionNetworkEndpointGroups/ListNetworkEndpoints', $actualFuncCall);
+        $actualValue = $actualRequestObject->getNetworkEndpointGroup();
+        $this->assertProtobufEquals($networkEndpointGroup, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listNetworkEndpointsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $networkEndpointGroup = 'networkEndpointGroup-639834746';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new ListNetworkEndpointsRegionNetworkEndpointGroupsRequest())
+            ->setNetworkEndpointGroup($networkEndpointGroup)
+            ->setProject($project)
+            ->setRegion($region);
+        try {
+            $gapicClient->listNetworkEndpoints($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function attachNetworkEndpointsAsyncTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
@@ -526,22 +887,24 @@ class RegionNetworkEndpointGroupsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('customOperations/deleteAsyncTest');
+        $incompleteOperation->setName('customOperations/attachNetworkEndpointsAsyncTest');
         $incompleteOperation->setStatus(Status::RUNNING);
         $transport->addResponse($incompleteOperation);
         $completeOperation = new Operation();
-        $completeOperation->setName('customOperations/deleteAsyncTest');
+        $completeOperation->setName('customOperations/attachNetworkEndpointsAsyncTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $networkEndpointGroup = 'networkEndpointGroup-639834746';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $request = (new DeleteRegionNetworkEndpointGroupRequest())
+        $regionNetworkEndpointGroupsAttachEndpointsRequestResource = new RegionNetworkEndpointGroupsAttachEndpointsRequest();
+        $request = (new AttachNetworkEndpointsRegionNetworkEndpointGroupRequest())
             ->setNetworkEndpointGroup($networkEndpointGroup)
             ->setProject($project)
-            ->setRegion($region);
-        $response = $gapicClient->delete($request);
+            ->setRegion($region)
+            ->setRegionNetworkEndpointGroupsAttachEndpointsRequestResource($regionNetworkEndpointGroupsAttachEndpointsRequestResource);
+        $response = $gapicClient->attachNetworkEndpoints($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -549,13 +912,15 @@ class RegionNetworkEndpointGroupsClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.RegionNetworkEndpointGroups/Delete', $actualApiFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.RegionNetworkEndpointGroups/AttachNetworkEndpoints', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getNetworkEndpointGroup();
         $this->assertProtobufEquals($networkEndpointGroup, $actualValue);
         $actualValue = $actualApiRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualApiRequestObject->getRegion();
         $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegionNetworkEndpointGroupsAttachEndpointsRequestResource();
+        $this->assertProtobufEquals($regionNetworkEndpointGroupsAttachEndpointsRequestResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
         $expectedOperationsRequestObject->setProject($project);
