@@ -319,6 +319,14 @@ class Model extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
+     * Stats of data used for training or evaluating the Model.
+     * Only populated when the Model is trained by a TrainingPipeline with
+     * [data_input_config][TrainingPipeline.data_input_config].
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model.DataStats data_stats = 21;</code>
+     */
+    private $data_stats = null;
+    /**
      * Customer-managed encryption key spec for a Model. If set, this
      * Model and all sub-resources of this Model will be secured by this key.
      *
@@ -558,6 +566,10 @@ class Model extends \Google\Protobuf\Internal\Message
      *           (Unicode codepoints), can only contain lowercase letters, numeric
      *           characters, underscores and dashes. International characters are allowed.
      *           See https://goo.gl/xmQnxf for more information and examples of labels.
+     *     @type \Google\Cloud\AIPlatform\V1\Model\DataStats $data_stats
+     *           Stats of data used for training or evaluating the Model.
+     *           Only populated when the Model is trained by a TrainingPipeline with
+     *           [data_input_config][TrainingPipeline.data_input_config].
      *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
      *           Customer-managed encryption key spec for a Model. If set, this
      *           Model and all sub-resources of this Model will be secured by this key.
@@ -1611,6 +1623,46 @@ class Model extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Stats of data used for training or evaluating the Model.
+     * Only populated when the Model is trained by a TrainingPipeline with
+     * [data_input_config][TrainingPipeline.data_input_config].
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model.DataStats data_stats = 21;</code>
+     * @return \Google\Cloud\AIPlatform\V1\Model\DataStats|null
+     */
+    public function getDataStats()
+    {
+        return $this->data_stats;
+    }
+
+    public function hasDataStats()
+    {
+        return isset($this->data_stats);
+    }
+
+    public function clearDataStats()
+    {
+        unset($this->data_stats);
+    }
+
+    /**
+     * Stats of data used for training or evaluating the Model.
+     * Only populated when the Model is trained by a TrainingPipeline with
+     * [data_input_config][TrainingPipeline.data_input_config].
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model.DataStats data_stats = 21;</code>
+     * @param \Google\Cloud\AIPlatform\V1\Model\DataStats $var
+     * @return $this
+     */
+    public function setDataStats($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Model\DataStats::class);
+        $this->data_stats = $var;
 
         return $this;
     }
