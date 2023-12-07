@@ -77,11 +77,13 @@ class CloudBillingClientTest extends GeneratedTest
         $open = true;
         $displayName = 'displayName1615086568';
         $masterBillingAccount = 'masterBillingAccount1503143052';
+        $parent2 = 'parent21175163357';
         $expectedResponse = new BillingAccount();
         $expectedResponse->setName($name);
         $expectedResponse->setOpen($open);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setMasterBillingAccount($masterBillingAccount);
+        $expectedResponse->setParent($parent2);
         $transport->addResponse($expectedResponse);
         // Mock request
         $billingAccount = new BillingAccount();
@@ -143,11 +145,13 @@ class CloudBillingClientTest extends GeneratedTest
         $open = true;
         $displayName = 'displayName1615086568';
         $masterBillingAccount = 'masterBillingAccount1503143052';
+        $parent = 'parent-995424086';
         $expectedResponse = new BillingAccount();
         $expectedResponse->setName($name2);
         $expectedResponse->setOpen($open);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setMasterBillingAccount($masterBillingAccount);
+        $expectedResponse->setParent($parent);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
@@ -455,6 +459,78 @@ class CloudBillingClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function moveBillingAccountTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $open = true;
+        $displayName = 'displayName1615086568';
+        $masterBillingAccount = 'masterBillingAccount1503143052';
+        $parent = 'parent-995424086';
+        $expectedResponse = new BillingAccount();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setOpen($open);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setMasterBillingAccount($masterBillingAccount);
+        $expectedResponse->setParent($parent);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
+        $formattedDestinationParent = $gapicClient->organizationName('[ORGANIZATION]');
+        $response = $gapicClient->moveBillingAccount($formattedName, $formattedDestinationParent);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.billing.v1.CloudBilling/MoveBillingAccount', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getDestinationParent();
+        $this->assertProtobufEquals($formattedDestinationParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function moveBillingAccountExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
+        $formattedDestinationParent = $gapicClient->organizationName('[ORGANIZATION]');
+        try {
+            $gapicClient->moveBillingAccount($formattedName, $formattedDestinationParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -595,11 +671,13 @@ class CloudBillingClientTest extends GeneratedTest
         $open = true;
         $displayName = 'displayName1615086568';
         $masterBillingAccount = 'masterBillingAccount1503143052';
+        $parent = 'parent-995424086';
         $expectedResponse = new BillingAccount();
         $expectedResponse->setName($name2);
         $expectedResponse->setOpen($open);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setMasterBillingAccount($masterBillingAccount);
+        $expectedResponse->setParent($parent);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
