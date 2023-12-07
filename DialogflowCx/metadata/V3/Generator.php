@@ -22,7 +22,7 @@ class Generator
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ö
+æ
 -google/cloud/dialogflow/cx/v3/generator.protogoogle.cloud.dialogflow.cx.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"Ë
 	Generator
 name (	
@@ -68,8 +68,8 @@ Generators«
 GetGenerator2.google.cloud.dialogflow.cx.v3.GetGeneratorRequest(.google.cloud.dialogflow.cx.v3.Generator"FÇ”‰ì97/v3/{name=projects/*/locations/*/agents/*/generators/*}⁄Aname—
 CreateGenerator5.google.cloud.dialogflow.cx.v3.CreateGeneratorRequest(.google.cloud.dialogflow.cx.v3.Generator"]Ç”‰ìD"7/v3/{parent=projects/*/locations/*/agents/*}/generators:	generator⁄Aparent,generator‡
 UpdateGenerator5.google.cloud.dialogflow.cx.v3.UpdateGeneratorRequest(.google.cloud.dialogflow.cx.v3.Generator"lÇ”‰ìN2A/v3/{generator.name=projects/*/locations/*/agents/*/generators/*}:	generator⁄Agenerator,update_mask®
-DeleteGenerator5.google.cloud.dialogflow.cx.v3.DeleteGeneratorRequest.google.protobuf.Empty"FÇ”‰ì9*7/v3/{name=projects/*/locations/*/agents/*/generators/*}⁄Anamex Adialogflow.googleapis.com“AYhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflowBê
-!com.google.cloud.dialogflow.cx.v3BGeneratorProtoPZ1cloud.google.com/go/dialogflow/cx/apiv3/cxpb;cxpb¯¢DF™Google.Cloud.Dialogflow.Cx.V3bproto3'
+DeleteGenerator5.google.cloud.dialogflow.cx.v3.DeleteGeneratorRequest.google.protobuf.Empty"FÇ”‰ì9*7/v3/{name=projects/*/locations/*/agents/*/generators/*}⁄Anamex Adialogflow.googleapis.com“AYhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflowB¥
+!com.google.cloud.dialogflow.cx.v3BGeneratorProtoPZ1cloud.google.com/go/dialogflow/cx/apiv3/cxpb;cxpb¯¢DF™Google.Cloud.Dialogflow.Cx.V3Í!Google::Cloud::Dialogflow::CX::V3bproto3'
         , true);
 
         static::$is_initialized = true;
