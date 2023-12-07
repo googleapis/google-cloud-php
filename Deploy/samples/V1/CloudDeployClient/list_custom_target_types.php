@@ -22,36 +22,35 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START clouddeploy_v1_generated_CloudDeploy_ListAutomationRuns_sync]
+// [START clouddeploy_v1_generated_CloudDeploy_ListCustomTargetTypes_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Deploy\V1\AutomationRun;
 use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
-use Google\Cloud\Deploy\V1\ListAutomationRunsRequest;
+use Google\Cloud\Deploy\V1\CustomTargetType;
+use Google\Cloud\Deploy\V1\ListCustomTargetTypesRequest;
 
 /**
- * Lists AutomationRuns in a given project and location.
+ * Lists CustomTargetTypes in a given project and location.
  *
- * @param string $formattedParent The parent `Delivery Pipeline`, which owns this collection of
- *                                automationRuns. Format must be
- *                                `projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}`. Please see
- *                                {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
+ * @param string $formattedParent The parent that owns this collection of custom target types.
+ *                                Format must be `projects/{project_id}/locations/{location_name}`. Please see
+ *                                {@see CloudDeployClient::locationName()} for help formatting this field.
  */
-function list_automation_runs_sample(string $formattedParent): void
+function list_custom_target_types_sample(string $formattedParent): void
 {
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
     // Prepare the request message.
-    $request = (new ListAutomationRunsRequest())
+    $request = (new ListCustomTargetTypesRequest())
         ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudDeployClient->listAutomationRuns($request);
+        $response = $cloudDeployClient->listCustomTargetTypes($request);
 
-        /** @var AutomationRun $element */
+        /** @var CustomTargetType $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }
@@ -71,12 +70,8 @@ function list_automation_runs_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = CloudDeployClient::deliveryPipelineName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DELIVERY_PIPELINE]'
-    );
+    $formattedParent = CloudDeployClient::locationName('[PROJECT]', '[LOCATION]');
 
-    list_automation_runs_sample($formattedParent);
+    list_custom_target_types_sample($formattedParent);
 }
-// [END clouddeploy_v1_generated_CloudDeploy_ListAutomationRuns_sync]
+// [END clouddeploy_v1_generated_CloudDeploy_ListCustomTargetTypes_sync]

@@ -9,18 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response object from `ListAutomations`.
+ * The response object from `ListCustomTargetTypes.`
  *
- * Generated from protobuf message <code>google.cloud.deploy.v1.ListAutomationsResponse</code>
+ * Generated from protobuf message <code>google.cloud.deploy.v1.ListCustomTargetTypesResponse</code>
  */
-class ListAutomationsResponse extends \Google\Protobuf\Internal\Message
+class ListCustomTargetTypesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The `Automation` objects.
+     * The `CustomTargetType` objects.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Automation automations = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.CustomTargetType custom_target_types = 1;</code>
      */
-    private $automations;
+    private $custom_target_types;
     /**
      * A token, which can be sent as `page_token` to retrieve the next page.
      * If this field is omitted, there are no subsequent pages.
@@ -41,8 +41,8 @@ class ListAutomationsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Deploy\V1\Automation>|\Google\Protobuf\Internal\RepeatedField $automations
-     *           The `Automation` objects.
+     *     @type array<\Google\Cloud\Deploy\V1\CustomTargetType>|\Google\Protobuf\Internal\RepeatedField $custom_target_types
+     *           The `CustomTargetType` objects.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages.
@@ -56,27 +56,27 @@ class ListAutomationsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The `Automation` objects.
+     * The `CustomTargetType` objects.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Automation automations = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.CustomTargetType custom_target_types = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
-    public function getAutomations()
+    public function getCustomTargetTypes()
     {
-        return $this->automations;
+        return $this->custom_target_types;
     }
 
     /**
-     * The `Automation` objects.
+     * The `CustomTargetType` objects.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Automation automations = 1;</code>
-     * @param array<\Google\Cloud\Deploy\V1\Automation>|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.CustomTargetType custom_target_types = 1;</code>
+     * @param array<\Google\Cloud\Deploy\V1\CustomTargetType>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
-    public function setAutomations($var)
+    public function setCustomTargetTypes($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Deploy\V1\Automation::class);
-        $this->automations = $arr;
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Deploy\V1\CustomTargetType::class);
+        $this->custom_target_types = $arr;
 
         return $this;
     }

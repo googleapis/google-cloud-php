@@ -22,38 +22,41 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START clouddeploy_v1_generated_CloudDeploy_ListAutomationRuns_sync]
+// [START clouddeploy_v1_generated_CloudDeploy_DeleteCustomTargetType_sync]
 use Google\ApiCore\ApiException;
-use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Deploy\V1\AutomationRun;
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
-use Google\Cloud\Deploy\V1\ListAutomationRunsRequest;
+use Google\Cloud\Deploy\V1\DeleteCustomTargetTypeRequest;
+use Google\Rpc\Status;
 
 /**
- * Lists AutomationRuns in a given project and location.
+ * Deletes a single CustomTargetType.
  *
- * @param string $formattedParent The parent `Delivery Pipeline`, which owns this collection of
- *                                automationRuns. Format must be
- *                                `projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}`. Please see
- *                                {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
+ * @param string $formattedName The name of the `CustomTargetType` to delete. Format must be
+ *                              `projects/{project_id}/locations/{location_name}/customTargetTypes/{custom_target_type}`. Please see
+ *                              {@see CloudDeployClient::customTargetTypeName()} for help formatting this field.
  */
-function list_automation_runs_sample(string $formattedParent): void
+function delete_custom_target_type_sample(string $formattedName): void
 {
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
     // Prepare the request message.
-    $request = (new ListAutomationRunsRequest())
-        ->setParent($formattedParent);
+    $request = (new DeleteCustomTargetTypeRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
-        /** @var PagedListResponse $response */
-        $response = $cloudDeployClient->listAutomationRuns($request);
+        /** @var OperationResponse $response */
+        $response = $cloudDeployClient->deleteCustomTargetType($request);
+        $response->pollUntilComplete();
 
-        /** @var AutomationRun $element */
-        foreach ($response as $element) {
-            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+        if ($response->operationSucceeded()) {
+            printf('Operation completed successfully.' . PHP_EOL);
+        } else {
+            /** @var Status $error */
+            $error = $response->getError();
+            printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
         }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -71,12 +74,12 @@ function list_automation_runs_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = CloudDeployClient::deliveryPipelineName(
+    $formattedName = CloudDeployClient::customTargetTypeName(
         '[PROJECT]',
         '[LOCATION]',
-        '[DELIVERY_PIPELINE]'
+        '[CUSTOM_TARGET_TYPE]'
     );
 
-    list_automation_runs_sample($formattedParent);
+    delete_custom_target_type_sample($formattedName);
 }
-// [END clouddeploy_v1_generated_CloudDeploy_ListAutomationRuns_sync]
+// [END clouddeploy_v1_generated_CloudDeploy_DeleteCustomTargetType_sync]

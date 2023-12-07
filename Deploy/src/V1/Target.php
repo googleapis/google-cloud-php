@@ -155,6 +155,8 @@ class Target extends \Google\Protobuf\Internal\Message
      *           Optional. Information specifying a Cloud Run deployment target.
      *     @type \Google\Cloud\Deploy\V1\MultiTarget $multi_target
      *           Optional. Information specifying a multiTarget.
+     *     @type \Google\Cloud\Deploy\V1\CustomTarget $custom_target
+     *           Optional. Information specifying a Custom Target.
      *     @type string $etag
      *           Optional. This checksum is computed by the server based on the value of
      *           other fields, and may be sent on update and delete requests to ensure the
@@ -574,6 +576,37 @@ class Target extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\MultiTarget::class);
         $this->writeOneof(19, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Information specifying a Custom Target.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CustomTarget custom_target = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Deploy\V1\CustomTarget|null
+     */
+    public function getCustomTarget()
+    {
+        return $this->readOneof(21);
+    }
+
+    public function hasCustomTarget()
+    {
+        return $this->hasOneof(21);
+    }
+
+    /**
+     * Optional. Information specifying a Custom Target.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CustomTarget custom_target = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Deploy\V1\CustomTarget $var
+     * @return $this
+     */
+    public function setCustomTarget($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\CustomTarget::class);
+        $this->writeOneof(21, $var);
 
         return $this;
     }
