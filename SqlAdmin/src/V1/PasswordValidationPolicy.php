@@ -52,6 +52,13 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue enable_password_policy = 6;</code>
      */
     private $enable_password_policy = null;
+    /**
+     * Disallow credentials that have been previously compromised by a public data
+     * breach.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue disallow_compromised_credentials = 7;</code>
+     */
+    private $disallow_compromised_credentials = null;
 
     /**
      * Constructor.
@@ -72,6 +79,9 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
      *           supported for PostgreSQL.
      *     @type \Google\Protobuf\BoolValue $enable_password_policy
      *           Whether the password policy is enabled or not.
+     *     @type \Google\Protobuf\BoolValue $disallow_compromised_credentials
+     *           Disallow credentials that have been previously compromised by a public data
+     *           breach.
      * }
      */
     public function __construct($data = NULL) {
@@ -393,6 +403,73 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
     public function setEnablePasswordPolicyValue($var)
     {
         $this->writeWrapperValue("enable_password_policy", $var);
+        return $this;}
+
+    /**
+     * Disallow credentials that have been previously compromised by a public data
+     * breach.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue disallow_compromised_credentials = 7;</code>
+     * @return \Google\Protobuf\BoolValue|null
+     */
+    public function getDisallowCompromisedCredentials()
+    {
+        return $this->disallow_compromised_credentials;
+    }
+
+    public function hasDisallowCompromisedCredentials()
+    {
+        return isset($this->disallow_compromised_credentials);
+    }
+
+    public function clearDisallowCompromisedCredentials()
+    {
+        unset($this->disallow_compromised_credentials);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getDisallowCompromisedCredentials()</code>
+
+     * Disallow credentials that have been previously compromised by a public data
+     * breach.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue disallow_compromised_credentials = 7;</code>
+     * @return bool|null
+     */
+    public function getDisallowCompromisedCredentialsValue()
+    {
+        return $this->readWrapperValue("disallow_compromised_credentials");
+    }
+
+    /**
+     * Disallow credentials that have been previously compromised by a public data
+     * breach.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue disallow_compromised_credentials = 7;</code>
+     * @param \Google\Protobuf\BoolValue $var
+     * @return $this
+     */
+    public function setDisallowCompromisedCredentials($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
+        $this->disallow_compromised_credentials = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Disallow credentials that have been previously compromised by a public data
+     * breach.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue disallow_compromised_credentials = 7;</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setDisallowCompromisedCredentialsValue($var)
+    {
+        $this->writeWrapperValue("disallow_compromised_credentials", $var);
         return $this;}
 
 }

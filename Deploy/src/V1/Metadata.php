@@ -29,6 +29,12 @@ class Metadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.deploy.v1.AutomationRolloutMetadata automation = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $automation = null;
+    /**
+     * Output only. Custom metadata provided by user defined `Rollout` operations.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CustomMetadata custom = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $custom = null;
 
     /**
      * Constructor.
@@ -42,6 +48,8 @@ class Metadata extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Deploy\V1\AutomationRolloutMetadata $automation
      *           Output only. AutomationRolloutMetadata contains the information about the
      *           interactions between Automation service and this rollout.
+     *     @type \Google\Cloud\Deploy\V1\CustomMetadata $custom
+     *           Output only. Custom metadata provided by user defined `Rollout` operations.
      * }
      */
     public function __construct($data = NULL) {
@@ -121,6 +129,42 @@ class Metadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\AutomationRolloutMetadata::class);
         $this->automation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Custom metadata provided by user defined `Rollout` operations.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CustomMetadata custom = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Deploy\V1\CustomMetadata|null
+     */
+    public function getCustom()
+    {
+        return $this->custom;
+    }
+
+    public function hasCustom()
+    {
+        return isset($this->custom);
+    }
+
+    public function clearCustom()
+    {
+        unset($this->custom);
+    }
+
+    /**
+     * Output only. Custom metadata provided by user defined `Rollout` operations.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CustomMetadata custom = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Deploy\V1\CustomMetadata $var
+     * @return $this
+     */
+    public function setCustom($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\CustomMetadata::class);
+        $this->custom = $var;
 
         return $this;
     }

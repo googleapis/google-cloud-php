@@ -7,6 +7,25 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/billingAccounts',
                 'body' => 'billing_account',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=organizations/*}/billingAccounts',
+                        'body' => 'billing_account',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=billingAccounts/*}/subAccounts',
+                        'body' => 'billing_account',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
             ],
             'GetBillingAccount' => [
                 'method' => 'get',
@@ -44,11 +63,52 @@ return [
             'ListBillingAccounts' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/billingAccounts',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=organizations/*}/billingAccounts',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=billingAccounts/*}/subAccounts',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
             ],
             'ListProjectBillingInfo' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=billingAccounts/*}/projects',
                 'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'MoveBillingAccount' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=billingAccounts/*}:move',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{destination_parent=organizations/*}/{name=billingAccounts/*}:move',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'destination_parent' => [
+                        'getters' => [
+                            'getDestinationParent',
+                        ],
+                    ],
                     'name' => [
                         'getters' => [
                             'getName',
