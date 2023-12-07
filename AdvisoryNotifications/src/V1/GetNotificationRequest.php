@@ -18,7 +18,8 @@ class GetNotificationRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. A name of the notification to retrieve.
      * Format:
-     * organizations/{organization}/locations/{location}/notifications/{notification}.
+     * organizations/{organization}/locations/{location}/notifications/{notification}
+     * or projects/{projects}/locations/{location}/notifications/{notification}.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -37,7 +38,8 @@ class GetNotificationRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. A name of the notification to retrieve.
      *                     Format:
-     *                     organizations/{organization}/locations/{location}/notifications/{notification}. Please see
+     *                     organizations/{organization}/locations/{location}/notifications/{notification}
+     *                     or projects/{projects}/locations/{location}/notifications/{notification}. Please see
      *                     {@see AdvisoryNotificationsServiceClient::notificationName()} for help formatting this field.
      *
      * @return \Google\Cloud\AdvisoryNotifications\V1\GetNotificationRequest
@@ -59,7 +61,8 @@ class GetNotificationRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. A name of the notification to retrieve.
      *           Format:
-     *           organizations/{organization}/locations/{location}/notifications/{notification}.
+     *           organizations/{organization}/locations/{location}/notifications/{notification}
+     *           or projects/{projects}/locations/{location}/notifications/{notification}.
      *     @type string $language_code
      *           ISO code for requested localization language. If unset, will be
      *           interpereted as "en". If the requested language is valid, but not supported
@@ -76,7 +79,8 @@ class GetNotificationRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. A name of the notification to retrieve.
      * Format:
-     * organizations/{organization}/locations/{location}/notifications/{notification}.
+     * organizations/{organization}/locations/{location}/notifications/{notification}
+     * or projects/{projects}/locations/{location}/notifications/{notification}.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -89,7 +93,8 @@ class GetNotificationRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. A name of the notification to retrieve.
      * Format:
-     * organizations/{organization}/locations/{location}/notifications/{notification}.
+     * organizations/{organization}/locations/{location}/notifications/{notification}
+     * or projects/{projects}/locations/{location}/notifications/{notification}.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

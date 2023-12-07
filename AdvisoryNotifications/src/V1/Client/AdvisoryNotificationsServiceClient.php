@@ -141,6 +141,78 @@ final class AdvisoryNotificationsServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_location resource.
+     *
+     * @param string $organization
+     * @param string $location
+     *
+     * @return string The formatted organization_location resource.
+     */
+    public static function organizationLocationName(string $organization, string $location): string
+    {
+        return self::getPathTemplate('organizationLocation')->render([
+            'organization' => $organization,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_location_notification resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $notification
+     *
+     * @return string The formatted organization_location_notification resource.
+     */
+    public static function organizationLocationNotificationName(string $organization, string $location, string $notification): string
+    {
+        return self::getPathTemplate('organizationLocationNotification')->render([
+            'organization' => $organization,
+            'location' => $location,
+            'notification' => $notification,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted project_location resource.
+     */
+    public static function projectLocationName(string $project, string $location): string
+    {
+        return self::getPathTemplate('projectLocation')->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_notification resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $notification
+     *
+     * @return string The formatted project_location_notification resource.
+     */
+    public static function projectLocationNotificationName(string $project, string $location, string $notification): string
+    {
+        return self::getPathTemplate('projectLocationNotification')->render([
+            'project' => $project,
+            'location' => $location,
+            'notification' => $notification,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a settings
      * resource.
      *
@@ -163,6 +235,10 @@ final class AdvisoryNotificationsServiceClient
      * Template: Pattern
      * - location: organizations/{organization}/locations/{location}
      * - notification: organizations/{organization}/locations/{location}/notifications/{notification}
+     * - organizationLocation: organizations/{organization}/locations/{location}
+     * - organizationLocationNotification: organizations/{organization}/locations/{location}/notifications/{notification}
+     * - projectLocation: projects/{project}/locations/{location}
+     * - projectLocationNotification: projects/{project}/locations/{location}/notifications/{notification}
      * - settings: organizations/{organization}/locations/{location}/settings
      *
      * The optional $template argument can be supplied to specify a particular pattern,
