@@ -24,7 +24,7 @@ use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Core\GoogleException;
+use Google\Cloud\Core\Exception\GoogleException;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
