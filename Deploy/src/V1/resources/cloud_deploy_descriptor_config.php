@@ -22,6 +22,25 @@ return [
                     ],
                 ],
             ],
+            'CreateCustomTargetType' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Deploy\V1\CustomTargetType',
+                    'metadataReturnType' => '\Google\Cloud\Deploy\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateDeliveryPipeline' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Deploy\V1\DeliveryPipeline',
@@ -117,6 +136,25 @@ return [
                     ],
                 ],
             ],
+            'DeleteCustomTargetType' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\Deploy\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteDeliveryPipeline' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
@@ -170,6 +208,26 @@ return [
                         'keyName' => 'automation.name',
                         'fieldAccessors' => [
                             'getAutomation',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateCustomTargetType' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Deploy\V1\CustomTargetType',
+                    'metadataReturnType' => '\Google\Cloud\Deploy\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'custom_target_type.name',
+                        'fieldAccessors' => [
+                            'getCustomTargetType',
                             'getName',
                         ],
                     ],
@@ -311,6 +369,18 @@ return [
                     ],
                 ],
             ],
+            'GetCustomTargetType' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Deploy\V1\CustomTargetType',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetDeliveryPipeline' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Deploy\V1\DeliveryPipeline',
@@ -414,6 +484,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\Deploy\V1\ListAutomationsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListCustomTargetTypes' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getCustomTargetTypes',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Deploy\V1\ListCustomTargetTypesResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -638,6 +728,7 @@ return [
                 'build' => 'projects/{project}/locations/{location}/builds/{build}',
                 'cluster' => 'projects/{project}/locations/{location}/clusters/{cluster}',
                 'config' => 'projects/{project}/locations/{location}/config',
+                'customTargetType' => 'projects/{project}/locations/{location}/customTargetTypes/{custom_target_type}',
                 'deliveryPipeline' => 'projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}',
                 'job' => 'projects/{project}/locations/{location}/jobs/{job}',
                 'jobRun' => 'projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/releases/{release}/rollouts/{rollout}/jobRuns/{job_run}',

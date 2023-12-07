@@ -41,7 +41,8 @@ use Google\Cloud\Billing\V1\ProjectBillingInfo;
  * account, even if the charge occurred before the new billing account was
  * assigned to the project.
  *
- * The current authenticated user must have ownership privileges for both the
+ * The current authenticated user must have ownership privileges for both
+ * the
  * [project](https://cloud.google.com/docs/permissions-overview#h.bgs0oxofvnoo
  * ) and the [billing
  * account](https://cloud.google.com/billing/docs/how-to/billing-access).
