@@ -34,7 +34,7 @@ class AdvanceRolloutOperation extends \Google\Protobuf\Internal\Message
      */
     private $rollout = '';
     /**
-     * Output only. The phase to which the rollout will be advanced to.
+     * Output only. The phase the rollout will be advanced to.
      *
      * Generated from protobuf field <code>string destination_phase = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -53,7 +53,7 @@ class AdvanceRolloutOperation extends \Google\Protobuf\Internal\Message
      *     @type string $rollout
      *           Output only. The name of the rollout that initiates the `AutomationRun`.
      *     @type string $destination_phase
-     *           Output only. The phase to which the rollout will be advanced to.
+     *           Output only. The phase the rollout will be advanced to.
      * }
      */
     public function __construct($data = NULL) {
@@ -150,7 +150,7 @@ class AdvanceRolloutOperation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The phase to which the rollout will be advanced to.
+     * Output only. The phase the rollout will be advanced to.
      *
      * Generated from protobuf field <code>string destination_phase = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -161,7 +161,7 @@ class AdvanceRolloutOperation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The phase to which the rollout will be advanced to.
+     * Output only. The phase the rollout will be advanced to.
      *
      * Generated from protobuf field <code>string destination_phase = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

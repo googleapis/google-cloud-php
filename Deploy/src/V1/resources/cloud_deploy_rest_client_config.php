@@ -78,6 +78,21 @@ return [
                     'automation_id',
                 ],
             ],
+            'CreateCustomTargetType' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/customTargetTypes',
+                'body' => 'custom_target_type',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'custom_target_type_id',
+                ],
+            ],
             'CreateDeliveryPipeline' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/deliveryPipelines',
@@ -149,6 +164,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteCustomTargetType' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/customTargetTypes/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteDeliveryPipeline' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/deliveryPipelines/*}',
@@ -196,6 +222,17 @@ return [
             'GetConfig' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/config}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetCustomTargetType' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/customTargetTypes/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -285,6 +322,17 @@ return [
             'ListAutomations' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/deliveryPipelines/*}/automations',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListCustomTargetTypes' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/customTargetTypes',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -392,6 +440,22 @@ return [
                     'automation.name' => [
                         'getters' => [
                             'getAutomation',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateCustomTargetType' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{custom_target_type.name=projects/*/locations/*/customTargetTypes/*}',
+                'body' => 'custom_target_type',
+                'placeholders' => [
+                    'custom_target_type.name' => [
+                        'getters' => [
+                            'getCustomTargetType',
                             'getName',
                         ],
                     ],

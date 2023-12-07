@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListAutomationsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The `Automations` objects.
+     * The `Automation` objects.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Automation automations = 1;</code>
      */
@@ -42,7 +42,7 @@ class ListAutomationsResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Deploy\V1\Automation>|\Google\Protobuf\Internal\RepeatedField $automations
-     *           The `Automations` objects.
+     *           The `Automation` objects.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages.
@@ -56,7 +56,7 @@ class ListAutomationsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The `Automations` objects.
+     * The `Automation` objects.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Automation automations = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -67,7 +67,7 @@ class ListAutomationsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The `Automations` objects.
+     * The `Automation` objects.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Automation automations = 1;</code>
      * @param array<\Google\Cloud\Deploy\V1\Automation>|\Google\Protobuf\Internal\RepeatedField $var
