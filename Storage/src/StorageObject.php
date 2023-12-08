@@ -231,12 +231,6 @@ class StorageObject
      *           This is the retention configuration set for this object.
      *     @type string $retention.mode The mode of the retention configuration,
      *           which can be either `"Unlocked"` or `"Locked"`.
-     *     @type string $retentionExpirationTime The earliest time in
-     *           RFC 3339 UTC "Zulu" format that the object can be deleted or
-     *           replaced. This depends on any retention configuration set for
-     *           the object as well as retention policy set for the bucket that
-     *           contains the object. This value should normally only be set by
-     *           the back-end API.
      *     @type bool $overrideUnlockedRetention Applicable for objects that
      *           have an unlocked retention configuration. Required to be set to
      *           `true` if the operation includes a retention property that
