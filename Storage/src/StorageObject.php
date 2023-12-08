@@ -231,7 +231,7 @@ class StorageObject
      *     @type string $retention.mode The mode of the retention configuration,
      *           which can be either `"Unlocked"` or `"Locked"`.
      *     @type string $retentionExpirationTime The earliest time in
-     *           RFC3339 UTC "Zulu" format that the object can be deleted or
+     *           RFC 3339 UTC "Zulu" format that the object can be deleted or
      *           replaced. This depends on any retention configuration set for
      *           the object as well as retention policy set for the bucket that
      *           contains the object. This value should normally only be set by

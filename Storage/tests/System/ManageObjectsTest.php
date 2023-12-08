@@ -178,13 +178,15 @@ class ManageObjectsTest extends StorageTestCase
         $expires = (new \DateTime)->add(
             \DateInterval::createFromDateString('+2 hours')
         );
-        $object = $bucket->upload(self::DATA, [
-            'name' => $objectName,
-            'retention' => [
-                'mode' => 'Unlocked',
-                'retainUntilTime' => $expires->format(\DateTime::RFC3339)
-            ]
-        ]);
+        $uploader = $bucket->getStreamableUploader('initial contents', [
+                'name' => $objectName,
+                'retention' => [
+                    'mode' => 'Unlocked',
+                    'retainUntilTime' => $expires->format(\DateTime::RFC3339)
+                ]
+            ]);
+        $uploader->upload();
+        $object = $bucket->object($objectName);
         $this->assertEquals('Unlocked', $object->info()['retention']['mode']);
 
         // Object delete throws when object has a valid retention policy
