@@ -1,5 +1,193 @@
 # Changelog
 
+## 0.228.0
+
+<details><summary>google/cloud-advisorynotifications 0.6.0</summary>
+
+
+
+### Features
+
+* Adding project level methods to advisorynotifications.googleapis.com ([#6854](https://github.com/googleapis/google-cloud-php/issues/6854)) ([9bf26c9](https://github.com/googleapis/google-cloud-php/commit/9bf26c91194d7e772a5c8a0106699ee209b48b4c))
+
+</details>
+
+<details><summary>google/cloud-ai-platform 0.29.0</summary>
+
+
+
+### Features
+
+* Add annotation_schema_uri to ExportDataConfig ([9041849](https://github.com/googleapis/google-cloud-php/commit/9041849d32642acb8b685473a16dc15ec01b4536))
+* Add data_stats to ExportDataResponse ([9041849](https://github.com/googleapis/google-cloud-php/commit/9041849d32642acb8b685473a16dc15ec01b4536))
+* Add data_stats to Model ([#6846](https://github.com/googleapis/google-cloud-php/issues/6846)) ([9041849](https://github.com/googleapis/google-cloud-php/commit/9041849d32642acb8b685473a16dc15ec01b4536))
+* Add export_use to ExportDataConfig ([9041849](https://github.com/googleapis/google-cloud-php/commit/9041849d32642acb8b685473a16dc15ec01b4536))
+* Add filter_split to ExportDataConfig ([9041849](https://github.com/googleapis/google-cloud-php/commit/9041849d32642acb8b685473a16dc15ec01b4536))
+* Add saved_query_id to ExportDataConfig ([9041849](https://github.com/googleapis/google-cloud-php/commit/9041849d32642acb8b685473a16dc15ec01b4536))
+
+
+### Documentation
+
+* Update exported_files description in ExportDataResponse ([9041849](https://github.com/googleapis/google-cloud-php/commit/9041849d32642acb8b685473a16dc15ec01b4536))
+
+</details>
+
+<details><summary>google/cloud-billing 1.8.0</summary>
+
+
+
+### Features
+
+* Added the MoveBillingAccount method, which allows changing which organization a billing account belongs to ([#6845](https://github.com/googleapis/google-cloud-php/issues/6845)) ([73ea346](https://github.com/googleapis/google-cloud-php/commit/73ea34698909875f2869abc10ac81a5322df936f))
+
+</details>
+
+<details><summary>google/cloud-compute 1.13.0</summary>
+
+
+
+### Features
+
+* Update Compute Engine API to revision 20231110 ([#6849](https://github.com/googleapis/google-cloud-php/issues/6849)) ([30ddc9e](https://github.com/googleapis/google-cloud-php/commit/30ddc9e1c94971d2814b96da05f87535da9f486d))
+
+</details>
+
+<details><summary>google/cloud-config 0.1.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-core 1.52.10</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataplex 0.13.0</summary>
+
+
+
+### Features
+
+* Add data quality score to DataQualityResult ([#6839](https://github.com/googleapis/google-cloud-php/issues/6839)) ([d98d4a3](https://github.com/googleapis/google-cloud-php/commit/d98d4a3be23c32a67c6fa6ec1e303727fc2de4a2))
+
+</details>
+
+<details><summary>google/cloud-deploy 0.15.0</summary>
+
+
+
+### Features
+
+* Add custom target type support ([#6841](https://github.com/googleapis/google-cloud-php/issues/6841)) ([c053e8e](https://github.com/googleapis/google-cloud-php/commit/c053e8eeeeeaa93644ced83762d743ca495622dc))
+* Add revision tagging for one of the Cloud Run deployment strategies ([c053e8e](https://github.com/googleapis/google-cloud-php/commit/c053e8eeeeeaa93644ced83762d743ca495622dc))
+
+
+### Documentation
+
+* Fixed a number of comments. ([c053e8e](https://github.com/googleapis/google-cloud-php/commit/c053e8eeeeeaa93644ced83762d743ca495622dc))
+
+</details>
+
+<details><summary>google/cloud-dialogflow-cx 0.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-edgenetwork 0.1.1</summary>
+
+
+
+### Bug Fixes
+
+* Change Java package ([#6838](https://github.com/googleapis/google-cloud-php/issues/6838)) ([44c7f97](https://github.com/googleapis/google-cloud-php/commit/44c7f97eff6e3b13e25bbb8267ab116b21eb4e86))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.39.0</summary>
+
+
+
+### Features
+
+* Expose Firestore namespace ID fields in import/export APIs to stable ([ddd52a6](https://github.com/googleapis/google-cloud-php/commit/ddd52a64a39fa7721c52e948d0fe5ed72e84487d))
+* Expose Firestore PITR fields in Database to stable ([#6842](https://github.com/googleapis/google-cloud-php/issues/6842)) ([ddd52a6](https://github.com/googleapis/google-cloud-php/commit/ddd52a64a39fa7721c52e948d0fe5ed72e84487d))
+* Expose Firestore snapshot_time field in export API to stable ([ddd52a6](https://github.com/googleapis/google-cloud-php/commit/ddd52a64a39fa7721c52e948d0fe5ed72e84487d))
+
+
+### Documentation
+
+* Assorted typo fixes and whitespace updates ([ddd52a6](https://github.com/googleapis/google-cloud-php/commit/ddd52a64a39fa7721c52e948d0fe5ed72e84487d))
+
+</details>
+
+<details><summary>google/cloud-policytroubleshooter-iam 0.1.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.48.0</summary>
+
+
+
+### Features
+
+* Add `use_table_schema` field to BigQueryConfig ([#6837](https://github.com/googleapis/google-cloud-php/issues/6837)) ([fa7e3e9](https://github.com/googleapis/google-cloud-php/commit/fa7e3e9fbc7f8fc4c7451757afb42cead837def2))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 1.7.0</summary>
+
+
+
+### Features
+
+* Added stable account identifier to related group membership resources, and deprecated hashed identifier field ([#6851](https://github.com/googleapis/google-cloud-php/issues/6851)) ([616eb0f](https://github.com/googleapis/google-cloud-php/commit/616eb0f0067c8b59e58efcd96969747ea4e550c5))
+
+
+### Documentation
+
+* Noted applicable fields as resource identifiers ([616eb0f](https://github.com/googleapis/google-cloud-php/commit/616eb0f0067c8b59e58efcd96969747ea4e550c5))
+
+</details>
+
+<details><summary>google/cloud-securitycentermanagement 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce SecurityCenterManagement ([#6852](https://github.com/googleapis/google-cloud-php/issues/6852)) ([5d91fb2](https://github.com/googleapis/google-cloud-php/commit/5d91fb265d11b5d71c66c61adc8c00688839a0ee))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 0.10.0</summary>
+
+
+
+### Features
+
+* New field PasswordValidationPolicy.disallow_compromised_credentials ([67eb6c7](https://github.com/googleapis/google-cloud-php/commit/67eb6c7f0941abf76cfb1ce6a65ae1351c4cbb10))
+* New field SqlOperationStatus.api_warning ([67eb6c7](https://github.com/googleapis/google-cloud-php/commit/67eb6c7f0941abf76cfb1ce6a65ae1351c4cbb10))
+* New SQL API warning code COMPROMISED_CREDENTIALS ([#6847](https://github.com/googleapis/google-cloud-php/issues/6847)) ([67eb6c7](https://github.com/googleapis/google-cloud-php/commit/67eb6c7f0941abf76cfb1ce6a65ae1351c4cbb10))
+* New SQL API warning code INTERNAL_STATE_FAILURE ([67eb6c7](https://github.com/googleapis/google-cloud-php/commit/67eb6c7f0941abf76cfb1ce6a65ae1351c4cbb10))
+* New SqlUpdateTrack value week5 ([67eb6c7](https://github.com/googleapis/google-cloud-php/commit/67eb6c7f0941abf76cfb1ce6a65ae1351c4cbb10))
+
+</details>
+
+<details><summary>google/cloud-storage 1.36.0</summary>
+
+
+
+### Features
+
+* **Storage:** Support object retention lock ([#6829](https://github.com/googleapis/google-cloud-php/issues/6829)) ([b92c658](https://github.com/googleapis/google-cloud-php/commit/b92c658b90208d80c3d470bc91b5ed9a68bd0173))
+
+</details>
+
 ## 0.227.0
 
 <details><summary>google/cloud-ai-platform 0.28.0</summary>
