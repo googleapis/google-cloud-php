@@ -32,8 +32,8 @@ use Google\Cloud\Deploy\V1\ListAutomationRunsRequest;
 /**
  * Lists AutomationRuns in a given project and location.
  *
- * @param string $formattedParent The parent, which owns this collection of automationRuns. Format
- *                                must be
+ * @param string $formattedParent The parent `Delivery Pipeline`, which owns this collection of
+ *                                automationRuns. Format must be
  *                                `projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}`. Please see
  *                                {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
  */

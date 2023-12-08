@@ -25,27 +25,42 @@ use PHPUnit\Framework\TestCase;
  */
 class AggregationTest extends TestCase
 {
-    public function testCountType()
+    /**
+     * @dataProvider aggregationTypes
+     */
+    public function testAggregationType($type)
     {
         $expectedQuery = [
-            'count' => []
+            $type => ($type == 'count' ? [] : ['property' => ['name' => 'foo']]),
         ];
 
-        $aggregation = Aggregation::count();
+        $aggregation = ($type == 'count' ? Aggregation::$type() : Aggregation::$type('foo'));
 
         $this->assertEquals($expectedQuery, $aggregation->getProps());
     }
 
-    public function testAlias()
+    /**
+     * @dataProvider aggregationTypes
+     */
+    public function testAlias($type)
     {
         $alias = uniqid();
         $expectedQuery = [
-            'count' => [],
+            $type => ($type == 'count' ? [] : ['property' => ['name' => 'foo']]),
             'alias' => $alias
         ];
 
-        $aggregation = Aggregation::count()->alias($alias);
+        $aggregation = ($type == 'count' ? Aggregation::$type() : Aggregation::$type('foo'))->alias($alias);
 
         $this->assertEquals($expectedQuery, $aggregation->getProps());
+    }
+
+    public function aggregationTypes()
+    {
+        return [
+            ['count'],
+            ['sum'],
+            ['avg']
+        ];
     }
 }

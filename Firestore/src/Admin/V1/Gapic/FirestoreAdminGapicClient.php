@@ -60,6 +60,7 @@ use Google\Cloud\Firestore\Admin\V1\UpdateFieldRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
+use Google\Protobuf\Timestamp;
 
 /**
  * Service Description: The Cloud Firestore Admin API.
@@ -732,6 +733,21 @@ class FirestoreAdminGapicClient
      *           guidelines: https://cloud.google.com/storage/docs/naming.
      *           If the URI is a bucket (without a namespace path), a prefix will be
      *           generated based on the start time.
+     *     @type string[] $namespaceIds
+     *           Unspecified means all namespaces. This is the preferred
+     *           usage for databases that don't use namespaces.
+     *
+     *           An empty string element represents the default namespace. This should be
+     *           used if the database has data in non-default namespaces, but doesn't want
+     *           to include them. Each namespace in this list must be unique.
+     *     @type Timestamp $snapshotTime
+     *           The timestamp that corresponds to the version of the database to be
+     *           exported. The timestamp must be in the past, rounded to the minute and not
+     *           older than
+     *           [earliestVersionTime][google.firestore.admin.v1.Database.earliest_version_time].
+     *           If specified, then the exported documents will represent a consistent view
+     *           of the database at the provided time. Otherwise, there are no guarantees
+     *           about the consistency of the exported documents.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -754,6 +770,14 @@ class FirestoreAdminGapicClient
 
         if (isset($optionalArgs['outputUriPrefix'])) {
             $request->setOutputUriPrefix($optionalArgs['outputUriPrefix']);
+        }
+
+        if (isset($optionalArgs['namespaceIds'])) {
+            $request->setNamespaceIds($optionalArgs['namespaceIds']);
+        }
+
+        if (isset($optionalArgs['snapshotTime'])) {
+            $request->setSnapshotTime($optionalArgs['snapshotTime']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -936,6 +960,13 @@ class FirestoreAdminGapicClient
      *           an export that has completed successfully.
      *           See:
      *           [google.firestore.admin.v1.ExportDocumentsResponse.output_uri_prefix][google.firestore.admin.v1.ExportDocumentsResponse.output_uri_prefix].
+     *     @type string[] $namespaceIds
+     *           Unspecified means all namespaces. This is the preferred
+     *           usage for databases that don't use namespaces.
+     *
+     *           An empty string element represents the default namespace. This should be
+     *           used if the database has data in non-default namespaces, but doesn't want
+     *           to include them. Each namespace in this list must be unique.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -958,6 +989,10 @@ class FirestoreAdminGapicClient
 
         if (isset($optionalArgs['inputUriPrefix'])) {
             $request->setInputUriPrefix($optionalArgs['inputUriPrefix']);
+        }
+
+        if (isset($optionalArgs['namespaceIds'])) {
+            $request->setNamespaceIds($optionalArgs['namespaceIds']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

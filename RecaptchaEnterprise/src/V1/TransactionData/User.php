@@ -16,43 +16,43 @@ use Google\Protobuf\Internal\GPBUtil;
 class User extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Unique account identifier for this user. If using account defender,
-     * this should match the hashed_account_id field. Otherwise, a unique and
-     * persistent identifier for this account.
+     * Optional. Unique account identifier for this user. If using account
+     * defender, this should match the hashed_account_id field. Otherwise, a
+     * unique and persistent identifier for this account.
      *
-     * Generated from protobuf field <code>string account_id = 6;</code>
+     * Generated from protobuf field <code>string account_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $account_id = '';
     /**
-     * The epoch milliseconds of the user's account creation.
+     * Optional. The epoch milliseconds of the user's account creation.
      *
-     * Generated from protobuf field <code>int64 creation_ms = 1;</code>
+     * Generated from protobuf field <code>int64 creation_ms = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $creation_ms = 0;
     /**
-     * The email address of the user.
+     * Optional. The email address of the user.
      *
-     * Generated from protobuf field <code>string email = 2;</code>
+     * Generated from protobuf field <code>string email = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $email = '';
     /**
-     * Whether the email has been verified to be accessible by the user (OTP or
-     * similar).
+     * Optional. Whether the email has been verified to be accessible by the
+     * user (OTP or similar).
      *
-     * Generated from protobuf field <code>bool email_verified = 3;</code>
+     * Generated from protobuf field <code>bool email_verified = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $email_verified = false;
     /**
-     * The phone number of the user, with country code.
+     * Optional. The phone number of the user, with country code.
      *
-     * Generated from protobuf field <code>string phone_number = 4;</code>
+     * Generated from protobuf field <code>string phone_number = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $phone_number = '';
     /**
-     * Whether the phone number has been verified to be accessible by the user
-     * (OTP or similar).
+     * Optional. Whether the phone number has been verified to be accessible by
+     * the user (OTP or similar).
      *
-     * Generated from protobuf field <code>bool phone_verified = 5;</code>
+     * Generated from protobuf field <code>bool phone_verified = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $phone_verified = false;
 
@@ -63,21 +63,21 @@ class User extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $account_id
-     *           Unique account identifier for this user. If using account defender,
-     *           this should match the hashed_account_id field. Otherwise, a unique and
-     *           persistent identifier for this account.
+     *           Optional. Unique account identifier for this user. If using account
+     *           defender, this should match the hashed_account_id field. Otherwise, a
+     *           unique and persistent identifier for this account.
      *     @type int|string $creation_ms
-     *           The epoch milliseconds of the user's account creation.
+     *           Optional. The epoch milliseconds of the user's account creation.
      *     @type string $email
-     *           The email address of the user.
+     *           Optional. The email address of the user.
      *     @type bool $email_verified
-     *           Whether the email has been verified to be accessible by the user (OTP or
-     *           similar).
+     *           Optional. Whether the email has been verified to be accessible by the
+     *           user (OTP or similar).
      *     @type string $phone_number
-     *           The phone number of the user, with country code.
+     *           Optional. The phone number of the user, with country code.
      *     @type bool $phone_verified
-     *           Whether the phone number has been verified to be accessible by the user
-     *           (OTP or similar).
+     *           Optional. Whether the phone number has been verified to be accessible by
+     *           the user (OTP or similar).
      * }
      */
     public function __construct($data = NULL) {
@@ -86,11 +86,11 @@ class User extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unique account identifier for this user. If using account defender,
-     * this should match the hashed_account_id field. Otherwise, a unique and
-     * persistent identifier for this account.
+     * Optional. Unique account identifier for this user. If using account
+     * defender, this should match the hashed_account_id field. Otherwise, a
+     * unique and persistent identifier for this account.
      *
-     * Generated from protobuf field <code>string account_id = 6;</code>
+     * Generated from protobuf field <code>string account_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getAccountId()
@@ -99,11 +99,11 @@ class User extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unique account identifier for this user. If using account defender,
-     * this should match the hashed_account_id field. Otherwise, a unique and
-     * persistent identifier for this account.
+     * Optional. Unique account identifier for this user. If using account
+     * defender, this should match the hashed_account_id field. Otherwise, a
+     * unique and persistent identifier for this account.
      *
-     * Generated from protobuf field <code>string account_id = 6;</code>
+     * Generated from protobuf field <code>string account_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -116,9 +116,9 @@ class User extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The epoch milliseconds of the user's account creation.
+     * Optional. The epoch milliseconds of the user's account creation.
      *
-     * Generated from protobuf field <code>int64 creation_ms = 1;</code>
+     * Generated from protobuf field <code>int64 creation_ms = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
      */
     public function getCreationMs()
@@ -127,9 +127,9 @@ class User extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The epoch milliseconds of the user's account creation.
+     * Optional. The epoch milliseconds of the user's account creation.
      *
-     * Generated from protobuf field <code>int64 creation_ms = 1;</code>
+     * Generated from protobuf field <code>int64 creation_ms = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var
      * @return $this
      */
@@ -142,9 +142,9 @@ class User extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The email address of the user.
+     * Optional. The email address of the user.
      *
-     * Generated from protobuf field <code>string email = 2;</code>
+     * Generated from protobuf field <code>string email = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getEmail()
@@ -153,9 +153,9 @@ class User extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The email address of the user.
+     * Optional. The email address of the user.
      *
-     * Generated from protobuf field <code>string email = 2;</code>
+     * Generated from protobuf field <code>string email = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -168,10 +168,10 @@ class User extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the email has been verified to be accessible by the user (OTP or
-     * similar).
+     * Optional. Whether the email has been verified to be accessible by the
+     * user (OTP or similar).
      *
-     * Generated from protobuf field <code>bool email_verified = 3;</code>
+     * Generated from protobuf field <code>bool email_verified = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getEmailVerified()
@@ -180,10 +180,10 @@ class User extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the email has been verified to be accessible by the user (OTP or
-     * similar).
+     * Optional. Whether the email has been verified to be accessible by the
+     * user (OTP or similar).
      *
-     * Generated from protobuf field <code>bool email_verified = 3;</code>
+     * Generated from protobuf field <code>bool email_verified = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -196,9 +196,9 @@ class User extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The phone number of the user, with country code.
+     * Optional. The phone number of the user, with country code.
      *
-     * Generated from protobuf field <code>string phone_number = 4;</code>
+     * Generated from protobuf field <code>string phone_number = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPhoneNumber()
@@ -207,9 +207,9 @@ class User extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The phone number of the user, with country code.
+     * Optional. The phone number of the user, with country code.
      *
-     * Generated from protobuf field <code>string phone_number = 4;</code>
+     * Generated from protobuf field <code>string phone_number = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -222,10 +222,10 @@ class User extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the phone number has been verified to be accessible by the user
-     * (OTP or similar).
+     * Optional. Whether the phone number has been verified to be accessible by
+     * the user (OTP or similar).
      *
-     * Generated from protobuf field <code>bool phone_verified = 5;</code>
+     * Generated from protobuf field <code>bool phone_verified = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getPhoneVerified()
@@ -234,10 +234,10 @@ class User extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the phone number has been verified to be accessible by the user
-     * (OTP or similar).
+     * Optional. Whether the phone number has been verified to be accessible by
+     * the user (OTP or similar).
      *
-     * Generated from protobuf field <code>bool phone_verified = 5;</code>
+     * Generated from protobuf field <code>bool phone_verified = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

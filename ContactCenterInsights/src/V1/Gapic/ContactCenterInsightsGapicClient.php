@@ -951,17 +951,16 @@ class ContactCenterInsightsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource to create analyses in.
+     * @param string $parent       Required. The parent resource to delete conversations from.
      *                             Format:
      *                             projects/{project}/locations/{location}
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
-     *           Filter used to select the subset of conversations to analyze.
+     *           Filter used to select the subset of conversations to delete.
      *     @type int $maxDeleteCount
-     *           Maximum number of conversations to delete. The default is 1000. It can be
-     *           changed by setting the `max_delete_count` field.
+     *           Maximum number of conversations to delete.
      *     @type bool $force
      *           If set to true, all of this conversation's analyses will also be deleted.
      *           Otherwise, the request will only succeed if the conversation has no
@@ -3272,11 +3271,11 @@ class ContactCenterInsightsGapicClient
      *           This value should be 4-64 characters and must match the regular
      *           expression `^[a-z0-9-]{4,64}$`. Valid characters are `[a-z][0-9]-`
      *     @type RedactionConfig $redactionConfig
-     *           Optional. DLP settings for transcript redaction. Optional, will default to
-     *           the config specified in Settings.
+     *           Optional. DLP settings for transcript redaction. Will default to the config
+     *           specified in Settings.
      *     @type SpeechConfig $speechConfig
-     *           Optional. Default Speech-to-Text configuration. Optional, will default to
-     *           the config specified in Settings.
+     *           Optional. Speech-to-Text configuration. Will default to the config
+     *           specified in Settings.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

@@ -33,14 +33,16 @@ use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
  * @param string $formattedParent The name of the project in which the key will be created, in the
  *                                format `projects/{project}`. Please see
  *                                {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
+ * @param string $keyDisplayName  Human-readable display name of this key. Modifiable by user.
  */
-function create_key_sample(string $formattedParent): void
+function create_key_sample(string $formattedParent, string $keyDisplayName): void
 {
     // Create a client.
     $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
 
     // Prepare any non-scalar elements to be passed along with the request.
-    $key = new Key();
+    $key = (new Key())
+        ->setDisplayName($keyDisplayName);
 
     // Call the API and handle any network failures.
     try {
@@ -64,7 +66,8 @@ function create_key_sample(string $formattedParent): void
 function callSample(): void
 {
     $formattedParent = RecaptchaEnterpriseServiceClient::projectName('[PROJECT]');
+    $keyDisplayName = '[DISPLAY_NAME]';
 
-    create_key_sample($formattedParent);
+    create_key_sample($formattedParent, $keyDisplayName);
 }
 // [END recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_CreateKey_sync]

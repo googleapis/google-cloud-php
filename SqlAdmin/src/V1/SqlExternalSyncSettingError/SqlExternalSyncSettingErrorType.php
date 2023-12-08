@@ -224,6 +224,13 @@ class SqlExternalSyncSettingErrorType
      * Generated from protobuf enum <code>LOCAL_INFILE_OFF = 35;</code>
      */
     const LOCAL_INFILE_OFF = 35;
+    /**
+     * This code instructs customers to turn on point-in-time recovery manually
+     * for the instance after promoting the Cloud SQL for PostgreSQL instance.
+     *
+     * Generated from protobuf enum <code>TURN_ON_PITR_AFTER_PROMOTE = 36;</code>
+     */
+    const TURN_ON_PITR_AFTER_PROMOTE = 36;
 
     private static $valueToName = [
         self::SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED => 'SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED',
@@ -262,6 +269,7 @@ class SqlExternalSyncSettingErrorType
         self::UNSUPPORTED_DATABASE_SETTINGS => 'UNSUPPORTED_DATABASE_SETTINGS',
         self::MYSQL_PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE => 'MYSQL_PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE',
         self::LOCAL_INFILE_OFF => 'LOCAL_INFILE_OFF',
+        self::TURN_ON_PITR_AFTER_PROMOTE => 'TURN_ON_PITR_AFTER_PROMOTE',
     ];
 
     public static function name($value)

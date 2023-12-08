@@ -128,6 +128,9 @@ class RestTest extends TestCase
             ['deleteSchema'],
             ['validateSchema'],
             ['validateMessage'],
+            ['listRevisions'],
+            ['commitSchema'],
+            ['deleteRevision'],
         ];
     }
 }

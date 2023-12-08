@@ -16,30 +16,31 @@ use Google\Protobuf\Internal\GPBUtil;
 class FraudPreventionAssessment extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Probability of this transaction being fraudulent. Summarizes the combined
-     * risk of attack vectors below.
-     * Values are from 0.0 (lowest) to 1.0 (highest).
+     * Output only. Probability of this transaction being fraudulent. Summarizes
+     * the combined risk of attack vectors below. Values are from 0.0 (lowest)
+     * to 1.0 (highest).
      *
-     * Generated from protobuf field <code>float transaction_risk = 1;</code>
+     * Generated from protobuf field <code>float transaction_risk = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $transaction_risk = 0.0;
     /**
-     * Assessment of this transaction for risk of a stolen instrument.
+     * Output only. Assessment of this transaction for risk of a stolen
+     * instrument.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.StolenInstrumentVerdict stolen_instrument_verdict = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.StolenInstrumentVerdict stolen_instrument_verdict = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $stolen_instrument_verdict = null;
     /**
-     * Assessment of this transaction for risk of being part of a card testing
-     * attack.
+     * Output only. Assessment of this transaction for risk of being part of a
+     * card testing attack.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.CardTestingVerdict card_testing_verdict = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.CardTestingVerdict card_testing_verdict = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $card_testing_verdict = null;
     /**
-     * Assessment of this transaction for behavioral trust.
+     * Output only. Assessment of this transaction for behavioral trust.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.BehavioralTrustVerdict behavioral_trust_verdict = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.BehavioralTrustVerdict behavioral_trust_verdict = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $behavioral_trust_verdict = null;
 
@@ -50,16 +51,17 @@ class FraudPreventionAssessment extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type float $transaction_risk
-     *           Probability of this transaction being fraudulent. Summarizes the combined
-     *           risk of attack vectors below.
-     *           Values are from 0.0 (lowest) to 1.0 (highest).
+     *           Output only. Probability of this transaction being fraudulent. Summarizes
+     *           the combined risk of attack vectors below. Values are from 0.0 (lowest)
+     *           to 1.0 (highest).
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment\StolenInstrumentVerdict $stolen_instrument_verdict
-     *           Assessment of this transaction for risk of a stolen instrument.
+     *           Output only. Assessment of this transaction for risk of a stolen
+     *           instrument.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment\CardTestingVerdict $card_testing_verdict
-     *           Assessment of this transaction for risk of being part of a card testing
-     *           attack.
+     *           Output only. Assessment of this transaction for risk of being part of a
+     *           card testing attack.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment\BehavioralTrustVerdict $behavioral_trust_verdict
-     *           Assessment of this transaction for behavioral trust.
+     *           Output only. Assessment of this transaction for behavioral trust.
      * }
      */
     public function __construct($data = NULL) {
@@ -68,11 +70,11 @@ class FraudPreventionAssessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Probability of this transaction being fraudulent. Summarizes the combined
-     * risk of attack vectors below.
-     * Values are from 0.0 (lowest) to 1.0 (highest).
+     * Output only. Probability of this transaction being fraudulent. Summarizes
+     * the combined risk of attack vectors below. Values are from 0.0 (lowest)
+     * to 1.0 (highest).
      *
-     * Generated from protobuf field <code>float transaction_risk = 1;</code>
+     * Generated from protobuf field <code>float transaction_risk = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return float
      */
     public function getTransactionRisk()
@@ -81,11 +83,11 @@ class FraudPreventionAssessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Probability of this transaction being fraudulent. Summarizes the combined
-     * risk of attack vectors below.
-     * Values are from 0.0 (lowest) to 1.0 (highest).
+     * Output only. Probability of this transaction being fraudulent. Summarizes
+     * the combined risk of attack vectors below. Values are from 0.0 (lowest)
+     * to 1.0 (highest).
      *
-     * Generated from protobuf field <code>float transaction_risk = 1;</code>
+     * Generated from protobuf field <code>float transaction_risk = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param float $var
      * @return $this
      */
@@ -98,9 +100,10 @@ class FraudPreventionAssessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Assessment of this transaction for risk of a stolen instrument.
+     * Output only. Assessment of this transaction for risk of a stolen
+     * instrument.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.StolenInstrumentVerdict stolen_instrument_verdict = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.StolenInstrumentVerdict stolen_instrument_verdict = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment\StolenInstrumentVerdict|null
      */
     public function getStolenInstrumentVerdict()
@@ -119,9 +122,10 @@ class FraudPreventionAssessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Assessment of this transaction for risk of a stolen instrument.
+     * Output only. Assessment of this transaction for risk of a stolen
+     * instrument.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.StolenInstrumentVerdict stolen_instrument_verdict = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.StolenInstrumentVerdict stolen_instrument_verdict = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment\StolenInstrumentVerdict $var
      * @return $this
      */
@@ -134,10 +138,10 @@ class FraudPreventionAssessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Assessment of this transaction for risk of being part of a card testing
-     * attack.
+     * Output only. Assessment of this transaction for risk of being part of a
+     * card testing attack.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.CardTestingVerdict card_testing_verdict = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.CardTestingVerdict card_testing_verdict = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment\CardTestingVerdict|null
      */
     public function getCardTestingVerdict()
@@ -156,10 +160,10 @@ class FraudPreventionAssessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Assessment of this transaction for risk of being part of a card testing
-     * attack.
+     * Output only. Assessment of this transaction for risk of being part of a
+     * card testing attack.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.CardTestingVerdict card_testing_verdict = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.CardTestingVerdict card_testing_verdict = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment\CardTestingVerdict $var
      * @return $this
      */
@@ -172,9 +176,9 @@ class FraudPreventionAssessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Assessment of this transaction for behavioral trust.
+     * Output only. Assessment of this transaction for behavioral trust.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.BehavioralTrustVerdict behavioral_trust_verdict = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.BehavioralTrustVerdict behavioral_trust_verdict = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment\BehavioralTrustVerdict|null
      */
     public function getBehavioralTrustVerdict()
@@ -193,9 +197,9 @@ class FraudPreventionAssessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Assessment of this transaction for behavioral trust.
+     * Output only. Assessment of this transaction for behavioral trust.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.BehavioralTrustVerdict behavioral_trust_verdict = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.BehavioralTrustVerdict behavioral_trust_verdict = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment\BehavioralTrustVerdict $var
      * @return $this
      */

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class RouterNat extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The network tier to use when automatically reserving IP addresses. Must be one of: PREMIUM, STANDARD. If not specified, PREMIUM tier will be used.
+     * The network tier to use when automatically reserving NAT IP addresses. Must be one of: PREMIUM, STANDARD. If not specified, then the current project-level default tier is used.
      * Check the AutoNetworkTier enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string auto_network_tier = 269770211;</code>
@@ -126,6 +126,13 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      */
     private $tcp_transitory_idle_timeout_sec = null;
     /**
+     * Indicates whether this NAT is used for public or private IP translation. If unspecified, it defaults to PUBLIC.
+     * Check the Type enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string type = 3575610;</code>
+     */
+    private $type = null;
+    /**
      * Timeout (in seconds) for UDP connections. Defaults to 30s if not set.
      *
      * Generated from protobuf field <code>optional int32 udp_idle_timeout_sec = 64919878;</code>
@@ -139,7 +146,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $auto_network_tier
-     *           The network tier to use when automatically reserving IP addresses. Must be one of: PREMIUM, STANDARD. If not specified, PREMIUM tier will be used.
+     *           The network tier to use when automatically reserving NAT IP addresses. Must be one of: PREMIUM, STANDARD. If not specified, then the current project-level default tier is used.
      *           Check the AutoNetworkTier enum for the list of possible values.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $drain_nat_ips
      *           A list of URLs of the IP resources to be drained. These IPs must be valid static external IPs that have been assigned to the NAT. These IPs should be used for updating/patching a NAT only.
@@ -177,6 +184,9 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      *           Timeout (in seconds) for TCP connections that are in TIME_WAIT state. Defaults to 120s if not set.
      *     @type int $tcp_transitory_idle_timeout_sec
      *           Timeout (in seconds) for TCP transitory connections. Defaults to 30s if not set.
+     *     @type string $type
+     *           Indicates whether this NAT is used for public or private IP translation. If unspecified, it defaults to PUBLIC.
+     *           Check the Type enum for the list of possible values.
      *     @type int $udp_idle_timeout_sec
      *           Timeout (in seconds) for UDP connections. Defaults to 30s if not set.
      * }
@@ -187,7 +197,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The network tier to use when automatically reserving IP addresses. Must be one of: PREMIUM, STANDARD. If not specified, PREMIUM tier will be used.
+     * The network tier to use when automatically reserving NAT IP addresses. Must be one of: PREMIUM, STANDARD. If not specified, then the current project-level default tier is used.
      * Check the AutoNetworkTier enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string auto_network_tier = 269770211;</code>
@@ -209,7 +219,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The network tier to use when automatically reserving IP addresses. Must be one of: PREMIUM, STANDARD. If not specified, PREMIUM tier will be used.
+     * The network tier to use when automatically reserving NAT IP addresses. Must be one of: PREMIUM, STANDARD. If not specified, then the current project-level default tier is used.
      * Check the AutoNetworkTier enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string auto_network_tier = 269770211;</code>
@@ -784,6 +794,44 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->tcp_transitory_idle_timeout_sec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates whether this NAT is used for public or private IP translation. If unspecified, it defaults to PUBLIC.
+     * Check the Type enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string type = 3575610;</code>
+     * @return string
+     */
+    public function getType()
+    {
+        return isset($this->type) ? $this->type : '';
+    }
+
+    public function hasType()
+    {
+        return isset($this->type);
+    }
+
+    public function clearType()
+    {
+        unset($this->type);
+    }
+
+    /**
+     * Indicates whether this NAT is used for public or private IP translation. If unspecified, it defaults to PUBLIC.
+     * Check the Type enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string type = 3575610;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->type = $var;
 
         return $this;
     }

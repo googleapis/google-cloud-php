@@ -4469,11 +4469,11 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string            $parent       Required. The relative resource name of the organization, project, or
-     *                                        folder. See:
-     *                                        https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     *                                        An example is:
-     *                                        "organizations/{organization_id}".
-     * @param CustomConfig      $customConfig Required. The user specified custom configuration to test.
+     *                                        folder. For more information about relative resource names, see [Relative
+     *                                        Resource
+     *                                        Name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
+     *                                        Example: `organizations/{organization_id}`
+     * @param CustomConfig      $customConfig Required. The custom configuration that you need to test.
      * @param SimulatedResource $resource     Required. Resource data to simulate custom module against.
      * @param array             $optionalArgs {
      *     Optional.

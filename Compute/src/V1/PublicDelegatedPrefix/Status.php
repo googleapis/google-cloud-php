@@ -26,6 +26,18 @@ class Status
      */
     const ANNOUNCED = 365103355;
     /**
+     * The prefix is announced within Google network.
+     *
+     * Generated from protobuf enum <code>ANNOUNCED_TO_GOOGLE = 454875705;</code>
+     */
+    const ANNOUNCED_TO_GOOGLE = 454875705;
+    /**
+     * The prefix is announced to Internet and within Google.
+     *
+     * Generated from protobuf enum <code>ANNOUNCED_TO_INTERNET = 177880897;</code>
+     */
+    const ANNOUNCED_TO_INTERNET = 177880897;
+    /**
      * The public delegated prefix is being deprovsioned.
      *
      * Generated from protobuf enum <code>DELETING = 528602024;</code>
@@ -47,6 +59,8 @@ class Status
     private static $valueToName = [
         self::UNDEFINED_STATUS => 'UNDEFINED_STATUS',
         self::ANNOUNCED => 'ANNOUNCED',
+        self::ANNOUNCED_TO_GOOGLE => 'ANNOUNCED_TO_GOOGLE',
+        self::ANNOUNCED_TO_INTERNET => 'ANNOUNCED_TO_INTERNET',
         self::DELETING => 'DELETING',
         self::INITIALIZING => 'INITIALIZING',
         self::READY_TO_ANNOUNCE => 'READY_TO_ANNOUNCE',

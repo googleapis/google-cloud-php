@@ -49,6 +49,12 @@ class SourceType
      * Generated from protobuf enum <code>LOOKER_STUDIO = 5;</code>
      */
     const LOOKER_STUDIO = 5;
+    /**
+     * Dataproc
+     *
+     * Generated from protobuf enum <code>DATAPROC = 6;</code>
+     */
+    const DATAPROC = 6;
 
     private static $valueToName = [
         self::SOURCE_TYPE_UNSPECIFIED => 'SOURCE_TYPE_UNSPECIFIED',
@@ -57,6 +63,7 @@ class SourceType
         self::DATA_FUSION => 'DATA_FUSION',
         self::COMPOSER => 'COMPOSER',
         self::LOOKER_STUDIO => 'LOOKER_STUDIO',
+        self::DATAPROC => 'DATAPROC',
     ];
 
     public static function name($value)

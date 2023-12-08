@@ -50,17 +50,21 @@ use Google\Cloud\Deploy\V1\CancelRolloutRequest;
 use Google\Cloud\Deploy\V1\CancelRolloutResponse;
 use Google\Cloud\Deploy\V1\Config;
 use Google\Cloud\Deploy\V1\CreateAutomationRequest;
+use Google\Cloud\Deploy\V1\CreateCustomTargetTypeRequest;
 use Google\Cloud\Deploy\V1\CreateDeliveryPipelineRequest;
 use Google\Cloud\Deploy\V1\CreateReleaseRequest;
 use Google\Cloud\Deploy\V1\CreateRolloutRequest;
 use Google\Cloud\Deploy\V1\CreateTargetRequest;
+use Google\Cloud\Deploy\V1\CustomTargetType;
 use Google\Cloud\Deploy\V1\DeleteAutomationRequest;
+use Google\Cloud\Deploy\V1\DeleteCustomTargetTypeRequest;
 use Google\Cloud\Deploy\V1\DeleteDeliveryPipelineRequest;
 use Google\Cloud\Deploy\V1\DeleteTargetRequest;
 use Google\Cloud\Deploy\V1\DeliveryPipeline;
 use Google\Cloud\Deploy\V1\GetAutomationRequest;
 use Google\Cloud\Deploy\V1\GetAutomationRunRequest;
 use Google\Cloud\Deploy\V1\GetConfigRequest;
+use Google\Cloud\Deploy\V1\GetCustomTargetTypeRequest;
 use Google\Cloud\Deploy\V1\GetDeliveryPipelineRequest;
 use Google\Cloud\Deploy\V1\GetJobRunRequest;
 use Google\Cloud\Deploy\V1\GetReleaseRequest;
@@ -73,6 +77,8 @@ use Google\Cloud\Deploy\V1\ListAutomationRunsRequest;
 use Google\Cloud\Deploy\V1\ListAutomationRunsResponse;
 use Google\Cloud\Deploy\V1\ListAutomationsRequest;
 use Google\Cloud\Deploy\V1\ListAutomationsResponse;
+use Google\Cloud\Deploy\V1\ListCustomTargetTypesRequest;
+use Google\Cloud\Deploy\V1\ListCustomTargetTypesResponse;
 use Google\Cloud\Deploy\V1\ListDeliveryPipelinesRequest;
 use Google\Cloud\Deploy\V1\ListDeliveryPipelinesResponse;
 use Google\Cloud\Deploy\V1\ListJobRunsRequest;
@@ -94,6 +100,7 @@ use Google\Cloud\Deploy\V1\Target;
 use Google\Cloud\Deploy\V1\TerminateJobRunRequest;
 use Google\Cloud\Deploy\V1\TerminateJobRunResponse;
 use Google\Cloud\Deploy\V1\UpdateAutomationRequest;
+use Google\Cloud\Deploy\V1\UpdateCustomTargetTypeRequest;
 use Google\Cloud\Deploy\V1\UpdateDeliveryPipelineRequest;
 use Google\Cloud\Deploy\V1\UpdateTargetRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -164,6 +171,8 @@ class CloudDeployGapicClient
     private static $clusterNameTemplate;
 
     private static $configNameTemplate;
+
+    private static $customTargetTypeNameTemplate;
 
     private static $deliveryPipelineNameTemplate;
 
@@ -267,6 +276,17 @@ class CloudDeployGapicClient
         }
 
         return self::$configNameTemplate;
+    }
+
+    private static function getCustomTargetTypeNameTemplate()
+    {
+        if (self::$customTargetTypeNameTemplate == null) {
+            self::$customTargetTypeNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/customTargetTypes/{custom_target_type}'
+            );
+        }
+
+        return self::$customTargetTypeNameTemplate;
     }
 
     private static function getDeliveryPipelineNameTemplate()
@@ -388,6 +408,7 @@ class CloudDeployGapicClient
                 'build' => self::getBuildNameTemplate(),
                 'cluster' => self::getClusterNameTemplate(),
                 'config' => self::getConfigNameTemplate(),
+                'customTargetType' => self::getCustomTargetTypeNameTemplate(),
                 'deliveryPipeline' => self::getDeliveryPipelineNameTemplate(),
                 'job' => self::getJobNameTemplate(),
                 'jobRun' => self::getJobRunNameTemplate(),
@@ -506,6 +527,28 @@ class CloudDeployGapicClient
         return self::getConfigNameTemplate()->render([
             'project' => $project,
             'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * custom_target_type resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $customTargetType
+     *
+     * @return string The formatted custom_target_type resource.
+     */
+    public static function customTargetTypeName(
+        $project,
+        $location,
+        $customTargetType
+    ) {
+        return self::getCustomTargetTypeNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'custom_target_type' => $customTargetType,
         ]);
     }
 
@@ -736,6 +779,7 @@ class CloudDeployGapicClient
      * - build: projects/{project}/locations/{location}/builds/{build}
      * - cluster: projects/{project}/locations/{location}/clusters/{cluster}
      * - config: projects/{project}/locations/{location}/config
+     * - customTargetType: projects/{project}/locations/{location}/customTargetTypes/{custom_target_type}
      * - deliveryPipeline: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}
      * - job: projects/{project}/locations/{location}/jobs/{job}
      * - jobRun: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/releases/{release}/rollouts/{rollout}/jobRuns/{job_run}
@@ -1240,6 +1284,116 @@ class CloudDeployGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'CreateAutomation',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Creates a new CustomTargetType in a given project and location.
+     *
+     * Sample code:
+     * ```
+     * $cloudDeployClient = new CloudDeployClient();
+     * try {
+     *     $formattedParent = $cloudDeployClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $customTargetTypeId = 'custom_target_type_id';
+     *     $customTargetType = new CustomTargetType();
+     *     $operationResponse = $cloudDeployClient->createCustomTargetType($formattedParent, $customTargetTypeId, $customTargetType);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $cloudDeployClient->createCustomTargetType($formattedParent, $customTargetTypeId, $customTargetType);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $cloudDeployClient->resumeOperation($operationName, 'createCustomTargetType');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $cloudDeployClient->close();
+     * }
+     * ```
+     *
+     * @param string           $parent             Required. The parent collection in which the `CustomTargetType` should be
+     *                                             created in. Format should be
+     *                                             `projects/{project_id}/locations/{location_name}`.
+     * @param string           $customTargetTypeId Required. ID of the `CustomTargetType`.
+     * @param CustomTargetType $customTargetType   Required. The `CustomTargetType` to create.
+     * @param array            $optionalArgs       {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server will guarantee
+     *           that for at least 60 minutes since the first request.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request ID,
+     *           the server can check if original operation with the same request ID was
+     *           received, and if so, will ignore the second request. This prevents clients
+     *           from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type bool $validateOnly
+     *           Optional. If set to true, the request is validated and the user is provided
+     *           with an expected result, but no actual change is made.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createCustomTargetType(
+        $parent,
+        $customTargetTypeId,
+        $customTargetType,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateCustomTargetTypeRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setCustomTargetTypeId($customTargetTypeId);
+        $request->setCustomTargetType($customTargetType);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CreateCustomTargetType',
             $optionalArgs,
             $request,
             $this->getOperationsClient()
@@ -1807,6 +1961,118 @@ class CloudDeployGapicClient
     }
 
     /**
+     * Deletes a single CustomTargetType.
+     *
+     * Sample code:
+     * ```
+     * $cloudDeployClient = new CloudDeployClient();
+     * try {
+     *     $formattedName = $cloudDeployClient->customTargetTypeName('[PROJECT]', '[LOCATION]', '[CUSTOM_TARGET_TYPE]');
+     *     $operationResponse = $cloudDeployClient->deleteCustomTargetType($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $cloudDeployClient->deleteCustomTargetType($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $cloudDeployClient->resumeOperation($operationName, 'deleteCustomTargetType');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $cloudDeployClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the `CustomTargetType` to delete. Format must be
+     *                             `projects/{project_id}/locations/{location_name}/customTargetTypes/{custom_target_type}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server will guarantee
+     *           that for at least 60 minutes after the first request.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request ID,
+     *           the server can check if original operation with the same request ID was
+     *           received, and if so, will ignore the second request. This prevents clients
+     *           from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type bool $allowMissing
+     *           Optional. If set to true, then deleting an already deleted or non-existing
+     *           `CustomTargetType` will succeed.
+     *     @type bool $validateOnly
+     *           Optional. If set to true, the request is validated but no actual change is
+     *           made.
+     *     @type string $etag
+     *           Optional. This checksum is computed by the server based on the value of
+     *           other fields, and may be sent on update and delete requests to ensure the
+     *           client has an up-to-date value before proceeding.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteCustomTargetType($name, array $optionalArgs = [])
+    {
+        $request = new DeleteCustomTargetTypeRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['allowMissing'])) {
+            $request->setAllowMissing($optionalArgs['allowMissing']);
+        }
+
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        if (isset($optionalArgs['etag'])) {
+            $request->setEtag($optionalArgs['etag']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteCustomTargetType',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Deletes a single DeliveryPipeline.
      *
      * Sample code:
@@ -2185,6 +2451,55 @@ class CloudDeployGapicClient
     }
 
     /**
+     * Gets details of a single CustomTargetType.
+     *
+     * Sample code:
+     * ```
+     * $cloudDeployClient = new CloudDeployClient();
+     * try {
+     *     $formattedName = $cloudDeployClient->customTargetTypeName('[PROJECT]', '[LOCATION]', '[CUSTOM_TARGET_TYPE]');
+     *     $response = $cloudDeployClient->getCustomTargetType($formattedName);
+     * } finally {
+     *     $cloudDeployClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the `CustomTargetType`. Format must be
+     *                             `projects/{project_id}/locations/{location_name}/customTargetTypes/{custom_target_type}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Deploy\V1\CustomTargetType
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getCustomTargetType($name, array $optionalArgs = [])
+    {
+        $request = new GetCustomTargetTypeRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetCustomTargetType',
+            CustomTargetType::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Gets details of a single DeliveryPipeline.
      *
      * Sample code:
@@ -2514,8 +2829,8 @@ class CloudDeployGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, which owns this collection of automationRuns. Format
-     *                             must be
+     * @param string $parent       Required. The parent `Delivery Pipeline`, which owns this collection of
+     *                             automationRuns. Format must be
      *                             `projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}`.
      * @param array  $optionalArgs {
      *     Optional.
@@ -2606,8 +2921,8 @@ class CloudDeployGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, which owns this collection of automations. Format
-     *                             must be
+     * @param string $parent       Required. The parent `Delivery Pipeline`, which owns this collection of
+     *                             automations. Format must be
      *                             `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      * @param array  $optionalArgs {
      *     Optional.
@@ -2668,6 +2983,98 @@ class CloudDeployGapicClient
             'ListAutomations',
             $optionalArgs,
             ListAutomationsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists CustomTargetTypes in a given project and location.
+     *
+     * Sample code:
+     * ```
+     * $cloudDeployClient = new CloudDeployClient();
+     * try {
+     *     $formattedParent = $cloudDeployClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $cloudDeployClient->listCustomTargetTypes($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $cloudDeployClient->listCustomTargetTypes($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $cloudDeployClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent that owns this collection of custom target types.
+     *                             Format must be `projects/{project_id}/locations/{location_name}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           Optional. Filter custom target types to be returned. See
+     *           https://google.aip.dev/160 for more details.
+     *     @type string $orderBy
+     *           Optional. Field to sort by. See https://google.aip.dev/132#ordering for
+     *           more details.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listCustomTargetTypes($parent, array $optionalArgs = [])
+    {
+        $request = new ListCustomTargetTypesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListCustomTargetTypes',
+            $optionalArgs,
+            ListCustomTargetTypesResponse::class,
             $request
         );
     }
@@ -3434,6 +3841,123 @@ class CloudDeployGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'UpdateAutomation',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Updates a single CustomTargetType.
+     *
+     * Sample code:
+     * ```
+     * $cloudDeployClient = new CloudDeployClient();
+     * try {
+     *     $updateMask = new FieldMask();
+     *     $customTargetType = new CustomTargetType();
+     *     $operationResponse = $cloudDeployClient->updateCustomTargetType($updateMask, $customTargetType);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $cloudDeployClient->updateCustomTargetType($updateMask, $customTargetType);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $cloudDeployClient->resumeOperation($operationName, 'updateCustomTargetType');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $cloudDeployClient->close();
+     * }
+     * ```
+     *
+     * @param FieldMask        $updateMask       Required. Field mask is used to specify the fields to be overwritten in the
+     *                                           `CustomTargetType` resource by the update.
+     *                                           The fields specified in the update_mask are relative to the resource, not
+     *                                           the full request. A field will be overwritten if it is in the mask. If the
+     *                                           user does not provide a mask then all fields will be overwritten.
+     * @param CustomTargetType $customTargetType Required. The `CustomTargetType` to update.
+     * @param array            $optionalArgs     {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server will guarantee
+     *           that for at least 60 minutes since the first request.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request ID,
+     *           the server can check if original operation with the same request ID was
+     *           received, and if so, will ignore the second request. This prevents clients
+     *           from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type bool $allowMissing
+     *           Optional. If set to true, updating a `CustomTargetType` that does not exist
+     *           will result in the creation of a new `CustomTargetType`.
+     *     @type bool $validateOnly
+     *           Optional. If set to true, the request is validated and the user is provided
+     *           with an expected result, but no actual change is made.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateCustomTargetType(
+        $updateMask,
+        $customTargetType,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdateCustomTargetTypeRequest();
+        $requestParamHeaders = [];
+        $request->setUpdateMask($updateMask);
+        $request->setCustomTargetType($customTargetType);
+        $requestParamHeaders[
+            'custom_target_type.name'
+        ] = $customTargetType->getName();
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['allowMissing'])) {
+            $request->setAllowMissing($optionalArgs['allowMissing']);
+        }
+
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdateCustomTargetType',
             $optionalArgs,
             $request,
             $this->getOperationsClient()

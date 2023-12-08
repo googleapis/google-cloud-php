@@ -157,6 +157,24 @@ return [
                     ],
                 ],
             ],
+            'GetMacsecConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\InterconnectsGetMacsecConfigResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'interconnect',
+                        'fieldAccessors' => [
+                            'getInterconnect',
+                        ],
+                    ],
+                ],
+            ],
             'List' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

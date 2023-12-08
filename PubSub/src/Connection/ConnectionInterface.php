@@ -189,4 +189,19 @@ interface ConnectionInterface
      * @param array $args
      */
     public function validateMessage(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function listRevisions(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function commitSchema(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function deleteRevision(array $args);
 }

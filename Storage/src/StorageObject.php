@@ -224,6 +224,24 @@ class StorageObject
      *           Acceptable values include, `"authenticatedRead"`,
      *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
      *           `"projectPrivate"`, and `"publicRead"`.
+     *     @type array $retention The full list of available options are outlined
+     *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/update#request-body).
+     *     @type string $retention.retainUntilTime The earliest time in RFC 3339
+     *           UTC "Zulu" format that the object can be deleted or replaced.
+     *           This is the retention configuration set for this object.
+     *     @type string $retention.mode The mode of the retention configuration,
+     *           which can be either `"Unlocked"` or `"Locked"`.
+     *     @type string $retentionExpirationTime The earliest time in
+     *           RFC 3339 UTC "Zulu" format that the object can be deleted or
+     *           replaced. This depends on any retention configuration set for
+     *           the object as well as retention policy set for the bucket that
+     *           contains the object. This value should normally only be set by
+     *           the back-end API.
+     *     @type bool $overrideUnlockedRetention Applicable for objects that
+     *           have an unlocked retention configuration. Required to be set to
+     *           `true` if the operation includes a retention property that
+     *           changes the mode to `Locked`, reduces the `retainUntilTime`, or
+     *           removes the retention configuration from the object.
      *     @type string $projection Determines which properties to return. May
      *           be either 'full' or 'noAcl'.
      *     @type string $fields Selector which will cause the response to only

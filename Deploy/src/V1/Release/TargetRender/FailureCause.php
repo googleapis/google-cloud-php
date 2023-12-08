@@ -43,7 +43,7 @@ class FailureCause
     const CLOUD_BUILD_REQUEST_FAILED = 3;
     /**
      * The render operation did not complete successfully because the
-     * verification stanza required for verify was not found on the skaffold
+     * verification stanza required for verify was not found on the Skaffold
      * configuration.
      *
      * Generated from protobuf enum <code>VERIFICATION_CONFIG_NOT_FOUND = 4;</code>
@@ -52,11 +52,24 @@ class FailureCause
     /**
      * The render operation did not complete successfully because the custom
      * action required for predeploy or postdeploy was not found in the
-     * skaffold configuration. See failure_message for additional details.
+     * Skaffold configuration. See failure_message for additional details.
      *
      * Generated from protobuf enum <code>CUSTOM_ACTION_NOT_FOUND = 5;</code>
      */
     const CUSTOM_ACTION_NOT_FOUND = 5;
+    /**
+     * Release failed during rendering because the release configuration is
+     * not supported with the specified deployment strategy.
+     *
+     * Generated from protobuf enum <code>DEPLOYMENT_STRATEGY_NOT_SUPPORTED = 6;</code>
+     */
+    const DEPLOYMENT_STRATEGY_NOT_SUPPORTED = 6;
+    /**
+     * The render operation had a feature configured that is not supported.
+     *
+     * Generated from protobuf enum <code>RENDER_FEATURE_NOT_SUPPORTED = 7;</code>
+     */
+    const RENDER_FEATURE_NOT_SUPPORTED = 7;
 
     private static $valueToName = [
         self::FAILURE_CAUSE_UNSPECIFIED => 'FAILURE_CAUSE_UNSPECIFIED',
@@ -65,6 +78,8 @@ class FailureCause
         self::CLOUD_BUILD_REQUEST_FAILED => 'CLOUD_BUILD_REQUEST_FAILED',
         self::VERIFICATION_CONFIG_NOT_FOUND => 'VERIFICATION_CONFIG_NOT_FOUND',
         self::CUSTOM_ACTION_NOT_FOUND => 'CUSTOM_ACTION_NOT_FOUND',
+        self::DEPLOYMENT_STRATEGY_NOT_SUPPORTED => 'DEPLOYMENT_STRATEGY_NOT_SUPPORTED',
+        self::RENDER_FEATURE_NOT_SUPPORTED => 'RENDER_FEATURE_NOT_SUPPORTED',
     ];
 
     public static function name($value)

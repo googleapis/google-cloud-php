@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\RouterNat;
 use UnexpectedValueException;
 
 /**
- * The network tier to use when automatically reserving IP addresses. Must be one of: PREMIUM, STANDARD. If not specified, PREMIUM tier will be used.
+ * The network tier to use when automatically reserving NAT IP addresses. Must be one of: PREMIUM, STANDARD. If not specified, then the current project-level default tier is used.
  *
  * Protobuf type <code>google.cloud.compute.v1.RouterNat.AutoNetworkTier</code>
  */

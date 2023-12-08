@@ -24,6 +24,10 @@ class Type
      */
     const ACCELERATOR_OPTIMIZED = 280848403;
     /**
+     * Generated from protobuf enum <code>ACCELERATOR_OPTIMIZED_A3 = 158574526;</code>
+     */
+    const ACCELERATOR_OPTIMIZED_A3 = 158574526;
+    /**
      * Generated from protobuf enum <code>COMPUTE_OPTIMIZED = 158349023;</code>
      */
     const COMPUTE_OPTIMIZED = 158349023;
@@ -35,6 +39,14 @@ class Type
      * Generated from protobuf enum <code>COMPUTE_OPTIMIZED_C3 = 428004784;</code>
      */
     const COMPUTE_OPTIMIZED_C3 = 428004784;
+    /**
+     * Generated from protobuf enum <code>COMPUTE_OPTIMIZED_C3D = 383246484;</code>
+     */
+    const COMPUTE_OPTIMIZED_C3D = 383246484;
+    /**
+     * Generated from protobuf enum <code>COMPUTE_OPTIMIZED_H3 = 428004939;</code>
+     */
+    const COMPUTE_OPTIMIZED_H3 = 428004939;
     /**
      * Generated from protobuf enum <code>GENERAL_PURPOSE = 299793543;</code>
      */
@@ -75,9 +87,12 @@ class Type
     private static $valueToName = [
         self::UNDEFINED_TYPE => 'UNDEFINED_TYPE',
         self::ACCELERATOR_OPTIMIZED => 'ACCELERATOR_OPTIMIZED',
+        self::ACCELERATOR_OPTIMIZED_A3 => 'ACCELERATOR_OPTIMIZED_A3',
         self::COMPUTE_OPTIMIZED => 'COMPUTE_OPTIMIZED',
         self::COMPUTE_OPTIMIZED_C2D => 'COMPUTE_OPTIMIZED_C2D',
         self::COMPUTE_OPTIMIZED_C3 => 'COMPUTE_OPTIMIZED_C3',
+        self::COMPUTE_OPTIMIZED_C3D => 'COMPUTE_OPTIMIZED_C3D',
+        self::COMPUTE_OPTIMIZED_H3 => 'COMPUTE_OPTIMIZED_H3',
         self::GENERAL_PURPOSE => 'GENERAL_PURPOSE',
         self::GENERAL_PURPOSE_E2 => 'GENERAL_PURPOSE_E2',
         self::GENERAL_PURPOSE_N2 => 'GENERAL_PURPOSE_N2',

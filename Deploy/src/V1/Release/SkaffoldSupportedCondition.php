@@ -10,33 +10,33 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * SkaffoldSupportedCondition contains information about when support for the
- * release's version of skaffold ends.
+ * release's version of Skaffold ends.
  *
  * Generated from protobuf message <code>google.cloud.deploy.v1.Release.SkaffoldSupportedCondition</code>
  */
 class SkaffoldSupportedCondition extends \Google\Protobuf\Internal\Message
 {
     /**
-     * True if the version of skaffold used by this release is supported.
+     * True if the version of Skaffold used by this release is supported.
      *
      * Generated from protobuf field <code>bool status = 1;</code>
      */
     private $status = false;
     /**
-     * The skaffold support state for this release's version of skaffold.
+     * The Skaffold support state for this release's version of Skaffold.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.SkaffoldSupportState skaffold_support_state = 2;</code>
      */
     private $skaffold_support_state = 0;
     /**
-     * The time at which this release's version of skaffold will enter
+     * The time at which this release's version of Skaffold will enter
      * maintenance mode.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp maintenance_mode_time = 3;</code>
      */
     private $maintenance_mode_time = null;
     /**
-     * The time at which this release's version of skaffold will no longer be
+     * The time at which this release's version of Skaffold will no longer be
      * supported.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp support_expiration_time = 4;</code>
@@ -50,14 +50,14 @@ class SkaffoldSupportedCondition extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $status
-     *           True if the version of skaffold used by this release is supported.
+     *           True if the version of Skaffold used by this release is supported.
      *     @type int $skaffold_support_state
-     *           The skaffold support state for this release's version of skaffold.
+     *           The Skaffold support state for this release's version of Skaffold.
      *     @type \Google\Protobuf\Timestamp $maintenance_mode_time
-     *           The time at which this release's version of skaffold will enter
+     *           The time at which this release's version of Skaffold will enter
      *           maintenance mode.
      *     @type \Google\Protobuf\Timestamp $support_expiration_time
-     *           The time at which this release's version of skaffold will no longer be
+     *           The time at which this release's version of Skaffold will no longer be
      *           supported.
      * }
      */
@@ -67,7 +67,7 @@ class SkaffoldSupportedCondition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True if the version of skaffold used by this release is supported.
+     * True if the version of Skaffold used by this release is supported.
      *
      * Generated from protobuf field <code>bool status = 1;</code>
      * @return bool
@@ -78,7 +78,7 @@ class SkaffoldSupportedCondition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True if the version of skaffold used by this release is supported.
+     * True if the version of Skaffold used by this release is supported.
      *
      * Generated from protobuf field <code>bool status = 1;</code>
      * @param bool $var
@@ -93,7 +93,7 @@ class SkaffoldSupportedCondition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The skaffold support state for this release's version of skaffold.
+     * The Skaffold support state for this release's version of Skaffold.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.SkaffoldSupportState skaffold_support_state = 2;</code>
      * @return int
@@ -104,7 +104,7 @@ class SkaffoldSupportedCondition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The skaffold support state for this release's version of skaffold.
+     * The Skaffold support state for this release's version of Skaffold.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.SkaffoldSupportState skaffold_support_state = 2;</code>
      * @param int $var
@@ -119,7 +119,7 @@ class SkaffoldSupportedCondition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which this release's version of skaffold will enter
+     * The time at which this release's version of Skaffold will enter
      * maintenance mode.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp maintenance_mode_time = 3;</code>
@@ -141,7 +141,7 @@ class SkaffoldSupportedCondition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which this release's version of skaffold will enter
+     * The time at which this release's version of Skaffold will enter
      * maintenance mode.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp maintenance_mode_time = 3;</code>
@@ -157,7 +157,7 @@ class SkaffoldSupportedCondition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which this release's version of skaffold will no longer be
+     * The time at which this release's version of Skaffold will no longer be
      * supported.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp support_expiration_time = 4;</code>
@@ -179,7 +179,7 @@ class SkaffoldSupportedCondition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which this release's version of skaffold will no longer be
+     * The time at which this release's version of Skaffold will no longer be
      * supported.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp support_expiration_time = 4;</code>

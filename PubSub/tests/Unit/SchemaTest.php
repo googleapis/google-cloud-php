@@ -116,4 +116,48 @@ class SchemaTest extends TestCase
 
         $this->assertFalse($this->schema->exists());
     }
+
+    public function testlistRevisions()
+    {
+        $this->connection
+            ->listRevisions(['name' => self::NAME,])
+            ->shouldBeCalledOnce()
+            ->willReturn(['foo' => 'bar']);
+
+        $this->schema->___setProperty('connection', $this->connection->reveal());
+
+        $this->assertEquals('bar', $this->schema->listRevisions()['foo']);
+    }
+
+    public function testCommit()
+    {
+        $this->connection
+            ->commitSchema(
+                [
+                    'name' => self::NAME,
+                    'schema' => [
+                        'definition' => 'test',
+                        'type' => 'AVRO',
+                    ],
+                ]
+            )
+            ->shouldBeCalledOnce()
+            ->willReturn(['foo' => 'bar']);
+
+        $this->schema->___setProperty('connection', $this->connection->reveal());
+
+        $this->assertEquals('bar', $this->schema->commit('test', 'AVRO')['foo']);
+    }
+
+    public function testDeleteRevision()
+    {
+        $this->connection
+            ->deleteRevision(['name' => self::NAME . '@1234567'])
+            ->shouldBeCalledOnce()
+            ->willReturn(['foo' => 'bar']);
+
+        $this->schema->___setProperty('connection', $this->connection->reveal());
+
+        $this->assertEquals('bar', $this->schema->deleteRevision('1234567')['foo']);
+    }
 }

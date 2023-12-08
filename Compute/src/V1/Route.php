@@ -34,7 +34,7 @@ class Route extends \Google\Protobuf\Internal\Message
      */
     private $description = null;
     /**
-     * The destination range of outgoing packets that this route applies to. Both IPv4 and IPv6 are supported.
+     * The destination range of outgoing packets that this route applies to. Both IPv4 and IPv6 are supported. Must specify an IPv4 range (e.g. 192.0.2.0/24) or an IPv6 range in RFC 4291 format (e.g. 2001:db8::/32). IPv6 range will be displayed using RFC 5952 compressed format.
      *
      * Generated from protobuf field <code>optional string dest_range = 381327712;</code>
      */
@@ -88,7 +88,7 @@ class Route extends \Google\Protobuf\Internal\Message
      */
     private $next_hop_instance = null;
     /**
-     * The network IP address of an instance that should handle matching packets. Only IPv4 is supported.
+     * The network IP address of an instance that should handle matching packets. Both IPv6 address and IPv4 addresses are supported. Must specify an IPv4 address in dot-decimal notation (e.g. 192.0.2.99) or an IPv6 address in RFC 4291 format (e.g. 2001:db8::2d9:51:0:0 or 2001:db8:0:0:2d9:51:0:0). IPv6 addresses will be displayed using RFC 5952 compressed format (e.g. 2001:db8::2d9:51:0:0). Should never be an IPv4-mapped IPv6 address.
      *
      * Generated from protobuf field <code>optional string next_hop_ip = 110319529;</code>
      */
@@ -163,7 +163,7 @@ class Route extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           An optional description of this resource. Provide this field when you create the resource.
      *     @type string $dest_range
-     *           The destination range of outgoing packets that this route applies to. Both IPv4 and IPv6 are supported.
+     *           The destination range of outgoing packets that this route applies to. Both IPv4 and IPv6 are supported. Must specify an IPv4 range (e.g. 192.0.2.0/24) or an IPv6 range in RFC 4291 format (e.g. 2001:db8::/32). IPv6 range will be displayed using RFC 5952 compressed format.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
@@ -181,7 +181,7 @@ class Route extends \Google\Protobuf\Internal\Message
      *     @type string $next_hop_instance
      *           The URL to an instance that should handle matching packets. You can specify this as a full or partial URL. For example: https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
      *     @type string $next_hop_ip
-     *           The network IP address of an instance that should handle matching packets. Only IPv4 is supported.
+     *           The network IP address of an instance that should handle matching packets. Both IPv6 address and IPv4 addresses are supported. Must specify an IPv4 address in dot-decimal notation (e.g. 192.0.2.99) or an IPv6 address in RFC 4291 format (e.g. 2001:db8::2d9:51:0:0 or 2001:db8:0:0:2d9:51:0:0). IPv6 addresses will be displayed using RFC 5952 compressed format (e.g. 2001:db8::2d9:51:0:0). Should never be an IPv4-mapped IPv6 address.
      *     @type string $next_hop_network
      *           The URL of the local network if it should handle matching packets.
      *     @type string $next_hop_peering
@@ -308,7 +308,7 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The destination range of outgoing packets that this route applies to. Both IPv4 and IPv6 are supported.
+     * The destination range of outgoing packets that this route applies to. Both IPv4 and IPv6 are supported. Must specify an IPv4 range (e.g. 192.0.2.0/24) or an IPv6 range in RFC 4291 format (e.g. 2001:db8::/32). IPv6 range will be displayed using RFC 5952 compressed format.
      *
      * Generated from protobuf field <code>optional string dest_range = 381327712;</code>
      * @return string
@@ -329,7 +329,7 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The destination range of outgoing packets that this route applies to. Both IPv4 and IPv6 are supported.
+     * The destination range of outgoing packets that this route applies to. Both IPv4 and IPv6 are supported. Must specify an IPv4 range (e.g. 192.0.2.0/24) or an IPv6 range in RFC 4291 format (e.g. 2001:db8::/32). IPv6 range will be displayed using RFC 5952 compressed format.
      *
      * Generated from protobuf field <code>optional string dest_range = 381327712;</code>
      * @param string $var
@@ -632,7 +632,7 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The network IP address of an instance that should handle matching packets. Only IPv4 is supported.
+     * The network IP address of an instance that should handle matching packets. Both IPv6 address and IPv4 addresses are supported. Must specify an IPv4 address in dot-decimal notation (e.g. 192.0.2.99) or an IPv6 address in RFC 4291 format (e.g. 2001:db8::2d9:51:0:0 or 2001:db8:0:0:2d9:51:0:0). IPv6 addresses will be displayed using RFC 5952 compressed format (e.g. 2001:db8::2d9:51:0:0). Should never be an IPv4-mapped IPv6 address.
      *
      * Generated from protobuf field <code>optional string next_hop_ip = 110319529;</code>
      * @return string
@@ -653,7 +653,7 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The network IP address of an instance that should handle matching packets. Only IPv4 is supported.
+     * The network IP address of an instance that should handle matching packets. Both IPv6 address and IPv4 addresses are supported. Must specify an IPv4 address in dot-decimal notation (e.g. 192.0.2.99) or an IPv6 address in RFC 4291 format (e.g. 2001:db8::2d9:51:0:0 or 2001:db8:0:0:2d9:51:0:0). IPv6 addresses will be displayed using RFC 5952 compressed format (e.g. 2001:db8::2d9:51:0:0). Should never be an IPv4-mapped IPv6 address.
      *
      * Generated from protobuf field <code>optional string next_hop_ip = 110319529;</code>
      * @param string $var

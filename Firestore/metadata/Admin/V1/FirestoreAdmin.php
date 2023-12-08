@@ -21,13 +21,15 @@ class FirestoreAdmin
         \GPBMetadata\Google\Firestore\Admin\V1\Database::initOnce();
         \GPBMetadata\Google\Firestore\Admin\V1\Field::initOnce();
         \GPBMetadata\Google\Firestore\Admin\V1\Index::initOnce();
+        \GPBMetadata\Google\Firestore\Admin\V1\Operation::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
+        \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ñ)
-/google/firestore/admin/v1/firestore_admin.protogoogle.firestore.admin.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto(google/firestore/admin/v1/database.proto%google/firestore/admin/v1/field.proto%google/firestore/admin/v1/index.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"Q
+ş*
+/google/firestore/admin/v1/firestore_admin.protogoogle.firestore.admin.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto(google/firestore/admin/v1/database.proto%google/firestore/admin/v1/field.proto%google/firestore/admin/v1/index.proto)google/firestore/admin/v1/operation.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Q
 ListDatabasesRequest9
 parent (	B)àAúA#!firestore.googleapis.com/Database"¨
 CreateDatabaseRequest9
@@ -79,17 +81,20 @@ page_token (	"a
 page_token (	"_
 ListFieldsResponse0
 fields (2 .google.firestore.admin.v1.Field
-next_page_token (	"„
+next_page_token (	"Î
 ExportDocumentsRequest7
 name (	B)àAúA#
 !firestore.googleapis.com/Database
 collection_ids (	
-output_uri_prefix (	"ƒ
+output_uri_prefix (	
+namespace_ids (	1
+snapshot_time (2.google.protobuf.Timestamp"š
 ImportDocumentsRequest7
 name (	B)àAúA#
 !firestore.googleapis.com/Database
 collection_ids (	
-input_uri_prefix (	2î
+input_uri_prefix (	
+namespace_ids (	2î
 FirestoreAdminÛ
 CreateIndex-.google.firestore.admin.v1.CreateIndexRequest.google.longrunning.Operation"~‚Óä“G">/v1/{parent=projects/*/databases/*/collectionGroups/*}/indexes:indexÚAparent,indexÊA
 IndexIndexOperationMetadata½

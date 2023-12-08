@@ -17,10 +17,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class StolenInstrumentVerdict extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Probability of this transaction being executed with a stolen instrument.
-     * Values are from 0.0 (lowest) to 1.0 (highest).
+     * Output only. Probability of this transaction being executed with a stolen
+     * instrument. Values are from 0.0 (lowest) to 1.0 (highest).
      *
-     * Generated from protobuf field <code>float risk = 1;</code>
+     * Generated from protobuf field <code>float risk = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $risk = 0.0;
 
@@ -31,8 +31,8 @@ class StolenInstrumentVerdict extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type float $risk
-     *           Probability of this transaction being executed with a stolen instrument.
-     *           Values are from 0.0 (lowest) to 1.0 (highest).
+     *           Output only. Probability of this transaction being executed with a stolen
+     *           instrument. Values are from 0.0 (lowest) to 1.0 (highest).
      * }
      */
     public function __construct($data = NULL) {
@@ -41,10 +41,10 @@ class StolenInstrumentVerdict extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Probability of this transaction being executed with a stolen instrument.
-     * Values are from 0.0 (lowest) to 1.0 (highest).
+     * Output only. Probability of this transaction being executed with a stolen
+     * instrument. Values are from 0.0 (lowest) to 1.0 (highest).
      *
-     * Generated from protobuf field <code>float risk = 1;</code>
+     * Generated from protobuf field <code>float risk = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return float
      */
     public function getRisk()
@@ -53,10 +53,10 @@ class StolenInstrumentVerdict extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Probability of this transaction being executed with a stolen instrument.
-     * Values are from 0.0 (lowest) to 1.0 (highest).
+     * Output only. Probability of this transaction being executed with a stolen
+     * instrument. Values are from 0.0 (lowest) to 1.0 (highest).
      *
-     * Generated from protobuf field <code>float risk = 1;</code>
+     * Generated from protobuf field <code>float risk = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param float $var
      * @return $this
      */

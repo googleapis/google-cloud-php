@@ -25,7 +25,7 @@ class Database extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * The location of the database. Available databases are listed at
+     * The location of the database. Available locations are listed at
      * https://cloud.google.com/firestore/docs/locations.
      *
      * Generated from protobuf field <code>string location_id = 9;</code>
@@ -46,16 +46,47 @@ class Database extends \Google\Protobuf\Internal\Message
      */
     private $concurrency_mode = 0;
     /**
+     * Output only. The period during which past versions of data are retained in
+     * the database.
+     * Any [read][google.firestore.v1.GetDocumentRequest.read_time]
+     * or [query][google.firestore.v1.ListDocumentsRequest.read_time] can specify
+     * a `read_time` within this window, and will read the state of the database
+     * at that time.
+     * If the PITR feature is enabled, the retention period is 7 days. Otherwise,
+     * the retention period is 1 hour.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration version_retention_period = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $version_retention_period = null;
+    /**
+     * Output only. The earliest timestamp at which older versions of the data can
+     * be read from the database. See [version_retention_period] above; this field
+     * is populated with `now - version_retention_period`.
+     * This value is continuously updated, and becomes stale the moment it is
+     * queried. If you are using this value to recover data, make sure to account
+     * for the time from the moment when the value is queried to the moment when
+     * you initiate the recovery.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp earliest_version_time = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $earliest_version_time = null;
+    /**
+     * Whether to enable the PITR feature on this database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.PointInTimeRecoveryEnablement point_in_time_recovery_enablement = 21;</code>
+     */
+    private $point_in_time_recovery_enablement = 0;
+    /**
      * The App Engine integration mode to use for this database.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Database.AppEngineIntegrationMode app_engine_integration_mode = 19;</code>
      */
     private $app_engine_integration_mode = 0;
     /**
-     * Output only. The key_prefix for this database. This key_prefix is used, in combination
-     * with the project id ("<key prefix>~<project id>") to construct the
-     * application id that is returned from the Cloud Datastore APIs in Google App
-     * Engine first generation runtimes.
+     * Output only. The key_prefix for this database. This key_prefix is used, in
+     * combination with the project id ("<key prefix>~<project id>") to construct
+     * the application id that is returned from the Cloud Datastore APIs in Google
+     * App Engine first generation runtimes.
      * This value may be empty in which case the appid to use for URL-encoded keys
      * is the project_id (eg: foo instead of v~foo).
      *
@@ -81,7 +112,7 @@ class Database extends \Google\Protobuf\Internal\Message
      *           The resource name of the Database.
      *           Format: `projects/{project}/databases/{database}`
      *     @type string $location_id
-     *           The location of the database. Available databases are listed at
+     *           The location of the database. Available locations are listed at
      *           https://cloud.google.com/firestore/docs/locations.
      *     @type int $type
      *           The type of the database.
@@ -89,13 +120,32 @@ class Database extends \Google\Protobuf\Internal\Message
      *           information about how to choose.
      *     @type int $concurrency_mode
      *           The concurrency control mode to use for this database.
+     *     @type \Google\Protobuf\Duration $version_retention_period
+     *           Output only. The period during which past versions of data are retained in
+     *           the database.
+     *           Any [read][google.firestore.v1.GetDocumentRequest.read_time]
+     *           or [query][google.firestore.v1.ListDocumentsRequest.read_time] can specify
+     *           a `read_time` within this window, and will read the state of the database
+     *           at that time.
+     *           If the PITR feature is enabled, the retention period is 7 days. Otherwise,
+     *           the retention period is 1 hour.
+     *     @type \Google\Protobuf\Timestamp $earliest_version_time
+     *           Output only. The earliest timestamp at which older versions of the data can
+     *           be read from the database. See [version_retention_period] above; this field
+     *           is populated with `now - version_retention_period`.
+     *           This value is continuously updated, and becomes stale the moment it is
+     *           queried. If you are using this value to recover data, make sure to account
+     *           for the time from the moment when the value is queried to the moment when
+     *           you initiate the recovery.
+     *     @type int $point_in_time_recovery_enablement
+     *           Whether to enable the PITR feature on this database.
      *     @type int $app_engine_integration_mode
      *           The App Engine integration mode to use for this database.
      *     @type string $key_prefix
-     *           Output only. The key_prefix for this database. This key_prefix is used, in combination
-     *           with the project id ("<key prefix>~<project id>") to construct the
-     *           application id that is returned from the Cloud Datastore APIs in Google App
-     *           Engine first generation runtimes.
+     *           Output only. The key_prefix for this database. This key_prefix is used, in
+     *           combination with the project id ("<key prefix>~<project id>") to construct
+     *           the application id that is returned from the Cloud Datastore APIs in Google
+     *           App Engine first generation runtimes.
      *           This value may be empty in which case the appid to use for URL-encoded keys
      *           is the project_id (eg: foo instead of v~foo).
      *     @type string $etag
@@ -138,7 +188,7 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The location of the database. Available databases are listed at
+     * The location of the database. Available locations are listed at
      * https://cloud.google.com/firestore/docs/locations.
      *
      * Generated from protobuf field <code>string location_id = 9;</code>
@@ -150,7 +200,7 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The location of the database. Available databases are listed at
+     * The location of the database. Available locations are listed at
      * https://cloud.google.com/firestore/docs/locations.
      *
      * Generated from protobuf field <code>string location_id = 9;</code>
@@ -222,6 +272,130 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. The period during which past versions of data are retained in
+     * the database.
+     * Any [read][google.firestore.v1.GetDocumentRequest.read_time]
+     * or [query][google.firestore.v1.ListDocumentsRequest.read_time] can specify
+     * a `read_time` within this window, and will read the state of the database
+     * at that time.
+     * If the PITR feature is enabled, the retention period is 7 days. Otherwise,
+     * the retention period is 1 hour.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration version_retention_period = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getVersionRetentionPeriod()
+    {
+        return $this->version_retention_period;
+    }
+
+    public function hasVersionRetentionPeriod()
+    {
+        return isset($this->version_retention_period);
+    }
+
+    public function clearVersionRetentionPeriod()
+    {
+        unset($this->version_retention_period);
+    }
+
+    /**
+     * Output only. The period during which past versions of data are retained in
+     * the database.
+     * Any [read][google.firestore.v1.GetDocumentRequest.read_time]
+     * or [query][google.firestore.v1.ListDocumentsRequest.read_time] can specify
+     * a `read_time` within this window, and will read the state of the database
+     * at that time.
+     * If the PITR feature is enabled, the retention period is 7 days. Otherwise,
+     * the retention period is 1 hour.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration version_retention_period = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setVersionRetentionPeriod($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->version_retention_period = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The earliest timestamp at which older versions of the data can
+     * be read from the database. See [version_retention_period] above; this field
+     * is populated with `now - version_retention_period`.
+     * This value is continuously updated, and becomes stale the moment it is
+     * queried. If you are using this value to recover data, make sure to account
+     * for the time from the moment when the value is queried to the moment when
+     * you initiate the recovery.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp earliest_version_time = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getEarliestVersionTime()
+    {
+        return $this->earliest_version_time;
+    }
+
+    public function hasEarliestVersionTime()
+    {
+        return isset($this->earliest_version_time);
+    }
+
+    public function clearEarliestVersionTime()
+    {
+        unset($this->earliest_version_time);
+    }
+
+    /**
+     * Output only. The earliest timestamp at which older versions of the data can
+     * be read from the database. See [version_retention_period] above; this field
+     * is populated with `now - version_retention_period`.
+     * This value is continuously updated, and becomes stale the moment it is
+     * queried. If you are using this value to recover data, make sure to account
+     * for the time from the moment when the value is queried to the moment when
+     * you initiate the recovery.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp earliest_version_time = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setEarliestVersionTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->earliest_version_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether to enable the PITR feature on this database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.PointInTimeRecoveryEnablement point_in_time_recovery_enablement = 21;</code>
+     * @return int
+     */
+    public function getPointInTimeRecoveryEnablement()
+    {
+        return $this->point_in_time_recovery_enablement;
+    }
+
+    /**
+     * Whether to enable the PITR feature on this database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.PointInTimeRecoveryEnablement point_in_time_recovery_enablement = 21;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPointInTimeRecoveryEnablement($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Admin\V1\Database\PointInTimeRecoveryEnablement::class);
+        $this->point_in_time_recovery_enablement = $var;
+
+        return $this;
+    }
+
+    /**
      * The App Engine integration mode to use for this database.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Database.AppEngineIntegrationMode app_engine_integration_mode = 19;</code>
@@ -248,10 +422,10 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The key_prefix for this database. This key_prefix is used, in combination
-     * with the project id ("<key prefix>~<project id>") to construct the
-     * application id that is returned from the Cloud Datastore APIs in Google App
-     * Engine first generation runtimes.
+     * Output only. The key_prefix for this database. This key_prefix is used, in
+     * combination with the project id ("<key prefix>~<project id>") to construct
+     * the application id that is returned from the Cloud Datastore APIs in Google
+     * App Engine first generation runtimes.
      * This value may be empty in which case the appid to use for URL-encoded keys
      * is the project_id (eg: foo instead of v~foo).
      *
@@ -264,10 +438,10 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The key_prefix for this database. This key_prefix is used, in combination
-     * with the project id ("<key prefix>~<project id>") to construct the
-     * application id that is returned from the Cloud Datastore APIs in Google App
-     * Engine first generation runtimes.
+     * Output only. The key_prefix for this database. This key_prefix is used, in
+     * combination with the project id ("<key prefix>~<project id>") to construct
+     * the application id that is returned from the Cloud Datastore APIs in Google
+     * App Engine first generation runtimes.
      * This value may be empty in which case the appid to use for URL-encoded keys
      * is the project_id (eg: foo instead of v~foo).
      *

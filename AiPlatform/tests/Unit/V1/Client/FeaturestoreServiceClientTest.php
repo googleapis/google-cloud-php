@@ -46,7 +46,6 @@ use Google\Cloud\AIPlatform\V1\ExportFeatureValuesResponse;
 use Google\Cloud\AIPlatform\V1\Feature;
 use Google\Cloud\AIPlatform\V1\FeatureSelector;
 use Google\Cloud\AIPlatform\V1\FeatureValueDestination;
-use Google\Cloud\AIPlatform\V1\Feature\ValueType;
 use Google\Cloud\AIPlatform\V1\Featurestore;
 use Google\Cloud\AIPlatform\V1\GetEntityTypeRequest;
 use Google\Cloud\AIPlatform\V1\GetFeatureRequest;
@@ -529,11 +528,13 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $etag = 'etag3123477';
         $disableMonitoring = false;
+        $versionColumnName = 'versionColumnName-1981743891';
         $expectedResponse = new Feature();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setDisableMonitoring($disableMonitoring);
+        $expectedResponse->setVersionColumnName($versionColumnName);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -544,8 +545,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
         $feature = new Feature();
-        $featureValueType = ValueType::VALUE_TYPE_UNSPECIFIED;
-        $feature->setValueType($featureValueType);
         $featureId = 'featureId-150697212';
         $request = (new CreateFeatureRequest())
             ->setParent($formattedParent)
@@ -620,8 +619,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
         $feature = new Feature();
-        $featureValueType = ValueType::VALUE_TYPE_UNSPECIFIED;
-        $feature->setValueType($featureValueType);
         $featureId = 'featureId-150697212';
         $request = (new CreateFeatureRequest())
             ->setParent($formattedParent)
@@ -1496,11 +1493,13 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $etag = 'etag3123477';
         $disableMonitoring = false;
+        $versionColumnName = 'versionColumnName-1981743891';
         $expectedResponse = new Feature();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setDisableMonitoring($disableMonitoring);
+        $expectedResponse->setVersionColumnName($versionColumnName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->featureName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]', '[FEATURE]');
@@ -2127,16 +2126,16 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $etag = 'etag3123477';
         $disableMonitoring = false;
+        $versionColumnName = 'versionColumnName-1981743891';
         $expectedResponse = new Feature();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setDisableMonitoring($disableMonitoring);
+        $expectedResponse->setVersionColumnName($versionColumnName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $feature = new Feature();
-        $featureValueType = ValueType::VALUE_TYPE_UNSPECIFIED;
-        $feature->setValueType($featureValueType);
         $request = (new UpdateFeatureRequest())
             ->setFeature($feature);
         $response = $gapicClient->updateFeature($request);
@@ -2171,8 +2170,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $feature = new Feature();
-        $featureValueType = ValueType::VALUE_TYPE_UNSPECIFIED;
-        $feature->setValueType($featureValueType);
         $request = (new UpdateFeatureRequest())
             ->setFeature($feature);
         try {

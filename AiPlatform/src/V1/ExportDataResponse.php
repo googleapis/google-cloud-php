@@ -17,11 +17,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class ExportDataResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * All of the files that are exported in this export operation.
+     * All of the files that are exported in this export operation. For custom
+     * code training export, only three (training, validation and test) GCS paths
+     * in wildcard format are populated (e.g., gs://.../training-*).
      *
      * Generated from protobuf field <code>repeated string exported_files = 1;</code>
      */
     private $exported_files;
+    /**
+     * Only present for custom code training export use case. Records data stats,
+     * i.e., train/validation/test item/annotation counts calculated during
+     * the export operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model.DataStats data_stats = 2;</code>
+     */
+    private $data_stats = null;
 
     /**
      * Constructor.
@@ -30,7 +40,13 @@ class ExportDataResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exported_files
-     *           All of the files that are exported in this export operation.
+     *           All of the files that are exported in this export operation. For custom
+     *           code training export, only three (training, validation and test) GCS paths
+     *           in wildcard format are populated (e.g., gs://.../training-*).
+     *     @type \Google\Cloud\AIPlatform\V1\Model\DataStats $data_stats
+     *           Only present for custom code training export use case. Records data stats,
+     *           i.e., train/validation/test item/annotation counts calculated during
+     *           the export operation.
      * }
      */
     public function __construct($data = NULL) {
@@ -39,7 +55,9 @@ class ExportDataResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * All of the files that are exported in this export operation.
+     * All of the files that are exported in this export operation. For custom
+     * code training export, only three (training, validation and test) GCS paths
+     * in wildcard format are populated (e.g., gs://.../training-*).
      *
      * Generated from protobuf field <code>repeated string exported_files = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -50,7 +68,9 @@ class ExportDataResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * All of the files that are exported in this export operation.
+     * All of the files that are exported in this export operation. For custom
+     * code training export, only three (training, validation and test) GCS paths
+     * in wildcard format are populated (e.g., gs://.../training-*).
      *
      * Generated from protobuf field <code>repeated string exported_files = 1;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -60,6 +80,46 @@ class ExportDataResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->exported_files = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Only present for custom code training export use case. Records data stats,
+     * i.e., train/validation/test item/annotation counts calculated during
+     * the export operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model.DataStats data_stats = 2;</code>
+     * @return \Google\Cloud\AIPlatform\V1\Model\DataStats|null
+     */
+    public function getDataStats()
+    {
+        return $this->data_stats;
+    }
+
+    public function hasDataStats()
+    {
+        return isset($this->data_stats);
+    }
+
+    public function clearDataStats()
+    {
+        unset($this->data_stats);
+    }
+
+    /**
+     * Only present for custom code training export use case. Records data stats,
+     * i.e., train/validation/test item/annotation counts calculated during
+     * the export operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model.DataStats data_stats = 2;</code>
+     * @param \Google\Cloud\AIPlatform\V1\Model\DataStats $var
+     * @return $this
+     */
+    public function setDataStats($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Model\DataStats::class);
+        $this->data_stats = $var;
 
         return $this;
     }

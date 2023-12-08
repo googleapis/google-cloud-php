@@ -92,27 +92,33 @@ class AggregationQueryTest extends TestCase
         $this->assertArrayHasKey('aggregations', $query->queryObject()['aggregationQuery']);
     }
 
-    public function testCount()
+    /**
+     * @dataProvider aggregationTypes
+     */
+    public function testAggregation($type)
     {
         $expectedQuery = [
             'aggregations' => [
-                ['count' => []]
+                [$type => ($type == 'count' ? [] : ['property' => ['name' => 'foo']])]
             ],
             'nestedQuery' => []
         ];
 
         $query = new AggregationQuery($this->query);
-        $query->addAggregation(Aggregation::count());
+        $query->addAggregation($type == 'count' ? Aggregation::$type() : Aggregation::$type('foo'));
 
         $this->assertEquals($expectedQuery, $query->queryObject()['aggregationQuery']);
     }
 
-    public function testAlias()
+    /**
+     * @dataProvider aggregationTypes
+     */
+    public function testAlias($type)
     {
         $expectedQuery = [
             'aggregations' => [
                 [
-                    'count' => [],
+                    $type => ($type == 'count' ? [] : ['property' => ['name' => 'foo']]),
                     'alias' => 'total'
                 ]
             ],
@@ -120,8 +126,19 @@ class AggregationQueryTest extends TestCase
         ];
 
         $query = new AggregationQuery($this->query);
-        $query->addAggregation(Aggregation::count()->alias('total'));
+        $query->addAggregation(
+            ($type == 'count' ? Aggregation::$type() : Aggregation::$type('foo'))->alias('total')
+        );
 
         $this->assertEquals($expectedQuery, $query->queryObject()['aggregationQuery']);
+    }
+
+    public function aggregationTypes()
+    {
+        return [
+            ['count'],
+            ['sum'],
+            ['avg']
+        ];
     }
 }

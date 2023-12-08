@@ -35,11 +35,13 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\AggregatedListRoutersRequest;
 use Google\Cloud\Compute\V1\DeleteRouterRequest;
+use Google\Cloud\Compute\V1\GetNatIpInfoRouterRequest;
 use Google\Cloud\Compute\V1\GetNatMappingInfoRoutersRequest;
 use Google\Cloud\Compute\V1\GetRouterRequest;
 use Google\Cloud\Compute\V1\GetRouterStatusRouterRequest;
 use Google\Cloud\Compute\V1\InsertRouterRequest;
 use Google\Cloud\Compute\V1\ListRoutersRequest;
+use Google\Cloud\Compute\V1\NatIpInfoResponse;
 use Google\Cloud\Compute\V1\PatchRouterRequest;
 use Google\Cloud\Compute\V1\PreviewRouterRequest;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
@@ -63,6 +65,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface aggregatedListAsync(AggregatedListRoutersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteAsync(DeleteRouterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAsync(GetRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getNatIpInfoAsync(GetNatIpInfoRouterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getNatMappingInfoAsync(GetNatMappingInfoRoutersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getRouterStatusAsync(GetRouterStatusRouterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface insertAsync(InsertRouterRequest $request, array $optionalArgs = [])
@@ -316,6 +319,30 @@ final class RoutersClient
     public function get(GetRouterRequest $request, array $callOptions = []): Router
     {
         return $this->startApiCall('Get', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Retrieves runtime NAT IP information.
+     *
+     * The async variant is {@see RoutersClient::getNatIpInfoAsync()} .
+     *
+     * @param GetNatIpInfoRouterRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return NatIpInfoResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getNatIpInfo(GetNatIpInfoRouterRequest $request, array $callOptions = []): NatIpInfoResponse
+    {
+        return $this->startApiCall('GetNatIpInfo', $request, $callOptions)->wait();
     }
 
     /**

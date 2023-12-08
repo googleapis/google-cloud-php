@@ -7,6 +7,7 @@ namespace Google\Cloud\AIPlatform\V1\Feature;
 use UnexpectedValueException;
 
 /**
+ * Only applicable for Vertex AI Legacy Feature Store.
  * An enum representing the value type of a feature.
  *
  * Protobuf type <code>google.cloud.aiplatform.v1.Feature.ValueType</code>

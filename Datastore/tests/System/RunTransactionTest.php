@@ -82,51 +82,48 @@ class RunTransactionTest extends DatastoreMultipleDbTestCase
     }
 
     /**
-     * @dataProvider multiDbClientProvider
+     * @dataProvider aggregationCases
      */
-    public function testRunAggregationQueryWithTransactions(DatastoreClient $client)
+    public function testRunAggregationQueryWithTransactions(DatastoreClient $client, $type, $property, $expected)
     {
         $this->skipEmulatorTests();
-        $kind = 'Person';
-        $testId = rand(1, 999999);
-        $key1 = $client->key($kind, $testId);
-        $data = ['lastName' => 'Smith'];
-        $newLastName = 'NotSmith';
-        $entity1 = $client->entity($key1, $data);
+        $kind = uniqid('Person');
+        $key1 = $client->key($kind, 1);
+        $key2 = $client->key($kind, 2);
+        $entity1 =  $client->entity($key1, ['score' => 10]);
+        $entity2 =  $client->entity($key2, ['score' => 20]);
 
         $transaction = $client->transaction();
         $transaction->insert($entity1);
+        $transaction->upsert($entity2);
         $transaction->commit();
 
         self::$localDeletionQueue->add($key1);
+        self::$localDeletionQueue->add($key2);
 
         // validate default DB should not have data
         $defaultDbClient = current(self::defaultDbClientProvider())[0];
-        $this->assertOtherDbEntities($defaultDbClient, $kind, $testId, 0);
+        $this->assertOtherDbEntities($defaultDbClient, $kind, $key1->pathEndIdentifier(), 0);
 
         // transaction with query
         $transaction2 = $client->transaction();
         $query = $client->query()
-            ->kind($kind)
-            ->hasAncestor($key1)
-            ->filter('lastName', '=', 'Smith');
+            ->kind($kind);
         $results = iterator_to_array($transaction2->runQuery($query));
 
-        $this->assertAggregationQueryResult($transaction2, $query, 1);
+        $this->assertAggregationQueryResult($transaction2, $query, $expected[0], $type, $property);
 
-        $results[0]['lastName'] = $newLastName;
-        $transaction2->update($results[0]);
+        $results[1]['score'] = 100;
+        $transaction2->update($results[1]);
         $transaction2->commit();
 
-        $this->assertCount(1, $results);
+        $this->assertCount(2, $results);
 
         // read transaction with aggregation query
         $transaction3 = $client->readOnlyTransaction();
         $query = $client->query()
-            ->kind($kind)
-            ->hasAncestor($key1)
-            ->filter('lastName', '=', 'Smith');
-        $this->assertAggregationQueryResult($transaction3, $query, 0);
+            ->kind($kind);
+        $this->assertAggregationQueryResult($transaction3, $query, $expected[1], $type, $property);
     }
 
     /**
@@ -247,10 +244,46 @@ class RunTransactionTest extends DatastoreMultipleDbTestCase
         $this->assertCount($expectedCount, $results);
     }
 
-    private function assertAggregationQueryResult($transaction, $query, $expectedAggregationCount)
+    /**
+     * Test cases for testing aggregation queries in transaction
+     *
+     * Each case is of the format:
+     * [
+     *      // Datastore client
+     *      DatastoreClient $client,
+     *
+     *      // Aggregation Type
+     *      string $type,
+     *
+     *      // Property to aggregate upon
+     *      string $property
+     *
+     *      // Expected results of the format [$expectedBeforeUpdate, $expectedAfterUpdate]
+     *      array $expected
+     * ]
+     */
+    public function aggregationCases()
     {
-        $aggregationQuery = $query->aggregation(Aggregation::count()->alias('total'));
+        $clients = $this->multiDbClientProvider();
+        $cases = [];
+        foreach ($clients as $name => $client) {
+            $cases[] = [$client[0], 'count', null, [2, 2]];
+            $cases[] = [$client[0], 'sum', 'score', [30, 110]];
+            $cases[] = [$client[0], 'avg', 'score', [15, 55]];
+        }
+        return $cases;
+    }
+
+    private function assertAggregationQueryResult(
+        $transaction,
+        $query,
+        $expected,
+        $type,
+        $property = null
+    ) {
+        $aggregation = (is_null($property) ? Aggregation::$type() : Aggregation::$type($property));
+        $aggregationQuery = $query->aggregation($aggregation->alias('total'));
         $results = $transaction->runAggregationQuery($aggregationQuery);
-        $this->assertEquals($expectedAggregationCount, $results->get('total'));
+        $this->assertEquals($expected, $results->get('total'));
     }
 }

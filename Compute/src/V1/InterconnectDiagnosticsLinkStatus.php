@@ -37,6 +37,12 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
      */
     private $lacp_status = null;
     /**
+     * Describes the status of MACsec encryption on this link.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectDiagnosticsMacsecStatus macsec = 528867490;</code>
+     */
+    private $macsec = null;
+    /**
      * The operational status of the link.
      * Check the OperationalStatus enum for the list of possible values.
      *
@@ -69,6 +75,8 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
      *     @type string $google_demarc
      *           The Demarc address assigned by Google and provided in the LoA.
      *     @type \Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkLACPStatus $lacp_status
+     *     @type \Google\Cloud\Compute\V1\InterconnectDiagnosticsMacsecStatus $macsec
+     *           Describes the status of MACsec encryption on this link.
      *     @type string $operational_status
      *           The operational status of the link.
      *           Check the OperationalStatus enum for the list of possible values.
@@ -209,6 +217,42 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkLACPStatus::class);
         $this->lacp_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Describes the status of MACsec encryption on this link.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectDiagnosticsMacsecStatus macsec = 528867490;</code>
+     * @return \Google\Cloud\Compute\V1\InterconnectDiagnosticsMacsecStatus|null
+     */
+    public function getMacsec()
+    {
+        return $this->macsec;
+    }
+
+    public function hasMacsec()
+    {
+        return isset($this->macsec);
+    }
+
+    public function clearMacsec()
+    {
+        unset($this->macsec);
+    }
+
+    /**
+     * Describes the status of MACsec encryption on this link.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectDiagnosticsMacsecStatus macsec = 528867490;</code>
+     * @param \Google\Cloud\Compute\V1\InterconnectDiagnosticsMacsecStatus $var
+     * @return $this
+     */
+    public function setMacsec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\InterconnectDiagnosticsMacsecStatus::class);
+        $this->macsec = $var;
 
         return $this;
     }

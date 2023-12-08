@@ -31,12 +31,14 @@ use Google\Cloud\Compute\V1\DeleteInterconnectRequest;
 use Google\Cloud\Compute\V1\GetDiagnosticsInterconnectRequest;
 use Google\Cloud\Compute\V1\GetGlobalOperationRequest;
 use Google\Cloud\Compute\V1\GetInterconnectRequest;
+use Google\Cloud\Compute\V1\GetMacsecConfigInterconnectRequest;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\GlobalSetLabelsRequest;
 use Google\Cloud\Compute\V1\InsertInterconnectRequest;
 use Google\Cloud\Compute\V1\Interconnect;
 use Google\Cloud\Compute\V1\InterconnectList;
 use Google\Cloud\Compute\V1\InterconnectsGetDiagnosticsResponse;
+use Google\Cloud\Compute\V1\InterconnectsGetMacsecConfigResponse;
 use Google\Cloud\Compute\V1\ListInterconnectsRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
@@ -214,6 +216,7 @@ class InterconnectsClientTest extends GeneratedTest
         $labelFingerprint = 'labelFingerprint714995737';
         $linkType = 'linkType-1624275873';
         $location = 'location1901043637';
+        $macsecEnabled = true;
         $name = 'name3373707';
         $nocContactEmail = 'nocContactEmail1087814656';
         $operationalStatus = 'operationalStatus1274812671';
@@ -237,6 +240,7 @@ class InterconnectsClientTest extends GeneratedTest
         $expectedResponse->setLabelFingerprint($labelFingerprint);
         $expectedResponse->setLinkType($linkType);
         $expectedResponse->setLocation($location);
+        $expectedResponse->setMacsecEnabled($macsecEnabled);
         $expectedResponse->setName($name);
         $expectedResponse->setNocContactEmail($nocContactEmail);
         $expectedResponse->setOperationalStatus($operationalStatus);
@@ -362,6 +366,76 @@ class InterconnectsClientTest extends GeneratedTest
             ->setProject($project);
         try {
             $gapicClient->getDiagnostics($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getMacsecConfigTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $etag = 'etag3123477';
+        $expectedResponse = new InterconnectsGetMacsecConfigResponse();
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $interconnect = 'interconnect-849140594';
+        $project = 'project-309310695';
+        $request = (new GetMacsecConfigInterconnectRequest())
+            ->setInterconnect($interconnect)
+            ->setProject($project);
+        $response = $gapicClient->getMacsecConfig($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.Interconnects/GetMacsecConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInterconnect();
+        $this->assertProtobufEquals($interconnect, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getMacsecConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $interconnect = 'interconnect-849140594';
+        $project = 'project-309310695';
+        $request = (new GetMacsecConfigInterconnectRequest())
+            ->setInterconnect($interconnect)
+            ->setProject($project);
+        try {
+            $gapicClient->getMacsecConfig($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
