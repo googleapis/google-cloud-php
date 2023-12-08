@@ -44,6 +44,10 @@ class Type
      */
     const SEV_LIVE_MIGRATABLE = 392039820;
     /**
+     * Generated from protobuf enum <code>SEV_LIVE_MIGRATABLE_V2 = 168551983;</code>
+     */
+    const SEV_LIVE_MIGRATABLE_V2 = 168551983;
+    /**
      * Generated from protobuf enum <code>SEV_SNP_CAPABLE = 426919;</code>
      */
     const SEV_SNP_CAPABLE = 426919;
@@ -68,6 +72,7 @@ class Type
         self::SECURE_BOOT => 'SECURE_BOOT',
         self::SEV_CAPABLE => 'SEV_CAPABLE',
         self::SEV_LIVE_MIGRATABLE => 'SEV_LIVE_MIGRATABLE',
+        self::SEV_LIVE_MIGRATABLE_V2 => 'SEV_LIVE_MIGRATABLE_V2',
         self::SEV_SNP_CAPABLE => 'SEV_SNP_CAPABLE',
         self::UEFI_COMPATIBLE => 'UEFI_COMPATIBLE',
         self::VIRTIO_SCSI_MULTIQUEUE => 'VIRTIO_SCSI_MULTIQUEUE',

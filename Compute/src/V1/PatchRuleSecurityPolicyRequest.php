@@ -40,6 +40,12 @@ class PatchRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     private $security_policy_rule_resource = null;
     /**
+     * Indicates fields to be cleared as part of this request.
+     *
+     * Generated from protobuf field <code>optional string update_mask = 500079778;</code>
+     */
+    private $update_mask = null;
+    /**
      * If true, the request will not be committed.
      *
      * Generated from protobuf field <code>optional bool validate_only = 242744629;</code>
@@ -77,6 +83,8 @@ class PatchRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
      *           Name of the security policy to update.
      *     @type \Google\Cloud\Compute\V1\SecurityPolicyRule $security_policy_rule_resource
      *           The body resource for this request
+     *     @type string $update_mask
+     *           Indicates fields to be cleared as part of this request.
      *     @type bool $validate_only
      *           If true, the request will not be committed.
      * }
@@ -206,6 +214,42 @@ class PatchRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\SecurityPolicyRule::class);
         $this->security_policy_rule_resource = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates fields to be cleared as part of this request.
+     *
+     * Generated from protobuf field <code>optional string update_mask = 500079778;</code>
+     * @return string
+     */
+    public function getUpdateMask()
+    {
+        return isset($this->update_mask) ? $this->update_mask : '';
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
+    }
+
+    /**
+     * Indicates fields to be cleared as part of this request.
+     *
+     * Generated from protobuf field <code>optional string update_mask = 500079778;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUpdateMask($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->update_mask = $var;
 
         return $this;
     }

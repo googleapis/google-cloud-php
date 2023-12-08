@@ -36,10 +36,12 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\DeleteInterconnectRequest;
 use Google\Cloud\Compute\V1\GetDiagnosticsInterconnectRequest;
 use Google\Cloud\Compute\V1\GetInterconnectRequest;
+use Google\Cloud\Compute\V1\GetMacsecConfigInterconnectRequest;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\InsertInterconnectRequest;
 use Google\Cloud\Compute\V1\Interconnect;
 use Google\Cloud\Compute\V1\InterconnectsGetDiagnosticsResponse;
+use Google\Cloud\Compute\V1\InterconnectsGetMacsecConfigResponse;
 use Google\Cloud\Compute\V1\ListInterconnectsRequest;
 use Google\Cloud\Compute\V1\PatchInterconnectRequest;
 use Google\Cloud\Compute\V1\SetLabelsInterconnectRequest;
@@ -59,6 +61,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface deleteAsync(DeleteInterconnectRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAsync(GetInterconnectRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getDiagnosticsAsync(GetDiagnosticsInterconnectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getMacsecConfigAsync(GetMacsecConfigInterconnectRequest $request, array $optionalArgs = [])
  * @method PromiseInterface insertAsync(InsertInterconnectRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAsync(ListInterconnectsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface patchAsync(PatchInterconnectRequest $request, array $optionalArgs = [])
@@ -287,7 +290,7 @@ final class InterconnectsClient
     }
 
     /**
-     * Returns the interconnectDiagnostics for the specified Interconnect.
+     * Returns the interconnectDiagnostics for the specified Interconnect. In the event of a global outage, do not use this API to make decisions about where to redirect your network traffic. Unlike a VLAN attachment, which is regional, a Cloud Interconnect connection is a global resource. A global outage can prevent this API from functioning properly.
      *
      * The async variant is {@see InterconnectsClient::getDiagnosticsAsync()} .
      *
@@ -308,6 +311,30 @@ final class InterconnectsClient
     public function getDiagnostics(GetDiagnosticsInterconnectRequest $request, array $callOptions = []): InterconnectsGetDiagnosticsResponse
     {
         return $this->startApiCall('GetDiagnostics', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns the interconnectMacsecConfig for the specified Interconnect.
+     *
+     * The async variant is {@see InterconnectsClient::getMacsecConfigAsync()} .
+     *
+     * @param GetMacsecConfigInterconnectRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return InterconnectsGetMacsecConfigResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getMacsecConfig(GetMacsecConfigInterconnectRequest $request, array $callOptions = []): InterconnectsGetMacsecConfigResponse
+    {
+        return $this->startApiCall('GetMacsecConfig', $request, $callOptions)->wait();
     }
 
     /**

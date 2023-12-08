@@ -14,6 +14,27 @@ return [
                     ],
                 ],
             ],
+            'Announce' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/publicDelegatedPrefixes/{public_delegated_prefix}/announce',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'public_delegated_prefix' => [
+                        'getters' => [
+                            'getPublicDelegatedPrefix',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
             'Delete' => [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/publicDelegatedPrefixes/{public_delegated_prefix}',
@@ -93,6 +114,27 @@ return [
                 'method' => 'patch',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/publicDelegatedPrefixes/{public_delegated_prefix}',
                 'body' => 'public_delegated_prefix_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'public_delegated_prefix' => [
+                        'getters' => [
+                            'getPublicDelegatedPrefix',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'Withdraw' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/publicDelegatedPrefixes/{public_delegated_prefix}/withdraw',
                 'placeholders' => [
                     'project' => [
                         'getters' => [

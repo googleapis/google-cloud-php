@@ -34,6 +34,7 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\AggregatedListPublicDelegatedPrefixesRequest;
+use Google\Cloud\Compute\V1\AnnouncePublicDelegatedPrefixeRequest;
 use Google\Cloud\Compute\V1\DeletePublicDelegatedPrefixeRequest;
 use Google\Cloud\Compute\V1\GetPublicDelegatedPrefixeRequest;
 use Google\Cloud\Compute\V1\InsertPublicDelegatedPrefixeRequest;
@@ -41,6 +42,7 @@ use Google\Cloud\Compute\V1\ListPublicDelegatedPrefixesRequest;
 use Google\Cloud\Compute\V1\PatchPublicDelegatedPrefixeRequest;
 use Google\Cloud\Compute\V1\PublicDelegatedPrefix;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
+use Google\Cloud\Compute\V1\WithdrawPublicDelegatedPrefixeRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -56,11 +58,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @experimental
  *
  * @method PromiseInterface aggregatedListAsync(AggregatedListPublicDelegatedPrefixesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface announceAsync(AnnouncePublicDelegatedPrefixeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteAsync(DeletePublicDelegatedPrefixeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAsync(GetPublicDelegatedPrefixeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface insertAsync(InsertPublicDelegatedPrefixeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAsync(ListPublicDelegatedPrefixesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface patchAsync(PatchPublicDelegatedPrefixeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface withdrawAsync(WithdrawPublicDelegatedPrefixeRequest $request, array $optionalArgs = [])
  */
 final class PublicDelegatedPrefixesClient
 {
@@ -263,6 +267,30 @@ final class PublicDelegatedPrefixesClient
     }
 
     /**
+     * Announces the specified PublicDelegatedPrefix in the given region.
+     *
+     * The async variant is {@see PublicDelegatedPrefixesClient::announceAsync()} .
+     *
+     * @param AnnouncePublicDelegatedPrefixeRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function announce(AnnouncePublicDelegatedPrefixeRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('Announce', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes the specified PublicDelegatedPrefix in the given region.
      *
      * The async variant is {@see PublicDelegatedPrefixesClient::deleteAsync()} .
@@ -380,5 +408,29 @@ final class PublicDelegatedPrefixesClient
     public function patch(PatchPublicDelegatedPrefixeRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('Patch', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Withdraws the specified PublicDelegatedPrefix in the given region.
+     *
+     * The async variant is {@see PublicDelegatedPrefixesClient::withdrawAsync()} .
+     *
+     * @param WithdrawPublicDelegatedPrefixeRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function withdraw(WithdrawPublicDelegatedPrefixeRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('Withdraw', $request, $callOptions)->wait();
     }
 }

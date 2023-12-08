@@ -193,6 +193,30 @@ return [
                     ],
                 ],
             ],
+            'GetNatIpInfo' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\NatIpInfoResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'router',
+                        'fieldAccessors' => [
+                            'getRouter',
+                        ],
+                    ],
+                ],
+            ],
             'GetNatMappingInfo' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

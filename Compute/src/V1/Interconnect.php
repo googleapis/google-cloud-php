@@ -22,6 +22,13 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      */
     private $admin_enabled = null;
     /**
+     * [Output only] List of features available for this Interconnect connection, which can take one of the following values: - MACSEC If present then the Interconnect connection is provisioned on MACsec capable hardware ports. If not present then the Interconnect connection is provisioned on non-MACsec capable ports and MACsec isn't supported and enabling MACsec fails.
+     * Check the AvailableFeatures enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string available_features = 496344307;</code>
+     */
+    private $available_features;
+    /**
      * [Output Only] A list of CircuitInfo objects, that describe the individual circuits in this LAG.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectCircuitInfo circuit_infos = 164839855;</code>
@@ -114,6 +121,18 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      */
     private $location = null;
     /**
+     * Configuration that enables Media Access Control security (MACsec) on the Cloud Interconnect connection between Google and your on-premises router.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectMacsec macsec = 528867490;</code>
+     */
+    private $macsec = null;
+    /**
+     * Enable or disable MACsec on this Interconnect connection. MACsec enablement fails if the MACsec object is not specified.
+     *
+     * Generated from protobuf field <code>optional bool macsec_enabled = 194203812;</code>
+     */
+    private $macsec_enabled = null;
+    /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
@@ -151,6 +170,13 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      */
     private $remote_location = null;
     /**
+     * Optional. List of features requested for this Interconnect connection, which can take one of the following values: - MACSEC If specified then the connection is created on MACsec capable hardware ports. If not specified, the default value is false, which allocates non-MACsec capable ports first if available. This parameter can be provided only with Interconnect INSERT. It isn't valid for Interconnect PATCH.
+     * Check the RequestedFeatures enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string requested_features = 461240814;</code>
+     */
+    private $requested_features;
+    /**
      * Target number of physical links in the link bundle, as requested by the customer.
      *
      * Generated from protobuf field <code>optional int32 requested_link_count = 45051387;</code>
@@ -184,6 +210,9 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $admin_enabled
      *           Administrative status of the interconnect. When this is set to true, the Interconnect is functional and can carry traffic. When set to false, no packets can be carried over the interconnect and no BGP routes are exchanged over it. By default, the status is set to true.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $available_features
+     *           [Output only] List of features available for this Interconnect connection, which can take one of the following values: - MACSEC If present then the Interconnect connection is provisioned on MACsec capable hardware ports. If not present then the Interconnect connection is provisioned on non-MACsec capable ports and MACsec isn't supported and enabling MACsec fails.
+     *           Check the AvailableFeatures enum for the list of possible values.
      *     @type array<\Google\Cloud\Compute\V1\InterconnectCircuitInfo>|\Google\Protobuf\Internal\RepeatedField $circuit_infos
      *           [Output Only] A list of CircuitInfo objects, that describe the individual circuits in this LAG.
      *     @type string $creation_timestamp
@@ -216,6 +245,10 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *           Check the LinkType enum for the list of possible values.
      *     @type string $location
      *           URL of the InterconnectLocation object that represents where this connection is to be provisioned.
+     *     @type \Google\Cloud\Compute\V1\InterconnectMacsec $macsec
+     *           Configuration that enables Media Access Control security (MACsec) on the Cloud Interconnect connection between Google and your on-premises router.
+     *     @type bool $macsec_enabled
+     *           Enable or disable MACsec on this Interconnect connection. MACsec enablement fails if the MACsec object is not specified.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type string $noc_contact_email
@@ -229,6 +262,9 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *           [Output Only] Number of links actually provisioned in this interconnect.
      *     @type string $remote_location
      *           Indicates that this is a Cross-Cloud Interconnect. This field specifies the location outside of Google's network that the interconnect is connected to.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $requested_features
+     *           Optional. List of features requested for this Interconnect connection, which can take one of the following values: - MACSEC If specified then the connection is created on MACsec capable hardware ports. If not specified, the default value is false, which allocates non-MACsec capable ports first if available. This parameter can be provided only with Interconnect INSERT. It isn't valid for Interconnect PATCH.
+     *           Check the RequestedFeatures enum for the list of possible values.
      *     @type int $requested_link_count
      *           Target number of physical links in the link bundle, as requested by the customer.
      *     @type bool $satisfies_pzs
@@ -277,6 +313,34 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->admin_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output only] List of features available for this Interconnect connection, which can take one of the following values: - MACSEC If present then the Interconnect connection is provisioned on MACsec capable hardware ports. If not present then the Interconnect connection is provisioned on non-MACsec capable ports and MACsec isn't supported and enabling MACsec fails.
+     * Check the AvailableFeatures enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string available_features = 496344307;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAvailableFeatures()
+    {
+        return $this->available_features;
+    }
+
+    /**
+     * [Output only] List of features available for this Interconnect connection, which can take one of the following values: - MACSEC If present then the Interconnect connection is provisioned on MACsec capable hardware ports. If not present then the Interconnect connection is provisioned on non-MACsec capable ports and MACsec isn't supported and enabling MACsec fails.
+     * Check the AvailableFeatures enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string available_features = 496344307;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAvailableFeatures($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->available_features = $arr;
 
         return $this;
     }
@@ -786,6 +850,78 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Configuration that enables Media Access Control security (MACsec) on the Cloud Interconnect connection between Google and your on-premises router.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectMacsec macsec = 528867490;</code>
+     * @return \Google\Cloud\Compute\V1\InterconnectMacsec|null
+     */
+    public function getMacsec()
+    {
+        return $this->macsec;
+    }
+
+    public function hasMacsec()
+    {
+        return isset($this->macsec);
+    }
+
+    public function clearMacsec()
+    {
+        unset($this->macsec);
+    }
+
+    /**
+     * Configuration that enables Media Access Control security (MACsec) on the Cloud Interconnect connection between Google and your on-premises router.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectMacsec macsec = 528867490;</code>
+     * @param \Google\Cloud\Compute\V1\InterconnectMacsec $var
+     * @return $this
+     */
+    public function setMacsec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\InterconnectMacsec::class);
+        $this->macsec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enable or disable MACsec on this Interconnect connection. MACsec enablement fails if the MACsec object is not specified.
+     *
+     * Generated from protobuf field <code>optional bool macsec_enabled = 194203812;</code>
+     * @return bool
+     */
+    public function getMacsecEnabled()
+    {
+        return isset($this->macsec_enabled) ? $this->macsec_enabled : false;
+    }
+
+    public function hasMacsecEnabled()
+    {
+        return isset($this->macsec_enabled);
+    }
+
+    public function clearMacsecEnabled()
+    {
+        unset($this->macsec_enabled);
+    }
+
+    /**
+     * Enable or disable MACsec on this Interconnect connection. MACsec enablement fails if the MACsec object is not specified.
+     *
+     * Generated from protobuf field <code>optional bool macsec_enabled = 194203812;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setMacsecEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->macsec_enabled = $var;
+
+        return $this;
+    }
+
+    /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
@@ -999,6 +1135,34 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->remote_location = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. List of features requested for this Interconnect connection, which can take one of the following values: - MACSEC If specified then the connection is created on MACsec capable hardware ports. If not specified, the default value is false, which allocates non-MACsec capable ports first if available. This parameter can be provided only with Interconnect INSERT. It isn't valid for Interconnect PATCH.
+     * Check the RequestedFeatures enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string requested_features = 461240814;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getRequestedFeatures()
+    {
+        return $this->requested_features;
+    }
+
+    /**
+     * Optional. List of features requested for this Interconnect connection, which can take one of the following values: - MACSEC If specified then the connection is created on MACsec capable hardware ports. If not specified, the default value is false, which allocates non-MACsec capable ports first if available. This parameter can be provided only with Interconnect INSERT. It isn't valid for Interconnect PATCH.
+     * Check the RequestedFeatures enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string requested_features = 461240814;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setRequestedFeatures($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->requested_features = $arr;
 
         return $this;
     }
