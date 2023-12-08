@@ -1408,10 +1408,17 @@ class RecaptchaEnterpriseServiceGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $accountId
+     *           Optional. The unique stable account identifier used to search connections.
+     *           The identifier should correspond to an `account_id` provided in a previous
+     *           `CreateAssessment` or `AnnotateAssessment` call. Either hashed_account_id
+     *           or account_id must be set, but not both.
      *     @type string $hashedAccountId
-     *           Optional. The unique stable hashed user identifier used to search
-     *           connections. The identifier should correspond to a `hashed_account_id`
-     *           provided in a previous `CreateAssessment` or `AnnotateAssessment` call.
+     *           Optional. Deprecated: use `account_id` instead.
+     *           The unique stable hashed account identifier used to search connections. The
+     *           identifier should correspond to a `hashed_account_id` provided in a
+     *           previous `CreateAssessment` or `AnnotateAssessment` call. Either
+     *           hashed_account_id or account_id must be set, but not both.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1439,6 +1446,10 @@ class RecaptchaEnterpriseServiceGapicClient
         $requestParamHeaders = [];
         $request->setProject($project);
         $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['accountId'])) {
+            $request->setAccountId($optionalArgs['accountId']);
+        }
+
         if (isset($optionalArgs['hashedAccountId'])) {
             $request->setHashedAccountId($optionalArgs['hashedAccountId']);
         }

@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class Assessment extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name for the Assessment in the format
+     * Output only. Identifier. The resource name for the Assessment in the format
      * `projects/{project}/assessments/{assessment}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
     private $name = '';
     /**
@@ -91,7 +91,7 @@ class Assessment extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name for the Assessment in the format
+     *           Output only. Identifier. The resource name for the Assessment in the format
      *           `projects/{project}/assessments/{assessment}`.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\Event $event
      *           Optional. The event being assessed.
@@ -126,10 +126,10 @@ class Assessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for the Assessment in the format
+     * Output only. Identifier. The resource name for the Assessment in the format
      * `projects/{project}/assessments/{assessment}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -138,10 +138,10 @@ class Assessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for the Assessment in the format
+     * Output only. Identifier. The resource name for the Assessment in the format
      * `projects/{project}/assessments/{assessment}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
