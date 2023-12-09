@@ -17,10 +17,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class FeatureViewSync extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Name of the FeatureViewSync. Format:
+     * Identifier. Name of the FeatureViewSync. Format:
      * `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}/featureViewSyncs/{feature_view_sync}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     private $name = '';
     /**
@@ -51,7 +51,7 @@ class FeatureViewSync extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. Name of the FeatureViewSync. Format:
+     *           Identifier. Name of the FeatureViewSync. Format:
      *           `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}/featureViewSyncs/{feature_view_sync}`
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time when this FeatureViewSync is created. Creation of a
@@ -69,10 +69,10 @@ class FeatureViewSync extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Name of the FeatureViewSync. Format:
+     * Identifier. Name of the FeatureViewSync. Format:
      * `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}/featureViewSyncs/{feature_view_sync}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -81,10 +81,10 @@ class FeatureViewSync extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Name of the FeatureViewSync. Format:
+     * Identifier. Name of the FeatureViewSync. Format:
      * `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}/featureViewSyncs/{feature_view_sync}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

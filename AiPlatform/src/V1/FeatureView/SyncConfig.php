@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Configuration for Sync. Only one option is set.
+ *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.FeatureView.SyncConfig</code>
  */
 class SyncConfig extends \Google\Protobuf\Internal\Message

@@ -18,12 +18,13 @@ class DeployedIndexRef
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ç
-3google/cloud/aiplatform/v1/deployed_index_ref.protogoogle.cloud.aiplatform.v1google/api/resource.proto"{
+ã
+3google/cloud/aiplatform/v1/deployed_index_ref.protogoogle.cloud.aiplatform.v1google/api/resource.proto"–
 DeployedIndexRefG
 index_endpoint (	B/àAúA)
 \'aiplatform.googleapis.com/IndexEndpoint
-deployed_index_id (	BàABÓ
+deployed_index_id (	BàA
+display_name (	BàABÓ
 com.google.cloud.aiplatform.v1BDeployedIndexRefProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 

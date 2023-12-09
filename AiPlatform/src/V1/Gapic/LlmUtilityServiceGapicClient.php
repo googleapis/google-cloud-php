@@ -36,6 +36,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\AIPlatform\V1\ComputeTokensRequest;
 use Google\Cloud\AIPlatform\V1\ComputeTokensResponse;
+use Google\Cloud\AIPlatform\V1\Content;
 use Google\Cloud\AIPlatform\V1\CountTokensRequest;
 use Google\Cloud\AIPlatform\V1\CountTokensResponse;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -417,19 +418,25 @@ class LlmUtilityServiceGapicClient
      * $llmUtilityServiceClient = new LlmUtilityServiceClient();
      * try {
      *     $formattedEndpoint = $llmUtilityServiceClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+     *     $model = 'model';
      *     $instances = [];
-     *     $response = $llmUtilityServiceClient->countTokens($formattedEndpoint, $instances);
+     *     $contents = [];
+     *     $response = $llmUtilityServiceClient->countTokens($formattedEndpoint, $model, $instances, $contents);
      * } finally {
      *     $llmUtilityServiceClient->close();
      * }
      * ```
      *
-     * @param string  $endpoint     Required. The name of the Endpoint requested to perform token counting.
-     *                              Format:
-     *                              `projects/{project}/locations/{location}/endpoints/{endpoint}`
-     * @param Value[] $instances    Required. The instances that are the input to token counting call.
-     *                              Schema is identical to the prediction schema of the underlying model.
-     * @param array   $optionalArgs {
+     * @param string    $endpoint     Required. The name of the Endpoint requested to perform token counting.
+     *                                Format:
+     *                                `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     * @param string    $model        Required. The name of the publisher model requested to serve the
+     *                                prediction. Format:
+     *                                `projects/{project}/locations/{location}/publishers/&#42;/models/*`
+     * @param Value[]   $instances    Required. The instances that are the input to token counting call.
+     *                                Schema is identical to the prediction schema of the underlying model.
+     * @param Content[] $contents     Required. Input content.
+     * @param array     $optionalArgs {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -442,12 +449,19 @@ class LlmUtilityServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function countTokens($endpoint, $instances, array $optionalArgs = [])
-    {
+    public function countTokens(
+        $endpoint,
+        $model,
+        $instances,
+        $contents,
+        array $optionalArgs = []
+    ) {
         $request = new CountTokensRequest();
         $requestParamHeaders = [];
         $request->setEndpoint($endpoint);
+        $request->setModel($model);
         $request->setInstances($instances);
+        $request->setContents($contents);
         $requestParamHeaders['endpoint'] = $endpoint;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
