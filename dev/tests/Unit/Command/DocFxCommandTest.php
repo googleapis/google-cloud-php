@@ -190,11 +190,6 @@ class DocFxCommandTest extends TestCase
             fn ($child) => 'Async()' === substr($child, -7)
         );
         $this->assertGreaterThan(0, count($asyncMethods));
-        $baseClientMethods = array_filter(
-            $yaml['items'][0]['children'],
-            fn ($child) => false !== strpos($child, 'BaseClient')
-        );
-        $this->assertCount(0, $baseClientMethods);
     }
 
     private function assertFileEqualsWithDiff(string $left, string $right, bool $updateFixtures = false)
