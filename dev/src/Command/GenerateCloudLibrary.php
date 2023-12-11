@@ -188,11 +188,15 @@ class GenerateCloudLibrary extends Command
         $composer->updateMainComposer();
         $composer->createComponentComposer($new->displayName, $new->githubRepo);
 
+        // Build the library using Bazel
         $this->bazelBuildLibrary($libraryName, $googleApisDir);
-        $output->writeln('');
+        $this->askConfirmationAboutLogs($input, $output);
+        // Copy the Bazel output to the Google Cloud directory
         $this->copyBazelOutToGoogleCloudPhp($new->componentName, $googleApisDir, $output);
-        $output->writeln('');
+        $this->askConfirmationAboutLogs($input, $output);
+        // Post process the library
         $this->postProcess();
+        $this->askConfirmationAboutLogs($input, $output);
 
         $output->writeln('');
         $output->writeln('');
@@ -210,21 +214,6 @@ class GenerateCloudLibrary extends Command
         $client = new Client();
         $response = $client->get($protoUrl);
         return (string) $response->getBody();
-    }
-
-    private function extractDocumentationUriFromYamlContents(string $protoContents): ?string
-    {
-        if (!preg_match('/option php_namespace = "(.*)";/', $protoContents, $matches)) {
-            return null;
-        }
-        // Remove version from namespace
-        $parts = explode('\\\\', $matches[1]);
-        $version = array_pop($parts);
-        if ('v' !== strtolower($version[0])) {
-            $parts[] = $version;
-        }
-
-        return implode('\\', $parts);
     }
 
     private function bazelBuildLibrary(string $libraryName, string $googleApisDir): bool
@@ -279,5 +268,20 @@ class GenerateCloudLibrary extends Command
             return true;
         }
         exit("Something went wrong at postProcess, Please use the add-component command instead.\n");
+    }
+
+    private function askConfirmationAboutLogs(InputInterface $input, OutputInterface $output)
+    {
+        $output->writeln('');
+        if (!$this->getHelper('question')->ask(
+            $input,
+            $output,
+            new ConfirmationQuestion('Does the logs look good? ("n" to customize) [Y/n] ', 'Y')
+        )) {
+            exit("Please use the add-component command to fresh start\n");
+        }
+        $output->writeln('------------------------------------------------------------');
+        $output->writeln('------------------------------------------------------------');
+        $output->writeln('');
     }
 }
