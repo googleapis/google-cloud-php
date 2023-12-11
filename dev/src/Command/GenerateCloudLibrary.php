@@ -190,13 +190,13 @@ class GenerateCloudLibrary extends Command
 
         // Build the library using Bazel
         $this->bazelBuildLibrary($libraryName, $googleApisDir);
-        $this->askConfirmationAboutLogs($input, $output);
+        $this->askConfirmationAboutLogs($input, $output, 'bazel build step');
         // Copy the Bazel output to the Google Cloud directory
         $this->copyBazelOutToGoogleCloudPhp($new->componentName, $googleApisDir, $output);
-        $this->askConfirmationAboutLogs($input, $output);
+        $this->askConfirmationAboutLogs($input, $output, 'copy code step');
         // Post process the library
         $this->postProcess();
-        $this->askConfirmationAboutLogs($input, $output);
+        $this->askConfirmationAboutLogs($input, $output, 'post process step');
 
         $output->writeln('');
         $output->writeln('');
@@ -270,13 +270,13 @@ class GenerateCloudLibrary extends Command
         exit("Something went wrong at postProcess, Please use the add-component command instead.\n");
     }
 
-    private function askConfirmationAboutLogs(InputInterface $input, OutputInterface $output)
+    private function askConfirmationAboutLogs(InputInterface $input, OutputInterface $output, string $step)
     {
         $output->writeln('');
         if (!$this->getHelper('question')->ask(
             $input,
             $output,
-            new ConfirmationQuestion('Does the logs look good? ("n" to customize) [Y/n] ', 'Y')
+            new ConfirmationQuestion(sprintf('Does the logs look good for %s [Y/n] ', $step), 'Y')
         )) {
             exit("Please use the add-component command to fresh start\n");
         }
