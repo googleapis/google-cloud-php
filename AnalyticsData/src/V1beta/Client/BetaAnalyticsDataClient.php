@@ -26,16 +26,22 @@
 
 namespace Google\Analytics\Data\V1beta\Client;
 
+use Google\Analytics\Data\V1beta\AudienceExport;
 use Google\Analytics\Data\V1beta\BatchRunPivotReportsRequest;
 use Google\Analytics\Data\V1beta\BatchRunPivotReportsResponse;
 use Google\Analytics\Data\V1beta\BatchRunReportsRequest;
 use Google\Analytics\Data\V1beta\BatchRunReportsResponse;
 use Google\Analytics\Data\V1beta\CheckCompatibilityRequest;
 use Google\Analytics\Data\V1beta\CheckCompatibilityResponse;
+use Google\Analytics\Data\V1beta\CreateAudienceExportRequest;
+use Google\Analytics\Data\V1beta\GetAudienceExportRequest;
 use Google\Analytics\Data\V1beta\GetMetadataRequest;
+use Google\Analytics\Data\V1beta\ListAudienceExportsRequest;
 use Google\Analytics\Data\V1beta\Metadata;
 use Google\Analytics\Data\V1beta\Metric;
 use Google\Analytics\Data\V1beta\Pivot;
+use Google\Analytics\Data\V1beta\QueryAudienceExportRequest;
+use Google\Analytics\Data\V1beta\QueryAudienceExportResponse;
 use Google\Analytics\Data\V1beta\RunPivotReportRequest;
 use Google\Analytics\Data\V1beta\RunPivotReportResponse;
 use Google\Analytics\Data\V1beta\RunRealtimeReportRequest;
@@ -45,11 +51,15 @@ use Google\Analytics\Data\V1beta\RunReportResponse;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\OperationResponse;
+use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -70,7 +80,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface batchRunPivotReportsAsync(BatchRunPivotReportsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface batchRunReportsAsync(BatchRunReportsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface checkCompatibilityAsync(CheckCompatibilityRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createAudienceExportAsync(CreateAudienceExportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getAudienceExportAsync(GetAudienceExportRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getMetadataAsync(GetMetadataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listAudienceExportsAsync(ListAudienceExportsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface queryAudienceExportAsync(QueryAudienceExportRequest $request, array $optionalArgs = [])
  * @method PromiseInterface runPivotReportAsync(RunPivotReportRequest $request, array $optionalArgs = [])
  * @method PromiseInterface runRealtimeReportAsync(RunRealtimeReportRequest $request, array $optionalArgs = [])
  * @method PromiseInterface runReportAsync(RunReportRequest $request, array $optionalArgs = [])
@@ -98,6 +112,8 @@ final class BetaAnalyticsDataClient
         'https://www.googleapis.com/auth/analytics.readonly',
     ];
 
+    private $operationsClient;
+
     private static function getClientDefaults()
     {
         return [
@@ -118,6 +134,58 @@ final class BetaAnalyticsDataClient
     }
 
     /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return OperationsClient
+     *
+     * @experimental
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started by a long
+     * running API method. If $methodName is not provided, or does not match a long
+     * running API method, then the operation can still be resumed, but the
+     * OperationResponse object will not deserialize the final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return OperationResponse
+     *
+     * @experimental
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation->reload();
+        return $operation;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * audience_export resource.
+     *
+     * @param string $property
+     * @param string $audienceExport
+     *
+     * @return string The formatted audience_export resource.
+     *
+     * @experimental
+     */
+    public static function audienceExportName(string $property, string $audienceExport): string
+    {
+        return self::getPathTemplate('audienceExport')->render([
+            'property' => $property,
+            'audience_export' => $audienceExport,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a metadata
      * resource.
      *
@@ -135,10 +203,29 @@ final class BetaAnalyticsDataClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a property
+     * resource.
+     *
+     * @param string $property
+     *
+     * @return string The formatted property resource.
+     *
+     * @experimental
+     */
+    public static function propertyName(string $property): string
+    {
+        return self::getPathTemplate('property')->render([
+            'property' => $property,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - audienceExport: properties/{property}/audienceExports/{audience_export}
      * - metadata: properties/{property}/metadata
+     * - property: properties/{property}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -220,6 +307,7 @@ final class BetaAnalyticsDataClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /** Handles execution of the async variants for each documented method. */
@@ -330,6 +418,98 @@ final class BetaAnalyticsDataClient
     }
 
     /**
+     * Creates an audience export for later retrieval. This method quickly returns
+     * the audience export's resource name and initiates a long running
+     * asynchronous request to form an audience export. To export the users in an
+     * audience export, first create the audience export through this method and
+     * then send the audience resource name to the `QueryAudienceExport` method.
+     *
+     * See [Creating an Audience
+     * Export](https://developers.google.com/analytics/devguides/reporting/data/v1/audience-list-basics)
+     * for an introduction to Audience Exports with examples.
+     *
+     * An audience export is a snapshot of the users currently in the audience at
+     * the time of audience export creation. Creating audience exports for one
+     * audience on different days will return different results as users enter and
+     * exit the audience.
+     *
+     * Audiences in Google Analytics 4 allow you to segment your users in the ways
+     * that are important to your business. To learn more, see
+     * https://support.google.com/analytics/answer/9267572. Audience exports
+     * contain the users in each audience.
+     *
+     * Audience Export APIs have some methods at alpha and other methods at beta
+     * stability. The intention is to advance methods to beta stability after some
+     * feedback and adoption. To give your feedback on this API, complete the
+     * [Google Analytics Audience Export API
+     * Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
+     *
+     * The async variant is {@see BetaAnalyticsDataClient::createAudienceExportAsync()}
+     * .
+     *
+     * @example samples/V1beta/BetaAnalyticsDataClient/create_audience_export.php
+     *
+     * @param CreateAudienceExportRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function createAudienceExport(CreateAudienceExportRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateAudienceExport', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets configuration metadata about a specific audience export. This method
+     * can be used to understand an audience export after it has been created.
+     *
+     * See [Creating an Audience
+     * Export](https://developers.google.com/analytics/devguides/reporting/data/v1/audience-list-basics)
+     * for an introduction to Audience Exports with examples.
+     *
+     * Audience Export APIs have some methods at alpha and other methods at beta
+     * stability. The intention is to advance methods to beta stability after some
+     * feedback and adoption. To give your feedback on this API, complete the
+     * [Google Analytics Audience Export API
+     * Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
+     *
+     * The async variant is {@see BetaAnalyticsDataClient::getAudienceExportAsync()} .
+     *
+     * @example samples/V1beta/BetaAnalyticsDataClient/get_audience_export.php
+     *
+     * @param GetAudienceExportRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AudienceExport
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getAudienceExport(GetAudienceExportRequest $request, array $callOptions = []): AudienceExport
+    {
+        return $this->startApiCall('GetAudienceExport', $request, $callOptions)->wait();
+    }
+
+    /**
      * Returns metadata for dimensions and metrics available in reporting methods.
      * Used to explore the dimensions and metrics. In this method, a Google
      * Analytics GA4 Property Identifier is specified in the request, and
@@ -364,6 +544,96 @@ final class BetaAnalyticsDataClient
     public function getMetadata(GetMetadataRequest $request, array $callOptions = []): Metadata
     {
         return $this->startApiCall('GetMetadata', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists all audience exports for a property. This method can be used for you
+     * to find and reuse existing audience exports rather than creating
+     * unnecessary new audience exports. The same audience can have multiple
+     * audience exports that represent the export of users that were in an
+     * audience on different days.
+     *
+     * See [Creating an Audience
+     * Export](https://developers.google.com/analytics/devguides/reporting/data/v1/audience-list-basics)
+     * for an introduction to Audience Exports with examples.
+     *
+     * Audience Export APIs have some methods at alpha and other methods at beta
+     * stability. The intention is to advance methods to beta stability after some
+     * feedback and adoption. To give your feedback on this API, complete the
+     * [Google Analytics Audience Export API
+     * Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
+     *
+     * The async variant is {@see BetaAnalyticsDataClient::listAudienceExportsAsync()}
+     * .
+     *
+     * @example samples/V1beta/BetaAnalyticsDataClient/list_audience_exports.php
+     *
+     * @param ListAudienceExportsRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listAudienceExports(ListAudienceExportsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListAudienceExports', $request, $callOptions);
+    }
+
+    /**
+     * Retrieves an audience export of users. After creating an audience, the
+     * users are not immediately available for exporting. First, a request to
+     * `CreateAudienceExport` is necessary to create an audience export of users,
+     * and then second, this method is used to retrieve the users in the audience
+     * export.
+     *
+     * See [Creating an Audience
+     * Export](https://developers.google.com/analytics/devguides/reporting/data/v1/audience-list-basics)
+     * for an introduction to Audience Exports with examples.
+     *
+     * Audiences in Google Analytics 4 allow you to segment your users in the ways
+     * that are important to your business. To learn more, see
+     * https://support.google.com/analytics/answer/9267572.
+     *
+     * Audience Export APIs have some methods at alpha and other methods at beta
+     * stability. The intention is to advance methods to beta stability after some
+     * feedback and adoption. To give your feedback on this API, complete the
+     * [Google Analytics Audience Export API
+     * Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
+     *
+     * The async variant is {@see BetaAnalyticsDataClient::queryAudienceExportAsync()}
+     * .
+     *
+     * @example samples/V1beta/BetaAnalyticsDataClient/query_audience_export.php
+     *
+     * @param QueryAudienceExportRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return QueryAudienceExportResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function queryAudienceExport(QueryAudienceExportRequest $request, array $callOptions = []): QueryAudienceExportResponse
+    {
+        return $this->startApiCall('QueryAudienceExport', $request, $callOptions)->wait();
     }
 
     /**

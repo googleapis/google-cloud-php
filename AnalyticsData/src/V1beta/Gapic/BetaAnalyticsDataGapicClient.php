@@ -26,6 +26,7 @@
 
 namespace Google\Analytics\Data\V1beta\Gapic;
 
+use Google\Analytics\Data\V1beta\AudienceExport;
 use Google\Analytics\Data\V1beta\BatchRunPivotReportsRequest;
 use Google\Analytics\Data\V1beta\BatchRunPivotReportsResponse;
 use Google\Analytics\Data\V1beta\BatchRunReportsRequest;
@@ -34,16 +35,22 @@ use Google\Analytics\Data\V1beta\CheckCompatibilityRequest;
 use Google\Analytics\Data\V1beta\CheckCompatibilityResponse;
 use Google\Analytics\Data\V1beta\CohortSpec;
 use Google\Analytics\Data\V1beta\Compatibility;
+use Google\Analytics\Data\V1beta\CreateAudienceExportRequest;
 use Google\Analytics\Data\V1beta\DateRange;
 use Google\Analytics\Data\V1beta\Dimension;
 use Google\Analytics\Data\V1beta\FilterExpression;
+use Google\Analytics\Data\V1beta\GetAudienceExportRequest;
 use Google\Analytics\Data\V1beta\GetMetadataRequest;
+use Google\Analytics\Data\V1beta\ListAudienceExportsRequest;
+use Google\Analytics\Data\V1beta\ListAudienceExportsResponse;
 use Google\Analytics\Data\V1beta\Metadata;
 use Google\Analytics\Data\V1beta\Metric;
 use Google\Analytics\Data\V1beta\MetricAggregation;
 use Google\Analytics\Data\V1beta\MinuteRange;
 use Google\Analytics\Data\V1beta\OrderBy;
 use Google\Analytics\Data\V1beta\Pivot;
+use Google\Analytics\Data\V1beta\QueryAudienceExportRequest;
+use Google\Analytics\Data\V1beta\QueryAudienceExportResponse;
 use Google\Analytics\Data\V1beta\RunPivotReportRequest;
 use Google\Analytics\Data\V1beta\RunPivotReportResponse;
 use Google\Analytics\Data\V1beta\RunRealtimeReportRequest;
@@ -53,12 +60,15 @@ use Google\Analytics\Data\V1beta\RunReportResponse;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\LongRunning\Operation;
 
 /**
  * Service Description: Google Analytics reporting data service.
@@ -108,9 +118,15 @@ class BetaAnalyticsDataGapicClient
         'https://www.googleapis.com/auth/analytics.readonly',
     ];
 
+    private static $audienceExportNameTemplate;
+
     private static $metadataNameTemplate;
 
+    private static $propertyNameTemplate;
+
     private static $pathTemplateMap;
+
+    private $operationsClient;
 
     private static function getClientDefaults()
     {
@@ -139,6 +155,17 @@ class BetaAnalyticsDataGapicClient
         ];
     }
 
+    private static function getAudienceExportNameTemplate()
+    {
+        if (self::$audienceExportNameTemplate == null) {
+            self::$audienceExportNameTemplate = new PathTemplate(
+                'properties/{property}/audienceExports/{audience_export}'
+            );
+        }
+
+        return self::$audienceExportNameTemplate;
+    }
+
     private static function getMetadataNameTemplate()
     {
         if (self::$metadataNameTemplate == null) {
@@ -150,15 +177,47 @@ class BetaAnalyticsDataGapicClient
         return self::$metadataNameTemplate;
     }
 
+    private static function getPropertyNameTemplate()
+    {
+        if (self::$propertyNameTemplate == null) {
+            self::$propertyNameTemplate = new PathTemplate(
+                'properties/{property}'
+            );
+        }
+
+        return self::$propertyNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'audienceExport' => self::getAudienceExportNameTemplate(),
                 'metadata' => self::getMetadataNameTemplate(),
+                'property' => self::getPropertyNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * audience_export resource.
+     *
+     * @param string $property
+     * @param string $audienceExport
+     *
+     * @return string The formatted audience_export resource.
+     *
+     * @experimental
+     */
+    public static function audienceExportName($property, $audienceExport)
+    {
+        return self::getAudienceExportNameTemplate()->render([
+            'property' => $property,
+            'audience_export' => $audienceExport,
+        ]);
     }
 
     /**
@@ -179,10 +238,29 @@ class BetaAnalyticsDataGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a property
+     * resource.
+     *
+     * @param string $property
+     *
+     * @return string The formatted property resource.
+     *
+     * @experimental
+     */
+    public static function propertyName($property)
+    {
+        return self::getPropertyNameTemplate()->render([
+            'property' => $property,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - audienceExport: properties/{property}/audienceExports/{audience_export}
      * - metadata: properties/{property}/metadata
+     * - property: properties/{property}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -223,6 +301,45 @@ class BetaAnalyticsDataGapicClient
         throw new ValidationException(
             "Input did not match any known format. Input: $formattedName"
         );
+    }
+
+    /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return OperationsClient
+     *
+     * @experimental
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started by a long
+     * running API method. If $methodName is not provided, or does not match a long
+     * running API method, then the operation can still be resumed, but the
+     * OperationResponse object will not deserialize the final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return OperationResponse
+     *
+     * @experimental
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
+        $operation = new OperationResponse(
+            $operationName,
+            $this->getOperationsClient(),
+            $options
+        );
+        $operation->reload();
+        return $operation;
     }
 
     /**
@@ -285,6 +402,7 @@ class BetaAnalyticsDataGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /**
@@ -532,6 +650,174 @@ class BetaAnalyticsDataGapicClient
     }
 
     /**
+     * Creates an audience export for later retrieval. This method quickly returns
+     * the audience export's resource name and initiates a long running
+     * asynchronous request to form an audience export. To export the users in an
+     * audience export, first create the audience export through this method and
+     * then send the audience resource name to the `QueryAudienceExport` method.
+     *
+     * See [Creating an Audience
+     * Export](https://developers.google.com/analytics/devguides/reporting/data/v1/audience-list-basics)
+     * for an introduction to Audience Exports with examples.
+     *
+     * An audience export is a snapshot of the users currently in the audience at
+     * the time of audience export creation. Creating audience exports for one
+     * audience on different days will return different results as users enter and
+     * exit the audience.
+     *
+     * Audiences in Google Analytics 4 allow you to segment your users in the ways
+     * that are important to your business. To learn more, see
+     * https://support.google.com/analytics/answer/9267572. Audience exports
+     * contain the users in each audience.
+     *
+     * Audience Export APIs have some methods at alpha and other methods at beta
+     * stability. The intention is to advance methods to beta stability after some
+     * feedback and adoption. To give your feedback on this API, complete the
+     * [Google Analytics Audience Export API
+     * Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
+     *
+     * Sample code:
+     * ```
+     * $betaAnalyticsDataClient = new BetaAnalyticsDataClient();
+     * try {
+     *     $formattedParent = $betaAnalyticsDataClient->propertyName('[PROPERTY]');
+     *     $audienceExport = new AudienceExport();
+     *     $operationResponse = $betaAnalyticsDataClient->createAudienceExport($formattedParent, $audienceExport);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $betaAnalyticsDataClient->createAudienceExport($formattedParent, $audienceExport);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $betaAnalyticsDataClient->resumeOperation($operationName, 'createAudienceExport');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $betaAnalyticsDataClient->close();
+     * }
+     * ```
+     *
+     * @param string         $parent         Required. The parent resource where this audience export will be created.
+     *                                       Format: `properties/{property}`
+     * @param AudienceExport $audienceExport Required. The audience export to create.
+     * @param array          $optionalArgs   {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function createAudienceExport(
+        $parent,
+        $audienceExport,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateAudienceExportRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setAudienceExport($audienceExport);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CreateAudienceExport',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Gets configuration metadata about a specific audience export. This method
+     * can be used to understand an audience export after it has been created.
+     *
+     * See [Creating an Audience
+     * Export](https://developers.google.com/analytics/devguides/reporting/data/v1/audience-list-basics)
+     * for an introduction to Audience Exports with examples.
+     *
+     * Audience Export APIs have some methods at alpha and other methods at beta
+     * stability. The intention is to advance methods to beta stability after some
+     * feedback and adoption. To give your feedback on this API, complete the
+     * [Google Analytics Audience Export API
+     * Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
+     *
+     * Sample code:
+     * ```
+     * $betaAnalyticsDataClient = new BetaAnalyticsDataClient();
+     * try {
+     *     $formattedName = $betaAnalyticsDataClient->audienceExportName('[PROPERTY]', '[AUDIENCE_EXPORT]');
+     *     $response = $betaAnalyticsDataClient->getAudienceExport($formattedName);
+     * } finally {
+     *     $betaAnalyticsDataClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The audience export resource name.
+     *                             Format: `properties/{property}/audienceExports/{audience_export}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Data\V1beta\AudienceExport
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getAudienceExport($name, array $optionalArgs = [])
+    {
+        $request = new GetAudienceExportRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetAudienceExport',
+            AudienceExport::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Returns metadata for dimensions and metrics available in reporting methods.
      * Used to explore the dimensions and metrics. In this method, a Google
      * Analytics GA4 Property Identifier is specified in the request, and
@@ -595,6 +881,198 @@ class BetaAnalyticsDataGapicClient
         return $this->startCall(
             'GetMetadata',
             Metadata::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Lists all audience exports for a property. This method can be used for you
+     * to find and reuse existing audience exports rather than creating
+     * unnecessary new audience exports. The same audience can have multiple
+     * audience exports that represent the export of users that were in an
+     * audience on different days.
+     *
+     * See [Creating an Audience
+     * Export](https://developers.google.com/analytics/devguides/reporting/data/v1/audience-list-basics)
+     * for an introduction to Audience Exports with examples.
+     *
+     * Audience Export APIs have some methods at alpha and other methods at beta
+     * stability. The intention is to advance methods to beta stability after some
+     * feedback and adoption. To give your feedback on this API, complete the
+     * [Google Analytics Audience Export API
+     * Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
+     *
+     * Sample code:
+     * ```
+     * $betaAnalyticsDataClient = new BetaAnalyticsDataClient();
+     * try {
+     *     $formattedParent = $betaAnalyticsDataClient->propertyName('[PROPERTY]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $betaAnalyticsDataClient->listAudienceExports($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $betaAnalyticsDataClient->listAudienceExports($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $betaAnalyticsDataClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. All audience exports for this property will be listed in the
+     *                             response. Format: `properties/{property}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listAudienceExports($parent, array $optionalArgs = [])
+    {
+        $request = new ListAudienceExportsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListAudienceExports',
+            $optionalArgs,
+            ListAudienceExportsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Retrieves an audience export of users. After creating an audience, the
+     * users are not immediately available for exporting. First, a request to
+     * `CreateAudienceExport` is necessary to create an audience export of users,
+     * and then second, this method is used to retrieve the users in the audience
+     * export.
+     *
+     * See [Creating an Audience
+     * Export](https://developers.google.com/analytics/devguides/reporting/data/v1/audience-list-basics)
+     * for an introduction to Audience Exports with examples.
+     *
+     * Audiences in Google Analytics 4 allow you to segment your users in the ways
+     * that are important to your business. To learn more, see
+     * https://support.google.com/analytics/answer/9267572.
+     *
+     * Audience Export APIs have some methods at alpha and other methods at beta
+     * stability. The intention is to advance methods to beta stability after some
+     * feedback and adoption. To give your feedback on this API, complete the
+     * [Google Analytics Audience Export API
+     * Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
+     *
+     * Sample code:
+     * ```
+     * $betaAnalyticsDataClient = new BetaAnalyticsDataClient();
+     * try {
+     *     $name = 'name';
+     *     $response = $betaAnalyticsDataClient->queryAudienceExport($name);
+     * } finally {
+     *     $betaAnalyticsDataClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the audience export to retrieve users from.
+     *                             Format: `properties/{property}/audienceExports/{audience_export}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $offset
+     *           Optional. The row count of the start row. The first row is counted as row
+     *           0.
+     *
+     *           When paging, the first request does not specify offset; or equivalently,
+     *           sets offset to 0; the first request returns the first `limit` of rows. The
+     *           second request sets offset to the `limit` of the first request; the second
+     *           request returns the second `limit` of rows.
+     *
+     *           To learn more about this pagination parameter, see
+     *           [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
+     *     @type int $limit
+     *           Optional. The number of rows to return. If unspecified, 10,000 rows are
+     *           returned. The API returns a maximum of 250,000 rows per request, no matter
+     *           how many you ask for. `limit` must be positive.
+     *
+     *           The API can also return fewer rows than the requested `limit`, if there
+     *           aren't as many dimension values as the `limit`.
+     *
+     *           To learn more about this pagination parameter, see
+     *           [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Data\V1beta\QueryAudienceExportResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function queryAudienceExport($name, array $optionalArgs = [])
+    {
+        $request = new QueryAudienceExportRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['offset'])) {
+            $request->setOffset($optionalArgs['offset']);
+        }
+
+        if (isset($optionalArgs['limit'])) {
+            $request->setLimit($optionalArgs['limit']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'QueryAudienceExport',
+            QueryAudienceExportResponse::class,
             $optionalArgs,
             $request
         )->wait();
