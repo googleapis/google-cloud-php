@@ -233,6 +233,7 @@
         "google/grafeas": "0.8.3",
         "google/longrunning": "0.2.6",
         "google/shopping-common-protos": "0.2.0",
+        "google/shopping-css": "0.0.0",
         "google/shopping-merchant-inventories": "0.1.1",
         "google/shopping-merchant-reports": "0.4.0"
     },
@@ -408,6 +409,7 @@
             "GPBMetadata\\Google\\Privacy\\Dlp\\": "Dlp/metadata",
             "GPBMetadata\\Google\\Pubsub\\": "PubSub/metadata",
             "GPBMetadata\\Google\\Rpc\\": "CommonProtos/metadata/Rpc",
+            "GPBMetadata\\Google\\Shopping\\Css\\": "ShoppingCss/metadata",
             "GPBMetadata\\Google\\Shopping\\Merchant\\Inventories\\": "ShoppingMerchantInventories/metadata",
             "GPBMetadata\\Google\\Shopping\\Merchant\\Reports\\": "ShoppingMerchantReports/metadata",
             "GPBMetadata\\Google\\Shopping\\Type\\": "ShoppingCommonProtos/metadata/Type",
@@ -583,6 +585,7 @@
             "Google\\Cloud\\Workflows\\": "Workflows/src",
             "Google\\Identity\\AccessContextManager\\": "AccessContextManager/src",
             "Google\\LongRunning\\": "LongRunning/src/LongRunning",
+            "Google\\Shopping\\Css\\": "ShoppingCss/src",
             "Google\\Shopping\\Merchant\\Inventories\\": "ShoppingMerchantInventories/src",
             "Google\\Shopping\\Merchant\\Reports\\": "ShoppingMerchantReports/src",
             "Google\\Shopping\\Type\\": "ShoppingCommonProtos/src/Type",

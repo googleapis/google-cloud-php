@@ -1,24 +1,24 @@
 {
-    "name": "google/shopping-merchant-inventories",
-    "description": "Google Shopping Merchant Inventories Client for PHP",
+    "name": "google/shopping-css",
+    "description": "Google Shopping Css Client for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "GPBMetadata\\Google\\Shopping\\Merchant\\Inventories\\": "metadata",
-            "Google\\Shopping\\Merchant\\Inventories\\": "src"
+            "Google\\Shopping\\Css\\": "src",
+            "GPBMetadata\\Google\\Shopping\\Css\\": "metadata"
         }
     },
     "extra": {
         "component": {
-            "id": "shopping-merchant-inventories",
-            "path": "ShoppingMerchantInventories",
-            "target": "googleapis/php-shopping-merchant-inventories"
+            "id": "shopping-css",
+            "path": "ShoppingCss",
+            "target": "googleapis/php-shopping-css"
         }
     },
     "require": {
         "php": ">=7.4",
-        "google/gax": "^1.24.0",
+        "google/gax": "^1.25.0",
         "google/shopping-common-protos": "^0.2.0"
     },
     "require-dev": {
