@@ -1,5 +1,114 @@
 # Changelog
 
+## 0.229.0
+
+<details><summary>google/cloud-ai-platform 0.30.0</summary>
+
+
+
+### Features
+
+* Add Content ([#6860](https://github.com/googleapis/google-cloud-php/issues/6860)) ([32e6670](https://github.com/googleapis/google-cloud-php/commit/32e66703526c3f3050bb8bc54e01b55b76f174e7))
+* Add data_stats to ExportDataResponse ([32e6670](https://github.com/googleapis/google-cloud-php/commit/32e66703526c3f3050bb8bc54e01b55b76f174e7))
+* Add DataStats to Model ([32e6670](https://github.com/googleapis/google-cloud-php/commit/32e66703526c3f3050bb8bc54e01b55b76f174e7))
+* Add DeploymentResourcePool ([32e6670](https://github.com/googleapis/google-cloud-php/commit/32e66703526c3f3050bb8bc54e01b55b76f174e7))
+* Add DeploymentResourcePoolService ([32e6670](https://github.com/googleapis/google-cloud-php/commit/32e66703526c3f3050bb8bc54e01b55b76f174e7))
+* Add display_name to DeployedIndex ([32e6670](https://github.com/googleapis/google-cloud-php/commit/32e66703526c3f3050bb8bc54e01b55b76f174e7))
+* Add ExportUse and ExportFilterSplit to Dataset ([32e6670](https://github.com/googleapis/google-cloud-php/commit/32e66703526c3f3050bb8bc54e01b55b76f174e7))
+* Add model and contents to PredictionService ([32e6670](https://github.com/googleapis/google-cloud-php/commit/32e66703526c3f3050bb8bc54e01b55b76f174e7))
+* Add shared_resources to DeployedModel ([32e6670](https://github.com/googleapis/google-cloud-php/commit/32e66703526c3f3050bb8bc54e01b55b76f174e7))
+* Add Tool ([32e6670](https://github.com/googleapis/google-cloud-php/commit/32e66703526c3f3050bb8bc54e01b55b76f174e7))
+
+
+### Documentation
+
+* Changes name from OUTPUT_ONLY to IDENTIFIER in FeatureGroup ([32e6670](https://github.com/googleapis/google-cloud-php/commit/32e66703526c3f3050bb8bc54e01b55b76f174e7))
+
+</details>
+
+<details><summary>google/analytics-data 0.12.0</summary>
+
+
+
+### Features
+
+* Add `CreateAudienceExport`, `QueryAudienceExport`, `GetAudienceExport`, `ListAudienceExports` methods to the Data API v1 beta ([#6859](https://github.com/googleapis/google-cloud-php/issues/6859)) ([d67455e](https://github.com/googleapis/google-cloud-php/commit/d67455e38e26b4893759e5ccb7b7e23ac0ad69d0))
+* Add `sampling_metadatas` field to `ResponseMetaData` ([d67455e](https://github.com/googleapis/google-cloud-php/commit/d67455e38e26b4893759e5ccb7b7e23ac0ad69d0))
+* Add `SamplingMetadata`, `AudienceExport`, `AudienceExportMetadata`, `AudienceDimensionValue` types ([d67455e](https://github.com/googleapis/google-cloud-php/commit/d67455e38e26b4893759e5ccb7b7e23ac0ad69d0))
+
+
+### Bug Fixes
+
+* Add `optional` label to `consumed`, `remaining` fields of the `QuotaStatus` type ([d67455e](https://github.com/googleapis/google-cloud-php/commit/d67455e38e26b4893759e5ccb7b7e23ac0ad69d0))
+
+
+### Documentation
+
+* Updated comments ([d67455e](https://github.com/googleapis/google-cloud-php/commit/d67455e38e26b4893759e5ccb7b7e23ac0ad69d0))
+
+</details>
+
+<details><summary>google/cloud-monitoring 1.8.0</summary>
+
+
+
+### Features
+
+* Added support for severity in AlertPolicy ([#6865](https://github.com/googleapis/google-cloud-php/issues/6865)) ([090ae71](https://github.com/googleapis/google-cloud-php/commit/090ae71d8712e4c57a26c05c9a0ebd829e039ece))
+
+
+### Documentation
+
+* Add value range to comment on field forecast_horizon ([090ae71](https://github.com/googleapis/google-cloud-php/commit/090ae71d8712e4c57a26c05c9a0ebd829e039ece))
+
+</details>
+
+<details><summary>google/cloud-recommender 1.10.0</summary>
+
+
+
+### Features
+
+* Support cost_in_local_currency field in the cost projection ([#6866](https://github.com/googleapis/google-cloud-php/issues/6866)) ([edc2af7](https://github.com/googleapis/google-cloud-php/commit/edc2af793ea7124c17fb98e591ffed9dc3655641))
+
+
+### Documentation
+
+* Add comment for targetResources ([edc2af7](https://github.com/googleapis/google-cloud-php/commit/edc2af793ea7124c17fb98e591ffed9dc3655641))
+* Fix typo for the comment of reliability_projection ([edc2af7](https://github.com/googleapis/google-cloud-php/commit/edc2af793ea7124c17fb98e591ffed9dc3655641))
+
+</details>
+
+<details><summary>google/shopping-css 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce Shopping CSS ([#6864](https://github.com/googleapis/google-cloud-php/issues/6864)) ([2eaf9fd](https://github.com/googleapis/google-cloud-php/commit/2eaf9fd42e632aaa622c8a80b8b4032f4b8f311e))
+
+</details>
+
+<details><summary>google/shopping-merchant-inventories 0.2.0</summary>
+
+
+
+### Features
+
+* Introduce Shopping CSS ([#6864](https://github.com/googleapis/google-cloud-php/issues/6864)) ([2eaf9fd](https://github.com/googleapis/google-cloud-php/commit/2eaf9fd42e632aaa622c8a80b8b4032f4b8f311e))
+
+</details>
+
+<details><summary>google/shopping-merchant-reports 0.5.0</summary>
+
+
+
+### Features
+
+* Introduce Shopping CSS ([#6864](https://github.com/googleapis/google-cloud-php/issues/6864)) ([2eaf9fd](https://github.com/googleapis/google-cloud-php/commit/2eaf9fd42e632aaa622c8a80b8b4032f4b8f311e))
+
+</details>
+
 ## 0.228.0
 
 <details><summary>google/cloud-advisorynotifications 0.6.0</summary>
