@@ -36,12 +36,14 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Api\HttpBody;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\AIPlatform\V1\Content;
 use Google\Cloud\AIPlatform\V1\DirectPredictRequest;
 use Google\Cloud\AIPlatform\V1\DirectPredictResponse;
 use Google\Cloud\AIPlatform\V1\DirectRawPredictRequest;
 use Google\Cloud\AIPlatform\V1\DirectRawPredictResponse;
 use Google\Cloud\AIPlatform\V1\ExplainRequest;
 use Google\Cloud\AIPlatform\V1\ExplainResponse;
+use Google\Cloud\AIPlatform\V1\GenerateContentRequest;
 use Google\Cloud\AIPlatform\V1\PredictRequest;
 use Google\Cloud\AIPlatform\V1\PredictResponse;
 use Google\Cloud\AIPlatform\V1\RawPredictRequest;
@@ -453,6 +455,28 @@ final class PredictionServiceClient
     public function serverStreamingPredict(StreamingPredictRequest $request, array $callOptions = []): ServerStream
     {
         return $this->startApiCall('ServerStreamingPredict', $request, $callOptions);
+    }
+
+    /**
+     * Generate content with multimodal inputs with streaming support.
+     *
+     * @example samples/V1/PredictionServiceClient/stream_generate_content.php
+     *
+     * @param GenerateContentRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return ServerStream
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function streamGenerateContent(GenerateContentRequest $request, array $callOptions = []): ServerStream
+    {
+        return $this->startApiCall('StreamGenerateContent', $request, $callOptions);
     }
 
     /**

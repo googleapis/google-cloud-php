@@ -36,6 +36,8 @@ use Google\Cloud\AIPlatform\V1\DirectRawPredictRequest;
 use Google\Cloud\AIPlatform\V1\DirectRawPredictResponse;
 use Google\Cloud\AIPlatform\V1\ExplainRequest;
 use Google\Cloud\AIPlatform\V1\ExplainResponse;
+use Google\Cloud\AIPlatform\V1\GenerateContentRequest;
+use Google\Cloud\AIPlatform\V1\GenerateContentResponse;
 use Google\Cloud\AIPlatform\V1\PredictRequest;
 use Google\Cloud\AIPlatform\V1\PredictResponse;
 use Google\Cloud\AIPlatform\V1\RawPredictRequest;
@@ -481,6 +483,86 @@ class PredictionServiceClientTest extends GeneratedTest
         $request = (new StreamingPredictRequest())
             ->setEndpoint($formattedEndpoint);
         $serverStream = $gapicClient->serverStreamingPredict($request);
+        $results = $serverStream->readAll();
+        try {
+            iterator_to_array($results);
+            // If the close stream method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function streamGenerateContentTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GenerateContentResponse();
+        $transport->addResponse($expectedResponse);
+        $expectedResponse2 = new GenerateContentResponse();
+        $transport->addResponse($expectedResponse2);
+        $expectedResponse3 = new GenerateContentResponse();
+        $transport->addResponse($expectedResponse3);
+        // Mock request
+        $model = 'model104069929';
+        $contents = [];
+        $request = (new GenerateContentRequest())
+            ->setModel($model)
+            ->setContents($contents);
+        $serverStream = $gapicClient->streamGenerateContent($request);
+        $this->assertInstanceOf(ServerStream::class, $serverStream);
+        $responses = iterator_to_array($serverStream->readAll());
+        $expectedResponses = [];
+        $expectedResponses[] = $expectedResponse;
+        $expectedResponses[] = $expectedResponse2;
+        $expectedResponses[] = $expectedResponse3;
+        $this->assertEquals($expectedResponses, $responses);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.aiplatform.v1.PredictionService/StreamGenerateContent', $actualFuncCall);
+        $actualValue = $actualRequestObject->getModel();
+        $this->assertProtobufEquals($model, $actualValue);
+        $actualValue = $actualRequestObject->getContents();
+        $this->assertProtobufEquals($contents, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function streamGenerateContentExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->setStreamingStatus($status);
+        $this->assertTrue($transport->isExhausted());
+        // Mock request
+        $model = 'model104069929';
+        $contents = [];
+        $request = (new GenerateContentRequest())
+            ->setModel($model)
+            ->setContents($contents);
+        $serverStream = $gapicClient->streamGenerateContent($request);
         $results = $serverStream->readAll();
         try {
             iterator_to_array($results);

@@ -35,6 +35,7 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Api\HttpBody;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\AIPlatform\V1\Content;
 use Google\Cloud\AIPlatform\V1\DirectPredictRequest;
 use Google\Cloud\AIPlatform\V1\DirectPredictResponse;
 use Google\Cloud\AIPlatform\V1\DirectRawPredictRequest;
@@ -42,14 +43,19 @@ use Google\Cloud\AIPlatform\V1\DirectRawPredictResponse;
 use Google\Cloud\AIPlatform\V1\ExplainRequest;
 use Google\Cloud\AIPlatform\V1\ExplainResponse;
 use Google\Cloud\AIPlatform\V1\ExplanationSpecOverride;
+use Google\Cloud\AIPlatform\V1\GenerateContentRequest;
+use Google\Cloud\AIPlatform\V1\GenerateContentResponse;
+use Google\Cloud\AIPlatform\V1\GenerationConfig;
 use Google\Cloud\AIPlatform\V1\PredictRequest;
 use Google\Cloud\AIPlatform\V1\PredictResponse;
 use Google\Cloud\AIPlatform\V1\RawPredictRequest;
+use Google\Cloud\AIPlatform\V1\SafetySetting;
 use Google\Cloud\AIPlatform\V1\StreamingPredictRequest;
 use Google\Cloud\AIPlatform\V1\StreamingPredictResponse;
 use Google\Cloud\AIPlatform\V1\StreamingRawPredictRequest;
 use Google\Cloud\AIPlatform\V1\StreamingRawPredictResponse;
 use Google\Cloud\AIPlatform\V1\Tensor;
+use Google\Cloud\AIPlatform\V1\Tool;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\GetPolicyOptions;
 use Google\Cloud\Iam\V1\Policy;
@@ -808,6 +814,94 @@ class PredictionServiceGapicClient
         return $this->startCall(
             'ServerStreamingPredict',
             StreamingPredictResponse::class,
+            $optionalArgs,
+            $request,
+            Call::SERVER_STREAMING_CALL
+        );
+    }
+
+    /**
+     * Generate content with multimodal inputs with streaming support.
+     *
+     * Sample code:
+     * ```
+     * $predictionServiceClient = new PredictionServiceClient();
+     * try {
+     *     $model = 'model';
+     *     $contents = [];
+     *     // Read all responses until the stream is complete
+     *     $stream = $predictionServiceClient->streamGenerateContent($model, $contents);
+     *     foreach ($stream->readAll() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $predictionServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string    $model        Required. The name of the publisher model requested to serve the
+     *                                prediction. Format:
+     *                                `projects/{project}/locations/{location}/publishers/&#42;/models/*`
+     * @param Content[] $contents     Required. The content of the current conversation with the model.
+     *
+     *                                For single-turn queries, this is a single instance. For multi-turn queries,
+     *                                this is a repeated field that contains conversation history + latest
+     *                                request.
+     * @param array     $optionalArgs {
+     *     Optional.
+     *
+     *     @type Tool[] $tools
+     *           Optional. A list of `Tools` the model may use to generate the next
+     *           response.
+     *
+     *           A `Tool` is a piece of code that enables the system to interact with
+     *           external systems to perform an action, or set of actions, outside of
+     *           knowledge and scope of the model. The only supported tool is currently
+     *           `Function`
+     *     @type SafetySetting[] $safetySettings
+     *           Optional. Per request settings for blocking unsafe content.
+     *           Enforced on GenerateContentResponse.candidates.
+     *     @type GenerationConfig $generationConfig
+     *           Optional. Generation config.
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return \Google\ApiCore\ServerStream
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function streamGenerateContent(
+        $model,
+        $contents,
+        array $optionalArgs = []
+    ) {
+        $request = new GenerateContentRequest();
+        $requestParamHeaders = [];
+        $request->setModel($model);
+        $request->setContents($contents);
+        $requestParamHeaders['model'] = $model;
+        if (isset($optionalArgs['tools'])) {
+            $request->setTools($optionalArgs['tools']);
+        }
+
+        if (isset($optionalArgs['safetySettings'])) {
+            $request->setSafetySettings($optionalArgs['safetySettings']);
+        }
+
+        if (isset($optionalArgs['generationConfig'])) {
+            $request->setGenerationConfig($optionalArgs['generationConfig']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'StreamGenerateContent',
+            GenerateContentResponse::class,
             $optionalArgs,
             $request,
             Call::SERVER_STREAMING_CALL

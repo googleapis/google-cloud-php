@@ -18,10 +18,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class FeatureOnlineStore extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Name of the FeatureOnlineStore. Format:
+     * Identifier. Name of the FeatureOnlineStore. Format:
      * `projects/{project}/locations/{location}/featureOnlineStores/{featureOnlineStore}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     private $name = '';
     /**
@@ -76,7 +76,7 @@ class FeatureOnlineStore extends \Google\Protobuf\Internal\Message
      *           to serve featureValues for all FeatureViews under this
      *           FeatureOnlineStore.
      *     @type string $name
-     *           Output only. Name of the FeatureOnlineStore. Format:
+     *           Identifier. Name of the FeatureOnlineStore. Format:
      *           `projects/{project}/locations/{location}/featureOnlineStores/{featureOnlineStore}`
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp when this FeatureOnlineStore was created.
@@ -140,10 +140,10 @@ class FeatureOnlineStore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Name of the FeatureOnlineStore. Format:
+     * Identifier. Name of the FeatureOnlineStore. Format:
      * `projects/{project}/locations/{location}/featureOnlineStores/{featureOnlineStore}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -152,10 +152,10 @@ class FeatureOnlineStore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Name of the FeatureOnlineStore. Format:
+     * Identifier. Name of the FeatureOnlineStore. Format:
      * `projects/{project}/locations/{location}/featureOnlineStores/{featureOnlineStore}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

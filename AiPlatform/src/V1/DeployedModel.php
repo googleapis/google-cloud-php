@@ -134,6 +134,10 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\AutomaticResources $automatic_resources
      *           A description of resources that to large degree are decided by Vertex
      *           AI, and require only a modest additional configuration.
+     *     @type string $shared_resources
+     *           The resource name of the shared DeploymentResourcePool to deploy on.
+     *           Format:
+     *           `projects/{project}/locations/{location}/deploymentResourcePools/{deployment_resource_pool}`
      *     @type string $id
      *           Immutable. The ID of the DeployedModel. If not provided upon deployment,
      *           Vertex AI will generate a value for this ID.
@@ -268,6 +272,41 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\AutomaticResources::class);
         $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * The resource name of the shared DeploymentResourcePool to deploy on.
+     * Format:
+     * `projects/{project}/locations/{location}/deploymentResourcePools/{deployment_resource_pool}`
+     *
+     * Generated from protobuf field <code>string shared_resources = 17 [(.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getSharedResources()
+    {
+        return $this->readOneof(17);
+    }
+
+    public function hasSharedResources()
+    {
+        return $this->hasOneof(17);
+    }
+
+    /**
+     * The resource name of the shared DeploymentResourcePool to deploy on.
+     * Format:
+     * `projects/{project}/locations/{location}/deploymentResourcePools/{deployment_resource_pool}`
+     *
+     * Generated from protobuf field <code>string shared_resources = 17 [(.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSharedResources($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(17, $var);
 
         return $this;
     }

@@ -158,6 +158,25 @@ final class EndpointServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * deployment_resource_pool resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $deploymentResourcePool
+     *
+     * @return string The formatted deployment_resource_pool resource.
+     */
+    public static function deploymentResourcePoolName(string $project, string $location, string $deploymentResourcePool): string
+    {
+        return self::getPathTemplate('deploymentResourcePool')->render([
+            'project' => $project,
+            'location' => $location,
+            'deployment_resource_pool' => $deploymentResourcePool,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a endpoint
      * resource.
      *
@@ -292,6 +311,7 @@ final class EndpointServiceClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - deploymentResourcePool: projects/{project}/locations/{location}/deploymentResourcePools/{deployment_resource_pool}
      * - endpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - location: projects/{project}/locations/{location}
      * - model: projects/{project}/locations/{location}/models/{model}
