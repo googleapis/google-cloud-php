@@ -30,13 +30,13 @@ use Google\Cloud\Core\Exception;
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\GapicRequestWrapper;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Rpc\BadRequest;
 use Google\Rpc\BadRequest\FieldViolation;
 use Google\Rpc\Code;
 use Google\Rpc\PreconditionFailure;
 use Google\Rpc\Status;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
@@ -44,26 +44,25 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class GapicRequestWrapperTest extends TestCase
 {
-    use GrpcTestTrait;
     use ProphecyTrait;
 
-    public function setUp(): void
-    {
-        $this->checkAndSkipGrpcTests();
-    }
     /**
      * @dataProvider responseProvider
      */
-    public function testSuccessfullySendsRequest($response, $expectedMessage, $serializer)
+    public function testSuccessfullySendsRequest($response, $expectedMessage)
     {
-        $requestWrapper = new GapicRequestWrapper(['serializer' => $serializer]);
+        $serializer = $this->prophesize(Serializer::class);
+        $serializer->encodeMessage(Argument::type(Http::class))
+            ->willReturn($expectedMessage);
+
+        $requestWrapper = new GapicRequestWrapper(['serializer' => $serializer->reveal()]);
         $args = [
             ['retrySettings' => []],    // required args
             []                          // optional args
         ];
 
         $actualResponse = $requestWrapper->send(
-            function ($options) use ($response, $args){
+            function ($options) use ($response, $args) {
                 $this->assertEquals(
                     $args[0]['retrySettings'],
                     $options['retrySettings']
@@ -79,22 +78,18 @@ class GapicRequestWrapperTest extends TestCase
 
     public function responseProvider()
     {
-        if ($this->shouldSkipGrpcTests()) {
-            return [];
-        }
         $expectedMessage = ['successful' => 'request'];
         $message = new Http();
-        $serializer = $this->prophesize(Serializer::class);
-        $serializer->encodeMessage($message)->willReturn($expectedMessage);
+        
         $pagedMessage = $this->prophesize(PagedListResponse::class);
         $page = $this->prophesize(Page::class);
         $page->getResponseObject()->willReturn($message);
         $pagedMessage->getPage()->willReturn($page->reveal());
 
         return [
-            [$message, $expectedMessage, $serializer->reveal()],
-            [$pagedMessage->reveal(), $expectedMessage, $serializer->reveal()],
-            [null, null, $serializer->reveal()]
+            [$message, $expectedMessage],
+            [$pagedMessage->reveal(), $expectedMessage],
+            [null, null]
         ];
     }
 
@@ -116,12 +111,13 @@ class GapicRequestWrapperTest extends TestCase
     public function testReturnsOperationResponse()
     {
         $requestWrapper = new GapicRequestWrapper();
-
-        $this->assertInstanceOf(OperationResponse::class, $requestWrapper->send(function () {
+        $response = $requestWrapper->send(function () {
             $op = $this->prophesize(OperationResponse::class);
 
             return $op->reveal();
-        }, [[]]));
+        }, [[]]);
+
+        $this->assertInstanceOf(OperationResponse::class, $response);
     }
 
     /**

@@ -22,29 +22,25 @@ use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\GapicRequestWrapper;
 use Google\Cloud\Core\RequestHandler;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Google\Cloud\Core\Tests\Unit\Helpers\SampleGapicClass2;
+use Google\Cloud\Core\Tests\Unit\Helpers\SampleGapicClass1;
 
 /**
  * @group core
  */
 class RequestHandlerTest extends TestCase
 {
-    use GrpcTestTrait;
     use ProphecyTrait;
 
-    private $requestHandler;
     private $requestWrapper;
     private $serializer;
 
     public function setUp(): void
     {
-        $this->checkAndSkipGrpcTests();
-
-        $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->requestWrapper = $this->prophesize(GapicRequestWrapper::class);
         $this->serializer = $this->prophesize(Serializer::class);
     }
@@ -52,7 +48,6 @@ class RequestHandlerTest extends TestCase
     public function testGetSerializer()
     {
         $requestHandler = new RequestHandler($this->serializer->reveal(), []);
-
         $this->assertInstanceOf(Serializer::class, $requestHandler->getSerializer());
     }
 
@@ -86,7 +81,7 @@ class RequestHandlerTest extends TestCase
         $requestHandler = new RequestHandler($this->serializer->reveal(), $gapicClasses);
 
         $responseStr = '{"foo": "bar"}';
-        $this->requestWrapper->send([$gapicObj, 'sampleMethod'],Argument::cetera())
+        $this->requestWrapper->send([$gapicObj, 'sampleMethod'], Argument::cetera())
             ->willReturn(new Response(200, [], $responseStr));
 
         $requestHandler->setRequestWrapper($this->requestWrapper->reveal());
@@ -104,8 +99,7 @@ class RequestHandlerTest extends TestCase
         $gapicClasses = [SampleGapicClass2::class => $gapicObj];
         $requestHandler = new RequestHandler($this->serializer->reveal(), $gapicClasses);
 
-        $responseStr = '{"foo": "bar"}';
-        $this->requestWrapper->send([$gapicObj, 'sampleMethod'],Argument::cetera())
+        $this->requestWrapper->send([$gapicObj, 'sampleMethod'], Argument::cetera())
             ->willThrow(new BadRequestException('exception message'));
 
         $requestHandler->setRequestWrapper($this->requestWrapper->reveal());
@@ -117,20 +111,32 @@ class RequestHandlerTest extends TestCase
         $requestHandler->sendRequest(SampleGapicClass2::class, 'sampleMethod', [&$counter], []);
     }
 
-}
-
-class SampleGapicClass1
-{
-    public function sampleMethod (&$counter)
+    public function testRequiredAndOptionalArgs()
     {
-        $counter++;
-    }
-}
+        $passedRequiredArgs = ['foo', 'bar'];
+        $passedOptionalArgs = ['key' => 'val'];
 
-class SampleGapicClass2
-{
-    public function sampleMethod (&$counter, $args)
-    {
-        $counter++;
+        $gapicObj = $this->prophesize(SampleGapicClass2::class);
+        $caller = $this;
+
+        $gapicObj->sampleMethod2(Argument::cetera())
+            ->will(function ($args) use ($passedRequiredArgs, $passedOptionalArgs, $caller) {
+                $requiredArgs = $args[0];
+                $optionalArgs = $args[1];
+                $caller->assertEquals($passedRequiredArgs, $requiredArgs);
+                $caller->assertEquals($passedOptionalArgs, $optionalArgs);
+
+                return true;
+            });
+
+        $gapicClasses = [SampleGapicClass2::class => $gapicObj->reveal()];
+        $requestHandler = new RequestHandler($this->serializer->reveal(), $gapicClasses);
+
+        $requestHandler->sendRequest(
+            SampleGapicClass2::class,
+            'sampleMethod2',
+            [$passedRequiredArgs],
+            $passedOptionalArgs
+        );
     }
 }

@@ -19,14 +19,11 @@
 namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\GapicRequestWrapper;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Google\Cloud\Core\RequestCallerTrait;
-use Google\Cloud\Core\RequestHandler;
 use Prophecy\Argument;
 use GuzzleHttp\Psr7\Response;
-use Psr\Http\Message\RequestInterface;
 use Google\Cloud\Core\Exception\NotFoundException;
 
 /**
@@ -34,18 +31,14 @@ use Google\Cloud\Core\Exception\NotFoundException;
  */
 class RequestCallerTraitTest extends TestCase
 {
-    use GrpcTestTrait;
     use ProphecyTrait;
 
     private $implementation;
-    private $requestHandler;
     private $requestWrapper;
 
     public function setUp(): void
     {
-        $this->checkAndSkipGrpcTests();
         $this->implementation = $this->getObjectForTrait(RequestCallerTrait::class);
-        $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->requestWrapper = $this->prophesize(GapicRequestWrapper::class);
     }
 
@@ -73,7 +66,8 @@ class RequestCallerTraitTest extends TestCase
 
     public function testSendRequestWithOptions()
     {
-        $callableFunc = function () {};
+        $callableFunc = function () {
+        };
 
         $args = [
             ['requiredArgs'],
@@ -97,7 +91,9 @@ class RequestCallerTraitTest extends TestCase
      */
     public function testSendRequestWhitelisted($isWhitelisted, $errMsg, $expectedMsg)
     {
-        $callableFunc = function () {};
+        $callableFunc = function () {
+        };
+
         $this->requestWrapper->send(
             $callableFunc,
             Argument::type('array')
@@ -115,7 +111,7 @@ class RequestCallerTraitTest extends TestCase
         $this->assertStringContainsString($expectedMsg, $msg);
     }
 
-    public function whitelistProvider ()
+    public function whitelistProvider()
     {
         return [
             [true, 'The url was not found!', 'NOTE: Error may be due to Whitelist Restriction.'],
