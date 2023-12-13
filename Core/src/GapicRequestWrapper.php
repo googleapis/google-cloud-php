@@ -29,6 +29,7 @@ use Google\Rpc\Code;
 use Google\Rpc\RetryInfo;
 
 /**
+ * @internal
  * The GapicRequestWrapper is responsible for delivering REST/gRPC requests.
  */
 class GapicRequestWrapper

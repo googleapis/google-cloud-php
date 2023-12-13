@@ -24,6 +24,7 @@ use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\WhitelistTrait;
 
 /**
+ * @internal
  * Provides shared functionality for making requests to GAPIC clients
  * agnostic of the protocol.
  */

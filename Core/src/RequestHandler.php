@@ -19,6 +19,11 @@ namespace Google\Cloud\Core;
 
 use Google\ApiCore\Serializer;
 
+/**
+ * @internal
+ * Responsible for forwarding the requests to their 
+ * respective GAPIC methdos via the request wrapper.
+ */
 class RequestHandler
 {
     use EmulatorTrait;
