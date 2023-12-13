@@ -314,12 +314,16 @@ class RequestWrapper
 
         if ($this->shouldSignRequest) {
             $quotaProject = $this->quotaProject;
-            $credentialsFetcher = $this->accessToken ? null : $this->getCredentialsFetcher();
-            $this->checkUniverseDomain($credentialsFetcher);
 
             if ($this->accessToken) {
+                // if an access token is provided, check the universe domain against "googleapis.com"
+                $this->checkUniverseDomain(null);
                 $request = $request->withHeader('authorization', 'Bearer ' . $this->accessToken);
             } else {
+                // if a credentials fetcher is provided, check the universe domain against the
+                // credential's universe domain
+                $credentialsFetcher = $this->getCredentialsFetcher();
+                $this->checkUniverseDomain($credentialsFetcher);
                 $request = $this->addAuthHeaders($request, $credentialsFetcher);
 
                 if ($credentialsFetcher instanceof GetQuotaProjectInterface) {
@@ -330,6 +334,9 @@ class RequestWrapper
             if ($quotaProject) {
                 $request = $request->withHeader('X-Goog-User-Project', $quotaProject);
             }
+        } else {
+            // If we are not signing the request, check the universe domain against "googleapis.com"
+            $this->checkUniverseDomain(null);
         }
 
         return $request;
