@@ -17,6 +17,9 @@
  */
 namespace Google\Cloud\Core;
 
+use Google\Protobuf\NullValue;
+use Google\Cloud\Core\Duration;
+
 /**
  * @internal
  * Supplies helper methods to interact with the APIs.
@@ -25,7 +28,7 @@ trait ApiHelpersTrait
 {
     use ArrayTrait;
     use TimeTrait;
-    
+
     /**
      * Format a struct for the API.
      *
@@ -196,10 +199,7 @@ trait ApiHelpersTrait
                 $seconds = (int) $d[0];
                 $nanos = $this->convertFractionToNanoSeconds($d[1]);
             }
-        } elseif (method_exists($value, 'get')) {
-            // intentionally removed the instanceof and used this
-            // to avoid cyclic dependencies
-            // @todo: Refactor this
+        } elseif ($value instanceof Duration) {
             $d = $value->get();
             $seconds = $d['seconds'];
             $nanos = $d['nanos'];

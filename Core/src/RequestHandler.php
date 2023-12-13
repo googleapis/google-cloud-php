@@ -21,7 +21,7 @@ use Google\ApiCore\Serializer;
 
 /**
  * @internal
- * Responsible for forwarding the requests to their 
+ * Responsible for forwarding the requests to their
  * respective GAPIC methdos via the request wrapper.
  */
 class RequestHandler

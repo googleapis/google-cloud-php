@@ -18,7 +18,6 @@
 namespace Google\Cloud\Core;
 
 use Google\ApiCore\CredentialsWrapper;
-use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\GrpcRequestWrapper;

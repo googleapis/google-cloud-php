@@ -19,7 +19,6 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\ApiCore\CredentialsWrapper;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
