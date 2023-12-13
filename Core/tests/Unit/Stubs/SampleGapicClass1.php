@@ -16,20 +16,16 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Core\Tests\Unit\Helpers;
+namespace Google\Cloud\Core\Tests\Unit\Stubs;
 
 /**
  * This class is only intended to be used in tests to either mock
  * or execute some code in a predicted manner.
  */
-class SampleGapicClass2
+class SampleGapicClass1
 {
-    public function sampleMethod(&$counter, $args)
+    public function sampleMethod(&$counter)
     {
         $counter++;
-    }
-
-    public function sampleMethod2($arg1, $arg2, $optionalArgs = [])
-    {
     }
 }

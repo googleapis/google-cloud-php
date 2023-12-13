@@ -26,8 +26,8 @@ use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
-use Google\Cloud\Core\Tests\Unit\Helpers\SampleGapicClass2;
-use Google\Cloud\Core\Tests\Unit\Helpers\SampleGapicClass1;
+use Google\Cloud\Core\Tests\Unit\Stubs\SampleGapicClass2;
+use Google\Cloud\Core\Tests\Unit\Stubs\SampleGapicClass1;
 
 /**
  * @group core
@@ -54,7 +54,7 @@ class RequestHandlerTest extends TestCase
     /**
      * @dataProvider gapicClassOrObjectProvider
      */
-    public function testgetGapicObject($gapicClasses, $callingClass)
+    public function testGetGapicObject($gapicClasses, $callingClass)
     {
         $counter = 0;
         $requestHandler = new RequestHandler($this->serializer->reveal(), $gapicClasses);
