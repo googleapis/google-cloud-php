@@ -133,11 +133,12 @@ class AddComponentCommand extends Command
         );
         $googleApisDir = realpath(explode('/google/', $yamlFilePath)[0]);
         $productHomePage = null;
-        $yamlFileContents = $yamlFileContents = Yaml::parse(
-            $this->loadRawFileContent($yamlFilePath)
-        );
-        $productDocumentation = $yamlFileContents['publishing']['documentation_uri'] ?? null;
-        $productHomePage = !empty($productDocumentation) ? explode('/docs', $productDocumentation)[0] : null;
+        $yamlFileContent = $this->loadRawFileContent($yamlFilePath);
+        if (!empty($yamlFileContent)) {
+            $yamlFileContents = $yamlFileContents = Yaml::parse($yamlFileContent);
+            $productDocumentation = $yamlFileContents['publishing']['documentation_uri'] ?? null;
+            $productHomePage = !empty($productDocumentation) ? explode('/docs', $productDocumentation)[0] : null;
+        }
         if ($this->isProductHomePageMissing($productHomePage)) {
             $productHomepage = $this->getHelper('question')->ask(
                 $input,
@@ -228,15 +229,24 @@ class AddComponentCommand extends Command
         return 0;
     }
 
-    private function loadRawFileContent(string $file, string $type = 'proto'): string
+    private function loadRawFileContent(string $file): string
     {
         if (file_exists($file)) {
             return file_get_contents($file);
         }
-        $fileUrlPath = explode('/googleapis/google/', $file)[1];
-        $fileUrl = 'https://raw.githubusercontent.com/googleapis/googleapis/master/google/' . $fileUrlPath;
+        if (count(explode('googleapis/', $file)) == 1) {
+            $fileUrlPath = $file;
+        } else {
+            $fileUrlPath = explode('googleapis/', $file)[1];
+        }
+        $fileUrl = 'https://raw.githubusercontent.com/googleapis/googleapis/master/' . $fileUrlPath;
         $client = new Client();
-        $response = $client->get($fileUrl);
+        try {
+            $response = $client->get($fileUrl);
+        } catch (\Exception $e) {
+            // Handle error gracefully
+            return '';
+        }
         return (string) $response->getBody();
     }
 
