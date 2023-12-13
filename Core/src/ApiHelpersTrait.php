@@ -23,6 +23,9 @@ namespace Google\Cloud\Core;
  */
 trait ApiHelpersTrait
 {
+    use ArrayTrait;
+    use TimeTrait;
+    
     /**
      * Format a struct for the API.
      *
