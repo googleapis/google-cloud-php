@@ -17,16 +17,10 @@ connected devices and build rich applications that integrate with the other big 
 
 To begin, install the preferred dependency manager for PHP, [Composer](https://getcomposer.org/).
 
-Now to install just this component:
+Now install this component:
 
 ```sh
 $ composer require google/cloud-iot
-```
-
-Or to install the entire suite of components at once:
-
-```sh
-$ composer require google/cloud
 ```
 
 ### Authentication
