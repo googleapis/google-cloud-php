@@ -17,19 +17,22 @@
 
 namespace Google\Cloud\PubSub;
 
-use Google\Auth\FetchAuthTokenInterface;
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ApiHelpersTrait;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\PubSub\Connection\Grpc;
-use Google\Cloud\PubSub\Connection\Rest;
+use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\Cloud\PubSub\V1\SchemaServiceClient;
+use Google\Cloud\PubSub\V1\SubscriberClient;
 use InvalidArgumentException;
-use Psr\Cache\CacheItemPoolInterface;
+use Google\Cloud\PubSub\V1\Schema as SchemaProto;
+use Google\Cloud\PubSub\V1\Schema\Type;
 
 /**
  * Google Cloud Pub/Sub allows you to send and receive
@@ -86,16 +89,25 @@ class PubSubClient
     use ClientTrait;
     use IncomingMessageTrait;
     use ResourceNameTrait;
+    use ApiHelpersTrait;
 
     const VERSION = '1.48.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
 
+    const GAPIC_KEYS = [
+        'gapicPublisherClient' => PublisherClient::class,
+        'gapicSubscriberClient' => SubscriberClient::class,
+        'gapicSchemaClient' => SchemaServiceClient::class
+    ];
+
     /**
-     * @var Connection\ConnectionInterface
+     * @var RequestHandler
      * @internal
+     * The request handler that is responsible for sending a request and
+     * serializing responses into relevant classes.
      */
-    protected $connection;
+    private $requestHandler;
 
     /**
      * @var bool
@@ -148,8 +160,6 @@ class PubSubClient
      */
     public function __construct(array $config = [])
     {
-        $this->clientConfig = $config;
-        $connectionType = $this->getConnectionType($config);
         $emulatorHost = getenv('PUBSUB_EMULATOR_HOST');
         $config += [
             'scopes' => [self::FULL_CONTROL_SCOPE],
@@ -158,13 +168,19 @@ class PubSubClient
             'emulatorHost' => $emulatorHost
         ];
 
-        if ($connectionType === 'grpc') {
-            $this->connection = new Grpc($this->configureAuthentication($config));
-            $this->encode = false;
-        } else {
-            $this->connection = new Rest($this->configureAuthentication($config));
-            $this->encode = true;
-        }
+        $this->clientConfig = $config;
+
+        // Initialize the request handler with the GAPICs.
+        // These GAPIC objects will be utilized later
+        // when a request is sent via the handler.
+        $gapics = $this->getGapicsFromConfig($config, self::GAPIC_KEYS);
+
+        $this->requestHandler = new RequestHandler(
+            $this->getSerializer(),
+            $gapics,
+            $config
+        );
+        
     }
 
     /**
@@ -270,14 +286,22 @@ class PubSubClient
     public function topics(array $options = [])
     {
         $resultLimit = $this->pluck('resultLimit', $options, false);
+        $projectId = $this->formatName('project', $this->projectId);
 
         return new ItemIterator(
             new PageIterator(
                 function (array $topic) {
                     return $this->topicFactory($topic['name'], $topic);
                 },
-                [$this->connection, 'listTopics'],
-                $options + ['project' => $this->formatName('project', $this->projectId)],
+                function ($options) use ($projectId) {
+                    return $this->requestHandler->sendRequest(
+                        PublisherClient::class,
+                        'listTopics',
+                        [$projectId],
+                        $options
+                    );
+                },
+                $options,
                 [
                     'itemsKey' => 'topics',
                     'resultLimit' => $resultLimit
@@ -369,6 +393,7 @@ class PubSubClient
     public function subscriptions(array $options = [])
     {
         $resultLimit = $this->pluck('resultLimit', $options, false);
+        $projectId = $this->formatName('project', $this->projectId);
 
         return new ItemIterator(
             new PageIterator(
@@ -379,8 +404,15 @@ class PubSubClient
                         $subscription
                     );
                 },
-                [$this->connection, 'listSubscriptions'],
-                $options + ['project' => $this->formatName('project', $this->projectId)],
+                function ($options) use ($projectId) {
+                    return $this->requestHandler->sendRequest(
+                        SubscriberClient::class,
+                        'listSubscriptions',
+                        [$projectId],
+                        $options
+                    );
+                },
+                $options,
                 [
                     'itemsKey' => 'subscriptions',
                     'resultLimit' => $resultLimit
@@ -430,7 +462,7 @@ class PubSubClient
      */
     public function snapshot($name, array $info = [])
     {
-        return new Snapshot($this->connection, $this->projectId, $name, $this->encode, $info);
+        return new Snapshot($this->requestHandler, $this->projectId, $name, $this->encode, $info);
     }
 
     /**
@@ -462,20 +494,28 @@ class PubSubClient
     public function snapshots(array $options = [])
     {
         $resultLimit = $this->pluck('resultLimit', $options, false);
+        $projectId = $this->formatName('project', $this->projectId);
 
         return new ItemIterator(
             new PageIterator(
                 function (array $snapshot) {
                     return new Snapshot(
-                        $this->connection,
+                        $this->requestHandler,
                         $this->projectId,
                         $this->pluckName('snapshot', $snapshot['name']),
                         $this->encode,
                         $snapshot
                     );
                 },
-                [$this->connection, 'listSnapshots'],
-                ['project' => $this->formatName('project', $this->projectId)] + $options,
+                function ($options) use ($projectId) {
+                    return $this->requestHandler->sendRequest(
+                        SubscriberClient::class,
+                        'listSnapshots',
+                        [$projectId],
+                        $options
+                    );
+                },
+                $options,
                 [
                     'itemsKey' => 'snapshots',
                     'resultLimit' => $resultLimit
@@ -499,7 +539,7 @@ class PubSubClient
     public function schema($schemaId, array $info = [])
     {
         return new Schema(
-            $this->connection,
+            $this->requestHandler,
             SchemaServiceClient::schemaName($this->projectId, $schemaId),
             $info
         );
@@ -528,12 +568,21 @@ class PubSubClient
      */
     public function createSchema($schemaId, $type, $definition, array $options = [])
     {
-        $res = $this->connection->createSchema([
-            'parent' => SchemaServiceClient::projectName($this->projectId),
-            'schemaId' => $schemaId,
+        $type = is_string($type) ? Type::value($type) : $type;
+        $parent = SchemaServiceClient::projectName($this->projectId);
+        $schema = new SchemaProto([
             'type' => $type,
             'definition' => $definition,
-        ] + $options);
+        ]);
+
+        $options['schemaId'] = $schemaId;
+
+        $res = $this->requestHandler->sendRequest(
+            SchemaServiceClient::class,
+            'createSchema',
+            [$parent, $schema],
+            $options
+        );
 
         return $this->schema($schemaId, $res);
     }
@@ -576,6 +625,7 @@ class PubSubClient
     public function schemas(array $options = [])
     {
         $resultLimit = $this->pluck('resultLimit', $options, false);
+        $projectId = $this->formatName('project', $this->projectId);
 
         return new ItemIterator(
             new PageIterator(
@@ -583,8 +633,15 @@ class PubSubClient
                     $parts = SchemaServiceClient::parseName($schema['name'], 'schema');
                     return $this->schema($parts['schema'], $schema);
                 },
-                [$this->connection, 'listSchemas'],
-                ['parent' => $this->formatName('project', $this->projectId)] + $options,
+                function ($options) use ($projectId) {
+                    return $this->requestHandler->sendRequest(
+                        SchemaServiceClient::class,
+                        'listSchemas',
+                        [$projectId],
+                        $options
+                    );
+                },
+                $options,
                 [
                     'itemsKey' => 'schemas',
                     'resultLimit' => $resultLimit
@@ -627,10 +684,14 @@ class PubSubClient
      */
     public function validateSchema(array $schema, array $options = [])
     {
-        return $this->connection->validateSchema([
-            'parent' => SchemaServiceClient::projectName($this->projectId),
-            'schema' => $schema,
-        ] + $options);
+        $parent = SchemaServiceClient::projectName($this->projectId);
+
+        return $this->requestHandler->sendRequest(
+            SchemaServiceClient::class,
+            'validateSchema',
+            [$parent, $schema],
+            $options
+        );
     }
 
     /**
@@ -673,6 +734,8 @@ class PubSubClient
      */
     public function validateMessage($schema, $message, $encoding, array $options = [])
     {
+        $parent = SchemaServiceClient::projectName($this->projectId);
+
         if (is_string($schema)) {
             $options['name'] = $schema;
         } elseif ($schema instanceof Schema) {
@@ -686,11 +749,15 @@ class PubSubClient
             ));
         }
 
-        return $this->connection->validateMessage([
-            'parent' => SchemaServiceClient::projectName($this->projectId),
-            'message' => $message,
-            'encoding' => $encoding,
-        ] + $options);
+        $options['message'] = $message;
+        $options['encoding'] = $encoding;
+
+        return $this->requestHandler->sendRequest(
+            SchemaServiceClient::class,
+            'validateMessage',
+            [$parent],
+            $options
+        );
     }
 
     /**
@@ -711,7 +778,7 @@ class PubSubClient
      */
     public function consume(array $requestData)
     {
-        return $this->messageFactory($requestData, $this->connection, $this->projectId, $this->encode);
+        return $this->messageFactory($requestData, $this->projectId, $this->encode);
     }
 
     /**
@@ -763,7 +830,7 @@ class PubSubClient
     private function topicFactory($name, array $info = [])
     {
         return new Topic(
-            $this->connection,
+            $this->requestHandler,
             $this->projectId,
             $name,
             $this->encode,
@@ -791,7 +858,7 @@ class PubSubClient
             : $topic;
 
         return new Subscription(
-            $this->connection,
+            $this->requestHandler,
             $this->projectId,
             $name,
             $topic,
@@ -801,18 +868,97 @@ class PubSubClient
     }
 
     /**
+     * Helper function that initializes the default config for handlwritten clients.
+     *
+     * @param array $config The client config passed on by the user.
+     * @param array $customAttrs The key/val pairs containing default values
+     * common for the handwritten clients.
+     *
+     * @return array The default config combined with the options passed on by the user
+     * and auth related config.
+     */
+    private function getDefaultClientConfig(array $config, array $customAttrs)
+    {
+        $defaultScope = $customAttrs['defaultScope'] ?? [];
+        $emulatorHost = $customAttrs['emulatorHost'] ?? '';
+
+        $config += [
+            'scopes' => [$defaultScope],
+            'projectIdRequired' => true,
+            'hasEmulator' => (bool) $emulatorHost,
+            'emulatorHost' => $emulatorHost
+        ];
+
+        if (isset($customAttrs['libVersion'])) {
+            $config['libVersion'] = $customAttrs['libVersion'];
+        }
+
+        $config = $this->configureAuthentication($config);
+
+        return $config;
+    }
+
+    /**
+     * Helper function that prepares the GAPIC classes list to be passed in to the
+     * RequestHandler before it's instantiation.
+     * For example, for PubSub if the user has passed 'gapicPublisherClient' in the $config
+     * it will be used as a GAPIC class while sending the requests via the RequestHandler.
+     *
+     * Otherwise the default publisher GAPIC client will be used.
+     *
+     * @param array $config The client config.
+     * @param array $classConfigMap A key/value pair where key is the GAPIC class
+     *  and the value is the config key name.
+     */
+    private function getGapicsFromConfig(array $config, array $classConfigMap)
+    {
+        $gapics = [];
+
+        foreach ($classConfigMap as $configKey => $cls) {
+            // If the config contains a GAPIC object we use the key as the GAPIC class
+            // and the value as the initialized obj.
+            // If the config doesn't contain the GAPIC config key, we pass the class
+            // which implies that the RequestHandler will instantiate the GAPIC on
+            // it's own.
+            $gapicObj = $this->pluck($configKey, $config, false);
+            $gapics[$cls] = $gapicObj ?? $cls;
+        }
+
+        return $gapics;
+    }
+
+    /**
+     * Returns the current serializer instance.
+     *
+     * @return Serializer
+     */
+    private function getSerializer()
+    {
+        return new Serializer([
+            'publish_time' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            },
+            'expiration_time' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            }
+        ], [], [], [
+            'google.protobuf.Duration' => function ($v) {
+                return $this->formatDurationForApi($v);
+            }
+        ]);
+    }
+
+    /**
      * @access private
      * @codeCoverageIgnore
      */
     public function __debugInfo()
     {
         $debugInfo = [];
-        if ($this->connection) {
-            $debugInfo['connection'] = get_class($this->connection);
-        }
 
         $debugInfo['projectId'] = $this->projectId;
         $debugInfo['encode'] = $this->encode;
+        $debugInfo['requestHandler'] = $this->requestHandler;
 
         return $debugInfo;
     }
