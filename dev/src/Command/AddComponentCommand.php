@@ -90,7 +90,7 @@ class AddComponentCommand extends Command
     {
         $proto = $input->getArgument('proto');
         $protoFile = file_exists($proto) ? substr($proto, strpos($proto, 'google/')) : $proto;
-        $new = NewComponent::fromProto($this->loadProtoContent($proto), $protoFile);
+        $new = NewComponent::fromProto($this->loadRawFileContent($proto), $protoFile);
         $new->componentPath = $this->rootPath;
 
         $output->writeln(''); // blank line
@@ -129,15 +129,15 @@ class AddComponentCommand extends Command
         $yamlFilePath = sprintf('%s/%s_%s.yaml',
             dirname($proto),
             strtolower($new->shortName),
-            $version 
+            $version
         );
         $googleApisDir = realpath(explode('/google/', $yamlFilePath)[0]);
         $productHomePage = null;
-        if (file_exists($yamlFilePath)) {
-            $yamlFileContents = Yaml::parseFile($yamlFilePath);
-            $productDocumentation = $yamlFileContents['publishing']['documentation_uri'] ?? null;
-            $productHomePage = !empty($productDocumentation) ? explode('/docs', $productDocumentation)[0] : null;
-        }
+        $yamlFileContents = $yamlFileContents = Yaml::parse(
+            $this->loadRawFileContent($yamlFilePath)
+        );
+        $productDocumentation = $yamlFileContents['publishing']['documentation_uri'] ?? null;
+        $productHomePage = !empty($productDocumentation) ? explode('/docs', $productDocumentation)[0] : null;
         if ($this->isProductHomePageMissing($productHomePage)) {
             $productHomepage = $this->getHelper('question')->ask(
                 $input,
@@ -228,14 +228,15 @@ class AddComponentCommand extends Command
         return 0;
     }
 
-    private function loadProtoContent(string $proto): string
+    private function loadRawFileContent(string $file, string $type = 'proto'): string
     {
-        if (file_exists($proto)) {
-            return file_get_contents($proto);
+        if (file_exists($file)) {
+            return file_get_contents($file);
         }
-        $protoUrl = 'https://raw.githubusercontent.com/googleapis/googleapis/master/' . $proto;
+        $fileUrlPath = explode('/googleapis/google/', $file)[1];
+        $fileUrl = 'https://raw.githubusercontent.com/googleapis/googleapis/master/google/' . $fileUrlPath;
         $client = new Client();
-        $response = $client->get($protoUrl);
+        $response = $client->get($fileUrl);
         return (string) $response->getBody();
     }
 
@@ -322,7 +323,7 @@ class AddComponentCommand extends Command
         try {
             $response = $client->request('GET', $productHomePage, ['http_errors' => false]);
             return $response->getStatusCode() === 404;
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             // Handle error gracefully
             return true;
         }
