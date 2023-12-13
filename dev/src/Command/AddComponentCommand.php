@@ -214,7 +214,7 @@ class AddComponentCommand extends Command
 
         if ($input->getOption('run-owlbot')) {
             $output->write("\n\nBuilding the library using Bazel\n");
-            $output->write($this->bazelBuildLibrary($new->shortName, $googleApisDir));
+            $output->write($this->bazelBuildLibrary($new->shortName, $googleApisDir, $new->protoPath));
             $output->write("\n\nCopying the Bazel output to the Google Cloud PHP directory\n");
             $output->write($this->copyBazelOutToGoogleCloudPhp($new->componentName, $googleApisDir, $output));
             $output->write("\n\nOwlbot post processing\n");
@@ -240,10 +240,11 @@ class AddComponentCommand extends Command
         return (string) $response->getBody();
     }
 
-    private function bazelBuildLibrary(string $libraryName, string $googleApisDir): string
+    private function bazelBuildLibrary(string $libraryName, string $googleApisDir, string $protoPath): string
     {
         $command = ['bazel', '--version'];
         $output = $this->runCommand($command);
+        $component = explode($libraryName, $protoPath)[0];
         // Extract the version number from the output
         $match = preg_match('/bazel\s+(?P<version>\d+\.\d+\.\d+)/', $output, $matches);
         if (!$match || $matches['version'] !== self::BAZEL_VERSION) {
@@ -252,7 +253,7 @@ class AddComponentCommand extends Command
         $command = [
             'bazel',
             'query',
-            'filter("-(php)$", kind("rule", //google/cloud/' . $libraryName .'/...:*))'
+            'filter("-(php)$", kind("rule", //' . $component . $libraryName .'/...:*))'
         ];
         $output = $this->runCommand($command, $googleApisDir);
         $command = ['grep', '-v', '-E', ':(proto|grpc|gapic)-.*-php$'];
