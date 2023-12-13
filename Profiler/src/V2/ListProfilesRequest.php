@@ -22,7 +22,7 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $parent = '';
+    private $parent = '';
     /**
      * The maximum number of items to return.
      * Default page_size is 1000.
@@ -30,7 +30,7 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    protected $page_size = 0;
+    private $page_size = 0;
     /**
      * The token to continue pagination and get profiles from a particular page.
      * When paginating, all other parameters provided to `ListProfiles` must match
@@ -38,7 +38,7 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    protected $page_token = '';
+    private $page_token = '';
 
     /**
      * Constructor.
