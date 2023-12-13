@@ -16,12 +16,13 @@ class CloudSqlOperations
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
+        \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Cloud\Sql\V1\CloudSqlResources::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         $pool->internalAddGeneratedFile(
             '
-²	
-.google/cloud/sql/v1/cloud_sql_operations.protogoogle.cloud.sql.v1google/api/client.proto-google/cloud/sql/v1/cloud_sql_resources.protogoogle/protobuf/empty.proto"=
+Ó	
+.google/cloud/sql/v1/cloud_sql_operations.protogoogle.cloud.sql.v1google/api/client.protogoogle/api/field_behavior.proto-google/cloud/sql/v1/cloud_sql_resources.protogoogle/protobuf/empty.proto"=
 SqlOperationsGetRequest
 	operation (	
 project (	"f
