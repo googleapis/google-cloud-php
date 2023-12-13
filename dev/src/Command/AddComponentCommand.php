@@ -29,6 +29,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Yaml\Yaml;
 use GuzzleHttp\Client;
 use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
@@ -54,6 +56,9 @@ class AddComponentCommand extends Command
         'phpunit.xml.dist.twig',
         'README.md.twig',
     ];
+    private const BAZEL_VERSION = '6.0.0';
+    private const OWLBOT_CLI_IMAGE = 'gcr.io/cloud-devrel-public-resources/owlbot-cli:latest';
+    private const OWLBOT_PHP_IMAGE = 'gcr.io/cloud-devrel-public-resources/owlbot-php';
 
     private $input;
     private $output;
@@ -74,15 +79,10 @@ class AddComponentCommand extends Command
             ->setDescription('Add a Component')
             ->addArgument('proto', InputArgument::REQUIRED, 'Path to service proto.')
             ->addOption(
-                'run-bazel',
+                'run-owlbot',
                 null,
                 InputOption::VALUE_NONE,
-                'The command to build the library using Bazel'
-            )->addOption(
-                'run-docker',
-                null,
-                InputOption::VALUE_NONE,
-                'The command to post process the generated code using docker. Skipped if --run-bazel is not used.'
+                'The command to generate the library using Owlbot'
             );
     }
 
@@ -126,18 +126,19 @@ class AddComponentCommand extends Command
         $version = basename(dirname($proto));
         // yaml file contains documentation_uri and
         // it is available at the same location as proto file
-        $libraryName = strtolower($new->componentName);
-        $yamlFileName = $libraryName . '_' . $version . '.yaml';
-        $yamlFilePath = dirname($proto) . '/' . $yamlFileName;
-        $googleApisDir = explode('/google/', $yamlFilePath)[0];
-        $productDocumentation = null;
+        $yamlFilePath = sprintf('%s/%s_%s.yaml',
+            dirname($proto),
+            strtolower($new->shortName),
+            $version 
+        );
+        $googleApisDir = realpath(explode('/google/', $yamlFilePath)[0]);
+        $productHomePage = null;
         if (file_exists($yamlFilePath)) {
-            $yamlFileContent = file_get_contents($yamlFilePath);
-            preg_match('/(?i)^.*\bdocumentation_uri\b.*$/m', $yamlFileContent, $matches);
-            $productDocumentation = explode('documentation_uri: ', $matches[0])[1];
-            $productHomepage = explode('/docs', $productDocumentation)[0];
+            $yamlFileContents = Yaml::parseFile($yamlFilePath);
+            $productDocumentation = $yamlFileContents['publishing']['documentation_uri'] ?? null;
+            $productHomePage = !empty($productDocumentation) ? explode('/docs', $productDocumentation)[0] : null;
         }
-        if (is_null($productDocumentation)) {
+        if ($this->isProductHomePageMissing($productHomePage)) {
             $productHomepage = $this->getHelper('question')->ask(
                 $input,
                 $output,
@@ -211,18 +212,13 @@ class AddComponentCommand extends Command
         $composer->updateMainComposer();
         $composer->createComponentComposer($new->displayName, $new->githubRepo);
 
-        if ($input->getOption('run-bazel')) {
-            // Build the library using Bazel
-            $this->bazelBuildLibrary($libraryName, $googleApisDir);
-            $this->askConfirmationAboutLogs($input, $output, 'bazel build step');
-            if ($input->getOption('run-docker')) {
-                // Copy the Bazel output to the Google Cloud directory
-                $this->copyBazelOutToGoogleCloudPhp($new->componentName, $googleApisDir, $output);
-                $this->askConfirmationAboutLogs($input, $output, 'copy code step');
-                // Post process the library
-                $this->postProcess();
-                $this->askConfirmationAboutLogs($input, $output, 'post process step');
-            }
+        if ($input->getOption('run-owlbot')) {
+            $output->write("\n\nBuilding the library using Bazel\n");
+            $output->write($this->bazelBuildLibrary($new->shortName, $googleApisDir));
+            $output->write("\n\nCopying the Bazel output to the Google Cloud PHP directory\n");
+            $output->write($this->copyBazelOutToGoogleCloudPhp($new->componentName, $googleApisDir, $output));
+            $output->write("\n\nOwlbot post processing\n");
+            $output->write($this->postProcess());
         }
 
         $output->writeln('');
@@ -243,72 +239,122 @@ class AddComponentCommand extends Command
         return (string) $response->getBody();
     }
 
-    private function bazelBuildLibrary(string $libraryName, string $googleApisDir): bool
+    private function bazelBuildLibrary(string $libraryName, string $googleApisDir): string
     {
-        $command = 'which bazel';
-        $output = exec($command, $output, $return);
-        if (strlen($output) == 0) {
-            exit("Error: Bazel is not installed. Please install Bazel before running this script.\n");
+        $command = ['bazel', '--version'];
+        $output = $this->runCommand($command);
+        // Extract the version number from the output
+        $match = preg_match('/bazel\s+(?P<version>\d+\.\d+\.\d+)/', $output, $matches);
+        if (!$match || $matches['version'] !== self::BAZEL_VERSION) {
+            throw new RuntimeException('Bazel 6.0.0 is not available');
         }
-        chdir($googleApisDir);
-        $command = "bazel query 'filter(\"-(php)$\", kind(\"rule\", //google/cloud/" . $libraryName .
-            "/...:*))' | grep -v -E \":(proto|grpc|gapic)-.*-php$\"";
-        exec($command, $output, $return);
-        if ($return === 0 && !empty($output)) {
-            $command = "bazel build " . $output[0];
-            exec($command, $output, $return);
-            if ($return === 0) {
-                chdir($this->rootPath);
-                return true;
-            }
-        }
-        chdir($this->rootPath);
-        exit("Something went wrong at bazelBuildLibrary, Please use the add-component command instead.\n");
+        $command = [
+            'bazel',
+            'query',
+            'filter("-(php)$", kind("rule", //google/cloud/' . $libraryName .'/...:*))'
+        ];
+        $output = $this->runCommand($command, $googleApisDir);
+        $command = ['grep', '-v', '-E', ':(proto|grpc|gapic)-.*-php$'];
+        $output = $this->runCommand($command, $googleApisDir, $output);
+        // @TODO: Some non printable characters are included in the output, why!
+        $output = preg_replace('/[^[:print:]]/', '', $output);
+        $command = ['bazel', 'build', $output];
+        return $this->runCommand($command, $googleApisDir, null, 'errorOutput');
     }
 
-    private function copyBazelOutToGoogleCloudPhp(string $componentName, string $googleApisDir): bool
+    private function copyBazelOutToGoogleCloudPhp(string $componentName, string $googleApisDir): string
     {
-        $command = 'which docker';
-        $output = exec($command, $output, $return);
+        $command = ['which', 'docker'];
+        $output = $this->runCommand($command);
         if (strlen($output) == 0) {
-            exit("Error: Docker is not installed. Please install Docker before running this script.\n");
+            throw new RuntimeException(
+                'Error: Docker is not available.'
+            );
         }
-        $googleApisDir = realpath($googleApisDir);
-        $owlbotImage = "gcr.io/cloud-devrel-public-resources/owlbot-cli:latest";
-        $command = "docker run --rm --user $(id -u):$(id -g) -v " . $this->rootPath .
-        ":/repo -v " . $googleApisDir . "/bazel-bin:/bazel-bin " . $owlbotImage .
-        " copy-bazel-bin --config-file=" . $componentName . "/.OwlBot.yaml --source-dir /bazel-bin --dest /repo >&2";
-        exec($command, $output, $return);
-        if ($return === 0) {
-            return true;
-        }
-        exit("Something went wrong at copyBazelOutToGoogleCloudPhp, Please use the add-component command instead.\n");
+        list($userId, $groupId) = $this->getUserAndGroupId();
+        $command = [
+            'docker',
+            'run',
+            '--rm',
+            '--user',
+            sprintf('%s::%s', $userId, $groupId),
+            '-v',
+            $this->rootPath . ':/repo',
+            '-v',
+            $googleApisDir . '/bazel-bin:/bazel-bin',
+            self::OWLBOT_CLI_IMAGE,
+            'copy-bazel-bin',
+            '--config-file',
+            $componentName . '/.OwlBot.yaml',
+            '--source-dir',
+            '/bazel-bin',
+            '--dest',
+            '/repo'
+        ];
+        return $this->runCommand($command, $googleApisDir);
     }
 
     private function postProcess()
     {
-        $command = "docker run --user $(id -u):$(id -g) --rm " .
-        "-v " . $this->rootPath .":/repo " .
-        "-w /repo gcr.io/cloud-devrel-public-resources/owlbot-php >&2";
-        exec($command, $output, $return);
-        if ($return === 0) {
-            return true;
-        }
-        exit("Something went wrong at postProcess, Please use the add-component command instead.\n");
+        list($userId, $groupId) = $this->getUserAndGroupId();
+        $command = [
+            'docker',
+            'run',
+            '--rm',
+            '--user',
+            sprintf('%s::%s', $userId, $groupId),
+            '-v',
+            $this->rootPath . ':/repo',
+            '-w',
+            '/repo',
+            self::OWLBOT_PHP_IMAGE
+        ];
+        return $this->runCommand($command, null, null, 'errorOutput');
     }
 
-    private function askConfirmationAboutLogs(InputInterface $input, OutputInterface $output, string $step)
+    private function isProductHomePageMissing(?string $productHomePage): bool
     {
-        $output->writeln('');
-        if (!$this->getHelper('question')->ask(
-            $input,
-            $output,
-            new ConfirmationQuestion(sprintf('Does the logs look good for %s [Y/n] ', $step), 'Y')
-        )) {
-            exit("Please do the ". $step ." manually \n");
+        $client = new Client();
+        if (!$productHomePage) {
+            return true;
         }
-        $output->writeln('------------------------------------------------------------');
-        $output->writeln('------------------------------------------------------------');
-        $output->writeln('');
+
+        try {
+            $response = $client->request('GET', $productHomePage, ['http_errors' => false]);
+            return $response->getStatusCode() === 404;
+        } catch (Exception $e) {
+            // Handle error gracefully
+            return true;
+        }
+    }
+
+    private function getUserAndGroupId() {
+        // Get the user ID and group ID
+        $userId = posix_getuid();
+        $groupId = posix_getgid();
+        return [$userId, $groupId];
+    }
+
+    private function runCommand(
+        array $command,
+        ?string $workDir = null,
+        ?string $input = null,
+        ?string $outputType = null
+    ): string
+    {
+        $process = new Process($command);
+        if (!is_null($workDir)) {
+            $process->setWorkingDirectory($workDir);
+        }
+        if (!is_null($input)) {
+            $process->setInput($input);
+        }
+        // `mustRun` will throw a ProcessFailedException if the process
+        // couldn't be executed successfully.
+        $process->mustRun();
+        if ($outputType == 'errorOutput') {
+            return $process->getErrorOutput();
+        }
+        return $process->getOutput();
     }
 }
