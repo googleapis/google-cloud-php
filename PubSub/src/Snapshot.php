@@ -17,7 +17,9 @@
 
 namespace Google\Cloud\PubSub;
 
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
+use Google\Cloud\PubSub\V1\SubscriberClient;
 
 /**
  * Represents a Pub/Sub Snapshot
@@ -36,10 +38,12 @@ class Snapshot
     use ResourceNameTrait;
 
     /**
-     * @var ConnectionInterface
+     * @var RequestHandler
      * @internal
+     * The request handler that is responsible for sending a request and
+     * serializing responses into relevant classes.
      */
-    protected $connection;
+    private $requestHandler;
 
     /**
      * @var string
@@ -67,9 +71,8 @@ class Snapshot
     private $clientConfig;
 
     /**
-     * @param ConnectionInterface $connection A connection to Cloud Pub/Sub
-     *        This object is created by PubSubClient,
-     *        and should not be instantiated outside of this client.
+     * @param RequestHandler The request handler that is responsible for sending a request
+     * and serializing responses into relevant classes.
      * @param string $projectId The current Project ID.
      * @param string $name The snapshot name.
      * @param bool $encode Whether certain request arguments should be base64-encoded.
@@ -84,14 +87,14 @@ class Snapshot
      *        associated with this instance.
      */
     public function __construct(
-        ConnectionInterface $connection,
+        RequestHandler $requestHandler,
         $projectId,
         $name,
         $encode,
         array $info = [],
         array $clientConfig = []
     ) {
-        $this->connection = $connection;
+        $this->requestHandler = $requestHandler;
         $this->projectId = $projectId;
         $this->encode = $encode;
         $this->clientConfig = $clientConfig;
@@ -164,11 +167,17 @@ class Snapshot
             throw new \BadMethodCallException('A subscription is required to create a snapshot.');
         }
 
-        return $this->info = $this->connection->createSnapshot([
-            'project' => $this->formatName('project', $this->projectId),
-            'name' => $this->name,
-            'subscription' => $this->info['subscription']
-        ]);
+        $options['project'] = $this->formatName('project', $this->projectId);
+
+        $this->info = $this->requestHandler->sendRequest(
+            SubscriberClient::class,
+            'createSnapshot',
+            [$this->name, $this->info['subscription']],
+            $options,
+            true
+        );
+
+        return $this->info;
     }
 
     /**
@@ -186,9 +195,12 @@ class Snapshot
      */
     public function delete(array $options = [])
     {
-        $this->connection->deleteSnapshot([
-            'snapshot' => $this->name
-        ]);
+        $this->requestHandler->sendRequest(
+            SubscriberClient::class,
+            'deleteSnapshot',
+            [$this->name],
+            $options
+        );
     }
 
     /**
@@ -205,7 +217,7 @@ class Snapshot
     {
         if ($this->info['topic']) {
             return new Topic(
-                $this->connection,
+                $this->requestHandler,
                 $this->projectId,
                 $this->info['topic'],
                 $this->encode,
@@ -230,7 +242,13 @@ class Snapshot
     public function subscription()
     {
         return $this->info['subscription']
-            ? new Subscription($this->connection, $this->projectId, $this->info['subscription'], null, $this->encode)
+            ? new Subscription(
+                $this->requestHandler,
+                $this->projectId,
+                $this->info['subscription'],
+                null,
+                $this->encode
+            )
             : null;
     }
 
@@ -241,7 +259,7 @@ class Snapshot
     public function __debugInfo()
     {
         return [
-            'connection' => get_class($this->connection),
+            'requestHandler' => $this->requestHandler,
             'projectId' => $this->projectId,
             'name' => $this->name,
             'info' => $this->info

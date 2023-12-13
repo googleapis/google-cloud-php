@@ -18,7 +18,10 @@
 namespace Google\Cloud\PubSub;
 
 use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\PubSub\Connection\ConnectionInterface;
+use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\PubSub\V1\SchemaServiceClient;
+use Google\Cloud\PubSub\V1\SchemaView;
+use Google\Cloud\PubSub\V1\Schema as SchemaProto;
 
 /**
  * Represents a Pub/Sub Schema resource.
@@ -39,10 +42,12 @@ use Google\Cloud\PubSub\Connection\ConnectionInterface;
 class Schema
 {
     /**
-     * @var ConnectionInterface
+     * @var RequestHandler
      * @internal
+     * The request handler that is responsible for sending a request and
+     * serializing responses into relevant classes.
      */
-    private $connection;
+    private $requestHandler;
 
     /**
      * @var string
@@ -55,18 +60,17 @@ class Schema
     private $info;
 
     /**
-     * @param ConnectionInterface $connection A connection to Cloud Pub/Sub
-     *        This object is created by PubSubClient,
-     *        and should not be instantiated outside of this client.
+     * @param RequestHandler The request handler that is responsible for sending a request
+     * and serializing responses into relevant classes.
      * @param string $name The schema name.
      * @param array $info [optional] Schema data.
      */
     public function __construct(
-        ConnectionInterface $connection,
+        RequestHandler $requestHandler,
         $name,
         array $info = []
     ) {
-        $this->connection = $connection;
+        $this->requestHandler = $requestHandler;
         $this->name = $name;
         $this->info = $info;
     }
@@ -99,9 +103,12 @@ class Schema
      */
     public function delete(array $options = [])
     {
-        return $this->connection->deleteSchema([
-            'name' => $this->name
-        ] + $options);
+        return $this->requestHandler->sendRequest(
+            SchemaServiceClient::class,
+            'deleteSchema',
+            [$this->name],
+            $options
+        );
     }
 
     /**
@@ -170,9 +177,16 @@ class Schema
             'view' => 'FULL',
         ];
 
-        return $this->info = $this->connection->getSchema([
-            'name' => $this->name,
-        ] + $options);
+        if (is_string($options['view'])) {
+            $options['view'] = SchemaView::value($options['view']);
+        }
+
+        return $this->info = $this->requestHandler->sendRequest(
+            SchemaServiceClient::class,
+            'getSchema',
+            [$this->name],
+            $options
+        );
     }
 
     /**
@@ -214,9 +228,12 @@ class Schema
      */
     public function listRevisions(array $options = [])
     {
-        return $this->connection->listRevisions([
-                'name' => $this->name,
-            ] + $options);
+        return $this->requestHandler->sendRequest(
+            SchemaServiceClient::class,
+            'listRevisions',
+            [$this->name],
+            $options
+        );
     }
 
     /**
@@ -241,13 +258,18 @@ class Schema
      */
     public function commit($definition, $type, array $options = [])
     {
-        return $this->connection->commitSchema([
-                'schema' => [
-                    'definition' => $definition,
-                    'type' => $type,
-                ],
-                'name' => $this->name
-            ] + $options);
+        $schemaObj = new SchemaProto([
+            'name' => $this->name,
+            'definition' => $definition,
+            'type' => $type,
+        ]);
+
+        return $this->requestHandler->sendRequest(
+            SchemaServiceClient::class,
+            'commitSchema',
+            [$this->name, $schemaObj],
+            $options
+        );
     }
 
     /**
@@ -266,8 +288,13 @@ class Schema
      */
     public function deleteRevision($revisionId)
     {
-        return $this->connection->deleteRevision([
-            'name' => $this->name .'@' . $revisionId
-        ]);
+        $revisionName = $this->name .'@' . $revisionId;
+
+        return $this->requestHandler->sendRequest(
+            SchemaServiceClient::class,
+            'deleteSchemaRevision',
+            [$revisionName, null],
+            []
+        );
     }
 }
