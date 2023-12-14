@@ -132,7 +132,6 @@ class AddComponentCommand extends Command
             strtolower($new->shortName),
             $version
         );
-        $googleApisDir = realpath(explode('/google/', $yamlFilePath)[0]);
         $productHomePage = null;
         $yamlFileContent = $this->loadYamlConfigContent($yamlFilePath);
         if (!empty($yamlFileContent)) {
@@ -213,8 +212,8 @@ class AddComponentCommand extends Command
         $composer->updateMainComposer();
         $composer->createComponentComposer($new->displayName, $new->githubRepo);
 
-        $googleApisGenDir = realpath($input->getOption('run-owlbot'));
-        if ($googleApisGenDir) {
+        if ($input->getOption('run-owlbot')) {
+            $googleApisGenDir = realpath($input->getOption('run-owlbot'));
             $this->checkDockerAvailable();
             $output->writeln("\n\nCopying the library code from googleapis-gen");
             $output->writeln($this->owlbotCopyCode($new->componentName, $googleApisGenDir));
