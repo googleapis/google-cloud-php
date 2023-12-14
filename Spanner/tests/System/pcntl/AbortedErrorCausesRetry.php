@@ -1,6 +1,6 @@
 <?php
 
-include __DIR__ . '/../../../../vendor/autoload.php';
+include __DIR__ . '/../../../vendor/autoload.php';
 include __DIR__ . '/forked-process-test.php';
 
 use Google\Cloud\Core\Exception\AbortedException;
