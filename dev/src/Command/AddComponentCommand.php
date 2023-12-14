@@ -217,8 +217,6 @@ class AddComponentCommand extends Command
             $this->checkDockerAvailable();
             $output->writeln("\n\nCopying the library code from googleapis-gen");
             $output->writeln($this->owlbotCopyCode($new->componentName, $googleApisGenDir));
-            $output->writeln("\n\nCopying the Bazel output to the Google Cloud PHP directory");
-            $output->writeln($this->owlbotCopyBazelBin($new->componentName, $googleApisGenDir));
             $output->writeln("\n\nOwlbot post processing");
             $output->writeln($this->postProcess());
         }
@@ -277,10 +275,13 @@ class AddComponentCommand extends Command
 
     private function owlbotCopyCode(string $componentName, string $googleApisGenDir): string
     {
+        list($userId, $groupId) = $this->getUserAndGroupId();
         $command = [
             'docker',
             'run',
             '--rm',
+            '--user',
+            sprintf('%s::%s', $userId, $groupId),
             '-v',
             $this->rootPath . ':/repo',
             '-v',
@@ -299,18 +300,20 @@ class AddComponentCommand extends Command
 
     private function owlbotCopyBazelBin(string $componentName, string $googleApisGenDir): string
     {
+        list($userId, $groupId) = $this->getUserAndGroupId();
         $command = [
             'docker',
             'run',
             '--rm',
+            '--user',
+            sprintf('%s::%s', $userId, $groupId),
             '-v',
             $this->rootPath . ':/repo',
             '-v',
             $googleApisGenDir . '/bazel-bin:/bazel-bin',
             self::OWLBOT_CLI_IMAGE,
             'copy-bazel-bin',
-            '--config-file',
-            $componentName . '/.OwlBot.yaml',
+            sprintf('--config-file=%s/.OwlBot.yaml', $componentName),
             '--source-dir',
             '/bazel-bin',
             '--dest',
@@ -321,10 +324,13 @@ class AddComponentCommand extends Command
 
     private function postProcess()
     {
+        list($userId, $groupId) = $this->getUserAndGroupId();
         $command = [
             'docker',
             'run',
             '--rm',
+            '--user',
+            sprintf('%s::%s', $userId, $groupId),
             '-v',
             $this->rootPath . ':/repo',
             '-w',
@@ -390,5 +396,12 @@ class AddComponentCommand extends Command
                 'Error: Docker is not available.'
             );
         }
+    }
+
+    private function getUserAndGroupId() {
+        // Get the user ID and group ID
+        $userId = posix_getuid();
+        $groupId = posix_getgid();
+        return [$userId, $groupId];
     }
 }
