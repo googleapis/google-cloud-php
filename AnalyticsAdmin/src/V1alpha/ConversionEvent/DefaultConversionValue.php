@@ -22,7 +22,7 @@ class DefaultConversionValue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional double value = 1;</code>
      */
-    protected $value = null;
+    private $value = null;
     /**
      * When a conversion event for this event_name has no set currency,
      * this currency will be applied as the default. Must be in ISO 4217
@@ -31,7 +31,7 @@ class DefaultConversionValue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string currency_code = 2;</code>
      */
-    protected $currency_code = null;
+    private $currency_code = null;
 
     /**
      * Constructor.
