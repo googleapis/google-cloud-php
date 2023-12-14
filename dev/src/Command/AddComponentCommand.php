@@ -82,7 +82,7 @@ class AddComponentCommand extends Command
             ->addOption(
                 'run-owlbot',
                 null,
-                InputOption::VALUE_NONE,
+                InputOption::VALUE_REQUIRED,
                 'The command to generate the library using Owlbot'
             );
     }
@@ -213,11 +213,13 @@ class AddComponentCommand extends Command
         $composer->updateMainComposer();
         $composer->createComponentComposer($new->displayName, $new->githubRepo);
 
-        if ($input->getOption('run-owlbot')) {
-            $output->writeln("\n\nBuilding the library using Bazel");
-            $output->writeln($this->bazelBuildLibrary($new->shortName, $googleApisDir, $new->protoPath));
+        $googleApisGenDir = realpath($input->getOption('run-owlbot'));
+        if ($googleApisGenDir) {
+            $this->checkDockerAvailable();
+            $output->writeln("\n\nCopying the library code from googleapis-gen");
+            $output->writeln($this->owlbotCopyCode($new->componentName, $googleApisGenDir));
             $output->writeln("\n\nCopying the Bazel output to the Google Cloud PHP directory");
-            $output->writeln($this->copyBazelOutToGoogleCloudPhp($new->componentName, $googleApisDir, $output));
+            $output->writeln($this->owlbotCopyBazelBin($new->componentName, $googleApisGenDir));
             $output->writeln("\n\nOwlbot post processing");
             $output->writeln($this->postProcess());
         }
@@ -274,15 +276,8 @@ class AddComponentCommand extends Command
         return $this->runCommand($command, $googleApisDir, null, true);
     }
 
-    private function copyBazelOutToGoogleCloudPhp(string $componentName, string $googleApisDir): string
+    private function owlbotCopyCode(string $componentName, string $googleApisGenDir): string
     {
-        $command = ['which', 'docker'];
-        $output = $this->runCommand($command);
-        if (strlen($output) == 0) {
-            throw new RuntimeException(
-                'Error: Docker is not available.'
-            );
-        }
         $command = [
             'docker',
             'run',
@@ -290,7 +285,29 @@ class AddComponentCommand extends Command
             '-v',
             $this->rootPath . ':/repo',
             '-v',
-            $googleApisDir . '/bazel-bin:/bazel-bin',
+            $googleApisGenDir . ':/googleapis-gen',
+            '-w',
+            '/repo',
+            '--env',
+            'HOME=/tmp',
+            self::OWLBOT_CLI_IMAGE,
+            'copy-code',
+            sprintf('--config-file=%s/.OwlBot.yaml', $componentName),
+            '--source-repo=/googleapis-gen'
+        ];
+        return $this->runCommand($command);
+    }
+
+    private function owlbotCopyBazelBin(string $componentName, string $googleApisGenDir): string
+    {
+        $command = [
+            'docker',
+            'run',
+            '--rm',
+            '-v',
+            $this->rootPath . ':/repo',
+            '-v',
+            $googleApisGenDir . '/bazel-bin:/bazel-bin',
             self::OWLBOT_CLI_IMAGE,
             'copy-bazel-bin',
             '--config-file',
@@ -300,7 +317,7 @@ class AddComponentCommand extends Command
             '--dest',
             '/repo'
         ];
-        return $this->runCommand($command, $googleApisDir);
+        return $this->runCommand($command);
     }
 
     private function postProcess()
@@ -364,5 +381,15 @@ class AddComponentCommand extends Command
             return $matches[1] . $matches[2] . '/' . $matches[3];
         }
         return null;
+    }
+
+    private function checkDockerAvailable() {
+        $command = ['which', 'docker'];
+        $output = $this->runCommand($command);
+        if (strlen($output) == 0) {
+            throw new RuntimeException(
+                'Error: Docker is not available.'
+            );
+        }
     }
 }
