@@ -35,6 +35,7 @@ use GuzzleHttp\Client;
 use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
 use RuntimeException;
+use Exception;
 
 /**
  * Add a Component
@@ -90,7 +91,7 @@ class AddComponentCommand extends Command
     {
         $proto = $input->getArgument('proto');
         $protoFile = file_exists($proto) ? substr($proto, strpos($proto, 'google/')) : $proto;
-        $new = NewComponent::fromProto($this->loadRawFileContent($proto), $protoFile);
+        $new = NewComponent::fromProto($this->loadProtoContent($proto), $protoFile);
         $new->componentPath = $this->rootPath;
 
         $output->writeln(''); // blank line
@@ -133,11 +134,10 @@ class AddComponentCommand extends Command
         );
         $googleApisDir = realpath(explode('/google/', $yamlFilePath)[0]);
         $productHomePage = null;
-        $yamlFileContent = $this->loadRawFileContent($yamlFilePath);
+        $yamlFileContent = $this->loadYamlConfigContent($yamlFilePath);
         if (!empty($yamlFileContent)) {
-            $yamlFileContents = $yamlFileContents = Yaml::parse($yamlFileContent);
-            $productDocumentation = $yamlFileContents['publishing']['documentation_uri'] ?? null;
-            $productHomePage = !empty($productDocumentation) ? explode('/docs', $productDocumentation)[0] : null;
+            $productDocumentation = $yamlFileContent['publishing']['documentation_uri'] ?? null;
+            $productHomePage = $this->getHomePageFromDocsUrl($productDocumentation);
         }
         if ($this->isProductHomePageMissing($productHomePage)) {
             $productHomepage = $this->getHelper('question')->ask(
@@ -214,12 +214,12 @@ class AddComponentCommand extends Command
         $composer->createComponentComposer($new->displayName, $new->githubRepo);
 
         if ($input->getOption('run-owlbot')) {
-            $output->write("\n\nBuilding the library using Bazel\n");
-            $output->write($this->bazelBuildLibrary($new->shortName, $googleApisDir, $new->protoPath));
-            $output->write("\n\nCopying the Bazel output to the Google Cloud PHP directory\n");
-            $output->write($this->copyBazelOutToGoogleCloudPhp($new->componentName, $googleApisDir, $output));
-            $output->write("\n\nOwlbot post processing\n");
-            $output->write($this->postProcess());
+            $output->writeln("\n\nBuilding the library using Bazel");
+            $output->writeln($this->bazelBuildLibrary($new->shortName, $googleApisDir, $new->protoPath));
+            $output->writeln("\n\nCopying the Bazel output to the Google Cloud PHP directory");
+            $output->writeln($this->copyBazelOutToGoogleCloudPhp($new->componentName, $googleApisDir, $output));
+            $output->writeln("\n\nOwlbot post processing");
+            $output->writeln($this->postProcess());
         }
 
         $output->writeln('');
@@ -229,24 +229,24 @@ class AddComponentCommand extends Command
         return 0;
     }
 
-    private function loadRawFileContent(string $file): string
+    private function loadYamlConfigContent(string $yaml): ?array
     {
-        if (file_exists($file)) {
-            return file_get_contents($file);
-        }
-        if (count(explode('googleapis/', $file)) == 1) {
-            $fileUrlPath = $file;
-        } else {
-            $fileUrlPath = explode('googleapis/', $file)[1];
-        }
-        $fileUrl = 'https://raw.githubusercontent.com/googleapis/googleapis/master/' . $fileUrlPath;
-        $client = new Client();
         try {
-            $response = $client->get($fileUrl);
-        } catch (\Exception $e) {
-            // Handle error gracefully
-            return '';
+            return Yaml::parse($this->loadProtoContent($yaml));
+        } catch (Exception $e) {
+            // Handle error gracefully.
+            return null;
         }
+    }
+
+    private function loadProtoContent(string $proto): string
+    {
+        if (file_exists($proto)) {
+            return file_get_contents($proto);
+        }
+        $protoUrl = 'https://raw.githubusercontent.com/googleapis/googleapis/master/' . $proto;
+        $client = new Client();
+        $response = $client->get($protoUrl);
         return (string) $response->getBody();
     }
 
@@ -283,13 +283,10 @@ class AddComponentCommand extends Command
                 'Error: Docker is not available.'
             );
         }
-        list($userId, $groupId) = $this->getUserAndGroupId();
         $command = [
             'docker',
             'run',
             '--rm',
-            '--user',
-            sprintf('%s::%s', $userId, $groupId),
             '-v',
             $this->rootPath . ':/repo',
             '-v',
@@ -308,13 +305,10 @@ class AddComponentCommand extends Command
 
     private function postProcess()
     {
-        list($userId, $groupId) = $this->getUserAndGroupId();
         $command = [
             'docker',
             'run',
             '--rm',
-            '--user',
-            sprintf('%s::%s', $userId, $groupId),
             '-v',
             $this->rootPath . ':/repo',
             '-w',
@@ -334,17 +328,10 @@ class AddComponentCommand extends Command
         try {
             $response = $client->request('GET', $productHomePage, ['http_errors' => false]);
             return $response->getStatusCode() === 404;
-        } catch (\Exception $e) {
-            // Handle error gracefully
+        } catch (Exception $e) {
+            // Handle error gracefully.
             return true;
         }
-    }
-
-    private function getUserAndGroupId() {
-        // Get the user ID and group ID
-        $userId = posix_getuid();
-        $groupId = posix_getgid();
-        return [$userId, $groupId];
     }
 
     private function runCommand(
@@ -368,5 +355,14 @@ class AddComponentCommand extends Command
             return $process->getErrorOutput();
         }
         return $process->getOutput();
+    }
+
+    private function getHomePageFromDocsUrl(?string $url) {
+        $pattern = "/^(https?:\/\/)?([^\/]+)\/(.*?)\/docs\/(.+)/";
+        preg_match($pattern, $url, $matches);
+        if (isset($matches[1]) && isset($matches[2]) && isset($matches[3])) {
+            return $matches[1] . $matches[2] . '/' . $matches[3];
+        }
+        return null;
     }
 }
