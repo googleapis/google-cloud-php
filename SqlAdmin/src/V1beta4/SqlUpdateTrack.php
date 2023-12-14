@@ -33,11 +33,21 @@ class SqlUpdateTrack
      * Generated from protobuf enum <code>stable = 2;</code>
      */
     const stable = 2;
+    /**
+     * For instance update that requires a restart, this update track indicates
+     * your instance prefer to let Cloud SQL choose the timing of restart (within
+     * its Maintenance window, if applicable) to be at least 5 weeks after the
+     * notification.
+     *
+     * Generated from protobuf enum <code>week5 = 3;</code>
+     */
+    const week5 = 3;
 
     private static $valueToName = [
         self::SQL_UPDATE_TRACK_UNSPECIFIED => 'SQL_UPDATE_TRACK_UNSPECIFIED',
         self::canary => 'canary',
         self::stable => 'stable',
+        self::week5 => 'week5',
     ];
 
     public static function name($value)
