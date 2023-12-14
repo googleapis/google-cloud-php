@@ -41,31 +41,11 @@ php.owlbot_copy_version(
     version_string="longrunning",
 )
 
-# Fix namespace for LongRunning GAPIC (ApiCore)
-# This is defined in longrunning_gapic.yaml, but not being used by
-# gapic-generator-php
+# Add an alias for the previous namespace
 s.replace(
-    "src/ApiCore/**/*.php",
-    r"^namespace Google\\LongRunning(.*);$",
-    r"namespace Google\\ApiCore\\LongRunning\1;")
-s.replace(
-    "src/ApiCore/LongRunning/OperationsClient.php",
-    r"^use Google\\LongRunning\\Gapic\\OperationsGapicClient;$",
-    r"use Google\\ApiCore\\LongRunning\\Gapic\\OperationsGapicClient;")
-s.replace(
-    "tests/**/*.php",
-    r"\\Google\\LongRunning\\OperationsClient",
-    r"\\Google\\ApiCore\\LongRunning\\OperationsClient")
-
-# remove class_alias code
-s.replace(
-    "src/**/*.php",
-    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
-    + "\n"
-    + r"^class_alias\(.*\);$"
-    + "\n",
-    '')
-
+    "src/LongRunning/OperationsClient.php",
+    r"^}$\n",
+    r"}\n\nclass_alias('Google\\LongRunning\\OperationsClient', 'Google\\ApiCore\\LongRunning\\OperationsClient');\n")
 
 ### [START] protoc backwards compatibility fixes
 

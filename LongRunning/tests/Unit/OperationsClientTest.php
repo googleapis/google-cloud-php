@@ -51,13 +51,13 @@ class OperationsClientTest extends GeneratedTest
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /** @return \Google\ApiCore\LongRunning\OperationsClient */
+    /** @return \Google\LongRunning\OperationsClient */
     private function createClient(array $options = [])
     {
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-        return new \Google\ApiCore\LongRunning\OperationsClient($options);
+        return new \Google\LongRunning\OperationsClient($options);
     }
 
     /** @test */

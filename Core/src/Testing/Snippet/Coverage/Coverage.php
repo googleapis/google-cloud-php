@@ -34,6 +34,7 @@ class Coverage
         '/\\\Google\\\Cloud\\\Translate\\\TranslateClient/',
         '/\\\Google\\\Cloud\\\Translate\\\Connection\\\Rest/',
         '/\\\Google\\\Cloud\\\Translate\\\Connection\\\ConnectionInterface/',
+        '/\\\Google\\\ApiCore\\\LongRunning\\\Gapic\\\OperationsGapicClient/',
     ];
 
     /**
