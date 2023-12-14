@@ -1600,6 +1600,8 @@ class BigtableTableAdminGapicClient
      * @param array          $optionalArgs  {
      *     Optional.
      *
+     *     @type bool $ignoreWarnings
+     *           Optional. If true, ignore safety checks when modifying the column families.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1617,6 +1619,10 @@ class BigtableTableAdminGapicClient
         $request->setName($name);
         $request->setModifications($modifications);
         $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['ignoreWarnings'])) {
+            $request->setIgnoreWarnings($optionalArgs['ignoreWarnings']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('ModifyColumnFamilies', Table::class, $optionalArgs, $request)->wait();
