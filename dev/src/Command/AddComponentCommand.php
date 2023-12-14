@@ -142,7 +142,7 @@ class AddComponentCommand extends Command
             $output,
             new Question('What is the product documentation URL? ')
         );
-        $productHomePage = $this->getHomePageFromDocsUrl($productDocumentation); 
+        $productHomePage = $this->getHomePageFromDocsUrl($productDocumentation);
         $productHomepage = $productHomepage ?? $this->getHelper('question')->ask(
             $input,
             $output,
@@ -210,9 +210,18 @@ class AddComponentCommand extends Command
         $composer->updateMainComposer();
         $composer->createComponentComposer($new->displayName, $new->githubRepo);
 
+        if ($input->getOption('bazel-path')) {
+            // @TODO: Work on this.
+            // bazel query and ask the user which component needs to be generated.
+            // bazel build the component.
+            // bazel copy code.
+            // Post process.
+            // Also, take care of the case where both the options are given.
+            // Either take care of this case here or search for symfony one-of options.
+        }
         if ($input->getOption('googleapis-gen-path')) {
-            $googleApisGenDir = realpath($input->getOption('googleapis-gen-path'));
             $this->checkDockerAvailable();
+            $googleApisGenDir = realpath($input->getOption('googleapis-gen-path'));
             $output->writeln("\n\nCopying the library code from googleapis-gen");
             $output->writeln($this->owlbotCopyCode($new->componentName, $googleApisGenDir));
             $output->writeln("\n\nOwlbot post processing");
