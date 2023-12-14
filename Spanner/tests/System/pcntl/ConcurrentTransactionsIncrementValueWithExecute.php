@@ -4,7 +4,6 @@ include __DIR__ . '/../../../../vendor/autoload.php';
 include __DIR__ . '/forked-process-test.php';
 
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Tests\System\SpannerTestCase;
 
 list ($dbName, $tableName, $id) = getInputArgs();
@@ -12,13 +11,11 @@ list ($dbName, $tableName, $id) = getInputArgs();
 $tmpFile = sys_get_temp_dir() . '/ConcurrentTransactionsIncremementValueWithExecute.txt';
 setupIterationTracker($tmpFile);
 
-TestHelpers::SystemBootstrap();
-SpannerTestCase::setUpBeforeClass();
-$db1 = SpannerTestCase::getDatabaseInstance($dbName);
-$db2 = SpannerTestCase::getDatabaseInstance($dbName);
-
-$callable = function (Database $db, $tableName, $id) use ($tmpFile) {
+$callable = function ($dbName, $tableName, $id) use ($tmpFile) {
     $iterations = 0;
+    TestHelpers::SystemBootstrap();
+    SpannerTestCase::setUpBeforeClass();
+    $db = SpannerTestCase::getDatabaseInstance($dbName);
     $db->runTransaction(function ($transaction) use ($id, $tableName, &$iterations) {
         $iterations++;
 
@@ -37,21 +34,21 @@ $callable = function (Database $db, $tableName, $id) use ($tmpFile) {
     updateIterationTracker($tmpFile, $iterations);
 };
 
-$delay = 5000;
+$delay = 2000;
 $retryLimit = 3;
 if ($childPID1 = pcntl_fork()) {
     usleep($delay);
 
-    $callable($db1, $tableName, $id);
+    $callable($dbName, $tableName, $id);
 
     while (pcntl_waitpid($childPID1, $status1, WNOHANG) == 0 && $retryLimit) {
         usleep(2 * $delay);
         $retryLimit--;
     }
 } else {
-    usleep($delay);
+    usleep(2 * $delay);
 
-    $callable($db2, $tableName, $id);
+    $callable($dbName, $tableName, $id);
 
     exit(0);
 }
