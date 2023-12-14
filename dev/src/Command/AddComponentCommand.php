@@ -271,7 +271,7 @@ class AddComponentCommand extends Command
         // @TODO: Some non printable characters are included in the output, why!
         $output = preg_replace('/[^[:print:]]/', '', $output);
         $command = ['bazel', 'build', $output];
-        return $this->runCommand($command, $googleApisDir, null, 'errorOutput');
+        return $this->runCommand($command, $googleApisDir, null, true);
     }
 
     private function copyBazelOutToGoogleCloudPhp(string $componentName, string $googleApisDir): string
@@ -315,7 +315,7 @@ class AddComponentCommand extends Command
             '/repo',
             self::OWLBOT_PHP_IMAGE
         ];
-        return $this->runCommand($command, null, null, 'errorOutput');
+        return $this->runCommand($command, null, null, true);
     }
 
     private function isProductHomePageMissing(?string $productHomePage): bool
@@ -338,7 +338,7 @@ class AddComponentCommand extends Command
         array $command,
         ?string $workDir = null,
         ?string $input = null,
-        ?string $outputType = null
+        bool $errorOutput = false
     ): string
     {
         $process = new Process($command);
@@ -351,7 +351,7 @@ class AddComponentCommand extends Command
         // `mustRun` will throw a ProcessFailedException if the process
         // couldn't be executed successfully.
         $process->mustRun();
-        if ($outputType == 'errorOutput') {
+        if ($errorOutput) {
             return $process->getErrorOutput();
         }
         return $process->getOutput();
