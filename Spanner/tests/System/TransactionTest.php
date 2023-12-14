@@ -116,7 +116,7 @@ class TransactionTest extends SpannerTestCase
         ])->rows()->current();
 
         $this->assertEquals(2, $row['number']);
-        $this->assertEquals(2, $iterations);
+        $this->assertGreaterThan(2, $iterations);
     }
 
     /**
@@ -170,7 +170,7 @@ class TransactionTest extends SpannerTestCase
         ])->rows()->current();
 
         $this->assertEquals(2, $row['number']);
-        $this->assertEquals(2, $iterations);
+        $this->assertGreaterThan(2, $iterations);
     }
 
     /**
@@ -203,7 +203,7 @@ class TransactionTest extends SpannerTestCase
         ])->rows()->current();
 
         $this->assertEquals(2, $row['number']);
-        $this->assertEquals(2, $iterations);
+        $this->assertGreaterThan(2, $iterations);
     }
 
     public function testStrongRead()

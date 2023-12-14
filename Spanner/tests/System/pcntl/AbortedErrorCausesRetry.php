@@ -22,7 +22,7 @@ if ($childPID1 = pcntl_fork()) {
             'parameters' => ['id' => (int) $id]
         ])->rows()->current();
 
-        if ($iteration < 2) {
+        if ($iteration <= 2) {
             throw new AbortedException('foo', 409, null, [
                 [
                     'retryDelay' => [
