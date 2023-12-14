@@ -59,8 +59,8 @@ class AddComponentCommandTest extends TestCase
     {
         self::$commandTester->setInputs([
             'Y',                                                            // Does this information look correct? [Y/n]
-            'https://cloud.google.com/secret-mananger',                     // What is the product homepage?
             'https://cloud.google.com/secret-manager/docs/reference/rest/', // What is the product documentation URL?
+            'https://cloud.google.com/secret-mananger',                     // What is the product homepage?
         ]);
 
         self::$commandTester->execute([
@@ -113,8 +113,8 @@ class AddComponentCommandTest extends TestCase
             'google/cloud/custompath/(.*)',                                 // custom value for "protoPath"
             'v2',                                                           // custom value for "version"
             'Y',                                                            // Does this information look correct? [Y/n]
-            'https://cloud.google.com/coustom-product',                     // What is the product homepage?
             'https://cloud.google.com/coustom-product/docs/reference/rest/', // What is the product documentation URL?
+            'https://cloud.google.com/coustom-product',                     // What is the product homepage?
         ]);
 
         self::$commandTester->execute([

@@ -64,13 +64,16 @@ class AddComponentCommand extends Command
     private $input;
     private $output;
     private $rootPath;
+    private $httpClient;
 
     /**
      * @param string $rootPath The path to the repository root directory.
+     * @param Client $httpClient specify the HTTP client, useful for tests.
      */
-    public function __construct($rootPath)
+    public function __construct($rootPath, $httpClient = null)
     {
         $this->rootPath = realpath($rootPath);
+        $this->httpClient = $httpClient ?? new Client();
         parent::__construct();
     }
 
@@ -80,7 +83,12 @@ class AddComponentCommand extends Command
             ->setDescription('Add a Component')
             ->addArgument('proto', InputArgument::REQUIRED, 'Path to service proto.')
             ->addOption(
-                'run-owlbot',
+                'googleapis-gen-path',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Path to googleapis-gen repo'
+            )->addOption(
+                'bazel-path',
                 null,
                 InputOption::VALUE_REQUIRED,
                 'The command to generate the library using Owlbot'
@@ -124,32 +132,22 @@ class AddComponentCommand extends Command
                 ->render();
         }
 
-        $version = basename(dirname($proto));
-        // yaml file contains documentation_uri and
-        // it is available at the same location as proto file
-        $yamlFilePath = sprintf('%s/%s_%s.yaml',
-            dirname($proto),
-            strtolower($new->shortName),
-            $version
-        );
-        $productHomePage = null;
-        $yamlFileContent = $this->loadYamlConfigContent($yamlFilePath);
+        $productDocumentation = null;
+        $yamlFileContent = $this->loadYamlConfigContent($new, dirname($proto));
         if (!empty($yamlFileContent)) {
             $productDocumentation = $yamlFileContent['publishing']['documentation_uri'] ?? null;
-            $productHomePage = $this->getHomePageFromDocsUrl($productDocumentation);
         }
-        if ($this->isProductHomePageMissing($productHomePage)) {
-            $productHomepage = $this->getHelper('question')->ask(
-                $input,
-                $output,
-                new Question('What is the product homepage? ')
-            );
-            $productDocumentation = $this->getHelper('question')->ask(
-                $input,
-                $output,
-                new Question('What is the product documentation URL? ')
-            );
-        }
+        $productDocumentation = $productDocumentation ?? $this->getHelper('question')->ask(
+            $input,
+            $output,
+            new Question('What is the product documentation URL? ')
+        );
+        $productHomePage = $this->getHomePageFromDocsUrl($productDocumentation); 
+        $productHomepage = $productHomepage ?? $this->getHelper('question')->ask(
+            $input,
+            $output,
+            new Question('What is the product homepage? ')
+        );
 
         $documentationUrl = $new->getDocumentationUrl();
 
@@ -212,13 +210,13 @@ class AddComponentCommand extends Command
         $composer->updateMainComposer();
         $composer->createComponentComposer($new->displayName, $new->githubRepo);
 
-        if ($input->getOption('run-owlbot')) {
-            $googleApisGenDir = realpath($input->getOption('run-owlbot'));
+        if ($input->getOption('googleapis-gen-path')) {
+            $googleApisGenDir = realpath($input->getOption('googleapis-gen-path'));
             $this->checkDockerAvailable();
             $output->writeln("\n\nCopying the library code from googleapis-gen");
             $output->writeln($this->owlbotCopyCode($new->componentName, $googleApisGenDir));
             $output->writeln("\n\nOwlbot post processing");
-            $output->writeln($this->postProcess());
+            $output->writeln($this->owlbotPostProcessor());
         }
 
         $output->writeln('');
@@ -228,10 +226,17 @@ class AddComponentCommand extends Command
         return 0;
     }
 
-    private function loadYamlConfigContent(string $yaml): ?array
+    private function loadYamlConfigContent(NewComponent $new, string $protoDir): ?array
     {
+        $yamlFilePath = sprintf('%s/%s%s%s.yaml',
+            $protoDir,
+            strtolower($new->shortName),
+            $new->version ? '_' : '',
+            $new->version ?? ''
+        );
+
         try {
-            return Yaml::parse($this->loadProtoContent($yaml));
+            return Yaml::parse($this->loadProtoContent($yamlFilePath));
         } catch (Exception $e) {
             // Handle error gracefully.
             return null;
@@ -244,12 +249,11 @@ class AddComponentCommand extends Command
             return file_get_contents($proto);
         }
         $protoUrl = 'https://raw.githubusercontent.com/googleapis/googleapis/master/' . $proto;
-        $client = new Client();
-        $response = $client->get($protoUrl);
+        $response = $this->httpClient->get($protoUrl);
         return (string) $response->getBody();
     }
 
-    private function bazelBuildLibrary(string $libraryName, string $googleApisDir, string $protoPath): string
+    private function bazelQueryLibrary(string $libraryName, string $googleApisDir, string $protoPath): string
     {
         $command = ['bazel', '--version'];
         $output = $this->runCommand($command);
@@ -269,7 +273,12 @@ class AddComponentCommand extends Command
         $output = $this->runCommand($command, $googleApisDir, $output);
         // @TODO: Some non printable characters are included in the output, why!
         $output = preg_replace('/[^[:print:]]/', '', $output);
-        $command = ['bazel', 'build', $output];
+        return $output;
+    }
+
+    private function bazelBuildLibrary(string $googleApisDir, string $component): string
+    {
+        $command = ['bazel', 'build', $component];
         return $this->runCommand($command, $googleApisDir, null, true);
     }
 
@@ -322,7 +331,7 @@ class AddComponentCommand extends Command
         return $this->runCommand($command);
     }
 
-    private function postProcess()
+    private function owlbotPostProcessor(): string
     {
         list($userId, $groupId) = $this->getUserAndGroupId();
         $command = [
@@ -340,20 +349,10 @@ class AddComponentCommand extends Command
         return $this->runCommand($command, null, null, true);
     }
 
-    private function isProductHomePageMissing(?string $productHomePage): bool
+    private function isProductHomePageMissing(string $productHomePage): bool
     {
-        $client = new Client();
-        if (!$productHomePage) {
-            return true;
-        }
-
-        try {
-            $response = $client->request('GET', $productHomePage, ['http_errors' => false]);
-            return $response->getStatusCode() === 404;
-        } catch (Exception $e) {
-            // Handle error gracefully.
-            return true;
-        }
+        $response = $this->httpClient->request('GET', $productHomePage, ['http_errors' => false]);
+        return $response->getStatusCode() >= 400;
     }
 
     private function runCommand(
@@ -361,8 +360,7 @@ class AddComponentCommand extends Command
         ?string $workDir = null,
         ?string $input = null,
         bool $errorOutput = false
-    ): string
-    {
+    ): string {
         $process = new Process($command);
         if (!is_null($workDir)) {
             $process->setWorkingDirectory($workDir);
@@ -379,16 +377,14 @@ class AddComponentCommand extends Command
         return $process->getOutput();
     }
 
-    private function getHomePageFromDocsUrl(?string $url) {
-        $pattern = "/^(https?:\/\/)?([^\/]+)\/(.*?)\/docs\/(.+)/";
-        preg_match($pattern, $url, $matches);
-        if (isset($matches[1]) && isset($matches[2]) && isset($matches[3])) {
-            return $matches[1] . $matches[2] . '/' . $matches[3];
-        }
-        return null;
+    private function getHomePageFromDocsUrl(?string $url): ?string
+    {
+        $productHomePage = !empty($url) ? explode('/docs', $url)[0] : null;
+        return $this->isProductHomePageMissing($productHomePage) ? null : $productHomePage;
     }
 
-    private function checkDockerAvailable() {
+    private function checkDockerAvailable(): void
+    {
         $command = ['which', 'docker'];
         $output = $this->runCommand($command);
         if (strlen($output) == 0) {
@@ -398,7 +394,8 @@ class AddComponentCommand extends Command
         }
     }
 
-    private function getUserAndGroupId() {
+    private function getUserAndGroupId(): array
+    {
         // Get the user ID and group ID
         $userId = posix_getuid();
         $groupId = posix_getgid();
