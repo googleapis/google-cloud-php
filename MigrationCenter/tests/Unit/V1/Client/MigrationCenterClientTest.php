@@ -128,7 +128,9 @@ class MigrationCenterClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return MigrationCenterClient */
@@ -178,13 +180,9 @@ class MigrationCenterClientTest extends GeneratedTest
         // Mock request
         $formattedGroup = $gapicClient->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
         $assets = new AssetList();
-        $assetsAssetIds = [
-            $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]'),
-        ];
+        $assetsAssetIds = [$gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]')];
         $assets->setAssetIds($assetsAssetIds);
-        $request = (new AddAssetsToGroupRequest())
-            ->setGroup($formattedGroup)
-            ->setAssets($assets);
+        $request = (new AddAssetsToGroupRequest())->setGroup($formattedGroup)->setAssets($assets);
         $response = $gapicClient->addAssetsToGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -242,23 +240,22 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedGroup = $gapicClient->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
         $assets = new AssetList();
-        $assetsAssetIds = [
-            $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]'),
-        ];
+        $assetsAssetIds = [$gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]')];
         $assets->setAssetIds($assetsAssetIds);
-        $request = (new AddAssetsToGroupRequest())
-            ->setGroup($formattedGroup)
-            ->setAssets($assets);
+        $request = (new AddAssetsToGroupRequest())->setGroup($formattedGroup)->setAssets($assets);
         $response = $gapicClient->addAssetsToGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -294,8 +291,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new AggregateAssetsValuesRequest())
-            ->setParent($parent);
+        $request = (new AggregateAssetsValuesRequest())->setParent($parent);
         $response = $gapicClient->aggregateAssetsValues($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -319,17 +315,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new AggregateAssetsValuesRequest())
-            ->setParent($parent);
+        $request = (new AggregateAssetsValuesRequest())->setParent($parent);
         try {
             $gapicClient->aggregateAssetsValues($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -356,12 +354,8 @@ class MigrationCenterClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $formattedNames = [
-            $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]'),
-        ];
-        $request = (new BatchDeleteAssetsRequest())
-            ->setParent($formattedParent)
-            ->setNames($formattedNames);
+        $formattedNames = [$gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]')];
+        $request = (new BatchDeleteAssetsRequest())->setParent($formattedParent)->setNames($formattedNames);
         $gapicClient->batchDeleteAssets($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -386,21 +380,20 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $formattedNames = [
-            $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]'),
-        ];
-        $request = (new BatchDeleteAssetsRequest())
-            ->setParent($formattedParent)
-            ->setNames($formattedNames);
+        $formattedNames = [$gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]')];
+        $request = (new BatchDeleteAssetsRequest())->setParent($formattedParent)->setNames($formattedNames);
         try {
             $gapicClient->batchDeleteAssets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -428,9 +421,7 @@ class MigrationCenterClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $requests = [];
-        $request = (new BatchUpdateAssetsRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = (new BatchUpdateAssetsRequest())->setParent($formattedParent)->setRequests($requests);
         $response = $gapicClient->batchUpdateAssets($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -456,19 +447,20 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $requests = [];
-        $request = (new BatchUpdateAssetsRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = (new BatchUpdateAssetsRequest())->setParent($formattedParent)->setRequests($requests);
         try {
             $gapicClient->batchUpdateAssets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -584,12 +576,15 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -723,12 +718,15 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]');
@@ -866,12 +864,15 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -1007,12 +1008,15 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -1146,12 +1150,15 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
@@ -1287,12 +1294,15 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -1436,12 +1446,15 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -1486,8 +1499,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]');
-        $request = (new DeleteAssetRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAssetRequest())->setName($formattedName);
         $gapicClient->deleteAsset($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1510,17 +1522,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]');
-        $request = (new DeleteAssetRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAssetRequest())->setName($formattedName);
         try {
             $gapicClient->deleteAsset($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1565,8 +1579,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
-        $request = (new DeleteGroupRequest())
-            ->setName($formattedName);
+        $request = (new DeleteGroupRequest())->setName($formattedName);
         $response = $gapicClient->deleteGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1622,17 +1635,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
-        $request = (new DeleteGroupRequest())
-            ->setName($formattedName);
+        $request = (new DeleteGroupRequest())->setName($formattedName);
         $response = $gapicClient->deleteGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1685,9 +1700,13 @@ class MigrationCenterClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $gapicClient->importDataFileName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]', '[IMPORT_DATA_FILE]');
-        $request = (new DeleteImportDataFileRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->importDataFileName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[IMPORT_JOB]',
+            '[IMPORT_DATA_FILE]'
+        );
+        $request = (new DeleteImportDataFileRequest())->setName($formattedName);
         $response = $gapicClient->deleteImportDataFile($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1743,17 +1762,24 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->importDataFileName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]', '[IMPORT_DATA_FILE]');
-        $request = (new DeleteImportDataFileRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->importDataFileName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[IMPORT_JOB]',
+            '[IMPORT_DATA_FILE]'
+        );
+        $request = (new DeleteImportDataFileRequest())->setName($formattedName);
         $response = $gapicClient->deleteImportDataFile($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1807,8 +1833,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]');
-        $request = (new DeleteImportJobRequest())
-            ->setName($formattedName);
+        $request = (new DeleteImportJobRequest())->setName($formattedName);
         $response = $gapicClient->deleteImportJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1864,17 +1889,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]');
-        $request = (new DeleteImportJobRequest())
-            ->setName($formattedName);
+        $request = (new DeleteImportJobRequest())->setName($formattedName);
         $response = $gapicClient->deleteImportJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1928,8 +1955,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->preferenceSetName('[PROJECT]', '[LOCATION]', '[PREFERENCE_SET]');
-        $request = (new DeletePreferenceSetRequest())
-            ->setName($formattedName);
+        $request = (new DeletePreferenceSetRequest())->setName($formattedName);
         $response = $gapicClient->deletePreferenceSet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1985,17 +2011,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->preferenceSetName('[PROJECT]', '[LOCATION]', '[PREFERENCE_SET]');
-        $request = (new DeletePreferenceSetRequest())
-            ->setName($formattedName);
+        $request = (new DeletePreferenceSetRequest())->setName($formattedName);
         $response = $gapicClient->deletePreferenceSet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2049,8 +2077,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->reportName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]', '[REPORT]');
-        $request = (new DeleteReportRequest())
-            ->setName($formattedName);
+        $request = (new DeleteReportRequest())->setName($formattedName);
         $response = $gapicClient->deleteReport($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2106,17 +2133,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->reportName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]', '[REPORT]');
-        $request = (new DeleteReportRequest())
-            ->setName($formattedName);
+        $request = (new DeleteReportRequest())->setName($formattedName);
         $response = $gapicClient->deleteReport($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2170,8 +2199,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
-        $request = (new DeleteReportConfigRequest())
-            ->setName($formattedName);
+        $request = (new DeleteReportConfigRequest())->setName($formattedName);
         $response = $gapicClient->deleteReportConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2227,17 +2255,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
-        $request = (new DeleteReportConfigRequest())
-            ->setName($formattedName);
+        $request = (new DeleteReportConfigRequest())->setName($formattedName);
         $response = $gapicClient->deleteReportConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2291,8 +2321,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
-        $request = (new DeleteSourceRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSourceRequest())->setName($formattedName);
         $response = $gapicClient->deleteSource($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2348,17 +2377,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
-        $request = (new DeleteSourceRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSourceRequest())->setName($formattedName);
         $response = $gapicClient->deleteSource($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2396,8 +2427,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]');
-        $request = (new GetAssetRequest())
-            ->setName($formattedName);
+        $request = (new GetAssetRequest())->setName($formattedName);
         $response = $gapicClient->getAsset($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2421,17 +2451,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]');
-        $request = (new GetAssetRequest())
-            ->setName($formattedName);
+        $request = (new GetAssetRequest())->setName($formattedName);
         try {
             $gapicClient->getAsset($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2460,8 +2492,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->errorFrameName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[ERROR_FRAME]');
-        $request = (new GetErrorFrameRequest())
-            ->setName($formattedName);
+        $request = (new GetErrorFrameRequest())->setName($formattedName);
         $response = $gapicClient->getErrorFrame($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2485,17 +2516,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->errorFrameName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[ERROR_FRAME]');
-        $request = (new GetErrorFrameRequest())
-            ->setName($formattedName);
+        $request = (new GetErrorFrameRequest())->setName($formattedName);
         try {
             $gapicClient->getErrorFrame($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2528,8 +2561,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
-        $request = (new GetGroupRequest())
-            ->setName($formattedName);
+        $request = (new GetGroupRequest())->setName($formattedName);
         $response = $gapicClient->getGroup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2553,17 +2585,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
-        $request = (new GetGroupRequest())
-            ->setName($formattedName);
+        $request = (new GetGroupRequest())->setName($formattedName);
         try {
             $gapicClient->getGroup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2593,9 +2627,13 @@ class MigrationCenterClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->importDataFileName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]', '[IMPORT_DATA_FILE]');
-        $request = (new GetImportDataFileRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->importDataFileName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[IMPORT_JOB]',
+            '[IMPORT_DATA_FILE]'
+        );
+        $request = (new GetImportDataFileRequest())->setName($formattedName);
         $response = $gapicClient->getImportDataFile($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2619,17 +2657,24 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->importDataFileName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]', '[IMPORT_DATA_FILE]');
-        $request = (new GetImportDataFileRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->importDataFileName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[IMPORT_JOB]',
+            '[IMPORT_DATA_FILE]'
+        );
+        $request = (new GetImportDataFileRequest())->setName($formattedName);
         try {
             $gapicClient->getImportDataFile($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2662,8 +2707,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]');
-        $request = (new GetImportJobRequest())
-            ->setName($formattedName);
+        $request = (new GetImportJobRequest())->setName($formattedName);
         $response = $gapicClient->getImportJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2687,17 +2731,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]');
-        $request = (new GetImportJobRequest())
-            ->setName($formattedName);
+        $request = (new GetImportJobRequest())->setName($formattedName);
         try {
             $gapicClient->getImportJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2730,8 +2776,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->preferenceSetName('[PROJECT]', '[LOCATION]', '[PREFERENCE_SET]');
-        $request = (new GetPreferenceSetRequest())
-            ->setName($formattedName);
+        $request = (new GetPreferenceSetRequest())->setName($formattedName);
         $response = $gapicClient->getPreferenceSet($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2755,17 +2800,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->preferenceSetName('[PROJECT]', '[LOCATION]', '[PREFERENCE_SET]');
-        $request = (new GetPreferenceSetRequest())
-            ->setName($formattedName);
+        $request = (new GetPreferenceSetRequest())->setName($formattedName);
         try {
             $gapicClient->getPreferenceSet($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2798,8 +2845,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->reportName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]', '[REPORT]');
-        $request = (new GetReportRequest())
-            ->setName($formattedName);
+        $request = (new GetReportRequest())->setName($formattedName);
         $response = $gapicClient->getReport($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2823,17 +2869,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->reportName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]', '[REPORT]');
-        $request = (new GetReportRequest())
-            ->setName($formattedName);
+        $request = (new GetReportRequest())->setName($formattedName);
         try {
             $gapicClient->getReport($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2866,8 +2914,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
-        $request = (new GetReportConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetReportConfigRequest())->setName($formattedName);
         $response = $gapicClient->getReportConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2891,17 +2938,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
-        $request = (new GetReportConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetReportConfigRequest())->setName($formattedName);
         try {
             $gapicClient->getReportConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2932,8 +2981,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->settingsName('[PROJECT]', '[LOCATION]');
-        $request = (new GetSettingsRequest())
-            ->setName($formattedName);
+        $request = (new GetSettingsRequest())->setName($formattedName);
         $response = $gapicClient->getSettings($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2957,17 +3005,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->settingsName('[PROJECT]', '[LOCATION]');
-        $request = (new GetSettingsRequest())
-            ->setName($formattedName);
+        $request = (new GetSettingsRequest())->setName($formattedName);
         try {
             $gapicClient->getSettings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3008,8 +3058,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
-        $request = (new GetSourceRequest())
-            ->setName($formattedName);
+        $request = (new GetSourceRequest())->setName($formattedName);
         $response = $gapicClient->getSource($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3033,17 +3082,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
-        $request = (new GetSourceRequest())
-            ->setName($formattedName);
+        $request = (new GetSourceRequest())->setName($formattedName);
         try {
             $gapicClient->getSource($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3068,17 +3119,14 @@ class MigrationCenterClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $assetsElement = new Asset();
-        $assets = [
-            $assetsElement,
-        ];
+        $assets = [$assetsElement];
         $expectedResponse = new ListAssetsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAssets($assets);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListAssetsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAssetsRequest())->setParent($formattedParent);
         $response = $gapicClient->listAssets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3105,17 +3153,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListAssetsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAssetsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAssets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3140,17 +3190,14 @@ class MigrationCenterClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $errorFramesElement = new ErrorFrame();
-        $errorFrames = [
-            $errorFramesElement,
-        ];
+        $errorFrames = [$errorFramesElement];
         $expectedResponse = new ListErrorFramesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setErrorFrames($errorFrames);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
-        $request = (new ListErrorFramesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListErrorFramesRequest())->setParent($formattedParent);
         $response = $gapicClient->listErrorFrames($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3177,17 +3224,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
-        $request = (new ListErrorFramesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListErrorFramesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listErrorFrames($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3212,17 +3261,14 @@ class MigrationCenterClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $groupsElement = new Group();
-        $groups = [
-            $groupsElement,
-        ];
+        $groups = [$groupsElement];
         $expectedResponse = new ListGroupsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setGroups($groups);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListGroupsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListGroupsRequest())->setParent($formattedParent);
         $response = $gapicClient->listGroups($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3249,17 +3295,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListGroupsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListGroupsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listGroups($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3284,17 +3332,14 @@ class MigrationCenterClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $importDataFilesElement = new ImportDataFile();
-        $importDataFiles = [
-            $importDataFilesElement,
-        ];
+        $importDataFiles = [$importDataFilesElement];
         $expectedResponse = new ListImportDataFilesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setImportDataFiles($importDataFiles);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]');
-        $request = (new ListImportDataFilesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListImportDataFilesRequest())->setParent($formattedParent);
         $response = $gapicClient->listImportDataFiles($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3321,17 +3366,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]');
-        $request = (new ListImportDataFilesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListImportDataFilesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listImportDataFiles($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3356,17 +3403,14 @@ class MigrationCenterClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $importJobsElement = new ImportJob();
-        $importJobs = [
-            $importJobsElement,
-        ];
+        $importJobs = [$importJobsElement];
         $expectedResponse = new ListImportJobsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setImportJobs($importJobs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListImportJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListImportJobsRequest())->setParent($formattedParent);
         $response = $gapicClient->listImportJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3393,17 +3437,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListImportJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListImportJobsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listImportJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3428,17 +3474,14 @@ class MigrationCenterClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $preferenceSetsElement = new PreferenceSet();
-        $preferenceSets = [
-            $preferenceSetsElement,
-        ];
+        $preferenceSets = [$preferenceSetsElement];
         $expectedResponse = new ListPreferenceSetsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPreferenceSets($preferenceSets);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListPreferenceSetsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPreferenceSetsRequest())->setParent($formattedParent);
         $response = $gapicClient->listPreferenceSets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3465,17 +3508,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListPreferenceSetsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPreferenceSetsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listPreferenceSets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3500,17 +3545,14 @@ class MigrationCenterClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $reportConfigsElement = new ReportConfig();
-        $reportConfigs = [
-            $reportConfigsElement,
-        ];
+        $reportConfigs = [$reportConfigsElement];
         $expectedResponse = new ListReportConfigsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setReportConfigs($reportConfigs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListReportConfigsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListReportConfigsRequest())->setParent($formattedParent);
         $response = $gapicClient->listReportConfigs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3537,17 +3579,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListReportConfigsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListReportConfigsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listReportConfigs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3572,17 +3616,14 @@ class MigrationCenterClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $reportsElement = new Report();
-        $reports = [
-            $reportsElement,
-        ];
+        $reports = [$reportsElement];
         $expectedResponse = new ListReportsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setReports($reports);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
-        $request = (new ListReportsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListReportsRequest())->setParent($formattedParent);
         $response = $gapicClient->listReports($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3609,17 +3650,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
-        $request = (new ListReportsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListReportsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listReports($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3644,17 +3687,14 @@ class MigrationCenterClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $sourcesElement = new Source();
-        $sources = [
-            $sourcesElement,
-        ];
+        $sources = [$sourcesElement];
         $expectedResponse = new ListSourcesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSources($sources);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListSourcesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSourcesRequest())->setParent($formattedParent);
         $response = $gapicClient->listSources($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3681,17 +3721,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListSourcesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSourcesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listSources($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3743,13 +3785,9 @@ class MigrationCenterClientTest extends GeneratedTest
         // Mock request
         $formattedGroup = $gapicClient->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
         $assets = new AssetList();
-        $assetsAssetIds = [
-            $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]'),
-        ];
+        $assetsAssetIds = [$gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]')];
         $assets->setAssetIds($assetsAssetIds);
-        $request = (new RemoveAssetsFromGroupRequest())
-            ->setGroup($formattedGroup)
-            ->setAssets($assets);
+        $request = (new RemoveAssetsFromGroupRequest())->setGroup($formattedGroup)->setAssets($assets);
         $response = $gapicClient->removeAssetsFromGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3807,23 +3845,22 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedGroup = $gapicClient->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
         $assets = new AssetList();
-        $assetsAssetIds = [
-            $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]'),
-        ];
+        $assetsAssetIds = [$gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]')];
         $assets->setAssetIds($assetsAssetIds);
-        $request = (new RemoveAssetsFromGroupRequest())
-            ->setGroup($formattedGroup)
-            ->setAssets($assets);
+        $request = (new RemoveAssetsFromGroupRequest())->setGroup($formattedGroup)->setAssets($assets);
         $response = $gapicClient->removeAssetsFromGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3860,9 +3897,7 @@ class MigrationCenterClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $formattedSource = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
-        $request = (new ReportAssetFramesRequest())
-            ->setParent($parent)
-            ->setSource($formattedSource);
+        $request = (new ReportAssetFramesRequest())->setParent($parent)->setSource($formattedSource);
         $response = $gapicClient->reportAssetFrames($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3888,19 +3923,20 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
         $formattedSource = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
-        $request = (new ReportAssetFramesRequest())
-            ->setParent($parent)
-            ->setSource($formattedSource);
+        $request = (new ReportAssetFramesRequest())->setParent($parent)->setSource($formattedSource);
         try {
             $gapicClient->reportAssetFrames($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3945,8 +3981,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]');
-        $request = (new RunImportJobRequest())
-            ->setName($formattedName);
+        $request = (new RunImportJobRequest())->setName($formattedName);
         $response = $gapicClient->runImportJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4002,17 +4037,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]');
-        $request = (new RunImportJobRequest())
-            ->setName($formattedName);
+        $request = (new RunImportJobRequest())->setName($formattedName);
         $response = $gapicClient->runImportJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4051,9 +4088,7 @@ class MigrationCenterClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $asset = new Asset();
-        $request = (new UpdateAssetRequest())
-            ->setUpdateMask($updateMask)
-            ->setAsset($asset);
+        $request = (new UpdateAssetRequest())->setUpdateMask($updateMask)->setAsset($asset);
         $response = $gapicClient->updateAsset($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -4079,19 +4114,20 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
         $asset = new Asset();
-        $request = (new UpdateAssetRequest())
-            ->setUpdateMask($updateMask)
-            ->setAsset($asset);
+        $request = (new UpdateAssetRequest())->setUpdateMask($updateMask)->setAsset($asset);
         try {
             $gapicClient->updateAsset($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4143,9 +4179,7 @@ class MigrationCenterClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $group = new Group();
-        $request = (new UpdateGroupRequest())
-            ->setUpdateMask($updateMask)
-            ->setGroup($group);
+        $request = (new UpdateGroupRequest())->setUpdateMask($updateMask)->setGroup($group);
         $response = $gapicClient->updateGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4203,19 +4237,20 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
         $group = new Group();
-        $request = (new UpdateGroupRequest())
-            ->setUpdateMask($updateMask)
-            ->setGroup($group);
+        $request = (new UpdateGroupRequest())->setUpdateMask($updateMask)->setGroup($group);
         $response = $gapicClient->updateGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4278,9 +4313,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $importJob = new ImportJob();
         $importJobAssetSource = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
         $importJob->setAssetSource($importJobAssetSource);
-        $request = (new UpdateImportJobRequest())
-            ->setUpdateMask($updateMask)
-            ->setImportJob($importJob);
+        $request = (new UpdateImportJobRequest())->setUpdateMask($updateMask)->setImportJob($importJob);
         $response = $gapicClient->updateImportJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4338,21 +4371,22 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
         $importJob = new ImportJob();
         $importJobAssetSource = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
         $importJob->setAssetSource($importJobAssetSource);
-        $request = (new UpdateImportJobRequest())
-            ->setUpdateMask($updateMask)
-            ->setImportJob($importJob);
+        $request = (new UpdateImportJobRequest())->setUpdateMask($updateMask)->setImportJob($importJob);
         $response = $gapicClient->updateImportJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4413,9 +4447,7 @@ class MigrationCenterClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $preferenceSet = new PreferenceSet();
-        $request = (new UpdatePreferenceSetRequest())
-            ->setUpdateMask($updateMask)
-            ->setPreferenceSet($preferenceSet);
+        $request = (new UpdatePreferenceSetRequest())->setUpdateMask($updateMask)->setPreferenceSet($preferenceSet);
         $response = $gapicClient->updatePreferenceSet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4473,19 +4505,20 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
         $preferenceSet = new PreferenceSet();
-        $request = (new UpdatePreferenceSetRequest())
-            ->setUpdateMask($updateMask)
-            ->setPreferenceSet($preferenceSet);
+        $request = (new UpdatePreferenceSetRequest())->setUpdateMask($updateMask)->setPreferenceSet($preferenceSet);
         $response = $gapicClient->updatePreferenceSet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4544,9 +4577,7 @@ class MigrationCenterClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $settings = new Settings();
-        $request = (new UpdateSettingsRequest())
-            ->setUpdateMask($updateMask)
-            ->setSettings($settings);
+        $request = (new UpdateSettingsRequest())->setUpdateMask($updateMask)->setSettings($settings);
         $response = $gapicClient->updateSettings($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4604,19 +4635,20 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
         $settings = new Settings();
-        $request = (new UpdateSettingsRequest())
-            ->setUpdateMask($updateMask)
-            ->setSettings($settings);
+        $request = (new UpdateSettingsRequest())->setUpdateMask($updateMask)->setSettings($settings);
         $response = $gapicClient->updateSettings($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4685,9 +4717,7 @@ class MigrationCenterClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $source = new Source();
-        $request = (new UpdateSourceRequest())
-            ->setUpdateMask($updateMask)
-            ->setSource($source);
+        $request = (new UpdateSourceRequest())->setUpdateMask($updateMask)->setSource($source);
         $response = $gapicClient->updateSource($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4745,19 +4775,20 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
         $source = new Source();
-        $request = (new UpdateSourceRequest())
-            ->setUpdateMask($updateMask)
-            ->setSource($source);
+        $request = (new UpdateSourceRequest())->setUpdateMask($updateMask)->setSource($source);
         $response = $gapicClient->updateSource($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4811,8 +4842,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]');
-        $request = (new ValidateImportJobRequest())
-            ->setName($formattedName);
+        $request = (new ValidateImportJobRequest())->setName($formattedName);
         $response = $gapicClient->validateImportJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4868,17 +4898,19 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]');
-        $request = (new ValidateImportJobRequest())
-            ->setName($formattedName);
+        $request = (new ValidateImportJobRequest())->setName($formattedName);
         $response = $gapicClient->validateImportJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4940,12 +4972,15 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -4972,9 +5007,7 @@ class MigrationCenterClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -5004,12 +5037,15 @@ class MigrationCenterClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -5063,13 +5099,9 @@ class MigrationCenterClientTest extends GeneratedTest
         // Mock request
         $formattedGroup = $gapicClient->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
         $assets = new AssetList();
-        $assetsAssetIds = [
-            $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]'),
-        ];
+        $assetsAssetIds = [$gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]')];
         $assets->setAssetIds($assetsAssetIds);
-        $request = (new AddAssetsToGroupRequest())
-            ->setGroup($formattedGroup)
-            ->setAssets($assets);
+        $request = (new AddAssetsToGroupRequest())->setGroup($formattedGroup)->setAssets($assets);
         $response = $gapicClient->addAssetsToGroupAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
