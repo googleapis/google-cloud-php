@@ -95,12 +95,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Firestore\Admin\V1\FirestoreAdminClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createDatabaseAsync(CreateDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createIndexAsync(CreateIndexRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteIndexAsync(DeleteIndexRequest $request, array $optionalArgs = [])
@@ -123,8 +117,15 @@ final class FirestoreAdminClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.firestore.admin.v1.FirestoreAdmin';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'firestore.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'firestore.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

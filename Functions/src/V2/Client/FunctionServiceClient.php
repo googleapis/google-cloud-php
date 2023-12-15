@@ -72,11 +72,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Functions\V2\FunctionServiceClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createFunctionAsync(CreateFunctionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteFunctionAsync(DeleteFunctionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface generateDownloadUrlAsync(GenerateDownloadUrlRequest $request, array $optionalArgs = [])
@@ -98,8 +93,15 @@ final class FunctionServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.functions.v2.FunctionService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'cloudfunctions.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'cloudfunctions.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

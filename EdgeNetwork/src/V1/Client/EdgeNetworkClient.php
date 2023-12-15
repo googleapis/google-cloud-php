@@ -91,10 +91,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
- *
- * @experimental
- *
  * @method PromiseInterface createInterconnectAttachmentAsync(CreateInterconnectAttachmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createNetworkAsync(CreateNetworkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createRouterAsync(CreateRouterRequest $request, array $optionalArgs = [])
@@ -132,8 +128,15 @@ final class EdgeNetworkClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.edgenetwork.v1.EdgeNetwork';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'edgenetwork.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'edgenetwork.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -142,9 +145,7 @@ final class EdgeNetworkClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -190,7 +191,9 @@ final class EdgeNetworkClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -207,8 +210,12 @@ final class EdgeNetworkClient
      *
      * @return string The formatted interconnect resource.
      */
-    public static function interconnectName(string $project, string $location, string $zone, string $interconnect): string
-    {
+    public static function interconnectName(
+        string $project,
+        string $location,
+        string $zone,
+        string $interconnect
+    ): string {
         return self::getPathTemplate('interconnect')->render([
             'project' => $project,
             'location' => $location,
@@ -228,8 +235,12 @@ final class EdgeNetworkClient
      *
      * @return string The formatted interconnect_attachment resource.
      */
-    public static function interconnectAttachmentName(string $project, string $location, string $zone, string $interconnectAttachment): string
-    {
+    public static function interconnectAttachmentName(
+        string $project,
+        string $location,
+        string $zone,
+        string $interconnectAttachment
+    ): string {
         return self::getPathTemplate('interconnectAttachment')->render([
             'project' => $project,
             'location' => $location,
@@ -461,8 +472,10 @@ final class EdgeNetworkClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createInterconnectAttachment(CreateInterconnectAttachmentRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createInterconnectAttachment(
+        CreateInterconnectAttachmentRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateInterconnectAttachment', $request, $callOptions)->wait();
     }
 
@@ -566,8 +579,10 @@ final class EdgeNetworkClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteInterconnectAttachment(DeleteInterconnectAttachmentRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteInterconnectAttachment(
+        DeleteInterconnectAttachmentRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteInterconnectAttachment', $request, $callOptions)->wait();
     }
 
@@ -670,8 +685,10 @@ final class EdgeNetworkClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function diagnoseInterconnect(DiagnoseInterconnectRequest $request, array $callOptions = []): DiagnoseInterconnectResponse
-    {
+    public function diagnoseInterconnect(
+        DiagnoseInterconnectRequest $request,
+        array $callOptions = []
+    ): DiagnoseInterconnectResponse {
         return $this->startApiCall('DiagnoseInterconnect', $request, $callOptions)->wait();
     }
 
@@ -775,8 +792,10 @@ final class EdgeNetworkClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getInterconnectAttachment(GetInterconnectAttachmentRequest $request, array $callOptions = []): InterconnectAttachment
-    {
+    public function getInterconnectAttachment(
+        GetInterconnectAttachmentRequest $request,
+        array $callOptions = []
+    ): InterconnectAttachment {
         return $this->startApiCall('GetInterconnectAttachment', $request, $callOptions)->wait();
     }
 
@@ -932,8 +951,10 @@ final class EdgeNetworkClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listInterconnectAttachments(ListInterconnectAttachmentsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listInterconnectAttachments(
+        ListInterconnectAttachmentsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListInterconnectAttachments', $request, $callOptions);
     }
 

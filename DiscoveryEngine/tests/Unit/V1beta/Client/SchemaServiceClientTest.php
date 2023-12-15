@@ -58,7 +58,9 @@ class SchemaServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return SchemaServiceClient */
@@ -170,12 +172,15 @@ class SchemaServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
@@ -238,8 +243,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->schemaName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[SCHEMA]');
-        $request = (new DeleteSchemaRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSchemaRequest())->setName($formattedName);
         $response = $gapicClient->deleteSchema($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -295,17 +299,19 @@ class SchemaServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->schemaName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[SCHEMA]');
-        $request = (new DeleteSchemaRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSchemaRequest())->setName($formattedName);
         $response = $gapicClient->deleteSchema($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -345,8 +351,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->schemaName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[SCHEMA]');
-        $request = (new GetSchemaRequest())
-            ->setName($formattedName);
+        $request = (new GetSchemaRequest())->setName($formattedName);
         $response = $gapicClient->getSchema($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -370,17 +375,19 @@ class SchemaServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->schemaName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[SCHEMA]');
-        $request = (new GetSchemaRequest())
-            ->setName($formattedName);
+        $request = (new GetSchemaRequest())->setName($formattedName);
         try {
             $gapicClient->getSchema($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -405,17 +412,14 @@ class SchemaServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $schemasElement = new Schema();
-        $schemas = [
-            $schemasElement,
-        ];
+        $schemas = [$schemasElement];
         $expectedResponse = new ListSchemasResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSchemas($schemas);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
-        $request = (new ListSchemasRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSchemasRequest())->setParent($formattedParent);
         $response = $gapicClient->listSchemas($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -442,17 +446,19 @@ class SchemaServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
-        $request = (new ListSchemasRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSchemasRequest())->setParent($formattedParent);
         try {
             $gapicClient->listSchemas($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -501,8 +507,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $schema = new Schema();
-        $request = (new UpdateSchemaRequest())
-            ->setSchema($schema);
+        $request = (new UpdateSchemaRequest())->setSchema($schema);
         $response = $gapicClient->updateSchema($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -558,17 +563,19 @@ class SchemaServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $schema = new Schema();
-        $request = (new UpdateSchemaRequest())
-            ->setSchema($schema);
+        $request = (new UpdateSchemaRequest())->setSchema($schema);
         $response = $gapicClient->updateSchema($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
