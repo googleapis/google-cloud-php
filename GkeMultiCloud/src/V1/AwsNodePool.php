@@ -119,6 +119,18 @@ class AwsNodePool extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AwsNodePoolError errors = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $errors;
+    /**
+     * Optional. The Management configuration for this node pool.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsNodeManagement management = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $management = null;
+    /**
+     * Optional. Update settings control the speed and disruption of the update.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.UpdateSettings update_settings = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $update_settings = null;
 
     /**
      * Constructor.
@@ -174,6 +186,10 @@ class AwsNodePool extends \Google\Protobuf\Internal\Message
      *           simultaneously on a node in the node pool.
      *     @type array<\Google\Cloud\GkeMultiCloud\V1\AwsNodePoolError>|\Google\Protobuf\Internal\RepeatedField $errors
      *           Output only. A set of errors found in the node pool.
+     *     @type \Google\Cloud\GkeMultiCloud\V1\AwsNodeManagement $management
+     *           Optional. The Management configuration for this node pool.
+     *     @type \Google\Cloud\GkeMultiCloud\V1\UpdateSettings $update_settings
+     *           Optional. Update settings control the speed and disruption of the update.
      * }
      */
     public function __construct($data = NULL) {
@@ -631,6 +647,78 @@ class AwsNodePool extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GkeMultiCloud\V1\AwsNodePoolError::class);
         $this->errors = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The Management configuration for this node pool.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsNodeManagement management = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GkeMultiCloud\V1\AwsNodeManagement|null
+     */
+    public function getManagement()
+    {
+        return $this->management;
+    }
+
+    public function hasManagement()
+    {
+        return isset($this->management);
+    }
+
+    public function clearManagement()
+    {
+        unset($this->management);
+    }
+
+    /**
+     * Optional. The Management configuration for this node pool.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsNodeManagement management = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GkeMultiCloud\V1\AwsNodeManagement $var
+     * @return $this
+     */
+    public function setManagement($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\AwsNodeManagement::class);
+        $this->management = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Update settings control the speed and disruption of the update.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.UpdateSettings update_settings = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GkeMultiCloud\V1\UpdateSettings|null
+     */
+    public function getUpdateSettings()
+    {
+        return $this->update_settings;
+    }
+
+    public function hasUpdateSettings()
+    {
+        return isset($this->update_settings);
+    }
+
+    public function clearUpdateSettings()
+    {
+        unset($this->update_settings);
+    }
+
+    /**
+     * Optional. Update settings control the speed and disruption of the update.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.UpdateSettings update_settings = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GkeMultiCloud\V1\UpdateSettings $var
+     * @return $this
+     */
+    public function setUpdateSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\UpdateSettings::class);
+        $this->update_settings = $var;
 
         return $this;
     }

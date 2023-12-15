@@ -39,6 +39,8 @@ use Google\Cloud\GkeMultiCloud\V1\AttachedCluster;
 use Google\Cloud\GkeMultiCloud\V1\AttachedServerConfig;
 use Google\Cloud\GkeMultiCloud\V1\CreateAttachedClusterRequest;
 use Google\Cloud\GkeMultiCloud\V1\DeleteAttachedClusterRequest;
+use Google\Cloud\GkeMultiCloud\V1\GenerateAttachedClusterAgentTokenRequest;
+use Google\Cloud\GkeMultiCloud\V1\GenerateAttachedClusterAgentTokenResponse;
 use Google\Cloud\GkeMultiCloud\V1\GenerateAttachedClusterInstallManifestRequest;
 use Google\Cloud\GkeMultiCloud\V1\GenerateAttachedClusterInstallManifestResponse;
 use Google\Cloud\GkeMultiCloud\V1\GetAttachedClusterRequest;
@@ -64,6 +66,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @method PromiseInterface createAttachedClusterAsync(CreateAttachedClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteAttachedClusterAsync(DeleteAttachedClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface generateAttachedClusterAgentTokenAsync(GenerateAttachedClusterAgentTokenRequest $request, array $optionalArgs = [])
  * @method PromiseInterface generateAttachedClusterInstallManifestAsync(GenerateAttachedClusterInstallManifestRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAttachedClusterAsync(GetAttachedClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAttachedServerConfigAsync(GetAttachedServerConfigRequest $request, array $optionalArgs = [])
@@ -364,6 +367,33 @@ final class AttachedClustersClient
     public function deleteAttachedCluster(DeleteAttachedClusterRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteAttachedCluster', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Generates an access token for a cluster agent.
+     *
+     * The async variant is
+     * {@see AttachedClustersClient::generateAttachedClusterAgentTokenAsync()} .
+     *
+     * @example samples/V1/AttachedClustersClient/generate_attached_cluster_agent_token.php
+     *
+     * @param GenerateAttachedClusterAgentTokenRequest $request     A request to house fields associated with the call.
+     * @param array                                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GenerateAttachedClusterAgentTokenResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function generateAttachedClusterAgentToken(GenerateAttachedClusterAgentTokenRequest $request, array $callOptions = []): GenerateAttachedClusterAgentTokenResponse
+    {
+        return $this->startApiCall('GenerateAttachedClusterAgentToken', $request, $callOptions)->wait();
     }
 
     /**

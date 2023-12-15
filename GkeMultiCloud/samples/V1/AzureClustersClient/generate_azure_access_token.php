@@ -37,7 +37,7 @@ use Google\Cloud\GkeMultiCloud\V1\GenerateAzureAccessTokenResponse;
  *                                      authenticate to.
  *
  *                                      `AzureCluster` names are formatted as
- *                                      `projects/<project-id>/locations/<region>/AzureClusters/<cluster-id>`.
+ *                                      `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
  *
  *                                      See [Resource Names](https://cloud.google.com/apis/design/resource_names)
  *                                      for more details on Google Cloud resource names. Please see

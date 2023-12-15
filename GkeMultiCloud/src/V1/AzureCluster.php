@@ -55,6 +55,7 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
      * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] that contains
      * authentication configuration for how the Anthos Multi-Cloud API connects to
      * Azure APIs.
+     * Either azure_client or azure_services_authentication should be provided.
      * The `AzureClient` resource must reside on the same Google Cloud Platform
      * project and region as the `AzureCluster`.
      * `AzureClient` names are formatted as
@@ -85,6 +86,7 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
     private $authorization = null;
     /**
      * Optional. Authentication configuration for management of Azure resources.
+     * Either azure_client or azure_services_authentication should be provided.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureServicesAuthentication azure_services_authentication = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -220,6 +222,7 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
      *           [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] that contains
      *           authentication configuration for how the Anthos Multi-Cloud API connects to
      *           Azure APIs.
+     *           Either azure_client or azure_services_authentication should be provided.
      *           The `AzureClient` resource must reside on the same Google Cloud Platform
      *           project and region as the `AzureCluster`.
      *           `AzureClient` names are formatted as
@@ -234,6 +237,7 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
      *           Required. Configuration related to the cluster RBAC settings.
      *     @type \Google\Cloud\GkeMultiCloud\V1\AzureServicesAuthentication $azure_services_authentication
      *           Optional. Authentication configuration for management of Azure resources.
+     *           Either azure_client or azure_services_authentication should be provided.
      *     @type int $state
      *           Output only. The current state of the cluster.
      *     @type string $endpoint
@@ -412,6 +416,7 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
      * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] that contains
      * authentication configuration for how the Anthos Multi-Cloud API connects to
      * Azure APIs.
+     * Either azure_client or azure_services_authentication should be provided.
      * The `AzureClient` resource must reside on the same Google Cloud Platform
      * project and region as the `AzureCluster`.
      * `AzureClient` names are formatted as
@@ -432,6 +437,7 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
      * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] that contains
      * authentication configuration for how the Anthos Multi-Cloud API connects to
      * Azure APIs.
+     * Either azure_client or azure_services_authentication should be provided.
      * The `AzureClient` resource must reside on the same Google Cloud Platform
      * project and region as the `AzureCluster`.
      * `AzureClient` names are formatted as
@@ -561,6 +567,7 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Authentication configuration for management of Azure resources.
+     * Either azure_client or azure_services_authentication should be provided.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureServicesAuthentication azure_services_authentication = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\GkeMultiCloud\V1\AzureServicesAuthentication|null
@@ -582,6 +589,7 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Authentication configuration for management of Azure resources.
+     * Either azure_client or azure_services_authentication should be provided.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureServicesAuthentication azure_services_authentication = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\GkeMultiCloud\V1\AzureServicesAuthentication $var
