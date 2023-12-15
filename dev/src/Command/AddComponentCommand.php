@@ -86,12 +86,12 @@ class AddComponentCommand extends Command
                 'googleapis-gen-path',
                 null,
                 InputOption::VALUE_REQUIRED,
-                'Path to googleapis-gen repo'
+                'Path to googleapis-gen repo. Option to generate the library using Owlbot:copy-code'
             )->addOption(
                 'bazel-path',
                 null,
                 InputOption::VALUE_REQUIRED,
-                'The command to generate the library using Owlbot'
+                'Path to bazel (googleapis) workspace. Option to generate the library using Bazel'
             );
     }
 
@@ -143,7 +143,7 @@ class AddComponentCommand extends Command
             new Question('What is the product documentation URL? ')
         );
         $productHomePage = $this->getHomePageFromDocsUrl($productDocumentation);
-        $productHomepage = $productHomepage ?? $this->getHelper('question')->ask(
+        $productHomePage = $productHomePage ?? $this->getHelper('question')->ask(
             $input,
             $output,
             new Question('What is the product homepage? ')
@@ -210,16 +210,16 @@ class AddComponentCommand extends Command
         $composer->updateMainComposer();
         $composer->createComponentComposer($new->displayName, $new->githubRepo);
 
+        $this->validateOptions($input, $output);
         if ($input->getOption('bazel-path')) {
-            // @TODO: Work on this.
-            // bazel query and ask the user which component needs to be generated.
-            // bazel build the component.
-            // bazel copy code.
-            // Post process.
-            // Also, take care of the case where both the options are given.
-            // Either take care of this case here or search for symfony one-of options.
-        }
-        if ($input->getOption('googleapis-gen-path')) {
+            $googleApisDir = realpath($input->getOption('bazel-path'));
+            $output->writeln("\n\nbazel build library");
+            $output->writeln($this->bazelQueryAndBuildLibrary($new->protoPath, $googleApisDir));
+            $output->writeln("\n\nCopying the library code from bazel-bin");
+            $output->writeln($this->owlbotCopyBazelBin($new->componentName, $googleApisDir));
+            $output->writeln("\n\nOwlbot post processing");
+            $output->writeln($this->owlbotPostProcessor());
+        } else if ($input->getOption('googleapis-gen-path')) {
             $this->checkDockerAvailable();
             $googleApisGenDir = realpath($input->getOption('googleapis-gen-path'));
             $output->writeln("\n\nCopying the library code from googleapis-gen");
@@ -233,6 +233,17 @@ class AddComponentCommand extends Command
         $output->writeln('Success!');
 
         return 0;
+    }
+
+    private function validateOptions(InputInterface $input, OutputInterface $output): void
+    {
+        $error = '<error>googleapis-gen-path and bazel-path options ' .
+            'are mutually exclusive. Will build library with bazel.</error>';
+        if ($input->getOption('bazel-path') && $input->getOption('googleapis-gen-path')) {
+            $output->writeln('');
+            $output->writeln($error);
+            $output->writeln('');
+        }
     }
 
     private function loadYamlConfigContent(NewComponent $new, string $protoDir): ?array
@@ -262,30 +273,30 @@ class AddComponentCommand extends Command
         return (string) $response->getBody();
     }
 
-    private function bazelQueryLibrary(string $libraryName, string $googleApisDir, string $protoPath): string
+    private function bazelQueryAndBuildLibrary(string $protoPath, string $googleApisDir): string
     {
         $command = ['bazel', '--version'];
         $output = $this->runCommand($command);
-        $component = explode($libraryName, $protoPath)[0];
         // Extract the version number from the output
         $match = preg_match('/bazel\s+(?P<version>\d+\.\d+\.\d+)/', $output, $matches);
         if (!$match || $matches['version'] !== self::BAZEL_VERSION) {
             throw new RuntimeException('Bazel 6.0.0 is not available');
         }
+
+        $componentPath = str_replace(['(', ')'], '', $protoPath);
         $command = [
             'bazel',
             'query',
-            'filter("-(php)$", kind("rule", //' . $component . $libraryName .'/...:*))'
+            'filter("-(php)$", kind("rule", //' . $componentPath .'/...:*))'
         ];
         $output = $this->runCommand($command, $googleApisDir);
         $command = ['grep', '-v', '-E', ':(proto|grpc|gapic)-.*-php$'];
         $output = $this->runCommand($command, $googleApisDir, $output);
-        // @TODO: Some non printable characters are included in the output, why!
-        $output = preg_replace('/[^[:print:]]/', '', $output);
-        return $output;
+        // Remove new line character from the output, there will be only one component for one version.
+        return $this->bazelBuildLibrary(str_replace(["\n"], "", $output), $googleApisDir);
     }
 
-    private function bazelBuildLibrary(string $googleApisDir, string $component): string
+    private function bazelBuildLibrary(string $component, string $googleApisDir): string
     {
         $command = ['bazel', 'build', $component];
         return $this->runCommand($command, $googleApisDir, null, true);
@@ -316,7 +327,7 @@ class AddComponentCommand extends Command
         return $this->runCommand($command);
     }
 
-    private function owlbotCopyBazelBin(string $componentName, string $googleApisGenDir): string
+    private function owlbotCopyBazelBin(string $componentName, string $googleApisDir): string
     {
         list($userId, $groupId) = $this->getUserAndGroupId();
         $command = [
@@ -328,7 +339,7 @@ class AddComponentCommand extends Command
             '-v',
             $this->rootPath . ':/repo',
             '-v',
-            $googleApisGenDir . '/bazel-bin:/bazel-bin',
+            $googleApisDir . '/bazel-bin:/bazel-bin',
             self::OWLBOT_CLI_IMAGE,
             'copy-bazel-bin',
             sprintf('--config-file=%s/.OwlBot.yaml', $componentName),
