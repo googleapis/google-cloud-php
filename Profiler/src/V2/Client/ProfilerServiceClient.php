@@ -54,11 +54,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Profiler\V2\ProfilerServiceClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createOfflineProfileAsync(CreateOfflineProfileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createProfileAsync(CreateProfileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateProfileAsync(UpdateProfileRequest $request, array $optionalArgs = [])
@@ -71,8 +66,15 @@ final class ProfilerServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.devtools.cloudprofiler.v2.ProfilerService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'cloudprofiler.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'cloudprofiler.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
