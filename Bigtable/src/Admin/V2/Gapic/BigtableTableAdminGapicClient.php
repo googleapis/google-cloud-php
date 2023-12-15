@@ -108,9 +108,7 @@ use Google\Protobuf\Timestamp;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Bigtable\Admin\V2\Client\BigtableTableAdminClient} to use the new
- * surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Bigtable\Admin\V2\Client\BigtableTableAdminClient}.
  */
 class BigtableTableAdminGapicClient
 {
@@ -119,8 +117,15 @@ class BigtableTableAdminGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.bigtable.admin.v2.BigtableTableAdmin';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'bigtableadmin.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'bigtableadmin.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
