@@ -60,7 +60,7 @@ class AddComponentCommandTest extends TestCase
         self::$commandTester->setInputs([
             'Y',                                                            // Does this information look correct? [Y/n]
             'https://cloud.google.com/secret-manager/docs/reference/rest/', // What is the product documentation URL?
-            'https://cloud.google.com/secret-mananger',                     // What is the product homepage?
+            'https://cloud.google.com/secret-manager',                     // What is the product homepage?
         ]);
 
         self::$commandTester->execute([
