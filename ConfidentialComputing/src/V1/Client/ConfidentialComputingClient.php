@@ -53,12 +53,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\ConfidentialComputing\V1\ConfidentialComputingClient} for the
- * stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createChallengeAsync(CreateChallengeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface verifyAttestationAsync(VerifyAttestationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
@@ -72,8 +66,15 @@ final class ConfidentialComputingClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.confidentialcomputing.v1.ConfidentialComputing';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'confidentialcomputing.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'confidentialcomputing.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

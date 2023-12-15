@@ -62,10 +62,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
- *
- * @experimental
- *
  * @method PromiseInterface getOrderAsync(GetOrderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listOrdersAsync(ListOrdersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface placeOrderAsync(PlaceOrderRequest $request, array $optionalArgs = [])
@@ -78,8 +74,15 @@ final class ConsumerProcurementServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'cloudcommerceconsumerprocurement.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'cloudcommerceconsumerprocurement.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -88,9 +91,7 @@ final class ConsumerProcurementServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -107,7 +108,8 @@ final class ConsumerProcurementServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/consumer_procurement_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/consumer_procurement_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -136,7 +138,9 @@ final class ConsumerProcurementServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;

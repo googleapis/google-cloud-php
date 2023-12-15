@@ -58,12 +58,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\BigQuery\DataPolicies\V1\DataPolicyServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createDataPolicyAsync(CreateDataPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteDataPolicyAsync(DeleteDataPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getDataPolicyAsync(GetDataPolicyRequest $request, array $optionalArgs = [])
@@ -82,8 +76,15 @@ final class DataPolicyServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.bigquery.datapolicies.v1.DataPolicyService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'bigquerydatapolicy.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'bigquerydatapolicy.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

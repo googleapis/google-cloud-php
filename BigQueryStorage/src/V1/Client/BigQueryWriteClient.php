@@ -60,12 +60,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\BigQuery\Storage\V1\BigQueryWriteClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface batchCommitWriteStreamsAsync(BatchCommitWriteStreamsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createWriteStreamAsync(CreateWriteStreamRequest $request, array $optionalArgs = [])
  * @method PromiseInterface finalizeWriteStreamAsync(FinalizeWriteStreamRequest $request, array $optionalArgs = [])
@@ -80,8 +74,15 @@ final class BigQueryWriteClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.bigquery.storage.v1.BigQueryWrite';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'bigquerystorage.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'bigquerystorage.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
