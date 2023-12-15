@@ -29,7 +29,7 @@ class CustomConstraint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    protected $name = '';
+    private $name = '';
     /**
      * Immutable. The resource instance type on which this policy applies. Format
      * will be of the form : `<canonical service name>/<type>` Example:
@@ -52,27 +52,27 @@ class CustomConstraint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string condition = 4;</code>
      */
-    protected $condition = '';
+    private $condition = '';
     /**
      * Allow or deny type.
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.CustomConstraint.ActionType action_type = 5;</code>
      */
-    protected $action_type = 0;
+    private $action_type = 0;
     /**
      * One line display name for the UI.
      * The max length of the display_name is 200 characters.
      *
      * Generated from protobuf field <code>string display_name = 6;</code>
      */
-    protected $display_name = '';
+    private $display_name = '';
     /**
      * Detailed information about this custom policy constraint.
      * The max length of the description is 2000 characters.
      *
      * Generated from protobuf field <code>string description = 7;</code>
      */
-    protected $description = '';
+    private $description = '';
     /**
      * Output only. The last time this custom constraint was updated. This
      * represents the last time that the `CreateCustomConstraint` or
@@ -80,7 +80,7 @@ class CustomConstraint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $update_time = null;
+    private $update_time = null;
 
     /**
      * Constructor.

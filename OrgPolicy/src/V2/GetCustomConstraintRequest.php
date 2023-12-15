@@ -9,27 +9,27 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request sent to the [DeleteCustomConstraint]
- * [google.cloud.orgpolicy.v2.OrgPolicy.DeleteCustomConstraint] method.
+ * The request sent to the [GetCustomConstraint]
+ * [google.cloud.orgpolicy.v2.OrgPolicy.GetCustomConstraint] method.
  *
- * Generated from protobuf message <code>google.cloud.orgpolicy.v2.DeleteCustomConstraintRequest</code>
+ * Generated from protobuf message <code>google.cloud.orgpolicy.v2.GetCustomConstraintRequest</code>
  */
-class DeleteCustomConstraintRequest extends \Google\Protobuf\Internal\Message
+class GetCustomConstraintRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the custom constraint to delete.
-     * See the custom constraint entry for naming rules.
+     * Required. Resource name of the custom constraint. See the custom constraint
+     * entry for naming requirements.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $name = '';
+    private $name = '';
 
     /**
-     * @param string $name Required. Name of the custom constraint to delete.
-     *                     See the custom constraint entry for naming rules. Please see
+     * @param string $name Required. Resource name of the custom constraint. See the custom constraint
+     *                     entry for naming requirements. Please see
      *                     {@see OrgPolicyClient::customConstraintName()} for help formatting this field.
      *
-     * @return \Google\Cloud\OrgPolicy\V2\DeleteCustomConstraintRequest
+     * @return \Google\Cloud\OrgPolicy\V2\GetCustomConstraintRequest
      *
      * @experimental
      */
@@ -46,8 +46,8 @@ class DeleteCustomConstraintRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Name of the custom constraint to delete.
-     *           See the custom constraint entry for naming rules.
+     *           Required. Resource name of the custom constraint. See the custom constraint
+     *           entry for naming requirements.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,8 +56,8 @@ class DeleteCustomConstraintRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the custom constraint to delete.
-     * See the custom constraint entry for naming rules.
+     * Required. Resource name of the custom constraint. See the custom constraint
+     * entry for naming requirements.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,8 +68,8 @@ class DeleteCustomConstraintRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the custom constraint to delete.
-     * See the custom constraint entry for naming rules.
+     * Required. Resource name of the custom constraint. See the custom constraint
+     * entry for naming requirements.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

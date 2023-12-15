@@ -9,21 +9,21 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Defines a Cloud Organization `Policy` which is used to specify `Constraints`
- * for configurations of Cloud Platform resources.
+ * Defines an organization policy which is used to specify constraints
+ * for configurations of Google Cloud resources.
  *
  * Generated from protobuf message <code>google.cloud.orgpolicy.v2.Policy</code>
  */
 class Policy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Immutable. The resource name of the Policy. Must be one of the following
-     * forms, where constraint_name is the name of the constraint which this
-     * Policy configures:
+     * Immutable. The resource name of the policy. Must be one of the following
+     * forms, where `constraint_name` is the name of the constraint which this
+     * policy configures:
      * * `projects/{project_number}/policies/{constraint_name}`
      * * `folders/{folder_id}/policies/{constraint_name}`
      * * `organizations/{organization_id}/policies/{constraint_name}`
-     * For example, "projects/123/policies/compute.disableSerialPortAccess".
+     * For example, `projects/123/policies/compute.disableSerialPortAccess`.
      * Note: `projects/{project_id}/policies/{constraint_name}` is also an
      * acceptable name for API requests, but responses will return the name using
      * the equivalent project number.
@@ -45,13 +45,22 @@ class Policy extends \Google\Protobuf\Internal\Message
      */
     protected $alternate = null;
     /**
-     * dry-run policy.
+     * Dry-run policy.
      * Audit-only policy, can be used to monitor how the policy would have
      * impacted the existing and future resources if it's enforced.
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.PolicySpec dry_run_spec = 4;</code>
      */
     private $dry_run_spec = null;
+    /**
+     * Optional. An opaque tag indicating the current state of the policy, used
+     * for concurrency control. This 'etag' is computed by the server based on the
+     * value of other fields, and may be sent on update and delete requests to
+     * ensure the client has an up-to-date value before proceeding.
+     *
+     * Generated from protobuf field <code>string etag = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $etag = '';
 
     /**
      * Constructor.
@@ -60,13 +69,13 @@ class Policy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Immutable. The resource name of the Policy. Must be one of the following
-     *           forms, where constraint_name is the name of the constraint which this
-     *           Policy configures:
+     *           Immutable. The resource name of the policy. Must be one of the following
+     *           forms, where `constraint_name` is the name of the constraint which this
+     *           policy configures:
      *           * `projects/{project_number}/policies/{constraint_name}`
      *           * `folders/{folder_id}/policies/{constraint_name}`
      *           * `organizations/{organization_id}/policies/{constraint_name}`
-     *           For example, "projects/123/policies/compute.disableSerialPortAccess".
+     *           For example, `projects/123/policies/compute.disableSerialPortAccess`.
      *           Note: `projects/{project_id}/policies/{constraint_name}` is also an
      *           acceptable name for API requests, but responses will return the name using
      *           the equivalent project number.
@@ -75,9 +84,14 @@ class Policy extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\OrgPolicy\V2\AlternatePolicySpec $alternate
      *           Deprecated.
      *     @type \Google\Cloud\OrgPolicy\V2\PolicySpec $dry_run_spec
-     *           dry-run policy.
+     *           Dry-run policy.
      *           Audit-only policy, can be used to monitor how the policy would have
      *           impacted the existing and future resources if it's enforced.
+     *     @type string $etag
+     *           Optional. An opaque tag indicating the current state of the policy, used
+     *           for concurrency control. This 'etag' is computed by the server based on the
+     *           value of other fields, and may be sent on update and delete requests to
+     *           ensure the client has an up-to-date value before proceeding.
      * }
      */
     public function __construct($data = NULL) {
@@ -86,13 +100,13 @@ class Policy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The resource name of the Policy. Must be one of the following
-     * forms, where constraint_name is the name of the constraint which this
-     * Policy configures:
+     * Immutable. The resource name of the policy. Must be one of the following
+     * forms, where `constraint_name` is the name of the constraint which this
+     * policy configures:
      * * `projects/{project_number}/policies/{constraint_name}`
      * * `folders/{folder_id}/policies/{constraint_name}`
      * * `organizations/{organization_id}/policies/{constraint_name}`
-     * For example, "projects/123/policies/compute.disableSerialPortAccess".
+     * For example, `projects/123/policies/compute.disableSerialPortAccess`.
      * Note: `projects/{project_id}/policies/{constraint_name}` is also an
      * acceptable name for API requests, but responses will return the name using
      * the equivalent project number.
@@ -106,13 +120,13 @@ class Policy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The resource name of the Policy. Must be one of the following
-     * forms, where constraint_name is the name of the constraint which this
-     * Policy configures:
+     * Immutable. The resource name of the policy. Must be one of the following
+     * forms, where `constraint_name` is the name of the constraint which this
+     * policy configures:
      * * `projects/{project_number}/policies/{constraint_name}`
      * * `folders/{folder_id}/policies/{constraint_name}`
      * * `organizations/{organization_id}/policies/{constraint_name}`
-     * For example, "projects/123/policies/compute.disableSerialPortAccess".
+     * For example, `projects/123/policies/compute.disableSerialPortAccess`.
      * Note: `projects/{project_id}/policies/{constraint_name}` is also an
      * acceptable name for API requests, but responses will return the name using
      * the equivalent project number.
@@ -208,7 +222,7 @@ class Policy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * dry-run policy.
+     * Dry-run policy.
      * Audit-only policy, can be used to monitor how the policy would have
      * impacted the existing and future resources if it's enforced.
      *
@@ -231,7 +245,7 @@ class Policy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * dry-run policy.
+     * Dry-run policy.
      * Audit-only policy, can be used to monitor how the policy would have
      * impacted the existing and future resources if it's enforced.
      *
@@ -243,6 +257,38 @@ class Policy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\OrgPolicy\V2\PolicySpec::class);
         $this->dry_run_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. An opaque tag indicating the current state of the policy, used
+     * for concurrency control. This 'etag' is computed by the server based on the
+     * value of other fields, and may be sent on update and delete requests to
+     * ensure the client has an up-to-date value before proceeding.
+     *
+     * Generated from protobuf field <code>string etag = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getEtag()
+    {
+        return $this->etag;
+    }
+
+    /**
+     * Optional. An opaque tag indicating the current state of the policy, used
+     * for concurrency control. This 'etag' is computed by the server based on the
+     * value of other fields, and may be sent on update and delete requests to
+     * ensure the client has an up-to-date value before proceeding.
+     *
+     * Generated from protobuf field <code>string etag = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEtag($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->etag = $var;
 
         return $this;
     }

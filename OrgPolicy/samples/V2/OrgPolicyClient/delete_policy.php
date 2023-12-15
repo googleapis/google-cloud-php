@@ -28,13 +28,13 @@ use Google\Cloud\OrgPolicy\V2\Client\OrgPolicyClient;
 use Google\Cloud\OrgPolicy\V2\DeletePolicyRequest;
 
 /**
- * Deletes a Policy.
+ * Deletes a policy.
  *
  * Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
- * constraint or Org Policy does not exist.
+ * constraint or organization policy does not exist.
  *
  * @param string $formattedName Name of the policy to delete.
- *                              See `Policy` for naming rules. Please see
+ *                              See the policy entry for naming rules. Please see
  *                              {@see OrgPolicyClient::policyName()} for help formatting this field.
  */
 function delete_policy_sample(string $formattedName): void

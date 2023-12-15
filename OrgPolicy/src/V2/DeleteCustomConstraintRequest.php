@@ -9,27 +9,27 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request sent to the [GetEffectivePolicy]
- * [google.cloud.orgpolicy.v2.OrgPolicy.GetEffectivePolicy] method.
+ * The request sent to the [DeleteCustomConstraint]
+ * [google.cloud.orgpolicy.v2.OrgPolicy.DeleteCustomConstraint] method.
  *
- * Generated from protobuf message <code>google.cloud.orgpolicy.v2.GetEffectivePolicyRequest</code>
+ * Generated from protobuf message <code>google.cloud.orgpolicy.v2.DeleteCustomConstraintRequest</code>
  */
-class GetEffectivePolicyRequest extends \Google\Protobuf\Internal\Message
+class DeleteCustomConstraintRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The effective policy to compute. See
-     * [Policy][google.cloud.orgpolicy.v2.Policy] for naming requirements.
+     * Required. Name of the custom constraint to delete.
+     * See the custom constraint entry for naming rules.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $name = '';
+    private $name = '';
 
     /**
-     * @param string $name Required. The effective policy to compute. See
-     *                     [Policy][google.cloud.orgpolicy.v2.Policy] for naming requirements. Please see
-     *                     {@see OrgPolicyClient::policyName()} for help formatting this field.
+     * @param string $name Required. Name of the custom constraint to delete.
+     *                     See the custom constraint entry for naming rules. Please see
+     *                     {@see OrgPolicyClient::customConstraintName()} for help formatting this field.
      *
-     * @return \Google\Cloud\OrgPolicy\V2\GetEffectivePolicyRequest
+     * @return \Google\Cloud\OrgPolicy\V2\DeleteCustomConstraintRequest
      *
      * @experimental
      */
@@ -46,8 +46,8 @@ class GetEffectivePolicyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The effective policy to compute. See
-     *           [Policy][google.cloud.orgpolicy.v2.Policy] for naming requirements.
+     *           Required. Name of the custom constraint to delete.
+     *           See the custom constraint entry for naming rules.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,8 +56,8 @@ class GetEffectivePolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The effective policy to compute. See
-     * [Policy][google.cloud.orgpolicy.v2.Policy] for naming requirements.
+     * Required. Name of the custom constraint to delete.
+     * See the custom constraint entry for naming rules.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,8 +68,8 @@ class GetEffectivePolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The effective policy to compute. See
-     * [Policy][google.cloud.orgpolicy.v2.Policy] for naming requirements.
+     * Required. Name of the custom constraint to delete.
+     * See the custom constraint entry for naming rules.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

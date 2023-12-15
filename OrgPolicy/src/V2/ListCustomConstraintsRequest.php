@@ -9,25 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request sent to the [ListPolicies]
- * [google.cloud.orgpolicy.v2.OrgPolicy.ListPolicies] method.
+ * The request sent to the [ListCustomConstraints]
+ * [google.cloud.orgpolicy.v2.OrgPolicy.ListCustomConstraints] method.
  *
- * Generated from protobuf message <code>google.cloud.orgpolicy.v2.ListPoliciesRequest</code>
+ * Generated from protobuf message <code>google.cloud.orgpolicy.v2.ListCustomConstraintsRequest</code>
  */
-class ListPoliciesRequest extends \Google\Protobuf\Internal\Message
+class ListCustomConstraintsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The target Google Cloud resource that parents the set of
-     * constraints and policies that will be returned from this call. Must be in
-     * one of the following forms:
-     * * `projects/{project_number}`
-     * * `projects/{project_id}`
-     * * `folders/{folder_id}`
+     * Required. The target Google Cloud resource that parents the set of custom
+     * constraints that will be returned from this call. Must be in one of the
+     * following forms:
      * * `organizations/{organization_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $parent = '';
+    private $parent = '';
     /**
      * Size of the pages to be returned. This is currently unsupported and will
      * be ignored. The server may at any point start using this field to limit
@@ -35,27 +32,24 @@ class ListPoliciesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    protected $page_size = 0;
+    private $page_size = 0;
     /**
      * Page token used to retrieve the next page. This is currently unsupported
      * and will be ignored. The server may at any point start using this field.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    protected $page_token = '';
+    private $page_token = '';
 
     /**
-     * @param string $parent Required. The target Google Cloud resource that parents the set of
-     *                       constraints and policies that will be returned from this call. Must be in
-     *                       one of the following forms:
+     * @param string $parent Required. The target Google Cloud resource that parents the set of custom
+     *                       constraints that will be returned from this call. Must be in one of the
+     *                       following forms:
      *
-     *                       * `projects/{project_number}`
-     *                       * `projects/{project_id}`
-     *                       * `folders/{folder_id}`
      *                       * `organizations/{organization_id}`
-     *                       Please see {@see OrgPolicyClient::projectName()} for help formatting this field.
+     *                       Please see {@see OrgPolicyClient::organizationName()} for help formatting this field.
      *
-     * @return \Google\Cloud\OrgPolicy\V2\ListPoliciesRequest
+     * @return \Google\Cloud\OrgPolicy\V2\ListCustomConstraintsRequest
      *
      * @experimental
      */
@@ -72,12 +66,9 @@ class ListPoliciesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The target Google Cloud resource that parents the set of
-     *           constraints and policies that will be returned from this call. Must be in
-     *           one of the following forms:
-     *           * `projects/{project_number}`
-     *           * `projects/{project_id}`
-     *           * `folders/{folder_id}`
+     *           Required. The target Google Cloud resource that parents the set of custom
+     *           constraints that will be returned from this call. Must be in one of the
+     *           following forms:
      *           * `organizations/{organization_id}`
      *     @type int $page_size
      *           Size of the pages to be returned. This is currently unsupported and will
@@ -94,12 +85,9 @@ class ListPoliciesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The target Google Cloud resource that parents the set of
-     * constraints and policies that will be returned from this call. Must be in
-     * one of the following forms:
-     * * `projects/{project_number}`
-     * * `projects/{project_id}`
-     * * `folders/{folder_id}`
+     * Required. The target Google Cloud resource that parents the set of custom
+     * constraints that will be returned from this call. Must be in one of the
+     * following forms:
      * * `organizations/{organization_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -111,12 +99,9 @@ class ListPoliciesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The target Google Cloud resource that parents the set of
-     * constraints and policies that will be returned from this call. Must be in
-     * one of the following forms:
-     * * `projects/{project_number}`
-     * * `projects/{project_id}`
-     * * `folders/{folder_id}`
+     * Required. The target Google Cloud resource that parents the set of custom
+     * constraints that will be returned from this call. Must be in one of the
+     * following forms:
      * * `organizations/{organization_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
