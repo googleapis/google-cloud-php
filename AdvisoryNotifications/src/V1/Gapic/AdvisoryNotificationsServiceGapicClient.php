@@ -62,9 +62,7 @@ use Google\Cloud\AdvisoryNotifications\V1\UpdateSettingsRequest;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\AdvisoryNotifications\V1\Client\AdvisoryNotificationsServiceClient}
- * to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\AdvisoryNotifications\V1\Client\AdvisoryNotificationsServiceClient}.
  */
 class AdvisoryNotificationsServiceGapicClient
 {
@@ -73,8 +71,15 @@ class AdvisoryNotificationsServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.advisorynotifications.v1.AdvisoryNotificationsService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'advisorynotifications.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'advisorynotifications.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;

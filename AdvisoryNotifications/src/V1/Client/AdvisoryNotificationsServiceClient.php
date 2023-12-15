@@ -52,12 +52,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\AdvisoryNotifications\V1\AdvisoryNotificationsServiceClient} for
- * the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface getNotificationAsync(GetNotificationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getSettingsAsync(GetSettingsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listNotificationsAsync(ListNotificationsRequest $request, array $optionalArgs = [])
@@ -71,8 +65,15 @@ final class AdvisoryNotificationsServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.advisorynotifications.v1.AdvisoryNotificationsService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'advisorynotifications.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'advisorynotifications.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
