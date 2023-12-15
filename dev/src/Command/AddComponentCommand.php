@@ -181,7 +181,7 @@ class AddComponentCommand extends Command
                 'version' => $new->version,
                 'github_repo' => $new->githubRepo,
                 'documentation' => $documentationUrl,
-                'product_homepage' => $productHomepage,
+                'product_homepage' => $productHomePage,
                 'product_documentation' => $productDocumentation,
             ]));
         }
