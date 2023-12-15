@@ -132,7 +132,7 @@ class SpannerTestCase extends SystemTestCase
 
     public static function getDatabaseInstance($dbName, $options = [])
     {
-        return self::$client->connect(self::INSTANCE_NAME, $dbName, $options);
+        return self::getClient()->connect(self::INSTANCE_NAME, $dbName, $options);
     }
 
     public static function getDatabaseFromInstance($instance, $dbName, $options = [])

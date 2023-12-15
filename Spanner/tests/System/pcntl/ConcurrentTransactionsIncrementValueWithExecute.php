@@ -3,7 +3,6 @@
 include __DIR__ . '/../../../vendor/autoload.php';
 include __DIR__ . '/forked-process-test.php';
 
-use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Tests\System\SpannerTestCase;
 
 list ($dbName, $tableName, $id) = getInputArgs();
@@ -13,8 +12,6 @@ setupIterationTracker($tmpFile);
 
 $callable = function ($dbName, $tableName, $id) use ($tmpFile) {
     $iterations = 0;
-    TestHelpers::SystemBootstrap();
-    SpannerTestCase::setUpBeforeClass();
     $db = SpannerTestCase::getDatabaseInstance($dbName);
     $db->runTransaction(function ($transaction) use ($id, $tableName, &$iterations) {
         $iterations++;

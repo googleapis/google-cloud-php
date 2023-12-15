@@ -8,7 +8,7 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Tests\System\SpannerTestCase;
 
 list ($dbName, $tableName, $id) = getInputArgs();
-$delay = 2000;
+$delay = 5000;
 
 if ($childPID1 = pcntl_fork()) {
     usleep($delay);
@@ -18,11 +18,12 @@ if ($childPID1 = pcntl_fork()) {
     $db1 = SpannerTestCase::getDatabaseInstance($dbName);
     $db1->runTransaction(function ($t) use ($id, $tableName, $delay, &$iteration) {
         $iteration++;
+        usleep(2 * $delay);
         $row = $t->execute('SELECT id, number FROM ' . $tableName . ' WHERE ID = @id', [
             'parameters' => ['id' => (int) $id]
         ])->rows()->current();
 
-        if ($iteration <= 2) {
+        if ($iteration === 1) {
             throw new AbortedException('foo', 409, null, [
                 [
                     'retryDelay' => [
@@ -41,7 +42,6 @@ if ($childPID1 = pcntl_fork()) {
     echo $iteration;
     pcntl_waitpid($childPID1, $status1);
 } else {
-    usleep($delay);
     TestHelpers::SystemBootstrap();
     SpannerTestCase::setUpBeforeClass();
     $db2 = SpannerTestCase::getDatabaseInstance($dbName);
