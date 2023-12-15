@@ -154,8 +154,7 @@ use Google\Protobuf\FieldMask;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\VMMigration\V1\Client\VmMigrationClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\VMMigration\V1\Client\VmMigrationClient}.
  */
 class VmMigrationGapicClient
 {
@@ -164,8 +163,15 @@ class VmMigrationGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.vmmigration.v1.VmMigration';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'vmmigration.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'vmmigration.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
