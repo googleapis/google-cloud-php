@@ -53,12 +53,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Billing\Budgets\V1\BudgetServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createBudgetAsync(CreateBudgetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteBudgetAsync(DeleteBudgetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getBudgetAsync(GetBudgetRequest $request, array $optionalArgs = [])
@@ -73,8 +67,15 @@ final class BudgetServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.billing.budgets.v1.BudgetService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'billingbudgets.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'billingbudgets.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
