@@ -44,7 +44,7 @@ use Google\Cloud\Asset\V1\BatchGetEffectiveIamPoliciesResponse;
  * @param string $namesElement The names refer to the [full_resource_names]
  *                             (https://cloud.google.com/asset-inventory/docs/resource-name-format)
  *                             of [searchable asset
- *                             types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
+ *                             types](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
  *                             A maximum of 20 resources' effective policies can be retrieved in a batch.
  */
 function batch_get_effective_iam_policies_sample(string $scope, string $namesElement): void
