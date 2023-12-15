@@ -1,0 +1,93 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.secrets.v1beta1",
+    "libraryPackage": "Google\\Cloud\\SecretManager\\V1beta1",
+    "services": {
+        "SecretManagerService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SecretManagerServiceGapicClient",
+                    "rpcs": {
+                        "AccessSecretVersion": {
+                            "methods": [
+                                "accessSecretVersion"
+                            ]
+                        },
+                        "AddSecretVersion": {
+                            "methods": [
+                                "addSecretVersion"
+                            ]
+                        },
+                        "CreateSecret": {
+                            "methods": [
+                                "createSecret"
+                            ]
+                        },
+                        "DeleteSecret": {
+                            "methods": [
+                                "deleteSecret"
+                            ]
+                        },
+                        "DestroySecretVersion": {
+                            "methods": [
+                                "destroySecretVersion"
+                            ]
+                        },
+                        "DisableSecretVersion": {
+                            "methods": [
+                                "disableSecretVersion"
+                            ]
+                        },
+                        "EnableSecretVersion": {
+                            "methods": [
+                                "enableSecretVersion"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "GetSecret": {
+                            "methods": [
+                                "getSecret"
+                            ]
+                        },
+                        "GetSecretVersion": {
+                            "methods": [
+                                "getSecretVersion"
+                            ]
+                        },
+                        "ListSecretVersions": {
+                            "methods": [
+                                "listSecretVersions"
+                            ]
+                        },
+                        "ListSecrets": {
+                            "methods": [
+                                "listSecrets"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "UpdateSecret": {
+                            "methods": [
+                                "updateSecret"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

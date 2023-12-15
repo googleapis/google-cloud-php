@@ -1,0 +1,118 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.security.privateca.v1beta1",
+    "libraryPackage": "Google\\Cloud\\Security\\PrivateCA\\V1beta1",
+    "services": {
+        "CertificateAuthorityService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CertificateAuthorityServiceGapicClient",
+                    "rpcs": {
+                        "ActivateCertificateAuthority": {
+                            "methods": [
+                                "activateCertificateAuthority"
+                            ]
+                        },
+                        "CreateCertificate": {
+                            "methods": [
+                                "createCertificate"
+                            ]
+                        },
+                        "CreateCertificateAuthority": {
+                            "methods": [
+                                "createCertificateAuthority"
+                            ]
+                        },
+                        "DisableCertificateAuthority": {
+                            "methods": [
+                                "disableCertificateAuthority"
+                            ]
+                        },
+                        "EnableCertificateAuthority": {
+                            "methods": [
+                                "enableCertificateAuthority"
+                            ]
+                        },
+                        "FetchCertificateAuthorityCsr": {
+                            "methods": [
+                                "fetchCertificateAuthorityCsr"
+                            ]
+                        },
+                        "GetCertificate": {
+                            "methods": [
+                                "getCertificate"
+                            ]
+                        },
+                        "GetCertificateAuthority": {
+                            "methods": [
+                                "getCertificateAuthority"
+                            ]
+                        },
+                        "GetCertificateRevocationList": {
+                            "methods": [
+                                "getCertificateRevocationList"
+                            ]
+                        },
+                        "GetReusableConfig": {
+                            "methods": [
+                                "getReusableConfig"
+                            ]
+                        },
+                        "ListCertificateAuthorities": {
+                            "methods": [
+                                "listCertificateAuthorities"
+                            ]
+                        },
+                        "ListCertificateRevocationLists": {
+                            "methods": [
+                                "listCertificateRevocationLists"
+                            ]
+                        },
+                        "ListCertificates": {
+                            "methods": [
+                                "listCertificates"
+                            ]
+                        },
+                        "ListReusableConfigs": {
+                            "methods": [
+                                "listReusableConfigs"
+                            ]
+                        },
+                        "RestoreCertificateAuthority": {
+                            "methods": [
+                                "restoreCertificateAuthority"
+                            ]
+                        },
+                        "RevokeCertificate": {
+                            "methods": [
+                                "revokeCertificate"
+                            ]
+                        },
+                        "ScheduleDeleteCertificateAuthority": {
+                            "methods": [
+                                "scheduleDeleteCertificateAuthority"
+                            ]
+                        },
+                        "UpdateCertificate": {
+                            "methods": [
+                                "updateCertificate"
+                            ]
+                        },
+                        "UpdateCertificateAuthority": {
+                            "methods": [
+                                "updateCertificateAuthority"
+                            ]
+                        },
+                        "UpdateCertificateRevocationList": {
+                            "methods": [
+                                "updateCertificateRevocationList"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
