@@ -55,11 +55,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\ServiceUsage\V1\ServiceUsageClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface batchEnableServicesAsync(BatchEnableServicesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface batchGetServicesAsync(BatchGetServicesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface disableServiceAsync(DisableServiceRequest $request, array $optionalArgs = [])
@@ -74,8 +69,15 @@ final class ServiceUsageClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.api.serviceusage.v1.ServiceUsage';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'serviceusage.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'serviceusage.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
