@@ -9,21 +9,21 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response returned from the [ListPolicies]
- * [google.cloud.orgpolicy.v2.OrgPolicy.ListPolicies] method. It will be empty
- * if no policies are set on the resource.
+ * The response returned from the [ListCustomConstraints]
+ * [google.cloud.orgpolicy.v2.OrgPolicy.ListCustomConstraints] method. It will
+ * be empty if no custom constraints are set on the organization resource.
  *
- * Generated from protobuf message <code>google.cloud.orgpolicy.v2.ListPoliciesResponse</code>
+ * Generated from protobuf message <code>google.cloud.orgpolicy.v2.ListCustomConstraintsResponse</code>
  */
-class ListPoliciesResponse extends \Google\Protobuf\Internal\Message
+class ListCustomConstraintsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * All policies that exist on the resource. It will be empty if no
-     * policies are set.
+     * All custom constraints that exist on the organization resource. It will be
+     * empty if no custom constraints are set.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v2.Policy policies = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v2.CustomConstraint custom_constraints = 1;</code>
      */
-    private $policies;
+    private $custom_constraints;
     /**
      * Page token used to retrieve the next page. This is currently not used, but
      * the server may at any point start supplying a valid token.
@@ -38,9 +38,9 @@ class ListPoliciesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\OrgPolicy\V2\Policy>|\Google\Protobuf\Internal\RepeatedField $policies
-     *           All policies that exist on the resource. It will be empty if no
-     *           policies are set.
+     *     @type array<\Google\Cloud\OrgPolicy\V2\CustomConstraint>|\Google\Protobuf\Internal\RepeatedField $custom_constraints
+     *           All custom constraints that exist on the organization resource. It will be
+     *           empty if no custom constraints are set.
      *     @type string $next_page_token
      *           Page token used to retrieve the next page. This is currently not used, but
      *           the server may at any point start supplying a valid token.
@@ -52,29 +52,29 @@ class ListPoliciesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * All policies that exist on the resource. It will be empty if no
-     * policies are set.
+     * All custom constraints that exist on the organization resource. It will be
+     * empty if no custom constraints are set.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v2.Policy policies = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v2.CustomConstraint custom_constraints = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
-    public function getPolicies()
+    public function getCustomConstraints()
     {
-        return $this->policies;
+        return $this->custom_constraints;
     }
 
     /**
-     * All policies that exist on the resource. It will be empty if no
-     * policies are set.
+     * All custom constraints that exist on the organization resource. It will be
+     * empty if no custom constraints are set.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v2.Policy policies = 1;</code>
-     * @param array<\Google\Cloud\OrgPolicy\V2\Policy>|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v2.CustomConstraint custom_constraints = 1;</code>
+     * @param array<\Google\Cloud\OrgPolicy\V2\CustomConstraint>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
-    public function setPolicies($var)
+    public function setCustomConstraints($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\OrgPolicy\V2\Policy::class);
-        $this->policies = $arr;
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\OrgPolicy\V2\CustomConstraint::class);
+        $this->custom_constraints = $arr;
 
         return $this;
     }

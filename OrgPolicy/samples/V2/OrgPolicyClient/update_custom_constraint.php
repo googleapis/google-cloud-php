@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,19 +22,17 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START orgpolicy_v2_generated_OrgPolicy_UpdatePolicy_sync]
+// [START orgpolicy_v2_generated_OrgPolicy_UpdateCustomConstraint_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\OrgPolicy\V2\Client\OrgPolicyClient;
-use Google\Cloud\OrgPolicy\V2\Policy;
-use Google\Cloud\OrgPolicy\V2\UpdatePolicyRequest;
+use Google\Cloud\OrgPolicy\V2\CustomConstraint;
+use Google\Cloud\OrgPolicy\V2\UpdateCustomConstraintRequest;
 
 /**
- * Updates a policy.
+ * Updates a custom constraint.
  *
  * Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
- * constraint or the policy do not exist.
- * Returns a `google.rpc.Status` with `google.rpc.Code.ABORTED` if the etag
- * supplied in the request does not match the persisted etag of the policy
+ * constraint does not exist.
  *
  * Note: the supplied policy will perform a full overwrite of all
  * fields.
@@ -45,23 +43,23 @@ use Google\Cloud\OrgPolicy\V2\UpdatePolicyRequest;
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function update_policy_sample(): void
+function update_custom_constraint_sample(): void
 {
     // Create a client.
     $orgPolicyClient = new OrgPolicyClient();
 
     // Prepare the request message.
-    $policy = new Policy();
-    $request = (new UpdatePolicyRequest())
-        ->setPolicy($policy);
+    $customConstraint = new CustomConstraint();
+    $request = (new UpdateCustomConstraintRequest())
+        ->setCustomConstraint($customConstraint);
 
     // Call the API and handle any network failures.
     try {
-        /** @var Policy $response */
-        $response = $orgPolicyClient->updatePolicy($request);
+        /** @var CustomConstraint $response */
+        $response = $orgPolicyClient->updateCustomConstraint($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
 }
-// [END orgpolicy_v2_generated_OrgPolicy_UpdatePolicy_sync]
+// [END orgpolicy_v2_generated_OrgPolicy_UpdateCustomConstraint_sync]

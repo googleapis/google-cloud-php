@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,44 +22,34 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START orgpolicy_v2_generated_OrgPolicy_ListPolicies_sync]
+// [START orgpolicy_v2_generated_OrgPolicy_DeleteCustomConstraint_sync]
 use Google\ApiCore\ApiException;
-use Google\ApiCore\PagedListResponse;
 use Google\Cloud\OrgPolicy\V2\Client\OrgPolicyClient;
-use Google\Cloud\OrgPolicy\V2\ListPoliciesRequest;
-use Google\Cloud\OrgPolicy\V2\Policy;
+use Google\Cloud\OrgPolicy\V2\DeleteCustomConstraintRequest;
 
 /**
- * Retrieves all of the policies that exist on a particular resource.
+ * Deletes a custom constraint.
  *
- * @param string $formattedParent The target Google Cloud resource that parents the set of
- *                                constraints and policies that will be returned from this call. Must be in
- *                                one of the following forms:
+ * Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+ * constraint does not exist.
  *
- *                                * `projects/{project_number}`
- *                                * `projects/{project_id}`
- *                                * `folders/{folder_id}`
- *                                * `organizations/{organization_id}`
- *                                Please see {@see OrgPolicyClient::projectName()} for help formatting this field.
+ * @param string $formattedName Name of the custom constraint to delete.
+ *                              See the custom constraint entry for naming rules. Please see
+ *                              {@see OrgPolicyClient::customConstraintName()} for help formatting this field.
  */
-function list_policies_sample(string $formattedParent): void
+function delete_custom_constraint_sample(string $formattedName): void
 {
     // Create a client.
     $orgPolicyClient = new OrgPolicyClient();
 
     // Prepare the request message.
-    $request = (new ListPoliciesRequest())
-        ->setParent($formattedParent);
+    $request = (new DeleteCustomConstraintRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
-        /** @var PagedListResponse $response */
-        $response = $orgPolicyClient->listPolicies($request);
-
-        /** @var Policy $element */
-        foreach ($response as $element) {
-            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
-        }
+        $orgPolicyClient->deleteCustomConstraint($request);
+        printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -76,8 +66,8 @@ function list_policies_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = OrgPolicyClient::projectName('[PROJECT]');
+    $formattedName = OrgPolicyClient::customConstraintName('[ORGANIZATION]', '[CUSTOM_CONSTRAINT]');
 
-    list_policies_sample($formattedParent);
+    delete_custom_constraint_sample($formattedName);
 }
-// [END orgpolicy_v2_generated_OrgPolicy_ListPolicies_sync]
+// [END orgpolicy_v2_generated_OrgPolicy_DeleteCustomConstraint_sync]

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,44 +22,41 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START orgpolicy_v2_generated_OrgPolicy_ListPolicies_sync]
+// [START orgpolicy_v2_generated_OrgPolicy_CreateCustomConstraint_sync]
 use Google\ApiCore\ApiException;
-use Google\ApiCore\PagedListResponse;
 use Google\Cloud\OrgPolicy\V2\Client\OrgPolicyClient;
-use Google\Cloud\OrgPolicy\V2\ListPoliciesRequest;
-use Google\Cloud\OrgPolicy\V2\Policy;
+use Google\Cloud\OrgPolicy\V2\CreateCustomConstraintRequest;
+use Google\Cloud\OrgPolicy\V2\CustomConstraint;
 
 /**
- * Retrieves all of the policies that exist on a particular resource.
+ * Creates a custom constraint.
  *
- * @param string $formattedParent The target Google Cloud resource that parents the set of
- *                                constraints and policies that will be returned from this call. Must be in
- *                                one of the following forms:
+ * Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+ * organization does not exist.
+ * Returns a `google.rpc.Status` with `google.rpc.Code.ALREADY_EXISTS` if the
+ * constraint already exists on the given organization.
  *
- *                                * `projects/{project_number}`
- *                                * `projects/{project_id}`
- *                                * `folders/{folder_id}`
+ * @param string $formattedParent Must be in the following form:
+ *
  *                                * `organizations/{organization_id}`
- *                                Please see {@see OrgPolicyClient::projectName()} for help formatting this field.
+ *                                Please see {@see OrgPolicyClient::organizationName()} for help formatting this field.
  */
-function list_policies_sample(string $formattedParent): void
+function create_custom_constraint_sample(string $formattedParent): void
 {
     // Create a client.
     $orgPolicyClient = new OrgPolicyClient();
 
     // Prepare the request message.
-    $request = (new ListPoliciesRequest())
-        ->setParent($formattedParent);
+    $customConstraint = new CustomConstraint();
+    $request = (new CreateCustomConstraintRequest())
+        ->setParent($formattedParent)
+        ->setCustomConstraint($customConstraint);
 
     // Call the API and handle any network failures.
     try {
-        /** @var PagedListResponse $response */
-        $response = $orgPolicyClient->listPolicies($request);
-
-        /** @var Policy $element */
-        foreach ($response as $element) {
-            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
-        }
+        /** @var CustomConstraint $response */
+        $response = $orgPolicyClient->createCustomConstraint($request);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -76,8 +73,8 @@ function list_policies_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = OrgPolicyClient::projectName('[PROJECT]');
+    $formattedParent = OrgPolicyClient::organizationName('[ORGANIZATION]');
 
-    list_policies_sample($formattedParent);
+    create_custom_constraint_sample($formattedParent);
 }
-// [END orgpolicy_v2_generated_OrgPolicy_ListPolicies_sync]
+// [END orgpolicy_v2_generated_OrgPolicy_CreateCustomConstraint_sync]

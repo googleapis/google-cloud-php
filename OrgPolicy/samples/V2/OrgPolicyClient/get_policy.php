@@ -29,14 +29,14 @@ use Google\Cloud\OrgPolicy\V2\GetPolicyRequest;
 use Google\Cloud\OrgPolicy\V2\Policy;
 
 /**
- * Gets a `Policy` on a resource.
+ * Gets a policy on a resource.
  *
- * If no `Policy` is set on the resource, NOT_FOUND is returned. The
+ * If no policy is set on the resource, `NOT_FOUND` is returned. The
  * `etag` value can be used with `UpdatePolicy()` to update a
- * `Policy` during read-modify-write.
+ * policy during read-modify-write.
  *
- * @param string $formattedName Resource name of the policy. See `Policy` for naming
- *                              requirements. Please see
+ * @param string $formattedName Resource name of the policy. See
+ *                              [Policy][google.cloud.orgpolicy.v2.Policy] for naming requirements. Please see
  *                              {@see OrgPolicyClient::policyName()} for help formatting this field.
  */
 function get_policy_sample(string $formattedName): void

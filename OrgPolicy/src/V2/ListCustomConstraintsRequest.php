@@ -9,19 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request sent to the [ListConstraints]
- * [google.cloud.orgpolicy.v2.OrgPolicy.ListConstraints] method.
+ * The request sent to the [ListCustomConstraints]
+ * [google.cloud.orgpolicy.v2.OrgPolicy.ListCustomConstraints] method.
  *
- * Generated from protobuf message <code>google.cloud.orgpolicy.v2.ListConstraintsRequest</code>
+ * Generated from protobuf message <code>google.cloud.orgpolicy.v2.ListCustomConstraintsRequest</code>
  */
-class ListConstraintsRequest extends \Google\Protobuf\Internal\Message
+class ListCustomConstraintsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The Google Cloud resource that parents the constraint. Must be in
-     * one of the following forms:
-     * * `projects/{project_number}`
-     * * `projects/{project_id}`
-     * * `folders/{folder_id}`
+     * Required. The target Google Cloud resource that parents the set of custom
+     * constraints that will be returned from this call. Must be in one of the
+     * following forms:
      * * `organizations/{organization_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -44,16 +42,14 @@ class ListConstraintsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
-     * @param string $parent Required. The Google Cloud resource that parents the constraint. Must be in
-     *                       one of the following forms:
+     * @param string $parent Required. The target Google Cloud resource that parents the set of custom
+     *                       constraints that will be returned from this call. Must be in one of the
+     *                       following forms:
      *
-     *                       * `projects/{project_number}`
-     *                       * `projects/{project_id}`
-     *                       * `folders/{folder_id}`
      *                       * `organizations/{organization_id}`
-     *                       Please see {@see OrgPolicyClient::projectName()} for help formatting this field.
+     *                       Please see {@see OrgPolicyClient::organizationName()} for help formatting this field.
      *
-     * @return \Google\Cloud\OrgPolicy\V2\ListConstraintsRequest
+     * @return \Google\Cloud\OrgPolicy\V2\ListCustomConstraintsRequest
      *
      * @experimental
      */
@@ -70,11 +66,9 @@ class ListConstraintsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The Google Cloud resource that parents the constraint. Must be in
-     *           one of the following forms:
-     *           * `projects/{project_number}`
-     *           * `projects/{project_id}`
-     *           * `folders/{folder_id}`
+     *           Required. The target Google Cloud resource that parents the set of custom
+     *           constraints that will be returned from this call. Must be in one of the
+     *           following forms:
      *           * `organizations/{organization_id}`
      *     @type int $page_size
      *           Size of the pages to be returned. This is currently unsupported and will
@@ -91,11 +85,9 @@ class ListConstraintsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Google Cloud resource that parents the constraint. Must be in
-     * one of the following forms:
-     * * `projects/{project_number}`
-     * * `projects/{project_id}`
-     * * `folders/{folder_id}`
+     * Required. The target Google Cloud resource that parents the set of custom
+     * constraints that will be returned from this call. Must be in one of the
+     * following forms:
      * * `organizations/{organization_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -107,11 +99,9 @@ class ListConstraintsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Google Cloud resource that parents the constraint. Must be in
-     * one of the following forms:
-     * * `projects/{project_number}`
-     * * `projects/{project_id}`
-     * * `folders/{folder_id}`
+     * Required. The target Google Cloud resource that parents the set of custom
+     * constraints that will be returned from this call. Must be in one of the
+     * following forms:
      * * `organizations/{organization_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
