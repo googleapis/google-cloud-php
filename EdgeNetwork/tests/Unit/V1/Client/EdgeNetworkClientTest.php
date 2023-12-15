@@ -98,7 +98,9 @@ class EdgeNetworkClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return EdgeNetworkClient */
@@ -157,7 +159,12 @@ class EdgeNetworkClientTest extends GeneratedTest
         $interconnectAttachment = new InterconnectAttachment();
         $interconnectAttachmentName = 'interconnectAttachmentName-1161503108';
         $interconnectAttachment->setName($interconnectAttachmentName);
-        $interconnectAttachmentInterconnect = $gapicClient->interconnectName('[PROJECT]', '[LOCATION]', '[ZONE]', '[INTERCONNECT]');
+        $interconnectAttachmentInterconnect = $gapicClient->interconnectName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ZONE]',
+            '[INTERCONNECT]'
+        );
         $interconnectAttachment->setInterconnect($interconnectAttachmentInterconnect);
         $interconnectAttachmentVlanId = 725855631;
         $interconnectAttachment->setVlanId($interconnectAttachmentVlanId);
@@ -224,12 +231,15 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
@@ -237,7 +247,12 @@ class EdgeNetworkClientTest extends GeneratedTest
         $interconnectAttachment = new InterconnectAttachment();
         $interconnectAttachmentName = 'interconnectAttachmentName-1161503108';
         $interconnectAttachment->setName($interconnectAttachmentName);
-        $interconnectAttachmentInterconnect = $gapicClient->interconnectName('[PROJECT]', '[LOCATION]', '[ZONE]', '[INTERCONNECT]');
+        $interconnectAttachmentInterconnect = $gapicClient->interconnectName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ZONE]',
+            '[INTERCONNECT]'
+        );
         $interconnectAttachment->setInterconnect($interconnectAttachmentInterconnect);
         $interconnectAttachmentVlanId = 725855631;
         $interconnectAttachment->setVlanId($interconnectAttachmentVlanId);
@@ -371,12 +386,15 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
@@ -516,12 +534,15 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
@@ -665,12 +686,15 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
@@ -736,9 +760,13 @@ class EdgeNetworkClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $gapicClient->interconnectAttachmentName('[PROJECT]', '[LOCATION]', '[ZONE]', '[INTERCONNECT_ATTACHMENT]');
-        $request = (new DeleteInterconnectAttachmentRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->interconnectAttachmentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ZONE]',
+            '[INTERCONNECT_ATTACHMENT]'
+        );
+        $request = (new DeleteInterconnectAttachmentRequest())->setName($formattedName);
         $response = $gapicClient->deleteInterconnectAttachment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -794,17 +822,24 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->interconnectAttachmentName('[PROJECT]', '[LOCATION]', '[ZONE]', '[INTERCONNECT_ATTACHMENT]');
-        $request = (new DeleteInterconnectAttachmentRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->interconnectAttachmentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ZONE]',
+            '[INTERCONNECT_ATTACHMENT]'
+        );
+        $request = (new DeleteInterconnectAttachmentRequest())->setName($formattedName);
         $response = $gapicClient->deleteInterconnectAttachment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -858,8 +893,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[ZONE]', '[NETWORK]');
-        $request = (new DeleteNetworkRequest())
-            ->setName($formattedName);
+        $request = (new DeleteNetworkRequest())->setName($formattedName);
         $response = $gapicClient->deleteNetwork($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -915,17 +949,19 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[ZONE]', '[NETWORK]');
-        $request = (new DeleteNetworkRequest())
-            ->setName($formattedName);
+        $request = (new DeleteNetworkRequest())->setName($formattedName);
         $response = $gapicClient->deleteNetwork($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -979,8 +1015,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->routerName('[PROJECT]', '[LOCATION]', '[ZONE]', '[ROUTER]');
-        $request = (new DeleteRouterRequest())
-            ->setName($formattedName);
+        $request = (new DeleteRouterRequest())->setName($formattedName);
         $response = $gapicClient->deleteRouter($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1036,17 +1071,19 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->routerName('[PROJECT]', '[LOCATION]', '[ZONE]', '[ROUTER]');
-        $request = (new DeleteRouterRequest())
-            ->setName($formattedName);
+        $request = (new DeleteRouterRequest())->setName($formattedName);
         $response = $gapicClient->deleteRouter($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1100,8 +1137,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->subnetName('[PROJECT]', '[LOCATION]', '[ZONE]', '[SUBNET]');
-        $request = (new DeleteSubnetRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSubnetRequest())->setName($formattedName);
         $response = $gapicClient->deleteSubnet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1157,17 +1193,19 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->subnetName('[PROJECT]', '[LOCATION]', '[ZONE]', '[SUBNET]');
-        $request = (new DeleteSubnetRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSubnetRequest())->setName($formattedName);
         $response = $gapicClient->deleteSubnet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1203,8 +1241,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->interconnectName('[PROJECT]', '[LOCATION]', '[ZONE]', '[INTERCONNECT]');
-        $request = (new DiagnoseInterconnectRequest())
-            ->setName($formattedName);
+        $request = (new DiagnoseInterconnectRequest())->setName($formattedName);
         $response = $gapicClient->diagnoseInterconnect($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1228,17 +1265,19 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->interconnectName('[PROJECT]', '[LOCATION]', '[ZONE]', '[INTERCONNECT]');
-        $request = (new DiagnoseInterconnectRequest())
-            ->setName($formattedName);
+        $request = (new DiagnoseInterconnectRequest())->setName($formattedName);
         try {
             $gapicClient->diagnoseInterconnect($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1265,8 +1304,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[ZONE]', '[NETWORK]');
-        $request = (new DiagnoseNetworkRequest())
-            ->setName($formattedName);
+        $request = (new DiagnoseNetworkRequest())->setName($formattedName);
         $response = $gapicClient->diagnoseNetwork($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1290,17 +1328,19 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[ZONE]', '[NETWORK]');
-        $request = (new DiagnoseNetworkRequest())
-            ->setName($formattedName);
+        $request = (new DiagnoseNetworkRequest())->setName($formattedName);
         try {
             $gapicClient->diagnoseNetwork($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1327,8 +1367,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->routerName('[PROJECT]', '[LOCATION]', '[ZONE]', '[ROUTER]');
-        $request = (new DiagnoseRouterRequest())
-            ->setName($formattedName);
+        $request = (new DiagnoseRouterRequest())->setName($formattedName);
         $response = $gapicClient->diagnoseRouter($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1352,17 +1391,19 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->routerName('[PROJECT]', '[LOCATION]', '[ZONE]', '[ROUTER]');
-        $request = (new DiagnoseRouterRequest())
-            ->setName($formattedName);
+        $request = (new DiagnoseRouterRequest())->setName($formattedName);
         try {
             $gapicClient->diagnoseRouter($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1397,8 +1438,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->interconnectName('[PROJECT]', '[LOCATION]', '[ZONE]', '[INTERCONNECT]');
-        $request = (new GetInterconnectRequest())
-            ->setName($formattedName);
+        $request = (new GetInterconnectRequest())->setName($formattedName);
         $response = $gapicClient->getInterconnect($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1422,17 +1462,19 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->interconnectName('[PROJECT]', '[LOCATION]', '[ZONE]', '[INTERCONNECT]');
-        $request = (new GetInterconnectRequest())
-            ->setName($formattedName);
+        $request = (new GetInterconnectRequest())->setName($formattedName);
         try {
             $gapicClient->getInterconnect($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1470,9 +1512,13 @@ class EdgeNetworkClientTest extends GeneratedTest
         $expectedResponse->setMtu($mtu);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->interconnectAttachmentName('[PROJECT]', '[LOCATION]', '[ZONE]', '[INTERCONNECT_ATTACHMENT]');
-        $request = (new GetInterconnectAttachmentRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->interconnectAttachmentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ZONE]',
+            '[INTERCONNECT_ATTACHMENT]'
+        );
+        $request = (new GetInterconnectAttachmentRequest())->setName($formattedName);
         $response = $gapicClient->getInterconnectAttachment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1496,17 +1542,24 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->interconnectAttachmentName('[PROJECT]', '[LOCATION]', '[ZONE]', '[INTERCONNECT_ATTACHMENT]');
-        $request = (new GetInterconnectAttachmentRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->interconnectAttachmentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ZONE]',
+            '[INTERCONNECT_ATTACHMENT]'
+        );
+        $request = (new GetInterconnectAttachmentRequest())->setName($formattedName);
         try {
             $gapicClient->getInterconnectAttachment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1539,8 +1592,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[ZONE]', '[NETWORK]');
-        $request = (new GetNetworkRequest())
-            ->setName($formattedName);
+        $request = (new GetNetworkRequest())->setName($formattedName);
         $response = $gapicClient->getNetwork($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1564,17 +1616,19 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[ZONE]', '[NETWORK]');
-        $request = (new GetNetworkRequest())
-            ->setName($formattedName);
+        $request = (new GetNetworkRequest())->setName($formattedName);
         try {
             $gapicClient->getNetwork($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1607,8 +1661,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->routerName('[PROJECT]', '[LOCATION]', '[ZONE]', '[ROUTER]');
-        $request = (new GetRouterRequest())
-            ->setName($formattedName);
+        $request = (new GetRouterRequest())->setName($formattedName);
         $response = $gapicClient->getRouter($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1632,17 +1685,19 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->routerName('[PROJECT]', '[LOCATION]', '[ZONE]', '[ROUTER]');
-        $request = (new GetRouterRequest())
-            ->setName($formattedName);
+        $request = (new GetRouterRequest())->setName($formattedName);
         try {
             $gapicClient->getRouter($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1677,8 +1732,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->subnetName('[PROJECT]', '[LOCATION]', '[ZONE]', '[SUBNET]');
-        $request = (new GetSubnetRequest())
-            ->setName($formattedName);
+        $request = (new GetSubnetRequest())->setName($formattedName);
         $response = $gapicClient->getSubnet($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1702,17 +1756,19 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->subnetName('[PROJECT]', '[LOCATION]', '[ZONE]', '[SUBNET]');
-        $request = (new GetSubnetRequest())
-            ->setName($formattedName);
+        $request = (new GetSubnetRequest())->setName($formattedName);
         try {
             $gapicClient->getSubnet($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1743,8 +1799,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new GetZoneRequest())
-            ->setName($formattedName);
+        $request = (new GetZoneRequest())->setName($formattedName);
         $response = $gapicClient->getZone($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1768,17 +1823,19 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new GetZoneRequest())
-            ->setName($formattedName);
+        $request = (new GetZoneRequest())->setName($formattedName);
         try {
             $gapicClient->getZone($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1805,8 +1862,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new InitializeZoneRequest())
-            ->setName($formattedName);
+        $request = (new InitializeZoneRequest())->setName($formattedName);
         $response = $gapicClient->initializeZone($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1830,17 +1886,19 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new InitializeZoneRequest())
-            ->setName($formattedName);
+        $request = (new InitializeZoneRequest())->setName($formattedName);
         try {
             $gapicClient->initializeZone($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1865,17 +1923,14 @@ class EdgeNetworkClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $interconnectAttachmentsElement = new InterconnectAttachment();
-        $interconnectAttachments = [
-            $interconnectAttachmentsElement,
-        ];
+        $interconnectAttachments = [$interconnectAttachmentsElement];
         $expectedResponse = new ListInterconnectAttachmentsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setInterconnectAttachments($interconnectAttachments);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new ListInterconnectAttachmentsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListInterconnectAttachmentsRequest())->setParent($formattedParent);
         $response = $gapicClient->listInterconnectAttachments($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1902,17 +1957,19 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new ListInterconnectAttachmentsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListInterconnectAttachmentsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listInterconnectAttachments($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1937,17 +1994,14 @@ class EdgeNetworkClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $interconnectsElement = new Interconnect();
-        $interconnects = [
-            $interconnectsElement,
-        ];
+        $interconnects = [$interconnectsElement];
         $expectedResponse = new ListInterconnectsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setInterconnects($interconnects);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new ListInterconnectsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListInterconnectsRequest())->setParent($formattedParent);
         $response = $gapicClient->listInterconnects($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1974,17 +2028,19 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new ListInterconnectsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListInterconnectsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listInterconnects($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2009,17 +2065,14 @@ class EdgeNetworkClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $networksElement = new Network();
-        $networks = [
-            $networksElement,
-        ];
+        $networks = [$networksElement];
         $expectedResponse = new ListNetworksResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setNetworks($networks);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new ListNetworksRequest())
-            ->setParent($formattedParent);
+        $request = (new ListNetworksRequest())->setParent($formattedParent);
         $response = $gapicClient->listNetworks($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2046,17 +2099,19 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new ListNetworksRequest())
-            ->setParent($formattedParent);
+        $request = (new ListNetworksRequest())->setParent($formattedParent);
         try {
             $gapicClient->listNetworks($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2081,17 +2136,14 @@ class EdgeNetworkClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $routersElement = new Router();
-        $routers = [
-            $routersElement,
-        ];
+        $routers = [$routersElement];
         $expectedResponse = new ListRoutersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRouters($routers);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new ListRoutersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRoutersRequest())->setParent($formattedParent);
         $response = $gapicClient->listRouters($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2118,17 +2170,19 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new ListRoutersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRoutersRequest())->setParent($formattedParent);
         try {
             $gapicClient->listRouters($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2153,17 +2207,14 @@ class EdgeNetworkClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $subnetsElement = new Subnet();
-        $subnets = [
-            $subnetsElement,
-        ];
+        $subnets = [$subnetsElement];
         $expectedResponse = new ListSubnetsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSubnets($subnets);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new ListSubnetsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSubnetsRequest())->setParent($formattedParent);
         $response = $gapicClient->listSubnets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2190,17 +2241,19 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new ListSubnetsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSubnetsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listSubnets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2225,17 +2278,14 @@ class EdgeNetworkClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $zonesElement = new Zone();
-        $zones = [
-            $zonesElement,
-        ];
+        $zones = [$zonesElement];
         $expectedResponse = new ListZonesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setZones($zones);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListZonesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListZonesRequest())->setParent($formattedParent);
         $response = $gapicClient->listZones($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2262,17 +2312,19 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListZonesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListZonesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listZones($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2328,9 +2380,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $router->setName($routerName);
         $routerNetwork = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[ZONE]', '[NETWORK]');
         $router->setNetwork($routerNetwork);
-        $request = (new UpdateRouterRequest())
-            ->setUpdateMask($updateMask)
-            ->setRouter($router);
+        $request = (new UpdateRouterRequest())->setUpdateMask($updateMask)->setRouter($router);
         $response = $gapicClient->updateRouter($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2388,12 +2438,15 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
@@ -2402,9 +2455,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $router->setName($routerName);
         $routerNetwork = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[ZONE]', '[NETWORK]');
         $router->setNetwork($routerNetwork);
-        $request = (new UpdateRouterRequest())
-            ->setUpdateMask($updateMask)
-            ->setRouter($router);
+        $request = (new UpdateRouterRequest())->setUpdateMask($updateMask)->setRouter($router);
         $response = $gapicClient->updateRouter($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2471,9 +2522,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $subnet->setName($subnetName);
         $subnetNetwork = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[ZONE]', '[NETWORK]');
         $subnet->setNetwork($subnetNetwork);
-        $request = (new UpdateSubnetRequest())
-            ->setUpdateMask($updateMask)
-            ->setSubnet($subnet);
+        $request = (new UpdateSubnetRequest())->setUpdateMask($updateMask)->setSubnet($subnet);
         $response = $gapicClient->updateSubnet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2531,12 +2580,15 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
@@ -2545,9 +2597,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $subnet->setName($subnetName);
         $subnetNetwork = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[ZONE]', '[NETWORK]');
         $subnet->setNetwork($subnetNetwork);
-        $request = (new UpdateSubnetRequest())
-            ->setUpdateMask($updateMask)
-            ->setSubnet($subnet);
+        $request = (new UpdateSubnetRequest())->setUpdateMask($updateMask)->setSubnet($subnet);
         $response = $gapicClient->updateSubnet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2609,12 +2659,15 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -2641,9 +2694,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -2673,12 +2724,15 @@ class EdgeNetworkClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -2741,7 +2795,12 @@ class EdgeNetworkClientTest extends GeneratedTest
         $interconnectAttachment = new InterconnectAttachment();
         $interconnectAttachmentName = 'interconnectAttachmentName-1161503108';
         $interconnectAttachment->setName($interconnectAttachmentName);
-        $interconnectAttachmentInterconnect = $gapicClient->interconnectName('[PROJECT]', '[LOCATION]', '[ZONE]', '[INTERCONNECT]');
+        $interconnectAttachmentInterconnect = $gapicClient->interconnectName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ZONE]',
+            '[INTERCONNECT]'
+        );
         $interconnectAttachment->setInterconnect($interconnectAttachmentInterconnect);
         $interconnectAttachmentVlanId = 725855631;
         $interconnectAttachment->setVlanId($interconnectAttachmentVlanId);
