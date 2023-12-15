@@ -33,9 +33,11 @@ use Google\Cloud\GkeMultiCloud\V1\AwsClusterNetworking;
 use Google\Cloud\GkeMultiCloud\V1\AwsConfigEncryption;
 use Google\Cloud\GkeMultiCloud\V1\AwsControlPlane;
 use Google\Cloud\GkeMultiCloud\V1\AwsDatabaseEncryption;
+use Google\Cloud\GkeMultiCloud\V1\AwsJsonWebKeys;
 use Google\Cloud\GkeMultiCloud\V1\AwsNodeConfig;
 use Google\Cloud\GkeMultiCloud\V1\AwsNodePool;
 use Google\Cloud\GkeMultiCloud\V1\AwsNodePoolAutoscaling;
+use Google\Cloud\GkeMultiCloud\V1\AwsOpenIdConfig;
 use Google\Cloud\GkeMultiCloud\V1\AwsServerConfig;
 use Google\Cloud\GkeMultiCloud\V1\AwsServicesAuthentication;
 use Google\Cloud\GkeMultiCloud\V1\Client\AwsClustersClient;
@@ -46,14 +48,19 @@ use Google\Cloud\GkeMultiCloud\V1\DeleteAwsNodePoolRequest;
 use Google\Cloud\GkeMultiCloud\V1\Fleet;
 use Google\Cloud\GkeMultiCloud\V1\GenerateAwsAccessTokenRequest;
 use Google\Cloud\GkeMultiCloud\V1\GenerateAwsAccessTokenResponse;
+use Google\Cloud\GkeMultiCloud\V1\GenerateAwsClusterAgentTokenRequest;
+use Google\Cloud\GkeMultiCloud\V1\GenerateAwsClusterAgentTokenResponse;
 use Google\Cloud\GkeMultiCloud\V1\GetAwsClusterRequest;
+use Google\Cloud\GkeMultiCloud\V1\GetAwsJsonWebKeysRequest;
 use Google\Cloud\GkeMultiCloud\V1\GetAwsNodePoolRequest;
+use Google\Cloud\GkeMultiCloud\V1\GetAwsOpenIdConfigRequest;
 use Google\Cloud\GkeMultiCloud\V1\GetAwsServerConfigRequest;
 use Google\Cloud\GkeMultiCloud\V1\ListAwsClustersRequest;
 use Google\Cloud\GkeMultiCloud\V1\ListAwsClustersResponse;
 use Google\Cloud\GkeMultiCloud\V1\ListAwsNodePoolsRequest;
 use Google\Cloud\GkeMultiCloud\V1\ListAwsNodePoolsResponse;
 use Google\Cloud\GkeMultiCloud\V1\MaxPodsConstraint;
+use Google\Cloud\GkeMultiCloud\V1\RollbackAwsNodePoolUpdateRequest;
 use Google\Cloud\GkeMultiCloud\V1\UpdateAwsClusterRequest;
 use Google\Cloud\GkeMultiCloud\V1\UpdateAwsNodePoolRequest;
 use Google\LongRunning\GetOperationRequest;
@@ -171,8 +178,6 @@ class AwsClustersClientTest extends GeneratedTest
         $awsClusterControlPlane->setConfigEncryption($controlPlaneConfigEncryption);
         $awsCluster->setControlPlane($awsClusterControlPlane);
         $awsClusterAuthorization = new AwsAuthorization();
-        $authorizationAdminUsers = [];
-        $awsClusterAuthorization->setAdminUsers($authorizationAdminUsers);
         $awsCluster->setAuthorization($awsClusterAuthorization);
         $awsClusterFleet = new Fleet();
         $fleetProject = 'fleetProject604893675';
@@ -283,8 +288,6 @@ class AwsClustersClientTest extends GeneratedTest
         $awsClusterControlPlane->setConfigEncryption($controlPlaneConfigEncryption);
         $awsCluster->setControlPlane($awsClusterControlPlane);
         $awsClusterAuthorization = new AwsAuthorization();
-        $authorizationAdminUsers = [];
-        $awsClusterAuthorization->setAdminUsers($authorizationAdminUsers);
         $awsCluster->setAuthorization($awsClusterAuthorization);
         $awsClusterFleet = new Fleet();
         $fleetProject = 'fleetProject604893675';
@@ -813,6 +816,92 @@ class AwsClustersClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function generateAwsClusterAgentTokenTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $accessToken = 'accessToken-1938933922';
+        $expiresIn = 833810928;
+        $tokenType = 'tokenType101507520';
+        $expectedResponse = new GenerateAwsClusterAgentTokenResponse();
+        $expectedResponse->setAccessToken($accessToken);
+        $expectedResponse->setExpiresIn($expiresIn);
+        $expectedResponse->setTokenType($tokenType);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedAwsCluster = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
+        $subjectToken = 'subjectToken454811942';
+        $subjectTokenType = 'subjectTokenType-697160013';
+        $version = 'version351608024';
+        $request = (new GenerateAwsClusterAgentTokenRequest())
+            ->setAwsCluster($formattedAwsCluster)
+            ->setSubjectToken($subjectToken)
+            ->setSubjectTokenType($subjectTokenType)
+            ->setVersion($version);
+        $response = $gapicClient->generateAwsClusterAgentToken($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.gkemulticloud.v1.AwsClusters/GenerateAwsClusterAgentToken', $actualFuncCall);
+        $actualValue = $actualRequestObject->getAwsCluster();
+        $this->assertProtobufEquals($formattedAwsCluster, $actualValue);
+        $actualValue = $actualRequestObject->getSubjectToken();
+        $this->assertProtobufEquals($subjectToken, $actualValue);
+        $actualValue = $actualRequestObject->getSubjectTokenType();
+        $this->assertProtobufEquals($subjectTokenType, $actualValue);
+        $actualValue = $actualRequestObject->getVersion();
+        $this->assertProtobufEquals($version, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function generateAwsClusterAgentTokenExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedAwsCluster = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
+        $subjectToken = 'subjectToken454811942';
+        $subjectTokenType = 'subjectTokenType-697160013';
+        $version = 'version351608024';
+        $request = (new GenerateAwsClusterAgentTokenRequest())
+            ->setAwsCluster($formattedAwsCluster)
+            ->setSubjectToken($subjectToken)
+            ->setSubjectTokenType($subjectTokenType)
+            ->setVersion($version);
+        try {
+            $gapicClient->generateAwsClusterAgentToken($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getAwsClusterTest()
     {
         $transport = $this->createTransport();
@@ -891,6 +980,68 @@ class AwsClustersClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getAwsJsonWebKeysTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new AwsJsonWebKeys();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedAwsCluster = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
+        $request = (new GetAwsJsonWebKeysRequest())
+            ->setAwsCluster($formattedAwsCluster);
+        $response = $gapicClient->getAwsJsonWebKeys($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.gkemulticloud.v1.AwsClusters/GetAwsJsonWebKeys', $actualFuncCall);
+        $actualValue = $actualRequestObject->getAwsCluster();
+        $this->assertProtobufEquals($formattedAwsCluster, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAwsJsonWebKeysExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedAwsCluster = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
+        $request = (new GetAwsJsonWebKeysRequest())
+            ->setAwsCluster($formattedAwsCluster);
+        try {
+            $gapicClient->getAwsJsonWebKeys($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getAwsNodePoolTest()
     {
         $transport = $this->createTransport();
@@ -953,6 +1104,72 @@ class AwsClustersClientTest extends GeneratedTest
             ->setName($formattedName);
         try {
             $gapicClient->getAwsNodePool($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAwsOpenIdConfigTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $issuer = 'issuer-1179159879';
+        $jwksUri = 'jwksUri1465527714';
+        $expectedResponse = new AwsOpenIdConfig();
+        $expectedResponse->setIssuer($issuer);
+        $expectedResponse->setJwksUri($jwksUri);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedAwsCluster = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
+        $request = (new GetAwsOpenIdConfigRequest())
+            ->setAwsCluster($formattedAwsCluster);
+        $response = $gapicClient->getAwsOpenIdConfig($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.gkemulticloud.v1.AwsClusters/GetAwsOpenIdConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getAwsCluster();
+        $this->assertProtobufEquals($formattedAwsCluster, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAwsOpenIdConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedAwsCluster = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
+        $request = (new GetAwsOpenIdConfigRequest())
+            ->setAwsCluster($formattedAwsCluster);
+        try {
+            $gapicClient->getAwsOpenIdConfig($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1173,6 +1390,139 @@ class AwsClustersClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function rollbackAwsNodePoolUpdateTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/rollbackAwsNodePoolUpdateTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name2 = 'name2-1052831874';
+        $version = 'version351608024';
+        $subnetId = 'subnetId373593405';
+        $uid = 'uid115792';
+        $reconciling = false;
+        $etag = 'etag3123477';
+        $expectedResponse = new AwsNodePool();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setVersion($version);
+        $expectedResponse->setSubnetId($subnetId);
+        $expectedResponse->setUid($uid);
+        $expectedResponse->setReconciling($reconciling);
+        $expectedResponse->setEtag($etag);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/rollbackAwsNodePoolUpdateTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->awsNodePoolName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]', '[AWS_NODE_POOL]');
+        $request = (new RollbackAwsNodePoolUpdateRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->rollbackAwsNodePoolUpdate($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.gkemulticloud.v1.AwsClusters/RollbackAwsNodePoolUpdate', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/rollbackAwsNodePoolUpdateTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function rollbackAwsNodePoolUpdateExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/rollbackAwsNodePoolUpdateTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->awsNodePoolName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]', '[AWS_NODE_POOL]');
+        $request = (new RollbackAwsNodePoolUpdateRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->rollbackAwsNodePoolUpdate($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/rollbackAwsNodePoolUpdateTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function updateAwsClusterTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1250,8 +1600,6 @@ class AwsClustersClientTest extends GeneratedTest
         $awsClusterControlPlane->setConfigEncryption($controlPlaneConfigEncryption);
         $awsCluster->setControlPlane($awsClusterControlPlane);
         $awsClusterAuthorization = new AwsAuthorization();
-        $authorizationAdminUsers = [];
-        $awsClusterAuthorization->setAdminUsers($authorizationAdminUsers);
         $awsCluster->setAuthorization($awsClusterAuthorization);
         $awsClusterFleet = new Fleet();
         $fleetProject = 'fleetProject604893675';
@@ -1358,8 +1706,6 @@ class AwsClustersClientTest extends GeneratedTest
         $awsClusterControlPlane->setConfigEncryption($controlPlaneConfigEncryption);
         $awsCluster->setControlPlane($awsClusterControlPlane);
         $awsClusterAuthorization = new AwsAuthorization();
-        $authorizationAdminUsers = [];
-        $awsClusterAuthorization->setAdminUsers($authorizationAdminUsers);
         $awsCluster->setAuthorization($awsClusterAuthorization);
         $awsClusterFleet = new Fleet();
         $fleetProject = 'fleetProject604893675';
@@ -1653,8 +1999,6 @@ class AwsClustersClientTest extends GeneratedTest
         $awsClusterControlPlane->setConfigEncryption($controlPlaneConfigEncryption);
         $awsCluster->setControlPlane($awsClusterControlPlane);
         $awsClusterAuthorization = new AwsAuthorization();
-        $authorizationAdminUsers = [];
-        $awsClusterAuthorization->setAdminUsers($authorizationAdminUsers);
         $awsCluster->setAuthorization($awsClusterAuthorization);
         $awsClusterFleet = new Fleet();
         $fleetProject = 'fleetProject604893675';
