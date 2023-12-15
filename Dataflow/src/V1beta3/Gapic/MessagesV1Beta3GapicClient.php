@@ -66,11 +66,9 @@ use Google\Protobuf\Timestamp;
  * }
  * ```
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Dataflow\V1beta3\Client\MessagesV1Beta3Client} to use the new
- * surface.
- *
  * @experimental
+ *
+ * @deprecated Please use the new service client {@see \Google\Cloud\Dataflow\V1beta3\Client\MessagesV1Beta3Client}.
  */
 class MessagesV1Beta3GapicClient
 {
@@ -79,8 +77,15 @@ class MessagesV1Beta3GapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.dataflow.v1beta3.MessagesV1Beta3';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'dataflow.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'dataflow.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
