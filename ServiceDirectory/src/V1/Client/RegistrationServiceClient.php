@@ -86,12 +86,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\ServiceDirectory\V1\RegistrationServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createEndpointAsync(CreateEndpointRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createNamespaceAsync(CreateNamespaceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createServiceAsync(CreateServiceRequest $request, array $optionalArgs = [])
@@ -121,8 +115,15 @@ final class RegistrationServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.servicedirectory.v1.RegistrationService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'servicedirectory.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'servicedirectory.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

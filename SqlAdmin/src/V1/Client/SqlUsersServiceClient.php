@@ -47,10 +47,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes.
- *
- * @experimental
- *
  * @method PromiseInterface deleteAsync(SqlUsersDeleteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAsync(SqlUsersGetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface insertAsync(SqlUsersInsertRequest $request, array $optionalArgs = [])
@@ -64,8 +60,15 @@ final class SqlUsersServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.sql.v1.SqlUsersService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'sqladmin.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'sqladmin.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
