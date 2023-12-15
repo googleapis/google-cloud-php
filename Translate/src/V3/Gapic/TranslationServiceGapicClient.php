@@ -103,9 +103,7 @@ use Google\Protobuf\GPBEmpty;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Translate\V3\Client\TranslationServiceClient} to use the new
- * surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Translate\V3\Client\TranslationServiceClient}.
  */
 class TranslationServiceGapicClient
 {
@@ -114,8 +112,15 @@ class TranslationServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.translation.v3.TranslationService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'translate.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'translate.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;

@@ -60,10 +60,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
- *
- * @experimental
- *
  * @method PromiseInterface createWorkflowAsync(CreateWorkflowRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteWorkflowAsync(DeleteWorkflowRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getWorkflowAsync(GetWorkflowRequest $request, array $optionalArgs = [])
@@ -80,8 +76,15 @@ final class WorkflowsClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.workflows.v1.Workflows';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'workflows.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'workflows.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
