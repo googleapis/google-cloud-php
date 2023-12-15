@@ -104,9 +104,7 @@ use Google\Protobuf\Struct;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\DataCatalog\Lineage\V1\Client\LineageClient} to use the new
- * surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\DataCatalog\Lineage\V1\Client\LineageClient}.
  */
 class LineageGapicClient
 {
@@ -115,8 +113,15 @@ class LineageGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.datacatalog.lineage.v1.Lineage';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'datalineage.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'datalineage.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
