@@ -170,6 +170,7 @@ class TransactionTest extends SpannerTestCase
         ])->rows()->current();
 
         $this->assertEquals(2, $row['number']);
+        // Emulator doesn't support parallel transaction therefore we are
         $this->assertGreaterThan(2, $iterations);
     }
 
