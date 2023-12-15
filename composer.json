@@ -61,7 +61,7 @@
         "phpseclib/phpseclib": "^3.0",
         "google/cloud-tools": "^0.13.0",
         "opis/closure": "^3.0",
-        "rg/avro-php": "^3.0.0",
+        "flix-tech/avro-php": "^5.0.0",
         "phpspec/prophecy-phpunit": "^2.0",
         "kreait/firebase-php": "^5.26.5"
     },
