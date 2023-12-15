@@ -1,0 +1,43 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.gkeconnect.gateway.v1beta1",
+    "libraryPackage": "Google\\Cloud\\GkeConnect\\Gateway\\V1beta1",
+    "services": {
+        "GatewayService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "GatewayServiceGapicClient",
+                    "rpcs": {
+                        "DeleteResource": {
+                            "methods": [
+                                "deleteResource"
+                            ]
+                        },
+                        "GetResource": {
+                            "methods": [
+                                "getResource"
+                            ]
+                        },
+                        "PatchResource": {
+                            "methods": [
+                                "patchResource"
+                            ]
+                        },
+                        "PostResource": {
+                            "methods": [
+                                "postResource"
+                            ]
+                        },
+                        "PutResource": {
+                            "methods": [
+                                "putResource"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
