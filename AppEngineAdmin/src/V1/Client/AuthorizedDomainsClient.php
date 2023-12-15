@@ -43,12 +43,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\AppEngine\V1\AuthorizedDomainsClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface listAuthorizedDomainsAsync(ListAuthorizedDomainsRequest $request, array $optionalArgs = [])
  */
 final class AuthorizedDomainsClient
@@ -58,8 +52,15 @@ final class AuthorizedDomainsClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.appengine.v1.AuthorizedDomains';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'appengine.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'appengine.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
