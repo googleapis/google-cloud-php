@@ -75,11 +75,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Iot\V1\DeviceManagerClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface bindDeviceToGatewayAsync(BindDeviceToGatewayRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createDeviceAsync(CreateDeviceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createDeviceRegistryAsync(CreateDeviceRegistryRequest $request, array $optionalArgs = [])
@@ -108,8 +103,15 @@ final class DeviceManagerClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.iot.v1.DeviceManager';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'cloudiot.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'cloudiot.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

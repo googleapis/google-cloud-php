@@ -95,10 +95,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
- *
- * @experimental
- *
  * @method PromiseInterface createActiveDirectoryAsync(CreateActiveDirectoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createKmsConfigAsync(CreateKmsConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createReplicationAsync(CreateReplicationRequest $request, array $optionalArgs = [])
@@ -146,8 +142,15 @@ final class NetAppClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.netapp.v1.NetApp';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'netapp.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'netapp.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -156,9 +159,7 @@ final class NetAppClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -204,7 +205,9 @@ final class NetAppClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -293,8 +296,12 @@ final class NetAppClient
      *
      * @return string The formatted replication resource.
      */
-    public static function replicationName(string $project, string $location, string $volume, string $replication): string
-    {
+    public static function replicationName(
+        string $project,
+        string $location,
+        string $volume,
+        string $replication
+    ): string {
         return self::getPathTemplate('replication')->render([
             'project' => $project,
             'location' => $location,
@@ -487,8 +494,10 @@ final class NetAppClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createActiveDirectory(CreateActiveDirectoryRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createActiveDirectory(
+        CreateActiveDirectoryRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateActiveDirectory', $request, $callOptions)->wait();
     }
 
@@ -643,8 +652,10 @@ final class NetAppClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteActiveDirectory(DeleteActiveDirectoryRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteActiveDirectory(
+        DeleteActiveDirectoryRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteActiveDirectory', $request, $callOptions)->wait();
     }
 
@@ -982,8 +993,10 @@ final class NetAppClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listActiveDirectories(ListActiveDirectoriesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listActiveDirectories(
+        ListActiveDirectoriesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListActiveDirectories', $request, $callOptions);
     }
 
@@ -1165,8 +1178,10 @@ final class NetAppClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function reverseReplicationDirection(ReverseReplicationDirectionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function reverseReplicationDirection(
+        ReverseReplicationDirectionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ReverseReplicationDirection', $request, $callOptions)->wait();
     }
 
@@ -1245,8 +1260,10 @@ final class NetAppClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateActiveDirectory(UpdateActiveDirectoryRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateActiveDirectory(
+        UpdateActiveDirectoryRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateActiveDirectory', $request, $callOptions)->wait();
     }
 

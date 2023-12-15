@@ -108,7 +108,9 @@ class NetAppClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return NetAppClient */
@@ -258,12 +260,15 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -415,12 +420,15 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -501,7 +509,11 @@ class NetAppClientTest extends GeneratedTest
         $replicationReplicationSchedule = ReplicationSchedule::REPLICATION_SCHEDULE_UNSPECIFIED;
         $replication->setReplicationSchedule($replicationReplicationSchedule);
         $replicationDestinationVolumeParameters = new DestinationVolumeParameters();
-        $destinationVolumeParametersStoragePool = $gapicClient->storagePoolName('[PROJECT]', '[LOCATION]', '[STORAGE_POOL]');
+        $destinationVolumeParametersStoragePool = $gapicClient->storagePoolName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[STORAGE_POOL]'
+        );
         $replicationDestinationVolumeParameters->setStoragePool($destinationVolumeParametersStoragePool);
         $replication->setDestinationVolumeParameters($replicationDestinationVolumeParameters);
         $replicationId = 'replicationId1935722094';
@@ -568,12 +580,15 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
@@ -581,7 +596,11 @@ class NetAppClientTest extends GeneratedTest
         $replicationReplicationSchedule = ReplicationSchedule::REPLICATION_SCHEDULE_UNSPECIFIED;
         $replication->setReplicationSchedule($replicationReplicationSchedule);
         $replicationDestinationVolumeParameters = new DestinationVolumeParameters();
-        $destinationVolumeParametersStoragePool = $gapicClient->storagePoolName('[PROJECT]', '[LOCATION]', '[STORAGE_POOL]');
+        $destinationVolumeParametersStoragePool = $gapicClient->storagePoolName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[STORAGE_POOL]'
+        );
         $replicationDestinationVolumeParameters->setStoragePool($destinationVolumeParametersStoragePool);
         $replication->setDestinationVolumeParameters($replicationDestinationVolumeParameters);
         $replicationId = 'replicationId1935722094';
@@ -635,7 +654,7 @@ class NetAppClientTest extends GeneratedTest
         $name = 'name3373707';
         $stateDetails = 'stateDetails632437908';
         $description = 'description-1724546052';
-        $usedBytes = -1.91584322E8;
+        $usedBytes = -1.91584322e8;
         $expectedResponse = new Snapshot();
         $expectedResponse->setName($name);
         $expectedResponse->setStateDetails($stateDetails);
@@ -715,12 +734,15 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
@@ -878,12 +900,15 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -951,7 +976,7 @@ class NetAppClientTest extends GeneratedTest
         $capacityGib = 498394811;
         $unixPermissions = 'unixPermissions1137975373';
         $description = 'description-1724546052';
-        $snapReserve = -1.42958764E8;
+        $snapReserve = -1.42958764e8;
         $snapshotDirectory = true;
         $usedGib = 279083970;
         $kerberosEnabled = false;
@@ -1059,12 +1084,15 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -1135,8 +1163,7 @@ class NetAppClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->activeDirectoryName('[PROJECT]', '[LOCATION]', '[ACTIVE_DIRECTORY]');
-        $request = (new DeleteActiveDirectoryRequest())
-            ->setName($formattedName);
+        $request = (new DeleteActiveDirectoryRequest())->setName($formattedName);
         $response = $gapicClient->deleteActiveDirectory($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1192,17 +1219,19 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->activeDirectoryName('[PROJECT]', '[LOCATION]', '[ACTIVE_DIRECTORY]');
-        $request = (new DeleteActiveDirectoryRequest())
-            ->setName($formattedName);
+        $request = (new DeleteActiveDirectoryRequest())->setName($formattedName);
         $response = $gapicClient->deleteActiveDirectory($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1256,8 +1285,7 @@ class NetAppClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->kmsConfigName('[PROJECT]', '[LOCATION]', '[KMS_CONFIG]');
-        $request = (new DeleteKmsConfigRequest())
-            ->setName($formattedName);
+        $request = (new DeleteKmsConfigRequest())->setName($formattedName);
         $response = $gapicClient->deleteKmsConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1313,17 +1341,19 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->kmsConfigName('[PROJECT]', '[LOCATION]', '[KMS_CONFIG]');
-        $request = (new DeleteKmsConfigRequest())
-            ->setName($formattedName);
+        $request = (new DeleteKmsConfigRequest())->setName($formattedName);
         $response = $gapicClient->deleteKmsConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1377,8 +1407,7 @@ class NetAppClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
-        $request = (new DeleteReplicationRequest())
-            ->setName($formattedName);
+        $request = (new DeleteReplicationRequest())->setName($formattedName);
         $response = $gapicClient->deleteReplication($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1434,17 +1463,19 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
-        $request = (new DeleteReplicationRequest())
-            ->setName($formattedName);
+        $request = (new DeleteReplicationRequest())->setName($formattedName);
         $response = $gapicClient->deleteReplication($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1498,8 +1529,7 @@ class NetAppClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->snapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
-        $request = (new DeleteSnapshotRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSnapshotRequest())->setName($formattedName);
         $response = $gapicClient->deleteSnapshot($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1555,17 +1585,19 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->snapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
-        $request = (new DeleteSnapshotRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSnapshotRequest())->setName($formattedName);
         $response = $gapicClient->deleteSnapshot($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1619,8 +1651,7 @@ class NetAppClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->storagePoolName('[PROJECT]', '[LOCATION]', '[STORAGE_POOL]');
-        $request = (new DeleteStoragePoolRequest())
-            ->setName($formattedName);
+        $request = (new DeleteStoragePoolRequest())->setName($formattedName);
         $response = $gapicClient->deleteStoragePool($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1676,17 +1707,19 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->storagePoolName('[PROJECT]', '[LOCATION]', '[STORAGE_POOL]');
-        $request = (new DeleteStoragePoolRequest())
-            ->setName($formattedName);
+        $request = (new DeleteStoragePoolRequest())->setName($formattedName);
         $response = $gapicClient->deleteStoragePool($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1740,8 +1773,7 @@ class NetAppClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $request = (new DeleteVolumeRequest())
-            ->setName($formattedName);
+        $request = (new DeleteVolumeRequest())->setName($formattedName);
         $response = $gapicClient->deleteVolume($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1797,17 +1829,19 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $request = (new DeleteVolumeRequest())
-            ->setName($formattedName);
+        $request = (new DeleteVolumeRequest())->setName($formattedName);
         $response = $gapicClient->deleteVolume($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1873,8 +1907,7 @@ class NetAppClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->kmsConfigName('[PROJECT]', '[LOCATION]', '[KMS_CONFIG]');
-        $request = (new EncryptVolumesRequest())
-            ->setName($formattedName);
+        $request = (new EncryptVolumesRequest())->setName($formattedName);
         $response = $gapicClient->encryptVolumes($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1930,17 +1963,19 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->kmsConfigName('[PROJECT]', '[LOCATION]', '[KMS_CONFIG]');
-        $request = (new EncryptVolumesRequest())
-            ->setName($formattedName);
+        $request = (new EncryptVolumesRequest())->setName($formattedName);
         $response = $gapicClient->encryptVolumes($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2008,8 +2043,7 @@ class NetAppClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->activeDirectoryName('[PROJECT]', '[LOCATION]', '[ACTIVE_DIRECTORY]');
-        $request = (new GetActiveDirectoryRequest())
-            ->setName($formattedName);
+        $request = (new GetActiveDirectoryRequest())->setName($formattedName);
         $response = $gapicClient->getActiveDirectory($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2033,17 +2067,19 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->activeDirectoryName('[PROJECT]', '[LOCATION]', '[ACTIVE_DIRECTORY]');
-        $request = (new GetActiveDirectoryRequest())
-            ->setName($formattedName);
+        $request = (new GetActiveDirectoryRequest())->setName($formattedName);
         try {
             $gapicClient->getActiveDirectory($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2082,8 +2118,7 @@ class NetAppClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->kmsConfigName('[PROJECT]', '[LOCATION]', '[KMS_CONFIG]');
-        $request = (new GetKmsConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetKmsConfigRequest())->setName($formattedName);
         $response = $gapicClient->getKmsConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2107,17 +2142,19 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->kmsConfigName('[PROJECT]', '[LOCATION]', '[KMS_CONFIG]');
-        $request = (new GetKmsConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetKmsConfigRequest())->setName($formattedName);
         try {
             $gapicClient->getKmsConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2156,8 +2193,7 @@ class NetAppClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
-        $request = (new GetReplicationRequest())
-            ->setName($formattedName);
+        $request = (new GetReplicationRequest())->setName($formattedName);
         $response = $gapicClient->getReplication($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2181,17 +2217,19 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
-        $request = (new GetReplicationRequest())
-            ->setName($formattedName);
+        $request = (new GetReplicationRequest())->setName($formattedName);
         try {
             $gapicClient->getReplication($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2217,7 +2255,7 @@ class NetAppClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $stateDetails = 'stateDetails632437908';
         $description = 'description-1724546052';
-        $usedBytes = -1.91584322E8;
+        $usedBytes = -1.91584322e8;
         $expectedResponse = new Snapshot();
         $expectedResponse->setName($name2);
         $expectedResponse->setStateDetails($stateDetails);
@@ -2226,8 +2264,7 @@ class NetAppClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->snapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
-        $request = (new GetSnapshotRequest())
-            ->setName($formattedName);
+        $request = (new GetSnapshotRequest())->setName($formattedName);
         $response = $gapicClient->getSnapshot($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2251,17 +2288,19 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->snapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
-        $request = (new GetSnapshotRequest())
-            ->setName($formattedName);
+        $request = (new GetSnapshotRequest())->setName($formattedName);
         try {
             $gapicClient->getSnapshot($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2312,8 +2351,7 @@ class NetAppClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->storagePoolName('[PROJECT]', '[LOCATION]', '[STORAGE_POOL]');
-        $request = (new GetStoragePoolRequest())
-            ->setName($formattedName);
+        $request = (new GetStoragePoolRequest())->setName($formattedName);
         $response = $gapicClient->getStoragePool($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2337,17 +2375,19 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->storagePoolName('[PROJECT]', '[LOCATION]', '[STORAGE_POOL]');
-        $request = (new GetStoragePoolRequest())
-            ->setName($formattedName);
+        $request = (new GetStoragePoolRequest())->setName($formattedName);
         try {
             $gapicClient->getStoragePool($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2379,7 +2419,7 @@ class NetAppClientTest extends GeneratedTest
         $capacityGib = 498394811;
         $unixPermissions = 'unixPermissions1137975373';
         $description = 'description-1724546052';
-        $snapReserve = -1.42958764E8;
+        $snapReserve = -1.42958764e8;
         $snapshotDirectory = true;
         $usedGib = 279083970;
         $kerberosEnabled = false;
@@ -2408,8 +2448,7 @@ class NetAppClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $request = (new GetVolumeRequest())
-            ->setName($formattedName);
+        $request = (new GetVolumeRequest())->setName($formattedName);
         $response = $gapicClient->getVolume($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2433,17 +2472,19 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $request = (new GetVolumeRequest())
-            ->setName($formattedName);
+        $request = (new GetVolumeRequest())->setName($formattedName);
         try {
             $gapicClient->getVolume($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2468,17 +2509,14 @@ class NetAppClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $activeDirectoriesElement = new ActiveDirectory();
-        $activeDirectories = [
-            $activeDirectoriesElement,
-        ];
+        $activeDirectories = [$activeDirectoriesElement];
         $expectedResponse = new ListActiveDirectoriesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setActiveDirectories($activeDirectories);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListActiveDirectoriesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListActiveDirectoriesRequest())->setParent($formattedParent);
         $response = $gapicClient->listActiveDirectories($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2505,17 +2543,19 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListActiveDirectoriesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListActiveDirectoriesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listActiveDirectories($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2540,17 +2580,14 @@ class NetAppClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $kmsConfigsElement = new KmsConfig();
-        $kmsConfigs = [
-            $kmsConfigsElement,
-        ];
+        $kmsConfigs = [$kmsConfigsElement];
         $expectedResponse = new ListKmsConfigsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setKmsConfigs($kmsConfigs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListKmsConfigsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListKmsConfigsRequest())->setParent($formattedParent);
         $response = $gapicClient->listKmsConfigs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2577,17 +2614,19 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListKmsConfigsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListKmsConfigsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listKmsConfigs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2612,17 +2651,14 @@ class NetAppClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $replicationsElement = new Replication();
-        $replications = [
-            $replicationsElement,
-        ];
+        $replications = [$replicationsElement];
         $expectedResponse = new ListReplicationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setReplications($replications);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $request = (new ListReplicationsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListReplicationsRequest())->setParent($formattedParent);
         $response = $gapicClient->listReplications($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2649,17 +2685,19 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $request = (new ListReplicationsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListReplicationsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listReplications($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2684,17 +2722,14 @@ class NetAppClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $snapshotsElement = new Snapshot();
-        $snapshots = [
-            $snapshotsElement,
-        ];
+        $snapshots = [$snapshotsElement];
         $expectedResponse = new ListSnapshotsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSnapshots($snapshots);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $request = (new ListSnapshotsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSnapshotsRequest())->setParent($formattedParent);
         $response = $gapicClient->listSnapshots($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2721,17 +2756,19 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $request = (new ListSnapshotsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSnapshotsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listSnapshots($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2756,17 +2793,14 @@ class NetAppClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $storagePoolsElement = new StoragePool();
-        $storagePools = [
-            $storagePoolsElement,
-        ];
+        $storagePools = [$storagePoolsElement];
         $expectedResponse = new ListStoragePoolsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setStoragePools($storagePools);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListStoragePoolsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListStoragePoolsRequest())->setParent($formattedParent);
         $response = $gapicClient->listStoragePools($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2793,17 +2827,19 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListStoragePoolsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListStoragePoolsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listStoragePools($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2828,17 +2864,14 @@ class NetAppClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $volumesElement = new Volume();
-        $volumes = [
-            $volumesElement,
-        ];
+        $volumes = [$volumesElement];
         $expectedResponse = new ListVolumesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setVolumes($volumes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListVolumesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListVolumesRequest())->setParent($formattedParent);
         $response = $gapicClient->listVolumes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2865,17 +2898,19 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListVolumesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListVolumesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listVolumes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2932,8 +2967,7 @@ class NetAppClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
-        $request = (new ResumeReplicationRequest())
-            ->setName($formattedName);
+        $request = (new ResumeReplicationRequest())->setName($formattedName);
         $response = $gapicClient->resumeReplication($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2989,17 +3023,19 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
-        $request = (new ResumeReplicationRequest())
-            ->setName($formattedName);
+        $request = (new ResumeReplicationRequest())->setName($formattedName);
         $response = $gapicClient->resumeReplication($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3065,8 +3101,7 @@ class NetAppClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
-        $request = (new ReverseReplicationDirectionRequest())
-            ->setName($formattedName);
+        $request = (new ReverseReplicationDirectionRequest())->setName($formattedName);
         $response = $gapicClient->reverseReplicationDirection($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3122,17 +3157,19 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
-        $request = (new ReverseReplicationDirectionRequest())
-            ->setName($formattedName);
+        $request = (new ReverseReplicationDirectionRequest())->setName($formattedName);
         $response = $gapicClient->reverseReplicationDirection($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3185,7 +3222,7 @@ class NetAppClientTest extends GeneratedTest
         $capacityGib = 498394811;
         $unixPermissions = 'unixPermissions1137975373';
         $description = 'description-1724546052';
-        $snapReserve = -1.42958764E8;
+        $snapReserve = -1.42958764e8;
         $snapshotDirectory = true;
         $usedGib = 279083970;
         $kerberosEnabled = false;
@@ -3221,9 +3258,7 @@ class NetAppClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
         $snapshotId = 'snapshotId-168585866';
-        $request = (new RevertVolumeRequest())
-            ->setName($formattedName)
-            ->setSnapshotId($snapshotId);
+        $request = (new RevertVolumeRequest())->setName($formattedName)->setSnapshotId($snapshotId);
         $response = $gapicClient->revertVolume($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3281,19 +3316,20 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
         $snapshotId = 'snapshotId-168585866';
-        $request = (new RevertVolumeRequest())
-            ->setName($formattedName)
-            ->setSnapshotId($snapshotId);
+        $request = (new RevertVolumeRequest())->setName($formattedName)->setSnapshotId($snapshotId);
         $response = $gapicClient->revertVolume($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3359,8 +3395,7 @@ class NetAppClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
-        $request = (new StopReplicationRequest())
-            ->setName($formattedName);
+        $request = (new StopReplicationRequest())->setName($formattedName);
         $response = $gapicClient->stopReplication($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3416,17 +3451,19 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
-        $request = (new StopReplicationRequest())
-            ->setName($formattedName);
+        $request = (new StopReplicationRequest())->setName($formattedName);
         $response = $gapicClient->stopReplication($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3583,12 +3620,15 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
@@ -3674,9 +3714,7 @@ class NetAppClientTest extends GeneratedTest
         $kmsConfig = new KmsConfig();
         $kmsConfigCryptoKeyName = 'kmsConfigCryptoKeyName2110252630';
         $kmsConfig->setCryptoKeyName($kmsConfigCryptoKeyName);
-        $request = (new UpdateKmsConfigRequest())
-            ->setUpdateMask($updateMask)
-            ->setKmsConfig($kmsConfig);
+        $request = (new UpdateKmsConfigRequest())->setUpdateMask($updateMask)->setKmsConfig($kmsConfig);
         $response = $gapicClient->updateKmsConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3734,21 +3772,22 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
         $kmsConfig = new KmsConfig();
         $kmsConfigCryptoKeyName = 'kmsConfigCryptoKeyName2110252630';
         $kmsConfig->setCryptoKeyName($kmsConfigCryptoKeyName);
-        $request = (new UpdateKmsConfigRequest())
-            ->setUpdateMask($updateMask)
-            ->setKmsConfig($kmsConfig);
+        $request = (new UpdateKmsConfigRequest())->setUpdateMask($updateMask)->setKmsConfig($kmsConfig);
         $response = $gapicClient->updateKmsConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3818,12 +3857,14 @@ class NetAppClientTest extends GeneratedTest
         $replicationReplicationSchedule = ReplicationSchedule::REPLICATION_SCHEDULE_UNSPECIFIED;
         $replication->setReplicationSchedule($replicationReplicationSchedule);
         $replicationDestinationVolumeParameters = new DestinationVolumeParameters();
-        $destinationVolumeParametersStoragePool = $gapicClient->storagePoolName('[PROJECT]', '[LOCATION]', '[STORAGE_POOL]');
+        $destinationVolumeParametersStoragePool = $gapicClient->storagePoolName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[STORAGE_POOL]'
+        );
         $replicationDestinationVolumeParameters->setStoragePool($destinationVolumeParametersStoragePool);
         $replication->setDestinationVolumeParameters($replicationDestinationVolumeParameters);
-        $request = (new UpdateReplicationRequest())
-            ->setUpdateMask($updateMask)
-            ->setReplication($replication);
+        $request = (new UpdateReplicationRequest())->setUpdateMask($updateMask)->setReplication($replication);
         $response = $gapicClient->updateReplication($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3881,12 +3922,15 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
@@ -3894,12 +3938,14 @@ class NetAppClientTest extends GeneratedTest
         $replicationReplicationSchedule = ReplicationSchedule::REPLICATION_SCHEDULE_UNSPECIFIED;
         $replication->setReplicationSchedule($replicationReplicationSchedule);
         $replicationDestinationVolumeParameters = new DestinationVolumeParameters();
-        $destinationVolumeParametersStoragePool = $gapicClient->storagePoolName('[PROJECT]', '[LOCATION]', '[STORAGE_POOL]');
+        $destinationVolumeParametersStoragePool = $gapicClient->storagePoolName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[STORAGE_POOL]'
+        );
         $replicationDestinationVolumeParameters->setStoragePool($destinationVolumeParametersStoragePool);
         $replication->setDestinationVolumeParameters($replicationDestinationVolumeParameters);
-        $request = (new UpdateReplicationRequest())
-            ->setUpdateMask($updateMask)
-            ->setReplication($replication);
+        $request = (new UpdateReplicationRequest())->setUpdateMask($updateMask)->setReplication($replication);
         $response = $gapicClient->updateReplication($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3946,7 +3992,7 @@ class NetAppClientTest extends GeneratedTest
         $name = 'name3373707';
         $stateDetails = 'stateDetails632437908';
         $description = 'description-1724546052';
-        $usedBytes = -1.91584322E8;
+        $usedBytes = -1.91584322e8;
         $expectedResponse = new Snapshot();
         $expectedResponse->setName($name);
         $expectedResponse->setStateDetails($stateDetails);
@@ -3962,9 +4008,7 @@ class NetAppClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $snapshot = new Snapshot();
-        $request = (new UpdateSnapshotRequest())
-            ->setUpdateMask($updateMask)
-            ->setSnapshot($snapshot);
+        $request = (new UpdateSnapshotRequest())->setUpdateMask($updateMask)->setSnapshot($snapshot);
         $response = $gapicClient->updateSnapshot($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4022,19 +4066,20 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
         $snapshot = new Snapshot();
-        $request = (new UpdateSnapshotRequest())
-            ->setUpdateMask($updateMask)
-            ->setSnapshot($snapshot);
+        $request = (new UpdateSnapshotRequest())->setUpdateMask($updateMask)->setSnapshot($snapshot);
         $response = $gapicClient->updateSnapshot($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4119,9 +4164,7 @@ class NetAppClientTest extends GeneratedTest
         $storagePool->setCapacityGib($storagePoolCapacityGib);
         $storagePoolNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
         $storagePool->setNetwork($storagePoolNetwork);
-        $request = (new UpdateStoragePoolRequest())
-            ->setUpdateMask($updateMask)
-            ->setStoragePool($storagePool);
+        $request = (new UpdateStoragePoolRequest())->setUpdateMask($updateMask)->setStoragePool($storagePool);
         $response = $gapicClient->updateStoragePool($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4179,12 +4222,15 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
@@ -4195,9 +4241,7 @@ class NetAppClientTest extends GeneratedTest
         $storagePool->setCapacityGib($storagePoolCapacityGib);
         $storagePoolNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
         $storagePool->setNetwork($storagePoolNetwork);
-        $request = (new UpdateStoragePoolRequest())
-            ->setUpdateMask($updateMask)
-            ->setStoragePool($storagePool);
+        $request = (new UpdateStoragePoolRequest())->setUpdateMask($updateMask)->setStoragePool($storagePool);
         $response = $gapicClient->updateStoragePool($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4250,7 +4294,7 @@ class NetAppClientTest extends GeneratedTest
         $capacityGib = 498394811;
         $unixPermissions = 'unixPermissions1137975373';
         $description = 'description-1724546052';
-        $snapReserve = -1.42958764E8;
+        $snapReserve = -1.42958764e8;
         $snapshotDirectory = true;
         $usedGib = 279083970;
         $kerberosEnabled = false;
@@ -4294,9 +4338,7 @@ class NetAppClientTest extends GeneratedTest
         $volume->setCapacityGib($volumeCapacityGib);
         $volumeProtocols = [];
         $volume->setProtocols($volumeProtocols);
-        $request = (new UpdateVolumeRequest())
-            ->setUpdateMask($updateMask)
-            ->setVolume($volume);
+        $request = (new UpdateVolumeRequest())->setUpdateMask($updateMask)->setVolume($volume);
         $response = $gapicClient->updateVolume($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4354,12 +4396,15 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
@@ -4372,9 +4417,7 @@ class NetAppClientTest extends GeneratedTest
         $volume->setCapacityGib($volumeCapacityGib);
         $volumeProtocols = [];
         $volume->setProtocols($volumeProtocols);
-        $request = (new UpdateVolumeRequest())
-            ->setUpdateMask($updateMask)
-            ->setVolume($volume);
+        $request = (new UpdateVolumeRequest())->setUpdateMask($updateMask)->setVolume($volume);
         $response = $gapicClient->updateVolume($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4416,8 +4459,7 @@ class NetAppClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->kmsConfigName('[PROJECT]', '[LOCATION]', '[KMS_CONFIG]');
-        $request = (new VerifyKmsConfigRequest())
-            ->setName($formattedName);
+        $request = (new VerifyKmsConfigRequest())->setName($formattedName);
         $response = $gapicClient->verifyKmsConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -4441,17 +4483,19 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->kmsConfigName('[PROJECT]', '[LOCATION]', '[KMS_CONFIG]');
-        $request = (new VerifyKmsConfigRequest())
-            ->setName($formattedName);
+        $request = (new VerifyKmsConfigRequest())->setName($formattedName);
         try {
             $gapicClient->verifyKmsConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4504,12 +4548,15 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -4536,9 +4583,7 @@ class NetAppClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -4568,12 +4613,15 @@ class NetAppClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
