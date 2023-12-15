@@ -117,7 +117,7 @@ class TransactionTest extends SpannerTestCase
 
         $this->assertEquals(2, $row['number']);
         // Emulator aborts a parallel transaction therefore
-        // iterations might be greator than 2
+        // iterations might be greater than 2
         $this->assertGreaterThanOrEqual(2, $iterations);
     }
 
@@ -173,7 +173,7 @@ class TransactionTest extends SpannerTestCase
 
         $this->assertEquals(2, $row['number']);
         // Emulator aborts a parallel transaction therefore
-        // iterations might be greator than 2
+        // iterations might be greater than 2
         $this->assertGreaterThanOrEqual(2, $iterations);
     }
 
@@ -208,7 +208,7 @@ class TransactionTest extends SpannerTestCase
 
         $this->assertEquals(2, $row['number']);
         // Emulator aborts a parallel transaction therefore
-        // iterations might be greator than 2
+        // iterations might be greater than 2
         $this->assertGreaterThanOrEqual(2, $iterations);
     }
 
