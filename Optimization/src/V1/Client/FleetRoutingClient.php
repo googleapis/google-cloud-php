@@ -62,11 +62,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Optimization\V1\FleetRoutingClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface batchOptimizeToursAsync(BatchOptimizeToursRequest $request, array $optionalArgs = [])
  * @method PromiseInterface optimizeToursAsync(OptimizeToursRequest $request, array $optionalArgs = [])
  */
@@ -77,8 +72,15 @@ final class FleetRoutingClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.optimization.v1.FleetRouting';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'cloudoptimization.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'cloudoptimization.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

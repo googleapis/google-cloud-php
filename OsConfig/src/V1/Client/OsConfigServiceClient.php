@@ -63,11 +63,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\OsConfig\V1\OsConfigServiceClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface cancelPatchJobAsync(CancelPatchJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createPatchDeploymentAsync(CreatePatchDeploymentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deletePatchDeploymentAsync(DeletePatchDeploymentRequest $request, array $optionalArgs = [])
@@ -89,8 +84,15 @@ class OsConfigServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.osconfig.v1.OsConfigService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'osconfig.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'osconfig.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

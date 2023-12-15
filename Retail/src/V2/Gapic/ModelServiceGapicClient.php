@@ -107,8 +107,7 @@ use Google\Protobuf\GPBEmpty;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Retail\V2\Client\ModelServiceClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Retail\V2\Client\ModelServiceClient}.
  */
 class ModelServiceGapicClient
 {
@@ -117,8 +116,15 @@ class ModelServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.retail.v2.ModelService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'retail.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'retail.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
