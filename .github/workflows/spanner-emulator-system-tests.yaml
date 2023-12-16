@@ -42,6 +42,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '7.4'
+          ini-values: grpc.enable_fork_support=1
           tools: pecl
           extensions: bcmath, grpc
 
