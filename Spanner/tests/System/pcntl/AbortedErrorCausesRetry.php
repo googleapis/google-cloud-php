@@ -13,8 +13,6 @@ $delay = 5000;
 if ($childPID1 = pcntl_fork()) {
     usleep($delay);
     $iteration = 0;
-    TestHelpers::SystemBootstrap();
-    SpannerTestCase::setUpBeforeClass();
     $db1 = SpannerTestCase::getDatabaseInstance($dbName);
     $db1->runTransaction(function ($t) use ($id, $tableName, $delay, &$iteration) {
         $iteration++;
