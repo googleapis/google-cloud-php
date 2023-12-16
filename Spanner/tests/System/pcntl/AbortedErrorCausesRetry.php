@@ -4,7 +4,6 @@ include __DIR__ . '/../../../vendor/autoload.php';
 include __DIR__ . '/forked-process-test.php';
 
 use Google\Cloud\Core\Exception\AbortedException;
-use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Tests\System\SpannerTestCase;
 
 list ($dbName, $tableName, $id) = getInputArgs();
