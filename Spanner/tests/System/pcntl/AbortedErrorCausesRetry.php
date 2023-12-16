@@ -42,8 +42,6 @@ if ($childPID1 = pcntl_fork()) {
     echo $iteration;
     pcntl_waitpid($childPID1, $status1);
 } else {
-    TestHelpers::SystemBootstrap();
-    SpannerTestCase::setUpBeforeClass();
     $db2 = SpannerTestCase::getDatabaseInstance($dbName);
     $db2->runTransaction(function ($t) use ($id, $tableName) {
         $row = $t->execute('SELECT id, number FROM ' . $tableName . ' WHERE ID = @id', [
