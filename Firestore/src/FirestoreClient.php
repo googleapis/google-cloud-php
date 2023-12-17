@@ -108,6 +108,8 @@ class FirestoreClient
      *
      *     @type string $apiEndpoint A hostname with optional port to use in
      *           place of the service's default endpoint.
+     *     @type string $database A database name ins case you are using
+     *            a different name than the default "(default)" one.
      *     @type string $projectId The project ID from the Google Developer's
      *           Console.
      *     @type CacheItemPoolInterface $authCache A cache for storing access
@@ -143,12 +145,11 @@ class FirestoreClient
         $config += [
             'returnInt64AsObject' => false,
             'scopes' => [self::FULL_CONTROL_SCOPE],
-            'database' => self::DEFAULT_DATABASE,
             'hasEmulator' => (bool) $emulatorHost,
             'emulatorHost' => $emulatorHost,
         ];
 
-        $this->database = $config['database'];
+        $this->database = $config['database'] ?? self::DEFAULT_DATABASE;
 
         $this->connection = new Grpc($this->configureAuthentication($config) + [
             'projectId' => $this->projectId,
