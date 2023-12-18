@@ -95,10 +95,10 @@ class PubSubClient
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
 
-    const GAPIC_KEYS = [
-        'gapicPublisherClient' => PublisherClient::class,
-        'gapicSubscriberClient' => SubscriberClient::class,
-        'gapicSchemaClient' => SchemaServiceClient::class
+    private const GAPIC_KEYS = [
+        PublisherClient::class,
+        SubscriberClient::class,
+        SchemaServiceClient::class
     ];
 
     /**
@@ -170,14 +170,9 @@ class PubSubClient
 
         $this->clientConfig = $config;
 
-        // Initialize the request handler with the GAPICs.
-        // These GAPIC objects will be utilized later
-        // when a request is sent via the handler.
-        $gapics = $this->getGapicsFromConfig($config, self::GAPIC_KEYS);
-
         $this->requestHandler = new RequestHandler(
             $this->getSerializer(),
-            $gapics,
+            self::GAPIC_KEYS,
             $config
         );
         
@@ -896,35 +891,6 @@ class PubSubClient
         $config = $this->configureAuthentication($config);
 
         return $config;
-    }
-
-    /**
-     * Helper function that prepares the GAPIC classes list to be passed in to the
-     * RequestHandler before it's instantiation.
-     * For example, for PubSub if the user has passed 'gapicPublisherClient' in the $config
-     * it will be used as a GAPIC class while sending the requests via the RequestHandler.
-     *
-     * Otherwise the default publisher GAPIC client will be used.
-     *
-     * @param array $config The client config.
-     * @param array $classConfigMap A key/value pair where key is the GAPIC class
-     *  and the value is the config key name.
-     */
-    private function getGapicsFromConfig(array $config, array $classConfigMap)
-    {
-        $gapics = [];
-
-        foreach ($classConfigMap as $configKey => $cls) {
-            // If the config contains a GAPIC object we use the key as the GAPIC class
-            // and the value as the initialized obj.
-            // If the config doesn't contain the GAPIC config key, we pass the class
-            // which implies that the RequestHandler will instantiate the GAPIC on
-            // it's own.
-            $gapicObj = $this->pluck($configKey, $config, false);
-            $gapics[$cls] = $gapicObj ?? $cls;
-        }
-
-        return $gapics;
     }
 
     /**
