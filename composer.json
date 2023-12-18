@@ -46,8 +46,8 @@
         "php": ">=7.4",
         "rize/uri-template": "~0.3",
         "guzzlehttp/guzzle": "^6.5.8|^7.4.4",
-        "guzzlehttp/psr7": "^1.7|^2.0",
-        "monolog/monolog": "^2.0||^3.0",
+        "guzzlehttp/psr7": "^2.6",
+        "monolog/monolog": "^2.9||^3.0",
         "psr/http-message": "^1.0|^2.0",
         "ramsey/uuid": "^4.0",
         "google/gax": "^1.24.0",
@@ -55,15 +55,16 @@
         "google/auth": "^1.18"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.0",
+        "phpunit/phpunit": "^9.6",
         "phpdocumentor/reflection": "^5.0",
         "erusev/parsedown": "^1.6",
         "phpseclib/phpseclib": "^3.0",
         "google/cloud-tools": "^0.13.0",
         "opis/closure": "^3.0",
         "flix-tech/avro-php": "^5.0.0",
-        "phpspec/prophecy-phpunit": "^2.0",
-        "kreait/firebase-php": "^5.26.5"
+        "phpspec/prophecy-phpunit": "^2.1",
+        "kreait/firebase-php": "^5.26.5",
+        "psr/log": "^1.1.1 || 2.0"
     },
     "conflict": {
         "psr/log": ">=3"
