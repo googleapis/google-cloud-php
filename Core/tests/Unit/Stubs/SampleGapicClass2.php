@@ -29,7 +29,8 @@ class SampleGapicClass2
         $counter++;
     }
 
-    public function sampleMethod2($arg1, $arg2, $optionalArgs = [])
+    public function sampleMethod2($arg1, $cb, $optionalArgs = [])
     {
+        $cb($arg1, $optionalArgs);
     }
 }

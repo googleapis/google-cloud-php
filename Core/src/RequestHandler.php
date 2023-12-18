@@ -69,15 +69,15 @@ class RequestHandler
         
         // Initialize the Gapic classes and store them in memory
         $this->gapics = [];
-        foreach ($gapicClasses as $cls => $obj) {
-            $this->gapics[$cls] = is_object($obj) ? $obj : new $cls($clientConfig);
+        foreach ($gapicClasses as $cls) {
+            $this->gapics[$cls] = new $cls($clientConfig);
         }
     }
 
     /**
      * Helper function that forwards the request to a gapic client obj.
      *
-     * @param $gapicClassOrObject The request will be forwarded to this GAPIC.
+     * @param $gapicClass The request will be forwarded to this GAPIC class.
      * @param $method This method needs to be called on the gapic obj.
      * @param $requiredArgs The positional arguments to be passed on the $method
      * @param $args The optional args.
@@ -88,7 +88,7 @@ class RequestHandler
      * This is useful to override the GAPIC object used for one specific request.
      */
     public function sendRequest(
-        $gapicClassOrObject,
+        $gapicClass,
         string $method,
         array $requiredArgs,
         array $optionalArgs,
@@ -101,7 +101,7 @@ class RequestHandler
         // passed on the the `$method` as a positional argument
         $allArgs[] = $optionalArgs;
 
-        $gapicObj = $this->getGapicObject($gapicClassOrObject);
+        $gapicObj = $this->getGapicObject($gapicClass);
 
         // TODO: check how can we simplify the use of $whitelisted
         return $this->send([$gapicObj, $method], $allArgs, $whitelisted);
@@ -132,14 +132,12 @@ class RequestHandler
      * using the GAPIC class as key.
      * Alternatively, if a GAPIC object is supplied, then that object is returned
      * as is.
+     * @param $gapicClass The GAPIC class whose object we need.
+     * @return mixed
      */
-    private function getGapicObject($gapicClassOrObject)
+    private function getGapicObject(string $gapicClass)
     {
-        if (is_object($gapicClassOrObject)) {
-            return $gapicClassOrObject;
-        }
-
-        return $this->gapics[$gapicClassOrObject];
+        return $this->gapics[$gapicClass] ?? null;
     }
 
     private function getDefaultTransport()
