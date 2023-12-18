@@ -10,11 +10,11 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The request for
- * [FirestoreAdmin.GetDatabase][google.firestore.admin.v1.FirestoreAdmin.GetDatabase].
+ * [FirestoreAdmin.DeleteDatabase][google.firestore.admin.v1.FirestoreAdmin.DeleteDatabase].
  *
- * Generated from protobuf message <code>google.firestore.admin.v1.GetDatabaseRequest</code>
+ * Generated from protobuf message <code>google.firestore.admin.v1.DeleteDatabaseRequest</code>
  */
-class GetDatabaseRequest extends \Google\Protobuf\Internal\Message
+class DeleteDatabaseRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. A name of the form
@@ -22,14 +22,22 @@ class GetDatabaseRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $name = '';
+    private $name = '';
+    /**
+     * The current etag of the Database.
+     * If an etag is provided and does not match the current etag of the database,
+     * deletion will be blocked and a FAILED_PRECONDITION error will be returned.
+     *
+     * Generated from protobuf field <code>string etag = 3;</code>
+     */
+    private $etag = '';
 
     /**
      * @param string $name Required. A name of the form
      *                     `projects/{project_id}/databases/{database_id}`
      *                     Please see {@see FirestoreAdminClient::databaseName()} for help formatting this field.
      *
-     * @return \Google\Cloud\Firestore\Admin\V1\GetDatabaseRequest
+     * @return \Google\Cloud\Firestore\Admin\V1\DeleteDatabaseRequest
      *
      * @experimental
      */
@@ -48,6 +56,10 @@ class GetDatabaseRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. A name of the form
      *           `projects/{project_id}/databases/{database_id}`
+     *     @type string $etag
+     *           The current etag of the Database.
+     *           If an etag is provided and does not match the current etag of the database,
+     *           deletion will be blocked and a FAILED_PRECONDITION error will be returned.
      * }
      */
     public function __construct($data = NULL) {
@@ -79,6 +91,36 @@ class GetDatabaseRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The current etag of the Database.
+     * If an etag is provided and does not match the current etag of the database,
+     * deletion will be blocked and a FAILED_PRECONDITION error will be returned.
+     *
+     * Generated from protobuf field <code>string etag = 3;</code>
+     * @return string
+     */
+    public function getEtag()
+    {
+        return $this->etag;
+    }
+
+    /**
+     * The current etag of the Database.
+     * If an etag is provided and does not match the current etag of the database,
+     * deletion will be blocked and a FAILED_PRECONDITION error will be returned.
+     *
+     * Generated from protobuf field <code>string etag = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEtag($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->etag = $var;
 
         return $this;
     }

@@ -38,6 +38,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Firestore\Admin\V1\CreateDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateIndexRequest;
 use Google\Cloud\Firestore\Admin\V1\Database;
+use Google\Cloud\Firestore\Admin\V1\DeleteDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\DeleteIndexRequest;
 use Google\Cloud\Firestore\Admin\V1\ExportDocumentsRequest;
 use Google\Cloud\Firestore\Admin\V1\Field;
@@ -97,6 +98,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @method PromiseInterface createDatabaseAsync(CreateDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createIndexAsync(CreateIndexRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteDatabaseAsync(DeleteDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteIndexAsync(DeleteIndexRequest $request, array $optionalArgs = [])
  * @method PromiseInterface exportDocumentsAsync(ExportDocumentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getDatabaseAsync(GetDatabaseRequest $request, array $optionalArgs = [])
@@ -435,6 +437,30 @@ final class FirestoreAdminClient
     }
 
     /**
+     * Deletes a database.
+     *
+     * The async variant is {@see FirestoreAdminClient::deleteDatabaseAsync()} .
+     *
+     * @param DeleteDatabaseRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteDatabase(DeleteDatabaseRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteDatabase', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a composite index.
      *
      * The async variant is {@see FirestoreAdminClient::deleteIndexAsync()} .
@@ -622,7 +648,8 @@ final class FirestoreAdminClient
      * only supports listing fields that have been explicitly overridden. To issue
      * this query, call
      * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
-     * with the filter set to `indexConfig.usesAncestorConfig:false` .
+     * with the filter set to `indexConfig.usesAncestorConfig:false or
+     * `ttlConfig:*`.
      *
      * The async variant is {@see FirestoreAdminClient::listFieldsAsync()} .
      *

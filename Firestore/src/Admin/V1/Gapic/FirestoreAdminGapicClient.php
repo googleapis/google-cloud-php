@@ -38,6 +38,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Firestore\Admin\V1\CreateDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateIndexRequest;
 use Google\Cloud\Firestore\Admin\V1\Database;
+use Google\Cloud\Firestore\Admin\V1\DeleteDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\DeleteIndexRequest;
 use Google\Cloud\Firestore\Admin\V1\ExportDocumentsRequest;
 use Google\Cloud\Firestore\Admin\V1\ExportDocumentsResponse;
@@ -536,7 +537,11 @@ class FirestoreAdminGapicClient
      * @param string   $databaseId   Required. The ID to use for the database, which will become the final
      *                               component of the database's resource name.
      *
-     *                               The value must be set to "(default)".
+     *                               This value should be 4-63 characters. Valid characters are /[a-z][0-9]-/
+     *                               with first character a letter and the last a letter or a number. Must not
+     *                               be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
+     *
+     *                               "(default)" database id is also valid.
      * @param array    $optionalArgs {
      *     Optional.
      *
@@ -633,6 +638,79 @@ class FirestoreAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CreateIndex', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Deletes a database.
+     *
+     * Sample code:
+     * ```
+     * $firestoreAdminClient = new FirestoreAdminClient();
+     * try {
+     *     $formattedName = $firestoreAdminClient->databaseName('[PROJECT]', '[DATABASE]');
+     *     $operationResponse = $firestoreAdminClient->deleteDatabase($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $firestoreAdminClient->deleteDatabase($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $firestoreAdminClient->resumeOperation($operationName, 'deleteDatabase');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $firestoreAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. A name of the form
+     *                             `projects/{project_id}/databases/{database_id}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $etag
+     *           The current etag of the Database.
+     *           If an etag is provided and does not match the current etag of the database,
+     *           deletion will be blocked and a FAILED_PRECONDITION error will be returned.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteDatabase($name, array $optionalArgs = [])
+    {
+        $request = new DeleteDatabaseRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['etag'])) {
+            $request->setEtag($optionalArgs['etag']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('DeleteDatabase', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -739,7 +817,7 @@ class FirestoreAdminGapicClient
      *           If the URI is a bucket (without a namespace path), a prefix will be
      *           generated based on the start time.
      *     @type string[] $namespaceIds
-     *           Unspecified means all namespaces. This is the preferred
+     *           An empty list represents all namespaces. This is the preferred
      *           usage for databases that don't use namespaces.
      *
      *           An empty string element represents the default namespace. This should be
@@ -966,7 +1044,7 @@ class FirestoreAdminGapicClient
      *           See:
      *           [google.firestore.admin.v1.ExportDocumentsResponse.output_uri_prefix][google.firestore.admin.v1.ExportDocumentsResponse.output_uri_prefix].
      *     @type string[] $namespaceIds
-     *           Unspecified means all namespaces. This is the preferred
+     *           An empty list represents all namespaces. This is the preferred
      *           usage for databases that don't use namespaces.
      *
      *           An empty string element represents the default namespace. This should be
@@ -1053,7 +1131,8 @@ class FirestoreAdminGapicClient
      * only supports listing fields that have been explicitly overridden. To issue
      * this query, call
      * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
-     * with the filter set to `indexConfig.usesAncestorConfig:false` .
+     * with the filter set to `indexConfig.usesAncestorConfig:false or
+     * `ttlConfig:*`.
      *
      * Sample code:
      * ```

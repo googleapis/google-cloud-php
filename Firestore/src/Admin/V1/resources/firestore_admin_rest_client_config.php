@@ -30,6 +30,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteDatabase' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteIndex' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/databases/*/collectionGroups/*/indexes/*}',
