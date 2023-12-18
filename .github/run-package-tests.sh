@@ -13,12 +13,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# first argument can be a directory
 DIRS=$(find * -maxdepth 0 -type d -name '[A-Z]*')
+PREFER_LOWEST=""
+VALID=1
 if [ "$#" -eq 1 ]; then
-    DIRS=$1
+    # first argument can be a directory or "--prefer-lowest"
+    if [ "$1" = "--prefer-lowest" ]; then
+        PREFER_LOWEST="--prefer-lowest"
+    else
+        DIRS=$1
+    fi
 elif [ "$#" -ne 0 ]; then
-    echo "usage: run-package-tests.sh [DIR]"
+    echo "usage: run-package-tests.sh [DIR|--prefer-lowest]"
     exit 1;
 fi
 
@@ -38,11 +44,14 @@ for DIR in ${DIRS}; do {
     done
 
     echo "Installing composer in $DIR"
-    COMPOSER_ROOT_VERSION=$(cat $DIR/VERSION) composer -q --no-interaction --no-ansi --no-progress update -d ${DIR};
+    if [ "$PREFER_LOWEST" != "" ]; then
+        echo " (with $PREFER_LOWEST)"
+    fi
+    COMPOSER_ROOT_VERSION=$(cat $DIR/VERSION) composer -q --no-interaction --no-ansi --no-progress $PREFER_LOWEST update -d ${DIR};
     if [ $? != 0 ]; then
         echo "$DIR: composer install failed" >> "${FAILED_FILE}"
         # run again but without "-q" so we can see the error
-        COMPOSER_ROOT_VERSION=$(cat $DIR/VERSION) composer --no-interaction --no-ansi --no-progress update -d ${DIR};
+        COMPOSER_ROOT_VERSION=$(cat $DIR/VERSION) composer --no-interaction --no-ansi --no-progress $PREFER_LOWEST update -d ${DIR};
         continue
     fi
     echo "Running $DIR Unit Tests"
