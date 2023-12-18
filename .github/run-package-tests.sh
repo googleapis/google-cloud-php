@@ -23,6 +23,15 @@ if [ "$#" -eq 1 ]; then
     else
         DIRS=$1
     fi
+elif [ "$#" -eq 2 ]; then
+    # first argument can be a directory or "--prefer-lowest"
+    if [ "$2" = "--prefer-lowest" ]; then
+        DIRS=$1
+        PREFER_LOWEST="--prefer-lowest"
+    else
+        echo "usage: run-package-tests.sh [DIR|--prefer-lowest]"
+        exit 1;
+    fi
 elif [ "$#" -ne 0 ]; then
     echo "usage: run-package-tests.sh [DIR|--prefer-lowest]"
     exit 1;
