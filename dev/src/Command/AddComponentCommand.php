@@ -59,7 +59,7 @@ class AddComponentCommand extends Command
     ];
     private const BAZEL_VERSION = '6.0.0';
     private const OWLBOT_CLI_IMAGE = 'gcr.io/cloud-devrel-public-resources/owlbot-cli:latest';
-    private const OWLBOT_PHP_IMAGE = 'gcr.io/cloud-devrel-public-resources/owlbot-php';
+    private const OWLBOT_PHP_IMAGE = 'gcr.io/cloud-devrel-public-resources/owlbot-php:latest';
 
     private $input;
     private $output;
@@ -73,7 +73,7 @@ class AddComponentCommand extends Command
     public function __construct($rootPath, $httpClient = null)
     {
         $this->rootPath = realpath($rootPath);
-        $this->httpClient = $httpClient ?? new Client();
+        $this->httpClient = $httpClient ?: new Client();
         parent::__construct();
     }
 
@@ -134,16 +134,14 @@ class AddComponentCommand extends Command
 
         $productDocumentation = null;
         $yamlFileContent = $this->loadYamlConfigContent($new, dirname($proto));
-        if (!empty($yamlFileContent)) {
-            $productDocumentation = $yamlFileContent['publishing']['documentation_uri'] ?? null;
-        }
-        $productDocumentation = $productDocumentation ?? $this->getHelper('question')->ask(
+        $productDocumentation = $yamlFileContent['publishing']['documentation_uri'] ?? null;
+        $productDocumentation = $productDocumentation ?: $this->getHelper('question')->ask(
             $input,
             $output,
             new Question('What is the product documentation URL? ')
         );
         $productHomePage = $this->getHomePageFromDocsUrl($productDocumentation);
-        $productHomePage = $productHomePage ?? $this->getHelper('question')->ask(
+        $productHomePage = $productHomePage ?: $this->getHelper('question')->ask(
             $input,
             $output,
             new Question('What is the product homepage? ')
@@ -217,13 +215,15 @@ class AddComponentCommand extends Command
             $output->writeln($this->bazelQueryAndBuildLibrary($new->protoPath, $googleApisDir));
             $output->writeln("\n\nCopying the library code from bazel-bin");
             $output->writeln($this->owlbotCopyBazelBin($new->componentName, $googleApisDir));
-            $output->writeln("\n\nOwlbot post processing");
-            $output->writeln($this->owlbotPostProcessor());
-        } else if ($input->getOption('googleapis-gen-path')) {
+        } elseif ($input->getOption('googleapis-gen-path')) {
             $this->checkDockerAvailable();
             $googleApisGenDir = realpath($input->getOption('googleapis-gen-path'));
             $output->writeln("\n\nCopying the library code from googleapis-gen");
             $output->writeln($this->owlbotCopyCode($new->componentName, $googleApisGenDir));
+        }
+
+        // run owlbot post-processor if a bazel-path or googleapis-gen-path was supplied
+        if ($input->getOption('bazel-path') || $input->getOption('googleapis-gen-path')) {
             $output->writeln("\n\nOwlbot post processing");
             $output->writeln($this->owlbotPostProcessor());
         }
@@ -237,11 +237,12 @@ class AddComponentCommand extends Command
 
     private function validateOptions(InputInterface $input, OutputInterface $output): void
     {
-        $error = '<error>googleapis-gen-path and bazel-path options ' .
-            'are mutually exclusive. Will build library with bazel.</error>';
         if ($input->getOption('bazel-path') && $input->getOption('googleapis-gen-path')) {
             $output->writeln('');
-            $output->writeln($error);
+            $output->writeln(
+                '<error>googleapis-gen-path and bazel-path options ' .
+                'are mutually exclusive. Will build library with bazel.</error>'
+            );
             $output->writeln('');
         }
     }
@@ -290,16 +291,22 @@ class AddComponentCommand extends Command
             'filter("-(php)$", kind("rule", //' . $componentPath .'/...:*))'
         ];
         $output = $this->runCommand($command, $googleApisDir);
-        $command = ['grep', '-v', '-E', ':(proto|grpc|gapic)-.*-php$'];
-        $output = $this->runCommand($command, $googleApisDir, $output);
-        // Remove new line character from the output, there will be only one component for one version.
-        return $this->bazelBuildLibrary(str_replace(["\n"], "", $output), $googleApisDir);
-    }
+        // Get componenets starting with //google/ and
+        // not ending with :(proto|grpc|gapic)-.*-php
+        $components = array_filter(
+            explode("\n", $output),
+            fn ($line) => preg_match('/^\/\/google\/(?!:(proto|grpc|gapic)-.*-php$)/', $line) &&
+                !empty($line)
+        );
+        if (count($components) !== 1) {
+            throw new Exception(
+                'expected only one bazel component, found ' .
+                (implode(' ', $components) ?: '0')
+            );
+        }
 
-    private function bazelBuildLibrary(string $component, string $googleApisDir): string
-    {
-        $command = ['bazel', 'build', $component];
-        return $this->runCommand($command, $googleApisDir, null, true);
+        $command = ['bazel', 'build', $components[0]];
+        return $this->runCommand($command, $googleApisDir);
     }
 
     private function owlbotCopyCode(string $componentName, string $googleApisGenDir): string
@@ -366,20 +373,13 @@ class AddComponentCommand extends Command
             '/repo',
             self::OWLBOT_PHP_IMAGE
         ];
-        return $this->runCommand($command, null, null, true);
-    }
-
-    private function isProductHomePageMissing(string $productHomePage): bool
-    {
-        $response = $this->httpClient->request('GET', $productHomePage, ['http_errors' => false]);
-        return $response->getStatusCode() >= 400;
+        return $this->runCommand($command);
     }
 
     private function runCommand(
         array $command,
         ?string $workDir = null,
-        ?string $input = null,
-        bool $errorOutput = false
+        ?string $input = null
     ): string {
         $process = new Process($command);
         if (!is_null($workDir)) {
@@ -391,16 +391,14 @@ class AddComponentCommand extends Command
         // `mustRun` will throw a ProcessFailedException if the process
         // couldn't be executed successfully.
         $process->mustRun();
-        if ($errorOutput) {
-            return $process->getErrorOutput();
-        }
-        return $process->getOutput();
+        return $process->getOutput() . $process->getErrorOutput();
     }
 
     private function getHomePageFromDocsUrl(?string $url): ?string
     {
         $productHomePage = !empty($url) ? explode('/docs', $url)[0] : null;
-        return $this->isProductHomePageMissing($productHomePage) ? null : $productHomePage;
+        $response = $this->httpClient->request('GET', $productHomePage, ['http_errors' => false]);
+        return $response->getStatusCode() >= 400 ? null : $productHomePage;
     }
 
     private function checkDockerAvailable(): void
