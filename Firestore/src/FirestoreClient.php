@@ -110,6 +110,8 @@ class FirestoreClient
      *           place of the service's default endpoint.
      *     @type string $projectId The project ID from the Google Developer's
      *           Console.
+     *     @type string $database The database name to use, if different from
+                 the default.
      *     @type CacheItemPoolInterface $authCache A cache for storing access
      *           tokens. **Defaults to** a simple in memory implementation.
      *     @type array $authCacheOptions Cache configuration options.
