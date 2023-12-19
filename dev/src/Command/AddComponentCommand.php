@@ -208,22 +208,21 @@ class AddComponentCommand extends Command
         $composer->updateMainComposer();
         $composer->createComponentComposer($new->displayName, $new->githubRepo);
 
-        $this->validateOptions($input, $output);
-        if ($input->getOption('bazel-path')) {
-            $googleApisDir = realpath($input->getOption('bazel-path'));
-            $output->writeln("\n\nbazel build library");
-            $output->writeln($this->bazelQueryAndBuildLibrary($new->protoPath, $googleApisDir));
-            $output->writeln("\n\nCopying the library code from bazel-bin");
-            $output->writeln($this->owlbotCopyBazelBin($new->componentName, $googleApisDir));
-        } elseif ($input->getOption('googleapis-gen-path')) {
-            $this->checkDockerAvailable();
-            $googleApisGenDir = realpath($input->getOption('googleapis-gen-path'));
-            $output->writeln("\n\nCopying the library code from googleapis-gen");
-            $output->writeln($this->owlbotCopyCode($new->componentName, $googleApisGenDir));
-        }
-
-        // run owlbot post-processor if a bazel-path or googleapis-gen-path was supplied
         if ($input->getOption('bazel-path') || $input->getOption('googleapis-gen-path')) {
+            $this->validateOptions($input, $output);
+            $this->checkDockerAvailable();
+            if ($input->getOption('bazel-path')) {
+                $googleApisDir = realpath($input->getOption('bazel-path'));
+                $output->writeln("\n\nbazel build library");
+                $output->writeln($this->bazelQueryAndBuildLibrary(dirname($protoFile), $googleApisDir));
+                $output->writeln("\n\nCopying the library code from bazel-bin");
+                $output->writeln($this->owlbotCopyBazelBin($new->componentName, $googleApisDir));
+            } else {
+                $googleApisGenDir = realpath($input->getOption('googleapis-gen-path'));
+                $output->writeln("\n\nCopying the library code from googleapis-gen");
+                $output->writeln($this->owlbotCopyCode($new->componentName, $googleApisGenDir));
+            }
+            // run owlbot post-processor if a bazel-path or googleapis-gen-path was supplied
             $output->writeln("\n\nOwlbot post processing");
             $output->writeln($this->owlbotPostProcessor());
         }
@@ -238,12 +237,10 @@ class AddComponentCommand extends Command
     private function validateOptions(InputInterface $input, OutputInterface $output): void
     {
         if ($input->getOption('bazel-path') && $input->getOption('googleapis-gen-path')) {
-            $output->writeln('');
-            $output->writeln(
-                '<error>googleapis-gen-path and bazel-path options ' .
-                'are mutually exclusive. Will build library with bazel.</error>'
+            throw new \InvalidArgumentException(
+                'The options --googleapis-gen-path and --bazel-path cannot be used together.' .
+                ' Please provide only one path option.'
             );
-            $output->writeln('');
         }
     }
 
@@ -274,7 +271,7 @@ class AddComponentCommand extends Command
         return (string) $response->getBody();
     }
 
-    private function bazelQueryAndBuildLibrary(string $protoPath, string $googleApisDir): string
+    private function bazelQueryAndBuildLibrary(string $protoDir, string $googleApisDir): string
     {
         $command = ['bazel', '--version'];
         $output = $this->runCommand($command);
@@ -284,11 +281,10 @@ class AddComponentCommand extends Command
             throw new RuntimeException('Bazel 6.0.0 is not available');
         }
 
-        $componentPath = str_replace(['(', ')'], '', $protoPath);
         $command = [
             'bazel',
             'query',
-            'filter("-(php)$", kind("rule", //' . $componentPath .'/...:*))'
+            'filter("-(php)$", kind("rule", //' . $protoDir .'/...:*))'
         ];
         $output = $this->runCommand($command, $googleApisDir);
         // Get componenets starting with //google/ and
