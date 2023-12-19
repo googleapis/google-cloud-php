@@ -19,7 +19,10 @@ namespace Google\Cloud\Dev\Tests\Unit\Command;
 
 use Google\Cloud\Dev\Command\AddComponentCommand;
 use Google\Cloud\Dev\Composer;
+use Google\Cloud\Dev\RunProcess;
+use GuzzleHttp\Client;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 
@@ -29,6 +32,8 @@ use Symfony\Component\Console\Tester\CommandTester;
  */
 class AddComponentCommandTest extends TestCase
 {
+    use ProphecyTrait;
+
     private static $expectedFiles = [
         '.OwlBot.yaml' => '.OwlBot.yaml.test', // so OwlBot doesn't read the test file
         '.gitattributes' => null,
@@ -59,8 +64,8 @@ class AddComponentCommandTest extends TestCase
     {
         self::$commandTester->setInputs([
             'Y',                                                            // Does this information look correct? [Y/n]
-            'https://cloud.google.com/secret-mananger',                     // What is the product homepage?
             'https://cloud.google.com/secret-manager/docs/reference/rest/', // What is the product documentation URL?
+            'https://cloud.google.com/secret-manager',                     // What is the product homepage?
         ]);
 
         self::$commandTester->execute([
@@ -113,8 +118,8 @@ class AddComponentCommandTest extends TestCase
             'google/cloud/custompath/(.*)',                                 // custom value for "protoPath"
             'v2',                                                           // custom value for "version"
             'Y',                                                            // Does this information look correct? [Y/n]
-            'https://cloud.google.com/coustom-product',                     // What is the product homepage?
             'https://cloud.google.com/coustom-product/docs/reference/rest/', // What is the product documentation URL?
+            'https://cloud.google.com/coustom-product',                     // What is the product homepage?
         ]);
 
         self::$commandTester->execute([
@@ -149,6 +154,121 @@ class AddComponentCommandTest extends TestCase
         }
 
         $this->assertComposerJson('CustomInput');
+    }
+
+    public function testGoogleapisGenPath()
+    {
+        $expectedOwlbotCopyCodeCmd = sprintf(
+            'docker run --rm --user %s::%s -v %s:/repo -v :/googleapis-gen -w /repo '
+            . '--env HOME=/tmp gcr.io/cloud-devrel-public-resources/owlbot-cli:latest copy-code '
+            . '--config-file=SecretManager/.OwlBot.yaml --source-repo=/googleapis-gen',
+            posix_getuid(),
+            posix_getgid(),
+            self::$tmpDir
+        );
+        $expectedOwlbotPostProcessCmd = sprintf(
+            'docker run --rm --user %s::%s -v %s:/repo -w /repo '
+            . 'gcr.io/cloud-devrel-public-resources/owlbot-php:latest',
+            posix_getuid(),
+            posix_getgid(),
+            self::$tmpDir
+        );
+        $runProcess = $this->prophesize(RunProcess::class);
+        $runProcess->execute(['which', 'docker'])
+            ->shouldBeCalledOnce()
+            ->willReturn('/path/to/docker');
+        $runProcess->execute(explode(' ', $expectedOwlbotCopyCodeCmd))
+            ->shouldBeCalledOnce()
+            ->willReturn('');
+        $runProcess->execute(explode(' ', $expectedOwlbotPostProcessCmd))
+            ->shouldBeCalledOnce()
+            ->willReturn('');
+
+        $application = new Application();
+        $application->add(new AddComponentCommand(self::$tmpDir, null, $runProcess->reveal()));
+
+        $commandTester = new CommandTester($application->get('add-component'));
+        $commandTester->setInputs([
+            'Y',                                                            // Does this information look correct? [Y/n]
+            'https://cloud.google.com/secret-manager/docs/reference/rest/', // What is the product documentation URL?
+            'https://cloud.google.com/secret-manager',                     // What is the product homepage?
+        ]);
+
+        $commandTester->execute([
+            'proto' => 'google/cloud/secretmanager/v1/service.proto',
+            '--googleapis-gen-path' => 'path/to/bazel',
+        ]);
+    }
+
+    public function testBazelPathAndFetchDocUri()
+    {
+        $client = new Client();
+        $productHomePage = 'https://cloud.google.com/infrastructure-manager';
+        $rawContentUri = 'https://raw.githubusercontent.com/googleapis/googleapis/master/';
+        $proto = 'google/cloud/config/v1/config.proto';
+        $yaml = 'google/cloud/config/v1/config_v1.yaml';
+        $expectedOwlbotCopyBazelBinCmd = sprintf(
+            'docker run --rm --user %s::%s -v %s:/repo -v /bazel-bin:/bazel-bin '
+            . 'gcr.io/cloud-devrel-public-resources/owlbot-cli:latest copy-bazel-bin '
+            . '--config-file=Config/.OwlBot.yaml --source-dir /bazel-bin --dest /repo',
+            posix_getuid(),
+            posix_getgid(),
+            self::$tmpDir
+        );
+        $expectedOwlbotPostProcessCmd = sprintf(
+            'docker run --rm --user %s::%s -v %s:/repo -w /repo '
+            . 'gcr.io/cloud-devrel-public-resources/owlbot-php:latest',
+            posix_getuid(),
+            posix_getgid(),
+            self::$tmpDir
+        );
+        $runProcess = $this->prophesize(RunProcess::class);
+        $runProcess->execute(['which', 'docker'])
+            ->shouldBeCalledOnce()
+            ->willReturn('/path/to/docker');
+        $runProcess->execute(['bazel', '--version'])
+            ->shouldBeCalledOnce()
+            ->willReturn('bazel 6.0.0');
+        $runProcess->execute(
+            ['bazel', 'query', 'filter("-(php)$", kind("rule", //google/cloud/config/v1/...:*))'],
+            ''
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn('//google/cloud/config/v1');
+        $runProcess->execute(['bazel', 'build', '//' . dirname($proto)], '')
+            ->shouldBeCalledOnce()
+            ->willReturn('');
+        $runProcess->execute(explode(' ', $expectedOwlbotCopyBazelBinCmd))
+            ->shouldBeCalledOnce()
+            ->willReturn('');
+        $runProcess->execute(explode(' ', $expectedOwlbotPostProcessCmd))
+            ->shouldBeCalledOnce()
+            ->willReturn('');
+
+        $httpClient = $this->prophesize(Client::class);
+        $httpClient->get($rawContentUri . $proto)
+            ->shouldBeCalledOnce()
+            ->willReturn($client->get($rawContentUri . $proto));
+        $httpClient->get($rawContentUri . $yaml)
+            ->shouldBeCalledOnce()
+            ->willReturn($client->get($rawContentUri . $yaml));
+        $httpClient->get($productHomePage, ['http_errors' => false])
+            ->shouldBeCalledOnce()
+            ->willReturn($client->get($productHomePage));
+
+        $application = new Application();
+        $application->add(new AddComponentCommand(self::$tmpDir, $httpClient->reveal(), $runProcess->reveal()));
+
+        $commandTester = new CommandTester($application->get('add-component'));
+        // No documentationPage/homePage input is required as it is fetched automatically from the yaml file.
+        $commandTester->setInputs([
+            'Y'              // Does this information look correct? [Y/n]
+        ]);
+
+        $commandTester->execute([
+            'proto' => $proto,
+            '--bazel-path' => '/path/to/bazel',
+        ]);
     }
 
     private function assertComposerJson(string $componentName)
