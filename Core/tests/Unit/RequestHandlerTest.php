@@ -82,8 +82,8 @@ class RequestHandlerTest extends TestCase
         $responseStr = '{"foo": "bar"}';
         $this->requestWrapper->send(
             Argument::containing('sampleMethod'),
-            Argument::cetera())
-        ->willReturn(new Response(200, [], $responseStr));
+            Argument::cetera()
+        )->willReturn(new Response(200, [], $responseStr));
 
         $requestHandler->setRequestWrapper($this->requestWrapper->reveal());
 
@@ -101,8 +101,8 @@ class RequestHandlerTest extends TestCase
 
         $this->requestWrapper->send(
             Argument::containing('sampleMethod'),
-            Argument::cetera())
-        ->willThrow(new BadRequestException('exception message'));
+            Argument::cetera()
+        )->willThrow(new BadRequestException('exception message'));
 
         $requestHandler->setRequestWrapper($this->requestWrapper->reveal());
 
