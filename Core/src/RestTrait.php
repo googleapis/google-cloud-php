@@ -141,7 +141,7 @@ trait RestTrait
         // One of the $default or the $template must always be set
         if (!$apiEndpointTemplate) {
             throw new UnexpectedValueException(
-                'A default API endpoint must be provided if no "apiEndpoint" config option is set.'
+                'An API endpoint template must be provided if no "apiEndpoint" or default endpoint is set.'
             );
         }
 
