@@ -32,9 +32,10 @@ class RunProcess
      * Executing commands, in Windows may behave differently.
      *
      * @param string $command
-     * @return array $shellOutput
+     * @param string|null $cwd
+     * @return string $shellOutput
      */
-    public function execute(array $command, string $cwd = null)
+    public function execute(array $command, string $cwd = null): string
     {
         $process = new Process($command, $cwd);
         $process->mustRun();

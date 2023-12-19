@@ -295,8 +295,7 @@ class AddComponentCommand extends Command
         // not ending with :(proto|grpc|gapic)-.*-php
         $components = array_filter(
             explode("\n", $output),
-            fn ($line) => preg_match('/^\/\/google\/(?!:(proto|grpc|gapic)-.*-php$)/', $line) &&
-                !empty($line)
+            fn ($line) => $line && preg_match('/^\/\/google\/(?!:(proto|grpc|gapic)-.*-php$)/', $line)
         );
         if (count($components) !== 1) {
             throw new Exception(
