@@ -174,8 +174,7 @@ class PubSubClient
             $this->getSerializer(),
             self::GAPIC_KEYS,
             $config
-        );
-        
+        );   
     }
 
     /**

@@ -18,16 +18,19 @@
 namespace Google\Cloud\PubSub;
 
 use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Core\Batch\BatchRunner;
-use Google\Cloud\Core\Batch\ClosureSerializerInterface;
 use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\PubSub\Connection\ConnectionInterface;
-use Google\Cloud\PubSub\Connection\IamTopic;
+use Google\Cloud\Core\V2\Iam;
 use Google\Cloud\PubSub\V1\Encoding;
 use InvalidArgumentException;
+use Google\ApiCore\Serializer;
+use Google\Cloud\PubSub\V1\PublisherClient;
+use Google\Cloud\PubSub\V1\SchemaSettings;
+use Google\Protobuf\FieldMask;
+use Google\Cloud\PubSub\V1\Topic as TopicProto;
+use Google\Cloud\PubSub\V1\PubsubMessage;
+use Google\Cloud\Core\RequestHandler;
 
 /**
  * A named resource to which messages are sent by publishers.
@@ -55,10 +58,12 @@ class Topic
     const DEFAULT_ENABLE_COMPRESSION = false;
 
     /**
-     * @var ConnectionInterface A connection to the Google Cloud Platform API
+     * @var RequestHandler
      * @internal
+     * The request handler that is responsible for sending a request and
+     * serializing responses into relevant classes.
      */
-    protected $connection;
+    private $requestHandler;
 
     /**
      * @var string The project ID
@@ -103,9 +108,8 @@ class Topic
     /**
      * Create a PubSub topic.
      *
-     * @param ConnectionInterface $connection A connection to the Google Cloud
-     *        Platform service. This object is created by PubSubClient,
-     *        and should not be instantiated outside of this client.
+     * @param RequestHandler The request handler that is responsible for sending a request
+     * and serializing responses into relevant classes.
      * @param string $projectId The project Id
      * @param string $name The topic name
      * @param bool $encode Whether messages should be base64 encoded.
@@ -137,14 +141,14 @@ class Topic
      *        associated with this instance.
      */
     public function __construct(
-        ConnectionInterface $connection,
+        RequestHandler $requestHandler,
         $projectId,
         $name,
         $encode,
         array $info = [],
         array $clientConfig = []
     ) {
-        $this->connection = $connection;
+        $this->requestHandler = $requestHandler;
         $this->projectId = $projectId;
         $this->encode = (bool) $encode;
         $this->info = $info;
@@ -228,11 +232,12 @@ class Topic
             $options['schemaSettings']['schema'] = $options['schemaSettings']['schema']->name();
         }
 
-        $this->info = $this->connection->createTopic([
-            'name' => $this->name
-        ] + $options);
-
-        return $this->info;
+        return $this->info = $this->requestHandler->sendRequest(
+            PublisherClient::class,
+            'createTopic',
+            [$this->name],
+            $options
+        );
     }
 
     /**
@@ -323,19 +328,39 @@ class Topic
             }
         }
 
-        if (isset($topic['schemaSettings']['schema'])) {
-            if ($topic['schemaSettings']['schema'] instanceof Schema) {
-                $topic['schemaSettings']['schema'] = $topic['schemaSettings']['schema']->name();
+        $maskPaths = [];
+        foreach ($updateMaskPaths as $path) {
+            $maskPaths[] = Serializer::toSnakeCase($path);
+        }
+
+        $fieldMask = new FieldMask([
+            'paths' => $maskPaths
+        ]);
+
+        if (isset($topic['schemaSettings'])) {
+            $enc = $topic['schemaSettings']['encoding'] ?? Encoding::ENCODING_UNSPECIFIED;
+
+            if (is_string($enc)) {
+                $topic['schemaSettings']['encoding'] = Encoding::value($enc);
+            }
+
+            $topic['schemaSettings'] = new SchemaSettings($topic['schemaSettings']);
+
+            if (isset($topic['schemaSettings']['schema'])) {
+                if ($topic['schemaSettings']['schema'] instanceof Schema) {
+                    $topic['schemaSettings']['schema'] = $topic['schemaSettings']['schema']->name();
+                }
             }
         }
 
-        return $this->info = $this->connection->updateTopic([
-            'name' => $this->name,
-            'topic' => [
-                'name' => $this->name,
-            ] + $topic,
-            'updateMask' => implode(',', $updateMaskPaths)
-        ] + $options);
+        $proto = new TopicProto($topic + ['name' => $this->name]);
+
+        return $this->info = $this->requestHandler->sendRequest(
+            PublisherClient::class,
+            'updateTopic',
+            [$proto, $fieldMask],
+            $options
+        );
     }
 
     /**
@@ -353,9 +378,12 @@ class Topic
      */
     public function delete(array $options = [])
     {
-        $this->connection->deleteTopic($options + [
-            'topic' => $this->name
-        ]);
+        $this->requestHandler->sendRequest(
+            PublisherClient::class,
+            'deleteTopic',
+            [$this->name],
+            $options
+        );
     }
 
     /**
@@ -447,9 +475,12 @@ class Topic
      */
     public function reload(array $options = [])
     {
-        return $this->info = $this->connection->getTopic($options + [
-            'topic' => $this->name
-        ]);
+        return $this->info = $this->requestHandler->sendRequest(
+            PublisherClient::class,
+            'getTopic',
+            [$this->name],
+            $options
+        );
     }
 
     /**
@@ -522,16 +553,21 @@ class Topic
     {
         foreach ($messages as &$message) {
             $message = $this->formatMessage($message);
+            $message = $this->requestHandler->getSerializer()->decodeMessage(
+                new PubsubMessage(),
+                $message
+            );
         }
 
-        return $this->connection->publishMessage($options + [
-            'topic' => $this->name,
-            'messages' => $messages,
-            'compressionOptions' => [
+        return $this->requestHandler->sendRequest(
+            PublisherClient::class,
+            'publish',
+            [$this->name, $messages],
+            ['compressionOptions' => [
                 'enableCompression' => $this->enableCompression,
                 'compressionBytesThreshold' => $this->compressionBytesThreshold
-            ]
-        ]);
+            ]]
+        );
     }
 
     /**
@@ -684,8 +720,15 @@ class Topic
                 function ($subscription) {
                     return $this->subscriptionFactory($subscription);
                 },
-                [$this->connection, 'listSubscriptionsByTopic'],
-                $options + ['topic' => $this->name],
+                function ($options) {
+                    return $this->requestHandler->sendRequest(
+                        PublisherClient::class,
+                        'listTopicSubscriptions',
+                        [$this->name],
+                        $options
+                    );
+                },
+                $options,
                 [
                     'itemsKey' => 'subscriptions',
                     'resultLimit' => $resultLimit
@@ -714,8 +757,7 @@ class Topic
     public function iam()
     {
         if (!$this->iam) {
-            $iamConnection = new IamTopic($this->connection);
-            $this->iam = new Iam($iamConnection, $this->name);
+            $this->iam = new Iam($this->requestHandler, PublisherClient::class, $this->name);
         }
 
         return $this->iam;
@@ -734,7 +776,7 @@ class Topic
             'name' => $this->name,
             'projectId' => $this->projectId,
             'info' => $this->info,
-            'connection' => get_class($this->connection)
+            'requestHandler' => $this->requestHandler
         ];
     }
 
@@ -780,12 +822,13 @@ class Topic
     private function subscriptionFactory($name, array $info = [])
     {
         return new Subscription(
-            $this->connection,
+            $this->requestHandler,
             $this->projectId,
             $name,
             $this->name,
             $this->encode,
-            $info
+            $info,
+            $this->clientConfig
         );
     }
 }

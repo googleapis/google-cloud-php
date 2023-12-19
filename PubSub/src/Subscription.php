@@ -22,13 +22,21 @@ use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\ExponentialBackoff;
-use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\V2\Iam;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\PubSub\Connection\ConnectionInterface;
-use Google\Cloud\PubSub\Connection\IamSubscription;
 use Google\Cloud\PubSub\IncomingMessageTrait;
+use Google\Cloud\PubSub\V1\DeadLetterPolicy;
+use Google\Cloud\PubSub\V1\ExpirationPolicy;
+use Google\Cloud\PubSub\V1\PushConfig;
+use Google\Cloud\PubSub\V1\RetryPolicy;
+use Google\Cloud\PubSub\V1\SubscriberClient;
+use Google\Cloud\PubSub\V1\Subscription as SubscriptionProto;
+use Google\Protobuf\Duration as ProtobufDuration;
+use Google\Protobuf\FieldMask;
+use Google\Protobuf\Timestamp as ProtobufTimestamp;
 use InvalidArgumentException;
 
 /**
@@ -89,10 +97,12 @@ class Subscription
     const MAX_MESSAGES = 1000;
 
     /**
-     * @var ConnectionInterface
+     * @var RequestHandler
      * @internal
+     * The request handler that is responsible for sending a request and
+     * serializing responses into relevant classes.
      */
-    protected $connection;
+    private $requestHandler;
 
     /**
      * @var string
@@ -158,9 +168,8 @@ class Subscription
      * The idiomatic way to use this class is through the PubSubClient or Topic,
      * but you can instantiate it directly as well.
      *
-     * @param ConnectionInterface $connection The service connection object
-     *        This object is created by PubSubClient,
-     *        and should not be instantiated outside of this client.
+     * @param RequestHandler The request handler that is responsible for sending a request
+     * and serializing responses into relevant classes.
      * @param string $projectId The current project
      * @param string $name The subscription name
      * @param string $topicName The topic name the subscription is attached to
@@ -168,14 +177,14 @@ class Subscription
      * @param array $info [optional] Subscription info. Used to pre-populate the object.
      */
     public function __construct(
-        ConnectionInterface $connection,
+        RequestHandler $requestHandler,
         $projectId,
         $name,
         $topicName,
         $encode,
         array $info = []
     ) {
-        $this->connection = $connection;
+        $this->requestHandler = $requestHandler;
         $this->projectId = $projectId;
         $this->encode = (bool) $encode;
         $this->info = $info;
@@ -399,11 +408,42 @@ class Subscription
         }
 
         $options = $this->formatSubscriptionDurations($options);
+        $options = $this->formatDeadLetterPolicyForApi($options);
 
-        $this->info = $this->connection->createSubscription([
-            'name' => $this->name,
-            'topic' => $this->topicName
-        ] + $this->formatDeadLetterPolicyForApi($options));
+        // convert optional args to protos
+        if (isset($options['expirationPolicy'])) {
+            $options['expirationPolicy'] = $this->requestHandler->getSerializer()->decodeMessage(
+                new ExpirationPolicy(),
+                $options['expirationPolicy']
+            );
+        }
+
+        if (isset($options['messageRetentionDuration'])) {
+            $options['messageRetentionDuration'] = new ProtobufDuration(
+                $this->formatDurationForApi($options['messageRetentionDuration'])
+            );
+        }
+
+        if (isset($options['retryPolicy'])) {
+            $options['retryPolicy'] = $this->requestHandler->getSerializer()->decodeMessage(
+                new RetryPolicy,
+                $options['retryPolicy']
+            );
+        }
+
+        if (isset($options['deadLetterPolicy'])) {
+            $options['deadLetterPolicy'] = $this->requestHandler->getSerializer()->decodeMessage(
+                new DeadLetterPolicy,
+                $options['deadLetterPolicy']
+            );
+        }
+
+        $this->info = $this->requestHandler->sendRequest(
+            SubscriberClient::class,
+            'createSubscription',
+            [$this->name,$this->topicName],
+            $options
+        );
 
         return $this->info;
     }
@@ -601,17 +641,31 @@ class Subscription
             }
         }
 
+        $maskPaths = [];
+        foreach ($updateMaskPaths as $path) {
+            $maskPaths[] = $this->requestHandler->getSerializer()::toSnakeCase($path);
+        }
+
+        $fieldMask = new FieldMask([
+            'paths' => $maskPaths
+        ]);
+
         $subscription = $this->formatSubscriptionDurations($subscription);
+        $subscription = $this->formatDeadLetterPolicyForApi($subscription);
 
-        $subscription = [
-            'name' => $this->name
-        ] + $this->formatDeadLetterPolicyForApi($subscription);
+        $subscriptionProto = $this->requestHandler->getSerializer()->decodeMessage(
+            new SubscriptionProto,
+            [
+                'name' => $this->name
+            ] + $subscription
+        );
 
-        return $this->info = $this->connection->updateSubscription([
-            'name' => $this->name,
-            'subscription' => $subscription,
-            'updateMask' => implode(',', $updateMaskPaths)
-        ] + $options);
+        return $this->info = $this->requestHandler->sendRequest(
+            SubscriberClient::class,
+            'updateSubscription',
+            [$subscriptionProto, $fieldMask],
+            $options
+        );
     }
 
     /**
@@ -629,9 +683,12 @@ class Subscription
      */
     public function delete(array $options = [])
     {
-        $this->connection->deleteSubscription($options + [
-            'subscription' => $this->name
-        ]);
+        $this->requestHandler->sendRequest(
+            SubscriberClient::class,
+            'deleteSubscription',
+            [$this->name],
+            $options
+        );
     }
 
     /**
@@ -711,9 +768,12 @@ class Subscription
      */
     public function reload(array $options = [])
     {
-        return $this->info = $this->connection->getSubscription($options + [
-            'subscription' => $this->name
-        ]);
+        return $this->info = $this->requestHandler->sendRequest(
+            SubscriberClient::class,
+            'getSubscription',
+            [$this->name],
+            $options
+        );
     }
 
     /**
@@ -744,15 +804,18 @@ class Subscription
     public function pull(array $options = [])
     {
         $messages = [];
-        $options['maxMessages'] = $options['maxMessages'] ?? self::MAX_MESSAGES;
+        $maxMessages = $this->pluck('maxMessages', $options, false) ?? self::MAX_MESSAGES;
 
-        $response = $this->connection->pull($options + [
-            'subscription' => $this->name
-        ]);
+        $response = $this->requestHandler->sendRequest(
+            SubscriberClient::class,
+            'pull',
+            [$this->name, $maxMessages],
+            $options
+        );
 
         if (isset($response['receivedMessages'])) {
             foreach ($response['receivedMessages'] as $message) {
-                $messages[] = $this->messageFactory($message, $this->connection, $this->projectId, $this->encode);
+                $messages[] = $this->messageFactory($message, $this->projectId, $this->encode);
             }
         }
 
@@ -851,10 +914,7 @@ class Subscription
         // the rpc may throw errors for a sub with EOD enabled
         // but we don't act on the exception to maintain compatibility
         try {
-            $this->connection->acknowledge($options + [
-                'subscription' => $this->name,
-                'ackIds' => $this->getMessageAckIds($messages)
-            ]);
+            $this->sendAckRequest($messages, $options);
         } catch (BadRequestException $e) {
             // bubble up the error if the exception isn't an EOD exception
             if (!$this->isExceptionExactlyOnce($e)) {
@@ -873,10 +933,7 @@ class Subscription
     private function acknowledgeBatchWithRetries(array $messages, array $options = [])
     {
         $actionFunc = function (&$messages, $options) {
-            $this->connection->acknowledge($options + [
-                'subscription' => $this->name,
-                'ackIds' => $this->getMessageAckIds($messages)
-            ]);
+            $this->sendAckRequest($messages, $options);
         };
 
         return $this->retryEodAction($actionFunc, $messages, $options);
@@ -989,11 +1046,7 @@ class Subscription
         // the rpc may throw errors for a sub with EOD enabled
         // but we don't act on the exception to maintain compatibility
         try {
-            $this->connection->modifyAckDeadline($options + [
-                'subscription' => $this->name,
-                'ackIds' => $this->getMessageAckIds($messages),
-                'ackDeadlineSeconds' => $seconds
-            ]);
+            $this->sendModAckRequest($messages, $seconds, $options);
         } catch (BadRequestException $e) {
             // bubble up the error if the exception isn't an EOD exception
             if (!$this->isExceptionExactlyOnce($e)) {
@@ -1019,11 +1072,7 @@ class Subscription
     private function modifyAckDeadlineBatchWithRetries(array $messages, $seconds, array $options)
     {
         $actionFunc = function (&$messages, $options) use ($seconds) {
-            $this->connection->modifyAckDeadline($options + [
-                'subscription' => $this->name,
-                'ackIds' => $this->getMessageAckIds($messages),
-                'ackDeadlineSeconds' => $seconds
-            ]);
+            $this->sendModAckRequest($messages, $seconds, $options);
         };
 
         return $this->retryEodAction($actionFunc, $messages, $options);
@@ -1152,10 +1201,17 @@ class Subscription
      */
     public function modifyPushConfig(array $pushConfig, array $options = [])
     {
-        $this->connection->modifyPushConfig($options + [
-            'subscription' => $this->name,
-            'pushConfig' => $pushConfig
-        ]);
+        $pushConfig = $this->requestHandler->getSerializer()->decodeMessage(
+            new PushConfig(),
+            $pushConfig
+        );
+
+        $this->requestHandler->sendRequest(
+            SubscriberClient::class,
+            'modifyPushConfig',
+            [$this->name, $pushConfig],
+            $options
+        );
     }
 
     /**
@@ -1179,10 +1235,18 @@ class Subscription
      */
     public function seekToTime(Timestamp $timestamp, array $options = [])
     {
-        return $this->connection->seek([
-            'subscription' => $this->name,
-            'time' => $timestamp->formatAsString()
-        ] + $options);
+        $options['time'] = $this->requestHandler->getSerializer()->decodeMessage(
+            new ProtobufTimestamp(),
+            $timestamp->formatForApi()
+        );
+
+        return $this->requestHandler->sendRequest(
+            SubscriberClient::class,
+            'seek',
+            [$this->name],
+            $options,
+            true
+        );
     }
 
     /**
@@ -1205,10 +1269,15 @@ class Subscription
      */
     public function seekToSnapshot(Snapshot $snapshot, array $options = [])
     {
-        return $this->connection->seek([
-            'subscription' => $this->name,
-            'snapshot' => $snapshot->name()
-        ] + $options);
+        $options['snapshot'] = $snapshot->name();
+
+        return $this->requestHandler->sendRequest(
+            SubscriberClient::class,
+            'seek',
+            [$this->name],
+            $options,
+            true
+        );
     }
 
     /**
@@ -1228,9 +1297,12 @@ class Subscription
      */
     public function detach(array $options = [])
     {
-        return $this->connection->detachSubscription([
-            'subscription' => $this->name
-        ] + $options);
+        return $this->requestHandler->sendRequest(
+            SubscriberClient::class,
+            'detachSubscription',
+            [$this->name],
+            $options
+        );
     }
 
     /**
@@ -1253,8 +1325,7 @@ class Subscription
     public function iam()
     {
         if (!$this->iam) {
-            $iamConnection = new IamSubscription($this->connection);
-            $this->iam = new Iam($iamConnection, $this->name);
+            $this->iam = new Iam($this->requestHandler, SubscriberClient::class, $this->name);
         }
 
         return $this->iam;
@@ -1383,7 +1454,7 @@ class Subscription
             'topicName' => $this->topicName,
             'projectId' => $this->projectId,
             'info' => $this->info,
-            'connection' => get_class($this->connection)
+            'requestHandler' => $this->requestHandler
         ];
     }
 
@@ -1430,5 +1501,42 @@ class Subscription
     public static function getMaxRetries()
     {
         return self::$exactlyOnceDeliveryMaxRetries;
+    }
+
+    /**
+     * Helper function that sends an ack request for the given msgs.
+     *
+     * @param array $messages List of messages to ack.
+     * @param array $options
+     */
+    private function sendAckRequest(array $messages, array $options)
+    {
+        $ackIds = $this->getMessageAckIds($messages);
+
+        $this->requestHandler->sendRequest(
+            SubscriberClient::class,
+            'acknowledge',
+            [$this->name,$ackIds],
+            $options
+        );
+    }
+
+    /**
+     * Helper function that sends a modack request for the given msgs.
+     *
+     * @param array $messages List of messages to ack.
+     * @param int $seconds The new deadline in seconds.
+     * @param array $options
+     */
+    private function sendModAckRequest(array $messages, $seconds, array $options)
+    {
+        $ackIds = $this->getMessageAckIds($messages);
+
+        $this->requestHandler->sendRequest(
+            SubscriberClient::class,
+            'modifyAckDeadline',
+            [$this->name, $ackIds, $seconds],
+            $options
+        );
     }
 }
