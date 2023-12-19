@@ -202,9 +202,11 @@ class AddComponentCommandTest extends TestCase
 
     public function testBazelPathAndFetchDocUri()
     {
-        //google/cloud/secretmanager/v1/secretmanager_v1.yaml
+        $client = new Client();
         $productHomePage = 'https://cloud.google.com/infrastructure-manager';
-        $procuctDocumentationPage = 'https://cloud.google.com/infrastructure-manager/docs/overview';
+        $rawContentUri = 'https://raw.githubusercontent.com/googleapis/googleapis/master/';
+        $proto = 'google/cloud/config/v1/config.proto';
+        $yaml = 'google/cloud/config/v1/config_v1.yaml';
         $expectedOwlbotCopyBazelBinCmd = sprintf(
             'docker run --rm --user %s::%s -v %s:/repo -v /bazel-bin:/bazel-bin '
             . 'gcr.io/cloud-devrel-public-resources/owlbot-cli:latest copy-bazel-bin '
@@ -221,7 +223,6 @@ class AddComponentCommandTest extends TestCase
             self::$tmpDir
         );
         $runProcess = $this->prophesize(RunProcess::class);
-        $httpClient = $this->prophesize(Client::class);
         $runProcess->execute(['which', 'docker'])
             ->shouldBeCalledOnce()
             ->willReturn('/path/to/docker');
@@ -234,7 +235,7 @@ class AddComponentCommandTest extends TestCase
         )
             ->shouldBeCalledOnce()
             ->willReturn('//google/cloud/config/v1');
-        $runProcess->execute(['bazel', 'build', '//google/cloud/config/v1'], '')
+        $runProcess->execute(['bazel', 'build', '//' . dirname($proto)], '')
             ->shouldBeCalledOnce()
             ->willReturn('');
         $runProcess->execute(explode(' ', $expectedOwlbotCopyBazelBinCmd))
@@ -244,8 +245,19 @@ class AddComponentCommandTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn('');
 
+        $httpClient = $this->prophesize(Client::class);
+        $httpClient->get($rawContentUri . $proto)
+            ->shouldBeCalledOnce()
+            ->willReturn($client->get($rawContentUri . $proto));
+        $httpClient->get($rawContentUri . $yaml)
+            ->shouldBeCalledOnce()
+            ->willReturn($client->get($rawContentUri . $yaml));
+        $httpClient->get($productHomePage, ['http_errors' => false])
+            ->shouldBeCalledOnce()
+            ->willReturn($client->get($productHomePage));
+
         $application = new Application();
-        $application->add(new AddComponentCommand(self::$tmpDir, null, $runProcess->reveal()));
+        $application->add(new AddComponentCommand(self::$tmpDir, $httpClient->reveal(), $runProcess->reveal()));
 
         $commandTester = new CommandTester($application->get('add-component'));
         // No documentationPage/homePage input is required as it is fetched automatically from the yaml file.
@@ -254,7 +266,7 @@ class AddComponentCommandTest extends TestCase
         ]);
 
         $commandTester->execute([
-            'proto' => 'google/cloud/config/v1/config.proto',
+            'proto' => $proto,
             '--bazel-path' => '/path/to/bazel',
         ]);
     }
