@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_Intents_ImportIntents_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Dialogflow\Cx\V3\Client\IntentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\ImportIntentsRequest;
 use Google\Cloud\Dialogflow\Cx\V3\ImportIntentsResponse;
-use Google\Cloud\Dialogflow\Cx\V3\IntentsClient;
 use Google\Rpc\Status;
 
 /**
@@ -50,10 +51,14 @@ function import_intents_sample(string $formattedParent): void
     // Create a client.
     $intentsClient = new IntentsClient();
 
+    // Prepare the request message.
+    $request = (new ImportIntentsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $intentsClient->importIntents($formattedParent);
+        $response = $intentsClient->importIntents($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

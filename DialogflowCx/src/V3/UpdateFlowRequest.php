@@ -46,6 +46,22 @@ class UpdateFlowRequest extends \Google\Protobuf\Internal\Message
     protected $language_code = '';
 
     /**
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Flow $flow       Required. The flow to update.
+     * @param \Google\Protobuf\FieldMask          $updateMask The mask to control which fields get updated. If the mask is not present,
+     *                                                        all fields will be updated.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\UpdateFlowRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\Cx\V3\Flow $flow, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setFlow($flow)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

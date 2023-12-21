@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_Flows_DeleteFlow_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dialogflow\Cx\V3\FlowsClient;
+use Google\Cloud\Dialogflow\Cx\V3\Client\FlowsClient;
+use Google\Cloud\Dialogflow\Cx\V3\DeleteFlowRequest;
 
 /**
  * Deletes a specified flow.
@@ -39,9 +40,13 @@ function delete_flow_sample(string $formattedName): void
     // Create a client.
     $flowsClient = new FlowsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteFlowRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $flowsClient->deleteFlow($formattedName);
+        $flowsClient->deleteFlow($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

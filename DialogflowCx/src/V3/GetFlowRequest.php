@@ -42,6 +42,22 @@ class GetFlowRequest extends \Google\Protobuf\Internal\Message
     protected $language_code = '';
 
     /**
+     * @param string $name Required. The name of the flow to get.
+     *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+     *                     ID>/flows/<Flow ID>`. Please see
+     *                     {@see FlowsClient::flowName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\GetFlowRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

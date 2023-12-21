@@ -45,6 +45,23 @@ class CreateEntityTypeRequest extends \Google\Protobuf\Internal\Message
     protected $language_code = '';
 
     /**
+     * @param string                                    $parent     Required. The agent to create a entity type for.
+     *                                                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+     *                                                              {@see EntityTypesClient::agentName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\Cx\V3\EntityType $entityType Required. The entity type to create.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\CreateEntityTypeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dialogflow\Cx\V3\EntityType $entityType): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setEntityType($entityType);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

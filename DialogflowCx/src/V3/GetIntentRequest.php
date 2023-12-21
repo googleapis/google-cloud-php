@@ -39,6 +39,22 @@ class GetIntentRequest extends \Google\Protobuf\Internal\Message
     protected $language_code = '';
 
     /**
+     * @param string $name Required. The name of the intent.
+     *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+     *                     ID>/intents/<Intent ID>`. Please see
+     *                     {@see IntentsClient::intentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\GetIntentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

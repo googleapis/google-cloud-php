@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_Experiments_StopExperiment_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\Cx\V3\Client\ExperimentsClient;
 use Google\Cloud\Dialogflow\Cx\V3\Experiment;
-use Google\Cloud\Dialogflow\Cx\V3\ExperimentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\StopExperimentRequest;
 
 /**
  * Stops the specified [Experiment][google.cloud.dialogflow.cx.v3.Experiment].
@@ -41,10 +42,14 @@ function stop_experiment_sample(string $formattedName): void
     // Create a client.
     $experimentsClient = new ExperimentsClient();
 
+    // Prepare the request message.
+    $request = (new StopExperimentRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Experiment $response */
-        $response = $experimentsClient->stopExperiment($formattedName);
+        $response = $experimentsClient->stopExperiment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

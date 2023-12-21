@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_TestCases_UpdateTestCase_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\Cx\V3\Client\TestCasesClient;
 use Google\Cloud\Dialogflow\Cx\V3\TestCase;
-use Google\Cloud\Dialogflow\Cx\V3\TestCasesClient;
+use Google\Cloud\Dialogflow\Cx\V3\UpdateTestCaseRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -39,15 +40,18 @@ function update_test_case_sample(string $testCaseDisplayName): void
     // Create a client.
     $testCasesClient = new TestCasesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $testCase = (new TestCase())
         ->setDisplayName($testCaseDisplayName);
     $updateMask = new FieldMask();
+    $request = (new UpdateTestCaseRequest())
+        ->setTestCase($testCase)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var TestCase $response */
-        $response = $testCasesClient->updateTestCase($testCase, $updateMask);
+        $response = $testCasesClient->updateTestCase($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

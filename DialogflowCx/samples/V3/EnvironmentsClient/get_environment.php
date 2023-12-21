@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_Environments_GetEnvironment_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\Cx\V3\Client\EnvironmentsClient;
 use Google\Cloud\Dialogflow\Cx\V3\Environment;
-use Google\Cloud\Dialogflow\Cx\V3\EnvironmentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\GetEnvironmentRequest;
 
 /**
  * Retrieves the specified
@@ -42,10 +43,14 @@ function get_environment_sample(string $formattedName): void
     // Create a client.
     $environmentsClient = new EnvironmentsClient();
 
+    // Prepare the request message.
+    $request = (new GetEnvironmentRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Environment $response */
-        $response = $environmentsClient->getEnvironment($formattedName);
+        $response = $environmentsClient->getEnvironment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_Environments_CreateEnvironment_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Dialogflow\Cx\V3\Client\EnvironmentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\CreateEnvironmentRequest;
 use Google\Cloud\Dialogflow\Cx\V3\Environment;
-use Google\Cloud\Dialogflow\Cx\V3\EnvironmentsClient;
 use Google\Rpc\Status;
 
 /**
@@ -53,14 +54,17 @@ function create_environment_sample(string $formattedParent, string $environmentD
     // Create a client.
     $environmentsClient = new EnvironmentsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $environment = (new Environment())
         ->setDisplayName($environmentDisplayName);
+    $request = (new CreateEnvironmentRequest())
+        ->setParent($formattedParent)
+        ->setEnvironment($environment);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $environmentsClient->createEnvironment($formattedParent, $environment);
+        $response = $environmentsClient->createEnvironment($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

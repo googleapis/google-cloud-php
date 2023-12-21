@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_SecuritySettingsService_UpdateSecuritySettings_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\Cx\V3\Client\SecuritySettingsServiceClient;
 use Google\Cloud\Dialogflow\Cx\V3\SecuritySettings;
-use Google\Cloud\Dialogflow\Cx\V3\SecuritySettingsServiceClient;
+use Google\Cloud\Dialogflow\Cx\V3\UpdateSecuritySettingsRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -40,15 +41,18 @@ function update_security_settings_sample(string $securitySettingsDisplayName): v
     // Create a client.
     $securitySettingsServiceClient = new SecuritySettingsServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $securitySettings = (new SecuritySettings())
         ->setDisplayName($securitySettingsDisplayName);
     $updateMask = new FieldMask();
+    $request = (new UpdateSecuritySettingsRequest())
+        ->setSecuritySettings($securitySettings)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var SecuritySettings $response */
-        $response = $securitySettingsServiceClient->updateSecuritySettings($securitySettings, $updateMask);
+        $response = $securitySettingsServiceClient->updateSecuritySettings($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

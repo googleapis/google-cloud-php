@@ -26,6 +26,22 @@ class StopExperimentRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. Resource name of the experiment to stop.
+     *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+     *                     ID>/environments/<Environment ID>/experiments/<Experiment ID>`. Please see
+     *                     {@see ExperimentsClient::experimentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\StopExperimentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_TestCases_RunTestCase_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Dialogflow\Cx\V3\Client\TestCasesClient;
+use Google\Cloud\Dialogflow\Cx\V3\RunTestCaseRequest;
 use Google\Cloud\Dialogflow\Cx\V3\RunTestCaseResponse;
-use Google\Cloud\Dialogflow\Cx\V3\TestCasesClient;
 use Google\Rpc\Status;
 
 /**
@@ -50,10 +51,14 @@ function run_test_case_sample(string $formattedName): void
     // Create a client.
     $testCasesClient = new TestCasesClient();
 
+    // Prepare the request message.
+    $request = (new RunTestCaseRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $testCasesClient->runTestCase($formattedName);
+        $response = $testCasesClient->runTestCase($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_Pages_UpdatePage_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\Cx\V3\Client\PagesClient;
 use Google\Cloud\Dialogflow\Cx\V3\Page;
-use Google\Cloud\Dialogflow\Cx\V3\PagesClient;
+use Google\Cloud\Dialogflow\Cx\V3\UpdatePageRequest;
 
 /**
  * Updates the specified page.
@@ -41,14 +42,16 @@ function update_page_sample(string $pageDisplayName): void
     // Create a client.
     $pagesClient = new PagesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $page = (new Page())
         ->setDisplayName($pageDisplayName);
+    $request = (new UpdatePageRequest())
+        ->setPage($page);
 
     // Call the API and handle any network failures.
     try {
         /** @var Page $response */
-        $response = $pagesClient->updatePage($page);
+        $response = $pagesClient->updatePage($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

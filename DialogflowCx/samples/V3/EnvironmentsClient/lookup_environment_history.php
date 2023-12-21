@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_Environments_LookupEnvironmentHistory_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dialogflow\Cx\V3\Client\EnvironmentsClient;
 use Google\Cloud\Dialogflow\Cx\V3\Environment;
-use Google\Cloud\Dialogflow\Cx\V3\EnvironmentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\LookupEnvironmentHistoryRequest;
 
 /**
  * Looks up the history of the specified
@@ -42,10 +43,14 @@ function lookup_environment_history_sample(string $formattedName): void
     // Create a client.
     $environmentsClient = new EnvironmentsClient();
 
+    // Prepare the request message.
+    $request = (new LookupEnvironmentHistoryRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $environmentsClient->lookupEnvironmentHistory($formattedName);
+        $response = $environmentsClient->lookupEnvironmentHistory($request);
 
         /** @var Environment $element */
         foreach ($response as $element) {

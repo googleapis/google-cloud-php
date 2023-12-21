@@ -26,6 +26,22 @@ class TrainFlowRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. The flow to train.
+     *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+     *                     ID>/flows/<Flow ID>`. Please see
+     *                     {@see FlowsClient::flowName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\TrainFlowRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_Versions_CreateVersion_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Dialogflow\Cx\V3\Client\VersionsClient;
+use Google\Cloud\Dialogflow\Cx\V3\CreateVersionRequest;
 use Google\Cloud\Dialogflow\Cx\V3\Version;
-use Google\Cloud\Dialogflow\Cx\V3\VersionsClient;
 use Google\Rpc\Status;
 
 /**
@@ -53,14 +54,17 @@ function create_version_sample(string $formattedParent, string $versionDisplayNa
     // Create a client.
     $versionsClient = new VersionsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $version = (new Version())
         ->setDisplayName($versionDisplayName);
+    $request = (new CreateVersionRequest())
+        ->setParent($formattedParent)
+        ->setVersion($version);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $versionsClient->createVersion($formattedParent, $version);
+        $response = $versionsClient->createVersion($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
