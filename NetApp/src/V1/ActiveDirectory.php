@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class ActiveDirectory extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name of the active directory.
+     * Identifier. The resource name of the active directory.
      * Format:
      * `projects/{project_number}/locations/{location_id}/activeDirectories/{active_directory_id}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -157,7 +157,7 @@ class ActiveDirectory extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name of the active directory.
+     *           Identifier. The resource name of the active directory.
      *           Format:
      *           `projects/{project_number}/locations/{location_id}/activeDirectories/{active_directory_id}`.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -214,11 +214,11 @@ class ActiveDirectory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the active directory.
+     * Identifier. The resource name of the active directory.
      * Format:
      * `projects/{project_number}/locations/{location_id}/activeDirectories/{active_directory_id}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -227,11 +227,11 @@ class ActiveDirectory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the active directory.
+     * Identifier. The resource name of the active directory.
      * Format:
      * `projects/{project_number}/locations/{location_id}/activeDirectories/{active_directory_id}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
