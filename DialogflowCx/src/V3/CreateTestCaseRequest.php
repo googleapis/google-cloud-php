@@ -31,6 +31,23 @@ class CreateTestCaseRequest extends \Google\Protobuf\Internal\Message
     protected $test_case = null;
 
     /**
+     * @param string                                  $parent   Required. The agent to create the test case for.
+     *                                                          Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+     *                                                          {@see TestCasesClient::agentName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\Cx\V3\TestCase $testCase Required. The test case to create.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\CreateTestCaseRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dialogflow\Cx\V3\TestCase $testCase): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setTestCase($testCase);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

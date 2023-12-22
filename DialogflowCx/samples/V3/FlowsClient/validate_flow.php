@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_Flows_ValidateFlow_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\Cx\V3\Client\FlowsClient;
 use Google\Cloud\Dialogflow\Cx\V3\FlowValidationResult;
-use Google\Cloud\Dialogflow\Cx\V3\FlowsClient;
+use Google\Cloud\Dialogflow\Cx\V3\ValidateFlowRequest;
 
 /**
  * Validates the specified flow and creates or updates validation results.
@@ -42,10 +43,14 @@ function validate_flow_sample(string $formattedName): void
     // Create a client.
     $flowsClient = new FlowsClient();
 
+    // Prepare the request message.
+    $request = (new ValidateFlowRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var FlowValidationResult $response */
-        $response = $flowsClient->validateFlow($formattedName);
+        $response = $flowsClient->validateFlow($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

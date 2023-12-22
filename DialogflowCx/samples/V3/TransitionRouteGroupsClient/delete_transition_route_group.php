@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_TransitionRouteGroups_DeleteTransitionRouteGroup_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroupsClient;
+use Google\Cloud\Dialogflow\Cx\V3\Client\TransitionRouteGroupsClient;
+use Google\Cloud\Dialogflow\Cx\V3\DeleteTransitionRouteGroupRequest;
 
 /**
  * Deletes the specified
@@ -47,9 +48,13 @@ function delete_transition_route_group_sample(string $formattedName): void
     // Create a client.
     $transitionRouteGroupsClient = new TransitionRouteGroupsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteTransitionRouteGroupRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $transitionRouteGroupsClient->deleteTransitionRouteGroup($formattedName);
+        $transitionRouteGroupsClient->deleteTransitionRouteGroup($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_TestCases_CalculateCoverage_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\Cx\V3\CalculateCoverageRequest;
 use Google\Cloud\Dialogflow\Cx\V3\CalculateCoverageRequest\CoverageType;
 use Google\Cloud\Dialogflow\Cx\V3\CalculateCoverageResponse;
-use Google\Cloud\Dialogflow\Cx\V3\TestCasesClient;
+use Google\Cloud\Dialogflow\Cx\V3\Client\TestCasesClient;
 
 /**
  * Calculates the test coverage for an agent.
@@ -41,10 +42,15 @@ function calculate_coverage_sample(string $formattedAgent, int $type): void
     // Create a client.
     $testCasesClient = new TestCasesClient();
 
+    // Prepare the request message.
+    $request = (new CalculateCoverageRequest())
+        ->setAgent($formattedAgent)
+        ->setType($type);
+
     // Call the API and handle any network failures.
     try {
         /** @var CalculateCoverageResponse $response */
-        $response = $testCasesClient->calculateCoverage($formattedAgent, $type);
+        $response = $testCasesClient->calculateCoverage($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

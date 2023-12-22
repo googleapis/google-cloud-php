@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_Versions_GetVersion_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\Cx\V3\Client\VersionsClient;
+use Google\Cloud\Dialogflow\Cx\V3\GetVersionRequest;
 use Google\Cloud\Dialogflow\Cx\V3\Version;
-use Google\Cloud\Dialogflow\Cx\V3\VersionsClient;
 
 /**
  * Retrieves the specified [Version][google.cloud.dialogflow.cx.v3.Version].
@@ -40,10 +41,14 @@ function get_version_sample(string $formattedName): void
     // Create a client.
     $versionsClient = new VersionsClient();
 
+    // Prepare the request message.
+    $request = (new GetVersionRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Version $response */
-        $response = $versionsClient->getVersion($formattedName);
+        $response = $versionsClient->getVersion($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

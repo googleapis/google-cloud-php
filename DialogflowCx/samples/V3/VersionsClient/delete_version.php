@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_Versions_DeleteVersion_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dialogflow\Cx\V3\VersionsClient;
+use Google\Cloud\Dialogflow\Cx\V3\Client\VersionsClient;
+use Google\Cloud\Dialogflow\Cx\V3\DeleteVersionRequest;
 
 /**
  * Deletes the specified [Version][google.cloud.dialogflow.cx.v3.Version].
@@ -39,9 +40,13 @@ function delete_version_sample(string $formattedName): void
     // Create a client.
     $versionsClient = new VersionsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteVersionRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $versionsClient->deleteVersion($formattedName);
+        $versionsClient->deleteVersion($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

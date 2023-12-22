@@ -47,6 +47,24 @@ class CompareVersionsRequest extends \Google\Protobuf\Internal\Message
     protected $language_code = '';
 
     /**
+     * @param string $baseVersion Required. Name of the base flow version to compare with the target version.
+     *                            Use version ID `0` to indicate the draft version of the specified flow.
+     *
+     *                            Format: `projects/<Project ID>/locations/<Location ID>/agents/
+     *                            <Agent ID>/flows/<Flow ID>/versions/<Version ID>`. Please see
+     *                            {@see VersionsClient::versionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\CompareVersionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $baseVersion): self
+    {
+        return (new self())
+            ->setBaseVersion($baseVersion);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

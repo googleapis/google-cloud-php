@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_Experiments_CreateExperiment_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\Cx\V3\Client\ExperimentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\CreateExperimentRequest;
 use Google\Cloud\Dialogflow\Cx\V3\Experiment;
-use Google\Cloud\Dialogflow\Cx\V3\ExperimentsClient;
 
 /**
  * Creates an [Experiment][google.cloud.dialogflow.cx.v3.Experiment] in the
@@ -44,14 +45,17 @@ function create_experiment_sample(string $formattedParent, string $experimentDis
     // Create a client.
     $experimentsClient = new ExperimentsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $experiment = (new Experiment())
         ->setDisplayName($experimentDisplayName);
+    $request = (new CreateExperimentRequest())
+        ->setParent($formattedParent)
+        ->setExperiment($experiment);
 
     // Call the API and handle any network failures.
     try {
         /** @var Experiment $response */
-        $response = $experimentsClient->createExperiment($formattedParent, $experiment);
+        $response = $experimentsClient->createExperiment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

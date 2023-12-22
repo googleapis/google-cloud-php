@@ -35,6 +35,22 @@ class LoadVersionRequest extends \Google\Protobuf\Internal\Message
     protected $allow_override_agent_resources = false;
 
     /**
+     * @param string $name Required. The [Version][google.cloud.dialogflow.cx.v3.Version] to be loaded
+     *                     to draft flow. Format: `projects/<Project ID>/locations/<Location
+     *                     ID>/agents/<Agent ID>/flows/<Flow ID>/versions/<Version ID>`. Please see
+     *                     {@see VersionsClient::versionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\LoadVersionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

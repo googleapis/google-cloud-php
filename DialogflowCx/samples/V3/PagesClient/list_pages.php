@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_Pages_ListPages_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dialogflow\Cx\V3\Client\PagesClient;
+use Google\Cloud\Dialogflow\Cx\V3\ListPagesRequest;
 use Google\Cloud\Dialogflow\Cx\V3\Page;
-use Google\Cloud\Dialogflow\Cx\V3\PagesClient;
 
 /**
  * Returns the list of all pages in the specified flow.
@@ -41,10 +42,14 @@ function list_pages_sample(string $formattedParent): void
     // Create a client.
     $pagesClient = new PagesClient();
 
+    // Prepare the request message.
+    $request = (new ListPagesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $pagesClient->listPages($formattedParent);
+        $response = $pagesClient->listPages($request);
 
         /** @var Page $element */
         foreach ($response as $element) {

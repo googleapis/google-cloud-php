@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_Deployments_ListDeployments_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dialogflow\Cx\V3\Client\DeploymentsClient;
 use Google\Cloud\Dialogflow\Cx\V3\Deployment;
-use Google\Cloud\Dialogflow\Cx\V3\DeploymentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\ListDeploymentsRequest;
 
 /**
  * Returns the list of all deployments in the specified
@@ -43,10 +44,14 @@ function list_deployments_sample(string $formattedParent): void
     // Create a client.
     $deploymentsClient = new DeploymentsClient();
 
+    // Prepare the request message.
+    $request = (new ListDeploymentsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $deploymentsClient->listDeployments($formattedParent);
+        $response = $deploymentsClient->listDeployments($request);
 
         /** @var Deployment $element */
         foreach ($response as $element) {

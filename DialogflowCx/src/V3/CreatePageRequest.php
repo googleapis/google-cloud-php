@@ -55,6 +55,24 @@ class CreatePageRequest extends \Google\Protobuf\Internal\Message
     protected $language_code = '';
 
     /**
+     * @param string                              $parent Required. The flow to create a page for.
+     *                                                    Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+     *                                                    ID>/flows/<Flow ID>`. Please see
+     *                                                    {@see PagesClient::flowName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Page $page   Required. The page to create.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\CreatePageRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dialogflow\Cx\V3\Page $page): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setPage($page);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
