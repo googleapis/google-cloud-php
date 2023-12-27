@@ -40,7 +40,7 @@ use GuzzleHttp\Promise\PromiseInterface;
 /**
  * Middleware that adds retry functionality.
  */
-class RetryMiddleware
+class RetryMiddleware implements MiddlewareInterface
 {
     /** @var callable */
     private $nextHandler;
