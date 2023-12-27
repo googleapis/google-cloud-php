@@ -1730,6 +1730,8 @@ class GapicClientTraitTest extends TestCase
         $m2Called = false;
         $middleware1 = function (MiddlewareInterface $handler) use (&$m1Called) {
             return new class ($handler, $m1Called) implements MiddlewareInterface {
+                private MiddlewareInterface $handler;
+                private bool $m1Called;
                 public function __construct(
                     MiddlewareInterface $handler,
                     bool &$m1Called
@@ -1745,6 +1747,8 @@ class GapicClientTraitTest extends TestCase
         };
         $middleware2 = function (MiddlewareInterface $handler) use (&$m2Called) {
             return new class ($handler, $m2Called) implements MiddlewareInterface {
+                private MiddlewareInterface $handler;
+                private bool $m2Called;
                 public function __construct(
                     MiddlewareInterface $handler,
                     bool &$m2Called
