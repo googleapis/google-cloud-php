@@ -583,6 +583,7 @@ class GrpcTransportTest extends TestCase
 class MockCallInvoker implements CallInvoker
 {
     private $called = false;
+    private $mockCall;
 
     public function __construct($mockCall)
     {
