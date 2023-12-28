@@ -1,0 +1,48 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.api.serviceusage.v1",
+    "libraryPackage": "Google\\Cloud\\ServiceUsage\\V1",
+    "services": {
+        "ServiceUsage": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ServiceUsageGapicClient",
+                    "rpcs": {
+                        "BatchEnableServices": {
+                            "methods": [
+                                "batchEnableServices"
+                            ]
+                        },
+                        "BatchGetServices": {
+                            "methods": [
+                                "batchGetServices"
+                            ]
+                        },
+                        "DisableService": {
+                            "methods": [
+                                "disableService"
+                            ]
+                        },
+                        "EnableService": {
+                            "methods": [
+                                "enableService"
+                            ]
+                        },
+                        "GetService": {
+                            "methods": [
+                                "getService"
+                            ]
+                        },
+                        "ListServices": {
+                            "methods": [
+                                "listServices"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
