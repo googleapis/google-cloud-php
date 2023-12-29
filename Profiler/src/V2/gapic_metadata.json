@@ -28,6 +28,20 @@
                     }
                 }
             }
+        },
+        "ExportService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ExportServiceGapicClient",
+                    "rpcs": {
+                        "ListProfiles": {
+                            "methods": [
+                                "listProfiles"
+                            ]
+                        }
+                    }
+                }
+            }
         }
     }
 }

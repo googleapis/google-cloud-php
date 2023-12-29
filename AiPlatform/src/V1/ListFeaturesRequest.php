@@ -67,7 +67,7 @@ class ListFeaturesRequest extends \Google\Protobuf\Internal\Message
      * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
      * [FeaturestoreService.ListFeatures][google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures]
-     * or or
+     * or
      * [FeatureRegistryService.ListFeatures][google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatures]
      * must match the call that provided the page token.
      *
@@ -166,7 +166,7 @@ class ListFeaturesRequest extends \Google\Protobuf\Internal\Message
      *           call. Provide this to retrieve the subsequent page.
      *           When paginating, all other parameters provided to
      *           [FeaturestoreService.ListFeatures][google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures]
-     *           or or
+     *           or
      *           [FeatureRegistryService.ListFeatures][google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatures]
      *           must match the call that provided the page token.
      *     @type string $order_by
@@ -326,7 +326,7 @@ class ListFeaturesRequest extends \Google\Protobuf\Internal\Message
      * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
      * [FeaturestoreService.ListFeatures][google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures]
-     * or or
+     * or
      * [FeatureRegistryService.ListFeatures][google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatures]
      * must match the call that provided the page token.
      *
@@ -346,7 +346,7 @@ class ListFeaturesRequest extends \Google\Protobuf\Internal\Message
      * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
      * [FeaturestoreService.ListFeatures][google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures]
-     * or or
+     * or
      * [FeatureRegistryService.ListFeatures][google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatures]
      * must match the call that provided the page token.
      *

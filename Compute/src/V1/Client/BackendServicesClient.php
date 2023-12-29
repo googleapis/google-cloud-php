@@ -45,11 +45,14 @@ use Google\Cloud\Compute\V1\GetIamPolicyBackendServiceRequest;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\InsertBackendServiceRequest;
 use Google\Cloud\Compute\V1\ListBackendServicesRequest;
+use Google\Cloud\Compute\V1\ListUsableBackendServicesRequest;
 use Google\Cloud\Compute\V1\PatchBackendServiceRequest;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\SetEdgeSecurityPolicyBackendServiceRequest;
 use Google\Cloud\Compute\V1\SetIamPolicyBackendServiceRequest;
 use Google\Cloud\Compute\V1\SetSecurityPolicyBackendServiceRequest;
+use Google\Cloud\Compute\V1\TestIamPermissionsBackendServiceRequest;
+use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\UpdateBackendServiceRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -58,11 +61,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
- *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Compute\V1\BackendServicesClient} for the stable implementation
- *
- * @experimental
  *
  * @method PromiseInterface addSignedUrlKeyAsync(AddSignedUrlKeyBackendServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface aggregatedListAsync(AggregatedListBackendServicesRequest $request, array $optionalArgs = [])
@@ -73,10 +71,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface getIamPolicyAsync(GetIamPolicyBackendServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface insertAsync(InsertBackendServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAsync(ListBackendServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listUsableAsync(ListUsableBackendServicesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface patchAsync(PatchBackendServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setEdgeSecurityPolicyAsync(SetEdgeSecurityPolicyBackendServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setIamPolicyAsync(SetIamPolicyBackendServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setSecurityPolicyAsync(SetSecurityPolicyBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsBackendServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateAsync(UpdateBackendServiceRequest $request, array $optionalArgs = [])
  */
 final class BackendServicesClient
@@ -86,8 +86,15 @@ final class BackendServicesClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.compute.v1.BackendServices';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'compute.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'compute.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -470,6 +477,30 @@ final class BackendServicesClient
     }
 
     /**
+     * Retrieves an aggregated list of all usable backend services in the specified project.
+     *
+     * The async variant is {@see BackendServicesClient::listUsableAsync()} .
+     *
+     * @param ListUsableBackendServicesRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listUsable(ListUsableBackendServicesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListUsable', $request, $callOptions);
+    }
+
+    /**
      * Patches the specified BackendService resource with the data included in the request. For more information, see Backend services overview. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      *
      * The async variant is {@see BackendServicesClient::patchAsync()} .
@@ -564,6 +595,30 @@ final class BackendServicesClient
     public function setSecurityPolicy(SetSecurityPolicyBackendServiceRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('SetSecurityPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     *
+     * The async variant is {@see BackendServicesClient::testIamPermissionsAsync()} .
+     *
+     * @param TestIamPermissionsBackendServiceRequest $request     A request to house fields associated with the call.
+     * @param array                                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestPermissionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function testIamPermissions(TestIamPermissionsBackendServiceRequest $request, array $callOptions = []): TestPermissionsResponse
+    {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
     /**

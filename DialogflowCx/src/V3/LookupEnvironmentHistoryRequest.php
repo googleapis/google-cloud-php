@@ -39,6 +39,22 @@ class LookupEnvironmentHistoryRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
+     * @param string $name Required. Resource name of the environment to look up the history for.
+     *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+     *                     ID>/environments/<Environment ID>`. Please see
+     *                     {@see EnvironmentsClient::environmentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\LookupEnvironmentHistoryRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

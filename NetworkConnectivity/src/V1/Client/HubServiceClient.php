@@ -83,12 +83,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\NetworkConnectivity\V1\HubServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface acceptHubSpokeAsync(AcceptHubSpokeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createHubAsync(CreateHubRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createSpokeAsync(CreateSpokeRequest $request, array $optionalArgs = [])
@@ -122,8 +116,15 @@ final class HubServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.networkconnectivity.v1.HubService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'networkconnectivity.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'networkconnectivity.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

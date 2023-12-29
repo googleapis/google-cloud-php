@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents an Operation resource. Google Compute Engine has three Operation resources: * [Global](/compute/docs/reference/rest/v1/globalOperations) * [Regional](/compute/docs/reference/rest/v1/regionOperations) * [Zonal](https://cloud.google.com/compute/docs/reference/rest/v1/zoneOperations) You can use an operation resource to manage asynchronous API requests. For more information, read Handling API responses. Operations can be global, regional or zonal. - For global operations, use the `globalOperations` resource. - For regional operations, use the `regionOperations` resource. - For zonal operations, use the `zonalOperations` resource. For more information, read Global, Regional, and Zonal Resources.
+ * Represents an Operation resource. Google Compute Engine has three Operation resources: * [Global](/compute/docs/reference/rest/v1/globalOperations) * [Regional](/compute/docs/reference/rest/v1/regionOperations) * [Zonal](https://cloud.google.com/compute/docs/reference/rest/v1/zoneOperations) You can use an operation resource to manage asynchronous API requests. For more information, read Handling API responses. Operations can be global, regional or zonal. - For global operations, use the `globalOperations` resource. - For regional operations, use the `regionOperations` resource. - For zonal operations, use the `zoneOperations` resource. For more information, read Global, Regional, and Zonal Resources.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Operation</code>
  */
@@ -70,6 +70,10 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     private $insert_time = null;
     /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstancesBulkInsertOperationMetadata instances_bulk_insert_operation_metadata = 89146177;</code>
+     */
+    private $instances_bulk_insert_operation_metadata = null;
+    /**
      * [Output Only] Type of the resource. Always `compute#operation` for Operation resources.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -112,6 +116,12 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     private $self_link = null;
     /**
+     * [Output Only] If the operation is for projects.setCommonInstanceMetadata, this field will contain information on all underlying zonal actions and their state.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SetCommonInstanceMetadataOperationMetadata set_common_instance_metadata_operation_metadata = 490378980;</code>
+     */
+    private $set_common_instance_metadata_operation_metadata = null;
+    /**
      * [Output Only] The time that this operation was started by the server. This value is in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string start_time = 37467274;</code>
@@ -142,7 +152,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     private $target_link = null;
     /**
-     * [Output Only] User who requested the operation, for example: `user&#64;example.com`.
+     * [Output Only] User who requested the operation, for example: `user&#64;example.com` or `alice_smith_identifier (global/workforcePools/example-com-us-employees)`.
      *
      * Generated from protobuf field <code>optional string user = 3599307;</code>
      */
@@ -184,6 +194,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           [Output Only] The unique identifier for the operation. This identifier is defined by the server.
      *     @type string $insert_time
      *           [Output Only] The time that this operation was requested. This value is in RFC3339 text format.
+     *     @type \Google\Cloud\Compute\V1\InstancesBulkInsertOperationMetadata $instances_bulk_insert_operation_metadata
      *     @type string $kind
      *           [Output Only] Type of the resource. Always `compute#operation` for Operation resources.
      *     @type string $name
@@ -198,6 +209,8 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           [Output Only] The URL of the region where the operation resides. Only applicable when performing regional operations.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
+     *     @type \Google\Cloud\Compute\V1\SetCommonInstanceMetadataOperationMetadata $set_common_instance_metadata_operation_metadata
+     *           [Output Only] If the operation is for projects.setCommonInstanceMetadata, this field will contain information on all underlying zonal actions and their state.
      *     @type string $start_time
      *           [Output Only] The time that this operation was started by the server. This value is in RFC3339 text format.
      *     @type int $status
@@ -209,7 +222,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *     @type string $target_link
      *           [Output Only] The URL of the resource that the operation modifies. For operations related to creating a snapshot, this points to the persistent disk that the snapshot was created from.
      *     @type string $user
-     *           [Output Only] User who requested the operation, for example: `user&#64;example.com`.
+     *           [Output Only] User who requested the operation, for example: `user&#64;example.com` or `alice_smith_identifier (global/workforcePools/example-com-us-employees)`.
      *     @type array<\Google\Cloud\Compute\V1\Warnings>|\Google\Protobuf\Internal\RepeatedField $warnings
      *           [Output Only] If warning messages are generated during processing of the operation, this field will be populated.
      *     @type string $zone
@@ -546,6 +559,38 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstancesBulkInsertOperationMetadata instances_bulk_insert_operation_metadata = 89146177;</code>
+     * @return \Google\Cloud\Compute\V1\InstancesBulkInsertOperationMetadata|null
+     */
+    public function getInstancesBulkInsertOperationMetadata()
+    {
+        return $this->instances_bulk_insert_operation_metadata;
+    }
+
+    public function hasInstancesBulkInsertOperationMetadata()
+    {
+        return isset($this->instances_bulk_insert_operation_metadata);
+    }
+
+    public function clearInstancesBulkInsertOperationMetadata()
+    {
+        unset($this->instances_bulk_insert_operation_metadata);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstancesBulkInsertOperationMetadata instances_bulk_insert_operation_metadata = 89146177;</code>
+     * @param \Google\Cloud\Compute\V1\InstancesBulkInsertOperationMetadata $var
+     * @return $this
+     */
+    public function setInstancesBulkInsertOperationMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\InstancesBulkInsertOperationMetadata::class);
+        $this->instances_bulk_insert_operation_metadata = $var;
+
+        return $this;
+    }
+
+    /**
      * [Output Only] Type of the resource. Always `compute#operation` for Operation resources.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -798,6 +843,42 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * [Output Only] If the operation is for projects.setCommonInstanceMetadata, this field will contain information on all underlying zonal actions and their state.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SetCommonInstanceMetadataOperationMetadata set_common_instance_metadata_operation_metadata = 490378980;</code>
+     * @return \Google\Cloud\Compute\V1\SetCommonInstanceMetadataOperationMetadata|null
+     */
+    public function getSetCommonInstanceMetadataOperationMetadata()
+    {
+        return $this->set_common_instance_metadata_operation_metadata;
+    }
+
+    public function hasSetCommonInstanceMetadataOperationMetadata()
+    {
+        return isset($this->set_common_instance_metadata_operation_metadata);
+    }
+
+    public function clearSetCommonInstanceMetadataOperationMetadata()
+    {
+        unset($this->set_common_instance_metadata_operation_metadata);
+    }
+
+    /**
+     * [Output Only] If the operation is for projects.setCommonInstanceMetadata, this field will contain information on all underlying zonal actions and their state.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SetCommonInstanceMetadataOperationMetadata set_common_instance_metadata_operation_metadata = 490378980;</code>
+     * @param \Google\Cloud\Compute\V1\SetCommonInstanceMetadataOperationMetadata $var
+     * @return $this
+     */
+    public function setSetCommonInstanceMetadataOperationMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\SetCommonInstanceMetadataOperationMetadata::class);
+        $this->set_common_instance_metadata_operation_metadata = $var;
+
+        return $this;
+    }
+
+    /**
      * [Output Only] The time that this operation was started by the server. This value is in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string start_time = 37467274;</code>
@@ -978,7 +1059,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] User who requested the operation, for example: `user&#64;example.com`.
+     * [Output Only] User who requested the operation, for example: `user&#64;example.com` or `alice_smith_identifier (global/workforcePools/example-com-us-employees)`.
      *
      * Generated from protobuf field <code>optional string user = 3599307;</code>
      * @return string
@@ -999,7 +1080,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] User who requested the operation, for example: `user&#64;example.com`.
+     * [Output Only] User who requested the operation, for example: `user&#64;example.com` or `alice_smith_identifier (global/workforcePools/example-com-us-employees)`.
      *
      * Generated from protobuf field <code>optional string user = 3599307;</code>
      * @param string $var

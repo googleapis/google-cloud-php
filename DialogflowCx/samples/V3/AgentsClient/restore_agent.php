@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_Agents_RestoreAgent_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Dialogflow\Cx\V3\AgentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\Client\AgentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\RestoreAgentRequest;
 use Google\Rpc\Status;
 
 /**
@@ -56,10 +57,14 @@ function restore_agent_sample(string $formattedName): void
     // Create a client.
     $agentsClient = new AgentsClient();
 
+    // Prepare the request message.
+    $request = (new RestoreAgentRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $agentsClient->restoreAgent($formattedName);
+        $response = $agentsClient->restoreAgent($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

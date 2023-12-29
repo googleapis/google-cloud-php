@@ -31,6 +31,22 @@ class UpdateVersionRequest extends \Google\Protobuf\Internal\Message
     protected $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Version $version    Required. The version to update.
+     * @param \Google\Protobuf\FieldMask             $updateMask Required. The mask to control which fields get updated. Currently only
+     *                                                           `description` and `display_name` can be updated.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\UpdateVersionRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\Cx\V3\Version $version, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setVersion($version)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

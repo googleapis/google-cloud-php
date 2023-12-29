@@ -294,9 +294,9 @@ class AssetServiceClientTest extends GeneratedTest
         $expectedResponse = new AnalyzeMoveResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $resource = 'resource-341064690';
+        $formattedResource = $gapicClient->projectName('[PROJECT]');
         $destinationParent = 'destinationParent-1362053637';
-        $response = $gapicClient->analyzeMove($resource, $destinationParent);
+        $response = $gapicClient->analyzeMove($formattedResource, $destinationParent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -304,7 +304,7 @@ class AssetServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.asset.v1.AssetService/AnalyzeMove', $actualFuncCall);
         $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
+        $this->assertProtobufEquals($formattedResource, $actualValue);
         $actualValue = $actualRequestObject->getDestinationParent();
         $this->assertProtobufEquals($destinationParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -329,10 +329,10 @@ class AssetServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $resource = 'resource-341064690';
+        $formattedResource = $gapicClient->projectName('[PROJECT]');
         $destinationParent = 'destinationParent-1362053637';
         try {
-            $gapicClient->analyzeMove($resource, $destinationParent);
+            $gapicClient->analyzeMove($formattedResource, $destinationParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

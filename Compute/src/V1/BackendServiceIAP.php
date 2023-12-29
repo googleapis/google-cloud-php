@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class BackendServiceIAP extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Whether the serving infrastructure will authenticate and authorize all incoming requests. If true, the oauth2ClientId and oauth2ClientSecret fields must be non-empty.
+     * Whether the serving infrastructure will authenticate and authorize all incoming requests.
      *
      * Generated from protobuf field <code>optional bool enabled = 1018689;</code>
      */
@@ -47,7 +47,7 @@ class BackendServiceIAP extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $enabled
-     *           Whether the serving infrastructure will authenticate and authorize all incoming requests. If true, the oauth2ClientId and oauth2ClientSecret fields must be non-empty.
+     *           Whether the serving infrastructure will authenticate and authorize all incoming requests.
      *     @type string $oauth2_client_id
      *           OAuth2 client ID to use for the authentication flow.
      *     @type string $oauth2_client_secret
@@ -62,7 +62,7 @@ class BackendServiceIAP extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the serving infrastructure will authenticate and authorize all incoming requests. If true, the oauth2ClientId and oauth2ClientSecret fields must be non-empty.
+     * Whether the serving infrastructure will authenticate and authorize all incoming requests.
      *
      * Generated from protobuf field <code>optional bool enabled = 1018689;</code>
      * @return bool
@@ -83,7 +83,7 @@ class BackendServiceIAP extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the serving infrastructure will authenticate and authorize all incoming requests. If true, the oauth2ClientId and oauth2ClientSecret fields must be non-empty.
+     * Whether the serving infrastructure will authenticate and authorize all incoming requests.
      *
      * Generated from protobuf field <code>optional bool enabled = 1018689;</code>
      * @param bool $var

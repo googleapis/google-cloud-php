@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_Agents_DeleteAgent_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dialogflow\Cx\V3\AgentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\Client\AgentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\DeleteAgentRequest;
 
 /**
  * Deletes the specified agent.
@@ -38,9 +39,13 @@ function delete_agent_sample(string $formattedName): void
     // Create a client.
     $agentsClient = new AgentsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteAgentRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $agentsClient->deleteAgent($formattedName);
+        $agentsClient->deleteAgent($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

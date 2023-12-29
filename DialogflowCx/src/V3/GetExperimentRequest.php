@@ -27,6 +27,23 @@ class GetExperimentRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. The name of the
+     *                     [Environment][google.cloud.dialogflow.cx.v3.Environment]. Format:
+     *                     `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+     *                     ID>/environments/<Environment ID>/experiments/<Experiment ID>`. Please see
+     *                     {@see ExperimentsClient::experimentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\GetExperimentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_TransitionRouteGroups_GetTransitionRouteGroup_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\Cx\V3\Client\TransitionRouteGroupsClient;
+use Google\Cloud\Dialogflow\Cx\V3\GetTransitionRouteGroupRequest;
 use Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroup;
-use Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroupsClient;
 
 /**
  * Retrieves the specified
@@ -44,10 +45,14 @@ function get_transition_route_group_sample(string $formattedName): void
     // Create a client.
     $transitionRouteGroupsClient = new TransitionRouteGroupsClient();
 
+    // Prepare the request message.
+    $request = (new GetTransitionRouteGroupRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var TransitionRouteGroup $response */
-        $response = $transitionRouteGroupsClient->getTransitionRouteGroup($formattedName);
+        $response = $transitionRouteGroupsClient->getTransitionRouteGroup($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

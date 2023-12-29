@@ -37,7 +37,9 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\GkeMultiCloud\V1\AzureClient;
 use Google\Cloud\GkeMultiCloud\V1\AzureCluster;
+use Google\Cloud\GkeMultiCloud\V1\AzureJsonWebKeys;
 use Google\Cloud\GkeMultiCloud\V1\AzureNodePool;
+use Google\Cloud\GkeMultiCloud\V1\AzureOpenIdConfig;
 use Google\Cloud\GkeMultiCloud\V1\AzureServerConfig;
 use Google\Cloud\GkeMultiCloud\V1\CreateAzureClientRequest;
 use Google\Cloud\GkeMultiCloud\V1\CreateAzureClusterRequest;
@@ -47,9 +49,13 @@ use Google\Cloud\GkeMultiCloud\V1\DeleteAzureClusterRequest;
 use Google\Cloud\GkeMultiCloud\V1\DeleteAzureNodePoolRequest;
 use Google\Cloud\GkeMultiCloud\V1\GenerateAzureAccessTokenRequest;
 use Google\Cloud\GkeMultiCloud\V1\GenerateAzureAccessTokenResponse;
+use Google\Cloud\GkeMultiCloud\V1\GenerateAzureClusterAgentTokenRequest;
+use Google\Cloud\GkeMultiCloud\V1\GenerateAzureClusterAgentTokenResponse;
 use Google\Cloud\GkeMultiCloud\V1\GetAzureClientRequest;
 use Google\Cloud\GkeMultiCloud\V1\GetAzureClusterRequest;
+use Google\Cloud\GkeMultiCloud\V1\GetAzureJsonWebKeysRequest;
 use Google\Cloud\GkeMultiCloud\V1\GetAzureNodePoolRequest;
+use Google\Cloud\GkeMultiCloud\V1\GetAzureOpenIdConfigRequest;
 use Google\Cloud\GkeMultiCloud\V1\GetAzureServerConfigRequest;
 use Google\Cloud\GkeMultiCloud\V1\ListAzureClientsRequest;
 use Google\Cloud\GkeMultiCloud\V1\ListAzureClustersRequest;
@@ -71,12 +77,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\GkeMultiCloud\V1\AzureClustersClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createAzureClientAsync(CreateAzureClientRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createAzureClusterAsync(CreateAzureClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createAzureNodePoolAsync(CreateAzureNodePoolRequest $request, array $optionalArgs = [])
@@ -84,9 +84,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface deleteAzureClusterAsync(DeleteAzureClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteAzureNodePoolAsync(DeleteAzureNodePoolRequest $request, array $optionalArgs = [])
  * @method PromiseInterface generateAzureAccessTokenAsync(GenerateAzureAccessTokenRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface generateAzureClusterAgentTokenAsync(GenerateAzureClusterAgentTokenRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAzureClientAsync(GetAzureClientRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAzureClusterAsync(GetAzureClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getAzureJsonWebKeysAsync(GetAzureJsonWebKeysRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAzureNodePoolAsync(GetAzureNodePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getAzureOpenIdConfigAsync(GetAzureOpenIdConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAzureServerConfigAsync(GetAzureServerConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAzureClientsAsync(ListAzureClientsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAzureClustersAsync(ListAzureClustersRequest $request, array $optionalArgs = [])
@@ -102,8 +105,15 @@ final class AzureClustersClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.gkemulticloud.v1.AzureClusters';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'gkemulticloud.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'gkemulticloud.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -585,6 +595,33 @@ final class AzureClustersClient
     }
 
     /**
+     * Generates an access token for a cluster agent.
+     *
+     * The async variant is
+     * {@see AzureClustersClient::generateAzureClusterAgentTokenAsync()} .
+     *
+     * @example samples/V1/AzureClustersClient/generate_azure_cluster_agent_token.php
+     *
+     * @param GenerateAzureClusterAgentTokenRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GenerateAzureClusterAgentTokenResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function generateAzureClusterAgentToken(GenerateAzureClusterAgentTokenRequest $request, array $callOptions = []): GenerateAzureClusterAgentTokenResponse
+    {
+        return $this->startApiCall('GenerateAzureClusterAgentToken', $request, $callOptions)->wait();
+    }
+
+    /**
      * Describes a specific
      * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource.
      *
@@ -639,6 +676,33 @@ final class AzureClustersClient
     }
 
     /**
+     * Gets the public component of the cluster signing keys in
+     * JSON Web Key format.
+     *
+     * The async variant is {@see AzureClustersClient::getAzureJsonWebKeysAsync()} .
+     *
+     * @example samples/V1/AzureClustersClient/get_azure_json_web_keys.php
+     *
+     * @param GetAzureJsonWebKeysRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AzureJsonWebKeys
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAzureJsonWebKeys(GetAzureJsonWebKeysRequest $request, array $callOptions = []): AzureJsonWebKeys
+    {
+        return $this->startApiCall('GetAzureJsonWebKeys', $request, $callOptions)->wait();
+    }
+
+    /**
      * Describes a specific
      * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource.
      *
@@ -663,6 +727,36 @@ final class AzureClustersClient
     public function getAzureNodePool(GetAzureNodePoolRequest $request, array $callOptions = []): AzureNodePool
     {
         return $this->startApiCall('GetAzureNodePool', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the OIDC discovery document for the cluster.
+     * See the
+     * [OpenID Connect Discovery 1.0
+     * specification](https://openid.net/specs/openid-connect-discovery-1_0.html)
+     * for details.
+     *
+     * The async variant is {@see AzureClustersClient::getAzureOpenIdConfigAsync()} .
+     *
+     * @example samples/V1/AzureClustersClient/get_azure_open_id_config.php
+     *
+     * @param GetAzureOpenIdConfigRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AzureOpenIdConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAzureOpenIdConfig(GetAzureOpenIdConfigRequest $request, array $callOptions = []): AzureOpenIdConfig
+    {
+        return $this->startApiCall('GetAzureOpenIdConfig', $request, $callOptions)->wait();
     }
 
     /**

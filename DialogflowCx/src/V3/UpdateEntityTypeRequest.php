@@ -44,6 +44,21 @@ class UpdateEntityTypeRequest extends \Google\Protobuf\Internal\Message
     protected $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Dialogflow\Cx\V3\EntityType $entityType Required. The entity type to update.
+     * @param \Google\Protobuf\FieldMask                $updateMask The mask to control which fields get updated.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\UpdateEntityTypeRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\Cx\V3\EntityType $entityType, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setEntityType($entityType)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

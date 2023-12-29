@@ -37,6 +37,21 @@ class ListSecuritySettingsRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
+     * @param string $parent Required. The location to list all security settings for.
+     *                       Format: `projects/<Project ID>/locations/<Location ID>`. Please see
+     *                       {@see SecuritySettingsServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\ListSecuritySettingsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

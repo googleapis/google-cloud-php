@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_Agents_GetAgent_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Dialogflow\Cx\V3\Agent;
-use Google\Cloud\Dialogflow\Cx\V3\AgentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\Client\AgentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\GetAgentRequest;
 
 /**
  * Retrieves the specified agent.
@@ -39,10 +40,14 @@ function get_agent_sample(string $formattedName): void
     // Create a client.
     $agentsClient = new AgentsClient();
 
+    // Prepare the request message.
+    $request = (new GetAgentRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Agent $response */
-        $response = $agentsClient->getAgent($formattedName);
+        $response = $agentsClient->getAgent($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

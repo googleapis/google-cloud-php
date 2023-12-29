@@ -102,8 +102,7 @@ use Google\Protobuf\FieldMask;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\AIPlatform\V1\Client\ModelServiceClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\AIPlatform\V1\Client\ModelServiceClient}.
  */
 class ModelServiceGapicClient
 {
@@ -112,8 +111,15 @@ class ModelServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.aiplatform.v1.ModelService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'aiplatform.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'aiplatform.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -2003,10 +2009,10 @@ class ModelServiceGapicClient
      *           Optional. The user-provided custom service account to use to do the model
      *           upload. If empty, [Vertex AI Service
      *           Agent](https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents)
-     *           will be used. Users uploading the Model must have the
-     *           `iam.serviceAccounts.actAs` permission on this service account. Also, this
-     *           account must belong to the project specified in the `parent` field and have
-     *           all necessary read permissions.
+     *           will be used to access resources needed to upload the model. This account
+     *           must belong to the target project where the model is uploaded to, i.e., the
+     *           project specified in the `parent` field of this request and have necessary
+     *           read permissions (to Google Cloud Storage, Artifact Registry, etc.).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

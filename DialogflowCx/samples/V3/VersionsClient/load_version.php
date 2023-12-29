@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_Versions_LoadVersion_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Dialogflow\Cx\V3\VersionsClient;
+use Google\Cloud\Dialogflow\Cx\V3\Client\VersionsClient;
+use Google\Cloud\Dialogflow\Cx\V3\LoadVersionRequest;
 use Google\Rpc\Status;
 
 /**
@@ -50,10 +51,14 @@ function load_version_sample(string $formattedName): void
     // Create a client.
     $versionsClient = new VersionsClient();
 
+    // Prepare the request message.
+    $request = (new LoadVersionRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $versionsClient->loadVersion($formattedName);
+        $response = $versionsClient->loadVersion($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -60,12 +60,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Iap\V1\IdentityAwareProxyAdminServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createTunnelDestGroupAsync(CreateTunnelDestGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteTunnelDestGroupAsync(DeleteTunnelDestGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
@@ -85,8 +79,15 @@ final class IdentityAwareProxyAdminServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.iap.v1.IdentityAwareProxyAdminService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'iap.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'iap.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

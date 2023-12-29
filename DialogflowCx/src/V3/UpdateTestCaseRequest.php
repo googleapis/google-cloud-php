@@ -33,6 +33,24 @@ class UpdateTestCaseRequest extends \Google\Protobuf\Internal\Message
     protected $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Dialogflow\Cx\V3\TestCase $testCase   Required. The test case to update.
+     * @param \Google\Protobuf\FieldMask              $updateMask Required. The mask to specify which fields should be updated. The
+     *                                                            [`creationTime`][google.cloud.dialogflow.cx.v3.TestCase.creation_time] and
+     *                                                            [`lastTestResult`][google.cloud.dialogflow.cx.v3.TestCase.last_test_result]
+     *                                                            cannot be updated.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\UpdateTestCaseRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\Cx\V3\TestCase $testCase, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setTestCase($testCase)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

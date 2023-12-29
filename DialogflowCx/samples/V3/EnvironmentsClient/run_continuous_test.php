@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_Environments_RunContinuousTest_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Dialogflow\Cx\V3\EnvironmentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\Client\EnvironmentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\RunContinuousTestRequest;
 use Google\Cloud\Dialogflow\Cx\V3\RunContinuousTestResponse;
 use Google\Rpc\Status;
 
@@ -51,10 +52,14 @@ function run_continuous_test_sample(string $formattedEnvironment): void
     // Create a client.
     $environmentsClient = new EnvironmentsClient();
 
+    // Prepare the request message.
+    $request = (new RunContinuousTestRequest())
+        ->setEnvironment($formattedEnvironment);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $environmentsClient->runContinuousTest($formattedEnvironment);
+        $response = $environmentsClient->runContinuousTest($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

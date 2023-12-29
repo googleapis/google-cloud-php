@@ -92,7 +92,6 @@ class TransactionTest extends SpannerTestCase
      */
     public function testConcurrentTransactionsIncrementValueWithRead()
     {
-        $this->markTestSkipped('fixme');
         $db = self::$database;
 
         $id = $this->randId();
@@ -117,7 +116,9 @@ class TransactionTest extends SpannerTestCase
         ])->rows()->current();
 
         $this->assertEquals(2, $row['number']);
-        $this->assertGreaterThan(2, $iterations);
+        // Emulator aborts a parallel transaction therefore
+        // iterations might be greater than 2
+        $this->assertGreaterThanOrEqual(2, $iterations);
     }
 
     /**
@@ -147,7 +148,6 @@ class TransactionTest extends SpannerTestCase
      */
     public function testAbortedErrorCausesRetry()
     {
-        $this->markTestSkipped('fixme');
         $db = self::$database;
         $db2 = self::$database2;
 
@@ -172,7 +172,9 @@ class TransactionTest extends SpannerTestCase
         ])->rows()->current();
 
         $this->assertEquals(2, $row['number']);
-        $this->assertEquals(2, $iterations);
+        // Emulator aborts a parallel transaction therefore
+        // iterations might be greater than 2
+        $this->assertGreaterThanOrEqual(2, $iterations);
     }
 
     /**
@@ -182,7 +184,6 @@ class TransactionTest extends SpannerTestCase
      */
     public function testConcurrentTransactionsIncrementValueWithExecute()
     {
-        $this->markTestSkipped('fixme');
         $db = self::$database;
 
         $id = $this->randId();
@@ -206,7 +207,9 @@ class TransactionTest extends SpannerTestCase
         ])->rows()->current();
 
         $this->assertEquals(2, $row['number']);
-        $this->assertGreaterThan(2, $iterations);
+        // Emulator aborts a parallel transaction therefore
+        // iterations might be greater than 2
+        $this->assertGreaterThanOrEqual(2, $iterations);
     }
 
     public function testStrongRead()

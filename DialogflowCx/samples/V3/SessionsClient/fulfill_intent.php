@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_Sessions_FulfillIntent_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\Cx\V3\Client\SessionsClient;
+use Google\Cloud\Dialogflow\Cx\V3\FulfillIntentRequest;
 use Google\Cloud\Dialogflow\Cx\V3\FulfillIntentResponse;
-use Google\Cloud\Dialogflow\Cx\V3\SessionsClient;
 
 /**
  * Fulfills a matched intent returned by
@@ -47,10 +48,13 @@ function fulfill_intent_sample(): void
     // Create a client.
     $sessionsClient = new SessionsClient();
 
+    // Prepare the request message.
+    $request = new FulfillIntentRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var FulfillIntentResponse $response */
-        $response = $sessionsClient->fulfillIntent();
+        $response = $sessionsClient->fulfillIntent($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

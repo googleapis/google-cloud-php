@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class AwsNodeConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The AWS instance type.
-     * When unspecified, it uses a default based on the node pool's version.
+     * Optional. The EC2 instance type when creating on-Demand instances.
+     * If unspecified during node pool creation, a default will be chosen based on
+     * the node pool version, and assigned to this field.
      *
      * Generated from protobuf field <code>string instance_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -63,8 +64,7 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
     private $iam_instance_profile = '';
     /**
      * Optional. The OS image type to use on node pool instances.
-     * Can have a value of `ubuntu`, or `windows` if the cluster enables
-     * the Windows node pool preview feature.
+     * Can be unspecified, or have a value of `ubuntu`.
      * When unspecified, it defaults to `ubuntu`.
      *
      * Generated from protobuf field <code>string image_type = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -111,6 +111,15 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsAutoscalingGroupMetricsCollection autoscaling_metrics_collection = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $autoscaling_metrics_collection = null;
+    /**
+     * Optional. Configuration for provisioning EC2 Spot instances
+     * When specified, the node pool will provision Spot instances from the set
+     * of spot_config.instance_types.
+     * This field is mutually exclusive with `instance_type`.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.SpotConfig spot_config = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $spot_config = null;
 
     /**
      * Constructor.
@@ -119,8 +128,9 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $instance_type
-     *           Optional. The AWS instance type.
-     *           When unspecified, it uses a default based on the node pool's version.
+     *           Optional. The EC2 instance type when creating on-Demand instances.
+     *           If unspecified during node pool creation, a default will be chosen based on
+     *           the node pool version, and assigned to this field.
      *     @type \Google\Cloud\GkeMultiCloud\V1\AwsVolumeTemplate $root_volume
      *           Optional. Template for the root volume provisioned for node pool nodes.
      *           Volumes will be provisioned in the availability zone assigned
@@ -142,8 +152,7 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      *           pool.
      *     @type string $image_type
      *           Optional. The OS image type to use on node pool instances.
-     *           Can have a value of `ubuntu`, or `windows` if the cluster enables
-     *           the Windows node pool preview feature.
+     *           Can be unspecified, or have a value of `ubuntu`.
      *           When unspecified, it defaults to `ubuntu`.
      *     @type \Google\Cloud\GkeMultiCloud\V1\AwsSshConfig $ssh_config
      *           Optional. The SSH configuration.
@@ -162,6 +171,11 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Configuration related to CloudWatch metrics collection on the
      *           Auto Scaling group of the node pool.
      *           When unspecified, metrics collection is disabled.
+     *     @type \Google\Cloud\GkeMultiCloud\V1\SpotConfig $spot_config
+     *           Optional. Configuration for provisioning EC2 Spot instances
+     *           When specified, the node pool will provision Spot instances from the set
+     *           of spot_config.instance_types.
+     *           This field is mutually exclusive with `instance_type`.
      * }
      */
     public function __construct($data = NULL) {
@@ -170,8 +184,9 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The AWS instance type.
-     * When unspecified, it uses a default based on the node pool's version.
+     * Optional. The EC2 instance type when creating on-Demand instances.
+     * If unspecified during node pool creation, a default will be chosen based on
+     * the node pool version, and assigned to this field.
      *
      * Generated from protobuf field <code>string instance_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -182,8 +197,9 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The AWS instance type.
-     * When unspecified, it uses a default based on the node pool's version.
+     * Optional. The EC2 instance type when creating on-Demand instances.
+     * If unspecified during node pool creation, a default will be chosen based on
+     * the node pool version, and assigned to this field.
      *
      * Generated from protobuf field <code>string instance_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -357,8 +373,7 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The OS image type to use on node pool instances.
-     * Can have a value of `ubuntu`, or `windows` if the cluster enables
-     * the Windows node pool preview feature.
+     * Can be unspecified, or have a value of `ubuntu`.
      * When unspecified, it defaults to `ubuntu`.
      *
      * Generated from protobuf field <code>string image_type = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -371,8 +386,7 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The OS image type to use on node pool instances.
-     * Can have a value of `ubuntu`, or `windows` if the cluster enables
-     * the Windows node pool preview feature.
+     * Can be unspecified, or have a value of `ubuntu`.
      * When unspecified, it defaults to `ubuntu`.
      *
      * Generated from protobuf field <code>string image_type = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -599,6 +613,48 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\AwsAutoscalingGroupMetricsCollection::class);
         $this->autoscaling_metrics_collection = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for provisioning EC2 Spot instances
+     * When specified, the node pool will provision Spot instances from the set
+     * of spot_config.instance_types.
+     * This field is mutually exclusive with `instance_type`.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.SpotConfig spot_config = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GkeMultiCloud\V1\SpotConfig|null
+     */
+    public function getSpotConfig()
+    {
+        return $this->spot_config;
+    }
+
+    public function hasSpotConfig()
+    {
+        return isset($this->spot_config);
+    }
+
+    public function clearSpotConfig()
+    {
+        unset($this->spot_config);
+    }
+
+    /**
+     * Optional. Configuration for provisioning EC2 Spot instances
+     * When specified, the node pool will provision Spot instances from the set
+     * of spot_config.instance_types.
+     * This field is mutually exclusive with `instance_type`.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.SpotConfig spot_config = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GkeMultiCloud\V1\SpotConfig $var
+     * @return $this
+     */
+    public function setSpotConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\SpotConfig::class);
+        $this->spot_config = $var;
 
         return $this;
     }

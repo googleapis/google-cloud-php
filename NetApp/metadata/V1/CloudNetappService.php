@@ -19,6 +19,9 @@ class CloudNetappService
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Netapp\V1\ActiveDirectory::initOnce();
+        \GPBMetadata\Google\Cloud\Netapp\V1\Backup::initOnce();
+        \GPBMetadata\Google\Cloud\Netapp\V1\BackupPolicy::initOnce();
+        \GPBMetadata\Google\Cloud\Netapp\V1\BackupVault::initOnce();
         \GPBMetadata\Google\Cloud\Netapp\V1\Kms::initOnce();
         \GPBMetadata\Google\Cloud\Netapp\V1\Replication::initOnce();
         \GPBMetadata\Google\Cloud\Netapp\V1\Snapshot::initOnce();
@@ -29,8 +32,8 @@ class CloudNetappService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ÉD
-1google/cloud/netapp/v1/cloud_netapp_service.protogoogle.cloud.netapp.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto-google/cloud/netapp/v1/active_directory.proto google/cloud/netapp/v1/kms.proto(google/cloud/netapp/v1/replication.proto%google/cloud/netapp/v1/snapshot.proto)google/cloud/netapp/v1/storage_pool.proto#google/cloud/netapp/v1/volume.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"Ä
+Ï]
+1google/cloud/netapp/v1/cloud_netapp_service.protogoogle.cloud.netapp.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto-google/cloud/netapp/v1/active_directory.proto#google/cloud/netapp/v1/backup.proto*google/cloud/netapp/v1/backup_policy.proto)google/cloud/netapp/v1/backup_vault.proto google/cloud/netapp/v1/kms.proto(google/cloud/netapp/v1/replication.proto%google/cloud/netapp/v1/snapshot.proto)google/cloud/netapp/v1/storage_pool.proto#google/cloud/netapp/v1/volume.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"Ä
 OperationMetadata4
 create_time (2.google.protobuf.TimestampB‡A1
 end_time (2.google.protobuf.TimestampB‡A
@@ -38,7 +41,7 @@ class CloudNetappService
 verb (	B‡A
 status_message (	B‡A#
 requested_cancellation (B‡A
-api_version (	B‡A2Û;
+api_version (	B‡A2‡T
 NetApp∏
 ListStoragePools/.google.cloud.netapp.v1.ListStoragePoolsRequest0.google.cloud.netapp.v1.ListStoragePoolsResponse"AÇ”‰ì20/v1/{parent=projects/*/locations/*}/storagePools⁄Aparentˆ
 CreateStoragePool0.google.cloud.netapp.v1.CreateStoragePoolRequest.google.longrunning.Operation"èÇ”‰ì@"0/v1/{parent=projects/*/locations/*}/storagePools:storage_pool⁄A#parent,storage_pool,storage_pool_id A 
@@ -100,7 +103,31 @@ kms_config⁄Akms_config,update_mask A
 ResumeReplication0.google.cloud.netapp.v1.ResumeReplicationRequest.google.longrunning.Operation"oÇ”‰ìF"A/v1/{name=projects/*/locations/*/volumes/*/replications/*}:resume:* A 
 ReplicationOperationMetadataÛ
 ReverseReplicationDirection:.google.cloud.netapp.v1.ReverseReplicationDirectionRequest.google.longrunning.Operation"yÇ”‰ìP"K/v1/{name=projects/*/locations/*/volumes/*/replications/*}:reverseDirection:* A 
-ReplicationOperationMetadataI Anetapp.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBä
+ReplicationOperationMetadataˆ
+CreateBackupVault0.google.cloud.netapp.v1.CreateBackupVaultRequest.google.longrunning.Operation"èÇ”‰ì@"0/v1/{parent=projects/*/locations/*}/backupVaults:backup_vault⁄A#parent,backup_vault,backup_vault_id A 
+BackupVaultOperationMetadata•
+GetBackupVault-.google.cloud.netapp.v1.GetBackupVaultRequest#.google.cloud.netapp.v1.BackupVault"?Ç”‰ì20/v1/{name=projects/*/locations/*/backupVaults/*}⁄Aname∏
+ListBackupVaults/.google.cloud.netapp.v1.ListBackupVaultsRequest0.google.cloud.netapp.v1.ListBackupVaultsResponse"AÇ”‰ì20/v1/{parent=projects/*/locations/*}/backupVaults⁄Aparent¯
+UpdateBackupVault0.google.cloud.netapp.v1.UpdateBackupVaultRequest.google.longrunning.Operation"ëÇ”‰ìM2=/v1/{backup_vault.name=projects/*/locations/*/backupVaults/*}:backup_vault⁄Abackup_vault,update_mask A 
+BackupVaultOperationMetadata“
+DeleteBackupVault0.google.cloud.netapp.v1.DeleteBackupVaultRequest.google.longrunning.Operation"lÇ”‰ì2*0/v1/{name=projects/*/locations/*/backupVaults/*}⁄Aname A*
+google.protobuf.EmptyOperationMetadataﬂ
+CreateBackup+.google.cloud.netapp.v1.CreateBackupRequest.google.longrunning.Operation"ÇÇ”‰ìD":/v1/{parent=projects/*/locations/*/backupVaults/*}/backups:backup⁄Aparent,backup,backup_id A
+BackupOperationMetadata†
+	GetBackup(.google.cloud.netapp.v1.GetBackupRequest.google.cloud.netapp.v1.Backup"IÇ”‰ì<:/v1/{name=projects/*/locations/*/backupVaults/*/backups/*}⁄Aname≥
+ListBackups*.google.cloud.netapp.v1.ListBackupsRequest+.google.cloud.netapp.v1.ListBackupsResponse"KÇ”‰ì<:/v1/{parent=projects/*/locations/*/backupVaults/*}/backups⁄Aparent“
+DeleteBackup+.google.cloud.netapp.v1.DeleteBackupRequest.google.longrunning.Operation"vÇ”‰ì<*:/v1/{name=projects/*/locations/*/backupVaults/*/backups/*}⁄Aname A*
+google.protobuf.EmptyOperationMetadata·
+UpdateBackup+.google.cloud.netapp.v1.UpdateBackupRequest.google.longrunning.Operation"ÑÇ”‰ìK2A/v1/{backup.name=projects/*/locations/*/backupVaults/*/backups/*}:backup⁄Abackup,update_mask A
+BackupOperationMetadata˛
+CreateBackupPolicy1.google.cloud.netapp.v1.CreateBackupPolicyRequest.google.longrunning.Operation"ïÇ”‰ìC"2/v1/{parent=projects/*/locations/*}/backupPolicies:backup_policy⁄A%parent,backup_policy,backup_policy_id A!
+BackupPolicyOperationMetadata™
+GetBackupPolicy..google.cloud.netapp.v1.GetBackupPolicyRequest$.google.cloud.netapp.v1.BackupPolicy"AÇ”‰ì42/v1/{name=projects/*/locations/*/backupPolicies/*}⁄Aname¿
+ListBackupPolicies1.google.cloud.netapp.v1.ListBackupPoliciesRequest2.google.cloud.netapp.v1.ListBackupPoliciesResponse"CÇ”‰ì42/v1/{parent=projects/*/locations/*}/backupPolicies⁄AparentÄ
+UpdateBackupPolicy1.google.cloud.netapp.v1.UpdateBackupPolicyRequest.google.longrunning.Operation"óÇ”‰ìQ2@/v1/{backup_policy.name=projects/*/locations/*/backupPolicies/*}:backup_policy⁄Abackup_policy,update_mask A!
+BackupPolicyOperationMetadata÷
+DeleteBackupPolicy1.google.cloud.netapp.v1.DeleteBackupPolicyRequest.google.longrunning.Operation"nÇ”‰ì4*2/v1/{name=projects/*/locations/*/backupPolicies/*}⁄Aname A*
+google.protobuf.EmptyOperationMetadataI Anetapp.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBä
 com.google.cloud.netapp.v1BCloudNetappServiceProtoPZ2cloud.google.com/go/netapp/apiv1/netapppb;netapppb™Google.Cloud.NetApp.V1 Google\\Cloud\\NetApp\\V1ÍGoogle::Cloud::NetApp::V1ÍAN
 compute.googleapis.com/Network,projects/{project}/global/networks/{network}bproto3'
         , true);

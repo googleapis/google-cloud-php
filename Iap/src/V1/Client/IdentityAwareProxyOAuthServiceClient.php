@@ -53,12 +53,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Iap\V1\IdentityAwareProxyOAuthServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createBrandAsync(CreateBrandRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createIdentityAwareProxyClientAsync(CreateIdentityAwareProxyClientRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteIdentityAwareProxyClientAsync(DeleteIdentityAwareProxyClientRequest $request, array $optionalArgs = [])
@@ -75,8 +69,15 @@ final class IdentityAwareProxyOAuthServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.iap.v1.IdentityAwareProxyOAuthService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'iap.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'iap.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

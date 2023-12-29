@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The dimensions and metrics currently accepted in reporting methods.
+ * The dimensions, metrics and comparisons currently accepted in reporting
+ * methods.
  *
  * Generated from protobuf message <code>google.analytics.data.v1beta.Metadata</code>
  */

@@ -133,9 +133,7 @@ use Google\Protobuf\GPBEmpty;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient} to use the
- * new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient}.
  */
 class InstanceAdminGapicClient
 {
@@ -144,8 +142,15 @@ class InstanceAdminGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.spanner.admin.instance.v1.InstanceAdmin';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'spanner.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'spanner.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;

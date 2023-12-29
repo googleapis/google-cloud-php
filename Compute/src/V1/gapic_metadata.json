@@ -142,6 +142,11 @@
                                 "get"
                             ]
                         },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
                         "Insert": {
                             "methods": [
                                 "insert"
@@ -160,6 +165,16 @@
                         "SetEdgeSecurityPolicy": {
                             "methods": [
                                 "setEdgeSecurityPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
                             ]
                         },
                         "Update": {
@@ -221,6 +236,11 @@
                                 "list"
                             ]
                         },
+                        "ListUsable": {
+                            "methods": [
+                                "listUsable"
+                            ]
+                        },
                         "Patch": {
                             "methods": [
                                 "patch"
@@ -239,6 +259,11 @@
                         "SetSecurityPolicy": {
                             "methods": [
                                 "setSecurityPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
                             ]
                         },
                         "Update": {
@@ -1317,6 +1342,11 @@
                                 "setScheduling"
                             ]
                         },
+                        "SetSecurityPolicy": {
+                            "methods": [
+                                "setSecurityPolicy"
+                            ]
+                        },
                         "SetServiceAccount": {
                             "methods": [
                                 "setServiceAccount"
@@ -1491,6 +1521,11 @@
                         "GetDiagnostics": {
                             "methods": [
                                 "getDiagnostics"
+                            ]
+                        },
+                        "GetMacsecConfig": {
+                            "methods": [
+                                "getMacsecConfig"
                             ]
                         },
                         "Insert": {
@@ -1681,6 +1716,11 @@
                         "List": {
                             "methods": [
                                 "list"
+                            ]
+                        },
+                        "Patch": {
+                            "methods": [
+                                "patch"
                             ]
                         },
                         "SetIamPolicy": {
@@ -2213,6 +2253,11 @@
                 "grpc": {
                     "libraryClient": "PublicAdvertisedPrefixesGapicClient",
                     "rpcs": {
+                        "Announce": {
+                            "methods": [
+                                "announce"
+                            ]
+                        },
                         "Delete": {
                             "methods": [
                                 "delete"
@@ -2236,6 +2281,11 @@
                         "Patch": {
                             "methods": [
                                 "patch"
+                            ]
+                        },
+                        "Withdraw": {
+                            "methods": [
+                                "withdraw"
                             ]
                         }
                     }
@@ -2252,6 +2302,11 @@
                                 "aggregatedList"
                             ]
                         },
+                        "Announce": {
+                            "methods": [
+                                "announce"
+                            ]
+                        },
                         "Delete": {
                             "methods": [
                                 "delete"
@@ -2275,6 +2330,11 @@
                         "Patch": {
                             "methods": [
                                 "patch"
+                            ]
+                        },
+                        "Withdraw": {
+                            "methods": [
+                                "withdraw"
                             ]
                         }
                     }
@@ -2355,6 +2415,11 @@
                                 "list"
                             ]
                         },
+                        "ListUsable": {
+                            "methods": [
+                                "listUsable"
+                            ]
+                        },
                         "Patch": {
                             "methods": [
                                 "patch"
@@ -2363,6 +2428,16 @@
                         "SetIamPolicy": {
                             "methods": [
                                 "setIamPolicy"
+                            ]
+                        },
+                        "SetSecurityPolicy": {
+                            "methods": [
+                                "setSecurityPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
                             ]
                         },
                         "Update": {
@@ -2775,9 +2850,19 @@
                 "grpc": {
                     "libraryClient": "RegionNetworkEndpointGroupsGapicClient",
                     "rpcs": {
+                        "AttachNetworkEndpoints": {
+                            "methods": [
+                                "attachNetworkEndpoints"
+                            ]
+                        },
                         "Delete": {
                             "methods": [
                                 "delete"
+                            ]
+                        },
+                        "DetachNetworkEndpoints": {
+                            "methods": [
+                                "detachNetworkEndpoints"
                             ]
                         },
                         "Get": {
@@ -2793,6 +2878,11 @@
                         "List": {
                             "methods": [
                                 "list"
+                            ]
+                        },
+                        "ListNetworkEndpoints": {
+                            "methods": [
+                                "listNetworkEndpoints"
                             ]
                         }
                     }
@@ -2956,6 +3046,11 @@
                 "grpc": {
                     "libraryClient": "RegionSecurityPoliciesGapicClient",
                     "rpcs": {
+                        "AddRule": {
+                            "methods": [
+                                "addRule"
+                            ]
+                        },
                         "Delete": {
                             "methods": [
                                 "delete"
@@ -2964,6 +3059,11 @@
                         "Get": {
                             "methods": [
                                 "get"
+                            ]
+                        },
+                        "GetRule": {
+                            "methods": [
+                                "getRule"
                             ]
                         },
                         "Insert": {
@@ -2979,6 +3079,16 @@
                         "Patch": {
                             "methods": [
                                 "patch"
+                            ]
+                        },
+                        "PatchRule": {
+                            "methods": [
+                                "patchRule"
+                            ]
+                        },
+                        "RemoveRule": {
+                            "methods": [
+                                "removeRule"
                             ]
                         }
                     }
@@ -3356,6 +3466,11 @@
                                 "get"
                             ]
                         },
+                        "GetNatIpInfo": {
+                            "methods": [
+                                "getNatIpInfo"
+                            ]
+                        },
                         "GetNatMappingInfo": {
                             "methods": [
                                 "getNatMappingInfo"
@@ -3541,6 +3656,25 @@
                         "TestIamPermissions": {
                             "methods": [
                                 "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SnapshotSettingsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SnapshotSettingsServiceGapicClient",
+                    "rpcs": {
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "Patch": {
+                            "methods": [
+                                "patch"
                             ]
                         }
                     }
@@ -3914,6 +4048,11 @@
                             "methods": [
                                 "list"
                             ]
+                        },
+                        "SetSecurityPolicy": {
+                            "methods": [
+                                "setSecurityPolicy"
+                            ]
                         }
                     }
                 }
@@ -3977,6 +4116,11 @@
                         "SetBackup": {
                             "methods": [
                                 "setBackup"
+                            ]
+                        },
+                        "SetSecurityPolicy": {
+                            "methods": [
+                                "setSecurityPolicy"
                             ]
                         }
                     }

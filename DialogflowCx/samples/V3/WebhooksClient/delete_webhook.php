@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_Webhooks_DeleteWebhook_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dialogflow\Cx\V3\WebhooksClient;
+use Google\Cloud\Dialogflow\Cx\V3\Client\WebhooksClient;
+use Google\Cloud\Dialogflow\Cx\V3\DeleteWebhookRequest;
 
 /**
  * Deletes the specified webhook.
@@ -39,9 +40,13 @@ function delete_webhook_sample(string $formattedName): void
     // Create a client.
     $webhooksClient = new WebhooksClient();
 
+    // Prepare the request message.
+    $request = (new DeleteWebhookRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $webhooksClient->deleteWebhook($formattedName);
+        $webhooksClient->deleteWebhook($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

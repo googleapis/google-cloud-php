@@ -40,6 +40,22 @@ class DeleteFlowRequest extends \Google\Protobuf\Internal\Message
     protected $force = false;
 
     /**
+     * @param string $name Required. The name of the flow to delete.
+     *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+     *                     ID>/flows/<Flow ID>`. Please see
+     *                     {@see FlowsClient::flowName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\DeleteFlowRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

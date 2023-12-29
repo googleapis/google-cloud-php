@@ -29,14 +29,15 @@ use Google\Cloud\OrgPolicy\V2\GetEffectivePolicyRequest;
 use Google\Cloud\OrgPolicy\V2\Policy;
 
 /**
- * Gets the effective `Policy` on a resource. This is the result of merging
- * `Policies` in the resource hierarchy and evaluating conditions. The
- * returned `Policy` will not have an `etag` or `condition` set because it is
- * a computed `Policy` across multiple resources.
+ * Gets the effective policy on a resource. This is the result of merging
+ * policies in the resource hierarchy and evaluating conditions. The
+ * returned policy will not have an `etag` or `condition` set because it is
+ * an evaluated policy across multiple resources.
  * Subtrees of Resource Manager resource hierarchy with 'under:' prefix will
  * not be expanded.
  *
- * @param string $formattedName The effective policy to compute. See `Policy` for naming rules. Please see
+ * @param string $formattedName The effective policy to compute. See
+ *                              [Policy][google.cloud.orgpolicy.v2.Policy] for naming requirements. Please see
  *                              {@see OrgPolicyClient::policyName()} for help formatting this field.
  */
 function get_effective_policy_sample(string $formattedName): void

@@ -90,7 +90,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     private $region = null;
     /**
-     * List of reservations in this commitment.
+     * List of create-on-create reseravtions for this commitment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Reservation reservations = 399717927;</code>
      */
@@ -173,7 +173,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *     @type string $region
      *           [Output Only] URL of the region where this commitment may be used.
      *     @type array<\Google\Cloud\Compute\V1\Reservation>|\Google\Protobuf\Internal\RepeatedField $reservations
-     *           List of reservations in this commitment.
+     *           List of create-on-create reseravtions for this commitment.
      *     @type array<\Google\Cloud\Compute\V1\ResourceCommitment>|\Google\Protobuf\Internal\RepeatedField $resources
      *           A list of commitment amounts for particular resources. Note that VCPU and MEMORY resource commitments must occur together.
      *     @type string $self_link
@@ -624,7 +624,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of reservations in this commitment.
+     * List of create-on-create reseravtions for this commitment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Reservation reservations = 399717927;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -635,7 +635,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of reservations in this commitment.
+     * List of create-on-create reseravtions for this commitment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Reservation reservations = 399717927;</code>
      * @param array<\Google\Cloud\Compute\V1\Reservation>|\Google\Protobuf\Internal\RepeatedField $var

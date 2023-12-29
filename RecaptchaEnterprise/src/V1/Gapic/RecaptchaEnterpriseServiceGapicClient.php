@@ -89,9 +89,7 @@ use Google\Protobuf\GPBEmpty;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient} to
- * use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient}.
  */
 class RecaptchaEnterpriseServiceGapicClient
 {
@@ -100,8 +98,15 @@ class RecaptchaEnterpriseServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'recaptchaenterprise.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'recaptchaenterprise.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -1408,10 +1413,17 @@ class RecaptchaEnterpriseServiceGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $accountId
+     *           Optional. The unique stable account identifier used to search connections.
+     *           The identifier should correspond to an `account_id` provided in a previous
+     *           `CreateAssessment` or `AnnotateAssessment` call. Either hashed_account_id
+     *           or account_id must be set, but not both.
      *     @type string $hashedAccountId
-     *           Optional. The unique stable hashed user identifier used to search
-     *           connections. The identifier should correspond to a `hashed_account_id`
-     *           provided in a previous `CreateAssessment` or `AnnotateAssessment` call.
+     *           Optional. Deprecated: use `account_id` instead.
+     *           The unique stable hashed account identifier used to search connections. The
+     *           identifier should correspond to a `hashed_account_id` provided in a
+     *           previous `CreateAssessment` or `AnnotateAssessment` call. Either
+     *           hashed_account_id or account_id must be set, but not both.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1439,6 +1451,10 @@ class RecaptchaEnterpriseServiceGapicClient
         $requestParamHeaders = [];
         $request->setProject($project);
         $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['accountId'])) {
+            $request->setAccountId($optionalArgs['accountId']);
+        }
+
         if (isset($optionalArgs['hashedAccountId'])) {
             $request->setHashedAccountId($optionalArgs['hashedAccountId']);
         }

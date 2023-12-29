@@ -10,8 +10,6 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A Cloud Firestore Database.
- * Currently only one database is allowed per cloud project; this database
- * must have a `database_id` of '(default)'.
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.Database</code>
  */
@@ -24,6 +22,27 @@ class Database extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
+    /**
+     * Output only. The system-generated UUID4 for this Database.
+     *
+     * Generated from protobuf field <code>string uid = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $uid = '';
+    /**
+     * Output only. The timestamp at which this database was created. Databases
+     * created before 2016 do not populate create_time.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $create_time = null;
+    /**
+     * Output only. The timestamp at which this database was most recently
+     * updated. Note this only includes updates to the database resource and not
+     * data contained by the database.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $update_time = null;
     /**
      * The location of the database. Available locations are listed at
      * https://cloud.google.com/firestore/docs/locations.
@@ -94,6 +113,12 @@ class Database extends \Google\Protobuf\Internal\Message
      */
     private $key_prefix = '';
     /**
+     * State of delete protection for the database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.DeleteProtectionState delete_protection_state = 22;</code>
+     */
+    private $delete_protection_state = 0;
+    /**
      * This checksum is computed by the server based on the value of other
      * fields, and may be sent on update and delete requests to ensure the
      * client has an up-to-date value before proceeding.
@@ -111,6 +136,15 @@ class Database extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The resource name of the Database.
      *           Format: `projects/{project}/databases/{database}`
+     *     @type string $uid
+     *           Output only. The system-generated UUID4 for this Database.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           Output only. The timestamp at which this database was created. Databases
+     *           created before 2016 do not populate create_time.
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           Output only. The timestamp at which this database was most recently
+     *           updated. Note this only includes updates to the database resource and not
+     *           data contained by the database.
      *     @type string $location_id
      *           The location of the database. Available locations are listed at
      *           https://cloud.google.com/firestore/docs/locations.
@@ -148,6 +182,8 @@ class Database extends \Google\Protobuf\Internal\Message
      *           App Engine first generation runtimes.
      *           This value may be empty in which case the appid to use for URL-encoded keys
      *           is the project_id (eg: foo instead of v~foo).
+     *     @type int $delete_protection_state
+     *           State of delete protection for the database.
      *     @type string $etag
      *           This checksum is computed by the server based on the value of other
      *           fields, and may be sent on update and delete requests to ensure the
@@ -183,6 +219,110 @@ class Database extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The system-generated UUID4 for this Database.
+     *
+     * Generated from protobuf field <code>string uid = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getUid()
+    {
+        return $this->uid;
+    }
+
+    /**
+     * Output only. The system-generated UUID4 for this Database.
+     *
+     * Generated from protobuf field <code>string uid = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUid($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->uid = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The timestamp at which this database was created. Databases
+     * created before 2016 do not populate create_time.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCreateTime()
+    {
+        return $this->create_time;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
+    }
+
+    /**
+     * Output only. The timestamp at which this database was created. Databases
+     * created before 2016 do not populate create_time.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The timestamp at which this database was most recently
+     * updated. Note this only includes updates to the database resource and not
+     * data contained by the database.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getUpdateTime()
+    {
+        return $this->update_time;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
+    }
+
+    /**
+     * Output only. The timestamp at which this database was most recently
+     * updated. Note this only includes updates to the database resource and not
+     * data contained by the database.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->update_time = $var;
 
         return $this;
     }
@@ -453,6 +593,32 @@ class Database extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->key_prefix = $var;
+
+        return $this;
+    }
+
+    /**
+     * State of delete protection for the database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.DeleteProtectionState delete_protection_state = 22;</code>
+     * @return int
+     */
+    public function getDeleteProtectionState()
+    {
+        return $this->delete_protection_state;
+    }
+
+    /**
+     * State of delete protection for the database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.DeleteProtectionState delete_protection_state = 22;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDeleteProtectionState($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Admin\V1\Database\DeleteProtectionState::class);
+        $this->delete_protection_state = $var;
 
         return $this;
     }

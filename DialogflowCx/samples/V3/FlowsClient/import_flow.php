@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_Flows_ImportFlow_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Dialogflow\Cx\V3\FlowsClient;
+use Google\Cloud\Dialogflow\Cx\V3\Client\FlowsClient;
+use Google\Cloud\Dialogflow\Cx\V3\ImportFlowRequest;
 use Google\Cloud\Dialogflow\Cx\V3\ImportFlowResponse;
 use Google\Rpc\Status;
 
@@ -54,10 +55,14 @@ function import_flow_sample(string $formattedParent): void
     // Create a client.
     $flowsClient = new FlowsClient();
 
+    // Prepare the request message.
+    $request = (new ImportFlowRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $flowsClient->importFlow($formattedParent);
+        $response = $flowsClient->importFlow($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

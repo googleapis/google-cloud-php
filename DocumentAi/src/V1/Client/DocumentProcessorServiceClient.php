@@ -84,12 +84,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\DocumentAI\V1\DocumentProcessorServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface batchProcessDocumentsAsync(BatchProcessRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createProcessorAsync(CreateProcessorRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteProcessorAsync(DeleteProcessorRequest $request, array $optionalArgs = [])
@@ -123,8 +117,15 @@ final class DocumentProcessorServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.documentai.v1.DocumentProcessorService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'documentai.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'documentai.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

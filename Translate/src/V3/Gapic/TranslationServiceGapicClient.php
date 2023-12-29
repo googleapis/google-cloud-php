@@ -35,20 +35,39 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Translate\V3\AdaptiveMtDataset;
+use Google\Cloud\Translate\V3\AdaptiveMtFile;
+use Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest;
+use Google\Cloud\Translate\V3\AdaptiveMtTranslateResponse;
 use Google\Cloud\Translate\V3\BatchDocumentInputConfig;
 use Google\Cloud\Translate\V3\BatchDocumentOutputConfig;
 use Google\Cloud\Translate\V3\BatchTranslateDocumentRequest;
 use Google\Cloud\Translate\V3\BatchTranslateTextRequest;
+use Google\Cloud\Translate\V3\CreateAdaptiveMtDatasetRequest;
 use Google\Cloud\Translate\V3\CreateGlossaryRequest;
+use Google\Cloud\Translate\V3\DeleteAdaptiveMtDatasetRequest;
+use Google\Cloud\Translate\V3\DeleteAdaptiveMtFileRequest;
 use Google\Cloud\Translate\V3\DeleteGlossaryRequest;
 use Google\Cloud\Translate\V3\DetectLanguageRequest;
 use Google\Cloud\Translate\V3\DetectLanguageResponse;
 use Google\Cloud\Translate\V3\DocumentInputConfig;
 use Google\Cloud\Translate\V3\DocumentOutputConfig;
+use Google\Cloud\Translate\V3\FileInputSource;
+use Google\Cloud\Translate\V3\GcsInputSource;
+use Google\Cloud\Translate\V3\GetAdaptiveMtDatasetRequest;
+use Google\Cloud\Translate\V3\GetAdaptiveMtFileRequest;
 use Google\Cloud\Translate\V3\GetGlossaryRequest;
 use Google\Cloud\Translate\V3\GetSupportedLanguagesRequest;
 use Google\Cloud\Translate\V3\Glossary;
+use Google\Cloud\Translate\V3\ImportAdaptiveMtFileRequest;
+use Google\Cloud\Translate\V3\ImportAdaptiveMtFileResponse;
 use Google\Cloud\Translate\V3\InputConfig;
+use Google\Cloud\Translate\V3\ListAdaptiveMtDatasetsRequest;
+use Google\Cloud\Translate\V3\ListAdaptiveMtDatasetsResponse;
+use Google\Cloud\Translate\V3\ListAdaptiveMtFilesRequest;
+use Google\Cloud\Translate\V3\ListAdaptiveMtFilesResponse;
+use Google\Cloud\Translate\V3\ListAdaptiveMtSentencesRequest;
+use Google\Cloud\Translate\V3\ListAdaptiveMtSentencesResponse;
 use Google\Cloud\Translate\V3\ListGlossariesRequest;
 use Google\Cloud\Translate\V3\ListGlossariesResponse;
 use Google\Cloud\Translate\V3\OutputConfig;
@@ -59,6 +78,7 @@ use Google\Cloud\Translate\V3\TranslateTextGlossaryConfig;
 use Google\Cloud\Translate\V3\TranslateTextRequest;
 use Google\Cloud\Translate\V3\TranslateTextResponse;
 use Google\LongRunning\Operation;
+use Google\Protobuf\GPBEmpty;
 
 /**
  * Service Description: Provides natural language translation operations.
@@ -70,36 +90,9 @@ use Google\LongRunning\Operation;
  * $translationServiceClient = new TranslationServiceClient();
  * try {
  *     $formattedParent = $translationServiceClient->locationName('[PROJECT]', '[LOCATION]');
- *     $sourceLanguageCode = 'source_language_code';
- *     $targetLanguageCodes = [];
- *     $inputConfigs = [];
- *     $outputConfig = new BatchDocumentOutputConfig();
- *     $operationResponse = $translationServiceClient->batchTranslateDocument($formattedParent, $sourceLanguageCode, $targetLanguageCodes, $inputConfigs, $outputConfig);
- *     $operationResponse->pollUntilComplete();
- *     if ($operationResponse->operationSucceeded()) {
- *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
- *     } else {
- *         $error = $operationResponse->getError();
- *         // handleError($error)
- *     }
- *     // Alternatively:
- *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $translationServiceClient->batchTranslateDocument($formattedParent, $sourceLanguageCode, $targetLanguageCodes, $inputConfigs, $outputConfig);
- *     $operationName = $operationResponse->getName();
- *     // ... do other work
- *     $newOperationResponse = $translationServiceClient->resumeOperation($operationName, 'batchTranslateDocument');
- *     while (!$newOperationResponse->isDone()) {
- *         // ... do other work
- *         $newOperationResponse->reload();
- *     }
- *     if ($newOperationResponse->operationSucceeded()) {
- *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
- *     } else {
- *         $error = $newOperationResponse->getError();
- *         // handleError($error)
- *     }
+ *     $formattedDataset = $translationServiceClient->adaptiveMtDatasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+ *     $content = [];
+ *     $response = $translationServiceClient->adaptiveMtTranslate($formattedParent, $formattedDataset, $content);
  * } finally {
  *     $translationServiceClient->close();
  * }
@@ -110,9 +103,7 @@ use Google\LongRunning\Operation;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Translate\V3\Client\TranslationServiceClient} to use the new
- * surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Translate\V3\Client\TranslationServiceClient}.
  */
 class TranslationServiceGapicClient
 {
@@ -121,8 +112,15 @@ class TranslationServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.translation.v3.TranslationService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'translate.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'translate.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -135,6 +133,10 @@ class TranslationServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/cloud-translation',
     ];
+
+    private static $adaptiveMtDatasetNameTemplate;
+
+    private static $adaptiveMtFileNameTemplate;
 
     private static $glossaryNameTemplate;
 
@@ -163,6 +165,24 @@ class TranslationServiceGapicClient
         ];
     }
 
+    private static function getAdaptiveMtDatasetNameTemplate()
+    {
+        if (self::$adaptiveMtDatasetNameTemplate == null) {
+            self::$adaptiveMtDatasetNameTemplate = new PathTemplate('projects/{project}/locations/{location}/adaptiveMtDatasets/{dataset}');
+        }
+
+        return self::$adaptiveMtDatasetNameTemplate;
+    }
+
+    private static function getAdaptiveMtFileNameTemplate()
+    {
+        if (self::$adaptiveMtFileNameTemplate == null) {
+            self::$adaptiveMtFileNameTemplate = new PathTemplate('projects/{project}/locations/{location}/adaptiveMtDatasets/{dataset}/adaptiveMtFiles/{file}');
+        }
+
+        return self::$adaptiveMtFileNameTemplate;
+    }
+
     private static function getGlossaryNameTemplate()
     {
         if (self::$glossaryNameTemplate == null) {
@@ -185,12 +205,54 @@ class TranslationServiceGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'adaptiveMtDataset' => self::getAdaptiveMtDatasetNameTemplate(),
+                'adaptiveMtFile' => self::getAdaptiveMtFileNameTemplate(),
                 'glossary' => self::getGlossaryNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * adaptive_mt_dataset resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataset
+     *
+     * @return string The formatted adaptive_mt_dataset resource.
+     */
+    public static function adaptiveMtDatasetName($project, $location, $dataset)
+    {
+        return self::getAdaptiveMtDatasetNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'dataset' => $dataset,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * adaptive_mt_file resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataset
+     * @param string $file
+     *
+     * @return string The formatted adaptive_mt_file resource.
+     */
+    public static function adaptiveMtFileName($project, $location, $dataset, $file)
+    {
+        return self::getAdaptiveMtFileNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'dataset' => $dataset,
+            'file' => $file,
+        ]);
     }
 
     /**
@@ -233,6 +295,8 @@ class TranslationServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - adaptiveMtDataset: projects/{project}/locations/{location}/adaptiveMtDatasets/{dataset}
+     * - adaptiveMtFile: projects/{project}/locations/{location}/adaptiveMtDatasets/{dataset}/adaptiveMtFiles/{file}
      * - glossary: projects/{project}/locations/{location}/glossaries/{glossary}
      * - location: projects/{project}/locations/{location}
      *
@@ -362,6 +426,55 @@ class TranslationServiceGapicClient
     }
 
     /**
+     * Translate text using Adaptive MT.
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $formattedParent = $translationServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $formattedDataset = $translationServiceClient->adaptiveMtDatasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+     *     $content = [];
+     *     $response = $translationServiceClient->adaptiveMtTranslate($formattedParent, $formattedDataset, $content);
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string   $parent       Required. Location to make a regional call.
+     *
+     *                               Format: `projects/{project-number-or-id}/locations/{location-id}`.
+     * @param string   $dataset      Required. The resource name for the dataset to use for adaptive MT.
+     *                               `projects/{project}/locations/{location-id}/adaptiveMtDatasets/{dataset}`
+     * @param string[] $content      Required. The content of the input in string format.
+     *                               For now only one sentence per request is supported.
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Translate\V3\AdaptiveMtTranslateResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function adaptiveMtTranslate($parent, $dataset, $content, array $optionalArgs = [])
+    {
+        $request = new AdaptiveMtTranslateRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setDataset($dataset);
+        $request->setContent($content);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('AdaptiveMtTranslate', AdaptiveMtTranslateResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Translates a large volume of document in asynchronous batch mode.
      * This function provides real-time output as the inputs are being processed.
      * If caller cancels a request, the partial results (for an input file, it's
@@ -453,9 +566,9 @@ class TranslationServiceGapicClient
      *     @type array $glossaries
      *           Optional. Glossaries to be applied. It's keyed by target language code.
      *     @type array $formatConversions
-     *           Optional. File format conversion map to be applied to all input files.
-     *           Map's key is the original mime_type. Map's value is the target mime_type of
-     *           translated documents.
+     *           Optional. The file format conversion map that is applied to all input
+     *           files. The map key is the original mime_type. The map value is the target
+     *           mime_type of translated documents.
      *
      *           Supported file format conversion includes:
      *           - `application/pdf` to
@@ -661,6 +774,49 @@ class TranslationServiceGapicClient
     }
 
     /**
+     * Creates an Adaptive MT dataset.
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $formattedParent = $translationServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $adaptiveMtDataset = new AdaptiveMtDataset();
+     *     $response = $translationServiceClient->createAdaptiveMtDataset($formattedParent, $adaptiveMtDataset);
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string            $parent            Required. Name of the parent project. In form of
+     *                                             `projects/{project-number-or-id}/locations/{location-id}`
+     * @param AdaptiveMtDataset $adaptiveMtDataset Required. The AdaptiveMtDataset to be created.
+     * @param array             $optionalArgs      {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Translate\V3\AdaptiveMtDataset
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createAdaptiveMtDataset($parent, $adaptiveMtDataset, array $optionalArgs = [])
+    {
+        $request = new CreateAdaptiveMtDatasetRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setAdaptiveMtDataset($adaptiveMtDataset);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateAdaptiveMtDataset', AdaptiveMtDataset::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Creates a glossary and returns the long-running operation. Returns
      * NOT_FOUND, if the project doesn't exist.
      *
@@ -726,6 +882,83 @@ class TranslationServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CreateGlossary', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Deletes an Adaptive MT dataset, including all its entries and associated
+     * metadata.
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $formattedName = $translationServiceClient->adaptiveMtDatasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+     *     $translationServiceClient->deleteAdaptiveMtDataset($formattedName);
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the dataset. In the form of
+     *                             `projects/{project-number-or-id}/locations/{location-id}/adaptiveMtDatasets/{adaptive-mt-dataset-id}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteAdaptiveMtDataset($name, array $optionalArgs = [])
+    {
+        $request = new DeleteAdaptiveMtDatasetRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteAdaptiveMtDataset', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Deletes an AdaptiveMtFile along with its sentences.
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $formattedName = $translationServiceClient->adaptiveMtFileName('[PROJECT]', '[LOCATION]', '[DATASET]', '[FILE]');
+     *     $translationServiceClient->deleteAdaptiveMtFile($formattedName);
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the file to delete, in form of
+     *                             `projects/{project-number-or-id}/locations/{location_id}/adaptiveMtDatasets/{dataset}/adaptiveMtFiles/{file}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteAdaptiveMtFile($name, array $optionalArgs = [])
+    {
+        $request = new DeleteAdaptiveMtFileRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteAdaptiveMtFile', GPBEmpty::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -885,6 +1118,86 @@ class TranslationServiceGapicClient
     }
 
     /**
+     * Gets the Adaptive MT dataset.
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $formattedName = $translationServiceClient->adaptiveMtDatasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+     *     $response = $translationServiceClient->getAdaptiveMtDataset($formattedName);
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the dataset. In the form of
+     *                             `projects/{project-number-or-id}/locations/{location-id}/adaptiveMtDatasets/{adaptive-mt-dataset-id}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Translate\V3\AdaptiveMtDataset
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getAdaptiveMtDataset($name, array $optionalArgs = [])
+    {
+        $request = new GetAdaptiveMtDatasetRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetAdaptiveMtDataset', AdaptiveMtDataset::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Gets and AdaptiveMtFile
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $formattedName = $translationServiceClient->adaptiveMtFileName('[PROJECT]', '[LOCATION]', '[DATASET]', '[FILE]');
+     *     $response = $translationServiceClient->getAdaptiveMtFile($formattedName);
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the file, in form of
+     *                             `projects/{project-number-or-id}/locations/{location_id}/adaptiveMtDatasets/{dataset}/adaptiveMtFiles/{file}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Translate\V3\AdaptiveMtFile
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getAdaptiveMtFile($name, array $optionalArgs = [])
+    {
+        $request = new GetAdaptiveMtFileRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetAdaptiveMtFile', AdaptiveMtFile::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Gets a glossary. Returns NOT_FOUND, if the glossary doesn't
      * exist.
      *
@@ -999,6 +1312,277 @@ class TranslationServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetSupportedLanguages', SupportedLanguages::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Imports an AdaptiveMtFile and adds all of its sentences into the
+     * AdaptiveMtDataset.
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $formattedParent = $translationServiceClient->adaptiveMtDatasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+     *     $response = $translationServiceClient->importAdaptiveMtFile($formattedParent);
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the file, in form of
+     *                             `projects/{project-number-or-id}/locations/{location_id}/adaptiveMtDatasets/{dataset}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type FileInputSource $fileInputSource
+     *           Inline file source.
+     *     @type GcsInputSource $gcsInputSource
+     *           Google Cloud Storage file source.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Translate\V3\ImportAdaptiveMtFileResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function importAdaptiveMtFile($parent, array $optionalArgs = [])
+    {
+        $request = new ImportAdaptiveMtFileRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['fileInputSource'])) {
+            $request->setFileInputSource($optionalArgs['fileInputSource']);
+        }
+
+        if (isset($optionalArgs['gcsInputSource'])) {
+            $request->setGcsInputSource($optionalArgs['gcsInputSource']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('ImportAdaptiveMtFile', ImportAdaptiveMtFileResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Lists all Adaptive MT datasets for which the caller has read permission.
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $formattedParent = $translationServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $translationServiceClient->listAdaptiveMtDatasets($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $translationServiceClient->listAdaptiveMtDatasets($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the project from which to list the Adaptive
+     *                             MT datasets. `projects/{project-number-or-id}/locations/{location-id}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           Optional. An expression for filtering the results of the request.
+     *           Filter is not supported yet.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listAdaptiveMtDatasets($parent, array $optionalArgs = [])
+    {
+        $request = new ListAdaptiveMtDatasetsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListAdaptiveMtDatasets', $optionalArgs, ListAdaptiveMtDatasetsResponse::class, $request);
+    }
+
+    /**
+     * Lists all AdaptiveMtFiles associated to an AdaptiveMtDataset.
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $formattedParent = $translationServiceClient->adaptiveMtDatasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $translationServiceClient->listAdaptiveMtFiles($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $translationServiceClient->listAdaptiveMtFiles($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the project from which to list the Adaptive
+     *                             MT files.
+     *                             `projects/{project}/locations/{location}/adaptiveMtDatasets/{dataset}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listAdaptiveMtFiles($parent, array $optionalArgs = [])
+    {
+        $request = new ListAdaptiveMtFilesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListAdaptiveMtFiles', $optionalArgs, ListAdaptiveMtFilesResponse::class, $request);
+    }
+
+    /**
+     * Lists all AdaptiveMtSentences under a given file/dataset.
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $formattedParent = $translationServiceClient->adaptiveMtFileName('[PROJECT]', '[LOCATION]', '[DATASET]', '[FILE]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $translationServiceClient->listAdaptiveMtSentences($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $translationServiceClient->listAdaptiveMtSentences($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the project from which to list the Adaptive
+     *                             MT files. The following format lists all sentences under a file.
+     *                             `projects/{project}/locations/{location}/adaptiveMtDatasets/{dataset}/adaptiveMtFiles/{file}`
+     *                             The following format lists all sentences within a dataset.
+     *                             `projects/{project}/locations/{location}/adaptiveMtDatasets/{dataset}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listAdaptiveMtSentences($parent, array $optionalArgs = [])
+    {
+        $request = new ListAdaptiveMtSentencesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListAdaptiveMtSentences', $optionalArgs, ListAdaptiveMtSentencesResponse::class, $request);
     }
 
     /**

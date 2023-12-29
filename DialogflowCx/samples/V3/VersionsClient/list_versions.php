@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_Versions_ListVersions_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dialogflow\Cx\V3\Client\VersionsClient;
+use Google\Cloud\Dialogflow\Cx\V3\ListVersionsRequest;
 use Google\Cloud\Dialogflow\Cx\V3\Version;
-use Google\Cloud\Dialogflow\Cx\V3\VersionsClient;
 
 /**
  * Returns the list of all versions in the specified
@@ -42,10 +43,14 @@ function list_versions_sample(string $formattedParent): void
     // Create a client.
     $versionsClient = new VersionsClient();
 
+    // Prepare the request message.
+    $request = (new ListVersionsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $versionsClient->listVersions($formattedParent);
+        $response = $versionsClient->listVersions($request);
 
         /** @var Version $element */
         foreach ($response as $element) {

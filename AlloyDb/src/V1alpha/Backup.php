@@ -159,9 +159,15 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     protected $expiry_quantity = null;
     /**
-     * Reserved for future use.
+     * Output only. Reserved for future use.
      *
-     * Generated from protobuf field <code>bool satisfies_pzs = 21;</code>
+     * Generated from protobuf field <code>bool satisfies_pzi = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = false;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $satisfies_pzs = false;
     /**
@@ -242,8 +248,10 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Output only. The QuantityBasedExpiry of the backup, specified by the
      *           backup's retention policy. Once the expiry quantity is over retention, the
      *           backup is eligible to be garbage collected.
+     *     @type bool $satisfies_pzi
+     *           Output only. Reserved for future use.
      *     @type bool $satisfies_pzs
-     *           Reserved for future use.
+     *           Output only. Reserved for future use.
      *     @type int $database_version
      *           Output only. The database engine major version of the cluster this backup
      *           was created from. Any restored cluster created from this backup will have
@@ -892,9 +900,35 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reserved for future use.
+     * Output only. Reserved for future use.
      *
-     * Generated from protobuf field <code>bool satisfies_pzs = 21;</code>
+     * Generated from protobuf field <code>bool satisfies_pzi = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return $this->satisfies_pzi;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
      */
     public function getSatisfiesPzs()
@@ -903,9 +937,9 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reserved for future use.
+     * Output only. Reserved for future use.
      *
-     * Generated from protobuf field <code>bool satisfies_pzs = 21;</code>
+     * Generated from protobuf field <code>bool satisfies_pzs = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
      */

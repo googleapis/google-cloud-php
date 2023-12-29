@@ -49,6 +49,27 @@ class CreateTransitionRouteGroupRequest extends \Google\Protobuf\Internal\Messag
     protected $language_code = '';
 
     /**
+     * @param string                                              $parent               Required. The flow to create an
+     *                                                                                  [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup]
+     *                                                                                  for. Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+     *                                                                                  ID>/flows/<Flow ID>`
+     *                                                                                  or `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`
+     *                                                                                  for agent-level groups. Please see
+     *                                                                                  {@see TransitionRouteGroupsClient::flowName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroup $transitionRouteGroup Required. The transition route group to create.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\CreateTransitionRouteGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroup $transitionRouteGroup): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setTransitionRouteGroup($transitionRouteGroup);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

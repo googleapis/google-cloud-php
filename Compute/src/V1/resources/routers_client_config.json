@@ -54,6 +54,11 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "GetNatIpInfo": {
+                    "timeout_millis": 600000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "GetNatMappingInfo": {
                     "timeout_millis": 600000,
                     "retry_codes_name": "retry_policy_1_codes",

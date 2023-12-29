@@ -22,6 +22,18 @@ class PreservedState extends \Google\Protobuf\Internal\Message
      */
     private $disks;
     /**
+     * Preserved external IPs defined for this instance. This map is keyed with the name of the network interface.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.PreservedStatePreservedNetworkIp> external_i_ps = 532687245;</code>
+     */
+    private $external_i_ps;
+    /**
+     * Preserved internal IPs defined for this instance. This map is keyed with the name of the network interface.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.PreservedStatePreservedNetworkIp> internal_i_ps = 215731675;</code>
+     */
+    private $internal_i_ps;
+    /**
      * Preserved metadata defined for this instance.
      *
      * Generated from protobuf field <code>map<string, string> metadata = 86866735;</code>
@@ -36,6 +48,10 @@ class PreservedState extends \Google\Protobuf\Internal\Message
      *
      *     @type array|\Google\Protobuf\Internal\MapField $disks
      *           Preserved disks defined for this instance. This map is keyed with the device names of the disks.
+     *     @type array|\Google\Protobuf\Internal\MapField $external_i_ps
+     *           Preserved external IPs defined for this instance. This map is keyed with the name of the network interface.
+     *     @type array|\Google\Protobuf\Internal\MapField $internal_i_ps
+     *           Preserved internal IPs defined for this instance. This map is keyed with the name of the network interface.
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *           Preserved metadata defined for this instance.
      * }
@@ -67,6 +83,58 @@ class PreservedState extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\PreservedStatePreservedDisk::class);
         $this->disks = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Preserved external IPs defined for this instance. This map is keyed with the name of the network interface.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.PreservedStatePreservedNetworkIp> external_i_ps = 532687245;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getExternalIPs()
+    {
+        return $this->external_i_ps;
+    }
+
+    /**
+     * Preserved external IPs defined for this instance. This map is keyed with the name of the network interface.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.PreservedStatePreservedNetworkIp> external_i_ps = 532687245;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setExternalIPs($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\PreservedStatePreservedNetworkIp::class);
+        $this->external_i_ps = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Preserved internal IPs defined for this instance. This map is keyed with the name of the network interface.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.PreservedStatePreservedNetworkIp> internal_i_ps = 215731675;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getInternalIPs()
+    {
+        return $this->internal_i_ps;
+    }
+
+    /**
+     * Preserved internal IPs defined for this instance. This map is keyed with the name of the network interface.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.PreservedStatePreservedNetworkIp> internal_i_ps = 215731675;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setInternalIPs($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\PreservedStatePreservedNetworkIp::class);
+        $this->internal_i_ps = $arr;
 
         return $this;
     }

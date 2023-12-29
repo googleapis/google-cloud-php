@@ -25,6 +25,21 @@ class DeleteAgentRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. The name of the agent to delete.
+     *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+     *                     {@see AgentsClient::agentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\DeleteAgentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -31,6 +31,22 @@ class UpdateWebhookRequest extends \Google\Protobuf\Internal\Message
     protected $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Webhook $webhook    Required. The webhook to update.
+     * @param \Google\Protobuf\FieldMask             $updateMask The mask to control which fields get updated. If the mask is not present,
+     *                                                           all fields will be updated.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\UpdateWebhookRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\Cx\V3\Webhook $webhook, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setWebhook($webhook)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
