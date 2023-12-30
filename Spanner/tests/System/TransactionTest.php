@@ -274,6 +274,67 @@ class TransactionTest extends SpannerTestCase
         }
     }
 
+    public function testRunTransactionWithMultipleOperations()
+    {
+        $db = self::$database;
+
+        $res = $db->runTransaction(function ($t) {
+            $id = rand(1, 346464);
+            $row = [
+                'id' => $id,
+                'name' => uniqid(self::TESTING_PREFIX),
+                'birthday' => new Date(new \DateTime)
+            ];
+            // Representative of all mutations
+            $t->insert(self::TEST_TABLE_NAME, $row);
+            //$this->assertNull($t->id());
+
+            $id = rand(1, 346464);
+            $t->executeUpdate('INSERT INTO ' . self::TEST_TABLE_NAME . ' (id, name, birthday) VALUES (@id, @name, @birthday)', [
+                'parameters' => [
+                    'id' => $id,
+                    'name' => uniqid(self::TESTING_PREFIX),
+                    'birthday' => new Date(new \DateTime)
+                ]
+            ]);
+            $transactionId = $t->id();
+            $this->assertNotEmpty($t->id());
+
+            $res = $t->execute('SELECT * FROM ' . self::TEST_TABLE_NAME . ' WHERE id = @id', [
+                'parameters' => [
+                    'id' => $id
+                ]
+            ]);
+            $this->assertEquals($res->rows()->current()['id'], $id);
+            // No new transaction created.
+            $this->assertNull($res->transaction());
+            $this->assertEquals($t->id(), $transactionId);
+
+            $keyset = new KeySet(['keys' => [$id]]);
+            $res = $t->read(self::TEST_TABLE_NAME, $keyset, ['id']);
+            $this->assertEquals($res->rows()->current()['id'], $id);
+            $this->assertNull($res->transaction());
+            $this->assertEquals($t->id(), $transactionId);
+
+            $res = $t->executeUpdateBatch([
+                [
+                    'sql' => 'UPDATE ' . self::TEST_TABLE_NAME . ' SET name = @name WHERE id = @id',
+                    'parameters' => [
+                        'id' => $id,
+                        'name' => uniqid(self::TESTING_PREFIX)
+                    ]
+                ]
+            ]);
+            $this->assertEquals($t->id(), $transactionId);
+
+            $t->commit();
+
+            return $res;
+        });
+
+        $this->assertEquals([1], $res->rowCounts());
+    }
+
     private function readArgs()
     {
         return [

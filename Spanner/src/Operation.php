@@ -212,7 +212,8 @@ class Operation
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
-     *     @type array $begin The begin Transaction options.
+     *     @type array $transaction Transaction selector options.
+     *     @type array $transaction.begin The begin transaction options.
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
      * }
      * @return Result
@@ -270,7 +271,8 @@ class Operation
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
-     *     @type array $begin The begin Transaction options.
+     *     @type array $transaction Transaction selector options.
+     *     @type array $transaction.begin The begin transaction options.
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
      * }
      * @return int
@@ -283,7 +285,7 @@ class Operation
         array $options = []
     ) {
         if (!isset($options['transaction']['begin'])) {
-            $options['transactionId'] = $transaction->id();
+            $options['transaction'] = ['id' => $transaction->id()];
         }
         $res = $this->execute($session, $sql, $options);
         if (empty($transaction->id()) && $res->transaction()) {
@@ -339,7 +341,8 @@ class Operation
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
-     *     @type array $begin The begin Transaction options.
+     *     @type array $transaction Transaction selector options.
+     *     @type array $transaction.begin The begin transaction options.
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
      * }
      * @return BatchDmlResult
@@ -365,7 +368,7 @@ class Operation
         }
 
         if (!isset($options['transaction']['begin'])) {
-            $options['transactionId'] = $transaction->id();
+            $options['transaction'] = ['id' => $transaction->id()];
         }
 
         $res = $this->connection->executeBatchDml([
@@ -408,7 +411,8 @@ class Operation
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
-     *     @type array $begin The begin Transaction options.
+     *     @type array $transaction Transaction selector options.
+     *     @type array $transaction.begin The begin transaction options.
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
      * }
      * @return Result
@@ -471,7 +475,7 @@ class Operation
      *     @type bool $isRetry If true, the resulting transaction will indicate
      *           that it is the result of a retry operation. **Defaults to**
      *           `false`.
-     *     @type array $begin The begin Transaction options.
+     *     @type array $begin The begin transaction options.
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
      * }
      * @return Transaction
@@ -513,7 +517,7 @@ class Operation
      * @param Session $session The session the transaction belongs to.
      * @param array $res [optional] The createTransaction response.
      * @param array $options [optional] Options for the transaction object.
-     *     @type array $begin The begin Transaction options.
+     *     @type array $begin The begin transaction options.
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
      * @return Transaction
      */
