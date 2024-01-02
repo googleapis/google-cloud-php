@@ -290,13 +290,16 @@ class TransactionTest extends SpannerTestCase
             //$this->assertNull($t->id());
 
             $id = rand(1, 346464);
-            $t->executeUpdate('INSERT INTO ' . self::TEST_TABLE_NAME . ' (id, name, birthday) VALUES (@id, @name, @birthday)', [
-                'parameters' => [
-                    'id' => $id,
-                    'name' => uniqid(self::TESTING_PREFIX),
-                    'birthday' => new Date(new \DateTime)
+            $t->executeUpdate(
+                'INSERT INTO ' . self::TEST_TABLE_NAME . ' (id, name, birthday) VALUES (@id, @name, @birthday)',
+                [
+                    'parameters' => [
+                        'id' => $id,
+                        'name' => uniqid(self::TESTING_PREFIX),
+                        'birthday' => new Date(new \DateTime)
+                    ]
                 ]
-            ]);
+            );
             $transactionId = $t->id();
             $this->assertNotEmpty($t->id());
 
