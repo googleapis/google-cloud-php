@@ -18,7 +18,7 @@
 namespace Google\Cloud\PubSub;
 
 use Google\ApiCore\Serializer;
-use Google\Cloud\Core\ApiHelpersTrait;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Duration;
@@ -89,7 +89,7 @@ class PubSubClient
     use ClientTrait;
     use IncomingMessageTrait;
     use ResourceNameTrait;
-    use ApiHelpersTrait;
+    use ApiHelperTrait;
 
     const VERSION = '1.48.0';
 
