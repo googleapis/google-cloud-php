@@ -1,0 +1,48 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.datastore.admin.v1",
+    "libraryPackage": "Google\\Cloud\\Datastore\\Admin\\V1",
+    "services": {
+        "DatastoreAdmin": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DatastoreAdminGapicClient",
+                    "rpcs": {
+                        "CreateIndex": {
+                            "methods": [
+                                "createIndex"
+                            ]
+                        },
+                        "DeleteIndex": {
+                            "methods": [
+                                "deleteIndex"
+                            ]
+                        },
+                        "ExportEntities": {
+                            "methods": [
+                                "exportEntities"
+                            ]
+                        },
+                        "GetIndex": {
+                            "methods": [
+                                "getIndex"
+                            ]
+                        },
+                        "ImportEntities": {
+                            "methods": [
+                                "importEntities"
+                            ]
+                        },
+                        "ListIndexes": {
+                            "methods": [
+                                "listIndexes"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
