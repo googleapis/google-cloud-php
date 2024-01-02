@@ -29,7 +29,13 @@ use Google\Cloud\SecurityCenterManagement\V1\EventThreatDetectionCustomModule;
 use Google\Cloud\SecurityCenterManagement\V1\GetEventThreatDetectionCustomModuleRequest;
 
 /**
- * Gets an Event Threat Detection custom module.
+ * Gets an ETD custom module. Retrieves the module at the given level. The
+ * difference between an EffectiveCustomModule and a CustomModule is that the
+ * fields for an EffectiveCustomModule are computed from ancestors if needed.
+ * For example, the enablement_state for a CustomModule can be either ENABLED,
+ * DISABLED, or INHERITED. Where as the enablement_state for an
+ * EffectiveCustomModule is always computed to ENABLED or DISABLED (the
+ * effective enablement_state).
  *
  * @param string $formattedName The resource name of the ETD custom module.
  *

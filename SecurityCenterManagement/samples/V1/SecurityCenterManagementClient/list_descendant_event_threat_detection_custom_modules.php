@@ -30,8 +30,8 @@ use Google\Cloud\SecurityCenterManagement\V1\EventThreatDetectionCustomModule;
 use Google\Cloud\SecurityCenterManagement\V1\ListDescendantEventThreatDetectionCustomModulesRequest;
 
 /**
- * Lists all resident Event Threat Detection custom modules under the
- * given Resource Manager parent and its descendants.
+ * Returns a list of all resident EventThreatDetectionCustomModules under
+ * the given CRM parent and all of the parent’s CRM descendants.
  *
  * @param string $formattedParent Name of parent to list custom modules. Its format is
  *                                "organizations/{organization}/locations/{location}",
