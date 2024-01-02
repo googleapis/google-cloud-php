@@ -55,7 +55,7 @@ class GapicRequestWrapperTest extends TestCase
         $serializer->encodeMessage(Argument::type(Http::class))
             ->willReturn($expectedMessage);
 
-        $requestWrapper = new GapicRequestWrapper(['serializer' => $serializer->reveal()]);
+        $requestWrapper = new GapicRequestWrapper($serializer->reveal());
         $args = [
             ['retrySettings' => []],    // required args
             []                          // optional args

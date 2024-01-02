@@ -48,7 +48,7 @@ class RequestHandler
         $this->serializer = $serializer;
         $clientConfig['serializer'] = $serializer;
 
-        $this->setRequestWrapper(new GapicRequestWrapper($clientConfig));
+        $this->setRequestWrapper(new GapicRequestWrapper($serializer));
 
         // Adds some defaults
         // gccl needs to be present for handwritten clients

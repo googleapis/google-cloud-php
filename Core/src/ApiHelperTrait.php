@@ -120,10 +120,10 @@ trait ApiHelperTrait
     /**
      * Format a value for the API.
      *
-     * @param array $value
+     * @param mixed $value
      * @return array
      */
-    private function formatValueForApi(array $value) : array
+    private function formatValueForApi(mixed $value) : array
     {
         $type = gettype($value);
 

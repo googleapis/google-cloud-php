@@ -61,10 +61,10 @@ class GapicRequestWrapper
      *
      * @param callable $request The request to execute.
      * @param array $args The arguments for the request.
-     * @return array
+     * @return \Generator|OperationResponse|array|null
      * @throws Exception\ServiceException
      */
-    public function send(callable $request, array $args) : array
+    public function send(callable $request, array $args) : mixed
     {
         try {
             $response = call_user_func_array($request, $args);
@@ -168,7 +168,7 @@ class GapicRequestWrapper
         }
 
         $metadata = [];
-        if (method_exists($ex, 'getMetadata')) {
+        if (method_exists($ex, 'getMetadata') && $ex->getMetadata()) {
             foreach ($ex->getMetadata() as $type => $binaryValue) {
                 if (!isset($this->metadataTypes[$type])) {
                     continue;
