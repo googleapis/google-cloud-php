@@ -55,7 +55,7 @@ trait ApiHelperTrait
         return $vals;
     }
 
-    private function unpackValue(array $value) : mixed
+    private function unpackValue(array $value)
     {
         if (count($value) > 1) {
             throw new \RuntimeException("Unexpected fields in struct: $value");
@@ -77,12 +77,12 @@ trait ApiHelperTrait
         }
     }
 
-    private function flattenStruct(array $struct) : mixed
+    private function flattenStruct(array $struct)
     {
         return $struct['fields'];
     }
 
-    private function flattenValue(array $value) : mixed
+    private function flattenValue(array $value)
     {
         if (count($value) > 1) {
             throw new \RuntimeException("Unexpected fields in struct: $value");
@@ -95,7 +95,7 @@ trait ApiHelperTrait
         return array_pop($value);
     }
 
-    private function flattenListValue(array $value) : mixed
+    private function flattenListValue(array $value)
     {
         return $value['values'];
     }

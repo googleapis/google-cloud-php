@@ -93,7 +93,7 @@ class RequestHandler
         array $requiredArgs,
         array $optionalArgs,
         bool $whitelisted = false
-    ) : mixed {
+    ) {
 
         $allArgs = $requiredArgs;
 
@@ -124,7 +124,7 @@ class RequestHandler
      * @param $gapicClass The GAPIC class whose object we need.
      * @return mixed
      */
-    private function getGapicObject(string $gapicClass) : mixed
+    private function getGapicObject(string $gapicClass)
     {
         return $this->gapics[$gapicClass] ?? null;
     }

@@ -64,7 +64,7 @@ class GapicRequestWrapper
      * @return \Generator|OperationResponse|array|null
      * @throws Exception\ServiceException
      */
-    public function send(callable $request, array $args) : mixed
+    public function send(callable $request, array $args)
     {
         try {
             $response = call_user_func_array($request, $args);
@@ -80,7 +80,7 @@ class GapicRequestWrapper
      * @param mixed $response
      * @return \Generator|OperationResponse|array|null
      */
-    private function handleResponse(mixed $response) : mixed
+    private function handleResponse(mixed $response)
     {
         if ($response instanceof PagedListResponse) {
             $response = $response->getPage()->getResponseObject();

@@ -55,7 +55,7 @@ trait RequestCallerTrait
      *
      * @return GapicRequestWrapper|null
      */
-    public function requestWrapper() : mixed
+    public function requestWrapper()
     {
         return $this->requestWrapper;
     }
@@ -69,7 +69,7 @@ trait RequestCallerTrait
      * @return \Generator|array
      * @throws ServiceException
      */
-    public function send(callable $request, array $args, bool $whitelisted = false) : mixed
+    public function send(callable $request, array $args, bool $whitelisted = false)
     {
         try {
             return $this->requestWrapper->send($request, $args);
