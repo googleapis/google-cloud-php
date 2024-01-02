@@ -18,7 +18,7 @@
 namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\Duration;
-use Google\Cloud\Core\ApiHelpersTrait;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
@@ -27,7 +27,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
 /**
  * @group core
  */
-class ApiHelpersTraitTest extends TestCase
+class ApiHelperTraitTest extends TestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
@@ -36,7 +36,7 @@ class ApiHelpersTraitTest extends TestCase
 
     public function setUp(): void
     {
-        $this->implementation = TestHelpers::impl(ApiHelpersTrait::class);
+        $this->implementation = TestHelpers::impl(ApiHelperTrait::class);
     }
 
     public function testFormatsTimestamp()

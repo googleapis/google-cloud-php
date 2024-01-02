@@ -32,9 +32,9 @@ class RequestHandler
     /**
      * @var Serializer
      */
-    private $serializer;
+    private Serializer $serializer;
 
-    private $gapics;
+    private array $gapics;
 
     /**
      * @param array $config
@@ -88,12 +88,12 @@ class RequestHandler
      * This is useful to override the GAPIC object used for one specific request.
      */
     public function sendRequest(
-        $gapicClass,
+        string $gapicClass,
         string $method,
         array $requiredArgs,
         array $optionalArgs,
         bool $whitelisted = false
-    ) {
+    ) : mixed {
 
         $allArgs = $requiredArgs;
 
@@ -103,7 +103,6 @@ class RequestHandler
 
         $gapicObj = $this->getGapicObject($gapicClass);
 
-        // TODO: check how can we simplify the use of $whitelisted
         return $this->send([$gapicObj, $method], $allArgs, $whitelisted);
     }
 
@@ -112,7 +111,7 @@ class RequestHandler
      *
      * @return Serializer
      */
-    public function getSerializer()
+    public function getSerializer() : Serializer
     {
         return $this->serializer;
     }
@@ -122,7 +121,7 @@ class RequestHandler
      *
      * @return void
      */
-    public function setSerializer(Serializer $serializer)
+    public function setSerializer(Serializer $serializer) : void
     {
         $this->serializer = $serializer;
     }
@@ -135,19 +134,19 @@ class RequestHandler
      * @param $gapicClass The GAPIC class whose object we need.
      * @return mixed
      */
-    private function getGapicObject(string $gapicClass)
+    private function getGapicObject(string $gapicClass) : mixed
     {
         return $this->gapics[$gapicClass] ?? null;
     }
 
-    private function getDefaultTransport()
+    private function getDefaultTransport() : string
     {
         $isGrpcExtensionLoaded = $this->isGrpcLoaded();
         $defaultTransport = $isGrpcExtensionLoaded ? 'grpc' : 'rest';
         return $defaultTransport;
     }
 
-    protected function isGrpcLoaded()
+    protected function isGrpcLoaded() : bool
     {
         return extension_loaded('grpc');
     }

@@ -24,7 +24,7 @@ use Google\Cloud\Core\Duration;
  * @internal
  * Supplies helper methods to interact with the APIs.
  */
-trait ApiHelpersTrait
+trait ApiHelperTrait
 {
     use ArrayTrait;
     use TimeTrait;
@@ -35,7 +35,7 @@ trait ApiHelpersTrait
      * @param array $fields
      * @return array
      */
-    private function formatStructForApi(array $fields)
+    private function formatStructForApi(array $fields) : array
     {
         $fFields = [];
 
@@ -46,7 +46,7 @@ trait ApiHelpersTrait
         return ['fields' => $fFields];
     }
 
-    private function unpackStructFromApi(array $struct)
+    private function unpackStructFromApi(array $struct) : array
     {
         $vals = [];
         foreach ($struct['fields'] as $key => $val) {
@@ -55,7 +55,7 @@ trait ApiHelpersTrait
         return $vals;
     }
 
-    private function unpackValue($value)
+    private function unpackValue(array $value) : mixed
     {
         if (count($value) > 1) {
             throw new \RuntimeException("Unexpected fields in struct: $value");
@@ -77,12 +77,12 @@ trait ApiHelpersTrait
         }
     }
 
-    private function flattenStruct(array $struct)
+    private function flattenStruct(array $struct) : mixed
     {
         return $struct['fields'];
     }
 
-    private function flattenValue(array $value)
+    private function flattenValue(array $value) : mixed
     {
         if (count($value) > 1) {
             throw new \RuntimeException("Unexpected fields in struct: $value");
@@ -95,7 +95,7 @@ trait ApiHelpersTrait
         return array_pop($value);
     }
 
-    private function flattenListValue(array $value)
+    private function flattenListValue(array $value) : mixed
     {
         return $value['values'];
     }
@@ -106,7 +106,7 @@ trait ApiHelpersTrait
      * @param array $list
      * @return array
      */
-    private function formatListForApi(array $list)
+    private function formatListForApi(array $list) : array
     {
         $values = [];
 
@@ -123,7 +123,7 @@ trait ApiHelpersTrait
      * @param array $value
      * @return array
      */
-    private function formatValueForApi($value)
+    private function formatValueForApi(array $value) : array
     {
         $type = gettype($value);
 
@@ -154,7 +154,7 @@ trait ApiHelpersTrait
      * @param array $timestamp
      * @return string
      */
-    private function formatTimestampFromApi(array $timestamp)
+    private function formatTimestampFromApi(array $timestamp) : string
     {
         $timestamp += [
             'seconds' => 0,
@@ -172,7 +172,7 @@ trait ApiHelpersTrait
      * @param string $value
      * @return array
      */
-    private function formatTimestampForApi($value)
+    private function formatTimestampForApi(string $value) : array
     {
         list ($dt, $nanos) = $this->parseTimeString($value);
 
@@ -188,7 +188,7 @@ trait ApiHelpersTrait
      * @param string|mixed $value
      * @return array
      */
-    private function formatDurationForApi($value)
+    private function formatDurationForApi(mixed $value) : array
     {
         if (is_string($value)) {
             $d = explode('.', trim($value, 's'));
@@ -218,7 +218,7 @@ trait ApiHelpersTrait
      * @param array $config
      * @return mixed
      */
-    protected function constructGapic($gapicName, array $config)
+    protected function constructGapic(string $gapicName, array $config) : mixed
     {
         return new $gapicName($config);
     }
