@@ -218,7 +218,7 @@ trait ApiHelperTrait
      * @param array $config
      * @return mixed
      */
-    protected function constructGapic(string $gapicName, array $config) : mixed
+    protected function constructGapic(string $gapicName, array $config)
     {
         return new $gapicName($config);
     }
