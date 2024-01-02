@@ -222,8 +222,8 @@ trait RequestWrapperTrait
                     ));
                 }
             } else {
-                $credentialsUniverse = $this->credentialsFetcher instanceof GetUniverseDomainInterface
-                    ? $this->credentialsFetcher->getUniverseDomain()
+                $credentialsUniverse = $credentialsFetcher instanceof GetUniverseDomainInterface
+                    ? $credentialsFetcher->getUniverseDomain()
                     : GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN;
                 if ($credentialsUniverse !== $this->universeDomain) {
                     throw new GoogleException(sprintf(
