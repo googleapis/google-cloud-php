@@ -38,14 +38,14 @@ trait RequestCallerTrait
      * @var GapicRequestWrapper Wrapper used to handle sending requests to the
      * gRPC/REST API.
      */
-    private $requestWrapper;
+    private GapicRequestWrapper $requestWrapper;
 
     /**
      * Sets the request wrapper.
      *
      * @param GapicRequestWrapper $requestWrapper
      */
-    public function setRequestWrapper(GapicRequestWrapper $requestWrapper)
+    public function setRequestWrapper(GapicRequestWrapper $requestWrapper) : void
     {
         $this->requestWrapper = $requestWrapper;
     }
@@ -55,7 +55,7 @@ trait RequestCallerTrait
      *
      * @return GapicRequestWrapper|null
      */
-    public function requestWrapper()
+    public function requestWrapper() : mixed
     {
         return $this->requestWrapper;
     }
@@ -69,7 +69,7 @@ trait RequestCallerTrait
      * @return \Generator|array
      * @throws ServiceException
      */
-    public function send(callable $request, array $args, $whitelisted = false)
+    public function send(callable $request, array $args, bool $whitelisted = false) : mixed
     {
         try {
             return $this->requestWrapper->send($request, $args);

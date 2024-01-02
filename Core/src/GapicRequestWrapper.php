@@ -23,6 +23,7 @@ use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\Serializer;
 use Google\ApiCore\ServerStream;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Protobuf\Internal\Message;
 use Google\Rpc\BadRequest;
 use Google\Rpc\Code;
@@ -37,24 +38,22 @@ class GapicRequestWrapper
     /**
      * @var Serializer A serializer used to encode responses.
      */
-    private $serializer;
+    private Serializer $serializer;
 
     /**
      * @var array Map of error metadata types to RPC wrappers.
      */
-    private $metadataTypes = [
+    private array $metadataTypes = [
         'google.rpc.retryinfo-bin' => RetryInfo::class,
         'google.rpc.badrequest-bin' => BadRequest::class
     ];
 
     /**
-     * @param array $config [optional] {
-     *     @type Serializer $serializer A serializer used to encode responses.
-     * }
+     * @param Serializer $serializer A serializer used to encode responses.
      */
-    public function __construct(array $config = [])
+    public function __construct(Serializer $serializer = null)
     {
-        $this->serializer = $config['serializer'] ?? new Serializer;
+        $this->serializer = $serializer ?? new Serializer;
     }
 
     /**
@@ -62,20 +61,16 @@ class GapicRequestWrapper
      *
      * @param callable $request The request to execute.
      * @param array $args The arguments for the request.
-     * @return array
+     * @return \Generator|OperationResponse|array|null
      * @throws Exception\ServiceException
      */
-    public function send(callable $request, array $args)
+    public function send(callable $request, array $args) : mixed
     {
         try {
             $response = call_user_func_array($request, $args);
             return $this->handleResponse($response);
-        } catch (\Exception $ex) {
-            if ($ex instanceof ApiException) {
-                throw $this->convertToGoogleException($ex);
-            }
-
-            throw $ex;
+        } catch (ApiException $ex) {
+            throw $this->convertToGoogleException($ex);
         }
     }
 
@@ -85,7 +80,7 @@ class GapicRequestWrapper
      * @param mixed $response
      * @return \Generator|OperationResponse|array|null
      */
-    private function handleResponse($response)
+    private function handleResponse(mixed $response) : mixed
     {
         if ($response instanceof PagedListResponse) {
             $response = $response->getPage()->getResponseObject();
@@ -113,7 +108,7 @@ class GapicRequestWrapper
      * @return \Generator|array|null
      * @throws Exception\ServiceException
      */
-    private function handleStream($response)
+    private function handleStream(ServerStream $response) : mixed
     {
         try {
             foreach ($response->readAll() as $count => $result) {
@@ -129,9 +124,9 @@ class GapicRequestWrapper
      * Convert a ApiCore exception to a Google Exception.
      *
      * @param \Exception $ex
-     * @return Exception\ServiceException
+     * @return ServiceException
      */
-    private function convertToGoogleException($ex)
+    private function convertToGoogleException(\Exception $ex): ServiceException
     {
         switch ($ex->getCode()) {
             case Code::INVALID_ARGUMENT:
@@ -173,7 +168,7 @@ class GapicRequestWrapper
         }
 
         $metadata = [];
-        if ($ex->getMetadata()) {
+        if (method_exists($ex, 'getMetadata') && $ex->getMetadata()) {
             foreach ($ex->getMetadata() as $type => $binaryValue) {
                 if (!isset($this->metadataTypes[$type])) {
                     continue;

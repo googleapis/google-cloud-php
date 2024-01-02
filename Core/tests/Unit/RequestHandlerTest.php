@@ -68,21 +68,22 @@ class RequestHandlerTest extends TestCase
     {
         return [
             // First check for the case when a class is passed.
-            [[SampleGapicClass1::class => SampleGapicClass1::class], SampleGapicClass1::class],
+            [[SampleGapicClass1::class], SampleGapicClass1::class],
             // Then check for when an object was passed.
-            [[SampleGapicClass2::class => new SampleGapicClass2()], SampleGapicClass2::class]
+            [[SampleGapicClass2::class], SampleGapicClass2::class]
         ];
     }
 
     public function testSendRequest()
     {
-        $gapicObj = new SampleGapicClass2();
-        $gapicClasses = [SampleGapicClass2::class => $gapicObj];
+        $gapicClasses = [SampleGapicClass2::class];
         $requestHandler = new RequestHandler($this->serializer->reveal(), $gapicClasses);
 
         $responseStr = '{"foo": "bar"}';
-        $this->requestWrapper->send([$gapicObj, 'sampleMethod'], Argument::cetera())
-            ->willReturn(new Response(200, [], $responseStr));
+        $this->requestWrapper->send(
+            Argument::containing('sampleMethod'),
+            Argument::cetera()
+        )->willReturn(new Response(200, [], $responseStr));
 
         $requestHandler->setRequestWrapper($this->requestWrapper->reveal());
 
@@ -95,12 +96,13 @@ class RequestHandlerTest extends TestCase
 
     public function testSendRequestThrowsException()
     {
-        $gapicObj = new SampleGapicClass2();
-        $gapicClasses = [SampleGapicClass2::class => $gapicObj];
+        $gapicClasses = [SampleGapicClass2::class];
         $requestHandler = new RequestHandler($this->serializer->reveal(), $gapicClasses);
 
-        $this->requestWrapper->send([$gapicObj, 'sampleMethod'], Argument::cetera())
-            ->willThrow(new BadRequestException('exception message'));
+        $this->requestWrapper->send(
+            Argument::containing('sampleMethod'),
+            Argument::cetera()
+        )->willThrow(new BadRequestException('exception message'));
 
         $requestHandler->setRequestWrapper($this->requestWrapper->reveal());
 
@@ -113,29 +115,25 @@ class RequestHandlerTest extends TestCase
 
     public function testRequiredAndOptionalArgs()
     {
-        $passedRequiredArgs = ['foo', 'bar'];
+        $passedRequiredArgs = ['foo'];
         $passedOptionalArgs = ['key' => 'val'];
 
-        $gapicObj = $this->prophesize(SampleGapicClass2::class);
         $caller = $this;
 
-        $gapicObj->sampleMethod2(Argument::cetera())
-            ->will(function ($args) use ($passedRequiredArgs, $passedOptionalArgs, $caller) {
-                $requiredArgs = $args[0];
-                $optionalArgs = $args[1];
-                $caller->assertEquals($passedRequiredArgs, $requiredArgs);
-                $caller->assertEquals($passedOptionalArgs, $optionalArgs);
+        $cb = function ($arg1, $optionalArgs) use ($passedRequiredArgs, $passedOptionalArgs, $caller) {
+            $caller->assertEquals($passedRequiredArgs[0], $arg1);
+            $caller->assertEquals($passedOptionalArgs, $optionalArgs);
+        };
 
-                return true;
-            });
+        $passedRequiredArgs[1] = $cb;
 
-        $gapicClasses = [SampleGapicClass2::class => $gapicObj->reveal()];
+        $gapicClasses = [SampleGapicClass2::class];
         $requestHandler = new RequestHandler($this->serializer->reveal(), $gapicClasses);
 
         $requestHandler->sendRequest(
             SampleGapicClass2::class,
             'sampleMethod2',
-            [$passedRequiredArgs],
+            $passedRequiredArgs,
             $passedOptionalArgs
         );
     }

@@ -32,9 +32,9 @@ class RequestHandler
     /**
      * @var Serializer
      */
-    private $serializer;
+    private Serializer $serializer;
 
-    private $gapics;
+    private array $gapics;
 
     /**
      * @param array $config
@@ -48,7 +48,7 @@ class RequestHandler
         $this->serializer = $serializer;
         $clientConfig['serializer'] = $serializer;
 
-        $this->setRequestWrapper(new GapicRequestWrapper($clientConfig));
+        $this->setRequestWrapper(new GapicRequestWrapper($serializer));
 
         // Adds some defaults
         // gccl needs to be present for handwritten clients
@@ -69,15 +69,15 @@ class RequestHandler
         
         // Initialize the Gapic classes and store them in memory
         $this->gapics = [];
-        foreach ($gapicClasses as $cls => $obj) {
-            $this->gapics[$cls] = is_object($obj) ? $obj : new $cls($clientConfig);
+        foreach ($gapicClasses as $cls) {
+            $this->gapics[$cls] = new $cls($clientConfig);
         }
     }
 
     /**
      * Helper function that forwards the request to a gapic client obj.
      *
-     * @param $gapicClassOrObject The request will be forwarded to this GAPIC.
+     * @param $gapicClass The request will be forwarded to this GAPIC class.
      * @param $method This method needs to be called on the gapic obj.
      * @param $requiredArgs The positional arguments to be passed on the $method
      * @param $args The optional args.
@@ -88,12 +88,12 @@ class RequestHandler
      * This is useful to override the GAPIC object used for one specific request.
      */
     public function sendRequest(
-        $gapicClassOrObject,
+        string $gapicClass,
         string $method,
         array $requiredArgs,
         array $optionalArgs,
         bool $whitelisted = false
-    ) {
+    ) : mixed {
 
         $allArgs = $requiredArgs;
 
@@ -101,9 +101,8 @@ class RequestHandler
         // passed on the the `$method` as a positional argument
         $allArgs[] = $optionalArgs;
 
-        $gapicObj = $this->getGapicObject($gapicClassOrObject);
+        $gapicObj = $this->getGapicObject($gapicClass);
 
-        // TODO: check how can we simplify the use of $whitelisted
         return $this->send([$gapicObj, $method], $allArgs, $whitelisted);
     }
 
@@ -112,7 +111,7 @@ class RequestHandler
      *
      * @return Serializer
      */
-    public function getSerializer()
+    public function getSerializer() : Serializer
     {
         return $this->serializer;
     }
@@ -122,7 +121,7 @@ class RequestHandler
      *
      * @return void
      */
-    public function setSerializer(Serializer $serializer)
+    public function setSerializer(Serializer $serializer) : void
     {
         $this->serializer = $serializer;
     }
@@ -132,24 +131,22 @@ class RequestHandler
      * using the GAPIC class as key.
      * Alternatively, if a GAPIC object is supplied, then that object is returned
      * as is.
+     * @param $gapicClass The GAPIC class whose object we need.
+     * @return mixed
      */
-    private function getGapicObject($gapicClassOrObject)
+    private function getGapicObject(string $gapicClass) : mixed
     {
-        if (is_object($gapicClassOrObject)) {
-            return $gapicClassOrObject;
-        }
-
-        return $this->gapics[$gapicClassOrObject];
+        return $this->gapics[$gapicClass] ?? null;
     }
 
-    private function getDefaultTransport()
+    private function getDefaultTransport() : string
     {
         $isGrpcExtensionLoaded = $this->isGrpcLoaded();
         $defaultTransport = $isGrpcExtensionLoaded ? 'grpc' : 'rest';
         return $defaultTransport;
     }
 
-    protected function isGrpcLoaded()
+    protected function isGrpcLoaded() : bool
     {
         return extension_loaded('grpc');
     }
