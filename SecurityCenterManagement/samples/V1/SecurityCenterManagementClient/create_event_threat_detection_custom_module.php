@@ -29,10 +29,8 @@ use Google\Cloud\SecurityCenterManagement\V1\CreateEventThreatDetectionCustomMod
 use Google\Cloud\SecurityCenterManagement\V1\EventThreatDetectionCustomModule;
 
 /**
- * Creates a resident Event Threat Detection custom module at the scope of the
- * given Resource Manager parent, and also creates inherited custom modules
- * for all descendants of the given parent. These modules are enabled by
- * default.
+ * Creates an ETD custom module at the given level. Creating a module has a
+ * side-effect of creating modules at all descendants.
  *
  * @param string $formattedParent Name of parent for the module. Its format is
  *                                "organizations/{organization}/locations/{location}",
