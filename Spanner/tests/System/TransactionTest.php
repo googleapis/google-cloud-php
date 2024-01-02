@@ -274,7 +274,7 @@ class TransactionTest extends SpannerTestCase
         }
     }
 
-    public function testRunTransactionWithMultipleOperations()
+    public function testRunTransactionILBWithMultipleOperations()
     {
         $db = self::$database;
 
@@ -287,7 +287,7 @@ class TransactionTest extends SpannerTestCase
             ];
             // Representative of all mutations
             $t->insert(self::TEST_TABLE_NAME, $row);
-            //$this->assertNull($t->id());
+            $this->assertNull($t->id());
 
             $id = rand(1, 346464);
             $t->executeUpdate(
