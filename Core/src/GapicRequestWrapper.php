@@ -108,7 +108,7 @@ class GapicRequestWrapper
      * @return \Generator|array|null
      * @throws Exception\ServiceException
      */
-    private function handleStream(ServerStream $response) : mixed
+    private function handleStream(ServerStream $response)
     {
         try {
             foreach ($response->readAll() as $count => $result) {
