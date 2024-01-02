@@ -18,13 +18,11 @@
 namespace Google\Cloud\Core;
 
 use Google\Auth\ApplicationDefaultCredentials;
-use Google\Auth\GetUniverseDomainInterface;
 use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Core\Exception\GoogleException;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
@@ -205,35 +203,6 @@ trait RequestWrapperTrait
                 $this->authCacheOptions,
                 $this->authCache
             );
-        }
-    }
-
-    /**
-     * Verify that the expected universe domain matches the universe domain from the credentials.
-     */
-    private function checkUniverseDomain(FetchAuthTokenInterface $credentialsFetcher = null)
-    {
-        if (false === $this->hasCheckedUniverse) {
-            if (is_null($credentialsFetcher)) {
-                if ($this->universeDomain !== GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN) {
-                    throw new GoogleException(sprintf(
-                        'The accessToken option is not supported outside of the default universe domain (%s).',
-                        GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN
-                    ));
-                }
-            } else {
-                $credentialsUniverse = $credentialsFetcher instanceof GetUniverseDomainInterface
-                    ? $credentialsFetcher->getUniverseDomain()
-                    : GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN;
-                if ($credentialsUniverse !== $this->universeDomain) {
-                    throw new GoogleException(sprintf(
-                        'The configured universe domain (%s) does not match the credential universe domain (%s)',
-                        $this->universeDomain,
-                        $credentialsUniverse
-                    ));
-                }
-            }
-            $this->hasCheckedUniverse = true;
         }
     }
 

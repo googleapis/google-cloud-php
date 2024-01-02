@@ -26,6 +26,7 @@ use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Auth\UpdateMetadataInterface;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\RequestWrapperTrait;
+use Google\Cloud\Core\Exception\GoogleException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Utils;
@@ -96,6 +97,16 @@ class RequestWrapper
     private $calcDelayFunction;
 
     /**
+     * @var string The universe domain to verify against the credentials.
+     */
+    private string $universeDomain;
+
+    /**
+     * @var bool Ensure we only check the universe domain once.
+     */
+    private bool $hasCheckedUniverse = false;
+
+    /**
      * @param array $config [optional] {
      *     Configuration options. Please see
      *     {@see \Google\Cloud\Core\RequestWrapperTrait::setCommonDefaults()} for
@@ -126,6 +137,7 @@ class RequestWrapper
      *     @type callable $restCalcDelayFunction Sets the conditions for
      *           determining how long to wait between attempts to retry. Function
      *           signature should match: `function (int $attempt) : int`.
+     *     @type string $universerDomain The expected universe of the credentials. Defaults to "googleapis.com".
      * }
      */
     public function __construct(array $config = [])
@@ -494,5 +506,37 @@ class RequestWrapper
         return $this->httpHandler instanceof Guzzle6HttpHandler
             ? [$this->httpHandler, 'async']
             : [HttpHandlerFactory::build(), 'async'];
+    }
+
+    /**
+     * Verify that the expected universe domain matches the universe domain from the credentials.
+     */
+    private function checkUniverseDomain(FetchAuthTokenInterface $credentialsFetcher = null)
+    {
+        if (false === $this->hasCheckedUniverse) {
+            if ($this->universeDomain === '') {
+                throw new GoogleException('The universe domain cannot be empty.');
+            }
+            if (is_null($credentialsFetcher)) {
+                if ($this->universeDomain !== GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN) {
+                    throw new GoogleException(sprintf(
+                        'The accessToken option is not supported outside of the default universe domain (%s).',
+                        GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN
+                    ));
+                }
+            } else {
+                $credentialsUniverse = $credentialsFetcher instanceof GetUniverseDomainInterface
+                    ? $credentialsFetcher->getUniverseDomain()
+                    : GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN;
+                if ($credentialsUniverse !== $this->universeDomain) {
+                    throw new GoogleException(sprintf(
+                        'The configured universe domain (%s) does not match the credential universe domain (%s)',
+                        $this->universeDomain,
+                        $credentialsUniverse
+                    ));
+                }
+            }
+            $this->hasCheckedUniverse = true;
+        }
     }
 }
