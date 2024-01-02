@@ -123,7 +123,7 @@ trait ApiHelperTrait
      * @param mixed $value
      * @return array
      */
-    private function formatValueForApi(mixed $value) : array
+    private function formatValueForApi($value) : array
     {
         $type = gettype($value);
 
@@ -188,7 +188,7 @@ trait ApiHelperTrait
      * @param string|mixed $value
      * @return array
      */
-    private function formatDurationForApi(mixed $value) : array
+    private function formatDurationForApi($value) : array
     {
         if (is_string($value)) {
             $d = explode('.', trim($value, 's'));

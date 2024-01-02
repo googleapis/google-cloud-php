@@ -80,7 +80,7 @@ class GapicRequestWrapper
      * @param mixed $response
      * @return \Generator|OperationResponse|array|null
      */
-    private function handleResponse(mixed $response)
+    private function handleResponse($response)
     {
         if ($response instanceof PagedListResponse) {
             $response = $response->getPage()->getResponseObject();
