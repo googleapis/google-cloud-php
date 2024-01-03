@@ -25,10 +25,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkconnectivity_v1_generated_PolicyBasedRoutingService_CreatePolicyBasedRoute_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\NetworkConnectivity\V1\Client\PolicyBasedRoutingServiceClient;
+use Google\Cloud\NetworkConnectivity\V1\CreatePolicyBasedRouteRequest;
 use Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute;
 use Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute\Filter;
 use Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute\Filter\ProtocolVersion;
-use Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoutingServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -52,21 +53,21 @@ function create_policy_based_route_sample(
     // Create a client.
     $policyBasedRoutingServiceClient = new PolicyBasedRoutingServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $policyBasedRouteFilter = (new Filter())
         ->setProtocolVersion($policyBasedRouteFilterProtocolVersion);
     $policyBasedRoute = (new PolicyBasedRoute())
         ->setNetwork($formattedPolicyBasedRouteNetwork)
         ->setFilter($policyBasedRouteFilter);
+    $request = (new CreatePolicyBasedRouteRequest())
+        ->setParent($formattedParent)
+        ->setPolicyBasedRouteId($policyBasedRouteId)
+        ->setPolicyBasedRoute($policyBasedRoute);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $policyBasedRoutingServiceClient->createPolicyBasedRoute(
-            $formattedParent,
-            $policyBasedRouteId,
-            $policyBasedRoute
-        );
+        $response = $policyBasedRoutingServiceClient->createPolicyBasedRoute($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

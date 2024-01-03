@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_Conversations_CreateConversation_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\V2\Client\ConversationsClient;
 use Google\Cloud\Dialogflow\V2\Conversation;
-use Google\Cloud\Dialogflow\V2\ConversationsClient;
+use Google\Cloud\Dialogflow\V2\CreateConversationRequest;
 
 /**
  * Creates a new conversation. Conversations are auto-completed after 24
@@ -66,14 +67,17 @@ function create_conversation_sample(
     // Create a client.
     $conversationsClient = new ConversationsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $conversation = (new Conversation())
         ->setConversationProfile($formattedConversationConversationProfile);
+    $request = (new CreateConversationRequest())
+        ->setParent($formattedParent)
+        ->setConversation($conversation);
 
     // Call the API and handle any network failures.
     try {
         /** @var Conversation $response */
-        $response = $conversationsClient->createConversation($formattedParent, $conversation);
+        $response = $conversationsClient->createConversation($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

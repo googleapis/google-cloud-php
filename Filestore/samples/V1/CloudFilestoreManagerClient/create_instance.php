@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START file_v1_generated_CloudFilestoreManager_CreateInstance_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Filestore\V1\CloudFilestoreManagerClient;
+use Google\Cloud\Filestore\V1\Client\CloudFilestoreManagerClient;
+use Google\Cloud\Filestore\V1\CreateInstanceRequest;
 use Google\Cloud\Filestore\V1\Instance;
 use Google\Rpc\Status;
 
@@ -47,13 +48,17 @@ function create_instance_sample(string $formattedParent, string $instanceId): vo
     // Create a client.
     $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instance = new Instance();
+    $request = (new CreateInstanceRequest())
+        ->setParent($formattedParent)
+        ->setInstanceId($instanceId)
+        ->setInstance($instance);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudFilestoreManagerClient->createInstance($formattedParent, $instanceId, $instance);
+        $response = $cloudFilestoreManagerClient->createInstance($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

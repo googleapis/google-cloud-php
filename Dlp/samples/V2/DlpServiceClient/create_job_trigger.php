@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dlp_v2_generated_DlpService_CreateJobTrigger_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dlp\V2\DlpServiceClient;
+use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
+use Google\Cloud\Dlp\V2\CreateJobTriggerRequest;
 use Google\Cloud\Dlp\V2\JobTrigger;
 use Google\Cloud\Dlp\V2\JobTrigger\Status;
 
@@ -57,14 +58,17 @@ function create_job_trigger_sample(string $formattedParent, int $jobTriggerStatu
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $jobTrigger = (new JobTrigger())
         ->setStatus($jobTriggerStatus);
+    $request = (new CreateJobTriggerRequest())
+        ->setParent($formattedParent)
+        ->setJobTrigger($jobTrigger);
 
     // Call the API and handle any network failures.
     try {
         /** @var JobTrigger $response */
-        $response = $dlpServiceClient->createJobTrigger($formattedParent, $jobTrigger);
+        $response = $dlpServiceClient->createJobTrigger($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

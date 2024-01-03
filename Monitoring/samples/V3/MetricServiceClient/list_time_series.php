@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START monitoring_v3_generated_MetricService_ListTimeSeries_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Monitoring\V3\Client\MetricServiceClient;
+use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest;
 use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest\TimeSeriesView;
-use Google\Cloud\Monitoring\V3\MetricServiceClient;
 use Google\Cloud\Monitoring\V3\TimeInterval;
 use Google\Cloud\Monitoring\V3\TimeSeries;
 
@@ -54,13 +55,18 @@ function list_time_series_sample(string $formattedName, string $filter, int $vie
     // Create a client.
     $metricServiceClient = new MetricServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $interval = new TimeInterval();
+    $request = (new ListTimeSeriesRequest())
+        ->setName($formattedName)
+        ->setFilter($filter)
+        ->setInterval($interval)
+        ->setView($view);
 
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $metricServiceClient->listTimeSeries($formattedName, $filter, $interval, $view);
+        $response = $metricServiceClient->listTimeSeries($request);
 
         /** @var TimeSeries $element */
         foreach ($response as $element) {

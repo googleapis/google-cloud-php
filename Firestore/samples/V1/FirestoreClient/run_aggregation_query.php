@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START firestore_v1_generated_Firestore_RunAggregationQuery_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ServerStream;
-use Google\Cloud\Firestore\V1\FirestoreClient;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
+use Google\Cloud\Firestore\V1\RunAggregationQueryRequest;
 use Google\Cloud\Firestore\V1\RunAggregationQueryResponse;
 
 /**
@@ -55,10 +56,14 @@ function run_aggregation_query_sample(string $parent): void
     // Create a client.
     $firestoreClient = new FirestoreClient();
 
+    // Prepare the request message.
+    $request = (new RunAggregationQueryRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var ServerStream $stream */
-        $stream = $firestoreClient->runAggregationQuery($parent);
+        $stream = $firestoreClient->runAggregationQuery($request);
 
         /** @var RunAggregationQueryResponse $element */
         foreach ($stream->readAll() as $element) {

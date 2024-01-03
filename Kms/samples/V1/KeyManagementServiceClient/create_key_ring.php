@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudkms_v1_generated_KeyManagementService_CreateKeyRing_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Kms\V1\KeyManagementServiceClient;
+use Google\Cloud\Kms\V1\Client\KeyManagementServiceClient;
+use Google\Cloud\Kms\V1\CreateKeyRingRequest;
 use Google\Cloud\Kms\V1\KeyRing;
 
 /**
@@ -43,13 +44,17 @@ function create_key_ring_sample(string $formattedParent, string $keyRingId): voi
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $keyRing = new KeyRing();
+    $request = (new CreateKeyRingRequest())
+        ->setParent($formattedParent)
+        ->setKeyRingId($keyRingId)
+        ->setKeyRing($keyRing);
 
     // Call the API and handle any network failures.
     try {
         /** @var KeyRing $response */
-        $response = $keyManagementServiceClient->createKeyRing($formattedParent, $keyRingId, $keyRing);
+        $response = $keyManagementServiceClient->createKeyRing($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

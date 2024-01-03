@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_SessionEntityTypes_GetSessionEntityType_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\V2\Client\SessionEntityTypesClient;
+use Google\Cloud\Dialogflow\V2\GetSessionEntityTypeRequest;
 use Google\Cloud\Dialogflow\V2\SessionEntityType;
-use Google\Cloud\Dialogflow\V2\SessionEntityTypesClient;
 
 /**
  * Retrieves the specified session entity type.
@@ -48,10 +49,14 @@ function get_session_entity_type_sample(string $formattedName): void
     // Create a client.
     $sessionEntityTypesClient = new SessionEntityTypesClient();
 
+    // Prepare the request message.
+    $request = (new GetSessionEntityTypeRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var SessionEntityType $response */
-        $response = $sessionEntityTypesClient->getSessionEntityType($formattedName);
+        $response = $sessionEntityTypesClient->getSessionEntityType($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

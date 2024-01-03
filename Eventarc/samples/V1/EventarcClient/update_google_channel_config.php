@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START eventarc_v1_generated_Eventarc_UpdateGoogleChannelConfig_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Eventarc\V1\EventarcClient;
+use Google\Cloud\Eventarc\V1\Client\EventarcClient;
 use Google\Cloud\Eventarc\V1\GoogleChannelConfig;
+use Google\Cloud\Eventarc\V1\UpdateGoogleChannelConfigRequest;
 
 /**
  * Update a single GoogleChannelConfig
@@ -38,14 +39,16 @@ function update_google_channel_config_sample(string $googleChannelConfigName): v
     // Create a client.
     $eventarcClient = new EventarcClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $googleChannelConfig = (new GoogleChannelConfig())
         ->setName($googleChannelConfigName);
+    $request = (new UpdateGoogleChannelConfigRequest())
+        ->setGoogleChannelConfig($googleChannelConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var GoogleChannelConfig $response */
-        $response = $eventarcClient->updateGoogleChannelConfig($googleChannelConfig);
+        $response = $eventarcClient->updateGoogleChannelConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

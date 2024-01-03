@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START logging_v2_generated_MetricsServiceV2_DeleteLogMetric_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Logging\V2\MetricsServiceV2Client;
+use Google\Cloud\Logging\V2\Client\MetricsServiceV2Client;
+use Google\Cloud\Logging\V2\DeleteLogMetricRequest;
 
 /**
  * Deletes a logs-based metric.
@@ -39,9 +40,13 @@ function delete_log_metric_sample(string $formattedMetricName): void
     // Create a client.
     $metricsServiceV2Client = new MetricsServiceV2Client();
 
+    // Prepare the request message.
+    $request = (new DeleteLogMetricRequest())
+        ->setMetricName($formattedMetricName);
+
     // Call the API and handle any network failures.
     try {
-        $metricsServiceV2Client->deleteLogMetric($formattedMetricName);
+        $metricsServiceV2Client->deleteLogMetric($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

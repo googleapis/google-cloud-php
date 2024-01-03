@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START firestore_v1_generated_Firestore_BeginTransaction_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Firestore\V1\BeginTransactionRequest;
 use Google\Cloud\Firestore\V1\BeginTransactionResponse;
-use Google\Cloud\Firestore\V1\FirestoreClient;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 
 /**
  * Starts a new transaction.
@@ -38,10 +39,14 @@ function begin_transaction_sample(string $database): void
     // Create a client.
     $firestoreClient = new FirestoreClient();
 
+    // Prepare the request message.
+    $request = (new BeginTransactionRequest())
+        ->setDatabase($database);
+
     // Call the API and handle any network failures.
     try {
         /** @var BeginTransactionResponse $response */
-        $response = $firestoreClient->beginTransaction($database);
+        $response = $firestoreClient->beginTransaction($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

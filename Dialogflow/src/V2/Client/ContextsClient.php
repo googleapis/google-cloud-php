@@ -429,6 +429,8 @@ final class ContextsClient
      *
      * The async variant is {@see ContextsClient::createContextAsync()} .
      *
+     * @example samples/V2/ContextsClient/create_context.php
+     *
      * @param CreateContextRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -453,6 +455,8 @@ final class ContextsClient
      *
      * The async variant is {@see ContextsClient::deleteAllContextsAsync()} .
      *
+     * @example samples/V2/ContextsClient/delete_all_contexts.php
+     *
      * @param DeleteAllContextsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -475,6 +479,8 @@ final class ContextsClient
      *
      * The async variant is {@see ContextsClient::deleteContextAsync()} .
      *
+     * @example samples/V2/ContextsClient/delete_context.php
+     *
      * @param DeleteContextRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -496,6 +502,8 @@ final class ContextsClient
      * Retrieves the specified context.
      *
      * The async variant is {@see ContextsClient::getContextAsync()} .
+     *
+     * @example samples/V2/ContextsClient/get_context.php
      *
      * @param GetContextRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -521,6 +529,8 @@ final class ContextsClient
      *
      * The async variant is {@see ContextsClient::listContextsAsync()} .
      *
+     * @example samples/V2/ContextsClient/list_contexts.php
+     *
      * @param ListContextsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -544,6 +554,8 @@ final class ContextsClient
      * Updates the specified context.
      *
      * The async variant is {@see ContextsClient::updateContextAsync()} .
+     *
+     * @example samples/V2/ContextsClient/update_context.php
      *
      * @param UpdateContextRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -569,6 +581,8 @@ final class ContextsClient
      *
      * The async variant is {@see ContextsClient::getLocationAsync()} .
      *
+     * @example samples/V2/ContextsClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -592,6 +606,8 @@ final class ContextsClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see ContextsClient::listLocationsAsync()} .
+     *
+     * @example samples/V2/ContextsClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

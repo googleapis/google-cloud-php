@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START documentai_v1_generated_DocumentProcessorService_DisableProcessor_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\DocumentAI\V1\Client\DocumentProcessorServiceClient;
+use Google\Cloud\DocumentAI\V1\DisableProcessorRequest;
 use Google\Cloud\DocumentAI\V1\DisableProcessorResponse;
-use Google\Cloud\DocumentAI\V1\DocumentProcessorServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,14 @@ function disable_processor_sample(string $formattedName): void
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
+    // Prepare the request message.
+    $request = (new DisableProcessorRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $documentProcessorServiceClient->disableProcessor($formattedName);
+        $response = $documentProcessorServiceClient->disableProcessor($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

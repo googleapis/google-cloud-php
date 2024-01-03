@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START eventarc_v1_generated_Eventarc_DeleteTrigger_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Eventarc\V1\EventarcClient;
+use Google\Cloud\Eventarc\V1\Client\EventarcClient;
+use Google\Cloud\Eventarc\V1\DeleteTriggerRequest;
 use Google\Cloud\Eventarc\V1\Trigger;
 use Google\Rpc\Status;
 
@@ -42,10 +43,15 @@ function delete_trigger_sample(string $formattedName, bool $validateOnly): void
     // Create a client.
     $eventarcClient = new EventarcClient();
 
+    // Prepare the request message.
+    $request = (new DeleteTriggerRequest())
+        ->setName($formattedName)
+        ->setValidateOnly($validateOnly);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $eventarcClient->deleteTrigger($formattedName, $validateOnly);
+        $response = $eventarcClient->deleteTrigger($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

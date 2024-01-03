@@ -425,6 +425,8 @@ final class EnvironmentsClient
      *
      * The async variant is {@see EnvironmentsClient::createEnvironmentAsync()} .
      *
+     * @example samples/V2/EnvironmentsClient/create_environment.php
+     *
      * @param CreateEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -449,6 +451,8 @@ final class EnvironmentsClient
      *
      * The async variant is {@see EnvironmentsClient::deleteEnvironmentAsync()} .
      *
+     * @example samples/V2/EnvironmentsClient/delete_environment.php
+     *
      * @param DeleteEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -470,6 +474,8 @@ final class EnvironmentsClient
      * Retrieves the specified agent environment.
      *
      * The async variant is {@see EnvironmentsClient::getEnvironmentAsync()} .
+     *
+     * @example samples/V2/EnvironmentsClient/get_environment.php
      *
      * @param GetEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -495,6 +501,8 @@ final class EnvironmentsClient
      *
      * The async variant is {@see EnvironmentsClient::getEnvironmentHistoryAsync()} .
      *
+     * @example samples/V2/EnvironmentsClient/get_environment_history.php
+     *
      * @param GetEnvironmentHistoryRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -518,6 +526,8 @@ final class EnvironmentsClient
      * Returns the list of all non-default environments of the specified agent.
      *
      * The async variant is {@see EnvironmentsClient::listEnvironmentsAsync()} .
+     *
+     * @example samples/V2/EnvironmentsClient/list_environments.php
      *
      * @param ListEnvironmentsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -554,6 +564,8 @@ final class EnvironmentsClient
      *
      * The async variant is {@see EnvironmentsClient::updateEnvironmentAsync()} .
      *
+     * @example samples/V2/EnvironmentsClient/update_environment.php
+     *
      * @param UpdateEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -578,6 +590,8 @@ final class EnvironmentsClient
      *
      * The async variant is {@see EnvironmentsClient::getLocationAsync()} .
      *
+     * @example samples/V2/EnvironmentsClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -601,6 +615,8 @@ final class EnvironmentsClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see EnvironmentsClient::listLocationsAsync()} .
+     *
+     * @example samples/V2/EnvironmentsClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

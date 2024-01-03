@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datamigration_v1_generated_DataMigrationService_GetPrivateConnection_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\CloudDms\V1\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\Client\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\GetPrivateConnectionRequest;
 use Google\Cloud\CloudDms\V1\PrivateConnection;
 
 /**
@@ -38,10 +39,14 @@ function get_private_connection_sample(string $formattedName): void
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetPrivateConnectionRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var PrivateConnection $response */
-        $response = $dataMigrationServiceClient->getPrivateConnection($formattedName);
+        $response = $dataMigrationServiceClient->getPrivateConnection($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

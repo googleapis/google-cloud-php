@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Dialogflow\V2\Agent;
-use Google\Cloud\Dialogflow\V2\AgentsClient;
+use Google\Cloud\Dialogflow\V2\Client\AgentsClient;
+use Google\Cloud\Dialogflow\V2\SearchAgentsRequest;
 
 /**
  * Returns the list of agents.
@@ -46,10 +47,14 @@ function search_agents_sample(string $formattedParent): void
     // Create a client.
     $agentsClient = new AgentsClient();
 
+    // Prepare the request message.
+    $request = (new SearchAgentsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $agentsClient->searchAgents($formattedParent);
+        $response = $agentsClient->searchAgents($request);
 
         /** @var Agent $element */
         foreach ($response as $element) {

@@ -459,6 +459,8 @@ final class DataMigrationServiceClient
      * The async variant is
      * {@see DataMigrationServiceClient::applyConversionWorkspaceAsync()} .
      *
+     * @example samples/V1/DataMigrationServiceClient/apply_conversion_workspace.php
+     *
      * @param ApplyConversionWorkspaceRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -483,6 +485,8 @@ final class DataMigrationServiceClient
      *
      * The async variant is
      * {@see DataMigrationServiceClient::commitConversionWorkspaceAsync()} .
+     *
+     * @example samples/V1/DataMigrationServiceClient/commit_conversion_workspace.php
      *
      * @param CommitConversionWorkspaceRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -509,6 +513,8 @@ final class DataMigrationServiceClient
      * The async variant is
      * {@see DataMigrationServiceClient::convertConversionWorkspaceAsync()} .
      *
+     * @example samples/V1/DataMigrationServiceClient/convert_conversion_workspace.php
+     *
      * @param ConvertConversionWorkspaceRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -533,6 +539,8 @@ final class DataMigrationServiceClient
      *
      * The async variant is
      * {@see DataMigrationServiceClient::createConnectionProfileAsync()} .
+     *
+     * @example samples/V1/DataMigrationServiceClient/create_connection_profile.php
      *
      * @param CreateConnectionProfileRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -559,6 +567,8 @@ final class DataMigrationServiceClient
      * The async variant is
      * {@see DataMigrationServiceClient::createConversionWorkspaceAsync()} .
      *
+     * @example samples/V1/DataMigrationServiceClient/create_conversion_workspace.php
+     *
      * @param CreateConversionWorkspaceRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -583,6 +593,8 @@ final class DataMigrationServiceClient
      *
      * The async variant is {@see DataMigrationServiceClient::createMappingRuleAsync()}
      * .
+     *
+     * @example samples/V1/DataMigrationServiceClient/create_mapping_rule.php
      *
      * @param CreateMappingRuleRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -609,6 +621,8 @@ final class DataMigrationServiceClient
      * The async variant is
      * {@see DataMigrationServiceClient::createMigrationJobAsync()} .
      *
+     * @example samples/V1/DataMigrationServiceClient/create_migration_job.php
+     *
      * @param CreateMigrationJobRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -633,6 +647,8 @@ final class DataMigrationServiceClient
      *
      * The async variant is
      * {@see DataMigrationServiceClient::createPrivateConnectionAsync()} .
+     *
+     * @example samples/V1/DataMigrationServiceClient/create_private_connection.php
      *
      * @param CreatePrivateConnectionRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -661,6 +677,8 @@ final class DataMigrationServiceClient
      * The async variant is
      * {@see DataMigrationServiceClient::deleteConnectionProfileAsync()} .
      *
+     * @example samples/V1/DataMigrationServiceClient/delete_connection_profile.php
+     *
      * @param DeleteConnectionProfileRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -685,6 +703,8 @@ final class DataMigrationServiceClient
      *
      * The async variant is
      * {@see DataMigrationServiceClient::deleteConversionWorkspaceAsync()} .
+     *
+     * @example samples/V1/DataMigrationServiceClient/delete_conversion_workspace.php
      *
      * @param DeleteConversionWorkspaceRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -711,6 +731,8 @@ final class DataMigrationServiceClient
      * The async variant is {@see DataMigrationServiceClient::deleteMappingRuleAsync()}
      * .
      *
+     * @example samples/V1/DataMigrationServiceClient/delete_mapping_rule.php
+     *
      * @param DeleteMappingRuleRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -733,6 +755,8 @@ final class DataMigrationServiceClient
      *
      * The async variant is
      * {@see DataMigrationServiceClient::deleteMigrationJobAsync()} .
+     *
+     * @example samples/V1/DataMigrationServiceClient/delete_migration_job.php
      *
      * @param DeleteMigrationJobRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -759,6 +783,8 @@ final class DataMigrationServiceClient
      * The async variant is
      * {@see DataMigrationServiceClient::deletePrivateConnectionAsync()} .
      *
+     * @example samples/V1/DataMigrationServiceClient/delete_private_connection.php
+     *
      * @param DeletePrivateConnectionRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -784,6 +810,8 @@ final class DataMigrationServiceClient
      *
      * The async variant is
      * {@see DataMigrationServiceClient::describeConversionWorkspaceRevisionsAsync()} .
+     *
+     * @example samples/V1/DataMigrationServiceClient/describe_conversion_workspace_revisions.php
      *
      * @param DescribeConversionWorkspaceRevisionsRequest $request     A request to house fields associated with the call.
      * @param array                                       $callOptions {
@@ -815,6 +843,8 @@ final class DataMigrationServiceClient
      * The async variant is
      * {@see DataMigrationServiceClient::describeDatabaseEntitiesAsync()} .
      *
+     * @example samples/V1/DataMigrationServiceClient/describe_database_entities.php
+     *
      * @param DescribeDatabaseEntitiesRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -839,6 +869,8 @@ final class DataMigrationServiceClient
      * customer when using the static-IP connectivity method.
      *
      * The async variant is {@see DataMigrationServiceClient::fetchStaticIpsAsync()} .
+     *
+     * @example samples/V1/DataMigrationServiceClient/fetch_static_ips.php
      *
      * @param FetchStaticIpsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -866,6 +898,8 @@ final class DataMigrationServiceClient
      * The async variant is {@see DataMigrationServiceClient::generateSshScriptAsync()}
      * .
      *
+     * @example samples/V1/DataMigrationServiceClient/generate_ssh_script.php
+     *
      * @param GenerateSshScriptRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -892,6 +926,8 @@ final class DataMigrationServiceClient
      * The async variant is
      * {@see DataMigrationServiceClient::generateTcpProxyScriptAsync()} .
      *
+     * @example samples/V1/DataMigrationServiceClient/generate_tcp_proxy_script.php
+     *
      * @param GenerateTcpProxyScriptRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -916,6 +952,8 @@ final class DataMigrationServiceClient
      *
      * The async variant is
      * {@see DataMigrationServiceClient::getConnectionProfileAsync()} .
+     *
+     * @example samples/V1/DataMigrationServiceClient/get_connection_profile.php
      *
      * @param GetConnectionProfileRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -942,6 +980,8 @@ final class DataMigrationServiceClient
      * The async variant is
      * {@see DataMigrationServiceClient::getConversionWorkspaceAsync()} .
      *
+     * @example samples/V1/DataMigrationServiceClient/get_conversion_workspace.php
+     *
      * @param GetConversionWorkspaceRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -965,6 +1005,8 @@ final class DataMigrationServiceClient
      * Gets the details of a mapping rule.
      *
      * The async variant is {@see DataMigrationServiceClient::getMappingRuleAsync()} .
+     *
+     * @example samples/V1/DataMigrationServiceClient/get_mapping_rule.php
      *
      * @param GetMappingRuleRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -990,6 +1032,8 @@ final class DataMigrationServiceClient
      *
      * The async variant is {@see DataMigrationServiceClient::getMigrationJobAsync()} .
      *
+     * @example samples/V1/DataMigrationServiceClient/get_migration_job.php
+     *
      * @param GetMigrationJobRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -1014,6 +1058,8 @@ final class DataMigrationServiceClient
      *
      * The async variant is
      * {@see DataMigrationServiceClient::getPrivateConnectionAsync()} .
+     *
+     * @example samples/V1/DataMigrationServiceClient/get_private_connection.php
      *
      * @param GetPrivateConnectionRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -1041,6 +1087,8 @@ final class DataMigrationServiceClient
      * The async variant is
      * {@see DataMigrationServiceClient::importMappingRulesAsync()} .
      *
+     * @example samples/V1/DataMigrationServiceClient/import_mapping_rules.php
+     *
      * @param ImportMappingRulesRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -1067,6 +1115,8 @@ final class DataMigrationServiceClient
      * The async variant is
      * {@see DataMigrationServiceClient::listConnectionProfilesAsync()} .
      *
+     * @example samples/V1/DataMigrationServiceClient/list_connection_profiles.php
+     *
      * @param ListConnectionProfilesRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -1091,6 +1141,8 @@ final class DataMigrationServiceClient
      *
      * The async variant is
      * {@see DataMigrationServiceClient::listConversionWorkspacesAsync()} .
+     *
+     * @example samples/V1/DataMigrationServiceClient/list_conversion_workspaces.php
      *
      * @param ListConversionWorkspacesRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -1117,6 +1169,8 @@ final class DataMigrationServiceClient
      * The async variant is {@see DataMigrationServiceClient::listMappingRulesAsync()}
      * .
      *
+     * @example samples/V1/DataMigrationServiceClient/list_mapping_rules.php
+     *
      * @param ListMappingRulesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -1141,6 +1195,8 @@ final class DataMigrationServiceClient
      *
      * The async variant is {@see DataMigrationServiceClient::listMigrationJobsAsync()}
      * .
+     *
+     * @example samples/V1/DataMigrationServiceClient/list_migration_jobs.php
      *
      * @param ListMigrationJobsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -1167,6 +1223,8 @@ final class DataMigrationServiceClient
      * The async variant is
      * {@see DataMigrationServiceClient::listPrivateConnectionsAsync()} .
      *
+     * @example samples/V1/DataMigrationServiceClient/list_private_connections.php
+     *
      * @param ListPrivateConnectionsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -1192,6 +1250,8 @@ final class DataMigrationServiceClient
      *
      * The async variant is
      * {@see DataMigrationServiceClient::promoteMigrationJobAsync()} .
+     *
+     * @example samples/V1/DataMigrationServiceClient/promote_migration_job.php
      *
      * @param PromoteMigrationJobRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -1220,6 +1280,8 @@ final class DataMigrationServiceClient
      * The async variant is
      * {@see DataMigrationServiceClient::restartMigrationJobAsync()} .
      *
+     * @example samples/V1/DataMigrationServiceClient/restart_migration_job.php
+     *
      * @param RestartMigrationJobRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -1246,6 +1308,8 @@ final class DataMigrationServiceClient
      * The async variant is
      * {@see DataMigrationServiceClient::resumeMigrationJobAsync()} .
      *
+     * @example samples/V1/DataMigrationServiceClient/resume_migration_job.php
+     *
      * @param ResumeMigrationJobRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -1270,6 +1334,8 @@ final class DataMigrationServiceClient
      *
      * The async variant is
      * {@see DataMigrationServiceClient::rollbackConversionWorkspaceAsync()} .
+     *
+     * @example samples/V1/DataMigrationServiceClient/rollback_conversion_workspace.php
      *
      * @param RollbackConversionWorkspaceRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -1301,6 +1367,8 @@ final class DataMigrationServiceClient
      * The async variant is
      * {@see DataMigrationServiceClient::searchBackgroundJobsAsync()} .
      *
+     * @example samples/V1/DataMigrationServiceClient/search_background_jobs.php
+     *
      * @param SearchBackgroundJobsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -1327,6 +1395,8 @@ final class DataMigrationServiceClient
      * The async variant is
      * {@see DataMigrationServiceClient::seedConversionWorkspaceAsync()} .
      *
+     * @example samples/V1/DataMigrationServiceClient/seed_conversion_workspace.php
+     *
      * @param SeedConversionWorkspaceRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -1351,6 +1421,8 @@ final class DataMigrationServiceClient
      *
      * The async variant is {@see DataMigrationServiceClient::startMigrationJobAsync()}
      * .
+     *
+     * @example samples/V1/DataMigrationServiceClient/start_migration_job.php
      *
      * @param StartMigrationJobRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -1377,6 +1449,8 @@ final class DataMigrationServiceClient
      * The async variant is {@see DataMigrationServiceClient::stopMigrationJobAsync()}
      * .
      *
+     * @example samples/V1/DataMigrationServiceClient/stop_migration_job.php
+     *
      * @param StopMigrationJobRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -1401,6 +1475,8 @@ final class DataMigrationServiceClient
      *
      * The async variant is
      * {@see DataMigrationServiceClient::updateConnectionProfileAsync()} .
+     *
+     * @example samples/V1/DataMigrationServiceClient/update_connection_profile.php
      *
      * @param UpdateConnectionProfileRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -1427,6 +1503,8 @@ final class DataMigrationServiceClient
      * The async variant is
      * {@see DataMigrationServiceClient::updateConversionWorkspaceAsync()} .
      *
+     * @example samples/V1/DataMigrationServiceClient/update_conversion_workspace.php
+     *
      * @param UpdateConversionWorkspaceRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -1451,6 +1529,8 @@ final class DataMigrationServiceClient
      *
      * The async variant is
      * {@see DataMigrationServiceClient::updateMigrationJobAsync()} .
+     *
+     * @example samples/V1/DataMigrationServiceClient/update_migration_job.php
      *
      * @param UpdateMigrationJobRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -1477,6 +1557,8 @@ final class DataMigrationServiceClient
      *
      * The async variant is
      * {@see DataMigrationServiceClient::verifyMigrationJobAsync()} .
+     *
+     * @example samples/V1/DataMigrationServiceClient/verify_migration_job.php
      *
      * @param VerifyMigrationJobRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

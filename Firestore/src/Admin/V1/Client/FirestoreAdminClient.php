@@ -389,6 +389,8 @@ final class FirestoreAdminClient
      *
      * The async variant is {@see FirestoreAdminClient::createDatabaseAsync()} .
      *
+     * @example samples/V1/FirestoreAdminClient/create_database.php
+     *
      * @param CreateDatabaseRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -417,6 +419,8 @@ final class FirestoreAdminClient
      *
      * The async variant is {@see FirestoreAdminClient::createIndexAsync()} .
      *
+     * @example samples/V1/FirestoreAdminClient/create_index.php
+     *
      * @param CreateIndexRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -441,6 +445,8 @@ final class FirestoreAdminClient
      *
      * The async variant is {@see FirestoreAdminClient::deleteDatabaseAsync()} .
      *
+     * @example samples/V1/FirestoreAdminClient/delete_database.php
+     *
      * @param DeleteDatabaseRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -464,6 +470,8 @@ final class FirestoreAdminClient
      * Deletes a composite index.
      *
      * The async variant is {@see FirestoreAdminClient::deleteIndexAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/delete_index.php
      *
      * @param DeleteIndexRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -497,6 +505,8 @@ final class FirestoreAdminClient
      *
      * The async variant is {@see FirestoreAdminClient::exportDocumentsAsync()} .
      *
+     * @example samples/V1/FirestoreAdminClient/export_documents.php
+     *
      * @param ExportDocumentsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -520,6 +530,8 @@ final class FirestoreAdminClient
      * Gets information about a database.
      *
      * The async variant is {@see FirestoreAdminClient::getDatabaseAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/get_database.php
      *
      * @param GetDatabaseRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -545,6 +557,8 @@ final class FirestoreAdminClient
      *
      * The async variant is {@see FirestoreAdminClient::getFieldAsync()} .
      *
+     * @example samples/V1/FirestoreAdminClient/get_field.php
+     *
      * @param GetFieldRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -568,6 +582,8 @@ final class FirestoreAdminClient
      * Gets a composite index.
      *
      * The async variant is {@see FirestoreAdminClient::getIndexAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/get_index.php
      *
      * @param GetIndexRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -597,6 +613,8 @@ final class FirestoreAdminClient
      *
      * The async variant is {@see FirestoreAdminClient::importDocumentsAsync()} .
      *
+     * @example samples/V1/FirestoreAdminClient/import_documents.php
+     *
      * @param ImportDocumentsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -620,6 +638,8 @@ final class FirestoreAdminClient
      * List all the databases in the project.
      *
      * The async variant is {@see FirestoreAdminClient::listDatabasesAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/list_databases.php
      *
      * @param ListDatabasesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -653,6 +673,8 @@ final class FirestoreAdminClient
      *
      * The async variant is {@see FirestoreAdminClient::listFieldsAsync()} .
      *
+     * @example samples/V1/FirestoreAdminClient/list_fields.php
+     *
      * @param ListFieldsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -677,6 +699,8 @@ final class FirestoreAdminClient
      *
      * The async variant is {@see FirestoreAdminClient::listIndexesAsync()} .
      *
+     * @example samples/V1/FirestoreAdminClient/list_indexes.php
+     *
      * @param ListIndexesRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -700,6 +724,8 @@ final class FirestoreAdminClient
      * Updates a database.
      *
      * The async variant is {@see FirestoreAdminClient::updateDatabaseAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/update_database.php
      *
      * @param UpdateDatabaseRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -739,6 +765,8 @@ final class FirestoreAdminClient
      * `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/*`.
      *
      * The async variant is {@see FirestoreAdminClient::updateFieldAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/update_field.php
      *
      * @param UpdateFieldRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {

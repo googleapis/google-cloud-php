@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START clouddebugger_v2_generated_Debugger2_ListDebuggees_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Debugger\V2\Debugger2Client;
+use Google\Cloud\Debugger\V2\Client\Debugger2Client;
+use Google\Cloud\Debugger\V2\ListDebuggeesRequest;
 use Google\Cloud\Debugger\V2\ListDebuggeesResponse;
 
 /**
@@ -39,10 +40,15 @@ function list_debuggees_sample(string $project, string $clientVersion): void
     // Create a client.
     $debugger2Client = new Debugger2Client();
 
+    // Prepare the request message.
+    $request = (new ListDebuggeesRequest())
+        ->setProject($project)
+        ->setClientVersion($clientVersion);
+
     // Call the API and handle any network failures.
     try {
         /** @var ListDebuggeesResponse $response */
-        $response = $debugger2Client->listDebuggees($project, $clientVersion);
+        $response = $debugger2Client->listDebuggees($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
