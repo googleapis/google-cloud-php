@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudtrace_v2_generated_TraceService_BatchWriteSpans_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Trace\V2\BatchWriteSpansRequest;
+use Google\Cloud\Trace\V2\Client\TraceServiceClient;
 use Google\Cloud\Trace\V2\Span;
-use Google\Cloud\Trace\V2\TraceServiceClient;
 use Google\Cloud\Trace\V2\TruncatableString;
 use Google\Protobuf\Timestamp;
 
@@ -58,7 +59,7 @@ function batch_write_spans_sample(
     // Create a client.
     $traceServiceClient = new TraceServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $spansDisplayName = new TruncatableString();
     $spansStartTime = new Timestamp();
     $spansEndTime = new Timestamp();
@@ -69,10 +70,13 @@ function batch_write_spans_sample(
         ->setStartTime($spansStartTime)
         ->setEndTime($spansEndTime);
     $spans = [$span,];
+    $request = (new BatchWriteSpansRequest())
+        ->setName($formattedName)
+        ->setSpans($spans);
 
     // Call the API and handle any network failures.
     try {
-        $traceServiceClient->batchWriteSpans($formattedName, $spans);
+        $traceServiceClient->batchWriteSpans($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

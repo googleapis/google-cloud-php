@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START storagetransfer_v1_generated_StorageTransferService_GetGoogleServiceAccount_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\StorageTransfer\V1\Client\StorageTransferServiceClient;
+use Google\Cloud\StorageTransfer\V1\GetGoogleServiceAccountRequest;
 use Google\Cloud\StorageTransfer\V1\GoogleServiceAccount;
-use Google\Cloud\StorageTransfer\V1\StorageTransferServiceClient;
 
 /**
  * Returns the Google service account that is used by Storage Transfer
@@ -45,10 +46,14 @@ function get_google_service_account_sample(string $projectId): void
     // Create a client.
     $storageTransferServiceClient = new StorageTransferServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetGoogleServiceAccountRequest())
+        ->setProjectId($projectId);
+
     // Call the API and handle any network failures.
     try {
         /** @var GoogleServiceAccount $response */
-        $response = $storageTransferServiceClient->getGoogleServiceAccount($projectId);
+        $response = $storageTransferServiceClient->getGoogleServiceAccount($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START vpcaccess_v1_generated_VpcAccessService_GetConnector_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\VpcAccess\V1\Client\VpcAccessServiceClient;
 use Google\Cloud\VpcAccess\V1\Connector;
-use Google\Cloud\VpcAccess\V1\VpcAccessServiceClient;
+use Google\Cloud\VpcAccess\V1\GetConnectorRequest;
 
 /**
  * Gets a Serverless VPC Access connector. Returns NOT_FOUND if the resource
@@ -39,10 +40,14 @@ function get_connector_sample(string $formattedName): void
     // Create a client.
     $vpcAccessServiceClient = new VpcAccessServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetConnectorRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Connector $response */
-        $response = $vpcAccessServiceClient->getConnector($formattedName);
+        $response = $vpcAccessServiceClient->getConnector($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

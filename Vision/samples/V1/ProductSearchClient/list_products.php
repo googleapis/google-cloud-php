@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vision_v1_generated_ProductSearch_ListProducts_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Vision\V1\Client\ProductSearchClient;
+use Google\Cloud\Vision\V1\ListProductsRequest;
 use Google\Cloud\Vision\V1\Product;
-use Google\Cloud\Vision\V1\ProductSearchClient;
 
 /**
  * Lists products in an unspecified order.
@@ -46,10 +47,14 @@ function list_products_sample(string $formattedParent): void
     // Create a client.
     $productSearchClient = new ProductSearchClient();
 
+    // Prepare the request message.
+    $request = (new ListProductsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $productSearchClient->listProducts($formattedParent);
+        $response = $productSearchClient->listProducts($request);
 
         /** @var Product $element */
         foreach ($response as $element) {

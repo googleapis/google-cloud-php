@@ -206,6 +206,8 @@ final class VideoIntelligenceServiceClient
      * The async variant is {@see VideoIntelligenceServiceClient::annotateVideoAsync()}
      * .
      *
+     * @example samples/V1/VideoIntelligenceServiceClient/annotate_video.php
+     *
      * @param AnnotateVideoRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.

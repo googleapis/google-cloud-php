@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START jobs_v4_generated_TenantService_GetTenant_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Talent\V4\Client\TenantServiceClient;
+use Google\Cloud\Talent\V4\GetTenantRequest;
 use Google\Cloud\Talent\V4\Tenant;
-use Google\Cloud\Talent\V4\TenantServiceClient;
 
 /**
  * Retrieves specified tenant.
@@ -41,10 +42,14 @@ function get_tenant_sample(string $formattedName): void
     // Create a client.
     $tenantServiceClient = new TenantServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetTenantRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Tenant $response */
-        $response = $tenantServiceClient->getTenant($formattedName);
+        $response = $tenantServiceClient->getTenant($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

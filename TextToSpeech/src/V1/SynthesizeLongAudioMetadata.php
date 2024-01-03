@@ -22,11 +22,12 @@ class SynthesizeLongAudioMetadata extends \Google\Protobuf\Internal\Message
      */
     private $start_time = null;
     /**
-     * Time of the most recent processing update.
+     * Deprecated. Do not use.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 2 [deprecated = true];</code>
+     * @deprecated
      */
-    private $last_update_time = null;
+    protected $last_update_time = null;
     /**
      * The progress of the most recent processing update in percentage, ie. 70.0%.
      *
@@ -43,7 +44,7 @@ class SynthesizeLongAudioMetadata extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Time when the request was received.
      *     @type \Google\Protobuf\Timestamp $last_update_time
-     *           Time of the most recent processing update.
+     *           Deprecated. Do not use.
      *     @type float $progress_percentage
      *           The progress of the most recent processing update in percentage, ie. 70.0%.
      * }
@@ -90,35 +91,41 @@ class SynthesizeLongAudioMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time of the most recent processing update.
+     * Deprecated. Do not use.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 2 [deprecated = true];</code>
      * @return \Google\Protobuf\Timestamp|null
+     * @deprecated
      */
     public function getLastUpdateTime()
     {
+        @trigger_error('last_update_time is deprecated.', E_USER_DEPRECATED);
         return $this->last_update_time;
     }
 
     public function hasLastUpdateTime()
     {
+        @trigger_error('last_update_time is deprecated.', E_USER_DEPRECATED);
         return isset($this->last_update_time);
     }
 
     public function clearLastUpdateTime()
     {
+        @trigger_error('last_update_time is deprecated.', E_USER_DEPRECATED);
         unset($this->last_update_time);
     }
 
     /**
-     * Time of the most recent processing update.
+     * Deprecated. Do not use.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 2 [deprecated = true];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
+     * @deprecated
      */
     public function setLastUpdateTime($var)
     {
+        @trigger_error('last_update_time is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->last_update_time = $var;
 

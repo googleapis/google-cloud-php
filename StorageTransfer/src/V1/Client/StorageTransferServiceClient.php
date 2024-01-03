@@ -282,6 +282,8 @@ final class StorageTransferServiceClient
      * The async variant is {@see StorageTransferServiceClient::createAgentPoolAsync()}
      * .
      *
+     * @example samples/V1/StorageTransferServiceClient/create_agent_pool.php
+     *
      * @param CreateAgentPoolRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -306,6 +308,8 @@ final class StorageTransferServiceClient
      *
      * The async variant is
      * {@see StorageTransferServiceClient::createTransferJobAsync()} .
+     *
+     * @example samples/V1/StorageTransferServiceClient/create_transfer_job.php
      *
      * @param CreateTransferJobRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -332,6 +336,8 @@ final class StorageTransferServiceClient
      * The async variant is {@see StorageTransferServiceClient::deleteAgentPoolAsync()}
      * .
      *
+     * @example samples/V1/StorageTransferServiceClient/delete_agent_pool.php
+     *
      * @param DeleteAgentPoolRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -356,6 +362,8 @@ final class StorageTransferServiceClient
      * The async variant is
      * {@see StorageTransferServiceClient::deleteTransferJobAsync()} .
      *
+     * @example samples/V1/StorageTransferServiceClient/delete_transfer_job.php
+     *
      * @param DeleteTransferJobRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -377,6 +385,8 @@ final class StorageTransferServiceClient
      * Gets an agent pool.
      *
      * The async variant is {@see StorageTransferServiceClient::getAgentPoolAsync()} .
+     *
+     * @example samples/V1/StorageTransferServiceClient/get_agent_pool.php
      *
      * @param GetAgentPoolRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -410,6 +420,8 @@ final class StorageTransferServiceClient
      * The async variant is
      * {@see StorageTransferServiceClient::getGoogleServiceAccountAsync()} .
      *
+     * @example samples/V1/StorageTransferServiceClient/get_google_service_account.php
+     *
      * @param GetGoogleServiceAccountRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -434,6 +446,8 @@ final class StorageTransferServiceClient
      *
      * The async variant is {@see StorageTransferServiceClient::getTransferJobAsync()}
      * .
+     *
+     * @example samples/V1/StorageTransferServiceClient/get_transfer_job.php
      *
      * @param GetTransferJobRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -460,6 +474,8 @@ final class StorageTransferServiceClient
      * The async variant is {@see StorageTransferServiceClient::listAgentPoolsAsync()}
      * .
      *
+     * @example samples/V1/StorageTransferServiceClient/list_agent_pools.php
+     *
      * @param ListAgentPoolsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -484,6 +500,8 @@ final class StorageTransferServiceClient
      *
      * The async variant is
      * {@see StorageTransferServiceClient::listTransferJobsAsync()} .
+     *
+     * @example samples/V1/StorageTransferServiceClient/list_transfer_jobs.php
      *
      * @param ListTransferJobsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -510,6 +528,8 @@ final class StorageTransferServiceClient
      * The async variant is
      * {@see StorageTransferServiceClient::pauseTransferOperationAsync()} .
      *
+     * @example samples/V1/StorageTransferServiceClient/pause_transfer_operation.php
+     *
      * @param PauseTransferOperationRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -532,6 +552,8 @@ final class StorageTransferServiceClient
      *
      * The async variant is
      * {@see StorageTransferServiceClient::resumeTransferOperationAsync()} .
+     *
+     * @example samples/V1/StorageTransferServiceClient/resume_transfer_operation.php
      *
      * @param ResumeTransferOperationRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -559,6 +581,8 @@ final class StorageTransferServiceClient
      * The async variant is {@see StorageTransferServiceClient::runTransferJobAsync()}
      * .
      *
+     * @example samples/V1/StorageTransferServiceClient/run_transfer_job.php
+     *
      * @param RunTransferJobRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -583,6 +607,8 @@ final class StorageTransferServiceClient
      *
      * The async variant is {@see StorageTransferServiceClient::updateAgentPoolAsync()}
      * .
+     *
+     * @example samples/V1/StorageTransferServiceClient/update_agent_pool.php
      *
      * @param UpdateAgentPoolRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -615,6 +641,8 @@ final class StorageTransferServiceClient
      *
      * The async variant is
      * {@see StorageTransferServiceClient::updateTransferJobAsync()} .
+     *
+     * @example samples/V1/StorageTransferServiceClient/update_transfer_job.php
      *
      * @param UpdateTransferJobRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {

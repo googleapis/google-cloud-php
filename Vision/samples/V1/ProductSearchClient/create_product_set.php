@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START vision_v1_generated_ProductSearch_CreateProductSet_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Vision\V1\ProductSearchClient;
+use Google\Cloud\Vision\V1\Client\ProductSearchClient;
+use Google\Cloud\Vision\V1\CreateProductSetRequest;
 use Google\Cloud\Vision\V1\ProductSet;
 
 /**
@@ -45,13 +46,16 @@ function create_product_set_sample(string $formattedParent): void
     // Create a client.
     $productSearchClient = new ProductSearchClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $productSet = new ProductSet();
+    $request = (new CreateProductSetRequest())
+        ->setParent($formattedParent)
+        ->setProductSet($productSet);
 
     // Call the API and handle any network failures.
     try {
         /** @var ProductSet $response */
-        $response = $productSearchClient->createProductSet($formattedParent, $productSet);
+        $response = $productSearchClient->createProductSet($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

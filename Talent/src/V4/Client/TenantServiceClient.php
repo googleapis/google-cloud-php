@@ -240,6 +240,8 @@ final class TenantServiceClient
      *
      * The async variant is {@see TenantServiceClient::createTenantAsync()} .
      *
+     * @example samples/V4/TenantServiceClient/create_tenant.php
+     *
      * @param CreateTenantRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -264,6 +266,8 @@ final class TenantServiceClient
      *
      * The async variant is {@see TenantServiceClient::deleteTenantAsync()} .
      *
+     * @example samples/V4/TenantServiceClient/delete_tenant.php
+     *
      * @param DeleteTenantRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -285,6 +289,8 @@ final class TenantServiceClient
      * Retrieves specified tenant.
      *
      * The async variant is {@see TenantServiceClient::getTenantAsync()} .
+     *
+     * @example samples/V4/TenantServiceClient/get_tenant.php
      *
      * @param GetTenantRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -310,6 +316,8 @@ final class TenantServiceClient
      *
      * The async variant is {@see TenantServiceClient::listTenantsAsync()} .
      *
+     * @example samples/V4/TenantServiceClient/list_tenants.php
+     *
      * @param ListTenantsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -333,6 +341,8 @@ final class TenantServiceClient
      * Updates specified tenant.
      *
      * The async variant is {@see TenantServiceClient::updateTenantAsync()} .
+     *
+     * @example samples/V4/TenantServiceClient/update_tenant.php
      *
      * @param UpdateTenantRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
