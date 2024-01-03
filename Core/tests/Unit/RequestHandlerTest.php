@@ -20,6 +20,7 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Exception\BadRequestException;
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\GapicRequestWrapper;
 use Google\Cloud\Core\RequestHandler;
 use GuzzleHttp\Psr7\Response;
@@ -77,7 +78,6 @@ class RequestHandlerTest extends TestCase
     public function testSendRequest()
     {
         $gapicClasses = [SampleGapicClass2::class];
-        $requestHandler = new RequestHandler($this->serializer->reveal(), $gapicClasses);
 
         $responseStr = '{"foo": "bar"}';
         $this->requestWrapper->send(
@@ -85,7 +85,7 @@ class RequestHandlerTest extends TestCase
             Argument::cetera()
         )->willReturn(new Response(200, [], $responseStr));
 
-        $requestHandler->setRequestWrapper($this->requestWrapper->reveal());
+        $requestHandler = new RequestHandler($this->serializer->reveal(), $gapicClasses, [], $this->requestWrapper->reveal());
 
         $counter = 0;
         $response = $requestHandler->sendRequest(SampleGapicClass2::class, 'sampleMethod', [&$counter], []);
@@ -97,14 +97,13 @@ class RequestHandlerTest extends TestCase
     public function testSendRequestThrowsException()
     {
         $gapicClasses = [SampleGapicClass2::class];
-        $requestHandler = new RequestHandler($this->serializer->reveal(), $gapicClasses);
 
         $this->requestWrapper->send(
             Argument::containing('sampleMethod'),
             Argument::cetera()
         )->willThrow(new BadRequestException('exception message'));
 
-        $requestHandler->setRequestWrapper($this->requestWrapper->reveal());
+        $requestHandler = new RequestHandler($this->serializer->reveal(), $gapicClasses, [], $this->requestWrapper->reveal());
 
         $this->expectException(BadRequestException::class);
         $this->expectExceptionMessage('exception message');
@@ -136,5 +135,48 @@ class RequestHandlerTest extends TestCase
             $passedRequiredArgs,
             $passedOptionalArgs
         );
+    }
+
+    /**
+     * @dataProvider whitelistProvider
+     */
+    public function testSendRequestWhitelisted($isWhitelisted, $errMsg, $expectedMsg)
+    {
+        $this->requestWrapper->send(
+            Argument::containing('sampleMethod2'),
+            Argument::cetera()
+        )->willThrow(new NotFoundException($errMsg));
+
+        $gapicClasses = [SampleGapicClass2::class];
+
+        $requestHandler = new RequestHandler(
+            $this->serializer->reveal(),
+            $gapicClasses,
+            [],
+            $this->requestWrapper->reveal()
+        );
+
+        $msg = null;
+        try {
+            $requestHandler->sendRequest(
+                SampleGapicClass2::class,
+                'sampleMethod2',
+                [],
+                [],
+                $isWhitelisted
+            );
+        } catch (NotFoundException $e) {
+            $msg = $e->getMessage();
+        }
+
+        $this->assertStringContainsString($expectedMsg, $msg);
+    }
+
+    public function whitelistProvider()
+    {
+        return [
+            [true, 'The url was not found!', 'NOTE: Error may be due to Whitelist Restriction.'],
+            [false, 'The url was not found!', 'The url was not found!']
+        ];
     }
 }
