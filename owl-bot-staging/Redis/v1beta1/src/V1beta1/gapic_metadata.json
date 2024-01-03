@@ -1,0 +1,73 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.redis.v1beta1",
+    "libraryPackage": "Google\\Cloud\\Redis\\V1beta1",
+    "services": {
+        "CloudRedis": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CloudRedisGapicClient",
+                    "rpcs": {
+                        "CreateInstance": {
+                            "methods": [
+                                "createInstance"
+                            ]
+                        },
+                        "DeleteInstance": {
+                            "methods": [
+                                "deleteInstance"
+                            ]
+                        },
+                        "ExportInstance": {
+                            "methods": [
+                                "exportInstance"
+                            ]
+                        },
+                        "FailoverInstance": {
+                            "methods": [
+                                "failoverInstance"
+                            ]
+                        },
+                        "GetInstance": {
+                            "methods": [
+                                "getInstance"
+                            ]
+                        },
+                        "GetInstanceAuthString": {
+                            "methods": [
+                                "getInstanceAuthString"
+                            ]
+                        },
+                        "ImportInstance": {
+                            "methods": [
+                                "importInstance"
+                            ]
+                        },
+                        "ListInstances": {
+                            "methods": [
+                                "listInstances"
+                            ]
+                        },
+                        "RescheduleMaintenance": {
+                            "methods": [
+                                "rescheduleMaintenance"
+                            ]
+                        },
+                        "UpdateInstance": {
+                            "methods": [
+                                "updateInstance"
+                            ]
+                        },
+                        "UpgradeInstance": {
+                            "methods": [
+                                "upgradeInstance"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
