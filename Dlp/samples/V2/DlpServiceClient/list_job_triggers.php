@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dlp_v2_generated_DlpService_ListJobTriggers_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Dlp\V2\DlpServiceClient;
+use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
 use Google\Cloud\Dlp\V2\JobTrigger;
+use Google\Cloud\Dlp\V2\ListJobTriggersRequest;
 
 /**
  * Lists job triggers.
@@ -55,10 +56,14 @@ function list_job_triggers_sample(string $formattedParent): void
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListJobTriggersRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dlpServiceClient->listJobTriggers($formattedParent);
+        $response = $dlpServiceClient->listJobTriggers($request);
 
         /** @var JobTrigger $element */
         foreach ($response as $element) {

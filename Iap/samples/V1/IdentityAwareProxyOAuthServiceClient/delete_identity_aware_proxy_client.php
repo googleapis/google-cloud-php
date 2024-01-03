@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START iap_v1_generated_IdentityAwareProxyOAuthService_DeleteIdentityAwareProxyClient_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Iap\V1\IdentityAwareProxyOAuthServiceClient;
+use Google\Cloud\Iap\V1\Client\IdentityAwareProxyOAuthServiceClient;
+use Google\Cloud\Iap\V1\DeleteIdentityAwareProxyClientRequest;
 
 /**
  * Deletes an Identity Aware Proxy (IAP) OAuth client. Useful for removing
@@ -40,9 +41,13 @@ function delete_identity_aware_proxy_client_sample(string $name): void
     // Create a client.
     $identityAwareProxyOAuthServiceClient = new IdentityAwareProxyOAuthServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteIdentityAwareProxyClientRequest())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
-        $identityAwareProxyOAuthServiceClient->deleteIdentityAwareProxyClient($name);
+        $identityAwareProxyOAuthServiceClient->deleteIdentityAwareProxyClient($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

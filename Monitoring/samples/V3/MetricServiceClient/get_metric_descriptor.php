@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START monitoring_v3_generated_MetricService_GetMetricDescriptor_sync]
 use Google\ApiCore\ApiException;
 use Google\Api\MetricDescriptor;
-use Google\Cloud\Monitoring\V3\MetricServiceClient;
+use Google\Cloud\Monitoring\V3\Client\MetricServiceClient;
+use Google\Cloud\Monitoring\V3\GetMetricDescriptorRequest;
 
 /**
  * Gets a single metric descriptor. This method does not require a Workspace.
@@ -43,10 +44,14 @@ function get_metric_descriptor_sample(string $formattedName): void
     // Create a client.
     $metricServiceClient = new MetricServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetMetricDescriptorRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var MetricDescriptor $response */
-        $response = $metricServiceClient->getMetricDescriptor($formattedName);
+        $response = $metricServiceClient->getMetricDescriptor($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

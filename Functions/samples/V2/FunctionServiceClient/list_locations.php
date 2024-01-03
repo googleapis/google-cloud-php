@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudfunctions_v2_generated_FunctionService_ListLocations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Functions\V2\FunctionServiceClient;
+use Google\Cloud\Functions\V2\Client\FunctionServiceClient;
+use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 
 /**
@@ -42,10 +43,13 @@ function list_locations_sample(): void
     // Create a client.
     $functionServiceClient = new FunctionServiceClient();
 
+    // Prepare the request message.
+    $request = new ListLocationsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $functionServiceClient->listLocations();
+        $response = $functionServiceClient->listLocations($request);
 
         /** @var Location $element */
         foreach ($response as $element) {

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START documentai_v1_generated_DocumentProcessorService_GetProcessorVersion_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\DocumentAI\V1\DocumentProcessorServiceClient;
+use Google\Cloud\DocumentAI\V1\Client\DocumentProcessorServiceClient;
+use Google\Cloud\DocumentAI\V1\GetProcessorVersionRequest;
 use Google\Cloud\DocumentAI\V1\ProcessorVersion;
 
 /**
@@ -38,10 +39,14 @@ function get_processor_version_sample(string $formattedName): void
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetProcessorVersionRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var ProcessorVersion $response */
-        $response = $documentProcessorServiceClient->getProcessorVersion($formattedName);
+        $response = $documentProcessorServiceClient->getProcessorVersion($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_ConversationDatasets_DeleteConversationDataset_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Dialogflow\V2\ConversationDatasetsClient;
+use Google\Cloud\Dialogflow\V2\Client\ConversationDatasetsClient;
+use Google\Cloud\Dialogflow\V2\DeleteConversationDatasetRequest;
 use Google\Rpc\Status;
 
 /**
@@ -50,10 +51,14 @@ function delete_conversation_dataset_sample(string $formattedName): void
     // Create a client.
     $conversationDatasetsClient = new ConversationDatasetsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteConversationDatasetRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $conversationDatasetsClient->deleteConversationDataset($formattedName);
+        $response = $conversationDatasetsClient->deleteConversationDataset($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

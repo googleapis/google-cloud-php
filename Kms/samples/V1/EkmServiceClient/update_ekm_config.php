@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudkms_v1_generated_EkmService_UpdateEkmConfig_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Kms\V1\Client\EkmServiceClient;
 use Google\Cloud\Kms\V1\EkmConfig;
-use Google\Cloud\Kms\V1\EkmServiceClient;
+use Google\Cloud\Kms\V1\UpdateEkmConfigRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -43,14 +44,17 @@ function update_ekm_config_sample(): void
     // Create a client.
     $ekmServiceClient = new EkmServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $ekmConfig = new EkmConfig();
     $updateMask = new FieldMask();
+    $request = (new UpdateEkmConfigRequest())
+        ->setEkmConfig($ekmConfig)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var EkmConfig $response */
-        $response = $ekmServiceClient->updateEkmConfig($ekmConfig, $updateMask);
+        $response = $ekmServiceClient->updateEkmConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

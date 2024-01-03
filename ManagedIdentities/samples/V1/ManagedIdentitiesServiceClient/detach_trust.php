@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START managedidentities_v1_generated_ManagedIdentitiesService_DetachTrust_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\ManagedIdentities\V1\Client\ManagedIdentitiesServiceClient;
+use Google\Cloud\ManagedIdentities\V1\DetachTrustRequest;
 use Google\Cloud\ManagedIdentities\V1\Domain;
-use Google\Cloud\ManagedIdentities\V1\ManagedIdentitiesServiceClient;
 use Google\Cloud\ManagedIdentities\V1\Trust;
 use Google\Cloud\ManagedIdentities\V1\Trust\TrustDirection;
 use Google\Cloud\ManagedIdentities\V1\Trust\TrustType;
@@ -59,7 +60,7 @@ function detach_trust_sample(
     // Create a client.
     $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $trustTargetDnsIpAddresses = [$trustTargetDnsIpAddressesElement,];
     $trust = (new Trust())
         ->setTargetDomainName($trustTargetDomainName)
@@ -67,11 +68,14 @@ function detach_trust_sample(
         ->setTrustDirection($trustTrustDirection)
         ->setTargetDnsIpAddresses($trustTargetDnsIpAddresses)
         ->setTrustHandshakeSecret($trustTrustHandshakeSecret);
+    $request = (new DetachTrustRequest())
+        ->setName($formattedName)
+        ->setTrust($trust);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $managedIdentitiesServiceClient->detachTrust($formattedName, $trust);
+        $response = $managedIdentitiesServiceClient->detachTrust($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

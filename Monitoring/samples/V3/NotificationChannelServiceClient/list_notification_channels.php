@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START monitoring_v3_generated_NotificationChannelService_ListNotificationChannels_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Monitoring\V3\Client\NotificationChannelServiceClient;
+use Google\Cloud\Monitoring\V3\ListNotificationChannelsRequest;
 use Google\Cloud\Monitoring\V3\NotificationChannel;
-use Google\Cloud\Monitoring\V3\NotificationChannelServiceClient;
 
 /**
  * Lists the notification channels that have been created for the project.
@@ -51,10 +52,14 @@ function list_notification_channels_sample(string $name): void
     // Create a client.
     $notificationChannelServiceClient = new NotificationChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListNotificationChannelsRequest())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $notificationChannelServiceClient->listNotificationChannels($name);
+        $response = $notificationChannelServiceClient->listNotificationChannels($request);
 
         /** @var NotificationChannel $element */
         foreach ($response as $element) {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkconnectivity_v1_generated_PolicyBasedRoutingService_ListLocations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
-use Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoutingServiceClient;
+use Google\Cloud\NetworkConnectivity\V1\Client\PolicyBasedRoutingServiceClient;
 
 /**
  * Lists information about the supported locations for this service.
@@ -42,10 +43,13 @@ function list_locations_sample(): void
     // Create a client.
     $policyBasedRoutingServiceClient = new PolicyBasedRoutingServiceClient();
 
+    // Prepare the request message.
+    $request = new ListLocationsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $policyBasedRoutingServiceClient->listLocations();
+        $response = $policyBasedRoutingServiceClient->listLocations($request);
 
         /** @var Location $element */
         foreach ($response as $element) {

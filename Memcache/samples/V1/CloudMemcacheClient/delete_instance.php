@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START memcache_v1_generated_CloudMemcache_DeleteInstance_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Memcache\V1\CloudMemcacheClient;
+use Google\Cloud\Memcache\V1\Client\CloudMemcacheClient;
+use Google\Cloud\Memcache\V1\DeleteInstanceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,10 +42,14 @@ function delete_instance_sample(string $formattedName): void
     // Create a client.
     $cloudMemcacheClient = new CloudMemcacheClient();
 
+    // Prepare the request message.
+    $request = (new DeleteInstanceRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudMemcacheClient->deleteInstance($formattedName);
+        $response = $cloudMemcacheClient->deleteInstance($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

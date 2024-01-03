@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START documentai_v1_generated_DocumentProcessorService_UndeployProcessorVersion_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\DocumentAI\V1\DocumentProcessorServiceClient;
+use Google\Cloud\DocumentAI\V1\Client\DocumentProcessorServiceClient;
+use Google\Cloud\DocumentAI\V1\UndeployProcessorVersionRequest;
 use Google\Cloud\DocumentAI\V1\UndeployProcessorVersionResponse;
 use Google\Rpc\Status;
 
@@ -40,10 +41,14 @@ function undeploy_processor_version_sample(string $formattedName): void
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
+    // Prepare the request message.
+    $request = (new UndeployProcessorVersionRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $documentProcessorServiceClient->undeployProcessorVersion($formattedName);
+        $response = $documentProcessorServiceClient->undeployProcessorVersion($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

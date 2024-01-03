@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START logging_v2_generated_LoggingServiceV2_ListLogEntries_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Logging\V2\Client\LoggingServiceV2Client;
+use Google\Cloud\Logging\V2\ListLogEntriesRequest;
 use Google\Cloud\Logging\V2\LogEntry;
-use Google\Cloud\Logging\V2\LoggingServiceV2Client;
 
 /**
  * Lists log entries.  Use this method to retrieve log entries that originated
@@ -58,13 +59,15 @@ function list_log_entries_sample(string $formattedResourceNamesElement): void
     // Create a client.
     $loggingServiceV2Client = new LoggingServiceV2Client();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $formattedResourceNames = [$formattedResourceNamesElement,];
+    $request = (new ListLogEntriesRequest())
+        ->setResourceNames($formattedResourceNames);
 
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $loggingServiceV2Client->listLogEntries($formattedResourceNames);
+        $response = $loggingServiceV2Client->listLogEntries($request);
 
         /** @var LogEntry $element */
         foreach ($response as $element) {

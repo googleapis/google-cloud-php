@@ -617,6 +617,8 @@ final class AnswerRecordsClient
      *
      * The async variant is {@see AnswerRecordsClient::listAnswerRecordsAsync()} .
      *
+     * @example samples/V2/AnswerRecordsClient/list_answer_records.php
+     *
      * @param ListAnswerRecordsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -640,6 +642,8 @@ final class AnswerRecordsClient
      * Updates the specified answer record.
      *
      * The async variant is {@see AnswerRecordsClient::updateAnswerRecordAsync()} .
+     *
+     * @example samples/V2/AnswerRecordsClient/update_answer_record.php
      *
      * @param UpdateAnswerRecordRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -665,6 +669,8 @@ final class AnswerRecordsClient
      *
      * The async variant is {@see AnswerRecordsClient::getLocationAsync()} .
      *
+     * @example samples/V2/AnswerRecordsClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -688,6 +694,8 @@ final class AnswerRecordsClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see AnswerRecordsClient::listLocationsAsync()} .
+     *
+     * @example samples/V2/AnswerRecordsClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

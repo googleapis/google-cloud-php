@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START firestore_v1_generated_Firestore_UpdateDocument_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 use Google\Cloud\Firestore\V1\Document;
 use Google\Cloud\Firestore\V1\DocumentMask;
-use Google\Cloud\Firestore\V1\FirestoreClient;
+use Google\Cloud\Firestore\V1\UpdateDocumentRequest;
 
 /**
  * Updates or inserts a document.
@@ -42,14 +43,17 @@ function update_document_sample(): void
     // Create a client.
     $firestoreClient = new FirestoreClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $document = new Document();
     $updateMask = new DocumentMask();
+    $request = (new UpdateDocumentRequest())
+        ->setDocument($document)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var Document $response */
-        $response = $firestoreClient->updateDocument($document, $updateMask);
+        $response = $firestoreClient->updateDocument($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

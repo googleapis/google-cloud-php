@@ -434,6 +434,8 @@ final class SessionEntityTypesClient
      * The async variant is
      * {@see SessionEntityTypesClient::createSessionEntityTypeAsync()} .
      *
+     * @example samples/V2/SessionEntityTypesClient/create_session_entity_type.php
+     *
      * @param CreateSessionEntityTypeRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -463,6 +465,8 @@ final class SessionEntityTypesClient
      * The async variant is
      * {@see SessionEntityTypesClient::deleteSessionEntityTypeAsync()} .
      *
+     * @example samples/V2/SessionEntityTypesClient/delete_session_entity_type.php
+     *
      * @param DeleteSessionEntityTypeRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -489,6 +493,8 @@ final class SessionEntityTypesClient
      *
      * The async variant is
      * {@see SessionEntityTypesClient::getSessionEntityTypeAsync()} .
+     *
+     * @example samples/V2/SessionEntityTypesClient/get_session_entity_type.php
      *
      * @param GetSessionEntityTypeRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -519,6 +525,8 @@ final class SessionEntityTypesClient
      * The async variant is
      * {@see SessionEntityTypesClient::listSessionEntityTypesAsync()} .
      *
+     * @example samples/V2/SessionEntityTypesClient/list_session_entity_types.php
+     *
      * @param ListSessionEntityTypesRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -548,6 +556,8 @@ final class SessionEntityTypesClient
      * The async variant is
      * {@see SessionEntityTypesClient::updateSessionEntityTypeAsync()} .
      *
+     * @example samples/V2/SessionEntityTypesClient/update_session_entity_type.php
+     *
      * @param UpdateSessionEntityTypeRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -572,6 +582,8 @@ final class SessionEntityTypesClient
      *
      * The async variant is {@see SessionEntityTypesClient::getLocationAsync()} .
      *
+     * @example samples/V2/SessionEntityTypesClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -595,6 +607,8 @@ final class SessionEntityTypesClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see SessionEntityTypesClient::listLocationsAsync()} .
+     *
+     * @example samples/V2/SessionEntityTypesClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

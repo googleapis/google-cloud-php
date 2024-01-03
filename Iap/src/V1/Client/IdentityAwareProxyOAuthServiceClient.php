@@ -193,6 +193,8 @@ final class IdentityAwareProxyOAuthServiceClient
      * The async variant is
      * {@see IdentityAwareProxyOAuthServiceClient::createBrandAsync()} .
      *
+     * @example samples/V1/IdentityAwareProxyOAuthServiceClient/create_brand.php
+     *
      * @param CreateBrandRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -220,6 +222,8 @@ final class IdentityAwareProxyOAuthServiceClient
      * The async variant is
      * {@see IdentityAwareProxyOAuthServiceClient::createIdentityAwareProxyClientAsync()}
      * .
+     *
+     * @example samples/V1/IdentityAwareProxyOAuthServiceClient/create_identity_aware_proxy_client.php
      *
      * @param CreateIdentityAwareProxyClientRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
@@ -249,6 +253,8 @@ final class IdentityAwareProxyOAuthServiceClient
      * {@see IdentityAwareProxyOAuthServiceClient::deleteIdentityAwareProxyClientAsync()}
      * .
      *
+     * @example samples/V1/IdentityAwareProxyOAuthServiceClient/delete_identity_aware_proxy_client.php
+     *
      * @param DeleteIdentityAwareProxyClientRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -271,6 +277,8 @@ final class IdentityAwareProxyOAuthServiceClient
      *
      * The async variant is
      * {@see IdentityAwareProxyOAuthServiceClient::getBrandAsync()} .
+     *
+     * @example samples/V1/IdentityAwareProxyOAuthServiceClient/get_brand.php
      *
      * @param GetBrandRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -299,6 +307,8 @@ final class IdentityAwareProxyOAuthServiceClient
      * {@see IdentityAwareProxyOAuthServiceClient::getIdentityAwareProxyClientAsync()}
      * .
      *
+     * @example samples/V1/IdentityAwareProxyOAuthServiceClient/get_identity_aware_proxy_client.php
+     *
      * @param GetIdentityAwareProxyClientRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -323,6 +333,8 @@ final class IdentityAwareProxyOAuthServiceClient
      *
      * The async variant is
      * {@see IdentityAwareProxyOAuthServiceClient::listBrandsAsync()} .
+     *
+     * @example samples/V1/IdentityAwareProxyOAuthServiceClient/list_brands.php
      *
      * @param ListBrandsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -350,6 +362,8 @@ final class IdentityAwareProxyOAuthServiceClient
      * {@see IdentityAwareProxyOAuthServiceClient::listIdentityAwareProxyClientsAsync()}
      * .
      *
+     * @example samples/V1/IdentityAwareProxyOAuthServiceClient/list_identity_aware_proxy_clients.php
+     *
      * @param ListIdentityAwareProxyClientsRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -376,6 +390,8 @@ final class IdentityAwareProxyOAuthServiceClient
      * The async variant is
      * {@see IdentityAwareProxyOAuthServiceClient::resetIdentityAwareProxyClientSecretAsync()}
      * .
+     *
+     * @example samples/V1/IdentityAwareProxyOAuthServiceClient/reset_identity_aware_proxy_client_secret.php
      *
      * @param ResetIdentityAwareProxyClientSecretRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_Agents_GetValidationResult_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dialogflow\V2\AgentsClient;
+use Google\Cloud\Dialogflow\V2\Client\AgentsClient;
+use Google\Cloud\Dialogflow\V2\GetValidationResultRequest;
 use Google\Cloud\Dialogflow\V2\ValidationResult;
 
 /**
@@ -40,10 +41,14 @@ function get_validation_result_sample(string $formattedParent): void
     // Create a client.
     $agentsClient = new AgentsClient();
 
+    // Prepare the request message.
+    $request = (new GetValidationResultRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var ValidationResult $response */
-        $response = $agentsClient->getValidationResult($formattedParent);
+        $response = $agentsClient->getValidationResult($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_Versions_UpdateVersion_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\V2\Client\VersionsClient;
+use Google\Cloud\Dialogflow\V2\UpdateVersionRequest;
 use Google\Cloud\Dialogflow\V2\Version;
-use Google\Cloud\Dialogflow\V2\VersionsClient;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -46,14 +47,17 @@ function update_version_sample(): void
     // Create a client.
     $versionsClient = new VersionsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $version = new Version();
     $updateMask = new FieldMask();
+    $request = (new UpdateVersionRequest())
+        ->setVersion($version)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var Version $response */
-        $response = $versionsClient->updateVersion($version, $updateMask);
+        $response = $versionsClient->updateVersion($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

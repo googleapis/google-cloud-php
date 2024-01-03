@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkconnectivity_v1_generated_HubService_ListHubSpokes_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\NetworkConnectivity\V1\HubServiceClient;
+use Google\Cloud\NetworkConnectivity\V1\Client\HubServiceClient;
+use Google\Cloud\NetworkConnectivity\V1\ListHubSpokesRequest;
 use Google\Cloud\NetworkConnectivity\V1\Spoke;
 
 /**
@@ -41,10 +42,14 @@ function list_hub_spokes_sample(string $formattedName): void
     // Create a client.
     $hubServiceClient = new HubServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListHubSpokesRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $hubServiceClient->listHubSpokes($formattedName);
+        $response = $hubServiceClient->listHubSpokes($request);
 
         /** @var Spoke $element */
         foreach ($response as $element) {

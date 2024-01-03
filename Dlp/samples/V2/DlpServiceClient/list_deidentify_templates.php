@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dlp_v2_generated_DlpService_ListDeidentifyTemplates_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
 use Google\Cloud\Dlp\V2\DeidentifyTemplate;
-use Google\Cloud\Dlp\V2\DlpServiceClient;
+use Google\Cloud\Dlp\V2\ListDeidentifyTemplatesRequest;
 
 /**
  * Lists DeidentifyTemplates.
@@ -60,10 +61,14 @@ function list_deidentify_templates_sample(string $formattedParent): void
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListDeidentifyTemplatesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dlpServiceClient->listDeidentifyTemplates($formattedParent);
+        $response = $dlpServiceClient->listDeidentifyTemplates($request);
 
         /** @var DeidentifyTemplate $element */
         foreach ($response as $element) {

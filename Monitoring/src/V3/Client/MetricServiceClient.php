@@ -430,6 +430,8 @@ final class MetricServiceClient
      *
      * The async variant is {@see MetricServiceClient::createMetricDescriptorAsync()} .
      *
+     * @example samples/V3/MetricServiceClient/create_metric_descriptor.php
+     *
      * @param CreateMetricDescriptorRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -463,6 +465,8 @@ final class MetricServiceClient
      * The async variant is {@see MetricServiceClient::createServiceTimeSeriesAsync()}
      * .
      *
+     * @example samples/V3/MetricServiceClient/create_service_time_series.php
+     *
      * @param CreateTimeSeriesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -488,6 +492,8 @@ final class MetricServiceClient
      *
      * The async variant is {@see MetricServiceClient::createTimeSeriesAsync()} .
      *
+     * @example samples/V3/MetricServiceClient/create_time_series.php
+     *
      * @param CreateTimeSeriesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -512,6 +518,8 @@ final class MetricServiceClient
      *
      * The async variant is {@see MetricServiceClient::deleteMetricDescriptorAsync()} .
      *
+     * @example samples/V3/MetricServiceClient/delete_metric_descriptor.php
+     *
      * @param DeleteMetricDescriptorRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -533,6 +541,8 @@ final class MetricServiceClient
      * Gets a single metric descriptor. This method does not require a Workspace.
      *
      * The async variant is {@see MetricServiceClient::getMetricDescriptorAsync()} .
+     *
+     * @example samples/V3/MetricServiceClient/get_metric_descriptor.php
      *
      * @param GetMetricDescriptorRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -559,6 +569,8 @@ final class MetricServiceClient
      * The async variant is
      * {@see MetricServiceClient::getMonitoredResourceDescriptorAsync()} .
      *
+     * @example samples/V3/MetricServiceClient/get_monitored_resource_descriptor.php
+     *
      * @param GetMonitoredResourceDescriptorRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -582,6 +594,8 @@ final class MetricServiceClient
      * Lists metric descriptors that match a filter. This method does not require a Workspace.
      *
      * The async variant is {@see MetricServiceClient::listMetricDescriptorsAsync()} .
+     *
+     * @example samples/V3/MetricServiceClient/list_metric_descriptors.php
      *
      * @param ListMetricDescriptorsRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -608,6 +622,8 @@ final class MetricServiceClient
      * The async variant is
      * {@see MetricServiceClient::listMonitoredResourceDescriptorsAsync()} .
      *
+     * @example samples/V3/MetricServiceClient/list_monitored_resource_descriptors.php
+     *
      * @param ListMonitoredResourceDescriptorsRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -631,6 +647,8 @@ final class MetricServiceClient
      * Lists time series that match a filter. This method does not require a Workspace.
      *
      * The async variant is {@see MetricServiceClient::listTimeSeriesAsync()} .
+     *
+     * @example samples/V3/MetricServiceClient/list_time_series.php
      *
      * @param ListTimeSeriesRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

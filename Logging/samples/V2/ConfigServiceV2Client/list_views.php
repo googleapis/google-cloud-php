@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START logging_v2_generated_ConfigServiceV2_ListViews_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Logging\V2\ConfigServiceV2Client;
+use Google\Cloud\Logging\V2\Client\ConfigServiceV2Client;
+use Google\Cloud\Logging\V2\ListViewsRequest;
 use Google\Cloud\Logging\V2\LogView;
 
 /**
@@ -40,10 +41,14 @@ function list_views_sample(string $parent): void
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
 
+    // Prepare the request message.
+    $request = (new ListViewsRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $configServiceV2Client->listViews($parent);
+        $response = $configServiceV2Client->listViews($request);
 
         /** @var LogView $element */
         foreach ($response as $element) {

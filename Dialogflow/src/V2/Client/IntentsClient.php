@@ -585,6 +585,8 @@ final class IntentsClient
      *
      * The async variant is {@see IntentsClient::batchDeleteIntentsAsync()} .
      *
+     * @example samples/V2/IntentsClient/batch_delete_intents.php
+     *
      * @param BatchDeleteIntentsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -622,6 +624,8 @@ final class IntentsClient
      *
      * The async variant is {@see IntentsClient::batchUpdateIntentsAsync()} .
      *
+     * @example samples/V2/IntentsClient/batch_update_intents.php
+     *
      * @param BatchUpdateIntentsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -649,6 +653,8 @@ final class IntentsClient
      * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      *
      * The async variant is {@see IntentsClient::createIntentAsync()} .
+     *
+     * @example samples/V2/IntentsClient/create_intent.php
      *
      * @param CreateIntentRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -678,6 +684,8 @@ final class IntentsClient
      *
      * The async variant is {@see IntentsClient::deleteIntentAsync()} .
      *
+     * @example samples/V2/IntentsClient/delete_intent.php
+     *
      * @param DeleteIntentRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -699,6 +707,8 @@ final class IntentsClient
      * Retrieves the specified intent.
      *
      * The async variant is {@see IntentsClient::getIntentAsync()} .
+     *
+     * @example samples/V2/IntentsClient/get_intent.php
      *
      * @param GetIntentRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -723,6 +733,8 @@ final class IntentsClient
      * Returns the list of all intents in the specified agent.
      *
      * The async variant is {@see IntentsClient::listIntentsAsync()} .
+     *
+     * @example samples/V2/IntentsClient/list_intents.php
      *
      * @param ListIntentsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -752,6 +764,8 @@ final class IntentsClient
      *
      * The async variant is {@see IntentsClient::updateIntentAsync()} .
      *
+     * @example samples/V2/IntentsClient/update_intent.php
+     *
      * @param UpdateIntentRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -776,6 +790,8 @@ final class IntentsClient
      *
      * The async variant is {@see IntentsClient::getLocationAsync()} .
      *
+     * @example samples/V2/IntentsClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -799,6 +815,8 @@ final class IntentsClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see IntentsClient::listLocationsAsync()} .
+     *
+     * @example samples/V2/IntentsClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

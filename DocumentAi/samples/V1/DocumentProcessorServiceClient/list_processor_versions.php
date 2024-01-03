@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START documentai_v1_generated_DocumentProcessorService_ListProcessorVersions_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\DocumentAI\V1\DocumentProcessorServiceClient;
+use Google\Cloud\DocumentAI\V1\Client\DocumentProcessorServiceClient;
+use Google\Cloud\DocumentAI\V1\ListProcessorVersionsRequest;
 use Google\Cloud\DocumentAI\V1\ProcessorVersion;
 
 /**
@@ -41,10 +42,14 @@ function list_processor_versions_sample(string $formattedParent): void
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListProcessorVersionsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $documentProcessorServiceClient->listProcessorVersions($formattedParent);
+        $response = $documentProcessorServiceClient->listProcessorVersions($request);
 
         /** @var ProcessorVersion $element */
         foreach ($response as $element) {

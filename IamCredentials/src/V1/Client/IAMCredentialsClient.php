@@ -231,6 +231,8 @@ final class IAMCredentialsClient
      *
      * The async variant is {@see IAMCredentialsClient::generateAccessTokenAsync()} .
      *
+     * @example samples/V1/IAMCredentialsClient/generate_access_token.php
+     *
      * @param GenerateAccessTokenRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -254,6 +256,8 @@ final class IAMCredentialsClient
      * Generates an OpenID Connect ID token for a service account.
      *
      * The async variant is {@see IAMCredentialsClient::generateIdTokenAsync()} .
+     *
+     * @example samples/V1/IAMCredentialsClient/generate_id_token.php
      *
      * @param GenerateIdTokenRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -279,6 +283,8 @@ final class IAMCredentialsClient
      *
      * The async variant is {@see IAMCredentialsClient::signBlobAsync()} .
      *
+     * @example samples/V1/IAMCredentialsClient/sign_blob.php
+     *
      * @param SignBlobRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -302,6 +308,8 @@ final class IAMCredentialsClient
      * Signs a JWT using a service account's system-managed private key.
      *
      * The async variant is {@see IAMCredentialsClient::signJwtAsync()} .
+     *
+     * @example samples/V1/IAMCredentialsClient/sign_jwt.php
      *
      * @param SignJwtRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
