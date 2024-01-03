@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudchannel_v1_generated_CloudChannelService_ActivateEntitlement_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\ActivateEntitlementRequest;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
 use Google\Cloud\Channel\V1\Entitlement;
 use Google\Rpc\Status;
 
@@ -67,10 +68,14 @@ function activate_entitlement_sample(string $name): void
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new ActivateEntitlementRequest())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudChannelServiceClient->activateEntitlement($name);
+        $response = $cloudChannelServiceClient->activateEntitlement($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

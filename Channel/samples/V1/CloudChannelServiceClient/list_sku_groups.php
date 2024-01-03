@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudchannel_v1_generated_CloudChannelService_ListSkuGroups_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\ListSkuGroupsRequest;
 use Google\Cloud\Channel\V1\SkuGroup;
 
 /**
@@ -57,10 +58,14 @@ function list_sku_groups_sample(string $parent): void
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListSkuGroupsRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudChannelServiceClient->listSkuGroups($parent);
+        $response = $cloudChannelServiceClient->listSkuGroups($request);
 
         /** @var SkuGroup $element */
         foreach ($response as $element) {

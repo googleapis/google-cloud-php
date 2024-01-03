@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START contactcenterinsights_v1_generated_ContactCenterInsights_CreateIssueModel_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\ContactCenterInsights\V1\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\CreateIssueModelRequest;
 use Google\Cloud\ContactCenterInsights\V1\IssueModel;
 use Google\Rpc\Status;
 
@@ -40,13 +41,16 @@ function create_issue_model_sample(string $formattedParent): void
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $issueModel = new IssueModel();
+    $request = (new CreateIssueModelRequest())
+        ->setParent($formattedParent)
+        ->setIssueModel($issueModel);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $contactCenterInsightsClient->createIssueModel($formattedParent, $issueModel);
+        $response = $contactCenterInsightsClient->createIssueModel($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

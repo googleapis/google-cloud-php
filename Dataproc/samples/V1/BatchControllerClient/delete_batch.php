@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataproc_v1_generated_BatchController_DeleteBatch_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dataproc\V1\BatchControllerClient;
+use Google\Cloud\Dataproc\V1\Client\BatchControllerClient;
+use Google\Cloud\Dataproc\V1\DeleteBatchRequest;
 
 /**
  * Deletes the batch workload resource. If the batch is not in terminal state,
@@ -40,9 +41,13 @@ function delete_batch_sample(string $formattedName): void
     // Create a client.
     $batchControllerClient = new BatchControllerClient();
 
+    // Prepare the request message.
+    $request = (new DeleteBatchRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $batchControllerClient->deleteBatch($formattedName);
+        $batchControllerClient->deleteBatch($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

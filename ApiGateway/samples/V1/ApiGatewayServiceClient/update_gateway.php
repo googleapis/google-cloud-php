@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START apigateway_v1_generated_ApiGatewayService_UpdateGateway_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\ApiGateway\V1\ApiGatewayServiceClient;
+use Google\Cloud\ApiGateway\V1\Client\ApiGatewayServiceClient;
 use Google\Cloud\ApiGateway\V1\Gateway;
+use Google\Cloud\ApiGateway\V1\UpdateGatewayRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,14 +42,16 @@ function update_gateway_sample(string $formattedGatewayApiConfig): void
     // Create a client.
     $apiGatewayServiceClient = new ApiGatewayServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $gateway = (new Gateway())
         ->setApiConfig($formattedGatewayApiConfig);
+    $request = (new UpdateGatewayRequest())
+        ->setGateway($gateway);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $apiGatewayServiceClient->updateGateway($gateway);
+        $response = $apiGatewayServiceClient->updateGateway($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

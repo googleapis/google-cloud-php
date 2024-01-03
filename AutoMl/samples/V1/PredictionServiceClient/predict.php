@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START automl_v1_generated_PredictionService_Predict_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AutoMl\V1\Client\PredictionServiceClient;
 use Google\Cloud\AutoMl\V1\ExamplePayload;
+use Google\Cloud\AutoMl\V1\PredictRequest;
 use Google\Cloud\AutoMl\V1\PredictResponse;
-use Google\Cloud\AutoMl\V1\PredictionServiceClient;
 
 /**
  * Perform an online prediction. The prediction result is directly
@@ -74,13 +75,16 @@ function predict_sample(string $formattedName): void
     // Create a client.
     $predictionServiceClient = new PredictionServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $payload = new ExamplePayload();
+    $request = (new PredictRequest())
+        ->setName($formattedName)
+        ->setPayload($payload);
 
     // Call the API and handle any network failures.
     try {
         /** @var PredictResponse $response */
-        $response = $predictionServiceClient->predict($formattedName, $payload);
+        $response = $predictionServiceClient->predict($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

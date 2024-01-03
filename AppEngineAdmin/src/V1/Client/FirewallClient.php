@@ -193,6 +193,8 @@ final class FirewallClient
      *
      * The async variant is {@see FirewallClient::batchUpdateIngressRulesAsync()} .
      *
+     * @example samples/V1/FirewallClient/batch_update_ingress_rules.php
+     *
      * @param BatchUpdateIngressRulesRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -216,6 +218,8 @@ final class FirewallClient
      * Creates a firewall rule for the application.
      *
      * The async variant is {@see FirewallClient::createIngressRuleAsync()} .
+     *
+     * @example samples/V1/FirewallClient/create_ingress_rule.php
      *
      * @param CreateIngressRuleRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -241,6 +245,8 @@ final class FirewallClient
      *
      * The async variant is {@see FirewallClient::deleteIngressRuleAsync()} .
      *
+     * @example samples/V1/FirewallClient/delete_ingress_rule.php
+     *
      * @param DeleteIngressRuleRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -262,6 +268,8 @@ final class FirewallClient
      * Gets the specified firewall rule.
      *
      * The async variant is {@see FirewallClient::getIngressRuleAsync()} .
+     *
+     * @example samples/V1/FirewallClient/get_ingress_rule.php
      *
      * @param GetIngressRuleRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -287,6 +295,8 @@ final class FirewallClient
      *
      * The async variant is {@see FirewallClient::listIngressRulesAsync()} .
      *
+     * @example samples/V1/FirewallClient/list_ingress_rules.php
+     *
      * @param ListIngressRulesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -310,6 +320,8 @@ final class FirewallClient
      * Updates the specified firewall rule.
      *
      * The async variant is {@see FirewallClient::updateIngressRuleAsync()} .
+     *
+     * @example samples/V1/FirewallClient/update_ingress_rule.php
      *
      * @param UpdateIngressRuleRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {

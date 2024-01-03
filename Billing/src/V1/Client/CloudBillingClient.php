@@ -319,6 +319,8 @@ final class CloudBillingClient
      *
      * The async variant is {@see CloudBillingClient::createBillingAccountAsync()} .
      *
+     * @example samples/V1/CloudBillingClient/create_billing_account.php
+     *
      * @param CreateBillingAccountRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -344,6 +346,8 @@ final class CloudBillingClient
      * account](https://cloud.google.com/billing/docs/how-to/billing-access).
      *
      * The async variant is {@see CloudBillingClient::getBillingAccountAsync()} .
+     *
+     * @example samples/V1/CloudBillingClient/get_billing_account.php
      *
      * @param GetBillingAccountRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -371,6 +375,8 @@ final class CloudBillingClient
      * [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
      *
      * The async variant is {@see CloudBillingClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/CloudBillingClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -400,6 +406,8 @@ final class CloudBillingClient
      *
      * The async variant is {@see CloudBillingClient::getProjectBillingInfoAsync()} .
      *
+     * @example samples/V1/CloudBillingClient/get_project_billing_info.php
+     *
      * @param GetProjectBillingInfoRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -425,6 +433,8 @@ final class CloudBillingClient
      * [view](https://cloud.google.com/billing/docs/how-to/billing-access).
      *
      * The async variant is {@see CloudBillingClient::listBillingAccountsAsync()} .
+     *
+     * @example samples/V1/CloudBillingClient/list_billing_accounts.php
      *
      * @param ListBillingAccountsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -453,6 +463,8 @@ final class CloudBillingClient
      *
      * The async variant is {@see CloudBillingClient::listProjectBillingInfoAsync()} .
      *
+     * @example samples/V1/CloudBillingClient/list_project_billing_info.php
+     *
      * @param ListProjectBillingInfoRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -476,6 +488,8 @@ final class CloudBillingClient
      * Changes which parent organization a billing account belongs to.
      *
      * The async variant is {@see CloudBillingClient::moveBillingAccountAsync()} .
+     *
+     * @example samples/V1/CloudBillingClient/move_billing_account.php
      *
      * @param MoveBillingAccountRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -505,6 +519,8 @@ final class CloudBillingClient
      *
      * The async variant is {@see CloudBillingClient::setIamPolicyAsync()} .
      *
+     * @example samples/V1/CloudBillingClient/set_iam_policy.php
+     *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -530,6 +546,8 @@ final class CloudBillingClient
      * the input permissions that the caller is allowed for that resource.
      *
      * The async variant is {@see CloudBillingClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/CloudBillingClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -559,6 +577,8 @@ final class CloudBillingClient
      * of the billing account.
      *
      * The async variant is {@see CloudBillingClient::updateBillingAccountAsync()} .
+     *
+     * @example samples/V1/CloudBillingClient/update_billing_account.php
      *
      * @param UpdateBillingAccountRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -615,6 +635,8 @@ final class CloudBillingClient
      *
      * The async variant is {@see CloudBillingClient::updateProjectBillingInfoAsync()}
      * .
+     *
+     * @example samples/V1/CloudBillingClient/update_project_billing_info.php
      *
      * @param UpdateProjectBillingInfoRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {

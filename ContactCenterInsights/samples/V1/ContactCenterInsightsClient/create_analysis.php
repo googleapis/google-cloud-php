@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\ContactCenterInsights\V1\Analysis;
-use Google\Cloud\ContactCenterInsights\V1\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\CreateAnalysisRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,13 +42,16 @@ function create_analysis_sample(string $formattedParent): void
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $analysis = new Analysis();
+    $request = (new CreateAnalysisRequest())
+        ->setParent($formattedParent)
+        ->setAnalysis($analysis);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $contactCenterInsightsClient->createAnalysis($formattedParent, $analysis);
+        $response = $contactCenterInsightsClient->createAnalysis($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

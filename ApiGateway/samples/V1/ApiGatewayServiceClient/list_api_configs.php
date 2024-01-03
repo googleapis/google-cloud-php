@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\ApiGateway\V1\ApiConfig;
-use Google\Cloud\ApiGateway\V1\ApiGatewayServiceClient;
+use Google\Cloud\ApiGateway\V1\Client\ApiGatewayServiceClient;
+use Google\Cloud\ApiGateway\V1\ListApiConfigsRequest;
 
 /**
  * Lists ApiConfigs in a given project and location.
@@ -40,10 +41,14 @@ function list_api_configs_sample(string $formattedParent): void
     // Create a client.
     $apiGatewayServiceClient = new ApiGatewayServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListApiConfigsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $apiGatewayServiceClient->listApiConfigs($formattedParent);
+        $response = $apiGatewayServiceClient->listApiConfigs($request);
 
         /** @var ApiConfig $element */
         foreach ($response as $element) {

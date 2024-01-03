@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataproc_v1_generated_JobController_UpdateJob_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dataproc\V1\Client\JobControllerClient;
 use Google\Cloud\Dataproc\V1\Job;
-use Google\Cloud\Dataproc\V1\JobControllerClient;
 use Google\Cloud\Dataproc\V1\JobPlacement;
+use Google\Cloud\Dataproc\V1\UpdateJobRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -47,17 +48,23 @@ function update_job_sample(
     // Create a client.
     $jobControllerClient = new JobControllerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $jobPlacement = (new JobPlacement())
         ->setClusterName($jobPlacementClusterName);
     $job = (new Job())
         ->setPlacement($jobPlacement);
     $updateMask = new FieldMask();
+    $request = (new UpdateJobRequest())
+        ->setProjectId($projectId)
+        ->setRegion($region)
+        ->setJobId($jobId)
+        ->setJob($job)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var Job $response */
-        $response = $jobControllerClient->updateJob($projectId, $region, $jobId, $job, $updateMask);
+        $response = $jobControllerClient->updateJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

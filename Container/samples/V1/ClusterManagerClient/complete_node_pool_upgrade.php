@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START container_v1_generated_ClusterManager_CompleteNodePoolUpgrade_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Container\V1\ClusterManagerClient;
+use Google\Cloud\Container\V1\Client\ClusterManagerClient;
+use Google\Cloud\Container\V1\CompleteNodePoolUpgradeRequest;
 
 /**
  * CompleteNodePoolUpgrade will signal an on-going node pool upgrade to
@@ -41,9 +42,12 @@ function complete_node_pool_upgrade_sample(): void
     // Create a client.
     $clusterManagerClient = new ClusterManagerClient();
 
+    // Prepare the request message.
+    $request = new CompleteNodePoolUpgradeRequest();
+
     // Call the API and handle any network failures.
     try {
-        $clusterManagerClient->completeNodePoolUpgrade();
+        $clusterManagerClient->completeNodePoolUpgrade($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

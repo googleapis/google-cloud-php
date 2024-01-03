@@ -156,6 +156,8 @@ final class TetherClient
      * the RPC client.
      * The listener streams http requests and the dialer streams http responses.
      *
+     * @example samples/V1/TetherClient/egress.php
+     *
      * @param array $callOptions {
      *     Optional.
      *

@@ -388,6 +388,8 @@ final class ReservationServiceClient
      *
      * The async variant is {@see ReservationServiceClient::createAssignmentAsync()} .
      *
+     * @example samples/V1/ReservationServiceClient/create_assignment.php
+     *
      * @param CreateAssignmentRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -413,6 +415,8 @@ final class ReservationServiceClient
      * The async variant is
      * {@see ReservationServiceClient::createCapacityCommitmentAsync()} .
      *
+     * @example samples/V1/ReservationServiceClient/create_capacity_commitment.php
+     *
      * @param CreateCapacityCommitmentRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -436,6 +440,8 @@ final class ReservationServiceClient
      * Creates a new reservation resource.
      *
      * The async variant is {@see ReservationServiceClient::createReservationAsync()} .
+     *
+     * @example samples/V1/ReservationServiceClient/create_reservation.php
      *
      * @param CreateReservationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -475,6 +481,8 @@ final class ReservationServiceClient
      *
      * The async variant is {@see ReservationServiceClient::deleteAssignmentAsync()} .
      *
+     * @example samples/V1/ReservationServiceClient/delete_assignment.php
+     *
      * @param DeleteAssignmentRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -500,6 +508,8 @@ final class ReservationServiceClient
      * The async variant is
      * {@see ReservationServiceClient::deleteCapacityCommitmentAsync()} .
      *
+     * @example samples/V1/ReservationServiceClient/delete_capacity_commitment.php
+     *
      * @param DeleteCapacityCommitmentRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -524,6 +534,8 @@ final class ReservationServiceClient
      *
      * The async variant is {@see ReservationServiceClient::deleteReservationAsync()} .
      *
+     * @example samples/V1/ReservationServiceClient/delete_reservation.php
+     *
      * @param DeleteReservationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -545,6 +557,8 @@ final class ReservationServiceClient
      * Retrieves a BI reservation.
      *
      * The async variant is {@see ReservationServiceClient::getBiReservationAsync()} .
+     *
+     * @example samples/V1/ReservationServiceClient/get_bi_reservation.php
      *
      * @param GetBiReservationRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -571,6 +585,8 @@ final class ReservationServiceClient
      * The async variant is
      * {@see ReservationServiceClient::getCapacityCommitmentAsync()} .
      *
+     * @example samples/V1/ReservationServiceClient/get_capacity_commitment.php
+     *
      * @param GetCapacityCommitmentRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -594,6 +610,8 @@ final class ReservationServiceClient
      * Returns information about the reservation.
      *
      * The async variant is {@see ReservationServiceClient::getReservationAsync()} .
+     *
+     * @example samples/V1/ReservationServiceClient/get_reservation.php
      *
      * @param GetReservationRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -639,6 +657,8 @@ final class ReservationServiceClient
      *
      * The async variant is {@see ReservationServiceClient::listAssignmentsAsync()} .
      *
+     * @example samples/V1/ReservationServiceClient/list_assignments.php
+     *
      * @param ListAssignmentsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -664,6 +684,8 @@ final class ReservationServiceClient
      * The async variant is
      * {@see ReservationServiceClient::listCapacityCommitmentsAsync()} .
      *
+     * @example samples/V1/ReservationServiceClient/list_capacity_commitments.php
+     *
      * @param ListCapacityCommitmentsRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -687,6 +709,8 @@ final class ReservationServiceClient
      * Lists all the reservations for the project in the specified location.
      *
      * The async variant is {@see ReservationServiceClient::listReservationsAsync()} .
+     *
+     * @example samples/V1/ReservationServiceClient/list_reservations.php
      *
      * @param ListReservationsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -719,6 +743,8 @@ final class ReservationServiceClient
      * The async variant is
      * {@see ReservationServiceClient::mergeCapacityCommitmentsAsync()} .
      *
+     * @example samples/V1/ReservationServiceClient/merge_capacity_commitments.php
+     *
      * @param MergeCapacityCommitmentsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -746,6 +772,8 @@ final class ReservationServiceClient
      * associated reservation.
      *
      * The async variant is {@see ReservationServiceClient::moveAssignmentAsync()} .
+     *
+     * @example samples/V1/ReservationServiceClient/move_assignment.php
      *
      * @param MoveAssignmentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -790,6 +818,8 @@ final class ReservationServiceClient
      *
      * The async variant is
      * {@see ReservationServiceClient::searchAllAssignmentsAsync()} .
+     *
+     * @example samples/V1/ReservationServiceClient/search_all_assignments.php
      *
      * @param SearchAllAssignmentsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -837,6 +867,8 @@ final class ReservationServiceClient
      *
      * The async variant is {@see ReservationServiceClient::searchAssignmentsAsync()} .
      *
+     * @example samples/V1/ReservationServiceClient/search_assignments.php
+     *
      * @param SearchAssignmentsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -871,6 +903,8 @@ final class ReservationServiceClient
      * The async variant is
      * {@see ReservationServiceClient::splitCapacityCommitmentAsync()} .
      *
+     * @example samples/V1/ReservationServiceClient/split_capacity_commitment.php
+     *
      * @param SplitCapacityCommitmentRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -896,6 +930,8 @@ final class ReservationServiceClient
      * Only the `priority` field can be updated.
      *
      * The async variant is {@see ReservationServiceClient::updateAssignmentAsync()} .
+     *
+     * @example samples/V1/ReservationServiceClient/update_assignment.php
      *
      * @param UpdateAssignmentRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -929,6 +965,8 @@ final class ReservationServiceClient
      * The async variant is {@see ReservationServiceClient::updateBiReservationAsync()}
      * .
      *
+     * @example samples/V1/ReservationServiceClient/update_bi_reservation.php
+     *
      * @param UpdateBiReservationRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -960,6 +998,8 @@ final class ReservationServiceClient
      * The async variant is
      * {@see ReservationServiceClient::updateCapacityCommitmentAsync()} .
      *
+     * @example samples/V1/ReservationServiceClient/update_capacity_commitment.php
+     *
      * @param UpdateCapacityCommitmentRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -983,6 +1023,8 @@ final class ReservationServiceClient
      * Updates an existing reservation resource.
      *
      * The async variant is {@see ReservationServiceClient::updateReservationAsync()} .
+     *
+     * @example samples/V1/ReservationServiceClient/update_reservation.php
      *
      * @param UpdateReservationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {

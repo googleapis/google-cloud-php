@@ -179,6 +179,8 @@ final class AuthorizedCertificatesClient
      * The async variant is
      * {@see AuthorizedCertificatesClient::createAuthorizedCertificateAsync()} .
      *
+     * @example samples/V1/AuthorizedCertificatesClient/create_authorized_certificate.php
+     *
      * @param CreateAuthorizedCertificateRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -204,6 +206,8 @@ final class AuthorizedCertificatesClient
      * The async variant is
      * {@see AuthorizedCertificatesClient::deleteAuthorizedCertificateAsync()} .
      *
+     * @example samples/V1/AuthorizedCertificatesClient/delete_authorized_certificate.php
+     *
      * @param DeleteAuthorizedCertificateRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -226,6 +230,8 @@ final class AuthorizedCertificatesClient
      *
      * The async variant is
      * {@see AuthorizedCertificatesClient::getAuthorizedCertificateAsync()} .
+     *
+     * @example samples/V1/AuthorizedCertificatesClient/get_authorized_certificate.php
      *
      * @param GetAuthorizedCertificateRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -251,6 +257,8 @@ final class AuthorizedCertificatesClient
      *
      * The async variant is
      * {@see AuthorizedCertificatesClient::listAuthorizedCertificatesAsync()} .
+     *
+     * @example samples/V1/AuthorizedCertificatesClient/list_authorized_certificates.php
      *
      * @param ListAuthorizedCertificatesRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -280,6 +288,8 @@ final class AuthorizedCertificatesClient
      *
      * The async variant is
      * {@see AuthorizedCertificatesClient::updateAuthorizedCertificateAsync()} .
+     *
+     * @example samples/V1/AuthorizedCertificatesClient/update_authorized_certificate.php
      *
      * @param UpdateAuthorizedCertificateRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {

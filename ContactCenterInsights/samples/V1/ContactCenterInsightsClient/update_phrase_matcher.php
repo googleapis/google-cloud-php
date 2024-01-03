@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START contactcenterinsights_v1_generated_ContactCenterInsights_UpdatePhraseMatcher_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\ContactCenterInsights\V1\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient;
 use Google\Cloud\ContactCenterInsights\V1\PhraseMatcher;
 use Google\Cloud\ContactCenterInsights\V1\PhraseMatcher\PhraseMatcherType;
+use Google\Cloud\ContactCenterInsights\V1\UpdatePhraseMatcherRequest;
 
 /**
  * Updates a phrase matcher.
@@ -38,14 +39,16 @@ function update_phrase_matcher_sample(int $phraseMatcherType): void
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $phraseMatcher = (new PhraseMatcher())
         ->setType($phraseMatcherType);
+    $request = (new UpdatePhraseMatcherRequest())
+        ->setPhraseMatcher($phraseMatcher);
 
     // Call the API and handle any network failures.
     try {
         /** @var PhraseMatcher $response */
-        $response = $contactCenterInsightsClient->updatePhraseMatcher($phraseMatcher);
+        $response = $contactCenterInsightsClient->updatePhraseMatcher($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

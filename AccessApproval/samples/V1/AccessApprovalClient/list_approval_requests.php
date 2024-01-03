@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START accessapproval_v1_generated_AccessApproval_ListApprovalRequests_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\AccessApproval\V1\AccessApprovalClient;
 use Google\Cloud\AccessApproval\V1\ApprovalRequest;
+use Google\Cloud\AccessApproval\V1\Client\AccessApprovalClient;
+use Google\Cloud\AccessApproval\V1\ListApprovalRequestsMessage;
 
 /**
  * Lists approval requests associated with a project, folder, or organization.
@@ -44,10 +45,13 @@ function list_approval_requests_sample(): void
     // Create a client.
     $accessApprovalClient = new AccessApprovalClient();
 
+    // Prepare the request message.
+    $request = new ListApprovalRequestsMessage();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $accessApprovalClient->listApprovalRequests();
+        $response = $accessApprovalClient->listApprovalRequests($request);
 
         /** @var ApprovalRequest $element */
         foreach ($response as $element) {

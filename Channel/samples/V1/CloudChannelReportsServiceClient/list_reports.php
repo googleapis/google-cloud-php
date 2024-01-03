@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudchannel_v1_generated_CloudChannelReportsService_ListReports_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Channel\V1\CloudChannelReportsServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelReportsServiceClient;
+use Google\Cloud\Channel\V1\ListReportsRequest;
 use Google\Cloud\Channel\V1\Report;
 
 /**
@@ -44,10 +45,14 @@ function list_reports_sample(string $parent): void
     // Create a client.
     $cloudChannelReportsServiceClient = new CloudChannelReportsServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListReportsRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudChannelReportsServiceClient->listReports($parent);
+        $response = $cloudChannelReportsServiceClient->listReports($request);
 
         /** @var Report $element */
         foreach ($response as $element) {

@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datastore_v1_generated_Datastore_Commit_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient;
+use Google\Cloud\Datastore\V1\CommitRequest;
 use Google\Cloud\Datastore\V1\CommitRequest\Mode;
 use Google\Cloud\Datastore\V1\CommitResponse;
-use Google\Cloud\Datastore\V1\DatastoreClient;
 use Google\Cloud\Datastore\V1\Mutation;
 
 /**
@@ -41,13 +42,17 @@ function commit_sample(string $projectId, int $mode): void
     // Create a client.
     $datastoreClient = new DatastoreClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $mutations = [new Mutation()];
+    $request = (new CommitRequest())
+        ->setProjectId($projectId)
+        ->setMode($mode)
+        ->setMutations($mutations);
 
     // Call the API and handle any network failures.
     try {
         /** @var CommitResponse $response */
-        $response = $datastoreClient->commit($projectId, $mode, $mutations);
+        $response = $datastoreClient->commit($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

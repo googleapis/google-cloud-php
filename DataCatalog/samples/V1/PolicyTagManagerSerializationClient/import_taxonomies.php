@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datacatalog_v1_generated_PolicyTagManagerSerialization_ImportTaxonomies_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\DataCatalog\V1\Client\PolicyTagManagerSerializationClient;
+use Google\Cloud\DataCatalog\V1\ImportTaxonomiesRequest;
 use Google\Cloud\DataCatalog\V1\ImportTaxonomiesResponse;
-use Google\Cloud\DataCatalog\V1\PolicyTagManagerSerializationClient;
 
 /**
  * Creates new taxonomies (including their policy tags) in a given project
@@ -46,10 +47,14 @@ function import_taxonomies_sample(string $formattedParent): void
     // Create a client.
     $policyTagManagerSerializationClient = new PolicyTagManagerSerializationClient();
 
+    // Prepare the request message.
+    $request = (new ImportTaxonomiesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var ImportTaxonomiesResponse $response */
-        $response = $policyTagManagerSerializationClient->importTaxonomies($formattedParent);
+        $response = $policyTagManagerSerializationClient->importTaxonomies($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

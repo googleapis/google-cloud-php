@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudbilling_v1_generated_CloudBilling_GetIamPolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Billing\V1\CloudBillingClient;
+use Google\Cloud\Billing\V1\Client\CloudBillingClient;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 
 /**
@@ -41,10 +42,14 @@ function get_iam_policy_sample(string $resource): void
     // Create a client.
     $cloudBillingClient = new CloudBillingClient();
 
+    // Prepare the request message.
+    $request = (new GetIamPolicyRequest())
+        ->setResource($resource);
+
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $cloudBillingClient->getIamPolicy($resource);
+        $response = $cloudBillingClient->getIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -271,6 +271,8 @@ final class PredictionServiceClient
      *
      * The async variant is {@see PredictionServiceClient::batchPredictAsync()} .
      *
+     * @example samples/V1/PredictionServiceClient/batch_predict.php
+     *
      * @param BatchPredictRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -329,6 +331,8 @@ final class PredictionServiceClient
      * `prediction_type`.
      *
      * The async variant is {@see PredictionServiceClient::predictAsync()} .
+     *
+     * @example samples/V1/PredictionServiceClient/predict.php
      *
      * @param PredictRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {

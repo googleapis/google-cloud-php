@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataproc_v1_generated_ClusterController_DiagnoseCluster_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Dataproc\V1\ClusterControllerClient;
+use Google\Cloud\Dataproc\V1\Client\ClusterControllerClient;
+use Google\Cloud\Dataproc\V1\DiagnoseClusterRequest;
 use Google\Cloud\Dataproc\V1\DiagnoseClusterResults;
 use Google\Rpc\Status;
 
@@ -48,10 +49,16 @@ function diagnose_cluster_sample(string $projectId, string $region, string $clus
     // Create a client.
     $clusterControllerClient = new ClusterControllerClient();
 
+    // Prepare the request message.
+    $request = (new DiagnoseClusterRequest())
+        ->setProjectId($projectId)
+        ->setRegion($region)
+        ->setClusterName($clusterName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $clusterControllerClient->diagnoseCluster($projectId, $region, $clusterName);
+        $response = $clusterControllerClient->diagnoseCluster($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

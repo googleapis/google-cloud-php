@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudchannel_v1_generated_CloudChannelService_ChangeOffer_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\ChangeOfferRequest;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
 use Google\Cloud\Channel\V1\Entitlement;
 use Google\Rpc\Status;
 
@@ -64,10 +65,15 @@ function change_offer_sample(string $name, string $formattedOffer): void
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new ChangeOfferRequest())
+        ->setName($name)
+        ->setOffer($formattedOffer);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudChannelServiceClient->changeOffer($name, $formattedOffer);
+        $response = $cloudChannelServiceClient->changeOffer($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -171,6 +171,8 @@ final class AuthorizedDomainsClient
      * The async variant is
      * {@see AuthorizedDomainsClient::listAuthorizedDomainsAsync()} .
      *
+     * @example samples/V1/AuthorizedDomainsClient/list_authorized_domains.php
+     *
      * @param ListAuthorizedDomainsRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.

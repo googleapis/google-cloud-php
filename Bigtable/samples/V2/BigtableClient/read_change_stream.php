@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START bigtable_v2_generated_Bigtable_ReadChangeStream_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ServerStream;
-use Google\Cloud\Bigtable\V2\BigtableClient;
+use Google\Cloud\Bigtable\V2\Client\BigtableClient;
+use Google\Cloud\Bigtable\V2\ReadChangeStreamRequest;
 use Google\Cloud\Bigtable\V2\ReadChangeStreamResponse;
 
 /**
@@ -45,10 +46,14 @@ function read_change_stream_sample(string $formattedTableName): void
     // Create a client.
     $bigtableClient = new BigtableClient();
 
+    // Prepare the request message.
+    $request = (new ReadChangeStreamRequest())
+        ->setTableName($formattedTableName);
+
     // Call the API and handle any network failures.
     try {
         /** @var ServerStream $stream */
-        $stream = $bigtableClient->readChangeStream($formattedTableName);
+        $stream = $bigtableClient->readChangeStream($request);
 
         /** @var ReadChangeStreamResponse $element */
         foreach ($stream->readAll() as $element) {

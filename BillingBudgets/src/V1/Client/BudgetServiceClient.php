@@ -243,6 +243,8 @@ final class BudgetServiceClient
      *
      * The async variant is {@see BudgetServiceClient::createBudgetAsync()} .
      *
+     * @example samples/V1/BudgetServiceClient/create_budget.php
+     *
      * @param CreateBudgetRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -266,6 +268,8 @@ final class BudgetServiceClient
      * Deletes a budget. Returns successfully if already deleted.
      *
      * The async variant is {@see BudgetServiceClient::deleteBudgetAsync()} .
+     *
+     * @example samples/V1/BudgetServiceClient/delete_budget.php
      *
      * @param DeleteBudgetRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -293,6 +297,8 @@ final class BudgetServiceClient
      * in the Cloud Console.
      *
      * The async variant is {@see BudgetServiceClient::getBudgetAsync()} .
+     *
+     * @example samples/V1/BudgetServiceClient/get_budget.php
      *
      * @param GetBudgetRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -323,6 +329,8 @@ final class BudgetServiceClient
      *
      * The async variant is {@see BudgetServiceClient::listBudgetsAsync()} .
      *
+     * @example samples/V1/BudgetServiceClient/list_budgets.php
+     *
      * @param ListBudgetsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -350,6 +358,8 @@ final class BudgetServiceClient
      * this API will not be changed by this method.
      *
      * The async variant is {@see BudgetServiceClient::updateBudgetAsync()} .
+     *
+     * @example samples/V1/BudgetServiceClient/update_budget.php
      *
      * @param UpdateBudgetRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
