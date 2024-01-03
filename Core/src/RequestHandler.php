@@ -18,6 +18,11 @@
 namespace Google\Cloud\Core;
 
 use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Core\TimeTrait;
+use Google\Cloud\Core\WhitelistTrait;
 
 /**
  * @internal
@@ -27,28 +32,40 @@ use Google\ApiCore\Serializer;
 class RequestHandler
 {
     use EmulatorTrait;
-    use RequestCallerTrait;
+    use ArrayTrait;
+    use TimeTrait;
+    use WhitelistTrait;
 
     /**
      * @var Serializer
      */
     private Serializer $serializer;
 
+    /**
+     * @var GapicRequestWrapper Wrapper used to handle sending requests to the
+     * gRPC/REST API.
+     */
+    private GapicRequestWrapper $requestWrapper;
+
     private array $gapics;
 
     /**
-     * @param array $config
+     * @param Serializer $serializer
+     * @param array $gapicClasses
+     * @param array $clientConfig
+     * @param ?GapicRequestWrapper $requestWrapper
      */
     public function __construct(
         Serializer $serializer,
         array $gapicClasses,
-        array $clientConfig = []
+        array $clientConfig = [],
+        GapicRequestWrapper $requestWrapper = null,
     ) {
         //@codeCoverageIgnoreStart
         $this->serializer = $serializer;
         $clientConfig['serializer'] = $serializer;
 
-        $this->setRequestWrapper(new GapicRequestWrapper($serializer));
+        $this->requestWrapper = $requestWrapper ?? new GapicRequestWrapper($serializer);
 
         // Adds some defaults
         // gccl needs to be present for handwritten clients
@@ -81,6 +98,10 @@ class RequestHandler
      * @param $method This method needs to be called on the gapic obj.
      * @param $requiredArgs The positional arguments to be passed on the $method
      * @param $args The optional args.
+     * 
+     * @return \Generator|OperationResponse|array|null
+     * 
+     * @throws ServiceException
      *
      * If a GAPIC class is provided as the first argument,
      * then the GAPIC object already stored in memory is used.
@@ -93,7 +114,7 @@ class RequestHandler
         array $requiredArgs,
         array $optionalArgs,
         bool $whitelisted = false
-    ) : mixed {
+    ) {
 
         $allArgs = $requiredArgs;
 
@@ -103,7 +124,19 @@ class RequestHandler
 
         $gapicObj = $this->getGapicObject($gapicClass);
 
-        return $this->send([$gapicObj, $method], $allArgs, $whitelisted);
+        if (!$gapicObj) {
+            return null;
+        }
+
+        try {
+            return $this->requestWrapper->send([$gapicObj, $method], $allArgs);
+        } catch (NotFoundException $e) {
+            if ($whitelisted) {
+                throw $this->modifyWhitelistedError($e);
+            }
+
+            throw $e;
+        }
     }
 
     /**
@@ -117,16 +150,6 @@ class RequestHandler
     }
 
     /**
-     * Setter for the serializer.
-     *
-     * @return void
-     */
-    public function setSerializer(Serializer $serializer) : void
-    {
-        $this->serializer = $serializer;
-    }
-
-    /**
      * Helper function that returns a GAPIC object stored in memory
      * using the GAPIC class as key.
      * Alternatively, if a GAPIC object is supplied, then that object is returned
@@ -134,7 +157,7 @@ class RequestHandler
      * @param $gapicClass The GAPIC class whose object we need.
      * @return mixed
      */
-    private function getGapicObject(string $gapicClass) : mixed
+    private function getGapicObject(string $gapicClass)
     {
         return $this->gapics[$gapicClass] ?? null;
     }
