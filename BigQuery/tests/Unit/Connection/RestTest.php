@@ -71,7 +71,7 @@ class RestTest extends TestCase
             [['apiEndpoint' => 'https://foobar.com'], 'https://foobar.com/bigquery/v2/'],
             [['universeDomain' => 'googleapis.com'], 'https://bigquery.googleapis.com/bigquery/v2/'],
             [['universeDomain' => 'abc.def.ghi'], 'https://bigquery.abc.def.ghi/bigquery/v2/'],
-            [['universeDomain' => ''], '', true],
+            [['universeDomain' => null], '', true],
         ];
     }
 

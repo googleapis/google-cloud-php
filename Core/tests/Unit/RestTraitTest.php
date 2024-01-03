@@ -218,8 +218,8 @@ class RestTraitTest extends TestCase
             [[], '', null, true],
             [[], null, null, true],
             [['universeDomain' => null], 'ab.cd', null, true],
-            [['universeDomain' => ''], 'ab.cd', null, true],
-            [['universeDomain' => 'defg'], 'ab.cd', 'ab.cd/'],
+            [['universeDomain' => ''], 'ab.cd/', 'ab.cd/'],
+            [['universeDomain' => 'defg'], '//ab.cd//', '//ab.cd//'],
             [['universeDomain' => 'defg'], 'ab.UNIVERSE_DOMAIN.cd', 'ab.defg.cd/'],
         ];
     }

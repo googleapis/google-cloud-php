@@ -86,7 +86,7 @@ class RestTest extends TestCase
             [['apiEndpoint' => 'https://foobar.com'], 'https://foobar.com/storage/v1/'],
             [['universeDomain' => 'googleapis.com'], 'https://storage.googleapis.com/storage/v1/'],
             [['universeDomain' => 'abc.def.ghi'], 'https://storage.abc.def.ghi/storage/v1/'],
-            [['universeDomain' => ''], '', true],
+            [['universeDomain' => null], '', true],
         ];
     }
 
