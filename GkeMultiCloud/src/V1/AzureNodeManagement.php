@@ -24,7 +24,7 @@ class AzureNodeManagement extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool auto_repair = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $auto_repair = false;
+    protected $auto_repair = false;
 
     /**
      * Constructor.

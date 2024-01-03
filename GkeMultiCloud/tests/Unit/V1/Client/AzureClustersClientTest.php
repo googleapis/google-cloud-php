@@ -90,7 +90,9 @@ class AzureClustersClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return AzureClustersClient */
@@ -214,12 +216,15 @@ class AzureClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -397,12 +402,15 @@ class AzureClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -590,12 +598,15 @@ class AzureClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
@@ -678,8 +689,7 @@ class AzureClustersClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->azureClientName('[PROJECT]', '[LOCATION]', '[AZURE_CLIENT]');
-        $request = (new DeleteAzureClientRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAzureClientRequest())->setName($formattedName);
         $response = $gapicClient->deleteAzureClient($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -735,17 +745,19 @@ class AzureClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->azureClientName('[PROJECT]', '[LOCATION]', '[AZURE_CLIENT]');
-        $request = (new DeleteAzureClientRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAzureClientRequest())->setName($formattedName);
         $response = $gapicClient->deleteAzureClient($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -799,8 +811,7 @@ class AzureClustersClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
-        $request = (new DeleteAzureClusterRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAzureClusterRequest())->setName($formattedName);
         $response = $gapicClient->deleteAzureCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -856,17 +867,19 @@ class AzureClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
-        $request = (new DeleteAzureClusterRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAzureClusterRequest())->setName($formattedName);
         $response = $gapicClient->deleteAzureCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -919,9 +932,13 @@ class AzureClustersClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $gapicClient->azureNodePoolName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]', '[AZURE_NODE_POOL]');
-        $request = (new DeleteAzureNodePoolRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->azureNodePoolName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[AZURE_CLUSTER]',
+            '[AZURE_NODE_POOL]'
+        );
+        $request = (new DeleteAzureNodePoolRequest())->setName($formattedName);
         $response = $gapicClient->deleteAzureNodePool($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -977,17 +994,24 @@ class AzureClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->azureNodePoolName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]', '[AZURE_NODE_POOL]');
-        $request = (new DeleteAzureNodePoolRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->azureNodePoolName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[AZURE_CLUSTER]',
+            '[AZURE_NODE_POOL]'
+        );
+        $request = (new DeleteAzureNodePoolRequest())->setName($formattedName);
         $response = $gapicClient->deleteAzureNodePool($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1025,8 +1049,7 @@ class AzureClustersClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedAzureCluster = $gapicClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
-        $request = (new GenerateAzureAccessTokenRequest())
-            ->setAzureCluster($formattedAzureCluster);
+        $request = (new GenerateAzureAccessTokenRequest())->setAzureCluster($formattedAzureCluster);
         $response = $gapicClient->generateAzureAccessToken($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1050,17 +1073,19 @@ class AzureClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedAzureCluster = $gapicClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
-        $request = (new GenerateAzureAccessTokenRequest())
-            ->setAzureCluster($formattedAzureCluster);
+        $request = (new GenerateAzureAccessTokenRequest())->setAzureCluster($formattedAzureCluster);
         try {
             $gapicClient->generateAzureAccessToken($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1107,7 +1132,10 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.gkemulticloud.v1.AzureClusters/GenerateAzureClusterAgentToken', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.gkemulticloud.v1.AzureClusters/GenerateAzureClusterAgentToken',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getAzureCluster();
         $this->assertProtobufEquals($formattedAzureCluster, $actualValue);
         $actualValue = $actualRequestObject->getSubjectToken();
@@ -1130,12 +1158,15 @@ class AzureClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedAzureCluster = $gapicClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
@@ -1185,8 +1216,7 @@ class AzureClustersClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->azureClientName('[PROJECT]', '[LOCATION]', '[AZURE_CLIENT]');
-        $request = (new GetAzureClientRequest())
-            ->setName($formattedName);
+        $request = (new GetAzureClientRequest())->setName($formattedName);
         $response = $gapicClient->getAzureClient($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1210,17 +1240,19 @@ class AzureClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->azureClientName('[PROJECT]', '[LOCATION]', '[AZURE_CLIENT]');
-        $request = (new GetAzureClientRequest())
-            ->setName($formattedName);
+        $request = (new GetAzureClientRequest())->setName($formattedName);
         try {
             $gapicClient->getAzureClient($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1267,8 +1299,7 @@ class AzureClustersClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
-        $request = (new GetAzureClusterRequest())
-            ->setName($formattedName);
+        $request = (new GetAzureClusterRequest())->setName($formattedName);
         $response = $gapicClient->getAzureCluster($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1292,17 +1323,19 @@ class AzureClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
-        $request = (new GetAzureClusterRequest())
-            ->setName($formattedName);
+        $request = (new GetAzureClusterRequest())->setName($formattedName);
         try {
             $gapicClient->getAzureCluster($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1329,8 +1362,7 @@ class AzureClustersClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedAzureCluster = $gapicClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
-        $request = (new GetAzureJsonWebKeysRequest())
-            ->setAzureCluster($formattedAzureCluster);
+        $request = (new GetAzureJsonWebKeysRequest())->setAzureCluster($formattedAzureCluster);
         $response = $gapicClient->getAzureJsonWebKeys($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1354,17 +1386,19 @@ class AzureClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedAzureCluster = $gapicClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
-        $request = (new GetAzureJsonWebKeysRequest())
-            ->setAzureCluster($formattedAzureCluster);
+        $request = (new GetAzureJsonWebKeysRequest())->setAzureCluster($formattedAzureCluster);
         try {
             $gapicClient->getAzureJsonWebKeys($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1404,9 +1438,13 @@ class AzureClustersClientTest extends GeneratedTest
         $expectedResponse->setAzureAvailabilityZone($azureAvailabilityZone);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->azureNodePoolName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]', '[AZURE_NODE_POOL]');
-        $request = (new GetAzureNodePoolRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->azureNodePoolName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[AZURE_CLUSTER]',
+            '[AZURE_NODE_POOL]'
+        );
+        $request = (new GetAzureNodePoolRequest())->setName($formattedName);
         $response = $gapicClient->getAzureNodePool($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1430,17 +1468,24 @@ class AzureClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->azureNodePoolName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]', '[AZURE_NODE_POOL]');
-        $request = (new GetAzureNodePoolRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->azureNodePoolName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[AZURE_CLUSTER]',
+            '[AZURE_NODE_POOL]'
+        );
+        $request = (new GetAzureNodePoolRequest())->setName($formattedName);
         try {
             $gapicClient->getAzureNodePool($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1471,8 +1516,7 @@ class AzureClustersClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedAzureCluster = $gapicClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
-        $request = (new GetAzureOpenIdConfigRequest())
-            ->setAzureCluster($formattedAzureCluster);
+        $request = (new GetAzureOpenIdConfigRequest())->setAzureCluster($formattedAzureCluster);
         $response = $gapicClient->getAzureOpenIdConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1496,17 +1540,19 @@ class AzureClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedAzureCluster = $gapicClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
-        $request = (new GetAzureOpenIdConfigRequest())
-            ->setAzureCluster($formattedAzureCluster);
+        $request = (new GetAzureOpenIdConfigRequest())->setAzureCluster($formattedAzureCluster);
         try {
             $gapicClient->getAzureOpenIdConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1535,8 +1581,7 @@ class AzureClustersClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->azureServerConfigName('[PROJECT]', '[LOCATION]');
-        $request = (new GetAzureServerConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetAzureServerConfigRequest())->setName($formattedName);
         $response = $gapicClient->getAzureServerConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1560,17 +1605,19 @@ class AzureClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->azureServerConfigName('[PROJECT]', '[LOCATION]');
-        $request = (new GetAzureServerConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetAzureServerConfigRequest())->setName($formattedName);
         try {
             $gapicClient->getAzureServerConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1595,17 +1642,14 @@ class AzureClustersClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $azureClientsElement = new AzureClient();
-        $azureClients = [
-            $azureClientsElement,
-        ];
+        $azureClients = [$azureClientsElement];
         $expectedResponse = new ListAzureClientsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAzureClients($azureClients);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListAzureClientsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAzureClientsRequest())->setParent($formattedParent);
         $response = $gapicClient->listAzureClients($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1632,17 +1676,19 @@ class AzureClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListAzureClientsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAzureClientsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAzureClients($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1667,17 +1713,14 @@ class AzureClustersClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $azureClustersElement = new AzureCluster();
-        $azureClusters = [
-            $azureClustersElement,
-        ];
+        $azureClusters = [$azureClustersElement];
         $expectedResponse = new ListAzureClustersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAzureClusters($azureClusters);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListAzureClustersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAzureClustersRequest())->setParent($formattedParent);
         $response = $gapicClient->listAzureClusters($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1704,17 +1747,19 @@ class AzureClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListAzureClustersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAzureClustersRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAzureClusters($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1739,17 +1784,14 @@ class AzureClustersClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $azureNodePoolsElement = new AzureNodePool();
-        $azureNodePools = [
-            $azureNodePoolsElement,
-        ];
+        $azureNodePools = [$azureNodePoolsElement];
         $expectedResponse = new ListAzureNodePoolsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAzureNodePools($azureNodePools);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
-        $request = (new ListAzureNodePoolsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAzureNodePoolsRequest())->setParent($formattedParent);
         $response = $gapicClient->listAzureNodePools($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1776,17 +1818,19 @@ class AzureClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
-        $request = (new ListAzureNodePoolsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAzureNodePoolsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAzureNodePools($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1878,9 +1922,7 @@ class AzureClustersClientTest extends GeneratedTest
         $azureClusterFleet->setProject($fleetProject);
         $azureCluster->setFleet($azureClusterFleet);
         $updateMask = new FieldMask();
-        $request = (new UpdateAzureClusterRequest())
-            ->setAzureCluster($azureCluster)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateAzureClusterRequest())->setAzureCluster($azureCluster)->setUpdateMask($updateMask);
         $response = $gapicClient->updateAzureCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1938,12 +1980,15 @@ class AzureClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $azureCluster = new AzureCluster();
@@ -1974,9 +2019,7 @@ class AzureClustersClientTest extends GeneratedTest
         $azureClusterFleet->setProject($fleetProject);
         $azureCluster->setFleet($azureClusterFleet);
         $updateMask = new FieldMask();
-        $request = (new UpdateAzureClusterRequest())
-            ->setAzureCluster($azureCluster)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateAzureClusterRequest())->setAzureCluster($azureCluster)->setUpdateMask($updateMask);
         $response = $gapicClient->updateAzureCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2065,9 +2108,7 @@ class AzureClustersClientTest extends GeneratedTest
         $azureNodePoolMaxPodsConstraint->setMaxPodsPerNode($maxPodsConstraintMaxPodsPerNode);
         $azureNodePool->setMaxPodsConstraint($azureNodePoolMaxPodsConstraint);
         $updateMask = new FieldMask();
-        $request = (new UpdateAzureNodePoolRequest())
-            ->setAzureNodePool($azureNodePool)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateAzureNodePoolRequest())->setAzureNodePool($azureNodePool)->setUpdateMask($updateMask);
         $response = $gapicClient->updateAzureNodePool($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2125,12 +2166,15 @@ class AzureClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $azureNodePool = new AzureNodePool();
@@ -2155,9 +2199,7 @@ class AzureClustersClientTest extends GeneratedTest
         $azureNodePoolMaxPodsConstraint->setMaxPodsPerNode($maxPodsConstraintMaxPodsPerNode);
         $azureNodePool->setMaxPodsConstraint($azureNodePoolMaxPodsConstraint);
         $updateMask = new FieldMask();
-        $request = (new UpdateAzureNodePoolRequest())
-            ->setAzureNodePool($azureNodePool)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateAzureNodePoolRequest())->setAzureNodePool($azureNodePool)->setUpdateMask($updateMask);
         $response = $gapicClient->updateAzureNodePool($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

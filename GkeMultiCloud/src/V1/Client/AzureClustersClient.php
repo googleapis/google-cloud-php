@@ -122,9 +122,7 @@ final class AzureClustersClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -170,7 +168,9 @@ final class AzureClustersClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -225,8 +225,12 @@ final class AzureClustersClient
      *
      * @return string The formatted azure_node_pool resource.
      */
-    public static function azureNodePoolName(string $project, string $location, string $azureCluster, string $azureNodePool): string
-    {
+    public static function azureNodePoolName(
+        string $project,
+        string $location,
+        string $azureCluster,
+        string $azureNodePool
+    ): string {
         return self::getPathTemplate('azureNodePool')->render([
             'project' => $project,
             'location' => $location,
@@ -589,8 +593,10 @@ final class AzureClustersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateAzureAccessToken(GenerateAzureAccessTokenRequest $request, array $callOptions = []): GenerateAzureAccessTokenResponse
-    {
+    public function generateAzureAccessToken(
+        GenerateAzureAccessTokenRequest $request,
+        array $callOptions = []
+    ): GenerateAzureAccessTokenResponse {
         return $this->startApiCall('GenerateAzureAccessToken', $request, $callOptions)->wait();
     }
 
@@ -616,8 +622,10 @@ final class AzureClustersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateAzureClusterAgentToken(GenerateAzureClusterAgentTokenRequest $request, array $callOptions = []): GenerateAzureClusterAgentTokenResponse
-    {
+    public function generateAzureClusterAgentToken(
+        GenerateAzureClusterAgentTokenRequest $request,
+        array $callOptions = []
+    ): GenerateAzureClusterAgentTokenResponse {
         return $this->startApiCall('GenerateAzureClusterAgentToken', $request, $callOptions)->wait();
     }
 
@@ -754,8 +762,10 @@ final class AzureClustersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getAzureOpenIdConfig(GetAzureOpenIdConfigRequest $request, array $callOptions = []): AzureOpenIdConfig
-    {
+    public function getAzureOpenIdConfig(
+        GetAzureOpenIdConfigRequest $request,
+        array $callOptions = []
+    ): AzureOpenIdConfig {
         return $this->startApiCall('GetAzureOpenIdConfig', $request, $callOptions)->wait();
     }
 
@@ -781,8 +791,10 @@ final class AzureClustersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getAzureServerConfig(GetAzureServerConfigRequest $request, array $callOptions = []): AzureServerConfig
-    {
+    public function getAzureServerConfig(
+        GetAzureServerConfigRequest $request,
+        array $callOptions = []
+    ): AzureServerConfig {
         return $this->startApiCall('GetAzureServerConfig', $request, $callOptions)->wait();
     }
 

@@ -39,7 +39,7 @@ class UpdateSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.SurgeSettings surge_settings = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $surge_settings = null;
+    protected $surge_settings = null;
 
     /**
      * Constructor.

@@ -71,7 +71,7 @@ use Google\Protobuf\FieldMask;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -88,7 +88,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -147,23 +147,16 @@ class AttachedClustersGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' =>
-                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' =>
-                __DIR__ . '/../resources/attached_clusters_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ .
-                '/../resources/attached_clusters_descriptor_config.php',
-            'gcpApiConfigPath' =>
-                __DIR__ . '/../resources/attached_clusters_grpc_config.json',
+            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__ . '/../resources/attached_clusters_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/attached_clusters_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__ . '/../resources/attached_clusters_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ .
-                        '/../resources/attached_clusters_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/attached_clusters_rest_client_config.php',
                 ],
             ],
         ];
@@ -172,9 +165,7 @@ class AttachedClustersGapicClient
     private static function getAttachedClusterNameTemplate()
     {
         if (self::$attachedClusterNameTemplate == null) {
-            self::$attachedClusterNameTemplate = new PathTemplate(
-                'projects/{project}/locations/{location}/attachedClusters/{attached_cluster}'
-            );
+            self::$attachedClusterNameTemplate = new PathTemplate('projects/{project}/locations/{location}/attachedClusters/{attached_cluster}');
         }
 
         return self::$attachedClusterNameTemplate;
@@ -183,9 +174,7 @@ class AttachedClustersGapicClient
     private static function getAttachedServerConfigNameTemplate()
     {
         if (self::$attachedServerConfigNameTemplate == null) {
-            self::$attachedServerConfigNameTemplate = new PathTemplate(
-                'projects/{project}/locations/{location}/attachedServerConfig'
-            );
+            self::$attachedServerConfigNameTemplate = new PathTemplate('projects/{project}/locations/{location}/attachedServerConfig');
         }
 
         return self::$attachedServerConfigNameTemplate;
@@ -194,9 +183,7 @@ class AttachedClustersGapicClient
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
-            self::$locationNameTemplate = new PathTemplate(
-                'projects/{project}/locations/{location}'
-            );
+            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
         }
 
         return self::$locationNameTemplate;
@@ -225,11 +212,8 @@ class AttachedClustersGapicClient
      *
      * @return string The formatted attached_cluster resource.
      */
-    public static function attachedClusterName(
-        $project,
-        $location,
-        $attachedCluster
-    ) {
+    public static function attachedClusterName($project, $location, $attachedCluster)
+    {
         return self::getAttachedClusterNameTemplate()->render([
             'project' => $project,
             'location' => $location,
@@ -297,9 +281,7 @@ class AttachedClustersGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException(
-                    "Template name $template does not exist"
-                );
+                throw new ValidationException("Template name $template does not exist");
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -313,9 +295,7 @@ class AttachedClustersGapicClient
             }
         }
 
-        throw new ValidationException(
-            "Input did not match any known format. Input: $formattedName"
-        );
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -341,14 +321,8 @@ class AttachedClustersGapicClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
-        $operation = new OperationResponse(
-            $operationName,
-            $this->getOperationsClient(),
-            $options
-        );
+        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
@@ -434,7 +408,7 @@ class AttachedClustersGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -451,7 +425,7 @@ class AttachedClustersGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -495,12 +469,8 @@ class AttachedClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createAttachedCluster(
-        $parent,
-        $attachedCluster,
-        $attachedClusterId,
-        array $optionalArgs = []
-    ) {
+    public function createAttachedCluster($parent, $attachedCluster, $attachedClusterId, array $optionalArgs = [])
+    {
         $request = new CreateAttachedClusterRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
@@ -511,18 +481,9 @@ class AttachedClustersGapicClient
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'CreateAttachedCluster',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('CreateAttachedCluster', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -633,18 +594,9 @@ class AttachedClustersGapicClient
             $request->setEtag($optionalArgs['etag']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'DeleteAttachedCluster',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('DeleteAttachedCluster', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -691,13 +643,8 @@ class AttachedClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function generateAttachedClusterAgentToken(
-        $attachedCluster,
-        $subjectToken,
-        $subjectTokenType,
-        $version,
-        array $optionalArgs = []
-    ) {
+    public function generateAttachedClusterAgentToken($attachedCluster, $subjectToken, $subjectTokenType, $version, array $optionalArgs = [])
+    {
         $request = new GenerateAttachedClusterAgentTokenRequest();
         $requestParamHeaders = [];
         $request->setAttachedCluster($attachedCluster);
@@ -718,27 +665,16 @@ class AttachedClustersGapicClient
         }
 
         if (isset($optionalArgs['requestedTokenType'])) {
-            $request->setRequestedTokenType(
-                $optionalArgs['requestedTokenType']
-            );
+            $request->setRequestedTokenType($optionalArgs['requestedTokenType']);
         }
 
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GenerateAttachedClusterAgentToken',
-            GenerateAttachedClusterAgentTokenResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GenerateAttachedClusterAgentToken', GenerateAttachedClusterAgentTokenResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -800,12 +736,8 @@ class AttachedClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function generateAttachedClusterInstallManifest(
-        $parent,
-        $attachedClusterId,
-        $platformVersion,
-        array $optionalArgs = []
-    ) {
+    public function generateAttachedClusterInstallManifest($parent, $attachedClusterId, $platformVersion, array $optionalArgs = [])
+    {
         $request = new GenerateAttachedClusterInstallManifestRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
@@ -816,18 +748,9 @@ class AttachedClustersGapicClient
             $request->setProxyConfig($optionalArgs['proxyConfig']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GenerateAttachedClusterInstallManifest',
-            GenerateAttachedClusterInstallManifestResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GenerateAttachedClusterInstallManifest', GenerateAttachedClusterInstallManifestResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -873,18 +796,9 @@ class AttachedClustersGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetAttachedCluster',
-            AttachedCluster::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetAttachedCluster', AttachedCluster::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -930,18 +844,9 @@ class AttachedClustersGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetAttachedServerConfig',
-            AttachedServerConfig::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetAttachedServerConfig', AttachedServerConfig::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -968,7 +873,7 @@ class AttachedClustersGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -985,7 +890,7 @@ class AttachedClustersGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1029,13 +934,8 @@ class AttachedClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function importAttachedCluster(
-        $parent,
-        $fleetMembership,
-        $platformVersion,
-        $distribution,
-        array $optionalArgs = []
-    ) {
+    public function importAttachedCluster($parent, $fleetMembership, $platformVersion, $distribution, array $optionalArgs = [])
+    {
         $request = new ImportAttachedClusterRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
@@ -1051,18 +951,9 @@ class AttachedClustersGapicClient
             $request->setProxyConfig($optionalArgs['proxyConfig']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'ImportAttachedCluster',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('ImportAttachedCluster', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -1135,18 +1026,9 @@ class AttachedClustersGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->getPagedListResponse(
-            'ListAttachedClusters',
-            $optionalArgs,
-            ListAttachedClustersResponse::class,
-            $request
-        );
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListAttachedClusters', $optionalArgs, ListAttachedClustersResponse::class, $request);
     }
 
     /**
@@ -1163,7 +1045,7 @@ class AttachedClustersGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1180,7 +1062,7 @@ class AttachedClustersGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1223,33 +1105,19 @@ class AttachedClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateAttachedCluster(
-        $attachedCluster,
-        $updateMask,
-        array $optionalArgs = []
-    ) {
+    public function updateAttachedCluster($attachedCluster, $updateMask, array $optionalArgs = [])
+    {
         $request = new UpdateAttachedClusterRequest();
         $requestParamHeaders = [];
         $request->setAttachedCluster($attachedCluster);
         $request->setUpdateMask($updateMask);
-        $requestParamHeaders[
-            'attached_cluster.name'
-        ] = $attachedCluster->getName();
+        $requestParamHeaders['attached_cluster.name'] = $attachedCluster->getName();
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'UpdateAttachedCluster',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('UpdateAttachedCluster', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 }

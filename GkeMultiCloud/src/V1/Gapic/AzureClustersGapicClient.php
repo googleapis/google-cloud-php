@@ -85,7 +85,7 @@ use Google\Protobuf\FieldMask;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -102,7 +102,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -165,22 +165,16 @@ class AzureClustersGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' =>
-                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' =>
-                __DIR__ . '/../resources/azure_clusters_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ . '/../resources/azure_clusters_descriptor_config.php',
-            'gcpApiConfigPath' =>
-                __DIR__ . '/../resources/azure_clusters_grpc_config.json',
+            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__ . '/../resources/azure_clusters_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/azure_clusters_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__ . '/../resources/azure_clusters_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ .
-                        '/../resources/azure_clusters_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/azure_clusters_rest_client_config.php',
                 ],
             ],
         ];
@@ -189,9 +183,7 @@ class AzureClustersGapicClient
     private static function getAzureClientNameTemplate()
     {
         if (self::$azureClientNameTemplate == null) {
-            self::$azureClientNameTemplate = new PathTemplate(
-                'projects/{project}/locations/{location}/azureClients/{azure_client}'
-            );
+            self::$azureClientNameTemplate = new PathTemplate('projects/{project}/locations/{location}/azureClients/{azure_client}');
         }
 
         return self::$azureClientNameTemplate;
@@ -200,9 +192,7 @@ class AzureClustersGapicClient
     private static function getAzureClusterNameTemplate()
     {
         if (self::$azureClusterNameTemplate == null) {
-            self::$azureClusterNameTemplate = new PathTemplate(
-                'projects/{project}/locations/{location}/azureClusters/{azure_cluster}'
-            );
+            self::$azureClusterNameTemplate = new PathTemplate('projects/{project}/locations/{location}/azureClusters/{azure_cluster}');
         }
 
         return self::$azureClusterNameTemplate;
@@ -211,9 +201,7 @@ class AzureClustersGapicClient
     private static function getAzureNodePoolNameTemplate()
     {
         if (self::$azureNodePoolNameTemplate == null) {
-            self::$azureNodePoolNameTemplate = new PathTemplate(
-                'projects/{project}/locations/{location}/azureClusters/{azure_cluster}/azureNodePools/{azure_node_pool}'
-            );
+            self::$azureNodePoolNameTemplate = new PathTemplate('projects/{project}/locations/{location}/azureClusters/{azure_cluster}/azureNodePools/{azure_node_pool}');
         }
 
         return self::$azureNodePoolNameTemplate;
@@ -222,9 +210,7 @@ class AzureClustersGapicClient
     private static function getAzureServerConfigNameTemplate()
     {
         if (self::$azureServerConfigNameTemplate == null) {
-            self::$azureServerConfigNameTemplate = new PathTemplate(
-                'projects/{project}/locations/{location}/azureServerConfig'
-            );
+            self::$azureServerConfigNameTemplate = new PathTemplate('projects/{project}/locations/{location}/azureServerConfig');
         }
 
         return self::$azureServerConfigNameTemplate;
@@ -233,9 +219,7 @@ class AzureClustersGapicClient
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
-            self::$locationNameTemplate = new PathTemplate(
-                'projects/{project}/locations/{location}'
-            );
+            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
         }
 
         return self::$locationNameTemplate;
@@ -305,12 +289,8 @@ class AzureClustersGapicClient
      *
      * @return string The formatted azure_node_pool resource.
      */
-    public static function azureNodePoolName(
-        $project,
-        $location,
-        $azureCluster,
-        $azureNodePool
-    ) {
+    public static function azureNodePoolName($project, $location, $azureCluster, $azureNodePool)
+    {
         return self::getAzureNodePoolNameTemplate()->render([
             'project' => $project,
             'location' => $location,
@@ -381,9 +361,7 @@ class AzureClustersGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException(
-                    "Template name $template does not exist"
-                );
+                throw new ValidationException("Template name $template does not exist");
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -397,9 +375,7 @@ class AzureClustersGapicClient
             }
         }
 
-        throw new ValidationException(
-            "Input did not match any known format. Input: $formattedName"
-        );
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -425,14 +401,8 @@ class AzureClustersGapicClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
-        $operation = new OperationResponse(
-            $operationName,
-            $this->getOperationsClient(),
-            $options
-        );
+        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
@@ -521,7 +491,7 @@ class AzureClustersGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -538,7 +508,7 @@ class AzureClustersGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -582,12 +552,8 @@ class AzureClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createAzureClient(
-        $parent,
-        $azureClient,
-        $azureClientId,
-        array $optionalArgs = []
-    ) {
+    public function createAzureClient($parent, $azureClient, $azureClientId, array $optionalArgs = [])
+    {
         $request = new CreateAzureClientRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
@@ -598,18 +564,9 @@ class AzureClustersGapicClient
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'CreateAzureClient',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('CreateAzureClient', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -631,7 +588,7 @@ class AzureClustersGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -648,7 +605,7 @@ class AzureClustersGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -692,12 +649,8 @@ class AzureClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createAzureCluster(
-        $parent,
-        $azureCluster,
-        $azureClusterId,
-        array $optionalArgs = []
-    ) {
+    public function createAzureCluster($parent, $azureCluster, $azureClusterId, array $optionalArgs = [])
+    {
         $request = new CreateAzureClusterRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
@@ -708,18 +661,9 @@ class AzureClustersGapicClient
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'CreateAzureCluster',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('CreateAzureCluster', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -742,7 +686,7 @@ class AzureClustersGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -759,7 +703,7 @@ class AzureClustersGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -804,12 +748,8 @@ class AzureClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createAzureNodePool(
-        $parent,
-        $azureNodePool,
-        $azureNodePoolId,
-        array $optionalArgs = []
-    ) {
+    public function createAzureNodePool($parent, $azureNodePool, $azureNodePoolId, array $optionalArgs = [])
+    {
         $request = new CreateAzureNodePoolRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
@@ -820,18 +760,9 @@ class AzureClustersGapicClient
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'CreateAzureNodePool',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('CreateAzureNodePool', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -924,18 +855,9 @@ class AzureClustersGapicClient
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'DeleteAzureClient',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('DeleteAzureClient', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -1039,18 +961,9 @@ class AzureClustersGapicClient
             $request->setEtag($optionalArgs['etag']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'DeleteAzureCluster',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('DeleteAzureCluster', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -1153,18 +1066,9 @@ class AzureClustersGapicClient
             $request->setEtag($optionalArgs['etag']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'DeleteAzureNodePool',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('DeleteAzureNodePool', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -1204,26 +1108,15 @@ class AzureClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function generateAzureAccessToken(
-        $azureCluster,
-        array $optionalArgs = []
-    ) {
+    public function generateAzureAccessToken($azureCluster, array $optionalArgs = [])
+    {
         $request = new GenerateAzureAccessTokenRequest();
         $requestParamHeaders = [];
         $request->setAzureCluster($azureCluster);
         $requestParamHeaders['azure_cluster'] = $azureCluster;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GenerateAzureAccessToken',
-            GenerateAzureAccessTokenResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GenerateAzureAccessToken', GenerateAzureAccessTokenResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1272,13 +1165,8 @@ class AzureClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function generateAzureClusterAgentToken(
-        $azureCluster,
-        $subjectToken,
-        $subjectTokenType,
-        $version,
-        array $optionalArgs = []
-    ) {
+    public function generateAzureClusterAgentToken($azureCluster, $subjectToken, $subjectTokenType, $version, array $optionalArgs = [])
+    {
         $request = new GenerateAzureClusterAgentTokenRequest();
         $requestParamHeaders = [];
         $request->setAzureCluster($azureCluster);
@@ -1303,27 +1191,16 @@ class AzureClustersGapicClient
         }
 
         if (isset($optionalArgs['requestedTokenType'])) {
-            $request->setRequestedTokenType(
-                $optionalArgs['requestedTokenType']
-            );
+            $request->setRequestedTokenType($optionalArgs['requestedTokenType']);
         }
 
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GenerateAzureClusterAgentToken',
-            GenerateAzureClusterAgentTokenResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GenerateAzureClusterAgentToken', GenerateAzureClusterAgentTokenResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1370,18 +1247,9 @@ class AzureClustersGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetAzureClient',
-            AzureClient::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetAzureClient', AzureClient::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1427,18 +1295,9 @@ class AzureClustersGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetAzureCluster',
-            AzureCluster::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetAzureCluster', AzureCluster::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1478,18 +1337,9 @@ class AzureClustersGapicClient
         $requestParamHeaders = [];
         $request->setAzureCluster($azureCluster);
         $requestParamHeaders['azure_cluster'] = $azureCluster;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetAzureJsonWebKeys',
-            AzureJsonWebKeys::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetAzureJsonWebKeys', AzureJsonWebKeys::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1535,18 +1385,9 @@ class AzureClustersGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetAzureNodePool',
-            AzureNodePool::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetAzureNodePool', AzureNodePool::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1583,26 +1424,15 @@ class AzureClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getAzureOpenIdConfig(
-        $azureCluster,
-        array $optionalArgs = []
-    ) {
+    public function getAzureOpenIdConfig($azureCluster, array $optionalArgs = [])
+    {
         $request = new GetAzureOpenIdConfigRequest();
         $requestParamHeaders = [];
         $request->setAzureCluster($azureCluster);
         $requestParamHeaders['azure_cluster'] = $azureCluster;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetAzureOpenIdConfig',
-            AzureOpenIdConfig::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetAzureOpenIdConfig', AzureOpenIdConfig::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1648,18 +1478,9 @@ class AzureClustersGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetAzureServerConfig',
-            AzureServerConfig::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetAzureServerConfig', AzureServerConfig::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1732,18 +1553,9 @@ class AzureClustersGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->getPagedListResponse(
-            'ListAzureClients',
-            $optionalArgs,
-            ListAzureClientsResponse::class,
-            $request
-        );
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListAzureClients', $optionalArgs, ListAzureClientsResponse::class, $request);
     }
 
     /**
@@ -1816,18 +1628,9 @@ class AzureClustersGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->getPagedListResponse(
-            'ListAzureClusters',
-            $optionalArgs,
-            ListAzureClustersResponse::class,
-            $request
-        );
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListAzureClusters', $optionalArgs, ListAzureClustersResponse::class, $request);
     }
 
     /**
@@ -1902,18 +1705,9 @@ class AzureClustersGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->getPagedListResponse(
-            'ListAzureNodePools',
-            $optionalArgs,
-            ListAzureNodePoolsResponse::class,
-            $request
-        );
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListAzureNodePools', $optionalArgs, ListAzureNodePoolsResponse::class, $request);
     }
 
     /**
@@ -1929,7 +1723,7 @@ class AzureClustersGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1946,7 +1740,7 @@ class AzureClustersGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1994,11 +1788,8 @@ class AzureClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateAzureCluster(
-        $azureCluster,
-        $updateMask,
-        array $optionalArgs = []
-    ) {
+    public function updateAzureCluster($azureCluster, $updateMask, array $optionalArgs = [])
+    {
         $request = new UpdateAzureClusterRequest();
         $requestParamHeaders = [];
         $request->setAzureCluster($azureCluster);
@@ -2008,18 +1799,9 @@ class AzureClustersGapicClient
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'UpdateAzureCluster',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('UpdateAzureCluster', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -2035,7 +1817,7 @@ class AzureClustersGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2052,7 +1834,7 @@ class AzureClustersGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2090,33 +1872,19 @@ class AzureClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateAzureNodePool(
-        $azureNodePool,
-        $updateMask,
-        array $optionalArgs = []
-    ) {
+    public function updateAzureNodePool($azureNodePool, $updateMask, array $optionalArgs = [])
+    {
         $request = new UpdateAzureNodePoolRequest();
         $requestParamHeaders = [];
         $request->setAzureNodePool($azureNodePool);
         $request->setUpdateMask($updateMask);
-        $requestParamHeaders[
-            'azure_node_pool.name'
-        ] = $azureNodePool->getName();
+        $requestParamHeaders['azure_node_pool.name'] = $azureNodePool->getName();
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'UpdateAzureNodePool',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('UpdateAzureNodePool', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 }

@@ -115,9 +115,7 @@ final class AwsClustersClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -163,7 +161,9 @@ final class AwsClustersClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -199,8 +199,12 @@ final class AwsClustersClient
      *
      * @return string The formatted aws_node_pool resource.
      */
-    public static function awsNodePoolName(string $project, string $location, string $awsCluster, string $awsNodePool): string
-    {
+    public static function awsNodePoolName(
+        string $project,
+        string $location,
+        string $awsCluster,
+        string $awsNodePool
+    ): string {
         return self::getPathTemplate('awsNodePool')->render([
             'project' => $project,
             'location' => $location,
@@ -491,8 +495,10 @@ final class AwsClustersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateAwsAccessToken(GenerateAwsAccessTokenRequest $request, array $callOptions = []): GenerateAwsAccessTokenResponse
-    {
+    public function generateAwsAccessToken(
+        GenerateAwsAccessTokenRequest $request,
+        array $callOptions = []
+    ): GenerateAwsAccessTokenResponse {
         return $this->startApiCall('GenerateAwsAccessToken', $request, $callOptions)->wait();
     }
 
@@ -518,8 +524,10 @@ final class AwsClustersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateAwsClusterAgentToken(GenerateAwsClusterAgentTokenRequest $request, array $callOptions = []): GenerateAwsClusterAgentTokenResponse
-    {
+    public function generateAwsClusterAgentToken(
+        GenerateAwsClusterAgentTokenRequest $request,
+        array $callOptions = []
+    ): GenerateAwsClusterAgentTokenResponse {
         return $this->startApiCall('GenerateAwsClusterAgentToken', $request, $callOptions)->wait();
     }
 
@@ -743,8 +751,10 @@ final class AwsClustersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function rollbackAwsNodePoolUpdate(RollbackAwsNodePoolUpdateRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function rollbackAwsNodePoolUpdate(
+        RollbackAwsNodePoolUpdateRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RollbackAwsNodePoolUpdate', $request, $callOptions)->wait();
     }
 

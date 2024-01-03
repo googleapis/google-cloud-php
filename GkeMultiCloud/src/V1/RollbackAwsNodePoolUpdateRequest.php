@@ -26,14 +26,14 @@ class RollbackAwsNodePoolUpdateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Option for rollback to ignore the PodDisruptionBudget when
      * draining the node pool nodes. Default value is false.
      *
      * Generated from protobuf field <code>bool respect_pdb = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $respect_pdb = false;
+    protected $respect_pdb = false;
 
     /**
      * @param string $name Required. The name of the

@@ -152,6 +152,7 @@
         "google/cloud-gke-connect-gateway": "0.3.1",
         "google/cloud-gke-hub": "0.8.2",
         "google/cloud-gke-multi-cloud": "0.4.4",
+        "google/cloud-gkemulticloud": "0.0.0",
         "google/cloud-gsuite-addons": "0.2.3",
         "google/cloud-iam": "0.4.2",
         "google/cloud-iam-credentials": "1.1.2",

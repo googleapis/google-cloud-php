@@ -1,6 +1,6 @@
 {
-    "name": "google/cloud-gke-multi-cloud",
-    "description": "Google Anthos Multi Cloud Client for PHP",
+    "name": "google/cloud-gkemulticloud",
+    "description": "Google Cloud Gke Multi Cloud Client for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "autoload": {
@@ -9,22 +9,16 @@
             "GPBMetadata\\Google\\Cloud\\Gkemulticloud\\": "metadata"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Google\\Cloud\\GkeMultiCloud\\Tests\\": "tests"
-        }
-    },
     "extra": {
         "component": {
-            "id": "cloud-gke-multi-cloud",
+            "id": "cloud-gkemulticloud",
             "path": "GkeMultiCloud",
-            "entry": null,
-            "target": "googleapis/google-cloud-php-gke-multi-cloud.git"
+            "target": "googleapis/google-cloud-php-gkemulticloud"
         }
     },
     "require": {
         "php": ">=7.4",
-        "google/gax": "^1.24.0"
+        "google/gax": "^1.25.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0"

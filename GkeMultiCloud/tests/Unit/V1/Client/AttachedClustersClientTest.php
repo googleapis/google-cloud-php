@@ -68,7 +68,9 @@ class AttachedClustersClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return AttachedClustersClient */
@@ -204,12 +206,15 @@ class AttachedClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -282,8 +287,7 @@ class AttachedClustersClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->attachedClusterName('[PROJECT]', '[LOCATION]', '[ATTACHED_CLUSTER]');
-        $request = (new DeleteAttachedClusterRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAttachedClusterRequest())->setName($formattedName);
         $response = $gapicClient->deleteAttachedCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -339,17 +343,19 @@ class AttachedClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->attachedClusterName('[PROJECT]', '[LOCATION]', '[ATTACHED_CLUSTER]');
-        $request = (new DeleteAttachedClusterRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAttachedClusterRequest())->setName($formattedName);
         $response = $gapicClient->deleteAttachedCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -405,7 +411,10 @@ class AttachedClustersClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.gkemulticloud.v1.AttachedClusters/GenerateAttachedClusterAgentToken', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.gkemulticloud.v1.AttachedClusters/GenerateAttachedClusterAgentToken',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getAttachedCluster();
         $this->assertProtobufEquals($formattedAttachedCluster, $actualValue);
         $actualValue = $actualRequestObject->getSubjectToken();
@@ -428,12 +437,15 @@ class AttachedClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedAttachedCluster = $gapicClient->attachedClusterName('[PROJECT]', '[LOCATION]', '[ATTACHED_CLUSTER]');
@@ -485,7 +497,10 @@ class AttachedClustersClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.gkemulticloud.v1.AttachedClusters/GenerateAttachedClusterInstallManifest', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.gkemulticloud.v1.AttachedClusters/GenerateAttachedClusterInstallManifest',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getAttachedClusterId();
@@ -506,12 +521,15 @@ class AttachedClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -565,8 +583,7 @@ class AttachedClustersClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->attachedClusterName('[PROJECT]', '[LOCATION]', '[ATTACHED_CLUSTER]');
-        $request = (new GetAttachedClusterRequest())
-            ->setName($formattedName);
+        $request = (new GetAttachedClusterRequest())->setName($formattedName);
         $response = $gapicClient->getAttachedCluster($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -590,17 +607,19 @@ class AttachedClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->attachedClusterName('[PROJECT]', '[LOCATION]', '[ATTACHED_CLUSTER]');
-        $request = (new GetAttachedClusterRequest())
-            ->setName($formattedName);
+        $request = (new GetAttachedClusterRequest())->setName($formattedName);
         try {
             $gapicClient->getAttachedCluster($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -629,8 +648,7 @@ class AttachedClustersClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->attachedServerConfigName('[PROJECT]', '[LOCATION]');
-        $request = (new GetAttachedServerConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetAttachedServerConfigRequest())->setName($formattedName);
         $response = $gapicClient->getAttachedServerConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -654,17 +672,19 @@ class AttachedClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->attachedServerConfigName('[PROJECT]', '[LOCATION]');
-        $request = (new GetAttachedServerConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetAttachedServerConfigRequest())->setName($formattedName);
         try {
             $gapicClient->getAttachedServerConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -796,12 +816,15 @@ class AttachedClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -846,17 +869,14 @@ class AttachedClustersClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $attachedClustersElement = new AttachedCluster();
-        $attachedClusters = [
-            $attachedClustersElement,
-        ];
+        $attachedClusters = [$attachedClustersElement];
         $expectedResponse = new ListAttachedClustersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAttachedClusters($attachedClusters);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListAttachedClustersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAttachedClustersRequest())->setParent($formattedParent);
         $response = $gapicClient->listAttachedClusters($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -883,17 +903,19 @@ class AttachedClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListAttachedClustersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAttachedClustersRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAttachedClusters($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1027,12 +1049,15 @@ class AttachedClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $attachedCluster = new AttachedCluster();

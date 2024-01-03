@@ -99,9 +99,7 @@ final class AttachedClustersClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -147,7 +145,9 @@ final class AttachedClustersClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -332,8 +332,10 @@ final class AttachedClustersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createAttachedCluster(CreateAttachedClusterRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createAttachedCluster(
+        CreateAttachedClusterRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateAttachedCluster', $request, $callOptions)->wait();
     }
 
@@ -364,8 +366,10 @@ final class AttachedClustersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteAttachedCluster(DeleteAttachedClusterRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteAttachedCluster(
+        DeleteAttachedClusterRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteAttachedCluster', $request, $callOptions)->wait();
     }
 
@@ -391,8 +395,10 @@ final class AttachedClustersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateAttachedClusterAgentToken(GenerateAttachedClusterAgentTokenRequest $request, array $callOptions = []): GenerateAttachedClusterAgentTokenResponse
-    {
+    public function generateAttachedClusterAgentToken(
+        GenerateAttachedClusterAgentTokenRequest $request,
+        array $callOptions = []
+    ): GenerateAttachedClusterAgentTokenResponse {
         return $this->startApiCall('GenerateAttachedClusterAgentToken', $request, $callOptions)->wait();
     }
 
@@ -418,8 +424,10 @@ final class AttachedClustersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateAttachedClusterInstallManifest(GenerateAttachedClusterInstallManifestRequest $request, array $callOptions = []): GenerateAttachedClusterInstallManifestResponse
-    {
+    public function generateAttachedClusterInstallManifest(
+        GenerateAttachedClusterInstallManifestRequest $request,
+        array $callOptions = []
+    ): GenerateAttachedClusterInstallManifestResponse {
         return $this->startApiCall('GenerateAttachedClusterInstallManifest', $request, $callOptions)->wait();
     }
 
@@ -473,8 +481,10 @@ final class AttachedClustersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getAttachedServerConfig(GetAttachedServerConfigRequest $request, array $callOptions = []): AttachedServerConfig
-    {
+    public function getAttachedServerConfig(
+        GetAttachedServerConfigRequest $request,
+        array $callOptions = []
+    ): AttachedServerConfig {
         return $this->startApiCall('GetAttachedServerConfig', $request, $callOptions)->wait();
     }
 
@@ -509,8 +519,10 @@ final class AttachedClustersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function importAttachedCluster(ImportAttachedClusterRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function importAttachedCluster(
+        ImportAttachedClusterRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ImportAttachedCluster', $request, $callOptions)->wait();
     }
 
@@ -537,8 +549,10 @@ final class AttachedClustersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listAttachedClusters(ListAttachedClustersRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listAttachedClusters(
+        ListAttachedClustersRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListAttachedClusters', $request, $callOptions);
     }
 
@@ -565,8 +579,10 @@ final class AttachedClustersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateAttachedCluster(UpdateAttachedClusterRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateAttachedCluster(
+        UpdateAttachedClusterRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateAttachedCluster', $request, $callOptions)->wait();
     }
 }

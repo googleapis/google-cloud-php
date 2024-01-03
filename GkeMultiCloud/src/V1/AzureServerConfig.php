@@ -25,7 +25,7 @@ class AzureServerConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * List of all released Kubernetes versions, including ones which are end of
      * life and can no longer be used.  Filter by the `enabled`
