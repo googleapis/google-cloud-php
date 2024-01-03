@@ -39,6 +39,7 @@ class UpdateAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
      *  *   `config.config_encryption.kms_key_arn`.
      *  *   `config.security_group_ids`.
      *  *   `config.root_volume.iops`.
+     *  *   `config.root_volume.throughput`.
      *  *   `config.root_volume.kms_key_arn`.
      *  *   `config.root_volume.volume_type`.
      *  *   `config.root_volume.size_gib`.
@@ -54,6 +55,13 @@ class UpdateAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
      *  *   `config.autoscaling_metrics_collection`.
      *  *   `config.autoscaling_metrics_collection.granularity`.
      *  *   `config.autoscaling_metrics_collection.metrics`.
+     *  *   `config.instance_type`.
+     *  *   `management.auto_repair`.
+     *  *   `management`.
+     *  *   `update_settings`.
+     *  *   `update_settings.surge_settings`.
+     *  *   `update_settings.surge_settings.max_surge`.
+     *  *   `update_settings.surge_settings.max_unavailable`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -73,6 +81,7 @@ class UpdateAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
      *                                                                *   `config.config_encryption.kms_key_arn`.
      *                                                                *   `config.security_group_ids`.
      *                                                                *   `config.root_volume.iops`.
+     *                                                                *   `config.root_volume.throughput`.
      *                                                                *   `config.root_volume.kms_key_arn`.
      *                                                                *   `config.root_volume.volume_type`.
      *                                                                *   `config.root_volume.size_gib`.
@@ -88,6 +97,13 @@ class UpdateAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
      *                                                                *   `config.autoscaling_metrics_collection`.
      *                                                                *   `config.autoscaling_metrics_collection.granularity`.
      *                                                                *   `config.autoscaling_metrics_collection.metrics`.
+     *                                                                *   `config.instance_type`.
+     *                                                                *   `management.auto_repair`.
+     *                                                                *   `management`.
+     *                                                                *   `update_settings`.
+     *                                                                *   `update_settings.surge_settings`.
+     *                                                                *   `update_settings.surge_settings.max_surge`.
+     *                                                                *   `update_settings.surge_settings.max_unavailable`.
      *
      * @return \Google\Cloud\GkeMultiCloud\V1\UpdateAwsNodePoolRequest
      *
@@ -122,6 +138,7 @@ class UpdateAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
      *            *   `config.config_encryption.kms_key_arn`.
      *            *   `config.security_group_ids`.
      *            *   `config.root_volume.iops`.
+     *            *   `config.root_volume.throughput`.
      *            *   `config.root_volume.kms_key_arn`.
      *            *   `config.root_volume.volume_type`.
      *            *   `config.root_volume.size_gib`.
@@ -137,6 +154,13 @@ class UpdateAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
      *            *   `config.autoscaling_metrics_collection`.
      *            *   `config.autoscaling_metrics_collection.granularity`.
      *            *   `config.autoscaling_metrics_collection.metrics`.
+     *            *   `config.instance_type`.
+     *            *   `management.auto_repair`.
+     *            *   `management`.
+     *            *   `update_settings`.
+     *            *   `update_settings.surge_settings`.
+     *            *   `update_settings.surge_settings.max_surge`.
+     *            *   `update_settings.surge_settings.max_unavailable`.
      * }
      */
     public function __construct($data = NULL) {
@@ -219,6 +243,7 @@ class UpdateAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
      *  *   `config.config_encryption.kms_key_arn`.
      *  *   `config.security_group_ids`.
      *  *   `config.root_volume.iops`.
+     *  *   `config.root_volume.throughput`.
      *  *   `config.root_volume.kms_key_arn`.
      *  *   `config.root_volume.volume_type`.
      *  *   `config.root_volume.size_gib`.
@@ -234,6 +259,13 @@ class UpdateAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
      *  *   `config.autoscaling_metrics_collection`.
      *  *   `config.autoscaling_metrics_collection.granularity`.
      *  *   `config.autoscaling_metrics_collection.metrics`.
+     *  *   `config.instance_type`.
+     *  *   `management.auto_repair`.
+     *  *   `management`.
+     *  *   `update_settings`.
+     *  *   `update_settings.surge_settings`.
+     *  *   `update_settings.surge_settings.max_surge`.
+     *  *   `update_settings.surge_settings.max_unavailable`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -264,6 +296,7 @@ class UpdateAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
      *  *   `config.config_encryption.kms_key_arn`.
      *  *   `config.security_group_ids`.
      *  *   `config.root_volume.iops`.
+     *  *   `config.root_volume.throughput`.
      *  *   `config.root_volume.kms_key_arn`.
      *  *   `config.root_volume.volume_type`.
      *  *   `config.root_volume.size_gib`.
@@ -279,6 +312,13 @@ class UpdateAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
      *  *   `config.autoscaling_metrics_collection`.
      *  *   `config.autoscaling_metrics_collection.granularity`.
      *  *   `config.autoscaling_metrics_collection.metrics`.
+     *  *   `config.instance_type`.
+     *  *   `management.auto_repair`.
+     *  *   `management`.
+     *  *   `update_settings`.
+     *  *   `update_settings.surge_settings`.
+     *  *   `update_settings.surge_settings.max_surge`.
+     *  *   `update_settings.surge_settings.max_unavailable`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

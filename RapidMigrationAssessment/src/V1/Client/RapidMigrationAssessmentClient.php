@@ -64,10 +64,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
- *
- * @experimental
- *
  * @method PromiseInterface createAnnotationAsync(CreateAnnotationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createCollectorAsync(CreateCollectorRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteCollectorAsync(DeleteCollectorRequest $request, array $optionalArgs = [])
@@ -89,8 +85,15 @@ final class RapidMigrationAssessmentClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'rapidmigrationassessment.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'rapidmigrationassessment.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -99,9 +102,7 @@ final class RapidMigrationAssessmentClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -118,7 +119,8 @@ final class RapidMigrationAssessmentClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/rapid_migration_assessment_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/rapid_migration_assessment_rest_client_config.php',
                 ],
             ],
         ];
@@ -147,7 +149,9 @@ final class RapidMigrationAssessmentClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;

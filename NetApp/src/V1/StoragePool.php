@@ -18,9 +18,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class StoragePool extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Name of the storage pool
+     * Identifier. Name of the storage pool
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -116,9 +116,11 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      */
     protected $encryption_type = 0;
     /**
-     * Optional. Allows SO pool to access AD or DNS server from other regions.
+     * Deprecated. Used to allow SO pool to access AD or DNS server from other
+     * regions.
      *
-     * Generated from protobuf field <code>optional bool global_access_allowed = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool global_access_allowed = 17 [deprecated = true];</code>
+     * @deprecated
      */
     protected $global_access_allowed = null;
 
@@ -129,7 +131,7 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. Name of the storage pool
+     *           Identifier. Name of the storage pool
      *     @type int $service_level
      *           Required. Service level of the storage pool
      *     @type int|string $capacity_gib
@@ -163,7 +165,8 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      *     @type int $encryption_type
      *           Output only. Specifies the current pool encryption key source.
      *     @type bool $global_access_allowed
-     *           Optional. Allows SO pool to access AD or DNS server from other regions.
+     *           Deprecated. Used to allow SO pool to access AD or DNS server from other
+     *           regions.
      * }
      */
     public function __construct($data = NULL) {
@@ -172,9 +175,9 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Name of the storage pool
+     * Identifier. Name of the storage pool
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -183,9 +186,9 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Name of the storage pool
+     * Identifier. Name of the storage pool
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -602,35 +605,43 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Allows SO pool to access AD or DNS server from other regions.
+     * Deprecated. Used to allow SO pool to access AD or DNS server from other
+     * regions.
      *
-     * Generated from protobuf field <code>optional bool global_access_allowed = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool global_access_allowed = 17 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getGlobalAccessAllowed()
     {
+        @trigger_error('global_access_allowed is deprecated.', E_USER_DEPRECATED);
         return isset($this->global_access_allowed) ? $this->global_access_allowed : false;
     }
 
     public function hasGlobalAccessAllowed()
     {
+        @trigger_error('global_access_allowed is deprecated.', E_USER_DEPRECATED);
         return isset($this->global_access_allowed);
     }
 
     public function clearGlobalAccessAllowed()
     {
+        @trigger_error('global_access_allowed is deprecated.', E_USER_DEPRECATED);
         unset($this->global_access_allowed);
     }
 
     /**
-     * Optional. Allows SO pool to access AD or DNS server from other regions.
+     * Deprecated. Used to allow SO pool to access AD or DNS server from other
+     * regions.
      *
-     * Generated from protobuf field <code>optional bool global_access_allowed = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool global_access_allowed = 17 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setGlobalAccessAllowed($var)
     {
+        @trigger_error('global_access_allowed is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->global_access_allowed = $var;
 

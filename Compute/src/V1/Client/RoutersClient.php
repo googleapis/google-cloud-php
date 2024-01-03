@@ -35,11 +35,13 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\AggregatedListRoutersRequest;
 use Google\Cloud\Compute\V1\DeleteRouterRequest;
+use Google\Cloud\Compute\V1\GetNatIpInfoRouterRequest;
 use Google\Cloud\Compute\V1\GetNatMappingInfoRoutersRequest;
 use Google\Cloud\Compute\V1\GetRouterRequest;
 use Google\Cloud\Compute\V1\GetRouterStatusRouterRequest;
 use Google\Cloud\Compute\V1\InsertRouterRequest;
 use Google\Cloud\Compute\V1\ListRoutersRequest;
+use Google\Cloud\Compute\V1\NatIpInfoResponse;
 use Google\Cloud\Compute\V1\PatchRouterRequest;
 use Google\Cloud\Compute\V1\PreviewRouterRequest;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
@@ -55,14 +57,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Compute\V1\RoutersClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface aggregatedListAsync(AggregatedListRoutersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteAsync(DeleteRouterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAsync(GetRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getNatIpInfoAsync(GetNatIpInfoRouterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getNatMappingInfoAsync(GetNatMappingInfoRoutersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getRouterStatusAsync(GetRouterStatusRouterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface insertAsync(InsertRouterRequest $request, array $optionalArgs = [])
@@ -78,8 +76,15 @@ final class RoutersClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.compute.v1.Routers';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'compute.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'compute.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -316,6 +321,30 @@ final class RoutersClient
     public function get(GetRouterRequest $request, array $callOptions = []): Router
     {
         return $this->startApiCall('Get', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Retrieves runtime NAT IP information.
+     *
+     * The async variant is {@see RoutersClient::getNatIpInfoAsync()} .
+     *
+     * @param GetNatIpInfoRouterRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return NatIpInfoResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getNatIpInfo(GetNatIpInfoRouterRequest $request, array $callOptions = []): NatIpInfoResponse
+    {
+        return $this->startApiCall('GetNatIpInfo', $request, $callOptions)->wait();
     }
 
     /**

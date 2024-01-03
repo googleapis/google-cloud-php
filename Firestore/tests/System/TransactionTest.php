@@ -137,7 +137,7 @@ class TransactionTest extends FirestoreTestCase
             $collection->add($docToAdd);
         }
 
-        $query = $collection->where('value', '!=', [])
+        $query = $collection->where('value', '!=', 'non_existent_value')
         ->addAggregation(
             ($arg ? Aggregate::$type($arg) : Aggregate::$type())->alias('res')
         );
@@ -172,7 +172,7 @@ class TransactionTest extends FirestoreTestCase
             $collection->add($docToAdd);
         }
 
-        $query = $collection->where('value', '!=', [])
+        $query = $collection->where('value', '!=', 'non_existent_value')
         ->addAggregation(
             ($arg ? Aggregate::$type($arg) : Aggregate::$type())->alias('res_1')
         );
@@ -253,12 +253,19 @@ class TransactionTest extends FirestoreTestCase
     public function getAggregateCases()
     {
         $docsToAdd = [
-            ['value' => ['foobar']],
-            ['value' => ['foo', 'bar']],
-            ['value' => ['foo']]
+            ['value' => 'foobar'],
+            ['value' => 'bar'],
+            ['value' => 'foo']
+        ];
+        $numsToAdd = [
+            ['value' => 1],
+            ['value' => 2],
+            ['value' => 3]
         ];
         return [
             ['count', null, 3, $docsToAdd],
+            ['sum', 'value', 6, $numsToAdd],
+            ['avg', 'value', 2, $numsToAdd]
         ];
     }
 }

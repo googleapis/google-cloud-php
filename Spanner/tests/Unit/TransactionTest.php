@@ -236,7 +236,7 @@ class TransactionTest extends TestCase
         $sql = 'UPDATE foo SET bar = @bar';
         $this->connection->executeStreamingSql(Argument::allOf(
             Argument::withEntry('sql', $sql),
-            Argument::withEntry('transactionId', self::TRANSACTION),
+            Argument::withEntry('transaction', ['id' => self::TRANSACTION]),
             Argument::withEntry('requestOptions', [
                 'requestTag' => self::REQUEST_TAG,
                 'transactionTag' => self::TRANSACTION_TAG
@@ -435,7 +435,7 @@ class TransactionTest extends TestCase
         $sql = 'UPDATE foo SET bar = @bar';
         $this->connection->executeStreamingSql(Argument::allOf(
             Argument::withEntry('sql', $sql),
-            Argument::withEntry('transactionId', self::TRANSACTION),
+            Argument::withEntry('transaction', ['id' => self::TRANSACTION]),
             Argument::withEntry('requestOptions', [
                 'transactionTag' => self::TRANSACTION_TAG,
                 'requestTag' => self::REQUEST_TAG

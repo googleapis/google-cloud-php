@@ -22,6 +22,7 @@
 
 namespace Google\Analytics\Data\Tests\Unit\V1beta\Client;
 
+use Google\Analytics\Data\V1beta\AudienceExport;
 use Google\Analytics\Data\V1beta\BatchRunPivotReportsRequest;
 use Google\Analytics\Data\V1beta\BatchRunPivotReportsResponse;
 use Google\Analytics\Data\V1beta\BatchRunReportsRequest;
@@ -29,8 +30,14 @@ use Google\Analytics\Data\V1beta\BatchRunReportsResponse;
 use Google\Analytics\Data\V1beta\CheckCompatibilityRequest;
 use Google\Analytics\Data\V1beta\CheckCompatibilityResponse;
 use Google\Analytics\Data\V1beta\Client\BetaAnalyticsDataClient;
+use Google\Analytics\Data\V1beta\CreateAudienceExportRequest;
+use Google\Analytics\Data\V1beta\GetAudienceExportRequest;
 use Google\Analytics\Data\V1beta\GetMetadataRequest;
+use Google\Analytics\Data\V1beta\ListAudienceExportsRequest;
+use Google\Analytics\Data\V1beta\ListAudienceExportsResponse;
 use Google\Analytics\Data\V1beta\Metadata;
+use Google\Analytics\Data\V1beta\QueryAudienceExportRequest;
+use Google\Analytics\Data\V1beta\QueryAudienceExportResponse;
 use Google\Analytics\Data\V1beta\RunPivotReportRequest;
 use Google\Analytics\Data\V1beta\RunPivotReportResponse;
 use Google\Analytics\Data\V1beta\RunRealtimeReportRequest;
@@ -39,8 +46,12 @@ use Google\Analytics\Data\V1beta\RunReportRequest;
 use Google\Analytics\Data\V1beta\RunReportResponse;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\LongRunning\GetOperationRequest;
+use Google\LongRunning\Operation;
+use Google\Protobuf\Any;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -239,6 +250,231 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createAudienceExportTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createAudienceExportTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $audience = 'audience975628804';
+        $audienceDisplayName = 'audienceDisplayName406858307';
+        $creationQuotaTokensCharged = 1232901266;
+        $rowCount = 1340416618;
+        $errorMessage = 'errorMessage-1938755376';
+        $percentageCompleted = -1.29204764E8;
+        $expectedResponse = new AudienceExport();
+        $expectedResponse->setName($name);
+        $expectedResponse->setAudience($audience);
+        $expectedResponse->setAudienceDisplayName($audienceDisplayName);
+        $expectedResponse->setCreationQuotaTokensCharged($creationQuotaTokensCharged);
+        $expectedResponse->setRowCount($rowCount);
+        $expectedResponse->setErrorMessage($errorMessage);
+        $expectedResponse->setPercentageCompleted($percentageCompleted);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createAudienceExportTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $audienceExport = new AudienceExport();
+        $audienceExportAudience = 'audienceExportAudience1191136508';
+        $audienceExport->setAudience($audienceExportAudience);
+        $audienceExportDimensions = [];
+        $audienceExport->setDimensions($audienceExportDimensions);
+        $request = (new CreateAudienceExportRequest())
+            ->setParent($formattedParent)
+            ->setAudienceExport($audienceExport);
+        $response = $gapicClient->createAudienceExport($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.data.v1beta.BetaAnalyticsData/CreateAudienceExport', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getAudienceExport();
+        $this->assertProtobufEquals($audienceExport, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createAudienceExportTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createAudienceExportExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createAudienceExportTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $audienceExport = new AudienceExport();
+        $audienceExportAudience = 'audienceExportAudience1191136508';
+        $audienceExport->setAudience($audienceExportAudience);
+        $audienceExportDimensions = [];
+        $audienceExport->setDimensions($audienceExportDimensions);
+        $request = (new CreateAudienceExportRequest())
+            ->setParent($formattedParent)
+            ->setAudienceExport($audienceExport);
+        $response = $gapicClient->createAudienceExport($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createAudienceExportTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function getAudienceExportTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $audience = 'audience975628804';
+        $audienceDisplayName = 'audienceDisplayName406858307';
+        $creationQuotaTokensCharged = 1232901266;
+        $rowCount = 1340416618;
+        $errorMessage = 'errorMessage-1938755376';
+        $percentageCompleted = -1.29204764E8;
+        $expectedResponse = new AudienceExport();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setAudience($audience);
+        $expectedResponse->setAudienceDisplayName($audienceDisplayName);
+        $expectedResponse->setCreationQuotaTokensCharged($creationQuotaTokensCharged);
+        $expectedResponse->setRowCount($rowCount);
+        $expectedResponse->setErrorMessage($errorMessage);
+        $expectedResponse->setPercentageCompleted($percentageCompleted);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->audienceExportName('[PROPERTY]', '[AUDIENCE_EXPORT]');
+        $request = (new GetAudienceExportRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->getAudienceExport($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.data.v1beta.BetaAnalyticsData/GetAudienceExport', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAudienceExportExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->audienceExportName('[PROPERTY]', '[AUDIENCE_EXPORT]');
+        $request = (new GetAudienceExportRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->getAudienceExport($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getMetadataTest()
     {
         $transport = $this->createTransport();
@@ -291,6 +527,142 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
             ->setName($formattedName);
         try {
             $gapicClient->getMetadata($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAudienceExportsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $audienceExportsElement = new AudienceExport();
+        $audienceExports = [
+            $audienceExportsElement,
+        ];
+        $expectedResponse = new ListAudienceExportsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setAudienceExports($audienceExports);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $request = (new ListAudienceExportsRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->listAudienceExports($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getAudienceExports()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.data.v1beta.BetaAnalyticsData/ListAudienceExports', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAudienceExportsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $request = (new ListAudienceExportsRequest())
+            ->setParent($formattedParent);
+        try {
+            $gapicClient->listAudienceExports($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function queryAudienceExportTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $rowCount = 1340416618;
+        $expectedResponse = new QueryAudienceExportResponse();
+        $expectedResponse->setRowCount($rowCount);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $name = 'name3373707';
+        $request = (new QueryAudienceExportRequest())
+            ->setName($name);
+        $response = $gapicClient->queryAudienceExport($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.data.v1beta.BetaAnalyticsData/QueryAudienceExport', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function queryAudienceExportExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $name = 'name3373707';
+        $request = (new QueryAudienceExportRequest())
+            ->setName($name);
+        try {
+            $gapicClient->queryAudienceExport($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

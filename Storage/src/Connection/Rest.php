@@ -431,6 +431,12 @@ class Rest implements ConnectionInterface
         }
 
         $args['metadata']['name'] = $args['name'];
+        if (isset($args['retention'])) {
+            // during object creation retention properties go into metadata
+            // but not into request body
+            $args['metadata']['retention'] = $args['retention'];
+            unset($args['retention']);
+        }
         unset($args['name']);
         $args['contentType'] = $args['metadata']['contentType']
             ?? MimeType::fromFilename($args['metadata']['name']);

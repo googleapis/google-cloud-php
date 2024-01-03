@@ -39,9 +39,55 @@ return [
                     ],
                 ],
             ],
+            'CreateAudienceExport' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{parent=properties/*}/audienceExports',
+                'body' => 'audience_export',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAudienceExport' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{name=properties/*/audienceExports/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetMetadata' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta/{name=properties/*/metadata}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAudienceExports' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{parent=properties/*}/audienceExports',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'QueryAudienceExport' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{name=properties/*/audienceExports/*}:query',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [

@@ -169,6 +169,18 @@ return [
                     ],
                 ],
             ],
+            'GenerateAzureClusterAgentToken' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\GkeMultiCloud\V1\GenerateAzureClusterAgentTokenResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'azure_cluster',
+                        'fieldAccessors' => [
+                            'getAzureCluster',
+                        ],
+                    ],
+                ],
+            ],
             'GetAzureClient' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\GkeMultiCloud\V1\AzureClient',
@@ -193,6 +205,18 @@ return [
                     ],
                 ],
             ],
+            'GetAzureJsonWebKeys' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\GkeMultiCloud\V1\AzureJsonWebKeys',
+                'headerParams' => [
+                    [
+                        'keyName' => 'azure_cluster',
+                        'fieldAccessors' => [
+                            'getAzureCluster',
+                        ],
+                    ],
+                ],
+            ],
             'GetAzureNodePool' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\GkeMultiCloud\V1\AzureNodePool',
@@ -201,6 +225,18 @@ return [
                         'keyName' => 'name',
                         'fieldAccessors' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAzureOpenIdConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\GkeMultiCloud\V1\AzureOpenIdConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'azure_cluster',
+                        'fieldAccessors' => [
+                            'getAzureCluster',
                         ],
                     ],
                 ],

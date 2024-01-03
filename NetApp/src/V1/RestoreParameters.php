@@ -27,6 +27,10 @@ class RestoreParameters extends \Google\Protobuf\Internal\Message
      *           Full name of the snapshot resource.
      *           Format:
      *           projects/{project}/locations/{location}/volumes/{volume}/snapshots/{snapshot}
+     *     @type string $source_backup
+     *           Full name of the backup resource.
+     *           Format:
+     *           projects/{project}/locations/{location}/backupVaults/{backup_vault_id}/backups/{backup_id}
      * }
      */
     public function __construct($data = NULL) {
@@ -65,6 +69,41 @@ class RestoreParameters extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Full name of the backup resource.
+     * Format:
+     * projects/{project}/locations/{location}/backupVaults/{backup_vault_id}/backups/{backup_id}
+     *
+     * Generated from protobuf field <code>string source_backup = 2;</code>
+     * @return string
+     */
+    public function getSourceBackup()
+    {
+        return $this->readOneof(2);
+    }
+
+    public function hasSourceBackup()
+    {
+        return $this->hasOneof(2);
+    }
+
+    /**
+     * Full name of the backup resource.
+     * Format:
+     * projects/{project}/locations/{location}/backupVaults/{backup_vault_id}/backups/{backup_id}
+     *
+     * Generated from protobuf field <code>string source_backup = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceBackup($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(2, $var);
 
         return $this;
     }

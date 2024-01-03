@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdatePolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. `Policy` to update.
+     * Required. Policy to update.
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.Policy policy = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -32,7 +32,7 @@ class UpdatePolicyRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
-     * @param \Google\Cloud\OrgPolicy\V2\Policy $policy Required. `Policy` to update.
+     * @param \Google\Cloud\OrgPolicy\V2\Policy $policy Required. Policy to update.
      *
      * @return \Google\Cloud\OrgPolicy\V2\UpdatePolicyRequest
      *
@@ -51,7 +51,7 @@ class UpdatePolicyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\OrgPolicy\V2\Policy $policy
-     *           Required. `Policy` to update.
+     *           Required. Policy to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Field mask used to specify the fields to be overwritten in the policy
      *           by the set. The fields specified in the update_mask are relative to the
@@ -64,7 +64,7 @@ class UpdatePolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. `Policy` to update.
+     * Required. Policy to update.
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.Policy policy = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\OrgPolicy\V2\Policy|null
@@ -85,7 +85,7 @@ class UpdatePolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. `Policy` to update.
+     * Required. Policy to update.
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.Policy policy = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\OrgPolicy\V2\Policy $var

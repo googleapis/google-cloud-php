@@ -53,9 +53,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Monitoring\V3\SnoozeServiceClient} for the stable implementation
- *
  * @method PromiseInterface createSnoozeAsync(CreateSnoozeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getSnoozeAsync(GetSnoozeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listSnoozesAsync(ListSnoozesRequest $request, array $optionalArgs = [])
@@ -69,8 +66,15 @@ final class SnoozeServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.monitoring.v3.SnoozeService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'monitoring.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'monitoring.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

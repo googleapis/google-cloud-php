@@ -129,6 +129,65 @@
                 }
             }
         },
+        "DeploymentResourcePoolService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DeploymentResourcePoolServiceGapicClient",
+                    "rpcs": {
+                        "CreateDeploymentResourcePool": {
+                            "methods": [
+                                "createDeploymentResourcePool"
+                            ]
+                        },
+                        "DeleteDeploymentResourcePool": {
+                            "methods": [
+                                "deleteDeploymentResourcePool"
+                            ]
+                        },
+                        "GetDeploymentResourcePool": {
+                            "methods": [
+                                "getDeploymentResourcePool"
+                            ]
+                        },
+                        "ListDeploymentResourcePools": {
+                            "methods": [
+                                "listDeploymentResourcePools"
+                            ]
+                        },
+                        "QueryDeployedModels": {
+                            "methods": [
+                                "queryDeployedModels"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "EndpointService": {
             "clients": {
                 "grpc": {
@@ -203,6 +262,105 @@
                 }
             }
         },
+        "FeatureOnlineStoreAdminService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "FeatureOnlineStoreAdminServiceGapicClient",
+                    "rpcs": {
+                        "CreateFeatureOnlineStore": {
+                            "methods": [
+                                "createFeatureOnlineStore"
+                            ]
+                        },
+                        "CreateFeatureView": {
+                            "methods": [
+                                "createFeatureView"
+                            ]
+                        },
+                        "DeleteFeatureOnlineStore": {
+                            "methods": [
+                                "deleteFeatureOnlineStore"
+                            ]
+                        },
+                        "DeleteFeatureView": {
+                            "methods": [
+                                "deleteFeatureView"
+                            ]
+                        },
+                        "GetFeatureOnlineStore": {
+                            "methods": [
+                                "getFeatureOnlineStore"
+                            ]
+                        },
+                        "GetFeatureView": {
+                            "methods": [
+                                "getFeatureView"
+                            ]
+                        },
+                        "GetFeatureViewSync": {
+                            "methods": [
+                                "getFeatureViewSync"
+                            ]
+                        },
+                        "ListFeatureOnlineStores": {
+                            "methods": [
+                                "listFeatureOnlineStores"
+                            ]
+                        },
+                        "ListFeatureViewSyncs": {
+                            "methods": [
+                                "listFeatureViewSyncs"
+                            ]
+                        },
+                        "ListFeatureViews": {
+                            "methods": [
+                                "listFeatureViews"
+                            ]
+                        },
+                        "SyncFeatureView": {
+                            "methods": [
+                                "syncFeatureView"
+                            ]
+                        },
+                        "UpdateFeatureOnlineStore": {
+                            "methods": [
+                                "updateFeatureOnlineStore"
+                            ]
+                        },
+                        "UpdateFeatureView": {
+                            "methods": [
+                                "updateFeatureView"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "FeaturestoreOnlineServingService": {
             "clients": {
                 "grpc": {
@@ -221,6 +379,45 @@
                         "WriteFeatureValues": {
                             "methods": [
                                 "writeFeatureValues"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "FeatureOnlineStoreService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "FeatureOnlineStoreServiceGapicClient",
+                    "rpcs": {
+                        "FetchFeatureValues": {
+                            "methods": [
+                                "fetchFeatureValues"
                             ]
                         },
                         "GetLocation": {
@@ -360,6 +557,90 @@
                         "UpdateFeaturestore": {
                             "methods": [
                                 "updateFeaturestore"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "FeatureRegistryService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "FeatureRegistryServiceGapicClient",
+                    "rpcs": {
+                        "CreateFeature": {
+                            "methods": [
+                                "createFeature"
+                            ]
+                        },
+                        "CreateFeatureGroup": {
+                            "methods": [
+                                "createFeatureGroup"
+                            ]
+                        },
+                        "DeleteFeature": {
+                            "methods": [
+                                "deleteFeature"
+                            ]
+                        },
+                        "DeleteFeatureGroup": {
+                            "methods": [
+                                "deleteFeatureGroup"
+                            ]
+                        },
+                        "GetFeature": {
+                            "methods": [
+                                "getFeature"
+                            ]
+                        },
+                        "GetFeatureGroup": {
+                            "methods": [
+                                "getFeatureGroup"
+                            ]
+                        },
+                        "ListFeatureGroups": {
+                            "methods": [
+                                "listFeatureGroups"
+                            ]
+                        },
+                        "ListFeatures": {
+                            "methods": [
+                                "listFeatures"
+                            ]
+                        },
+                        "UpdateFeature": {
+                            "methods": [
+                                "updateFeature"
+                            ]
+                        },
+                        "UpdateFeatureGroup": {
+                            "methods": [
+                                "updateFeatureGroup"
                             ]
                         },
                         "GetLocation": {
@@ -712,6 +993,129 @@
                         "UpdateModelDeploymentMonitoringJob": {
                             "methods": [
                                 "updateModelDeploymentMonitoringJob"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "PredictionService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "PredictionServiceGapicClient",
+                    "rpcs": {
+                        "DirectPredict": {
+                            "methods": [
+                                "directPredict"
+                            ]
+                        },
+                        "DirectRawPredict": {
+                            "methods": [
+                                "directRawPredict"
+                            ]
+                        },
+                        "Explain": {
+                            "methods": [
+                                "explain"
+                            ]
+                        },
+                        "Predict": {
+                            "methods": [
+                                "predict"
+                            ]
+                        },
+                        "RawPredict": {
+                            "methods": [
+                                "rawPredict"
+                            ]
+                        },
+                        "ServerStreamingPredict": {
+                            "methods": [
+                                "serverStreamingPredict"
+                            ]
+                        },
+                        "StreamGenerateContent": {
+                            "methods": [
+                                "streamGenerateContent"
+                            ]
+                        },
+                        "StreamingPredict": {
+                            "methods": [
+                                "streamingPredict"
+                            ]
+                        },
+                        "StreamingRawPredict": {
+                            "methods": [
+                                "streamingRawPredict"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "LlmUtilityService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "LlmUtilityServiceGapicClient",
+                    "rpcs": {
+                        "ComputeTokens": {
+                            "methods": [
+                                "computeTokens"
+                            ]
+                        },
+                        "CountTokens": {
+                            "methods": [
+                                "countTokens"
                             ]
                         },
                         "GetLocation": {
@@ -1241,60 +1645,6 @@
                         "ListTrainingPipelines": {
                             "methods": [
                                 "listTrainingPipelines"
-                            ]
-                        },
-                        "GetLocation": {
-                            "methods": [
-                                "getLocation"
-                            ]
-                        },
-                        "ListLocations": {
-                            "methods": [
-                                "listLocations"
-                            ]
-                        },
-                        "GetIamPolicy": {
-                            "methods": [
-                                "getIamPolicy"
-                            ]
-                        },
-                        "SetIamPolicy": {
-                            "methods": [
-                                "setIamPolicy"
-                            ]
-                        },
-                        "TestIamPermissions": {
-                            "methods": [
-                                "testIamPermissions"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "PredictionService": {
-            "clients": {
-                "grpc": {
-                    "libraryClient": "PredictionServiceGapicClient",
-                    "rpcs": {
-                        "Explain": {
-                            "methods": [
-                                "explain"
-                            ]
-                        },
-                        "Predict": {
-                            "methods": [
-                                "predict"
-                            ]
-                        },
-                        "RawPredict": {
-                            "methods": [
-                                "rawPredict"
-                            ]
-                        },
-                        "ServerStreamingPredict": {
-                            "methods": [
-                                "serverStreamingPredict"
                             ]
                         },
                         "GetLocation": {

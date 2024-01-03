@@ -18,16 +18,16 @@ class SimulateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobu
 {
     /**
      * Required. The relative resource name of the organization, project, or
-     * folder. See:
-     * https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     * An example is:
-     * "organizations/{organization_id}".
+     * folder. For more information about relative resource names, see [Relative
+     * Resource
+     * Name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
+     * Example: `organizations/{organization_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
-     * Required. The user specified custom configuration to test.
+     * Required. The custom configuration that you need to test.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.CustomConfig custom_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -41,11 +41,11 @@ class SimulateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobu
 
     /**
      * @param string                                                                                               $parent       Required. The relative resource name of the organization, project, or
-     *                                                                                                                           folder. See:
-     *                                                                                                                           https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     *                                                                                                                           An example is:
-     *                                                                                                                           "organizations/{organization_id}".
-     * @param \Google\Cloud\SecurityCenter\V1\CustomConfig                                                         $customConfig Required. The user specified custom configuration to test.
+     *                                                                                                                           folder. For more information about relative resource names, see [Relative
+     *                                                                                                                           Resource
+     *                                                                                                                           Name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
+     *                                                                                                                           Example: `organizations/{organization_id}`
+     * @param \Google\Cloud\SecurityCenter\V1\CustomConfig                                                         $customConfig Required. The custom configuration that you need to test.
      * @param \Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleRequest\SimulatedResource $resource     Required. Resource data to simulate custom module against.
      *
      * @return \Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleRequest
@@ -68,12 +68,12 @@ class SimulateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobu
      *
      *     @type string $parent
      *           Required. The relative resource name of the organization, project, or
-     *           folder. See:
-     *           https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     *           An example is:
-     *           "organizations/{organization_id}".
+     *           folder. For more information about relative resource names, see [Relative
+     *           Resource
+     *           Name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
+     *           Example: `organizations/{organization_id}`
      *     @type \Google\Cloud\SecurityCenter\V1\CustomConfig $custom_config
-     *           Required. The user specified custom configuration to test.
+     *           Required. The custom configuration that you need to test.
      *     @type \Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleRequest\SimulatedResource $resource
      *           Required. Resource data to simulate custom module against.
      * }
@@ -85,10 +85,10 @@ class SimulateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobu
 
     /**
      * Required. The relative resource name of the organization, project, or
-     * folder. See:
-     * https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     * An example is:
-     * "organizations/{organization_id}".
+     * folder. For more information about relative resource names, see [Relative
+     * Resource
+     * Name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
+     * Example: `organizations/{organization_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -100,10 +100,10 @@ class SimulateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobu
 
     /**
      * Required. The relative resource name of the organization, project, or
-     * folder. See:
-     * https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     * An example is:
-     * "organizations/{organization_id}".
+     * folder. For more information about relative resource names, see [Relative
+     * Resource
+     * Name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
+     * Example: `organizations/{organization_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -118,7 +118,7 @@ class SimulateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobu
     }
 
     /**
-     * Required. The user specified custom configuration to test.
+     * Required. The custom configuration that you need to test.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.CustomConfig custom_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\SecurityCenter\V1\CustomConfig|null
@@ -139,7 +139,7 @@ class SimulateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobu
     }
 
     /**
-     * Required. The user specified custom configuration to test.
+     * Required. The custom configuration that you need to test.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.CustomConfig custom_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\SecurityCenter\V1\CustomConfig $var

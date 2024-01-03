@@ -109,6 +109,10 @@ return [
                         'method' => 'post',
                         'uriTemplate' => '/ui/{resource=projects/*/locations/*/notebookRuntimeTemplates/*}:getIamPolicy',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/publishers/*/models/*}:getIamPolicy',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -245,6 +249,14 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/endpoints/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/extensionControllers/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/extensions/*/operations/*}:cancel',
                     ],
                     [
                         'method' => 'post',
@@ -505,6 +517,14 @@ return [
                     ],
                     [
                         'method' => 'delete',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/extensionControllers/*}/operations',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/extensions/*}/operations',
+                    ],
+                    [
+                        'method' => 'delete',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/featurestores/*/operations/*}',
                     ],
                     [
@@ -594,6 +614,22 @@ return [
                     [
                         'method' => 'delete',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureOnlineStores/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureGroups/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureGroups/*/features/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureOnlineStores/*/featureViews/*/operations/*}',
                     ],
                     [
                         'method' => 'delete',
@@ -714,6 +750,22 @@ return [
                     [
                         'method' => 'delete',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureOnlineStores/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureGroups/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureGroups/*/features/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureOnlineStores/*/featureViews/*/operations/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -766,6 +818,14 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/extensionControllers/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/extensions/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/featurestores/*/operations/*}',
                     ],
                     [
@@ -855,6 +915,22 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureOnlineStores/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureOnlineStores/*/featureViews/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureGroups/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureGroups/*/features/*/operations/*}',
                     ],
                     [
                         'method' => 'get',
@@ -976,6 +1052,22 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*/operations/*}',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureOnlineStores/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureOnlineStores/*/featureViews/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureGroups/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureGroups/*/features/*/operations/*}',
+                    ],
                 ],
                 'placeholders' => [
                     'name' => [
@@ -1020,6 +1112,14 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/endpoints/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/extensionControllers/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/extensions/*}/operations',
                     ],
                     [
                         'method' => 'get',
@@ -1112,6 +1212,22 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureOnlineStores/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureOnlineStores/*/featureViews/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureGroups/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureGroups/*/features/*/operations/*}:wait',
                     ],
                     [
                         'method' => 'get',
@@ -1233,6 +1349,22 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*}/operations',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureOnlineStores/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureOnlineStores/*/featureViews/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureGroups/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureGroups/*/features/*/operations/*}:wait',
+                    ],
                 ],
                 'placeholders' => [
                     'name' => [
@@ -1277,6 +1409,14 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/endpoints/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/extensionControllers/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/extensions/*/operations/*}:wait',
                     ],
                     [
                         'method' => 'post',
@@ -1369,6 +1509,22 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureOnlineStores/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureOnlineStores/*/featureViews/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureGroups/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureGroups/*/features/*/operations/*}:wait',
                     ],
                     [
                         'method' => 'post',
@@ -1489,6 +1645,22 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureOnlineStores/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureOnlineStores/*/featureViews/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureGroups/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureGroups/*/features/*/operations/*}:wait',
                     ],
                 ],
                 'placeholders' => [

@@ -33,6 +33,12 @@ class ModifyColumnFamiliesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.ModifyColumnFamiliesRequest.Modification modifications = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $modifications;
+    /**
+     * Optional. If true, ignore safety checks when modifying the column families.
+     *
+     * Generated from protobuf field <code>bool ignore_warnings = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $ignore_warnings = false;
 
     /**
      * @param string                                                                     $name          Required. The unique name of the table whose families should be modified.
@@ -70,6 +76,8 @@ class ModifyColumnFamiliesRequest extends \Google\Protobuf\Internal\Message
      *           families. Entries are applied in order, meaning that earlier modifications
      *           can be masked by later ones (in the case of repeated updates to the same
      *           family, for example).
+     *     @type bool $ignore_warnings
+     *           Optional. If true, ignore safety checks when modifying the column families.
      * }
      */
     public function __construct($data = NULL) {
@@ -135,6 +143,32 @@ class ModifyColumnFamiliesRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest\Modification::class);
         $this->modifications = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, ignore safety checks when modifying the column families.
+     *
+     * Generated from protobuf field <code>bool ignore_warnings = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getIgnoreWarnings()
+    {
+        return $this->ignore_warnings;
+    }
+
+    /**
+     * Optional. If true, ignore safety checks when modifying the column families.
+     *
+     * Generated from protobuf field <code>bool ignore_warnings = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIgnoreWarnings($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->ignore_warnings = $var;
 
         return $this;
     }

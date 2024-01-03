@@ -3,6 +3,28 @@
 return [
     'interfaces' => [
         'google.cloud.compute.v1.RegionSecurityPolicies' => [
+            'AddRule' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/securityPolicies/{security_policy}/addRule',
+                'body' => 'security_policy_rule_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                    'security_policy' => [
+                        'getters' => [
+                            'getSecurityPolicy',
+                        ],
+                    ],
+                ],
+            ],
             'Delete' => [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/securityPolicies/{security_policy}',
@@ -27,6 +49,27 @@ return [
             'Get' => [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/securityPolicies/{security_policy}',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                    'security_policy' => [
+                        'getters' => [
+                            'getSecurityPolicy',
+                        ],
+                    ],
+                ],
+            ],
+            'GetRule' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/securityPolicies/{security_policy}/getRule',
                 'placeholders' => [
                     'project' => [
                         'getters' => [
@@ -82,6 +125,49 @@ return [
                 'method' => 'patch',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/securityPolicies/{security_policy}',
                 'body' => 'security_policy_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                    'security_policy' => [
+                        'getters' => [
+                            'getSecurityPolicy',
+                        ],
+                    ],
+                ],
+            ],
+            'PatchRule' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/securityPolicies/{security_policy}/patchRule',
+                'body' => 'security_policy_rule_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                    'security_policy' => [
+                        'getters' => [
+                            'getSecurityPolicy',
+                        ],
+                    ],
+                ],
+            ],
+            'RemoveRule' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/securityPolicies/{security_policy}/removeRule',
                 'placeholders' => [
                     'project' => [
                         'getters' => [

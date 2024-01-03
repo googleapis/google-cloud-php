@@ -681,6 +681,28 @@ return [
                     ],
                 ],
             ],
+            'SetSecurityPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setSecurityPolicy',
+                'body' => 'instances_set_security_policy_request_resource',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
             'SetServiceAccount' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setServiceAccount',

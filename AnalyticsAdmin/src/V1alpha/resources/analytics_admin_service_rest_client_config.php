@@ -914,6 +914,17 @@ return [
                     ],
                 ],
             ],
+            'GetSubpropertyEventFilter' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/subpropertyEventFilters/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListAccessBindings' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=accounts/*}/accessBindings',
@@ -1141,6 +1152,17 @@ return [
             'ListSearchAds360Links' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/searchAds360Links',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSubpropertyEventFilters' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/subpropertyEventFilters',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -1522,6 +1544,22 @@ return [
                     'search_ads_360_link.name' => [
                         'getters' => [
                             'getSearchAds360Link',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateSubpropertyEventFilter' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{subproperty_event_filter.name=properties/*/subpropertyEventFilters/*}',
+                'body' => 'subproperty_event_filter',
+                'placeholders' => [
+                    'subproperty_event_filter.name' => [
+                        'getters' => [
+                            'getSubpropertyEventFilter',
                             'getName',
                         ],
                     ],

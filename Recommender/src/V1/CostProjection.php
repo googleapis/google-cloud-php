@@ -31,6 +31,12 @@ class CostProjection extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 2;</code>
      */
     private $duration = null;
+    /**
+     * The approximate cost savings in the billing account's local currency.
+     *
+     * Generated from protobuf field <code>.google.type.Money cost_in_local_currency = 3;</code>
+     */
+    private $cost_in_local_currency = null;
 
     /**
      * Constructor.
@@ -46,6 +52,8 @@ class CostProjection extends \Google\Protobuf\Internal\Message
      *           prices or custom contract prices.
      *     @type \Google\Protobuf\Duration $duration
      *           Duration for which this cost applies.
+     *     @type \Google\Type\Money $cost_in_local_currency
+     *           The approximate cost savings in the billing account's local currency.
      * }
      */
     public function __construct($data = NULL) {
@@ -129,6 +137,42 @@ class CostProjection extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * The approximate cost savings in the billing account's local currency.
+     *
+     * Generated from protobuf field <code>.google.type.Money cost_in_local_currency = 3;</code>
+     * @return \Google\Type\Money|null
+     */
+    public function getCostInLocalCurrency()
+    {
+        return $this->cost_in_local_currency;
+    }
+
+    public function hasCostInLocalCurrency()
+    {
+        return isset($this->cost_in_local_currency);
+    }
+
+    public function clearCostInLocalCurrency()
+    {
+        unset($this->cost_in_local_currency);
+    }
+
+    /**
+     * The approximate cost savings in the billing account's local currency.
+     *
+     * Generated from protobuf field <code>.google.type.Money cost_in_local_currency = 3;</code>
+     * @param \Google\Type\Money $var
+     * @return $this
+     */
+    public function setCostInLocalCurrency($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Type\Money::class);
+        $this->cost_in_local_currency = $var;
 
         return $this;
     }

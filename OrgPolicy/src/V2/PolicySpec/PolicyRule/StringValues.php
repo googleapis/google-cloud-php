@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A message that holds specific allowed and denied values.
- * This message can define specific values and subtrees of Cloud Resource
+ * This message can define specific values and subtrees of the Resource
  * Manager resource hierarchy (`Organizations`, `Folders`, `Projects`) that
  * are allowed or denied. This is achieved by using the `under:` and
  * optional `is:` prefixes.
@@ -19,9 +19,9 @@ use Google\Protobuf\Internal\GPBUtil;
  * if the value contains a ":". Values prefixed with "is:" are treated the
  * same as values with no prefix.
  * Ancestry subtrees must be in one of the following formats:
- *     - "projects/<project-id>", e.g. "projects/tokyo-rain-123"
- *     - "folders/<folder-id>", e.g. "folders/1234"
- *     - "organizations/<organization-id>", e.g. "organizations/1234"
+ * - `projects/<project-id>` (for example, `projects/tokyo-rain-123`)
+ * - `folders/<folder-id>` (for example, `folders/1234`)
+ * - `organizations/<organization-id>` (for example, `organizations/1234`)
  * The `supports_under` field of the associated `Constraint`  defines
  * whether ancestry prefixes can be used.
  *

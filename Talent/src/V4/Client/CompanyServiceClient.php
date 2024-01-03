@@ -52,11 +52,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Talent\V4\CompanyServiceClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createCompanyAsync(CreateCompanyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteCompanyAsync(DeleteCompanyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getCompanyAsync(GetCompanyRequest $request, array $optionalArgs = [])
@@ -71,8 +66,15 @@ final class CompanyServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.talent.v4.CompanyService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'jobs.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'jobs.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

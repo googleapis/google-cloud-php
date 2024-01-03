@@ -33,13 +33,18 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Compute\V1\AddRuleRegionSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\DeleteRegionSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\GetRegionSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\GetRuleRegionSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\InsertRegionSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\ListRegionSecurityPoliciesRequest;
 use Google\Cloud\Compute\V1\PatchRegionSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\PatchRuleRegionSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
+use Google\Cloud\Compute\V1\RemoveRuleRegionSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\SecurityPolicy;
+use Google\Cloud\Compute\V1\SecurityPolicyRule;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -48,17 +53,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Compute\V1\RegionSecurityPoliciesClient} for the stable
- * implementation
- *
- * @experimental
- *
+ * @method PromiseInterface addRuleAsync(AddRuleRegionSecurityPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteAsync(DeleteRegionSecurityPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAsync(GetRegionSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getRuleAsync(GetRuleRegionSecurityPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface insertAsync(InsertRegionSecurityPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAsync(ListRegionSecurityPoliciesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface patchAsync(PatchRegionSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface patchRuleAsync(PatchRuleRegionSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface removeRuleAsync(RemoveRuleRegionSecurityPolicyRequest $request, array $optionalArgs = [])
  */
 final class RegionSecurityPoliciesClient
 {
@@ -67,8 +70,15 @@ final class RegionSecurityPoliciesClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.compute.v1.RegionSecurityPolicies';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'compute.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'compute.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -236,6 +246,30 @@ final class RegionSecurityPoliciesClient
     }
 
     /**
+     * Inserts a rule into a security policy.
+     *
+     * The async variant is {@see RegionSecurityPoliciesClient::addRuleAsync()} .
+     *
+     * @param AddRuleRegionSecurityPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function addRule(AddRuleRegionSecurityPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('AddRule', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes the specified policy.
      *
      * The async variant is {@see RegionSecurityPoliciesClient::deleteAsync()} .
@@ -281,6 +315,30 @@ final class RegionSecurityPoliciesClient
     public function get(GetRegionSecurityPolicyRequest $request, array $callOptions = []): SecurityPolicy
     {
         return $this->startApiCall('Get', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets a rule at the specified priority.
+     *
+     * The async variant is {@see RegionSecurityPoliciesClient::getRuleAsync()} .
+     *
+     * @param GetRuleRegionSecurityPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SecurityPolicyRule
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getRule(GetRuleRegionSecurityPolicyRequest $request, array $callOptions = []): SecurityPolicyRule
+    {
+        return $this->startApiCall('GetRule', $request, $callOptions)->wait();
     }
 
     /**
@@ -353,5 +411,53 @@ final class RegionSecurityPoliciesClient
     public function patch(PatchRegionSecurityPolicyRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('Patch', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Patches a rule at the specified priority. To clear fields in the rule, leave the fields empty and specify them in the updateMask.
+     *
+     * The async variant is {@see RegionSecurityPoliciesClient::patchRuleAsync()} .
+     *
+     * @param PatchRuleRegionSecurityPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function patchRule(PatchRuleRegionSecurityPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('PatchRule', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a rule at the specified priority.
+     *
+     * The async variant is {@see RegionSecurityPoliciesClient::removeRuleAsync()} .
+     *
+     * @param RemoveRuleRegionSecurityPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function removeRule(RemoveRuleRegionSecurityPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('RemoveRule', $request, $callOptions)->wait();
     }
 }

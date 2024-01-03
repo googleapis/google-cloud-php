@@ -3,6 +3,18 @@
 return [
     'interfaces' => [
         'google.cloud.orgpolicy.v2.OrgPolicy' => [
+            'CreateCustomConstraint' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=organizations/*}/customConstraints',
+                'body' => 'custom_constraint',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreatePolicy' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*}/policies',
@@ -27,6 +39,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteCustomConstraint' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=organizations/*/customConstraints/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeletePolicy' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v2/{name=projects/*/policies/*}',
@@ -40,6 +63,17 @@ return [
                         'uriTemplate' => '/v2/{name=organizations/*/policies/*}',
                     ],
                 ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetCustomConstraint' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=organizations/*/customConstraints/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -111,6 +145,17 @@ return [
                     ],
                 ],
             ],
+            'ListCustomConstraints' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=organizations/*}/customConstraints',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListPolicies' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*}/policies',
@@ -128,6 +173,19 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateCustomConstraint' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{custom_constraint.name=organizations/*/customConstraints/*}',
+                'body' => 'custom_constraint',
+                'placeholders' => [
+                    'custom_constraint.name' => [
+                        'getters' => [
+                            'getCustomConstraint',
+                            'getName',
                         ],
                     ],
                 ],

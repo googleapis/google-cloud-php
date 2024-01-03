@@ -57,7 +57,7 @@ use Google\Rpc\Status;
  *                                               [GetAttachedServerConfig][google.cloud.gkemulticloud.v1.AttachedClusters.GetAttachedServerConfig].
  * @param string $attachedClusterDistribution    The Kubernetes distribution of the underlying attached cluster.
  *
- *                                               Supported values: ["eks", "aks"].
+ *                                               Supported values: ["eks", "aks", "generic"].
  * @param string $attachedClusterFleetProject    The name of the Fleet host project where this cluster will be
  *                                               registered.
  *

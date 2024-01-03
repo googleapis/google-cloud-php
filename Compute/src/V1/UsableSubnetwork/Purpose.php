@@ -20,6 +20,12 @@ class Purpose
      */
     const UNDEFINED_PURPOSE = 0;
     /**
+     * Subnet reserved for Global Envoy-based Load Balancing.
+     *
+     * Generated from protobuf enum <code>GLOBAL_MANAGED_PROXY = 236463602;</code>
+     */
+    const GLOBAL_MANAGED_PROXY = 236463602;
+    /**
      * Subnet reserved for Internal HTTP(S) Load Balancing.
      *
      * Generated from protobuf enum <code>INTERNAL_HTTPS_LOAD_BALANCER = 248748889;</code>
@@ -31,6 +37,12 @@ class Purpose
      * Generated from protobuf enum <code>PRIVATE = 403485027;</code>
      */
     const PBPRIVATE = 403485027;
+    /**
+     * Subnetwork used as source range for Private NAT Gateways.
+     *
+     * Generated from protobuf enum <code>PRIVATE_NAT = 367764517;</code>
+     */
+    const PRIVATE_NAT = 367764517;
     /**
      * Regular user created or automatically created subnet.
      *
@@ -44,7 +56,7 @@ class Purpose
      */
     const PRIVATE_SERVICE_CONNECT = 48134724;
     /**
-     * Subnetwork used for Regional Internal/External HTTP(S) Load Balancing.
+     * Subnetwork used for Regional Envoy-based Load Balancing.
      *
      * Generated from protobuf enum <code>REGIONAL_MANAGED_PROXY = 153049966;</code>
      */
@@ -52,8 +64,10 @@ class Purpose
 
     private static $valueToName = [
         self::UNDEFINED_PURPOSE => 'UNDEFINED_PURPOSE',
+        self::GLOBAL_MANAGED_PROXY => 'GLOBAL_MANAGED_PROXY',
         self::INTERNAL_HTTPS_LOAD_BALANCER => 'INTERNAL_HTTPS_LOAD_BALANCER',
         self::PBPRIVATE => 'PRIVATE',
+        self::PRIVATE_NAT => 'PRIVATE_NAT',
         self::PRIVATE_RFC_1918 => 'PRIVATE_RFC_1918',
         self::PRIVATE_SERVICE_CONNECT => 'PRIVATE_SERVICE_CONNECT',
         self::REGIONAL_MANAGED_PROXY => 'REGIONAL_MANAGED_PROXY',

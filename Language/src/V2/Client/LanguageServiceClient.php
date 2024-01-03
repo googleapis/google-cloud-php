@@ -50,10 +50,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes.
- *
- * @experimental
- *
  * @method PromiseInterface analyzeEntitiesAsync(AnalyzeEntitiesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface analyzeSentimentAsync(AnalyzeSentimentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface annotateTextAsync(AnnotateTextRequest $request, array $optionalArgs = [])
@@ -67,8 +63,15 @@ final class LanguageServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.language.v2.LanguageService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'language.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'language.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

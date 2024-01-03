@@ -56,6 +56,27 @@ return [
                     ],
                 ],
             ],
+            'GetNatIpInfo' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}/getNatIpInfo',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                    'router' => [
+                        'getters' => [
+                            'getRouter',
+                        ],
+                    ],
+                ],
+            ],
             'GetNatMappingInfo' => [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}/getNatMappingInfo',

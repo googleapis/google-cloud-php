@@ -87,7 +87,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * When included_fields is populated,
      * [excluded_fields][google.cloud.aiplatform.v1.BatchPredictionJob.InstanceConfig.excluded_fields]
      * must be empty.
-     * The input must be JSONL with objects at each line, CSV, BigQuery
+     * The input must be JSONL with objects at each line, BigQuery
      * or TfRecord.
      *
      * Generated from protobuf field <code>repeated string included_fields = 3;</code>
@@ -102,7 +102,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * When excluded_fields is populated,
      * [included_fields][google.cloud.aiplatform.v1.BatchPredictionJob.InstanceConfig.included_fields]
      * must be empty.
-     * The input must be JSONL with objects at each line, CSV, BigQuery
+     * The input must be JSONL with objects at each line, BigQuery
      * or TfRecord.
      *
      * Generated from protobuf field <code>repeated string excluded_fields = 4;</code>
@@ -178,7 +178,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      *           When included_fields is populated,
      *           [excluded_fields][google.cloud.aiplatform.v1.BatchPredictionJob.InstanceConfig.excluded_fields]
      *           must be empty.
-     *           The input must be JSONL with objects at each line, CSV, BigQuery
+     *           The input must be JSONL with objects at each line, BigQuery
      *           or TfRecord.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_fields
      *           Fields that will be excluded in the prediction instance that is
@@ -189,7 +189,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      *           When excluded_fields is populated,
      *           [included_fields][google.cloud.aiplatform.v1.BatchPredictionJob.InstanceConfig.included_fields]
      *           must be empty.
-     *           The input must be JSONL with objects at each line, CSV, BigQuery
+     *           The input must be JSONL with objects at each line, BigQuery
      *           or TfRecord.
      * }
      */
@@ -358,7 +358,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * When included_fields is populated,
      * [excluded_fields][google.cloud.aiplatform.v1.BatchPredictionJob.InstanceConfig.excluded_fields]
      * must be empty.
-     * The input must be JSONL with objects at each line, CSV, BigQuery
+     * The input must be JSONL with objects at each line, BigQuery
      * or TfRecord.
      *
      * Generated from protobuf field <code>repeated string included_fields = 3;</code>
@@ -379,7 +379,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * When included_fields is populated,
      * [excluded_fields][google.cloud.aiplatform.v1.BatchPredictionJob.InstanceConfig.excluded_fields]
      * must be empty.
-     * The input must be JSONL with objects at each line, CSV, BigQuery
+     * The input must be JSONL with objects at each line, BigQuery
      * or TfRecord.
      *
      * Generated from protobuf field <code>repeated string included_fields = 3;</code>
@@ -403,7 +403,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * When excluded_fields is populated,
      * [included_fields][google.cloud.aiplatform.v1.BatchPredictionJob.InstanceConfig.included_fields]
      * must be empty.
-     * The input must be JSONL with objects at each line, CSV, BigQuery
+     * The input must be JSONL with objects at each line, BigQuery
      * or TfRecord.
      *
      * Generated from protobuf field <code>repeated string excluded_fields = 4;</code>
@@ -423,7 +423,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * When excluded_fields is populated,
      * [included_fields][google.cloud.aiplatform.v1.BatchPredictionJob.InstanceConfig.included_fields]
      * must be empty.
-     * The input must be JSONL with objects at each line, CSV, BigQuery
+     * The input must be JSONL with objects at each line, BigQuery
      * or TfRecord.
      *
      * Generated from protobuf field <code>repeated string excluded_fields = 4;</code>

@@ -50,6 +50,8 @@ use Google\Cloud\DataCatalog\Lineage\V1\ListLineageEventsRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\ListProcessesRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\ListRunsRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\Process;
+use Google\Cloud\DataCatalog\Lineage\V1\ProcessOpenLineageRunEventRequest;
+use Google\Cloud\DataCatalog\Lineage\V1\ProcessOpenLineageRunEventResponse;
 use Google\Cloud\DataCatalog\Lineage\V1\Run;
 use Google\Cloud\DataCatalog\Lineage\V1\SearchLinksRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\UpdateProcessRequest;
@@ -71,12 +73,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\DataCatalog\Lineage\V1\LineageClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface batchSearchLinkProcessesAsync(BatchSearchLinkProcessesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createLineageEventAsync(CreateLineageEventRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createProcessAsync(CreateProcessRequest $request, array $optionalArgs = [])
@@ -90,6 +86,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface listLineageEventsAsync(ListLineageEventsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listProcessesAsync(ListProcessesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listRunsAsync(ListRunsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface processOpenLineageRunEventAsync(ProcessOpenLineageRunEventRequest $request, array $optionalArgs = [])
  * @method PromiseInterface searchLinksAsync(SearchLinksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateProcessAsync(UpdateProcessRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateRunAsync(UpdateRunRequest $request, array $optionalArgs = [])
@@ -102,8 +99,15 @@ final class LineageClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.datacatalog.lineage.v1.Lineage';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'datalineage.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'datalineage.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -695,6 +699,35 @@ final class LineageClient
     public function listRuns(ListRunsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListRuns', $request, $callOptions);
+    }
+
+    /**
+     * Creates new lineage events together with their parents: process and run.
+     * Updates the process and run if they already exist.
+     * Mapped from Open Lineage specification:
+     * https://github.com/OpenLineage/OpenLineage/blob/main/spec/OpenLineage.json.
+     *
+     * The async variant is {@see LineageClient::processOpenLineageRunEventAsync()} .
+     *
+     * @example samples/V1/LineageClient/process_open_lineage_run_event.php
+     *
+     * @param ProcessOpenLineageRunEventRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ProcessOpenLineageRunEventResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function processOpenLineageRunEvent(ProcessOpenLineageRunEventRequest $request, array $callOptions = []): ProcessOpenLineageRunEventResponse
+    {
+        return $this->startApiCall('ProcessOpenLineageRunEvent', $request, $callOptions)->wait();
     }
 
     /**

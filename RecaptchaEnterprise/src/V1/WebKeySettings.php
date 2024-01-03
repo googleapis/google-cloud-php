@@ -16,25 +16,25 @@ use Google\Protobuf\Internal\GPBUtil;
 class WebKeySettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * If set to true, it means allowed_domains will not be enforced.
+     * Optional. If set to true, it means allowed_domains will not be enforced.
      *
-     * Generated from protobuf field <code>bool allow_all_domains = 3;</code>
+     * Generated from protobuf field <code>bool allow_all_domains = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $allow_all_domains = false;
     /**
-     * Domains or subdomains of websites allowed to use the key. All subdomains
-     * of an allowed domain are automatically allowed. A valid domain requires a
-     * host and must not include any path, port, query or fragment.
+     * Optional. Domains or subdomains of websites allowed to use the key. All
+     * subdomains of an allowed domain are automatically allowed. A valid domain
+     * requires a host and must not include any path, port, query or fragment.
      * Examples: 'example.com' or 'subdomain.example.com'
      *
-     * Generated from protobuf field <code>repeated string allowed_domains = 1;</code>
+     * Generated from protobuf field <code>repeated string allowed_domains = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $allowed_domains;
     /**
-     * If set to true, the key can be used on AMP (Accelerated Mobile Pages)
-     * websites. This is supported only for the SCORE integration type.
+     * Optional. If set to true, the key can be used on AMP (Accelerated Mobile
+     * Pages) websites. This is supported only for the SCORE integration type.
      *
-     * Generated from protobuf field <code>bool allow_amp_traffic = 2;</code>
+     * Generated from protobuf field <code>bool allow_amp_traffic = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $allow_amp_traffic = false;
     /**
@@ -44,11 +44,11 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
      */
     private $integration_type = 0;
     /**
-     * Settings for the frequency and difficulty at which this key triggers
-     * captcha challenges. This should only be specified for IntegrationTypes
-     * CHECKBOX and INVISIBLE.
+     * Optional. Settings for the frequency and difficulty at which this key
+     * triggers captcha challenges. This should only be specified for
+     * IntegrationTypes CHECKBOX and INVISIBLE.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WebKeySettings.ChallengeSecurityPreference challenge_security_preference = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WebKeySettings.ChallengeSecurityPreference challenge_security_preference = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $challenge_security_preference = 0;
 
@@ -59,21 +59,21 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $allow_all_domains
-     *           If set to true, it means allowed_domains will not be enforced.
+     *           Optional. If set to true, it means allowed_domains will not be enforced.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_domains
-     *           Domains or subdomains of websites allowed to use the key. All subdomains
-     *           of an allowed domain are automatically allowed. A valid domain requires a
-     *           host and must not include any path, port, query or fragment.
+     *           Optional. Domains or subdomains of websites allowed to use the key. All
+     *           subdomains of an allowed domain are automatically allowed. A valid domain
+     *           requires a host and must not include any path, port, query or fragment.
      *           Examples: 'example.com' or 'subdomain.example.com'
      *     @type bool $allow_amp_traffic
-     *           If set to true, the key can be used on AMP (Accelerated Mobile Pages)
-     *           websites. This is supported only for the SCORE integration type.
+     *           Optional. If set to true, the key can be used on AMP (Accelerated Mobile
+     *           Pages) websites. This is supported only for the SCORE integration type.
      *     @type int $integration_type
      *           Required. Describes how this key is integrated with the website.
      *     @type int $challenge_security_preference
-     *           Settings for the frequency and difficulty at which this key triggers
-     *           captcha challenges. This should only be specified for IntegrationTypes
-     *           CHECKBOX and INVISIBLE.
+     *           Optional. Settings for the frequency and difficulty at which this key
+     *           triggers captcha challenges. This should only be specified for
+     *           IntegrationTypes CHECKBOX and INVISIBLE.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,9 +82,9 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, it means allowed_domains will not be enforced.
+     * Optional. If set to true, it means allowed_domains will not be enforced.
      *
-     * Generated from protobuf field <code>bool allow_all_domains = 3;</code>
+     * Generated from protobuf field <code>bool allow_all_domains = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getAllowAllDomains()
@@ -93,9 +93,9 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, it means allowed_domains will not be enforced.
+     * Optional. If set to true, it means allowed_domains will not be enforced.
      *
-     * Generated from protobuf field <code>bool allow_all_domains = 3;</code>
+     * Generated from protobuf field <code>bool allow_all_domains = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -108,12 +108,12 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Domains or subdomains of websites allowed to use the key. All subdomains
-     * of an allowed domain are automatically allowed. A valid domain requires a
-     * host and must not include any path, port, query or fragment.
+     * Optional. Domains or subdomains of websites allowed to use the key. All
+     * subdomains of an allowed domain are automatically allowed. A valid domain
+     * requires a host and must not include any path, port, query or fragment.
      * Examples: 'example.com' or 'subdomain.example.com'
      *
-     * Generated from protobuf field <code>repeated string allowed_domains = 1;</code>
+     * Generated from protobuf field <code>repeated string allowed_domains = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAllowedDomains()
@@ -122,12 +122,12 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Domains or subdomains of websites allowed to use the key. All subdomains
-     * of an allowed domain are automatically allowed. A valid domain requires a
-     * host and must not include any path, port, query or fragment.
+     * Optional. Domains or subdomains of websites allowed to use the key. All
+     * subdomains of an allowed domain are automatically allowed. A valid domain
+     * requires a host and must not include any path, port, query or fragment.
      * Examples: 'example.com' or 'subdomain.example.com'
      *
-     * Generated from protobuf field <code>repeated string allowed_domains = 1;</code>
+     * Generated from protobuf field <code>repeated string allowed_domains = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -140,10 +140,10 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, the key can be used on AMP (Accelerated Mobile Pages)
-     * websites. This is supported only for the SCORE integration type.
+     * Optional. If set to true, the key can be used on AMP (Accelerated Mobile
+     * Pages) websites. This is supported only for the SCORE integration type.
      *
-     * Generated from protobuf field <code>bool allow_amp_traffic = 2;</code>
+     * Generated from protobuf field <code>bool allow_amp_traffic = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getAllowAmpTraffic()
@@ -152,10 +152,10 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, the key can be used on AMP (Accelerated Mobile Pages)
-     * websites. This is supported only for the SCORE integration type.
+     * Optional. If set to true, the key can be used on AMP (Accelerated Mobile
+     * Pages) websites. This is supported only for the SCORE integration type.
      *
-     * Generated from protobuf field <code>bool allow_amp_traffic = 2;</code>
+     * Generated from protobuf field <code>bool allow_amp_traffic = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -194,11 +194,11 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Settings for the frequency and difficulty at which this key triggers
-     * captcha challenges. This should only be specified for IntegrationTypes
-     * CHECKBOX and INVISIBLE.
+     * Optional. Settings for the frequency and difficulty at which this key
+     * triggers captcha challenges. This should only be specified for
+     * IntegrationTypes CHECKBOX and INVISIBLE.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WebKeySettings.ChallengeSecurityPreference challenge_security_preference = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WebKeySettings.ChallengeSecurityPreference challenge_security_preference = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getChallengeSecurityPreference()
@@ -207,11 +207,11 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Settings for the frequency and difficulty at which this key triggers
-     * captcha challenges. This should only be specified for IntegrationTypes
-     * CHECKBOX and INVISIBLE.
+     * Optional. Settings for the frequency and difficulty at which this key
+     * triggers captcha challenges. This should only be specified for
+     * IntegrationTypes CHECKBOX and INVISIBLE.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WebKeySettings.ChallengeSecurityPreference challenge_security_preference = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WebKeySettings.ChallengeSecurityPreference challenge_security_preference = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

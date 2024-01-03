@@ -32,7 +32,7 @@ use Google\Rpc\Status;
 /**
  * Deletes multiple conversations in a single request.
  *
- * @param string $formattedParent The parent resource to create analyses in.
+ * @param string $formattedParent The parent resource to delete conversations from.
  *                                Format:
  *                                projects/{project}/locations/{location}
  *                                Please see {@see ContactCenterInsightsClient::locationName()} for help formatting this field.

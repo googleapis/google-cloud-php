@@ -70,7 +70,7 @@ class LoggingClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '1.28.3';
+    const VERSION = '1.28.5';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/logging.admin';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/logging.read';
@@ -469,7 +469,7 @@ class LoggingClient
             unset($options['projectIds']);
         }
         if (isset($options['resourceNames'])) {
-            $options['resourceNames'] = array_merge($resourceNames, $options['projectIds']);
+            $options['resourceNames'] = array_merge($resourceNames, $options['resourceNames']);
         } else {
             $options['resourceNames'] = $resourceNames;
         }

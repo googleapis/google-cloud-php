@@ -57,11 +57,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\ResourceManager\V3\TagHoldsClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createTagHoldAsync(CreateTagHoldRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteTagHoldAsync(DeleteTagHoldRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listTagHoldsAsync(ListTagHoldsRequest $request, array $optionalArgs = [])
@@ -74,8 +69,15 @@ final class TagHoldsClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.resourcemanager.v3.TagHolds';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'cloudresourcemanager.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'cloudresourcemanager.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

@@ -65,9 +65,7 @@ use Google\Cloud\BigQuery\Storage\V1\SplitReadStreamResponse;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\BigQuery\Storage\V1\Client\BigQueryReadClient} to use the new
- * surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\BigQuery\Storage\V1\Client\BigQueryReadClient}.
  */
 class BigQueryReadGapicClient
 {
@@ -76,8 +74,15 @@ class BigQueryReadGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.bigquery.storage.v1.BigQueryRead';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'bigquerystorage.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'bigquerystorage.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;

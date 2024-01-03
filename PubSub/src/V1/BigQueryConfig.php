@@ -23,10 +23,11 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
      */
     private $table = '';
     /**
-     * When true, use the topic's schema as the columns to write to in BigQuery,
-     * if it exists.
+     * Optional. When true, use the topic's schema as the columns to write to in
+     * BigQuery, if it exists. `use_topic_schema` and `use_table_schema` cannot be
+     * enabled at the same time.
      *
-     * Generated from protobuf field <code>bool use_topic_schema = 2;</code>
+     * Generated from protobuf field <code>bool use_topic_schema = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $use_topic_schema = false;
     /**
@@ -56,6 +57,14 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.pubsub.v1.BigQueryConfig.State state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
+    /**
+     * Optional. When true, use the BigQuery table's schema as the columns to
+     * write to in BigQuery. `use_table_schema` and `use_topic_schema` cannot be
+     * enabled at the same time.
+     *
+     * Generated from protobuf field <code>bool use_table_schema = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $use_table_schema = false;
 
     /**
      * Constructor.
@@ -67,8 +76,9 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
      *           The name of the table to which to write data, of the form
      *           {projectId}.{datasetId}.{tableId}
      *     @type bool $use_topic_schema
-     *           When true, use the topic's schema as the columns to write to in BigQuery,
-     *           if it exists.
+     *           Optional. When true, use the topic's schema as the columns to write to in
+     *           BigQuery, if it exists. `use_topic_schema` and `use_table_schema` cannot be
+     *           enabled at the same time.
      *     @type bool $write_metadata
      *           When true, write the subscription name, message_id, publish_time,
      *           attributes, and ordering_key to additional columns in the table. The
@@ -84,6 +94,10 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. An output-only field that indicates whether or not the
      *           subscription can receive messages.
+     *     @type bool $use_table_schema
+     *           Optional. When true, use the BigQuery table's schema as the columns to
+     *           write to in BigQuery. `use_table_schema` and `use_topic_schema` cannot be
+     *           enabled at the same time.
      * }
      */
     public function __construct($data = NULL) {
@@ -120,10 +134,11 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When true, use the topic's schema as the columns to write to in BigQuery,
-     * if it exists.
+     * Optional. When true, use the topic's schema as the columns to write to in
+     * BigQuery, if it exists. `use_topic_schema` and `use_table_schema` cannot be
+     * enabled at the same time.
      *
-     * Generated from protobuf field <code>bool use_topic_schema = 2;</code>
+     * Generated from protobuf field <code>bool use_topic_schema = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getUseTopicSchema()
@@ -132,10 +147,11 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When true, use the topic's schema as the columns to write to in BigQuery,
-     * if it exists.
+     * Optional. When true, use the topic's schema as the columns to write to in
+     * BigQuery, if it exists. `use_topic_schema` and `use_table_schema` cannot be
+     * enabled at the same time.
      *
-     * Generated from protobuf field <code>bool use_topic_schema = 2;</code>
+     * Generated from protobuf field <code>bool use_topic_schema = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -239,6 +255,36 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\PubSub\V1\BigQueryConfig\State::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. When true, use the BigQuery table's schema as the columns to
+     * write to in BigQuery. `use_table_schema` and `use_topic_schema` cannot be
+     * enabled at the same time.
+     *
+     * Generated from protobuf field <code>bool use_table_schema = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getUseTableSchema()
+    {
+        return $this->use_table_schema;
+    }
+
+    /**
+     * Optional. When true, use the BigQuery table's schema as the columns to
+     * write to in BigQuery. `use_table_schema` and `use_topic_schema` cannot be
+     * enabled at the same time.
+     *
+     * Generated from protobuf field <code>bool use_table_schema = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUseTableSchema($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->use_table_schema = $var;
 
         return $this;
     }

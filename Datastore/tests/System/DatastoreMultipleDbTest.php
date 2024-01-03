@@ -100,19 +100,20 @@ class DatastoreMultipleDbTest extends DatastoreMultipleDbTestCase
     }
 
     /**
-     * @dataProvider multiDbClientProvider
+     * @dataProvider aggregationCases
      */
-    public function testAggregationQueryMultipleDbClients(DatastoreClient $client)
+    public function testAggregationQueryMultipleDbClients(DatastoreClient $client, $type, $property, $expected)
     {
         $this->skipEmulatorTests();
+        $aggregation = (is_null($property) ? Aggregation::$type() : Aggregation::$type($property));
         $aggregationQuery = $client->query()
             ->kind(self::$kind)
             ->order('knownDances')
-            ->aggregation(Aggregation::count()->alias('total'));
+            ->aggregation($aggregation->alias('total'));
 
         $results = $client->runAggregationQuery($aggregationQuery);
 
-        $this->assertEquals(4, $results->get('total'));
+        $this->assertEquals($expected, $results->get('total'));
     }
 
     /**
@@ -127,5 +128,35 @@ class DatastoreMultipleDbTest extends DatastoreMultipleDbTestCase
         $results = iterator_to_array($client->runQuery($query));
 
         $this->assertCount(0, $results);
+    }
+
+    /**
+     * Test cases for testing aggregation queries in multiple DBs
+     *
+     * Each case is of the format:
+     * [
+     *      // Datastore client
+     *      DatastoreClient $client,
+     *
+     *      // Aggregation Type
+     *      string $type,
+     *
+     *      // Property to aggregate upon
+     *      string $property
+     *
+     *      // Expected result
+     *      mixed $expected
+     * ]
+     */
+    public function aggregationCases()
+    {
+        $clients = $this->multiDbClientProvider();
+        $cases = [];
+        foreach ($clients as $name => $client) {
+            $cases[] = [$client[0], 'count', null, 4];
+            $cases[] = [$client[0], 'sum', 'knownDances', 18];
+            $cases[] = [$client[0], 'avg', 'knownDances', 4.5];
+        }
+        return $cases;
     }
 }

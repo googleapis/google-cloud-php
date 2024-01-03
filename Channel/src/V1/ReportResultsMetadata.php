@@ -14,6 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * and
  * [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults].
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.channel.v1.ReportResultsMetadata</code>
  */
 class ReportResultsMetadata extends \Google\Protobuf\Internal\Message

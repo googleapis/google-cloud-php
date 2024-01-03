@@ -108,6 +108,8 @@ use Google\Protobuf\GPBEmpty;
  * contained within formatted names that are returned by the API.
  *
  * @experimental
+ *
+ * @deprecated This class will be removed in the next major version update.
  */
 class RegistrationServiceGapicClient
 {
@@ -116,8 +118,15 @@ class RegistrationServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.servicedirectory.v1beta1.RegistrationService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'servicedirectory.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'servicedirectory.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;

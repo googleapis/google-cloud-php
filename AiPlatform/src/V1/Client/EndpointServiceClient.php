@@ -66,11 +66,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\AIPlatform\V1\EndpointServiceClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createEndpointAsync(CreateEndpointRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteEndpointAsync(DeleteEndpointRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deployModelAsync(DeployModelRequest $request, array $optionalArgs = [])
@@ -93,8 +88,15 @@ final class EndpointServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.aiplatform.v1.EndpointService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'aiplatform.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'aiplatform.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -155,6 +157,25 @@ final class EndpointServiceClient
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * deployment_resource_pool resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $deploymentResourcePool
+     *
+     * @return string The formatted deployment_resource_pool resource.
+     */
+    public static function deploymentResourcePoolName(string $project, string $location, string $deploymentResourcePool): string
+    {
+        return self::getPathTemplate('deploymentResourcePool')->render([
+            'project' => $project,
+            'location' => $location,
+            'deployment_resource_pool' => $deploymentResourcePool,
+        ]);
     }
 
     /**
@@ -292,6 +313,7 @@ final class EndpointServiceClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - deploymentResourcePool: projects/{project}/locations/{location}/deploymentResourcePools/{deployment_resource_pool}
      * - endpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - location: projects/{project}/locations/{location}
      * - model: projects/{project}/locations/{location}/models/{model}

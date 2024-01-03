@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Returned in the [google.longrunning.Operation][google.longrunning.Operation] response field.
+ * Returned in the [google.longrunning.Operation][google.longrunning.Operation]
+ * response field.
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.ExportDocumentsResponse</code>
  */

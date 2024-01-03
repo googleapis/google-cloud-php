@@ -53,11 +53,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Dialogflow\V2\AnswerRecordsClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface listAnswerRecordsAsync(ListAnswerRecordsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateAnswerRecordAsync(UpdateAnswerRecordRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
@@ -71,8 +66,15 @@ final class AnswerRecordsClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.dialogflow.v2.AnswerRecords';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'dialogflow.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'dialogflow.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

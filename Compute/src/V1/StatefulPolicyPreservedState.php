@@ -21,6 +21,18 @@ class StatefulPolicyPreservedState extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.StatefulPolicyPreservedStateDiskDevice> disks = 95594102;</code>
      */
     private $disks;
+    /**
+     * External network IPs assigned to the instances that will be preserved on instance delete, update, etc. This map is keyed with the network interface name.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.StatefulPolicyPreservedStateNetworkIp> external_i_ps = 532687245;</code>
+     */
+    private $external_i_ps;
+    /**
+     * Internal network IPs assigned to the instances that will be preserved on instance delete, update, etc. This map is keyed with the network interface name.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.StatefulPolicyPreservedStateNetworkIp> internal_i_ps = 215731675;</code>
+     */
+    private $internal_i_ps;
 
     /**
      * Constructor.
@@ -30,6 +42,10 @@ class StatefulPolicyPreservedState extends \Google\Protobuf\Internal\Message
      *
      *     @type array|\Google\Protobuf\Internal\MapField $disks
      *           Disks created on the instances that will be preserved on instance delete, update, etc. This map is keyed with the device names of the disks.
+     *     @type array|\Google\Protobuf\Internal\MapField $external_i_ps
+     *           External network IPs assigned to the instances that will be preserved on instance delete, update, etc. This map is keyed with the network interface name.
+     *     @type array|\Google\Protobuf\Internal\MapField $internal_i_ps
+     *           Internal network IPs assigned to the instances that will be preserved on instance delete, update, etc. This map is keyed with the network interface name.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +75,58 @@ class StatefulPolicyPreservedState extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\StatefulPolicyPreservedStateDiskDevice::class);
         $this->disks = $arr;
+
+        return $this;
+    }
+
+    /**
+     * External network IPs assigned to the instances that will be preserved on instance delete, update, etc. This map is keyed with the network interface name.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.StatefulPolicyPreservedStateNetworkIp> external_i_ps = 532687245;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getExternalIPs()
+    {
+        return $this->external_i_ps;
+    }
+
+    /**
+     * External network IPs assigned to the instances that will be preserved on instance delete, update, etc. This map is keyed with the network interface name.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.StatefulPolicyPreservedStateNetworkIp> external_i_ps = 532687245;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setExternalIPs($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\StatefulPolicyPreservedStateNetworkIp::class);
+        $this->external_i_ps = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Internal network IPs assigned to the instances that will be preserved on instance delete, update, etc. This map is keyed with the network interface name.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.StatefulPolicyPreservedStateNetworkIp> internal_i_ps = 215731675;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getInternalIPs()
+    {
+        return $this->internal_i_ps;
+    }
+
+    /**
+     * Internal network IPs assigned to the instances that will be preserved on instance delete, update, etc. This map is keyed with the network interface name.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.StatefulPolicyPreservedStateNetworkIp> internal_i_ps = 215731675;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setInternalIPs($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\StatefulPolicyPreservedStateNetworkIp::class);
+        $this->internal_i_ps = $arr;
 
         return $this;
     }

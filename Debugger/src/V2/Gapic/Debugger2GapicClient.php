@@ -74,8 +74,7 @@ use Google\Protobuf\GPBEmpty;
  * }
  * ```
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Debugger\V2\Client\Debugger2Client} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Debugger\V2\Client\Debugger2Client}.
  */
 class Debugger2GapicClient
 {
@@ -84,8 +83,15 @@ class Debugger2GapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.devtools.clouddebugger.v2.Debugger2';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'clouddebugger.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'clouddebugger.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;

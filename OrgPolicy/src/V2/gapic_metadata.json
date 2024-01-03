@@ -10,14 +10,29 @@
                 "grpc": {
                     "libraryClient": "OrgPolicyGapicClient",
                     "rpcs": {
+                        "CreateCustomConstraint": {
+                            "methods": [
+                                "createCustomConstraint"
+                            ]
+                        },
                         "CreatePolicy": {
                             "methods": [
                                 "createPolicy"
                             ]
                         },
+                        "DeleteCustomConstraint": {
+                            "methods": [
+                                "deleteCustomConstraint"
+                            ]
+                        },
                         "DeletePolicy": {
                             "methods": [
                                 "deletePolicy"
+                            ]
+                        },
+                        "GetCustomConstraint": {
+                            "methods": [
+                                "getCustomConstraint"
                             ]
                         },
                         "GetEffectivePolicy": {
@@ -35,9 +50,19 @@
                                 "listConstraints"
                             ]
                         },
+                        "ListCustomConstraints": {
+                            "methods": [
+                                "listCustomConstraints"
+                            ]
+                        },
                         "ListPolicies": {
                             "methods": [
                                 "listPolicies"
+                            ]
+                        },
+                        "UpdateCustomConstraint": {
+                            "methods": [
+                                "updateCustomConstraint"
                             ]
                         },
                         "UpdatePolicy": {

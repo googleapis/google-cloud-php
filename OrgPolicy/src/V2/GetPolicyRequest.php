@@ -17,16 +17,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name of the policy. See `Policy` for naming
-     * requirements.
+     * Required. Resource name of the policy. See
+     * [Policy][google.cloud.orgpolicy.v2.Policy] for naming requirements.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
     /**
-     * @param string $name Required. Resource name of the policy. See `Policy` for naming
-     *                     requirements. Please see
+     * @param string $name Required. Resource name of the policy. See
+     *                     [Policy][google.cloud.orgpolicy.v2.Policy] for naming requirements. Please see
      *                     {@see OrgPolicyClient::policyName()} for help formatting this field.
      *
      * @return \Google\Cloud\OrgPolicy\V2\GetPolicyRequest
@@ -46,8 +46,8 @@ class GetPolicyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Resource name of the policy. See `Policy` for naming
-     *           requirements.
+     *           Required. Resource name of the policy. See
+     *           [Policy][google.cloud.orgpolicy.v2.Policy] for naming requirements.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,8 +56,8 @@ class GetPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the policy. See `Policy` for naming
-     * requirements.
+     * Required. Resource name of the policy. See
+     * [Policy][google.cloud.orgpolicy.v2.Policy] for naming requirements.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,8 +68,8 @@ class GetPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the policy. See `Policy` for naming
-     * requirements.
+     * Required. Resource name of the policy. See
+     * [Policy][google.cloud.orgpolicy.v2.Policy] for naming requirements.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

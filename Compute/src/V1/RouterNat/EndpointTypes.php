@@ -19,6 +19,12 @@ class EndpointTypes
      */
     const UNDEFINED_ENDPOINT_TYPES = 0;
     /**
+     * This is used for regional Application Load Balancers (internal and external) and regional proxy Network Load Balancers (internal and external) endpoints.
+     *
+     * Generated from protobuf enum <code>ENDPOINT_TYPE_MANAGED_PROXY_LB = 439196930;</code>
+     */
+    const ENDPOINT_TYPE_MANAGED_PROXY_LB = 439196930;
+    /**
      * This is used for Secure Web Gateway endpoints.
      *
      * Generated from protobuf enum <code>ENDPOINT_TYPE_SWG = 159344456;</code>
@@ -33,6 +39,7 @@ class EndpointTypes
 
     private static $valueToName = [
         self::UNDEFINED_ENDPOINT_TYPES => 'UNDEFINED_ENDPOINT_TYPES',
+        self::ENDPOINT_TYPE_MANAGED_PROXY_LB => 'ENDPOINT_TYPE_MANAGED_PROXY_LB',
         self::ENDPOINT_TYPE_SWG => 'ENDPOINT_TYPE_SWG',
         self::ENDPOINT_TYPE_VM => 'ENDPOINT_TYPE_VM',
     ];

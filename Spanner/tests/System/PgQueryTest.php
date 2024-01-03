@@ -367,12 +367,13 @@ class PgQueryTest extends SpannerPgTestCase
                 'p1' => self::$timestampVal
             ]
         ]);
-
-        $this->assertCount(2, iterator_to_array($res));
-
-        $row = $res->rows()->current();
-        $this->assertInstanceOf(Timestamp::class, $row['created_at']);
-        $this->assertEquals(self::$timestampVal->get()->format('r'), $row['created_at']->get()->format('r'));
+        $rows = iterator_to_array($res);
+        $this->assertInstanceOf(Timestamp::class, $rows[0]['created_at']);
+        $this->assertEquals(
+            self::$timestampVal->get()->format('r'),
+            $rows[0]['created_at']->get()->format('r')
+        );
+        $this->assertCount(2, $rows);
     }
 
     public function testBindTimestampParameterNull()
@@ -412,12 +413,10 @@ class PgQueryTest extends SpannerPgTestCase
                 'p2' => new Date(new \DateTime('2021-01-01'))
             ]
         ]);
-
-        $this->assertCount(2, iterator_to_array($res));
-
-        $row = $res->rows()->current();
-        $this->assertInstanceOf(Date::class, $row['dt']);
-        $this->assertEquals('2020-01-01', $row['dt']->get()->format('Y-m-d'));
+        $rows = iterator_to_array($res);
+        $this->assertInstanceOf(Date::class, $rows[0]['dt']);
+        $this->assertEquals('2020-01-01', $rows[0]['dt']->get()->format('Y-m-d'));
+        $this->assertCount(2, $rows);
     }
 
     public function testBindDateParameterNull()

@@ -64,7 +64,7 @@ class ComponentInfoCommand extends Command
     {
         $this->setName('component-info')
             ->setDescription('list info of a component or the whole library')
-            ->addOption('component', 'c', InputOption::VALUE_REQUIRED, 'Generate docs only for a single component.', '')
+            ->addOption('component', 'c', InputOption::VALUE_REQUIRED, 'get info for a single component', '')
             ->addOption('csv', '', InputOption::VALUE_REQUIRED, 'export findings to csv.')
             ->addOption('fields', 'f', InputOption::VALUE_REQUIRED, sprintf(
                 "Comma-separated list of fields. The following fields are available: \n - %s\n" .

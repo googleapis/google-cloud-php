@@ -27,21 +27,39 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Translate\V3\AdaptiveMtDataset;
+use Google\Cloud\Translate\V3\AdaptiveMtFile;
+use Google\Cloud\Translate\V3\AdaptiveMtSentence;
+use Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest;
+use Google\Cloud\Translate\V3\AdaptiveMtTranslateResponse;
 use Google\Cloud\Translate\V3\BatchDocumentOutputConfig;
 use Google\Cloud\Translate\V3\BatchTranslateDocumentRequest;
 use Google\Cloud\Translate\V3\BatchTranslateDocumentResponse;
 use Google\Cloud\Translate\V3\BatchTranslateResponse;
 use Google\Cloud\Translate\V3\BatchTranslateTextRequest;
 use Google\Cloud\Translate\V3\Client\TranslationServiceClient;
+use Google\Cloud\Translate\V3\CreateAdaptiveMtDatasetRequest;
 use Google\Cloud\Translate\V3\CreateGlossaryRequest;
+use Google\Cloud\Translate\V3\DeleteAdaptiveMtDatasetRequest;
+use Google\Cloud\Translate\V3\DeleteAdaptiveMtFileRequest;
 use Google\Cloud\Translate\V3\DeleteGlossaryRequest;
 use Google\Cloud\Translate\V3\DeleteGlossaryResponse;
 use Google\Cloud\Translate\V3\DetectLanguageRequest;
 use Google\Cloud\Translate\V3\DetectLanguageResponse;
 use Google\Cloud\Translate\V3\DocumentInputConfig;
+use Google\Cloud\Translate\V3\GetAdaptiveMtDatasetRequest;
+use Google\Cloud\Translate\V3\GetAdaptiveMtFileRequest;
 use Google\Cloud\Translate\V3\GetGlossaryRequest;
 use Google\Cloud\Translate\V3\GetSupportedLanguagesRequest;
 use Google\Cloud\Translate\V3\Glossary;
+use Google\Cloud\Translate\V3\ImportAdaptiveMtFileRequest;
+use Google\Cloud\Translate\V3\ImportAdaptiveMtFileResponse;
+use Google\Cloud\Translate\V3\ListAdaptiveMtDatasetsRequest;
+use Google\Cloud\Translate\V3\ListAdaptiveMtDatasetsResponse;
+use Google\Cloud\Translate\V3\ListAdaptiveMtFilesRequest;
+use Google\Cloud\Translate\V3\ListAdaptiveMtFilesResponse;
+use Google\Cloud\Translate\V3\ListAdaptiveMtSentencesRequest;
+use Google\Cloud\Translate\V3\ListAdaptiveMtSentencesResponse;
 use Google\Cloud\Translate\V3\ListGlossariesRequest;
 use Google\Cloud\Translate\V3\ListGlossariesResponse;
 use Google\Cloud\Translate\V3\OutputConfig;
@@ -53,6 +71,7 @@ use Google\Cloud\Translate\V3\TranslateTextResponse;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -82,6 +101,82 @@ class TranslationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new TranslationServiceClient($options);
+    }
+
+    /** @test */
+    public function adaptiveMtTranslateTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $languageCode = 'languageCode-412800396';
+        $expectedResponse = new AdaptiveMtTranslateResponse();
+        $expectedResponse->setLanguageCode($languageCode);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $formattedDataset = $gapicClient->adaptiveMtDatasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $content = [];
+        $request = (new AdaptiveMtTranslateRequest())
+            ->setParent($formattedParent)
+            ->setDataset($formattedDataset)
+            ->setContent($content);
+        $response = $gapicClient->adaptiveMtTranslate($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/AdaptiveMtTranslate', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getDataset();
+        $this->assertProtobufEquals($formattedDataset, $actualValue);
+        $actualValue = $actualRequestObject->getContent();
+        $this->assertProtobufEquals($content, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function adaptiveMtTranslateExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $formattedDataset = $gapicClient->adaptiveMtDatasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $content = [];
+        $request = (new AdaptiveMtTranslateRequest())
+            ->setParent($formattedParent)
+            ->setDataset($formattedDataset)
+            ->setContent($content);
+        try {
+            $gapicClient->adaptiveMtTranslate($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -397,6 +492,88 @@ class TranslationServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createAdaptiveMtDatasetTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $sourceLanguageCode = 'sourceLanguageCode1687263568';
+        $targetLanguageCode = 'targetLanguageCode1323228230';
+        $exampleCount = 1517063674;
+        $expectedResponse = new AdaptiveMtDataset();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setSourceLanguageCode($sourceLanguageCode);
+        $expectedResponse->setTargetLanguageCode($targetLanguageCode);
+        $expectedResponse->setExampleCount($exampleCount);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $adaptiveMtDataset = new AdaptiveMtDataset();
+        $adaptiveMtDatasetName = $gapicClient->adaptiveMtDatasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $adaptiveMtDataset->setName($adaptiveMtDatasetName);
+        $request = (new CreateAdaptiveMtDatasetRequest())
+            ->setParent($formattedParent)
+            ->setAdaptiveMtDataset($adaptiveMtDataset);
+        $response = $gapicClient->createAdaptiveMtDataset($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/CreateAdaptiveMtDataset', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getAdaptiveMtDataset();
+        $this->assertProtobufEquals($adaptiveMtDataset, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createAdaptiveMtDatasetExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $adaptiveMtDataset = new AdaptiveMtDataset();
+        $adaptiveMtDatasetName = $gapicClient->adaptiveMtDatasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $adaptiveMtDataset->setName($adaptiveMtDatasetName);
+        $request = (new CreateAdaptiveMtDatasetRequest())
+            ->setParent($formattedParent)
+            ->setAdaptiveMtDataset($adaptiveMtDataset);
+        try {
+            $gapicClient->createAdaptiveMtDataset($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function createGlossaryTest()
     {
         $operationsTransport = $this->createTransport();
@@ -531,6 +708,128 @@ class TranslationServiceClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteAdaptiveMtDatasetTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->adaptiveMtDatasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $request = (new DeleteAdaptiveMtDatasetRequest())
+            ->setName($formattedName);
+        $gapicClient->deleteAdaptiveMtDataset($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/DeleteAdaptiveMtDataset', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteAdaptiveMtDatasetExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->adaptiveMtDatasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $request = (new DeleteAdaptiveMtDatasetRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->deleteAdaptiveMtDataset($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteAdaptiveMtFileTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->adaptiveMtFileName('[PROJECT]', '[LOCATION]', '[DATASET]', '[FILE]');
+        $request = (new DeleteAdaptiveMtFileRequest())
+            ->setName($formattedName);
+        $gapicClient->deleteAdaptiveMtFile($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/DeleteAdaptiveMtFile', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteAdaptiveMtFileExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->adaptiveMtFileName('[PROJECT]', '[LOCATION]', '[DATASET]', '[FILE]');
+        $request = (new DeleteAdaptiveMtFileRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->deleteAdaptiveMtFile($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -719,6 +1018,146 @@ class TranslationServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getAdaptiveMtDatasetTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $sourceLanguageCode = 'sourceLanguageCode1687263568';
+        $targetLanguageCode = 'targetLanguageCode1323228230';
+        $exampleCount = 1517063674;
+        $expectedResponse = new AdaptiveMtDataset();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setSourceLanguageCode($sourceLanguageCode);
+        $expectedResponse->setTargetLanguageCode($targetLanguageCode);
+        $expectedResponse->setExampleCount($exampleCount);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->adaptiveMtDatasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $request = (new GetAdaptiveMtDatasetRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->getAdaptiveMtDataset($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/GetAdaptiveMtDataset', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAdaptiveMtDatasetExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->adaptiveMtDatasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $request = (new GetAdaptiveMtDatasetRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->getAdaptiveMtDataset($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAdaptiveMtFileTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $entryCount = 811131134;
+        $expectedResponse = new AdaptiveMtFile();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setEntryCount($entryCount);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->adaptiveMtFileName('[PROJECT]', '[LOCATION]', '[DATASET]', '[FILE]');
+        $request = (new GetAdaptiveMtFileRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->getAdaptiveMtFile($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/GetAdaptiveMtFile', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAdaptiveMtFileExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->adaptiveMtFileName('[PROJECT]', '[LOCATION]', '[DATASET]', '[FILE]');
+        $request = (new GetAdaptiveMtFileRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->getAdaptiveMtFile($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getGlossaryTest()
     {
         $transport = $this->createTransport();
@@ -837,6 +1276,284 @@ class TranslationServiceClientTest extends GeneratedTest
             ->setParent($formattedParent);
         try {
             $gapicClient->getSupportedLanguages($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function importAdaptiveMtFileTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new ImportAdaptiveMtFileResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->adaptiveMtDatasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $request = (new ImportAdaptiveMtFileRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->importAdaptiveMtFile($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/ImportAdaptiveMtFile', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function importAdaptiveMtFileExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->adaptiveMtDatasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $request = (new ImportAdaptiveMtFileRequest())
+            ->setParent($formattedParent);
+        try {
+            $gapicClient->importAdaptiveMtFile($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAdaptiveMtDatasetsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $adaptiveMtDatasetsElement = new AdaptiveMtDataset();
+        $adaptiveMtDatasets = [
+            $adaptiveMtDatasetsElement,
+        ];
+        $expectedResponse = new ListAdaptiveMtDatasetsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setAdaptiveMtDatasets($adaptiveMtDatasets);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListAdaptiveMtDatasetsRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->listAdaptiveMtDatasets($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getAdaptiveMtDatasets()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/ListAdaptiveMtDatasets', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAdaptiveMtDatasetsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListAdaptiveMtDatasetsRequest())
+            ->setParent($formattedParent);
+        try {
+            $gapicClient->listAdaptiveMtDatasets($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAdaptiveMtFilesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $adaptiveMtFilesElement = new AdaptiveMtFile();
+        $adaptiveMtFiles = [
+            $adaptiveMtFilesElement,
+        ];
+        $expectedResponse = new ListAdaptiveMtFilesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setAdaptiveMtFiles($adaptiveMtFiles);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->adaptiveMtDatasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $request = (new ListAdaptiveMtFilesRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->listAdaptiveMtFiles($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getAdaptiveMtFiles()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/ListAdaptiveMtFiles', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAdaptiveMtFilesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->adaptiveMtDatasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $request = (new ListAdaptiveMtFilesRequest())
+            ->setParent($formattedParent);
+        try {
+            $gapicClient->listAdaptiveMtFiles($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAdaptiveMtSentencesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $adaptiveMtSentencesElement = new AdaptiveMtSentence();
+        $adaptiveMtSentences = [
+            $adaptiveMtSentencesElement,
+        ];
+        $expectedResponse = new ListAdaptiveMtSentencesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setAdaptiveMtSentences($adaptiveMtSentences);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->adaptiveMtFileName('[PROJECT]', '[LOCATION]', '[DATASET]', '[FILE]');
+        $request = (new ListAdaptiveMtSentencesRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->listAdaptiveMtSentences($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getAdaptiveMtSentences()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/ListAdaptiveMtSentences', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAdaptiveMtSentencesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->adaptiveMtFileName('[PROJECT]', '[LOCATION]', '[DATASET]', '[FILE]');
+        $request = (new ListAdaptiveMtSentencesRequest())
+            ->setParent($formattedParent);
+        try {
+            $gapicClient->listAdaptiveMtSentences($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1071,98 +1788,39 @@ class TranslationServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function batchTranslateDocumentAsyncTest()
+    public function adaptiveMtTranslateAsyncTest()
     {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
             'transport' => $transport,
-            'operationsClient' => $operationsClient,
         ]);
         $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/batchTranslateDocumentTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-        $totalPages = 396186871;
-        $translatedPages = 1652747493;
-        $failedPages = 2002254526;
-        $totalBillablePages = 1292117569;
-        $totalCharacters = 1368640955;
-        $translatedCharacters = 1337326221;
-        $failedCharacters = 1723028396;
-        $totalBillableCharacters = 1242495501;
-        $expectedResponse = new BatchTranslateDocumentResponse();
-        $expectedResponse->setTotalPages($totalPages);
-        $expectedResponse->setTranslatedPages($translatedPages);
-        $expectedResponse->setFailedPages($failedPages);
-        $expectedResponse->setTotalBillablePages($totalBillablePages);
-        $expectedResponse->setTotalCharacters($totalCharacters);
-        $expectedResponse->setTranslatedCharacters($translatedCharacters);
-        $expectedResponse->setFailedCharacters($failedCharacters);
-        $expectedResponse->setTotalBillableCharacters($totalBillableCharacters);
-        $anyResponse = new Any();
-        $anyResponse->setValue($expectedResponse->serializeToString());
-        $completeOperation = new Operation();
-        $completeOperation->setName('operations/batchTranslateDocumentTest');
-        $completeOperation->setDone(true);
-        $completeOperation->setResponse($anyResponse);
-        $operationsTransport->addResponse($completeOperation);
+        $languageCode = 'languageCode-412800396';
+        $expectedResponse = new AdaptiveMtTranslateResponse();
+        $expectedResponse->setLanguageCode($languageCode);
+        $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $sourceLanguageCode = 'sourceLanguageCode1687263568';
-        $targetLanguageCodes = [];
-        $inputConfigs = [];
-        $outputConfig = new BatchDocumentOutputConfig();
-        $request = (new BatchTranslateDocumentRequest())
+        $formattedDataset = $gapicClient->adaptiveMtDatasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $content = [];
+        $request = (new AdaptiveMtTranslateRequest())
             ->setParent($formattedParent)
-            ->setSourceLanguageCode($sourceLanguageCode)
-            ->setTargetLanguageCodes($targetLanguageCodes)
-            ->setInputConfigs($inputConfigs)
-            ->setOutputConfig($outputConfig);
-        $response = $gapicClient->batchTranslateDocumentAsync($request)->wait();
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
-        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
-        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.translation.v3.TranslationService/BatchTranslateDocument', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
+            ->setDataset($formattedDataset)
+            ->setContent($content);
+        $response = $gapicClient->adaptiveMtTranslateAsync($request)->wait();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/AdaptiveMtTranslate', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getSourceLanguageCode();
-        $this->assertProtobufEquals($sourceLanguageCode, $actualValue);
-        $actualValue = $actualApiRequestObject->getTargetLanguageCodes();
-        $this->assertProtobufEquals($targetLanguageCodes, $actualValue);
-        $actualValue = $actualApiRequestObject->getInputConfigs();
-        $this->assertProtobufEquals($inputConfigs, $actualValue);
-        $actualValue = $actualApiRequestObject->getOutputConfig();
-        $this->assertProtobufEquals($outputConfig, $actualValue);
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/batchTranslateDocumentTest');
-        $response->pollUntilComplete([
-            'initialPollDelayMillis' => 1,
-        ]);
-        $this->assertTrue($response->isDone());
-        $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
-        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
-        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
-        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $actualValue = $actualRequestObject->getDataset();
+        $this->assertProtobufEquals($formattedDataset, $actualValue);
+        $actualValue = $actualRequestObject->getContent();
+        $this->assertProtobufEquals($content, $actualValue);
         $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
     }
 }

@@ -91,6 +91,30 @@ class EventType
      * Generated from protobuf enum <code>ACCESS_POLICY_UPDATE = 14;</code>
      */
     const ACCESS_POLICY_UPDATE = 14;
+    /**
+     * Number of resources matched with particular Query.
+     *
+     * Generated from protobuf enum <code>GOVERNANCE_RULE_MATCHED_RESOURCES = 15;</code>
+     */
+    const GOVERNANCE_RULE_MATCHED_RESOURCES = 15;
+    /**
+     * Rule processing exceeds the allowed limit.
+     *
+     * Generated from protobuf enum <code>GOVERNANCE_RULE_SEARCH_LIMIT_EXCEEDS = 16;</code>
+     */
+    const GOVERNANCE_RULE_SEARCH_LIMIT_EXCEEDS = 16;
+    /**
+     * Rule processing errors.
+     *
+     * Generated from protobuf enum <code>GOVERNANCE_RULE_ERRORS = 17;</code>
+     */
+    const GOVERNANCE_RULE_ERRORS = 17;
+    /**
+     * Governance rule prcoessing Event.
+     *
+     * Generated from protobuf enum <code>GOVERNANCE_RULE_PROCESSING = 18;</code>
+     */
+    const GOVERNANCE_RULE_PROCESSING = 18;
 
     private static $valueToName = [
         self::EVENT_TYPE_UNSPECIFIED => 'EVENT_TYPE_UNSPECIFIED',
@@ -106,6 +130,10 @@ class EventType
         self::BIGQUERY_POLICY_TAG_DELETE => 'BIGQUERY_POLICY_TAG_DELETE',
         self::BIGQUERY_POLICY_TAG_SET_IAM_POLICY => 'BIGQUERY_POLICY_TAG_SET_IAM_POLICY',
         self::ACCESS_POLICY_UPDATE => 'ACCESS_POLICY_UPDATE',
+        self::GOVERNANCE_RULE_MATCHED_RESOURCES => 'GOVERNANCE_RULE_MATCHED_RESOURCES',
+        self::GOVERNANCE_RULE_SEARCH_LIMIT_EXCEEDS => 'GOVERNANCE_RULE_SEARCH_LIMIT_EXCEEDS',
+        self::GOVERNANCE_RULE_ERRORS => 'GOVERNANCE_RULE_ERRORS',
+        self::GOVERNANCE_RULE_PROCESSING => 'GOVERNANCE_RULE_PROCESSING',
     ];
 
     public static function name($value)

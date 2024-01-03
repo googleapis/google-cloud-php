@@ -90,6 +90,7 @@ use Google\Analytics\Admin\V1alpha\ListPropertiesResponse;
 use Google\Analytics\Admin\V1alpha\ListRollupPropertySourceLinksResponse;
 use Google\Analytics\Admin\V1alpha\ListSKAdNetworkConversionValueSchemasResponse;
 use Google\Analytics\Admin\V1alpha\ListSearchAds360LinksResponse;
+use Google\Analytics\Admin\V1alpha\ListSubpropertyEventFiltersResponse;
 use Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret;
 use Google\Analytics\Admin\V1alpha\PostbackWindow;
 use Google\Analytics\Admin\V1alpha\Property;
@@ -5307,6 +5308,68 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getSubpropertyEventFilterTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $applyToProperty = 'applyToProperty-1639692344';
+        $expectedResponse = new SubpropertyEventFilter();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setApplyToProperty($applyToProperty);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->subpropertyEventFilterName('[PROPERTY]', '[SUB_PROPERTY_EVENT_FILTER]');
+        $response = $gapicClient->getSubpropertyEventFilter($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetSubpropertyEventFilter', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getSubpropertyEventFilterExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->subpropertyEventFilterName('[PROPERTY]', '[SUB_PROPERTY_EVENT_FILTER]');
+        try {
+            $gapicClient->getSubpropertyEventFilter($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listAccessBindingsTest()
     {
         $transport = $this->createTransport();
@@ -6831,6 +6894,74 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $formattedParent = $gapicClient->propertyName('[PROPERTY]');
         try {
             $gapicClient->listSearchAds360Links($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listSubpropertyEventFiltersTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $subpropertyEventFiltersElement = new SubpropertyEventFilter();
+        $subpropertyEventFilters = [
+            $subpropertyEventFiltersElement,
+        ];
+        $expectedResponse = new ListSubpropertyEventFiltersResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setSubpropertyEventFilters($subpropertyEventFilters);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $response = $gapicClient->listSubpropertyEventFilters($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getSubpropertyEventFilters()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListSubpropertyEventFilters', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listSubpropertyEventFiltersExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        try {
+            $gapicClient->listSubpropertyEventFilters($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -8565,6 +8696,76 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $updateMask = new FieldMask();
         try {
             $gapicClient->updateSearchAds360Link($updateMask);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateSubpropertyEventFilterTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $applyToProperty = 'applyToProperty-1639692344';
+        $expectedResponse = new SubpropertyEventFilter();
+        $expectedResponse->setName($name);
+        $expectedResponse->setApplyToProperty($applyToProperty);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $subpropertyEventFilter = new SubpropertyEventFilter();
+        $subpropertyEventFilterFilterClauses = [];
+        $subpropertyEventFilter->setFilterClauses($subpropertyEventFilterFilterClauses);
+        $updateMask = new FieldMask();
+        $response = $gapicClient->updateSubpropertyEventFilter($subpropertyEventFilter, $updateMask);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateSubpropertyEventFilter', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSubpropertyEventFilter();
+        $this->assertProtobufEquals($subpropertyEventFilter, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateSubpropertyEventFilterExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $subpropertyEventFilter = new SubpropertyEventFilter();
+        $subpropertyEventFilterFilterClauses = [];
+        $subpropertyEventFilter->setFilterClauses($subpropertyEventFilterFilterClauses);
+        $updateMask = new FieldMask();
+        try {
+            $gapicClient->updateSubpropertyEventFilter($subpropertyEventFilter, $updateMask);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
