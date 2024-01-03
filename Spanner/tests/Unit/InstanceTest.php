@@ -34,6 +34,7 @@ use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 
 /**
  * @group spanner
@@ -43,6 +44,7 @@ class InstanceTest extends TestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
+    use ResultGeneratorTrait;
     use StubCreationTrait;
 
     const PROJECT_ID = 'test-project';
@@ -568,6 +570,7 @@ class InstanceTest extends TestCase
 
     public function testInstanceDatabaseRole()
     {
+        $sql = 'SELECT * FROM Table';
         $database = $this->instance->database($this::DATABASE, ['databaseRole' => 'Reader']);
 
         $this->connection->createSession(Argument::withEntry(
@@ -578,8 +581,9 @@ class InstanceTest extends TestCase
         ->willReturn([
                 'name' => self::SESSION
             ]);
+        $this->connection->executeStreamingSql(Argument::withEntry('sql', $sql))
+            ->shouldBeCalled()->willReturn($this->resultGenerator());
 
-        $sql = 'SELECT * FROM Table';
         $database->execute($sql);
     }
 
