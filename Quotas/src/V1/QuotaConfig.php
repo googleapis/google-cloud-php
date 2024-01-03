@@ -35,10 +35,10 @@ class QuotaConfig extends \Google\Protobuf\Internal\Message
      */
     protected $granted_value = null;
     /**
-     * Output only. The trace id that the GCP uses to provision the requested
-     * quota. This trace id may be used by the client to contact Cloud support to
-     * track the state of a quota preference request. The trace id is only
-     * produced for increase requests and is unique for each request. The
+     * Output only. The trace id that the Google Cloud uses to provision the
+     * requested quota. This trace id may be used by the client to contact Cloud
+     * support to track the state of a quota preference request. The trace id is
+     * only produced for increase requests and is unique for each request. The
      * quota decrease requests do not have a trace id.
      *
      * Generated from protobuf field <code>string trace_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -73,10 +73,10 @@ class QuotaConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Int64Value $granted_value
      *           Output only. Granted quota value.
      *     @type string $trace_id
-     *           Output only. The trace id that the GCP uses to provision the requested
-     *           quota. This trace id may be used by the client to contact Cloud support to
-     *           track the state of a quota preference request. The trace id is only
-     *           produced for increase requests and is unique for each request. The
+     *           Output only. The trace id that the Google Cloud uses to provision the
+     *           requested quota. This trace id may be used by the client to contact Cloud
+     *           support to track the state of a quota preference request. The trace id is
+     *           only produced for increase requests and is unique for each request. The
      *           quota decrease requests do not have a trace id.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           The annotations map for clients to store small amounts of arbitrary data.
@@ -209,10 +209,10 @@ class QuotaConfig extends \Google\Protobuf\Internal\Message
         return $this;}
 
     /**
-     * Output only. The trace id that the GCP uses to provision the requested
-     * quota. This trace id may be used by the client to contact Cloud support to
-     * track the state of a quota preference request. The trace id is only
-     * produced for increase requests and is unique for each request. The
+     * Output only. The trace id that the Google Cloud uses to provision the
+     * requested quota. This trace id may be used by the client to contact Cloud
+     * support to track the state of a quota preference request. The trace id is
+     * only produced for increase requests and is unique for each request. The
      * quota decrease requests do not have a trace id.
      *
      * Generated from protobuf field <code>string trace_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -224,10 +224,10 @@ class QuotaConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The trace id that the GCP uses to provision the requested
-     * quota. This trace id may be used by the client to contact Cloud support to
-     * track the state of a quota preference request. The trace id is only
-     * produced for increase requests and is unique for each request. The
+     * Output only. The trace id that the Google Cloud uses to provision the
+     * requested quota. This trace id may be used by the client to contact Cloud
+     * support to track the state of a quota preference request. The trace id is
+     * only produced for increase requests and is unique for each request. The
      * quota decrease requests do not have a trace id.
      *
      * Generated from protobuf field <code>string trace_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>

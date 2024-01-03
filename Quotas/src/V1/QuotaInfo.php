@@ -57,7 +57,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
     /**
      * The reset time interval for the quota. Refresh interval applies to rate
      * quota only.
-     * Example: “minute” for per minute, “day” for per day, or “10 seconds” for
+     * Example: "minute" for per minute, "day" for per day, or "10 seconds" for
      * every 10 seconds.
      *
      * Generated from protobuf field <code>string refresh_interval = 6;</code>
@@ -88,7 +88,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
      */
     protected $quota_display_name = '';
     /**
-     * The unit in which the metric value is reported, e.g., “MByte”.
+     * The unit in which the metric value is reported, e.g., "MByte".
      *
      * Generated from protobuf field <code>string metric_unit = 11;</code>
      */
@@ -161,7 +161,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
      *     @type string $refresh_interval
      *           The reset time interval for the quota. Refresh interval applies to rate
      *           quota only.
-     *           Example: “minute” for per minute, “day” for per day, or “10 seconds” for
+     *           Example: "minute" for per minute, "day" for per day, or "10 seconds" for
      *           every 10 seconds.
      *     @type int $container_type
      *           The container type of the QuotaInfo.
@@ -172,7 +172,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
      *     @type string $quota_display_name
      *           The display name of the quota.
      *     @type string $metric_unit
-     *           The unit in which the metric value is reported, e.g., “MByte”.
+     *           The unit in which the metric value is reported, e.g., "MByte".
      *     @type \Google\Cloud\CloudQuotas\V1\QuotaIncreaseEligibility $quota_increase_eligibility
      *           Whether it is eligible to request a higher quota value for this quota.
      *     @type bool $is_fixed
@@ -349,7 +349,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
     /**
      * The reset time interval for the quota. Refresh interval applies to rate
      * quota only.
-     * Example: “minute” for per minute, “day” for per day, or “10 seconds” for
+     * Example: "minute" for per minute, "day" for per day, or "10 seconds" for
      * every 10 seconds.
      *
      * Generated from protobuf field <code>string refresh_interval = 6;</code>
@@ -363,7 +363,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
     /**
      * The reset time interval for the quota. Refresh interval applies to rate
      * quota only.
-     * Example: “minute” for per minute, “day” for per day, or “10 seconds” for
+     * Example: "minute" for per minute, "day" for per day, or "10 seconds" for
      * every 10 seconds.
      *
      * Generated from protobuf field <code>string refresh_interval = 6;</code>
@@ -483,7 +483,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unit in which the metric value is reported, e.g., “MByte”.
+     * The unit in which the metric value is reported, e.g., "MByte".
      *
      * Generated from protobuf field <code>string metric_unit = 11;</code>
      * @return string
@@ -494,7 +494,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unit in which the metric value is reported, e.g., “MByte”.
+     * The unit in which the metric value is reported, e.g., "MByte".
      *
      * Generated from protobuf field <code>string metric_unit = 11;</code>
      * @param string $var

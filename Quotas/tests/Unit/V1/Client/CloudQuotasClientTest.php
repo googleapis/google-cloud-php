@@ -57,7 +57,9 @@ class CloudQuotasClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return CloudQuotasClient */
@@ -84,6 +86,7 @@ class CloudQuotasClientTest extends GeneratedTest
         $quotaId = 'quotaId-879230910';
         $reconciling = false;
         $justification = 'justification1864993522';
+        $contactEmail = 'contactEmail947010237';
         $expectedResponse = new QuotaPreference();
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
@@ -91,6 +94,7 @@ class CloudQuotasClientTest extends GeneratedTest
         $expectedResponse->setQuotaId($quotaId);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setJustification($justification);
+        $expectedResponse->setContactEmail($contactEmail);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -103,6 +107,8 @@ class CloudQuotasClientTest extends GeneratedTest
         $quotaPreference->setService($quotaPreferenceService);
         $quotaPreferenceQuotaId = 'quotaPreferenceQuotaId1917192384';
         $quotaPreference->setQuotaId($quotaPreferenceQuotaId);
+        $quotaPreferenceContactEmail = 'quotaPreferenceContactEmail-1724666769';
+        $quotaPreference->setContactEmail($quotaPreferenceContactEmail);
         $request = (new CreateQuotaPreferenceRequest())
             ->setParent($formattedParent)
             ->setQuotaPreference($quotaPreference);
@@ -131,12 +137,15 @@ class CloudQuotasClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -149,6 +158,8 @@ class CloudQuotasClientTest extends GeneratedTest
         $quotaPreference->setService($quotaPreferenceService);
         $quotaPreferenceQuotaId = 'quotaPreferenceQuotaId1917192384';
         $quotaPreference->setQuotaId($quotaPreferenceQuotaId);
+        $quotaPreferenceContactEmail = 'quotaPreferenceContactEmail-1724666769';
+        $quotaPreference->setContactEmail($quotaPreferenceContactEmail);
         $request = (new CreateQuotaPreferenceRequest())
             ->setParent($formattedParent)
             ->setQuotaPreference($quotaPreference);
@@ -202,8 +213,7 @@ class CloudQuotasClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->quotaInfoName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[QUOTA_INFO]');
-        $request = (new GetQuotaInfoRequest())
-            ->setName($formattedName);
+        $request = (new GetQuotaInfoRequest())->setName($formattedName);
         $response = $gapicClient->getQuotaInfo($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -227,17 +237,19 @@ class CloudQuotasClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->quotaInfoName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[QUOTA_INFO]');
-        $request = (new GetQuotaInfoRequest())
-            ->setName($formattedName);
+        $request = (new GetQuotaInfoRequest())->setName($formattedName);
         try {
             $gapicClient->getQuotaInfo($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -266,6 +278,7 @@ class CloudQuotasClientTest extends GeneratedTest
         $quotaId = 'quotaId-879230910';
         $reconciling = false;
         $justification = 'justification1864993522';
+        $contactEmail = 'contactEmail947010237';
         $expectedResponse = new QuotaPreference();
         $expectedResponse->setName($name2);
         $expectedResponse->setEtag($etag);
@@ -273,11 +286,11 @@ class CloudQuotasClientTest extends GeneratedTest
         $expectedResponse->setQuotaId($quotaId);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setJustification($justification);
+        $expectedResponse->setContactEmail($contactEmail);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->quotaPreferenceName('[PROJECT]', '[LOCATION]', '[QUOTA_PREFERENCE]');
-        $request = (new GetQuotaPreferenceRequest())
-            ->setName($formattedName);
+        $request = (new GetQuotaPreferenceRequest())->setName($formattedName);
         $response = $gapicClient->getQuotaPreference($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -301,17 +314,19 @@ class CloudQuotasClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->quotaPreferenceName('[PROJECT]', '[LOCATION]', '[QUOTA_PREFERENCE]');
-        $request = (new GetQuotaPreferenceRequest())
-            ->setName($formattedName);
+        $request = (new GetQuotaPreferenceRequest())->setName($formattedName);
         try {
             $gapicClient->getQuotaPreference($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -336,17 +351,14 @@ class CloudQuotasClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $quotaInfosElement = new QuotaInfo();
-        $quotaInfos = [
-            $quotaInfosElement,
-        ];
+        $quotaInfos = [$quotaInfosElement];
         $expectedResponse = new ListQuotaInfosResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setQuotaInfos($quotaInfos);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
-        $request = (new ListQuotaInfosRequest())
-            ->setParent($formattedParent);
+        $request = (new ListQuotaInfosRequest())->setParent($formattedParent);
         $response = $gapicClient->listQuotaInfos($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -373,17 +385,19 @@ class CloudQuotasClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
-        $request = (new ListQuotaInfosRequest())
-            ->setParent($formattedParent);
+        $request = (new ListQuotaInfosRequest())->setParent($formattedParent);
         try {
             $gapicClient->listQuotaInfos($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -408,17 +422,14 @@ class CloudQuotasClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $quotaPreferencesElement = new QuotaPreference();
-        $quotaPreferences = [
-            $quotaPreferencesElement,
-        ];
+        $quotaPreferences = [$quotaPreferencesElement];
         $expectedResponse = new ListQuotaPreferencesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setQuotaPreferences($quotaPreferences);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListQuotaPreferencesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListQuotaPreferencesRequest())->setParent($formattedParent);
         $response = $gapicClient->listQuotaPreferences($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -445,17 +456,19 @@ class CloudQuotasClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListQuotaPreferencesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListQuotaPreferencesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listQuotaPreferences($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -484,6 +497,7 @@ class CloudQuotasClientTest extends GeneratedTest
         $quotaId = 'quotaId-879230910';
         $reconciling = false;
         $justification = 'justification1864993522';
+        $contactEmail = 'contactEmail947010237';
         $expectedResponse = new QuotaPreference();
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
@@ -491,6 +505,7 @@ class CloudQuotasClientTest extends GeneratedTest
         $expectedResponse->setQuotaId($quotaId);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setJustification($justification);
+        $expectedResponse->setContactEmail($contactEmail);
         $transport->addResponse($expectedResponse);
         // Mock request
         $quotaPreference = new QuotaPreference();
@@ -502,8 +517,9 @@ class CloudQuotasClientTest extends GeneratedTest
         $quotaPreference->setService($quotaPreferenceService);
         $quotaPreferenceQuotaId = 'quotaPreferenceQuotaId1917192384';
         $quotaPreference->setQuotaId($quotaPreferenceQuotaId);
-        $request = (new UpdateQuotaPreferenceRequest())
-            ->setQuotaPreference($quotaPreference);
+        $quotaPreferenceContactEmail = 'quotaPreferenceContactEmail-1724666769';
+        $quotaPreference->setContactEmail($quotaPreferenceContactEmail);
+        $request = (new UpdateQuotaPreferenceRequest())->setQuotaPreference($quotaPreference);
         $response = $gapicClient->updateQuotaPreference($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -527,12 +543,15 @@ class CloudQuotasClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $quotaPreference = new QuotaPreference();
@@ -544,8 +563,9 @@ class CloudQuotasClientTest extends GeneratedTest
         $quotaPreference->setService($quotaPreferenceService);
         $quotaPreferenceQuotaId = 'quotaPreferenceQuotaId1917192384';
         $quotaPreference->setQuotaId($quotaPreferenceQuotaId);
-        $request = (new UpdateQuotaPreferenceRequest())
-            ->setQuotaPreference($quotaPreference);
+        $quotaPreferenceContactEmail = 'quotaPreferenceContactEmail-1724666769';
+        $quotaPreference->setContactEmail($quotaPreferenceContactEmail);
+        $request = (new UpdateQuotaPreferenceRequest())->setQuotaPreference($quotaPreference);
         try {
             $gapicClient->updateQuotaPreference($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -574,6 +594,7 @@ class CloudQuotasClientTest extends GeneratedTest
         $quotaId = 'quotaId-879230910';
         $reconciling = false;
         $justification = 'justification1864993522';
+        $contactEmail = 'contactEmail947010237';
         $expectedResponse = new QuotaPreference();
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
@@ -581,6 +602,7 @@ class CloudQuotasClientTest extends GeneratedTest
         $expectedResponse->setQuotaId($quotaId);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setJustification($justification);
+        $expectedResponse->setContactEmail($contactEmail);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -593,6 +615,8 @@ class CloudQuotasClientTest extends GeneratedTest
         $quotaPreference->setService($quotaPreferenceService);
         $quotaPreferenceQuotaId = 'quotaPreferenceQuotaId1917192384';
         $quotaPreference->setQuotaId($quotaPreferenceQuotaId);
+        $quotaPreferenceContactEmail = 'quotaPreferenceContactEmail-1724666769';
+        $quotaPreference->setContactEmail($quotaPreferenceContactEmail);
         $request = (new CreateQuotaPreferenceRequest())
             ->setParent($formattedParent)
             ->setQuotaPreference($quotaPreference);

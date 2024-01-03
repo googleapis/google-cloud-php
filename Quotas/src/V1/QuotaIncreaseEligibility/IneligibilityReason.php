@@ -21,21 +21,21 @@ class IneligibilityReason
      */
     const INELIGIBILITY_REASON_UNSPECIFIED = 0;
     /**
-     * The container is not linked with a billing account.
+     * The container is not linked with a valid billing account.
      *
-     * Generated from protobuf enum <code>NO_BILLING_ACCOUNT = 2;</code>
+     * Generated from protobuf enum <code>NO_VALID_BILLING_ACCOUNT = 1;</code>
      */
-    const NO_BILLING_ACCOUNT = 2;
+    const NO_VALID_BILLING_ACCOUNT = 1;
     /**
      * Other reasons.
      *
-     * Generated from protobuf enum <code>OTHER = 3;</code>
+     * Generated from protobuf enum <code>OTHER = 2;</code>
      */
-    const OTHER = 3;
+    const OTHER = 2;
 
     private static $valueToName = [
         self::INELIGIBILITY_REASON_UNSPECIFIED => 'INELIGIBILITY_REASON_UNSPECIFIED',
-        self::NO_BILLING_ACCOUNT => 'NO_BILLING_ACCOUNT',
+        self::NO_VALID_BILLING_ACCOUNT => 'NO_VALID_BILLING_ACCOUNT',
         self::OTHER => 'OTHER',
     ];
 

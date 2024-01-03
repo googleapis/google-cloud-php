@@ -23,21 +23,21 @@ class QuotaSafetyCheck
      * Validates that a quota mutation would not cause the consumer's effective
      * limit to be lower than the consumer's quota usage.
      *
-     * Generated from protobuf enum <code>LIMIT_DECREASE_BELOW_USAGE = 1;</code>
+     * Generated from protobuf enum <code>QUOTA_DECREASE_BELOW_USAGE = 1;</code>
      */
-    const LIMIT_DECREASE_BELOW_USAGE = 1;
+    const QUOTA_DECREASE_BELOW_USAGE = 1;
     /**
      * Validates that a quota mutation would not cause the consumer's effective
      * limit to decrease by more than 10 percent.
      *
-     * Generated from protobuf enum <code>LIMIT_DECREASE_PERCENTAGE_TOO_HIGH = 2;</code>
+     * Generated from protobuf enum <code>QUOTA_DECREASE_PERCENTAGE_TOO_HIGH = 2;</code>
      */
-    const LIMIT_DECREASE_PERCENTAGE_TOO_HIGH = 2;
+    const QUOTA_DECREASE_PERCENTAGE_TOO_HIGH = 2;
 
     private static $valueToName = [
         self::QUOTA_SAFETY_CHECK_UNSPECIFIED => 'QUOTA_SAFETY_CHECK_UNSPECIFIED',
-        self::LIMIT_DECREASE_BELOW_USAGE => 'LIMIT_DECREASE_BELOW_USAGE',
-        self::LIMIT_DECREASE_PERCENTAGE_TOO_HIGH => 'LIMIT_DECREASE_PERCENTAGE_TOO_HIGH',
+        self::QUOTA_DECREASE_BELOW_USAGE => 'QUOTA_DECREASE_BELOW_USAGE',
+        self::QUOTA_DECREASE_PERCENTAGE_TOO_HIGH => 'QUOTA_DECREASE_PERCENTAGE_TOO_HIGH',
     ];
 
     public static function name($value)

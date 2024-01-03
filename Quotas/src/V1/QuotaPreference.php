@@ -29,7 +29,7 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
     protected $name = '';
     /**
      * The dimensions that this quota preference applies to. The key of the map
-     * entry is the name of a dimension, such as "region", "zone", “network_id”,
+     * entry is the name of a dimension, such as "region", "zone", "network_id",
      * and the value of the map entry is the dimension value.
      * If a dimension is missing from the map of dimensions, the quota preference
      * applies to all the dimension values except for those that have other quota
@@ -84,7 +84,8 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
      */
     protected $quota_id = '';
     /**
-     * Output only. Is the quota preference pending GCP approval and fulfillment.
+     * Output only. Is the quota preference pending Google Cloud approval and
+     * fulfillment.
      *
      * Generated from protobuf field <code>bool reconciling = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -95,6 +96,17 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string justification = 11;</code>
      */
     protected $justification = '';
+    /**
+     * Required. Input only. An email address that can be used for quota related
+     * communication between the Google Cloud and the user in case the Google
+     * Cloud needs further information to make a decision on whether the user
+     * preferred quota can be granted.
+     * The Google account for the email address must have quota update permission
+     * for the project, folder or organization this quota preference is for.
+     *
+     * Generated from protobuf field <code>string contact_email = 12 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = REQUIRED];</code>
+     */
+    protected $contact_email = '';
 
     /**
      * Constructor.
@@ -110,7 +122,7 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
      *           `projects/123/locations/global/quotaPreferences/my-config-for-us-east1`
      *     @type array|\Google\Protobuf\Internal\MapField $dimensions
      *           The dimensions that this quota preference applies to. The key of the map
-     *           entry is the name of a dimension, such as "region", "zone", “network_id”,
+     *           entry is the name of a dimension, such as "region", "zone", "network_id",
      *           and the value of the map entry is the dimension value.
      *           If a dimension is missing from the map of dimensions, the quota preference
      *           applies to all the dimension values except for those that have other quota
@@ -137,9 +149,17 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
      *           Required. The id of the quota to which the quota preference is applied. A
      *           quota name is unique in the service. Example: `CpusPerProjectPerRegion`
      *     @type bool $reconciling
-     *           Output only. Is the quota preference pending GCP approval and fulfillment.
+     *           Output only. Is the quota preference pending Google Cloud approval and
+     *           fulfillment.
      *     @type string $justification
      *           The reason / justification for this quota preference.
+     *     @type string $contact_email
+     *           Required. Input only. An email address that can be used for quota related
+     *           communication between the Google Cloud and the user in case the Google
+     *           Cloud needs further information to make a decision on whether the user
+     *           preferred quota can be granted.
+     *           The Google account for the email address must have quota update permission
+     *           for the project, folder or organization this quota preference is for.
      * }
      */
     public function __construct($data = NULL) {
@@ -183,7 +203,7 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
 
     /**
      * The dimensions that this quota preference applies to. The key of the map
-     * entry is the name of a dimension, such as "region", "zone", “network_id”,
+     * entry is the name of a dimension, such as "region", "zone", "network_id",
      * and the value of the map entry is the dimension value.
      * If a dimension is missing from the map of dimensions, the quota preference
      * applies to all the dimension values except for those that have other quota
@@ -204,7 +224,7 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
 
     /**
      * The dimensions that this quota preference applies to. The key of the map
-     * entry is the name of a dimension, such as "region", "zone", “network_id”,
+     * entry is the name of a dimension, such as "region", "zone", "network_id",
      * and the value of the map entry is the dimension value.
      * If a dimension is missing from the map of dimensions, the quota preference
      * applies to all the dimension values except for those that have other quota
@@ -422,7 +442,8 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Is the quota preference pending GCP approval and fulfillment.
+     * Output only. Is the quota preference pending Google Cloud approval and
+     * fulfillment.
      *
      * Generated from protobuf field <code>bool reconciling = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -433,7 +454,8 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Is the quota preference pending GCP approval and fulfillment.
+     * Output only. Is the quota preference pending Google Cloud approval and
+     * fulfillment.
      *
      * Generated from protobuf field <code>bool reconciling = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
@@ -469,6 +491,42 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->justification = $var;
+
+        return $this;
+    }
+
+    /**
+     * Required. Input only. An email address that can be used for quota related
+     * communication between the Google Cloud and the user in case the Google
+     * Cloud needs further information to make a decision on whether the user
+     * preferred quota can be granted.
+     * The Google account for the email address must have quota update permission
+     * for the project, folder or organization this quota preference is for.
+     *
+     * Generated from protobuf field <code>string contact_email = 12 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = REQUIRED];</code>
+     * @return string
+     */
+    public function getContactEmail()
+    {
+        return $this->contact_email;
+    }
+
+    /**
+     * Required. Input only. An email address that can be used for quota related
+     * communication between the Google Cloud and the user in case the Google
+     * Cloud needs further information to make a decision on whether the user
+     * preferred quota can be granted.
+     * The Google account for the email address must have quota update permission
+     * for the project, folder or organization this quota preference is for.
+     *
+     * Generated from protobuf field <code>string contact_email = 12 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = REQUIRED];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setContactEmail($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->contact_email = $var;
 
         return $this;
     }

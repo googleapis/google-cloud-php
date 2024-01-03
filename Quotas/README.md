@@ -1,6 +1,6 @@
 # Google Cloud Cloud Quotas for PHP
 
-> Idiomatic PHP client for [Google Cloud Cloud Quotas]().
+> Idiomatic PHP client for [Google Cloud Cloud Quotas](https://cloud.google.com).
 
 [![Latest Stable Version](https://poser.pugx.org/google/api-cloudquotas/v/stable)](https://packagist.org/packages/google/api-cloudquotas) [![Packagist](https://img.shields.io/packagist/dm/google/api-cloudquotas.svg)](https://packagist.org/packages/google/api-cloudquotas)
 
@@ -42,4 +42,4 @@ This component is considered alpha. As such, it is still a work-in-progress and 
 
 ### Next Steps
 
-1. Understand the [official documentation](https://cloud.google.com/cloudquotas/docs/overview).
+1. Understand the [official documentation](https://cloud.google.com/docs/quota/api-overview).
