@@ -137,7 +137,7 @@ class RequestWrapper
      *     @type callable $restCalcDelayFunction Sets the conditions for
      *           determining how long to wait between attempts to retry. Function
      *           signature should match: `function (int $attempt) : int`.
-     *     @type string $universerDomain The expected universe of the credentials. Defaults to "googleapis.com".
+     *     @type string $universeDomain The expected universe of the credentials. Defaults to "googleapis.com".
      * }
      */
     public function __construct(array $config = [])
