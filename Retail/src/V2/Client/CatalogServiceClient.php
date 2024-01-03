@@ -325,6 +325,8 @@ final class CatalogServiceClient
      *
      * The async variant is {@see CatalogServiceClient::addCatalogAttributeAsync()} .
      *
+     * @example samples/V2/CatalogServiceClient/add_catalog_attribute.php
+     *
      * @param AddCatalogAttributeRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -349,6 +351,8 @@ final class CatalogServiceClient
      *
      * The async variant is {@see CatalogServiceClient::getAttributesConfigAsync()} .
      *
+     * @example samples/V2/CatalogServiceClient/get_attributes_config.php
+     *
      * @param GetAttributesConfigRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -372,6 +376,8 @@ final class CatalogServiceClient
      * Gets a [CompletionConfig][google.cloud.retail.v2.CompletionConfig].
      *
      * The async variant is {@see CatalogServiceClient::getCompletionConfigAsync()} .
+     *
+     * @example samples/V2/CatalogServiceClient/get_completion_config.php
      *
      * @param GetCompletionConfigRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -399,6 +405,8 @@ final class CatalogServiceClient
      *
      * The async variant is {@see CatalogServiceClient::getDefaultBranchAsync()} .
      *
+     * @example samples/V2/CatalogServiceClient/get_default_branch.php
+     *
      * @param GetDefaultBranchRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -423,6 +431,8 @@ final class CatalogServiceClient
      * the project.
      *
      * The async variant is {@see CatalogServiceClient::listCatalogsAsync()} .
+     *
+     * @example samples/V2/CatalogServiceClient/list_catalogs.php
      *
      * @param ListCatalogsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -453,6 +463,8 @@ final class CatalogServiceClient
      *
      * The async variant is {@see CatalogServiceClient::removeCatalogAttributeAsync()}
      * .
+     *
+     * @example samples/V2/CatalogServiceClient/remove_catalog_attribute.php
      *
      * @param RemoveCatalogAttributeRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -485,6 +497,8 @@ final class CatalogServiceClient
      *
      * The async variant is {@see CatalogServiceClient::replaceCatalogAttributeAsync()}
      * .
+     *
+     * @example samples/V2/CatalogServiceClient/replace_catalog_attribute.php
      *
      * @param ReplaceCatalogAttributeRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -542,6 +556,8 @@ final class CatalogServiceClient
      *
      * The async variant is {@see CatalogServiceClient::setDefaultBranchAsync()} .
      *
+     * @example samples/V2/CatalogServiceClient/set_default_branch.php
+     *
      * @param SetDefaultBranchRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -572,6 +588,8 @@ final class CatalogServiceClient
      * The async variant is {@see CatalogServiceClient::updateAttributesConfigAsync()}
      * .
      *
+     * @example samples/V2/CatalogServiceClient/update_attributes_config.php
+     *
      * @param UpdateAttributesConfigRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -595,6 +613,8 @@ final class CatalogServiceClient
      * Updates the [Catalog][google.cloud.retail.v2.Catalog]s.
      *
      * The async variant is {@see CatalogServiceClient::updateCatalogAsync()} .
+     *
+     * @example samples/V2/CatalogServiceClient/update_catalog.php
      *
      * @param UpdateCatalogRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -620,6 +640,8 @@ final class CatalogServiceClient
      *
      * The async variant is {@see CatalogServiceClient::updateCompletionConfigAsync()}
      * .
+     *
+     * @example samples/V2/CatalogServiceClient/update_completion_config.php
      *
      * @param UpdateCompletionConfigRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {

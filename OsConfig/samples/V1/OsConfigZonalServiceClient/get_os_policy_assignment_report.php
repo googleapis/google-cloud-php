@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START osconfig_v1_generated_OsConfigZonalService_GetOSPolicyAssignmentReport_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\OsConfig\V1\Client\OsConfigZonalServiceClient;
+use Google\Cloud\OsConfig\V1\GetOSPolicyAssignmentReportRequest;
 use Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport;
-use Google\Cloud\OsConfig\V1\OsConfigZonalServiceClient;
 
 /**
  * Get the OS policy asssignment report for the specified Compute Engine VM
@@ -47,10 +48,14 @@ function get_os_policy_assignment_report_sample(string $formattedName): void
     // Create a client.
     $osConfigZonalServiceClient = new OsConfigZonalServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetOSPolicyAssignmentReportRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OSPolicyAssignmentReport $response */
-        $response = $osConfigZonalServiceClient->getOSPolicyAssignmentReport($formattedName);
+        $response = $osConfigZonalServiceClient->getOSPolicyAssignmentReport($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

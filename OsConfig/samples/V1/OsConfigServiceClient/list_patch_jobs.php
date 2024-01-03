@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START osconfig_v1_generated_OsConfigService_ListPatchJobs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\OsConfig\V1\OsConfigServiceClient;
+use Google\Cloud\OsConfig\V1\Client\OsConfigServiceClient;
+use Google\Cloud\OsConfig\V1\ListPatchJobsRequest;
 use Google\Cloud\OsConfig\V1\PatchJob;
 
 /**
@@ -39,10 +40,14 @@ function list_patch_jobs_sample(string $formattedParent): void
     // Create a client.
     $osConfigServiceClient = new OsConfigServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListPatchJobsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $osConfigServiceClient->listPatchJobs($formattedParent);
+        $response = $osConfigServiceClient->listPatchJobs($request);
 
         /** @var PatchJob $element */
         foreach ($response as $element) {

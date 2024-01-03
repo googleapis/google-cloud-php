@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START pubsub_v1_generated_SchemaService_DeleteSchema_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\PubSub\V1\SchemaServiceClient;
+use Google\Cloud\PubSub\V1\Client\SchemaServiceClient;
+use Google\Cloud\PubSub\V1\DeleteSchemaRequest;
 
 /**
  * Deletes a schema.
@@ -38,9 +39,13 @@ function delete_schema_sample(string $formattedName): void
     // Create a client.
     $schemaServiceClient = new SchemaServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteSchemaRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $schemaServiceClient->deleteSchema($formattedName);
+        $schemaServiceClient->deleteSchema($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

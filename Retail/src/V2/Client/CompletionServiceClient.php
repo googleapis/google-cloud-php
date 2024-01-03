@@ -259,6 +259,8 @@ final class CompletionServiceClient
      *
      * The async variant is {@see CompletionServiceClient::completeQueryAsync()} .
      *
+     * @example samples/V2/CompletionServiceClient/complete_query.php
+     *
      * @param CompleteQueryRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -291,6 +293,8 @@ final class CompletionServiceClient
      *
      * The async variant is {@see CompletionServiceClient::importCompletionDataAsync()}
      * .
+     *
+     * @example samples/V2/CompletionServiceClient/import_completion_data.php
      *
      * @param ImportCompletionDataRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

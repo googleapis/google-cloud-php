@@ -287,6 +287,8 @@ final class ResourceSettingsServiceClient
      *
      * The async variant is {@see ResourceSettingsServiceClient::getSettingAsync()} .
      *
+     * @example samples/V1/ResourceSettingsServiceClient/get_setting.php
+     *
      * @param GetSettingRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -310,6 +312,8 @@ final class ResourceSettingsServiceClient
      * Lists all the settings that are available on the Cloud resource `parent`.
      *
      * The async variant is {@see ResourceSettingsServiceClient::listSettingsAsync()} .
+     *
+     * @example samples/V1/ResourceSettingsServiceClient/list_settings.php
      *
      * @param ListSettingsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -350,6 +354,8 @@ final class ResourceSettingsServiceClient
      *
      * The async variant is {@see ResourceSettingsServiceClient::updateSettingAsync()}
      * .
+     *
+     * @example samples/V1/ResourceSettingsServiceClient/update_setting.php
      *
      * @param UpdateSettingRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

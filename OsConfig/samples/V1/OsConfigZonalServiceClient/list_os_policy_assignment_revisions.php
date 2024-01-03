@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START osconfig_v1_generated_OsConfigZonalService_ListOSPolicyAssignmentRevisions_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\OsConfig\V1\Client\OsConfigZonalServiceClient;
+use Google\Cloud\OsConfig\V1\ListOSPolicyAssignmentRevisionsRequest;
 use Google\Cloud\OsConfig\V1\OSPolicyAssignment;
-use Google\Cloud\OsConfig\V1\OsConfigZonalServiceClient;
 
 /**
  * List the OS policy assignment revisions for a given OS policy assignment.
@@ -39,10 +40,14 @@ function list_os_policy_assignment_revisions_sample(string $formattedName): void
     // Create a client.
     $osConfigZonalServiceClient = new OsConfigZonalServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListOSPolicyAssignmentRevisionsRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $osConfigZonalServiceClient->listOSPolicyAssignmentRevisions($formattedName);
+        $response = $osConfigZonalServiceClient->listOSPolicyAssignmentRevisions($request);
 
         /** @var OSPolicyAssignment $element */
         foreach ($response as $element) {

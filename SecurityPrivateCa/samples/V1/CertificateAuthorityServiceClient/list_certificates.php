@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Security\PrivateCA\V1\Certificate;
-use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\ListCertificatesRequest;
 
 /**
  * Lists [Certificates][google.cloud.security.privateca.v1.Certificate].
@@ -41,10 +42,14 @@ function list_certificates_sample(string $formattedParent): void
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListCertificatesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $certificateAuthorityServiceClient->listCertificates($formattedParent);
+        $response = $certificateAuthorityServiceClient->listCertificates($request);
 
         /** @var Certificate $element */
         foreach ($response as $element) {

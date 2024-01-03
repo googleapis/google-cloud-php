@@ -170,6 +170,8 @@ final class IamCheckerClient
      *
      * The async variant is {@see IamCheckerClient::troubleshootIamPolicyAsync()} .
      *
+     * @example samples/V1/IamCheckerClient/troubleshoot_iam_policy.php
+     *
      * @param TroubleshootIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.

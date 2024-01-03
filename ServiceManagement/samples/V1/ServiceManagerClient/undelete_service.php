@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START servicemanagement_v1_generated_ServiceManager_UndeleteService_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\ServiceManagement\V1\ServiceManagerClient;
+use Google\Cloud\ServiceManagement\V1\Client\ServiceManagerClient;
+use Google\Cloud\ServiceManagement\V1\UndeleteServiceRequest;
 use Google\Cloud\ServiceManagement\V1\UndeleteServiceResponse;
 use Google\Rpc\Status;
 
@@ -46,10 +47,14 @@ function undelete_service_sample(string $serviceName): void
     // Create a client.
     $serviceManagerClient = new ServiceManagerClient();
 
+    // Prepare the request message.
+    $request = (new UndeleteServiceRequest())
+        ->setServiceName($serviceName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $serviceManagerClient->undeleteService($serviceName);
+        $response = $serviceManagerClient->undeleteService($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

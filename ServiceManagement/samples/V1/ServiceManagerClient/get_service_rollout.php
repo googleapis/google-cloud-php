@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START servicemanagement_v1_generated_ServiceManager_GetServiceRollout_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\ServiceManagement\V1\Client\ServiceManagerClient;
+use Google\Cloud\ServiceManagement\V1\GetServiceRolloutRequest;
 use Google\Cloud\ServiceManagement\V1\Rollout;
-use Google\Cloud\ServiceManagement\V1\ServiceManagerClient;
 
 /**
  * Gets a service configuration
@@ -41,10 +42,15 @@ function get_service_rollout_sample(string $serviceName, string $rolloutId): voi
     // Create a client.
     $serviceManagerClient = new ServiceManagerClient();
 
+    // Prepare the request message.
+    $request = (new GetServiceRolloutRequest())
+        ->setServiceName($serviceName)
+        ->setRolloutId($rolloutId);
+
     // Call the API and handle any network failures.
     try {
         /** @var Rollout $response */
-        $response = $serviceManagerClient->getServiceRollout($serviceName, $rolloutId);
+        $response = $serviceManagerClient->getServiceRollout($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

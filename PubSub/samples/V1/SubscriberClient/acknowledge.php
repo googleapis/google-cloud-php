@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START pubsub_v1_generated_Subscriber_Acknowledge_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\PubSub\V1\SubscriberClient;
+use Google\Cloud\PubSub\V1\AcknowledgeRequest;
+use Google\Cloud\PubSub\V1\Client\SubscriberClient;
 
 /**
  * Acknowledges the messages associated with the `ack_ids` in the
@@ -47,12 +48,15 @@ function acknowledge_sample(string $formattedSubscription, string $ackIdsElement
     // Create a client.
     $subscriberClient = new SubscriberClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $ackIds = [$ackIdsElement,];
+    $request = (new AcknowledgeRequest())
+        ->setSubscription($formattedSubscription)
+        ->setAckIds($ackIds);
 
     // Call the API and handle any network failures.
     try {
-        $subscriberClient->acknowledge($formattedSubscription, $ackIds);
+        $subscriberClient->acknowledge($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

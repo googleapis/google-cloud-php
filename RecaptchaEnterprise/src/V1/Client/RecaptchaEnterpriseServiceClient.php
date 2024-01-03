@@ -344,6 +344,8 @@ final class RecaptchaEnterpriseServiceClient
      * The async variant is
      * {@see RecaptchaEnterpriseServiceClient::annotateAssessmentAsync()} .
      *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/annotate_assessment.php
+     *
      * @param AnnotateAssessmentRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -368,6 +370,8 @@ final class RecaptchaEnterpriseServiceClient
      *
      * The async variant is
      * {@see RecaptchaEnterpriseServiceClient::createAssessmentAsync()} .
+     *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/create_assessment.php
      *
      * @param CreateAssessmentRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -396,6 +400,8 @@ final class RecaptchaEnterpriseServiceClient
      * The async variant is
      * {@see RecaptchaEnterpriseServiceClient::createFirewallPolicyAsync()} .
      *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/create_firewall_policy.php
+     *
      * @param CreateFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -419,6 +425,8 @@ final class RecaptchaEnterpriseServiceClient
      * Creates a new reCAPTCHA Enterprise key.
      *
      * The async variant is {@see RecaptchaEnterpriseServiceClient::createKeyAsync()} .
+     *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/create_key.php
      *
      * @param CreateKeyRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -445,6 +453,8 @@ final class RecaptchaEnterpriseServiceClient
      * The async variant is
      * {@see RecaptchaEnterpriseServiceClient::deleteFirewallPolicyAsync()} .
      *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/delete_firewall_policy.php
+     *
      * @param DeleteFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -466,6 +476,8 @@ final class RecaptchaEnterpriseServiceClient
      * Deletes the specified key.
      *
      * The async variant is {@see RecaptchaEnterpriseServiceClient::deleteKeyAsync()} .
+     *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/delete_key.php
      *
      * @param DeleteKeyRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -490,6 +502,8 @@ final class RecaptchaEnterpriseServiceClient
      * The async variant is
      * {@see RecaptchaEnterpriseServiceClient::getFirewallPolicyAsync()} .
      *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/get_firewall_policy.php
+     *
      * @param GetFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -513,6 +527,8 @@ final class RecaptchaEnterpriseServiceClient
      * Returns the specified key.
      *
      * The async variant is {@see RecaptchaEnterpriseServiceClient::getKeyAsync()} .
+     *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/get_key.php
      *
      * @param GetKeyRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -540,6 +556,8 @@ final class RecaptchaEnterpriseServiceClient
      * The async variant is {@see RecaptchaEnterpriseServiceClient::getMetricsAsync()}
      * .
      *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/get_metrics.php
+     *
      * @param GetMetricsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -565,6 +583,8 @@ final class RecaptchaEnterpriseServiceClient
      * The async variant is
      * {@see RecaptchaEnterpriseServiceClient::listFirewallPoliciesAsync()} .
      *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/list_firewall_policies.php
+     *
      * @param ListFirewallPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -588,6 +608,8 @@ final class RecaptchaEnterpriseServiceClient
      * Returns the list of all keys that belong to a project.
      *
      * The async variant is {@see RecaptchaEnterpriseServiceClient::listKeysAsync()} .
+     *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/list_keys.php
      *
      * @param ListKeysRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -615,6 +637,8 @@ final class RecaptchaEnterpriseServiceClient
      * {@see RecaptchaEnterpriseServiceClient::listRelatedAccountGroupMembershipsAsync()}
      * .
      *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/list_related_account_group_memberships.php
+     *
      * @param ListRelatedAccountGroupMembershipsRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
      *     Optional.
@@ -639,6 +663,8 @@ final class RecaptchaEnterpriseServiceClient
      *
      * The async variant is
      * {@see RecaptchaEnterpriseServiceClient::listRelatedAccountGroupsAsync()} .
+     *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/list_related_account_groups.php
      *
      * @param ListRelatedAccountGroupsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -670,6 +696,8 @@ final class RecaptchaEnterpriseServiceClient
      * The async variant is {@see RecaptchaEnterpriseServiceClient::migrateKeyAsync()}
      * .
      *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/migrate_key.php
+     *
      * @param MigrateKeyRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -697,6 +725,8 @@ final class RecaptchaEnterpriseServiceClient
      * The async variant is
      * {@see RecaptchaEnterpriseServiceClient::retrieveLegacySecretKeyAsync()} .
      *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/retrieve_legacy_secret_key.php
+     *
      * @param RetrieveLegacySecretKeyRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -723,6 +753,8 @@ final class RecaptchaEnterpriseServiceClient
      * {@see RecaptchaEnterpriseServiceClient::searchRelatedAccountGroupMembershipsAsync()}
      * .
      *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/search_related_account_group_memberships.php
+     *
      * @param SearchRelatedAccountGroupMembershipsRequest $request     A request to house fields associated with the call.
      * @param array                                       $callOptions {
      *     Optional.
@@ -748,6 +780,8 @@ final class RecaptchaEnterpriseServiceClient
      * The async variant is
      * {@see RecaptchaEnterpriseServiceClient::updateFirewallPolicyAsync()} .
      *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/update_firewall_policy.php
+     *
      * @param UpdateFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -771,6 +805,8 @@ final class RecaptchaEnterpriseServiceClient
      * Updates the specified key.
      *
      * The async variant is {@see RecaptchaEnterpriseServiceClient::updateKeyAsync()} .
+     *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/update_key.php
      *
      * @param UpdateKeyRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {

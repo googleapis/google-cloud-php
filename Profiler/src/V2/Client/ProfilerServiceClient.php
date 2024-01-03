@@ -243,6 +243,8 @@ final class ProfilerServiceClient
      *
      * The async variant is {@see ProfilerServiceClient::createOfflineProfileAsync()} .
      *
+     * @example samples/V2/ProfilerServiceClient/create_offline_profile.php
+     *
      * @param CreateOfflineProfileRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -280,6 +282,8 @@ final class ProfilerServiceClient
      *
      * The async variant is {@see ProfilerServiceClient::createProfileAsync()} .
      *
+     * @example samples/V2/ProfilerServiceClient/create_profile.php
+     *
      * @param CreateProfileRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -306,6 +310,8 @@ final class ProfilerServiceClient
      * provided at the time of the profile creation.
      *
      * The async variant is {@see ProfilerServiceClient::updateProfileAsync()} .
+     *
+     * @example samples/V2/ProfilerServiceClient/update_profile.php
      *
      * @param UpdateProfileRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

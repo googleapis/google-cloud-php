@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START retail_v2_generated_UserEventService_PurgeUserEvents_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Retail\V2\Client\UserEventServiceClient;
+use Google\Cloud\Retail\V2\PurgeUserEventsRequest;
 use Google\Cloud\Retail\V2\PurgeUserEventsResponse;
-use Google\Cloud\Retail\V2\UserEventServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -68,10 +69,15 @@ function purge_user_events_sample(string $formattedParent, string $filter): void
     // Create a client.
     $userEventServiceClient = new UserEventServiceClient();
 
+    // Prepare the request message.
+    $request = (new PurgeUserEventsRequest())
+        ->setParent($formattedParent)
+        ->setFilter($filter);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $userEventServiceClient->purgeUserEvents($formattedParent, $filter);
+        $response = $userEventServiceClient->purgeUserEvents($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

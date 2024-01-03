@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START pubsub_v1_generated_Subscriber_Pull_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\PubSub\V1\Client\SubscriberClient;
+use Google\Cloud\PubSub\V1\PullRequest;
 use Google\Cloud\PubSub\V1\PullResponse;
-use Google\Cloud\PubSub\V1\SubscriberClient;
 
 /**
  * Pulls messages from the server.
@@ -42,10 +43,15 @@ function pull_sample(string $formattedSubscription, int $maxMessages): void
     // Create a client.
     $subscriberClient = new SubscriberClient();
 
+    // Prepare the request message.
+    $request = (new PullRequest())
+        ->setSubscription($formattedSubscription)
+        ->setMaxMessages($maxMessages);
+
     // Call the API and handle any network failures.
     try {
         /** @var PullResponse $response */
-        $response = $subscriberClient->pull($formattedSubscription, $maxMessages);
+        $response = $subscriberClient->pull($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START servicemanagement_v1_generated_ServiceManager_SubmitConfigSource_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\ServiceManagement\V1\Client\ServiceManagerClient;
 use Google\Cloud\ServiceManagement\V1\ConfigSource;
-use Google\Cloud\ServiceManagement\V1\ServiceManagerClient;
+use Google\Cloud\ServiceManagement\V1\SubmitConfigSourceRequest;
 use Google\Cloud\ServiceManagement\V1\SubmitConfigSourceResponse;
 use Google\Rpc\Status;
 
@@ -55,13 +56,16 @@ function submit_config_source_sample(string $serviceName): void
     // Create a client.
     $serviceManagerClient = new ServiceManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $configSource = new ConfigSource();
+    $request = (new SubmitConfigSourceRequest())
+        ->setServiceName($serviceName)
+        ->setConfigSource($configSource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $serviceManagerClient->submitConfigSource($serviceName, $configSource);
+        $response = $serviceManagerClient->submitConfigSource($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

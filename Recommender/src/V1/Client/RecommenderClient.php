@@ -808,6 +808,8 @@ final class RecommenderClient
      *
      * The async variant is {@see RecommenderClient::getInsightAsync()} .
      *
+     * @example samples/V1/RecommenderClient/get_insight.php
+     *
      * @param GetInsightRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -832,6 +834,8 @@ final class RecommenderClient
      * config for each InsightType.
      *
      * The async variant is {@see RecommenderClient::getInsightTypeConfigAsync()} .
+     *
+     * @example samples/V1/RecommenderClient/get_insight_type_config.php
      *
      * @param GetInsightTypeConfigRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -858,6 +862,8 @@ final class RecommenderClient
      *
      * The async variant is {@see RecommenderClient::getRecommendationAsync()} .
      *
+     * @example samples/V1/RecommenderClient/get_recommendation.php
+     *
      * @param GetRecommendationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -882,6 +888,8 @@ final class RecommenderClient
      * config for each Recommender.
      *
      * The async variant is {@see RecommenderClient::getRecommenderConfigAsync()} .
+     *
+     * @example samples/V1/RecommenderClient/get_recommender_config.php
      *
      * @param GetRecommenderConfigRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -908,6 +916,8 @@ final class RecommenderClient
      *
      * The async variant is {@see RecommenderClient::listInsightsAsync()} .
      *
+     * @example samples/V1/RecommenderClient/list_insights.php
+     *
      * @param ListInsightsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -932,6 +942,8 @@ final class RecommenderClient
      * recommender.*.list IAM permission for the specified recommender.
      *
      * The async variant is {@see RecommenderClient::listRecommendationsAsync()} .
+     *
+     * @example samples/V1/RecommenderClient/list_recommendations.php
      *
      * @param ListRecommendationsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -961,6 +973,8 @@ final class RecommenderClient
      * the recommender.*.update IAM permission for the specified insight.
      *
      * The async variant is {@see RecommenderClient::markInsightAcceptedAsync()} .
+     *
+     * @example samples/V1/RecommenderClient/mark_insight_accepted.php
      *
      * @param MarkInsightAcceptedRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -996,6 +1010,8 @@ final class RecommenderClient
      * The async variant is {@see RecommenderClient::markRecommendationClaimedAsync()}
      * .
      *
+     * @example samples/V1/RecommenderClient/mark_recommendation_claimed.php
+     *
      * @param MarkRecommendationClaimedRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -1028,6 +1044,8 @@ final class RecommenderClient
      *
      * The async variant is
      * {@see RecommenderClient::markRecommendationDismissedAsync()} .
+     *
+     * @example samples/V1/RecommenderClient/mark_recommendation_dismissed.php
      *
      * @param MarkRecommendationDismissedRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -1062,6 +1080,8 @@ final class RecommenderClient
      * recommender.
      *
      * The async variant is {@see RecommenderClient::markRecommendationFailedAsync()} .
+     *
+     * @example samples/V1/RecommenderClient/mark_recommendation_failed.php
      *
      * @param MarkRecommendationFailedRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -1098,6 +1118,8 @@ final class RecommenderClient
      * The async variant is
      * {@see RecommenderClient::markRecommendationSucceededAsync()} .
      *
+     * @example samples/V1/RecommenderClient/mark_recommendation_succeeded.php
+     *
      * @param MarkRecommendationSucceededRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -1123,6 +1145,8 @@ final class RecommenderClient
      *
      * The async variant is {@see RecommenderClient::updateInsightTypeConfigAsync()} .
      *
+     * @example samples/V1/RecommenderClient/update_insight_type_config.php
+     *
      * @param UpdateInsightTypeConfigRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -1147,6 +1171,8 @@ final class RecommenderClient
      * config.
      *
      * The async variant is {@see RecommenderClient::updateRecommenderConfigAsync()} .
+     *
+     * @example samples/V1/RecommenderClient/update_recommender_config.php
      *
      * @param UpdateRecommenderConfigRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START servicemanagement_v1_generated_ServiceManager_ListServiceRollouts_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\ServiceManagement\V1\Client\ServiceManagerClient;
+use Google\Cloud\ServiceManagement\V1\ListServiceRolloutsRequest;
 use Google\Cloud\ServiceManagement\V1\Rollout;
-use Google\Cloud\ServiceManagement\V1\ServiceManagerClient;
 
 /**
  * Lists the history of the service configuration rollouts for a managed
@@ -51,10 +52,15 @@ function list_service_rollouts_sample(string $serviceName, string $filter): void
     // Create a client.
     $serviceManagerClient = new ServiceManagerClient();
 
+    // Prepare the request message.
+    $request = (new ListServiceRolloutsRequest())
+        ->setServiceName($serviceName)
+        ->setFilter($filter);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $serviceManagerClient->listServiceRollouts($serviceName, $filter);
+        $response = $serviceManagerClient->listServiceRollouts($request);
 
         /** @var Rollout $element */
         foreach ($response as $element) {
