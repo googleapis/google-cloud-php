@@ -43,6 +43,7 @@ use Google\Auth\Credentials\GCECredentials;
 use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Auth\GetUniverseDomainInterface;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Auth\UpdateMetadataInterface;
 use PHPUnit\Framework\TestCase;
@@ -187,6 +188,119 @@ class CredentialsWrapperTest extends TestCase
             $loader = new FetchAuthTokenCache($loader, $cacheConfig, $cache);
         }
         return new CredentialsWrapper($loader, $httpHandler);
+    }
+
+    /**
+     * @dataProvider provideCheckUniverseDomainFails
+     */
+    public function testCheckUniverseDomainFails(?string $universeDomain, ?string $credentialsUniverse, string $message = null)
+    {
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage($message ?: sprintf(
+            'The configured universe domain (%s) does not match the credential universe domain (%s)',
+            is_null($universeDomain) ? GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN : $universeDomain,
+            is_null($credentialsUniverse) ? GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN : $credentialsUniverse,
+        ));
+        $fetcher = $this->prophesize(FetchAuthTokenInterface::class);
+        // When the $credentialsUniverse is null, the fetcher doesn't implement GetUniverseDomainInterface
+        if (!is_null($credentialsUniverse)) {
+            $fetcher->willImplement(GetUniverseDomainInterface::class);
+            $fetcher->getUniverseDomain()->willReturn($credentialsUniverse);
+        }
+        $fetcher->getLastReceivedToken()->willReturn(null);
+        // When $universeDomain is null, it means no $universeDomain argument was provided
+        if (is_null($universeDomain)) {
+            $credentialsWrapper = new CredentialsWrapper($fetcher->reveal());
+        } else {
+            $credentialsWrapper = new CredentialsWrapper($fetcher->reveal(), null, $universeDomain);
+        }
+        // Check authorization callback
+        $credentialsWrapper->getAuthorizationHeaderCallback()();
+    }
+
+    /**
+     * Same test as above, but calls the deprecated CredentialsWrapper::getBearerString method
+     * instead of CredentialsWrapper::getAuthorizationHeaderCallback
+     * @dataProvider provideCheckUniverseDomainFails
+     */
+    public function testCheckUniverseDomainOnGetBearerStringFails(
+        ?string $universeDomain,
+        ?string $credentialsUniverse,
+        string $message = null
+    ) {
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage($message ?: sprintf(
+            'The configured universe domain (%s) does not match the credential universe domain (%s)',
+            is_null($universeDomain) ? GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN : $universeDomain,
+            is_null($credentialsUniverse) ? GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN : $credentialsUniverse,
+        ));
+        $fetcher = $this->prophesize(FetchAuthTokenInterface::class);
+        // When the $credentialsUniverse is null, the fetcher doesn't implement GetUniverseDomainInterface
+        if (!is_null($credentialsUniverse)) {
+            $fetcher->willImplement(GetUniverseDomainInterface::class);
+            $fetcher->getUniverseDomain()->willReturn($credentialsUniverse);
+        }
+        $fetcher->getLastReceivedToken()->willReturn(null);
+        // When $universeDomain is null, it means no $universeDomain argument was provided
+        if (is_null($universeDomain)) {
+            $credentialsWrapper = new CredentialsWrapper($fetcher->reveal());
+        } else {
+            $credentialsWrapper = new CredentialsWrapper($fetcher->reveal(), null, $universeDomain);
+        }
+        // Check getBearerString (deprecated)
+        $credentialsWrapper->getBearerString();
+    }
+
+    public function provideCheckUniverseDomainFails()
+    {
+        return [
+            ['foo.com', 'googleapis.com'],
+            ['googleapis.com', 'foo.com'],
+            ['googleapis.com', ''],
+            ['', 'googleapis.com', 'The universe domain cannot be empty'],
+            [null, 'foo.com'], // null in CredentialsWrapper will default to "googleapis.com"
+            ['foo.com', null], // Credentials not implementing GetUniverseDomainInterface will default to "googleapis.com"
+        ];
+    }
+
+    /**
+     * @dataProvider provideCheckUniverseDomainPasses
+     */
+    public function testCheckUniverseDomainPasses(?string $universeDomain, ?string $credentialsUniverse)
+    {
+        $fetcher = $this->prophesize(FetchAuthTokenInterface::class);
+        // When the $credentialsUniverse is null, the fetcher doesn't implement GetUniverseDomainInterface
+        if (!is_null($credentialsUniverse)) {
+            $fetcher->willImplement(GetUniverseDomainInterface::class);
+            $fetcher->getUniverseDomain()->shouldBeCalledOnce()->willReturn($credentialsUniverse);
+        }
+        $fetcher->getLastReceivedToken()->willReturn(null);
+        $fetcher->fetchAuthToken(Argument::any())->willReturn(['access_token' => 'abc']);
+        if (is_null($universeDomain)) {
+            $credentialsWrapper = new CredentialsWrapper($fetcher->reveal());
+        } else {
+            $credentialsWrapper = new CredentialsWrapper($fetcher->reveal(), null, $universeDomain);
+        }
+        // Check authorization callback
+        $this->assertEquals(
+            ['authorization' => ['Bearer abc']],
+            $credentialsWrapper->getAuthorizationHeaderCallback()()
+        );
+        // Check getBearerString (deprecated)
+        $this->assertEquals(
+            'Bearer abc',
+            $credentialsWrapper->getBearerString()
+        );
+    }
+
+    public function provideCheckUniverseDomainPasses()
+    {
+        return [
+            [null, 'googleapis.com'], // null will default to "googleapis.com"
+            ['foo.com', 'foo.com'],
+            ['googleapis.com', 'googleapis.com'],
+            ['googleapis.com', null],
+        ];
     }
 
     /**

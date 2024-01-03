@@ -91,6 +91,8 @@ class ClientOptions implements ArrayAccess
 
     private ?Closure $clientCertSource;
 
+    private ?string $universeDomain;
+
     /**
      * @param array $options {
      *     @type string $apiEndpoint
@@ -147,6 +149,8 @@ class ClientOptions implements ArrayAccess
      *           The code generator version of the GAPIC library.
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string.
+     *     @type string $universeDomain
+     *           The default service domain for a given Cloud universe.
      * }
      */
     public function __construct(array $options)
@@ -175,6 +179,7 @@ class ClientOptions implements ArrayAccess
         $this->setLibVersion($arr['libVersion'] ?? null);
         $this->setGapicVersion($arr['gapicVersion'] ?? null);
         $this->setClientCertSource($arr['clientCertSource'] ?? null);
+        $this->setUniverseDomain($arr['universeDomain'] ?? null);
     }
 
     /**
@@ -300,5 +305,13 @@ class ClientOptions implements ArrayAccess
             $this->clientCertSource = Closure::fromCallable($clientCertSource);
         }
         $this->clientCertSource = $clientCertSource;
+    }
+
+    /**
+     * @param string $universeDomain
+     */
+    public function setUniverseDomain(?string $universeDomain)
+    {
+        $this->universeDomain = $universeDomain;
     }
 }
