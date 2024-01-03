@@ -30,9 +30,15 @@ use Google\Cloud\SecurityCenterManagement\V1\EffectiveEventThreatDetectionCustom
 use Google\Cloud\SecurityCenterManagement\V1\ListEffectiveEventThreatDetectionCustomModulesRequest;
 
 /**
- * Lists all effective Event Threat Detection custom modules for the
+ * Returns a list of all EffectiveEventThreatDetectionCustomModules for the
  * given parent. This includes resident modules defined at the scope of the
- * parent along with modules inherited from its ancestors.
+ * parent, and inherited modules, inherited from CRM ancestors (no
+ * descendants). The difference between an EffectiveCustomModule and a
+ * CustomModule is that the fields for an EffectiveCustomModule are computed
+ * from ancestors if needed. For example, the enablement_state for a
+ * CustomModule can be either ENABLED, DISABLED, or INHERITED. Where as the
+ * enablement_state for an EffectiveCustomModule is always computed to ENABLED
+ * or DISABLED (the effective enablement_state).
  *
  * @param string $formattedParent Name of parent to list effective custom modules. Its format is
  *                                "organizations/{organization}/locations/{location}",

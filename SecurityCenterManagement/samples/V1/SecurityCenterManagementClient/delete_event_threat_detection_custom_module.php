@@ -28,9 +28,8 @@ use Google\Cloud\SecurityCenterManagement\V1\Client\SecurityCenterManagementClie
 use Google\Cloud\SecurityCenterManagement\V1\DeleteEventThreatDetectionCustomModuleRequest;
 
 /**
- * Deletes the specified Event Threat Detection custom module and all of its
- * descendants in the Resource Manager hierarchy. This method is only
- * supported for resident custom modules.
+ * Deletes an ETD custom module. Deletion at resident level also deletes
+ * modules at all descendants. Deletion at any other level is not supported.
  *
  * @param string $formattedName The resource name of the ETD custom module.
  *
