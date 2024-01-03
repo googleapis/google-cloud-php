@@ -36,7 +36,9 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\GkeMultiCloud\V1\AwsCluster;
+use Google\Cloud\GkeMultiCloud\V1\AwsJsonWebKeys;
 use Google\Cloud\GkeMultiCloud\V1\AwsNodePool;
+use Google\Cloud\GkeMultiCloud\V1\AwsOpenIdConfig;
 use Google\Cloud\GkeMultiCloud\V1\AwsServerConfig;
 use Google\Cloud\GkeMultiCloud\V1\CreateAwsClusterRequest;
 use Google\Cloud\GkeMultiCloud\V1\CreateAwsNodePoolRequest;
@@ -44,13 +46,18 @@ use Google\Cloud\GkeMultiCloud\V1\DeleteAwsClusterRequest;
 use Google\Cloud\GkeMultiCloud\V1\DeleteAwsNodePoolRequest;
 use Google\Cloud\GkeMultiCloud\V1\GenerateAwsAccessTokenRequest;
 use Google\Cloud\GkeMultiCloud\V1\GenerateAwsAccessTokenResponse;
+use Google\Cloud\GkeMultiCloud\V1\GenerateAwsClusterAgentTokenRequest;
+use Google\Cloud\GkeMultiCloud\V1\GenerateAwsClusterAgentTokenResponse;
 use Google\Cloud\GkeMultiCloud\V1\GetAwsClusterRequest;
+use Google\Cloud\GkeMultiCloud\V1\GetAwsJsonWebKeysRequest;
 use Google\Cloud\GkeMultiCloud\V1\GetAwsNodePoolRequest;
+use Google\Cloud\GkeMultiCloud\V1\GetAwsOpenIdConfigRequest;
 use Google\Cloud\GkeMultiCloud\V1\GetAwsServerConfigRequest;
 use Google\Cloud\GkeMultiCloud\V1\ListAwsClustersRequest;
 use Google\Cloud\GkeMultiCloud\V1\ListAwsClustersResponse;
 use Google\Cloud\GkeMultiCloud\V1\ListAwsNodePoolsRequest;
 use Google\Cloud\GkeMultiCloud\V1\ListAwsNodePoolsResponse;
+use Google\Cloud\GkeMultiCloud\V1\RollbackAwsNodePoolUpdateRequest;
 use Google\Cloud\GkeMultiCloud\V1\UpdateAwsClusterRequest;
 use Google\Cloud\GkeMultiCloud\V1\UpdateAwsNodePoolRequest;
 use Google\LongRunning\Operation;
@@ -105,8 +112,7 @@ use Google\Protobuf\FieldMask;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\GkeMultiCloud\V1\Client\AwsClustersClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\GkeMultiCloud\V1\Client\AwsClustersClient}.
  */
 class AwsClustersGapicClient
 {
@@ -115,8 +121,15 @@ class AwsClustersGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.gkemulticloud.v1.AwsClusters';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'gkemulticloud.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'gkemulticloud.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -732,6 +745,11 @@ class AwsClustersGapicClient
      *           and a completed [Operation][google.longrunning.Operation] will be returned.
      *
      *           Useful for idempotent deletion.
+     *     @type bool $ignoreErrors
+     *           Optional. If set to true, the deletion of
+     *           [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource will
+     *           succeed even if errors occur during deleting in cluster resources. Using
+     *           this parameter may result in orphaned resources in the cluster.
      *     @type string $etag
      *           The current etag of the
      *           [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
@@ -762,6 +780,10 @@ class AwsClustersGapicClient
 
         if (isset($optionalArgs['allowMissing'])) {
             $request->setAllowMissing($optionalArgs['allowMissing']);
+        }
+
+        if (isset($optionalArgs['ignoreErrors'])) {
+            $request->setIgnoreErrors($optionalArgs['ignoreErrors']);
         }
 
         if (isset($optionalArgs['etag'])) {
@@ -845,6 +867,11 @@ class AwsClustersGapicClient
      *           and a completed [Operation][google.longrunning.Operation] will be returned.
      *
      *           Useful for idempotent deletion.
+     *     @type bool $ignoreErrors
+     *           Optional. If set to true, the deletion of
+     *           [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource will
+     *           succeed even if errors occur during deleting in node pool resources. Using
+     *           this parameter may result in orphaned resources in the node pool.
      *     @type string $etag
      *           The current ETag of the
      *           [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool].
@@ -875,6 +902,10 @@ class AwsClustersGapicClient
 
         if (isset($optionalArgs['allowMissing'])) {
             $request->setAllowMissing($optionalArgs['allowMissing']);
+        }
+
+        if (isset($optionalArgs['ignoreErrors'])) {
+            $request->setIgnoreErrors($optionalArgs['ignoreErrors']);
         }
 
         if (isset($optionalArgs['etag'])) {
@@ -955,6 +986,106 @@ class AwsClustersGapicClient
     }
 
     /**
+     * Generates an access token for a cluster agent.
+     *
+     * Sample code:
+     * ```
+     * $awsClustersClient = new AwsClustersClient();
+     * try {
+     *     $formattedAwsCluster = $awsClustersClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
+     *     $subjectToken = 'subject_token';
+     *     $subjectTokenType = 'subject_token_type';
+     *     $version = 'version';
+     *     $response = $awsClustersClient->generateAwsClusterAgentToken($formattedAwsCluster, $subjectToken, $subjectTokenType, $version);
+     * } finally {
+     *     $awsClustersClient->close();
+     * }
+     * ```
+     *
+     * @param string $awsCluster       Required.
+     * @param string $subjectToken     Required.
+     * @param string $subjectTokenType Required.
+     * @param string $version          Required.
+     * @param array  $optionalArgs     {
+     *     Optional.
+     *
+     *     @type string $nodePoolId
+     *           Optional.
+     *     @type string $grantType
+     *           Optional.
+     *     @type string $audience
+     *           Optional.
+     *     @type string $scope
+     *           Optional.
+     *     @type string $requestedTokenType
+     *           Optional.
+     *     @type string $options
+     *           Optional.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\GenerateAwsClusterAgentTokenResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function generateAwsClusterAgentToken(
+        $awsCluster,
+        $subjectToken,
+        $subjectTokenType,
+        $version,
+        array $optionalArgs = []
+    ) {
+        $request = new GenerateAwsClusterAgentTokenRequest();
+        $requestParamHeaders = [];
+        $request->setAwsCluster($awsCluster);
+        $request->setSubjectToken($subjectToken);
+        $request->setSubjectTokenType($subjectTokenType);
+        $request->setVersion($version);
+        $requestParamHeaders['aws_cluster'] = $awsCluster;
+        if (isset($optionalArgs['nodePoolId'])) {
+            $request->setNodePoolId($optionalArgs['nodePoolId']);
+        }
+
+        if (isset($optionalArgs['grantType'])) {
+            $request->setGrantType($optionalArgs['grantType']);
+        }
+
+        if (isset($optionalArgs['audience'])) {
+            $request->setAudience($optionalArgs['audience']);
+        }
+
+        if (isset($optionalArgs['scope'])) {
+            $request->setScope($optionalArgs['scope']);
+        }
+
+        if (isset($optionalArgs['requestedTokenType'])) {
+            $request->setRequestedTokenType(
+                $optionalArgs['requestedTokenType']
+            );
+        }
+
+        if (isset($optionalArgs['options'])) {
+            $request->setOptions($optionalArgs['options']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GenerateAwsClusterAgentToken',
+            GenerateAwsClusterAgentTokenResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Describes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
      * resource.
      *
@@ -1012,6 +1143,57 @@ class AwsClustersGapicClient
     }
 
     /**
+     * Gets the public component of the cluster signing keys in
+     * JSON Web Key format.
+     *
+     * Sample code:
+     * ```
+     * $awsClustersClient = new AwsClustersClient();
+     * try {
+     *     $formattedAwsCluster = $awsClustersClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
+     *     $response = $awsClustersClient->getAwsJsonWebKeys($formattedAwsCluster);
+     * } finally {
+     *     $awsClustersClient->close();
+     * }
+     * ```
+     *
+     * @param string $awsCluster   Required. The AwsCluster, which owns the JsonWebKeys.
+     *                             Format:
+     *                             projects/{project}/locations/{location}/awsClusters/{cluster}
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\AwsJsonWebKeys
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getAwsJsonWebKeys($awsCluster, array $optionalArgs = [])
+    {
+        $request = new GetAwsJsonWebKeysRequest();
+        $requestParamHeaders = [];
+        $request->setAwsCluster($awsCluster);
+        $requestParamHeaders['aws_cluster'] = $awsCluster;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetAwsJsonWebKeys',
+            AwsJsonWebKeys::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Describes a specific
      * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource.
      *
@@ -1063,6 +1245,60 @@ class AwsClustersGapicClient
         return $this->startCall(
             'GetAwsNodePool',
             AwsNodePool::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets the OIDC discovery document for the cluster.
+     * See the
+     * [OpenID Connect Discovery 1.0
+     * specification](https://openid.net/specs/openid-connect-discovery-1_0.html)
+     * for details.
+     *
+     * Sample code:
+     * ```
+     * $awsClustersClient = new AwsClustersClient();
+     * try {
+     *     $formattedAwsCluster = $awsClustersClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
+     *     $response = $awsClustersClient->getAwsOpenIdConfig($formattedAwsCluster);
+     * } finally {
+     *     $awsClustersClient->close();
+     * }
+     * ```
+     *
+     * @param string $awsCluster   Required. The AwsCluster, which owns the OIDC discovery document.
+     *                             Format:
+     *                             projects/{project}/locations/{location}/awsClusters/{cluster}
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\AwsOpenIdConfig
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getAwsOpenIdConfig($awsCluster, array $optionalArgs = [])
+    {
+        $request = new GetAwsOpenIdConfigRequest();
+        $requestParamHeaders = [];
+        $request->setAwsCluster($awsCluster);
+        $requestParamHeaders['aws_cluster'] = $awsCluster;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetAwsOpenIdConfig',
+            AwsOpenIdConfig::class,
             $optionalArgs,
             $request
         )->wait();
@@ -1296,6 +1532,99 @@ class AwsClustersGapicClient
     }
 
     /**
+     * Rolls back a previously aborted or failed
+     * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] update request.
+     * Makes no changes if the last update request successfully finished.
+     * If an update request is in progress, you cannot rollback the update.
+     * You must first cancel or let it finish unsuccessfully before you can
+     * rollback.
+     *
+     * Sample code:
+     * ```
+     * $awsClustersClient = new AwsClustersClient();
+     * try {
+     *     $formattedName = $awsClustersClient->awsNodePoolName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]', '[AWS_NODE_POOL]');
+     *     $operationResponse = $awsClustersClient->rollbackAwsNodePoolUpdate($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $awsClustersClient->rollbackAwsNodePoolUpdate($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $awsClustersClient->resumeOperation($operationName, 'rollbackAwsNodePoolUpdate');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $awsClustersClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the
+     *                             [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource to
+     *                             rollback.
+     *
+     *                             `AwsNodePool` names are formatted as
+     *                             `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
+     *
+     *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *                             for more details on Google Cloud resource names.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type bool $respectPdb
+     *           Optional. Option for rollback to ignore the PodDisruptionBudget when
+     *           draining the node pool nodes. Default value is false.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function rollbackAwsNodePoolUpdate($name, array $optionalArgs = [])
+    {
+        $request = new RollbackAwsNodePoolUpdateRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['respectPdb'])) {
+            $request->setRespectPdb($optionalArgs['respectPdb']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'RollbackAwsNodePoolUpdate',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Updates an [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
      *
      * Sample code:
@@ -1345,6 +1674,8 @@ class AwsClustersGapicClient
      *                                 *   `annotations`.
      *                                 *   `control_plane.version`.
      *                                 *   `authorization.admin_users`.
+     *                                 *   `authorization.admin_groups`.
+     *                                 *   `binary_authorization.evaluation_mode`.
      *                                 *   `control_plane.aws_services_authentication.role_arn`.
      *                                 *   `control_plane.aws_services_authentication.role_session_name`.
      *                                 *   `control_plane.config_encryption.kms_key_arn`.
@@ -1356,6 +1687,7 @@ class AwsClustersGapicClient
      *                                 *   `control_plane.root_volume.size_gib`.
      *                                 *   `control_plane.root_volume.volume_type`.
      *                                 *   `control_plane.root_volume.iops`.
+     *                                 *   `control_plane.root_volume.throughput`.
      *                                 *   `control_plane.root_volume.kms_key_arn`.
      *                                 *   `control_plane.ssh_config`.
      *                                 *   `control_plane.ssh_config.ec2_key_pair`.
@@ -1364,6 +1696,7 @@ class AwsClustersGapicClient
      *                                 *   `logging_config.component_config.enable_components`.
      *                                 *   `control_plane.tags`.
      *                                 *   `monitoring_config.managed_prometheus_config.enabled`.
+     *                                 *   `networking.per_node_pool_sg_rules_disabled`.
      * @param array      $optionalArgs {
      *     Optional.
      *
@@ -1460,6 +1793,7 @@ class AwsClustersGapicClient
      *                                  *   `config.config_encryption.kms_key_arn`.
      *                                  *   `config.security_group_ids`.
      *                                  *   `config.root_volume.iops`.
+     *                                  *   `config.root_volume.throughput`.
      *                                  *   `config.root_volume.kms_key_arn`.
      *                                  *   `config.root_volume.volume_type`.
      *                                  *   `config.root_volume.size_gib`.
@@ -1475,6 +1809,13 @@ class AwsClustersGapicClient
      *                                  *   `config.autoscaling_metrics_collection`.
      *                                  *   `config.autoscaling_metrics_collection.granularity`.
      *                                  *   `config.autoscaling_metrics_collection.metrics`.
+     *                                  *   `config.instance_type`.
+     *                                  *   `management.auto_repair`.
+     *                                  *   `management`.
+     *                                  *   `update_settings`.
+     *                                  *   `update_settings.surge_settings`.
+     *                                  *   `update_settings.surge_settings.max_surge`.
+     *                                  *   `update_settings.surge_settings.max_unavailable`.
      * @param array       $optionalArgs {
      *     Optional.
      *

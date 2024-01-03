@@ -256,6 +256,17 @@ return [
                     ],
                 ],
             ],
+            'ListDatabases' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=projects/*/locations/*/clusters/*}/databases',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListInstances' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=projects/*/locations/*/clusters/*}/instances',

@@ -209,6 +209,7 @@ class SnapshotsClientTest extends GeneratedTest
         $selfLink = 'selfLink-1691268851';
         $snapshotType = 'snapshotType1198091477';
         $sourceDisk = 'sourceDisk-85117119';
+        $sourceDiskForRecoveryCheckpoint = 'sourceDiskForRecoveryCheckpoint-713903874';
         $sourceDiskId = 'sourceDiskId-1693292839';
         $sourceSnapshotSchedulePolicy = 'sourceSnapshotSchedulePolicy-837985533';
         $sourceSnapshotSchedulePolicyId = 'sourceSnapshotSchedulePolicyId-2076994601';
@@ -233,6 +234,7 @@ class SnapshotsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setSnapshotType($snapshotType);
         $expectedResponse->setSourceDisk($sourceDisk);
+        $expectedResponse->setSourceDiskForRecoveryCheckpoint($sourceDiskForRecoveryCheckpoint);
         $expectedResponse->setSourceDiskId($sourceDiskId);
         $expectedResponse->setSourceSnapshotSchedulePolicy($sourceSnapshotSchedulePolicy);
         $expectedResponse->setSourceSnapshotSchedulePolicyId($sourceSnapshotSchedulePolicyId);

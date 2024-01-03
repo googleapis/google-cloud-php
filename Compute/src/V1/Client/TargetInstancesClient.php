@@ -38,6 +38,7 @@ use Google\Cloud\Compute\V1\DeleteTargetInstanceRequest;
 use Google\Cloud\Compute\V1\GetTargetInstanceRequest;
 use Google\Cloud\Compute\V1\InsertTargetInstanceRequest;
 use Google\Cloud\Compute\V1\ListTargetInstancesRequest;
+use Google\Cloud\Compute\V1\SetSecurityPolicyTargetInstanceRequest;
 use Google\Cloud\Compute\V1\TargetInstance;
 use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -48,16 +49,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Compute\V1\TargetInstancesClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface aggregatedListAsync(AggregatedListTargetInstancesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteAsync(DeleteTargetInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAsync(GetTargetInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface insertAsync(InsertTargetInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAsync(ListTargetInstancesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface setSecurityPolicyAsync(SetSecurityPolicyTargetInstanceRequest $request, array $optionalArgs = [])
  */
 final class TargetInstancesClient
 {
@@ -66,8 +63,15 @@ final class TargetInstancesClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.compute.v1.TargetInstances';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'compute.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'compute.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -352,5 +356,29 @@ final class TargetInstancesClient
     public function list(ListTargetInstancesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('List', $request, $callOptions);
+    }
+
+    /**
+     * Sets the Google Cloud Armor security policy for the specified target instance. For more information, see Google Cloud Armor Overview
+     *
+     * The async variant is {@see TargetInstancesClient::setSecurityPolicyAsync()} .
+     *
+     * @param SetSecurityPolicyTargetInstanceRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function setSecurityPolicy(SetSecurityPolicyTargetInstanceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('SetSecurityPolicy', $request, $callOptions)->wait();
     }
 }

@@ -39,11 +39,6 @@ use Google\Auth\FetchAuthTokenInterface;
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
- *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\ApigeeConnect\V1\TetherClient} for the stable implementation
- *
- * @experimental
  */
 final class TetherClient
 {
@@ -52,8 +47,15 @@ final class TetherClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.apigeeconnect.v1.Tether';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'apigeeconnect.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'apigeeconnect.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

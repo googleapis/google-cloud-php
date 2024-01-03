@@ -28,6 +28,20 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      */
     private $availability_zone = null;
     /**
+     * [Output only] List of features available at this InterconnectLocation, which can take one of the following values: - MACSEC
+     * Check the AvailableFeatures enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string available_features = 496344307;</code>
+     */
+    private $available_features;
+    /**
+     * [Output only] List of link types available at this InterconnectLocation, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR - LINK_TYPE_ETHERNET_100G_LR
+     * Check the AvailableLinkTypes enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string available_link_types = 509504298;</code>
+     */
+    private $available_link_types;
+    /**
      * [Output Only] Metropolitan area designator that indicates which city an interconnect is located. For example: "Chicago, IL", "Amsterdam, Netherlands".
      *
      * Generated from protobuf field <code>optional string city = 3053931;</code>
@@ -124,6 +138,12 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      *           [Output Only] The postal address of the Point of Presence, each line in the address is separated by a newline character.
      *     @type string $availability_zone
      *           [Output Only] Availability zone for this InterconnectLocation. Within a metropolitan area (metro), maintenance will not be simultaneously scheduled in more than one availability zone. Example: "zone1" or "zone2".
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $available_features
+     *           [Output only] List of features available at this InterconnectLocation, which can take one of the following values: - MACSEC
+     *           Check the AvailableFeatures enum for the list of possible values.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $available_link_types
+     *           [Output only] List of link types available at this InterconnectLocation, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR - LINK_TYPE_ETHERNET_100G_LR
+     *           Check the AvailableLinkTypes enum for the list of possible values.
      *     @type string $city
      *           [Output Only] Metropolitan area designator that indicates which city an interconnect is located. For example: "Chicago, IL", "Amsterdam, Netherlands".
      *     @type string $continent
@@ -229,6 +249,62 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->availability_zone = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output only] List of features available at this InterconnectLocation, which can take one of the following values: - MACSEC
+     * Check the AvailableFeatures enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string available_features = 496344307;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAvailableFeatures()
+    {
+        return $this->available_features;
+    }
+
+    /**
+     * [Output only] List of features available at this InterconnectLocation, which can take one of the following values: - MACSEC
+     * Check the AvailableFeatures enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string available_features = 496344307;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAvailableFeatures($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->available_features = $arr;
+
+        return $this;
+    }
+
+    /**
+     * [Output only] List of link types available at this InterconnectLocation, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR - LINK_TYPE_ETHERNET_100G_LR
+     * Check the AvailableLinkTypes enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string available_link_types = 509504298;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAvailableLinkTypes()
+    {
+        return $this->available_link_types;
+    }
+
+    /**
+     * [Output only] List of link types available at this InterconnectLocation, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR - LINK_TYPE_ETHERNET_100G_LR
+     * Check the AvailableLinkTypes enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string available_link_types = 509504298;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAvailableLinkTypes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->available_link_types = $arr;
 
         return $this;
     }

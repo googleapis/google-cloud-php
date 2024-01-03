@@ -154,6 +154,12 @@ class AwsCluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.MonitoringConfig monitoring_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $monitoring_config = null;
+    /**
+     * Optional. Binary Authorization configuration for this cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.BinaryAuthorization binary_authorization = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $binary_authorization = null;
 
     /**
      * Constructor.
@@ -220,6 +226,8 @@ class AwsCluster extends \Google\Protobuf\Internal\Message
      *           Output only. A set of errors found in the cluster.
      *     @type \Google\Cloud\GkeMultiCloud\V1\MonitoringConfig $monitoring_config
      *           Optional. Monitoring configuration for this cluster.
+     *     @type \Google\Cloud\GkeMultiCloud\V1\BinaryAuthorization $binary_authorization
+     *           Optional. Binary Authorization configuration for this cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -871,6 +879,42 @@ class AwsCluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\MonitoringConfig::class);
         $this->monitoring_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Binary Authorization configuration for this cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.BinaryAuthorization binary_authorization = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GkeMultiCloud\V1\BinaryAuthorization|null
+     */
+    public function getBinaryAuthorization()
+    {
+        return $this->binary_authorization;
+    }
+
+    public function hasBinaryAuthorization()
+    {
+        return isset($this->binary_authorization);
+    }
+
+    public function clearBinaryAuthorization()
+    {
+        unset($this->binary_authorization);
+    }
+
+    /**
+     * Optional. Binary Authorization configuration for this cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.BinaryAuthorization binary_authorization = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GkeMultiCloud\V1\BinaryAuthorization $var
+     * @return $this
+     */
+    public function setBinaryAuthorization($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\BinaryAuthorization::class);
+        $this->binary_authorization = $var;
 
         return $this;
     }

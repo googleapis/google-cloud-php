@@ -35,15 +35,29 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Translate\V3\AdaptiveMtDataset;
+use Google\Cloud\Translate\V3\AdaptiveMtFile;
+use Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest;
+use Google\Cloud\Translate\V3\AdaptiveMtTranslateResponse;
 use Google\Cloud\Translate\V3\BatchTranslateDocumentRequest;
 use Google\Cloud\Translate\V3\BatchTranslateTextRequest;
+use Google\Cloud\Translate\V3\CreateAdaptiveMtDatasetRequest;
 use Google\Cloud\Translate\V3\CreateGlossaryRequest;
+use Google\Cloud\Translate\V3\DeleteAdaptiveMtDatasetRequest;
+use Google\Cloud\Translate\V3\DeleteAdaptiveMtFileRequest;
 use Google\Cloud\Translate\V3\DeleteGlossaryRequest;
 use Google\Cloud\Translate\V3\DetectLanguageRequest;
 use Google\Cloud\Translate\V3\DetectLanguageResponse;
+use Google\Cloud\Translate\V3\GetAdaptiveMtDatasetRequest;
+use Google\Cloud\Translate\V3\GetAdaptiveMtFileRequest;
 use Google\Cloud\Translate\V3\GetGlossaryRequest;
 use Google\Cloud\Translate\V3\GetSupportedLanguagesRequest;
 use Google\Cloud\Translate\V3\Glossary;
+use Google\Cloud\Translate\V3\ImportAdaptiveMtFileRequest;
+use Google\Cloud\Translate\V3\ImportAdaptiveMtFileResponse;
+use Google\Cloud\Translate\V3\ListAdaptiveMtDatasetsRequest;
+use Google\Cloud\Translate\V3\ListAdaptiveMtFilesRequest;
+use Google\Cloud\Translate\V3\ListAdaptiveMtSentencesRequest;
 use Google\Cloud\Translate\V3\ListGlossariesRequest;
 use Google\Cloud\Translate\V3\SupportedLanguages;
 use Google\Cloud\Translate\V3\TranslateDocumentRequest;
@@ -64,19 +78,23 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Translate\V3\TranslationServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
+ * @method PromiseInterface adaptiveMtTranslateAsync(AdaptiveMtTranslateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface batchTranslateDocumentAsync(BatchTranslateDocumentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface batchTranslateTextAsync(BatchTranslateTextRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createAdaptiveMtDatasetAsync(CreateAdaptiveMtDatasetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createGlossaryAsync(CreateGlossaryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteAdaptiveMtDatasetAsync(DeleteAdaptiveMtDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteAdaptiveMtFileAsync(DeleteAdaptiveMtFileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteGlossaryAsync(DeleteGlossaryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface detectLanguageAsync(DetectLanguageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getAdaptiveMtDatasetAsync(GetAdaptiveMtDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getAdaptiveMtFileAsync(GetAdaptiveMtFileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getGlossaryAsync(GetGlossaryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getSupportedLanguagesAsync(GetSupportedLanguagesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface importAdaptiveMtFileAsync(ImportAdaptiveMtFileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listAdaptiveMtDatasetsAsync(ListAdaptiveMtDatasetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listAdaptiveMtFilesAsync(ListAdaptiveMtFilesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listAdaptiveMtSentencesAsync(ListAdaptiveMtSentencesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listGlossariesAsync(ListGlossariesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface translateDocumentAsync(TranslateDocumentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface translateTextAsync(TranslateTextRequest $request, array $optionalArgs = [])
@@ -89,8 +107,15 @@ final class TranslationServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.translation.v3.TranslationService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'translate.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'translate.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -155,6 +180,46 @@ final class TranslationServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * adaptive_mt_dataset resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataset
+     *
+     * @return string The formatted adaptive_mt_dataset resource.
+     */
+    public static function adaptiveMtDatasetName(string $project, string $location, string $dataset): string
+    {
+        return self::getPathTemplate('adaptiveMtDataset')->render([
+            'project' => $project,
+            'location' => $location,
+            'dataset' => $dataset,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * adaptive_mt_file resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataset
+     * @param string $file
+     *
+     * @return string The formatted adaptive_mt_file resource.
+     */
+    public static function adaptiveMtFileName(string $project, string $location, string $dataset, string $file): string
+    {
+        return self::getPathTemplate('adaptiveMtFile')->render([
+            'project' => $project,
+            'location' => $location,
+            'dataset' => $dataset,
+            'file' => $file,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a glossary
      * resource.
      *
@@ -194,6 +259,8 @@ final class TranslationServiceClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - adaptiveMtDataset: projects/{project}/locations/{location}/adaptiveMtDatasets/{dataset}
+     * - adaptiveMtFile: projects/{project}/locations/{location}/adaptiveMtDatasets/{dataset}/adaptiveMtFiles/{file}
      * - glossary: projects/{project}/locations/{location}/glossaries/{glossary}
      * - location: projects/{project}/locations/{location}
      *
@@ -288,6 +355,31 @@ final class TranslationServiceClient
     }
 
     /**
+     * Translate text using Adaptive MT.
+     *
+     * The async variant is {@see TranslationServiceClient::adaptiveMtTranslateAsync()}
+     * .
+     *
+     * @param AdaptiveMtTranslateRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AdaptiveMtTranslateResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function adaptiveMtTranslate(AdaptiveMtTranslateRequest $request, array $callOptions = []): AdaptiveMtTranslateResponse
+    {
+        return $this->startApiCall('AdaptiveMtTranslate', $request, $callOptions)->wait();
+    }
+
+    /**
      * Translates a large volume of document in asynchronous batch mode.
      * This function provides real-time output as the inputs are being processed.
      * If caller cancels a request, the partial results (for an input file, it's
@@ -350,6 +442,31 @@ final class TranslationServiceClient
     }
 
     /**
+     * Creates an Adaptive MT dataset.
+     *
+     * The async variant is
+     * {@see TranslationServiceClient::createAdaptiveMtDatasetAsync()} .
+     *
+     * @param CreateAdaptiveMtDatasetRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AdaptiveMtDataset
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createAdaptiveMtDataset(CreateAdaptiveMtDatasetRequest $request, array $callOptions = []): AdaptiveMtDataset
+    {
+        return $this->startApiCall('CreateAdaptiveMtDataset', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a glossary and returns the long-running operation. Returns
      * NOT_FOUND, if the project doesn't exist.
      *
@@ -372,6 +489,53 @@ final class TranslationServiceClient
     public function createGlossary(CreateGlossaryRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('CreateGlossary', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes an Adaptive MT dataset, including all its entries and associated
+     * metadata.
+     *
+     * The async variant is
+     * {@see TranslationServiceClient::deleteAdaptiveMtDatasetAsync()} .
+     *
+     * @param DeleteAdaptiveMtDatasetRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteAdaptiveMtDataset(DeleteAdaptiveMtDatasetRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteAdaptiveMtDataset', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes an AdaptiveMtFile along with its sentences.
+     *
+     * The async variant is
+     * {@see TranslationServiceClient::deleteAdaptiveMtFileAsync()} .
+     *
+     * @param DeleteAdaptiveMtFileRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteAdaptiveMtFile(DeleteAdaptiveMtFileRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteAdaptiveMtFile', $request, $callOptions)->wait();
     }
 
     /**
@@ -425,6 +589,55 @@ final class TranslationServiceClient
     }
 
     /**
+     * Gets the Adaptive MT dataset.
+     *
+     * The async variant is
+     * {@see TranslationServiceClient::getAdaptiveMtDatasetAsync()} .
+     *
+     * @param GetAdaptiveMtDatasetRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AdaptiveMtDataset
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAdaptiveMtDataset(GetAdaptiveMtDatasetRequest $request, array $callOptions = []): AdaptiveMtDataset
+    {
+        return $this->startApiCall('GetAdaptiveMtDataset', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets and AdaptiveMtFile
+     *
+     * The async variant is {@see TranslationServiceClient::getAdaptiveMtFileAsync()} .
+     *
+     * @param GetAdaptiveMtFileRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AdaptiveMtFile
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAdaptiveMtFile(GetAdaptiveMtFileRequest $request, array $callOptions = []): AdaptiveMtFile
+    {
+        return $this->startApiCall('GetAdaptiveMtFile', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets a glossary. Returns NOT_FOUND, if the glossary doesn't
      * exist.
      *
@@ -472,6 +685,107 @@ final class TranslationServiceClient
     public function getSupportedLanguages(GetSupportedLanguagesRequest $request, array $callOptions = []): SupportedLanguages
     {
         return $this->startApiCall('GetSupportedLanguages', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Imports an AdaptiveMtFile and adds all of its sentences into the
+     * AdaptiveMtDataset.
+     *
+     * The async variant is
+     * {@see TranslationServiceClient::importAdaptiveMtFileAsync()} .
+     *
+     * @param ImportAdaptiveMtFileRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ImportAdaptiveMtFileResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function importAdaptiveMtFile(ImportAdaptiveMtFileRequest $request, array $callOptions = []): ImportAdaptiveMtFileResponse
+    {
+        return $this->startApiCall('ImportAdaptiveMtFile', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists all Adaptive MT datasets for which the caller has read permission.
+     *
+     * The async variant is
+     * {@see TranslationServiceClient::listAdaptiveMtDatasetsAsync()} .
+     *
+     * @param ListAdaptiveMtDatasetsRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listAdaptiveMtDatasets(ListAdaptiveMtDatasetsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListAdaptiveMtDatasets', $request, $callOptions);
+    }
+
+    /**
+     * Lists all AdaptiveMtFiles associated to an AdaptiveMtDataset.
+     *
+     * The async variant is {@see TranslationServiceClient::listAdaptiveMtFilesAsync()}
+     * .
+     *
+     * @param ListAdaptiveMtFilesRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listAdaptiveMtFiles(ListAdaptiveMtFilesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListAdaptiveMtFiles', $request, $callOptions);
+    }
+
+    /**
+     * Lists all AdaptiveMtSentences under a given file/dataset.
+     *
+     * The async variant is
+     * {@see TranslationServiceClient::listAdaptiveMtSentencesAsync()} .
+     *
+     * @param ListAdaptiveMtSentencesRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listAdaptiveMtSentences(ListAdaptiveMtSentencesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListAdaptiveMtSentences', $request, $callOptions);
     }
 
     /**

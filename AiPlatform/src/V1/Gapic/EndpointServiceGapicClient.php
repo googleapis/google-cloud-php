@@ -107,9 +107,7 @@ use Google\Protobuf\FieldMask;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\AIPlatform\V1\Client\EndpointServiceClient} to use the new
- * surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\AIPlatform\V1\Client\EndpointServiceClient}.
  */
 class EndpointServiceGapicClient
 {
@@ -118,8 +116,15 @@ class EndpointServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.aiplatform.v1.EndpointService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'aiplatform.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'aiplatform.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -131,6 +136,8 @@ class EndpointServiceGapicClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
+
+    private static $deploymentResourcePoolNameTemplate;
 
     private static $endpointNameTemplate;
 
@@ -174,6 +181,17 @@ class EndpointServiceGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getDeploymentResourcePoolNameTemplate()
+    {
+        if (self::$deploymentResourcePoolNameTemplate == null) {
+            self::$deploymentResourcePoolNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/deploymentResourcePools/{deployment_resource_pool}'
+            );
+        }
+
+        return self::$deploymentResourcePoolNameTemplate;
     }
 
     private static function getEndpointNameTemplate()
@@ -257,6 +275,7 @@ class EndpointServiceGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'deploymentResourcePool' => self::getDeploymentResourcePoolNameTemplate(),
                 'endpoint' => self::getEndpointNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'model' => self::getModelNameTemplate(),
@@ -268,6 +287,28 @@ class EndpointServiceGapicClient
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * deployment_resource_pool resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $deploymentResourcePool
+     *
+     * @return string The formatted deployment_resource_pool resource.
+     */
+    public static function deploymentResourcePoolName(
+        $project,
+        $location,
+        $deploymentResourcePool
+    ) {
+        return self::getDeploymentResourcePoolNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'deployment_resource_pool' => $deploymentResourcePool,
+        ]);
     }
 
     /**
@@ -415,6 +456,7 @@ class EndpointServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - deploymentResourcePool: projects/{project}/locations/{location}/deploymentResourcePools/{deployment_resource_pool}
      * - endpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - location: projects/{project}/locations/{location}
      * - model: projects/{project}/locations/{location}/models/{model}

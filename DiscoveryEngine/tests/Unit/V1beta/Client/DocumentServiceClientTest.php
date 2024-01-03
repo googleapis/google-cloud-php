@@ -62,7 +62,9 @@ class DocumentServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return DocumentServiceClient */
@@ -130,12 +132,15 @@ class DocumentServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[BRANCH]');
@@ -170,9 +175,14 @@ class DocumentServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->documentName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[BRANCH]', '[DOCUMENT]');
-        $request = (new DeleteDocumentRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->documentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[DATA_STORE]',
+            '[BRANCH]',
+            '[DOCUMENT]'
+        );
+        $request = (new DeleteDocumentRequest())->setName($formattedName);
         $gapicClient->deleteDocument($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -195,17 +205,25 @@ class DocumentServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->documentName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[BRANCH]', '[DOCUMENT]');
-        $request = (new DeleteDocumentRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->documentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[DATA_STORE]',
+            '[BRANCH]',
+            '[DOCUMENT]'
+        );
+        $request = (new DeleteDocumentRequest())->setName($formattedName);
         try {
             $gapicClient->deleteDocument($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -241,9 +259,14 @@ class DocumentServiceClientTest extends GeneratedTest
         $expectedResponse->setParentDocumentId($parentDocumentId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->documentName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[BRANCH]', '[DOCUMENT]');
-        $request = (new GetDocumentRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->documentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[DATA_STORE]',
+            '[BRANCH]',
+            '[DOCUMENT]'
+        );
+        $request = (new GetDocumentRequest())->setName($formattedName);
         $response = $gapicClient->getDocument($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -267,17 +290,25 @@ class DocumentServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->documentName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[BRANCH]', '[DOCUMENT]');
-        $request = (new GetDocumentRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->documentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[DATA_STORE]',
+            '[BRANCH]',
+            '[DOCUMENT]'
+        );
+        $request = (new GetDocumentRequest())->setName($formattedName);
         try {
             $gapicClient->getDocument($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -322,8 +353,7 @@ class DocumentServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[BRANCH]');
-        $request = (new ImportDocumentsRequest())
-            ->setParent($formattedParent);
+        $request = (new ImportDocumentsRequest())->setParent($formattedParent);
         $response = $gapicClient->importDocuments($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -379,17 +409,19 @@ class DocumentServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[BRANCH]');
-        $request = (new ImportDocumentsRequest())
-            ->setParent($formattedParent);
+        $request = (new ImportDocumentsRequest())->setParent($formattedParent);
         $response = $gapicClient->importDocuments($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -423,17 +455,14 @@ class DocumentServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $documentsElement = new Document();
-        $documents = [
-            $documentsElement,
-        ];
+        $documents = [$documentsElement];
         $expectedResponse = new ListDocumentsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDocuments($documents);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[BRANCH]');
-        $request = (new ListDocumentsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDocumentsRequest())->setParent($formattedParent);
         $response = $gapicClient->listDocuments($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -460,17 +489,19 @@ class DocumentServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[BRANCH]');
-        $request = (new ListDocumentsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDocumentsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listDocuments($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -518,9 +549,7 @@ class DocumentServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[BRANCH]');
         $filter = 'filter-1274492040';
-        $request = (new PurgeDocumentsRequest())
-            ->setParent($formattedParent)
-            ->setFilter($filter);
+        $request = (new PurgeDocumentsRequest())->setParent($formattedParent)->setFilter($filter);
         $response = $gapicClient->purgeDocuments($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -578,19 +607,20 @@ class DocumentServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[BRANCH]');
         $filter = 'filter-1274492040';
-        $request = (new PurgeDocumentsRequest())
-            ->setParent($formattedParent)
-            ->setFilter($filter);
+        $request = (new PurgeDocumentsRequest())->setParent($formattedParent)->setFilter($filter);
         $response = $gapicClient->purgeDocuments($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -636,8 +666,7 @@ class DocumentServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $document = new Document();
-        $request = (new UpdateDocumentRequest())
-            ->setDocument($document);
+        $request = (new UpdateDocumentRequest())->setDocument($document);
         $response = $gapicClient->updateDocument($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -661,17 +690,19 @@ class DocumentServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $document = new Document();
-        $request = (new UpdateDocumentRequest())
-            ->setDocument($document);
+        $request = (new UpdateDocumentRequest())->setDocument($document);
         try {
             $gapicClient->updateDocument($request);
             // If the $gapicClient method call did not throw, fail the test

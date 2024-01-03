@@ -56,6 +56,10 @@ use Google\Rpc\Status;
  * with the
  * [RunReportJobResponse.report_job][google.cloud.channel.v1.RunReportJobResponse.report_job].
  *
+ * Deprecated: Please use [Export Channel Services data to
+ * BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
+ * instead.
+ *
  * @param string $formattedName The report's resource name. Specifies the account and report used
  *                              to generate report data. The report_id identifier is a UID (for example,
  *                              `613bf59q`).

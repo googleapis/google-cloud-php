@@ -36,9 +36,12 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\GkeMultiCloud\V1\AttachedCluster;
+use Google\Cloud\GkeMultiCloud\V1\AttachedProxyConfig;
 use Google\Cloud\GkeMultiCloud\V1\AttachedServerConfig;
 use Google\Cloud\GkeMultiCloud\V1\CreateAttachedClusterRequest;
 use Google\Cloud\GkeMultiCloud\V1\DeleteAttachedClusterRequest;
+use Google\Cloud\GkeMultiCloud\V1\GenerateAttachedClusterAgentTokenRequest;
+use Google\Cloud\GkeMultiCloud\V1\GenerateAttachedClusterAgentTokenResponse;
 use Google\Cloud\GkeMultiCloud\V1\GenerateAttachedClusterInstallManifestRequest;
 use Google\Cloud\GkeMultiCloud\V1\GenerateAttachedClusterInstallManifestResponse;
 use Google\Cloud\GkeMultiCloud\V1\GetAttachedClusterRequest;
@@ -100,9 +103,7 @@ use Google\Protobuf\FieldMask;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\GkeMultiCloud\V1\Client\AttachedClustersClient} to use the new
- * surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\GkeMultiCloud\V1\Client\AttachedClustersClient}.
  */
 class AttachedClustersGapicClient
 {
@@ -111,8 +112,15 @@ class AttachedClustersGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.gkemulticloud.v1.AttachedClusters';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'gkemulticloud.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'gkemulticloud.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -640,6 +648,100 @@ class AttachedClustersGapicClient
     }
 
     /**
+     * Generates an access token for a cluster agent.
+     *
+     * Sample code:
+     * ```
+     * $attachedClustersClient = new AttachedClustersClient();
+     * try {
+     *     $formattedAttachedCluster = $attachedClustersClient->attachedClusterName('[PROJECT]', '[LOCATION]', '[ATTACHED_CLUSTER]');
+     *     $subjectToken = 'subject_token';
+     *     $subjectTokenType = 'subject_token_type';
+     *     $version = 'version';
+     *     $response = $attachedClustersClient->generateAttachedClusterAgentToken($formattedAttachedCluster, $subjectToken, $subjectTokenType, $version);
+     * } finally {
+     *     $attachedClustersClient->close();
+     * }
+     * ```
+     *
+     * @param string $attachedCluster  Required.
+     * @param string $subjectToken     Required.
+     * @param string $subjectTokenType Required.
+     * @param string $version          Required.
+     * @param array  $optionalArgs     {
+     *     Optional.
+     *
+     *     @type string $grantType
+     *           Optional.
+     *     @type string $audience
+     *           Optional.
+     *     @type string $scope
+     *           Optional.
+     *     @type string $requestedTokenType
+     *           Optional.
+     *     @type string $options
+     *           Optional.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\GenerateAttachedClusterAgentTokenResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function generateAttachedClusterAgentToken(
+        $attachedCluster,
+        $subjectToken,
+        $subjectTokenType,
+        $version,
+        array $optionalArgs = []
+    ) {
+        $request = new GenerateAttachedClusterAgentTokenRequest();
+        $requestParamHeaders = [];
+        $request->setAttachedCluster($attachedCluster);
+        $request->setSubjectToken($subjectToken);
+        $request->setSubjectTokenType($subjectTokenType);
+        $request->setVersion($version);
+        $requestParamHeaders['attached_cluster'] = $attachedCluster;
+        if (isset($optionalArgs['grantType'])) {
+            $request->setGrantType($optionalArgs['grantType']);
+        }
+
+        if (isset($optionalArgs['audience'])) {
+            $request->setAudience($optionalArgs['audience']);
+        }
+
+        if (isset($optionalArgs['scope'])) {
+            $request->setScope($optionalArgs['scope']);
+        }
+
+        if (isset($optionalArgs['requestedTokenType'])) {
+            $request->setRequestedTokenType(
+                $optionalArgs['requestedTokenType']
+            );
+        }
+
+        if (isset($optionalArgs['options'])) {
+            $request->setOptions($optionalArgs['options']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GenerateAttachedClusterAgentToken',
+            GenerateAttachedClusterAgentTokenResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Generates the install manifest to be installed on the target cluster.
      *
      * Sample code:
@@ -686,6 +788,8 @@ class AttachedClustersGapicClient
      * @param array  $optionalArgs      {
      *     Optional.
      *
+     *     @type AttachedProxyConfig $proxyConfig
+     *           Optional. Proxy configuration for outbound HTTP(S) traffic.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -708,6 +812,10 @@ class AttachedClustersGapicClient
         $request->setAttachedClusterId($attachedClusterId);
         $request->setPlatformVersion($platformVersion);
         $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['proxyConfig'])) {
+            $request->setProxyConfig($optionalArgs['proxyConfig']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -909,6 +1017,8 @@ class AttachedClustersGapicClient
      *
      *     @type bool $validateOnly
      *           If set, only validate the request, but do not actually import the cluster.
+     *     @type AttachedProxyConfig $proxyConfig
+     *           Optional. Proxy configuration for outbound HTTP(S) traffic.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -935,6 +1045,10 @@ class AttachedClustersGapicClient
         $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        if (isset($optionalArgs['proxyConfig'])) {
+            $request->setProxyConfig($optionalArgs['proxyConfig']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1084,12 +1198,16 @@ class AttachedClustersGapicClient
      *                                         fields from
      *                                         [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster]:
      *
-     *                                         *   `description`.
      *                                         *   `annotations`.
-     *                                         *   `platform_version`.
+     *                                         *   `authorization.admin_groups`.
      *                                         *   `authorization.admin_users`.
+     *                                         *   `binary_authorization.evaluation_mode`.
+     *                                         *   `description`.
      *                                         *   `logging_config.component_config.enable_components`.
      *                                         *   `monitoring_config.managed_prometheus_config.enabled`.
+     *                                         *   `platform_version`.
+     *                                         *   `proxy_config.kubernetes_secret.name`.
+     *                                         *   `proxy_config.kubernetes_secret.namespace`.
      * @param array           $optionalArgs    {
      *     Optional.
      *

@@ -49,6 +49,13 @@ class SuggestionQueryConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionQueryConfig.ContextFilterSettings context_filter_settings = 7;</code>
      */
     private $context_filter_settings = null;
+    /**
+     * Optional. The customized sections chosen to return when requesting a
+     * summary of a conversation.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionQueryConfig.Sections sections = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $sections = null;
     protected $query_source;
 
     /**
@@ -87,6 +94,9 @@ class SuggestionQueryConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionQueryConfig\ContextFilterSettings $context_filter_settings
      *           Determines how recent conversation context is filtered when generating
      *           suggestions. If unspecified, no messages will be dropped.
+     *     @type \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionQueryConfig\Sections $sections
+     *           Optional. The customized sections chosen to return when requesting a
+     *           summary of a conversation.
      * }
      */
     public function __construct($data = NULL) {
@@ -307,6 +317,44 @@ class SuggestionQueryConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionQueryConfig\ContextFilterSettings::class);
         $this->context_filter_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The customized sections chosen to return when requesting a
+     * summary of a conversation.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionQueryConfig.Sections sections = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionQueryConfig\Sections|null
+     */
+    public function getSections()
+    {
+        return $this->sections;
+    }
+
+    public function hasSections()
+    {
+        return isset($this->sections);
+    }
+
+    public function clearSections()
+    {
+        unset($this->sections);
+    }
+
+    /**
+     * Optional. The customized sections chosen to return when requesting a
+     * summary of a conversation.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionQueryConfig.Sections sections = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionQueryConfig\Sections $var
+     * @return $this
+     */
+    public function setSections($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionQueryConfig\Sections::class);
+        $this->sections = $var;
 
         return $this;
     }

@@ -96,6 +96,25 @@ return [
                     ],
                 ],
             ],
+            'StreamGenerateContent' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{model=projects/*/locations/*/endpoints/*}:streamGenerateContent',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{model=projects/*/locations/*/publishers/*/models/*}:streamGenerateContent',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'model' => [
+                        'getters' => [
+                            'getModel',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.location.Locations' => [
             'GetLocation' => [
@@ -165,6 +184,10 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/ui/{resource=projects/*/locations/*/notebookRuntimeTemplates/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/publishers/*/models/*}:getIamPolicy',
                     ],
                 ],
                 'placeholders' => [

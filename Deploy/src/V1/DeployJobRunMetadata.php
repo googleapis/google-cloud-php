@@ -23,6 +23,18 @@ class DeployJobRunMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.deploy.v1.CloudRunMetadata cloud_run = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $cloud_run = null;
+    /**
+     * Output only. Custom Target metadata associated with a `DeployJobRun`.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CustomTargetDeployMetadata custom_target = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $custom_target = null;
+    /**
+     * Output only. Custom metadata provided by user defined deploy operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CustomMetadata custom = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $custom = null;
 
     /**
      * Constructor.
@@ -33,6 +45,10 @@ class DeployJobRunMetadata extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Deploy\V1\CloudRunMetadata $cloud_run
      *           Output only. The name of the Cloud Run Service that is associated with a
      *           `DeployJobRun`.
+     *     @type \Google\Cloud\Deploy\V1\CustomTargetDeployMetadata $custom_target
+     *           Output only. Custom Target metadata associated with a `DeployJobRun`.
+     *     @type \Google\Cloud\Deploy\V1\CustomMetadata $custom
+     *           Output only. Custom metadata provided by user defined deploy operation.
      * }
      */
     public function __construct($data = NULL) {
@@ -74,6 +90,78 @@ class DeployJobRunMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\CloudRunMetadata::class);
         $this->cloud_run = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Custom Target metadata associated with a `DeployJobRun`.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CustomTargetDeployMetadata custom_target = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Deploy\V1\CustomTargetDeployMetadata|null
+     */
+    public function getCustomTarget()
+    {
+        return $this->custom_target;
+    }
+
+    public function hasCustomTarget()
+    {
+        return isset($this->custom_target);
+    }
+
+    public function clearCustomTarget()
+    {
+        unset($this->custom_target);
+    }
+
+    /**
+     * Output only. Custom Target metadata associated with a `DeployJobRun`.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CustomTargetDeployMetadata custom_target = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Deploy\V1\CustomTargetDeployMetadata $var
+     * @return $this
+     */
+    public function setCustomTarget($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\CustomTargetDeployMetadata::class);
+        $this->custom_target = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Custom metadata provided by user defined deploy operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CustomMetadata custom = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Deploy\V1\CustomMetadata|null
+     */
+    public function getCustom()
+    {
+        return $this->custom;
+    }
+
+    public function hasCustom()
+    {
+        return isset($this->custom);
+    }
+
+    public function clearCustom()
+    {
+        unset($this->custom);
+    }
+
+    /**
+     * Output only. Custom metadata provided by user defined deploy operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CustomMetadata custom = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Deploy\V1\CustomMetadata $var
+     * @return $this
+     */
+    public function setCustom($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\CustomMetadata::class);
+        $this->custom = $var;
 
         return $this;
     }

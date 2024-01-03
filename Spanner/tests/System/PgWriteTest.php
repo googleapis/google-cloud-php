@@ -395,10 +395,6 @@ class PgWriteTest extends SpannerPgTestCase
 
     public function randomBytesProvider()
     {
-        if (version_compare(phpversion(), 7) === -1) {
-            $this->markTestSkipped('This test can only be run on php 7+');
-        }
-
         return [
             [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100, 9999))))],
             [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100, 9999))))],
@@ -431,10 +427,6 @@ class PgWriteTest extends SpannerPgTestCase
 
     public function randomNumericProvider()
     {
-        if (version_compare(phpversion(), 7) === -1) {
-            $this->markTestSkipped('This test can only be run on php 7+');
-        }
-
         return [
             [$this->randId(), new PgNumeric((string)rand(100, 9999))],
             [$this->randId(), new PgNumeric((string)rand(100, 9999))],

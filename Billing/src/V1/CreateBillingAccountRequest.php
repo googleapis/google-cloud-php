@@ -24,6 +24,17 @@ class CreateBillingAccountRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.billing.v1.BillingAccount billing_account = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $billing_account = null;
+    /**
+     * Optional. The parent to create a billing account from.
+     * Format:
+     *   - `organizations/{organization_id}`, for example,
+     *     `organizations/12345678`
+     *   - `billingAccounts/{billing_account_id}`, for example,
+     *      `billingAccounts/012345-567890-ABCDEF`
+     *
+     * Generated from protobuf field <code>string parent = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $parent = '';
 
     /**
      * @param \Google\Cloud\Billing\V1\BillingAccount $billingAccount Required. The billing account resource to create.
@@ -42,6 +53,29 @@ class CreateBillingAccountRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * @param \Google\Cloud\Billing\V1\BillingAccount $billingAccount Required. The billing account resource to create.
+     *                                                                Currently CreateBillingAccount only supports subaccount creation, so
+     *                                                                any created billing accounts must be under a provided parent billing
+     *                                                                account.
+     * @param string                                  $parent         Optional. The parent to create a billing account from.
+     *                                                                Format:
+     *                                                                - `organizations/{organization_id}`, for example,
+     *                                                                `organizations/12345678`
+     *                                                                - `billingAccounts/{billing_account_id}`, for example,
+     *                                                                `billingAccounts/012345-567890-ABCDEF`
+     *
+     * @return \Google\Cloud\Billing\V1\CreateBillingAccountRequest
+     *
+     * @experimental
+     */
+    public static function buildFromBillingAccountParent(\Google\Cloud\Billing\V1\BillingAccount $billingAccount, string $parent): self
+    {
+        return (new self())
+            ->setBillingAccount($billingAccount)
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -52,6 +86,13 @@ class CreateBillingAccountRequest extends \Google\Protobuf\Internal\Message
      *           Currently CreateBillingAccount only supports subaccount creation, so
      *           any created billing accounts must be under a provided parent billing
      *           account.
+     *     @type string $parent
+     *           Optional. The parent to create a billing account from.
+     *           Format:
+     *             - `organizations/{organization_id}`, for example,
+     *               `organizations/12345678`
+     *             - `billingAccounts/{billing_account_id}`, for example,
+     *                `billingAccounts/012345-567890-ABCDEF`
      * }
      */
     public function __construct($data = NULL) {
@@ -97,6 +138,42 @@ class CreateBillingAccountRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Billing\V1\BillingAccount::class);
         $this->billing_account = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The parent to create a billing account from.
+     * Format:
+     *   - `organizations/{organization_id}`, for example,
+     *     `organizations/12345678`
+     *   - `billingAccounts/{billing_account_id}`, for example,
+     *      `billingAccounts/012345-567890-ABCDEF`
+     *
+     * Generated from protobuf field <code>string parent = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * Optional. The parent to create a billing account from.
+     * Format:
+     *   - `organizations/{organization_id}`, for example,
+     *     `organizations/12345678`
+     *   - `billingAccounts/{billing_account_id}`, for example,
+     *      `billingAccounts/012345-567890-ABCDEF`
+     *
+     * Generated from protobuf field <code>string parent = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setParent($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->parent = $var;
 
         return $this;
     }

@@ -36,6 +36,8 @@ class UpdateAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *  *   `annotations`.
      *  *   `control_plane.version`.
      *  *   `authorization.admin_users`.
+     *  *   `authorization.admin_groups`.
+     *  *   `binary_authorization.evaluation_mode`.
      *  *   `control_plane.aws_services_authentication.role_arn`.
      *  *   `control_plane.aws_services_authentication.role_session_name`.
      *  *   `control_plane.config_encryption.kms_key_arn`.
@@ -47,6 +49,7 @@ class UpdateAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *  *   `control_plane.root_volume.size_gib`.
      *  *   `control_plane.root_volume.volume_type`.
      *  *   `control_plane.root_volume.iops`.
+     *  *   `control_plane.root_volume.throughput`.
      *  *   `control_plane.root_volume.kms_key_arn`.
      *  *   `control_plane.ssh_config`.
      *  *   `control_plane.ssh_config.ec2_key_pair`.
@@ -55,6 +58,7 @@ class UpdateAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *  *   `logging_config.component_config.enable_components`.
      *  *   `control_plane.tags`.
      *  *   `monitoring_config.managed_prometheus_config.enabled`.
+     *  *   `networking.per_node_pool_sg_rules_disabled`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -71,6 +75,8 @@ class UpdateAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *                                                              *   `annotations`.
      *                                                              *   `control_plane.version`.
      *                                                              *   `authorization.admin_users`.
+     *                                                              *   `authorization.admin_groups`.
+     *                                                              *   `binary_authorization.evaluation_mode`.
      *                                                              *   `control_plane.aws_services_authentication.role_arn`.
      *                                                              *   `control_plane.aws_services_authentication.role_session_name`.
      *                                                              *   `control_plane.config_encryption.kms_key_arn`.
@@ -82,6 +88,7 @@ class UpdateAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *                                                              *   `control_plane.root_volume.size_gib`.
      *                                                              *   `control_plane.root_volume.volume_type`.
      *                                                              *   `control_plane.root_volume.iops`.
+     *                                                              *   `control_plane.root_volume.throughput`.
      *                                                              *   `control_plane.root_volume.kms_key_arn`.
      *                                                              *   `control_plane.ssh_config`.
      *                                                              *   `control_plane.ssh_config.ec2_key_pair`.
@@ -90,6 +97,7 @@ class UpdateAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *                                                              *   `logging_config.component_config.enable_components`.
      *                                                              *   `control_plane.tags`.
      *                                                              *   `monitoring_config.managed_prometheus_config.enabled`.
+     *                                                              *   `networking.per_node_pool_sg_rules_disabled`.
      *
      * @return \Google\Cloud\GkeMultiCloud\V1\UpdateAwsClusterRequest
      *
@@ -121,6 +129,8 @@ class UpdateAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *            *   `annotations`.
      *            *   `control_plane.version`.
      *            *   `authorization.admin_users`.
+     *            *   `authorization.admin_groups`.
+     *            *   `binary_authorization.evaluation_mode`.
      *            *   `control_plane.aws_services_authentication.role_arn`.
      *            *   `control_plane.aws_services_authentication.role_session_name`.
      *            *   `control_plane.config_encryption.kms_key_arn`.
@@ -132,6 +142,7 @@ class UpdateAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *            *   `control_plane.root_volume.size_gib`.
      *            *   `control_plane.root_volume.volume_type`.
      *            *   `control_plane.root_volume.iops`.
+     *            *   `control_plane.root_volume.throughput`.
      *            *   `control_plane.root_volume.kms_key_arn`.
      *            *   `control_plane.ssh_config`.
      *            *   `control_plane.ssh_config.ec2_key_pair`.
@@ -140,6 +151,7 @@ class UpdateAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *            *   `logging_config.component_config.enable_components`.
      *            *   `control_plane.tags`.
      *            *   `monitoring_config.managed_prometheus_config.enabled`.
+     *            *   `networking.per_node_pool_sg_rules_disabled`.
      * }
      */
     public function __construct($data = NULL) {
@@ -219,6 +231,8 @@ class UpdateAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *  *   `annotations`.
      *  *   `control_plane.version`.
      *  *   `authorization.admin_users`.
+     *  *   `authorization.admin_groups`.
+     *  *   `binary_authorization.evaluation_mode`.
      *  *   `control_plane.aws_services_authentication.role_arn`.
      *  *   `control_plane.aws_services_authentication.role_session_name`.
      *  *   `control_plane.config_encryption.kms_key_arn`.
@@ -230,6 +244,7 @@ class UpdateAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *  *   `control_plane.root_volume.size_gib`.
      *  *   `control_plane.root_volume.volume_type`.
      *  *   `control_plane.root_volume.iops`.
+     *  *   `control_plane.root_volume.throughput`.
      *  *   `control_plane.root_volume.kms_key_arn`.
      *  *   `control_plane.ssh_config`.
      *  *   `control_plane.ssh_config.ec2_key_pair`.
@@ -238,6 +253,7 @@ class UpdateAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *  *   `logging_config.component_config.enable_components`.
      *  *   `control_plane.tags`.
      *  *   `monitoring_config.managed_prometheus_config.enabled`.
+     *  *   `networking.per_node_pool_sg_rules_disabled`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -265,6 +281,8 @@ class UpdateAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *  *   `annotations`.
      *  *   `control_plane.version`.
      *  *   `authorization.admin_users`.
+     *  *   `authorization.admin_groups`.
+     *  *   `binary_authorization.evaluation_mode`.
      *  *   `control_plane.aws_services_authentication.role_arn`.
      *  *   `control_plane.aws_services_authentication.role_session_name`.
      *  *   `control_plane.config_encryption.kms_key_arn`.
@@ -276,6 +294,7 @@ class UpdateAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *  *   `control_plane.root_volume.size_gib`.
      *  *   `control_plane.root_volume.volume_type`.
      *  *   `control_plane.root_volume.iops`.
+     *  *   `control_plane.root_volume.throughput`.
      *  *   `control_plane.root_volume.kms_key_arn`.
      *  *   `control_plane.ssh_config`.
      *  *   `control_plane.ssh_config.ec2_key_pair`.
@@ -284,6 +303,7 @@ class UpdateAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *  *   `logging_config.component_config.enable_components`.
      *  *   `control_plane.tags`.
      *  *   `monitoring_config.managed_prometheus_config.enabled`.
+     *  *   `networking.per_node_pool_sg_rules_disabled`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

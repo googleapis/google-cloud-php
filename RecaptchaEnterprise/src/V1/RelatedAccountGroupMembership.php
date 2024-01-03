@@ -16,20 +16,30 @@ use Google\Protobuf\Internal\GPBUtil;
 class RelatedAccountGroupMembership extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name for this membership in the format
+     * Required. Identifier. The resource name for this membership in the format
      * `projects/{project}/relatedaccountgroups/{relatedaccountgroup}/memberships/{membership}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * The unique stable hashed user identifier of the member. The identifier
+     * The unique stable account identifier of the member. The identifier
+     * corresponds to an `account_id` provided in a previous `CreateAssessment` or
+     * `AnnotateAssessment` call.
+     *
+     * Generated from protobuf field <code>string account_id = 4;</code>
+     */
+    private $account_id = '';
+    /**
+     * Deprecated: use `account_id` instead.
+     * The unique stable hashed account identifier of the member. The identifier
      * corresponds to a `hashed_account_id` provided in a previous
      * `CreateAssessment` or `AnnotateAssessment` call.
      *
-     * Generated from protobuf field <code>bytes hashed_account_id = 2;</code>
+     * Generated from protobuf field <code>bytes hashed_account_id = 2 [deprecated = true];</code>
+     * @deprecated
      */
-    private $hashed_account_id = '';
+    protected $hashed_account_id = '';
 
     /**
      * Constructor.
@@ -38,10 +48,15 @@ class RelatedAccountGroupMembership extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name for this membership in the format
+     *           Required. Identifier. The resource name for this membership in the format
      *           `projects/{project}/relatedaccountgroups/{relatedaccountgroup}/memberships/{membership}`.
+     *     @type string $account_id
+     *           The unique stable account identifier of the member. The identifier
+     *           corresponds to an `account_id` provided in a previous `CreateAssessment` or
+     *           `AnnotateAssessment` call.
      *     @type string $hashed_account_id
-     *           The unique stable hashed user identifier of the member. The identifier
+     *           Deprecated: use `account_id` instead.
+     *           The unique stable hashed account identifier of the member. The identifier
      *           corresponds to a `hashed_account_id` provided in a previous
      *           `CreateAssessment` or `AnnotateAssessment` call.
      * }
@@ -52,10 +67,10 @@ class RelatedAccountGroupMembership extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name for this membership in the format
+     * Required. Identifier. The resource name for this membership in the format
      * `projects/{project}/relatedaccountgroups/{relatedaccountgroup}/memberships/{membership}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -64,10 +79,10 @@ class RelatedAccountGroupMembership extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name for this membership in the format
+     * Required. Identifier. The resource name for this membership in the format
      * `projects/{project}/relatedaccountgroups/{relatedaccountgroup}/memberships/{membership}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -80,29 +95,65 @@ class RelatedAccountGroupMembership extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique stable hashed user identifier of the member. The identifier
+     * The unique stable account identifier of the member. The identifier
+     * corresponds to an `account_id` provided in a previous `CreateAssessment` or
+     * `AnnotateAssessment` call.
+     *
+     * Generated from protobuf field <code>string account_id = 4;</code>
+     * @return string
+     */
+    public function getAccountId()
+    {
+        return $this->account_id;
+    }
+
+    /**
+     * The unique stable account identifier of the member. The identifier
+     * corresponds to an `account_id` provided in a previous `CreateAssessment` or
+     * `AnnotateAssessment` call.
+     *
+     * Generated from protobuf field <code>string account_id = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAccountId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->account_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Deprecated: use `account_id` instead.
+     * The unique stable hashed account identifier of the member. The identifier
      * corresponds to a `hashed_account_id` provided in a previous
      * `CreateAssessment` or `AnnotateAssessment` call.
      *
-     * Generated from protobuf field <code>bytes hashed_account_id = 2;</code>
+     * Generated from protobuf field <code>bytes hashed_account_id = 2 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getHashedAccountId()
     {
+        @trigger_error('hashed_account_id is deprecated.', E_USER_DEPRECATED);
         return $this->hashed_account_id;
     }
 
     /**
-     * The unique stable hashed user identifier of the member. The identifier
+     * Deprecated: use `account_id` instead.
+     * The unique stable hashed account identifier of the member. The identifier
      * corresponds to a `hashed_account_id` provided in a previous
      * `CreateAssessment` or `AnnotateAssessment` call.
      *
-     * Generated from protobuf field <code>bytes hashed_account_id = 2;</code>
+     * Generated from protobuf field <code>bytes hashed_account_id = 2 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setHashedAccountId($var)
     {
+        @trigger_error('hashed_account_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, False);
         $this->hashed_account_id = $var;
 

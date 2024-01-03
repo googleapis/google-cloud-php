@@ -161,9 +161,7 @@ use Google\Protobuf\Timestamp;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient} to use the new
- * surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient}.
  */
 class SecurityCenterGapicClient
 {
@@ -172,8 +170,15 @@ class SecurityCenterGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.securitycenter.v1.SecurityCenter';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'securitycenter.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'securitycenter.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -4469,11 +4474,11 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string            $parent       Required. The relative resource name of the organization, project, or
-     *                                        folder. See:
-     *                                        https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     *                                        An example is:
-     *                                        "organizations/{organization_id}".
-     * @param CustomConfig      $customConfig Required. The user specified custom configuration to test.
+     *                                        folder. For more information about relative resource names, see [Relative
+     *                                        Resource
+     *                                        Name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
+     *                                        Example: `organizations/{organization_id}`
+     * @param CustomConfig      $customConfig Required. The custom configuration that you need to test.
      * @param SimulatedResource $resource     Required. Resource data to simulate custom module against.
      * @param array             $optionalArgs {
      *     Optional.

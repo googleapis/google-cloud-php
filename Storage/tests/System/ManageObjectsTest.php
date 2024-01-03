@@ -84,6 +84,137 @@ class ManageObjectsTest extends StorageTestCase
         }
     }
 
+    public function testObjectRetentionLockedMode()
+    {
+        // Bucket with object retention locked mode is not cleaned up immediately
+        $bucket = self::$client->createBucket(uniqid('object-retention-locked-'), [
+            'enableObjectRetention' => true
+        ]);
+
+        // Test create object with object retention enabled
+        $objectName = "object-retention-lock";
+        $time = (new \DateTime)->add(
+            \DateInterval::createFromDateString('+2 hours')
+        );
+        $object = $bucket->upload(self::DATA, [
+            'name' => $objectName,
+            'retention' => [
+                'mode' => 'Locked',
+                'retainUntilTime' => $time->format(\DateTime::RFC3339)
+            ]
+        ]);
+        $this->assertEquals('Locked', $object->info()['retention']['mode']);
+
+        $laterTime = (new \DateTime)->add(
+            \DateInterval::createFromDateString('+4 hours')
+        );
+
+        // retainUntilTime of a locked mode object can be increased
+        $object->update([
+            'retention' => [
+                'mode' => 'Locked',
+                'retainUntilTime' => $laterTime->format(\DateTime::RFC3339)
+            ]
+        ]);
+        $this->assertEqualsWithDelta(
+            $laterTime,
+            new \DateTime($object->info()['retention']['retainUntilTime']),
+            1
+        );
+
+        // retainUntilTime of a locked mode object can not be decreased
+        $exception = null;
+        try {
+            $object->update([
+                'retention' => [
+                    'mode' => 'Locked',
+                    'retainUntilTime' => $time->format(\DateTime::RFC3339)
+                ]
+            ]);
+        } catch (ServiceException $e) {
+            $exception = $e;
+        }
+        $this->assertInstanceOf(ServiceException::class, $exception);
+        $this->assertStringContainsString(
+            'retention period cannot be shortened',
+            $exception->getMessage()
+        );
+        $this->assertEqualsWithDelta(
+            $laterTime,
+            new \DateTime($object->info()['retention']['retainUntilTime']),
+            1
+        );
+
+        // Retention mode of a locked mode object can not be changed
+        $exception = null;
+        try {
+            $object->update([
+                'retention' => [
+                    'mode' => 'Unlocked',
+                    'retainUntilTime' => $laterTime->format(\DateTime::RFC3339)
+                ],
+                'overrideUnlockedRetention' => true
+            ]);
+        } catch (ServiceException $e) {
+            $exception = $e;
+        }
+        $this->assertInstanceOf(ServiceException::class, $exception);
+        $this->assertStringContainsString(
+            'retention mode cannot be changed',
+            $exception->getMessage()
+        );
+    }
+
+    public function testObjectRetentionUnlockedMode()
+    {
+        // Test bucket created with object retention enabled
+        $bucket = self::createBucket(self::$client, uniqid('object-retention-'), [
+            'enableObjectRetention' => true
+        ]);
+        $this->assertEquals('Enabled', $bucket->info()['objectRetention']['mode']);
+
+        // Test create object with object retention enabled
+        $objectName = "object-retention-lock";
+        $expires = (new \DateTime)->add(
+            \DateInterval::createFromDateString('+2 hours')
+        );
+        $uploader = $bucket->getStreamableUploader('initial contents', [
+                'name' => $objectName,
+                'retention' => [
+                    'mode' => 'Unlocked',
+                    'retainUntilTime' => $expires->format(\DateTime::RFC3339)
+                ]
+            ]);
+        $uploader->upload();
+        $object = $bucket->object($objectName);
+        $this->assertEquals('Unlocked', $object->info()['retention']['mode']);
+
+        // Object delete throws when object has a valid retention policy
+        $exception = null;
+        try {
+            $object->delete();
+        } catch (ServiceException $e) {
+            $exception = $e;
+        }
+        $this->assertInstanceOf(ServiceException::class, $exception);
+        $this->assertStringContainsString(
+            'cannot be deleted or overwritten',
+            $exception->getMessage()
+        );
+        $this->assertTrue($object->exists());
+
+        // Disable object retention
+        $object->update([
+            'retention' => [],
+            'overrideUnlockedRetention' => true
+        ]);
+        $this->assertNotContains('retention', $object->info());
+
+        // Object delete succeeds when object retention is disabled
+        $object->delete();
+        $this->assertFalse($object->exists());
+    }
+
     public function testObjectExists()
     {
         $object = self::$bucket->upload(self::DATA, ['name' => uniqid(self::TESTING_PREFIX)]);

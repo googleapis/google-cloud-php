@@ -59,11 +59,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Dataproc\V1\BatchControllerClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createBatchAsync(CreateBatchRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteBatchAsync(DeleteBatchRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getBatchAsync(GetBatchRequest $request, array $optionalArgs = [])
@@ -80,8 +75,15 @@ final class BatchControllerClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.dataproc.v1.BatchController';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'dataproc.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'dataproc.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

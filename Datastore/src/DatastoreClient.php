@@ -26,6 +26,7 @@ use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Connection\Grpc;
 use Google\Cloud\Datastore\Connection\Rest;
 use Google\Cloud\Datastore\Query\AggregationQuery;
+use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
@@ -91,7 +92,7 @@ class DatastoreClient
     use ClientTrait;
     use DatastoreTrait;
 
-    const VERSION = '1.24.4';
+    const VERSION = '1.25.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/datastore';
 
@@ -175,7 +176,12 @@ class DatastoreClient
 
         // The second parameter here should change to a variable
         // when gRPC support is added for variable encoding.
-        $this->entityMapper = new EntityMapper($this->projectId, true, $config['returnInt64AsObject']);
+        $this->entityMapper = new EntityMapper(
+            $this->projectId,
+            true,
+            $config['returnInt64AsObject'],
+            $connectionType
+        );
         $this->operation = new Operation(
             $this->connection,
             $this->projectId,

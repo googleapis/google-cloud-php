@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Database instance IP Mapping.
+ * Database instance IP mapping
  *
  * Generated from protobuf message <code>google.cloud.sql.v1beta4.IpMapping</code>
  */

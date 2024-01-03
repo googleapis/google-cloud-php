@@ -33,15 +33,20 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Compute\V1\AddRuleRegionSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\DeleteRegionSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\GetRegionSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\GetRuleRegionSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\InsertRegionSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\ListRegionSecurityPoliciesRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\PatchRegionSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\PatchRuleRegionSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
+use Google\Cloud\Compute\V1\RemoveRuleRegionSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\SecurityPolicy;
 use Google\Cloud\Compute\V1\SecurityPolicyList;
+use Google\Cloud\Compute\V1\SecurityPolicyRule;
 
 /**
  * Service Description: The RegionSecurityPolicies API.
@@ -55,7 +60,8 @@ use Google\Cloud\Compute\V1\SecurityPolicyList;
  *     $project = 'project';
  *     $region = 'region';
  *     $securityPolicy = 'security_policy';
- *     $operationResponse = $regionSecurityPoliciesClient->delete($project, $region, $securityPolicy);
+ *     $securityPolicyRuleResource = new SecurityPolicyRule();
+ *     $operationResponse = $regionSecurityPoliciesClient->addRule($project, $region, $securityPolicy, $securityPolicyRuleResource);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -65,10 +71,10 @@ use Google\Cloud\Compute\V1\SecurityPolicyList;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $regionSecurityPoliciesClient->delete($project, $region, $securityPolicy);
+ *     $operationResponse = $regionSecurityPoliciesClient->addRule($project, $region, $securityPolicy, $securityPolicyRuleResource);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
- *     $newOperationResponse = $regionSecurityPoliciesClient->resumeOperation($operationName, 'delete');
+ *     $newOperationResponse = $regionSecurityPoliciesClient->resumeOperation($operationName, 'addRule');
  *     while (!$newOperationResponse->isDone()) {
  *         // ... do other work
  *         $newOperationResponse->reload();
@@ -84,9 +90,7 @@ use Google\Cloud\Compute\V1\SecurityPolicyList;
  * }
  * ```
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Compute\V1\Client\RegionSecurityPoliciesClient} to use the new
- * surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Compute\V1\Client\RegionSecurityPoliciesClient}.
  */
 class RegionSecurityPoliciesGapicClient
 {
@@ -95,8 +99,15 @@ class RegionSecurityPoliciesGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.compute.v1.RegionSecurityPolicies';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'compute.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'compute.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -253,6 +264,85 @@ class RegionSecurityPoliciesGapicClient
     }
 
     /**
+     * Inserts a rule into a security policy.
+     *
+     * Sample code:
+     * ```
+     * $regionSecurityPoliciesClient = new RegionSecurityPoliciesClient();
+     * try {
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $securityPolicy = 'security_policy';
+     *     $securityPolicyRuleResource = new SecurityPolicyRule();
+     *     $operationResponse = $regionSecurityPoliciesClient->addRule($project, $region, $securityPolicy, $securityPolicyRuleResource);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $regionSecurityPoliciesClient->addRule($project, $region, $securityPolicy, $securityPolicyRuleResource);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $regionSecurityPoliciesClient->resumeOperation($operationName, 'addRule');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $regionSecurityPoliciesClient->close();
+     * }
+     * ```
+     *
+     * @param string             $project                    Project ID for this request.
+     * @param string             $region                     Name of the region scoping this request.
+     * @param string             $securityPolicy             Name of the security policy to update.
+     * @param SecurityPolicyRule $securityPolicyRuleResource The body resource for this request
+     * @param array              $optionalArgs               {
+     *     Optional.
+     *
+     *     @type bool $validateOnly
+     *           If true, the request will not be committed.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function addRule($project, $region, $securityPolicy, $securityPolicyRuleResource, array $optionalArgs = [])
+    {
+        $request = new AddRuleRegionSecurityPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setSecurityPolicy($securityPolicy);
+        $request->setSecurityPolicyRuleResource($securityPolicyRuleResource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['security_policy'] = $securityPolicy;
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('AddRule', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
      * Deletes the specified policy.
      *
      * Sample code:
@@ -376,6 +466,59 @@ class RegionSecurityPoliciesGapicClient
     }
 
     /**
+     * Gets a rule at the specified priority.
+     *
+     * Sample code:
+     * ```
+     * $regionSecurityPoliciesClient = new RegionSecurityPoliciesClient();
+     * try {
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $securityPolicy = 'security_policy';
+     *     $response = $regionSecurityPoliciesClient->getRule($project, $region, $securityPolicy);
+     * } finally {
+     *     $regionSecurityPoliciesClient->close();
+     * }
+     * ```
+     *
+     * @param string $project        Project ID for this request.
+     * @param string $region         Name of the region scoping this request.
+     * @param string $securityPolicy Name of the security policy to which the queried rule belongs.
+     * @param array  $optionalArgs   {
+     *     Optional.
+     *
+     *     @type int $priority
+     *           The priority of the rule to get from the security policy.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Compute\V1\SecurityPolicyRule
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getRule($project, $region, $securityPolicy, array $optionalArgs = [])
+    {
+        $request = new GetRuleRegionSecurityPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setSecurityPolicy($securityPolicy);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['security_policy'] = $securityPolicy;
+        if (isset($optionalArgs['priority'])) {
+            $request->setPriority($optionalArgs['priority']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetRule', SecurityPolicyRule::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Creates a new policy in the specified project using the data included in the request.
      *
      * Sample code:
@@ -489,7 +632,7 @@ class RegionSecurityPoliciesGapicClient
      *     Optional.
      *
      *     @type string $filter
-     *           A filter expression that filters resources listed in the response. Most Compute resources support two types of filter expressions: expressions that support regular expressions and expressions that follow API improvement proposal AIP-160. If you want to use AIP-160, your expression must specify the field name, an operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The operator must be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. The `:` operator can be used with string fields to match substrings. For non-string fields it is equivalent to the `=` operator. The `:*` comparison can be used to test whether a key has been defined. For example, to find all objects with `owner` label use: ``` labels.owner:* ``` You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ``` If you want to use a regular expression, use the `eq` (equal) or `ne` (not equal) operator against a single un-parenthesized expression with or without quotes or against multiple parenthesized expressions. Examples: `fieldname eq unquoted literal` `fieldname eq 'single quoted literal'` `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2 ne "literal")` The literal value is interpreted as a regular expression using Google RE2 library syntax. The literal value must match the entire field. For example, to filter for instances that do not end with name "instance", you would use `name ne .*instance`.
+     *           A filter expression that filters resources listed in the response. Most Compute resources support two types of filter expressions: expressions that support regular expressions and expressions that follow API improvement proposal AIP-160. These two types of filter expressions cannot be mixed in one request. If you want to use AIP-160, your expression must specify the field name, an operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The operator must be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. The `:*` comparison can be used to test whether a key has been defined. For example, to find all objects with `owner` label use: ``` labels.owner:* ``` You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ``` If you want to use a regular expression, use the `eq` (equal) or `ne` (not equal) operator against a single un-parenthesized expression with or without quotes or against multiple parenthesized expressions. Examples: `fieldname eq unquoted literal` `fieldname eq 'single quoted literal'` `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2 ne "literal")` The literal value is interpreted as a regular expression using Google RE2 library syntax. The literal value must match the entire field. For example, to filter for instances that do not end with name "instance", you would use `name ne .*instance`. You cannot combine constraints on multiple fields using regular expressions.
      *     @type int $maxResults
      *           The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
      *     @type string $orderBy
@@ -593,6 +736,8 @@ class RegionSecurityPoliciesGapicClient
      *
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type string $updateMask
+     *           Indicates fields to be cleared as part of this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -618,8 +763,179 @@ class RegionSecurityPoliciesGapicClient
             $request->setRequestId($optionalArgs['requestId']);
         }
 
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('Patch', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
+     * Patches a rule at the specified priority. To clear fields in the rule, leave the fields empty and specify them in the updateMask.
+     *
+     * Sample code:
+     * ```
+     * $regionSecurityPoliciesClient = new RegionSecurityPoliciesClient();
+     * try {
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $securityPolicy = 'security_policy';
+     *     $securityPolicyRuleResource = new SecurityPolicyRule();
+     *     $operationResponse = $regionSecurityPoliciesClient->patchRule($project, $region, $securityPolicy, $securityPolicyRuleResource);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $regionSecurityPoliciesClient->patchRule($project, $region, $securityPolicy, $securityPolicyRuleResource);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $regionSecurityPoliciesClient->resumeOperation($operationName, 'patchRule');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $regionSecurityPoliciesClient->close();
+     * }
+     * ```
+     *
+     * @param string             $project                    Project ID for this request.
+     * @param string             $region                     Name of the region scoping this request.
+     * @param string             $securityPolicy             Name of the security policy to update.
+     * @param SecurityPolicyRule $securityPolicyRuleResource The body resource for this request
+     * @param array              $optionalArgs               {
+     *     Optional.
+     *
+     *     @type int $priority
+     *           The priority of the rule to patch.
+     *     @type string $updateMask
+     *           Indicates fields to be cleared as part of this request.
+     *     @type bool $validateOnly
+     *           If true, the request will not be committed.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function patchRule($project, $region, $securityPolicy, $securityPolicyRuleResource, array $optionalArgs = [])
+    {
+        $request = new PatchRuleRegionSecurityPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setSecurityPolicy($securityPolicy);
+        $request->setSecurityPolicyRuleResource($securityPolicyRuleResource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['security_policy'] = $securityPolicy;
+        if (isset($optionalArgs['priority'])) {
+            $request->setPriority($optionalArgs['priority']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('PatchRule', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
+     * Deletes a rule at the specified priority.
+     *
+     * Sample code:
+     * ```
+     * $regionSecurityPoliciesClient = new RegionSecurityPoliciesClient();
+     * try {
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $securityPolicy = 'security_policy';
+     *     $operationResponse = $regionSecurityPoliciesClient->removeRule($project, $region, $securityPolicy);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $regionSecurityPoliciesClient->removeRule($project, $region, $securityPolicy);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $regionSecurityPoliciesClient->resumeOperation($operationName, 'removeRule');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $regionSecurityPoliciesClient->close();
+     * }
+     * ```
+     *
+     * @param string $project        Project ID for this request.
+     * @param string $region         Name of the region scoping this request.
+     * @param string $securityPolicy Name of the security policy to update.
+     * @param array  $optionalArgs   {
+     *     Optional.
+     *
+     *     @type int $priority
+     *           The priority of the rule to remove from the security policy.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function removeRule($project, $region, $securityPolicy, array $optionalArgs = [])
+    {
+        $request = new RemoveRuleRegionSecurityPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setSecurityPolicy($securityPolicy);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['security_policy'] = $securityPolicy;
+        if (isset($optionalArgs['priority'])) {
+            $request->setPriority($optionalArgs['priority']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('RemoveRule', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
     }
 }

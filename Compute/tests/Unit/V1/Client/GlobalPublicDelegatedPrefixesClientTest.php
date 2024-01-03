@@ -198,6 +198,7 @@ class GlobalPublicDelegatedPrefixesClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $byoipApiVersion = 'byoipApiVersion162683283';
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
         $fingerprint = 'fingerprint-1375934236';
@@ -211,6 +212,7 @@ class GlobalPublicDelegatedPrefixesClientTest extends GeneratedTest
         $selfLink = 'selfLink-1691268851';
         $status = 'status-892481550';
         $expectedResponse = new PublicDelegatedPrefix();
+        $expectedResponse->setByoipApiVersion($byoipApiVersion);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
         $expectedResponse->setFingerprint($fingerprint);

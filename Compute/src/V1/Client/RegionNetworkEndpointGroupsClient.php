@@ -33,9 +33,12 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Compute\V1\AttachNetworkEndpointsRegionNetworkEndpointGroupRequest;
 use Google\Cloud\Compute\V1\DeleteRegionNetworkEndpointGroupRequest;
+use Google\Cloud\Compute\V1\DetachNetworkEndpointsRegionNetworkEndpointGroupRequest;
 use Google\Cloud\Compute\V1\GetRegionNetworkEndpointGroupRequest;
 use Google\Cloud\Compute\V1\InsertRegionNetworkEndpointGroupRequest;
+use Google\Cloud\Compute\V1\ListNetworkEndpointsRegionNetworkEndpointGroupsRequest;
 use Google\Cloud\Compute\V1\ListRegionNetworkEndpointGroupsRequest;
 use Google\Cloud\Compute\V1\NetworkEndpointGroup;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
@@ -47,16 +50,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Compute\V1\RegionNetworkEndpointGroupsClient} for the stable
- * implementation
- *
- * @experimental
- *
+ * @method PromiseInterface attachNetworkEndpointsAsync(AttachNetworkEndpointsRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteAsync(DeleteRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface detachNetworkEndpointsAsync(DetachNetworkEndpointsRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAsync(GetRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface insertAsync(InsertRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAsync(ListRegionNetworkEndpointGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listNetworkEndpointsAsync(ListNetworkEndpointsRegionNetworkEndpointGroupsRequest $request, array $optionalArgs = [])
  */
 final class RegionNetworkEndpointGroupsClient
 {
@@ -65,8 +65,15 @@ final class RegionNetworkEndpointGroupsClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.compute.v1.RegionNetworkEndpointGroups';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'compute.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'compute.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -234,6 +241,31 @@ final class RegionNetworkEndpointGroupsClient
     }
 
     /**
+     * Attach a list of network endpoints to the specified network endpoint group.
+     *
+     * The async variant is
+     * {@see RegionNetworkEndpointGroupsClient::attachNetworkEndpointsAsync()} .
+     *
+     * @param AttachNetworkEndpointsRegionNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
+     * @param array                                                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function attachNetworkEndpoints(AttachNetworkEndpointsRegionNetworkEndpointGroupRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('AttachNetworkEndpoints', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes the specified network endpoint group. Note that the NEG cannot be deleted if it is configured as a backend of a backend service.
      *
      * The async variant is {@see RegionNetworkEndpointGroupsClient::deleteAsync()} .
@@ -255,6 +287,31 @@ final class RegionNetworkEndpointGroupsClient
     public function delete(DeleteRegionNetworkEndpointGroupRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('Delete', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Detach the network endpoint from the specified network endpoint group.
+     *
+     * The async variant is
+     * {@see RegionNetworkEndpointGroupsClient::detachNetworkEndpointsAsync()} .
+     *
+     * @param DetachNetworkEndpointsRegionNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
+     * @param array                                                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function detachNetworkEndpoints(DetachNetworkEndpointsRegionNetworkEndpointGroupRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DetachNetworkEndpoints', $request, $callOptions)->wait();
     }
 
     /**
@@ -327,5 +384,30 @@ final class RegionNetworkEndpointGroupsClient
     public function list(ListRegionNetworkEndpointGroupsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('List', $request, $callOptions);
+    }
+
+    /**
+     * Lists the network endpoints in the specified network endpoint group.
+     *
+     * The async variant is
+     * {@see RegionNetworkEndpointGroupsClient::listNetworkEndpointsAsync()} .
+     *
+     * @param ListNetworkEndpointsRegionNetworkEndpointGroupsRequest $request     A request to house fields associated with the call.
+     * @param array                                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listNetworkEndpoints(ListNetworkEndpointsRegionNetworkEndpointGroupsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListNetworkEndpoints', $request, $callOptions);
     }
 }

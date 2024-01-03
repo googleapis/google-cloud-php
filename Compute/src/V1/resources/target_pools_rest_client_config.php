@@ -221,6 +221,28 @@ return [
                     ],
                 ],
             ],
+            'SetSecurityPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/targetPools/{target_pool}/setSecurityPolicy',
+                'body' => 'security_policy_reference_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                    'target_pool' => [
+                        'getters' => [
+                            'getTargetPool',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.compute.v1.RegionOperations' => [
             'Delete' => [

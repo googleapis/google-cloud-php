@@ -11,15 +11,15 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * The response returned from the [ListPolicies]
  * [google.cloud.orgpolicy.v2.OrgPolicy.ListPolicies] method. It will be empty
- * if no `Policies` are set on the resource.
+ * if no policies are set on the resource.
  *
  * Generated from protobuf message <code>google.cloud.orgpolicy.v2.ListPoliciesResponse</code>
  */
 class ListPoliciesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * All `Policies` that exist on the resource. It will be empty if no
-     * `Policies` are set.
+     * All policies that exist on the resource. It will be empty if no
+     * policies are set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v2.Policy policies = 1;</code>
      */
@@ -39,8 +39,8 @@ class ListPoliciesResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\OrgPolicy\V2\Policy>|\Google\Protobuf\Internal\RepeatedField $policies
-     *           All `Policies` that exist on the resource. It will be empty if no
-     *           `Policies` are set.
+     *           All policies that exist on the resource. It will be empty if no
+     *           policies are set.
      *     @type string $next_page_token
      *           Page token used to retrieve the next page. This is currently not used, but
      *           the server may at any point start supplying a valid token.
@@ -52,8 +52,8 @@ class ListPoliciesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * All `Policies` that exist on the resource. It will be empty if no
-     * `Policies` are set.
+     * All policies that exist on the resource. It will be empty if no
+     * policies are set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v2.Policy policies = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -64,8 +64,8 @@ class ListPoliciesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * All `Policies` that exist on the resource. It will be empty if no
-     * `Policies` are set.
+     * All policies that exist on the resource. It will be empty if no
+     * policies are set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v2.Policy policies = 1;</code>
      * @param array<\Google\Cloud\OrgPolicy\V2\Policy>|\Google\Protobuf\Internal\RepeatedField $var

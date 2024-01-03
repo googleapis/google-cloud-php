@@ -17,10 +17,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class Key extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name for the Key in the format
+     * Identifier. The resource name for the Key in the format
      * `projects/{project}/keys/{key}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     private $name = '';
     /**
@@ -63,7 +63,7 @@ class Key extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name for the Key in the format
+     *           Identifier. The resource name for the Key in the format
      *           `projects/{project}/keys/{key}`.
      *     @type string $display_name
      *           Required. Human-readable display name of this key. Modifiable by user.
@@ -90,10 +90,10 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name for the Key in the format
+     * Identifier. The resource name for the Key in the format
      * `projects/{project}/keys/{key}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -102,10 +102,10 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name for the Key in the format
+     * Identifier. The resource name for the Key in the format
      * `projects/{project}/keys/{key}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

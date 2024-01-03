@@ -29,7 +29,7 @@ use Google\Cloud\OrgPolicy\V2\Policy;
 use Google\Cloud\OrgPolicy\V2\UpdatePolicyRequest;
 
 /**
- * Updates a Policy.
+ * Updates a policy.
  *
  * Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
  * constraint or the policy do not exist.

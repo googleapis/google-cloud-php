@@ -38,7 +38,7 @@ class Impact extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Recommender\V1\SustainabilityProjection $sustainability_projection
      *           Use with CategoryType.SUSTAINABILITY
      *     @type \Google\Cloud\Recommender\V1\ReliabilityProjection $reliability_projection
-     *           Use with CategoryType.RELAIBILITY
+     *           Use with CategoryType.RELIABILITY
      * }
      */
     public function __construct($data = NULL) {
@@ -166,7 +166,7 @@ class Impact extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Use with CategoryType.RELAIBILITY
+     * Use with CategoryType.RELIABILITY
      *
      * Generated from protobuf field <code>.google.cloud.recommender.v1.ReliabilityProjection reliability_projection = 103;</code>
      * @return \Google\Cloud\Recommender\V1\ReliabilityProjection|null
@@ -182,7 +182,7 @@ class Impact extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Use with CategoryType.RELAIBILITY
+     * Use with CategoryType.RELIABILITY
      *
      * Generated from protobuf field <code>.google.cloud.recommender.v1.ReliabilityProjection reliability_projection = 103;</code>
      * @param \Google\Cloud\Recommender\V1\ReliabilityProjection $var

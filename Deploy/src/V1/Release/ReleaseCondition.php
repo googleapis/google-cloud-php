@@ -22,7 +22,7 @@ class ReleaseCondition extends \Google\Protobuf\Internal\Message
      */
     private $release_ready_condition = null;
     /**
-     * Details around the support state of the release's skaffold
+     * Details around the support state of the release's Skaffold
      * version.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Release.SkaffoldSupportedCondition skaffold_supported_condition = 2;</code>
@@ -38,7 +38,7 @@ class ReleaseCondition extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Deploy\V1\Release\ReleaseReadyCondition $release_ready_condition
      *           Details around the Releases's overall status.
      *     @type \Google\Cloud\Deploy\V1\Release\SkaffoldSupportedCondition $skaffold_supported_condition
-     *           Details around the support state of the release's skaffold
+     *           Details around the support state of the release's Skaffold
      *           version.
      * }
      */
@@ -84,7 +84,7 @@ class ReleaseCondition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Details around the support state of the release's skaffold
+     * Details around the support state of the release's Skaffold
      * version.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Release.SkaffoldSupportedCondition skaffold_supported_condition = 2;</code>
@@ -106,7 +106,7 @@ class ReleaseCondition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Details around the support state of the release's skaffold
+     * Details around the support state of the release's Skaffold
      * version.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Release.SkaffoldSupportedCondition skaffold_supported_condition = 2;</code>

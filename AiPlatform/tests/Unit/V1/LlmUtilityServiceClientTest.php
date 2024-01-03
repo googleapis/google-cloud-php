@@ -143,8 +143,10 @@ class LlmUtilityServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $model = 'model104069929';
         $instances = [];
-        $response = $gapicClient->countTokens($formattedEndpoint, $instances);
+        $contents = [];
+        $response = $gapicClient->countTokens($formattedEndpoint, $model, $instances, $contents);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -153,8 +155,12 @@ class LlmUtilityServiceClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.aiplatform.v1.LlmUtilityService/CountTokens', $actualFuncCall);
         $actualValue = $actualRequestObject->getEndpoint();
         $this->assertProtobufEquals($formattedEndpoint, $actualValue);
+        $actualValue = $actualRequestObject->getModel();
+        $this->assertProtobufEquals($model, $actualValue);
         $actualValue = $actualRequestObject->getInstances();
         $this->assertProtobufEquals($instances, $actualValue);
+        $actualValue = $actualRequestObject->getContents();
+        $this->assertProtobufEquals($contents, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -178,9 +184,11 @@ class LlmUtilityServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $model = 'model104069929';
         $instances = [];
+        $contents = [];
         try {
-            $gapicClient->countTokens($formattedEndpoint, $instances);
+            $gapicClient->countTokens($formattedEndpoint, $model, $instances, $contents);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

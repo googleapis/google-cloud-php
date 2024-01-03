@@ -113,10 +113,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
- *
- * @experimental
- *
  * @method PromiseInterface batchDeleteVersionsAsync(BatchDeleteVersionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createRepositoryAsync(CreateRepositoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createTagAsync(CreateTagRequest $request, array $optionalArgs = [])
@@ -164,8 +160,15 @@ final class ArtifactRegistryClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.devtools.artifactregistry.v1.ArtifactRegistry';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'artifactregistry.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'artifactregistry.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

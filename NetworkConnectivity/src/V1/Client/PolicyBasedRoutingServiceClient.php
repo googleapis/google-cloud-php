@@ -63,12 +63,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoutingServiceClient} for the
- * stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createPolicyBasedRouteAsync(CreatePolicyBasedRouteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deletePolicyBasedRouteAsync(DeletePolicyBasedRouteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getPolicyBasedRouteAsync(GetPolicyBasedRouteRequest $request, array $optionalArgs = [])
@@ -87,8 +81,15 @@ final class PolicyBasedRoutingServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.networkconnectivity.v1.PolicyBasedRoutingService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'networkconnectivity.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'networkconnectivity.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

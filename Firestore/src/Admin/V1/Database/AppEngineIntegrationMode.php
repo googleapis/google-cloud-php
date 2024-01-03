@@ -29,8 +29,9 @@ class AppEngineIntegrationMode
      */
     const ENABLED = 1;
     /**
-     * Appengine has no affect on the ability of this database to serve
+     * App Engine has no effect on the ability of this database to serve
      * requests.
+     * This is the default setting for databases created with the Firestore API.
      *
      * Generated from protobuf enum <code>DISABLED = 2;</code>
      */

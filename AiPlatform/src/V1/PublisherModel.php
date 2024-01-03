@@ -55,6 +55,12 @@ class PublisherModel extends \Google\Protobuf\Internal\Message
      */
     private $launch_stage = 0;
     /**
+     * Optional. Indicates the state of the model version.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PublisherModel.VersionState version_state = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $version_state = 0;
+    /**
      * Optional. Output only. Immutable. Used to indicate this model has a
      * publisher model and provide the template of the publisher model resource
      * name.
@@ -92,6 +98,8 @@ class PublisherModel extends \Google\Protobuf\Internal\Message
      *           Optional. Additional information about the model's Frameworks.
      *     @type int $launch_stage
      *           Optional. Indicates the launch stage of the model.
+     *     @type int $version_state
+     *           Optional. Indicates the state of the model version.
      *     @type string $publisher_model_template
      *           Optional. Output only. Immutable. Used to indicate this model has a
      *           publisher model and provide the template of the publisher model resource
@@ -275,6 +283,32 @@ class PublisherModel extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\PublisherModel\LaunchStage::class);
         $this->launch_stage = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicates the state of the model version.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PublisherModel.VersionState version_state = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getVersionState()
+    {
+        return $this->version_state;
+    }
+
+    /**
+     * Optional. Indicates the state of the model version.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PublisherModel.VersionState version_state = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setVersionState($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\PublisherModel\VersionState::class);
+        $this->version_state = $var;
 
         return $this;
     }

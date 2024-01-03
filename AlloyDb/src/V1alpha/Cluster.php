@@ -194,11 +194,24 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     protected $primary_config = null;
     /**
-     * Reserved for future use.
+     * Output only. Reserved for future use.
      *
-     * Generated from protobuf field <code>bool satisfies_pzs = 30;</code>
+     * Generated from protobuf field <code>bool satisfies_pzi = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = false;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $satisfies_pzs = false;
+    /**
+     * Optional. The configuration for Private Service Connect (PSC) for the
+     * cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.Cluster.PscConfig psc_config = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $psc_config = null;
     protected $source;
 
     /**
@@ -290,8 +303,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Cross Region replication config specific to SECONDARY cluster.
      *     @type \Google\Cloud\AlloyDb\V1alpha\Cluster\PrimaryConfig $primary_config
      *           Output only. Cross Region replication config specific to PRIMARY cluster.
+     *     @type bool $satisfies_pzi
+     *           Output only. Reserved for future use.
      *     @type bool $satisfies_pzs
-     *           Reserved for future use.
+     *           Output only. Reserved for future use.
+     *     @type \Google\Cloud\AlloyDb\V1alpha\Cluster\PscConfig $psc_config
+     *           Optional. The configuration for Private Service Connect (PSC) for the
+     *           cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -1186,9 +1204,35 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reserved for future use.
+     * Output only. Reserved for future use.
      *
-     * Generated from protobuf field <code>bool satisfies_pzs = 30;</code>
+     * Generated from protobuf field <code>bool satisfies_pzi = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return $this->satisfies_pzi;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
      */
     public function getSatisfiesPzs()
@@ -1197,9 +1241,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reserved for future use.
+     * Output only. Reserved for future use.
      *
-     * Generated from protobuf field <code>bool satisfies_pzs = 30;</code>
+     * Generated from protobuf field <code>bool satisfies_pzs = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
      */
@@ -1207,6 +1251,44 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The configuration for Private Service Connect (PSC) for the
+     * cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.Cluster.PscConfig psc_config = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AlloyDb\V1alpha\Cluster\PscConfig|null
+     */
+    public function getPscConfig()
+    {
+        return $this->psc_config;
+    }
+
+    public function hasPscConfig()
+    {
+        return isset($this->psc_config);
+    }
+
+    public function clearPscConfig()
+    {
+        unset($this->psc_config);
+    }
+
+    /**
+     * Optional. The configuration for Private Service Connect (PSC) for the
+     * cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.Cluster.PscConfig psc_config = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AlloyDb\V1alpha\Cluster\PscConfig $var
+     * @return $this
+     */
+    public function setPscConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1alpha\Cluster\PscConfig::class);
+        $this->psc_config = $var;
 
         return $this;
     }

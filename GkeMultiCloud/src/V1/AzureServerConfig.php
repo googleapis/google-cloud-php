@@ -27,7 +27,10 @@ class AzureServerConfig extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * List of valid Kubernetes versions.
+     * List of all released Kubernetes versions, including ones which are end of
+     * life and can no longer be used.  Filter by the `enabled`
+     * property to limit to currently available versions.
+     * Valid versions supported for both create and update operations
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureK8sVersionInfo valid_versions = 2;</code>
      */
@@ -52,7 +55,10 @@ class AzureServerConfig extends \Google\Protobuf\Internal\Message
      *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      *           for more details on Google Cloud Platform resource names.
      *     @type array<\Google\Cloud\GkeMultiCloud\V1\AzureK8sVersionInfo>|\Google\Protobuf\Internal\RepeatedField $valid_versions
-     *           List of valid Kubernetes versions.
+     *           List of all released Kubernetes versions, including ones which are end of
+     *           life and can no longer be used.  Filter by the `enabled`
+     *           property to limit to currently available versions.
+     *           Valid versions supported for both create and update operations
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $supported_azure_regions
      *           The list of supported Azure regions.
      * }
@@ -97,7 +103,10 @@ class AzureServerConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of valid Kubernetes versions.
+     * List of all released Kubernetes versions, including ones which are end of
+     * life and can no longer be used.  Filter by the `enabled`
+     * property to limit to currently available versions.
+     * Valid versions supported for both create and update operations
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureK8sVersionInfo valid_versions = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -108,7 +117,10 @@ class AzureServerConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of valid Kubernetes versions.
+     * List of all released Kubernetes versions, including ones which are end of
+     * life and can no longer be used.  Filter by the `enabled`
+     * property to limit to currently available versions.
+     * Valid versions supported for both create and update operations
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureK8sVersionInfo valid_versions = 2;</code>
      * @param array<\Google\Cloud\GkeMultiCloud\V1\AzureK8sVersionInfo>|\Google\Protobuf\Internal\RepeatedField $var

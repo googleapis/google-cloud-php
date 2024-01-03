@@ -36,12 +36,14 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\DeleteInterconnectRequest;
 use Google\Cloud\Compute\V1\GetDiagnosticsInterconnectRequest;
 use Google\Cloud\Compute\V1\GetInterconnectRequest;
+use Google\Cloud\Compute\V1\GetMacsecConfigInterconnectRequest;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\GlobalSetLabelsRequest;
 use Google\Cloud\Compute\V1\InsertInterconnectRequest;
 use Google\Cloud\Compute\V1\Interconnect;
 use Google\Cloud\Compute\V1\InterconnectList;
 use Google\Cloud\Compute\V1\InterconnectsGetDiagnosticsResponse;
+use Google\Cloud\Compute\V1\InterconnectsGetMacsecConfigResponse;
 use Google\Cloud\Compute\V1\ListInterconnectsRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\PatchInterconnectRequest;
@@ -87,8 +89,7 @@ use Google\Cloud\Compute\V1\SetLabelsInterconnectRequest;
  * }
  * ```
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Compute\V1\Client\InterconnectsClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Compute\V1\Client\InterconnectsClient}.
  */
 class InterconnectsGapicClient
 {
@@ -97,8 +98,15 @@ class InterconnectsGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.compute.v1.Interconnects';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'compute.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'compute.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -369,7 +377,7 @@ class InterconnectsGapicClient
     }
 
     /**
-     * Returns the interconnectDiagnostics for the specified Interconnect.
+     * Returns the interconnectDiagnostics for the specified Interconnect. In the event of a global outage, do not use this API to make decisions about where to redirect your network traffic. Unlike a VLAN attachment, which is regional, a Cloud Interconnect connection is a global resource. A global outage can prevent this API from functioning properly.
      *
      * Sample code:
      * ```
@@ -409,6 +417,49 @@ class InterconnectsGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetDiagnostics', InterconnectsGetDiagnosticsResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Returns the interconnectMacsecConfig for the specified Interconnect.
+     *
+     * Sample code:
+     * ```
+     * $interconnectsClient = new InterconnectsClient();
+     * try {
+     *     $interconnect = 'interconnect';
+     *     $project = 'project';
+     *     $response = $interconnectsClient->getMacsecConfig($interconnect, $project);
+     * } finally {
+     *     $interconnectsClient->close();
+     * }
+     * ```
+     *
+     * @param string $interconnect Name of the interconnect resource to query.
+     * @param string $project      Project ID for this request.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Compute\V1\InterconnectsGetMacsecConfigResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getMacsecConfig($interconnect, $project, array $optionalArgs = [])
+    {
+        $request = new GetMacsecConfigInterconnectRequest();
+        $requestParamHeaders = [];
+        $request->setInterconnect($interconnect);
+        $request->setProject($project);
+        $requestParamHeaders['interconnect'] = $interconnect;
+        $requestParamHeaders['project'] = $project;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetMacsecConfig', InterconnectsGetMacsecConfigResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -513,7 +564,7 @@ class InterconnectsGapicClient
      *     Optional.
      *
      *     @type string $filter
-     *           A filter expression that filters resources listed in the response. Most Compute resources support two types of filter expressions: expressions that support regular expressions and expressions that follow API improvement proposal AIP-160. If you want to use AIP-160, your expression must specify the field name, an operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The operator must be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. The `:` operator can be used with string fields to match substrings. For non-string fields it is equivalent to the `=` operator. The `:*` comparison can be used to test whether a key has been defined. For example, to find all objects with `owner` label use: ``` labels.owner:* ``` You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ``` If you want to use a regular expression, use the `eq` (equal) or `ne` (not equal) operator against a single un-parenthesized expression with or without quotes or against multiple parenthesized expressions. Examples: `fieldname eq unquoted literal` `fieldname eq 'single quoted literal'` `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2 ne "literal")` The literal value is interpreted as a regular expression using Google RE2 library syntax. The literal value must match the entire field. For example, to filter for instances that do not end with name "instance", you would use `name ne .*instance`.
+     *           A filter expression that filters resources listed in the response. Most Compute resources support two types of filter expressions: expressions that support regular expressions and expressions that follow API improvement proposal AIP-160. These two types of filter expressions cannot be mixed in one request. If you want to use AIP-160, your expression must specify the field name, an operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The operator must be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. The `:*` comparison can be used to test whether a key has been defined. For example, to find all objects with `owner` label use: ``` labels.owner:* ``` You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ``` If you want to use a regular expression, use the `eq` (equal) or `ne` (not equal) operator against a single un-parenthesized expression with or without quotes or against multiple parenthesized expressions. Examples: `fieldname eq unquoted literal` `fieldname eq 'single quoted literal'` `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2 ne "literal")` The literal value is interpreted as a regular expression using Google RE2 library syntax. The literal value must match the entire field. For example, to filter for instances that do not end with name "instance", you would use `name ne .*instance`. You cannot combine constraints on multiple fields using regular expressions.
      *     @type int $maxResults
      *           The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
      *     @type string $orderBy

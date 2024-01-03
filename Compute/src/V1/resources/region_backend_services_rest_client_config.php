@@ -121,6 +121,22 @@ return [
                     ],
                 ],
             ],
+            'ListUsable' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/backendServices/listUsable',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
             'Patch' => [
                 'method' => 'patch',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/backendServices/{backend_service}',
@@ -147,6 +163,50 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/backendServices/{resource}/setIamPolicy',
                 'body' => 'region_set_policy_request_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'SetSecurityPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/backendServices/{backend_service}/setSecurityPolicy',
+                'body' => 'security_policy_reference_resource',
+                'placeholders' => [
+                    'backend_service' => [
+                        'getters' => [
+                            'getBackendService',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'TestIamPermissions' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/backendServices/{resource}/testIamPermissions',
+                'body' => 'test_permissions_request_resource',
                 'placeholders' => [
                     'project' => [
                         'getters' => [

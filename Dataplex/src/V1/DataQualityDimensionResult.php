@@ -28,6 +28,15 @@ class DataQualityDimensionResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool passed = 3;</code>
      */
     private $passed = false;
+    /**
+     * Output only. The dimension-level data quality score for this data scan job
+     * if and only if the 'dimension' field is set.
+     * The score ranges between [0, 100] (up to two decimal
+     * points).
+     *
+     * Generated from protobuf field <code>optional float score = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $score = null;
 
     /**
      * Constructor.
@@ -39,6 +48,11 @@ class DataQualityDimensionResult extends \Google\Protobuf\Internal\Message
      *           Output only. The dimension config specified in the DataQualitySpec, as is.
      *     @type bool $passed
      *           Whether the dimension passed or failed.
+     *     @type float $score
+     *           Output only. The dimension-level data quality score for this data scan job
+     *           if and only if the 'dimension' field is set.
+     *           The score ranges between [0, 100] (up to two decimal
+     *           points).
      * }
      */
     public function __construct($data = NULL) {
@@ -104,6 +118,48 @@ class DataQualityDimensionResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->passed = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The dimension-level data quality score for this data scan job
+     * if and only if the 'dimension' field is set.
+     * The score ranges between [0, 100] (up to two decimal
+     * points).
+     *
+     * Generated from protobuf field <code>optional float score = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return float
+     */
+    public function getScore()
+    {
+        return isset($this->score) ? $this->score : 0.0;
+    }
+
+    public function hasScore()
+    {
+        return isset($this->score);
+    }
+
+    public function clearScore()
+    {
+        unset($this->score);
+    }
+
+    /**
+     * Output only. The dimension-level data quality score for this data scan job
+     * if and only if the 'dimension' field is set.
+     * The score ranges between [0, 100] (up to two decimal
+     * points).
+     *
+     * Generated from protobuf field <code>optional float score = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setScore($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->score = $var;
 
         return $this;
     }

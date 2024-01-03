@@ -78,6 +78,21 @@ return [
                     ],
                 ],
             ],
+            'StreamGenerateContent' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'ServerStreaming',
+                ],
+                'callType' => \Google\ApiCore\Call::SERVER_STREAMING_CALL,
+                'responseType' => 'Google\Cloud\AIPlatform\V1\GenerateContentResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'model',
+                        'fieldAccessors' => [
+                            'getModel',
+                        ],
+                    ],
+                ],
+            ],
             'StreamingPredict' => [
                 'grpcStreaming' => [
                     'grpcStreamingType' => 'BidiStreaming',

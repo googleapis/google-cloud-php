@@ -1,0 +1,98 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.securesourcemanager.v1",
+    "libraryPackage": "Google\\Cloud\\SecureSourceManager\\V1",
+    "services": {
+        "SecureSourceManager": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SecureSourceManagerGapicClient",
+                    "rpcs": {
+                        "CreateInstance": {
+                            "methods": [
+                                "createInstance"
+                            ]
+                        },
+                        "CreateRepository": {
+                            "methods": [
+                                "createRepository"
+                            ]
+                        },
+                        "DeleteInstance": {
+                            "methods": [
+                                "deleteInstance"
+                            ]
+                        },
+                        "DeleteRepository": {
+                            "methods": [
+                                "deleteRepository"
+                            ]
+                        },
+                        "GetIamPolicyRepo": {
+                            "methods": [
+                                "getIamPolicyRepo"
+                            ]
+                        },
+                        "GetInstance": {
+                            "methods": [
+                                "getInstance"
+                            ]
+                        },
+                        "GetRepository": {
+                            "methods": [
+                                "getRepository"
+                            ]
+                        },
+                        "ListInstances": {
+                            "methods": [
+                                "listInstances"
+                            ]
+                        },
+                        "ListRepositories": {
+                            "methods": [
+                                "listRepositories"
+                            ]
+                        },
+                        "SetIamPolicyRepo": {
+                            "methods": [
+                                "setIamPolicyRepo"
+                            ]
+                        },
+                        "TestIamPermissionsRepo": {
+                            "methods": [
+                                "testIamPermissionsRepo"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

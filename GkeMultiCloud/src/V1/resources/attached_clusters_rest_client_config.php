@@ -29,6 +29,18 @@ return [
                     ],
                 ],
             ],
+            'GenerateAttachedClusterAgentToken' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{attached_cluster=projects/*/locations/*/attachedClusters/*}:generateAttachedClusterAgentToken',
+                'body' => '*',
+                'placeholders' => [
+                    'attached_cluster' => [
+                        'getters' => [
+                            'getAttachedCluster',
+                        ],
+                    ],
+                ],
+            ],
             'GenerateAttachedClusterInstallManifest' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}:generateAttachedClusterInstallManifest',

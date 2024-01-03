@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Status of a report generation process.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.channel.v1.ReportStatus</code>
  */
 class ReportStatus extends \Google\Protobuf\Internal\Message

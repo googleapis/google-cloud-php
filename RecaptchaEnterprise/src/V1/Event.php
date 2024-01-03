@@ -52,12 +52,14 @@ class Event extends \Google\Protobuf\Internal\Message
      */
     private $expected_action = '';
     /**
-     * Optional. Unique stable hashed user identifier for the request. The
-     * identifier must be hashed using hmac-sha256 with stable secret.
+     * Optional. Deprecated: use `user_info.account_id` instead.
+     * Unique stable hashed user identifier for the request. The identifier must
+     * be hashed using hmac-sha256 with stable secret.
      *
-     * Generated from protobuf field <code>bytes hashed_account_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bytes hashed_account_id = 6 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
-    private $hashed_account_id = '';
+    protected $hashed_account_id = '';
     /**
      * Optional. Flag for a reCAPTCHA express request for an assessment without a
      * token. If enabled, `site_key` must reference a SCORE key with WAF feature
@@ -108,6 +110,15 @@ class Event extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData transaction_data = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $transaction_data = null;
+    /**
+     * Optional. Information about the user that generates this event, when they
+     * can be identified. They are often identified through the use of an account
+     * for logged-in requests or login/registration requests, or by providing user
+     * identifiers for guest actions like checkout.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.UserInfo user_info = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $user_info = null;
 
     /**
      * Constructor.
@@ -132,8 +143,9 @@ class Event extends \Google\Protobuf\Internal\Message
      *           same action provided at token generation time on client-side platforms
      *           already integrated with recaptcha enterprise.
      *     @type string $hashed_account_id
-     *           Optional. Unique stable hashed user identifier for the request. The
-     *           identifier must be hashed using hmac-sha256 with stable secret.
+     *           Optional. Deprecated: use `user_info.account_id` instead.
+     *           Unique stable hashed user identifier for the request. The identifier must
+     *           be hashed using hmac-sha256 with stable secret.
      *     @type bool $express
      *           Optional. Flag for a reCAPTCHA express request for an assessment without a
      *           token. If enabled, `site_key` must reference a SCORE key with WAF feature
@@ -156,6 +168,11 @@ class Event extends \Google\Protobuf\Internal\Message
      *           Optional. Data describing a payment transaction to be assessed. Sending
      *           this data enables reCAPTCHA Enterprise Fraud Prevention and the
      *           FraudPreventionAssessment component in the response.
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\UserInfo $user_info
+     *           Optional. Information about the user that generates this event, when they
+     *           can be identified. They are often identified through the use of an account
+     *           for logged-in requests or login/registration requests, or by providing user
+     *           identifiers for guest actions like checkout.
      * }
      */
     public function __construct($data = NULL) {
@@ -306,27 +323,33 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Unique stable hashed user identifier for the request. The
-     * identifier must be hashed using hmac-sha256 with stable secret.
+     * Optional. Deprecated: use `user_info.account_id` instead.
+     * Unique stable hashed user identifier for the request. The identifier must
+     * be hashed using hmac-sha256 with stable secret.
      *
-     * Generated from protobuf field <code>bytes hashed_account_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bytes hashed_account_id = 6 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
+     * @deprecated
      */
     public function getHashedAccountId()
     {
+        @trigger_error('hashed_account_id is deprecated.', E_USER_DEPRECATED);
         return $this->hashed_account_id;
     }
 
     /**
-     * Optional. Unique stable hashed user identifier for the request. The
-     * identifier must be hashed using hmac-sha256 with stable secret.
+     * Optional. Deprecated: use `user_info.account_id` instead.
+     * Unique stable hashed user identifier for the request. The identifier must
+     * be hashed using hmac-sha256 with stable secret.
      *
-     * Generated from protobuf field <code>bytes hashed_account_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bytes hashed_account_id = 6 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setHashedAccountId($var)
     {
+        @trigger_error('hashed_account_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, False);
         $this->hashed_account_id = $var;
 
@@ -537,6 +560,48 @@ class Event extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\TransactionData::class);
         $this->transaction_data = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Information about the user that generates this event, when they
+     * can be identified. They are often identified through the use of an account
+     * for logged-in requests or login/registration requests, or by providing user
+     * identifiers for guest actions like checkout.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.UserInfo user_info = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\UserInfo|null
+     */
+    public function getUserInfo()
+    {
+        return $this->user_info;
+    }
+
+    public function hasUserInfo()
+    {
+        return isset($this->user_info);
+    }
+
+    public function clearUserInfo()
+    {
+        unset($this->user_info);
+    }
+
+    /**
+     * Optional. Information about the user that generates this event, when they
+     * can be identified. They are often identified through the use of an account
+     * for logged-in requests or login/registration requests, or by providing user
+     * identifiers for guest actions like checkout.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.UserInfo user_info = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\UserInfo $var
+     * @return $this
+     */
+    public function setUserInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\UserInfo::class);
+        $this->user_info = $var;
 
         return $this;
     }

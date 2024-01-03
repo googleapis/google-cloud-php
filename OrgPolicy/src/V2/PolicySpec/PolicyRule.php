@@ -41,18 +41,18 @@ class PolicyRule extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\OrgPolicy\V2\PolicySpec\PolicyRule\StringValues $values
-     *           List of values to be used for this PolicyRule. This field can be set
-     *           only in Policies for list constraints.
+     *           List of values to be used for this policy rule. This field can be set
+     *           only in policies for list constraints.
      *     @type bool $allow_all
      *           Setting this to true means that all values are allowed. This field can
-     *           be set only in Policies for list constraints.
+     *           be set only in policies for list constraints.
      *     @type bool $deny_all
      *           Setting this to true means that all values are denied. This field can
-     *           be set only in Policies for list constraints.
+     *           be set only in policies for list constraints.
      *     @type bool $enforce
-     *           If `true`, then the `Policy` is enforced. If `false`, then any
+     *           If `true`, then the policy is enforced. If `false`, then any
      *           configuration is acceptable.
-     *           This field can be set only in Policies for boolean constraints.
+     *           This field can be set only in policies for boolean constraints.
      *     @type \Google\Type\Expr $condition
      *           A condition which determines whether this rule is used
      *           in the evaluation of the policy. When set, the `expression` field in
@@ -74,8 +74,8 @@ class PolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of values to be used for this PolicyRule. This field can be set
-     * only in Policies for list constraints.
+     * List of values to be used for this policy rule. This field can be set
+     * only in policies for list constraints.
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.PolicySpec.PolicyRule.StringValues values = 1;</code>
      * @return \Google\Cloud\OrgPolicy\V2\PolicySpec\PolicyRule\StringValues|null
@@ -91,8 +91,8 @@ class PolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of values to be used for this PolicyRule. This field can be set
-     * only in Policies for list constraints.
+     * List of values to be used for this policy rule. This field can be set
+     * only in policies for list constraints.
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.PolicySpec.PolicyRule.StringValues values = 1;</code>
      * @param \Google\Cloud\OrgPolicy\V2\PolicySpec\PolicyRule\StringValues $var
@@ -108,7 +108,7 @@ class PolicyRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Setting this to true means that all values are allowed. This field can
-     * be set only in Policies for list constraints.
+     * be set only in policies for list constraints.
      *
      * Generated from protobuf field <code>bool allow_all = 2;</code>
      * @return bool
@@ -125,7 +125,7 @@ class PolicyRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Setting this to true means that all values are allowed. This field can
-     * be set only in Policies for list constraints.
+     * be set only in policies for list constraints.
      *
      * Generated from protobuf field <code>bool allow_all = 2;</code>
      * @param bool $var
@@ -141,7 +141,7 @@ class PolicyRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Setting this to true means that all values are denied. This field can
-     * be set only in Policies for list constraints.
+     * be set only in policies for list constraints.
      *
      * Generated from protobuf field <code>bool deny_all = 3;</code>
      * @return bool
@@ -158,7 +158,7 @@ class PolicyRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Setting this to true means that all values are denied. This field can
-     * be set only in Policies for list constraints.
+     * be set only in policies for list constraints.
      *
      * Generated from protobuf field <code>bool deny_all = 3;</code>
      * @param bool $var
@@ -173,9 +173,9 @@ class PolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If `true`, then the `Policy` is enforced. If `false`, then any
+     * If `true`, then the policy is enforced. If `false`, then any
      * configuration is acceptable.
-     * This field can be set only in Policies for boolean constraints.
+     * This field can be set only in policies for boolean constraints.
      *
      * Generated from protobuf field <code>bool enforce = 4;</code>
      * @return bool
@@ -191,9 +191,9 @@ class PolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If `true`, then the `Policy` is enforced. If `false`, then any
+     * If `true`, then the policy is enforced. If `false`, then any
      * configuration is acceptable.
-     * This field can be set only in Policies for boolean constraints.
+     * This field can be set only in policies for boolean constraints.
      *
      * Generated from protobuf field <code>bool enforce = 4;</code>
      * @param bool $var
