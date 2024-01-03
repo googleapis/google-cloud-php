@@ -145,7 +145,7 @@ trait RestTrait
             );
         }
 
-        if (!isset($config['universeDomain'])) {
+        if (!isset($config['universeDomain']) || empty($config['universeDomain'])) {
             throw new UnexpectedValueException(
                 'The "universeDomain" config value must be set to use the default API endpoint template.'
             );

@@ -817,7 +817,7 @@ class RequestWrapperTest extends TestCase
             ['googleapis.com', ''],
             ['', 'googleapis.com', 'The universe domain cannot be empty'],
             [null, 'foo.com'], // null in RequestWrapper will default to "googleapis.com"
-            ['foo.com', null], // Credentials not implementing GetUniverseDomainInterface will default to "googleapis.com"
+            ['foo.com', null], // Credentials not implementing `GetUniverseDomainInterface` will have default universe
         ];
     }
 
