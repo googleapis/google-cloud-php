@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START privateca_v1_generated_CertificateAuthorityService_CreateCertificate_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Security\PrivateCA\V1\Certificate;
-use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\CreateCertificateRequest;
 use Google\Protobuf\Duration;
 
 /**
@@ -44,15 +45,18 @@ function create_certificate_sample(string $formattedParent): void
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $certificateLifetime = new Duration();
     $certificate = (new Certificate())
         ->setLifetime($certificateLifetime);
+    $request = (new CreateCertificateRequest())
+        ->setParent($formattedParent)
+        ->setCertificate($certificate);
 
     // Call the API and handle any network failures.
     try {
         /** @var Certificate $response */
-        $response = $certificateAuthorityServiceClient->createCertificate($formattedParent, $certificate);
+        $response = $certificateAuthorityServiceClient->createCertificate($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

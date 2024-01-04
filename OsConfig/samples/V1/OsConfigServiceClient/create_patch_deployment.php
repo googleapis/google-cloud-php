@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START osconfig_v1_generated_OsConfigService_CreatePatchDeployment_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\OsConfig\V1\Client\OsConfigServiceClient;
+use Google\Cloud\OsConfig\V1\CreatePatchDeploymentRequest;
 use Google\Cloud\OsConfig\V1\OneTimeSchedule;
-use Google\Cloud\OsConfig\V1\OsConfigServiceClient;
 use Google\Cloud\OsConfig\V1\PatchDeployment;
 use Google\Cloud\OsConfig\V1\PatchInstanceFilter;
 use Google\Protobuf\Timestamp;
@@ -49,7 +50,7 @@ function create_patch_deployment_sample(string $formattedParent, string $patchDe
     // Create a client.
     $osConfigServiceClient = new OsConfigServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $patchDeploymentInstanceFilter = new PatchInstanceFilter();
     $patchDeploymentOneTimeScheduleExecuteTime = new Timestamp();
     $patchDeploymentOneTimeSchedule = (new OneTimeSchedule())
@@ -57,15 +58,15 @@ function create_patch_deployment_sample(string $formattedParent, string $patchDe
     $patchDeployment = (new PatchDeployment())
         ->setInstanceFilter($patchDeploymentInstanceFilter)
         ->setOneTimeSchedule($patchDeploymentOneTimeSchedule);
+    $request = (new CreatePatchDeploymentRequest())
+        ->setParent($formattedParent)
+        ->setPatchDeploymentId($patchDeploymentId)
+        ->setPatchDeployment($patchDeployment);
 
     // Call the API and handle any network failures.
     try {
         /** @var PatchDeployment $response */
-        $response = $osConfigServiceClient->createPatchDeployment(
-            $formattedParent,
-            $patchDeploymentId,
-            $patchDeployment
-        );
+        $response = $osConfigServiceClient->createPatchDeployment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

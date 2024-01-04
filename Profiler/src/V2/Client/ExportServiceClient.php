@@ -216,6 +216,8 @@ final class ExportServiceClient
      *
      * The async variant is {@see ExportServiceClient::listProfilesAsync()} .
      *
+     * @example samples/V2/ExportServiceClient/list_profiles.php
+     *
      * @param ListProfilesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.

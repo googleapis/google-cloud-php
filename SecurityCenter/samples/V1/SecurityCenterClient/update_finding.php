@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START securitycenter_v1_generated_SecurityCenter_UpdateFinding_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient;
 use Google\Cloud\SecurityCenter\V1\Finding;
-use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\UpdateFindingRequest;
 
 /**
  * Creates or updates a finding. The corresponding source must exist for a
@@ -42,13 +43,15 @@ function update_finding_sample(): void
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $finding = new Finding();
+    $request = (new UpdateFindingRequest())
+        ->setFinding($finding);
 
     // Call the API and handle any network failures.
     try {
         /** @var Finding $response */
-        $response = $securityCenterClient->updateFinding($finding);
+        $response = $securityCenterClient->updateFinding($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

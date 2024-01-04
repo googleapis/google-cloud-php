@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START privateca_v1_generated_CertificateAuthorityService_UpdateCertificateRevocationList_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
 use Google\Cloud\Security\PrivateCA\V1\CertificateRevocationList;
+use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\UpdateCertificateRevocationListRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -45,17 +46,17 @@ function update_certificate_revocation_list_sample(): void
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $certificateRevocationList = new CertificateRevocationList();
     $updateMask = new FieldMask();
+    $request = (new UpdateCertificateRevocationListRequest())
+        ->setCertificateRevocationList($certificateRevocationList)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $certificateAuthorityServiceClient->updateCertificateRevocationList(
-            $certificateRevocationList,
-            $updateMask
-        );
+        $response = $certificateAuthorityServiceClient->updateCertificateRevocationList($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

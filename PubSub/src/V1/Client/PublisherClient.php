@@ -325,6 +325,8 @@ final class PublisherClient
      *
      * The async variant is {@see PublisherClient::createTopicAsync()} .
      *
+     * @example samples/V1/PublisherClient/create_topic.php
+     *
      * @param Topic $request     A request to house fields associated with the call.
      * @param array $callOptions {
      *     Optional.
@@ -353,6 +355,8 @@ final class PublisherClient
      *
      * The async variant is {@see PublisherClient::deleteTopicAsync()} .
      *
+     * @example samples/V1/PublisherClient/delete_topic.php
+     *
      * @param DeleteTopicRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -378,6 +382,8 @@ final class PublisherClient
      *
      * The async variant is {@see PublisherClient::detachSubscriptionAsync()} .
      *
+     * @example samples/V1/PublisherClient/detach_subscription.php
+     *
      * @param DetachSubscriptionRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -401,6 +407,8 @@ final class PublisherClient
      * Gets the configuration of a topic.
      *
      * The async variant is {@see PublisherClient::getTopicAsync()} .
+     *
+     * @example samples/V1/PublisherClient/get_topic.php
      *
      * @param GetTopicRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -430,6 +438,8 @@ final class PublisherClient
      *
      * The async variant is {@see PublisherClient::listTopicSnapshotsAsync()} .
      *
+     * @example samples/V1/PublisherClient/list_topic_snapshots.php
+     *
      * @param ListTopicSnapshotsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -454,6 +464,8 @@ final class PublisherClient
      *
      * The async variant is {@see PublisherClient::listTopicSubscriptionsAsync()} .
      *
+     * @example samples/V1/PublisherClient/list_topic_subscriptions.php
+     *
      * @param ListTopicSubscriptionsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -477,6 +489,8 @@ final class PublisherClient
      * Lists matching topics.
      *
      * The async variant is {@see PublisherClient::listTopicsAsync()} .
+     *
+     * @example samples/V1/PublisherClient/list_topics.php
      *
      * @param ListTopicsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -503,6 +517,8 @@ final class PublisherClient
      *
      * The async variant is {@see PublisherClient::publishAsync()} .
      *
+     * @example samples/V1/PublisherClient/publish.php
+     *
      * @param PublishRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
      *     Optional.
@@ -528,6 +544,8 @@ final class PublisherClient
      *
      * The async variant is {@see PublisherClient::updateTopicAsync()} .
      *
+     * @example samples/V1/PublisherClient/update_topic.php
+     *
      * @param UpdateTopicRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -552,6 +570,8 @@ final class PublisherClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see PublisherClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/PublisherClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -580,6 +600,8 @@ final class PublisherClient
     errors.
      *
      * The async variant is {@see PublisherClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/PublisherClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -610,6 +632,8 @@ final class PublisherClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see PublisherClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/PublisherClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

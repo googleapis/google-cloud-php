@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START pubsub_v1_generated_Publisher_ListTopics_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\PubSub\V1\PublisherClient;
+use Google\Cloud\PubSub\V1\Client\PublisherClient;
+use Google\Cloud\PubSub\V1\ListTopicsRequest;
 use Google\Cloud\PubSub\V1\Topic;
 
 /**
@@ -40,10 +41,14 @@ function list_topics_sample(string $formattedProject): void
     // Create a client.
     $publisherClient = new PublisherClient();
 
+    // Prepare the request message.
+    $request = (new ListTopicsRequest())
+        ->setProject($formattedProject);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $publisherClient->listTopics($formattedProject);
+        $response = $publisherClient->listTopics($request);
 
         /** @var Topic $element */
         foreach ($response as $element) {

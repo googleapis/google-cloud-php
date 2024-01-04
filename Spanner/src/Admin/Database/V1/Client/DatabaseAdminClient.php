@@ -402,6 +402,8 @@ final class DatabaseAdminClient
      *
      * The async variant is {@see DatabaseAdminClient::copyBackupAsync()} .
      *
+     * @example samples/V1/DatabaseAdminClient/copy_backup.php
+     *
      * @param CopyBackupRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -437,6 +439,8 @@ final class DatabaseAdminClient
      *
      * The async variant is {@see DatabaseAdminClient::createBackupAsync()} .
      *
+     * @example samples/V1/DatabaseAdminClient/create_backup.php
+     *
      * @param CreateBackupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -468,6 +472,8 @@ final class DatabaseAdminClient
      *
      * The async variant is {@see DatabaseAdminClient::createDatabaseAsync()} .
      *
+     * @example samples/V1/DatabaseAdminClient/create_database.php
+     *
      * @param CreateDatabaseRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -491,6 +497,8 @@ final class DatabaseAdminClient
      * Deletes a pending or completed [Backup][google.spanner.admin.database.v1.Backup].
      *
      * The async variant is {@see DatabaseAdminClient::deleteBackupAsync()} .
+     *
+     * @example samples/V1/DatabaseAdminClient/delete_backup.php
      *
      * @param DeleteBackupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -518,6 +526,8 @@ final class DatabaseAdminClient
      *
      * The async variant is {@see DatabaseAdminClient::dropDatabaseAsync()} .
      *
+     * @example samples/V1/DatabaseAdminClient/drop_database.php
+     *
      * @param DropDatabaseRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -539,6 +549,8 @@ final class DatabaseAdminClient
      * Gets metadata on a pending or completed [Backup][google.spanner.admin.database.v1.Backup].
      *
      * The async variant is {@see DatabaseAdminClient::getBackupAsync()} .
+     *
+     * @example samples/V1/DatabaseAdminClient/get_backup.php
      *
      * @param GetBackupRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -563,6 +575,8 @@ final class DatabaseAdminClient
      * Gets the state of a Cloud Spanner database.
      *
      * The async variant is {@see DatabaseAdminClient::getDatabaseAsync()} .
+     *
+     * @example samples/V1/DatabaseAdminClient/get_database.php
      *
      * @param GetDatabaseRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -589,6 +603,8 @@ final class DatabaseAdminClient
      * be queried using the [Operations][google.longrunning.Operations] API.
      *
      * The async variant is {@see DatabaseAdminClient::getDatabaseDdlAsync()} .
+     *
+     * @example samples/V1/DatabaseAdminClient/get_database_ddl.php
      *
      * @param GetDatabaseDdlRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -620,6 +636,8 @@ final class DatabaseAdminClient
      * permission on [resource][google.iam.v1.GetIamPolicyRequest.resource].
      *
      * The async variant is {@see DatabaseAdminClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/DatabaseAdminClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -654,6 +672,8 @@ final class DatabaseAdminClient
      *
      * The async variant is {@see DatabaseAdminClient::listBackupOperationsAsync()} .
      *
+     * @example samples/V1/DatabaseAdminClient/list_backup_operations.php
+     *
      * @param ListBackupOperationsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -679,6 +699,8 @@ final class DatabaseAdminClient
      * starting from the most recent `create_time`.
      *
      * The async variant is {@see DatabaseAdminClient::listBackupsAsync()} .
+     *
+     * @example samples/V1/DatabaseAdminClient/list_backups.php
      *
      * @param ListBackupsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -711,6 +733,8 @@ final class DatabaseAdminClient
      *
      * The async variant is {@see DatabaseAdminClient::listDatabaseOperationsAsync()} .
      *
+     * @example samples/V1/DatabaseAdminClient/list_database_operations.php
+     *
      * @param ListDatabaseOperationsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -735,6 +759,8 @@ final class DatabaseAdminClient
      *
      * The async variant is {@see DatabaseAdminClient::listDatabaseRolesAsync()} .
      *
+     * @example samples/V1/DatabaseAdminClient/list_database_roles.php
+     *
      * @param ListDatabaseRolesRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -758,6 +784,8 @@ final class DatabaseAdminClient
      * Lists Cloud Spanner databases.
      *
      * The async variant is {@see DatabaseAdminClient::listDatabasesAsync()} .
+     *
+     * @example samples/V1/DatabaseAdminClient/list_databases.php
      *
      * @param ListDatabasesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -799,6 +827,8 @@ final class DatabaseAdminClient
      *
      * The async variant is {@see DatabaseAdminClient::restoreDatabaseAsync()} .
      *
+     * @example samples/V1/DatabaseAdminClient/restore_database.php
+     *
      * @param RestoreDatabaseRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -828,6 +858,8 @@ final class DatabaseAdminClient
      * permission on [resource][google.iam.v1.SetIamPolicyRequest.resource].
      *
      * The async variant is {@see DatabaseAdminClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/DatabaseAdminClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -862,6 +894,8 @@ final class DatabaseAdminClient
      *
      * The async variant is {@see DatabaseAdminClient::testIamPermissionsAsync()} .
      *
+     * @example samples/V1/DatabaseAdminClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -885,6 +919,8 @@ final class DatabaseAdminClient
      * Updates a pending or completed [Backup][google.spanner.admin.database.v1.Backup].
      *
      * The async variant is {@see DatabaseAdminClient::updateBackupAsync()} .
+     *
+     * @example samples/V1/DatabaseAdminClient/update_backup.php
      *
      * @param UpdateBackupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -945,6 +981,8 @@ final class DatabaseAdminClient
      *
      * The async variant is {@see DatabaseAdminClient::updateDatabaseAsync()} .
      *
+     * @example samples/V1/DatabaseAdminClient/update_database.php
+     *
      * @param UpdateDatabaseRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -974,6 +1012,8 @@ final class DatabaseAdminClient
      * [UpdateDatabaseDdlMetadata][google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata].  The operation has no response.
      *
      * The async variant is {@see DatabaseAdminClient::updateDatabaseDdlAsync()} .
+     *
+     * @example samples/V1/DatabaseAdminClient/update_database_ddl.php
      *
      * @param UpdateDatabaseDdlRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {

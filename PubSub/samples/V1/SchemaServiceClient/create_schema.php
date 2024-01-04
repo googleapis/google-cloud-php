@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START pubsub_v1_generated_SchemaService_CreateSchema_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\PubSub\V1\Client\SchemaServiceClient;
+use Google\Cloud\PubSub\V1\CreateSchemaRequest;
 use Google\Cloud\PubSub\V1\Schema;
-use Google\Cloud\PubSub\V1\SchemaServiceClient;
 
 /**
  * Creates a schema.
@@ -41,14 +42,17 @@ function create_schema_sample(string $formattedParent, string $schemaName): void
     // Create a client.
     $schemaServiceClient = new SchemaServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $schema = (new Schema())
         ->setName($schemaName);
+    $request = (new CreateSchemaRequest())
+        ->setParent($formattedParent)
+        ->setSchema($schema);
 
     // Call the API and handle any network failures.
     try {
         /** @var Schema $response */
-        $response = $schemaServiceClient->createSchema($formattedParent, $schema);
+        $response = $schemaServiceClient->createSchema($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

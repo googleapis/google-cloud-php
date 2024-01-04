@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START redis_v1_generated_CloudRedis_UpdateInstance_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Redis\V1\CloudRedisClient;
+use Google\Cloud\Redis\V1\Client\CloudRedisClient;
 use Google\Cloud\Redis\V1\Instance;
 use Google\Cloud\Redis\V1\Instance\Tier;
+use Google\Cloud\Redis\V1\UpdateInstanceRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -60,17 +61,20 @@ function update_instance_sample(
     // Create a client.
     $cloudRedisClient = new CloudRedisClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $instance = (new Instance())
         ->setName($instanceName)
         ->setTier($instanceTier)
         ->setMemorySizeGb($instanceMemorySizeGb);
+    $request = (new UpdateInstanceRequest())
+        ->setUpdateMask($updateMask)
+        ->setInstance($instance);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudRedisClient->updateInstance($updateMask, $instance);
+        $response = $cloudRedisClient->updateInstance($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

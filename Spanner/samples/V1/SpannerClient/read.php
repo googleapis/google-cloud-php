@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START spanner_v1_generated_Spanner_Read_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\KeySet;
+use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\ResultSet;
-use Google\Cloud\Spanner\V1\SpannerClient;
 
 /**
  * Reads rows from the database using key lookups and scans, as a
@@ -55,14 +56,19 @@ function read_sample(string $formattedSession, string $table, string $columnsEle
     // Create a client.
     $spannerClient = new SpannerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $columns = [$columnsElement,];
     $keySet = new KeySet();
+    $request = (new ReadRequest())
+        ->setSession($formattedSession)
+        ->setTable($table)
+        ->setColumns($columns)
+        ->setKeySet($keySet);
 
     // Call the API and handle any network failures.
     try {
         /** @var ResultSet $response */
-        $response = $spannerClient->read($formattedSession, $table, $columns, $keySet);
+        $response = $spannerClient->read($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

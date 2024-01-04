@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START securitycenter_v1_generated_SecurityCenter_GroupAssets_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\GroupAssetsRequest;
 use Google\Cloud\SecurityCenter\V1\GroupResult;
-use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
 
 /**
  * Filters an organization's assets and  groups them by their specified
@@ -60,10 +61,15 @@ function group_assets_sample(string $formattedParent, string $groupBy): void
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
+    // Prepare the request message.
+    $request = (new GroupAssetsRequest())
+        ->setParent($formattedParent)
+        ->setGroupBy($groupBy);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $securityCenterClient->groupAssets($formattedParent, $groupBy);
+        $response = $securityCenterClient->groupAssets($request);
 
         /** @var GroupResult $element */
         foreach ($response as $element) {

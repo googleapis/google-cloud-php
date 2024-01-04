@@ -267,6 +267,8 @@ final class CloudShellServiceClient
      *
      * The async variant is {@see CloudShellServiceClient::addPublicKeyAsync()} .
      *
+     * @example samples/V1/CloudShellServiceClient/add_public_key.php
+     *
      * @param AddPublicKeyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -295,6 +297,8 @@ final class CloudShellServiceClient
      * The async variant is {@see CloudShellServiceClient::authorizeEnvironmentAsync()}
      * .
      *
+     * @example samples/V1/CloudShellServiceClient/authorize_environment.php
+     *
      * @param AuthorizeEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -318,6 +322,8 @@ final class CloudShellServiceClient
      * Gets an environment. Returns NOT_FOUND if the environment does not exist.
      *
      * The async variant is {@see CloudShellServiceClient::getEnvironmentAsync()} .
+     *
+     * @example samples/V1/CloudShellServiceClient/get_environment.php
      *
      * @param GetEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -345,6 +351,8 @@ final class CloudShellServiceClient
      * NOT_FOUND.
      *
      * The async variant is {@see CloudShellServiceClient::removePublicKeyAsync()} .
+     *
+     * @example samples/V1/CloudShellServiceClient/remove_public_key.php
      *
      * @param RemovePublicKeyRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -374,6 +382,8 @@ final class CloudShellServiceClient
      * StartEnvironmentResponse in its response field.
      *
      * The async variant is {@see CloudShellServiceClient::startEnvironmentAsync()} .
+     *
+     * @example samples/V1/CloudShellServiceClient/start_environment.php
      *
      * @param StartEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {

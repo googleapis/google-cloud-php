@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START osconfig_v1_generated_OsConfigZonalService_DeleteOSPolicyAssignment_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\OsConfig\V1\OsConfigZonalServiceClient;
+use Google\Cloud\OsConfig\V1\Client\OsConfigZonalServiceClient;
+use Google\Cloud\OsConfig\V1\DeleteOSPolicyAssignmentRequest;
 use Google\Rpc\Status;
 
 /**
@@ -50,10 +51,14 @@ function delete_os_policy_assignment_sample(string $formattedName): void
     // Create a client.
     $osConfigZonalServiceClient = new OsConfigZonalServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteOSPolicyAssignmentRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $osConfigZonalServiceClient->deleteOSPolicyAssignment($formattedName);
+        $response = $osConfigZonalServiceClient->deleteOSPolicyAssignment($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

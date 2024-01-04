@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_DeleteKey_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
+use Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient;
+use Google\Cloud\RecaptchaEnterprise\V1\DeleteKeyRequest;
 
 /**
  * Deletes the specified key.
@@ -38,9 +39,13 @@ function delete_key_sample(string $formattedName): void
     // Create a client.
     $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteKeyRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $recaptchaEnterpriseServiceClient->deleteKey($formattedName);
+        $recaptchaEnterpriseServiceClient->deleteKey($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
