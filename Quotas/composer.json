@@ -1,6 +1,6 @@
 {
-    "name": "google/api-cloudquotas",
-    "description": "Google Cloud Cloud Quotas Client for PHP",
+    "name": "google/cloud-quotas",
+    "description": "Google Cloud Quotas Client for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "autoload": {
@@ -11,14 +11,14 @@
     },
     "extra": {
         "component": {
-            "id": "api-cloudquotas",
+            "id": "cloud-quotas",
             "path": "Quotas",
-            "target": "googleapis/php-api-cloudquotas"
+            "target": "googleapis/php-cloud-quotas"
         }
     },
     "require": {
         "php": ">=7.4",
-        "google/gax": "^1.25.0"
+        "google/gax": "^1.26.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0"

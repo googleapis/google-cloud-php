@@ -1,10 +1,10 @@
-# Google Cloud Cloud Quotas for PHP
+# Google Cloud Quotas for PHP
 
-> Idiomatic PHP client for [Google Cloud Cloud Quotas](https://cloud.google.com).
+> Idiomatic PHP client for [Google Cloud Quotas](https://cloud.google.com).
 
-[![Latest Stable Version](https://poser.pugx.org/google/api-cloudquotas/v/stable)](https://packagist.org/packages/google/api-cloudquotas) [![Packagist](https://img.shields.io/packagist/dm/google/api-cloudquotas.svg)](https://packagist.org/packages/google/api-cloudquotas)
+[![Latest Stable Version](https://poser.pugx.org/google/cloud-quotas/v/stable)](https://packagist.org/packages/google/cloud-quotas) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-quotas.svg)](https://packagist.org/packages/google/cloud-quotas)
 
-* [API documentation](https://cloud.google.com/php/docs/reference/api-cloudquotas/latest)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-quotas/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
@@ -17,7 +17,7 @@ To begin, install the preferred dependency manager for PHP, [Composer](https://g
 Now, install this component:
 
 ```sh
-$ composer require google/api-cloudquotas
+$ composer require google/cloud-quotas
 ```
 
 > Browse the complete list of [Google Cloud APIs](https://cloud.google.com/php/docs/reference)
@@ -34,7 +34,7 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
-See the [samples directory](https://github.com/googleapis/php-api-cloudquotas/tree/main/samples) for a canonical list of samples.
+See the [samples directory](https://github.com/googleapis/php-cloud-quotas/tree/main/samples) for a canonical list of samples.
 
 ### Version
 
