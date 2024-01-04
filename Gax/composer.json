@@ -14,7 +14,7 @@
         "guzzlehttp/promises": "^1.4||^2.0",
         "guzzlehttp/psr7": "^2.0",
         "google/common-protos": "^3.0||^4.0",
-        "google/longrunning": "^0.2"
+        "google/longrunning": "~0.2"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0",
