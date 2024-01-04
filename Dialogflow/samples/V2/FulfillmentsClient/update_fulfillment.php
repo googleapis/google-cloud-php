@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_Fulfillments_UpdateFulfillment_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\V2\Client\FulfillmentsClient;
 use Google\Cloud\Dialogflow\V2\Fulfillment;
-use Google\Cloud\Dialogflow\V2\FulfillmentsClient;
+use Google\Cloud\Dialogflow\V2\UpdateFulfillmentRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -44,15 +45,18 @@ function update_fulfillment_sample(string $fulfillmentName): void
     // Create a client.
     $fulfillmentsClient = new FulfillmentsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $fulfillment = (new Fulfillment())
         ->setName($fulfillmentName);
     $updateMask = new FieldMask();
+    $request = (new UpdateFulfillmentRequest())
+        ->setFulfillment($fulfillment)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var Fulfillment $response */
-        $response = $fulfillmentsClient->updateFulfillment($fulfillment, $updateMask);
+        $response = $fulfillmentsClient->updateFulfillment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

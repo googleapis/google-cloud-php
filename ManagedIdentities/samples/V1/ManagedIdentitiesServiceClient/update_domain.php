@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START managedidentities_v1_generated_ManagedIdentitiesService_UpdateDomain_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\ManagedIdentities\V1\Client\ManagedIdentitiesServiceClient;
 use Google\Cloud\ManagedIdentities\V1\Domain;
-use Google\Cloud\ManagedIdentities\V1\ManagedIdentitiesServiceClient;
+use Google\Cloud\ManagedIdentities\V1\UpdateDomainRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -53,18 +54,21 @@ function update_domain_sample(
     // Create a client.
     $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $domainLocations = [$domainLocationsElement,];
     $domain = (new Domain())
         ->setName($domainName)
         ->setReservedIpRange($domainReservedIpRange)
         ->setLocations($domainLocations);
+    $request = (new UpdateDomainRequest())
+        ->setUpdateMask($updateMask)
+        ->setDomain($domain);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $managedIdentitiesServiceClient->updateDomain($updateMask, $domain);
+        $response = $managedIdentitiesServiceClient->updateDomain($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

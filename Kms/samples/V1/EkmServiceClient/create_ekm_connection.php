@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudkms_v1_generated_EkmService_CreateEkmConnection_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Kms\V1\Client\EkmServiceClient;
+use Google\Cloud\Kms\V1\CreateEkmConnectionRequest;
 use Google\Cloud\Kms\V1\EkmConnection;
-use Google\Cloud\Kms\V1\EkmServiceClient;
 
 /**
  * Creates a new [EkmConnection][google.cloud.kms.v1.EkmConnection] in a given
@@ -43,17 +44,17 @@ function create_ekm_connection_sample(string $formattedParent, string $ekmConnec
     // Create a client.
     $ekmServiceClient = new EkmServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $ekmConnection = new EkmConnection();
+    $request = (new CreateEkmConnectionRequest())
+        ->setParent($formattedParent)
+        ->setEkmConnectionId($ekmConnectionId)
+        ->setEkmConnection($ekmConnection);
 
     // Call the API and handle any network failures.
     try {
         /** @var EkmConnection $response */
-        $response = $ekmServiceClient->createEkmConnection(
-            $formattedParent,
-            $ekmConnectionId,
-            $ekmConnection
-        );
+        $response = $ekmServiceClient->createEkmConnection($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

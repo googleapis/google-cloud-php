@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START monitoring_v3_generated_NotificationChannelService_GetNotificationChannel_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Monitoring\V3\Client\NotificationChannelServiceClient;
+use Google\Cloud\Monitoring\V3\GetNotificationChannelRequest;
 use Google\Cloud\Monitoring\V3\NotificationChannel;
-use Google\Cloud\Monitoring\V3\NotificationChannelServiceClient;
 
 /**
  * Gets a single notification channel. The channel includes the relevant
@@ -44,10 +45,14 @@ function get_notification_channel_sample(string $formattedName): void
     // Create a client.
     $notificationChannelServiceClient = new NotificationChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetNotificationChannelRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var NotificationChannel $response */
-        $response = $notificationChannelServiceClient->getNotificationChannel($formattedName);
+        $response = $notificationChannelServiceClient->getNotificationChannel($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

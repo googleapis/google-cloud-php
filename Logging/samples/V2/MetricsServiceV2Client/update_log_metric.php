@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START logging_v2_generated_MetricsServiceV2_UpdateLogMetric_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Logging\V2\Client\MetricsServiceV2Client;
 use Google\Cloud\Logging\V2\LogMetric;
-use Google\Cloud\Logging\V2\MetricsServiceV2Client;
+use Google\Cloud\Logging\V2\UpdateLogMetricRequest;
 
 /**
  * Creates or updates a logs-based metric.
@@ -67,15 +68,18 @@ function update_log_metric_sample(
     // Create a client.
     $metricsServiceV2Client = new MetricsServiceV2Client();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $metric = (new LogMetric())
         ->setName($metricName)
         ->setFilter($metricFilter);
+    $request = (new UpdateLogMetricRequest())
+        ->setMetricName($formattedMetricName)
+        ->setMetric($metric);
 
     // Call the API and handle any network failures.
     try {
         /** @var LogMetric $response */
-        $response = $metricsServiceV2Client->updateLogMetric($formattedMetricName, $metric);
+        $response = $metricsServiceV2Client->updateLogMetric($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

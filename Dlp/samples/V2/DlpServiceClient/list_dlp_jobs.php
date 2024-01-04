@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dlp_v2_generated_DlpService_ListDlpJobs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
 use Google\Cloud\Dlp\V2\DlpJob;
-use Google\Cloud\Dlp\V2\DlpServiceClient;
+use Google\Cloud\Dlp\V2\ListDlpJobsRequest;
 
 /**
  * Lists DlpJobs that match the specified filter in the request.
@@ -56,10 +57,14 @@ function list_dlp_jobs_sample(string $formattedParent): void
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListDlpJobsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dlpServiceClient->listDlpJobs($formattedParent);
+        $response = $dlpServiceClient->listDlpJobs($request);
 
         /** @var DlpJob $element */
         foreach ($response as $element) {

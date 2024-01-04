@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_EntityTypes_ListEntityTypes_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dialogflow\V2\Client\EntityTypesClient;
 use Google\Cloud\Dialogflow\V2\EntityType;
-use Google\Cloud\Dialogflow\V2\EntityTypesClient;
+use Google\Cloud\Dialogflow\V2\ListEntityTypesRequest;
 
 /**
  * Returns the list of all entity types in the specified agent.
@@ -40,10 +41,14 @@ function list_entity_types_sample(string $formattedParent): void
     // Create a client.
     $entityTypesClient = new EntityTypesClient();
 
+    // Prepare the request message.
+    $request = (new ListEntityTypesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $entityTypesClient->listEntityTypes($formattedParent);
+        $response = $entityTypesClient->listEntityTypes($request);
 
         /** @var EntityType $element */
         foreach ($response as $element) {

@@ -320,6 +320,8 @@ final class ManagedIdentitiesServiceClient
      *
      * The async variant is {@see ManagedIdentitiesServiceClient::attachTrustAsync()} .
      *
+     * @example samples/V1/ManagedIdentitiesServiceClient/attach_trust.php
+     *
      * @param AttachTrustRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -344,6 +346,8 @@ final class ManagedIdentitiesServiceClient
      *
      * The async variant is
      * {@see ManagedIdentitiesServiceClient::createMicrosoftAdDomainAsync()} .
+     *
+     * @example samples/V1/ManagedIdentitiesServiceClient/create_microsoft_ad_domain.php
      *
      * @param CreateMicrosoftAdDomainRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -370,6 +374,8 @@ final class ManagedIdentitiesServiceClient
      * The async variant is {@see ManagedIdentitiesServiceClient::deleteDomainAsync()}
      * .
      *
+     * @example samples/V1/ManagedIdentitiesServiceClient/delete_domain.php
+     *
      * @param DeleteDomainRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -393,6 +399,8 @@ final class ManagedIdentitiesServiceClient
      * Removes an AD trust.
      *
      * The async variant is {@see ManagedIdentitiesServiceClient::detachTrustAsync()} .
+     *
+     * @example samples/V1/ManagedIdentitiesServiceClient/detach_trust.php
      *
      * @param DetachTrustRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -418,6 +426,8 @@ final class ManagedIdentitiesServiceClient
      *
      * The async variant is {@see ManagedIdentitiesServiceClient::getDomainAsync()} .
      *
+     * @example samples/V1/ManagedIdentitiesServiceClient/get_domain.php
+     *
      * @param GetDomainRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -441,6 +451,8 @@ final class ManagedIdentitiesServiceClient
      * Lists domains in a project.
      *
      * The async variant is {@see ManagedIdentitiesServiceClient::listDomainsAsync()} .
+     *
+     * @example samples/V1/ManagedIdentitiesServiceClient/list_domains.php
      *
      * @param ListDomainsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -467,6 +479,8 @@ final class ManagedIdentitiesServiceClient
      * The async variant is
      * {@see ManagedIdentitiesServiceClient::reconfigureTrustAsync()} .
      *
+     * @example samples/V1/ManagedIdentitiesServiceClient/reconfigure_trust.php
+     *
      * @param ReconfigureTrustRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -491,6 +505,8 @@ final class ManagedIdentitiesServiceClient
      *
      * The async variant is
      * {@see ManagedIdentitiesServiceClient::resetAdminPasswordAsync()} .
+     *
+     * @example samples/V1/ManagedIdentitiesServiceClient/reset_admin_password.php
      *
      * @param ResetAdminPasswordRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -517,6 +533,8 @@ final class ManagedIdentitiesServiceClient
      * The async variant is {@see ManagedIdentitiesServiceClient::updateDomainAsync()}
      * .
      *
+     * @example samples/V1/ManagedIdentitiesServiceClient/update_domain.php
+     *
      * @param UpdateDomainRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -542,6 +560,8 @@ final class ManagedIdentitiesServiceClient
      *
      * The async variant is {@see ManagedIdentitiesServiceClient::validateTrustAsync()}
      * .
+     *
+     * @example samples/V1/ManagedIdentitiesServiceClient/validate_trust.php
      *
      * @param ValidateTrustRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

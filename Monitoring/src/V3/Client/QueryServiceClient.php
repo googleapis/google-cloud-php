@@ -170,6 +170,8 @@ final class QueryServiceClient
      *
      * The async variant is {@see QueryServiceClient::queryTimeSeriesAsync()} .
      *
+     * @example samples/V3/QueryServiceClient/query_time_series.php
+     *
      * @param QueryTimeSeriesRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.

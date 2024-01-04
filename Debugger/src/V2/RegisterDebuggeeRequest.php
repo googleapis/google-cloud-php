@@ -25,6 +25,21 @@ class RegisterDebuggeeRequest extends \Google\Protobuf\Internal\Message
     private $debuggee = null;
 
     /**
+     * @param \Google\Cloud\Debugger\V2\Debuggee $debuggee Required. Debuggee information to register.
+     *                                                     The fields `project`, `uniquifier`, `description` and `agent_version`
+     *                                                     of the debuggee must be set.
+     *
+     * @return \Google\Cloud\Debugger\V2\RegisterDebuggeeRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Debugger\V2\Debuggee $debuggee): self
+    {
+        return (new self())
+            ->setDebuggee($debuggee);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

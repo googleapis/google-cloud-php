@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START documentai_v1_generated_DocumentProcessorService_CreateProcessor_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\DocumentAI\V1\DocumentProcessorServiceClient;
+use Google\Cloud\DocumentAI\V1\Client\DocumentProcessorServiceClient;
+use Google\Cloud\DocumentAI\V1\CreateProcessorRequest;
 use Google\Cloud\DocumentAI\V1\Processor;
 
 /**
@@ -41,13 +42,16 @@ function create_processor_sample(string $formattedParent): void
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $processor = new Processor();
+    $request = (new CreateProcessorRequest())
+        ->setParent($formattedParent)
+        ->setProcessor($processor);
 
     // Call the API and handle any network failures.
     try {
         /** @var Processor $response */
-        $response = $documentProcessorServiceClient->createProcessor($formattedParent, $processor);
+        $response = $documentProcessorServiceClient->createProcessor($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

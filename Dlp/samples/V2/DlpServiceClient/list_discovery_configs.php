@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dlp_v2_generated_DlpService_ListDiscoveryConfigs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
 use Google\Cloud\Dlp\V2\DiscoveryConfig;
-use Google\Cloud\Dlp\V2\DlpServiceClient;
+use Google\Cloud\Dlp\V2\ListDiscoveryConfigsRequest;
 
 /**
  * Lists discovery configurations.
@@ -48,10 +49,14 @@ function list_discovery_configs_sample(string $formattedParent): void
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListDiscoveryConfigsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dlpServiceClient->listDiscoveryConfigs($formattedParent);
+        $response = $dlpServiceClient->listDiscoveryConfigs($request);
 
         /** @var DiscoveryConfig $element */
         foreach ($response as $element) {

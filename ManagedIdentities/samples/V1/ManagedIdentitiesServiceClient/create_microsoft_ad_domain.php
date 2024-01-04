@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START managedidentities_v1_generated_ManagedIdentitiesService_CreateMicrosoftAdDomain_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\ManagedIdentities\V1\Client\ManagedIdentitiesServiceClient;
+use Google\Cloud\ManagedIdentities\V1\CreateMicrosoftAdDomainRequest;
 use Google\Cloud\ManagedIdentities\V1\Domain;
-use Google\Cloud\ManagedIdentities\V1\ManagedIdentitiesServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -47,7 +48,7 @@ use Google\Rpc\Status;
  *                                       15 chars.
  *                                       * The last segment cannot be fully numeric.
  *                                       * Must be unique within the customer project.
- * @param string $domainInstanceName     The unique name of the domain using the form:
+ * @param string $domainName             The unique name of the domain using the form:
  *                                       `projects/{project_id}/locations/global/domains/{domain_name}`.
  * @param string $domainReservedIpRange  The CIDR range of internal addresses that are reserved for this
  *                                       domain. Reserved networks must be /24 or larger. Ranges must be
@@ -62,28 +63,28 @@ use Google\Rpc\Status;
 function create_microsoft_ad_domain_sample(
     string $formattedParent,
     string $domainName,
-    string $domainInstanceName,
+    string $domainName,
     string $domainReservedIpRange,
     string $domainLocationsElement
 ): void {
     // Create a client.
     $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $domainLocations = [$domainLocationsElement,];
     $domain = (new Domain())
-        ->setName($domainInstanceName)
+        ->setName($domainName)
         ->setReservedIpRange($domainReservedIpRange)
         ->setLocations($domainLocations);
+    $request = (new CreateMicrosoftAdDomainRequest())
+        ->setParent($formattedParent)
+        ->setDomainName($domainName)
+        ->setDomain($domain);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $managedIdentitiesServiceClient->createMicrosoftAdDomain(
-            $formattedParent,
-            $domainName,
-            $domain
-        );
+        $response = $managedIdentitiesServiceClient->createMicrosoftAdDomain($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -113,14 +114,14 @@ function callSample(): void
 {
     $formattedParent = ManagedIdentitiesServiceClient::locationName('[PROJECT]', '[LOCATION]');
     $domainName = '[DOMAIN_NAME]';
-    $domainInstanceName = '[NAME]';
+    $domainName = '[NAME]';
     $domainReservedIpRange = '[RESERVED_IP_RANGE]';
     $domainLocationsElement = '[LOCATIONS]';
 
     create_microsoft_ad_domain_sample(
         $formattedParent,
         $domainName,
-        $domainInstanceName,
+        $domainName,
         $domainReservedIpRange,
         $domainLocationsElement
     );

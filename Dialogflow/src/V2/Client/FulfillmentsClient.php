@@ -255,6 +255,8 @@ final class FulfillmentsClient
      *
      * The async variant is {@see FulfillmentsClient::getFulfillmentAsync()} .
      *
+     * @example samples/V2/FulfillmentsClient/get_fulfillment.php
+     *
      * @param GetFulfillmentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -278,6 +280,8 @@ final class FulfillmentsClient
      * Updates the fulfillment.
      *
      * The async variant is {@see FulfillmentsClient::updateFulfillmentAsync()} .
+     *
+     * @example samples/V2/FulfillmentsClient/update_fulfillment.php
      *
      * @param UpdateFulfillmentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -303,6 +307,8 @@ final class FulfillmentsClient
      *
      * The async variant is {@see FulfillmentsClient::getLocationAsync()} .
      *
+     * @example samples/V2/FulfillmentsClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -326,6 +332,8 @@ final class FulfillmentsClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see FulfillmentsClient::listLocationsAsync()} .
+     *
+     * @example samples/V2/FulfillmentsClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

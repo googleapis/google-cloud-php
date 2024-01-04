@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\Dialogflow\V2\AnswerFeedback;
 use Google\Cloud\Dialogflow\V2\AnswerRecord;
-use Google\Cloud\Dialogflow\V2\AnswerRecordsClient;
+use Google\Cloud\Dialogflow\V2\Client\AnswerRecordsClient;
+use Google\Cloud\Dialogflow\V2\UpdateAnswerRecordRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -43,16 +44,19 @@ function update_answer_record_sample(): void
     // Create a client.
     $answerRecordsClient = new AnswerRecordsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $answerRecordAnswerFeedback = new AnswerFeedback();
     $answerRecord = (new AnswerRecord())
         ->setAnswerFeedback($answerRecordAnswerFeedback);
     $updateMask = new FieldMask();
+    $request = (new UpdateAnswerRecordRequest())
+        ->setAnswerRecord($answerRecord)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var AnswerRecord $response */
-        $response = $answerRecordsClient->updateAnswerRecord($answerRecord, $updateMask);
+        $response = $answerRecordsClient->updateAnswerRecord($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

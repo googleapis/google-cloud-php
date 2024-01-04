@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkmanagement_v1_generated_ReachabilityService_ListConnectivityTests_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\NetworkManagement\V1\Client\ReachabilityServiceClient;
 use Google\Cloud\NetworkManagement\V1\ConnectivityTest;
-use Google\Cloud\NetworkManagement\V1\ReachabilityServiceClient;
+use Google\Cloud\NetworkManagement\V1\ListConnectivityTestsRequest;
 
 /**
  * Lists all Connectivity Tests owned by a project.
@@ -39,10 +40,14 @@ function list_connectivity_tests_sample(string $parent): void
     // Create a client.
     $reachabilityServiceClient = new ReachabilityServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListConnectivityTestsRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $reachabilityServiceClient->listConnectivityTests($parent);
+        $response = $reachabilityServiceClient->listConnectivityTests($request);
 
         /** @var ConnectivityTest $element */
         foreach ($response as $element) {

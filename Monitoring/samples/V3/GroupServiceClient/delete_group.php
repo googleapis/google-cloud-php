@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START monitoring_v3_generated_GroupService_DeleteGroup_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Monitoring\V3\GroupServiceClient;
+use Google\Cloud\Monitoring\V3\Client\GroupServiceClient;
+use Google\Cloud\Monitoring\V3\DeleteGroupRequest;
 
 /**
  * Deletes an existing group.
@@ -39,9 +40,13 @@ function delete_group_sample(string $formattedName): void
     // Create a client.
     $groupServiceClient = new GroupServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteGroupRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $groupServiceClient->deleteGroup($formattedName);
+        $groupServiceClient->deleteGroup($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

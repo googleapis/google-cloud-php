@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_Fulfillments_GetFulfillment_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\V2\Client\FulfillmentsClient;
 use Google\Cloud\Dialogflow\V2\Fulfillment;
-use Google\Cloud\Dialogflow\V2\FulfillmentsClient;
+use Google\Cloud\Dialogflow\V2\GetFulfillmentRequest;
 
 /**
  * Retrieves the fulfillment.
@@ -39,10 +40,14 @@ function get_fulfillment_sample(string $formattedName): void
     // Create a client.
     $fulfillmentsClient = new FulfillmentsClient();
 
+    // Prepare the request message.
+    $request = (new GetFulfillmentRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Fulfillment $response */
-        $response = $fulfillmentsClient->getFulfillment($formattedName);
+        $response = $fulfillmentsClient->getFulfillment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

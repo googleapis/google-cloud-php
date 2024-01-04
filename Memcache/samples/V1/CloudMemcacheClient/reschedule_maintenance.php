@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START memcache_v1_generated_CloudMemcache_RescheduleMaintenance_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Memcache\V1\CloudMemcacheClient;
+use Google\Cloud\Memcache\V1\Client\CloudMemcacheClient;
 use Google\Cloud\Memcache\V1\Instance;
+use Google\Cloud\Memcache\V1\RescheduleMaintenanceRequest;
 use Google\Cloud\Memcache\V1\RescheduleMaintenanceRequest\RescheduleType;
 use Google\Rpc\Status;
 
@@ -44,10 +45,15 @@ function reschedule_maintenance_sample(string $formattedInstance, int $reschedul
     // Create a client.
     $cloudMemcacheClient = new CloudMemcacheClient();
 
+    // Prepare the request message.
+    $request = (new RescheduleMaintenanceRequest())
+        ->setInstance($formattedInstance)
+        ->setRescheduleType($rescheduleType);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudMemcacheClient->rescheduleMaintenance($formattedInstance, $rescheduleType);
+        $response = $cloudMemcacheClient->rescheduleMaintenance($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

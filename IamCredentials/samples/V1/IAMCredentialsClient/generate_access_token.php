@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START iamcredentials_v1_generated_IAMCredentials_GenerateAccessToken_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Iam\Credentials\V1\Client\IAMCredentialsClient;
+use Google\Cloud\Iam\Credentials\V1\GenerateAccessTokenRequest;
 use Google\Cloud\Iam\Credentials\V1\GenerateAccessTokenResponse;
-use Google\Cloud\Iam\Credentials\V1\IAMCredentialsClient;
 
 /**
  * Generates an OAuth 2.0 access token for a service account.
@@ -45,13 +46,16 @@ function generate_access_token_sample(string $formattedName, string $scopeElemen
     // Create a client.
     $iAMCredentialsClient = new IAMCredentialsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $scope = [$scopeElement,];
+    $request = (new GenerateAccessTokenRequest())
+        ->setName($formattedName)
+        ->setScope($scope);
 
     // Call the API and handle any network failures.
     try {
         /** @var GenerateAccessTokenResponse $response */
-        $response = $iAMCredentialsClient->generateAccessToken($formattedName, $scope);
+        $response = $iAMCredentialsClient->generateAccessToken($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -676,6 +676,8 @@ final class ConversationsClient
      *
      * The async variant is {@see ConversationsClient::completeConversationAsync()} .
      *
+     * @example samples/V2/ConversationsClient/complete_conversation.php
+     *
      * @param CompleteConversationRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -720,6 +722,8 @@ final class ConversationsClient
      *
      * The async variant is {@see ConversationsClient::createConversationAsync()} .
      *
+     * @example samples/V2/ConversationsClient/create_conversation.php
+     *
      * @param CreateConversationRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -746,6 +750,8 @@ final class ConversationsClient
      * The async variant is {@see ConversationsClient::generateStatelessSummaryAsync()}
      * .
      *
+     * @example samples/V2/ConversationsClient/generate_stateless_summary.php
+     *
      * @param GenerateStatelessSummaryRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -770,6 +776,8 @@ final class ConversationsClient
      *
      * The async variant is {@see ConversationsClient::getConversationAsync()} .
      *
+     * @example samples/V2/ConversationsClient/get_conversation.php
+     *
      * @param GetConversationRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -793,6 +801,8 @@ final class ConversationsClient
      * Returns the list of all conversations in the specified project.
      *
      * The async variant is {@see ConversationsClient::listConversationsAsync()} .
+     *
+     * @example samples/V2/ConversationsClient/list_conversations.php
      *
      * @param ListConversationsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -822,6 +832,8 @@ final class ConversationsClient
      *
      * The async variant is {@see ConversationsClient::listMessagesAsync()} .
      *
+     * @example samples/V2/ConversationsClient/list_messages.php
+     *
      * @param ListMessagesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -845,6 +857,8 @@ final class ConversationsClient
      * Get answers for the given query based on knowledge documents.
      *
      * The async variant is {@see ConversationsClient::searchKnowledgeAsync()} .
+     *
+     * @example samples/V2/ConversationsClient/search_knowledge.php
      *
      * @param SearchKnowledgeRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -873,6 +887,8 @@ final class ConversationsClient
      * The async variant is
      * {@see ConversationsClient::suggestConversationSummaryAsync()} .
      *
+     * @example samples/V2/ConversationsClient/suggest_conversation_summary.php
+     *
      * @param SuggestConversationSummaryRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -897,6 +913,8 @@ final class ConversationsClient
      *
      * The async variant is {@see ConversationsClient::getLocationAsync()} .
      *
+     * @example samples/V2/ConversationsClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -920,6 +938,8 @@ final class ConversationsClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see ConversationsClient::listLocationsAsync()} .
+     *
+     * @example samples/V2/ConversationsClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START logging_v2_generated_MetricsServiceV2_ListLogMetrics_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Logging\V2\Client\MetricsServiceV2Client;
+use Google\Cloud\Logging\V2\ListLogMetricsRequest;
 use Google\Cloud\Logging\V2\LogMetric;
-use Google\Cloud\Logging\V2\MetricsServiceV2Client;
 
 /**
  * Lists logs-based metrics.
@@ -41,10 +42,14 @@ function list_log_metrics_sample(string $formattedParent): void
     // Create a client.
     $metricsServiceV2Client = new MetricsServiceV2Client();
 
+    // Prepare the request message.
+    $request = (new ListLogMetricsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $metricsServiceV2Client->listLogMetrics($formattedParent);
+        $response = $metricsServiceV2Client->listLogMetrics($request);
 
         /** @var LogMetric $element */
         foreach ($response as $element) {
