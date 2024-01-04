@@ -13,7 +13,7 @@
         "component": {
             "id": "cloud-quotas",
             "path": "Quotas",
-            "target": "googleapis/php-cloud-quotas"
+            "target": "googleapis/google-cloud-php-quotas"
         }
     },
     "require": {
