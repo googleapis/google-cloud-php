@@ -28,6 +28,7 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Http\Message\RequestInterface;
+use UnexpectedValueException;
 
 /**
  * @group bigquery
@@ -45,21 +46,33 @@ class RestTest extends TestCase
         $this->successBody = '{"canI":"kickIt"}';
     }
 
-    public function testApiEndpoint()
+    /**
+     * @dataProvider clientUniverseDomainConfigProvider
+     */
+    public function testApiEndpointForUniverseDomain($config, $expectedEndpoint, $expectException = false)
     {
-        $endpoint = 'https://foobar.com/';
-        $rest = TestHelpers::stub(Rest::class, [
-            [
-                'apiEndpoint' => $endpoint
-            ]
-        ], ['requestBuilder']);
+        if ($expectException) {
+            $this->expectException(UnexpectedValueException::class);
+        }
+        $rest = TestHelpers::stub(Rest::class, [$config], ['requestBuilder']);
 
         $rb = $rest->___getProperty('requestBuilder');
         $r = new \ReflectionObject($rb);
         $p = $r->getProperty('baseUri');
         $p->setAccessible(true);
 
-        $this->assertEquals($endpoint . 'bigquery/v2/', $p->getValue($rb));
+        $this->assertEquals($expectedEndpoint, $p->getValue($rb));
+    }
+
+    public function clientUniverseDomainConfigProvider()
+    {
+        return [
+            [[], 'https://bigquery.googleapis.com/bigquery/v2/'], // default
+            [['apiEndpoint' => 'https://foobar.com'], 'https://foobar.com/bigquery/v2/'],
+            [['universeDomain' => 'googleapis.com'], 'https://bigquery.googleapis.com/bigquery/v2/'],
+            [['universeDomain' => 'abc.def.ghi'], 'https://bigquery.abc.def.ghi/bigquery/v2/'],
+            [['universeDomain' => null], '', true],
+        ];
     }
 
     /**
