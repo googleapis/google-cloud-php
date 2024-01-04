@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.26.1](https://github.com/googleapis/gax-php/compare/v1.26.0...v1.26.1) (2024-01-04)
+
+
+### Bug Fixes
+
+* Widen google/longrunning version ([#511](https://github.com/googleapis/gax-php/issues/511)) ([b93096d](https://github.com/googleapis/gax-php/commit/b93096d0e10bde14c50480ea9f0423c292fbd5a6))
+
 ## [1.26.0](https://github.com/googleapis/gax-php/compare/v1.25.0...v1.26.0) (2024-01-03)
 
 
