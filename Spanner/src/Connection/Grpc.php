@@ -47,6 +47,7 @@ use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\SpannerClient as ManualSpannerClient;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
+use Google\Cloud\Spanner\V1\DirectedReadOptions;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryOptions;
 use Google\Cloud\Spanner\V1\KeySet;
@@ -71,7 +72,6 @@ use Google\Protobuf\Struct;
 use Google\Protobuf\Value;
 use Google\Protobuf\Timestamp;
 use GuzzleHttp\Promise\PromiseInterface;
-use Google\Cloud\Spanner\V1\DirectedReadOptions;
 
 /**
  * Connection to Cloud Spanner over gRPC
@@ -942,6 +942,7 @@ class Grpc implements ConnectionInterface
             $queryOptions += ['optimizerStatisticsPackage' => $envQueryOptimizerStatisticsPackage];
         }
         $queryOptions += $this->defaultQueryOptions;
+        $this->setDirectedReadOptions($args);
 
         if ($queryOptions) {
             $args['queryOptions'] = $this->serializer->decodeMessage(
@@ -955,14 +956,6 @@ class Grpc implements ConnectionInterface
             $args['requestOptions'] = $this->serializer->decodeMessage(
                 new RequestOptions,
                 $requestOptions
-            );
-        }
-
-        $directedReadOptions = $this->pluck('directedReadOptions', $args, false);
-        if (!empty($directedReadOptions)) {
-            $args['directedReadOptions'] = $this->serializer->decodeMessage(
-                new DirectedReadOptions,
-                $directedReadOptions
             );
         }
 
@@ -989,15 +982,7 @@ class Grpc implements ConnectionInterface
                 $requestOptions
             );
         }
-
-        $directedReadOptions = $this->pluck('directedReadOptions', $args, false);
-        if (!empty($directedReadOptions)) {
-            $args['directedReadOptions'] = $this->serializer->decodeMessage(
-                new DirectedReadOptions,
-                $directedReadOptions
-            );
-        }
-
+        $this->setDirectedReadOptions($args);
         $args['transaction'] = $this->createTransactionSelector($args);
 
         $databaseName = $this->pluck('database', $args);
@@ -1613,5 +1598,21 @@ class Grpc implements ConnectionInterface
         }
 
         return null;
+    }
+
+    /**
+     * Set DirectedReadOptions if provided.
+     *
+     * @param array $args
+     */
+    private function setDirectedReadOptions(array &$args)
+    {
+        $directedReadOptions = $this->pluck('directedReadOptions', $args, false);
+        if (!empty($directedReadOptions)) {
+            $args['directedReadOptions'] = $this->serializer->decodeMessage(
+                new DirectedReadOptions,
+                $directedReadOptions
+            );
+        }
     }
 }
