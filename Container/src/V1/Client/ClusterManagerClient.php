@@ -89,11 +89,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Container\V1\ClusterManagerClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface cancelOperationAsync(CancelOperationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface checkAutopilotCompatibilityAsync(CheckAutopilotCompatibilityRequest $request, array $optionalArgs = [])
  * @method PromiseInterface completeIPRotationAsync(CompleteIPRotationRequest $request, array $optionalArgs = [])
@@ -137,8 +132,15 @@ final class ClusterManagerClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.container.v1.ClusterManager';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'container.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'container.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

@@ -223,6 +223,16 @@ return [
                     'resourcesGetMethod' => 'getSearchAds360Links',
                 ],
             ],
+            'ListSubpropertyEventFilters' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSubpropertyEventFilters',
+                ],
+            ],
             'SearchChangeHistoryEvents' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

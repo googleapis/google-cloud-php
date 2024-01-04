@@ -32,6 +32,10 @@ use Google\Cloud\Channel\V1\Report;
  * Lists the reports that RunReportJob can run. These reports include an ID,
  * a description, and the list of columns that will be in the result.
  *
+ * Deprecated: Please use [Export Channel Services data to
+ * BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
+ * instead.
+ *
  * @param string $parent The resource name of the partner account to list available
  *                       reports for. Parent uses the format: accounts/{account_id}
  */

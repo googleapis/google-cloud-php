@@ -86,12 +86,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\BigQuery\Reservation\V1\ReservationServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createAssignmentAsync(CreateAssignmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createCapacityCommitmentAsync(CreateCapacityCommitmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createReservationAsync(CreateReservationRequest $request, array $optionalArgs = [])
@@ -122,8 +116,15 @@ final class ReservationServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.bigquery.reservation.v1.ReservationService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'bigqueryreservation.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'bigqueryreservation.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

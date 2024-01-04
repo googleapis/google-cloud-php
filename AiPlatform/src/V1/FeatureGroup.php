@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class FeatureGroup extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Name of the FeatureGroup. Format:
+     * Identifier. Name of the FeatureGroup. Format:
      * `projects/{project}/locations/{location}/featureGroups/{featureGroup}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     private $name = '';
     /**
@@ -75,7 +75,7 @@ class FeatureGroup extends \Google\Protobuf\Internal\Message
      *           required to have an entity_id and a feature_timestamp column in the
      *           source.
      *     @type string $name
-     *           Output only. Name of the FeatureGroup. Format:
+     *           Identifier. Name of the FeatureGroup. Format:
      *           `projects/{project}/locations/{location}/featureGroups/{featureGroup}`
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp when this FeatureGroup was created.
@@ -141,10 +141,10 @@ class FeatureGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Name of the FeatureGroup. Format:
+     * Identifier. Name of the FeatureGroup. Format:
      * `projects/{project}/locations/{location}/featureGroups/{featureGroup}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -153,10 +153,10 @@ class FeatureGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Name of the FeatureGroup. Format:
+     * Identifier. Name of the FeatureGroup. Format:
      * `projects/{project}/locations/{location}/featureGroups/{featureGroup}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

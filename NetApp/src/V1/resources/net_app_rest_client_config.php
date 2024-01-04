@@ -42,6 +42,51 @@ return [
                     'active_directory_id',
                 ],
             ],
+            'CreateBackup' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/backupVaults/*}/backups',
+                'body' => 'backup',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'backup_id',
+                ],
+            ],
+            'CreateBackupPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/backupPolicies',
+                'body' => 'backup_policy',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'backup_policy_id',
+                ],
+            ],
+            'CreateBackupVault' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/backupVaults',
+                'body' => 'backup_vault',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'backup_vault_id',
+                ],
+            ],
             'CreateKmsConfig' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/kmsConfigs',
@@ -128,6 +173,39 @@ return [
                     ],
                 ],
             ],
+            'DeleteBackup' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupVaults/*/backups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteBackupPolicy' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupPolicies/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteBackupVault' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupVaults/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteKmsConfig' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/kmsConfigs/*}',
@@ -206,6 +284,39 @@ return [
                     ],
                 ],
             ],
+            'GetBackup' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupVaults/*/backups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBackupPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupPolicies/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBackupVault' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupVaults/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetKmsConfig' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/kmsConfigs/*}',
@@ -264,6 +375,39 @@ return [
             'ListActiveDirectories' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/activeDirectories',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackupPolicies' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/backupPolicies',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackupVaults' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/backupVaults',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackups' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/backupVaults/*}/backups',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -383,6 +527,54 @@ return [
                     'active_directory.name' => [
                         'getters' => [
                             'getActiveDirectory',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateBackup' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{backup.name=projects/*/locations/*/backupVaults/*/backups/*}',
+                'body' => 'backup',
+                'placeholders' => [
+                    'backup.name' => [
+                        'getters' => [
+                            'getBackup',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateBackupPolicy' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{backup_policy.name=projects/*/locations/*/backupPolicies/*}',
+                'body' => 'backup_policy',
+                'placeholders' => [
+                    'backup_policy.name' => [
+                        'getters' => [
+                            'getBackupPolicy',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateBackupVault' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{backup_vault.name=projects/*/locations/*/backupVaults/*}',
+                'body' => 'backup_vault',
+                'placeholders' => [
+                    'backup_vault.name' => [
+                        'getters' => [
+                            'getBackupVault',
                             'getName',
                         ],
                     ],

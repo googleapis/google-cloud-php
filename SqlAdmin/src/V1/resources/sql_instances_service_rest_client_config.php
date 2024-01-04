@@ -69,6 +69,23 @@ return [
                     ],
                 ],
             ],
+            'Demote' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project}/instances/{instance}/demote',
+                'body' => 'body',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'DemoteMaster' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/projects/{project}/instances/{instance}/demoteMaster',
@@ -427,6 +444,22 @@ return [
             'StopReplica' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/projects/{project}/instances/{instance}/stopReplica',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'Switchover' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project}/instances/{instance}/switchover',
                 'placeholders' => [
                     'instance' => [
                         'getters' => [

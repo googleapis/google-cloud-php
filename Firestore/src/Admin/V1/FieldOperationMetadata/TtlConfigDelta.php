@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Information about an TTL configuration change.
+ * Information about a TTL configuration change.
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.FieldOperationMetadata.TtlConfigDelta</code>
  */

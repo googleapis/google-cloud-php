@@ -30,6 +30,13 @@ class LogsPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string logs_path = 2;</code>
      */
     private $logs_path = '';
+    /**
+     * Optional. Additional settings for Cloud Logging. It will only take effect
+     * when the destination of LogsPolicy is set to CLOUD_LOGGING.
+     *
+     * Generated from protobuf field <code>.google.cloud.batch.v1.LogsPolicy.CloudLoggingOption cloud_logging_option = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $cloud_logging_option = null;
 
     /**
      * Constructor.
@@ -43,6 +50,9 @@ class LogsPolicy extends \Google\Protobuf\Internal\Message
      *           The path to which logs are saved when the destination = PATH. This can be a
      *           local file path on the VM, or under the mount point of a Persistent Disk or
      *           Filestore, or a Cloud Storage path.
+     *     @type \Google\Cloud\Batch\V1\LogsPolicy\CloudLoggingOption $cloud_logging_option
+     *           Optional. Additional settings for Cloud Logging. It will only take effect
+     *           when the destination of LogsPolicy is set to CLOUD_LOGGING.
      * }
      */
     public function __construct($data = NULL) {
@@ -102,6 +112,44 @@ class LogsPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->logs_path = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Additional settings for Cloud Logging. It will only take effect
+     * when the destination of LogsPolicy is set to CLOUD_LOGGING.
+     *
+     * Generated from protobuf field <code>.google.cloud.batch.v1.LogsPolicy.CloudLoggingOption cloud_logging_option = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Batch\V1\LogsPolicy\CloudLoggingOption|null
+     */
+    public function getCloudLoggingOption()
+    {
+        return $this->cloud_logging_option;
+    }
+
+    public function hasCloudLoggingOption()
+    {
+        return isset($this->cloud_logging_option);
+    }
+
+    public function clearCloudLoggingOption()
+    {
+        unset($this->cloud_logging_option);
+    }
+
+    /**
+     * Optional. Additional settings for Cloud Logging. It will only take effect
+     * when the destination of LogsPolicy is set to CLOUD_LOGGING.
+     *
+     * Generated from protobuf field <code>.google.cloud.batch.v1.LogsPolicy.CloudLoggingOption cloud_logging_option = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Batch\V1\LogsPolicy\CloudLoggingOption $var
+     * @return $this
+     */
+    public function setCloudLoggingOption($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Batch\V1\LogsPolicy\CloudLoggingOption::class);
+        $this->cloud_logging_option = $var;
 
         return $this;
     }

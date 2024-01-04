@@ -50,6 +50,7 @@ use Google\Cloud\Filestore\V1\ListBackupsRequest;
 use Google\Cloud\Filestore\V1\ListInstancesRequest;
 use Google\Cloud\Filestore\V1\ListSnapshotsRequest;
 use Google\Cloud\Filestore\V1\RestoreInstanceRequest;
+use Google\Cloud\Filestore\V1\RevertInstanceRequest;
 use Google\Cloud\Filestore\V1\Snapshot;
 use Google\Cloud\Filestore\V1\UpdateBackupRequest;
 use Google\Cloud\Filestore\V1\UpdateInstanceRequest;
@@ -86,12 +87,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Filestore\V1\CloudFilestoreManagerClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createSnapshotAsync(CreateSnapshotRequest $request, array $optionalArgs = [])
@@ -105,6 +100,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listSnapshotsAsync(ListSnapshotsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface restoreInstanceAsync(RestoreInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface revertInstanceAsync(RevertInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateInstanceAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateSnapshotAsync(UpdateSnapshotRequest $request, array $optionalArgs = [])
@@ -117,8 +113,15 @@ final class CloudFilestoreManagerClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.filestore.v1.CloudFilestoreManager';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'file.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'file.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -677,6 +680,30 @@ final class CloudFilestoreManagerClient
     public function restoreInstance(RestoreInstanceRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('RestoreInstance', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Revert an existing instance's file system to a specified snapshot.
+     *
+     * The async variant is {@see CloudFilestoreManagerClient::revertInstanceAsync()} .
+     *
+     * @param RevertInstanceRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function revertInstance(RevertInstanceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('RevertInstance', $request, $callOptions)->wait();
     }
 
     /**

@@ -12,6 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The definition of a report column. Specifies the data properties
  * in the corresponding position of the report rows.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.channel.v1.Column</code>
  */
 class Column extends \Google\Protobuf\Internal\Message

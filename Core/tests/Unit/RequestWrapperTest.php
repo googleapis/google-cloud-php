@@ -21,6 +21,7 @@ namespace Google\Cloud\Core\Tests\Unit;
 use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Auth\UpdateMetadataInterface;
 use Google\Cloud\Core\AnonymousCredentials;
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Exception\ConflictException;
@@ -273,7 +274,7 @@ class RequestWrapperTest extends TestCase
         $accessToken = 'abc';
         $requestWrapper = new RequestWrapper([
             'httpHandler' => function ($request, $options = []) use ($accessToken) {
-                $authHeader = $request->getHeaderLine('Authorization');
+                $authHeader = $request->getHeaderLine('authorization');
                 $this->assertEquals('Bearer ' . $accessToken, $authHeader);
                 return new Response(200);
             },
@@ -290,7 +291,7 @@ class RequestWrapperTest extends TestCase
         $version = '1.0.0';
         $requestWrapper = new RequestWrapper([
             'httpHandler' => function ($request, $options = []) use ($version) {
-                $authHeader = $request->getHeaderLine('Authorization');
+                $authHeader = $request->getHeaderLine('authorization');
                 $userAgent = $request->getHeaderLine('User-Agent');
                 $xGoogApiClient = $request->getHeaderLine('x-goog-api-client');
                 $this->assertEquals('gcloud-php/' . $version, $userAgent);
@@ -480,7 +481,7 @@ class RequestWrapperTest extends TestCase
         ]);
         $requestWrapper->send(new Request('GET', 'http://www.example.com'));
 
-        $this->assertArrayNotHasKey('Authorization', $headers);
+        $this->assertArrayNotHasKey('authorization', $headers);
     }
 
     public function testDefaultToAnonymousCredentialsWhenNoOthersExist()
@@ -667,6 +668,129 @@ class RequestWrapperTest extends TestCase
 
         $this->assertTrue($retryFunctionCalled);
         $this->assertTrue($retryListenerCalled);
+    }
+
+    public function testAuthHandlerPassingWithFetchAuthTokenInterface()
+    {
+        $authHttpHandler = function ($request, $options = []) {
+        };
+        $fetcher = $this->prophesize(FetchAuthTokenInterface::class);
+        $fetcher->fetchAuthToken($authHttpHandler)
+            ->shouldBeCalledOnce()
+            ->willReturn(['access_token' => 'xyz']);
+        $fetcher->getCacheKey()
+            ->shouldBeCalledTimes(2)
+            ->willReturn(null);
+        $wrapper = new RequestWrapper([
+            'authHttpHandler' => $authHttpHandler,
+            'credentialsFetcher' => $fetcher->reveal(),
+        ]);
+
+        $wrapper->send(new Request('GET', 'http://www.example.com'));
+    }
+
+    public function testAuthHandlerPassingWithUpdateMetadataInterface()
+    {
+        $authHttpHandler = function ($request, $options = []) {
+        };
+        $fetcher = $this->prophesize(FetchAuthTokenInterface::class);
+        $fetcher->willImplement(UpdateMetadataInterface::class);
+        $fetcher->updateMetadata(Argument::any(), Argument::any(), $authHttpHandler)
+            ->shouldBeCalledOnce()
+            ->willReturn([
+                'authorization' => ['Bearer abc']
+            ]);
+
+        $fetcher = $this->prophesizeUpdateMetadataFetcher($fetcher);
+
+        $wrapper = new RequestWrapper([
+            'authHttpHandler' => $authHttpHandler,
+            'credentialsFetcher' => $fetcher->reveal(),
+        ]);
+
+        $wrapper->send(new Request('GET', 'http://www.example.com'));
+    }
+
+    /**
+     * Test to verify auth related headers fetching and updation if
+     * credential fetcher implements UpdateMetadataInterface too, else
+     * going ahead with access_code fetching followed by auth header
+     * creation and updation.
+     */
+    public function testFetchingCredentialAsAuthHeader()
+    {
+        $credentialsFetcher = $this->prophesize(FetchAuthTokenInterface::class);
+        $credentialsFetcher->willImplement(UpdateMetadataInterface::class);
+
+        $accessToken = 'abc';
+        $credentialsFetcher->updateMetadata(Argument::cetera())
+            ->shouldBeCalledOnce()
+            ->willReturn([
+                'authorization' => ['Bearer ' . $accessToken]
+            ]);
+
+        $credentialsFetcher = $this->prophesizeUpdateMetadataFetcher($credentialsFetcher);
+
+        $requestWrapper = new RequestWrapper([
+            'credentialsFetcher' => $credentialsFetcher->reveal(),
+            'httpHandler' => function ($request, $options = []) use ($accessToken) {
+                $authHeader = $request->getHeaderLine('authorization');
+                $this->assertEquals('Bearer ' . $accessToken, $authHeader);
+                return new Response(200);
+            }
+        ]);
+
+        $requestWrapper->send(
+            new Request('GET', 'http://www.example.com')
+        );
+    }
+
+    public function testFetchingCredentialAsAuthHeaderWithOverlappingHeaders()
+    {
+        $credentialsFetcher = $this->prophesize(FetchAuthTokenInterface::class);
+        $credentialsFetcher->willImplement(UpdateMetadataInterface::class);
+
+        $accessToken = 'abc';
+        $credentialsFetcher->updateMetadata(Argument::that(function ($arg) {
+            return array_key_exists('x-goog-api-client', $arg);
+        }), Argument::cetera())
+            ->shouldBeCalledOnce()
+            ->willReturn([
+                'authorization' => ['Bearer ' . $accessToken],
+                'x-goog-api-client' => ['xyz']
+            ]);
+
+        $credentialsFetcher = $this->prophesizeUpdateMetadataFetcher($credentialsFetcher);
+
+        $requestWrapper = new RequestWrapper([
+            'credentialsFetcher' => $credentialsFetcher->reveal(),
+            'httpHandler' => function ($request, $options = []) use ($accessToken) {
+                $authHeader = $request->getHeaderLine('authorization');
+                $this->assertEquals('Bearer ' . $accessToken, $authHeader);
+                return new Response(200);
+            },
+        ]);
+
+        $requestWrapper->send(
+            new Request('GET', 'http://www.example.com')
+        );
+    }
+
+    private function prophesizeUpdateMetadataFetcher($credentialsFetcher)
+    {
+        // We have to mock this message because RequestWrapper wraps the credentials using the
+        // FetchAuthTokenCache class
+        $credentialsFetcher->getCacheKey()
+            ->shouldBeCalledOnce()
+            ->willReturn(null);
+
+        // We have to mock this message because FetchAuthTokenCache class' updateMetadata()
+        // internally calls getLastReceivedToken() as a part of token fetching.
+        $credentialsFetcher->getLastReceivedToken()
+            ->shouldBeCalledOnce()
+            ->willReturn(null);
+
+        return $credentialsFetcher;
     }
 }
 

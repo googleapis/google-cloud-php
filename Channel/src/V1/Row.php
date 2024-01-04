@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A row of report values.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.channel.v1.Row</code>
  */
 class Row extends \Google\Protobuf\Internal\Message

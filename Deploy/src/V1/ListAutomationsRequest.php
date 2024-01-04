@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListAutomationsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent, which owns this collection of automations. Format
-     * must be
+     * Required. The parent `Delivery Pipeline`, which owns this collection of
+     * automations. Format must be
      * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -56,8 +56,8 @@ class ListAutomationsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
-     * @param string $parent Required. The parent, which owns this collection of automations. Format
-     *                       must be
+     * @param string $parent Required. The parent `Delivery Pipeline`, which owns this collection of
+     *                       automations. Format must be
      *                       `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`. Please see
      *                       {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
      *
@@ -78,8 +78,8 @@ class ListAutomationsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent, which owns this collection of automations. Format
-     *           must be
+     *           Required. The parent `Delivery Pipeline`, which owns this collection of
+     *           automations. Format must be
      *           `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *     @type int $page_size
      *           The maximum number of automations to return. The service may return
@@ -104,8 +104,8 @@ class ListAutomationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent, which owns this collection of automations. Format
-     * must be
+     * Required. The parent `Delivery Pipeline`, which owns this collection of
+     * automations. Format must be
      * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -117,8 +117,8 @@ class ListAutomationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent, which owns this collection of automations. Format
-     * must be
+     * Required. The parent `Delivery Pipeline`, which owns this collection of
+     * automations. Format must be
      * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

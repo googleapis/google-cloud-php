@@ -59,10 +59,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes.
- *
- * @experimental
- *
  * @method PromiseInterface createScanConfigAsync(CreateScanConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteScanConfigAsync(DeleteScanConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getFindingAsync(GetFindingRequest $request, array $optionalArgs = [])
@@ -84,8 +80,15 @@ final class WebSecurityScannerClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.websecurityscanner.v1.WebSecurityScanner';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'websecurityscanner.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'websecurityscanner.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

@@ -78,7 +78,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      */
     private $provisioned_throughput = null;
     /**
-     * Required for each regional disk associated with the instance. Specify the URLs of the zones where the disk should be replicated to. You must provide exactly two replica zones, and one zone must be the same as the instance zone. You can't use this option with boot disks.
+     * Required for each regional disk associated with the instance. Specify the URLs of the zones where the disk should be replicated to. You must provide exactly two replica zones, and one zone must be the same as the instance zone.
      *
      * Generated from protobuf field <code>repeated string replica_zones = 48438272;</code>
      */
@@ -149,7 +149,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *     @type int|string $provisioned_throughput
      *           Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must be between 1 and 7,124.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $replica_zones
-     *           Required for each regional disk associated with the instance. Specify the URLs of the zones where the disk should be replicated to. You must provide exactly two replica zones, and one zone must be the same as the instance zone. You can't use this option with boot disks.
+     *           Required for each regional disk associated with the instance. Specify the URLs of the zones where the disk should be replicated to. You must provide exactly two replica zones, and one zone must be the same as the instance zone.
      *     @type array|\Google\Protobuf\Internal\MapField $resource_manager_tags
      *           Resource manager tags to be bound to the disk. Tag keys and values have the same definition as resource manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and values are in the format `tagValues/456`. The field is ignored (both PUT & PATCH) when empty.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_policies
@@ -514,7 +514,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required for each regional disk associated with the instance. Specify the URLs of the zones where the disk should be replicated to. You must provide exactly two replica zones, and one zone must be the same as the instance zone. You can't use this option with boot disks.
+     * Required for each regional disk associated with the instance. Specify the URLs of the zones where the disk should be replicated to. You must provide exactly two replica zones, and one zone must be the same as the instance zone.
      *
      * Generated from protobuf field <code>repeated string replica_zones = 48438272;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -525,7 +525,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required for each regional disk associated with the instance. Specify the URLs of the zones where the disk should be replicated to. You must provide exactly two replica zones, and one zone must be the same as the instance zone. You can't use this option with boot disks.
+     * Required for each regional disk associated with the instance. Specify the URLs of the zones where the disk should be replicated to. You must provide exactly two replica zones, and one zone must be the same as the instance zone.
      *
      * Generated from protobuf field <code>repeated string replica_zones = 48438272;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

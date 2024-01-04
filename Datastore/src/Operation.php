@@ -586,7 +586,7 @@ class Operation
         ] + $requestQueryArr + $this->readOptions($options) + $options;
 
         $res = $this->connection->runAggregationQuery($request);
-        return new AggregationQueryResult($res);
+        return new AggregationQueryResult($res, $this->entityMapper);
     }
 
     /**

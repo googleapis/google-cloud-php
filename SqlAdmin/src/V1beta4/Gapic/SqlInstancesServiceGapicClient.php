@@ -37,6 +37,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Sql\V1beta4\DatabaseInstance;
 use Google\Cloud\Sql\V1beta4\InstancesCloneRequest;
 use Google\Cloud\Sql\V1beta4\InstancesDemoteMasterRequest;
+use Google\Cloud\Sql\V1beta4\InstancesDemoteRequest;
 use Google\Cloud\Sql\V1beta4\InstancesExportRequest;
 use Google\Cloud\Sql\V1beta4\InstancesFailoverRequest;
 use Google\Cloud\Sql\V1beta4\InstancesImportRequest;
@@ -54,6 +55,7 @@ use Google\Cloud\Sql\V1beta4\SqlInstancesCloneRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesCreateEphemeralCertRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesDeleteRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesDemoteMasterRequest;
+use Google\Cloud\Sql\V1beta4\SqlInstancesDemoteRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesExportRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesFailoverRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesGetDiskShrinkConfigRequest;
@@ -79,12 +81,14 @@ use Google\Cloud\Sql\V1beta4\SqlInstancesRotateServerCaRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesStartExternalSyncRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesStartReplicaRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesStopReplicaRequest;
+use Google\Cloud\Sql\V1beta4\SqlInstancesSwitchoverRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesTruncateLogRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesUpdateRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesVerifyExternalSyncSettingsRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesVerifyExternalSyncSettingsResponse;
 use Google\Cloud\Sql\V1beta4\SslCert;
 use Google\Cloud\Sql\V1beta4\SslCertsCreateEphemeralRequest;
+use Google\Protobuf\Duration;
 
 /**
  * Service Description:
@@ -102,6 +106,8 @@ use Google\Cloud\Sql\V1beta4\SslCertsCreateEphemeralRequest;
  * ```
  *
  * @experimental
+ *
+ * @deprecated This class will be removed in the next major version update.
  */
 class SqlInstancesServiceGapicClient
 {
@@ -110,8 +116,15 @@ class SqlInstancesServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.sql.v1beta4.SqlInstancesService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'sqladmin.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'sqladmin.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -468,6 +481,67 @@ class SqlInstancesServiceGapicClient
             : $requestParams->getHeader();
         return $this->startCall(
             'Delete',
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Demotes an existing standalone instance to be a Cloud SQL read replica
+     * for an external database server.
+     *
+     * Sample code:
+     * ```
+     * $sqlInstancesServiceClient = new SqlInstancesServiceClient();
+     * try {
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $response = $sqlInstancesServiceClient->demote($instance, $project);
+     * } finally {
+     *     $sqlInstancesServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $instance     Required. The name of the Cloud SQL instance.
+     * @param string $project      Required. The project ID of the project that contains the instance.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type InstancesDemoteRequest $body
+     *           The request body.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Sql\V1beta4\Operation
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function demote($instance, $project, array $optionalArgs = [])
+    {
+        $request = new SqlInstancesDemoteRequest();
+        $requestParamHeaders = [];
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['body'])) {
+            $request->setBody($optionalArgs['body']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'Demote',
             Operation::class,
             $optionalArgs,
             $request
@@ -1283,6 +1357,10 @@ class SqlInstancesServiceGapicClient
      *           Cloud SQL read replica instance name.
      *     @type string $project
      *           ID of the project that contains the read replica.
+     *     @type bool $failover
+     *           Set to true if the promote operation should attempt to re-add the original
+     *           primary as a replica when it comes back online. Otherwise, if this value is
+     *           false or not set, the original primary will be a standalone instance.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1307,6 +1385,10 @@ class SqlInstancesServiceGapicClient
         if (isset($optionalArgs['project'])) {
             $request->setProject($optionalArgs['project']);
             $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['failover'])) {
+            $request->setFailover($optionalArgs['failover']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1968,6 +2050,74 @@ class SqlInstancesServiceGapicClient
             : $requestParams->getHeader();
         return $this->startCall(
             'StopReplica',
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Switches over from the primary instance to a replica instance.
+     *
+     * Sample code:
+     * ```
+     * $sqlInstancesServiceClient = new SqlInstancesServiceClient();
+     * try {
+     *     $response = $sqlInstancesServiceClient->switchover();
+     * } finally {
+     *     $sqlInstancesServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $instance
+     *           Cloud SQL read replica instance name.
+     *     @type string $project
+     *           ID of the project that contains the replica.
+     *     @type Duration $dbTimeout
+     *           Optional. (MySQL only) Cloud SQL instance operations timeout, which is a
+     *           sum of all database operations. Default value is 10 minutes and can be
+     *           modified to a maximum value of 24 hours.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Sql\V1beta4\Operation
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function switchover(array $optionalArgs = [])
+    {
+        $request = new SqlInstancesSwitchoverRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['instance'])) {
+            $request->setInstance($optionalArgs['instance']);
+            $requestParamHeaders['instance'] = $optionalArgs['instance'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['dbTimeout'])) {
+            $request->setDbTimeout($optionalArgs['dbTimeout']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'Switchover',
             Operation::class,
             $optionalArgs,
             $request

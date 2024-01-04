@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * An `AutomationRun` resource in the Cloud Deploy API.
- * An `AutomationRun` represents an automation execution instance of an
+ * An `AutomationRun` represents an execution instance of an
  * automation rule.
  *
  * Generated from protobuf message <code>google.cloud.deploy.v1.AutomationRun</code>
@@ -75,14 +75,14 @@ class AutomationRun extends \Google\Protobuf\Internal\Message
     private $state = 0;
     /**
      * Output only. Explains the current state of the `AutomationRun`. Present
-     * only an explanation is needed.
+     * only when an explanation is needed.
      *
      * Generated from protobuf field <code>string state_description = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state_description = '';
     /**
-     * Output only. Time the `AutomationRun` will expire. An `AutomationRun` will
-     * expire after 14 days from its creation date.
+     * Output only. Time the `AutomationRun` expires. An `AutomationRun` expires
+     * after 14 days from its creation date.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -140,10 +140,10 @@ class AutomationRun extends \Google\Protobuf\Internal\Message
      *           Output only. Current state of the `AutomationRun`.
      *     @type string $state_description
      *           Output only. Explains the current state of the `AutomationRun`. Present
-     *           only an explanation is needed.
+     *           only when an explanation is needed.
      *     @type \Google\Protobuf\Timestamp $expire_time
-     *           Output only. Time the `AutomationRun` will expire. An `AutomationRun` will
-     *           expire after 14 days from its creation date.
+     *           Output only. Time the `AutomationRun` expires. An `AutomationRun` expires
+     *           after 14 days from its creation date.
      *     @type string $rule_id
      *           Output only. The ID of the automation rule that initiated the operation.
      *     @type string $automation_id
@@ -420,7 +420,7 @@ class AutomationRun extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Explains the current state of the `AutomationRun`. Present
-     * only an explanation is needed.
+     * only when an explanation is needed.
      *
      * Generated from protobuf field <code>string state_description = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -432,7 +432,7 @@ class AutomationRun extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Explains the current state of the `AutomationRun`. Present
-     * only an explanation is needed.
+     * only when an explanation is needed.
      *
      * Generated from protobuf field <code>string state_description = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -447,8 +447,8 @@ class AutomationRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time the `AutomationRun` will expire. An `AutomationRun` will
-     * expire after 14 days from its creation date.
+     * Output only. Time the `AutomationRun` expires. An `AutomationRun` expires
+     * after 14 days from its creation date.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -469,8 +469,8 @@ class AutomationRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time the `AutomationRun` will expire. An `AutomationRun` will
-     * expire after 14 days from its creation date.
+     * Output only. Time the `AutomationRun` expires. An `AutomationRun` expires
+     * after 14 days from its creation date.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var

@@ -25,7 +25,7 @@ class AlternatePolicySpec extends \Google\Protobuf\Internal\Message
      */
     private $launch = '';
     /**
-     * Specify `Constraint` for configurations of Cloud Platform resources.
+     * Specify constraint for configurations of Google Cloud resources.
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.PolicySpec spec = 2;</code>
      */
@@ -42,7 +42,7 @@ class AlternatePolicySpec extends \Google\Protobuf\Internal\Message
      *           control the launch.
      *           Should be set only in the alternate policy.
      *     @type \Google\Cloud\OrgPolicy\V2\PolicySpec $spec
-     *           Specify `Constraint` for configurations of Cloud Platform resources.
+     *           Specify constraint for configurations of Google Cloud resources.
      * }
      */
     public function __construct($data = NULL) {
@@ -81,7 +81,7 @@ class AlternatePolicySpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specify `Constraint` for configurations of Cloud Platform resources.
+     * Specify constraint for configurations of Google Cloud resources.
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.PolicySpec spec = 2;</code>
      * @return \Google\Cloud\OrgPolicy\V2\PolicySpec|null
@@ -102,7 +102,7 @@ class AlternatePolicySpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specify `Constraint` for configurations of Cloud Platform resources.
+     * Specify constraint for configurations of Google Cloud resources.
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.PolicySpec spec = 2;</code>
      * @param \Google\Cloud\OrgPolicy\V2\PolicySpec $var

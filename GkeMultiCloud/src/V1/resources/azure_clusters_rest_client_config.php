@@ -92,6 +92,18 @@ return [
                     ],
                 ],
             ],
+            'GenerateAzureClusterAgentToken' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{azure_cluster=projects/*/locations/*/azureClusters/*}:generateAzureClusterAgentToken',
+                'body' => '*',
+                'placeholders' => [
+                    'azure_cluster' => [
+                        'getters' => [
+                            'getAzureCluster',
+                        ],
+                    ],
+                ],
+            ],
             'GetAzureClient' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/azureClients/*}',
@@ -114,6 +126,17 @@ return [
                     ],
                 ],
             ],
+            'GetAzureJsonWebKeys' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{azure_cluster=projects/*/locations/*/azureClusters/*}/jwks',
+                'placeholders' => [
+                    'azure_cluster' => [
+                        'getters' => [
+                            'getAzureCluster',
+                        ],
+                    ],
+                ],
+            ],
             'GetAzureNodePool' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/azureClusters/*/azureNodePools/*}',
@@ -121,6 +144,17 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAzureOpenIdConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{azure_cluster=projects/*/locations/*/azureClusters/*}/.well-known/openid-configuration',
+                'placeholders' => [
+                    'azure_cluster' => [
+                        'getters' => [
+                            'getAzureCluster',
                         ],
                     ],
                 ],

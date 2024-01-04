@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Retry extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Total number of retries. Retry will skipped if set to 0; The
+     * Required. Total number of retries. Retry is skipped if set to 0; The
      * minimum value is 1, and the maximum value is 10.
      *
      * Generated from protobuf field <code>int64 attempts = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -44,7 +44,7 @@ class Retry extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $attempts
-     *           Required. Total number of retries. Retry will skipped if set to 0; The
+     *           Required. Total number of retries. Retry is skipped if set to 0; The
      *           minimum value is 1, and the maximum value is 10.
      *     @type \Google\Protobuf\Duration $wait
      *           Optional. How long to wait for the first retry. Default is 0, and the
@@ -60,7 +60,7 @@ class Retry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Total number of retries. Retry will skipped if set to 0; The
+     * Required. Total number of retries. Retry is skipped if set to 0; The
      * minimum value is 1, and the maximum value is 10.
      *
      * Generated from protobuf field <code>int64 attempts = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -72,7 +72,7 @@ class Retry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Total number of retries. Retry will skipped if set to 0; The
+     * Required. Total number of retries. Retry is skipped if set to 0; The
      * minimum value is 1, and the maximum value is 10.
      *
      * Generated from protobuf field <code>int64 attempts = 1 [(.google.api.field_behavior) = REQUIRED];</code>

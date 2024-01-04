@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Delete message for `AzureClusters.DeleteAzureNodePool` method.
+ * Request message for `AzureClusters.DeleteAzureNodePool` method.
  *
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.DeleteAzureNodePoolRequest</code>
  */

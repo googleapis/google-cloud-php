@@ -46,6 +46,7 @@ class InstanceTest extends TestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
+    use ResultGeneratorTrait;
     use StubCreationTrait;
     use ResultGeneratorTrait;
 
@@ -585,6 +586,7 @@ class InstanceTest extends TestCase
 
     public function testInstanceDatabaseRole()
     {
+        $sql = 'SELECT * FROM Table';
         $database = $this->instance->database($this::DATABASE, ['databaseRole' => 'Reader']);
 
         $this->connection->createSession(Argument::withEntry(
@@ -595,8 +597,9 @@ class InstanceTest extends TestCase
         ->willReturn([
                 'name' => self::SESSION
             ]);
+        $this->connection->executeStreamingSql(Argument::withEntry('sql', $sql))
+            ->shouldBeCalled()->willReturn($this->resultGenerator());
 
-        $sql = 'SELECT * FROM Table';
         $database->execute($sql);
     }
 

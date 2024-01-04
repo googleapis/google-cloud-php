@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A representation of usage or invoice date ranges.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.channel.v1.DateRange</code>
  */
 class DateRange extends \Google\Protobuf\Internal\Message

@@ -39,12 +39,22 @@
                 }
             },
             "methods": {
+                "AddRule": {
+                    "timeout_millis": 600000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
                 "Delete": {
                     "timeout_millis": 600000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
                 "Get": {
+                    "timeout_millis": 600000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetRule": {
                     "timeout_millis": 600000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -60,6 +70,16 @@
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "Patch": {
+                    "timeout_millis": 600000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "PatchRule": {
+                    "timeout_millis": 600000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "RemoveRule": {
                     "timeout_millis": 600000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"

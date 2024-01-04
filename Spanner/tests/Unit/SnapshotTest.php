@@ -27,6 +27,7 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Google\Cloud\Spanner\KeySet;
+use Google\Cloud\Spanner\Result;
 
 /**
  * @group spanner
@@ -105,8 +106,10 @@ class SnapshotTest extends TestCase
         $this->expectException(\BadMethodCallException::class);
 
         $operation = $this->prophesize(Operation::class);
+        $result = $this->prophesize(Result::class);
         $operation->execute(Argument::any(), Argument::any(), Argument::any())
-            ->shouldBeCalled();
+            ->shouldBeCalled()
+            ->willReturn($result);
 
         $snapshot = new Snapshot(
             $operation->reveal(),

@@ -24,6 +24,27 @@ class CloudRunConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool automatic_traffic_control = 1;</code>
      */
     private $automatic_traffic_control = false;
+    /**
+     * Optional. A list of tags that are added to the canary revision while the
+     * canary deployment is in progress.
+     *
+     * Generated from protobuf field <code>repeated string canary_revision_tags = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $canary_revision_tags;
+    /**
+     * Optional. A list of tags that are added to the prior revision while the
+     * canary deployment is in progress.
+     *
+     * Generated from protobuf field <code>repeated string prior_revision_tags = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $prior_revision_tags;
+    /**
+     * Optional. A list of tags that are added to the final stable revision after
+     * the canary deployment is completed.
+     *
+     * Generated from protobuf field <code>repeated string stable_revision_tags = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $stable_revision_tags;
 
     /**
      * Constructor.
@@ -36,6 +57,15 @@ class CloudRunConfig extends \Google\Protobuf\Internal\Message
      *           Service on the user's behalf to facilitate traffic splitting. This is
      *           required to be true for CanaryDeployments, but optional for
      *           CustomCanaryDeployments.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $canary_revision_tags
+     *           Optional. A list of tags that are added to the canary revision while the
+     *           canary deployment is in progress.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $prior_revision_tags
+     *           Optional. A list of tags that are added to the prior revision while the
+     *           canary deployment is in progress.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $stable_revision_tags
+     *           Optional. A list of tags that are added to the final stable revision after
+     *           the canary deployment is completed.
      * }
      */
     public function __construct($data = NULL) {
@@ -71,6 +101,90 @@ class CloudRunConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->automatic_traffic_control = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A list of tags that are added to the canary revision while the
+     * canary deployment is in progress.
+     *
+     * Generated from protobuf field <code>repeated string canary_revision_tags = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCanaryRevisionTags()
+    {
+        return $this->canary_revision_tags;
+    }
+
+    /**
+     * Optional. A list of tags that are added to the canary revision while the
+     * canary deployment is in progress.
+     *
+     * Generated from protobuf field <code>repeated string canary_revision_tags = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCanaryRevisionTags($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->canary_revision_tags = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A list of tags that are added to the prior revision while the
+     * canary deployment is in progress.
+     *
+     * Generated from protobuf field <code>repeated string prior_revision_tags = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPriorRevisionTags()
+    {
+        return $this->prior_revision_tags;
+    }
+
+    /**
+     * Optional. A list of tags that are added to the prior revision while the
+     * canary deployment is in progress.
+     *
+     * Generated from protobuf field <code>repeated string prior_revision_tags = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPriorRevisionTags($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->prior_revision_tags = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A list of tags that are added to the final stable revision after
+     * the canary deployment is completed.
+     *
+     * Generated from protobuf field <code>repeated string stable_revision_tags = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getStableRevisionTags()
+    {
+        return $this->stable_revision_tags;
+    }
+
+    /**
+     * Optional. A list of tags that are added to the final stable revision after
+     * the canary deployment is completed.
+     *
+     * Generated from protobuf field <code>repeated string stable_revision_tags = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setStableRevisionTags($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->stable_revision_tags = $arr;
 
         return $this;
     }

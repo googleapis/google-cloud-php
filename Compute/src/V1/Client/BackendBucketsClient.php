@@ -38,11 +38,16 @@ use Google\Cloud\Compute\V1\BackendBucket;
 use Google\Cloud\Compute\V1\DeleteBackendBucketRequest;
 use Google\Cloud\Compute\V1\DeleteSignedUrlKeyBackendBucketRequest;
 use Google\Cloud\Compute\V1\GetBackendBucketRequest;
+use Google\Cloud\Compute\V1\GetIamPolicyBackendBucketRequest;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\InsertBackendBucketRequest;
 use Google\Cloud\Compute\V1\ListBackendBucketsRequest;
 use Google\Cloud\Compute\V1\PatchBackendBucketRequest;
+use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\SetEdgeSecurityPolicyBackendBucketRequest;
+use Google\Cloud\Compute\V1\SetIamPolicyBackendBucketRequest;
+use Google\Cloud\Compute\V1\TestIamPermissionsBackendBucketRequest;
+use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\UpdateBackendBucketRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -52,19 +57,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Compute\V1\BackendBucketsClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface addSignedUrlKeyAsync(AddSignedUrlKeyBackendBucketRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteAsync(DeleteBackendBucketRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteSignedUrlKeyAsync(DeleteSignedUrlKeyBackendBucketRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAsync(GetBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getIamPolicyAsync(GetIamPolicyBackendBucketRequest $request, array $optionalArgs = [])
  * @method PromiseInterface insertAsync(InsertBackendBucketRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAsync(ListBackendBucketsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface patchAsync(PatchBackendBucketRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setEdgeSecurityPolicyAsync(SetEdgeSecurityPolicyBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface setIamPolicyAsync(SetIamPolicyBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsBackendBucketRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateAsync(UpdateBackendBucketRequest $request, array $optionalArgs = [])
  */
 final class BackendBucketsClient
@@ -74,8 +77,15 @@ final class BackendBucketsClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.compute.v1.BackendBuckets';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'compute.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'compute.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -338,6 +348,30 @@ final class BackendBucketsClient
     }
 
     /**
+     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     *
+     * The async variant is {@see BackendBucketsClient::getIamPolicyAsync()} .
+     *
+     * @param GetIamPolicyBackendBucketRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getIamPolicy(GetIamPolicyBackendBucketRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a BackendBucket resource in the specified project using the data included in the request.
      *
      * The async variant is {@see BackendBucketsClient::insertAsync()} .
@@ -431,6 +465,54 @@ final class BackendBucketsClient
     public function setEdgeSecurityPolicy(SetEdgeSecurityPolicyBackendBucketRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('SetEdgeSecurityPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     *
+     * The async variant is {@see BackendBucketsClient::setIamPolicyAsync()} .
+     *
+     * @param SetIamPolicyBackendBucketRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function setIamPolicy(SetIamPolicyBackendBucketRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     *
+     * The async variant is {@see BackendBucketsClient::testIamPermissionsAsync()} .
+     *
+     * @param TestIamPermissionsBackendBucketRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestPermissionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function testIamPermissions(TestIamPermissionsBackendBucketRequest $request, array $callOptions = []): TestPermissionsResponse
+    {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
     /**

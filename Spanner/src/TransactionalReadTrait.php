@@ -276,7 +276,11 @@ trait TransactionalReadTrait
         $this->singleUseState();
         $this->checkReadContext();
 
-        $options['transactionId'] = $this->transactionId;
+        if (empty($this->transactionId) && isset($this->options['begin'])) {
+            $options['begin'] = $this->options['begin'];
+        } else {
+            $options['transactionId'] = $this->transactionId;
+        }
         $options['transactionType'] = $this->context;
         $options['seqno'] = $this->seqno;
         $this->seqno++;
@@ -297,7 +301,12 @@ trait TransactionalReadTrait
             $options,
             $this->directedReadOptions ?? []
         );
-        return $this->operation->execute($this->session, $sql, $options);
+
+        $result = $this->operation->execute($this->session, $sql, $options);
+        if (empty($this->id()) && $result->transaction()) {
+            $this->setId($result->transaction()->id());
+        }
+        return $result;
     }
 
     /**
@@ -347,7 +356,11 @@ trait TransactionalReadTrait
         $this->singleUseState();
         $this->checkReadContext();
 
-        $options['transactionId'] = $this->transactionId;
+        if (empty($this->transactionId) && isset($this->options['begin'])) {
+            $options['begin'] = $this->options['begin'];
+        } else {
+            $options['transactionId'] = $this->transactionId;
+        }
         $options['transactionType'] = $this->context;
         $options += $this->options;
         $selector = $this->transactionSelector($options, $this->options);
@@ -366,7 +379,12 @@ trait TransactionalReadTrait
             $options,
             $this->directedReadOptions ?? []
         );
-        return $this->operation->read($this->session, $table, $keySet, $columns, $options);
+
+        $result = $this->operation->read($this->session, $table, $keySet, $columns, $options);
+        if (empty($this->id()) && $result->transaction()) {
+            $this->setId($result->transaction()->id());
+        }
+        return $result;
     }
 
     /**
@@ -382,6 +400,14 @@ trait TransactionalReadTrait
     public function id()
     {
         return $this->transactionId;
+    }
+
+    /**
+     * Set the transaction ID.
+     */
+    public function setId(?string $transactionId)
+    {
+        $this->transactionId = $transactionId;
     }
 
     /**

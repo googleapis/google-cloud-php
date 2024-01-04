@@ -915,7 +915,14 @@ class Database
 
         $attempt = 0;
         $startTransactionFn = function ($session, $options) use (&$attempt) {
-            if ($attempt > 0) {
+
+            // Initial attempt requires to set `begin` options (ILB).
+            if ($attempt === 0) {
+                // Partitioned DML does not support ILB.
+                if (!isset($options['transactionOptions']['partitionedDml'])) {
+                    $options['begin'] = $options['transactionOptions'];
+                }
+            } else {
                 $options['isRetry'] = true;
             }
 

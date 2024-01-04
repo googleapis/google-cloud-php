@@ -16,7 +16,6 @@
   <testsuites>
     <testsuite name="System Test Suite">
       <directory>*/tests/System</directory>
-      <directory>tests/System</directory>
     </testsuite>
   </testsuites>
 </phpunit>

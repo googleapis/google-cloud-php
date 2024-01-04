@@ -55,11 +55,9 @@ use Google\Protobuf\Any;
  * }
  * ```
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\GkeConnect\Gateway\V1beta1\Client\GatewayServiceClient} to use the
- * new surface.
- *
  * @experimental
+ *
+ * @deprecated Please use the new service client {@see \Google\Cloud\GkeConnect\Gateway\V1beta1\Client\GatewayServiceClient}.
  */
 class GatewayServiceGapicClient
 {
@@ -68,8 +66,15 @@ class GatewayServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.gkeconnect.gateway.v1beta1.GatewayService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'connectgateway.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'connectgateway.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;

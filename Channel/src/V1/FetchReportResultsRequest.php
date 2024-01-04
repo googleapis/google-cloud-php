@@ -12,6 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Request message for
  * [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults].
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.channel.v1.FetchReportResultsRequest</code>
  */
 class FetchReportResultsRequest extends \Google\Protobuf\Internal\Message

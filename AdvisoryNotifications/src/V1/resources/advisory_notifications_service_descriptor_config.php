@@ -63,6 +63,10 @@ return [
             'templateMap' => [
                 'location' => 'organizations/{organization}/locations/{location}',
                 'notification' => 'organizations/{organization}/locations/{location}/notifications/{notification}',
+                'organizationLocation' => 'organizations/{organization}/locations/{location}',
+                'organizationLocationNotification' => 'organizations/{organization}/locations/{location}/notifications/{notification}',
+                'projectLocation' => 'projects/{project}/locations/{location}',
+                'projectLocationNotification' => 'projects/{project}/locations/{location}/notifications/{notification}',
                 'settings' => 'organizations/{organization}/locations/{location}/settings',
             ],
         ],

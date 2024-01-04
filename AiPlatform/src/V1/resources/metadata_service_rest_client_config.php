@@ -443,6 +443,10 @@ return [
                         'method' => 'post',
                         'uriTemplate' => '/ui/{resource=projects/*/locations/*/notebookRuntimeTemplates/*}:getIamPolicy',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/publishers/*/models/*}:getIamPolicy',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [

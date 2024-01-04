@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/redis/cluster/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/RedisCluster/$1/$2
+api-name: RedisCluster

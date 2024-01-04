@@ -22,6 +22,7 @@ class ForecastOptions extends \Google\Protobuf\Internal\Message
      * found to violate the threshold, and the violation is observed in all
      * forecasts made for the configured `duration`, then the time series is
      * considered to be failing.
+     * The forecast horizon can range from 1 hour to 60 hours.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration forecast_horizon = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -39,6 +40,7 @@ class ForecastOptions extends \Google\Protobuf\Internal\Message
      *           found to violate the threshold, and the violation is observed in all
      *           forecasts made for the configured `duration`, then the time series is
      *           considered to be failing.
+     *           The forecast horizon can range from 1 hour to 60 hours.
      * }
      */
     public function __construct($data = NULL) {
@@ -52,6 +54,7 @@ class ForecastOptions extends \Google\Protobuf\Internal\Message
      * found to violate the threshold, and the violation is observed in all
      * forecasts made for the configured `duration`, then the time series is
      * considered to be failing.
+     * The forecast horizon can range from 1 hour to 60 hours.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration forecast_horizon = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Duration|null
@@ -77,6 +80,7 @@ class ForecastOptions extends \Google\Protobuf\Internal\Message
      * found to violate the threshold, and the violation is observed in all
      * forecasts made for the configured `duration`, then the time series is
      * considered to be failing.
+     * The forecast horizon can range from 1 hour to 60 hours.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration forecast_horizon = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\Duration $var

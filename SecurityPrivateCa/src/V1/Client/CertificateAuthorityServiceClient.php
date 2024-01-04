@@ -95,12 +95,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient} for the
- * stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface activateCertificateAuthorityAsync(ActivateCertificateAuthorityRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createCaPoolAsync(CreateCaPoolRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createCertificateAsync(CreateCertificateRequest $request, array $optionalArgs = [])
@@ -144,8 +138,15 @@ final class CertificateAuthorityServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.security.privateca.v1.CertificateAuthorityService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'privateca.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'privateca.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

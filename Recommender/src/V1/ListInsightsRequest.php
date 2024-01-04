@@ -54,11 +54,15 @@ class ListInsightsRequest extends \Google\Protobuf\Internal\Message
      * * `stateInfo.state`
      * * `insightSubtype`
      * * `severity`
+     * * `targetResources`
      * Examples:
      * * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
      * * `insightSubtype = PERMISSIONS_USAGE`
      * * `severity = CRITICAL OR severity = HIGH`
+     * * `targetResources :
+     * //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1`
      * * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)`
+     * The max allowed filter length is 500 characters.
      * (These expressions are based on the filter language described at
      * https://google.aip.dev/160)
      *
@@ -129,11 +133,15 @@ class ListInsightsRequest extends \Google\Protobuf\Internal\Message
      *           * `stateInfo.state`
      *           * `insightSubtype`
      *           * `severity`
+     *           * `targetResources`
      *           Examples:
      *           * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
      *           * `insightSubtype = PERMISSIONS_USAGE`
      *           * `severity = CRITICAL OR severity = HIGH`
+     *           * `targetResources :
+     *           //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1`
      *           * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)`
+     *           The max allowed filter length is 500 characters.
      *           (These expressions are based on the filter language described at
      *           https://google.aip.dev/160)
      * }
@@ -257,11 +265,15 @@ class ListInsightsRequest extends \Google\Protobuf\Internal\Message
      * * `stateInfo.state`
      * * `insightSubtype`
      * * `severity`
+     * * `targetResources`
      * Examples:
      * * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
      * * `insightSubtype = PERMISSIONS_USAGE`
      * * `severity = CRITICAL OR severity = HIGH`
+     * * `targetResources :
+     * //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1`
      * * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)`
+     * The max allowed filter length is 500 characters.
      * (These expressions are based on the filter language described at
      * https://google.aip.dev/160)
      *
@@ -279,11 +291,15 @@ class ListInsightsRequest extends \Google\Protobuf\Internal\Message
      * * `stateInfo.state`
      * * `insightSubtype`
      * * `severity`
+     * * `targetResources`
      * Examples:
      * * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
      * * `insightSubtype = PERMISSIONS_USAGE`
      * * `severity = CRITICAL OR severity = HIGH`
+     * * `targetResources :
+     * //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1`
      * * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)`
+     * The max allowed filter length is 500 characters.
      * (These expressions are based on the filter language described at
      * https://google.aip.dev/160)
      *

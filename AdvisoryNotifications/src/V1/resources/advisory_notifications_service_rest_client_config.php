@@ -6,6 +6,12 @@ return [
             'GetNotification' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=organizations/*/locations/*/notifications/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/notifications/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -28,6 +34,12 @@ return [
             'ListNotifications' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=organizations/*/locations/*}/notifications',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*}/notifications',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

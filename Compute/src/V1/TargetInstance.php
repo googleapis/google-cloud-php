@@ -65,6 +65,12 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
      */
     private $network = null;
     /**
+     * [Output Only] The resource URL for the security policy associated with this target instance.
+     *
+     * Generated from protobuf field <code>optional string security_policy = 171082513;</code>
+     */
+    private $security_policy = null;
+    /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
@@ -100,6 +106,8 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
      *           Check the NatPolicy enum for the list of possible values.
      *     @type string $network
      *           The URL of the network this target instance uses to forward traffic. If not specified, the traffic will be forwarded to the network that the default network interface belongs to.
+     *     @type string $security_policy
+     *           [Output Only] The resource URL for the security policy associated with this target instance.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $zone
@@ -397,6 +405,42 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->network = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The resource URL for the security policy associated with this target instance.
+     *
+     * Generated from protobuf field <code>optional string security_policy = 171082513;</code>
+     * @return string
+     */
+    public function getSecurityPolicy()
+    {
+        return isset($this->security_policy) ? $this->security_policy : '';
+    }
+
+    public function hasSecurityPolicy()
+    {
+        return isset($this->security_policy);
+    }
+
+    public function clearSecurityPolicy()
+    {
+        unset($this->security_policy);
+    }
+
+    /**
+     * [Output Only] The resource URL for the security policy associated with this target instance.
+     *
+     * Generated from protobuf field <code>optional string security_policy = 171082513;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSecurityPolicy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->security_policy = $var;
 
         return $this;
     }
