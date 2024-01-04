@@ -9,7 +9,7 @@
     </exclude>
   </coverage>
   <testsuites>
-    <testsuite name="Google Cloud Cloud Quotas Unit Test Suite">
+    <testsuite name="Google Cloud Quotas Unit Test Suite">
       <directory>tests/Unit</directory>
     </testsuite>
   </testsuites>
