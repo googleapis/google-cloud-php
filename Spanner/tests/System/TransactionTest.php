@@ -283,6 +283,9 @@ class TransactionTest extends SpannerTestCase
      */
     public function testTransactionExecuteWithDirectedRead($directedReadOptions)
     {
+        // Emulator does not support DirectedRead
+        $this->skipEmulatorTests();
+
         $db = self::$database;
         $id = $this->randId();
 
@@ -310,6 +313,9 @@ class TransactionTest extends SpannerTestCase
      */
     public function testRWTransactionExecuteFailsWithDirectedRead($directedReadOptions)
     {
+        // Emulator does not support DirectedRead
+        $this->skipEmulatorTests();
+
         $db = self::$database;
         $transaction = $db->transaction();
         $expected = 'Directed reads can only be performed in a read-only transaction.';
@@ -342,6 +348,9 @@ class TransactionTest extends SpannerTestCase
      */
     public function testRWTransactionReadFailsWithDirectedRead($directedReadOptions)
     {
+        // Emulator does not support DirectedRead
+        $this->skipEmulatorTests();
+
         $db = self::$database;
         $transaction = $db->transaction();
         $expected = 'Directed reads can only be performed in a read-only transaction.';

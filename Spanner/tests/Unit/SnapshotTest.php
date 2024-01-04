@@ -123,10 +123,11 @@ class SnapshotTest extends TestCase
     public function testExecuteDirectedReadOptions()
     {
         $operation = $this->prophesize(Operation::class);
+        $result = $this->prophesize(Result::class);
         $operation->execute(Argument::any(), Argument::any(), Argument::withEntry(
             'directedReadOptions',
             $this->directedReadOptionsIncludeReplicas
-        ))->shouldBeCalled();
+        ))->shouldBeCalled()->willReturn($result);
 
         $snapshot = new Snapshot(
             $operation->reveal(),
@@ -145,10 +146,11 @@ class SnapshotTest extends TestCase
         $columns = ['ID', 'title', 'content'];
 
         $operation = $this->prophesize(Operation::class);
+        $result = $this->prophesize(Result::class);
         $operation->read(Argument::any(), Argument::any(), Argument::any(), Argument::any(), Argument::withEntry(
             'directedReadOptions',
             $this->directedReadOptionsIncludeReplicas
-        ))->shouldBeCalled();
+        ))->shouldBeCalled()->willReturn($result);
 
         $snapshot = new Snapshot(
             $operation->reveal(),
