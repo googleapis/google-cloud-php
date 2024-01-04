@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vision_v1_generated_ProductSearch_PurgeProducts_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Vision\V1\ProductSearchClient;
+use Google\Cloud\Vision\V1\Client\ProductSearchClient;
+use Google\Cloud\Vision\V1\PurgeProductsRequest;
 use Google\Rpc\Status;
 
 /**
@@ -64,10 +65,14 @@ function purge_products_sample(string $formattedParent): void
     // Create a client.
     $productSearchClient = new ProductSearchClient();
 
+    // Prepare the request message.
+    $request = (new PurgeProductsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $productSearchClient->purgeProducts($formattedParent);
+        $response = $productSearchClient->purgeProducts($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

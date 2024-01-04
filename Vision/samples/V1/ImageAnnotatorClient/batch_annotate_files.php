@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vision_v1_generated_ImageAnnotator_BatchAnnotateFiles_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Vision\V1\AnnotateFileRequest;
+use Google\Cloud\Vision\V1\BatchAnnotateFilesRequest;
 use Google\Cloud\Vision\V1\BatchAnnotateFilesResponse;
-use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+use Google\Cloud\Vision\V1\Client\ImageAnnotatorClient;
 
 /**
  * Service that performs image detection and annotation for a batch of files.
@@ -48,13 +49,15 @@ function batch_annotate_files_sample(): void
     // Create a client.
     $imageAnnotatorClient = new ImageAnnotatorClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $requests = [new AnnotateFileRequest()];
+    $request = (new BatchAnnotateFilesRequest())
+        ->setRequests($requests);
 
     // Call the API and handle any network failures.
     try {
         /** @var BatchAnnotateFilesResponse $response */
-        $response = $imageAnnotatorClient->batchAnnotateFiles($requests);
+        $response = $imageAnnotatorClient->batchAnnotateFiles($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

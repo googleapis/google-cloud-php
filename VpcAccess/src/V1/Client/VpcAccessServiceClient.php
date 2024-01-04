@@ -280,6 +280,8 @@ final class VpcAccessServiceClient
      *
      * The async variant is {@see VpcAccessServiceClient::createConnectorAsync()} .
      *
+     * @example samples/V1/VpcAccessServiceClient/create_connector.php
+     *
      * @param CreateConnectorRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -304,6 +306,8 @@ final class VpcAccessServiceClient
      * resource does not exist.
      *
      * The async variant is {@see VpcAccessServiceClient::deleteConnectorAsync()} .
+     *
+     * @example samples/V1/VpcAccessServiceClient/delete_connector.php
      *
      * @param DeleteConnectorRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -330,6 +334,8 @@ final class VpcAccessServiceClient
      *
      * The async variant is {@see VpcAccessServiceClient::getConnectorAsync()} .
      *
+     * @example samples/V1/VpcAccessServiceClient/get_connector.php
+     *
      * @param GetConnectorRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -354,6 +360,8 @@ final class VpcAccessServiceClient
      *
      * The async variant is {@see VpcAccessServiceClient::listConnectorsAsync()} .
      *
+     * @example samples/V1/VpcAccessServiceClient/list_connectors.php
+     *
      * @param ListConnectorsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -377,6 +385,8 @@ final class VpcAccessServiceClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see VpcAccessServiceClient::listLocationsAsync()} .
+     *
+     * @example samples/V1/VpcAccessServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

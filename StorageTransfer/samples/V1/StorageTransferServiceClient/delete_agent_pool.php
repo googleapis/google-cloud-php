@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START storagetransfer_v1_generated_StorageTransferService_DeleteAgentPool_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\StorageTransfer\V1\StorageTransferServiceClient;
+use Google\Cloud\StorageTransfer\V1\Client\StorageTransferServiceClient;
+use Google\Cloud\StorageTransfer\V1\DeleteAgentPoolRequest;
 
 /**
  * Deletes an agent pool.
@@ -36,9 +37,13 @@ function delete_agent_pool_sample(string $name): void
     // Create a client.
     $storageTransferServiceClient = new StorageTransferServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteAgentPoolRequest())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
-        $storageTransferServiceClient->deleteAgentPool($name);
+        $storageTransferServiceClient->deleteAgentPool($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

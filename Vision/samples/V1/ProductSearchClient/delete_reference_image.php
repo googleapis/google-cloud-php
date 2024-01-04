@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START vision_v1_generated_ProductSearch_DeleteReferenceImage_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Vision\V1\ProductSearchClient;
+use Google\Cloud\Vision\V1\Client\ProductSearchClient;
+use Google\Cloud\Vision\V1\DeleteReferenceImageRequest;
 
 /**
  * Permanently deletes a reference image.
@@ -46,9 +47,13 @@ function delete_reference_image_sample(string $formattedName): void
     // Create a client.
     $productSearchClient = new ProductSearchClient();
 
+    // Prepare the request message.
+    $request = (new DeleteReferenceImageRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $productSearchClient->deleteReferenceImage($formattedName);
+        $productSearchClient->deleteReferenceImage($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

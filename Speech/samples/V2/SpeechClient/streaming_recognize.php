@@ -25,7 +25,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START speech_v2_generated_Speech_StreamingRecognize_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
-use Google\Cloud\Speech\V2\SpeechClient;
+use Google\Cloud\Speech\V2\Client\SpeechClient;
 use Google\Cloud\Speech\V2\StreamingRecognizeRequest;
 use Google\Cloud\Speech\V2\StreamingRecognizeResponse;
 
@@ -44,7 +44,7 @@ function streaming_recognize_sample(string $formattedRecognizer): void
     // Create a client.
     $speechClient = new SpeechClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $request = (new StreamingRecognizeRequest())
         ->setRecognizer($formattedRecognizer);
 

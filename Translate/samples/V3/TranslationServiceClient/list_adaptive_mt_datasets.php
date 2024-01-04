@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Translate\V3\AdaptiveMtDataset;
-use Google\Cloud\Translate\V3\TranslationServiceClient;
+use Google\Cloud\Translate\V3\Client\TranslationServiceClient;
+use Google\Cloud\Translate\V3\ListAdaptiveMtDatasetsRequest;
 
 /**
  * Lists all Adaptive MT datasets for which the caller has read permission.
@@ -40,10 +41,14 @@ function list_adaptive_mt_datasets_sample(string $formattedParent): void
     // Create a client.
     $translationServiceClient = new TranslationServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListAdaptiveMtDatasetsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $translationServiceClient->listAdaptiveMtDatasets($formattedParent);
+        $response = $translationServiceClient->listAdaptiveMtDatasets($request);
 
         /** @var AdaptiveMtDataset $element */
         foreach ($response as $element) {

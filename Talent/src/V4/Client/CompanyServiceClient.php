@@ -244,6 +244,8 @@ final class CompanyServiceClient
      *
      * The async variant is {@see CompanyServiceClient::createCompanyAsync()} .
      *
+     * @example samples/V4/CompanyServiceClient/create_company.php
+     *
      * @param CreateCompanyRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -269,6 +271,8 @@ final class CompanyServiceClient
      *
      * The async variant is {@see CompanyServiceClient::deleteCompanyAsync()} .
      *
+     * @example samples/V4/CompanyServiceClient/delete_company.php
+     *
      * @param DeleteCompanyRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -290,6 +294,8 @@ final class CompanyServiceClient
      * Retrieves specified company.
      *
      * The async variant is {@see CompanyServiceClient::getCompanyAsync()} .
+     *
+     * @example samples/V4/CompanyServiceClient/get_company.php
      *
      * @param GetCompanyRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -315,6 +321,8 @@ final class CompanyServiceClient
      *
      * The async variant is {@see CompanyServiceClient::listCompaniesAsync()} .
      *
+     * @example samples/V4/CompanyServiceClient/list_companies.php
+     *
      * @param ListCompaniesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -338,6 +346,8 @@ final class CompanyServiceClient
      * Updates specified company.
      *
      * The async variant is {@see CompanyServiceClient::updateCompanyAsync()} .
+     *
+     * @example samples/V4/CompanyServiceClient/update_company.php
      *
      * @param UpdateCompanyRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
