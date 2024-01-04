@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START automl_v1_generated_AutoMl_ImportData_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AutoMl\V1\AutoMlClient;
+use Google\Cloud\AutoMl\V1\Client\AutoMlClient;
+use Google\Cloud\AutoMl\V1\ImportDataRequest;
 use Google\Cloud\AutoMl\V1\InputConfig;
 use Google\Rpc\Status;
 
@@ -49,13 +50,16 @@ function import_data_sample(string $formattedName): void
     // Create a client.
     $autoMlClient = new AutoMlClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $inputConfig = new InputConfig();
+    $request = (new ImportDataRequest())
+        ->setName($formattedName)
+        ->setInputConfig($inputConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $autoMlClient->importData($formattedName, $inputConfig);
+        $response = $autoMlClient->importData($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

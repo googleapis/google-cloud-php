@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START contactcenterinsights_v1_generated_ContactCenterInsights_DeletePhraseMatcher_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\ContactCenterInsights\V1\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\DeletePhraseMatcherRequest;
 
 /**
  * Deletes a phrase matcher.
@@ -37,9 +38,13 @@ function delete_phrase_matcher_sample(string $formattedName): void
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
+    // Prepare the request message.
+    $request = (new DeletePhraseMatcherRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $contactCenterInsightsClient->deletePhraseMatcher($formattedName);
+        $contactCenterInsightsClient->deletePhraseMatcher($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

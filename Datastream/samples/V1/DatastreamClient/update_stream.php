@@ -25,10 +25,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datastream_v1_generated_Datastream_UpdateStream_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Datastream\V1\DatastreamClient;
+use Google\Cloud\Datastream\V1\Client\DatastreamClient;
 use Google\Cloud\Datastream\V1\DestinationConfig;
 use Google\Cloud\Datastream\V1\SourceConfig;
 use Google\Cloud\Datastream\V1\Stream;
+use Google\Cloud\Datastream\V1\UpdateStreamRequest;
 use Google\Rpc\Status;
 
 /**
@@ -50,7 +51,7 @@ function update_stream_sample(
     // Create a client.
     $datastreamClient = new DatastreamClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $streamSourceConfig = (new SourceConfig())
         ->setSourceConnectionProfile($formattedStreamSourceConfigSourceConnectionProfile);
     $streamDestinationConfig = (new DestinationConfig())
@@ -59,11 +60,13 @@ function update_stream_sample(
         ->setDisplayName($streamDisplayName)
         ->setSourceConfig($streamSourceConfig)
         ->setDestinationConfig($streamDestinationConfig);
+    $request = (new UpdateStreamRequest())
+        ->setStream($stream);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $datastreamClient->updateStream($stream);
+        $response = $datastreamClient->updateStream($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

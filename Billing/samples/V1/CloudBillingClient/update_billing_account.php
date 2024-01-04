@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudbilling_v1_generated_CloudBilling_UpdateBillingAccount_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Billing\V1\BillingAccount;
-use Google\Cloud\Billing\V1\CloudBillingClient;
+use Google\Cloud\Billing\V1\Client\CloudBillingClient;
+use Google\Cloud\Billing\V1\UpdateBillingAccountRequest;
 
 /**
  * Updates a billing account's fields.
@@ -43,13 +44,16 @@ function update_billing_account_sample(string $formattedName): void
     // Create a client.
     $cloudBillingClient = new CloudBillingClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $account = new BillingAccount();
+    $request = (new UpdateBillingAccountRequest())
+        ->setName($formattedName)
+        ->setAccount($account);
 
     // Call the API and handle any network failures.
     try {
         /** @var BillingAccount $response */
-        $response = $cloudBillingClient->updateBillingAccount($formattedName, $account);
+        $response = $cloudBillingClient->updateBillingAccount($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

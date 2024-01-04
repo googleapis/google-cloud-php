@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START bigtable_v2_generated_Bigtable_MutateRows_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ServerStream;
-use Google\Cloud\Bigtable\V2\BigtableClient;
+use Google\Cloud\Bigtable\V2\Client\BigtableClient;
+use Google\Cloud\Bigtable\V2\MutateRowsRequest;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse;
 use Google\Cloud\Bigtable\V2\Mutation;
@@ -44,16 +45,19 @@ function mutate_rows_sample(string $formattedTableName): void
     // Create a client.
     $bigtableClient = new BigtableClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $entriesMutations = [new Mutation()];
     $entry = (new Entry())
         ->setMutations($entriesMutations);
     $entries = [$entry,];
+    $request = (new MutateRowsRequest())
+        ->setTableName($formattedTableName)
+        ->setEntries($entries);
 
     // Call the API and handle any network failures.
     try {
         /** @var ServerStream $stream */
-        $stream = $bigtableClient->mutateRows($formattedTableName, $entries);
+        $stream = $bigtableClient->mutateRows($request);
 
         /** @var MutateRowsResponse $element */
         foreach ($stream->readAll() as $element) {

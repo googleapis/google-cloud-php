@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudchannel_v1_generated_CloudChannelService_ListEntitlementChanges_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
 use Google\Cloud\Channel\V1\EntitlementChange;
+use Google\Cloud\Channel\V1\ListEntitlementChangesRequest;
 
 /**
  * List entitlement history.
@@ -59,10 +60,14 @@ function list_entitlement_changes_sample(string $formattedParent): void
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListEntitlementChangesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudChannelServiceClient->listEntitlementChanges($formattedParent);
+        $response = $cloudChannelServiceClient->listEntitlementChanges($request);
 
         /** @var EntitlementChange $element */
         foreach ($response as $element) {

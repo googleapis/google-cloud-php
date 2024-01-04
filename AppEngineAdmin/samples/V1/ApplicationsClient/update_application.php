@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\AppEngine\V1\Application;
-use Google\Cloud\AppEngine\V1\ApplicationsClient;
+use Google\Cloud\AppEngine\V1\Client\ApplicationsClient;
+use Google\Cloud\AppEngine\V1\UpdateApplicationRequest;
 use Google\Rpc\Status;
 
 /**
@@ -48,10 +49,13 @@ function update_application_sample(): void
     // Create a client.
     $applicationsClient = new ApplicationsClient();
 
+    // Prepare the request message.
+    $request = new UpdateApplicationRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $applicationsClient->updateApplication();
+        $response = $applicationsClient->updateApplication($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

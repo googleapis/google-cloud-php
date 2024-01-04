@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudbilling_v1_generated_CloudCatalog_ListSkus_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Billing\V1\CloudCatalogClient;
+use Google\Cloud\Billing\V1\Client\CloudCatalogClient;
+use Google\Cloud\Billing\V1\ListSkusRequest;
 use Google\Cloud\Billing\V1\Sku;
 
 /**
@@ -40,10 +41,14 @@ function list_skus_sample(string $formattedParent): void
     // Create a client.
     $cloudCatalogClient = new CloudCatalogClient();
 
+    // Prepare the request message.
+    $request = (new ListSkusRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudCatalogClient->listSkus($formattedParent);
+        $response = $cloudCatalogClient->listSkus($request);
 
         /** @var Sku $element */
         foreach ($response as $element) {

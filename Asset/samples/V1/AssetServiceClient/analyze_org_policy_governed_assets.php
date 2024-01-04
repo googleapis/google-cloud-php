@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudasset_v1_generated_AssetService_AnalyzeOrgPolicyGovernedAssets_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedAssetsRequest;
 use Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedAssetsResponse\GovernedAsset;
-use Google\Cloud\Asset\V1\AssetServiceClient;
+use Google\Cloud\Asset\V1\Client\AssetServiceClient;
 
 /**
  * Analyzes organization policies governed assets (Google Cloud resources or
@@ -64,10 +65,15 @@ function analyze_org_policy_governed_assets_sample(string $scope, string $constr
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
+    // Prepare the request message.
+    $request = (new AnalyzeOrgPolicyGovernedAssetsRequest())
+        ->setScope($scope)
+        ->setConstraint($constraint);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $assetServiceClient->analyzeOrgPolicyGovernedAssets($scope, $constraint);
+        $response = $assetServiceClient->analyzeOrgPolicyGovernedAssets($request);
 
         /** @var GovernedAsset $element */
         foreach ($response as $element) {

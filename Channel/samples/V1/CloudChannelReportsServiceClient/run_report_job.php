@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudchannel_v1_generated_CloudChannelReportsService_RunReportJob_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Channel\V1\CloudChannelReportsServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelReportsServiceClient;
+use Google\Cloud\Channel\V1\RunReportJobRequest;
 use Google\Cloud\Channel\V1\RunReportJobResponse;
 use Google\Rpc\Status;
 
@@ -72,10 +73,14 @@ function run_report_job_sample(string $formattedName): void
     // Create a client.
     $cloudChannelReportsServiceClient = new CloudChannelReportsServiceClient();
 
+    // Prepare the request message.
+    $request = (new RunReportJobRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudChannelReportsServiceClient->runReportJob($formattedName);
+        $response = $cloudChannelReportsServiceClient->runReportJob($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudchannel_v1_generated_CloudChannelService_LookupOffer_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\LookupOfferRequest;
 use Google\Cloud\Channel\V1\Offer;
 
 /**
@@ -49,10 +50,14 @@ function lookup_offer_sample(string $formattedEntitlement): void
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new LookupOfferRequest())
+        ->setEntitlement($formattedEntitlement);
+
     // Call the API and handle any network failures.
     try {
         /** @var Offer $response */
-        $response = $cloudChannelServiceClient->lookupOffer($formattedEntitlement);
+        $response = $cloudChannelServiceClient->lookupOffer($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

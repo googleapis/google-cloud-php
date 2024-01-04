@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataproc_v1_generated_NodeGroupController_GetNodeGroup_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dataproc\V1\Client\NodeGroupControllerClient;
+use Google\Cloud\Dataproc\V1\GetNodeGroupRequest;
 use Google\Cloud\Dataproc\V1\NodeGroup;
-use Google\Cloud\Dataproc\V1\NodeGroupControllerClient;
 
 /**
  * Gets the resource representation for a node group in a
@@ -41,10 +42,14 @@ function get_node_group_sample(string $formattedName): void
     // Create a client.
     $nodeGroupControllerClient = new NodeGroupControllerClient();
 
+    // Prepare the request message.
+    $request = (new GetNodeGroupRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var NodeGroup $response */
-        $response = $nodeGroupControllerClient->getNodeGroup($formattedName);
+        $response = $nodeGroupControllerClient->getNodeGroup($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

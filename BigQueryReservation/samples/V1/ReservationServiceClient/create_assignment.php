@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START bigqueryreservation_v1_generated_ReservationService_CreateAssignment_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\BigQuery\Reservation\V1\Assignment;
-use Google\Cloud\BigQuery\Reservation\V1\ReservationServiceClient;
+use Google\Cloud\BigQuery\Reservation\V1\Client\ReservationServiceClient;
+use Google\Cloud\BigQuery\Reservation\V1\CreateAssignmentRequest;
 
 /**
  * Creates an assignment object which allows the given project to submit jobs
@@ -73,10 +74,14 @@ function create_assignment_sample(string $formattedParent): void
     // Create a client.
     $reservationServiceClient = new ReservationServiceClient();
 
+    // Prepare the request message.
+    $request = (new CreateAssignmentRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var Assignment $response */
-        $response = $reservationServiceClient->createAssignment($formattedParent);
+        $response = $reservationServiceClient->createAssignment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudchannel_v1_generated_CloudChannelService_CreateChannelPartnerRepricingConfig_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Channel\V1\ChannelPartnerRepricingConfig;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\CreateChannelPartnerRepricingConfigRequest;
 use Google\Cloud\Channel\V1\RebillingBasis;
 use Google\Cloud\Channel\V1\RepricingAdjustment;
 use Google\Cloud\Channel\V1\RepricingConfig;
@@ -91,7 +92,7 @@ function create_channel_partner_repricing_config_sample(
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $channelPartnerRepricingConfigRepricingConfigEffectiveInvoiceMonth = new Date();
     $channelPartnerRepricingConfigRepricingConfigAdjustment = new RepricingAdjustment();
     $channelPartnerRepricingConfigRepricingConfig = (new RepricingConfig())
@@ -100,14 +101,14 @@ function create_channel_partner_repricing_config_sample(
         ->setRebillingBasis($channelPartnerRepricingConfigRepricingConfigRebillingBasis);
     $channelPartnerRepricingConfig = (new ChannelPartnerRepricingConfig())
         ->setRepricingConfig($channelPartnerRepricingConfigRepricingConfig);
+    $request = (new CreateChannelPartnerRepricingConfigRequest())
+        ->setParent($formattedParent)
+        ->setChannelPartnerRepricingConfig($channelPartnerRepricingConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var ChannelPartnerRepricingConfig $response */
-        $response = $cloudChannelServiceClient->createChannelPartnerRepricingConfig(
-            $formattedParent,
-            $channelPartnerRepricingConfig
-        );
+        $response = $cloudChannelServiceClient->createChannelPartnerRepricingConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

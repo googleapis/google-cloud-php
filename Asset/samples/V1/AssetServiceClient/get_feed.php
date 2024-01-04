@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudasset_v1_generated_AssetService_GetFeed_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Asset\V1\AssetServiceClient;
+use Google\Cloud\Asset\V1\Client\AssetServiceClient;
 use Google\Cloud\Asset\V1\Feed;
+use Google\Cloud\Asset\V1\GetFeedRequest;
 
 /**
  * Gets details about an asset feed.
@@ -41,10 +42,14 @@ function get_feed_sample(string $formattedName): void
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetFeedRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Feed $response */
-        $response = $assetServiceClient->getFeed($formattedName);
+        $response = $assetServiceClient->getFeed($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

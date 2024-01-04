@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datacatalog_v1_generated_PolicyTagManagerSerialization_ExportTaxonomies_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\DataCatalog\V1\Client\PolicyTagManagerSerializationClient;
+use Google\Cloud\DataCatalog\V1\ExportTaxonomiesRequest;
 use Google\Cloud\DataCatalog\V1\ExportTaxonomiesResponse;
-use Google\Cloud\DataCatalog\V1\PolicyTagManagerSerializationClient;
 
 /**
  * Exports taxonomies in the requested type and returns them,
@@ -48,16 +49,16 @@ function export_taxonomies_sample(
     // Create a client.
     $policyTagManagerSerializationClient = new PolicyTagManagerSerializationClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $formattedTaxonomies = [$formattedTaxonomiesElement,];
+    $request = (new ExportTaxonomiesRequest())
+        ->setParent($formattedParent)
+        ->setTaxonomies($formattedTaxonomies);
 
     // Call the API and handle any network failures.
     try {
         /** @var ExportTaxonomiesResponse $response */
-        $response = $policyTagManagerSerializationClient->exportTaxonomies(
-            $formattedParent,
-            $formattedTaxonomies
-        );
+        $response = $policyTagManagerSerializationClient->exportTaxonomies($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

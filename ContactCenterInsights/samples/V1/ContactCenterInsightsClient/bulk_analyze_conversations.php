@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START contactcenterinsights_v1_generated_ContactCenterInsights_BulkAnalyzeConversations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\ContactCenterInsights\V1\BulkAnalyzeConversationsRequest;
 use Google\Cloud\ContactCenterInsights\V1\BulkAnalyzeConversationsResponse;
-use Google\Cloud\ContactCenterInsights\V1\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient;
 use Google\Rpc\Status;
 
 /**
@@ -46,14 +47,16 @@ function bulk_analyze_conversations_sample(
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
+    // Prepare the request message.
+    $request = (new BulkAnalyzeConversationsRequest())
+        ->setParent($formattedParent)
+        ->setFilter($filter)
+        ->setAnalysisPercentage($analysisPercentage);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $contactCenterInsightsClient->bulkAnalyzeConversations(
-            $formattedParent,
-            $filter,
-            $analysisPercentage
-        );
+        $response = $contactCenterInsightsClient->bulkAnalyzeConversations($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

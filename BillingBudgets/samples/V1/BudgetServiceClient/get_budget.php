@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START billingbudgets_v1_generated_BudgetService_GetBudget_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Billing\Budgets\V1\Budget;
-use Google\Cloud\Billing\Budgets\V1\BudgetServiceClient;
+use Google\Cloud\Billing\Budgets\V1\Client\BudgetServiceClient;
+use Google\Cloud\Billing\Budgets\V1\GetBudgetRequest;
 
 /**
  * Returns a budget.
@@ -44,10 +45,14 @@ function get_budget_sample(string $formattedName): void
     // Create a client.
     $budgetServiceClient = new BudgetServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetBudgetRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Budget $response */
-        $response = $budgetServiceClient->getBudget($formattedName);
+        $response = $budgetServiceClient->getBudget($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

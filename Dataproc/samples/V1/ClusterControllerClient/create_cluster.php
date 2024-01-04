@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataproc_v1_generated_ClusterController_CreateCluster_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Dataproc\V1\Client\ClusterControllerClient;
 use Google\Cloud\Dataproc\V1\Cluster;
-use Google\Cloud\Dataproc\V1\ClusterControllerClient;
+use Google\Cloud\Dataproc\V1\CreateClusterRequest;
 use Google\Rpc\Status;
 
 /**
@@ -52,15 +53,19 @@ function create_cluster_sample(
     // Create a client.
     $clusterControllerClient = new ClusterControllerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $cluster = (new Cluster())
         ->setProjectId($clusterProjectId)
         ->setClusterName($clusterClusterName);
+    $request = (new CreateClusterRequest())
+        ->setProjectId($projectId)
+        ->setRegion($region)
+        ->setCluster($cluster);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $clusterControllerClient->createCluster($projectId, $region, $cluster);
+        $response = $clusterControllerClient->createCluster($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

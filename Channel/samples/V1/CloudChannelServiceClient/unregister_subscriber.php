@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudchannel_v1_generated_CloudChannelService_UnregisterSubscriber_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\UnregisterSubscriberRequest;
 use Google\Cloud\Channel\V1\UnregisterSubscriberResponse;
 
 /**
@@ -59,10 +60,15 @@ function unregister_subscriber_sample(string $account, string $serviceAccount): 
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new UnregisterSubscriberRequest())
+        ->setAccount($account)
+        ->setServiceAccount($serviceAccount);
+
     // Call the API and handle any network failures.
     try {
         /** @var UnregisterSubscriberResponse $response */
-        $response = $cloudChannelServiceClient->unregisterSubscriber($account, $serviceAccount);
+        $response = $cloudChannelServiceClient->unregisterSubscriber($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

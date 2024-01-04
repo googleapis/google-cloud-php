@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START appengine_v1_generated_DomainMappings_UpdateDomainMapping_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AppEngine\V1\Client\DomainMappingsClient;
 use Google\Cloud\AppEngine\V1\DomainMapping;
-use Google\Cloud\AppEngine\V1\DomainMappingsClient;
+use Google\Cloud\AppEngine\V1\UpdateDomainMappingRequest;
 use Google\Rpc\Status;
 
 /**
@@ -46,10 +47,13 @@ function update_domain_mapping_sample(): void
     // Create a client.
     $domainMappingsClient = new DomainMappingsClient();
 
+    // Prepare the request message.
+    $request = new UpdateDomainMappingRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $domainMappingsClient->updateDomainMapping();
+        $response = $domainMappingsClient->updateDomainMapping($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

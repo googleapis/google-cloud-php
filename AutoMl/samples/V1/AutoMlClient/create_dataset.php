@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START automl_v1_generated_AutoMl_CreateDataset_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AutoMl\V1\AutoMlClient;
+use Google\Cloud\AutoMl\V1\Client\AutoMlClient;
+use Google\Cloud\AutoMl\V1\CreateDatasetRequest;
 use Google\Cloud\AutoMl\V1\Dataset;
 use Google\Rpc\Status;
 
@@ -40,13 +41,16 @@ function create_dataset_sample(string $formattedParent): void
     // Create a client.
     $autoMlClient = new AutoMlClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $dataset = new Dataset();
+    $request = (new CreateDatasetRequest())
+        ->setParent($formattedParent)
+        ->setDataset($dataset);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $autoMlClient->createDataset($formattedParent, $dataset);
+        $response = $autoMlClient->createDataset($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
