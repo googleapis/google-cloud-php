@@ -20,7 +20,7 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.v1.QueryPlan query_plan = 1;</code>
      */
-    protected $query_plan = null;
+    private $query_plan = null;
     /**
      * Aggregated statistics from the execution of the query.
      * This will only be present when the request specifies `PROFILE` mode.
@@ -34,7 +34,7 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct query_stats = 2;</code>
      */
-    protected $query_stats = null;
+    private $query_stats = null;
 
     /**
      * Constructor.

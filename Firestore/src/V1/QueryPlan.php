@@ -26,7 +26,7 @@ class QueryPlan extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct plan_info = 1;</code>
      */
-    protected $plan_info = null;
+    private $plan_info = null;
 
     /**
      * Constructor.
