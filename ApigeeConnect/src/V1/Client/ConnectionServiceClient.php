@@ -215,6 +215,8 @@ final class ConnectionServiceClient
      *
      * The async variant is {@see ConnectionServiceClient::listConnectionsAsync()} .
      *
+     * @example samples/V1/ConnectionServiceClient/list_connections.php
+     *
      * @param ListConnectionsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.

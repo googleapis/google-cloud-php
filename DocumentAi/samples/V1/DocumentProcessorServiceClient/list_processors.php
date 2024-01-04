@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START documentai_v1_generated_DocumentProcessorService_ListProcessors_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\DocumentAI\V1\DocumentProcessorServiceClient;
+use Google\Cloud\DocumentAI\V1\Client\DocumentProcessorServiceClient;
+use Google\Cloud\DocumentAI\V1\ListProcessorsRequest;
 use Google\Cloud\DocumentAI\V1\Processor;
 
 /**
@@ -40,10 +41,14 @@ function list_processors_sample(string $formattedParent): void
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListProcessorsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $documentProcessorServiceClient->listProcessors($formattedParent);
+        $response = $documentProcessorServiceClient->listProcessors($request);
 
         /** @var Processor $element */
         foreach ($response as $element) {

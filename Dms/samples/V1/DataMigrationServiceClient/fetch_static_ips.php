@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datamigration_v1_generated_DataMigrationService_FetchStaticIps_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\CloudDms\V1\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\Client\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\FetchStaticIpsRequest;
 
 /**
  * Fetches a set of static IP addresses that need to be allowlisted by the
@@ -40,10 +41,14 @@ function fetch_static_ips_sample(string $formattedName): void
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
+    // Prepare the request message.
+    $request = (new FetchStaticIpsRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataMigrationServiceClient->fetchStaticIps($formattedName);
+        $response = $dataMigrationServiceClient->fetchStaticIps($request);
 
         /** @var string $element */
         foreach ($response as $element) {

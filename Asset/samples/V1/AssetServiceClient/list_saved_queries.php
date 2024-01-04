@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudasset_v1_generated_AssetService_ListSavedQueries_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Asset\V1\AssetServiceClient;
+use Google\Cloud\Asset\V1\Client\AssetServiceClient;
+use Google\Cloud\Asset\V1\ListSavedQueriesRequest;
 use Google\Cloud\Asset\V1\SavedQuery;
 
 /**
@@ -41,10 +42,14 @@ function list_saved_queries_sample(string $formattedParent): void
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListSavedQueriesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $assetServiceClient->listSavedQueries($formattedParent);
+        $response = $assetServiceClient->listSavedQueries($request);
 
         /** @var SavedQuery $element */
         foreach ($response as $element) {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START speech_v2_generated_Speech_UndeletePhraseSet_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Speech\V2\Client\SpeechClient;
 use Google\Cloud\Speech\V2\PhraseSet;
-use Google\Cloud\Speech\V2\SpeechClient;
+use Google\Cloud\Speech\V2\UndeletePhraseSetRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,10 +42,14 @@ function undelete_phrase_set_sample(string $formattedName): void
     // Create a client.
     $speechClient = new SpeechClient();
 
+    // Prepare the request message.
+    $request = (new UndeletePhraseSetRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $speechClient->undeletePhraseSet($formattedName);
+        $response = $speechClient->undeletePhraseSet($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datacatalog_v1_generated_DataCatalog_ImportEntries_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\DataCatalog\V1\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\Client\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\ImportEntriesRequest;
 use Google\Cloud\DataCatalog\V1\ImportEntriesResponse;
 use Google\Rpc\Status;
 
@@ -57,10 +58,14 @@ function import_entries_sample(string $formattedParent): void
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
+    // Prepare the request message.
+    $request = (new ImportEntriesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataCatalogClient->importEntries($formattedParent);
+        $response = $dataCatalogClient->importEntries($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

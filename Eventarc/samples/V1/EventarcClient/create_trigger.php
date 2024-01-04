@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START eventarc_v1_generated_Eventarc_CreateTrigger_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Eventarc\V1\Client\EventarcClient;
+use Google\Cloud\Eventarc\V1\CreateTriggerRequest;
 use Google\Cloud\Eventarc\V1\Destination;
 use Google\Cloud\Eventarc\V1\EventFilter;
-use Google\Cloud\Eventarc\V1\EventarcClient;
 use Google\Cloud\Eventarc\V1\Trigger;
 use Google\Rpc\Status;
 
@@ -59,7 +60,7 @@ function create_trigger_sample(
     // Create a client.
     $eventarcClient = new EventarcClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $eventFilter = (new EventFilter())
         ->setAttribute($triggerEventFiltersAttribute)
         ->setValue($triggerEventFiltersValue);
@@ -69,11 +70,16 @@ function create_trigger_sample(
         ->setName($triggerName)
         ->setEventFilters($triggerEventFilters)
         ->setDestination($triggerDestination);
+    $request = (new CreateTriggerRequest())
+        ->setParent($formattedParent)
+        ->setTrigger($trigger)
+        ->setTriggerId($triggerId)
+        ->setValidateOnly($validateOnly);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $eventarcClient->createTrigger($formattedParent, $trigger, $triggerId, $validateOnly);
+        $response = $eventarcClient->createTrigger($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -288,6 +288,8 @@ final class CloudChannelReportsServiceClient
      * The async variant is
      * {@see CloudChannelReportsServiceClient::fetchReportResultsAsync()} .
      *
+     * @example samples/V1/CloudChannelReportsServiceClient/fetch_report_results.php
+     *
      * @param FetchReportResultsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -319,6 +321,8 @@ final class CloudChannelReportsServiceClient
      *
      * The async variant is {@see CloudChannelReportsServiceClient::listReportsAsync()}
      * .
+     *
+     * @example samples/V1/CloudChannelReportsServiceClient/list_reports.php
      *
      * @param ListReportsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -374,6 +378,8 @@ final class CloudChannelReportsServiceClient
      *
      * The async variant is
      * {@see CloudChannelReportsServiceClient::runReportJobAsync()} .
+     *
+     * @example samples/V1/CloudChannelReportsServiceClient/run_report_job.php
      *
      * @param RunReportJobRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {

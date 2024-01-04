@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datacatalog_v1_generated_DataCatalog_CreateEntry_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\DataCatalog\V1\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\Client\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\CreateEntryRequest;
 use Google\Cloud\DataCatalog\V1\Entry;
 
 /**
@@ -56,13 +57,17 @@ function create_entry_sample(string $formattedParent, string $entryId): void
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $entry = new Entry();
+    $request = (new CreateEntryRequest())
+        ->setParent($formattedParent)
+        ->setEntryId($entryId)
+        ->setEntry($entry);
 
     // Call the API and handle any network failures.
     try {
         /** @var Entry $response */
-        $response = $dataCatalogClient->createEntry($formattedParent, $entryId, $entry);
+        $response = $dataCatalogClient->createEntry($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

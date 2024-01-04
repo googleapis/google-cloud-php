@@ -360,6 +360,8 @@ final class TranslationServiceClient
      * The async variant is {@see TranslationServiceClient::adaptiveMtTranslateAsync()}
      * .
      *
+     * @example samples/V3/TranslationServiceClient/adaptive_mt_translate.php
+     *
      * @param AdaptiveMtTranslateRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -390,6 +392,8 @@ final class TranslationServiceClient
      *
      * The async variant is
      * {@see TranslationServiceClient::batchTranslateDocumentAsync()} .
+     *
+     * @example samples/V3/TranslationServiceClient/batch_translate_document.php
      *
      * @param BatchTranslateDocumentRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -422,6 +426,8 @@ final class TranslationServiceClient
      * The async variant is {@see TranslationServiceClient::batchTranslateTextAsync()}
      * .
      *
+     * @example samples/V3/TranslationServiceClient/batch_translate_text.php
+     *
      * @param BatchTranslateTextRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -447,6 +453,8 @@ final class TranslationServiceClient
      * The async variant is
      * {@see TranslationServiceClient::createAdaptiveMtDatasetAsync()} .
      *
+     * @example samples/V3/TranslationServiceClient/create_adaptive_mt_dataset.php
+     *
      * @param CreateAdaptiveMtDatasetRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -471,6 +479,8 @@ final class TranslationServiceClient
      * NOT_FOUND, if the project doesn't exist.
      *
      * The async variant is {@see TranslationServiceClient::createGlossaryAsync()} .
+     *
+     * @example samples/V3/TranslationServiceClient/create_glossary.php
      *
      * @param CreateGlossaryRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -498,6 +508,8 @@ final class TranslationServiceClient
      * The async variant is
      * {@see TranslationServiceClient::deleteAdaptiveMtDatasetAsync()} .
      *
+     * @example samples/V3/TranslationServiceClient/delete_adaptive_mt_dataset.php
+     *
      * @param DeleteAdaptiveMtDatasetRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -520,6 +532,8 @@ final class TranslationServiceClient
      *
      * The async variant is
      * {@see TranslationServiceClient::deleteAdaptiveMtFileAsync()} .
+     *
+     * @example samples/V3/TranslationServiceClient/delete_adaptive_mt_file.php
      *
      * @param DeleteAdaptiveMtFileRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -545,6 +559,8 @@ final class TranslationServiceClient
      *
      * The async variant is {@see TranslationServiceClient::deleteGlossaryAsync()} .
      *
+     * @example samples/V3/TranslationServiceClient/delete_glossary.php
+     *
      * @param DeleteGlossaryRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -568,6 +584,8 @@ final class TranslationServiceClient
      * Detects the language of text within a request.
      *
      * The async variant is {@see TranslationServiceClient::detectLanguageAsync()} .
+     *
+     * @example samples/V3/TranslationServiceClient/detect_language.php
      *
      * @param DetectLanguageRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -594,6 +612,8 @@ final class TranslationServiceClient
      * The async variant is
      * {@see TranslationServiceClient::getAdaptiveMtDatasetAsync()} .
      *
+     * @example samples/V3/TranslationServiceClient/get_adaptive_mt_dataset.php
+     *
      * @param GetAdaptiveMtDatasetRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -617,6 +637,8 @@ final class TranslationServiceClient
      * Gets and AdaptiveMtFile
      *
      * The async variant is {@see TranslationServiceClient::getAdaptiveMtFileAsync()} .
+     *
+     * @example samples/V3/TranslationServiceClient/get_adaptive_mt_file.php
      *
      * @param GetAdaptiveMtFileRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -643,6 +665,8 @@ final class TranslationServiceClient
      *
      * The async variant is {@see TranslationServiceClient::getGlossaryAsync()} .
      *
+     * @example samples/V3/TranslationServiceClient/get_glossary.php
+     *
      * @param GetGlossaryRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -667,6 +691,8 @@ final class TranslationServiceClient
      *
      * The async variant is
      * {@see TranslationServiceClient::getSupportedLanguagesAsync()} .
+     *
+     * @example samples/V3/TranslationServiceClient/get_supported_languages.php
      *
      * @param GetSupportedLanguagesRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -694,6 +720,8 @@ final class TranslationServiceClient
      * The async variant is
      * {@see TranslationServiceClient::importAdaptiveMtFileAsync()} .
      *
+     * @example samples/V3/TranslationServiceClient/import_adaptive_mt_file.php
+     *
      * @param ImportAdaptiveMtFileRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -718,6 +746,8 @@ final class TranslationServiceClient
      *
      * The async variant is
      * {@see TranslationServiceClient::listAdaptiveMtDatasetsAsync()} .
+     *
+     * @example samples/V3/TranslationServiceClient/list_adaptive_mt_datasets.php
      *
      * @param ListAdaptiveMtDatasetsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -744,6 +774,8 @@ final class TranslationServiceClient
      * The async variant is {@see TranslationServiceClient::listAdaptiveMtFilesAsync()}
      * .
      *
+     * @example samples/V3/TranslationServiceClient/list_adaptive_mt_files.php
+     *
      * @param ListAdaptiveMtFilesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -768,6 +800,8 @@ final class TranslationServiceClient
      *
      * The async variant is
      * {@see TranslationServiceClient::listAdaptiveMtSentencesAsync()} .
+     *
+     * @example samples/V3/TranslationServiceClient/list_adaptive_mt_sentences.php
      *
      * @param ListAdaptiveMtSentencesRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -794,6 +828,8 @@ final class TranslationServiceClient
      *
      * The async variant is {@see TranslationServiceClient::listGlossariesAsync()} .
      *
+     * @example samples/V3/TranslationServiceClient/list_glossaries.php
+     *
      * @param ListGlossariesRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -818,6 +854,8 @@ final class TranslationServiceClient
      *
      * The async variant is {@see TranslationServiceClient::translateDocumentAsync()} .
      *
+     * @example samples/V3/TranslationServiceClient/translate_document.php
+     *
      * @param TranslateDocumentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -841,6 +879,8 @@ final class TranslationServiceClient
      * Translates input text and returns translated text.
      *
      * The async variant is {@see TranslationServiceClient::translateTextAsync()} .
+     *
+     * @example samples/V3/TranslationServiceClient/translate_text.php
      *
      * @param TranslateTextRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

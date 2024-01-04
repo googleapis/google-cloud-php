@@ -280,6 +280,8 @@ final class ReachabilityServiceClient
      * The async variant is
      * {@see ReachabilityServiceClient::createConnectivityTestAsync()} .
      *
+     * @example samples/V1/ReachabilityServiceClient/create_connectivity_test.php
+     *
      * @param CreateConnectivityTestRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -304,6 +306,8 @@ final class ReachabilityServiceClient
      *
      * The async variant is
      * {@see ReachabilityServiceClient::deleteConnectivityTestAsync()} .
+     *
+     * @example samples/V1/ReachabilityServiceClient/delete_connectivity_test.php
      *
      * @param DeleteConnectivityTestRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -330,6 +334,8 @@ final class ReachabilityServiceClient
      * The async variant is
      * {@see ReachabilityServiceClient::getConnectivityTestAsync()} .
      *
+     * @example samples/V1/ReachabilityServiceClient/get_connectivity_test.php
+     *
      * @param GetConnectivityTestRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -354,6 +360,8 @@ final class ReachabilityServiceClient
      *
      * The async variant is
      * {@see ReachabilityServiceClient::listConnectivityTestsAsync()} .
+     *
+     * @example samples/V1/ReachabilityServiceClient/list_connectivity_tests.php
      *
      * @param ListConnectivityTestsRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -390,6 +398,8 @@ final class ReachabilityServiceClient
      *
      * The async variant is
      * {@see ReachabilityServiceClient::rerunConnectivityTestAsync()} .
+     *
+     * @example samples/V1/ReachabilityServiceClient/rerun_connectivity_test.php
      *
      * @param RerunConnectivityTestRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -428,6 +438,8 @@ final class ReachabilityServiceClient
      *
      * The async variant is
      * {@see ReachabilityServiceClient::updateConnectivityTestAsync()} .
+     *
+     * @example samples/V1/ReachabilityServiceClient/update_connectivity_test.php
      *
      * @param UpdateConnectivityTestRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {

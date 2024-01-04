@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START monitoring_v3_generated_MetricService_DeleteMetricDescriptor_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Monitoring\V3\MetricServiceClient;
+use Google\Cloud\Monitoring\V3\Client\MetricServiceClient;
+use Google\Cloud\Monitoring\V3\DeleteMetricDescriptorRequest;
 
 /**
  * Deletes a metric descriptor. Only user-created
@@ -44,9 +45,13 @@ function delete_metric_descriptor_sample(string $formattedName): void
     // Create a client.
     $metricServiceClient = new MetricServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteMetricDescriptorRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $metricServiceClient->deleteMetricDescriptor($formattedName);
+        $metricServiceClient->deleteMetricDescriptor($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

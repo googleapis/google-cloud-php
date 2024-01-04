@@ -331,6 +331,8 @@ final class SnoozeServiceClient
      *
      * The async variant is {@see SnoozeServiceClient::createSnoozeAsync()} .
      *
+     * @example samples/V3/SnoozeServiceClient/create_snooze.php
+     *
      * @param CreateSnoozeRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -354,6 +356,8 @@ final class SnoozeServiceClient
      * Retrieves a `Snooze` by `name`.
      *
      * The async variant is {@see SnoozeServiceClient::getSnoozeAsync()} .
+     *
+     * @example samples/V3/SnoozeServiceClient/get_snooze.php
      *
      * @param GetSnoozeRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -380,6 +384,8 @@ final class SnoozeServiceClient
      *
      * The async variant is {@see SnoozeServiceClient::listSnoozesAsync()} .
      *
+     * @example samples/V3/SnoozeServiceClient/list_snoozes.php
+     *
      * @param ListSnoozesRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -404,6 +410,8 @@ final class SnoozeServiceClient
      * given `Snooze` object.
      *
      * The async variant is {@see SnoozeServiceClient::updateSnoozeAsync()} .
+     *
+     * @example samples/V3/SnoozeServiceClient/update_snooze.php
      *
      * @param UpdateSnoozeRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {

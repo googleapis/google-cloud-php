@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START speech_v2_generated_Speech_UpdatePhraseSet_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Speech\V2\Client\SpeechClient;
 use Google\Cloud\Speech\V2\PhraseSet;
-use Google\Cloud\Speech\V2\SpeechClient;
+use Google\Cloud\Speech\V2\UpdatePhraseSetRequest;
 use Google\Rpc\Status;
 
 /**
@@ -43,13 +44,15 @@ function update_phrase_set_sample(): void
     // Create a client.
     $speechClient = new SpeechClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $phraseSet = new PhraseSet();
+    $request = (new UpdatePhraseSetRequest())
+        ->setPhraseSet($phraseSet);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $speechClient->updatePhraseSet($phraseSet);
+        $response = $speechClient->updatePhraseSet($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

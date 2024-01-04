@@ -319,6 +319,8 @@ final class VersionsClient
      *
      * The async variant is {@see VersionsClient::createVersionAsync()} .
      *
+     * @example samples/V2/VersionsClient/create_version.php
+     *
      * @param CreateVersionRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -343,6 +345,8 @@ final class VersionsClient
      *
      * The async variant is {@see VersionsClient::deleteVersionAsync()} .
      *
+     * @example samples/V2/VersionsClient/delete_version.php
+     *
      * @param DeleteVersionRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -364,6 +368,8 @@ final class VersionsClient
      * Retrieves the specified agent version.
      *
      * The async variant is {@see VersionsClient::getVersionAsync()} .
+     *
+     * @example samples/V2/VersionsClient/get_version.php
      *
      * @param GetVersionRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -388,6 +394,8 @@ final class VersionsClient
      * Returns the list of all versions of the specified agent.
      *
      * The async variant is {@see VersionsClient::listVersionsAsync()} .
+     *
+     * @example samples/V2/VersionsClient/list_versions.php
      *
      * @param ListVersionsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -417,6 +425,8 @@ final class VersionsClient
      *
      * The async variant is {@see VersionsClient::updateVersionAsync()} .
      *
+     * @example samples/V2/VersionsClient/update_version.php
+     *
      * @param UpdateVersionRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -441,6 +451,8 @@ final class VersionsClient
      *
      * The async variant is {@see VersionsClient::getLocationAsync()} .
      *
+     * @example samples/V2/VersionsClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -464,6 +476,8 @@ final class VersionsClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see VersionsClient::listLocationsAsync()} .
+     *
+     * @example samples/V2/VersionsClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

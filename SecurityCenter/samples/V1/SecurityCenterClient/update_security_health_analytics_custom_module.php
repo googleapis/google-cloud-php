@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START securitycenter_v1_generated_SecurityCenter_UpdateSecurityHealthAnalyticsCustomModule_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient;
 use Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule;
+use Google\Cloud\SecurityCenter\V1\UpdateSecurityHealthAnalyticsCustomModuleRequest;
 
 /**
  * Updates the SecurityHealthAnalyticsCustomModule under the given name based
@@ -45,15 +46,15 @@ function update_security_health_analytics_custom_module_sample(): void
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $securityHealthAnalyticsCustomModule = new SecurityHealthAnalyticsCustomModule();
+    $request = (new UpdateSecurityHealthAnalyticsCustomModuleRequest())
+        ->setSecurityHealthAnalyticsCustomModule($securityHealthAnalyticsCustomModule);
 
     // Call the API and handle any network failures.
     try {
         /** @var SecurityHealthAnalyticsCustomModule $response */
-        $response = $securityCenterClient->updateSecurityHealthAnalyticsCustomModule(
-            $securityHealthAnalyticsCustomModule
-        );
+        $response = $securityCenterClient->updateSecurityHealthAnalyticsCustomModule($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

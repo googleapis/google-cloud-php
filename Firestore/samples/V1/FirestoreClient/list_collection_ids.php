@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START firestore_v1_generated_Firestore_ListCollectionIds_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Firestore\V1\FirestoreClient;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
+use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
 
 /**
  * Lists all the collection IDs underneath a document.
@@ -40,10 +41,14 @@ function list_collection_ids_sample(string $parent): void
     // Create a client.
     $firestoreClient = new FirestoreClient();
 
+    // Prepare the request message.
+    $request = (new ListCollectionIdsRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $firestoreClient->listCollectionIds($parent);
+        $response = $firestoreClient->listCollectionIds($request);
 
         /** @var string $element */
         foreach ($response as $element) {

@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START translate_v3_generated_TranslationService_TranslateDocument_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Translate\V3\Client\TranslationServiceClient;
 use Google\Cloud\Translate\V3\DocumentInputConfig;
+use Google\Cloud\Translate\V3\TranslateDocumentRequest;
 use Google\Cloud\Translate\V3\TranslateDocumentResponse;
-use Google\Cloud\Translate\V3\TranslationServiceClient;
 
 /**
  * Translates documents in synchronous mode.
@@ -51,17 +52,17 @@ function translate_document_sample(string $parent, string $targetLanguageCode): 
     // Create a client.
     $translationServiceClient = new TranslationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $documentInputConfig = new DocumentInputConfig();
+    $request = (new TranslateDocumentRequest())
+        ->setParent($parent)
+        ->setTargetLanguageCode($targetLanguageCode)
+        ->setDocumentInputConfig($documentInputConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var TranslateDocumentResponse $response */
-        $response = $translationServiceClient->translateDocument(
-            $parent,
-            $targetLanguageCode,
-            $documentInputConfig
-        );
+        $response = $translationServiceClient->translateDocument($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

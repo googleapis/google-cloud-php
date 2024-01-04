@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START speech_v2_generated_Speech_BatchRecognize_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Speech\V2\BatchRecognizeRequest;
 use Google\Cloud\Speech\V2\BatchRecognizeResponse;
-use Google\Cloud\Speech\V2\SpeechClient;
+use Google\Cloud\Speech\V2\Client\SpeechClient;
 use Google\Rpc\Status;
 
 /**
@@ -45,10 +46,14 @@ function batch_recognize_sample(string $formattedRecognizer): void
     // Create a client.
     $speechClient = new SpeechClient();
 
+    // Prepare the request message.
+    $request = (new BatchRecognizeRequest())
+        ->setRecognizer($formattedRecognizer);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $speechClient->batchRecognize($formattedRecognizer);
+        $response = $speechClient->batchRecognize($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

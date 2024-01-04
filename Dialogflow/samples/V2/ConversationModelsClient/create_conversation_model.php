@@ -25,9 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_ConversationModels_CreateConversationModel_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Dialogflow\V2\Client\ConversationModelsClient;
 use Google\Cloud\Dialogflow\V2\ConversationModel;
-use Google\Cloud\Dialogflow\V2\ConversationDatasetsClient;
-use Google\Cloud\Dialogflow\V2\ConversationModelsClient;
+use Google\Cloud\Dialogflow\V2\CreateConversationModelRequest;
 use Google\Cloud\Dialogflow\V2\InputDataset;
 use Google\Rpc\Status;
 
@@ -56,18 +56,20 @@ function create_conversation_model_sample(
     // Create a client.
     $conversationModelsClient = new ConversationModelsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $inputDataset = (new InputDataset())
         ->setDataset($formattedConversationModelDatasetsDataset);
     $conversationModelDatasets = [$inputDataset,];
     $conversationModel = (new ConversationModel())
         ->setDisplayName($conversationModelDisplayName)
         ->setDatasets($conversationModelDatasets);
+    $request = (new CreateConversationModelRequest())
+        ->setConversationModel($conversationModel);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $conversationModelsClient->createConversationModel($conversationModel);
+        $response = $conversationModelsClient->createConversationModel($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -96,7 +98,7 @@ function create_conversation_model_sample(
 function callSample(): void
 {
     $conversationModelDisplayName = '[DISPLAY_NAME]';
-    $formattedConversationModelDatasetsDataset = ConversationDatasetsClient::conversationDatasetName(
+    $formattedConversationModelDatasetsDataset = ConversationModelsClient::conversationDatasetName(
         '[PROJECT]',
         '[LOCATION]',
         '[CONVERSATION_DATASET]'

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START networkconnectivity_v1_generated_HubService_GetGroup_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\NetworkConnectivity\V1\Client\HubServiceClient;
+use Google\Cloud\NetworkConnectivity\V1\GetGroupRequest;
 use Google\Cloud\NetworkConnectivity\V1\Group;
-use Google\Cloud\NetworkConnectivity\V1\HubServiceClient;
 
 /**
  * Gets details about a Network Connectivity Center group.
@@ -38,10 +39,14 @@ function get_group_sample(string $formattedName): void
     // Create a client.
     $hubServiceClient = new HubServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetGroupRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Group $response */
-        $response = $hubServiceClient->getGroup($formattedName);
+        $response = $hubServiceClient->getGroup($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

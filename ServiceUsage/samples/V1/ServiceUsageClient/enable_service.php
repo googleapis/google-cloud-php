@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START serviceusage_v1_generated_ServiceUsage_EnableService_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\ServiceUsage\V1\Client\ServiceUsageClient;
+use Google\Cloud\ServiceUsage\V1\EnableServiceRequest;
 use Google\Cloud\ServiceUsage\V1\EnableServiceResponse;
-use Google\Cloud\ServiceUsage\V1\ServiceUsageClient;
 use Google\Rpc\Status;
 
 /**
@@ -43,10 +44,13 @@ function enable_service_sample(): void
     // Create a client.
     $serviceUsageClient = new ServiceUsageClient();
 
+    // Prepare the request message.
+    $request = new EnableServiceRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $serviceUsageClient->enableService();
+        $response = $serviceUsageClient->enableService($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

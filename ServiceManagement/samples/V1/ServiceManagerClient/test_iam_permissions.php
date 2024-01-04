@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START servicemanagement_v1_generated_ServiceManager_TestIamPermissions_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
-use Google\Cloud\ServiceManagement\V1\ServiceManagerClient;
+use Google\Cloud\ServiceManagement\V1\Client\ServiceManagerClient;
 
 /**
  * Returns permissions that a caller has on the specified resource. If the
@@ -48,13 +49,16 @@ function test_iam_permissions_sample(string $resource, string $permissionsElemen
     // Create a client.
     $serviceManagerClient = new ServiceManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $permissions = [$permissionsElement,];
+    $request = (new TestIamPermissionsRequest())
+        ->setResource($resource)
+        ->setPermissions($permissions);
 
     // Call the API and handle any network failures.
     try {
         /** @var TestIamPermissionsResponse $response */
-        $response = $serviceManagerClient->testIamPermissions($resource, $permissions);
+        $response = $serviceManagerClient->testIamPermissions($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

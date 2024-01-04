@@ -166,6 +166,8 @@ final class ImageVersionsClient
      *
      * The async variant is {@see ImageVersionsClient::listImageVersionsAsync()} .
      *
+     * @example samples/V1/ImageVersionsClient/list_image_versions.php
+     *
      * @param ListImageVersionsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.

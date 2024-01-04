@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudscheduler_v1_generated_CloudScheduler_RunJob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Scheduler\V1\CloudSchedulerClient;
+use Google\Cloud\Scheduler\V1\Client\CloudSchedulerClient;
 use Google\Cloud\Scheduler\V1\Job;
+use Google\Cloud\Scheduler\V1\RunJobRequest;
 
 /**
  * Forces a job to run now.
@@ -42,10 +43,14 @@ function run_job_sample(string $formattedName): void
     // Create a client.
     $cloudSchedulerClient = new CloudSchedulerClient();
 
+    // Prepare the request message.
+    $request = (new RunJobRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Job $response */
-        $response = $cloudSchedulerClient->runJob($formattedName);
+        $response = $cloudSchedulerClient->runJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

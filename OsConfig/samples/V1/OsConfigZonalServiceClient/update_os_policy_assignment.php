@@ -25,6 +25,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START osconfig_v1_generated_OsConfigZonalService_UpdateOSPolicyAssignment_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\OsConfig\V1\Client\OsConfigZonalServiceClient;
 use Google\Cloud\OsConfig\V1\FixedOrPercent;
 use Google\Cloud\OsConfig\V1\OSPolicy;
 use Google\Cloud\OsConfig\V1\OSPolicyAssignment;
@@ -33,7 +34,7 @@ use Google\Cloud\OsConfig\V1\OSPolicyAssignment\Rollout;
 use Google\Cloud\OsConfig\V1\OSPolicy\Mode;
 use Google\Cloud\OsConfig\V1\OSPolicy\Resource;
 use Google\Cloud\OsConfig\V1\OSPolicy\ResourceGroup;
-use Google\Cloud\OsConfig\V1\OsConfigZonalServiceClient;
+use Google\Cloud\OsConfig\V1\UpdateOSPolicyAssignmentRequest;
 use Google\Protobuf\Duration;
 use Google\Rpc\Status;
 
@@ -72,7 +73,7 @@ function update_os_policy_assignment_sample(
     // Create a client.
     $osConfigZonalServiceClient = new OsConfigZonalServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $resource = (new Resource())
         ->setId($osPolicyAssignmentOsPoliciesResourceGroupsResourcesId);
     $osPolicyAssignmentOsPoliciesResourceGroupsResources = [$resource,];
@@ -94,11 +95,13 @@ function update_os_policy_assignment_sample(
         ->setOsPolicies($osPolicyAssignmentOsPolicies)
         ->setInstanceFilter($osPolicyAssignmentInstanceFilter)
         ->setRollout($osPolicyAssignmentRollout);
+    $request = (new UpdateOSPolicyAssignmentRequest())
+        ->setOsPolicyAssignment($osPolicyAssignment);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $osConfigZonalServiceClient->updateOSPolicyAssignment($osPolicyAssignment);
+        $response = $osConfigZonalServiceClient->updateOSPolicyAssignment($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

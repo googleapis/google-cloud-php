@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datastream_v1_generated_Datastream_DeletePrivateConnection_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Datastream\V1\DatastreamClient;
+use Google\Cloud\Datastream\V1\Client\DatastreamClient;
+use Google\Cloud\Datastream\V1\DeletePrivateConnectionRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,10 +40,14 @@ function delete_private_connection_sample(string $formattedName): void
     // Create a client.
     $datastreamClient = new DatastreamClient();
 
+    // Prepare the request message.
+    $request = (new DeletePrivateConnectionRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $datastreamClient->deletePrivateConnection($formattedName);
+        $response = $datastreamClient->deletePrivateConnection($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

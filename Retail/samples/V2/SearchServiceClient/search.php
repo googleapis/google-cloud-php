@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START retail_v2_generated_SearchService_Search_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Retail\V2\Client\SearchServiceClient;
+use Google\Cloud\Retail\V2\SearchRequest;
 use Google\Cloud\Retail\V2\SearchResponse\SearchResult;
-use Google\Cloud\Retail\V2\SearchServiceClient;
 
 /**
  * Performs a search.
@@ -56,10 +57,15 @@ function search_sample(string $placement, string $visitorId): void
     // Create a client.
     $searchServiceClient = new SearchServiceClient();
 
+    // Prepare the request message.
+    $request = (new SearchRequest())
+        ->setPlacement($placement)
+        ->setVisitorId($visitorId);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $searchServiceClient->search($placement, $visitorId);
+        $response = $searchServiceClient->search($request);
 
         /** @var SearchResult $element */
         foreach ($response as $element) {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datacatalog_v1_generated_DataCatalog_ListEntryGroups_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\DataCatalog\V1\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\Client\DataCatalogClient;
 use Google\Cloud\DataCatalog\V1\EntryGroup;
+use Google\Cloud\DataCatalog\V1\ListEntryGroupsRequest;
 
 /**
  * Lists entry groups.
@@ -41,10 +42,14 @@ function list_entry_groups_sample(string $formattedParent): void
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
+    // Prepare the request message.
+    $request = (new ListEntryGroupsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataCatalogClient->listEntryGroups($formattedParent);
+        $response = $dataCatalogClient->listEntryGroups($request);
 
         /** @var EntryGroup $element */
         foreach ($response as $element) {

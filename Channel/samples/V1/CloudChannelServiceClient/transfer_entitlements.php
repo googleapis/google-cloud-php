@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudchannel_v1_generated_CloudChannelService_TransferEntitlements_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
 use Google\Cloud\Channel\V1\Entitlement;
+use Google\Cloud\Channel\V1\TransferEntitlementsRequest;
 use Google\Cloud\Channel\V1\TransferEntitlementsResponse;
 use Google\Rpc\Status;
 
@@ -76,15 +77,18 @@ function transfer_entitlements_sample(string $parent, string $formattedEntitleme
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $entitlement = (new Entitlement())
         ->setOffer($formattedEntitlementsOffer);
     $entitlements = [$entitlement,];
+    $request = (new TransferEntitlementsRequest())
+        ->setParent($parent)
+        ->setEntitlements($entitlements);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudChannelServiceClient->transferEntitlements($parent, $entitlements);
+        $response = $cloudChannelServiceClient->transferEntitlements($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

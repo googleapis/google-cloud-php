@@ -308,6 +308,8 @@ final class EkmServiceClient
      *
      * The async variant is {@see EkmServiceClient::createEkmConnectionAsync()} .
      *
+     * @example samples/V1/EkmServiceClient/create_ekm_connection.php
+     *
      * @param CreateEkmConnectionRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -332,6 +334,8 @@ final class EkmServiceClient
      * for a given project and location.
      *
      * The async variant is {@see EkmServiceClient::getEkmConfigAsync()} .
+     *
+     * @example samples/V1/EkmServiceClient/get_ekm_config.php
      *
      * @param GetEkmConfigRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -358,6 +362,8 @@ final class EkmServiceClient
      *
      * The async variant is {@see EkmServiceClient::getEkmConnectionAsync()} .
      *
+     * @example samples/V1/EkmServiceClient/get_ekm_connection.php
+     *
      * @param GetEkmConnectionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -381,6 +387,8 @@ final class EkmServiceClient
      * Lists [EkmConnections][google.cloud.kms.v1.EkmConnection].
      *
      * The async variant is {@see EkmServiceClient::listEkmConnectionsAsync()} .
+     *
+     * @example samples/V1/EkmServiceClient/list_ekm_connections.php
      *
      * @param ListEkmConnectionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -407,6 +415,8 @@ final class EkmServiceClient
      *
      * The async variant is {@see EkmServiceClient::updateEkmConfigAsync()} .
      *
+     * @example samples/V1/EkmServiceClient/update_ekm_config.php
+     *
      * @param UpdateEkmConfigRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -430,6 +440,8 @@ final class EkmServiceClient
      * Updates an [EkmConnection][google.cloud.kms.v1.EkmConnection]'s metadata.
      *
      * The async variant is {@see EkmServiceClient::updateEkmConnectionAsync()} .
+     *
+     * @example samples/V1/EkmServiceClient/update_ekm_connection.php
      *
      * @param UpdateEkmConnectionRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -459,6 +471,8 @@ final class EkmServiceClient
      *
      * The async variant is {@see EkmServiceClient::verifyConnectivityAsync()} .
      *
+     * @example samples/V1/EkmServiceClient/verify_connectivity.php
+     *
      * @param VerifyConnectivityRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -482,6 +496,8 @@ final class EkmServiceClient
      * Gets information about a location.
      *
      * The async variant is {@see EkmServiceClient::getLocationAsync()} .
+     *
+     * @example samples/V1/EkmServiceClient/get_location.php
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -507,6 +523,8 @@ final class EkmServiceClient
      *
      * The async variant is {@see EkmServiceClient::listLocationsAsync()} .
      *
+     * @example samples/V1/EkmServiceClient/list_locations.php
+     *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -531,6 +549,8 @@ final class EkmServiceClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see EkmServiceClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/EkmServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -559,6 +579,8 @@ final class EkmServiceClient
     errors.
      *
      * The async variant is {@see EkmServiceClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/EkmServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -589,6 +611,8 @@ final class EkmServiceClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see EkmServiceClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/EkmServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

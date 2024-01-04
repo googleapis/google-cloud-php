@@ -224,6 +224,8 @@ final class SearchServiceClient
      *
      * The async variant is {@see SearchServiceClient::searchAsync()} .
      *
+     * @example samples/V2/SearchServiceClient/search.php
+     *
      * @param SearchRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
      *     Optional.

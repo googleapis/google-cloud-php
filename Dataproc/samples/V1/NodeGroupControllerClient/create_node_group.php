@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataproc_v1_generated_NodeGroupController_CreateNodeGroup_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Dataproc\V1\Client\NodeGroupControllerClient;
+use Google\Cloud\Dataproc\V1\CreateNodeGroupRequest;
 use Google\Cloud\Dataproc\V1\NodeGroup;
-use Google\Cloud\Dataproc\V1\NodeGroupControllerClient;
 use Google\Cloud\Dataproc\V1\NodeGroup\Role;
 use Google\Rpc\Status;
 
@@ -45,15 +46,18 @@ function create_node_group_sample(string $formattedParent, int $nodeGroupRolesEl
     // Create a client.
     $nodeGroupControllerClient = new NodeGroupControllerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $nodeGroupRoles = [$nodeGroupRolesElement,];
     $nodeGroup = (new NodeGroup())
         ->setRoles($nodeGroupRoles);
+    $request = (new CreateNodeGroupRequest())
+        ->setParent($formattedParent)
+        ->setNodeGroup($nodeGroup);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $nodeGroupControllerClient->createNodeGroup($formattedParent, $nodeGroup);
+        $response = $nodeGroupControllerClient->createNodeGroup($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

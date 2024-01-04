@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START storagetransfer_v1_generated_StorageTransferService_ListTransferJobs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\StorageTransfer\V1\StorageTransferServiceClient;
+use Google\Cloud\StorageTransfer\V1\Client\StorageTransferServiceClient;
+use Google\Cloud\StorageTransfer\V1\ListTransferJobsRequest;
 use Google\Cloud\StorageTransfer\V1\TransferJob;
 
 /**
@@ -49,10 +50,14 @@ function list_transfer_jobs_sample(string $filter): void
     // Create a client.
     $storageTransferServiceClient = new StorageTransferServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListTransferJobsRequest())
+        ->setFilter($filter);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $storageTransferServiceClient->listTransferJobs($filter);
+        $response = $storageTransferServiceClient->listTransferJobs($request);
 
         /** @var TransferJob $element */
         foreach ($response as $element) {

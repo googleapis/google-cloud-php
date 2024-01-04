@@ -280,6 +280,8 @@ final class SpannerClient
      *
      * The async variant is {@see SpannerClient::batchCreateSessionsAsync()} .
      *
+     * @example samples/V1/SpannerClient/batch_create_sessions.php
+     *
      * @param BatchCreateSessionsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -316,6 +318,8 @@ final class SpannerClient
      * mutation's table. We recommend structuring your mutation groups to be
      * idempotent to avoid this issue.
      *
+     * @example samples/V1/SpannerClient/batch_write.php
+     *
      * @param BatchWriteRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -341,6 +345,8 @@ final class SpannerClient
      * side-effect.
      *
      * The async variant is {@see SpannerClient::beginTransactionAsync()} .
+     *
+     * @example samples/V1/SpannerClient/begin_transaction.php
      *
      * @param BeginTransactionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -378,6 +384,8 @@ final class SpannerClient
      * state of things as they are now.
      *
      * The async variant is {@see SpannerClient::commitAsync()} .
+     *
+     * @example samples/V1/SpannerClient/commit.php
      *
      * @param CommitRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -421,6 +429,8 @@ final class SpannerClient
      *
      * The async variant is {@see SpannerClient::createSessionAsync()} .
      *
+     * @example samples/V1/SpannerClient/create_session.php
+     *
      * @param CreateSessionRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -446,6 +456,8 @@ final class SpannerClient
      * this session.
      *
      * The async variant is {@see SpannerClient::deleteSessionAsync()} .
+     *
+     * @example samples/V1/SpannerClient/delete_session.php
      *
      * @param DeleteSessionRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -479,6 +491,8 @@ final class SpannerClient
      * are not executed.
      *
      * The async variant is {@see SpannerClient::executeBatchDmlAsync()} .
+     *
+     * @example samples/V1/SpannerClient/execute_batch_dml.php
      *
      * @param ExecuteBatchDmlRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -516,6 +530,8 @@ final class SpannerClient
      *
      * The async variant is {@see SpannerClient::executeSqlAsync()} .
      *
+     * @example samples/V1/SpannerClient/execute_sql.php
+     *
      * @param ExecuteSqlRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -542,6 +558,8 @@ final class SpannerClient
      * the size of the returned result set. However, no individual row in the
      * result set can exceed 100 MiB, and no column value can exceed 10 MiB.
      *
+     * @example samples/V1/SpannerClient/execute_streaming_sql.php
+     *
      * @param ExecuteSqlRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -566,6 +584,8 @@ final class SpannerClient
      *
      * The async variant is {@see SpannerClient::getSessionAsync()} .
      *
+     * @example samples/V1/SpannerClient/get_session.php
+     *
      * @param GetSessionRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -589,6 +609,8 @@ final class SpannerClient
      * Lists all sessions in a given database.
      *
      * The async variant is {@see SpannerClient::listSessionsAsync()} .
+     *
+     * @example samples/V1/SpannerClient/list_sessions.php
      *
      * @param ListSessionsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -624,6 +646,8 @@ final class SpannerClient
      * the whole operation must be restarted from the beginning.
      *
      * The async variant is {@see SpannerClient::partitionQueryAsync()} .
+     *
+     * @example samples/V1/SpannerClient/partition_query.php
      *
      * @param PartitionQueryRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -662,6 +686,8 @@ final class SpannerClient
      *
      * The async variant is {@see SpannerClient::partitionReadAsync()} .
      *
+     * @example samples/V1/SpannerClient/partition_read.php
+     *
      * @param PartitionReadRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -699,6 +725,8 @@ final class SpannerClient
      *
      * The async variant is {@see SpannerClient::readAsync()} .
      *
+     * @example samples/V1/SpannerClient/read.php
+     *
      * @param ReadRequest $request     A request to house fields associated with the call.
      * @param array       $callOptions {
      *     Optional.
@@ -731,6 +759,8 @@ final class SpannerClient
      *
      * The async variant is {@see SpannerClient::rollbackAsync()} .
      *
+     * @example samples/V1/SpannerClient/rollback.php
+     *
      * @param RollbackRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -754,6 +784,8 @@ final class SpannerClient
      * limit on the size of the returned result set. However, no individual row in
      * the result set can exceed 100 MiB, and no column value can exceed
      * 10 MiB.
+     *
+     * @example samples/V1/SpannerClient/streaming_read.php
      *
      * @param ReadRequest $request     A request to house fields associated with the call.
      * @param array       $callOptions {

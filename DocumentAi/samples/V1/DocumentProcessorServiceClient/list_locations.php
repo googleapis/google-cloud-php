@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START documentai_v1_generated_DocumentProcessorService_ListLocations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\DocumentAI\V1\DocumentProcessorServiceClient;
+use Google\Cloud\DocumentAI\V1\Client\DocumentProcessorServiceClient;
+use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 
 /**
@@ -42,10 +43,13 @@ function list_locations_sample(): void
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
+    // Prepare the request message.
+    $request = new ListLocationsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $documentProcessorServiceClient->listLocations();
+        $response = $documentProcessorServiceClient->listLocations($request);
 
         /** @var Location $element */
         foreach ($response as $element) {

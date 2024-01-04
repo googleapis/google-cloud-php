@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START jobs_v4_generated_CompanyService_ListCompanies_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Talent\V4\Client\CompanyServiceClient;
 use Google\Cloud\Talent\V4\Company;
-use Google\Cloud\Talent\V4\CompanyServiceClient;
+use Google\Cloud\Talent\V4\ListCompaniesRequest;
 
 /**
  * Lists all companies associated with the project.
@@ -42,10 +43,14 @@ function list_companies_sample(string $formattedParent): void
     // Create a client.
     $companyServiceClient = new CompanyServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListCompaniesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $companyServiceClient->listCompanies($formattedParent);
+        $response = $companyServiceClient->listCompanies($request);
 
         /** @var Company $element */
         foreach ($response as $element) {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START firestore_v1_generated_Firestore_BatchWrite_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Firestore\V1\BatchWriteRequest;
 use Google\Cloud\Firestore\V1\BatchWriteResponse;
-use Google\Cloud\Firestore\V1\FirestoreClient;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 
 /**
  * Applies a batch of write operations.
@@ -50,10 +51,13 @@ function batch_write_sample(): void
     // Create a client.
     $firestoreClient = new FirestoreClient();
 
+    // Prepare the request message.
+    $request = new BatchWriteRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var BatchWriteResponse $response */
-        $response = $firestoreClient->batchWrite();
+        $response = $firestoreClient->batchWrite($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START retail_v2_generated_CatalogService_AddCatalogAttribute_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Retail\V2\AddCatalogAttributeRequest;
 use Google\Cloud\Retail\V2\AttributesConfig;
 use Google\Cloud\Retail\V2\CatalogAttribute;
-use Google\Cloud\Retail\V2\CatalogServiceClient;
+use Google\Cloud\Retail\V2\Client\CatalogServiceClient;
 
 /**
  * Adds the specified
@@ -58,17 +59,17 @@ function add_catalog_attribute_sample(
     // Create a client.
     $catalogServiceClient = new CatalogServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $catalogAttribute = (new CatalogAttribute())
         ->setKey($catalogAttributeKey);
+    $request = (new AddCatalogAttributeRequest())
+        ->setAttributesConfig($formattedAttributesConfig)
+        ->setCatalogAttribute($catalogAttribute);
 
     // Call the API and handle any network failures.
     try {
         /** @var AttributesConfig $response */
-        $response = $catalogServiceClient->addCatalogAttribute(
-            $formattedAttributesConfig,
-            $catalogAttribute
-        );
+        $response = $catalogServiceClient->addCatalogAttribute($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudchannel_v1_generated_CloudChannelService_GetChannelPartnerLink_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Channel\V1\ChannelPartnerLink;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\GetChannelPartnerLinkRequest;
 
 /**
  * Returns the requested
@@ -53,10 +54,14 @@ function get_channel_partner_link_sample(string $name): void
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetChannelPartnerLinkRequest())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
         /** @var ChannelPartnerLink $response */
-        $response = $cloudChannelServiceClient->getChannelPartnerLink($name);
+        $response = $cloudChannelServiceClient->getChannelPartnerLink($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

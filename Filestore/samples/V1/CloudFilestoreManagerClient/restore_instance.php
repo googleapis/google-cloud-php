@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START file_v1_generated_CloudFilestoreManager_RestoreInstance_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Filestore\V1\CloudFilestoreManagerClient;
+use Google\Cloud\Filestore\V1\Client\CloudFilestoreManagerClient;
 use Google\Cloud\Filestore\V1\Instance;
+use Google\Cloud\Filestore\V1\RestoreInstanceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -47,10 +48,15 @@ function restore_instance_sample(string $formattedName, string $fileShare): void
     // Create a client.
     $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
 
+    // Prepare the request message.
+    $request = (new RestoreInstanceRequest())
+        ->setName($formattedName)
+        ->setFileShare($fileShare);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudFilestoreManagerClient->restoreInstance($formattedName, $fileShare);
+        $response = $cloudFilestoreManagerClient->restoreInstance($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

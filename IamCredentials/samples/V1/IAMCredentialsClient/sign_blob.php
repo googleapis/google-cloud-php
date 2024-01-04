@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START iamcredentials_v1_generated_IAMCredentials_SignBlob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Iam\Credentials\V1\IAMCredentialsClient;
+use Google\Cloud\Iam\Credentials\V1\Client\IAMCredentialsClient;
+use Google\Cloud\Iam\Credentials\V1\SignBlobRequest;
 use Google\Cloud\Iam\Credentials\V1\SignBlobResponse;
 
 /**
@@ -42,10 +43,15 @@ function sign_blob_sample(string $formattedName, string $payload): void
     // Create a client.
     $iAMCredentialsClient = new IAMCredentialsClient();
 
+    // Prepare the request message.
+    $request = (new SignBlobRequest())
+        ->setName($formattedName)
+        ->setPayload($payload);
+
     // Call the API and handle any network failures.
     try {
         /** @var SignBlobResponse $response */
-        $response = $iAMCredentialsClient->signBlob($formattedName, $payload);
+        $response = $iAMCredentialsClient->signBlob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

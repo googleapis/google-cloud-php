@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START servicemanagement_v1_generated_ServiceManager_CreateServiceRollout_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\ServiceManagement\V1\Client\ServiceManagerClient;
+use Google\Cloud\ServiceManagement\V1\CreateServiceRolloutRequest;
 use Google\Cloud\ServiceManagement\V1\Rollout;
-use Google\Cloud\ServiceManagement\V1\ServiceManagerClient;
 use Google\Rpc\Status;
 
 /**
@@ -54,13 +55,16 @@ function create_service_rollout_sample(string $serviceName): void
     // Create a client.
     $serviceManagerClient = new ServiceManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $rollout = new Rollout();
+    $request = (new CreateServiceRolloutRequest())
+        ->setServiceName($serviceName)
+        ->setRollout($rollout);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $serviceManagerClient->createServiceRollout($serviceName, $rollout);
+        $response = $serviceManagerClient->createServiceRollout($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

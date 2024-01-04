@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START pubsub_v1_generated_Subscriber_ModifyPushConfig_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\PubSub\V1\Client\SubscriberClient;
+use Google\Cloud\PubSub\V1\ModifyPushConfigRequest;
 use Google\Cloud\PubSub\V1\PushConfig;
-use Google\Cloud\PubSub\V1\SubscriberClient;
 
 /**
  * Modifies the `PushConfig` for a specified subscription.
@@ -44,12 +45,15 @@ function modify_push_config_sample(string $formattedSubscription): void
     // Create a client.
     $subscriberClient = new SubscriberClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $pushConfig = new PushConfig();
+    $request = (new ModifyPushConfigRequest())
+        ->setSubscription($formattedSubscription)
+        ->setPushConfig($pushConfig);
 
     // Call the API and handle any network failures.
     try {
-        $subscriberClient->modifyPushConfig($formattedSubscription, $pushConfig);
+        $subscriberClient->modifyPushConfig($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

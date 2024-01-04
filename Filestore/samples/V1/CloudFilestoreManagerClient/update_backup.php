@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Filestore\V1\Backup;
-use Google\Cloud\Filestore\V1\CloudFilestoreManagerClient;
+use Google\Cloud\Filestore\V1\Client\CloudFilestoreManagerClient;
+use Google\Cloud\Filestore\V1\UpdateBackupRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -44,14 +45,17 @@ function update_backup_sample(): void
     // Create a client.
     $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $backup = new Backup();
     $updateMask = new FieldMask();
+    $request = (new UpdateBackupRequest())
+        ->setBackup($backup)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudFilestoreManagerClient->updateBackup($backup, $updateMask);
+        $response = $cloudFilestoreManagerClient->updateBackup($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

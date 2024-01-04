@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START spanner_v1_generated_Spanner_PartitionRead_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\KeySet;
+use Google\Cloud\Spanner\V1\PartitionReadRequest;
 use Google\Cloud\Spanner\V1\PartitionResponse;
-use Google\Cloud\Spanner\V1\SpannerClient;
 
 /**
  * Creates a set of partition tokens that can be used to execute a read
@@ -53,13 +54,17 @@ function partition_read_sample(string $formattedSession, string $table): void
     // Create a client.
     $spannerClient = new SpannerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $keySet = new KeySet();
+    $request = (new PartitionReadRequest())
+        ->setSession($formattedSession)
+        ->setTable($table)
+        ->setKeySet($keySet);
 
     // Call the API and handle any network failures.
     try {
         /** @var PartitionResponse $response */
-        $response = $spannerClient->partitionRead($formattedSession, $table, $keySet);
+        $response = $spannerClient->partitionRead($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

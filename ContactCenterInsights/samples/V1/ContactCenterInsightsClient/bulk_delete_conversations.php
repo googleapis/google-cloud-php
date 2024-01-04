@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START contactcenterinsights_v1_generated_ContactCenterInsights_BulkDeleteConversations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\ContactCenterInsights\V1\BulkDeleteConversationsRequest;
 use Google\Cloud\ContactCenterInsights\V1\BulkDeleteConversationsResponse;
-use Google\Cloud\ContactCenterInsights\V1\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient;
 use Google\Rpc\Status;
 
 /**
@@ -42,10 +43,14 @@ function bulk_delete_conversations_sample(string $formattedParent): void
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
+    // Prepare the request message.
+    $request = (new BulkDeleteConversationsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $contactCenterInsightsClient->bulkDeleteConversations($formattedParent);
+        $response = $contactCenterInsightsClient->bulkDeleteConversations($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

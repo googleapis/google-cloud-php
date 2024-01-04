@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START accessapproval_v1_generated_AccessApproval_UpdateAccessApprovalSettings_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AccessApproval\V1\AccessApprovalClient;
 use Google\Cloud\AccessApproval\V1\AccessApprovalSettings;
+use Google\Cloud\AccessApproval\V1\Client\AccessApprovalClient;
+use Google\Cloud\AccessApproval\V1\UpdateAccessApprovalSettingsMessage;
 
 /**
  * Updates the settings associated with a project, folder, or organization.
@@ -42,10 +43,13 @@ function update_access_approval_settings_sample(): void
     // Create a client.
     $accessApprovalClient = new AccessApprovalClient();
 
+    // Prepare the request message.
+    $request = new UpdateAccessApprovalSettingsMessage();
+
     // Call the API and handle any network failures.
     try {
         /** @var AccessApprovalSettings $response */
-        $response = $accessApprovalClient->updateAccessApprovalSettings();
+        $response = $accessApprovalClient->updateAccessApprovalSettings($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

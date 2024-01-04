@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START logging_v2_generated_ConfigServiceV2_CreateLink_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Logging\V2\ConfigServiceV2Client;
+use Google\Cloud\Logging\V2\Client\ConfigServiceV2Client;
+use Google\Cloud\Logging\V2\CreateLinkRequest;
 use Google\Cloud\Logging\V2\Link;
 use Google\Rpc\Status;
 
@@ -50,13 +51,17 @@ function create_link_sample(string $formattedParent, string $linkId): void
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $link = new Link();
+    $request = (new CreateLinkRequest())
+        ->setParent($formattedParent)
+        ->setLink($link)
+        ->setLinkId($linkId);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $configServiceV2Client->createLink($formattedParent, $link, $linkId);
+        $response = $configServiceV2Client->createLink($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

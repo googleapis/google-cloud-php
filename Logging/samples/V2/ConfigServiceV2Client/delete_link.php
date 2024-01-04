@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START logging_v2_generated_ConfigServiceV2_DeleteLink_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Logging\V2\ConfigServiceV2Client;
+use Google\Cloud\Logging\V2\Client\ConfigServiceV2Client;
+use Google\Cloud\Logging\V2\DeleteLinkRequest;
 use Google\Rpc\Status;
 
 /**
@@ -45,10 +46,14 @@ function delete_link_sample(string $formattedName): void
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
 
+    // Prepare the request message.
+    $request = (new DeleteLinkRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $configServiceV2Client->deleteLink($formattedName);
+        $response = $configServiceV2Client->deleteLink($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

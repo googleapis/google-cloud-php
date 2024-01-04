@@ -25,7 +25,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START firestore_v1_generated_Firestore_Write_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
-use Google\Cloud\Firestore\V1\FirestoreClient;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 use Google\Cloud\Firestore\V1\WriteRequest;
 use Google\Cloud\Firestore\V1\WriteResponse;
 
@@ -42,7 +42,7 @@ function write_sample(string $database): void
     // Create a client.
     $firestoreClient = new FirestoreClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $request = (new WriteRequest())
         ->setDatabase($database);
 

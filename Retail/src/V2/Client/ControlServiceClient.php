@@ -250,6 +250,8 @@ final class ControlServiceClient
      *
      * The async variant is {@see ControlServiceClient::createControlAsync()} .
      *
+     * @example samples/V2/ControlServiceClient/create_control.php
+     *
      * @param CreateControlRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -277,6 +279,8 @@ final class ControlServiceClient
      *
      * The async variant is {@see ControlServiceClient::deleteControlAsync()} .
      *
+     * @example samples/V2/ControlServiceClient/delete_control.php
+     *
      * @param DeleteControlRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -298,6 +302,8 @@ final class ControlServiceClient
      * Gets a Control.
      *
      * The async variant is {@see ControlServiceClient::getControlAsync()} .
+     *
+     * @example samples/V2/ControlServiceClient/get_control.php
      *
      * @param GetControlRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -323,6 +329,8 @@ final class ControlServiceClient
      * [Catalog][google.cloud.retail.v2.Catalog].
      *
      * The async variant is {@see ControlServiceClient::listControlsAsync()} .
+     *
+     * @example samples/V2/ControlServiceClient/list_controls.php
      *
      * @param ListControlsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -352,6 +360,8 @@ final class ControlServiceClient
      * NOT_FOUND error is returned.
      *
      * The async variant is {@see ControlServiceClient::updateControlAsync()} .
+     *
+     * @example samples/V2/ControlServiceClient/update_control.php
      *
      * @param UpdateControlRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

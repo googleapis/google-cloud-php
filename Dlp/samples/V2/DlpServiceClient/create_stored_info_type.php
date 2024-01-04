@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dlp_v2_generated_DlpService_CreateStoredInfoType_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dlp\V2\DlpServiceClient;
+use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
+use Google\Cloud\Dlp\V2\CreateStoredInfoTypeRequest;
 use Google\Cloud\Dlp\V2\StoredInfoType;
 use Google\Cloud\Dlp\V2\StoredInfoTypeConfig;
 
@@ -60,13 +61,16 @@ function create_stored_info_type_sample(string $formattedParent): void
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $config = new StoredInfoTypeConfig();
+    $request = (new CreateStoredInfoTypeRequest())
+        ->setParent($formattedParent)
+        ->setConfig($config);
 
     // Call the API and handle any network failures.
     try {
         /** @var StoredInfoType $response */
-        $response = $dlpServiceClient->createStoredInfoType($formattedParent, $config);
+        $response = $dlpServiceClient->createStoredInfoType($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

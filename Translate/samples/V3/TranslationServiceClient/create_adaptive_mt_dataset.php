@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START translate_v3_generated_TranslationService_CreateAdaptiveMtDataset_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Translate\V3\AdaptiveMtDataset;
-use Google\Cloud\Translate\V3\TranslationServiceClient;
+use Google\Cloud\Translate\V3\Client\TranslationServiceClient;
+use Google\Cloud\Translate\V3\CreateAdaptiveMtDatasetRequest;
 
 /**
  * Creates an Adaptive MT dataset.
@@ -44,17 +45,17 @@ function create_adaptive_mt_dataset_sample(
     // Create a client.
     $translationServiceClient = new TranslationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $adaptiveMtDataset = (new AdaptiveMtDataset())
         ->setName($formattedAdaptiveMtDatasetName);
+    $request = (new CreateAdaptiveMtDatasetRequest())
+        ->setParent($formattedParent)
+        ->setAdaptiveMtDataset($adaptiveMtDataset);
 
     // Call the API and handle any network failures.
     try {
         /** @var AdaptiveMtDataset $response */
-        $response = $translationServiceClient->createAdaptiveMtDataset(
-            $formattedParent,
-            $adaptiveMtDataset
-        );
+        $response = $translationServiceClient->createAdaptiveMtDataset($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

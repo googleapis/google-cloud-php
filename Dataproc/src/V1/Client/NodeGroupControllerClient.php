@@ -289,6 +289,8 @@ final class NodeGroupControllerClient
      *
      * The async variant is {@see NodeGroupControllerClient::createNodeGroupAsync()} .
      *
+     * @example samples/V1/NodeGroupControllerClient/create_node_group.php
+     *
      * @param CreateNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -313,6 +315,8 @@ final class NodeGroupControllerClient
      * cluster.
      *
      * The async variant is {@see NodeGroupControllerClient::getNodeGroupAsync()} .
+     *
+     * @example samples/V1/NodeGroupControllerClient/get_node_group.php
      *
      * @param GetNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -340,6 +344,8 @@ final class NodeGroupControllerClient
      *
      * The async variant is {@see NodeGroupControllerClient::resizeNodeGroupAsync()} .
      *
+     * @example samples/V1/NodeGroupControllerClient/resize_node_group.php
+     *
      * @param ResizeNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -364,6 +370,8 @@ final class NodeGroupControllerClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see NodeGroupControllerClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/NodeGroupControllerClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -392,6 +400,8 @@ final class NodeGroupControllerClient
     errors.
      *
      * The async variant is {@see NodeGroupControllerClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/NodeGroupControllerClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -423,6 +433,8 @@ final class NodeGroupControllerClient
      *
      * The async variant is {@see NodeGroupControllerClient::testIamPermissionsAsync()}
      * .
+     *
+     * @example samples/V1/NodeGroupControllerClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START vision_v1_generated_ProductSearch_RemoveProductFromProductSet_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Vision\V1\ProductSearchClient;
+use Google\Cloud\Vision\V1\Client\ProductSearchClient;
+use Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest;
 
 /**
  * Removes a Product from the specified ProductSet.
@@ -47,9 +48,14 @@ function remove_product_from_product_set_sample(
     // Create a client.
     $productSearchClient = new ProductSearchClient();
 
+    // Prepare the request message.
+    $request = (new RemoveProductFromProductSetRequest())
+        ->setName($formattedName)
+        ->setProduct($formattedProduct);
+
     // Call the API and handle any network failures.
     try {
-        $productSearchClient->removeProductFromProductSet($formattedName, $formattedProduct);
+        $productSearchClient->removeProductFromProductSet($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

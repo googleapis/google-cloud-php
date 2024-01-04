@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START translate_v3_generated_TranslationService_ImportAdaptiveMtFile_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Translate\V3\Client\TranslationServiceClient;
+use Google\Cloud\Translate\V3\ImportAdaptiveMtFileRequest;
 use Google\Cloud\Translate\V3\ImportAdaptiveMtFileResponse;
-use Google\Cloud\Translate\V3\TranslationServiceClient;
 
 /**
  * Imports an AdaptiveMtFile and adds all of its sentences into the
@@ -40,10 +41,14 @@ function import_adaptive_mt_file_sample(string $formattedParent): void
     // Create a client.
     $translationServiceClient = new TranslationServiceClient();
 
+    // Prepare the request message.
+    $request = (new ImportAdaptiveMtFileRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var ImportAdaptiveMtFileResponse $response */
-        $response = $translationServiceClient->importAdaptiveMtFile($formattedParent);
+        $response = $translationServiceClient->importAdaptiveMtFile($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

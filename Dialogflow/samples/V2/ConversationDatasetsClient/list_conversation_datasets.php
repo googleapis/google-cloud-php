@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_ConversationDatasets_ListConversationDatasets_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dialogflow\V2\Client\ConversationDatasetsClient;
 use Google\Cloud\Dialogflow\V2\ConversationDataset;
-use Google\Cloud\Dialogflow\V2\ConversationDatasetsClient;
+use Google\Cloud\Dialogflow\V2\ListConversationDatasetsRequest;
 
 /**
  * Returns the list of all conversation datasets in the specified
@@ -41,10 +42,14 @@ function list_conversation_datasets_sample(string $formattedParent): void
     // Create a client.
     $conversationDatasetsClient = new ConversationDatasetsClient();
 
+    // Prepare the request message.
+    $request = (new ListConversationDatasetsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $conversationDatasetsClient->listConversationDatasets($formattedParent);
+        $response = $conversationDatasetsClient->listConversationDatasets($request);
 
         /** @var ConversationDataset $element */
         foreach ($response as $element) {

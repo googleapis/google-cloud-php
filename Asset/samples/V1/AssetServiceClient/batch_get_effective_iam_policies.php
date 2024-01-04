@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudasset_v1_generated_AssetService_BatchGetEffectiveIamPolicies_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Asset\V1\AssetServiceClient;
+use Google\Cloud\Asset\V1\BatchGetEffectiveIamPoliciesRequest;
 use Google\Cloud\Asset\V1\BatchGetEffectiveIamPoliciesResponse;
+use Google\Cloud\Asset\V1\Client\AssetServiceClient;
 
 /**
  * Gets effective IAM policies for a batch of resources.
@@ -52,13 +53,16 @@ function batch_get_effective_iam_policies_sample(string $scope, string $namesEle
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $names = [$namesElement,];
+    $request = (new BatchGetEffectiveIamPoliciesRequest())
+        ->setScope($scope)
+        ->setNames($names);
 
     // Call the API and handle any network failures.
     try {
         /** @var BatchGetEffectiveIamPoliciesResponse $response */
-        $response = $assetServiceClient->batchGetEffectiveIamPolicies($scope, $names);
+        $response = $assetServiceClient->batchGetEffectiveIamPolicies($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

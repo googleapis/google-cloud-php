@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START securitycenter_v1_generated_SecurityCenter_SetMute_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient;
 use Google\Cloud\SecurityCenter\V1\Finding;
 use Google\Cloud\SecurityCenter\V1\Finding\Mute;
-use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\SetMuteRequest;
 
 /**
  * Updates the mute state of a finding.
@@ -45,10 +46,15 @@ function set_mute_sample(string $formattedName, int $mute): void
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
+    // Prepare the request message.
+    $request = (new SetMuteRequest())
+        ->setName($formattedName)
+        ->setMute($mute);
+
     // Call the API and handle any network failures.
     try {
         /** @var Finding $response */
-        $response = $securityCenterClient->setMute($formattedName, $mute);
+        $response = $securityCenterClient->setMute($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

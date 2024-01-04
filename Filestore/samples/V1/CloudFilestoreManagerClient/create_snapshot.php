@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START file_v1_generated_CloudFilestoreManager_CreateSnapshot_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Filestore\V1\CloudFilestoreManagerClient;
+use Google\Cloud\Filestore\V1\Client\CloudFilestoreManagerClient;
+use Google\Cloud\Filestore\V1\CreateSnapshotRequest;
 use Google\Cloud\Filestore\V1\Snapshot;
 use Google\Rpc\Status;
 
@@ -46,13 +47,17 @@ function create_snapshot_sample(string $formattedParent, string $snapshotId): vo
     // Create a client.
     $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $snapshot = new Snapshot();
+    $request = (new CreateSnapshotRequest())
+        ->setParent($formattedParent)
+        ->setSnapshotId($snapshotId)
+        ->setSnapshot($snapshot);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudFilestoreManagerClient->createSnapshot($formattedParent, $snapshotId, $snapshot);
+        $response = $cloudFilestoreManagerClient->createSnapshot($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

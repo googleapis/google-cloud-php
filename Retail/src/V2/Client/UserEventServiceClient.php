@@ -289,6 +289,8 @@ final class UserEventServiceClient
      *
      * The async variant is {@see UserEventServiceClient::collectUserEventAsync()} .
      *
+     * @example samples/V2/UserEventServiceClient/collect_user_event.php
+     *
      * @param CollectUserEventRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -319,6 +321,8 @@ final class UserEventServiceClient
      *
      * The async variant is {@see UserEventServiceClient::importUserEventsAsync()} .
      *
+     * @example samples/V2/UserEventServiceClient/import_user_events.php
+     *
      * @param ImportUserEventsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -345,6 +349,8 @@ final class UserEventServiceClient
      * command first.
      *
      * The async variant is {@see UserEventServiceClient::purgeUserEventsAsync()} .
+     *
+     * @example samples/V2/UserEventServiceClient/purge_user_events.php
      *
      * @param PurgeUserEventsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -377,6 +383,8 @@ final class UserEventServiceClient
      *
      * The async variant is {@see UserEventServiceClient::rejoinUserEventsAsync()} .
      *
+     * @example samples/V2/UserEventServiceClient/rejoin_user_events.php
+     *
      * @param RejoinUserEventsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -400,6 +408,8 @@ final class UserEventServiceClient
      * Writes a single user event.
      *
      * The async variant is {@see UserEventServiceClient::writeUserEventAsync()} .
+     *
+     * @example samples/V2/UserEventServiceClient/write_user_event.php
      *
      * @param WriteUserEventRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

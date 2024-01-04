@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datacatalog_v1_generated_DataCatalog_UnstarEntry_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\DataCatalog\V1\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\Client\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\UnstarEntryRequest;
 use Google\Cloud\DataCatalog\V1\UnstarEntryResponse;
 
 /**
@@ -39,10 +40,14 @@ function unstar_entry_sample(string $formattedName): void
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
+    // Prepare the request message.
+    $request = (new UnstarEntryRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var UnstarEntryResponse $response */
-        $response = $dataCatalogClient->unstarEntry($formattedName);
+        $response = $dataCatalogClient->unstarEntry($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

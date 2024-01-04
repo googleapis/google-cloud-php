@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_UpdateFirewallPolicy_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient;
 use Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicy;
-use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
+use Google\Cloud\RecaptchaEnterprise\V1\UpdateFirewallPolicyRequest;
 
 /**
  * Updates the specified firewall policy.
@@ -41,13 +42,15 @@ function update_firewall_policy_sample(): void
     // Create a client.
     $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $firewallPolicy = new FirewallPolicy();
+    $request = (new UpdateFirewallPolicyRequest())
+        ->setFirewallPolicy($firewallPolicy);
 
     // Call the API and handle any network failures.
     try {
         /** @var FirewallPolicy $response */
-        $response = $recaptchaEnterpriseServiceClient->updateFirewallPolicy($firewallPolicy);
+        $response = $recaptchaEnterpriseServiceClient->updateFirewallPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

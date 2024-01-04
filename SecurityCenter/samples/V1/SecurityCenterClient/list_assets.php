@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START securitycenter_v1_generated_SecurityCenter_ListAssets_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\ListAssetsRequest;
 use Google\Cloud\SecurityCenter\V1\ListAssetsResponse\ListAssetsResult;
-use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
 
 /**
  * Lists an organization's assets.
@@ -43,10 +44,14 @@ function list_assets_sample(string $formattedParent): void
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
+    // Prepare the request message.
+    $request = (new ListAssetsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $securityCenterClient->listAssets($formattedParent);
+        $response = $securityCenterClient->listAssets($request);
 
         /** @var ListAssetsResult $element */
         foreach ($response as $element) {

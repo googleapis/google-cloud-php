@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Translate\V3\AdaptiveMtSentence;
-use Google\Cloud\Translate\V3\TranslationServiceClient;
+use Google\Cloud\Translate\V3\Client\TranslationServiceClient;
+use Google\Cloud\Translate\V3\ListAdaptiveMtSentencesRequest;
 
 /**
  * Lists all AdaptiveMtSentences under a given file/dataset.
@@ -43,10 +44,14 @@ function list_adaptive_mt_sentences_sample(string $formattedParent): void
     // Create a client.
     $translationServiceClient = new TranslationServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListAdaptiveMtSentencesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $translationServiceClient->listAdaptiveMtSentences($formattedParent);
+        $response = $translationServiceClient->listAdaptiveMtSentences($request);
 
         /** @var AdaptiveMtSentence $element */
         foreach ($response as $element) {

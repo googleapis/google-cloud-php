@@ -236,6 +236,8 @@ final class CompletionClient
      *
      * The async variant is {@see CompletionClient::completeQueryAsync()} .
      *
+     * @example samples/V4/CompletionClient/complete_query.php
+     *
      * @param CompleteQueryRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.

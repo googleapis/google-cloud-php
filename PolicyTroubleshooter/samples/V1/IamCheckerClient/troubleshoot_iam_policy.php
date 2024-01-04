@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START policytroubleshooter_v1_generated_IamChecker_TroubleshootIamPolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\PolicyTroubleshooter\V1\IamCheckerClient;
+use Google\Cloud\PolicyTroubleshooter\V1\Client\IamCheckerClient;
+use Google\Cloud\PolicyTroubleshooter\V1\TroubleshootIamPolicyRequest;
 use Google\Cloud\PolicyTroubleshooter\V1\TroubleshootIamPolicyResponse;
 
 /**
@@ -43,10 +44,13 @@ function troubleshoot_iam_policy_sample(): void
     // Create a client.
     $iamCheckerClient = new IamCheckerClient();
 
+    // Prepare the request message.
+    $request = new TroubleshootIamPolicyRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var TroubleshootIamPolicyResponse $response */
-        $response = $iamCheckerClient->troubleshootIamPolicy();
+        $response = $iamCheckerClient->troubleshootIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudasset_v1_generated_AssetService_AnalyzeOrgPolicyGovernedContainers_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedContainersRequest;
 use Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedContainersResponse\GovernedContainer;
-use Google\Cloud\Asset\V1\AssetServiceClient;
+use Google\Cloud\Asset\V1\Client\AssetServiceClient;
 
 /**
  * Analyzes organization policies governed containers (projects, folders or
@@ -47,10 +48,15 @@ function analyze_org_policy_governed_containers_sample(string $scope, string $co
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
+    // Prepare the request message.
+    $request = (new AnalyzeOrgPolicyGovernedContainersRequest())
+        ->setScope($scope)
+        ->setConstraint($constraint);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $assetServiceClient->analyzeOrgPolicyGovernedContainers($scope, $constraint);
+        $response = $assetServiceClient->analyzeOrgPolicyGovernedContainers($request);
 
         /** @var GovernedContainer $element */
         foreach ($response as $element) {

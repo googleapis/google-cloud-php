@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datastore_v1_generated_Datastore_Rollback_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Datastore\V1\DatastoreClient;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient;
+use Google\Cloud\Datastore\V1\RollbackRequest;
 use Google\Cloud\Datastore\V1\RollbackResponse;
 
 /**
@@ -39,10 +40,15 @@ function rollback_sample(string $projectId, string $transaction): void
     // Create a client.
     $datastoreClient = new DatastoreClient();
 
+    // Prepare the request message.
+    $request = (new RollbackRequest())
+        ->setProjectId($projectId)
+        ->setTransaction($transaction);
+
     // Call the API and handle any network failures.
     try {
         /** @var RollbackResponse $response */
-        $response = $datastoreClient->rollback($projectId, $transaction);
+        $response = $datastoreClient->rollback($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

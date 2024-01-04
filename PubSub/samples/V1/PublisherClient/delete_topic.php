@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START pubsub_v1_generated_Publisher_DeleteTopic_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\PubSub\V1\PublisherClient;
+use Google\Cloud\PubSub\V1\Client\PublisherClient;
+use Google\Cloud\PubSub\V1\DeleteTopicRequest;
 
 /**
  * Deletes the topic with the given name. Returns `NOT_FOUND` if the topic
@@ -42,9 +43,13 @@ function delete_topic_sample(string $formattedTopic): void
     // Create a client.
     $publisherClient = new PublisherClient();
 
+    // Prepare the request message.
+    $request = (new DeleteTopicRequest())
+        ->setTopic($formattedTopic);
+
     // Call the API and handle any network failures.
     try {
-        $publisherClient->deleteTopic($formattedTopic);
+        $publisherClient->deleteTopic($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START pubsub_v1_generated_Subscriber_GetSnapshot_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\PubSub\V1\Client\SubscriberClient;
+use Google\Cloud\PubSub\V1\GetSnapshotRequest;
 use Google\Cloud\PubSub\V1\Snapshot;
-use Google\Cloud\PubSub\V1\SubscriberClient;
 
 /**
  * Gets the configuration details of a snapshot. Snapshots are used in
@@ -43,10 +44,14 @@ function get_snapshot_sample(string $formattedSnapshot): void
     // Create a client.
     $subscriberClient = new SubscriberClient();
 
+    // Prepare the request message.
+    $request = (new GetSnapshotRequest())
+        ->setSnapshot($formattedSnapshot);
+
     // Call the API and handle any network failures.
     try {
         /** @var Snapshot $response */
-        $response = $subscriberClient->getSnapshot($formattedSnapshot);
+        $response = $subscriberClient->getSnapshot($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

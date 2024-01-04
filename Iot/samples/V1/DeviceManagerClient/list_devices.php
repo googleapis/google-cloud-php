@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudiot_v1_generated_DeviceManager_ListDevices_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Iot\V1\Client\DeviceManagerClient;
 use Google\Cloud\Iot\V1\Device;
-use Google\Cloud\Iot\V1\DeviceManagerClient;
+use Google\Cloud\Iot\V1\ListDevicesRequest;
 
 /**
  * List devices in a device registry.
@@ -40,10 +41,14 @@ function list_devices_sample(string $formattedParent): void
     // Create a client.
     $deviceManagerClient = new DeviceManagerClient();
 
+    // Prepare the request message.
+    $request = (new ListDevicesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $deviceManagerClient->listDevices($formattedParent);
+        $response = $deviceManagerClient->listDevices($request);
 
         /** @var Device $element */
         foreach ($response as $element) {

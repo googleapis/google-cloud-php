@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START bigquerydatatransfer_v1_generated_DataTransferService_ListDataSources_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\BigQuery\DataTransfer\V1\Client\DataTransferServiceClient;
 use Google\Cloud\BigQuery\DataTransfer\V1\DataSource;
-use Google\Cloud\BigQuery\DataTransfer\V1\DataTransferServiceClient;
+use Google\Cloud\BigQuery\DataTransfer\V1\ListDataSourcesRequest;
 
 /**
  * Lists supported data sources and returns their settings.
@@ -41,10 +42,14 @@ function list_data_sources_sample(string $formattedParent): void
     // Create a client.
     $dataTransferServiceClient = new DataTransferServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListDataSourcesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataTransferServiceClient->listDataSources($formattedParent);
+        $response = $dataTransferServiceClient->listDataSources($request);
 
         /** @var DataSource $element */
         foreach ($response as $element) {

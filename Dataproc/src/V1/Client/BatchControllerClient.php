@@ -304,6 +304,8 @@ final class BatchControllerClient
      *
      * The async variant is {@see BatchControllerClient::createBatchAsync()} .
      *
+     * @example samples/V1/BatchControllerClient/create_batch.php
+     *
      * @param CreateBatchRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -329,6 +331,8 @@ final class BatchControllerClient
      *
      * The async variant is {@see BatchControllerClient::deleteBatchAsync()} .
      *
+     * @example samples/V1/BatchControllerClient/delete_batch.php
+     *
      * @param DeleteBatchRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -350,6 +354,8 @@ final class BatchControllerClient
      * Gets the batch workload resource representation.
      *
      * The async variant is {@see BatchControllerClient::getBatchAsync()} .
+     *
+     * @example samples/V1/BatchControllerClient/get_batch.php
      *
      * @param GetBatchRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -375,6 +381,8 @@ final class BatchControllerClient
      *
      * The async variant is {@see BatchControllerClient::listBatchesAsync()} .
      *
+     * @example samples/V1/BatchControllerClient/list_batches.php
+     *
      * @param ListBatchesRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -399,6 +407,8 @@ final class BatchControllerClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see BatchControllerClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/BatchControllerClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -427,6 +437,8 @@ final class BatchControllerClient
     errors.
      *
      * The async variant is {@see BatchControllerClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/BatchControllerClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -457,6 +469,8 @@ final class BatchControllerClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see BatchControllerClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/BatchControllerClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

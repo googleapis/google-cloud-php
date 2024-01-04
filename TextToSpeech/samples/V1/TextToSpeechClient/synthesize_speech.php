@@ -26,9 +26,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\TextToSpeech\V1\AudioConfig;
 use Google\Cloud\TextToSpeech\V1\AudioEncoding;
+use Google\Cloud\TextToSpeech\V1\Client\TextToSpeechClient;
 use Google\Cloud\TextToSpeech\V1\SynthesisInput;
+use Google\Cloud\TextToSpeech\V1\SynthesizeSpeechRequest;
 use Google\Cloud\TextToSpeech\V1\SynthesizeSpeechResponse;
-use Google\Cloud\TextToSpeech\V1\TextToSpeechClient;
 use Google\Cloud\TextToSpeech\V1\VoiceSelectionParams;
 
 /**
@@ -53,17 +54,21 @@ function synthesize_speech_sample(string $voiceLanguageCode, int $audioConfigAud
     // Create a client.
     $textToSpeechClient = new TextToSpeechClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $input = new SynthesisInput();
     $voice = (new VoiceSelectionParams())
         ->setLanguageCode($voiceLanguageCode);
     $audioConfig = (new AudioConfig())
         ->setAudioEncoding($audioConfigAudioEncoding);
+    $request = (new SynthesizeSpeechRequest())
+        ->setInput($input)
+        ->setVoice($voice)
+        ->setAudioConfig($audioConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var SynthesizeSpeechResponse $response */
-        $response = $textToSpeechClient->synthesizeSpeech($input, $voice, $audioConfig);
+        $response = $textToSpeechClient->synthesizeSpeech($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

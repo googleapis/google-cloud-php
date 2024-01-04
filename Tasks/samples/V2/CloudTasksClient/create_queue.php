@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudtasks_v2_generated_CloudTasks_CreateQueue_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Tasks\V2\CloudTasksClient;
+use Google\Cloud\Tasks\V2\Client\CloudTasksClient;
+use Google\Cloud\Tasks\V2\CreateQueueRequest;
 use Google\Cloud\Tasks\V2\Queue;
 
 /**
@@ -54,13 +55,16 @@ function create_queue_sample(string $formattedParent): void
     // Create a client.
     $cloudTasksClient = new CloudTasksClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $queue = new Queue();
+    $request = (new CreateQueueRequest())
+        ->setParent($formattedParent)
+        ->setQueue($queue);
 
     // Call the API and handle any network failures.
     try {
         /** @var Queue $response */
-        $response = $cloudTasksClient->createQueue($formattedParent, $queue);
+        $response = $cloudTasksClient->createQueue($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
