@@ -265,14 +265,11 @@ class TransactionTest extends SpannerTestCase
         }
     }
 
-    // @TODO: Need to work on this once the directedRead is available
-    // Need multi-region instance with asia1 (Tokyo/Osaka/Seoul) config to work properly.
     /**
      * @dataProvider getDirectedReadOptions
      */
     public function testTransactionExecuteWithDirectedRead($directedReadOptions)
     {
-        $this->markTestSkipped('Enable this after the directedRead is available');
         $db = self::$database;
         $id = $this->randId();
 
@@ -282,43 +279,40 @@ class TransactionTest extends SpannerTestCase
         ]);
 
         $snapshot = $db->snapshot();
-        $rows = iterator_to_array($snapshot->execute(
+        $rows = $snapshot->execute(
             'SELECT * FROM ' . self::$tableName . ' WHERE id = ' . $id,
             $directedReadOptions
-        ));
-        $this->assertCount(1, $rows);
+        )->rows()->current();
+        $this->assertEquals(0, $rows['number']);
 
-        $rows = iterator_to_array($db->execute(
+        $rows = $db->execute(
             'SELECT * FROM ' . self::$tableName . ' WHERE id = ' . $id,
             ['transactionId' => $snapshot->id()] + $directedReadOptions
-        ));
-        $this->assertCount(1, $rows);
+        )->rows()->current();
+        $this->assertEquals(0, $rows['number']);
     }
 
-    // @TODO: Need to work on this once the directedRead is available
-    // Need multi-region instance with asia1 (Tokyo/Osaka/Seoul) config to work properly.
     /**
      * @dataProvider getDirectedReadOptions
      */
     public function testRWTransactionExecuteFailsWithDirectedRead($directedReadOptions)
     {
-        $this->markTestSkipped('Enable this after the directedRead is available');
         $db = self::$database;
         $transaction = $db->transaction();
         $expected = 'Directed reads can only be performed in a read-only transaction.';
         $exception = null;
 
         try {
-            $row = $db->execute(
+            $rows = $db->execute(
                 'SELECT * FROM ' . self::$tableName,
                 ['transactionId' => $transaction->id()] + $directedReadOptions
             )->rows()->current();
         } catch (ServiceException $e) {
             $exception = $e;
         }
-        $this->assertEquals($exception->getReason(), $expected);
-        $exception = null;
+        $this->assertEquals($exception->getServiceException()->getBasicMessage(), $expected);
 
+        $exception = null;
         try {
             $row = $transaction->execute(
                 'SELECT * FROM ' . self::$tableName,
@@ -327,17 +321,14 @@ class TransactionTest extends SpannerTestCase
         } catch (ServiceException $e) {
             $exception = $e;
         }
-        $this->assertEquals($exception->getReason(), $expected);
+        $this->assertEquals($exception->getServiceException()->getBasicMessage(), $expected);
     }
 
-    // @TODO: Need to work on this once the directedRead is available
-    // Need multi-region instance with asia1 (Tokyo/Osaka/Seoul) config to work properly.
     /**
      * @dataProvider getDirectedReadOptions
      */
     public function testRWTransactionReadFailsWithDirectedRead($directedReadOptions)
     {
-        $this->markTestSkipped('Enable this after the directedRead is available');
         $db = self::$database;
         $transaction = $db->transaction();
         $expected = 'Directed reads can only be performed in a read-only transaction.';
@@ -354,7 +345,7 @@ class TransactionTest extends SpannerTestCase
         } catch (ServiceException $e) {
             $exception = $e;
         }
-        $this->assertEquals($exception->getReason(), $expected);
+        $this->assertEquals($exception->getServiceException()->getBasicMessage(), $expected);
         $exception = null;
 
         try {
@@ -364,17 +355,17 @@ class TransactionTest extends SpannerTestCase
                 $cols,
                 $directedReadOptions
             )->rows()->current();
-        } catch (ServiceException $e) {
+        } catch (\Exceptions $e) {
             $exception = $e;
         }
-        $this->assertEquals($exception->getReason(), $expected);
+        $this->assertEquals($exception->getServiceException()->getBasicMessage(), $expected);
     }
 
     public function getDirectedReadOptions()
     {
         return
         [
-            [
+            [[
                 'directedReadOptions' => [
                     'includeReplicas' => [
                         'replicaSelections' => [
@@ -386,8 +377,8 @@ class TransactionTest extends SpannerTestCase
                         'autoFailoverDisabled' => false
                     ]
                 ]
-            ],
-            [
+            ]],
+            [[
                 'directedReadOptions' => [
                     'excludeReplicas' => [
                         'replicaSelections' => [
@@ -395,11 +386,10 @@ class TransactionTest extends SpannerTestCase
                                 'location' => 'asia-northeast1',
                                 'type' => ReplicaType::READ_WRITE
                             ]
-                        ],
-                        'autoFailoverDisabled' => false
+                        ]
                     ]
                 ]
-            ]
+            ]]
         ];
     }
 
