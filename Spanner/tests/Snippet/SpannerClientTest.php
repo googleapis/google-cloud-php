@@ -298,4 +298,11 @@ class SpannerClientTest extends SnippetTestCase
         $res = $snippet->invoke('batch');
         $this->assertInstanceOf(BatchClient::class, $res->returnVal());
     }
+
+    public function testClassWithDirectedRead()
+    {
+        $snippet = $this->snippetFromClass(SpannerClient::class, 2);
+        $res = $snippet->invoke('spanner');
+        $this->assertInstanceOf(SpannerClient::class, $res->returnVal());
+    }
 }

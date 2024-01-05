@@ -81,6 +81,8 @@ class DatabaseTest extends TestCase
     private $database;
     private $session;
     private $databaseWithDatabaseRole;
+    private $directedReadOptionsIncludeReplicas;
+    private $directedReadOptionsExcludeReplicas;
 
 
     public function setUp(): void
@@ -99,13 +101,34 @@ class DatabaseTest extends TestCase
             self::DATABASE,
             self::SESSION
         ]);
+        $this->directedReadOptionsIncludeReplicas = [
+            'includeReplicas' => [
+                'replicaSelections' => [
+                    'location' => 'us-central1',
+                    'type' => 'READ_WRITE',
+                    'autoFailoverDisabled' => false
+                ]
+            ]
+        ];
+        $this->directedReadOptionsExcludeReplicas = [
+            'excludeReplicas' => [
+                'replicaSelections' => [
+                    'location' => 'us-central1',
+                    'type' => 'READ_WRITE',
+                    'autoFailoverDisabled' => false
+                ]
+            ]
+        ];
 
         $this->instance = TestHelpers::stub(Instance::class, [
             $this->connection->reveal(),
             $this->lro->reveal(),
             $this->lroCallables,
             self::PROJECT,
-            self::INSTANCE
+            self::INSTANCE,
+            false,
+            [],
+            ['directedReadOptions' => $this->directedReadOptionsIncludeReplicas]
         ], [
             'info',
             'connection'
@@ -1405,6 +1428,86 @@ class DatabaseTest extends TestCase
             ->shouldBeCalled()->willReturn($this->resultGenerator());
 
         $this->databaseWithDatabaseRole->execute($sql);
+    }
+
+    public function testExecuteWithDirectedRead()
+    {
+        $this->connection->executeStreamingSql(Argument::withEntry(
+            'directedReadOptions',
+            $this->directedReadOptionsIncludeReplicas
+        ))
+        ->shouldBeCalled()
+        ->willReturn($this->resultGenerator());
+
+        $sql = 'SELECT * FROM Table';
+        $res = $this->database->execute($sql);
+        $this->assertInstanceOf(Result::class, $res);
+        $rows = iterator_to_array($res->rows());
+        $this->assertCount(1, $rows);
+    }
+
+    public function testPrioritizeExecuteDirectedReadOptions()
+    {
+        $this->connection->executeStreamingSql(Argument::withEntry(
+            'directedReadOptions',
+            $this->directedReadOptionsExcludeReplicas
+        ))
+        ->shouldBeCalled()
+        ->willReturn($this->resultGenerator());
+
+        $sql = 'SELECT * FROM Table';
+        $res = $this->database->execute(
+            $sql,
+            ['directedReadOptions' => $this->directedReadOptionsExcludeReplicas]
+        );
+        $this->assertInstanceOf(Result::class, $res);
+        $rows = iterator_to_array($res->rows());
+        $this->assertCount(1, $rows);
+    }
+
+    public function testReadWithDirectedRead()
+    {
+        $table = 'foo';
+        $keys = [10, 'bar'];
+        $columns = ['id', 'name'];
+        $this->connection->streamingRead(Argument::withEntry(
+            'directedReadOptions',
+            $this->directedReadOptionsIncludeReplicas
+        ))
+        ->shouldBeCalled()
+        ->willReturn($this->resultGenerator());
+
+        $res = $this->database->read(
+            $table,
+            new KeySet(['keys' => $keys]),
+            $columns
+        );
+        $this->assertInstanceOf(Result::class, $res);
+        $rows = iterator_to_array($res->rows());
+        $this->assertCount(1, $rows);
+    }
+
+    public function testPrioritizeReadDirectedReadOptions()
+    {
+        $table = 'foo';
+        $keys = [10, 'bar'];
+        $columns = ['id', 'name'];
+        $this->connection->streamingRead(Argument::withEntry(
+            'directedReadOptions',
+            $this->directedReadOptionsExcludeReplicas
+        ))
+        ->shouldBeCalled()
+        ->willReturn($this->resultGenerator());
+
+        $res = $this->database->read(
+            $table,
+            new KeySet(['keys' => $keys]),
+            $columns,
+            ['directedReadOptions' => $this->directedReadOptionsExcludeReplicas]
+        );
+        $this->assertInstanceOf(Result::class, $res);
+        $rows = iterator_to_array($res->rows());
+        $this->assertCount(1, $rows);
     }
 
     public function testRunTransactionWithUpdate()
