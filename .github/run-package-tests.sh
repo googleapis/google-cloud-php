@@ -56,11 +56,11 @@ for DIR in ${DIRS}; do {
     if [ "$PREFER_LOWEST" != "" ]; then
         echo " (with $PREFER_LOWEST)"
     fi
-    COMPOSER_ROOT_VERSION=$(cat $DIR/VERSION) composer -q --no-interaction --no-ansi --no-progress $PREFER_LOWEST update -d ${DIR};
+    composer -q --no-interaction --no-ansi --no-progress $PREFER_LOWEST update -d ${DIR};
     if [ $? != 0 ]; then
         echo "$DIR: composer install failed" >> "${FAILED_FILE}"
         # run again but without "-q" so we can see the error
-        COMPOSER_ROOT_VERSION=$(cat $DIR/VERSION) composer --no-interaction --no-ansi --no-progress $PREFER_LOWEST update -d ${DIR};
+        composer --no-interaction --no-ansi --no-progress $PREFER_LOWEST update -d ${DIR};
         continue
     fi
     echo "Running $DIR Unit Tests"
