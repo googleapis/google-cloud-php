@@ -21,7 +21,6 @@
     },
     "require-dev": {
         "google/gax": "^1.26.0",
-        "phpunit/phpunit": "^9.0",
-        "google/common-protos": "^2.2"
+        "phpunit/phpunit": "^9.0"
     }
 }
