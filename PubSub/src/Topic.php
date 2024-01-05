@@ -25,12 +25,19 @@ use Google\Cloud\Core\V2\Iam;
 use Google\Cloud\PubSub\V1\Encoding;
 use InvalidArgumentException;
 use Google\ApiCore\Serializer;
-use Google\Cloud\PubSub\V1\PublisherClient;
+use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\PubSub\V1\Client\PublisherClient;
 use Google\Cloud\PubSub\V1\SchemaSettings;
 use Google\Protobuf\FieldMask;
 use Google\Cloud\PubSub\V1\Topic as TopicProto;
 use Google\Cloud\PubSub\V1\PubsubMessage;
 use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\PubSub\V1\DeleteTopicRequest;
+use Google\Cloud\PubSub\V1\GetTopicRequest;
+use Google\Cloud\PubSub\V1\ListTopicSubscriptionsRequest;
+use Google\Cloud\PubSub\V1\MessageStoragePolicy;
+use Google\Cloud\PubSub\V1\PublishRequest;
+use Google\Cloud\PubSub\V1\UpdateTopicRequest;
 
 /**
  * A named resource to which messages are sent by publishers.
@@ -52,10 +59,13 @@ class Topic
 {
     use ArrayTrait;
     use ResourceNameTrait;
+    use ApiHelperTrait;
 
     const DEFAULT_COMPRESSION_BYTES_THRESHOLD = 240;
 
     const DEFAULT_ENABLE_COMPRESSION = false;
+
+    private const TOPIC_PROPS = ['labels', 'messageStoragePolicy', 'kmsKeyName', 'schemaSettings', 'messageRetentionDuration'];
 
     /**
      * @var RequestHandler
@@ -64,6 +74,11 @@ class Topic
      * serializing responses into relevant classes.
      */
     private $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private $serializer;
 
     /**
      * @var string The project ID
@@ -149,6 +164,7 @@ class Topic
         array $clientConfig = []
     ) {
         $this->requestHandler = $requestHandler;
+        $this->serializer = $requestHandler->getSerializer();
         $this->projectId = $projectId;
         $this->encode = (bool) $encode;
         $this->info = $info;
@@ -228,14 +244,18 @@ class Topic
      */
     public function create(array $options = [])
     {
-        if (isset($options['schemaSettings']['schema']) && $options['schemaSettings']['schema'] instanceof Schema) {
-            $options['schemaSettings']['schema'] = $options['schemaSettings']['schema']->name();
-        }
+        $data = $this->pluckArray(self::TOPIC_PROPS, $options);
+        $data['name'] = $this->name;
+
+        $this->formatSchemaSettings($data);
+        $data = $this->convertDataToProtos($data, ['messageStoragePolicy' => MessageStoragePolicy::class]);
+
+        $request = $this->serializer->decodeMessage(new TopicProto(), $data);
 
         return $this->info = $this->requestHandler->sendRequest(
             PublisherClient::class,
             'createTopic',
-            [$this->name],
+            $request,
             $options
         );
     }
@@ -337,28 +357,18 @@ class Topic
             'paths' => $maskPaths
         ]);
 
-        if (isset($topic['schemaSettings'])) {
-            $enc = $topic['schemaSettings']['encoding'] ?? Encoding::ENCODING_UNSPECIFIED;
+        $data = $this->pluckArray(self::TOPIC_PROPS, $topic);
+        $data['name'] = $this->name;
+        $this->formatSchemaSettings($data);
 
-            if (is_string($enc)) {
-                $topic['schemaSettings']['encoding'] = Encoding::value($enc);
-            }
+        $proto = $this->serializer->decodeMessage(new TopicProto(), $data);
 
-            $topic['schemaSettings'] = new SchemaSettings($topic['schemaSettings']);
-
-            if (isset($topic['schemaSettings']['schema'])) {
-                if ($topic['schemaSettings']['schema'] instanceof Schema) {
-                    $topic['schemaSettings']['schema'] = $topic['schemaSettings']['schema']->name();
-                }
-            }
-        }
-
-        $proto = new TopicProto($topic + ['name' => $this->name]);
+        $request = $this->serializer->decodeMessage(new UpdateTopicRequest(), ['topic' => $proto, 'update_mask' => $fieldMask]);
 
         return $this->info = $this->requestHandler->sendRequest(
             PublisherClient::class,
             'updateTopic',
-            [$proto, $fieldMask],
+            $request,
             $options
         );
     }
@@ -378,10 +388,13 @@ class Topic
      */
     public function delete(array $options = [])
     {
+        $data = ['topic' => $this->name];
+        $request = $this->serializer->decodeMessage(new DeleteTopicRequest(), $data);
+
         $this->requestHandler->sendRequest(
             PublisherClient::class,
             'deleteTopic',
-            [$this->name],
+            $request,
             $options
         );
     }
@@ -475,10 +488,13 @@ class Topic
      */
     public function reload(array $options = [])
     {
+        $data = ['topic' => $this->name];
+        $request = $this->serializer->decodeMessage(new GetTopicRequest(), $data);
+
         return $this->info = $this->requestHandler->sendRequest(
             PublisherClient::class,
             'getTopic',
-            [$this->name],
+            $request,
             $options
         );
     }
@@ -553,16 +569,17 @@ class Topic
     {
         foreach ($messages as &$message) {
             $message = $this->formatMessage($message);
-            $message = $this->requestHandler->getSerializer()->decodeMessage(
-                new PubsubMessage(),
-                $message
-            );
         }
+
+        $request = $this->serializer->decodeMessage(
+            new PublishRequest(),
+            ['topic' => $this->name, 'messages' => $messages]
+        );
 
         return $this->requestHandler->sendRequest(
             PublisherClient::class,
             'publish',
-            [$this->name, $messages],
+            $request,
             ['compressionOptions' => [
                 'enableCompression' => $this->enableCompression,
                 'compressionBytesThreshold' => $this->compressionBytesThreshold
@@ -662,7 +679,6 @@ class Topic
     public function subscribe($name, array $options = [])
     {
         $subscription = $this->subscriptionFactory($name);
-
         $subscription->create($options);
 
         return $subscription;
@@ -715,16 +731,21 @@ class Topic
     {
         $resultLimit = $this->pluck('resultLimit', $options, false);
 
+        $request = $this->serializer->decodeMessage(
+            new ListTopicSubscriptionsRequest(),
+            ['topic' => $this->name]
+        );
+
         return new ItemIterator(
             new PageIterator(
                 function ($subscription) {
                     return $this->subscriptionFactory($subscription);
                 },
-                function ($options) {
+                function ($options) use ($request) {
                     return $this->requestHandler->sendRequest(
                         PublisherClient::class,
                         'listTopicSubscriptions',
-                        [$this->name],
+                        $request,
                         $options
                     );
                 },
@@ -805,7 +826,30 @@ class Topic
             );
         }
 
-        return $message;
+        return $this->serializer->decodeMessage(
+            new PubsubMessage(),
+            $message
+        );
+    }
+
+    private function formatSchemaSettings(array &$data)
+    {
+        if (isset($data['schemaSettings'])) {
+            $enc = $data['schemaSettings']['encoding'] ?? Encoding::ENCODING_UNSPECIFIED;
+
+            if (is_string($enc)) {
+                $data['schemaSettings']['encoding'] = Encoding::value($enc);
+            }
+
+            if (isset($data['schemaSettings']['schema']) && $data['schemaSettings']['schema'] instanceof Schema) {
+                $data['schemaSettings']['schema'] = $data['schemaSettings']['schema']->name();
+            }
+
+            $data['schemaSettings'] = $this->serializer->decodeMessage(
+                new SchemaSettings(),
+                $data['schemaSettings']
+            );
+        }
     }
 
     /**

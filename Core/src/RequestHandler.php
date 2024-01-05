@@ -23,6 +23,7 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\WhitelistTrait;
+use \Google\Protobuf\Internal\Message;
 
 /**
  * @internal
@@ -94,10 +95,11 @@ class RequestHandler
     /**
      * Helper function that forwards the request to a gapic client obj.
      *
-     * @param $gapicClass The request will be forwarded to this GAPIC class.
-     * @param $method This method needs to be called on the gapic obj.
-     * @param $requiredArgs The positional arguments to be passed on the $method
-     * @param $args The optional args.
+     * @param string $gapicClass The request will be forwarded to this GAPIC class.
+     * @param string $method This method needs to be called on the gapic obj.
+     * @param Message $request The protobuf Request instance to pass as the first argument to the $method.
+     * @param array $optionalArgs The optional args.
+     * @param bool $whitelisted This decides the behaviour when a NotFoundException is encountered.
      * 
      * @return \Generator|OperationResponse|array|null
      * 
@@ -111,22 +113,19 @@ class RequestHandler
     public function sendRequest(
         string $gapicClass,
         string $method,
-        array $requiredArgs,
+        Message $request,
         array $optionalArgs,
         bool $whitelisted = false
     ) {
-
-        $allArgs = $requiredArgs;
-
-        // we send the optional args in the end, because everything before that is
-        // passed on the the `$method` as a positional argument
-        $allArgs[] = $optionalArgs;
 
         $gapicObj = $this->getGapicObject($gapicClass);
 
         if (!$gapicObj) {
             return null;
         }
+
+        $allArgs = [$request];
+        $allArgs[] = $optionalArgs;
 
         try {
             return $this->requestWrapper->send([$gapicObj, $method], $allArgs);

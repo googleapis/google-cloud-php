@@ -222,4 +222,29 @@ trait ApiHelperTrait
     {
         return new $gapicName($config);
     }
+
+    /**
+     * Helper function to convert selective elements into protos out of a given input array.
+     * 
+     * Example:
+     * ```
+     * $output = $topic->convertDataToProtos(['schema' =>[], 'other vals'], ['schema' => Schema::class]);
+     * $output['schema']; // This will be of the Schema type.
+     * ```
+     * 
+     * @param array $input The input array.
+     * @param array $map The key,value pairs specifying the elements and the proto classes.
+     * 
+     * @return array The modified array
+     */
+    private function convertDataToProtos(array $input, array $map) : array
+    {
+        foreach ($map as $key => $cls) {
+            if (isset($input[$key])) {
+                $input[$key] = $this->serializer->decodeMessage(new $cls, $input[$key]);
+            }
+        }
+
+        return $input;
+    }
 }

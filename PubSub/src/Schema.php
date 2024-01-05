@@ -17,11 +17,18 @@
 
 namespace Google\Cloud\PubSub;
 
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\RequestHandler;
-use Google\Cloud\PubSub\V1\SchemaServiceClient;
+use Google\Cloud\PubSub\V1\Client\SchemaServiceClient;
+use Google\Cloud\PubSub\V1\CommitSchemaRequest;
+use Google\Cloud\PubSub\V1\DeleteSchemaRequest;
+use Google\Cloud\PubSub\V1\DeleteSchemaRevisionRequest;
+use Google\Cloud\PubSub\V1\GetSchemaRequest;
+use Google\Cloud\PubSub\V1\ListSchemaRevisionsRequest;
 use Google\Cloud\PubSub\V1\SchemaView;
 use Google\Cloud\PubSub\V1\Schema as SchemaProto;
+use Google\Cloud\PubSub\V1\Schema\Type;
 
 /**
  * Represents a Pub/Sub Schema resource.
@@ -41,6 +48,10 @@ use Google\Cloud\PubSub\V1\Schema as SchemaProto;
  */
 class Schema
 {
+    use ArrayTrait;
+
+    private const DEFAULT_VIEW = 'FULL';
+
     /**
      * @var RequestHandler
      * @internal
@@ -48,6 +59,11 @@ class Schema
      * serializing responses into relevant classes.
      */
     private $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private $serializer;
 
     /**
      * @var string
@@ -71,6 +87,7 @@ class Schema
         array $info = []
     ) {
         $this->requestHandler = $requestHandler;
+        $this->serializer = $requestHandler->getSerializer();
         $this->name = $name;
         $this->info = $info;
     }
@@ -103,10 +120,15 @@ class Schema
      */
     public function delete(array $options = [])
     {
+        $request = $this->serializer->decodeMessage(
+            new DeleteSchemaRequest(),
+            ['name' => $this->name]
+        );
+
         return $this->requestHandler->sendRequest(
             SchemaServiceClient::class,
             'deleteSchema',
-            [$this->name],
+            $request,
             $options
         );
     }
@@ -173,18 +195,16 @@ class Schema
      */
     public function reload(array $options = [])
     {
-        $options += [
-            'view' => 'FULL',
-        ];
-
-        if (is_string($options['view'])) {
-            $options['view'] = SchemaView::value($options['view']);
-        }
+        $view = $this->getViewFromOptions($options);
+        $request = $this->serializer->decodeMessage(
+            new GetSchemaRequest(),
+            ['name' => $this->name, 'view' => $view]
+        );
 
         return $this->info = $this->requestHandler->sendRequest(
             SchemaServiceClient::class,
             'getSchema',
-            [$this->name],
+            $request,
             $options
         );
     }
@@ -228,10 +248,15 @@ class Schema
      */
     public function listRevisions(array $options = [])
     {
+        $data = $this->pluckArray(['page_token', 'page_size'], $options);
+        $data['name'] = $this->name;
+        $data['view'] = $this->getViewFromOptions($options);
+
+        $request = $this->serializer->decodeMessage(new ListSchemaRevisionsRequest(), $data);
         return $this->requestHandler->sendRequest(
             SchemaServiceClient::class,
-            'listRevisions',
-            [$this->name],
+            'listSchemaRevisions',
+            $request,
             $options
         );
     }
@@ -261,24 +286,26 @@ class Schema
         $schemaObj = new SchemaProto([
             'name' => $this->name,
             'definition' => $definition,
-            'type' => $type,
+            'type' => Type::value($type),
         ]);
+
+        $data = ['name' => $this->name, 'schema' => $schemaObj];
+        $request = $this->serializer->decodeMessage(new CommitSchemaRequest(), $data);
 
         return $this->requestHandler->sendRequest(
             SchemaServiceClient::class,
             'commitSchema',
-            [$this->name, $schemaObj],
+            $request,
             $options
         );
     }
 
     /**
-     * Commit schema revision.
+     * Delete a schema revision
      *
      * Example:
      * ```
-     * $definition = file_get_contents('my-schema.txt');
-     * $revision = $schema->commit($definition, 'AVRO);
+     * $schema->delete($revisionId);
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.schemas/deleteRevision Delete revision.
      * ```
@@ -286,15 +313,39 @@ class Schema
      * @param string $revisionId The revisionId
      * @return array deleted revision
      */
-    public function deleteRevision($revisionId)
+    public function deleteRevision($revisionId, $options = [])
     {
         $revisionName = $this->name .'@' . $revisionId;
+
+        $request = $this->serializer->decodeMessage(
+            new DeleteSchemaRevisionRequest(),
+            ['name' => $revisionName]
+        );
 
         return $this->requestHandler->sendRequest(
             SchemaServiceClient::class,
             'deleteSchemaRevision',
-            [$revisionName, null],
-            []
+            $request,
+            $options
         );
+    }
+
+    /**
+     * Helper function to return the value of 'view' from the options array.
+     * If a view key isn't specified, the default is returned.
+     * 
+     * @param array $options The options array to extract the view from.
+     * 
+     * @return int The integer value of the view specified as per Google\Cloud\PubSub\V1\SchemaView
+     */
+    private function getViewFromOptions(array &$options)
+    {
+        $view = $this->pluck('view', $options, false) ?? self::DEFAULT_VIEW;
+
+        if (isset($view) && is_string($view)) {
+            $view = SchemaView::value($view);
+        }
+
+        return $view;
     }
 }

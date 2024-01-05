@@ -27,12 +27,20 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\PubSub\V1\PublisherClient;
-use Google\Cloud\PubSub\V1\SchemaServiceClient;
-use Google\Cloud\PubSub\V1\SubscriberClient;
+use Google\Cloud\PubSub\V1\Client\PublisherClient;
+use Google\Cloud\PubSub\V1\Client\SchemaServiceClient;
+use Google\Cloud\PubSub\V1\Client\SubscriberClient;
+use Google\Cloud\PubSub\V1\CreateSchemaRequest;
+use Google\Cloud\PubSub\V1\Encoding;
+use Google\Cloud\PubSub\V1\ListSchemasRequest;
+use Google\Cloud\PubSub\V1\ListSnapshotsRequest;
+use Google\Cloud\PubSub\V1\ListSubscriptionsRequest;
+use Google\Cloud\PubSub\V1\ListTopicsRequest;
 use InvalidArgumentException;
 use Google\Cloud\PubSub\V1\Schema as SchemaProto;
 use Google\Cloud\PubSub\V1\Schema\Type;
+use Google\Cloud\PubSub\V1\ValidateMessageRequest;
+use Google\Cloud\PubSub\V1\ValidateSchemaRequest;
 
 /**
  * Google Cloud Pub/Sub allows you to send and receive
@@ -110,6 +118,11 @@ class PubSubClient
     private $requestHandler;
 
     /**
+     * @var Serializer
+     */
+    private Serializer $serializer;
+
+    /**
      * @var bool
      */
     private $encode;
@@ -168,13 +181,27 @@ class PubSubClient
             'emulatorHost' => $emulatorHost
         ];
 
+        $this->configureAuthentication($config);
+
         $this->clientConfig = $config;
+        $this->serializer = new Serializer([
+            'publish_time' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            },
+            'expiration_time' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            }
+        ], [], [], [
+            'google.protobuf.Duration' => function ($v) {
+                return $this->formatDurationForApi($v);
+            }
+        ]);
 
         $this->requestHandler = new RequestHandler(
-            $this->getSerializer(),
+            $this->serializer,
             self::GAPIC_KEYS,
             $config
-        );   
+        );
     }
 
     /**
@@ -282,16 +309,19 @@ class PubSubClient
         $resultLimit = $this->pluck('resultLimit', $options, false);
         $projectId = $this->formatName('project', $this->projectId);
 
+        $data = ['project' => $projectId];
+        $request = $this->serializer->decodeMessage(new ListTopicsRequest(), $data);
+
         return new ItemIterator(
             new PageIterator(
                 function (array $topic) {
                     return $this->topicFactory($topic['name'], $topic);
                 },
-                function ($options) use ($projectId) {
+                function ($options) use ($request) {
                     return $this->requestHandler->sendRequest(
                         PublisherClient::class,
                         'listTopics',
-                        [$projectId],
+                        $request,
                         $options
                     );
                 },
@@ -389,6 +419,9 @@ class PubSubClient
         $resultLimit = $this->pluck('resultLimit', $options, false);
         $projectId = $this->formatName('project', $this->projectId);
 
+        $data = ['project' => $projectId];
+        $request = $this->serializer->decodeMessage(new ListSubscriptionsRequest(), $data);
+
         return new ItemIterator(
             new PageIterator(
                 function (array $subscription) {
@@ -398,11 +431,11 @@ class PubSubClient
                         $subscription
                     );
                 },
-                function ($options) use ($projectId) {
+                function ($options) use ($request) {
                     return $this->requestHandler->sendRequest(
                         SubscriberClient::class,
                         'listSubscriptions',
-                        [$projectId],
+                        $request,
                         $options
                     );
                 },
@@ -456,7 +489,7 @@ class PubSubClient
      */
     public function snapshot($name, array $info = [])
     {
-        return new Snapshot($this->requestHandler, $this->projectId, $name, $this->encode, $info);
+        return new Snapshot($this->requestHandler, $this->projectId, $name, $this->encode, $info, $this->clientConfig);
     }
 
     /**
@@ -490,6 +523,9 @@ class PubSubClient
         $resultLimit = $this->pluck('resultLimit', $options, false);
         $projectId = $this->formatName('project', $this->projectId);
 
+        $data = ['project' => $projectId];
+        $request = $this->serializer->decodeMessage(new ListSnapshotsRequest(), $data);
+
         return new ItemIterator(
             new PageIterator(
                 function (array $snapshot) {
@@ -501,11 +537,11 @@ class PubSubClient
                         $snapshot
                     );
                 },
-                function ($options) use ($projectId) {
+                function ($options) use ($request) {
                     return $this->requestHandler->sendRequest(
                         SubscriberClient::class,
                         'listSnapshots',
-                        [$projectId],
+                        $request,
                         $options
                     );
                 },
@@ -569,12 +605,13 @@ class PubSubClient
             'definition' => $definition,
         ]);
 
-        $options['schemaId'] = $schemaId;
+        $data = ['parent' => $parent, 'schema' => $schema, 'schemaId' => $schemaId];
+        $request = $this->serializer->decodeMessage(new CreateSchemaRequest(), $data);
 
         $res = $this->requestHandler->sendRequest(
             SchemaServiceClient::class,
             'createSchema',
-            [$parent, $schema],
+            $request,
             $options
         );
 
@@ -619,7 +656,10 @@ class PubSubClient
     public function schemas(array $options = [])
     {
         $resultLimit = $this->pluck('resultLimit', $options, false);
-        $projectId = $this->formatName('project', $this->projectId);
+        $parent = $this->formatName('project', $this->projectId);
+
+        $data = ['parent' => $parent];
+        $request = $this->serializer->decodeMessage(new ListSchemasRequest(), $data);
 
         return new ItemIterator(
             new PageIterator(
@@ -627,11 +667,11 @@ class PubSubClient
                     $parts = SchemaServiceClient::parseName($schema['name'], 'schema');
                     return $this->schema($parts['schema'], $schema);
                 },
-                function ($options) use ($projectId) {
+                function ($options) use ($request) {
                     return $this->requestHandler->sendRequest(
                         SchemaServiceClient::class,
                         'listSchemas',
-                        [$projectId],
+                        $request,
                         $options
                     );
                 },
@@ -679,11 +719,18 @@ class PubSubClient
     public function validateSchema(array $schema, array $options = [])
     {
         $parent = SchemaServiceClient::projectName($this->projectId);
+        $schemaObj = new SchemaProto([
+            'definition' => $schema['definition'],
+            'type' => Type::value($schema['type']),
+        ]);
+
+        $data = ['parent' => $parent, 'schema' => $schemaObj];
+        $request = $this->serializer->decodeMessage(new ValidateSchemaRequest(), $data);
 
         return $this->requestHandler->sendRequest(
             SchemaServiceClient::class,
             'validateSchema',
-            [$parent, $schema],
+            $request,
             $options
         );
     }
@@ -729,27 +776,29 @@ class PubSubClient
     public function validateMessage($schema, $message, $encoding, array $options = [])
     {
         $parent = SchemaServiceClient::projectName($this->projectId);
+        $data = ['parent' => $parent, 'message' => $message, 'encoding' => Encoding::value($encoding)];
 
         if (is_string($schema)) {
-            $options['name'] = $schema;
+            $data['name'] = $schema;
         } elseif ($schema instanceof Schema) {
-            $options['name'] = $schema->name();
+            $data['name'] = $schema->name();
         } elseif (is_array($schema)) {
-            $options['schema'] = $schema;
+            $data['schema'] = new SchemaProto([
+                'definition' => $schema['definition'],
+                'type' => Type::value($schema['type']),
+            ]);
         } else {
             throw new \InvalidArgumentException(sprintf(
                 'Schema must be a string, array, or instance of %s',
                 Schema::class
             ));
         }
-
-        $options['message'] = $message;
-        $options['encoding'] = $encoding;
+        $request = $this->serializer->decodeMessage(new ValidateMessageRequest(), $data);
 
         return $this->requestHandler->sendRequest(
             SchemaServiceClient::class,
             'validateMessage',
-            [$parent],
+            $request,
             $options
         );
     }
@@ -890,27 +939,6 @@ class PubSubClient
         $config = $this->configureAuthentication($config);
 
         return $config;
-    }
-
-    /**
-     * Returns the current serializer instance.
-     *
-     * @return Serializer
-     */
-    private function getSerializer()
-    {
-        return new Serializer([
-            'publish_time' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            },
-            'expiration_time' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            }
-        ], [], [], [
-            'google.protobuf.Duration' => function ($v) {
-                return $this->formatDurationForApi($v);
-            }
-        ]);
     }
 
     /**

@@ -17,9 +17,11 @@
 
 namespace Google\Cloud\PubSub;
 
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\RequestHandler;
-use Google\Cloud\PubSub\Connection\ConnectionInterface;
-use Google\Cloud\PubSub\V1\SubscriberClient;
+use Google\Cloud\PubSub\V1\CreateSnapshotRequest;
+use Google\Cloud\PubSub\V1\DeleteSnapshotRequest;
+use Google\Cloud\PubSub\V1\Client\SubscriberClient;
 
 /**
  * Represents a Pub/Sub Snapshot
@@ -36,6 +38,7 @@ use Google\Cloud\PubSub\V1\SubscriberClient;
 class Snapshot
 {
     use ResourceNameTrait;
+    use ArrayTrait;
 
     /**
      * @var RequestHandler
@@ -44,6 +47,11 @@ class Snapshot
      * serializing responses into relevant classes.
      */
     private $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private $serializer;
 
     /**
      * @var string
@@ -95,6 +103,7 @@ class Snapshot
         array $clientConfig = []
     ) {
         $this->requestHandler = $requestHandler;
+        $this->serializer = $requestHandler->getSerializer();
         $this->projectId = $projectId;
         $this->encode = $encode;
         $this->clientConfig = $clientConfig;
@@ -167,17 +176,21 @@ class Snapshot
             throw new \BadMethodCallException('A subscription is required to create a snapshot.');
         }
 
-        $options['project'] = $this->formatName('project', $this->projectId);
+        $data = [
+            'name' => $this->name,
+            'subscription' => $this->info['subscription'],
+            'labels' => $this->pluck('labels', $options, false) ?? []
+        ];
 
-        $this->info = $this->requestHandler->sendRequest(
+        $request = $this->serializer->decodeMessage(new CreateSnapshotRequest(), $data);
+
+        return $this->info = $this->requestHandler->sendRequest(
             SubscriberClient::class,
             'createSnapshot',
-            [$this->name, $this->info['subscription']],
+            $request,
             $options,
             true
         );
-
-        return $this->info;
     }
 
     /**
@@ -195,10 +208,11 @@ class Snapshot
      */
     public function delete(array $options = [])
     {
+        $request = $this->serializer->decodeMessage(new DeleteSnapshotRequest(), ['snapshot' => $this->name]);
         $this->requestHandler->sendRequest(
             SubscriberClient::class,
             'deleteSnapshot',
-            [$this->name],
+            $request,
             $options
         );
     }

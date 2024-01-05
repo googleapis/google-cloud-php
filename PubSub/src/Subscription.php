@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\PubSub;
 
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\NotFoundException;
@@ -28,12 +29,22 @@ use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\PubSub\IncomingMessageTrait;
+use Google\Cloud\PubSub\V1\AcknowledgeRequest;
+use Google\Cloud\PubSub\V1\Client\PublisherClient;
 use Google\Cloud\PubSub\V1\DeadLetterPolicy;
 use Google\Cloud\PubSub\V1\ExpirationPolicy;
 use Google\Cloud\PubSub\V1\PushConfig;
 use Google\Cloud\PubSub\V1\RetryPolicy;
-use Google\Cloud\PubSub\V1\SubscriberClient;
+use Google\Cloud\PubSub\V1\Client\SubscriberClient;
+use Google\Cloud\PubSub\V1\DeleteSubscriptionRequest;
+use Google\Cloud\PubSub\V1\DetachSubscriptionRequest;
+use Google\Cloud\PubSub\V1\GetSubscriptionRequest;
+use Google\Cloud\PubSub\V1\ModifyAckDeadlineRequest;
+use Google\Cloud\PubSub\V1\ModifyPushConfigRequest;
+use Google\Cloud\PubSub\V1\PullRequest;
+use Google\Cloud\PubSub\V1\SeekRequest;
 use Google\Cloud\PubSub\V1\Subscription as SubscriptionProto;
+use Google\Cloud\PubSub\V1\UpdateSubscriptionRequest;
 use Google\Protobuf\Duration as ProtobufDuration;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp as ProtobufTimestamp;
@@ -93,8 +104,11 @@ class Subscription
     use ResourceNameTrait;
     use TimeTrait;
     use ValidateTrait;
+    use ApiHelperTrait;
 
     const MAX_MESSAGES = 1000;
+
+    private const SUBSCRIPTION_PROPS = ['pushConfig', 'bigqueryConfig', 'cloudStorageConfig', 'ackDeadlineSeconds', 'retainAckedMessages', 'messageRetentionDuration', 'labels', 'enableMessageOrdering', 'expirationPolicy', 'filter', 'deadLetterPolicy', 'retryPolicy', 'detached', 'enableExactlyOnceDelivery'];
 
     /**
      * @var RequestHandler
@@ -103,6 +117,11 @@ class Subscription
      * serializing responses into relevant classes.
      */
     private $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private $serializer;
 
     /**
      * @var string
@@ -185,6 +204,7 @@ class Subscription
         array $info = []
     ) {
         $this->requestHandler = $requestHandler;
+        $this->serializer = $requestHandler->getSerializer();
         $this->projectId = $projectId;
         $this->encode = (bool) $encode;
         $this->info = $info;
@@ -407,41 +427,27 @@ class Subscription
             );
         }
 
-        $options = $this->formatSubscriptionDurations($options);
-        $options = $this->formatDeadLetterPolicyForApi($options);
+        $data = $this->pluckArray(self::SUBSCRIPTION_PROPS, $options);
+
+        $data = $this->formatSubscriptionDurations($data);
+        $data = $this->formatDeadLetterPolicyForApi($data);
 
         // convert optional args to protos
-        if (isset($options['expirationPolicy'])) {
-            $options['expirationPolicy'] = $this->requestHandler->getSerializer()->decodeMessage(
-                new ExpirationPolicy(),
-                $options['expirationPolicy']
-            );
-        }
+        $protoMap = [
+            'expirationPolicy' => ExpirationPolicy::class,
+            'deadLetterPolicy' => DeadLetterPolicy::class,
+            'retryPolicy' => RetryPolicy::class,
+        ];
+        $data = $this->convertDataToProtos($data, $protoMap);
 
-        if (isset($options['messageRetentionDuration'])) {
-            $options['messageRetentionDuration'] = new ProtobufDuration(
-                $this->formatDurationForApi($options['messageRetentionDuration'])
-            );
-        }
-
-        if (isset($options['retryPolicy'])) {
-            $options['retryPolicy'] = $this->requestHandler->getSerializer()->decodeMessage(
-                new RetryPolicy,
-                $options['retryPolicy']
-            );
-        }
-
-        if (isset($options['deadLetterPolicy'])) {
-            $options['deadLetterPolicy'] = $this->requestHandler->getSerializer()->decodeMessage(
-                new DeadLetterPolicy,
-                $options['deadLetterPolicy']
-            );
-        }
+        $request = $this->serializer->decodeMessage(new SubscriptionProto(), $data);
+        $request->setName($this->name);
+        $request->setTopic($this->topicName);
 
         $this->info = $this->requestHandler->sendRequest(
             SubscriberClient::class,
             'createSubscription',
-            [$this->name,$this->topicName],
+            $request,
             $options
         );
 
@@ -613,13 +619,13 @@ class Subscription
      * }
      * @return array The subscription info.
      */
-    public function update(array $subscription, array $options = [])
+    public function update(array $input, array $options = [])
     {
         $updateMaskPaths = $this->pluck('updateMask', $options, false) ?: [];
         if (!$updateMaskPaths) {
             $excludes = ['name', 'topic'];
             $iterator = new \RecursiveIteratorIterator(
-                new \RecursiveArrayIterator($subscription),
+                new \RecursiveArrayIterator($input),
                 \RecursiveIteratorIterator::CHILD_FIRST
             );
             foreach ($iterator as $leafValue) {
@@ -643,27 +649,26 @@ class Subscription
 
         $maskPaths = [];
         foreach ($updateMaskPaths as $path) {
-            $maskPaths[] = $this->requestHandler->getSerializer()::toSnakeCase($path);
+            $maskPaths[] = $this->serializer::toSnakeCase($path);
         }
 
         $fieldMask = new FieldMask([
             'paths' => $maskPaths
         ]);
 
-        $subscription = $this->formatSubscriptionDurations($subscription);
-        $subscription = $this->formatDeadLetterPolicyForApi($subscription);
+        $input = $this->formatSubscriptionDurations($input);
+        $input = $this->formatDeadLetterPolicyForApi($input);
+        $input['name'] = $this->name;
 
-        $subscriptionProto = $this->requestHandler->getSerializer()->decodeMessage(
-            new SubscriptionProto,
-            [
-                'name' => $this->name
-            ] + $subscription
-        );
+        $data = ['subscription' => $input, 'update_mask' => $fieldMask];
+        $data = $this->convertDataToProtos($data, ['subscription' => SubscriptionProto::class]);
+
+        $request = $this->serializer->decodeMessage(new UpdateSubscriptionRequest(), $data);
 
         return $this->info = $this->requestHandler->sendRequest(
             SubscriberClient::class,
             'updateSubscription',
-            [$subscriptionProto, $fieldMask],
+            $request,
             $options
         );
     }
@@ -683,10 +688,15 @@ class Subscription
      */
     public function delete(array $options = [])
     {
+        $request = $this->serializer->decodeMessage(
+            new DeleteSubscriptionRequest(),
+            ['subscription' => $this->name]
+        );
+
         $this->requestHandler->sendRequest(
             SubscriberClient::class,
             'deleteSubscription',
-            [$this->name],
+            $request,
             $options
         );
     }
@@ -768,10 +778,15 @@ class Subscription
      */
     public function reload(array $options = [])
     {
+        $request = $this->serializer->decodeMessage(
+            new GetSubscriptionRequest(),
+            ['subscription' => $this->name]
+        );
+
         return $this->info = $this->requestHandler->sendRequest(
             SubscriberClient::class,
             'getSubscription',
-            [$this->name],
+            $request,
             $options
         );
     }
@@ -803,13 +818,16 @@ class Subscription
      */
     public function pull(array $options = [])
     {
-        $messages = [];
-        $maxMessages = $this->pluck('maxMessages', $options, false) ?? self::MAX_MESSAGES;
+        $data = $this->pluckArray(['returnImmediately', 'maxMessages'], $options);
+        $data['subscription'] = $this->name;
+        $data['maxMessages'] =  $data['max_messages'] ?? self::MAX_MESSAGES;
+        $request = $this->serializer->decodeMessage(new PullRequest(), $data);
 
+        $messages = [];
         $response = $this->requestHandler->sendRequest(
             SubscriberClient::class,
             'pull',
-            [$this->name, $maxMessages],
+            $request,
             $options
         );
 
@@ -1201,15 +1219,15 @@ class Subscription
      */
     public function modifyPushConfig(array $pushConfig, array $options = [])
     {
-        $pushConfig = $this->requestHandler->getSerializer()->decodeMessage(
-            new PushConfig(),
-            $pushConfig
-        );
+        $data = ['pushConfig' => $pushConfig, 'subscription' => $this->name];
+        $data = $this->convertDataToProtos($data, ['pushConfig' => PushConfig::class]);
+
+        $request = $this->serializer->decodeMessage(new ModifyPushConfigRequest(), $data);
 
         $this->requestHandler->sendRequest(
             SubscriberClient::class,
             'modifyPushConfig',
-            [$this->name, $pushConfig],
+            $request,
             $options
         );
     }
@@ -1235,15 +1253,15 @@ class Subscription
      */
     public function seekToTime(Timestamp $timestamp, array $options = [])
     {
-        $options['time'] = $this->requestHandler->getSerializer()->decodeMessage(
-            new ProtobufTimestamp(),
-            $timestamp->formatForApi()
-        );
+        $data = ['time' => $timestamp->formatForApi(), 'subscription' => $this->name];
+        
+        $data = $this->convertDataToProtos($data, ['time' => ProtobufTimestamp::class]);
+        $request = $this->serializer->decodeMessage(new SeekRequest(), $data);
 
         return $this->requestHandler->sendRequest(
             SubscriberClient::class,
             'seek',
-            [$this->name],
+            $request,
             $options,
             true
         );
@@ -1269,12 +1287,13 @@ class Subscription
      */
     public function seekToSnapshot(Snapshot $snapshot, array $options = [])
     {
-        $options['snapshot'] = $snapshot->name();
+        $data = ['subscription' => $this->name, 'snapshot' => $snapshot->name()];
+        $request = $this->serializer->decodeMessage(new SeekRequest(), $data);
 
         return $this->requestHandler->sendRequest(
             SubscriberClient::class,
             'seek',
-            [$this->name],
+            $request,
             $options,
             true
         );
@@ -1297,10 +1316,13 @@ class Subscription
      */
     public function detach(array $options = [])
     {
+        $data = ['subscription' => $this->name];
+        $request = $this->serializer->decodeMessage(new DetachSubscriptionRequest(), $data);
+
         return $this->requestHandler->sendRequest(
-            SubscriberClient::class,
+            PublisherClient::class,
             'detachSubscription',
-            [$this->name],
+            $request,
             $options
         );
     }
@@ -1350,81 +1372,88 @@ class Subscription
     /**
      * Format Duration objects for the API.
      *
-     * @param array $options
+     * @param array $data
      * @return array
      */
-    private function formatSubscriptionDurations(array $options)
+    private function formatSubscriptionDurations(array $data)
     {
-        if (isset($options['messageRetentionDuration']) && $options['messageRetentionDuration'] instanceof Duration) {
-            $duration = $options['messageRetentionDuration']->get();
-            $options['messageRetentionDuration'] = sprintf(
-                '%s.%ss',
-                $duration['seconds'],
-                $this->convertNanoSecondsToFraction($duration['nanos'], false)
+        if (isset($data['messageRetentionDuration'])) {
+            if ($data['messageRetentionDuration'] instanceof Duration) {
+                $duration = $data['messageRetentionDuration']->get();
+                $data['messageRetentionDuration'] = sprintf(
+                    '%s.%ss',
+                    $duration['seconds'],
+                    $this->convertNanoSecondsToFraction($duration['nanos'], false)
+                );
+            }
+            $data['messageRetentionDuration'] = new ProtobufDuration(
+                $this->formatDurationForApi($data['messageRetentionDuration'])
             );
         }
 
-        if (isset($options['expirationPolicy']['ttl']) && $options['expirationPolicy']['ttl'] instanceof Duration) {
-            $duration = $options['expirationPolicy']['ttl']->get();
-            $options['expirationPolicy']['ttl'] = sprintf(
-                '%s.%ss',
-                $duration['seconds'],
-                $this->convertNanoSecondsToFraction($duration['nanos'], false)
-            );
+        if (isset($data['retryPolicy'])) {
+            if (isset($data['expirationPolicy']['ttl']) && $data['expirationPolicy']['ttl'] instanceof Duration) {
+                $duration = $data['expirationPolicy']['ttl']->get();
+                $data['expirationPolicy']['ttl'] = sprintf(
+                    '%s.%ss',
+                    $duration['seconds'],
+                    $this->convertNanoSecondsToFraction($duration['nanos'], false)
+                );
+            }
+
+            if (isset($data['retryPolicy']['minimumBackoff']) &&
+                $data['retryPolicy']['minimumBackoff'] instanceof Duration
+            ) {
+                $duration = $data['retryPolicy']['minimumBackoff']->get();
+                $data['retryPolicy']['minimumBackoff'] = sprintf(
+                    '%s.%ss',
+                    $duration['seconds'],
+                    $this->convertNanoSecondsToFraction($duration['nanos'], false)
+                );
+            }
+
+            if (isset($data['retryPolicy']['maximumBackoff']) &&
+                $data['retryPolicy']['maximumBackoff'] instanceof Duration
+            ) {
+                $duration = $data['retryPolicy']['maximumBackoff']->get();
+                $data['retryPolicy']['maximumBackoff'] = sprintf(
+                    '%s.%ss',
+                    $duration['seconds'],
+                    $this->convertNanoSecondsToFraction($duration['nanos'], false)
+                );
+            }
         }
 
-        if (isset($options['retryPolicy']['minimumBackoff']) &&
-            $options['retryPolicy']['minimumBackoff'] instanceof Duration
+        if (isset($data['cloudStorageConfig']['maxDuration']) &&
+            $data['cloudStorageConfig']['maxDuration'] instanceof Duration
         ) {
-            $duration = $options['retryPolicy']['minimumBackoff']->get();
-            $options['retryPolicy']['minimumBackoff'] = sprintf(
+            $duration = $data['cloudStorageConfig']['maxDuration']->get();
+            $data['cloudStorageConfig']['maxDuration'] = sprintf(
                 '%s.%ss',
                 $duration['seconds'],
                 $this->convertNanoSecondsToFraction($duration['nanos'], false)
             );
         }
 
-        if (isset($options['retryPolicy']['maximumBackoff']) &&
-            $options['retryPolicy']['maximumBackoff'] instanceof Duration
-        ) {
-            $duration = $options['retryPolicy']['maximumBackoff']->get();
-            $options['retryPolicy']['maximumBackoff'] = sprintf(
-                '%s.%ss',
-                $duration['seconds'],
-                $this->convertNanoSecondsToFraction($duration['nanos'], false)
-            );
-        }
-
-        if (isset($options['cloudStorageConfig']['maxDuration']) &&
-            $options['cloudStorageConfig']['maxDuration'] instanceof Duration
-        ) {
-            $duration = $options['cloudStorageConfig']['maxDuration']->get();
-            $options['cloudStorageConfig']['maxDuration'] = sprintf(
-                '%s.%ss',
-                $duration['seconds'],
-                $this->convertNanoSecondsToFraction($duration['nanos'], false)
-            );
-        }
-
-        return $options;
+        return $data;
     }
 
     /**
      * Format dead letter topic subscription data for API.
      *
-     * @param array $subscription
+     * @param array $data
      * @return array
      */
-    private function formatDeadLetterPolicyForApi(array $subscription)
+    private function formatDeadLetterPolicyForApi(array $data)
     {
-        if (isset($subscription['deadLetterPolicy'])) {
-            if ($subscription['deadLetterPolicy']['deadLetterTopic'] instanceof Topic) {
-                $topic = $subscription['deadLetterPolicy']['deadLetterTopic'];
-                $subscription['deadLetterPolicy']['deadLetterTopic'] = $topic->name();
+        if (isset($data['deadLetterPolicy'])) {
+            if ($data['deadLetterPolicy']['deadLetterTopic'] instanceof Topic) {
+                $topic = $data['deadLetterPolicy']['deadLetterTopic'];
+                $data['deadLetterPolicy']['deadLetterTopic'] = $topic->name();
             }
         }
 
-        return $subscription;
+        return $data;
     }
 
     /**
@@ -1512,11 +1541,13 @@ class Subscription
     private function sendAckRequest(array $messages, array $options)
     {
         $ackIds = $this->getMessageAckIds($messages);
+        $data = ['subscription' => $this->name, 'ackIds' => $ackIds];
+        $request = $this->serializer->decodeMessage(new AcknowledgeRequest(), $data);
 
         $this->requestHandler->sendRequest(
             SubscriberClient::class,
             'acknowledge',
-            [$this->name,$ackIds],
+            $request,
             $options
         );
     }
@@ -1531,11 +1562,13 @@ class Subscription
     private function sendModAckRequest(array $messages, $seconds, array $options)
     {
         $ackIds = $this->getMessageAckIds($messages);
+        $data = ['subscription' => $this->name, 'ackIds' => $ackIds, 'ackDeadlineSeconds' => $seconds];
+        $request = $this->serializer->decodeMessage(new ModifyAckDeadlineRequest(), $data);
 
         $this->requestHandler->sendRequest(
             SubscriberClient::class,
             'modifyAckDeadline',
-            [$this->name, $ackIds, $seconds],
+            $request,
             $options
         );
     }
