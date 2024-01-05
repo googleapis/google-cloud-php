@@ -1114,6 +1114,11 @@ class FirestoreGapicClient
      *           This must be a microsecond precision timestamp within the past one hour,
      *           or if Point-in-Time Recovery is enabled, can additionally be a whole
      *           minute timestamp within the past 7 days.
+     *     @type int $mode
+     *           Optional. The mode in which the query request is processed. This field is
+     *           optional, and when not provided, it defaults to `NORMAL` mode where no
+     *           additional statistics will be returned with the query results.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Firestore\V1\QueryMode}
      *     @type int $timeoutMillis
      *           Timeout to use for this call.
      * }
@@ -1142,6 +1147,10 @@ class FirestoreGapicClient
 
         if (isset($optionalArgs['readTime'])) {
             $request->setReadTime($optionalArgs['readTime']);
+        }
+
+        if (isset($optionalArgs['mode'])) {
+            $request->setMode($optionalArgs['mode']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1193,6 +1202,11 @@ class FirestoreGapicClient
      *           This must be a microsecond precision timestamp within the past one hour,
      *           or if Point-in-Time Recovery is enabled, can additionally be a whole
      *           minute timestamp within the past 7 days.
+     *     @type int $mode
+     *           Optional. The mode in which the query request is processed. This field is
+     *           optional, and when not provided, it defaults to `NORMAL` mode where no
+     *           additional statistics will be returned with the query results.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Firestore\V1\QueryMode}
      *     @type int $timeoutMillis
      *           Timeout to use for this call.
      * }
@@ -1221,6 +1235,10 @@ class FirestoreGapicClient
 
         if (isset($optionalArgs['readTime'])) {
             $request->setReadTime($optionalArgs['readTime']);
+        }
+
+        if (isset($optionalArgs['mode'])) {
+            $request->setMode($optionalArgs['mode']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
