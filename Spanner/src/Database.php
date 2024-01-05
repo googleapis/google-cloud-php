@@ -1008,7 +1008,7 @@ class Database
      *
      *     @type array $requestOptions Request options.
      *         For more information on available options, please see
-     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         [RequestOptions](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
@@ -1057,7 +1057,7 @@ class Database
      *
      *     @type array $requestOptions Request options.
      *         For more information on available options, please see
-     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         [RequestOptions](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
@@ -1103,7 +1103,7 @@ class Database
      *
      *     @type array $requestOptions Request options.
      *         For more information on available options, please see
-     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         [RequestOptions](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
@@ -1149,7 +1149,7 @@ class Database
      *
      *     @type array $requestOptions Request options.
      *         For more information on available options, please see
-     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         [RequestOptions](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
@@ -1196,7 +1196,7 @@ class Database
      *
      *     @type array $requestOptions Request options.
      *         For more information on available options, please see
-     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         [RequestOptions](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
@@ -1244,7 +1244,7 @@ class Database
      *
      *     @type array $requestOptions Request options.
      *         For more information on available options, please see
-     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         [RequestOptions](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
@@ -1291,7 +1291,7 @@ class Database
      *
      *     @type array $requestOptions Request options.
      *         For more information on available options, please see
-     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         [RequestOptions](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
@@ -1339,7 +1339,7 @@ class Database
      *
      *     @type array $requestOptions Request options.
      *         For more information on available options, please see
-     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         [RequestOptions](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
@@ -1389,7 +1389,7 @@ class Database
      *
      *     @type array $requestOptions Request options.
      *         For more information on available options, please see
-     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         [RequestOptions](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
@@ -1644,7 +1644,7 @@ class Database
      *           (`INVALID_ARGUMENT`) status.
      *     @type array $requestOptions Request options.
      *           For more information on available options, please see
-     *           [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *           [RequestOptions](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *           Please note, if using the `priority` setting you may utilize the constants available
      *           on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *           Please note, the `transactionTag` setting will be ignored as it is not supported for read-only
@@ -1793,7 +1793,7 @@ class Database
      *           {@see \Google\Cloud\Spanner\StructType}.
      *     @type array $requestOptions Request options.
      *           For more information on available options, please see
-     *           [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *           [RequestOptions](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *           Please note, if using the `priority` setting you may utilize the constants available
      *           on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *           Please note, the `transactionTag` setting will be ignored as it is not supported for partitioned DML.
@@ -1925,7 +1925,7 @@ class Database
      *           Session labels may be applied using the `labels` key.
      *     @type array $requestOptions Request options.
      *           For more information on available options, please see
-     *           [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *           [RequestOptions](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *           Please note, if using the `priority` setting you may utilize the constants available
      *           on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *           Please note, the `transactionTag` setting will be ignored as it is not supported for read-only transactions.
@@ -2132,7 +2132,7 @@ class Database
      *
      *     @type array $requestOptions Request options.
      *         For more information on available options, please see
-     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         [RequestOptions](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use transactions.
