@@ -34,7 +34,7 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
-See the [samples directory](https://github.com/googleapis/php-cloud-quotas/tree/main/samples) for a canonical list of samples.
+See the [samples directory](https://github.com/googleapis/google-cloud-php-quotas/tree/main/samples) for a canonical list of samples.
 
 ### Version
 
