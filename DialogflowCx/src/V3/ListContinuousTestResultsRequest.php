@@ -39,6 +39,22 @@ class ListContinuousTestResultsRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
+     * @param string $parent Required. The environment to list results for.
+     *                       Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/
+     *                       environments/<Environment ID>`. Please see
+     *                       {@see EnvironmentsClient::environmentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\ListContinuousTestResultsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START storagetransfer_v1_generated_StorageTransferService_DeleteTransferJob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\StorageTransfer\V1\StorageTransferServiceClient;
+use Google\Cloud\StorageTransfer\V1\Client\StorageTransferServiceClient;
+use Google\Cloud\StorageTransfer\V1\DeleteTransferJobRequest;
 
 /**
  * Deletes a transfer job. Deleting a transfer job sets its status to
@@ -39,9 +40,14 @@ function delete_transfer_job_sample(string $jobName, string $projectId): void
     // Create a client.
     $storageTransferServiceClient = new StorageTransferServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteTransferJobRequest())
+        ->setJobName($jobName)
+        ->setProjectId($projectId);
+
     // Call the API and handle any network failures.
     try {
-        $storageTransferServiceClient->deleteTransferJob($jobName, $projectId);
+        $storageTransferServiceClient->deleteTransferJob($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

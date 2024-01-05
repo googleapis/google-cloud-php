@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START privateca_v1_generated_CertificateAuthorityService_FetchCaCerts_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\FetchCaCertsRequest;
 use Google\Cloud\Security\PrivateCA\V1\FetchCaCertsResponse;
 
 /**
@@ -44,10 +45,14 @@ function fetch_ca_certs_sample(string $formattedCaPool): void
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
+    // Prepare the request message.
+    $request = (new FetchCaCertsRequest())
+        ->setCaPool($formattedCaPool);
+
     // Call the API and handle any network failures.
     try {
         /** @var FetchCaCertsResponse $response */
-        $response = $certificateAuthorityServiceClient->fetchCaCerts($formattedCaPool);
+        $response = $certificateAuthorityServiceClient->fetchCaCerts($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

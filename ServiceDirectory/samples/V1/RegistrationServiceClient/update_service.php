@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START servicedirectory_v1_generated_RegistrationService_UpdateService_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\ServiceDirectory\V1\RegistrationServiceClient;
+use Google\Cloud\ServiceDirectory\V1\Client\RegistrationServiceClient;
 use Google\Cloud\ServiceDirectory\V1\Service;
+use Google\Cloud\ServiceDirectory\V1\UpdateServiceRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -42,14 +43,17 @@ function update_service_sample(): void
     // Create a client.
     $registrationServiceClient = new RegistrationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $service = new Service();
     $updateMask = new FieldMask();
+    $request = (new UpdateServiceRequest())
+        ->setService($service)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var Service $response */
-        $response = $registrationServiceClient->updateService($service, $updateMask);
+        $response = $registrationServiceClient->updateService($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

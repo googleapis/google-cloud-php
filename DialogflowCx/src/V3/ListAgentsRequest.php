@@ -38,6 +38,21 @@ class ListAgentsRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
+     * @param string $parent Required. The location to list all agents for.
+     *                       Format: `projects/<Project ID>/locations/<Location ID>`. Please see
+     *                       {@see AgentsClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\ListAgentsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

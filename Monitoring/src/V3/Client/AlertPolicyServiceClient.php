@@ -371,6 +371,8 @@ final class AlertPolicyServiceClient
      *
      * The async variant is {@see AlertPolicyServiceClient::createAlertPolicyAsync()} .
      *
+     * @example samples/V3/AlertPolicyServiceClient/create_alert_policy.php
+     *
      * @param CreateAlertPolicyRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -399,6 +401,8 @@ final class AlertPolicyServiceClient
      *
      * The async variant is {@see AlertPolicyServiceClient::deleteAlertPolicyAsync()} .
      *
+     * @example samples/V3/AlertPolicyServiceClient/delete_alert_policy.php
+     *
      * @param DeleteAlertPolicyRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -420,6 +424,8 @@ final class AlertPolicyServiceClient
      * Gets a single alerting policy.
      *
      * The async variant is {@see AlertPolicyServiceClient::getAlertPolicyAsync()} .
+     *
+     * @example samples/V3/AlertPolicyServiceClient/get_alert_policy.php
      *
      * @param GetAlertPolicyRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -444,6 +450,8 @@ final class AlertPolicyServiceClient
      * Lists the existing alerting policies for the workspace.
      *
      * The async variant is {@see AlertPolicyServiceClient::listAlertPoliciesAsync()} .
+     *
+     * @example samples/V3/AlertPolicyServiceClient/list_alert_policies.php
      *
      * @param ListAlertPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -475,6 +483,8 @@ final class AlertPolicyServiceClient
      * CreateAlertPolicy, DeleteAlertPolicy and UpdateAlertPolicy.
      *
      * The async variant is {@see AlertPolicyServiceClient::updateAlertPolicyAsync()} .
+     *
+     * @example samples/V3/AlertPolicyServiceClient/update_alert_policy.php
      *
      * @param UpdateAlertPolicyRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {

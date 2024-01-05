@@ -36,6 +36,27 @@ class UpdateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
     protected $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Dialogflow\Cx\V3\SessionEntityType $sessionEntityType Required. The session entity type to update.
+     *                                                                            Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+     *                                                                            ID>/sessions/<Session ID>/entityTypes/<Entity Type ID>` or
+     *                                                                            `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+     *                                                                            ID>/environments/<Environment ID>/sessions/<Session ID>/entityTypes/<Entity
+     *                                                                            Type ID>`. If `Environment ID` is not specified, we assume default 'draft'
+     *                                                                            environment.
+     * @param \Google\Protobuf\FieldMask                       $updateMask        The mask to control which fields get updated.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\UpdateSessionEntityTypeRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\Cx\V3\SessionEntityType $sessionEntityType, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setSessionEntityType($sessionEntityType)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

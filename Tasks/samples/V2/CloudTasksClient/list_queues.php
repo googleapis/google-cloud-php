@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudtasks_v2_generated_CloudTasks_ListQueues_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Tasks\V2\CloudTasksClient;
+use Google\Cloud\Tasks\V2\Client\CloudTasksClient;
+use Google\Cloud\Tasks\V2\ListQueuesRequest;
 use Google\Cloud\Tasks\V2\Queue;
 
 /**
@@ -42,10 +43,14 @@ function list_queues_sample(string $formattedParent): void
     // Create a client.
     $cloudTasksClient = new CloudTasksClient();
 
+    // Prepare the request message.
+    $request = (new ListQueuesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudTasksClient->listQueues($formattedParent);
+        $response = $cloudTasksClient->listQueues($request);
 
         /** @var Queue $element */
         foreach ($response as $element) {

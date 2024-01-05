@@ -32,6 +32,22 @@ class GetFlowValidationResultRequest extends \Google\Protobuf\Internal\Message
     protected $language_code = '';
 
     /**
+     * @param string $name Required. The flow name.
+     *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+     *                     ID>/flows/<Flow ID>/validationResult`. Please see
+     *                     {@see FlowsClient::flowValidationResultName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\GetFlowValidationResultRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

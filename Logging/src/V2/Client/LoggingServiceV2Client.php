@@ -367,6 +367,8 @@ final class LoggingServiceV2Client
      *
      * The async variant is {@see LoggingServiceV2Client::deleteLogAsync()} .
      *
+     * @example samples/V2/LoggingServiceV2Client/delete_log.php
+     *
      * @param DeleteLogRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -391,6 +393,8 @@ final class LoggingServiceV2Client
      * Logs](https://cloud.google.com/logging/docs/export).
      *
      * The async variant is {@see LoggingServiceV2Client::listLogEntriesAsync()} .
+     *
+     * @example samples/V2/LoggingServiceV2Client/list_log_entries.php
      *
      * @param ListLogEntriesRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -417,6 +421,8 @@ final class LoggingServiceV2Client
      *
      * The async variant is {@see LoggingServiceV2Client::listLogsAsync()} .
      *
+     * @example samples/V2/LoggingServiceV2Client/list_logs.php
+     *
      * @param ListLogsRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -442,6 +448,8 @@ final class LoggingServiceV2Client
      * The async variant is
      * {@see LoggingServiceV2Client::listMonitoredResourceDescriptorsAsync()} .
      *
+     * @example samples/V2/LoggingServiceV2Client/list_monitored_resource_descriptors.php
+     *
      * @param ListMonitoredResourceDescriptorsRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -464,6 +472,8 @@ final class LoggingServiceV2Client
     /**
      * Streaming read of log entries as they are ingested. Until the stream is
      * terminated, it will continue reading logs.
+     *
+     * @example samples/V2/LoggingServiceV2Client/tail_log_entries.php
      *
      * @param array $callOptions {
      *     Optional.
@@ -491,6 +501,8 @@ final class LoggingServiceV2Client
      * folders)
      *
      * The async variant is {@see LoggingServiceV2Client::writeLogEntriesAsync()} .
+     *
+     * @example samples/V2/LoggingServiceV2Client/write_log_entries.php
      *
      * @param WriteLogEntriesRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {

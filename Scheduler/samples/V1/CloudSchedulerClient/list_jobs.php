@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudscheduler_v1_generated_CloudScheduler_ListJobs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Scheduler\V1\CloudSchedulerClient;
+use Google\Cloud\Scheduler\V1\Client\CloudSchedulerClient;
 use Google\Cloud\Scheduler\V1\Job;
+use Google\Cloud\Scheduler\V1\ListJobsRequest;
 
 /**
  * Lists jobs.
@@ -40,10 +41,14 @@ function list_jobs_sample(string $formattedParent): void
     // Create a client.
     $cloudSchedulerClient = new CloudSchedulerClient();
 
+    // Prepare the request message.
+    $request = (new ListJobsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudSchedulerClient->listJobs($formattedParent);
+        $response = $cloudSchedulerClient->listJobs($request);
 
         /** @var Job $element */
         foreach ($response as $element) {

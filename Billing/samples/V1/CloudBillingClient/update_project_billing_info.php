@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudbilling_v1_generated_CloudBilling_UpdateProjectBillingInfo_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Billing\V1\CloudBillingClient;
+use Google\Cloud\Billing\V1\Client\CloudBillingClient;
 use Google\Cloud\Billing\V1\ProjectBillingInfo;
+use Google\Cloud\Billing\V1\UpdateProjectBillingInfoRequest;
 
 /**
  * Sets or updates the billing account associated with a project. You specify
@@ -70,10 +71,14 @@ function update_project_billing_info_sample(string $name): void
     // Create a client.
     $cloudBillingClient = new CloudBillingClient();
 
+    // Prepare the request message.
+    $request = (new UpdateProjectBillingInfoRequest())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
         /** @var ProjectBillingInfo $response */
-        $response = $cloudBillingClient->updateProjectBillingInfo($name);
+        $response = $cloudBillingClient->updateProjectBillingInfo($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

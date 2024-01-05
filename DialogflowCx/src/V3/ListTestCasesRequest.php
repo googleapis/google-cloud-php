@@ -45,6 +45,21 @@ class ListTestCasesRequest extends \Google\Protobuf\Internal\Message
     protected $view = 0;
 
     /**
+     * @param string $parent Required. The agent to list all pages for.
+     *                       Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+     *                       {@see TestCasesClient::agentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\ListTestCasesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

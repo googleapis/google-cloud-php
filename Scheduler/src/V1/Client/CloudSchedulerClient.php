@@ -273,6 +273,8 @@ final class CloudSchedulerClient
      *
      * The async variant is {@see CloudSchedulerClient::createJobAsync()} .
      *
+     * @example samples/V1/CloudSchedulerClient/create_job.php
+     *
      * @param CreateJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -297,6 +299,8 @@ final class CloudSchedulerClient
      *
      * The async variant is {@see CloudSchedulerClient::deleteJobAsync()} .
      *
+     * @example samples/V1/CloudSchedulerClient/delete_job.php
+     *
      * @param DeleteJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -318,6 +322,8 @@ final class CloudSchedulerClient
      * Gets a job.
      *
      * The async variant is {@see CloudSchedulerClient::getJobAsync()} .
+     *
+     * @example samples/V1/CloudSchedulerClient/get_job.php
      *
      * @param GetJobRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -342,6 +348,8 @@ final class CloudSchedulerClient
      * Lists jobs.
      *
      * The async variant is {@see CloudSchedulerClient::listJobsAsync()} .
+     *
+     * @example samples/V1/CloudSchedulerClient/list_jobs.php
      *
      * @param ListJobsRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -376,6 +384,8 @@ final class CloudSchedulerClient
      *
      * The async variant is {@see CloudSchedulerClient::pauseJobAsync()} .
      *
+     * @example samples/V1/CloudSchedulerClient/pause_job.php
+     *
      * @param PauseJobRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -408,6 +418,8 @@ final class CloudSchedulerClient
      *
      * The async variant is {@see CloudSchedulerClient::resumeJobAsync()} .
      *
+     * @example samples/V1/CloudSchedulerClient/resume_job.php
+     *
      * @param ResumeJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -434,6 +446,8 @@ final class CloudSchedulerClient
      * if the job is already running.
      *
      * The async variant is {@see CloudSchedulerClient::runJobAsync()} .
+     *
+     * @example samples/V1/CloudSchedulerClient/run_job.php
      *
      * @param RunJobRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -468,6 +482,8 @@ final class CloudSchedulerClient
      *
      * The async variant is {@see CloudSchedulerClient::updateJobAsync()} .
      *
+     * @example samples/V1/CloudSchedulerClient/update_job.php
+     *
      * @param UpdateJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -492,6 +508,8 @@ final class CloudSchedulerClient
      *
      * The async variant is {@see CloudSchedulerClient::getLocationAsync()} .
      *
+     * @example samples/V1/CloudSchedulerClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -515,6 +533,8 @@ final class CloudSchedulerClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see CloudSchedulerClient::listLocationsAsync()} .
+     *
+     * @example samples/V1/CloudSchedulerClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

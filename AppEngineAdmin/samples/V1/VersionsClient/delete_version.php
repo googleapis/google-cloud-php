@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START appengine_v1_generated_Versions_DeleteVersion_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AppEngine\V1\VersionsClient;
+use Google\Cloud\AppEngine\V1\Client\VersionsClient;
+use Google\Cloud\AppEngine\V1\DeleteVersionRequest;
 use Google\Rpc\Status;
 
 /**
@@ -42,10 +43,13 @@ function delete_version_sample(): void
     // Create a client.
     $versionsClient = new VersionsClient();
 
+    // Prepare the request message.
+    $request = new DeleteVersionRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $versionsClient->deleteVersion();
+        $response = $versionsClient->deleteVersion($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

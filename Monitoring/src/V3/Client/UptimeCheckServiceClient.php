@@ -289,6 +289,8 @@ final class UptimeCheckServiceClient
      * The async variant is
      * {@see UptimeCheckServiceClient::createUptimeCheckConfigAsync()} .
      *
+     * @example samples/V3/UptimeCheckServiceClient/create_uptime_check_config.php
+     *
      * @param CreateUptimeCheckConfigRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -316,6 +318,8 @@ final class UptimeCheckServiceClient
      * The async variant is
      * {@see UptimeCheckServiceClient::deleteUptimeCheckConfigAsync()} .
      *
+     * @example samples/V3/UptimeCheckServiceClient/delete_uptime_check_config.php
+     *
      * @param DeleteUptimeCheckConfigRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -338,6 +342,8 @@ final class UptimeCheckServiceClient
      *
      * The async variant is
      * {@see UptimeCheckServiceClient::getUptimeCheckConfigAsync()} .
+     *
+     * @example samples/V3/UptimeCheckServiceClient/get_uptime_check_config.php
      *
      * @param GetUptimeCheckConfigRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -365,6 +371,8 @@ final class UptimeCheckServiceClient
      * The async variant is
      * {@see UptimeCheckServiceClient::listUptimeCheckConfigsAsync()} .
      *
+     * @example samples/V3/UptimeCheckServiceClient/list_uptime_check_configs.php
+     *
      * @param ListUptimeCheckConfigsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -389,6 +397,8 @@ final class UptimeCheckServiceClient
      *
      * The async variant is {@see UptimeCheckServiceClient::listUptimeCheckIpsAsync()}
      * .
+     *
+     * @example samples/V3/UptimeCheckServiceClient/list_uptime_check_ips.php
      *
      * @param ListUptimeCheckIpsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -417,6 +427,8 @@ final class UptimeCheckServiceClient
      *
      * The async variant is
      * {@see UptimeCheckServiceClient::updateUptimeCheckConfigAsync()} .
+     *
+     * @example samples/V3/UptimeCheckServiceClient/update_uptime_check_config.php
      *
      * @param UpdateUptimeCheckConfigRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {

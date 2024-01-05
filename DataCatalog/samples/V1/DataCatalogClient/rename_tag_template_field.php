@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datacatalog_v1_generated_DataCatalog_RenameTagTemplateField_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\DataCatalog\V1\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\Client\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\RenameTagTemplateFieldRequest;
 use Google\Cloud\DataCatalog\V1\TagTemplateField;
 
 /**
@@ -46,10 +47,15 @@ function rename_tag_template_field_sample(
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
+    // Prepare the request message.
+    $request = (new RenameTagTemplateFieldRequest())
+        ->setName($formattedName)
+        ->setNewTagTemplateFieldId($newTagTemplateFieldId);
+
     // Call the API and handle any network failures.
     try {
         /** @var TagTemplateField $response */
-        $response = $dataCatalogClient->renameTagTemplateField($formattedName, $newTagTemplateFieldId);
+        $response = $dataCatalogClient->renameTagTemplateField($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

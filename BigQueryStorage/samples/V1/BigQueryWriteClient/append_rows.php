@@ -27,7 +27,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
 use Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest;
 use Google\Cloud\BigQuery\Storage\V1\AppendRowsResponse;
-use Google\Cloud\BigQuery\Storage\V1\BigQueryWriteClient;
+use Google\Cloud\BigQuery\Storage\V1\Client\BigQueryWriteClient;
 
 /**
  * Appends data to the given stream.
@@ -101,7 +101,7 @@ function append_rows_sample(string $formattedWriteStream): void
     // Create a client.
     $bigQueryWriteClient = new BigQueryWriteClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $request = (new AppendRowsRequest())
         ->setWriteStream($formattedWriteStream);
 

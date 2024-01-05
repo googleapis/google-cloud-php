@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudchannel_v1_generated_CloudChannelService_ListPurchasableSkus_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\ListPurchasableSkusRequest;
 use Google\Cloud\Channel\V1\PurchasableSku;
 
 /**
@@ -48,10 +49,14 @@ function list_purchasable_skus_sample(string $formattedCustomer): void
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListPurchasableSkusRequest())
+        ->setCustomer($formattedCustomer);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudChannelServiceClient->listPurchasableSkus($formattedCustomer);
+        $response = $cloudChannelServiceClient->listPurchasableSkus($request);
 
         /** @var PurchasableSku $element */
         foreach ($response as $element) {

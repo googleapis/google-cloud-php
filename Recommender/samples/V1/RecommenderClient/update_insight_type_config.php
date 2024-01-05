@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START recommender_v1_generated_Recommender_UpdateInsightTypeConfig_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Recommender\V1\Client\RecommenderClient;
 use Google\Cloud\Recommender\V1\InsightTypeConfig;
-use Google\Cloud\Recommender\V1\RecommenderClient;
+use Google\Cloud\Recommender\V1\UpdateInsightTypeConfigRequest;
 
 /**
  * Updates an InsightTypeConfig change. This will create a new revision of the
@@ -42,13 +43,15 @@ function update_insight_type_config_sample(): void
     // Create a client.
     $recommenderClient = new RecommenderClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $insightTypeConfig = new InsightTypeConfig();
+    $request = (new UpdateInsightTypeConfigRequest())
+        ->setInsightTypeConfig($insightTypeConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var InsightTypeConfig $response */
-        $response = $recommenderClient->updateInsightTypeConfig($insightTypeConfig);
+        $response = $recommenderClient->updateInsightTypeConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

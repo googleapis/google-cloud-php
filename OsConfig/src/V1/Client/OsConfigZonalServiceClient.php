@@ -451,6 +451,8 @@ class OsConfigZonalServiceClient
      * The async variant is
      * {@see OsConfigZonalServiceClient::createOSPolicyAssignmentAsync()} .
      *
+     * @example samples/V1/OsConfigZonalServiceClient/create_os_policy_assignment.php
+     *
      * @param CreateOSPolicyAssignmentRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -487,6 +489,8 @@ class OsConfigZonalServiceClient
      * The async variant is
      * {@see OsConfigZonalServiceClient::deleteOSPolicyAssignmentAsync()} .
      *
+     * @example samples/V1/OsConfigZonalServiceClient/delete_os_policy_assignment.php
+     *
      * @param DeleteOSPolicyAssignmentRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -511,6 +515,8 @@ class OsConfigZonalServiceClient
      * associated inventory, the message `NOT_FOUND` is returned.
      *
      * The async variant is {@see OsConfigZonalServiceClient::getInventoryAsync()} .
+     *
+     * @example samples/V1/OsConfigZonalServiceClient/get_inventory.php
      *
      * @param GetInventoryRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -541,6 +547,8 @@ class OsConfigZonalServiceClient
      * The async variant is
      * {@see OsConfigZonalServiceClient::getOSPolicyAssignmentAsync()} .
      *
+     * @example samples/V1/OsConfigZonalServiceClient/get_os_policy_assignment.php
+     *
      * @param GetOSPolicyAssignmentRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -566,6 +574,8 @@ class OsConfigZonalServiceClient
      *
      * The async variant is
      * {@see OsConfigZonalServiceClient::getOSPolicyAssignmentReportAsync()} .
+     *
+     * @example samples/V1/OsConfigZonalServiceClient/get_os_policy_assignment_report.php
      *
      * @param GetOSPolicyAssignmentReportRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -593,6 +603,8 @@ class OsConfigZonalServiceClient
      * The async variant is
      * {@see OsConfigZonalServiceClient::getVulnerabilityReportAsync()} .
      *
+     * @example samples/V1/OsConfigZonalServiceClient/get_vulnerability_report.php
+     *
      * @param GetVulnerabilityReportRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -616,6 +628,8 @@ class OsConfigZonalServiceClient
      * List inventory data for all VM instances in the specified zone.
      *
      * The async variant is {@see OsConfigZonalServiceClient::listInventoriesAsync()} .
+     *
+     * @example samples/V1/OsConfigZonalServiceClient/list_inventories.php
      *
      * @param ListInventoriesRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -643,6 +657,8 @@ class OsConfigZonalServiceClient
      * The async variant is
      * {@see OsConfigZonalServiceClient::listOSPolicyAssignmentReportsAsync()} .
      *
+     * @example samples/V1/OsConfigZonalServiceClient/list_os_policy_assignment_reports.php
+     *
      * @param ListOSPolicyAssignmentReportsRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -667,6 +683,8 @@ class OsConfigZonalServiceClient
      *
      * The async variant is
      * {@see OsConfigZonalServiceClient::listOSPolicyAssignmentRevisionsAsync()} .
+     *
+     * @example samples/V1/OsConfigZonalServiceClient/list_os_policy_assignment_revisions.php
      *
      * @param ListOSPolicyAssignmentRevisionsRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -695,6 +713,8 @@ class OsConfigZonalServiceClient
      * The async variant is
      * {@see OsConfigZonalServiceClient::listOSPolicyAssignmentsAsync()} .
      *
+     * @example samples/V1/OsConfigZonalServiceClient/list_os_policy_assignments.php
+     *
      * @param ListOSPolicyAssignmentsRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -719,6 +739,8 @@ class OsConfigZonalServiceClient
      *
      * The async variant is
      * {@see OsConfigZonalServiceClient::listVulnerabilityReportsAsync()} .
+     *
+     * @example samples/V1/OsConfigZonalServiceClient/list_vulnerability_reports.php
      *
      * @param ListVulnerabilityReportsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -752,6 +774,8 @@ class OsConfigZonalServiceClient
      *
      * The async variant is
      * {@see OsConfigZonalServiceClient::updateOSPolicyAssignmentAsync()} .
+     *
+     * @example samples/V1/OsConfigZonalServiceClient/update_os_policy_assignment.php
      *
      * @param UpdateOSPolicyAssignmentRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START speech_v2_generated_Speech_GetLocation_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\Location;
-use Google\Cloud\Speech\V2\SpeechClient;
+use Google\Cloud\Speech\V2\Client\SpeechClient;
 
 /**
  * Gets information about a location.
@@ -41,10 +42,13 @@ function get_location_sample(): void
     // Create a client.
     $speechClient = new SpeechClient();
 
+    // Prepare the request message.
+    $request = new GetLocationRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var Location $response */
-        $response = $speechClient->getLocation();
+        $response = $speechClient->getLocation($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

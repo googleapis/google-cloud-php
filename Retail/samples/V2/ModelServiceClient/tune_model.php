@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START retail_v2_generated_ModelService_TuneModel_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Retail\V2\ModelServiceClient;
+use Google\Cloud\Retail\V2\Client\ModelServiceClient;
+use Google\Cloud\Retail\V2\TuneModelRequest;
 use Google\Cloud\Retail\V2\TuneModelResponse;
 use Google\Rpc\Status;
 
@@ -42,10 +43,14 @@ function tune_model_sample(string $formattedName): void
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
+    // Prepare the request message.
+    $request = (new TuneModelRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $modelServiceClient->tuneModel($formattedName);
+        $response = $modelServiceClient->tuneModel($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

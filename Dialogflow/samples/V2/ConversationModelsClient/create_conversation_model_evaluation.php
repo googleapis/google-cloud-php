@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_ConversationModels_CreateConversationModelEvaluation_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Dialogflow\V2\Client\ConversationModelsClient;
 use Google\Cloud\Dialogflow\V2\ConversationModelEvaluation;
-use Google\Cloud\Dialogflow\V2\ConversationModelsClient;
+use Google\Cloud\Dialogflow\V2\CreateConversationModelEvaluationRequest;
 use Google\Rpc\Status;
 
 /**
@@ -42,16 +43,16 @@ function create_conversation_model_evaluation_sample(string $formattedParent): v
     // Create a client.
     $conversationModelsClient = new ConversationModelsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $conversationModelEvaluation = new ConversationModelEvaluation();
+    $request = (new CreateConversationModelEvaluationRequest())
+        ->setParent($formattedParent)
+        ->setConversationModelEvaluation($conversationModelEvaluation);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $conversationModelsClient->createConversationModelEvaluation(
-            $formattedParent,
-            $conversationModelEvaluation
-        );
+        $response = $conversationModelsClient->createConversationModelEvaluation($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

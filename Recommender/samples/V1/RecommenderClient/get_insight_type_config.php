@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START recommender_v1_generated_Recommender_GetInsightTypeConfig_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Recommender\V1\Client\RecommenderClient;
+use Google\Cloud\Recommender\V1\GetInsightTypeConfigRequest;
 use Google\Cloud\Recommender\V1\InsightTypeConfig;
-use Google\Cloud\Recommender\V1\RecommenderClient;
 
 /**
  * Gets the requested InsightTypeConfig. There is only one instance of the
@@ -49,10 +50,14 @@ function get_insight_type_config_sample(string $formattedName): void
     // Create a client.
     $recommenderClient = new RecommenderClient();
 
+    // Prepare the request message.
+    $request = (new GetInsightTypeConfigRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var InsightTypeConfig $response */
-        $response = $recommenderClient->getInsightTypeConfig($formattedName);
+        $response = $recommenderClient->getInsightTypeConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

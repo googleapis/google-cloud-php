@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkconnectivity_v1_generated_PolicyBasedRoutingService_ListPolicyBasedRoutes_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\NetworkConnectivity\V1\Client\PolicyBasedRoutingServiceClient;
+use Google\Cloud\NetworkConnectivity\V1\ListPolicyBasedRoutesRequest;
 use Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute;
-use Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoutingServiceClient;
 
 /**
  * Lists PolicyBasedRoutes in a given project and location.
@@ -39,10 +40,14 @@ function list_policy_based_routes_sample(string $formattedParent): void
     // Create a client.
     $policyBasedRoutingServiceClient = new PolicyBasedRoutingServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListPolicyBasedRoutesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $policyBasedRoutingServiceClient->listPolicyBasedRoutes($formattedParent);
+        $response = $policyBasedRoutingServiceClient->listPolicyBasedRoutes($request);
 
         /** @var PolicyBasedRoute $element */
         foreach ($response as $element) {

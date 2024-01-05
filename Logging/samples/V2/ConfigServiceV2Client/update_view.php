@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START logging_v2_generated_ConfigServiceV2_UpdateView_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Logging\V2\ConfigServiceV2Client;
+use Google\Cloud\Logging\V2\Client\ConfigServiceV2Client;
 use Google\Cloud\Logging\V2\LogView;
+use Google\Cloud\Logging\V2\UpdateViewRequest;
 
 /**
  * Updates a view on a log bucket. This method replaces the following fields
@@ -47,13 +48,16 @@ function update_view_sample(string $name): void
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $view = new LogView();
+    $request = (new UpdateViewRequest())
+        ->setName($name)
+        ->setView($view);
 
     // Call the API and handle any network failures.
     try {
         /** @var LogView $response */
-        $response = $configServiceV2Client->updateView($name, $view);
+        $response = $configServiceV2Client->updateView($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

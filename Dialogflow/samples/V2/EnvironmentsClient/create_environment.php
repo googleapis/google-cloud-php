@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_Environments_CreateEnvironment_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\V2\Client\EnvironmentsClient;
+use Google\Cloud\Dialogflow\V2\CreateEnvironmentRequest;
 use Google\Cloud\Dialogflow\V2\Environment;
-use Google\Cloud\Dialogflow\V2\EnvironmentsClient;
 
 /**
  * Creates an agent environment.
@@ -43,13 +44,17 @@ function create_environment_sample(string $formattedParent, string $environmentI
     // Create a client.
     $environmentsClient = new EnvironmentsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $environment = new Environment();
+    $request = (new CreateEnvironmentRequest())
+        ->setParent($formattedParent)
+        ->setEnvironment($environment)
+        ->setEnvironmentId($environmentId);
 
     // Call the API and handle any network failures.
     try {
         /** @var Environment $response */
-        $response = $environmentsClient->createEnvironment($formattedParent, $environment, $environmentId);
+        $response = $environmentsClient->createEnvironment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

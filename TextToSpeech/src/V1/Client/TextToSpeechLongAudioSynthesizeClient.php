@@ -251,6 +251,8 @@ final class TextToSpeechLongAudioSynthesizeClient
      * The async variant is
      * {@see TextToSpeechLongAudioSynthesizeClient::synthesizeLongAudioAsync()} .
      *
+     * @example samples/V1/TextToSpeechLongAudioSynthesizeClient/synthesize_long_audio.php
+     *
      * @param SynthesizeLongAudioRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START managedidentities_v1_generated_ManagedIdentitiesService_ReconfigureTrust_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\ManagedIdentities\V1\Client\ManagedIdentitiesServiceClient;
 use Google\Cloud\ManagedIdentities\V1\Domain;
-use Google\Cloud\ManagedIdentities\V1\ManagedIdentitiesServiceClient;
+use Google\Cloud\ManagedIdentities\V1\ReconfigureTrustRequest;
 use Google\Rpc\Status;
 
 /**
@@ -48,17 +49,17 @@ function reconfigure_trust_sample(
     // Create a client.
     $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetDnsIpAddresses = [$targetDnsIpAddressesElement,];
+    $request = (new ReconfigureTrustRequest())
+        ->setName($formattedName)
+        ->setTargetDomainName($targetDomainName)
+        ->setTargetDnsIpAddresses($targetDnsIpAddresses);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $managedIdentitiesServiceClient->reconfigureTrust(
-            $formattedName,
-            $targetDomainName,
-            $targetDnsIpAddresses
-        );
+        $response = $managedIdentitiesServiceClient->reconfigureTrust($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

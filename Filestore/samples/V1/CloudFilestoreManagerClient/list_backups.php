@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Filestore\V1\Backup;
-use Google\Cloud\Filestore\V1\CloudFilestoreManagerClient;
+use Google\Cloud\Filestore\V1\Client\CloudFilestoreManagerClient;
+use Google\Cloud\Filestore\V1\ListBackupsRequest;
 
 /**
  * Lists all backups in a project for either a specified location or for all
@@ -45,10 +46,14 @@ function list_backups_sample(string $formattedParent): void
     // Create a client.
     $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
 
+    // Prepare the request message.
+    $request = (new ListBackupsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudFilestoreManagerClient->listBackups($formattedParent);
+        $response = $cloudFilestoreManagerClient->listBackups($request);
 
         /** @var Backup $element */
         foreach ($response as $element) {

@@ -309,6 +309,8 @@ final class JobServiceClient
      *
      * The async variant is {@see JobServiceClient::batchCreateJobsAsync()} .
      *
+     * @example samples/V4/JobServiceClient/batch_create_jobs.php
+     *
      * @param BatchCreateJobsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -333,6 +335,8 @@ final class JobServiceClient
      *
      * The async variant is {@see JobServiceClient::batchDeleteJobsAsync()} .
      *
+     * @example samples/V4/JobServiceClient/batch_delete_jobs.php
+     *
      * @param BatchDeleteJobsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -356,6 +360,8 @@ final class JobServiceClient
      * Begins executing a batch update jobs operation.
      *
      * The async variant is {@see JobServiceClient::batchUpdateJobsAsync()} .
+     *
+     * @example samples/V4/JobServiceClient/batch_update_jobs.php
      *
      * @param BatchUpdateJobsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -384,6 +390,8 @@ final class JobServiceClient
      *
      * The async variant is {@see JobServiceClient::createJobAsync()} .
      *
+     * @example samples/V4/JobServiceClient/create_job.php
+     *
      * @param CreateJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -411,6 +419,8 @@ final class JobServiceClient
      *
      * The async variant is {@see JobServiceClient::deleteJobAsync()} .
      *
+     * @example samples/V4/JobServiceClient/delete_job.php
+     *
      * @param DeleteJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -433,6 +443,8 @@ final class JobServiceClient
      * within the last 90 days.
      *
      * The async variant is {@see JobServiceClient::getJobAsync()} .
+     *
+     * @example samples/V4/JobServiceClient/get_job.php
      *
      * @param GetJobRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -457,6 +469,8 @@ final class JobServiceClient
      * Lists jobs by filter.
      *
      * The async variant is {@see JobServiceClient::listJobsAsync()} .
+     *
+     * @example samples/V4/JobServiceClient/list_jobs.php
      *
      * @param ListJobsRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -487,6 +501,8 @@ final class JobServiceClient
      * against.
      *
      * The async variant is {@see JobServiceClient::searchJobsAsync()} .
+     *
+     * @example samples/V4/JobServiceClient/search_jobs.php
      *
      * @param SearchJobsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -523,6 +539,8 @@ final class JobServiceClient
      *
      * The async variant is {@see JobServiceClient::searchJobsForAlertAsync()} .
      *
+     * @example samples/V4/JobServiceClient/search_jobs_for_alert.php
+     *
      * @param SearchJobsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -549,6 +567,8 @@ final class JobServiceClient
      * seconds, but it may take up to 5 minutes.
      *
      * The async variant is {@see JobServiceClient::updateJobAsync()} .
+     *
+     * @example samples/V4/JobServiceClient/update_job.php
      *
      * @param UpdateJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {

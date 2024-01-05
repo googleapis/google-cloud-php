@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Dataproc\V1\Batch;
-use Google\Cloud\Dataproc\V1\BatchControllerClient;
+use Google\Cloud\Dataproc\V1\Client\BatchControllerClient;
+use Google\Cloud\Dataproc\V1\CreateBatchRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,13 +41,16 @@ function create_batch_sample(string $formattedParent): void
     // Create a client.
     $batchControllerClient = new BatchControllerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $batch = new Batch();
+    $request = (new CreateBatchRequest())
+        ->setParent($formattedParent)
+        ->setBatch($batch);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $batchControllerClient->createBatch($formattedParent, $batch);
+        $response = $batchControllerClient->createBatch($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

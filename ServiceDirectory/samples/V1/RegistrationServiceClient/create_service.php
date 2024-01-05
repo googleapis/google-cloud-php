@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START servicedirectory_v1_generated_RegistrationService_CreateService_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\ServiceDirectory\V1\RegistrationServiceClient;
+use Google\Cloud\ServiceDirectory\V1\Client\RegistrationServiceClient;
+use Google\Cloud\ServiceDirectory\V1\CreateServiceRequest;
 use Google\Cloud\ServiceDirectory\V1\Service;
 
 /**
@@ -45,13 +46,17 @@ function create_service_sample(string $formattedParent, string $serviceId): void
     // Create a client.
     $registrationServiceClient = new RegistrationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $service = new Service();
+    $request = (new CreateServiceRequest())
+        ->setParent($formattedParent)
+        ->setServiceId($serviceId)
+        ->setService($service);
 
     // Call the API and handle any network failures.
     try {
         /** @var Service $response */
-        $response = $registrationServiceClient->createService($formattedParent, $serviceId, $service);
+        $response = $registrationServiceClient->createService($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

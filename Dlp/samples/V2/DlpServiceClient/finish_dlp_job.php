@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dlp_v2_generated_DlpService_FinishDlpJob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dlp\V2\DlpServiceClient;
+use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
+use Google\Cloud\Dlp\V2\FinishDlpJobRequest;
 
 /**
  * Finish a running hybrid DlpJob. Triggers the finalization steps and running
@@ -38,9 +39,13 @@ function finish_dlp_job_sample(string $formattedName): void
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
+    // Prepare the request message.
+    $request = (new FinishDlpJobRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $dlpServiceClient->finishDlpJob($formattedName);
+        $dlpServiceClient->finishDlpJob($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START osconfig_v1_generated_OsConfigService_ExecutePatchJob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\OsConfig\V1\OsConfigServiceClient;
+use Google\Cloud\OsConfig\V1\Client\OsConfigServiceClient;
+use Google\Cloud\OsConfig\V1\ExecutePatchJobRequest;
 use Google\Cloud\OsConfig\V1\PatchInstanceFilter;
 use Google\Cloud\OsConfig\V1\PatchJob;
 
@@ -39,13 +40,16 @@ function execute_patch_job_sample(string $formattedParent): void
     // Create a client.
     $osConfigServiceClient = new OsConfigServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceFilter = new PatchInstanceFilter();
+    $request = (new ExecutePatchJobRequest())
+        ->setParent($formattedParent)
+        ->setInstanceFilter($instanceFilter);
 
     // Call the API and handle any network failures.
     try {
         /** @var PatchJob $response */
-        $response = $osConfigServiceClient->executePatchJob($formattedParent, $instanceFilter);
+        $response = $osConfigServiceClient->executePatchJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -257,6 +257,8 @@ final class ServingConfigServiceClient
      *
      * The async variant is {@see ServingConfigServiceClient::addControlAsync()} .
      *
+     * @example samples/V2/ServingConfigServiceClient/add_control.php
+     *
      * @param AddControlRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -286,6 +288,8 @@ final class ServingConfigServiceClient
      * The async variant is
      * {@see ServingConfigServiceClient::createServingConfigAsync()} .
      *
+     * @example samples/V2/ServingConfigServiceClient/create_serving_config.php
+     *
      * @param CreateServingConfigRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -313,6 +317,8 @@ final class ServingConfigServiceClient
      * The async variant is
      * {@see ServingConfigServiceClient::deleteServingConfigAsync()} .
      *
+     * @example samples/V2/ServingConfigServiceClient/delete_serving_config.php
+     *
      * @param DeleteServingConfigRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -338,6 +344,8 @@ final class ServingConfigServiceClient
      * The async variant is {@see ServingConfigServiceClient::getServingConfigAsync()}
      * .
      *
+     * @example samples/V2/ServingConfigServiceClient/get_serving_config.php
+     *
      * @param GetServingConfigRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -362,6 +370,8 @@ final class ServingConfigServiceClient
      *
      * The async variant is
      * {@see ServingConfigServiceClient::listServingConfigsAsync()} .
+     *
+     * @example samples/V2/ServingConfigServiceClient/list_serving_configs.php
      *
      * @param ListServingConfigsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -390,6 +400,8 @@ final class ServingConfigServiceClient
      *
      * The async variant is {@see ServingConfigServiceClient::removeControlAsync()} .
      *
+     * @example samples/V2/ServingConfigServiceClient/remove_control.php
+     *
      * @param RemoveControlRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -414,6 +426,8 @@ final class ServingConfigServiceClient
      *
      * The async variant is
      * {@see ServingConfigServiceClient::updateServingConfigAsync()} .
+     *
+     * @example samples/V2/ServingConfigServiceClient/update_serving_config.php
      *
      * @param UpdateServingConfigRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {

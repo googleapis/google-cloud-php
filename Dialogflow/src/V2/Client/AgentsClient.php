@@ -341,6 +341,8 @@ final class AgentsClient
      *
      * The async variant is {@see AgentsClient::deleteAgentAsync()} .
      *
+     * @example samples/V2/AgentsClient/delete_agent.php
+     *
      * @param DeleteAgentRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -372,6 +374,8 @@ final class AgentsClient
      *
      * The async variant is {@see AgentsClient::exportAgentAsync()} .
      *
+     * @example samples/V2/AgentsClient/export_agent.php
+     *
      * @param ExportAgentRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -395,6 +399,8 @@ final class AgentsClient
      * Retrieves the specified agent.
      *
      * The async variant is {@see AgentsClient::getAgentAsync()} .
+     *
+     * @example samples/V2/AgentsClient/get_agent.php
      *
      * @param GetAgentRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -420,6 +426,8 @@ final class AgentsClient
      * training time and is updated automatically when training is completed.
      *
      * The async variant is {@see AgentsClient::getValidationResultAsync()} .
+     *
+     * @example samples/V2/AgentsClient/get_validation_result.php
      *
      * @param GetValidationResultRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -471,6 +479,8 @@ final class AgentsClient
      *
      * The async variant is {@see AgentsClient::importAgentAsync()} .
      *
+     * @example samples/V2/AgentsClient/import_agent.php
+     *
      * @param ImportAgentRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -519,6 +529,8 @@ final class AgentsClient
      *
      * The async variant is {@see AgentsClient::restoreAgentAsync()} .
      *
+     * @example samples/V2/AgentsClient/restore_agent.php
+     *
      * @param RestoreAgentRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -549,6 +561,8 @@ final class AgentsClient
      *
      * The async variant is {@see AgentsClient::searchAgentsAsync()} .
      *
+     * @example samples/V2/AgentsClient/search_agents.php
+     *
      * @param SearchAgentsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -576,6 +590,8 @@ final class AgentsClient
      * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      *
      * The async variant is {@see AgentsClient::setAgentAsync()} .
+     *
+     * @example samples/V2/AgentsClient/set_agent.php
      *
      * @param SetAgentRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -614,6 +630,8 @@ final class AgentsClient
      *
      * The async variant is {@see AgentsClient::trainAgentAsync()} .
      *
+     * @example samples/V2/AgentsClient/train_agent.php
+     *
      * @param TrainAgentRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -638,6 +656,8 @@ final class AgentsClient
      *
      * The async variant is {@see AgentsClient::getLocationAsync()} .
      *
+     * @example samples/V2/AgentsClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -661,6 +681,8 @@ final class AgentsClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see AgentsClient::listLocationsAsync()} .
+     *
+     * @example samples/V2/AgentsClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

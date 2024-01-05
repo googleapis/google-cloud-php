@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_Flows_ListFlows_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dialogflow\Cx\V3\Client\FlowsClient;
 use Google\Cloud\Dialogflow\Cx\V3\Flow;
-use Google\Cloud\Dialogflow\Cx\V3\FlowsClient;
+use Google\Cloud\Dialogflow\Cx\V3\ListFlowsRequest;
 
 /**
  * Returns the list of all flows in the specified agent.
@@ -40,10 +41,14 @@ function list_flows_sample(string $formattedParent): void
     // Create a client.
     $flowsClient = new FlowsClient();
 
+    // Prepare the request message.
+    $request = (new ListFlowsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $flowsClient->listFlows($formattedParent);
+        $response = $flowsClient->listFlows($request);
 
         /** @var Flow $element */
         foreach ($response as $element) {

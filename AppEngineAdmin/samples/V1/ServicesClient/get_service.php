@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START appengine_v1_generated_Services_GetService_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AppEngine\V1\Client\ServicesClient;
+use Google\Cloud\AppEngine\V1\GetServiceRequest;
 use Google\Cloud\AppEngine\V1\Service;
-use Google\Cloud\AppEngine\V1\ServicesClient;
 
 /**
  * Gets the current configuration of the specified service.
@@ -41,10 +42,13 @@ function get_service_sample(): void
     // Create a client.
     $servicesClient = new ServicesClient();
 
+    // Prepare the request message.
+    $request = new GetServiceRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var Service $response */
-        $response = $servicesClient->getService();
+        $response = $servicesClient->getService($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

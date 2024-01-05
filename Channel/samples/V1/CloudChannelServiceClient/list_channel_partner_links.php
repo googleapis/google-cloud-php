@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Channel\V1\ChannelPartnerLink;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\ListChannelPartnerLinksRequest;
 
 /**
  * List [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]s
@@ -50,10 +51,14 @@ function list_channel_partner_links_sample(string $parent): void
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListChannelPartnerLinksRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudChannelServiceClient->listChannelPartnerLinks($parent);
+        $response = $cloudChannelServiceClient->listChannelPartnerLinks($request);
 
         /** @var ChannelPartnerLink $element */
         foreach ($response as $element) {

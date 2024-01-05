@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_Experiments_GetExperiment_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\Cx\V3\Client\ExperimentsClient;
 use Google\Cloud\Dialogflow\Cx\V3\Experiment;
-use Google\Cloud\Dialogflow\Cx\V3\ExperimentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\GetExperimentRequest;
 
 /**
  * Retrieves the specified
@@ -42,10 +43,14 @@ function get_experiment_sample(string $formattedName): void
     // Create a client.
     $experimentsClient = new ExperimentsClient();
 
+    // Prepare the request message.
+    $request = (new GetExperimentRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Experiment $response */
-        $response = $experimentsClient->getExperiment($formattedName);
+        $response = $experimentsClient->getExperiment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

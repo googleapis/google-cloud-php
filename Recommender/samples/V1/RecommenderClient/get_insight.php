@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START recommender_v1_generated_Recommender_GetInsight_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Recommender\V1\Client\RecommenderClient;
+use Google\Cloud\Recommender\V1\GetInsightRequest;
 use Google\Cloud\Recommender\V1\Insight;
-use Google\Cloud\Recommender\V1\RecommenderClient;
 
 /**
  * Gets the requested insight. Requires the recommender.*.get IAM permission
@@ -39,10 +40,14 @@ function get_insight_sample(string $formattedName): void
     // Create a client.
     $recommenderClient = new RecommenderClient();
 
+    // Prepare the request message.
+    $request = (new GetInsightRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Insight $response */
-        $response = $recommenderClient->getInsight($formattedName);
+        $response = $recommenderClient->getInsight($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

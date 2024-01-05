@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START pubsub_v1_generated_SchemaService_ListSchemas_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\PubSub\V1\Client\SchemaServiceClient;
+use Google\Cloud\PubSub\V1\ListSchemasRequest;
 use Google\Cloud\PubSub\V1\Schema;
-use Google\Cloud\PubSub\V1\SchemaServiceClient;
 
 /**
  * Lists schemas in a project.
@@ -40,10 +41,14 @@ function list_schemas_sample(string $formattedParent): void
     // Create a client.
     $schemaServiceClient = new SchemaServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListSchemasRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $schemaServiceClient->listSchemas($formattedParent);
+        $response = $schemaServiceClient->listSchemas($request);
 
         /** @var Schema $element */
         foreach ($response as $element) {

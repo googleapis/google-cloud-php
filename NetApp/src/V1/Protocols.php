@@ -7,6 +7,8 @@ namespace Google\Cloud\NetApp\V1;
 use UnexpectedValueException;
 
 /**
+ * Protocols is an enum of all the supported network protocols for a volume.
+ *
  * Protobuf type <code>google.cloud.netapp.v1.Protocols</code>
  */
 class Protocols

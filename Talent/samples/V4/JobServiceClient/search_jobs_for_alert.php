@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START jobs_v4_generated_JobService_SearchJobsForAlert_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Talent\V4\JobServiceClient;
+use Google\Cloud\Talent\V4\Client\JobServiceClient;
 use Google\Cloud\Talent\V4\RequestMetadata;
+use Google\Cloud\Talent\V4\SearchJobsRequest;
 use Google\Cloud\Talent\V4\SearchJobsResponse;
 
 /**
@@ -53,13 +54,16 @@ function search_jobs_for_alert_sample(string $formattedParent): void
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $requestMetadata = new RequestMetadata();
+    $request = (new SearchJobsRequest())
+        ->setParent($formattedParent)
+        ->setRequestMetadata($requestMetadata);
 
     // Call the API and handle any network failures.
     try {
         /** @var SearchJobsResponse $response */
-        $response = $jobServiceClient->searchJobsForAlert($formattedParent, $requestMetadata);
+        $response = $jobServiceClient->searchJobsForAlert($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

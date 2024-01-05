@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_SecuritySettingsService_DeleteSecuritySettings_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dialogflow\Cx\V3\SecuritySettingsServiceClient;
+use Google\Cloud\Dialogflow\Cx\V3\Client\SecuritySettingsServiceClient;
+use Google\Cloud\Dialogflow\Cx\V3\DeleteSecuritySettingsRequest;
 
 /**
  * Deletes the specified
@@ -41,9 +42,13 @@ function delete_security_settings_sample(string $formattedName): void
     // Create a client.
     $securitySettingsServiceClient = new SecuritySettingsServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteSecuritySettingsRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $securitySettingsServiceClient->deleteSecuritySettings($formattedName);
+        $securitySettingsServiceClient->deleteSecuritySettings($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

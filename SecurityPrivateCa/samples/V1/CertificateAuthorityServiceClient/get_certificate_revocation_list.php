@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START privateca_v1_generated_CertificateAuthorityService_GetCertificateRevocationList_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
 use Google\Cloud\Security\PrivateCA\V1\CertificateRevocationList;
+use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\GetCertificateRevocationListRequest;
 
 /**
  * Returns a
@@ -43,10 +44,14 @@ function get_certificate_revocation_list_sample(string $formattedName): void
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetCertificateRevocationListRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var CertificateRevocationList $response */
-        $response = $certificateAuthorityServiceClient->getCertificateRevocationList($formattedName);
+        $response = $certificateAuthorityServiceClient->getCertificateRevocationList($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

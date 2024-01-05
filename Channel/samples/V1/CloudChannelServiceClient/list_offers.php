@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudchannel_v1_generated_CloudChannelService_ListOffers_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\ListOffersRequest;
 use Google\Cloud\Channel\V1\Offer;
 
 /**
@@ -43,10 +44,14 @@ function list_offers_sample(string $parent): void
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListOffersRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudChannelServiceClient->listOffers($parent);
+        $response = $cloudChannelServiceClient->listOffers($request);
 
         /** @var Offer $element */
         foreach ($response as $element) {

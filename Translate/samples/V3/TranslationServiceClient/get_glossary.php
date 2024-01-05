@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START translate_v3_generated_TranslationService_GetGlossary_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Translate\V3\Client\TranslationServiceClient;
+use Google\Cloud\Translate\V3\GetGlossaryRequest;
 use Google\Cloud\Translate\V3\Glossary;
-use Google\Cloud\Translate\V3\TranslationServiceClient;
 
 /**
  * Gets a glossary. Returns NOT_FOUND, if the glossary doesn't
@@ -39,10 +40,14 @@ function get_glossary_sample(string $formattedName): void
     // Create a client.
     $translationServiceClient = new TranslationServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetGlossaryRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Glossary $response */
-        $response = $translationServiceClient->getGlossary($formattedName);
+        $response = $translationServiceClient->getGlossary($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

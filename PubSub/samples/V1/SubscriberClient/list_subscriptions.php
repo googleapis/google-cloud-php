@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START pubsub_v1_generated_Subscriber_ListSubscriptions_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\PubSub\V1\SubscriberClient;
+use Google\Cloud\PubSub\V1\Client\SubscriberClient;
+use Google\Cloud\PubSub\V1\ListSubscriptionsRequest;
 use Google\Cloud\PubSub\V1\Subscription;
 
 /**
@@ -40,10 +41,14 @@ function list_subscriptions_sample(string $formattedProject): void
     // Create a client.
     $subscriberClient = new SubscriberClient();
 
+    // Prepare the request message.
+    $request = (new ListSubscriptionsRequest())
+        ->setProject($formattedProject);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $subscriberClient->listSubscriptions($formattedProject);
+        $response = $subscriberClient->listSubscriptions($request);
 
         /** @var Subscription $element */
         foreach ($response as $element) {

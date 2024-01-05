@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_ListFirewallPolicies_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient;
 use Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicy;
-use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
+use Google\Cloud\RecaptchaEnterprise\V1\ListFirewallPoliciesRequest;
 
 /**
  * Returns the list of all firewall policies that belong to a project.
@@ -40,10 +41,14 @@ function list_firewall_policies_sample(string $formattedParent): void
     // Create a client.
     $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListFirewallPoliciesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $recaptchaEnterpriseServiceClient->listFirewallPolicies($formattedParent);
+        $response = $recaptchaEnterpriseServiceClient->listFirewallPolicies($request);
 
         /** @var FirewallPolicy $element */
         foreach ($response as $element) {

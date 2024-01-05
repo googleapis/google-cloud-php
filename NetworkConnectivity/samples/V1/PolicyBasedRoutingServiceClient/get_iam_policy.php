@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START networkconnectivity_v1_generated_PolicyBasedRoutingService_GetIamPolicy_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
-use Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoutingServiceClient;
+use Google\Cloud\NetworkConnectivity\V1\Client\PolicyBasedRoutingServiceClient;
 
 /**
  * Gets the access control policy for a resource. Returns an empty policy
@@ -39,10 +40,14 @@ function get_iam_policy_sample(string $resource): void
     // Create a client.
     $policyBasedRoutingServiceClient = new PolicyBasedRoutingServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetIamPolicyRequest())
+        ->setResource($resource);
+
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $policyBasedRoutingServiceClient->getIamPolicy($resource);
+        $response = $policyBasedRoutingServiceClient->getIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

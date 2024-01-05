@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datamigration_v1_generated_DataMigrationService_CreateMappingRule_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\CloudDms\V1\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\Client\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\CreateMappingRuleRequest;
 use Google\Cloud\CloudDms\V1\DatabaseEntityType;
 use Google\Cloud\CloudDms\V1\MappingRule;
 use Google\Cloud\CloudDms\V1\MappingRuleFilter;
@@ -48,21 +49,21 @@ function create_mapping_rule_sample(
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $mappingRuleFilter = new MappingRuleFilter();
     $mappingRule = (new MappingRule())
         ->setRuleScope($mappingRuleRuleScope)
         ->setFilter($mappingRuleFilter)
         ->setRuleOrder($mappingRuleRuleOrder);
+    $request = (new CreateMappingRuleRequest())
+        ->setParent($formattedParent)
+        ->setMappingRuleId($mappingRuleId)
+        ->setMappingRule($mappingRule);
 
     // Call the API and handle any network failures.
     try {
         /** @var MappingRule $response */
-        $response = $dataMigrationServiceClient->createMappingRule(
-            $formattedParent,
-            $mappingRuleId,
-            $mappingRule
-        );
+        $response = $dataMigrationServiceClient->createMappingRule($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

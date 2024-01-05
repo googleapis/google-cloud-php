@@ -42,6 +42,25 @@ class ListSessionEntityTypesRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
+     * @param string $parent Required. The session to list all session entity types from.
+     *                       Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+     *                       ID>/sessions/<Session ID>` or `projects/<Project ID>/locations/<Location
+     *                       ID>/agents/<Agent ID>/environments/<Environment ID>/sessions/<Session ID>`.
+     *                       If `Environment ID` is not specified, we assume default 'draft'
+     *                       environment. Please see
+     *                       {@see SessionEntityTypesClient::sessionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\ListSessionEntityTypesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

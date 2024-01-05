@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudkms_v1_generated_EkmService_ListEkmConnections_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Kms\V1\Client\EkmServiceClient;
 use Google\Cloud\Kms\V1\EkmConnection;
-use Google\Cloud\Kms\V1\EkmServiceClient;
+use Google\Cloud\Kms\V1\ListEkmConnectionsRequest;
 
 /**
  * Lists [EkmConnections][google.cloud.kms.v1.EkmConnection].
@@ -41,10 +42,14 @@ function list_ekm_connections_sample(string $formattedParent): void
     // Create a client.
     $ekmServiceClient = new EkmServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListEkmConnectionsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $ekmServiceClient->listEkmConnections($formattedParent);
+        $response = $ekmServiceClient->listEkmConnections($request);
 
         /** @var EkmConnection $element */
         foreach ($response as $element) {

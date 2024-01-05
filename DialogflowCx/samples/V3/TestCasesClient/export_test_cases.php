@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_TestCases_ExportTestCases_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Dialogflow\Cx\V3\Client\TestCasesClient;
+use Google\Cloud\Dialogflow\Cx\V3\ExportTestCasesRequest;
 use Google\Cloud\Dialogflow\Cx\V3\ExportTestCasesResponse;
-use Google\Cloud\Dialogflow\Cx\V3\TestCasesClient;
 use Google\Rpc\Status;
 
 /**
@@ -51,10 +52,14 @@ function export_test_cases_sample(string $formattedParent): void
     // Create a client.
     $testCasesClient = new TestCasesClient();
 
+    // Prepare the request message.
+    $request = (new ExportTestCasesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $testCasesClient->exportTestCases($formattedParent);
+        $response = $testCasesClient->exportTestCases($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

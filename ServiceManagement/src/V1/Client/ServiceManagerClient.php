@@ -253,6 +253,8 @@ final class ServiceManagerClient
      *
      * The async variant is {@see ServiceManagerClient::createServiceAsync()} .
      *
+     * @example samples/V1/ServiceManagerClient/create_service.php
+     *
      * @param CreateServiceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -283,6 +285,8 @@ final class ServiceManagerClient
      * eventually.
      *
      * The async variant is {@see ServiceManagerClient::createServiceConfigAsync()} .
+     *
+     * @example samples/V1/ServiceManagerClient/create_service_config.php
      *
      * @param CreateServiceConfigRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -321,6 +325,8 @@ final class ServiceManagerClient
      *
      * The async variant is {@see ServiceManagerClient::createServiceRolloutAsync()} .
      *
+     * @example samples/V1/ServiceManagerClient/create_service_rollout.php
+     *
      * @param CreateServiceRolloutRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -351,6 +357,8 @@ final class ServiceManagerClient
      * Operation<response: google.protobuf.Empty>
      *
      * The async variant is {@see ServiceManagerClient::deleteServiceAsync()} .
+     *
+     * @example samples/V1/ServiceManagerClient/delete_service.php
      *
      * @param DeleteServiceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -386,6 +394,8 @@ final class ServiceManagerClient
      *
      * The async variant is {@see ServiceManagerClient::generateConfigReportAsync()} .
      *
+     * @example samples/V1/ServiceManagerClient/generate_config_report.php
+     *
      * @param GenerateConfigReportRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -411,6 +421,8 @@ final class ServiceManagerClient
      *
      * The async variant is {@see ServiceManagerClient::getServiceAsync()} .
      *
+     * @example samples/V1/ServiceManagerClient/get_service.php
+     *
      * @param GetServiceRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -434,6 +446,8 @@ final class ServiceManagerClient
      * Gets a service configuration (version) for a managed service.
      *
      * The async variant is {@see ServiceManagerClient::getServiceConfigAsync()} .
+     *
+     * @example samples/V1/ServiceManagerClient/get_service_config.php
      *
      * @param GetServiceConfigRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -460,6 +474,8 @@ final class ServiceManagerClient
      *
      * The async variant is {@see ServiceManagerClient::getServiceRolloutAsync()} .
      *
+     * @example samples/V1/ServiceManagerClient/get_service_rollout.php
+     *
      * @param GetServiceRolloutRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -485,6 +501,8 @@ final class ServiceManagerClient
      *
      * The async variant is {@see ServiceManagerClient::listServiceConfigsAsync()} .
      *
+     * @example samples/V1/ServiceManagerClient/list_service_configs.php
+     *
      * @param ListServiceConfigsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -509,6 +527,8 @@ final class ServiceManagerClient
      * service, from the newest to the oldest.
      *
      * The async variant is {@see ServiceManagerClient::listServiceRolloutsAsync()} .
+     *
+     * @example samples/V1/ServiceManagerClient/list_service_rollouts.php
      *
      * @param ListServiceRolloutsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -537,6 +557,8 @@ final class ServiceManagerClient
      * for.
      *
      * The async variant is {@see ServiceManagerClient::listServicesAsync()} .
+     *
+     * @example samples/V1/ServiceManagerClient/list_services.php
      *
      * @param ListServicesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -575,6 +597,8 @@ final class ServiceManagerClient
      *
      * The async variant is {@see ServiceManagerClient::submitConfigSourceAsync()} .
      *
+     * @example samples/V1/ServiceManagerClient/submit_config_source.php
+     *
      * @param SubmitConfigSourceRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -604,6 +628,8 @@ final class ServiceManagerClient
      *
      * The async variant is {@see ServiceManagerClient::undeleteServiceAsync()} .
      *
+     * @example samples/V1/ServiceManagerClient/undelete_service.php
+     *
      * @param UndeleteServiceRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -628,6 +654,8 @@ final class ServiceManagerClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see ServiceManagerClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/ServiceManagerClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -656,6 +684,8 @@ final class ServiceManagerClient
     errors.
      *
      * The async variant is {@see ServiceManagerClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/ServiceManagerClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -686,6 +716,8 @@ final class ServiceManagerClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see ServiceManagerClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/ServiceManagerClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

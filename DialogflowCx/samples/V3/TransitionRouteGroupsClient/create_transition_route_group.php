@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_TransitionRouteGroups_CreateTransitionRouteGroup_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\Cx\V3\Client\TransitionRouteGroupsClient;
+use Google\Cloud\Dialogflow\Cx\V3\CreateTransitionRouteGroupRequest;
 use Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroup;
-use Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroupsClient;
 
 /**
  * Creates an
@@ -53,17 +54,17 @@ function create_transition_route_group_sample(
     // Create a client.
     $transitionRouteGroupsClient = new TransitionRouteGroupsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $transitionRouteGroup = (new TransitionRouteGroup())
         ->setDisplayName($transitionRouteGroupDisplayName);
+    $request = (new CreateTransitionRouteGroupRequest())
+        ->setParent($formattedParent)
+        ->setTransitionRouteGroup($transitionRouteGroup);
 
     // Call the API and handle any network failures.
     try {
         /** @var TransitionRouteGroup $response */
-        $response = $transitionRouteGroupsClient->createTransitionRouteGroup(
-            $formattedParent,
-            $transitionRouteGroup
-        );
+        $response = $transitionRouteGroupsClient->createTransitionRouteGroup($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

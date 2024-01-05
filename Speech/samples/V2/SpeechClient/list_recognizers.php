@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START speech_v2_generated_Speech_ListRecognizers_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Speech\V2\Client\SpeechClient;
+use Google\Cloud\Speech\V2\ListRecognizersRequest;
 use Google\Cloud\Speech\V2\Recognizer;
-use Google\Cloud\Speech\V2\SpeechClient;
 
 /**
  * Lists Recognizers.
@@ -40,10 +41,14 @@ function list_recognizers_sample(string $formattedParent): void
     // Create a client.
     $speechClient = new SpeechClient();
 
+    // Prepare the request message.
+    $request = (new ListRecognizersRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $speechClient->listRecognizers($formattedParent);
+        $response = $speechClient->listRecognizers($request);
 
         /** @var Recognizer $element */
         foreach ($response as $element) {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datacatalog_v1_generated_DataCatalog_ModifyEntryOverview_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\DataCatalog\V1\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\Client\DataCatalogClient;
 use Google\Cloud\DataCatalog\V1\EntryOverview;
+use Google\Cloud\DataCatalog\V1\ModifyEntryOverviewRequest;
 
 /**
  * Modifies entry overview, part of the business context of an
@@ -42,13 +43,16 @@ function modify_entry_overview_sample(string $formattedName): void
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $entryOverview = new EntryOverview();
+    $request = (new ModifyEntryOverviewRequest())
+        ->setName($formattedName)
+        ->setEntryOverview($entryOverview);
 
     // Call the API and handle any network failures.
     try {
         /** @var EntryOverview $response */
-        $response = $dataCatalogClient->modifyEntryOverview($formattedName, $entryOverview);
+        $response = $dataCatalogClient->modifyEntryOverview($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

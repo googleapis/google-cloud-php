@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudprofiler_v2_generated_ExportService_ListProfiles_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Profiler\V2\ExportServiceClient;
+use Google\Cloud\Profiler\V2\Client\ExportServiceClient;
+use Google\Cloud\Profiler\V2\ListProfilesRequest;
 use Google\Cloud\Profiler\V2\Profile;
 
 /**
@@ -41,10 +42,14 @@ function list_profiles_sample(string $formattedParent): void
     // Create a client.
     $exportServiceClient = new ExportServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListProfilesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $exportServiceClient->listProfiles($formattedParent);
+        $response = $exportServiceClient->listProfiles($request);
 
         /** @var Profile $element */
         foreach ($response as $element) {

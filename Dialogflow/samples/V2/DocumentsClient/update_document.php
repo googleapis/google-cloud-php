@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_Documents_UpdateDocument_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Dialogflow\V2\Client\DocumentsClient;
 use Google\Cloud\Dialogflow\V2\Document;
 use Google\Cloud\Dialogflow\V2\Document\KnowledgeType;
-use Google\Cloud\Dialogflow\V2\DocumentsClient;
+use Google\Cloud\Dialogflow\V2\UpdateDocumentRequest;
 use Google\Rpc\Status;
 
 /**
@@ -54,17 +55,19 @@ function update_document_sample(
     // Create a client.
     $documentsClient = new DocumentsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $documentKnowledgeTypes = [$documentKnowledgeTypesElement,];
     $document = (new Document())
         ->setDisplayName($documentDisplayName)
         ->setMimeType($documentMimeType)
         ->setKnowledgeTypes($documentKnowledgeTypes);
+    $request = (new UpdateDocumentRequest())
+        ->setDocument($document);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $documentsClient->updateDocument($document);
+        $response = $documentsClient->updateDocument($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

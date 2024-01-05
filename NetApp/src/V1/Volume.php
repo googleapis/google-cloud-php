@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class Volume extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Name of the volume
+     * Identifier. Name of the volume
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -199,6 +199,12 @@ class Volume extends \Google\Protobuf\Internal\Message
      */
     protected $has_replication = false;
     /**
+     * BackupConfig of the volume.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.netapp.v1.BackupConfig backup_config = 30;</code>
+     */
+    protected $backup_config = null;
+    /**
      * Optional. List of actions that are restricted on this volume.
      *
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.RestrictedAction restricted_actions = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -212,7 +218,7 @@ class Volume extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. Name of the volume
+     *           Identifier. Name of the volume
      *     @type int $state
      *           Output only. State of the volume
      *     @type string $state_details
@@ -278,6 +284,8 @@ class Volume extends \Google\Protobuf\Internal\Message
      *     @type bool $has_replication
      *           Output only. Indicates whether the volume is part of a replication
      *           relationship.
+     *     @type \Google\Cloud\NetApp\V1\BackupConfig $backup_config
+     *           BackupConfig of the volume.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $restricted_actions
      *           Optional. List of actions that are restricted on this volume.
      * }
@@ -288,9 +296,9 @@ class Volume extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Name of the volume
+     * Identifier. Name of the volume
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -299,9 +307,9 @@ class Volume extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Name of the volume
+     * Identifier. Name of the volume
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -1095,6 +1103,42 @@ class Volume extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->has_replication = $var;
+
+        return $this;
+    }
+
+    /**
+     * BackupConfig of the volume.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.netapp.v1.BackupConfig backup_config = 30;</code>
+     * @return \Google\Cloud\NetApp\V1\BackupConfig|null
+     */
+    public function getBackupConfig()
+    {
+        return $this->backup_config;
+    }
+
+    public function hasBackupConfig()
+    {
+        return isset($this->backup_config);
+    }
+
+    public function clearBackupConfig()
+    {
+        unset($this->backup_config);
+    }
+
+    /**
+     * BackupConfig of the volume.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.netapp.v1.BackupConfig backup_config = 30;</code>
+     * @param \Google\Cloud\NetApp\V1\BackupConfig $var
+     * @return $this
+     */
+    public function setBackupConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetApp\V1\BackupConfig::class);
+        $this->backup_config = $var;
 
         return $this;
     }

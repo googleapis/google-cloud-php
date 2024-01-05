@@ -226,6 +226,8 @@ final class LookupServiceClient
      *
      * The async variant is {@see LookupServiceClient::resolveServiceAsync()} .
      *
+     * @example samples/V1/LookupServiceClient/resolve_service.php
+     *
      * @param ResolveServiceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -250,6 +252,8 @@ final class LookupServiceClient
      *
      * The async variant is {@see LookupServiceClient::getLocationAsync()} .
      *
+     * @example samples/V1/LookupServiceClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -273,6 +277,8 @@ final class LookupServiceClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see LookupServiceClient::listLocationsAsync()} .
+     *
+     * @example samples/V1/LookupServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

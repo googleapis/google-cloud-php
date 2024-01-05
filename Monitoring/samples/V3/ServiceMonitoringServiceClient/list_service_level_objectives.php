@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START monitoring_v3_generated_ServiceMonitoringService_ListServiceLevelObjectives_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Monitoring\V3\Client\ServiceMonitoringServiceClient;
+use Google\Cloud\Monitoring\V3\ListServiceLevelObjectivesRequest;
 use Google\Cloud\Monitoring\V3\ServiceLevelObjective;
-use Google\Cloud\Monitoring\V3\ServiceMonitoringServiceClient;
 
 /**
  * List the `ServiceLevelObjective`s for the given `Service`.
@@ -43,10 +44,14 @@ function list_service_level_objectives_sample(string $formattedParent): void
     // Create a client.
     $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListServiceLevelObjectivesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $serviceMonitoringServiceClient->listServiceLevelObjectives($formattedParent);
+        $response = $serviceMonitoringServiceClient->listServiceLevelObjectives($request);
 
         /** @var ServiceLevelObjective $element */
         foreach ($response as $element) {

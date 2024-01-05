@@ -190,6 +190,8 @@ final class ServiceControllerClient
      *
      * The async variant is {@see ServiceControllerClient::checkAsync()} .
      *
+     * @example samples/V1/ServiceControllerClient/check.php
+     *
      * @param CheckRequest $request     A request to house fields associated with the call.
      * @param array        $callOptions {
      *     Optional.
@@ -227,6 +229,8 @@ final class ServiceControllerClient
      * [Google Cloud IAM](https://cloud.google.com/iam).
      *
      * The async variant is {@see ServiceControllerClient::reportAsync()} .
+     *
+     * @example samples/V1/ServiceControllerClient/report.php
      *
      * @param ReportRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {

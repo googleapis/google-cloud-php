@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_Flows_TrainFlow_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Dialogflow\Cx\V3\FlowsClient;
+use Google\Cloud\Dialogflow\Cx\V3\Client\FlowsClient;
+use Google\Cloud\Dialogflow\Cx\V3\TrainFlowRequest;
 use Google\Rpc\Status;
 
 /**
@@ -55,10 +56,14 @@ function train_flow_sample(string $formattedName): void
     // Create a client.
     $flowsClient = new FlowsClient();
 
+    // Prepare the request message.
+    $request = (new TrainFlowRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $flowsClient->trainFlow($formattedName);
+        $response = $flowsClient->trainFlow($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

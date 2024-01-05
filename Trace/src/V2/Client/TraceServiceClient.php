@@ -241,6 +241,8 @@ final class TraceServiceClient
      *
      * The async variant is {@see TraceServiceClient::batchWriteSpansAsync()} .
      *
+     * @example samples/V2/TraceServiceClient/batch_write_spans.php
+     *
      * @param BatchWriteSpansRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -262,6 +264,8 @@ final class TraceServiceClient
      * Creates a new span.
      *
      * The async variant is {@see TraceServiceClient::createSpanAsync()} .
+     *
+     * @example samples/V2/TraceServiceClient/create_span.php
      *
      * @param Span  $request     A request to house fields associated with the call.
      * @param array $callOptions {

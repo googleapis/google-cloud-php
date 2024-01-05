@@ -341,6 +341,8 @@ final class ClusterControllerClient
      *
      * The async variant is {@see ClusterControllerClient::createClusterAsync()} .
      *
+     * @example samples/V1/ClusterControllerClient/create_cluster.php
+     *
      * @param CreateClusterRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -366,6 +368,8 @@ final class ClusterControllerClient
      * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
      *
      * The async variant is {@see ClusterControllerClient::deleteClusterAsync()} .
+     *
+     * @example samples/V1/ClusterControllerClient/delete_cluster.php
      *
      * @param DeleteClusterRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -397,6 +401,8 @@ final class ClusterControllerClient
      *
      * The async variant is {@see ClusterControllerClient::diagnoseClusterAsync()} .
      *
+     * @example samples/V1/ClusterControllerClient/diagnose_cluster.php
+     *
      * @param DiagnoseClusterRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -420,6 +426,8 @@ final class ClusterControllerClient
      * Gets the resource representation for a cluster in a project.
      *
      * The async variant is {@see ClusterControllerClient::getClusterAsync()} .
+     *
+     * @example samples/V1/ClusterControllerClient/get_cluster.php
      *
      * @param GetClusterRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -445,6 +453,8 @@ final class ClusterControllerClient
      *
      * The async variant is {@see ClusterControllerClient::listClustersAsync()} .
      *
+     * @example samples/V1/ClusterControllerClient/list_clusters.php
+     *
      * @param ListClustersRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -469,6 +479,8 @@ final class ClusterControllerClient
      *
      * The async variant is {@see ClusterControllerClient::startClusterAsync()} .
      *
+     * @example samples/V1/ClusterControllerClient/start_cluster.php
+     *
      * @param StartClusterRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -492,6 +504,8 @@ final class ClusterControllerClient
      * Stops a cluster in a project.
      *
      * The async variant is {@see ClusterControllerClient::stopClusterAsync()} .
+     *
+     * @example samples/V1/ClusterControllerClient/stop_cluster.php
      *
      * @param StopClusterRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -522,6 +536,8 @@ final class ClusterControllerClient
      *
      * The async variant is {@see ClusterControllerClient::updateClusterAsync()} .
      *
+     * @example samples/V1/ClusterControllerClient/update_cluster.php
+     *
      * @param UpdateClusterRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -546,6 +562,8 @@ final class ClusterControllerClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see ClusterControllerClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/ClusterControllerClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -574,6 +592,8 @@ final class ClusterControllerClient
     errors.
      *
      * The async variant is {@see ClusterControllerClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/ClusterControllerClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -604,6 +624,8 @@ final class ClusterControllerClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see ClusterControllerClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/ClusterControllerClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

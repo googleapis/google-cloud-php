@@ -264,6 +264,8 @@ final class WebRiskServiceClient
      *
      * The async variant is {@see WebRiskServiceClient::computeThreatListDiffAsync()} .
      *
+     * @example samples/V1/WebRiskServiceClient/compute_threat_list_diff.php
+     *
      * @param ComputeThreatListDiffRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -294,6 +296,8 @@ final class WebRiskServiceClient
      *
      * The async variant is {@see WebRiskServiceClient::createSubmissionAsync()} .
      *
+     * @example samples/V1/WebRiskServiceClient/create_submission.php
+     *
      * @param CreateSubmissionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -322,6 +326,8 @@ final class WebRiskServiceClient
      *
      * The async variant is {@see WebRiskServiceClient::searchHashesAsync()} .
      *
+     * @example samples/V1/WebRiskServiceClient/search_hashes.php
+     *
      * @param SearchHashesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -349,6 +355,8 @@ final class WebRiskServiceClient
      * empty response will be returned.
      *
      * The async variant is {@see WebRiskServiceClient::searchUrisAsync()} .
+     *
+     * @example samples/V1/WebRiskServiceClient/search_uris.php
      *
      * @param SearchUrisRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -382,6 +390,8 @@ final class WebRiskServiceClient
      * out to Sales or your customer engineer to obtain access.
      *
      * The async variant is {@see WebRiskServiceClient::submitUriAsync()} .
+     *
+     * @example samples/V1/WebRiskServiceClient/submit_uri.php
      *
      * @param SubmitUriRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {

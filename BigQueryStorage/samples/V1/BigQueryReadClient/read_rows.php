@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START bigquerystorage_v1_generated_BigQueryRead_ReadRows_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ServerStream;
-use Google\Cloud\BigQuery\Storage\V1\BigQueryReadClient;
+use Google\Cloud\BigQuery\Storage\V1\Client\BigQueryReadClient;
+use Google\Cloud\BigQuery\Storage\V1\ReadRowsRequest;
 use Google\Cloud\BigQuery\Storage\V1\ReadRowsResponse;
 
 /**
@@ -45,10 +46,14 @@ function read_rows_sample(string $formattedReadStream): void
     // Create a client.
     $bigQueryReadClient = new BigQueryReadClient();
 
+    // Prepare the request message.
+    $request = (new ReadRowsRequest())
+        ->setReadStream($formattedReadStream);
+
     // Call the API and handle any network failures.
     try {
         /** @var ServerStream $stream */
-        $stream = $bigQueryReadClient->readRows($formattedReadStream);
+        $stream = $bigQueryReadClient->readRows($request);
 
         /** @var ReadRowsResponse $element */
         foreach ($stream->readAll() as $element) {

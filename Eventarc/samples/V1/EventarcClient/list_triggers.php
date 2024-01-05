@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START eventarc_v1_generated_Eventarc_ListTriggers_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Eventarc\V1\EventarcClient;
+use Google\Cloud\Eventarc\V1\Client\EventarcClient;
+use Google\Cloud\Eventarc\V1\ListTriggersRequest;
 use Google\Cloud\Eventarc\V1\Trigger;
 
 /**
@@ -39,10 +40,14 @@ function list_triggers_sample(string $formattedParent): void
     // Create a client.
     $eventarcClient = new EventarcClient();
 
+    // Prepare the request message.
+    $request = (new ListTriggersRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $eventarcClient->listTriggers($formattedParent);
+        $response = $eventarcClient->listTriggers($request);
 
         /** @var Trigger $element */
         foreach ($response as $element) {

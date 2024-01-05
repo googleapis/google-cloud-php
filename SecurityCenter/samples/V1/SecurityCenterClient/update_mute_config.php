@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START securitycenter_v1_generated_SecurityCenter_UpdateMuteConfig_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient;
 use Google\Cloud\SecurityCenter\V1\MuteConfig;
-use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\UpdateMuteConfigRequest;
 
 /**
  * Updates a mute config.
@@ -56,14 +57,16 @@ function update_mute_config_sample(string $muteConfigFilter): void
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $muteConfig = (new MuteConfig())
         ->setFilter($muteConfigFilter);
+    $request = (new UpdateMuteConfigRequest())
+        ->setMuteConfig($muteConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var MuteConfig $response */
-        $response = $securityCenterClient->updateMuteConfig($muteConfig);
+        $response = $securityCenterClient->updateMuteConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

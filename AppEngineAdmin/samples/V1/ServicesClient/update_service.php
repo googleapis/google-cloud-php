@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START appengine_v1_generated_Services_UpdateService_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AppEngine\V1\Client\ServicesClient;
 use Google\Cloud\AppEngine\V1\Service;
-use Google\Cloud\AppEngine\V1\ServicesClient;
+use Google\Cloud\AppEngine\V1\UpdateServiceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -43,10 +44,13 @@ function update_service_sample(): void
     // Create a client.
     $servicesClient = new ServicesClient();
 
+    // Prepare the request message.
+    $request = new UpdateServiceRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $servicesClient->updateService();
+        $response = $servicesClient->updateService($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -189,6 +189,8 @@ final class Debugger2Client
      *
      * The async variant is {@see Debugger2Client::deleteBreakpointAsync()} .
      *
+     * @example samples/V2/Debugger2Client/delete_breakpoint.php
+     *
      * @param DeleteBreakpointRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -210,6 +212,8 @@ final class Debugger2Client
      * Gets breakpoint information.
      *
      * The async variant is {@see Debugger2Client::getBreakpointAsync()} .
+     *
+     * @example samples/V2/Debugger2Client/get_breakpoint.php
      *
      * @param GetBreakpointRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -235,6 +239,8 @@ final class Debugger2Client
      *
      * The async variant is {@see Debugger2Client::listBreakpointsAsync()} .
      *
+     * @example samples/V2/Debugger2Client/list_breakpoints.php
+     *
      * @param ListBreakpointsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -259,6 +265,8 @@ final class Debugger2Client
      *
      * The async variant is {@see Debugger2Client::listDebuggeesAsync()} .
      *
+     * @example samples/V2/Debugger2Client/list_debuggees.php
+     *
      * @param ListDebuggeesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -282,6 +290,8 @@ final class Debugger2Client
      * Sets the breakpoint to the debuggee.
      *
      * The async variant is {@see Debugger2Client::setBreakpointAsync()} .
+     *
+     * @example samples/V2/Debugger2Client/set_breakpoint.php
      *
      * @param SetBreakpointRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

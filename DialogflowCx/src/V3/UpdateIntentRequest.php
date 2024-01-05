@@ -43,6 +43,22 @@ class UpdateIntentRequest extends \Google\Protobuf\Internal\Message
     protected $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Intent $intent     Required. The intent to update.
+     * @param \Google\Protobuf\FieldMask            $updateMask The mask to control which fields get updated. If the mask is not present,
+     *                                                          all fields will be updated.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\UpdateIntentRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\Cx\V3\Intent $intent, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setIntent($intent)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

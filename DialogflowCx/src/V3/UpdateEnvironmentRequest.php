@@ -30,6 +30,21 @@ class UpdateEnvironmentRequest extends \Google\Protobuf\Internal\Message
     protected $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Environment $environment Required. The environment to update.
+     * @param \Google\Protobuf\FieldMask                 $updateMask  Required. The mask to control which fields get updated.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\UpdateEnvironmentRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\Cx\V3\Environment $environment, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setEnvironment($environment)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

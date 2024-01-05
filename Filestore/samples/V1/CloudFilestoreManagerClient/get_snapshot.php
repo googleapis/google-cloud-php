@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START file_v1_generated_CloudFilestoreManager_GetSnapshot_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Filestore\V1\CloudFilestoreManagerClient;
+use Google\Cloud\Filestore\V1\Client\CloudFilestoreManagerClient;
+use Google\Cloud\Filestore\V1\GetSnapshotRequest;
 use Google\Cloud\Filestore\V1\Snapshot;
 
 /**
@@ -39,10 +40,14 @@ function get_snapshot_sample(string $formattedName): void
     // Create a client.
     $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
 
+    // Prepare the request message.
+    $request = (new GetSnapshotRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Snapshot $response */
-        $response = $cloudFilestoreManagerClient->getSnapshot($formattedName);
+        $response = $cloudFilestoreManagerClient->getSnapshot($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -473,6 +473,8 @@ final class DataCatalogClient
      *
      * The async variant is {@see DataCatalogClient::createEntryAsync()} .
      *
+     * @example samples/V1/DataCatalogClient/create_entry.php
+     *
      * @param CreateEntryRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -523,6 +525,8 @@ final class DataCatalogClient
      *
      * The async variant is {@see DataCatalogClient::createEntryGroupAsync()} .
      *
+     * @example samples/V1/DataCatalogClient/create_entry_group.php
+     *
      * @param CreateEntryGroupRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -558,6 +562,8 @@ final class DataCatalogClient
      *
      * The async variant is {@see DataCatalogClient::createTagAsync()} .
      *
+     * @example samples/V1/DataCatalogClient/create_tag.php
+     *
      * @param CreateTagRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -587,6 +593,8 @@ final class DataCatalogClient
      *
      * The async variant is {@see DataCatalogClient::createTagTemplateAsync()} .
      *
+     * @example samples/V1/DataCatalogClient/create_tag_template.php
+     *
      * @param CreateTagTemplateRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -614,6 +622,8 @@ final class DataCatalogClient
      * project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
      *
      * The async variant is {@see DataCatalogClient::createTagTemplateFieldAsync()} .
+     *
+     * @example samples/V1/DataCatalogClient/create_tag_template_field.php
      *
      * @param CreateTagTemplateFieldRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -648,6 +658,8 @@ final class DataCatalogClient
      *
      * The async variant is {@see DataCatalogClient::deleteEntryAsync()} .
      *
+     * @example samples/V1/DataCatalogClient/delete_entry.php
+     *
      * @param DeleteEntryRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -675,6 +687,8 @@ final class DataCatalogClient
      *
      * The async variant is {@see DataCatalogClient::deleteEntryGroupAsync()} .
      *
+     * @example samples/V1/DataCatalogClient/delete_entry_group.php
+     *
      * @param DeleteEntryGroupRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -696,6 +710,8 @@ final class DataCatalogClient
      * Deletes a tag.
      *
      * The async variant is {@see DataCatalogClient::deleteTagAsync()} .
+     *
+     * @example samples/V1/DataCatalogClient/delete_tag.php
      *
      * @param DeleteTagRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -722,6 +738,8 @@ final class DataCatalogClient
      * project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
      *
      * The async variant is {@see DataCatalogClient::deleteTagTemplateAsync()} .
+     *
+     * @example samples/V1/DataCatalogClient/delete_tag_template.php
      *
      * @param DeleteTagTemplateRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -750,6 +768,8 @@ final class DataCatalogClient
      *
      * The async variant is {@see DataCatalogClient::deleteTagTemplateFieldAsync()} .
      *
+     * @example samples/V1/DataCatalogClient/delete_tag_template_field.php
+     *
      * @param DeleteTagTemplateFieldRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -771,6 +791,8 @@ final class DataCatalogClient
      * Gets an entry.
      *
      * The async variant is {@see DataCatalogClient::getEntryAsync()} .
+     *
+     * @example samples/V1/DataCatalogClient/get_entry.php
      *
      * @param GetEntryRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -795,6 +817,8 @@ final class DataCatalogClient
      * Gets an entry group.
      *
      * The async variant is {@see DataCatalogClient::getEntryGroupAsync()} .
+     *
+     * @example samples/V1/DataCatalogClient/get_entry_group.php
      *
      * @param GetEntryGroupRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -840,6 +864,8 @@ final class DataCatalogClient
      *
      * The async variant is {@see DataCatalogClient::getIamPolicyAsync()} .
      *
+     * @example samples/V1/DataCatalogClient/get_iam_policy.php
+     *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -863,6 +889,8 @@ final class DataCatalogClient
      * Gets a tag template.
      *
      * The async variant is {@see DataCatalogClient::getTagTemplateAsync()} .
+     *
+     * @example samples/V1/DataCatalogClient/get_tag_template.php
      *
      * @param GetTagTemplateRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -905,6 +933,8 @@ final class DataCatalogClient
      *
      * The async variant is {@see DataCatalogClient::importEntriesAsync()} .
      *
+     * @example samples/V1/DataCatalogClient/import_entries.php
+     *
      * @param ImportEntriesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -933,6 +963,8 @@ final class DataCatalogClient
      *
      * The async variant is {@see DataCatalogClient::listEntriesAsync()} .
      *
+     * @example samples/V1/DataCatalogClient/list_entries.php
+     *
      * @param ListEntriesRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -956,6 +988,8 @@ final class DataCatalogClient
      * Lists entry groups.
      *
      * The async variant is {@see DataCatalogClient::listEntryGroupsAsync()} .
+     *
+     * @example samples/V1/DataCatalogClient/list_entry_groups.php
      *
      * @param ListEntryGroupsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -983,6 +1017,8 @@ final class DataCatalogClient
      *
      * The async variant is {@see DataCatalogClient::listTagsAsync()} .
      *
+     * @example samples/V1/DataCatalogClient/list_tags.php
+     *
      * @param ListTagsRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -1008,6 +1044,8 @@ final class DataCatalogClient
      * The resource name comes from the source Google Cloud Platform service.
      *
      * The async variant is {@see DataCatalogClient::lookupEntryAsync()} .
+     *
+     * @example samples/V1/DataCatalogClient/lookup_entry.php
      *
      * @param LookupEntryRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1037,6 +1075,8 @@ final class DataCatalogClient
      *
      * The async variant is {@see DataCatalogClient::modifyEntryContactsAsync()} .
      *
+     * @example samples/V1/DataCatalogClient/modify_entry_contacts.php
+     *
      * @param ModifyEntryContactsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -1064,6 +1104,8 @@ final class DataCatalogClient
      * IAM permission on the corresponding project.
      *
      * The async variant is {@see DataCatalogClient::modifyEntryOverviewAsync()} .
+     *
+     * @example samples/V1/DataCatalogClient/modify_entry_overview.php
      *
      * @param ModifyEntryOverviewRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -1101,6 +1143,8 @@ final class DataCatalogClient
      *
      * The async variant is {@see DataCatalogClient::reconcileTagsAsync()} .
      *
+     * @example samples/V1/DataCatalogClient/reconcile_tags.php
+     *
      * @param ReconcileTagsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -1129,6 +1173,8 @@ final class DataCatalogClient
      *
      * The async variant is {@see DataCatalogClient::renameTagTemplateFieldAsync()} .
      *
+     * @example samples/V1/DataCatalogClient/rename_tag_template_field.php
+     *
      * @param RenameTagTemplateFieldRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -1155,6 +1201,8 @@ final class DataCatalogClient
      *
      * The async variant is
      * {@see DataCatalogClient::renameTagTemplateFieldEnumValueAsync()} .
+     *
+     * @example samples/V1/DataCatalogClient/rename_tag_template_field_enum_value.php
      *
      * @param RenameTagTemplateFieldEnumValueRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -1193,6 +1241,8 @@ final class DataCatalogClient
      * (https://cloud.google.com/data-catalog/docs/how-to/search-reference).
      *
      * The async variant is {@see DataCatalogClient::searchCatalogAsync()} .
+     *
+     * @example samples/V1/DataCatalogClient/search_catalog.php
      *
      * @param SearchCatalogRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1234,6 +1284,8 @@ final class DataCatalogClient
      *
      * The async variant is {@see DataCatalogClient::setIamPolicyAsync()} .
      *
+     * @example samples/V1/DataCatalogClient/set_iam_policy.php
+     *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -1258,6 +1310,8 @@ final class DataCatalogClient
      * the current user. Starring information is private to each user.
      *
      * The async variant is {@see DataCatalogClient::starEntryAsync()} .
+     *
+     * @example samples/V1/DataCatalogClient/star_entry.php
      *
      * @param StarEntryRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -1296,6 +1350,8 @@ final class DataCatalogClient
      *
      * The async variant is {@see DataCatalogClient::testIamPermissionsAsync()} .
      *
+     * @example samples/V1/DataCatalogClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -1320,6 +1376,8 @@ final class DataCatalogClient
      * the current user. Starring information is private to each user.
      *
      * The async variant is {@see DataCatalogClient::unstarEntryAsync()} .
+     *
+     * @example samples/V1/DataCatalogClient/unstar_entry.php
      *
      * @param UnstarEntryRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1350,6 +1408,8 @@ final class DataCatalogClient
      *
      * The async variant is {@see DataCatalogClient::updateEntryAsync()} .
      *
+     * @example samples/V1/DataCatalogClient/update_entry.php
+     *
      * @param UpdateEntryRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -1379,6 +1439,8 @@ final class DataCatalogClient
      *
      * The async variant is {@see DataCatalogClient::updateEntryGroupAsync()} .
      *
+     * @example samples/V1/DataCatalogClient/update_entry_group.php
+     *
      * @param UpdateEntryGroupRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -1402,6 +1464,8 @@ final class DataCatalogClient
      * Updates an existing tag.
      *
      * The async variant is {@see DataCatalogClient::updateTagAsync()} .
+     *
+     * @example samples/V1/DataCatalogClient/update_tag.php
      *
      * @param UpdateTagRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -1435,6 +1499,8 @@ final class DataCatalogClient
      *
      * The async variant is {@see DataCatalogClient::updateTagTemplateAsync()} .
      *
+     * @example samples/V1/DataCatalogClient/update_tag_template.php
+     *
      * @param UpdateTagTemplateRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -1465,6 +1531,8 @@ final class DataCatalogClient
      * project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
      *
      * The async variant is {@see DataCatalogClient::updateTagTemplateFieldAsync()} .
+     *
+     * @example samples/V1/DataCatalogClient/update_tag_template_field.php
      *
      * @param UpdateTagTemplateFieldRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {

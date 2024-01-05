@@ -243,6 +243,8 @@ final class MetricsServiceV2Client
      *
      * The async variant is {@see MetricsServiceV2Client::createLogMetricAsync()} .
      *
+     * @example samples/V2/MetricsServiceV2Client/create_log_metric.php
+     *
      * @param CreateLogMetricRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -267,6 +269,8 @@ final class MetricsServiceV2Client
      *
      * The async variant is {@see MetricsServiceV2Client::deleteLogMetricAsync()} .
      *
+     * @example samples/V2/MetricsServiceV2Client/delete_log_metric.php
+     *
      * @param DeleteLogMetricRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -288,6 +292,8 @@ final class MetricsServiceV2Client
      * Gets a logs-based metric.
      *
      * The async variant is {@see MetricsServiceV2Client::getLogMetricAsync()} .
+     *
+     * @example samples/V2/MetricsServiceV2Client/get_log_metric.php
      *
      * @param GetLogMetricRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -313,6 +319,8 @@ final class MetricsServiceV2Client
      *
      * The async variant is {@see MetricsServiceV2Client::listLogMetricsAsync()} .
      *
+     * @example samples/V2/MetricsServiceV2Client/list_log_metrics.php
+     *
      * @param ListLogMetricsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -336,6 +344,8 @@ final class MetricsServiceV2Client
      * Creates or updates a logs-based metric.
      *
      * The async variant is {@see MetricsServiceV2Client::updateLogMetricAsync()} .
+     *
+     * @example samples/V2/MetricsServiceV2Client/update_log_metric.php
      *
      * @param UpdateLogMetricRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {

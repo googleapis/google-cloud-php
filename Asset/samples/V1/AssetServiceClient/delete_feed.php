@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudasset_v1_generated_AssetService_DeleteFeed_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Asset\V1\AssetServiceClient;
+use Google\Cloud\Asset\V1\Client\AssetServiceClient;
+use Google\Cloud\Asset\V1\DeleteFeedRequest;
 
 /**
  * Deletes an asset feed.
@@ -40,9 +41,13 @@ function delete_feed_sample(string $formattedName): void
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteFeedRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $assetServiceClient->deleteFeed($formattedName);
+        $assetServiceClient->deleteFeed($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

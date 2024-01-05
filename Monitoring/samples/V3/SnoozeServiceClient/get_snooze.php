@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START monitoring_v3_generated_SnoozeService_GetSnooze_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Monitoring\V3\Client\SnoozeServiceClient;
+use Google\Cloud\Monitoring\V3\GetSnoozeRequest;
 use Google\Cloud\Monitoring\V3\Snooze;
-use Google\Cloud\Monitoring\V3\SnoozeServiceClient;
 
 /**
  * Retrieves a `Snooze` by `name`.
@@ -40,10 +41,14 @@ function get_snooze_sample(string $formattedName): void
     // Create a client.
     $snoozeServiceClient = new SnoozeServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetSnoozeRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Snooze $response */
-        $response = $snoozeServiceClient->getSnooze($formattedName);
+        $response = $snoozeServiceClient->getSnooze($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

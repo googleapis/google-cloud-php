@@ -39,13 +39,22 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use Google\Cloud\NetApp\V1\ActiveDirectory;
+use Google\Cloud\NetApp\V1\Backup;
+use Google\Cloud\NetApp\V1\BackupPolicy;
+use Google\Cloud\NetApp\V1\BackupVault;
 use Google\Cloud\NetApp\V1\CreateActiveDirectoryRequest;
+use Google\Cloud\NetApp\V1\CreateBackupPolicyRequest;
+use Google\Cloud\NetApp\V1\CreateBackupRequest;
+use Google\Cloud\NetApp\V1\CreateBackupVaultRequest;
 use Google\Cloud\NetApp\V1\CreateKmsConfigRequest;
 use Google\Cloud\NetApp\V1\CreateReplicationRequest;
 use Google\Cloud\NetApp\V1\CreateSnapshotRequest;
 use Google\Cloud\NetApp\V1\CreateStoragePoolRequest;
 use Google\Cloud\NetApp\V1\CreateVolumeRequest;
 use Google\Cloud\NetApp\V1\DeleteActiveDirectoryRequest;
+use Google\Cloud\NetApp\V1\DeleteBackupPolicyRequest;
+use Google\Cloud\NetApp\V1\DeleteBackupRequest;
+use Google\Cloud\NetApp\V1\DeleteBackupVaultRequest;
 use Google\Cloud\NetApp\V1\DeleteKmsConfigRequest;
 use Google\Cloud\NetApp\V1\DeleteReplicationRequest;
 use Google\Cloud\NetApp\V1\DeleteSnapshotRequest;
@@ -53,6 +62,9 @@ use Google\Cloud\NetApp\V1\DeleteStoragePoolRequest;
 use Google\Cloud\NetApp\V1\DeleteVolumeRequest;
 use Google\Cloud\NetApp\V1\EncryptVolumesRequest;
 use Google\Cloud\NetApp\V1\GetActiveDirectoryRequest;
+use Google\Cloud\NetApp\V1\GetBackupPolicyRequest;
+use Google\Cloud\NetApp\V1\GetBackupRequest;
+use Google\Cloud\NetApp\V1\GetBackupVaultRequest;
 use Google\Cloud\NetApp\V1\GetKmsConfigRequest;
 use Google\Cloud\NetApp\V1\GetReplicationRequest;
 use Google\Cloud\NetApp\V1\GetSnapshotRequest;
@@ -60,6 +72,9 @@ use Google\Cloud\NetApp\V1\GetStoragePoolRequest;
 use Google\Cloud\NetApp\V1\GetVolumeRequest;
 use Google\Cloud\NetApp\V1\KmsConfig;
 use Google\Cloud\NetApp\V1\ListActiveDirectoriesRequest;
+use Google\Cloud\NetApp\V1\ListBackupPoliciesRequest;
+use Google\Cloud\NetApp\V1\ListBackupVaultsRequest;
+use Google\Cloud\NetApp\V1\ListBackupsRequest;
 use Google\Cloud\NetApp\V1\ListKmsConfigsRequest;
 use Google\Cloud\NetApp\V1\ListReplicationsRequest;
 use Google\Cloud\NetApp\V1\ListSnapshotsRequest;
@@ -73,6 +88,9 @@ use Google\Cloud\NetApp\V1\Snapshot;
 use Google\Cloud\NetApp\V1\StopReplicationRequest;
 use Google\Cloud\NetApp\V1\StoragePool;
 use Google\Cloud\NetApp\V1\UpdateActiveDirectoryRequest;
+use Google\Cloud\NetApp\V1\UpdateBackupPolicyRequest;
+use Google\Cloud\NetApp\V1\UpdateBackupRequest;
+use Google\Cloud\NetApp\V1\UpdateBackupVaultRequest;
 use Google\Cloud\NetApp\V1\UpdateKmsConfigRequest;
 use Google\Cloud\NetApp\V1\UpdateReplicationRequest;
 use Google\Cloud\NetApp\V1\UpdateSnapshotRequest;
@@ -96,12 +114,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * contained within formatted names that are returned by the API.
  *
  * @method PromiseInterface createActiveDirectoryAsync(CreateActiveDirectoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createBackupPolicyAsync(CreateBackupPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createBackupVaultAsync(CreateBackupVaultRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createKmsConfigAsync(CreateKmsConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createReplicationAsync(CreateReplicationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createSnapshotAsync(CreateSnapshotRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createStoragePoolAsync(CreateStoragePoolRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createVolumeAsync(CreateVolumeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteActiveDirectoryAsync(DeleteActiveDirectoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteBackupPolicyAsync(DeleteBackupPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteBackupVaultAsync(DeleteBackupVaultRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteKmsConfigAsync(DeleteKmsConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteReplicationAsync(DeleteReplicationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteSnapshotAsync(DeleteSnapshotRequest $request, array $optionalArgs = [])
@@ -109,12 +133,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface deleteVolumeAsync(DeleteVolumeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface encryptVolumesAsync(EncryptVolumesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getActiveDirectoryAsync(GetActiveDirectoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getBackupPolicyAsync(GetBackupPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getBackupVaultAsync(GetBackupVaultRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getKmsConfigAsync(GetKmsConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getReplicationAsync(GetReplicationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getSnapshotAsync(GetSnapshotRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getStoragePoolAsync(GetStoragePoolRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getVolumeAsync(GetVolumeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listActiveDirectoriesAsync(ListActiveDirectoriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listBackupPoliciesAsync(ListBackupPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listBackupVaultsAsync(ListBackupVaultsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listKmsConfigsAsync(ListKmsConfigsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listReplicationsAsync(ListReplicationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listSnapshotsAsync(ListSnapshotsRequest $request, array $optionalArgs = [])
@@ -125,6 +155,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface revertVolumeAsync(RevertVolumeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface stopReplicationAsync(StopReplicationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateActiveDirectoryAsync(UpdateActiveDirectoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateBackupPolicyAsync(UpdateBackupPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateBackupVaultAsync(UpdateBackupVaultRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateKmsConfigAsync(UpdateKmsConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateReplicationAsync(UpdateReplicationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateSnapshotAsync(UpdateSnapshotRequest $request, array $optionalArgs = [])
@@ -229,6 +262,65 @@ final class NetAppClient
             'project' => $project,
             'location' => $location,
             'active_directory' => $activeDirectory,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a backup
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $backupVault
+     * @param string $backup
+     *
+     * @return string The formatted backup resource.
+     */
+    public static function backupName(string $project, string $location, string $backupVault, string $backup): string
+    {
+        return self::getPathTemplate('backup')->render([
+            'project' => $project,
+            'location' => $location,
+            'backup_vault' => $backupVault,
+            'backup' => $backup,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * backup_policy resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $backupPolicy
+     *
+     * @return string The formatted backup_policy resource.
+     */
+    public static function backupPolicyName(string $project, string $location, string $backupPolicy): string
+    {
+        return self::getPathTemplate('backupPolicy')->render([
+            'project' => $project,
+            'location' => $location,
+            'backup_policy' => $backupPolicy,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a backup_vault
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $backupVault
+     *
+     * @return string The formatted backup_vault resource.
+     */
+    public static function backupVaultName(string $project, string $location, string $backupVault): string
+    {
+        return self::getPathTemplate('backupVault')->render([
+            'project' => $project,
+            'location' => $location,
+            'backup_vault' => $backupVault,
         ]);
     }
 
@@ -374,6 +466,9 @@ final class NetAppClient
      * The following name formats are supported:
      * Template: Pattern
      * - activeDirectory: projects/{project}/locations/{location}/activeDirectories/{active_directory}
+     * - backup: projects/{project}/locations/{location}/backupVaults/{backup_vault}/backups/{backup}
+     * - backupPolicy: projects/{project}/locations/{location}/backupPolicies/{backup_policy}
+     * - backupVault: projects/{project}/locations/{location}/backupVaults/{backup_vault}
      * - kmsConfig: projects/{project}/locations/{location}/kmsConfigs/{kms_config}
      * - location: projects/{project}/locations/{location}
      * - network: projects/{project}/global/networks/{network}
@@ -499,6 +594,87 @@ final class NetAppClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('CreateActiveDirectory', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a backup from the volume specified in the request
+     * The backup can be created from the given snapshot if specified in the
+     * request. If no snapshot specified, there'll be a new snapshot taken to
+     * initiate the backup creation.
+     *
+     * The async variant is {@see NetAppClient::createBackupAsync()} .
+     *
+     * @example samples/V1/NetAppClient/create_backup.php
+     *
+     * @param CreateBackupRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createBackup(CreateBackupRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateBackup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates new backup policy
+     *
+     * The async variant is {@see NetAppClient::createBackupPolicyAsync()} .
+     *
+     * @example samples/V1/NetAppClient/create_backup_policy.php
+     *
+     * @param CreateBackupPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createBackupPolicy(CreateBackupPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateBackupPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates new backup vault
+     *
+     * The async variant is {@see NetAppClient::createBackupVaultAsync()} .
+     *
+     * @example samples/V1/NetAppClient/create_backup_vault.php
+     *
+     * @param CreateBackupVaultRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createBackupVault(CreateBackupVaultRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateBackupVault', $request, $callOptions)->wait();
     }
 
     /**
@@ -657,6 +833,84 @@ final class NetAppClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('DeleteActiveDirectory', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Warning! This operation will permanently delete the backup.
+     *
+     * The async variant is {@see NetAppClient::deleteBackupAsync()} .
+     *
+     * @example samples/V1/NetAppClient/delete_backup.php
+     *
+     * @param DeleteBackupRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteBackup(DeleteBackupRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteBackup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Warning! This operation will permanently delete the backup policy.
+     *
+     * The async variant is {@see NetAppClient::deleteBackupPolicyAsync()} .
+     *
+     * @example samples/V1/NetAppClient/delete_backup_policy.php
+     *
+     * @param DeleteBackupPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteBackupPolicy(DeleteBackupPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteBackupPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Warning! This operation will permanently delete the backup vault.
+     *
+     * The async variant is {@see NetAppClient::deleteBackupVaultAsync()} .
+     *
+     * @example samples/V1/NetAppClient/delete_backup_vault.php
+     *
+     * @param DeleteBackupVaultRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteBackupVault(DeleteBackupVaultRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteBackupVault', $request, $callOptions)->wait();
     }
 
     /**
@@ -843,6 +1097,84 @@ final class NetAppClient
     }
 
     /**
+     * Returns the description of the specified backup
+     *
+     * The async variant is {@see NetAppClient::getBackupAsync()} .
+     *
+     * @example samples/V1/NetAppClient/get_backup.php
+     *
+     * @param GetBackupRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Backup
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getBackup(GetBackupRequest $request, array $callOptions = []): Backup
+    {
+        return $this->startApiCall('GetBackup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns the description of the specified backup policy by backup_policy_id.
+     *
+     * The async variant is {@see NetAppClient::getBackupPolicyAsync()} .
+     *
+     * @example samples/V1/NetAppClient/get_backup_policy.php
+     *
+     * @param GetBackupPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BackupPolicy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getBackupPolicy(GetBackupPolicyRequest $request, array $callOptions = []): BackupPolicy
+    {
+        return $this->startApiCall('GetBackupPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns the description of the specified backup vault
+     *
+     * The async variant is {@see NetAppClient::getBackupVaultAsync()} .
+     *
+     * @example samples/V1/NetAppClient/get_backup_vault.php
+     *
+     * @param GetBackupVaultRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BackupVault
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getBackupVault(GetBackupVaultRequest $request, array $callOptions = []): BackupVault
+    {
+        return $this->startApiCall('GetBackupVault', $request, $callOptions)->wait();
+    }
+
+    /**
      * Returns the description of the specified KMS config by kms_config_id.
      *
      * The async variant is {@see NetAppClient::getKmsConfigAsync()} .
@@ -998,6 +1330,84 @@ final class NetAppClient
         array $callOptions = []
     ): PagedListResponse {
         return $this->startApiCall('ListActiveDirectories', $request, $callOptions);
+    }
+
+    /**
+     * Returns list of all available backup policies.
+     *
+     * The async variant is {@see NetAppClient::listBackupPoliciesAsync()} .
+     *
+     * @example samples/V1/NetAppClient/list_backup_policies.php
+     *
+     * @param ListBackupPoliciesRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listBackupPolicies(ListBackupPoliciesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListBackupPolicies', $request, $callOptions);
+    }
+
+    /**
+     * Returns list of all available backup vaults.
+     *
+     * The async variant is {@see NetAppClient::listBackupVaultsAsync()} .
+     *
+     * @example samples/V1/NetAppClient/list_backup_vaults.php
+     *
+     * @param ListBackupVaultsRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listBackupVaults(ListBackupVaultsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListBackupVaults', $request, $callOptions);
+    }
+
+    /**
+     * Returns descriptions of all backups for a backupVault.
+     *
+     * The async variant is {@see NetAppClient::listBackupsAsync()} .
+     *
+     * @example samples/V1/NetAppClient/list_backups.php
+     *
+     * @param ListBackupsRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listBackups(ListBackupsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListBackups', $request, $callOptions);
     }
 
     /**
@@ -1265,6 +1675,84 @@ final class NetAppClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('UpdateActiveDirectory', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Update backup with full spec.
+     *
+     * The async variant is {@see NetAppClient::updateBackupAsync()} .
+     *
+     * @example samples/V1/NetAppClient/update_backup.php
+     *
+     * @param UpdateBackupRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateBackup(UpdateBackupRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateBackup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates settings of a specific backup policy.
+     *
+     * The async variant is {@see NetAppClient::updateBackupPolicyAsync()} .
+     *
+     * @example samples/V1/NetAppClient/update_backup_policy.php
+     *
+     * @param UpdateBackupPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateBackupPolicy(UpdateBackupPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateBackupPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the settings of a specific backup vault.
+     *
+     * The async variant is {@see NetAppClient::updateBackupVaultAsync()} .
+     *
+     * @example samples/V1/NetAppClient/update_backup_vault.php
+     *
+     * @param UpdateBackupVaultRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateBackupVault(UpdateBackupVaultRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateBackupVault', $request, $callOptions)->wait();
     }
 
     /**

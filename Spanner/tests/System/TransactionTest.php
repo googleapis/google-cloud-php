@@ -68,21 +68,31 @@ class TransactionTest extends SpannerTestCase
     public function testRunTransaction()
     {
         $db = self::$database;
+        $id = rand(1, 346464);
+        $keySet = new KeySet([
+            'keys' => [$id]
+        ]);
+        $row = [
+            'id' => $id,
+            'name' => uniqid(self::TESTING_PREFIX),
+            'birthday' => new Date(new \DateTime)
+        ];
+        $cols = array_keys($row);
 
-        $db->runTransaction(function ($t) {
-            $id = rand(1, 346464);
-            $t->insert(self::TEST_TABLE_NAME, [
-                'id' => $id,
-                'name' => uniqid(self::TESTING_PREFIX),
-                'birthday' => new Date(new \DateTime)
-            ]);
-
+        $db->runTransaction(function ($t) use ($row) {
+            $t->insert(self::TEST_TABLE_NAME, $row);
             $t->commit();
         });
 
-        $db->runTransaction(function ($t) {
-            $t->rollback();
-        });
+        $snapshot = $db->snapshot();
+        $res = $snapshot->read(self::TEST_TABLE_NAME, $keySet, $cols);
+        $resRow = $res->rows()->current();
+        $this->assertEquals($resRow['id'], $row['id']);
+        $this->assertEquals($resRow['name'], $row['name']);
+        $this->assertEquals(
+            $resRow['birthday']->formatAsString(),
+            $row['birthday']->formatAsString()
+        );
     }
 
     /**
@@ -265,6 +275,70 @@ class TransactionTest extends SpannerTestCase
         } else {
             $this->assertEquals($error->getServiceException()->getStatus(), $expected);
         }
+    }
+
+    public function testRunTransactionILBWithMultipleOperations()
+    {
+        $db = self::$database;
+
+        $res = $db->runTransaction(function ($t) {
+            $id = rand(1, 346464);
+            $row = [
+                'id' => $id,
+                'name' => uniqid(self::TESTING_PREFIX),
+                'birthday' => new Date(new \DateTime)
+            ];
+            // Representative of all mutations
+            $t->insert(self::TEST_TABLE_NAME, $row);
+            $this->assertNull($t->id());
+
+            $id = rand(1, 346464);
+            $t->executeUpdate(
+                'INSERT INTO ' . self::TEST_TABLE_NAME . ' (id, name, birthday) VALUES (@id, @name, @birthday)',
+                [
+                    'parameters' => [
+                        'id' => $id,
+                        'name' => uniqid(self::TESTING_PREFIX),
+                        'birthday' => new Date(new \DateTime)
+                    ]
+                ]
+            );
+            $transactionId = $t->id();
+            $this->assertNotEmpty($t->id());
+
+            $res = $t->execute('SELECT * FROM ' . self::TEST_TABLE_NAME . ' WHERE id = @id', [
+                'parameters' => [
+                    'id' => $id
+                ]
+            ]);
+            $this->assertEquals($res->rows()->current()['id'], $id);
+            // No new transaction created.
+            $this->assertNull($res->transaction());
+            $this->assertEquals($t->id(), $transactionId);
+
+            $keyset = new KeySet(['keys' => [$id]]);
+            $res = $t->read(self::TEST_TABLE_NAME, $keyset, ['id']);
+            $this->assertEquals($res->rows()->current()['id'], $id);
+            $this->assertNull($res->transaction());
+            $this->assertEquals($t->id(), $transactionId);
+
+            $res = $t->executeUpdateBatch([
+                [
+                    'sql' => 'UPDATE ' . self::TEST_TABLE_NAME . ' SET name = @name WHERE id = @id',
+                    'parameters' => [
+                        'id' => $id,
+                        'name' => uniqid(self::TESTING_PREFIX)
+                    ]
+                ]
+            ]);
+            $this->assertEquals($t->id(), $transactionId);
+
+            $t->commit();
+
+            return $res;
+        });
+
+        $this->assertEquals([1], $res->rowCounts());
     }
 
     private function readArgs()

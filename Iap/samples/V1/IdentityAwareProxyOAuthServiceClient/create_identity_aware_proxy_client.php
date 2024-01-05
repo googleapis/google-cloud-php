@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START iap_v1_generated_IdentityAwareProxyOAuthService_CreateIdentityAwareProxyClient_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Iap\V1\Client\IdentityAwareProxyOAuthServiceClient;
+use Google\Cloud\Iap\V1\CreateIdentityAwareProxyClientRequest;
 use Google\Cloud\Iap\V1\IdentityAwareProxyClient;
-use Google\Cloud\Iap\V1\IdentityAwareProxyOAuthServiceClient;
 
 /**
  * Creates an Identity Aware Proxy (IAP) OAuth client. The client is owned
@@ -42,16 +43,16 @@ function create_identity_aware_proxy_client_sample(string $parent): void
     // Create a client.
     $identityAwareProxyOAuthServiceClient = new IdentityAwareProxyOAuthServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $identityAwareProxyClient = new IdentityAwareProxyClient();
+    $request = (new CreateIdentityAwareProxyClientRequest())
+        ->setParent($parent)
+        ->setIdentityAwareProxyClient($identityAwareProxyClient);
 
     // Call the API and handle any network failures.
     try {
         /** @var IdentityAwareProxyClient $response */
-        $response = $identityAwareProxyOAuthServiceClient->createIdentityAwareProxyClient(
-            $parent,
-            $identityAwareProxyClient
-        );
+        $response = $identityAwareProxyOAuthServiceClient->createIdentityAwareProxyClient($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

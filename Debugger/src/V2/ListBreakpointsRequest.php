@@ -68,6 +68,22 @@ class ListBreakpointsRequest extends \Google\Protobuf\Internal\Message
     private $client_version = '';
 
     /**
+     * @param string $debuggeeId    Required. ID of the debuggee whose breakpoints to list.
+     * @param string $clientVersion Required. The client version making the call.
+     *                              Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     *
+     * @return \Google\Cloud\Debugger\V2\ListBreakpointsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $debuggeeId, string $clientVersion): self
+    {
+        return (new self())
+            ->setDebuggeeId($debuggeeId)
+            ->setClientVersion($clientVersion);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

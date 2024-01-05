@@ -345,6 +345,8 @@ final class SubscriberClient
      *
      * The async variant is {@see SubscriberClient::acknowledgeAsync()} .
      *
+     * @example samples/V1/SubscriberClient/acknowledge.php
+     *
      * @param AcknowledgeRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -382,6 +384,8 @@ final class SubscriberClient
      *
      * The async variant is {@see SubscriberClient::createSnapshotAsync()} .
      *
+     * @example samples/V1/SubscriberClient/create_snapshot.php
+     *
      * @param CreateSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -416,6 +420,8 @@ final class SubscriberClient
      *
      * The async variant is {@see SubscriberClient::createSubscriptionAsync()} .
      *
+     * @example samples/V1/SubscriberClient/create_subscription.php
+     *
      * @param Subscription $request     A request to house fields associated with the call.
      * @param array        $callOptions {
      *     Optional.
@@ -448,6 +454,8 @@ final class SubscriberClient
      *
      * The async variant is {@see SubscriberClient::deleteSnapshotAsync()} .
      *
+     * @example samples/V1/SubscriberClient/delete_snapshot.php
+     *
      * @param DeleteSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -473,6 +481,8 @@ final class SubscriberClient
      * subscription or its topic unless the same topic is specified.
      *
      * The async variant is {@see SubscriberClient::deleteSubscriptionAsync()} .
+     *
+     * @example samples/V1/SubscriberClient/delete_subscription.php
      *
      * @param DeleteSubscriptionRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -500,6 +510,8 @@ final class SubscriberClient
      *
      * The async variant is {@see SubscriberClient::getSnapshotAsync()} .
      *
+     * @example samples/V1/SubscriberClient/get_snapshot.php
+     *
      * @param GetSnapshotRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -523,6 +535,8 @@ final class SubscriberClient
      * Gets the configuration details of a subscription.
      *
      * The async variant is {@see SubscriberClient::getSubscriptionAsync()} .
+     *
+     * @example samples/V1/SubscriberClient/get_subscription.php
      *
      * @param GetSubscriptionRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -552,6 +566,8 @@ final class SubscriberClient
      *
      * The async variant is {@see SubscriberClient::listSnapshotsAsync()} .
      *
+     * @example samples/V1/SubscriberClient/list_snapshots.php
+     *
      * @param ListSnapshotsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -575,6 +591,8 @@ final class SubscriberClient
      * Lists matching subscriptions.
      *
      * The async variant is {@see SubscriberClient::listSubscriptionsAsync()} .
+     *
+     * @example samples/V1/SubscriberClient/list_subscriptions.php
      *
      * @param ListSubscriptionsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -604,6 +622,8 @@ final class SubscriberClient
      *
      * The async variant is {@see SubscriberClient::modifyAckDeadlineAsync()} .
      *
+     * @example samples/V1/SubscriberClient/modify_ack_deadline.php
+     *
      * @param ModifyAckDeadlineRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -631,6 +651,8 @@ final class SubscriberClient
      *
      * The async variant is {@see SubscriberClient::modifyPushConfigAsync()} .
      *
+     * @example samples/V1/SubscriberClient/modify_push_config.php
+     *
      * @param ModifyPushConfigRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -652,6 +674,8 @@ final class SubscriberClient
      * Pulls messages from the server.
      *
      * The async variant is {@see SubscriberClient::pullAsync()} .
+     *
+     * @example samples/V1/SubscriberClient/pull.php
      *
      * @param PullRequest $request     A request to house fields associated with the call.
      * @param array       $callOptions {
@@ -683,6 +707,8 @@ final class SubscriberClient
      *
      * The async variant is {@see SubscriberClient::seekAsync()} .
      *
+     * @example samples/V1/SubscriberClient/seek.php
+     *
      * @param SeekRequest $request     A request to house fields associated with the call.
      * @param array       $callOptions {
      *     Optional.
@@ -711,6 +737,8 @@ final class SubscriberClient
      * re-establish the stream. Flow control can be achieved by configuring the
      * underlying RPC channel.
      *
+     * @example samples/V1/SubscriberClient/streaming_pull.php
+     *
      * @param array $callOptions {
      *     Optional.
      *
@@ -735,6 +763,8 @@ final class SubscriberClient
      * state captured by a snapshot.
      *
      * The async variant is {@see SubscriberClient::updateSnapshotAsync()} .
+     *
+     * @example samples/V1/SubscriberClient/update_snapshot.php
      *
      * @param UpdateSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -761,6 +791,8 @@ final class SubscriberClient
      *
      * The async variant is {@see SubscriberClient::updateSubscriptionAsync()} .
      *
+     * @example samples/V1/SubscriberClient/update_subscription.php
+     *
      * @param UpdateSubscriptionRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -785,6 +817,8 @@ final class SubscriberClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see SubscriberClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/SubscriberClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -813,6 +847,8 @@ final class SubscriberClient
     errors.
      *
      * The async variant is {@see SubscriberClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/SubscriberClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -843,6 +879,8 @@ final class SubscriberClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see SubscriberClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/SubscriberClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

@@ -180,6 +180,8 @@ final class QuotaControllerClient
      *
      * The async variant is {@see QuotaControllerClient::allocateQuotaAsync()} .
      *
+     * @example samples/V1/QuotaControllerClient/allocate_quota.php
+     *
      * @param AllocateQuotaRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.

@@ -21,6 +21,7 @@ use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Timestamp;
+use InvalidArgumentException;
 
 /**
  * @group spanner
@@ -80,9 +81,16 @@ class PgTransactionTest extends SpannerPgTestCase
             $t->commit();
         });
 
-        $db->runTransaction(function ($t) {
-            $t->rollback();
-        });
+        $exception = null;
+        try {
+            $db->runTransaction(function ($t) {
+                $t->rollback();
+            });
+        } catch (InvalidArgumentException $ex) {
+            $exception = $ex;
+        }
+        $this->assertInstanceOf(InvalidArgumentException::class, $exception);
+        $this->assertEquals('Rollback failed: Transaction not initiated.', $exception->getMessage());
     }
 
     public function testTransactionNoCommit()

@@ -311,6 +311,8 @@ final class AutoscalingPolicyServiceClient
      * The async variant is
      * {@see AutoscalingPolicyServiceClient::createAutoscalingPolicyAsync()} .
      *
+     * @example samples/V1/AutoscalingPolicyServiceClient/create_autoscaling_policy.php
+     *
      * @param CreateAutoscalingPolicyRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -337,6 +339,8 @@ final class AutoscalingPolicyServiceClient
      * The async variant is
      * {@see AutoscalingPolicyServiceClient::deleteAutoscalingPolicyAsync()} .
      *
+     * @example samples/V1/AutoscalingPolicyServiceClient/delete_autoscaling_policy.php
+     *
      * @param DeleteAutoscalingPolicyRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -359,6 +363,8 @@ final class AutoscalingPolicyServiceClient
      *
      * The async variant is
      * {@see AutoscalingPolicyServiceClient::getAutoscalingPolicyAsync()} .
+     *
+     * @example samples/V1/AutoscalingPolicyServiceClient/get_autoscaling_policy.php
      *
      * @param GetAutoscalingPolicyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -384,6 +390,8 @@ final class AutoscalingPolicyServiceClient
      *
      * The async variant is
      * {@see AutoscalingPolicyServiceClient::listAutoscalingPoliciesAsync()} .
+     *
+     * @example samples/V1/AutoscalingPolicyServiceClient/list_autoscaling_policies.php
      *
      * @param ListAutoscalingPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -413,6 +421,8 @@ final class AutoscalingPolicyServiceClient
      * The async variant is
      * {@see AutoscalingPolicyServiceClient::updateAutoscalingPolicyAsync()} .
      *
+     * @example samples/V1/AutoscalingPolicyServiceClient/update_autoscaling_policy.php
+     *
      * @param UpdateAutoscalingPolicyRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -438,6 +448,8 @@ final class AutoscalingPolicyServiceClient
      *
      * The async variant is {@see AutoscalingPolicyServiceClient::getIamPolicyAsync()}
      * .
+     *
+     * @example samples/V1/AutoscalingPolicyServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -467,6 +479,8 @@ final class AutoscalingPolicyServiceClient
      *
      * The async variant is {@see AutoscalingPolicyServiceClient::setIamPolicyAsync()}
      * .
+     *
+     * @example samples/V1/AutoscalingPolicyServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -498,6 +512,8 @@ final class AutoscalingPolicyServiceClient
      *
      * The async variant is
      * {@see AutoscalingPolicyServiceClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/AutoscalingPolicyServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

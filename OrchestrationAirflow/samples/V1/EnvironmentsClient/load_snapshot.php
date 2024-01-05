@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START composer_v1_generated_Environments_LoadSnapshot_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Orchestration\Airflow\Service\V1\EnvironmentsClient;
+use Google\Cloud\Orchestration\Airflow\Service\V1\Client\EnvironmentsClient;
+use Google\Cloud\Orchestration\Airflow\Service\V1\LoadSnapshotRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\LoadSnapshotResponse;
 use Google\Rpc\Status;
 
@@ -46,10 +47,13 @@ function load_snapshot_sample(): void
     // Create a client.
     $environmentsClient = new EnvironmentsClient();
 
+    // Prepare the request message.
+    $request = new LoadSnapshotRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $environmentsClient->loadSnapshot();
+        $response = $environmentsClient->loadSnapshot($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

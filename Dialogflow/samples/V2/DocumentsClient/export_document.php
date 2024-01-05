@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_Documents_ExportDocument_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Dialogflow\V2\Client\DocumentsClient;
 use Google\Cloud\Dialogflow\V2\Document;
-use Google\Cloud\Dialogflow\V2\DocumentsClient;
+use Google\Cloud\Dialogflow\V2\ExportDocumentRequest;
 use Google\Rpc\Status;
 
 /**
@@ -51,10 +52,14 @@ function export_document_sample(string $formattedName): void
     // Create a client.
     $documentsClient = new DocumentsClient();
 
+    // Prepare the request message.
+    $request = (new ExportDocumentRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $documentsClient->exportDocument($formattedName);
+        $response = $documentsClient->exportDocument($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

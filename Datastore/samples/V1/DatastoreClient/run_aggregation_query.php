@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datastore_v1_generated_Datastore_RunAggregationQuery_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Datastore\V1\DatastoreClient;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient;
+use Google\Cloud\Datastore\V1\RunAggregationQueryRequest;
 use Google\Cloud\Datastore\V1\RunAggregationQueryResponse;
 
 /**
@@ -37,10 +38,14 @@ function run_aggregation_query_sample(string $projectId): void
     // Create a client.
     $datastoreClient = new DatastoreClient();
 
+    // Prepare the request message.
+    $request = (new RunAggregationQueryRequest())
+        ->setProjectId($projectId);
+
     // Call the API and handle any network failures.
     try {
         /** @var RunAggregationQueryResponse $response */
-        $response = $datastoreClient->runAggregationQuery($projectId);
+        $response = $datastoreClient->runAggregationQuery($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

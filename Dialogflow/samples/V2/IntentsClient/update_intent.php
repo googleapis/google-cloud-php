@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_Intents_UpdateIntent_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\V2\Client\IntentsClient;
 use Google\Cloud\Dialogflow\V2\Intent;
-use Google\Cloud\Dialogflow\V2\IntentsClient;
+use Google\Cloud\Dialogflow\V2\UpdateIntentRequest;
 
 /**
  * Updates the specified intent.
@@ -41,14 +42,16 @@ function update_intent_sample(string $intentDisplayName): void
     // Create a client.
     $intentsClient = new IntentsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $intent = (new Intent())
         ->setDisplayName($intentDisplayName);
+    $request = (new UpdateIntentRequest())
+        ->setIntent($intent);
 
     // Call the API and handle any network failures.
     try {
         /** @var Intent $response */
-        $response = $intentsClient->updateIntent($intent);
+        $response = $intentsClient->updateIntent($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

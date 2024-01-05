@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START redis_v1_generated_CloudRedis_ListInstances_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Redis\V1\CloudRedisClient;
+use Google\Cloud\Redis\V1\Client\CloudRedisClient;
 use Google\Cloud\Redis\V1\Instance;
+use Google\Cloud\Redis\V1\ListInstancesRequest;
 
 /**
  * Lists all Redis instances owned by a project in either the specified
@@ -49,10 +50,14 @@ function list_instances_sample(string $formattedParent): void
     // Create a client.
     $cloudRedisClient = new CloudRedisClient();
 
+    // Prepare the request message.
+    $request = (new ListInstancesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudRedisClient->listInstances($formattedParent);
+        $response = $cloudRedisClient->listInstances($request);
 
         /** @var Instance $element */
         foreach ($response as $element) {

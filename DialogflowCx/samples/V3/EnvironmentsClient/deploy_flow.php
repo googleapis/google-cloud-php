@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_Environments_DeployFlow_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Dialogflow\Cx\V3\Client\EnvironmentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\DeployFlowRequest;
 use Google\Cloud\Dialogflow\Cx\V3\DeployFlowResponse;
-use Google\Cloud\Dialogflow\Cx\V3\EnvironmentsClient;
 use Google\Rpc\Status;
 
 /**
@@ -56,10 +57,15 @@ function deploy_flow_sample(string $formattedEnvironment, string $formattedFlowV
     // Create a client.
     $environmentsClient = new EnvironmentsClient();
 
+    // Prepare the request message.
+    $request = (new DeployFlowRequest())
+        ->setEnvironment($formattedEnvironment)
+        ->setFlowVersion($formattedFlowVersion);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $environmentsClient->deployFlow($formattedEnvironment, $formattedFlowVersion);
+        $response = $environmentsClient->deployFlow($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

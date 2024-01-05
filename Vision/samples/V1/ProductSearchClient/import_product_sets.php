@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vision_v1_generated_ProductSearch_ImportProductSets_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Vision\V1\Client\ProductSearchClient;
 use Google\Cloud\Vision\V1\ImportProductSetsInputConfig;
+use Google\Cloud\Vision\V1\ImportProductSetsRequest;
 use Google\Cloud\Vision\V1\ImportProductSetsResponse;
-use Google\Cloud\Vision\V1\ProductSearchClient;
 use Google\Rpc\Status;
 
 /**
@@ -53,13 +54,16 @@ function import_product_sets_sample(string $formattedParent): void
     // Create a client.
     $productSearchClient = new ProductSearchClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $inputConfig = new ImportProductSetsInputConfig();
+    $request = (new ImportProductSetsRequest())
+        ->setParent($formattedParent)
+        ->setInputConfig($inputConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $productSearchClient->importProductSets($formattedParent, $inputConfig);
+        $response = $productSearchClient->importProductSets($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

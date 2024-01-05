@@ -221,6 +221,8 @@ final class EventServiceClient
      *
      * The async variant is {@see EventServiceClient::createClientEventAsync()} .
      *
+     * @example samples/V4/EventServiceClient/create_client_event.php
+     *
      * @param CreateClientEventRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.

@@ -285,6 +285,8 @@ final class BigQueryWriteClient
      * finalized (via the `FinalizeWriteStream` rpc), and the stream is explicitly
      * committed via the `BatchCommitWriteStreams` rpc.
      *
+     * @example samples/V1/BigQueryWriteClient/append_rows.php
+     *
      * @param array $callOptions {
      *     Optional.
      *
@@ -311,6 +313,8 @@ final class BigQueryWriteClient
      *
      * The async variant is {@see BigQueryWriteClient::batchCommitWriteStreamsAsync()}
      * .
+     *
+     * @example samples/V1/BigQueryWriteClient/batch_commit_write_streams.php
      *
      * @param BatchCommitWriteStreamsRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -341,6 +345,8 @@ final class BigQueryWriteClient
      *
      * The async variant is {@see BigQueryWriteClient::createWriteStreamAsync()} .
      *
+     * @example samples/V1/BigQueryWriteClient/create_write_stream.php
+     *
      * @param CreateWriteStreamRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -365,6 +371,8 @@ final class BigQueryWriteClient
      * stream. Finalize is not supported on the '_default' stream.
      *
      * The async variant is {@see BigQueryWriteClient::finalizeWriteStreamAsync()} .
+     *
+     * @example samples/V1/BigQueryWriteClient/finalize_write_stream.php
      *
      * @param FinalizeWriteStreamRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -397,6 +405,8 @@ final class BigQueryWriteClient
      *
      * The async variant is {@see BigQueryWriteClient::flushRowsAsync()} .
      *
+     * @example samples/V1/BigQueryWriteClient/flush_rows.php
+     *
      * @param FlushRowsRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -420,6 +430,8 @@ final class BigQueryWriteClient
      * Gets information about a write stream.
      *
      * The async variant is {@see BigQueryWriteClient::getWriteStreamAsync()} .
+     *
+     * @example samples/V1/BigQueryWriteClient/get_write_stream.php
      *
      * @param GetWriteStreamRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

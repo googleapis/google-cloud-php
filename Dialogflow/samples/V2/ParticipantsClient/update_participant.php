@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_Participants_UpdateParticipant_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\V2\Client\ParticipantsClient;
 use Google\Cloud\Dialogflow\V2\Participant;
-use Google\Cloud\Dialogflow\V2\ParticipantsClient;
+use Google\Cloud\Dialogflow\V2\UpdateParticipantRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -42,14 +43,17 @@ function update_participant_sample(): void
     // Create a client.
     $participantsClient = new ParticipantsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $participant = new Participant();
     $updateMask = new FieldMask();
+    $request = (new UpdateParticipantRequest())
+        ->setParticipant($participant)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var Participant $response */
-        $response = $participantsClient->updateParticipant($participant, $updateMask);
+        $response = $participantsClient->updateParticipant($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

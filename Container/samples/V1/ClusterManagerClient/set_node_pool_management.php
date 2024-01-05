@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START container_v1_generated_ClusterManager_SetNodePoolManagement_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Container\V1\ClusterManagerClient;
+use Google\Cloud\Container\V1\Client\ClusterManagerClient;
 use Google\Cloud\Container\V1\NodeManagement;
 use Google\Cloud\Container\V1\Operation;
+use Google\Cloud\Container\V1\SetNodePoolManagementRequest;
 
 /**
  * Sets the NodeManagement options for a node pool.
@@ -42,13 +43,15 @@ function set_node_pool_management_sample(): void
     // Create a client.
     $clusterManagerClient = new ClusterManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $management = new NodeManagement();
+    $request = (new SetNodePoolManagementRequest())
+        ->setManagement($management);
 
     // Call the API and handle any network failures.
     try {
         /** @var Operation $response */
-        $response = $clusterManagerClient->setNodePoolManagement($management);
+        $response = $clusterManagerClient->setNodePoolManagement($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

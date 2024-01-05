@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START managedidentities_v1_generated_ManagedIdentitiesService_GetDomain_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\ManagedIdentities\V1\Client\ManagedIdentitiesServiceClient;
 use Google\Cloud\ManagedIdentities\V1\Domain;
-use Google\Cloud\ManagedIdentities\V1\ManagedIdentitiesServiceClient;
+use Google\Cloud\ManagedIdentities\V1\GetDomainRequest;
 
 /**
  * Gets information about a domain.
@@ -39,10 +40,14 @@ function get_domain_sample(string $formattedName): void
     // Create a client.
     $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetDomainRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Domain $response */
-        $response = $managedIdentitiesServiceClient->getDomain($formattedName);
+        $response = $managedIdentitiesServiceClient->getDomain($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

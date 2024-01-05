@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment;
-use Google\Cloud\BigQuery\Reservation\V1\ReservationServiceClient;
+use Google\Cloud\BigQuery\Reservation\V1\Client\ReservationServiceClient;
+use Google\Cloud\BigQuery\Reservation\V1\ListCapacityCommitmentsRequest;
 
 /**
  * Lists all the capacity commitments for the admin project.
@@ -40,10 +41,14 @@ function list_capacity_commitments_sample(string $formattedParent): void
     // Create a client.
     $reservationServiceClient = new ReservationServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListCapacityCommitmentsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $reservationServiceClient->listCapacityCommitments($formattedParent);
+        $response = $reservationServiceClient->listCapacityCommitments($request);
 
         /** @var CapacityCommitment $element */
         foreach ($response as $element) {

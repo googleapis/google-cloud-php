@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START appengine_v1_generated_DomainMappings_ListDomainMappings_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\AppEngine\V1\Client\DomainMappingsClient;
 use Google\Cloud\AppEngine\V1\DomainMapping;
-use Google\Cloud\AppEngine\V1\DomainMappingsClient;
+use Google\Cloud\AppEngine\V1\ListDomainMappingsRequest;
 
 /**
  * Lists the domain mappings on an application.
@@ -42,10 +43,13 @@ function list_domain_mappings_sample(): void
     // Create a client.
     $domainMappingsClient = new DomainMappingsClient();
 
+    // Prepare the request message.
+    $request = new ListDomainMappingsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $domainMappingsClient->listDomainMappings();
+        $response = $domainMappingsClient->listDomainMappings($request);
 
         /** @var DomainMapping $element */
         foreach ($response as $element) {

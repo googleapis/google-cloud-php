@@ -36,6 +36,24 @@ class GetBreakpointRequest extends \Google\Protobuf\Internal\Message
     private $client_version = '';
 
     /**
+     * @param string $debuggeeId    Required. ID of the debuggee whose breakpoint to get.
+     * @param string $breakpointId  Required. ID of the breakpoint to get.
+     * @param string $clientVersion Required. The client version making the call.
+     *                              Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     *
+     * @return \Google\Cloud\Debugger\V2\GetBreakpointRequest
+     *
+     * @experimental
+     */
+    public static function build(string $debuggeeId, string $breakpointId, string $clientVersion): self
+    {
+        return (new self())
+            ->setDebuggeeId($debuggeeId)
+            ->setBreakpointId($breakpointId)
+            ->setClientVersion($clientVersion);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

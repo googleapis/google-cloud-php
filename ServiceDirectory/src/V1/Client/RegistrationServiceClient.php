@@ -356,6 +356,8 @@ final class RegistrationServiceClient
      *
      * The async variant is {@see RegistrationServiceClient::createEndpointAsync()} .
      *
+     * @example samples/V1/RegistrationServiceClient/create_endpoint.php
+     *
      * @param CreateEndpointRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -379,6 +381,8 @@ final class RegistrationServiceClient
      * Creates a namespace, and returns the new namespace.
      *
      * The async variant is {@see RegistrationServiceClient::createNamespaceAsync()} .
+     *
+     * @example samples/V1/RegistrationServiceClient/create_namespace.php
      *
      * @param CreateNamespaceRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -404,6 +408,8 @@ final class RegistrationServiceClient
      *
      * The async variant is {@see RegistrationServiceClient::createServiceAsync()} .
      *
+     * @example samples/V1/RegistrationServiceClient/create_service.php
+     *
      * @param CreateServiceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -428,6 +434,8 @@ final class RegistrationServiceClient
      *
      * The async variant is {@see RegistrationServiceClient::deleteEndpointAsync()} .
      *
+     * @example samples/V1/RegistrationServiceClient/delete_endpoint.php
+     *
      * @param DeleteEndpointRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -450,6 +458,8 @@ final class RegistrationServiceClient
      * the namespace.
      *
      * The async variant is {@see RegistrationServiceClient::deleteNamespaceAsync()} .
+     *
+     * @example samples/V1/RegistrationServiceClient/delete_namespace.php
      *
      * @param DeleteNamespaceRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -474,6 +484,8 @@ final class RegistrationServiceClient
      *
      * The async variant is {@see RegistrationServiceClient::deleteServiceAsync()} .
      *
+     * @example samples/V1/RegistrationServiceClient/delete_service.php
+     *
      * @param DeleteServiceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -495,6 +507,8 @@ final class RegistrationServiceClient
      * Gets an endpoint.
      *
      * The async variant is {@see RegistrationServiceClient::getEndpointAsync()} .
+     *
+     * @example samples/V1/RegistrationServiceClient/get_endpoint.php
      *
      * @param GetEndpointRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -520,6 +534,8 @@ final class RegistrationServiceClient
      *
      * The async variant is {@see RegistrationServiceClient::getIamPolicyAsync()} .
      *
+     * @example samples/V1/RegistrationServiceClient/get_iam_policy.php
+     *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -543,6 +559,8 @@ final class RegistrationServiceClient
      * Gets a namespace.
      *
      * The async variant is {@see RegistrationServiceClient::getNamespaceAsync()} .
+     *
+     * @example samples/V1/RegistrationServiceClient/get_namespace.php
      *
      * @param GetNamespaceRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -568,6 +586,8 @@ final class RegistrationServiceClient
      *
      * The async variant is {@see RegistrationServiceClient::getServiceAsync()} .
      *
+     * @example samples/V1/RegistrationServiceClient/get_service.php
+     *
      * @param GetServiceRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -591,6 +611,8 @@ final class RegistrationServiceClient
      * Lists all endpoints.
      *
      * The async variant is {@see RegistrationServiceClient::listEndpointsAsync()} .
+     *
+     * @example samples/V1/RegistrationServiceClient/list_endpoints.php
      *
      * @param ListEndpointsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -616,6 +638,8 @@ final class RegistrationServiceClient
      *
      * The async variant is {@see RegistrationServiceClient::listNamespacesAsync()} .
      *
+     * @example samples/V1/RegistrationServiceClient/list_namespaces.php
+     *
      * @param ListNamespacesRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -640,6 +664,8 @@ final class RegistrationServiceClient
      *
      * The async variant is {@see RegistrationServiceClient::listServicesAsync()} .
      *
+     * @example samples/V1/RegistrationServiceClient/list_services.php
+     *
      * @param ListServicesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -663,6 +689,8 @@ final class RegistrationServiceClient
      * Sets the IAM Policy for a resource (namespace or service only).
      *
      * The async variant is {@see RegistrationServiceClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/RegistrationServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -689,6 +717,8 @@ final class RegistrationServiceClient
      * The async variant is {@see RegistrationServiceClient::testIamPermissionsAsync()}
      * .
      *
+     * @example samples/V1/RegistrationServiceClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -712,6 +742,8 @@ final class RegistrationServiceClient
      * Updates an endpoint.
      *
      * The async variant is {@see RegistrationServiceClient::updateEndpointAsync()} .
+     *
+     * @example samples/V1/RegistrationServiceClient/update_endpoint.php
      *
      * @param UpdateEndpointRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -737,6 +769,8 @@ final class RegistrationServiceClient
      *
      * The async variant is {@see RegistrationServiceClient::updateNamespaceAsync()} .
      *
+     * @example samples/V1/RegistrationServiceClient/update_namespace.php
+     *
      * @param UpdateNamespaceRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -760,6 +794,8 @@ final class RegistrationServiceClient
      * Updates a service.
      *
      * The async variant is {@see RegistrationServiceClient::updateServiceAsync()} .
+     *
+     * @example samples/V1/RegistrationServiceClient/update_service.php
      *
      * @param UpdateServiceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -785,6 +821,8 @@ final class RegistrationServiceClient
      *
      * The async variant is {@see RegistrationServiceClient::getLocationAsync()} .
      *
+     * @example samples/V1/RegistrationServiceClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -808,6 +846,8 @@ final class RegistrationServiceClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see RegistrationServiceClient::listLocationsAsync()} .
+     *
+     * @example samples/V1/RegistrationServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

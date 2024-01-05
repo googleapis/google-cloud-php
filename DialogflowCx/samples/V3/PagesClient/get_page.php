@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_Pages_GetPage_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\Cx\V3\Client\PagesClient;
+use Google\Cloud\Dialogflow\Cx\V3\GetPageRequest;
 use Google\Cloud\Dialogflow\Cx\V3\Page;
-use Google\Cloud\Dialogflow\Cx\V3\PagesClient;
 
 /**
  * Retrieves the specified page.
@@ -40,10 +41,14 @@ function get_page_sample(string $formattedName): void
     // Create a client.
     $pagesClient = new PagesClient();
 
+    // Prepare the request message.
+    $request = (new GetPageRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Page $response */
-        $response = $pagesClient->getPage($formattedName);
+        $response = $pagesClient->getPage($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

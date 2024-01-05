@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vpcaccess_v1_generated_VpcAccessService_DeleteConnector_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\VpcAccess\V1\VpcAccessServiceClient;
+use Google\Cloud\VpcAccess\V1\Client\VpcAccessServiceClient;
+use Google\Cloud\VpcAccess\V1\DeleteConnectorRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,14 @@ function delete_connector_sample(string $formattedName): void
     // Create a client.
     $vpcAccessServiceClient = new VpcAccessServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteConnectorRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $vpcAccessServiceClient->deleteConnector($formattedName);
+        $response = $vpcAccessServiceClient->deleteConnector($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START pubsub_v1_generated_Publisher_UpdateTopic_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\PubSub\V1\PublisherClient;
+use Google\Cloud\PubSub\V1\Client\PublisherClient;
 use Google\Cloud\PubSub\V1\Topic;
+use Google\Cloud\PubSub\V1\UpdateTopicRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -44,15 +45,18 @@ function update_topic_sample(string $topicName): void
     // Create a client.
     $publisherClient = new PublisherClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $topic = (new Topic())
         ->setName($topicName);
     $updateMask = new FieldMask();
+    $request = (new UpdateTopicRequest())
+        ->setTopic($topic)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var Topic $response */
-        $response = $publisherClient->updateTopic($topic, $updateMask);
+        $response = $publisherClient->updateTopic($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datamigration_v1_generated_DataMigrationService_UpdateConnectionProfile_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\CloudDms\V1\Client\DataMigrationServiceClient;
 use Google\Cloud\CloudDms\V1\ConnectionProfile;
-use Google\Cloud\CloudDms\V1\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\UpdateConnectionProfileRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -44,14 +45,17 @@ function update_connection_profile_sample(): void
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $connectionProfile = new ConnectionProfile();
+    $request = (new UpdateConnectionProfileRequest())
+        ->setUpdateMask($updateMask)
+        ->setConnectionProfile($connectionProfile);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataMigrationServiceClient->updateConnectionProfile($updateMask, $connectionProfile);
+        $response = $dataMigrationServiceClient->updateConnectionProfile($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

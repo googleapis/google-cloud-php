@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudkms_v1_generated_KeyManagementService_ListKeyRings_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Kms\V1\KeyManagementServiceClient;
+use Google\Cloud\Kms\V1\Client\KeyManagementServiceClient;
 use Google\Cloud\Kms\V1\KeyRing;
+use Google\Cloud\Kms\V1\ListKeyRingsRequest;
 
 /**
  * Lists [KeyRings][google.cloud.kms.v1.KeyRing].
@@ -41,10 +42,14 @@ function list_key_rings_sample(string $formattedParent): void
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListKeyRingsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $keyManagementServiceClient->listKeyRings($formattedParent);
+        $response = $keyManagementServiceClient->listKeyRings($request);
 
         /** @var KeyRing $element */
         foreach ($response as $element) {

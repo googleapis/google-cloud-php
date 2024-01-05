@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START monitoring_v3_generated_UptimeCheckService_ListUptimeCheckConfigs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Monitoring\V3\Client\UptimeCheckServiceClient;
+use Google\Cloud\Monitoring\V3\ListUptimeCheckConfigsRequest;
 use Google\Cloud\Monitoring\V3\UptimeCheckConfig;
-use Google\Cloud\Monitoring\V3\UptimeCheckServiceClient;
 
 /**
  * Lists the existing valid Uptime check configurations for the project
@@ -43,10 +44,14 @@ function list_uptime_check_configs_sample(string $parent): void
     // Create a client.
     $uptimeCheckServiceClient = new UptimeCheckServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListUptimeCheckConfigsRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $uptimeCheckServiceClient->listUptimeCheckConfigs($parent);
+        $response = $uptimeCheckServiceClient->listUptimeCheckConfigs($request);
 
         /** @var UptimeCheckConfig $element */
         foreach ($response as $element) {

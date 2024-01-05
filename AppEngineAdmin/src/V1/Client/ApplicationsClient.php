@@ -215,6 +215,8 @@ final class ApplicationsClient
      *
      * The async variant is {@see ApplicationsClient::createApplicationAsync()} .
      *
+     * @example samples/V1/ApplicationsClient/create_application.php
+     *
      * @param CreateApplicationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -238,6 +240,8 @@ final class ApplicationsClient
      * Gets information about an application.
      *
      * The async variant is {@see ApplicationsClient::getApplicationAsync()} .
+     *
+     * @example samples/V1/ApplicationsClient/get_application.php
      *
      * @param GetApplicationRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -272,6 +276,8 @@ final class ApplicationsClient
      *
      * The async variant is {@see ApplicationsClient::repairApplicationAsync()} .
      *
+     * @example samples/V1/ApplicationsClient/repair_application.php
+     *
      * @param RepairApplicationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -300,6 +306,8 @@ final class ApplicationsClient
      * * `iap` - Identity-Aware Proxy properties for the application.
      *
      * The async variant is {@see ApplicationsClient::updateApplicationAsync()} .
+     *
+     * @example samples/V1/ApplicationsClient/update_application.php
      *
      * @param UpdateApplicationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {

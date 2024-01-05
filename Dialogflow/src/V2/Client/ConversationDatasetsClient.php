@@ -301,6 +301,8 @@ final class ConversationDatasetsClient
      * The async variant is
      * {@see ConversationDatasetsClient::createConversationDatasetAsync()} .
      *
+     * @example samples/V2/ConversationDatasetsClient/create_conversation_dataset.php
+     *
      * @param CreateConversationDatasetRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -335,6 +337,8 @@ final class ConversationDatasetsClient
      * The async variant is
      * {@see ConversationDatasetsClient::deleteConversationDatasetAsync()} .
      *
+     * @example samples/V2/ConversationDatasetsClient/delete_conversation_dataset.php
+     *
      * @param DeleteConversationDatasetRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -359,6 +363,8 @@ final class ConversationDatasetsClient
      *
      * The async variant is
      * {@see ConversationDatasetsClient::getConversationDatasetAsync()} .
+     *
+     * @example samples/V2/ConversationDatasetsClient/get_conversation_dataset.php
      *
      * @param GetConversationDatasetRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -396,6 +402,8 @@ final class ConversationDatasetsClient
      * The async variant is
      * {@see ConversationDatasetsClient::importConversationDataAsync()} .
      *
+     * @example samples/V2/ConversationDatasetsClient/import_conversation_data.php
+     *
      * @param ImportConversationDataRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -422,6 +430,8 @@ final class ConversationDatasetsClient
      * The async variant is
      * {@see ConversationDatasetsClient::listConversationDatasetsAsync()} .
      *
+     * @example samples/V2/ConversationDatasetsClient/list_conversation_datasets.php
+     *
      * @param ListConversationDatasetsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -446,6 +456,8 @@ final class ConversationDatasetsClient
      *
      * The async variant is {@see ConversationDatasetsClient::getLocationAsync()} .
      *
+     * @example samples/V2/ConversationDatasetsClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -469,6 +481,8 @@ final class ConversationDatasetsClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see ConversationDatasetsClient::listLocationsAsync()} .
+     *
+     * @example samples/V2/ConversationDatasetsClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

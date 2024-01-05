@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START pubsub_v1_generated_Publisher_Publish_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\PubSub\V1\Client\PublisherClient;
+use Google\Cloud\PubSub\V1\PublishRequest;
 use Google\Cloud\PubSub\V1\PublishResponse;
-use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\Cloud\PubSub\V1\PubsubMessage;
 
 /**
@@ -41,13 +42,16 @@ function publish_sample(string $formattedTopic): void
     // Create a client.
     $publisherClient = new PublisherClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $messages = [new PubsubMessage()];
+    $request = (new PublishRequest())
+        ->setTopic($formattedTopic)
+        ->setMessages($messages);
 
     // Call the API and handle any network failures.
     try {
         /** @var PublishResponse $response */
-        $response = $publisherClient->publish($formattedTopic, $messages);
+        $response = $publisherClient->publish($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

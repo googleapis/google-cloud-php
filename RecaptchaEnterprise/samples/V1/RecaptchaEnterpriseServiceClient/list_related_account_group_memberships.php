@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_ListRelatedAccountGroupMemberships_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
+use Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient;
+use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupMembershipsRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\RelatedAccountGroupMembership;
 
 /**
@@ -40,10 +41,14 @@ function list_related_account_group_memberships_sample(string $formattedParent):
     // Create a client.
     $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListRelatedAccountGroupMembershipsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $recaptchaEnterpriseServiceClient->listRelatedAccountGroupMemberships($formattedParent);
+        $response = $recaptchaEnterpriseServiceClient->listRelatedAccountGroupMemberships($request);
 
         /** @var RelatedAccountGroupMembership $element */
         foreach ($response as $element) {

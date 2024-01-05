@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_Documents_GetDocument_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\V2\Client\DocumentsClient;
 use Google\Cloud\Dialogflow\V2\Document;
-use Google\Cloud\Dialogflow\V2\DocumentsClient;
+use Google\Cloud\Dialogflow\V2\GetDocumentRequest;
 
 /**
  * Retrieves the specified document.
@@ -40,10 +41,14 @@ function get_document_sample(string $formattedName): void
     // Create a client.
     $documentsClient = new DocumentsClient();
 
+    // Prepare the request message.
+    $request = (new GetDocumentRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Document $response */
-        $response = $documentsClient->getDocument($formattedName);
+        $response = $documentsClient->getDocument($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
