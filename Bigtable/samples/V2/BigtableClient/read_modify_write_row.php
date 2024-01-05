@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START bigtable_v2_generated_Bigtable_ReadModifyWriteRow_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Bigtable\V2\BigtableClient;
+use Google\Cloud\Bigtable\V2\Client\BigtableClient;
+use Google\Cloud\Bigtable\V2\ReadModifyWriteRowRequest;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowResponse;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRule;
 
@@ -47,13 +48,17 @@ function read_modify_write_row_sample(string $formattedTableName, string $rowKey
     // Create a client.
     $bigtableClient = new BigtableClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $rules = [new ReadModifyWriteRule()];
+    $request = (new ReadModifyWriteRowRequest())
+        ->setTableName($formattedTableName)
+        ->setRowKey($rowKey)
+        ->setRules($rules);
 
     // Call the API and handle any network failures.
     try {
         /** @var ReadModifyWriteRowResponse $response */
-        $response = $bigtableClient->readModifyWriteRow($formattedTableName, $rowKey, $rules);
+        $response = $bigtableClient->readModifyWriteRow($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

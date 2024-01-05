@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_KnowledgeBases_ListKnowledgeBases_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dialogflow\V2\Client\KnowledgeBasesClient;
 use Google\Cloud\Dialogflow\V2\KnowledgeBase;
-use Google\Cloud\Dialogflow\V2\KnowledgeBasesClient;
+use Google\Cloud\Dialogflow\V2\ListKnowledgeBasesRequest;
 
 /**
  * Returns the list of all knowledge bases of the specified agent.
@@ -40,10 +41,14 @@ function list_knowledge_bases_sample(string $formattedParent): void
     // Create a client.
     $knowledgeBasesClient = new KnowledgeBasesClient();
 
+    // Prepare the request message.
+    $request = (new ListKnowledgeBasesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $knowledgeBasesClient->listKnowledgeBases($formattedParent);
+        $response = $knowledgeBasesClient->listKnowledgeBases($request);
 
         /** @var KnowledgeBase $element */
         foreach ($response as $element) {

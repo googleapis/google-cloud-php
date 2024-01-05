@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START container_v1_generated_ClusterManager_GetJSONWebKeys_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Container\V1\ClusterManagerClient;
+use Google\Cloud\Container\V1\Client\ClusterManagerClient;
+use Google\Cloud\Container\V1\GetJSONWebKeysRequest;
 use Google\Cloud\Container\V1\GetJSONWebKeysResponse;
 
 /**
@@ -44,10 +45,13 @@ function get_json_web_keys_sample(): void
     // Create a client.
     $clusterManagerClient = new ClusterManagerClient();
 
+    // Prepare the request message.
+    $request = new GetJSONWebKeysRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var GetJSONWebKeysResponse $response */
-        $response = $clusterManagerClient->getJSONWebKeys();
+        $response = $clusterManagerClient->getJSONWebKeys($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

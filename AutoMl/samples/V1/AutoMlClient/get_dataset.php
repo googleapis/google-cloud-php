@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START automl_v1_generated_AutoMl_GetDataset_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AutoMl\V1\AutoMlClient;
+use Google\Cloud\AutoMl\V1\Client\AutoMlClient;
 use Google\Cloud\AutoMl\V1\Dataset;
+use Google\Cloud\AutoMl\V1\GetDatasetRequest;
 
 /**
  * Gets a dataset.
@@ -38,10 +39,14 @@ function get_dataset_sample(string $formattedName): void
     // Create a client.
     $autoMlClient = new AutoMlClient();
 
+    // Prepare the request message.
+    $request = (new GetDatasetRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Dataset $response */
-        $response = $autoMlClient->getDataset($formattedName);
+        $response = $autoMlClient->getDataset($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

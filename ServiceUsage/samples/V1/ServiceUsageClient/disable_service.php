@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START serviceusage_v1_generated_ServiceUsage_DisableService_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\ServiceUsage\V1\Client\ServiceUsageClient;
+use Google\Cloud\ServiceUsage\V1\DisableServiceRequest;
 use Google\Cloud\ServiceUsage\V1\DisableServiceResponse;
-use Google\Cloud\ServiceUsage\V1\ServiceUsageClient;
 use Google\Rpc\Status;
 
 /**
@@ -49,10 +50,13 @@ function disable_service_sample(): void
     // Create a client.
     $serviceUsageClient = new ServiceUsageClient();
 
+    // Prepare the request message.
+    $request = new DisableServiceRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $serviceUsageClient->disableService();
+        $response = $serviceUsageClient->disableService($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Billing\V1\BillingAccount;
-use Google\Cloud\Billing\V1\CloudBillingClient;
+use Google\Cloud\Billing\V1\Client\CloudBillingClient;
+use Google\Cloud\Billing\V1\ListBillingAccountsRequest;
 
 /**
  * Lists the billing accounts that the current authenticated user has
@@ -44,10 +45,13 @@ function list_billing_accounts_sample(): void
     // Create a client.
     $cloudBillingClient = new CloudBillingClient();
 
+    // Prepare the request message.
+    $request = new ListBillingAccountsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudBillingClient->listBillingAccounts();
+        $response = $cloudBillingClient->listBillingAccounts($request);
 
         /** @var BillingAccount $element */
         foreach ($response as $element) {

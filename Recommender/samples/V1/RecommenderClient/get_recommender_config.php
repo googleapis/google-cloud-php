@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START recommender_v1_generated_Recommender_GetRecommenderConfig_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Recommender\V1\RecommenderClient;
+use Google\Cloud\Recommender\V1\Client\RecommenderClient;
+use Google\Cloud\Recommender\V1\GetRecommenderConfigRequest;
 use Google\Cloud\Recommender\V1\RecommenderConfig;
 
 /**
@@ -49,10 +50,14 @@ function get_recommender_config_sample(string $formattedName): void
     // Create a client.
     $recommenderClient = new RecommenderClient();
 
+    // Prepare the request message.
+    $request = (new GetRecommenderConfigRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var RecommenderConfig $response */
-        $response = $recommenderClient->getRecommenderConfig($formattedName);
+        $response = $recommenderClient->getRecommenderConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

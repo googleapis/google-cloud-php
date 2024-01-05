@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudchannel_v1_generated_CloudChannelReportsService_FetchReportResults_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Channel\V1\CloudChannelReportsServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelReportsServiceClient;
+use Google\Cloud\Channel\V1\FetchReportResultsRequest;
 use Google\Cloud\Channel\V1\Row;
 
 /**
@@ -47,10 +48,14 @@ function fetch_report_results_sample(string $formattedReportJob): void
     // Create a client.
     $cloudChannelReportsServiceClient = new CloudChannelReportsServiceClient();
 
+    // Prepare the request message.
+    $request = (new FetchReportResultsRequest())
+        ->setReportJob($formattedReportJob);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudChannelReportsServiceClient->fetchReportResults($formattedReportJob);
+        $response = $cloudChannelReportsServiceClient->fetchReportResults($request);
 
         /** @var Row $element */
         foreach ($response as $element) {

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START memcache_v1_generated_CloudMemcache_ApplyParameters_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Memcache\V1\CloudMemcacheClient;
+use Google\Cloud\Memcache\V1\ApplyParametersRequest;
+use Google\Cloud\Memcache\V1\Client\CloudMemcacheClient;
 use Google\Cloud\Memcache\V1\Instance;
 use Google\Rpc\Status;
 
@@ -42,10 +43,14 @@ function apply_parameters_sample(string $formattedName): void
     // Create a client.
     $cloudMemcacheClient = new CloudMemcacheClient();
 
+    // Prepare the request message.
+    $request = (new ApplyParametersRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudMemcacheClient->applyParameters($formattedName);
+        $response = $cloudMemcacheClient->applyParameters($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

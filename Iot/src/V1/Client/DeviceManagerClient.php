@@ -303,6 +303,8 @@ final class DeviceManagerClient
      *
      * The async variant is {@see DeviceManagerClient::bindDeviceToGatewayAsync()} .
      *
+     * @example samples/V1/DeviceManagerClient/bind_device_to_gateway.php
+     *
      * @param BindDeviceToGatewayRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -326,6 +328,8 @@ final class DeviceManagerClient
      * Creates a device in a device registry.
      *
      * The async variant is {@see DeviceManagerClient::createDeviceAsync()} .
+     *
+     * @example samples/V1/DeviceManagerClient/create_device.php
      *
      * @param CreateDeviceRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -351,6 +355,8 @@ final class DeviceManagerClient
      *
      * The async variant is {@see DeviceManagerClient::createDeviceRegistryAsync()} .
      *
+     * @example samples/V1/DeviceManagerClient/create_device_registry.php
+     *
      * @param CreateDeviceRegistryRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -375,6 +381,8 @@ final class DeviceManagerClient
      *
      * The async variant is {@see DeviceManagerClient::deleteDeviceAsync()} .
      *
+     * @example samples/V1/DeviceManagerClient/delete_device.php
+     *
      * @param DeleteDeviceRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -397,6 +405,8 @@ final class DeviceManagerClient
      *
      * The async variant is {@see DeviceManagerClient::deleteDeviceRegistryAsync()} .
      *
+     * @example samples/V1/DeviceManagerClient/delete_device_registry.php
+     *
      * @param DeleteDeviceRegistryRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -418,6 +428,8 @@ final class DeviceManagerClient
      * Gets details about a device.
      *
      * The async variant is {@see DeviceManagerClient::getDeviceAsync()} .
+     *
+     * @example samples/V1/DeviceManagerClient/get_device.php
      *
      * @param GetDeviceRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -442,6 +454,8 @@ final class DeviceManagerClient
      * Gets a device registry configuration.
      *
      * The async variant is {@see DeviceManagerClient::getDeviceRegistryAsync()} .
+     *
+     * @example samples/V1/DeviceManagerClient/get_device_registry.php
      *
      * @param GetDeviceRegistryRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -469,6 +483,8 @@ final class DeviceManagerClient
      *
      * The async variant is {@see DeviceManagerClient::getIamPolicyAsync()} .
      *
+     * @example samples/V1/DeviceManagerClient/get_iam_policy.php
+     *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -495,6 +511,8 @@ final class DeviceManagerClient
      * The async variant is {@see DeviceManagerClient::listDeviceConfigVersionsAsync()}
      * .
      *
+     * @example samples/V1/DeviceManagerClient/list_device_config_versions.php
+     *
      * @param ListDeviceConfigVersionsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -518,6 +536,8 @@ final class DeviceManagerClient
      * Lists device registries.
      *
      * The async variant is {@see DeviceManagerClient::listDeviceRegistriesAsync()} .
+     *
+     * @example samples/V1/DeviceManagerClient/list_device_registries.php
      *
      * @param ListDeviceRegistriesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -544,6 +564,8 @@ final class DeviceManagerClient
      *
      * The async variant is {@see DeviceManagerClient::listDeviceStatesAsync()} .
      *
+     * @example samples/V1/DeviceManagerClient/list_device_states.php
+     *
      * @param ListDeviceStatesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -567,6 +589,8 @@ final class DeviceManagerClient
      * List devices in a device registry.
      *
      * The async variant is {@see DeviceManagerClient::listDevicesAsync()} .
+     *
+     * @example samples/V1/DeviceManagerClient/list_devices.php
      *
      * @param ListDevicesRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -594,6 +618,8 @@ final class DeviceManagerClient
      *
      * The async variant is
      * {@see DeviceManagerClient::modifyCloudToDeviceConfigAsync()} .
+     *
+     * @example samples/V1/DeviceManagerClient/modify_cloud_to_device_config.php
      *
      * @param ModifyCloudToDeviceConfigRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -631,6 +657,8 @@ final class DeviceManagerClient
      *
      * The async variant is {@see DeviceManagerClient::sendCommandToDeviceAsync()} .
      *
+     * @example samples/V1/DeviceManagerClient/send_command_to_device.php
+     *
      * @param SendCommandToDeviceRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -655,6 +683,8 @@ final class DeviceManagerClient
      * existing policy.
      *
      * The async variant is {@see DeviceManagerClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/DeviceManagerClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -682,6 +712,8 @@ final class DeviceManagerClient
      *
      * The async variant is {@see DeviceManagerClient::testIamPermissionsAsync()} .
      *
+     * @example samples/V1/DeviceManagerClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -707,6 +739,8 @@ final class DeviceManagerClient
      * The async variant is {@see DeviceManagerClient::unbindDeviceFromGatewayAsync()}
      * .
      *
+     * @example samples/V1/DeviceManagerClient/unbind_device_from_gateway.php
+     *
      * @param UnbindDeviceFromGatewayRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -731,6 +765,8 @@ final class DeviceManagerClient
      *
      * The async variant is {@see DeviceManagerClient::updateDeviceAsync()} .
      *
+     * @example samples/V1/DeviceManagerClient/update_device.php
+     *
      * @param UpdateDeviceRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -754,6 +790,8 @@ final class DeviceManagerClient
      * Updates a device registry configuration.
      *
      * The async variant is {@see DeviceManagerClient::updateDeviceRegistryAsync()} .
+     *
+     * @example samples/V1/DeviceManagerClient/update_device_registry.php
      *
      * @param UpdateDeviceRegistryRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

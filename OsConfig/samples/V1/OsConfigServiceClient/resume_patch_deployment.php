@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START osconfig_v1_generated_OsConfigService_ResumePatchDeployment_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\OsConfig\V1\OsConfigServiceClient;
+use Google\Cloud\OsConfig\V1\Client\OsConfigServiceClient;
 use Google\Cloud\OsConfig\V1\PatchDeployment;
+use Google\Cloud\OsConfig\V1\ResumePatchDeploymentRequest;
 
 /**
  * Change state of patch deployment back to "ACTIVE".
@@ -40,10 +41,14 @@ function resume_patch_deployment_sample(string $formattedName): void
     // Create a client.
     $osConfigServiceClient = new OsConfigServiceClient();
 
+    // Prepare the request message.
+    $request = (new ResumePatchDeploymentRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var PatchDeployment $response */
-        $response = $osConfigServiceClient->resumePatchDeployment($formattedName);
+        $response = $osConfigServiceClient->resumePatchDeployment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

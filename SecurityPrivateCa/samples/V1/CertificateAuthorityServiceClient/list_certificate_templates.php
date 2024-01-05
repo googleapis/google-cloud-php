@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START privateca_v1_generated_CertificateAuthorityService_ListCertificateTemplates_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
 use Google\Cloud\Security\PrivateCA\V1\CertificateTemplate;
+use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\ListCertificateTemplatesRequest;
 
 /**
  * Lists
@@ -42,10 +43,14 @@ function list_certificate_templates_sample(string $formattedParent): void
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListCertificateTemplatesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $certificateAuthorityServiceClient->listCertificateTemplates($formattedParent);
+        $response = $certificateAuthorityServiceClient->listCertificateTemplates($request);
 
         /** @var CertificateTemplate $element */
         foreach ($response as $element) {

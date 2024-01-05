@@ -547,6 +547,8 @@ final class SessionsClient
      *
      * The async variant is {@see SessionsClient::detectIntentAsync()} .
      *
+     * @example samples/V2/SessionsClient/detect_intent.php
+     *
      * @param DetectIntentRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -582,6 +584,8 @@ final class SessionsClient
      * See [Versions and
      * environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
      *
+     * @example samples/V2/SessionsClient/streaming_detect_intent.php
+     *
      * @param array $callOptions {
      *     Optional.
      *
@@ -602,6 +606,8 @@ final class SessionsClient
      * Gets information about a location.
      *
      * The async variant is {@see SessionsClient::getLocationAsync()} .
+     *
+     * @example samples/V2/SessionsClient/get_location.php
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -626,6 +632,8 @@ final class SessionsClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see SessionsClient::listLocationsAsync()} .
+     *
+     * @example samples/V2/SessionsClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

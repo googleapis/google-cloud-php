@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudiot_v1_generated_DeviceManager_ListDeviceConfigVersions_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Iot\V1\DeviceManagerClient;
+use Google\Cloud\Iot\V1\Client\DeviceManagerClient;
+use Google\Cloud\Iot\V1\ListDeviceConfigVersionsRequest;
 use Google\Cloud\Iot\V1\ListDeviceConfigVersionsResponse;
 
 /**
@@ -41,10 +42,14 @@ function list_device_config_versions_sample(string $formattedName): void
     // Create a client.
     $deviceManagerClient = new DeviceManagerClient();
 
+    // Prepare the request message.
+    $request = (new ListDeviceConfigVersionsRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var ListDeviceConfigVersionsResponse $response */
-        $response = $deviceManagerClient->listDeviceConfigVersions($formattedName);
+        $response = $deviceManagerClient->listDeviceConfigVersions($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

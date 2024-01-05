@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudiot_v1_generated_DeviceManager_ListDeviceStates_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Iot\V1\DeviceManagerClient;
+use Google\Cloud\Iot\V1\Client\DeviceManagerClient;
+use Google\Cloud\Iot\V1\ListDeviceStatesRequest;
 use Google\Cloud\Iot\V1\ListDeviceStatesResponse;
 
 /**
@@ -41,10 +42,14 @@ function list_device_states_sample(string $formattedName): void
     // Create a client.
     $deviceManagerClient = new DeviceManagerClient();
 
+    // Prepare the request message.
+    $request = (new ListDeviceStatesRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var ListDeviceStatesResponse $response */
-        $response = $deviceManagerClient->listDeviceStates($formattedName);
+        $response = $deviceManagerClient->listDeviceStates($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START container_v1_generated_ClusterManager_SetAddonsConfig_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Container\V1\AddonsConfig;
-use Google\Cloud\Container\V1\ClusterManagerClient;
+use Google\Cloud\Container\V1\Client\ClusterManagerClient;
 use Google\Cloud\Container\V1\Operation;
+use Google\Cloud\Container\V1\SetAddonsConfigRequest;
 
 /**
  * Sets the addons for a specific cluster.
@@ -42,13 +43,15 @@ function set_addons_config_sample(): void
     // Create a client.
     $clusterManagerClient = new ClusterManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $addonsConfig = new AddonsConfig();
+    $request = (new SetAddonsConfigRequest())
+        ->setAddonsConfig($addonsConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var Operation $response */
-        $response = $clusterManagerClient->setAddonsConfig($addonsConfig);
+        $response = $clusterManagerClient->setAddonsConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -217,6 +217,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::debugInstanceAsync()} .
      *
+     * @example samples/V1/InstancesClient/debug_instance.php
+     *
      * @param DebugInstanceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -252,6 +254,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::deleteInstanceAsync()} .
      *
+     * @example samples/V1/InstancesClient/delete_instance.php
+     *
      * @param DeleteInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -275,6 +279,8 @@ final class InstancesClient
      * Gets instance information.
      *
      * The async variant is {@see InstancesClient::getInstanceAsync()} .
+     *
+     * @example samples/V1/InstancesClient/get_instance.php
      *
      * @param GetInstanceRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -302,6 +308,8 @@ final class InstancesClient
      * [Stackdriver Monitoring API](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
      *
      * The async variant is {@see InstancesClient::listInstancesAsync()} .
+     *
+     * @example samples/V1/InstancesClient/list_instances.php
      *
      * @param ListInstancesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

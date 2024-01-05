@@ -289,6 +289,8 @@ final class ClusterManagerClient
      *
      * The async variant is {@see ClusterManagerClient::cancelOperationAsync()} .
      *
+     * @example samples/V1/ClusterManagerClient/cancel_operation.php
+     *
      * @param CancelOperationRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -313,6 +315,8 @@ final class ClusterManagerClient
      * The async variant is
      * {@see ClusterManagerClient::checkAutopilotCompatibilityAsync()} .
      *
+     * @example samples/V1/ClusterManagerClient/check_autopilot_compatibility.php
+     *
      * @param CheckAutopilotCompatibilityRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -336,6 +340,8 @@ final class ClusterManagerClient
      * Completes master IP rotation.
      *
      * The async variant is {@see ClusterManagerClient::completeIPRotationAsync()} .
+     *
+     * @example samples/V1/ClusterManagerClient/complete_ip_rotation.php
      *
      * @param CompleteIPRotationRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -362,6 +368,8 @@ final class ClusterManagerClient
      *
      * The async variant is {@see ClusterManagerClient::completeNodePoolUpgradeAsync()}
      * .
+     *
+     * @example samples/V1/ClusterManagerClient/complete_node_pool_upgrade.php
      *
      * @param CompleteNodePoolUpgradeRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -398,6 +406,8 @@ final class ClusterManagerClient
      *
      * The async variant is {@see ClusterManagerClient::createClusterAsync()} .
      *
+     * @example samples/V1/ClusterManagerClient/create_cluster.php
+     *
      * @param CreateClusterRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -421,6 +431,8 @@ final class ClusterManagerClient
      * Creates a node pool for a cluster.
      *
      * The async variant is {@see ClusterManagerClient::createNodePoolAsync()} .
+     *
+     * @example samples/V1/ClusterManagerClient/create_node_pool.php
      *
      * @param CreateNodePoolRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -454,6 +466,8 @@ final class ClusterManagerClient
      *
      * The async variant is {@see ClusterManagerClient::deleteClusterAsync()} .
      *
+     * @example samples/V1/ClusterManagerClient/delete_cluster.php
+     *
      * @param DeleteClusterRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -478,6 +492,8 @@ final class ClusterManagerClient
      *
      * The async variant is {@see ClusterManagerClient::deleteNodePoolAsync()} .
      *
+     * @example samples/V1/ClusterManagerClient/delete_node_pool.php
+     *
      * @param DeleteNodePoolRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -501,6 +517,8 @@ final class ClusterManagerClient
      * Gets the details of a specific cluster.
      *
      * The async variant is {@see ClusterManagerClient::getClusterAsync()} .
+     *
+     * @example samples/V1/ClusterManagerClient/get_cluster.php
      *
      * @param GetClusterRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -529,6 +547,8 @@ final class ClusterManagerClient
      *
      * The async variant is {@see ClusterManagerClient::getJSONWebKeysAsync()} .
      *
+     * @example samples/V1/ClusterManagerClient/get_json_web_keys.php
+     *
      * @param GetJSONWebKeysRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -552,6 +572,8 @@ final class ClusterManagerClient
      * Retrieves the requested node pool.
      *
      * The async variant is {@see ClusterManagerClient::getNodePoolAsync()} .
+     *
+     * @example samples/V1/ClusterManagerClient/get_node_pool.php
      *
      * @param GetNodePoolRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -577,6 +599,8 @@ final class ClusterManagerClient
      *
      * The async variant is {@see ClusterManagerClient::getOperationAsync()} .
      *
+     * @example samples/V1/ClusterManagerClient/get_operation.php
+     *
      * @param GetOperationRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -600,6 +624,8 @@ final class ClusterManagerClient
      * Returns configuration info about the Google Kubernetes Engine service.
      *
      * The async variant is {@see ClusterManagerClient::getServerConfigAsync()} .
+     *
+     * @example samples/V1/ClusterManagerClient/get_server_config.php
      *
      * @param GetServerConfigRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -626,6 +652,8 @@ final class ClusterManagerClient
      *
      * The async variant is {@see ClusterManagerClient::listClustersAsync()} .
      *
+     * @example samples/V1/ClusterManagerClient/list_clusters.php
+     *
      * @param ListClustersRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -649,6 +677,8 @@ final class ClusterManagerClient
      * Lists the node pools for a cluster.
      *
      * The async variant is {@see ClusterManagerClient::listNodePoolsAsync()} .
+     *
+     * @example samples/V1/ClusterManagerClient/list_node_pools.php
      *
      * @param ListNodePoolsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -674,6 +704,8 @@ final class ClusterManagerClient
      *
      * The async variant is {@see ClusterManagerClient::listOperationsAsync()} .
      *
+     * @example samples/V1/ClusterManagerClient/list_operations.php
+     *
      * @param ListOperationsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -697,6 +729,8 @@ final class ClusterManagerClient
      * Lists subnetworks that are usable for creating clusters in a project.
      *
      * The async variant is {@see ClusterManagerClient::listUsableSubnetworksAsync()} .
+     *
+     * @example samples/V1/ClusterManagerClient/list_usable_subnetworks.php
      *
      * @param ListUsableSubnetworksRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -724,6 +758,8 @@ final class ClusterManagerClient
      * The async variant is {@see ClusterManagerClient::rollbackNodePoolUpgradeAsync()}
      * .
      *
+     * @example samples/V1/ClusterManagerClient/rollback_node_pool_upgrade.php
+     *
      * @param RollbackNodePoolUpgradeRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -747,6 +783,8 @@ final class ClusterManagerClient
      * Sets the addons for a specific cluster.
      *
      * The async variant is {@see ClusterManagerClient::setAddonsConfigAsync()} .
+     *
+     * @example samples/V1/ClusterManagerClient/set_addons_config.php
      *
      * @param SetAddonsConfigRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -772,6 +810,8 @@ final class ClusterManagerClient
      *
      * The async variant is {@see ClusterManagerClient::setLabelsAsync()} .
      *
+     * @example samples/V1/ClusterManagerClient/set_labels.php
+     *
      * @param SetLabelsRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -795,6 +835,8 @@ final class ClusterManagerClient
      * Enables or disables the ABAC authorization mechanism on a cluster.
      *
      * The async variant is {@see ClusterManagerClient::setLegacyAbacAsync()} .
+     *
+     * @example samples/V1/ClusterManagerClient/set_legacy_abac.php
      *
      * @param SetLegacyAbacRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -823,6 +865,8 @@ final class ClusterManagerClient
      *
      * The async variant is {@see ClusterManagerClient::setLocationsAsync()} .
      *
+     * @example samples/V1/ClusterManagerClient/set_locations.php
+     *
      * @param SetLocationsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -849,6 +893,8 @@ final class ClusterManagerClient
      *
      * The async variant is {@see ClusterManagerClient::setLoggingServiceAsync()} .
      *
+     * @example samples/V1/ClusterManagerClient/set_logging_service.php
+     *
      * @param SetLoggingServiceRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -872,6 +918,8 @@ final class ClusterManagerClient
      * Sets the maintenance policy for a cluster.
      *
      * The async variant is {@see ClusterManagerClient::setMaintenancePolicyAsync()} .
+     *
+     * @example samples/V1/ClusterManagerClient/set_maintenance_policy.php
      *
      * @param SetMaintenancePolicyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -899,6 +947,8 @@ final class ClusterManagerClient
      *
      * The async variant is {@see ClusterManagerClient::setMasterAuthAsync()} .
      *
+     * @example samples/V1/ClusterManagerClient/set_master_auth.php
+     *
      * @param SetMasterAuthRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -923,6 +973,8 @@ final class ClusterManagerClient
      *
      * The async variant is {@see ClusterManagerClient::setMonitoringServiceAsync()} .
      *
+     * @example samples/V1/ClusterManagerClient/set_monitoring_service.php
+     *
      * @param SetMonitoringServiceRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -946,6 +998,8 @@ final class ClusterManagerClient
      * Enables or disables Network Policy for a cluster.
      *
      * The async variant is {@see ClusterManagerClient::setNetworkPolicyAsync()} .
+     *
+     * @example samples/V1/ClusterManagerClient/set_network_policy.php
      *
      * @param SetNetworkPolicyRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -972,6 +1026,8 @@ final class ClusterManagerClient
      * The async variant is {@see ClusterManagerClient::setNodePoolAutoscalingAsync()}
      * .
      *
+     * @example samples/V1/ClusterManagerClient/set_node_pool_autoscaling.php
+     *
      * @param SetNodePoolAutoscalingRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -995,6 +1051,8 @@ final class ClusterManagerClient
      * Sets the NodeManagement options for a node pool.
      *
      * The async variant is {@see ClusterManagerClient::setNodePoolManagementAsync()} .
+     *
+     * @example samples/V1/ClusterManagerClient/set_node_pool_management.php
      *
      * @param SetNodePoolManagementRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -1022,6 +1080,8 @@ final class ClusterManagerClient
      *
      * The async variant is {@see ClusterManagerClient::setNodePoolSizeAsync()} .
      *
+     * @example samples/V1/ClusterManagerClient/set_node_pool_size.php
+     *
      * @param SetNodePoolSizeRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -1045,6 +1105,8 @@ final class ClusterManagerClient
      * Starts master IP rotation.
      *
      * The async variant is {@see ClusterManagerClient::startIPRotationAsync()} .
+     *
+     * @example samples/V1/ClusterManagerClient/start_ip_rotation.php
      *
      * @param StartIPRotationRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1070,6 +1132,8 @@ final class ClusterManagerClient
      *
      * The async variant is {@see ClusterManagerClient::updateClusterAsync()} .
      *
+     * @example samples/V1/ClusterManagerClient/update_cluster.php
+     *
      * @param UpdateClusterRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -1094,6 +1158,8 @@ final class ClusterManagerClient
      *
      * The async variant is {@see ClusterManagerClient::updateMasterAsync()} .
      *
+     * @example samples/V1/ClusterManagerClient/update_master.php
+     *
      * @param UpdateMasterRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -1117,6 +1183,8 @@ final class ClusterManagerClient
      * Updates the version and/or image type for the specified node pool.
      *
      * The async variant is {@see ClusterManagerClient::updateNodePoolAsync()} .
+     *
+     * @example samples/V1/ClusterManagerClient/update_node_pool.php
      *
      * @param UpdateNodePoolRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

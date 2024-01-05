@@ -25,10 +25,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataproc_v1_generated_AutoscalingPolicyService_UpdateAutoscalingPolicy_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Dataproc\V1\AutoscalingPolicy;
-use Google\Cloud\Dataproc\V1\AutoscalingPolicyServiceClient;
 use Google\Cloud\Dataproc\V1\BasicAutoscalingAlgorithm;
 use Google\Cloud\Dataproc\V1\BasicYarnAutoscalingConfig;
+use Google\Cloud\Dataproc\V1\Client\AutoscalingPolicyServiceClient;
 use Google\Cloud\Dataproc\V1\InstanceGroupAutoscalingPolicyConfig;
+use Google\Cloud\Dataproc\V1\UpdateAutoscalingPolicyRequest;
 use Google\Protobuf\Duration;
 
 /**
@@ -72,7 +73,7 @@ function update_autoscaling_policy_sample(
     // Create a client.
     $autoscalingPolicyServiceClient = new AutoscalingPolicyServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $policyBasicAlgorithmYarnConfigGracefulDecommissionTimeout = new Duration();
     $policyBasicAlgorithmYarnConfig = (new BasicYarnAutoscalingConfig())
         ->setGracefulDecommissionTimeout($policyBasicAlgorithmYarnConfigGracefulDecommissionTimeout)
@@ -85,11 +86,13 @@ function update_autoscaling_policy_sample(
     $policy = (new AutoscalingPolicy())
         ->setBasicAlgorithm($policyBasicAlgorithm)
         ->setWorkerConfig($policyWorkerConfig);
+    $request = (new UpdateAutoscalingPolicyRequest())
+        ->setPolicy($policy);
 
     // Call the API and handle any network failures.
     try {
         /** @var AutoscalingPolicy $response */
-        $response = $autoscalingPolicyServiceClient->updateAutoscalingPolicy($policy);
+        $response = $autoscalingPolicyServiceClient->updateAutoscalingPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

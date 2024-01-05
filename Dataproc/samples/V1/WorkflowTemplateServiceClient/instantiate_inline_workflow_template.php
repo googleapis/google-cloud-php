@@ -25,10 +25,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataproc_v1_generated_WorkflowTemplateService_InstantiateInlineWorkflowTemplate_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Dataproc\V1\Client\WorkflowTemplateServiceClient;
+use Google\Cloud\Dataproc\V1\InstantiateInlineWorkflowTemplateRequest;
 use Google\Cloud\Dataproc\V1\OrderedJob;
 use Google\Cloud\Dataproc\V1\WorkflowTemplate;
 use Google\Cloud\Dataproc\V1\WorkflowTemplatePlacement;
-use Google\Cloud\Dataproc\V1\WorkflowTemplateServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -90,7 +91,7 @@ function instantiate_inline_workflow_template_sample(
     // Create a client.
     $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $templatePlacement = new WorkflowTemplatePlacement();
     $orderedJob = (new OrderedJob())
         ->setStepId($templateJobsStepId);
@@ -99,14 +100,14 @@ function instantiate_inline_workflow_template_sample(
         ->setId($templateId)
         ->setPlacement($templatePlacement)
         ->setJobs($templateJobs);
+    $request = (new InstantiateInlineWorkflowTemplateRequest())
+        ->setParent($formattedParent)
+        ->setTemplate($template);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $workflowTemplateServiceClient->instantiateInlineWorkflowTemplate(
-            $formattedParent,
-            $template
-        );
+        $response = $workflowTemplateServiceClient->instantiateInlineWorkflowTemplate($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -25,9 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START apigeeconnect_v1_generated_Tether_Egress_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
+use Google\Cloud\ApigeeConnect\V1\Client\TetherClient;
 use Google\Cloud\ApigeeConnect\V1\EgressRequest;
 use Google\Cloud\ApigeeConnect\V1\EgressResponse;
-use Google\Cloud\ApigeeConnect\V1\TetherClient;
 
 /**
  * Egress streams egress requests and responses. Logically, this is not
@@ -49,7 +49,7 @@ function egress_sample(): void
     // Create a client.
     $tetherClient = new TetherClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $request = new EgressResponse();
 
     // Call the API and handle any network failures.

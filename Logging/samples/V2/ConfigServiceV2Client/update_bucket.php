@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START logging_v2_generated_ConfigServiceV2_UpdateBucket_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Logging\V2\ConfigServiceV2Client;
+use Google\Cloud\Logging\V2\Client\ConfigServiceV2Client;
 use Google\Cloud\Logging\V2\LogBucket;
+use Google\Cloud\Logging\V2\UpdateBucketRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -53,14 +54,18 @@ function update_bucket_sample(string $formattedName): void
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $bucket = new LogBucket();
     $updateMask = new FieldMask();
+    $request = (new UpdateBucketRequest())
+        ->setName($formattedName)
+        ->setBucket($bucket)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var LogBucket $response */
-        $response = $configServiceV2Client->updateBucket($formattedName, $bucket, $updateMask);
+        $response = $configServiceV2Client->updateBucket($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

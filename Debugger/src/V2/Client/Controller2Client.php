@@ -204,6 +204,8 @@ final class Controller2Client
      *
      * The async variant is {@see Controller2Client::listActiveBreakpointsAsync()} .
      *
+     * @example samples/V2/Controller2Client/list_active_breakpoints.php
+     *
      * @param ListActiveBreakpointsRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -237,6 +239,8 @@ final class Controller2Client
      *
      * The async variant is {@see Controller2Client::registerDebuggeeAsync()} .
      *
+     * @example samples/V2/Controller2Client/register_debuggee.php
+     *
      * @param RegisterDebuggeeRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -267,6 +271,8 @@ final class Controller2Client
      * or snapping the location to the correct line of code.
      *
      * The async variant is {@see Controller2Client::updateActiveBreakpointAsync()} .
+     *
+     * @example samples/V2/Controller2Client/update_active_breakpoint.php
      *
      * @param UpdateActiveBreakpointRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {

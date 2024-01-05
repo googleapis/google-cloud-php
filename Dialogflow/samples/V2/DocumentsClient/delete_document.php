@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_Documents_DeleteDocument_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Dialogflow\V2\DocumentsClient;
+use Google\Cloud\Dialogflow\V2\Client\DocumentsClient;
+use Google\Cloud\Dialogflow\V2\DeleteDocumentRequest;
 use Google\Rpc\Status;
 
 /**
@@ -50,10 +51,14 @@ function delete_document_sample(string $formattedName): void
     // Create a client.
     $documentsClient = new DocumentsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteDocumentRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $documentsClient->deleteDocument($formattedName);
+        $response = $documentsClient->deleteDocument($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

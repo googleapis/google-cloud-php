@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataproc_v1_generated_ClusterController_StopCluster_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Dataproc\V1\Client\ClusterControllerClient;
 use Google\Cloud\Dataproc\V1\Cluster;
-use Google\Cloud\Dataproc\V1\ClusterControllerClient;
+use Google\Cloud\Dataproc\V1\StopClusterRequest;
 use Google\Rpc\Status;
 
 /**
@@ -42,10 +43,16 @@ function stop_cluster_sample(string $projectId, string $region, string $clusterN
     // Create a client.
     $clusterControllerClient = new ClusterControllerClient();
 
+    // Prepare the request message.
+    $request = (new StopClusterRequest())
+        ->setProjectId($projectId)
+        ->setRegion($region)
+        ->setClusterName($clusterName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $clusterControllerClient->stopCluster($projectId, $region, $clusterName);
+        $response = $clusterControllerClient->stopCluster($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

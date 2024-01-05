@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Api\Service;
-use Google\Cloud\ServiceManagement\V1\ServiceManagerClient;
+use Google\Cloud\ServiceManagement\V1\Client\ServiceManagerClient;
+use Google\Cloud\ServiceManagement\V1\ListServiceConfigsRequest;
 
 /**
  * Lists the history of the service configuration for a managed service,
@@ -41,10 +42,14 @@ function list_service_configs_sample(string $serviceName): void
     // Create a client.
     $serviceManagerClient = new ServiceManagerClient();
 
+    // Prepare the request message.
+    $request = (new ListServiceConfigsRequest())
+        ->setServiceName($serviceName);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $serviceManagerClient->listServiceConfigs($serviceName);
+        $response = $serviceManagerClient->listServiceConfigs($request);
 
         /** @var Service $element */
         foreach ($response as $element) {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START appengine_v1_generated_Versions_UpdateVersion_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AppEngine\V1\Client\VersionsClient;
+use Google\Cloud\AppEngine\V1\UpdateVersionRequest;
 use Google\Cloud\AppEngine\V1\Version;
-use Google\Cloud\AppEngine\V1\VersionsClient;
 use Google\Rpc\Status;
 
 /**
@@ -78,10 +79,13 @@ function update_version_sample(): void
     // Create a client.
     $versionsClient = new VersionsClient();
 
+    // Prepare the request message.
+    $request = new UpdateVersionRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $versionsClient->updateVersion();
+        $response = $versionsClient->updateVersion($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START bigtable_v2_generated_Bigtable_SampleRowKeys_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ServerStream;
-use Google\Cloud\Bigtable\V2\BigtableClient;
+use Google\Cloud\Bigtable\V2\Client\BigtableClient;
+use Google\Cloud\Bigtable\V2\SampleRowKeysRequest;
 use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
 
 /**
@@ -44,10 +45,14 @@ function sample_row_keys_sample(string $formattedTableName): void
     // Create a client.
     $bigtableClient = new BigtableClient();
 
+    // Prepare the request message.
+    $request = (new SampleRowKeysRequest())
+        ->setTableName($formattedTableName);
+
     // Call the API and handle any network failures.
     try {
         /** @var ServerStream $stream */
-        $stream = $bigtableClient->sampleRowKeys($formattedTableName);
+        $stream = $bigtableClient->sampleRowKeys($request);
 
         /** @var SampleRowKeysResponse $element */
         foreach ($stream->readAll() as $element) {

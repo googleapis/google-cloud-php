@@ -374,6 +374,8 @@ final class ServiceMonitoringServiceClient
      * The async variant is {@see ServiceMonitoringServiceClient::createServiceAsync()}
      * .
      *
+     * @example samples/V3/ServiceMonitoringServiceClient/create_service.php
+     *
      * @param CreateServiceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -398,6 +400,8 @@ final class ServiceMonitoringServiceClient
      *
      * The async variant is
      * {@see ServiceMonitoringServiceClient::createServiceLevelObjectiveAsync()} .
+     *
+     * @example samples/V3/ServiceMonitoringServiceClient/create_service_level_objective.php
      *
      * @param CreateServiceLevelObjectiveRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -424,6 +428,8 @@ final class ServiceMonitoringServiceClient
      * The async variant is {@see ServiceMonitoringServiceClient::deleteServiceAsync()}
      * .
      *
+     * @example samples/V3/ServiceMonitoringServiceClient/delete_service.php
+     *
      * @param DeleteServiceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -447,6 +453,8 @@ final class ServiceMonitoringServiceClient
      * The async variant is
      * {@see ServiceMonitoringServiceClient::deleteServiceLevelObjectiveAsync()} .
      *
+     * @example samples/V3/ServiceMonitoringServiceClient/delete_service_level_objective.php
+     *
      * @param DeleteServiceLevelObjectiveRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -468,6 +476,8 @@ final class ServiceMonitoringServiceClient
      * Get the named `Service`.
      *
      * The async variant is {@see ServiceMonitoringServiceClient::getServiceAsync()} .
+     *
+     * @example samples/V3/ServiceMonitoringServiceClient/get_service.php
      *
      * @param GetServiceRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -494,6 +504,8 @@ final class ServiceMonitoringServiceClient
      * The async variant is
      * {@see ServiceMonitoringServiceClient::getServiceLevelObjectiveAsync()} .
      *
+     * @example samples/V3/ServiceMonitoringServiceClient/get_service_level_objective.php
+     *
      * @param GetServiceLevelObjectiveRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -518,6 +530,8 @@ final class ServiceMonitoringServiceClient
      *
      * The async variant is
      * {@see ServiceMonitoringServiceClient::listServiceLevelObjectivesAsync()} .
+     *
+     * @example samples/V3/ServiceMonitoringServiceClient/list_service_level_objectives.php
      *
      * @param ListServiceLevelObjectivesRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -544,6 +558,8 @@ final class ServiceMonitoringServiceClient
      * The async variant is {@see ServiceMonitoringServiceClient::listServicesAsync()}
      * .
      *
+     * @example samples/V3/ServiceMonitoringServiceClient/list_services.php
+     *
      * @param ListServicesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -569,6 +585,8 @@ final class ServiceMonitoringServiceClient
      * The async variant is {@see ServiceMonitoringServiceClient::updateServiceAsync()}
      * .
      *
+     * @example samples/V3/ServiceMonitoringServiceClient/update_service.php
+     *
      * @param UpdateServiceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -593,6 +611,8 @@ final class ServiceMonitoringServiceClient
      *
      * The async variant is
      * {@see ServiceMonitoringServiceClient::updateServiceLevelObjectiveAsync()} .
+     *
+     * @example samples/V3/ServiceMonitoringServiceClient/update_service_level_objective.php
      *
      * @param UpdateServiceLevelObjectiveRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {

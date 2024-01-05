@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudasset_v1_generated_AssetService_UpdateFeed_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Asset\V1\AssetServiceClient;
+use Google\Cloud\Asset\V1\Client\AssetServiceClient;
 use Google\Cloud\Asset\V1\Feed;
 use Google\Cloud\Asset\V1\FeedOutputConfig;
+use Google\Cloud\Asset\V1\UpdateFeedRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -45,17 +46,20 @@ function update_feed_sample(string $feedName): void
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $feedFeedOutputConfig = new FeedOutputConfig();
     $feed = (new Feed())
         ->setName($feedName)
         ->setFeedOutputConfig($feedFeedOutputConfig);
     $updateMask = new FieldMask();
+    $request = (new UpdateFeedRequest())
+        ->setFeed($feed)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var Feed $response */
-        $response = $assetServiceClient->updateFeed($feed, $updateMask);
+        $response = $assetServiceClient->updateFeed($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

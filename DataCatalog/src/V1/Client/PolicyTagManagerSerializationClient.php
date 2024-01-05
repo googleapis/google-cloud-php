@@ -249,6 +249,8 @@ final class PolicyTagManagerSerializationClient
      * The async variant is
      * {@see PolicyTagManagerSerializationClient::exportTaxonomiesAsync()} .
      *
+     * @example samples/V1/PolicyTagManagerSerializationClient/export_taxonomies.php
+     *
      * @param ExportTaxonomiesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -280,6 +282,8 @@ final class PolicyTagManagerSerializationClient
      *
      * The async variant is
      * {@see PolicyTagManagerSerializationClient::importTaxonomiesAsync()} .
+     *
+     * @example samples/V1/PolicyTagManagerSerializationClient/import_taxonomies.php
      *
      * @param ImportTaxonomiesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -317,6 +321,8 @@ final class PolicyTagManagerSerializationClient
      *
      * The async variant is
      * {@see PolicyTagManagerSerializationClient::replaceTaxonomyAsync()} .
+     *
+     * @example samples/V1/PolicyTagManagerSerializationClient/replace_taxonomy.php
      *
      * @param ReplaceTaxonomyRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {

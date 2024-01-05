@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START bigquerystorage_v1_generated_BigQueryRead_CreateReadSession_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\BigQuery\Storage\V1\BigQueryReadClient;
+use Google\Cloud\BigQuery\Storage\V1\Client\BigQueryReadClient;
+use Google\Cloud\BigQuery\Storage\V1\CreateReadSessionRequest;
 use Google\Cloud\BigQuery\Storage\V1\ReadSession;
 
 /**
@@ -57,13 +58,16 @@ function create_read_session_sample(string $formattedParent): void
     // Create a client.
     $bigQueryReadClient = new BigQueryReadClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $readSession = new ReadSession();
+    $request = (new CreateReadSessionRequest())
+        ->setParent($formattedParent)
+        ->setReadSession($readSession);
 
     // Call the API and handle any network failures.
     try {
         /** @var ReadSession $response */
-        $response = $bigQueryReadClient->createReadSession($formattedParent, $readSession);
+        $response = $bigQueryReadClient->createReadSession($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

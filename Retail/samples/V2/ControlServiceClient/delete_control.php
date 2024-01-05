@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START retail_v2_generated_ControlService_DeleteControl_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Retail\V2\ControlServiceClient;
+use Google\Cloud\Retail\V2\Client\ControlServiceClient;
+use Google\Cloud\Retail\V2\DeleteControlRequest;
 
 /**
  * Deletes a Control.
@@ -41,9 +42,13 @@ function delete_control_sample(string $formattedName): void
     // Create a client.
     $controlServiceClient = new ControlServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteControlRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $controlServiceClient->deleteControl($formattedName);
+        $controlServiceClient->deleteControl($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

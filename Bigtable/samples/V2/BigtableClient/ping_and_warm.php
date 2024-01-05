@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START bigtable_v2_generated_Bigtable_PingAndWarm_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Bigtable\V2\BigtableClient;
+use Google\Cloud\Bigtable\V2\Client\BigtableClient;
+use Google\Cloud\Bigtable\V2\PingAndWarmRequest;
 use Google\Cloud\Bigtable\V2\PingAndWarmResponse;
 
 /**
@@ -41,10 +42,14 @@ function ping_and_warm_sample(string $formattedName): void
     // Create a client.
     $bigtableClient = new BigtableClient();
 
+    // Prepare the request message.
+    $request = (new PingAndWarmRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var PingAndWarmResponse $response */
-        $response = $bigtableClient->pingAndWarm($formattedName);
+        $response = $bigtableClient->pingAndWarm($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

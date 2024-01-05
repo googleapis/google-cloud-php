@@ -292,6 +292,8 @@ final class GroupServiceClient
      *
      * The async variant is {@see GroupServiceClient::createGroupAsync()} .
      *
+     * @example samples/V3/GroupServiceClient/create_group.php
+     *
      * @param CreateGroupRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -316,6 +318,8 @@ final class GroupServiceClient
      *
      * The async variant is {@see GroupServiceClient::deleteGroupAsync()} .
      *
+     * @example samples/V3/GroupServiceClient/delete_group.php
+     *
      * @param DeleteGroupRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -337,6 +341,8 @@ final class GroupServiceClient
      * Gets a single group.
      *
      * The async variant is {@see GroupServiceClient::getGroupAsync()} .
+     *
+     * @example samples/V3/GroupServiceClient/get_group.php
      *
      * @param GetGroupRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -362,6 +368,8 @@ final class GroupServiceClient
      *
      * The async variant is {@see GroupServiceClient::listGroupMembersAsync()} .
      *
+     * @example samples/V3/GroupServiceClient/list_group_members.php
+     *
      * @param ListGroupMembersRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -385,6 +393,8 @@ final class GroupServiceClient
      * Lists the existing groups.
      *
      * The async variant is {@see GroupServiceClient::listGroupsAsync()} .
+     *
+     * @example samples/V3/GroupServiceClient/list_groups.php
      *
      * @param ListGroupsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -410,6 +420,8 @@ final class GroupServiceClient
      * You can change any group attributes except `name`.
      *
      * The async variant is {@see GroupServiceClient::updateGroupAsync()} .
+     *
+     * @example samples/V3/GroupServiceClient/update_group.php
      *
      * @param UpdateGroupRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {

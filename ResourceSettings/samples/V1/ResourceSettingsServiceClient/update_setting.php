@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START resourcesettings_v1_generated_ResourceSettingsService_UpdateSetting_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\ResourceSettings\V1\ResourceSettingsServiceClient;
+use Google\Cloud\ResourceSettings\V1\Client\ResourceSettingsServiceClient;
 use Google\Cloud\ResourceSettings\V1\Setting;
+use Google\Cloud\ResourceSettings\V1\UpdateSettingRequest;
 
 /**
  * Updates a setting.
@@ -56,13 +57,15 @@ function update_setting_sample(): void
     // Create a client.
     $resourceSettingsServiceClient = new ResourceSettingsServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $setting = new Setting();
+    $request = (new UpdateSettingRequest())
+        ->setSetting($setting);
 
     // Call the API and handle any network failures.
     try {
         /** @var Setting $response */
-        $response = $resourceSettingsServiceClient->updateSetting($setting);
+        $response = $resourceSettingsServiceClient->updateSetting($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

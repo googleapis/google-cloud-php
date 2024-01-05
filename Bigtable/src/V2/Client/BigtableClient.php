@@ -256,6 +256,8 @@ final class BigtableClient
      *
      * The async variant is {@see BigtableClient::checkAndMutateRowAsync()} .
      *
+     * @example samples/V2/BigtableClient/check_and_mutate_row.php
+     *
      * @param CheckAndMutateRowRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -281,6 +283,8 @@ final class BigtableClient
      * change stream. The union of partitions will cover the entire keyspace.
      * Partitions can be read with `ReadChangeStream`.
      *
+     * @example samples/V2/BigtableClient/generate_initial_change_stream_partitions.php
+     *
      * @param GenerateInitialChangeStreamPartitionsRequest $request     A request to house fields associated with the call.
      * @param array                                        $callOptions {
      *     Optional.
@@ -303,6 +307,8 @@ final class BigtableClient
      * unchanged unless explicitly changed by `mutation`.
      *
      * The async variant is {@see BigtableClient::mutateRowAsync()} .
+     *
+     * @example samples/V2/BigtableClient/mutate_row.php
      *
      * @param MutateRowRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -328,6 +334,8 @@ final class BigtableClient
      * atomically as in MutateRow, but the entire batch is not executed
      * atomically.
      *
+     * @example samples/V2/BigtableClient/mutate_rows.php
+     *
      * @param MutateRowsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -350,6 +358,8 @@ final class BigtableClient
      * This call is not required but may be useful for connection keep-alive.
      *
      * The async variant is {@see BigtableClient::pingAndWarmAsync()} .
+     *
+     * @example samples/V2/BigtableClient/ping_and_warm.php
      *
      * @param PingAndWarmRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -375,6 +385,8 @@ final class BigtableClient
      * Reads changes from a table's change stream. Changes will
      * reflect both user-initiated mutations and mutations that are caused by
      * garbage collection.
+     *
+     * @example samples/V2/BigtableClient/read_change_stream.php
      *
      * @param ReadChangeStreamRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -402,6 +414,8 @@ final class BigtableClient
      *
      * The async variant is {@see BigtableClient::readModifyWriteRowAsync()} .
      *
+     * @example samples/V2/BigtableClient/read_modify_write_row.php
+     *
      * @param ReadModifyWriteRowRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -428,6 +442,8 @@ final class BigtableClient
      * atomicity of each row will still be preserved. See the
      * ReadRowsResponse documentation for details.
      *
+     * @example samples/V2/BigtableClient/read_rows.php
+     *
      * @param ReadRowsRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -450,6 +466,8 @@ final class BigtableClient
      * delimit contiguous sections of the table of approximately equal size,
      * which can be used to break up the data for distributed tasks like
      * mapreduces.
+     *
+     * @example samples/V2/BigtableClient/sample_row_keys.php
      *
      * @param SampleRowKeysRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

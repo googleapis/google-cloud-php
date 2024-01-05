@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START managedidentities_v1_generated_ManagedIdentitiesService_DeleteDomain_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\ManagedIdentities\V1\ManagedIdentitiesServiceClient;
+use Google\Cloud\ManagedIdentities\V1\Client\ManagedIdentitiesServiceClient;
+use Google\Cloud\ManagedIdentities\V1\DeleteDomainRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,14 @@ function delete_domain_sample(string $formattedName): void
     // Create a client.
     $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteDomainRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $managedIdentitiesServiceClient->deleteDomain($formattedName);
+        $response = $managedIdentitiesServiceClient->deleteDomain($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

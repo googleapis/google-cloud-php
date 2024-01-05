@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START translate_v3_generated_TranslationService_CreateGlossary_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Translate\V3\Client\TranslationServiceClient;
+use Google\Cloud\Translate\V3\CreateGlossaryRequest;
 use Google\Cloud\Translate\V3\Glossary;
-use Google\Cloud\Translate\V3\TranslationServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -43,14 +44,17 @@ function create_glossary_sample(string $formattedParent, string $glossaryName): 
     // Create a client.
     $translationServiceClient = new TranslationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $glossary = (new Glossary())
         ->setName($glossaryName);
+    $request = (new CreateGlossaryRequest())
+        ->setParent($formattedParent)
+        ->setGlossary($glossary);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $translationServiceClient->createGlossary($formattedParent, $glossary);
+        $response = $translationServiceClient->createGlossary($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

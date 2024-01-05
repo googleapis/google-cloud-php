@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START securitycenter_v1_generated_SecurityCenter_DeleteSecurityHealthAnalyticsCustomModule_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\DeleteSecurityHealthAnalyticsCustomModuleRequest;
 
 /**
  * Deletes the specified SecurityHealthAnalyticsCustomModule and all of its
@@ -43,9 +44,13 @@ function delete_security_health_analytics_custom_module_sample(string $formatted
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
+    // Prepare the request message.
+    $request = (new DeleteSecurityHealthAnalyticsCustomModuleRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $securityCenterClient->deleteSecurityHealthAnalyticsCustomModule($formattedName);
+        $securityCenterClient->deleteSecurityHealthAnalyticsCustomModule($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

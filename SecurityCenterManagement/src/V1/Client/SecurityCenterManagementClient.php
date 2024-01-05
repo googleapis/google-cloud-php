@@ -659,8 +659,10 @@ final class SecurityCenterManagementClient
     }
 
     /**
-     * Creates an ETD custom module at the given level. Creating a module has a
-     * side-effect of creating modules at all descendants.
+     * Creates a resident Event Threat Detection custom module at the scope of the
+     * given Resource Manager parent, and also creates inherited custom modules
+     * for all descendants of the given parent. These modules are enabled by
+     * default.
      *
      * The async variant is
      * {@see SecurityCenterManagementClient::createEventThreatDetectionCustomModuleAsync()}
@@ -723,8 +725,9 @@ final class SecurityCenterManagementClient
     }
 
     /**
-     * Deletes an ETD custom module. Deletion at resident level also deletes
-     * modules at all descendants. Deletion at any other level is not supported.
+     * Deletes the specified Event Threat Detection custom module and all of its
+     * descendants in the Resource Manager hierarchy. This method is only
+     * supported for resident custom modules.
      *
      * The async variant is
      * {@see SecurityCenterManagementClient::deleteEventThreatDetectionCustomModuleAsync()}
@@ -848,13 +851,7 @@ final class SecurityCenterManagementClient
     }
 
     /**
-     * Gets an ETD custom module. Retrieves the module at the given level. The
-     * difference between an EffectiveCustomModule and a CustomModule is that the
-     * fields for an EffectiveCustomModule are computed from ancestors if needed.
-     * For example, the enablement_state for a CustomModule can be either ENABLED,
-     * DISABLED, or INHERITED. Where as the enablement_state for an
-     * EffectiveCustomModule is always computed to ENABLED or DISABLED (the
-     * effective enablement_state).
+     * Gets an Event Threat Detection custom module.
      *
      * The async variant is
      * {@see SecurityCenterManagementClient::getEventThreatDetectionCustomModuleAsync()}
@@ -914,8 +911,8 @@ final class SecurityCenterManagementClient
     }
 
     /**
-     * Returns a list of all resident EventThreatDetectionCustomModules under
-     * the given CRM parent and all of the parent’s CRM descendants.
+     * Lists all resident Event Threat Detection custom modules under the
+     * given Resource Manager parent and its descendants.
      *
      * The async variant is
      * {@see SecurityCenterManagementClient::listDescendantEventThreatDetectionCustomModulesAsync()}
@@ -976,15 +973,9 @@ final class SecurityCenterManagementClient
     }
 
     /**
-     * Returns a list of all EffectiveEventThreatDetectionCustomModules for the
+     * Lists all effective Event Threat Detection custom modules for the
      * given parent. This includes resident modules defined at the scope of the
-     * parent, and inherited modules, inherited from CRM ancestors (no
-     * descendants). The difference between an EffectiveCustomModule and a
-     * CustomModule is that the fields for an EffectiveCustomModule are computed
-     * from ancestors if needed. For example, the enablement_state for a
-     * CustomModule can be either ENABLED, DISABLED, or INHERITED. Where as the
-     * enablement_state for an EffectiveCustomModule is always computed to ENABLED
-     * or DISABLED (the effective enablement_state).
+     * parent along with modules inherited from its ancestors.
      *
      * The async variant is
      * {@see SecurityCenterManagementClient::listEffectiveEventThreatDetectionCustomModulesAsync()}
@@ -1047,9 +1038,9 @@ final class SecurityCenterManagementClient
     }
 
     /**
-     * Returns a list of all EventThreatDetectionCustomModules for the given
-     * parent. This includes resident modules defined at the scope of the parent,
-     * and inherited modules, inherited from CRM ancestors (no descendants).
+     * Lists all Event Threat Detection custom modules for the given
+     * Resource Manager parent. This includes resident modules defined at the
+     * scope of the parent along with modules inherited from ancestors.
      *
      * The async variant is
      * {@see SecurityCenterManagementClient::listEventThreatDetectionCustomModulesAsync()}
@@ -1141,11 +1132,12 @@ final class SecurityCenterManagementClient
     }
 
     /**
-     * Updates an ETD custom module at the given level. All config fields can be
-     * updated when updating the module at resident level. Only enablement state
-     * can be updated when updating the module at inherited levels. Updating the
-     * module has a side-effect that it updates all descendants that are inherited
-     * from this module.
+     * Updates the Event Threat Detection custom module with the given name based
+     * on the given update mask. Updating the enablement state is supported for
+     * both resident and inherited modules (though resident modules cannot have an
+     * enablement state of "inherited"). Updating the display name or
+     * configuration of a module is supported for resident modules only. The type
+     * of a module cannot be changed.
      *
      * The async variant is
      * {@see SecurityCenterManagementClient::updateEventThreatDetectionCustomModuleAsync()}

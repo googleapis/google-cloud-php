@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vision_v1_generated_ProductSearch_ListProductsInProductSet_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Vision\V1\Client\ProductSearchClient;
+use Google\Cloud\Vision\V1\ListProductsInProductSetRequest;
 use Google\Cloud\Vision\V1\Product;
-use Google\Cloud\Vision\V1\ProductSearchClient;
 
 /**
  * Lists the Products in a ProductSet, in an unspecified order. If the
@@ -48,10 +49,14 @@ function list_products_in_product_set_sample(string $formattedName): void
     // Create a client.
     $productSearchClient = new ProductSearchClient();
 
+    // Prepare the request message.
+    $request = (new ListProductsInProductSetRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $productSearchClient->listProductsInProductSet($formattedName);
+        $response = $productSearchClient->listProductsInProductSet($request);
 
         /** @var Product $element */
         foreach ($response as $element) {

@@ -775,6 +775,8 @@ class DlpServiceClient
      *
      * The async variant is {@see DlpServiceClient::activateJobTriggerAsync()} .
      *
+     * @example samples/V2/DlpServiceClient/activate_job_trigger.php
+     *
      * @param ActivateJobTriggerRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -803,6 +805,8 @@ class DlpServiceClient
      *
      * The async variant is {@see DlpServiceClient::cancelDlpJobAsync()} .
      *
+     * @example samples/V2/DlpServiceClient/cancel_dlp_job.php
+     *
      * @param CancelDlpJobRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -828,6 +832,8 @@ class DlpServiceClient
      *
      * The async variant is {@see DlpServiceClient::createDeidentifyTemplateAsync()} .
      *
+     * @example samples/V2/DlpServiceClient/create_deidentify_template.php
+     *
      * @param CreateDeidentifyTemplateRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -851,6 +857,8 @@ class DlpServiceClient
      * Creates a config for discovery to scan and profile storage.
      *
      * The async variant is {@see DlpServiceClient::createDiscoveryConfigAsync()} .
+     *
+     * @example samples/V2/DlpServiceClient/create_discovery_config.php
      *
      * @param CreateDiscoveryConfigRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -882,6 +890,8 @@ class DlpServiceClient
      *
      * The async variant is {@see DlpServiceClient::createDlpJobAsync()} .
      *
+     * @example samples/V2/DlpServiceClient/create_dlp_job.php
+     *
      * @param CreateDlpJobRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -907,6 +917,8 @@ class DlpServiceClient
      * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
      *
      * The async variant is {@see DlpServiceClient::createInspectTemplateAsync()} .
+     *
+     * @example samples/V2/DlpServiceClient/create_inspect_template.php
      *
      * @param CreateInspectTemplateRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -934,6 +946,8 @@ class DlpServiceClient
      *
      * The async variant is {@see DlpServiceClient::createJobTriggerAsync()} .
      *
+     * @example samples/V2/DlpServiceClient/create_job_trigger.php
+     *
      * @param CreateJobTriggerRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -959,6 +973,8 @@ class DlpServiceClient
      * learn more.
      *
      * The async variant is {@see DlpServiceClient::createStoredInfoTypeAsync()} .
+     *
+     * @example samples/V2/DlpServiceClient/create_stored_info_type.php
      *
      * @param CreateStoredInfoTypeRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -991,6 +1007,8 @@ class DlpServiceClient
      *
      * The async variant is {@see DlpServiceClient::deidentifyContentAsync()} .
      *
+     * @example samples/V2/DlpServiceClient/deidentify_content.php
+     *
      * @param DeidentifyContentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -1017,6 +1035,8 @@ class DlpServiceClient
      *
      * The async variant is {@see DlpServiceClient::deleteDeidentifyTemplateAsync()} .
      *
+     * @example samples/V2/DlpServiceClient/delete_deidentify_template.php
+     *
      * @param DeleteDeidentifyTemplateRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -1038,6 +1058,8 @@ class DlpServiceClient
      * Deletes a discovery configuration.
      *
      * The async variant is {@see DlpServiceClient::deleteDiscoveryConfigAsync()} .
+     *
+     * @example samples/V2/DlpServiceClient/delete_discovery_config.php
      *
      * @param DeleteDiscoveryConfigRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -1065,6 +1087,8 @@ class DlpServiceClient
      *
      * The async variant is {@see DlpServiceClient::deleteDlpJobAsync()} .
      *
+     * @example samples/V2/DlpServiceClient/delete_dlp_job.php
+     *
      * @param DeleteDlpJobRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -1088,6 +1112,8 @@ class DlpServiceClient
      *
      * The async variant is {@see DlpServiceClient::deleteInspectTemplateAsync()} .
      *
+     * @example samples/V2/DlpServiceClient/delete_inspect_template.php
+     *
      * @param DeleteInspectTemplateRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -1110,6 +1136,8 @@ class DlpServiceClient
      * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
      *
      * The async variant is {@see DlpServiceClient::deleteJobTriggerAsync()} .
+     *
+     * @example samples/V2/DlpServiceClient/delete_job_trigger.php
      *
      * @param DeleteJobTriggerRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -1135,6 +1163,8 @@ class DlpServiceClient
      *
      * The async variant is {@see DlpServiceClient::deleteStoredInfoTypeAsync()} .
      *
+     * @example samples/V2/DlpServiceClient/delete_stored_info_type.php
+     *
      * @param DeleteStoredInfoTypeRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -1157,6 +1187,8 @@ class DlpServiceClient
      * of any enabled actions that have not yet run.
      *
      * The async variant is {@see DlpServiceClient::finishDlpJobAsync()} .
+     *
+     * @example samples/V2/DlpServiceClient/finish_dlp_job.php
      *
      * @param FinishDlpJobRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1182,6 +1214,8 @@ class DlpServiceClient
      *
      * The async variant is {@see DlpServiceClient::getDeidentifyTemplateAsync()} .
      *
+     * @example samples/V2/DlpServiceClient/get_deidentify_template.php
+     *
      * @param GetDeidentifyTemplateRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -1205,6 +1239,8 @@ class DlpServiceClient
      * Gets a discovery configuration.
      *
      * The async variant is {@see DlpServiceClient::getDiscoveryConfigAsync()} .
+     *
+     * @example samples/V2/DlpServiceClient/get_discovery_config.php
      *
      * @param GetDiscoveryConfigRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -1232,6 +1268,8 @@ class DlpServiceClient
      *
      * The async variant is {@see DlpServiceClient::getDlpJobAsync()} .
      *
+     * @example samples/V2/DlpServiceClient/get_dlp_job.php
+     *
      * @param GetDlpJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -1257,6 +1295,8 @@ class DlpServiceClient
      *
      * The async variant is {@see DlpServiceClient::getInspectTemplateAsync()} .
      *
+     * @example samples/V2/DlpServiceClient/get_inspect_template.php
+     *
      * @param GetInspectTemplateRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -1281,6 +1321,8 @@ class DlpServiceClient
      * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
      *
      * The async variant is {@see DlpServiceClient::getJobTriggerAsync()} .
+     *
+     * @example samples/V2/DlpServiceClient/get_job_trigger.php
      *
      * @param GetJobTriggerRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1308,6 +1350,8 @@ class DlpServiceClient
      *
      * The async variant is {@see DlpServiceClient::getStoredInfoTypeAsync()} .
      *
+     * @example samples/V2/DlpServiceClient/get_stored_info_type.php
+     *
      * @param GetStoredInfoTypeRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -1334,6 +1378,8 @@ class DlpServiceClient
      *
      * The async variant is {@see DlpServiceClient::hybridInspectDlpJobAsync()} .
      *
+     * @example samples/V2/DlpServiceClient/hybrid_inspect_dlp_job.php
+     *
      * @param HybridInspectDlpJobRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -1359,6 +1405,8 @@ class DlpServiceClient
      * jobs within the trigger.
      *
      * The async variant is {@see DlpServiceClient::hybridInspectJobTriggerAsync()} .
+     *
+     * @example samples/V2/DlpServiceClient/hybrid_inspect_job_trigger.php
      *
      * @param HybridInspectJobTriggerRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -1392,6 +1440,8 @@ class DlpServiceClient
      *
      * The async variant is {@see DlpServiceClient::inspectContentAsync()} .
      *
+     * @example samples/V2/DlpServiceClient/inspect_content.php
+     *
      * @param InspectContentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -1418,6 +1468,8 @@ class DlpServiceClient
      *
      * The async variant is {@see DlpServiceClient::listDeidentifyTemplatesAsync()} .
      *
+     * @example samples/V2/DlpServiceClient/list_deidentify_templates.php
+     *
      * @param ListDeidentifyTemplatesRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -1441,6 +1493,8 @@ class DlpServiceClient
      * Lists discovery configurations.
      *
      * The async variant is {@see DlpServiceClient::listDiscoveryConfigsAsync()} .
+     *
+     * @example samples/V2/DlpServiceClient/list_discovery_configs.php
      *
      * @param ListDiscoveryConfigsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -1468,6 +1522,8 @@ class DlpServiceClient
      *
      * The async variant is {@see DlpServiceClient::listDlpJobsAsync()} .
      *
+     * @example samples/V2/DlpServiceClient/list_dlp_jobs.php
+     *
      * @param ListDlpJobsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -1494,6 +1550,8 @@ class DlpServiceClient
      *
      * The async variant is {@see DlpServiceClient::listInfoTypesAsync()} .
      *
+     * @example samples/V2/DlpServiceClient/list_info_types.php
+     *
      * @param ListInfoTypesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -1518,6 +1576,8 @@ class DlpServiceClient
      * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
      *
      * The async variant is {@see DlpServiceClient::listInspectTemplatesAsync()} .
+     *
+     * @example samples/V2/DlpServiceClient/list_inspect_templates.php
      *
      * @param ListInspectTemplatesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -1544,6 +1604,8 @@ class DlpServiceClient
      *
      * The async variant is {@see DlpServiceClient::listJobTriggersAsync()} .
      *
+     * @example samples/V2/DlpServiceClient/list_job_triggers.php
+     *
      * @param ListJobTriggersRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -1569,6 +1631,8 @@ class DlpServiceClient
      * learn more.
      *
      * The async variant is {@see DlpServiceClient::listStoredInfoTypesAsync()} .
+     *
+     * @example samples/V2/DlpServiceClient/list_stored_info_types.php
      *
      * @param ListStoredInfoTypesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -1601,6 +1665,8 @@ class DlpServiceClient
      *
      * The async variant is {@see DlpServiceClient::redactImageAsync()} .
      *
+     * @example samples/V2/DlpServiceClient/redact_image.php
+     *
      * @param RedactImageRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -1628,6 +1694,8 @@ class DlpServiceClient
      *
      * The async variant is {@see DlpServiceClient::reidentifyContentAsync()} .
      *
+     * @example samples/V2/DlpServiceClient/reidentify_content.php
+     *
      * @param ReidentifyContentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -1654,6 +1722,8 @@ class DlpServiceClient
      *
      * The async variant is {@see DlpServiceClient::updateDeidentifyTemplateAsync()} .
      *
+     * @example samples/V2/DlpServiceClient/update_deidentify_template.php
+     *
      * @param UpdateDeidentifyTemplateRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -1677,6 +1747,8 @@ class DlpServiceClient
      * Updates a discovery configuration.
      *
      * The async variant is {@see DlpServiceClient::updateDiscoveryConfigAsync()} .
+     *
+     * @example samples/V2/DlpServiceClient/update_discovery_config.php
      *
      * @param UpdateDiscoveryConfigRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -1703,6 +1775,8 @@ class DlpServiceClient
      *
      * The async variant is {@see DlpServiceClient::updateInspectTemplateAsync()} .
      *
+     * @example samples/V2/DlpServiceClient/update_inspect_template.php
+     *
      * @param UpdateInspectTemplateRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -1727,6 +1801,8 @@ class DlpServiceClient
      * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
      *
      * The async variant is {@see DlpServiceClient::updateJobTriggerAsync()} .
+     *
+     * @example samples/V2/DlpServiceClient/update_job_trigger.php
      *
      * @param UpdateJobTriggerRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -1754,6 +1830,8 @@ class DlpServiceClient
      * learn more.
      *
      * The async variant is {@see DlpServiceClient::updateStoredInfoTypeAsync()} .
+     *
+     * @example samples/V2/DlpServiceClient/update_stored_info_type.php
      *
      * @param UpdateStoredInfoTypeRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

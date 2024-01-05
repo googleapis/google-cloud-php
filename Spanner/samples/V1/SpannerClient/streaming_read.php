@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START spanner_v1_generated_Spanner_StreamingRead_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ServerStream;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\KeySet;
 use Google\Cloud\Spanner\V1\PartialResultSet;
-use Google\Cloud\Spanner\V1\SpannerClient;
+use Google\Cloud\Spanner\V1\ReadRequest;
 
 /**
  * Like [Read][google.spanner.v1.Spanner.Read], except returns the result set
@@ -50,14 +51,19 @@ function streaming_read_sample(
     // Create a client.
     $spannerClient = new SpannerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $columns = [$columnsElement,];
     $keySet = new KeySet();
+    $request = (new ReadRequest())
+        ->setSession($formattedSession)
+        ->setTable($table)
+        ->setColumns($columns)
+        ->setKeySet($keySet);
 
     // Call the API and handle any network failures.
     try {
         /** @var ServerStream $stream */
-        $stream = $spannerClient->streamingRead($formattedSession, $table, $columns, $keySet);
+        $stream = $spannerClient->streamingRead($request);
 
         /** @var PartialResultSet $element */
         foreach ($stream->readAll() as $element) {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START pubsub_v1_generated_Publisher_DetachSubscription_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\PubSub\V1\Client\PublisherClient;
+use Google\Cloud\PubSub\V1\DetachSubscriptionRequest;
 use Google\Cloud\PubSub\V1\DetachSubscriptionResponse;
-use Google\Cloud\PubSub\V1\PublisherClient;
 
 /**
  * Detaches a subscription from this topic. All messages retained in the
@@ -42,10 +43,14 @@ function detach_subscription_sample(string $formattedSubscription): void
     // Create a client.
     $publisherClient = new PublisherClient();
 
+    // Prepare the request message.
+    $request = (new DetachSubscriptionRequest())
+        ->setSubscription($formattedSubscription);
+
     // Call the API and handle any network failures.
     try {
         /** @var DetachSubscriptionResponse $response */
-        $response = $publisherClient->detachSubscription($formattedSubscription);
+        $response = $publisherClient->detachSubscription($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

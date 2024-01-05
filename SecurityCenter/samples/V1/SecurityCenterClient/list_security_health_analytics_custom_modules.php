@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START securitycenter_v1_generated_SecurityCenter_ListSecurityHealthAnalyticsCustomModules_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\ListSecurityHealthAnalyticsCustomModulesRequest;
 use Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule;
 
 /**
@@ -44,10 +45,14 @@ function list_security_health_analytics_custom_modules_sample(string $formattedP
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
+    // Prepare the request message.
+    $request = (new ListSecurityHealthAnalyticsCustomModulesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $securityCenterClient->listSecurityHealthAnalyticsCustomModules($formattedParent);
+        $response = $securityCenterClient->listSecurityHealthAnalyticsCustomModules($request);
 
         /** @var SecurityHealthAnalyticsCustomModule $element */
         foreach ($response as $element) {

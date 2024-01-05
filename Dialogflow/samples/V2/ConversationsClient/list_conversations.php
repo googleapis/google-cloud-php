@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_Conversations_ListConversations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dialogflow\V2\Client\ConversationsClient;
 use Google\Cloud\Dialogflow\V2\Conversation;
-use Google\Cloud\Dialogflow\V2\ConversationsClient;
+use Google\Cloud\Dialogflow\V2\ListConversationsRequest;
 
 /**
  * Returns the list of all conversations in the specified project.
@@ -40,10 +41,14 @@ function list_conversations_sample(string $formattedParent): void
     // Create a client.
     $conversationsClient = new ConversationsClient();
 
+    // Prepare the request message.
+    $request = (new ListConversationsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $conversationsClient->listConversations($formattedParent);
+        $response = $conversationsClient->listConversations($request);
 
         /** @var Conversation $element */
         foreach ($response as $element) {

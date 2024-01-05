@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START speech_v2_generated_Speech_CreateCustomClass_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Speech\V2\Client\SpeechClient;
+use Google\Cloud\Speech\V2\CreateCustomClassRequest;
 use Google\Cloud\Speech\V2\CustomClass;
-use Google\Cloud\Speech\V2\SpeechClient;
 use Google\Rpc\Status;
 
 /**
@@ -41,13 +42,16 @@ function create_custom_class_sample(string $formattedParent): void
     // Create a client.
     $speechClient = new SpeechClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $customClass = new CustomClass();
+    $request = (new CreateCustomClassRequest())
+        ->setCustomClass($customClass)
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $speechClient->createCustomClass($customClass, $formattedParent);
+        $response = $speechClient->createCustomClass($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

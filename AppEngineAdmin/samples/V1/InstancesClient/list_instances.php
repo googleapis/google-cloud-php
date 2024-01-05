@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START appengine_v1_generated_Instances_ListInstances_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\AppEngine\V1\Client\InstancesClient;
 use Google\Cloud\AppEngine\V1\Instance;
-use Google\Cloud\AppEngine\V1\InstancesClient;
+use Google\Cloud\AppEngine\V1\ListInstancesRequest;
 
 /**
  * Lists the instances of a version.
@@ -45,10 +46,13 @@ function list_instances_sample(): void
     // Create a client.
     $instancesClient = new InstancesClient();
 
+    // Prepare the request message.
+    $request = new ListInstancesRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $instancesClient->listInstances();
+        $response = $instancesClient->listInstances($request);
 
         /** @var Instance $element */
         foreach ($response as $element) {

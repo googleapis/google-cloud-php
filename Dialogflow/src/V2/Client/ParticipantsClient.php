@@ -733,6 +733,8 @@ final class ParticipantsClient
      *
      * The async variant is {@see ParticipantsClient::analyzeContentAsync()} .
      *
+     * @example samples/V2/ParticipantsClient/analyze_content.php
+     *
      * @param AnalyzeContentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -756,6 +758,8 @@ final class ParticipantsClient
      * Creates a new participant in a conversation.
      *
      * The async variant is {@see ParticipantsClient::createParticipantAsync()} .
+     *
+     * @example samples/V2/ParticipantsClient/create_participant.php
      *
      * @param CreateParticipantRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -781,6 +785,8 @@ final class ParticipantsClient
      *
      * The async variant is {@see ParticipantsClient::getParticipantAsync()} .
      *
+     * @example samples/V2/ParticipantsClient/get_participant.php
+     *
      * @param GetParticipantRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -804,6 +810,8 @@ final class ParticipantsClient
      * Returns the list of all participants in the specified conversation.
      *
      * The async variant is {@see ParticipantsClient::listParticipantsAsync()} .
+     *
+     * @example samples/V2/ParticipantsClient/list_participants.php
      *
      * @param ListParticipantsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -841,6 +849,8 @@ final class ParticipantsClient
      * sent to virtual agents. See [Versions and
      * environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
      *
+     * @example samples/V2/ParticipantsClient/streaming_analyze_content.php
+     *
      * @param array $callOptions {
      *     Optional.
      *
@@ -862,6 +872,8 @@ final class ParticipantsClient
      * messages.
      *
      * The async variant is {@see ParticipantsClient::suggestArticlesAsync()} .
+     *
+     * @example samples/V2/ParticipantsClient/suggest_articles.php
      *
      * @param SuggestArticlesRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -888,6 +900,8 @@ final class ParticipantsClient
      *
      * The async variant is {@see ParticipantsClient::suggestFaqAnswersAsync()} .
      *
+     * @example samples/V2/ParticipantsClient/suggest_faq_answers.php
+     *
      * @param SuggestFaqAnswersRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -913,6 +927,8 @@ final class ParticipantsClient
      *
      * The async variant is {@see ParticipantsClient::suggestSmartRepliesAsync()} .
      *
+     * @example samples/V2/ParticipantsClient/suggest_smart_replies.php
+     *
      * @param SuggestSmartRepliesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -936,6 +952,8 @@ final class ParticipantsClient
      * Updates the specified participant.
      *
      * The async variant is {@see ParticipantsClient::updateParticipantAsync()} .
+     *
+     * @example samples/V2/ParticipantsClient/update_participant.php
      *
      * @param UpdateParticipantRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -961,6 +979,8 @@ final class ParticipantsClient
      *
      * The async variant is {@see ParticipantsClient::getLocationAsync()} .
      *
+     * @example samples/V2/ParticipantsClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -984,6 +1004,8 @@ final class ParticipantsClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see ParticipantsClient::listLocationsAsync()} .
+     *
+     * @example samples/V2/ParticipantsClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

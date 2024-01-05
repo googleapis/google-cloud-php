@@ -219,6 +219,8 @@ final class TextToSpeechClient
      *
      * The async variant is {@see TextToSpeechClient::listVoicesAsync()} .
      *
+     * @example samples/V1/TextToSpeechClient/list_voices.php
+     *
      * @param ListVoicesRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -243,6 +245,8 @@ final class TextToSpeechClient
      * has been processed.
      *
      * The async variant is {@see TextToSpeechClient::synthesizeSpeechAsync()} .
+     *
+     * @example samples/V1/TextToSpeechClient/synthesize_speech.php
      *
      * @param SynthesizeSpeechRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {

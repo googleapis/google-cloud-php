@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_Environments_GetEnvironmentHistory_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dialogflow\V2\Client\EnvironmentsClient;
 use Google\Cloud\Dialogflow\V2\EnvironmentHistory\Entry;
-use Google\Cloud\Dialogflow\V2\EnvironmentsClient;
+use Google\Cloud\Dialogflow\V2\GetEnvironmentHistoryRequest;
 
 /**
  * Gets the history of the specified environment.
@@ -46,10 +47,14 @@ function get_environment_history_sample(string $formattedParent): void
     // Create a client.
     $environmentsClient = new EnvironmentsClient();
 
+    // Prepare the request message.
+    $request = (new GetEnvironmentHistoryRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $environmentsClient->getEnvironmentHistory($formattedParent);
+        $response = $environmentsClient->getEnvironmentHistory($request);
 
         /** @var Entry $element */
         foreach ($response as $element) {

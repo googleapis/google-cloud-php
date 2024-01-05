@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START iap_v1_generated_IdentityAwareProxyAdminService_SetIamPolicy_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Iam\V1\Policy;
-use Google\Cloud\Iap\V1\IdentityAwareProxyAdminServiceClient;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iap\V1\Client\IdentityAwareProxyAdminServiceClient;
 
 /**
  * Sets the access control policy for an Identity-Aware Proxy protected
@@ -41,13 +42,16 @@ function set_iam_policy_sample(string $resource): void
     // Create a client.
     $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $policy = new Policy();
+    $request = (new SetIamPolicyRequest())
+        ->setResource($resource)
+        ->setPolicy($policy);
 
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $identityAwareProxyAdminServiceClient->setIamPolicy($resource, $policy);
+        $response = $identityAwareProxyAdminServiceClient->setIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

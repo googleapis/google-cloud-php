@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datastream_v1_generated_Datastream_StartBackfillJob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Datastream\V1\DatastreamClient;
+use Google\Cloud\Datastream\V1\Client\DatastreamClient;
+use Google\Cloud\Datastream\V1\StartBackfillJobRequest;
 use Google\Cloud\Datastream\V1\StartBackfillJobResponse;
 
 /**
@@ -39,10 +40,14 @@ function start_backfill_job_sample(string $formattedObject): void
     // Create a client.
     $datastreamClient = new DatastreamClient();
 
+    // Prepare the request message.
+    $request = (new StartBackfillJobRequest())
+        ->setObject($formattedObject);
+
     // Call the API and handle any network failures.
     try {
         /** @var StartBackfillJobResponse $response */
-        $response = $datastreamClient->startBackfillJob($formattedObject);
+        $response = $datastreamClient->startBackfillJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

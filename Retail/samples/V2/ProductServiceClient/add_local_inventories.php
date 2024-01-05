@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START retail_v2_generated_ProductService_AddLocalInventories_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Retail\V2\AddLocalInventoriesRequest;
 use Google\Cloud\Retail\V2\AddLocalInventoriesResponse;
+use Google\Cloud\Retail\V2\Client\ProductServiceClient;
 use Google\Cloud\Retail\V2\LocalInventory;
-use Google\Cloud\Retail\V2\ProductServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -74,13 +75,16 @@ function add_local_inventories_sample(string $formattedProduct): void
     // Create a client.
     $productServiceClient = new ProductServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $localInventories = [new LocalInventory()];
+    $request = (new AddLocalInventoriesRequest())
+        ->setProduct($formattedProduct)
+        ->setLocalInventories($localInventories);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $productServiceClient->addLocalInventories($formattedProduct, $localInventories);
+        $response = $productServiceClient->addLocalInventories($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

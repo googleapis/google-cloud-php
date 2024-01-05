@@ -9,8 +9,8 @@
             "Google\\LongRunning\\": "src/LongRunning",
             "GPBMetadata\\Google\\Longrunning\\": "metadata/Longrunning"
         }
-   },
-   "extra": {
+    },
+    "extra": {
         "component": {
             "id": "longrunning",
             "path": "LongRunning",
@@ -19,7 +19,7 @@
         }
     },
     "require-dev": {
-        "google/gax": "^1.13.0",
+        "google/gax": "^1.26.0",
         "phpunit/phpunit": "^9.0"
     }
 }

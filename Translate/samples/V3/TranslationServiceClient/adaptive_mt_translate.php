@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START translate_v3_generated_TranslationService_AdaptiveMtTranslate_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest;
 use Google\Cloud\Translate\V3\AdaptiveMtTranslateResponse;
-use Google\Cloud\Translate\V3\TranslationServiceClient;
+use Google\Cloud\Translate\V3\Client\TranslationServiceClient;
 
 /**
  * Translate text using Adaptive MT.
@@ -48,17 +49,17 @@ function adaptive_mt_translate_sample(
     // Create a client.
     $translationServiceClient = new TranslationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $content = [$contentElement,];
+    $request = (new AdaptiveMtTranslateRequest())
+        ->setParent($formattedParent)
+        ->setDataset($formattedDataset)
+        ->setContent($content);
 
     // Call the API and handle any network failures.
     try {
         /** @var AdaptiveMtTranslateResponse $response */
-        $response = $translationServiceClient->adaptiveMtTranslate(
-            $formattedParent,
-            $formattedDataset,
-            $content
-        );
+        $response = $translationServiceClient->adaptiveMtTranslate($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

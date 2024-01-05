@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_Sessions_DetectIntent_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\V2\Client\SessionsClient;
+use Google\Cloud\Dialogflow\V2\DetectIntentRequest;
 use Google\Cloud\Dialogflow\V2\DetectIntentResponse;
 use Google\Cloud\Dialogflow\V2\QueryInput;
-use Google\Cloud\Dialogflow\V2\SessionsClient;
 
 /**
  * Processes a natural language query and returns structured, actionable data
@@ -69,13 +70,16 @@ function detect_intent_sample(string $formattedSession): void
     // Create a client.
     $sessionsClient = new SessionsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $queryInput = new QueryInput();
+    $request = (new DetectIntentRequest())
+        ->setSession($formattedSession)
+        ->setQueryInput($queryInput);
 
     // Call the API and handle any network failures.
     try {
         /** @var DetectIntentResponse $response */
-        $response = $sessionsClient->detectIntent($formattedSession, $queryInput);
+        $response = $sessionsClient->detectIntent($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

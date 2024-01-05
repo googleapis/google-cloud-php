@@ -471,6 +471,8 @@ final class ConversationModelsClient
      * The async variant is
      * {@see ConversationModelsClient::createConversationModelAsync()} .
      *
+     * @example samples/V2/ConversationModelsClient/create_conversation_model.php
+     *
      * @param CreateConversationModelRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -495,6 +497,8 @@ final class ConversationModelsClient
      *
      * The async variant is
      * {@see ConversationModelsClient::createConversationModelEvaluationAsync()} .
+     *
+     * @example samples/V2/ConversationModelsClient/create_conversation_model_evaluation.php
      *
      * @param CreateConversationModelEvaluationRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
@@ -529,6 +533,8 @@ final class ConversationModelsClient
      *
      * The async variant is
      * {@see ConversationModelsClient::deleteConversationModelAsync()} .
+     *
+     * @example samples/V2/ConversationModelsClient/delete_conversation_model.php
      *
      * @param DeleteConversationModelRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -567,6 +573,8 @@ final class ConversationModelsClient
      * The async variant is
      * {@see ConversationModelsClient::deployConversationModelAsync()} .
      *
+     * @example samples/V2/ConversationModelsClient/deploy_conversation_model.php
+     *
      * @param DeployConversationModelRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -591,6 +599,8 @@ final class ConversationModelsClient
      *
      * The async variant is
      * {@see ConversationModelsClient::getConversationModelAsync()} .
+     *
+     * @example samples/V2/ConversationModelsClient/get_conversation_model.php
      *
      * @param GetConversationModelRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -617,6 +627,8 @@ final class ConversationModelsClient
      * The async variant is
      * {@see ConversationModelsClient::getConversationModelEvaluationAsync()} .
      *
+     * @example samples/V2/ConversationModelsClient/get_conversation_model_evaluation.php
+     *
      * @param GetConversationModelEvaluationRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -642,6 +654,8 @@ final class ConversationModelsClient
      * The async variant is
      * {@see ConversationModelsClient::listConversationModelEvaluationsAsync()} .
      *
+     * @example samples/V2/ConversationModelsClient/list_conversation_model_evaluations.php
+     *
      * @param ListConversationModelEvaluationsRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -666,6 +680,8 @@ final class ConversationModelsClient
      *
      * The async variant is
      * {@see ConversationModelsClient::listConversationModelsAsync()} .
+     *
+     * @example samples/V2/ConversationModelsClient/list_conversation_models.php
      *
      * @param ListConversationModelsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -704,6 +720,8 @@ final class ConversationModelsClient
      * The async variant is
      * {@see ConversationModelsClient::undeployConversationModelAsync()} .
      *
+     * @example samples/V2/ConversationModelsClient/undeploy_conversation_model.php
+     *
      * @param UndeployConversationModelRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -728,6 +746,8 @@ final class ConversationModelsClient
      *
      * The async variant is {@see ConversationModelsClient::getLocationAsync()} .
      *
+     * @example samples/V2/ConversationModelsClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -751,6 +771,8 @@ final class ConversationModelsClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see ConversationModelsClient::listLocationsAsync()} .
+     *
+     * @example samples/V2/ConversationModelsClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_Agents_ImportAgent_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Dialogflow\V2\AgentsClient;
+use Google\Cloud\Dialogflow\V2\Client\AgentsClient;
+use Google\Cloud\Dialogflow\V2\ImportAgentRequest;
 use Google\Rpc\Status;
 
 /**
@@ -66,10 +67,14 @@ function import_agent_sample(string $formattedParent): void
     // Create a client.
     $agentsClient = new AgentsClient();
 
+    // Prepare the request message.
+    $request = (new ImportAgentRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $agentsClient->importAgent($formattedParent);
+        $response = $agentsClient->importAgent($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

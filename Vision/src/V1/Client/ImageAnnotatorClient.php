@@ -271,6 +271,8 @@ final class ImageAnnotatorClient
      * The async variant is {@see ImageAnnotatorClient::asyncBatchAnnotateFilesAsync()}
      * .
      *
+     * @example samples/V1/ImageAnnotatorClient/async_batch_annotate_files.php
+     *
      * @param AsyncBatchAnnotateFilesRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -304,6 +306,8 @@ final class ImageAnnotatorClient
      * The async variant is
      * {@see ImageAnnotatorClient::asyncBatchAnnotateImagesAsync()} .
      *
+     * @example samples/V1/ImageAnnotatorClient/async_batch_annotate_images.php
+     *
      * @param AsyncBatchAnnotateImagesRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -334,6 +338,8 @@ final class ImageAnnotatorClient
      *
      * The async variant is {@see ImageAnnotatorClient::batchAnnotateFilesAsync()} .
      *
+     * @example samples/V1/ImageAnnotatorClient/batch_annotate_files.php
+     *
      * @param BatchAnnotateFilesRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -357,6 +363,8 @@ final class ImageAnnotatorClient
      * Run image detection and annotation for a batch of images.
      *
      * The async variant is {@see ImageAnnotatorClient::batchAnnotateImagesAsync()} .
+     *
+     * @example samples/V1/ImageAnnotatorClient/batch_annotate_images.php
      *
      * @param BatchAnnotateImagesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {

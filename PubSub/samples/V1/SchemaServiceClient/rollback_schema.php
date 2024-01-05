@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START pubsub_v1_generated_SchemaService_RollbackSchema_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\PubSub\V1\Client\SchemaServiceClient;
+use Google\Cloud\PubSub\V1\RollbackSchemaRequest;
 use Google\Cloud\PubSub\V1\Schema;
-use Google\Cloud\PubSub\V1\SchemaServiceClient;
 
 /**
  * Creates a new schema revision that is a copy of the provided revision_id.
@@ -42,10 +43,15 @@ function rollback_schema_sample(string $formattedName, string $revisionId): void
     // Create a client.
     $schemaServiceClient = new SchemaServiceClient();
 
+    // Prepare the request message.
+    $request = (new RollbackSchemaRequest())
+        ->setName($formattedName)
+        ->setRevisionId($revisionId);
+
     // Call the API and handle any network failures.
     try {
         /** @var Schema $response */
-        $response = $schemaServiceClient->rollbackSchema($formattedName, $revisionId);
+        $response = $schemaServiceClient->rollbackSchema($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

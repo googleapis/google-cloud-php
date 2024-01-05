@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START webrisk_v1_generated_WebRiskService_SearchUris_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\WebRisk\V1\Client\WebRiskServiceClient;
+use Google\Cloud\WebRisk\V1\SearchUrisRequest;
 use Google\Cloud\WebRisk\V1\SearchUrisResponse;
 use Google\Cloud\WebRisk\V1\ThreatType;
-use Google\Cloud\WebRisk\V1\WebRiskServiceClient;
 
 /**
  * This method is used to check whether a URI is on a given threatList.
@@ -44,13 +45,16 @@ function search_uris_sample(string $uri, int $threatTypesElement): void
     // Create a client.
     $webRiskServiceClient = new WebRiskServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $threatTypes = [$threatTypesElement,];
+    $request = (new SearchUrisRequest())
+        ->setUri($uri)
+        ->setThreatTypes($threatTypes);
 
     // Call the API and handle any network failures.
     try {
         /** @var SearchUrisResponse $response */
-        $response = $webRiskServiceClient->searchUris($uri, $threatTypes);
+        $response = $webRiskServiceClient->searchUris($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

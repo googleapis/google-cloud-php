@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START documentai_v1_generated_DocumentProcessorService_DeployProcessorVersion_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\DocumentAI\V1\Client\DocumentProcessorServiceClient;
+use Google\Cloud\DocumentAI\V1\DeployProcessorVersionRequest;
 use Google\Cloud\DocumentAI\V1\DeployProcessorVersionResponse;
-use Google\Cloud\DocumentAI\V1\DocumentProcessorServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,14 @@ function deploy_processor_version_sample(string $formattedName): void
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeployProcessorVersionRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $documentProcessorServiceClient->deployProcessorVersion($formattedName);
+        $response = $documentProcessorServiceClient->deployProcessorVersion($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

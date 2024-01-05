@@ -299,6 +299,8 @@ final class ModelServiceClient
      *
      * The async variant is {@see ModelServiceClient::createModelAsync()} .
      *
+     * @example samples/V2/ModelServiceClient/create_model.php
+     *
      * @param CreateModelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -323,6 +325,8 @@ final class ModelServiceClient
      *
      * The async variant is {@see ModelServiceClient::deleteModelAsync()} .
      *
+     * @example samples/V2/ModelServiceClient/delete_model.php
+     *
      * @param DeleteModelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -344,6 +348,8 @@ final class ModelServiceClient
      * Gets a model.
      *
      * The async variant is {@see ModelServiceClient::getModelAsync()} .
+     *
+     * @example samples/V2/ModelServiceClient/get_model.php
      *
      * @param GetModelRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -369,6 +375,8 @@ final class ModelServiceClient
      *
      * The async variant is {@see ModelServiceClient::listModelsAsync()} .
      *
+     * @example samples/V2/ModelServiceClient/list_models.php
+     *
      * @param ListModelsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -392,6 +400,8 @@ final class ModelServiceClient
      * Pauses the training of an existing model.
      *
      * The async variant is {@see ModelServiceClient::pauseModelAsync()} .
+     *
+     * @example samples/V2/ModelServiceClient/pause_model.php
      *
      * @param PauseModelRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -417,6 +427,8 @@ final class ModelServiceClient
      *
      * The async variant is {@see ModelServiceClient::resumeModelAsync()} .
      *
+     * @example samples/V2/ModelServiceClient/resume_model.php
+     *
      * @param ResumeModelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -440,6 +452,8 @@ final class ModelServiceClient
      * Tunes an existing model.
      *
      * The async variant is {@see ModelServiceClient::tuneModelAsync()} .
+     *
+     * @example samples/V2/ModelServiceClient/tune_model.php
      *
      * @param TuneModelRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -467,6 +481,8 @@ final class ModelServiceClient
      * If other values are provided, this API method ignores them.
      *
      * The async variant is {@see ModelServiceClient::updateModelAsync()} .
+     *
+     * @example samples/V2/ModelServiceClient/update_model.php
      *
      * @param UpdateModelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {

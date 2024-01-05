@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START speech_v2_generated_Speech_GetPhraseSet_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Speech\V2\Client\SpeechClient;
+use Google\Cloud\Speech\V2\GetPhraseSetRequest;
 use Google\Cloud\Speech\V2\PhraseSet;
-use Google\Cloud\Speech\V2\SpeechClient;
 
 /**
  * Returns the requested
@@ -40,10 +41,14 @@ function get_phrase_set_sample(string $formattedName): void
     // Create a client.
     $speechClient = new SpeechClient();
 
+    // Prepare the request message.
+    $request = (new GetPhraseSetRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var PhraseSet $response */
-        $response = $speechClient->getPhraseSet($formattedName);
+        $response = $speechClient->getPhraseSet($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

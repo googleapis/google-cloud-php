@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START iap_v1_generated_IdentityAwareProxyAdminService_ListTunnelDestGroups_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Iap\V1\IdentityAwareProxyAdminServiceClient;
+use Google\Cloud\Iap\V1\Client\IdentityAwareProxyAdminServiceClient;
+use Google\Cloud\Iap\V1\ListTunnelDestGroupsRequest;
 use Google\Cloud\Iap\V1\TunnelDestGroup;
 
 /**
@@ -44,10 +45,14 @@ function list_tunnel_dest_groups_sample(string $formattedParent): void
     // Create a client.
     $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListTunnelDestGroupsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $identityAwareProxyAdminServiceClient->listTunnelDestGroups($formattedParent);
+        $response = $identityAwareProxyAdminServiceClient->listTunnelDestGroups($request);
 
         /** @var TunnelDestGroup $element */
         foreach ($response as $element) {

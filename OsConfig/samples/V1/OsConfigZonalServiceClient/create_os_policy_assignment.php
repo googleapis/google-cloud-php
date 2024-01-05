@@ -25,6 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START osconfig_v1_generated_OsConfigZonalService_CreateOSPolicyAssignment_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\OsConfig\V1\Client\OsConfigZonalServiceClient;
+use Google\Cloud\OsConfig\V1\CreateOSPolicyAssignmentRequest;
 use Google\Cloud\OsConfig\V1\FixedOrPercent;
 use Google\Cloud\OsConfig\V1\OSPolicy;
 use Google\Cloud\OsConfig\V1\OSPolicyAssignment;
@@ -33,7 +35,6 @@ use Google\Cloud\OsConfig\V1\OSPolicyAssignment\Rollout;
 use Google\Cloud\OsConfig\V1\OSPolicy\Mode;
 use Google\Cloud\OsConfig\V1\OSPolicy\Resource;
 use Google\Cloud\OsConfig\V1\OSPolicy\ResourceGroup;
-use Google\Cloud\OsConfig\V1\OsConfigZonalServiceClient;
 use Google\Protobuf\Duration;
 use Google\Rpc\Status;
 
@@ -85,7 +86,7 @@ function create_os_policy_assignment_sample(
     // Create a client.
     $osConfigZonalServiceClient = new OsConfigZonalServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $resource = (new Resource())
         ->setId($osPolicyAssignmentOsPoliciesResourceGroupsResourcesId);
     $osPolicyAssignmentOsPoliciesResourceGroupsResources = [$resource,];
@@ -107,15 +108,15 @@ function create_os_policy_assignment_sample(
         ->setOsPolicies($osPolicyAssignmentOsPolicies)
         ->setInstanceFilter($osPolicyAssignmentInstanceFilter)
         ->setRollout($osPolicyAssignmentRollout);
+    $request = (new CreateOSPolicyAssignmentRequest())
+        ->setParent($formattedParent)
+        ->setOsPolicyAssignment($osPolicyAssignment)
+        ->setOsPolicyAssignmentId($osPolicyAssignmentId);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $osConfigZonalServiceClient->createOSPolicyAssignment(
-            $formattedParent,
-            $osPolicyAssignment,
-            $osPolicyAssignmentId
-        );
+        $response = $osConfigZonalServiceClient->createOSPolicyAssignment($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

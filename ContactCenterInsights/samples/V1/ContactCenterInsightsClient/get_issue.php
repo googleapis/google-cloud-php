@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START contactcenterinsights_v1_generated_ContactCenterInsights_GetIssue_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\ContactCenterInsights\V1\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\GetIssueRequest;
 use Google\Cloud\ContactCenterInsights\V1\Issue;
 
 /**
@@ -38,10 +39,14 @@ function get_issue_sample(string $formattedName): void
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
+    // Prepare the request message.
+    $request = (new GetIssueRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Issue $response */
-        $response = $contactCenterInsightsClient->getIssue($formattedName);
+        $response = $contactCenterInsightsClient->getIssue($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

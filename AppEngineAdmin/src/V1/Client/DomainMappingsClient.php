@@ -214,6 +214,8 @@ final class DomainMappingsClient
      *
      * The async variant is {@see DomainMappingsClient::createDomainMappingAsync()} .
      *
+     * @example samples/V1/DomainMappingsClient/create_domain_mapping.php
+     *
      * @param CreateDomainMappingRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -240,6 +242,8 @@ final class DomainMappingsClient
      *
      * The async variant is {@see DomainMappingsClient::deleteDomainMappingAsync()} .
      *
+     * @example samples/V1/DomainMappingsClient/delete_domain_mapping.php
+     *
      * @param DeleteDomainMappingRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -264,6 +268,8 @@ final class DomainMappingsClient
      *
      * The async variant is {@see DomainMappingsClient::getDomainMappingAsync()} .
      *
+     * @example samples/V1/DomainMappingsClient/get_domain_mapping.php
+     *
      * @param GetDomainMappingRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -287,6 +293,8 @@ final class DomainMappingsClient
      * Lists the domain mappings on an application.
      *
      * The async variant is {@see DomainMappingsClient::listDomainMappingsAsync()} .
+     *
+     * @example samples/V1/DomainMappingsClient/list_domain_mappings.php
      *
      * @param ListDomainMappingsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -314,6 +322,8 @@ final class DomainMappingsClient
      * in order to update a `DomainMapping` resource.
      *
      * The async variant is {@see DomainMappingsClient::updateDomainMappingAsync()} .
+     *
+     * @example samples/V1/DomainMappingsClient/update_domain_mapping.php
      *
      * @param UpdateDomainMappingRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {

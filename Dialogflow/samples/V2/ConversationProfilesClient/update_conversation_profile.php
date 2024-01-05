@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_ConversationProfiles_UpdateConversationProfile_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\V2\Client\ConversationProfilesClient;
 use Google\Cloud\Dialogflow\V2\ConversationProfile;
-use Google\Cloud\Dialogflow\V2\ConversationProfilesClient;
+use Google\Cloud\Dialogflow\V2\UpdateConversationProfileRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -43,18 +44,18 @@ function update_conversation_profile_sample(string $conversationProfileDisplayNa
     // Create a client.
     $conversationProfilesClient = new ConversationProfilesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $conversationProfile = (new ConversationProfile())
         ->setDisplayName($conversationProfileDisplayName);
     $updateMask = new FieldMask();
+    $request = (new UpdateConversationProfileRequest())
+        ->setConversationProfile($conversationProfile)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var ConversationProfile $response */
-        $response = $conversationProfilesClient->updateConversationProfile(
-            $conversationProfile,
-            $updateMask
-        );
+        $response = $conversationProfilesClient->updateConversationProfile($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

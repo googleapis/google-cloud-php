@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START redis_v1_generated_CloudRedis_GetInstanceAuthString_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Redis\V1\CloudRedisClient;
+use Google\Cloud\Redis\V1\Client\CloudRedisClient;
+use Google\Cloud\Redis\V1\GetInstanceAuthStringRequest;
 use Google\Cloud\Redis\V1\InstanceAuthString;
 
 /**
@@ -42,10 +43,14 @@ function get_instance_auth_string_sample(string $formattedName): void
     // Create a client.
     $cloudRedisClient = new CloudRedisClient();
 
+    // Prepare the request message.
+    $request = (new GetInstanceAuthStringRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var InstanceAuthString $response */
-        $response = $cloudRedisClient->getInstanceAuthString($formattedName);
+        $response = $cloudRedisClient->getInstanceAuthString($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -37,6 +37,22 @@ class ListDebuggeesRequest extends \Google\Protobuf\Internal\Message
     private $client_version = '';
 
     /**
+     * @param string $project       Required. Project number of a Google Cloud project whose debuggees to list.
+     * @param string $clientVersion Required. The client version making the call.
+     *                              Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     *
+     * @return \Google\Cloud\Debugger\V2\ListDebuggeesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $clientVersion): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setClientVersion($clientVersion);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

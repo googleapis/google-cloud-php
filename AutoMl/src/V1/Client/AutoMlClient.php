@@ -384,6 +384,8 @@ final class AutoMlClient
      *
      * The async variant is {@see AutoMlClient::createDatasetAsync()} .
      *
+     * @example samples/V1/AutoMlClient/create_dataset.php
+     *
      * @param CreateDatasetRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -411,6 +413,8 @@ final class AutoMlClient
      * a global evaluation, and one evaluation for each annotation spec.
      *
      * The async variant is {@see AutoMlClient::createModelAsync()} .
+     *
+     * @example samples/V1/AutoMlClient/create_model.php
      *
      * @param CreateModelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -440,6 +444,8 @@ final class AutoMlClient
      *
      * The async variant is {@see AutoMlClient::deleteDatasetAsync()} .
      *
+     * @example samples/V1/AutoMlClient/delete_dataset.php
+     *
      * @param DeleteDatasetRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -467,6 +473,8 @@ final class AutoMlClient
      * [metadata][google.longrunning.Operation.metadata] field.
      *
      * The async variant is {@see AutoMlClient::deleteModelAsync()} .
+     *
+     * @example samples/V1/AutoMlClient/delete_model.php
      *
      * @param DeleteModelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -502,6 +510,8 @@ final class AutoMlClient
      *
      * The async variant is {@see AutoMlClient::deployModelAsync()} .
      *
+     * @example samples/V1/AutoMlClient/deploy_model.php
+     *
      * @param DeployModelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -527,6 +537,8 @@ final class AutoMlClient
      * [response][google.longrunning.Operation.response] field when it completes.
      *
      * The async variant is {@see AutoMlClient::exportDataAsync()} .
+     *
+     * @example samples/V1/AutoMlClient/export_data.php
      *
      * @param ExportDataRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -558,6 +570,8 @@ final class AutoMlClient
      *
      * The async variant is {@see AutoMlClient::exportModelAsync()} .
      *
+     * @example samples/V1/AutoMlClient/export_model.php
+     *
      * @param ExportModelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -581,6 +595,8 @@ final class AutoMlClient
      * Gets an annotation spec.
      *
      * The async variant is {@see AutoMlClient::getAnnotationSpecAsync()} .
+     *
+     * @example samples/V1/AutoMlClient/get_annotation_spec.php
      *
      * @param GetAnnotationSpecRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -606,6 +622,8 @@ final class AutoMlClient
      *
      * The async variant is {@see AutoMlClient::getDatasetAsync()} .
      *
+     * @example samples/V1/AutoMlClient/get_dataset.php
+     *
      * @param GetDatasetRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -630,6 +648,8 @@ final class AutoMlClient
      *
      * The async variant is {@see AutoMlClient::getModelAsync()} .
      *
+     * @example samples/V1/AutoMlClient/get_model.php
+     *
      * @param GetModelRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -653,6 +673,8 @@ final class AutoMlClient
      * Gets a model evaluation.
      *
      * The async variant is {@see AutoMlClient::getModelEvaluationAsync()} .
+     *
+     * @example samples/V1/AutoMlClient/get_model_evaluation.php
      *
      * @param GetModelEvaluationRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -686,6 +708,8 @@ final class AutoMlClient
      *
      * The async variant is {@see AutoMlClient::importDataAsync()} .
      *
+     * @example samples/V1/AutoMlClient/import_data.php
+     *
      * @param ImportDataRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -709,6 +733,8 @@ final class AutoMlClient
      * Lists datasets in a project.
      *
      * The async variant is {@see AutoMlClient::listDatasetsAsync()} .
+     *
+     * @example samples/V1/AutoMlClient/list_datasets.php
      *
      * @param ListDatasetsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -734,6 +760,8 @@ final class AutoMlClient
      *
      * The async variant is {@see AutoMlClient::listModelEvaluationsAsync()} .
      *
+     * @example samples/V1/AutoMlClient/list_model_evaluations.php
+     *
      * @param ListModelEvaluationsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -757,6 +785,8 @@ final class AutoMlClient
      * Lists models.
      *
      * The async variant is {@see AutoMlClient::listModelsAsync()} .
+     *
+     * @example samples/V1/AutoMlClient/list_models.php
      *
      * @param ListModelsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -788,6 +818,8 @@ final class AutoMlClient
      *
      * The async variant is {@see AutoMlClient::undeployModelAsync()} .
      *
+     * @example samples/V1/AutoMlClient/undeploy_model.php
+     *
      * @param UndeployModelRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -812,6 +844,8 @@ final class AutoMlClient
      *
      * The async variant is {@see AutoMlClient::updateDatasetAsync()} .
      *
+     * @example samples/V1/AutoMlClient/update_dataset.php
+     *
      * @param UpdateDatasetRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -835,6 +869,8 @@ final class AutoMlClient
      * Updates a model.
      *
      * The async variant is {@see AutoMlClient::updateModelAsync()} .
+     *
+     * @example samples/V1/AutoMlClient/update_model.php
      *
      * @param UpdateModelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {

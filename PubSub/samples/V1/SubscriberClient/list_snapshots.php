@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START pubsub_v1_generated_Subscriber_ListSnapshots_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\PubSub\V1\Client\SubscriberClient;
+use Google\Cloud\PubSub\V1\ListSnapshotsRequest;
 use Google\Cloud\PubSub\V1\Snapshot;
-use Google\Cloud\PubSub\V1\SubscriberClient;
 
 /**
  * Lists the existing snapshots. Snapshots are used in [Seek](
@@ -44,10 +45,14 @@ function list_snapshots_sample(string $formattedProject): void
     // Create a client.
     $subscriberClient = new SubscriberClient();
 
+    // Prepare the request message.
+    $request = (new ListSnapshotsRequest())
+        ->setProject($formattedProject);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $subscriberClient->listSnapshots($formattedProject);
+        $response = $subscriberClient->listSnapshots($request);
 
         /** @var Snapshot $element */
         foreach ($response as $element) {

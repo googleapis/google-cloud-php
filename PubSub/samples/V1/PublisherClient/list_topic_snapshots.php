@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START pubsub_v1_generated_Publisher_ListTopicSnapshots_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\PubSub\V1\PublisherClient;
+use Google\Cloud\PubSub\V1\Client\PublisherClient;
+use Google\Cloud\PubSub\V1\ListTopicSnapshotsRequest;
 
 /**
  * Lists the names of the snapshots on this topic. Snapshots are used in
@@ -43,10 +44,14 @@ function list_topic_snapshots_sample(string $formattedTopic): void
     // Create a client.
     $publisherClient = new PublisherClient();
 
+    // Prepare the request message.
+    $request = (new ListTopicSnapshotsRequest())
+        ->setTopic($formattedTopic);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $publisherClient->listTopicSnapshots($formattedTopic);
+        $response = $publisherClient->listTopicSnapshots($request);
 
         /** @var string $element */
         foreach ($response as $element) {
