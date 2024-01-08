@@ -60,7 +60,7 @@ class RequestHandler
         Serializer $serializer,
         array $gapicClasses,
         array $clientConfig = [],
-        GapicRequestWrapper $requestWrapper = null,
+        GapicRequestWrapper $requestWrapper = null
     ) {
         //@codeCoverageIgnoreStart
         $this->serializer = $serializer;
