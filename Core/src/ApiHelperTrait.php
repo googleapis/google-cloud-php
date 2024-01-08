@@ -35,7 +35,7 @@ trait ApiHelperTrait
      * @param array $fields
      * @return array
      */
-    private function formatStructForApi(array $fields) : array
+    private function formatStructForApi(array $fields)
     {
         $fFields = [];
 
@@ -46,7 +46,7 @@ trait ApiHelperTrait
         return ['fields' => $fFields];
     }
 
-    private function unpackStructFromApi(array $struct) : array
+    private function unpackStructFromApi(array $struct)
     {
         $vals = [];
         foreach ($struct['fields'] as $key => $val) {
@@ -55,7 +55,7 @@ trait ApiHelperTrait
         return $vals;
     }
 
-    private function unpackValue(array $value)
+    private function unpackValue($value)
     {
         if (count($value) > 1) {
             throw new \RuntimeException("Unexpected fields in struct: $value");
@@ -106,7 +106,7 @@ trait ApiHelperTrait
      * @param array $list
      * @return array
      */
-    private function formatListForApi(array $list) : array
+    private function formatListForApi(array $list)
     {
         $values = [];
 
@@ -123,7 +123,7 @@ trait ApiHelperTrait
      * @param mixed $value
      * @return array
      */
-    private function formatValueForApi($value) : array
+    private function formatValueForApi($value)
     {
         $type = gettype($value);
 
@@ -154,7 +154,7 @@ trait ApiHelperTrait
      * @param array $timestamp
      * @return string
      */
-    private function formatTimestampFromApi(array $timestamp) : string
+    private function formatTimestampFromApi(array $timestamp)
     {
         $timestamp += [
             'seconds' => 0,
@@ -172,7 +172,7 @@ trait ApiHelperTrait
      * @param string $value
      * @return array
      */
-    private function formatTimestampForApi(string $value) : array
+    private function formatTimestampForApi($value)
     {
         list ($dt, $nanos) = $this->parseTimeString($value);
 
