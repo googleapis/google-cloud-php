@@ -73,6 +73,10 @@ class Topic
         'messageRetentionDuration'
     ];
 
+    private const COMPRESSION_HEADER_KEY = 'grpc-internal-encoding-request';
+
+    private const GZIP_COMPRESSION = 'gzip';
+
     /**
      * @var RequestHandler
      * @internal
@@ -578,8 +582,15 @@ class Topic
      */
     public function publishBatch(array $messages, array $options = [])
     {
+        $totalMessagesSize = 0;
         foreach ($messages as &$message) {
             $message = $this->formatMessage($message);
+            $totalMessagesSize += strlen($message->serializeToString());
+        }
+
+        if ($this->enableCompression &&
+            $totalMessagesSize >= $this->compressionBytesThreshold) {
+            $options['headers'][self::COMPRESSION_HEADER_KEY] = [self::GZIP_COMPRESSION];
         }
 
         $request = $this->serializer->decodeMessage(
@@ -591,10 +602,7 @@ class Topic
             PublisherClient::class,
             'publish',
             $request,
-            ['compressionOptions' => [
-                'enableCompression' => $this->enableCompression,
-                'compressionBytesThreshold' => $this->compressionBytesThreshold
-            ]]
+            $options
         );
     }
 
@@ -817,7 +825,7 @@ class Topic
      * base64_encode the data, and error if the input is too wrong to proceed.
      *
      * @param Message|array $message
-     * @return array The message data
+     * @return PubsubMessage The message protobuf object
      * @throws \InvalidArgumentException
      */
     private function formatMessage($message)
