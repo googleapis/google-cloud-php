@@ -30,7 +30,6 @@ use Prophecy\PhpUnit\ProphecyTrait;
 use Google\Cloud\Core\Tests\Unit\Stubs\SampleGapicClass2;
 use Google\Cloud\Core\Tests\Unit\Stubs\SampleGapicClass1;
 use Google\Protobuf\Internal\Message;
-use stdClass;
 
 /**
  * @group core
@@ -128,7 +127,6 @@ class RequestHandlerTest extends TestCase
     public function testOptionalArgs()
     {
         $counter = 0;
-
         $cb = function () use (&$counter) {
             $counter = 1;
         };

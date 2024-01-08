@@ -117,7 +117,6 @@ class RequestHandler
         array $optionalArgs,
         bool $whitelisted = false
     ) {
-
         $gapicObj = $this->getGapicObject($gapicClass);
 
         if (!$gapicObj) {

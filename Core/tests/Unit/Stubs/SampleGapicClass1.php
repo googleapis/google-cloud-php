@@ -26,7 +26,7 @@ use Google\Protobuf\Internal\Message;
  */
 class SampleGapicClass1
 {
-    public function sampleMethod(Message $request, $args)
+    public function sampleMethod(Message $request, $args = [])
     {
         if (isset($args['func'])) {
             $args['func']();
