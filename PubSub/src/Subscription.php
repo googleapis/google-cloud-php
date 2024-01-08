@@ -109,7 +109,22 @@ class Subscription
 
     const MAX_MESSAGES = 1000;
 
-    private const SUBSCRIPTION_PROPS = ['pushConfig', 'bigqueryConfig', 'cloudStorageConfig', 'ackDeadlineSeconds', 'retainAckedMessages', 'messageRetentionDuration', 'labels', 'enableMessageOrdering', 'expirationPolicy', 'filter', 'deadLetterPolicy', 'retryPolicy', 'detached', 'enableExactlyOnceDelivery'];
+    private const SUBSCRIPTION_PROPS = [
+        'pushConfig',
+        'bigqueryConfig',
+        'cloudStorageConfig',
+        'ackDeadlineSeconds',
+        'retainAckedMessages',
+        'messageRetentionDuration',
+        'labels',
+        'enableMessageOrdering',
+        'expirationPolicy',
+        'filter',
+        'deadLetterPolicy',
+        'retryPolicy',
+        'detached',
+        'enableExactlyOnceDelivery'
+    ];
 
     /**
      * @var RequestHandler

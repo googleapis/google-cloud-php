@@ -65,7 +65,13 @@ class Topic
 
     const DEFAULT_ENABLE_COMPRESSION = false;
 
-    private const TOPIC_PROPS = ['labels', 'messageStoragePolicy', 'kmsKeyName', 'schemaSettings', 'messageRetentionDuration'];
+    private const TOPIC_PROPS = [
+        'labels',
+        'messageStoragePolicy',
+        'kmsKeyName',
+        'schemaSettings',
+        'messageRetentionDuration'
+    ];
 
     /**
      * @var RequestHandler
@@ -365,7 +371,10 @@ class Topic
 
         $proto = $this->serializer->decodeMessage(new TopicProto(), $data);
 
-        $request = $this->serializer->decodeMessage(new UpdateTopicRequest(), ['topic' => $proto, 'update_mask' => $fieldMask]);
+        $request = $this->serializer->decodeMessage(
+            new UpdateTopicRequest(),
+            ['topic' => $proto, 'update_mask' => $fieldMask]
+        );
 
         return $this->info = $this->requestHandler->sendRequest(
             PublisherClient::class,

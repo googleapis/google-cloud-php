@@ -336,9 +336,9 @@ class Schema
     /**
      * Helper function to return the value of 'view' from the options array.
      * If a view key isn't specified, the default is returned.
-     * 
+     *
      * @param array $options The options array to extract the view from.
-     * 
+     *
      * @return int The integer value of the view specified as per Google\Cloud\PubSub\V1\SchemaView
      */
     private function getViewFromOptions(array &$options)
