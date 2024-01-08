@@ -211,7 +211,10 @@ class Snapshot
      */
     public function delete(array $options = [])
     {
-        $request = $this->serializer->decodeMessage(new DeleteSnapshotRequest(), ['snapshot' => $this->name]);
+        $request = $this->serializer->decodeMessage(
+            new DeleteSnapshotRequest(),
+            ['snapshot' => $this->name]
+        );
         $this->requestHandler->sendRequest(
             SubscriberClient::class,
             'deleteSnapshot',

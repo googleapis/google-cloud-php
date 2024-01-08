@@ -65,14 +65,6 @@ class Topic
 
     const DEFAULT_ENABLE_COMPRESSION = false;
 
-    private const TOPIC_PROPS = [
-        'labels',
-        'messageStoragePolicy',
-        'kmsKeyName',
-        'schemaSettings',
-        'messageRetentionDuration'
-    ];
-
     private const COMPRESSION_HEADER_KEY = 'grpc-internal-encoding-request';
 
     private const GZIP_COMPRESSION = 'gzip';
@@ -256,7 +248,7 @@ class Topic
      */
     public function create(array $options = [])
     {
-        $data = $this->pluckArray(self::TOPIC_PROPS, $options);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
         $data['name'] = $this->name;
 
         $this->formatSchemaSettings($data);
@@ -268,7 +260,7 @@ class Topic
             PublisherClient::class,
             'createTopic',
             $request,
-            $options
+            $optionalArgs
         );
     }
 
@@ -301,7 +293,7 @@ class Topic
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/UpdateTopicRequest Update Topic
      *
-     * @param array $topic {
+     * @param array $data {
      *    The Topic data.
      *
      *     @type array $labels Key value pairs used to organize your resources.
@@ -336,12 +328,12 @@ class Topic
      *
      * @return array The topic info.
      */
-    public function update(array $topic, array $options = [])
+    public function update(array $data, array $options = [])
     {
         $updateMaskPaths = $this->pluck('updateMask', $options, false) ?: [];
 
         if (!$updateMaskPaths) {
-            $iterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($topic));
+            $iterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($data));
             foreach ($iterator as $leafValue) {
                 $excludes = ['name'];
                 $keys = [];
@@ -369,7 +361,6 @@ class Topic
             'paths' => $maskPaths
         ]);
 
-        $data = $this->pluckArray(self::TOPIC_PROPS, $topic);
         $data['name'] = $this->name;
         $this->formatSchemaSettings($data);
 
@@ -377,7 +368,7 @@ class Topic
 
         $request = $this->serializer->decodeMessage(
             new UpdateTopicRequest(),
-            ['topic' => $proto, 'update_mask' => $fieldMask]
+            ['topic' => $proto, 'updateMask' => $fieldMask]
         );
 
         return $this->info = $this->requestHandler->sendRequest(
@@ -590,7 +581,9 @@ class Topic
 
         if ($this->enableCompression &&
             $totalMessagesSize >= $this->compressionBytesThreshold) {
-            $options['headers'][self::COMPRESSION_HEADER_KEY] = [self::GZIP_COMPRESSION];
+            $headers = $options['headers'] ?? [];
+            $headers[self::COMPRESSION_HEADER_KEY] = [self::GZIP_COMPRESSION];
+            $options['headers'] = $headers;
         }
 
         $request = $this->serializer->decodeMessage(

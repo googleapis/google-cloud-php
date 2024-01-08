@@ -17,6 +17,7 @@
  */
 namespace Google\Cloud\Core;
 
+use Google\ApiCore\Options\CallOptions;
 use Google\Protobuf\NullValue;
 use Google\Cloud\Core\Duration;
 
@@ -246,5 +247,21 @@ trait ApiHelperTrait
         }
 
         return $input;
+    }
+
+    /** 
+     * Helper method used to split a supplied set of options into parameters that are passed into
+     * a proto message and optional args.
+     * We strictly treat the parameters allowed by `CallOptions` in GAX as the optional params
+     * and everything else that is passed is passed to the Proto message constructor.
+     */
+    private function splitOptionalArgs(array $input, array $extraAllowedKeys = []) : array
+    {
+        $callOptionFields = array_keys((new CallOptions([]))->toArray());
+        $keys = array_merge($callOptionFields, $extraAllowedKeys);
+
+        $optionalArgs = $this->pluckArray($keys, $input);
+
+        return [$input, $optionalArgs];
     }
 }

@@ -109,23 +109,6 @@ class Subscription
 
     const MAX_MESSAGES = 1000;
 
-    private const SUBSCRIPTION_PROPS = [
-        'pushConfig',
-        'bigqueryConfig',
-        'cloudStorageConfig',
-        'ackDeadlineSeconds',
-        'retainAckedMessages',
-        'messageRetentionDuration',
-        'labels',
-        'enableMessageOrdering',
-        'expirationPolicy',
-        'filter',
-        'deadLetterPolicy',
-        'retryPolicy',
-        'detached',
-        'enableExactlyOnceDelivery'
-    ];
-
     /**
      * @var RequestHandler
      * @internal
@@ -445,22 +428,22 @@ class Subscription
             );
         }
 
-        $data = $this->pluckArray(self::SUBSCRIPTION_PROPS, $options);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
 
         $data = $this->formatSubscriptionDurations($data);
         $data = $this->formatDeadLetterPolicyForApi($data);
 
-        // convert optional args to protos
+        // convert args to protos
         $protoMap = [
             'expirationPolicy' => ExpirationPolicy::class,
             'deadLetterPolicy' => DeadLetterPolicy::class,
             'retryPolicy' => RetryPolicy::class,
         ];
         $data = $this->convertDataToProtos($data, $protoMap);
+        $data['name'] = $this->name;
+        $data['topic'] = $this->topicName;
 
         $request = $this->serializer->decodeMessage(new SubscriptionProto(), $data);
-        $request->setName($this->name);
-        $request->setTopic($this->topicName);
 
         $this->info = $this->requestHandler->sendRequest(
             SubscriberClient::class,
@@ -506,7 +489,7 @@ class Subscription
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/UpdateSubscriptionRequest UpdateSubscriptionRequest
      *
-     * @param array $subscription {
+     * @param array $data {
      *     The Subscription data.
      *
      *     @type int $ackDeadlineSeconds The maximum time after a subscriber
@@ -637,13 +620,13 @@ class Subscription
      * }
      * @return array The subscription info.
      */
-    public function update(array $input, array $options = [])
+    public function update(array $data, array $options = [])
     {
         $updateMaskPaths = $this->pluck('updateMask', $options, false) ?: [];
         if (!$updateMaskPaths) {
             $excludes = ['name', 'topic'];
             $iterator = new \RecursiveIteratorIterator(
-                new \RecursiveArrayIterator($input),
+                new \RecursiveArrayIterator($data),
                 \RecursiveIteratorIterator::CHILD_FIRST
             );
             foreach ($iterator as $leafValue) {
@@ -674,11 +657,11 @@ class Subscription
             'paths' => $maskPaths
         ]);
 
-        $input = $this->formatSubscriptionDurations($input);
-        $input = $this->formatDeadLetterPolicyForApi($input);
-        $input['name'] = $this->name;
+        $data = $this->formatSubscriptionDurations($data);
+        $data = $this->formatDeadLetterPolicyForApi($data);
+        $data['name'] = $this->name;
 
-        $data = ['subscription' => $input, 'update_mask' => $fieldMask];
+        $data = ['subscription' => $data, 'updateMask' => $fieldMask];
         $data = $this->convertDataToProtos($data, ['subscription' => SubscriptionProto::class]);
 
         $request = $this->serializer->decodeMessage(new UpdateSubscriptionRequest(), $data);
@@ -836,9 +819,9 @@ class Subscription
      */
     public function pull(array $options = [])
     {
-        $data = $this->pluckArray(['returnImmediately', 'maxMessages'], $options);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
         $data['subscription'] = $this->name;
-        $data['maxMessages'] =  $data['max_messages'] ?? self::MAX_MESSAGES;
+        $data['maxMessages'] =  $data['maxMessages'] ?? self::MAX_MESSAGES;
         $request = $this->serializer->decodeMessage(new PullRequest(), $data);
 
         $messages = [];
@@ -846,7 +829,7 @@ class Subscription
             SubscriberClient::class,
             'pull',
             $request,
-            $options
+            $optionalArgs
         );
 
         if (isset($response['receivedMessages'])) {
