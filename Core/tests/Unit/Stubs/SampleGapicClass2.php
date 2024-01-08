@@ -18,19 +18,19 @@
 
 namespace Google\Cloud\Core\Tests\Unit\Stubs;
 
+use Google\Protobuf\Internal\Message;
+
 /**
  * This class is only intended to be used in tests to either mock
  * or execute some code in a predicted manner.
  */
 class SampleGapicClass2
 {
-    public function sampleMethod(&$counter, $args)
-    {
-        $counter++;
-    }
 
-    public function sampleMethod2($arg1, $cb, $optionalArgs = [])
+    public function sampleMethod(Message $request, $args = [])
     {
-        $cb($arg1, $optionalArgs);
+        if (isset($args['func'])) {
+            $args['func']();
+        }
     }
 }

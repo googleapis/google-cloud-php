@@ -225,16 +225,16 @@ trait ApiHelperTrait
 
     /**
      * Helper function to convert selective elements into protos out of a given input array.
-     * 
+     *
      * Example:
      * ```
      * $output = $topic->convertDataToProtos(['schema' =>[], 'other vals'], ['schema' => Schema::class]);
      * $output['schema']; // This will be of the Schema type.
      * ```
-     * 
+     *
      * @param array $input The input array.
      * @param array $map The key,value pairs specifying the elements and the proto classes.
-     * 
+     *
      * @return array The modified array
      */
     private function convertDataToProtos(array $input, array $map) : array

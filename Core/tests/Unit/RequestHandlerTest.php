@@ -29,6 +29,8 @@ use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Google\Cloud\Core\Tests\Unit\Stubs\SampleGapicClass2;
 use Google\Cloud\Core\Tests\Unit\Stubs\SampleGapicClass1;
+use Google\Protobuf\Internal\Message;
+use stdClass;
 
 /**
  * @group core
@@ -39,17 +41,13 @@ class RequestHandlerTest extends TestCase
 
     private $requestWrapper;
     private $serializer;
+    private $request;
 
     public function setUp(): void
     {
         $this->requestWrapper = $this->prophesize(GapicRequestWrapper::class);
         $this->serializer = $this->prophesize(Serializer::class);
-    }
-
-    public function testGetSerializer()
-    {
-        $requestHandler = new RequestHandler($this->serializer->reveal(), []);
-        $this->assertInstanceOf(Serializer::class, $requestHandler->getSerializer());
+        $this->request = $this->prophesize(Message::class);
     }
 
     /**
@@ -58,10 +56,12 @@ class RequestHandlerTest extends TestCase
     public function testGetGapicObject($gapicClasses, $callingClass)
     {
         $counter = 0;
+        $func = function () use (&$counter) {
+            $counter = 1;
+        };
         $requestHandler = new RequestHandler($this->serializer->reveal(), $gapicClasses);
-        $requestHandler->sendRequest($callingClass, 'sampleMethod', [&$counter], []);
+        $requestHandler->sendRequest($callingClass, 'sampleMethod', $this->request->reveal(), ['func' => $func]);
 
-        // This will only be 1 if the relevant method was called
         $this->assertEquals(1, $counter);
     }
 
@@ -85,10 +85,19 @@ class RequestHandlerTest extends TestCase
             Argument::cetera()
         )->willReturn(new Response(200, [], $responseStr));
 
-        $requestHandler = new RequestHandler($this->serializer->reveal(), $gapicClasses, [], $this->requestWrapper->reveal());
+        $requestHandler = new RequestHandler(
+            $this->serializer->reveal(),
+            $gapicClasses,
+            [],
+            $this->requestWrapper->reveal()
+        );
 
-        $counter = 0;
-        $response = $requestHandler->sendRequest(SampleGapicClass2::class, 'sampleMethod', [&$counter], []);
+        $response = $requestHandler->sendRequest(
+            SampleGapicClass2::class,
+            'sampleMethod',
+            $this->request->reveal(),
+            []
+        );
         $responseArr = json_decode($response->getBody()->getContents(), true);
 
         $this->assertEquals(json_decode($responseStr, true), $responseArr);
@@ -103,38 +112,38 @@ class RequestHandlerTest extends TestCase
             Argument::cetera()
         )->willThrow(new BadRequestException('exception message'));
 
-        $requestHandler = new RequestHandler($this->serializer->reveal(), $gapicClasses, [], $this->requestWrapper->reveal());
+        $requestHandler = new RequestHandler(
+            $this->serializer->reveal(),
+            $gapicClasses,
+            [],
+            $this->requestWrapper->reveal()
+        );
 
         $this->expectException(BadRequestException::class);
         $this->expectExceptionMessage('exception message');
 
-        $counter = 0;
-        $requestHandler->sendRequest(SampleGapicClass2::class, 'sampleMethod', [&$counter], []);
+        $requestHandler->sendRequest(SampleGapicClass2::class, 'sampleMethod', $this->request->reveal(), []);
     }
 
-    public function testRequiredAndOptionalArgs()
+    public function testOptionalArgs()
     {
-        $passedRequiredArgs = ['foo'];
-        $passedOptionalArgs = ['key' => 'val'];
+        $counter = 0;
 
-        $caller = $this;
-
-        $cb = function ($arg1, $optionalArgs) use ($passedRequiredArgs, $passedOptionalArgs, $caller) {
-            $caller->assertEquals($passedRequiredArgs[0], $arg1);
-            $caller->assertEquals($passedOptionalArgs, $optionalArgs);
+        $cb = function () use (&$counter) {
+            $counter = 1;
         };
-
-        $passedRequiredArgs[1] = $cb;
 
         $gapicClasses = [SampleGapicClass2::class];
         $requestHandler = new RequestHandler($this->serializer->reveal(), $gapicClasses);
 
         $requestHandler->sendRequest(
             SampleGapicClass2::class,
-            'sampleMethod2',
-            $passedRequiredArgs,
-            $passedOptionalArgs
+            'sampleMethod',
+            $this->request->reveal(),
+            ['func' => $cb]
         );
+
+        $this->assertEquals(1, $counter);
     }
 
     /**
@@ -143,7 +152,7 @@ class RequestHandlerTest extends TestCase
     public function testSendRequestWhitelisted($isWhitelisted, $errMsg, $expectedMsg)
     {
         $this->requestWrapper->send(
-            Argument::containing('sampleMethod2'),
+            Argument::containing('sampleMethod'),
             Argument::cetera()
         )->willThrow(new NotFoundException($errMsg));
 
@@ -160,8 +169,8 @@ class RequestHandlerTest extends TestCase
         try {
             $requestHandler->sendRequest(
                 SampleGapicClass2::class,
-                'sampleMethod2',
-                [],
+                'sampleMethod',
+                $this->request->reveal(),
                 [],
                 $isWhitelisted
             );

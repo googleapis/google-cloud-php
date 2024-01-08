@@ -100,9 +100,9 @@ class RequestHandler
      * @param Message $request The protobuf Request instance to pass as the first argument to the $method.
      * @param array $optionalArgs The optional args.
      * @param bool $whitelisted This decides the behaviour when a NotFoundException is encountered.
-     * 
+     *
      * @return \Generator|OperationResponse|array|null
-     * 
+     *
      * @throws ServiceException
      *
      * If a GAPIC class is provided as the first argument,
@@ -136,16 +136,6 @@ class RequestHandler
 
             throw $e;
         }
-    }
-
-    /**
-     * Returns the current serializer instance.
-     *
-     * @return Serializer
-     */
-    public function getSerializer() : Serializer
-    {
-        return $this->serializer;
     }
 
     /**
