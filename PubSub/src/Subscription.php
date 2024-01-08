@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\PubSub;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Duration;
@@ -189,6 +190,7 @@ class Subscription
      *
      * @param RequestHandler The request handler that is responsible for sending a request
      * and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param string $projectId The current project
      * @param string $name The subscription name
      * @param string $topicName The topic name the subscription is attached to
@@ -197,6 +199,7 @@ class Subscription
      */
     public function __construct(
         RequestHandler $requestHandler,
+        Serializer $serializer,
         $projectId,
         $name,
         $topicName,
@@ -204,7 +207,7 @@ class Subscription
         array $info = []
     ) {
         $this->requestHandler = $requestHandler;
-        $this->serializer = $requestHandler->getSerializer();
+        $this->serializer = $serializer;
         $this->projectId = $projectId;
         $this->encode = (bool) $encode;
         $this->info = $info;
@@ -1347,7 +1350,7 @@ class Subscription
     public function iam()
     {
         if (!$this->iam) {
-            $this->iam = new Iam($this->requestHandler, SubscriberClient::class, $this->name);
+            $this->iam = new Iam($this->requestHandler, $this->serializer, SubscriberClient::class, $this->name);
         }
 
         return $this->iam;

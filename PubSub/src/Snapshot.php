@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\PubSub;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\PubSub\V1\CreateSnapshotRequest;
@@ -81,6 +82,7 @@ class Snapshot
     /**
      * @param RequestHandler The request handler that is responsible for sending a request
      * and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param string $projectId The current Project ID.
      * @param string $name The snapshot name.
      * @param bool $encode Whether certain request arguments should be base64-encoded.
@@ -96,6 +98,7 @@ class Snapshot
      */
     public function __construct(
         RequestHandler $requestHandler,
+        Serializer $serializer,
         $projectId,
         $name,
         $encode,
@@ -103,7 +106,7 @@ class Snapshot
         array $clientConfig = []
     ) {
         $this->requestHandler = $requestHandler;
-        $this->serializer = $requestHandler->getSerializer();
+        $this->serializer = $serializer;
         $this->projectId = $projectId;
         $this->encode = $encode;
         $this->clientConfig = $clientConfig;
@@ -232,6 +235,7 @@ class Snapshot
         if ($this->info['topic']) {
             return new Topic(
                 $this->requestHandler,
+                $this->serializer,
                 $this->projectId,
                 $this->info['topic'],
                 $this->encode,
@@ -258,6 +262,7 @@ class Snapshot
         return $this->info['subscription']
             ? new Subscription(
                 $this->requestHandler,
+                $this->serializer,
                 $this->projectId,
                 $this->info['subscription'],
                 null,

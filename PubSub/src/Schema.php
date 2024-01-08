@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\PubSub;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\RequestHandler;
@@ -78,16 +79,18 @@ class Schema
     /**
      * @param RequestHandler The request handler that is responsible for sending a request
      * and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param string $name The schema name.
      * @param array $info [optional] Schema data.
      */
     public function __construct(
         RequestHandler $requestHandler,
+        Serializer $serializer,
         $name,
         array $info = []
     ) {
         $this->requestHandler = $requestHandler;
-        $this->serializer = $requestHandler->getSerializer();
+        $this->serializer = $serializer;
         $this->name = $name;
         $this->info = $info;
     }

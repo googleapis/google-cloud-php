@@ -489,7 +489,15 @@ class PubSubClient
      */
     public function snapshot($name, array $info = [])
     {
-        return new Snapshot($this->requestHandler, $this->projectId, $name, $this->encode, $info, $this->clientConfig);
+        return new Snapshot(
+            $this->requestHandler,
+            $this->serializer,
+            $this->projectId,
+            $name,
+            $this->encode,
+            $info,
+            $this->clientConfig
+        );
     }
 
     /**
@@ -531,6 +539,7 @@ class PubSubClient
                 function (array $snapshot) {
                     return new Snapshot(
                         $this->requestHandler,
+                        $this->serializer,
                         $this->projectId,
                         $this->pluckName('snapshot', $snapshot['name']),
                         $this->encode,
@@ -570,6 +579,7 @@ class PubSubClient
     {
         return new Schema(
             $this->requestHandler,
+            $this->serializer,
             SchemaServiceClient::schemaName($this->projectId, $schemaId),
             $info
         );
@@ -874,6 +884,7 @@ class PubSubClient
     {
         return new Topic(
             $this->requestHandler,
+            $this->serializer,
             $this->projectId,
             $name,
             $this->encode,
@@ -902,6 +913,7 @@ class PubSubClient
 
         return new Subscription(
             $this->requestHandler,
+            $this->serializer,
             $this->projectId,
             $name,
             $topic,

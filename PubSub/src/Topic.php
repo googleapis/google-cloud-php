@@ -125,6 +125,7 @@ class Topic
      *
      * @param RequestHandler The request handler that is responsible for sending a request
      * and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param string $projectId The project Id
      * @param string $name The topic name
      * @param bool $encode Whether messages should be base64 encoded.
@@ -157,6 +158,7 @@ class Topic
      */
     public function __construct(
         RequestHandler $requestHandler,
+        Serializer $serializer,
         $projectId,
         $name,
         $encode,
@@ -164,7 +166,7 @@ class Topic
         array $clientConfig = []
     ) {
         $this->requestHandler = $requestHandler;
-        $this->serializer = $requestHandler->getSerializer();
+        $this->serializer = $serializer;
         $this->projectId = $projectId;
         $this->encode = (bool) $encode;
         $this->info = $info;
@@ -778,7 +780,7 @@ class Topic
     public function iam()
     {
         if (!$this->iam) {
-            $this->iam = new Iam($this->requestHandler, PublisherClient::class, $this->name);
+            $this->iam = new Iam($this->requestHandler, $this->serializer, PublisherClient::class, $this->name);
         }
 
         return $this->iam;
@@ -867,6 +869,7 @@ class Topic
     {
         return new Subscription(
             $this->requestHandler,
+            $this->serializer,
             $this->projectId,
             $name,
             $this->name,
