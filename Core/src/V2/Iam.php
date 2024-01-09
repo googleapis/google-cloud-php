@@ -17,9 +17,15 @@
 
 namespace Google\Cloud\Core\V2;
 
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Iam\PolicyBuilder;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\GetPolicyOptions;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 
 /**
  * IAM Manager
@@ -48,10 +54,17 @@ use Google\Cloud\Core\RequestHandler;
  */
 class Iam
 {
+    use ArrayTrait;
+
     /**
      * @var RequestHandler
      */
     private $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private $serializer;
 
     private $gapic;
 
@@ -72,33 +85,20 @@ class Iam
 
     /**
      * @param RequestHandler $requestHandler
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param string $resource
-     * @param array $options [optional] {
-     *     Configuration Options
-     *
-     *     @type string|null $parent The parent request parameter for the policy.
-     *           If set, policy data will be sent as `request.{$parent}`.
-     *           Otherwise, policy will be sent in request root. **Defaults to**
-     *           `policy`.
-     *     @type array $args Arbitrary data to be sent with the request.
-     * }
      * @access private
      */
     public function __construct(
         RequestHandler $requestHandler,
+        Serializer $serializer,
         $gapic,
-        $resource,
-        array $options = []
+        $resource
     ) {
-        $options += [
-            'parent' => 'policy',
-            'args' => []
-        ];
-
         $this->requestHandler = $requestHandler;
+        $this->serializer = $serializer;
         $this->gapic = $gapic;
         $this->resource = $resource;
-        $this->options = $options;
     }
 
     /**
@@ -137,6 +137,15 @@ class Iam
      *
      * Example:
      * ```
+     * $policy = [
+     *      'bindings' => [[
+     *          'role' => 'roles/editor',
+     *          'members' => ['user:user:test@example.com'],
+     *      ]]
+     * ];
+     * $iam->setPolicy($policy);
+     * ```
+     * ```
      * $oldPolicy = $iam->policy();
      * $oldPolicy['bindings'][0]['members'] = 'user:test@example.com';
      *
@@ -159,24 +168,21 @@ class Iam
             throw new \InvalidArgumentException('Given policy data must be an array or an instance of PolicyBuilder.');
         }
 
-        $policy = $this->requestHandler->getSerializer()->decodeMessage(
+        $policy = $this->serializer->decodeMessage(
             new Policy,
             $policy
         );
 
-        $request = [];
-        if ($this->options['parent']) {
-            $parent = $this->options['parent'];
-            $request[$parent] = $policy;
-        } else {
-            $request = $policy;
-        }
+        $updateMask = $options['updateMask'] ?? [];
+
+        $data = ['resource' => $this->resource, 'policy' => $policy, 'updateMask' => $updateMask];
+        $request = $this->serializer->decodeMessage(new SetIamPolicyRequest(), $data);
 
         $this->policy = $this->requestHandler->sendRequest(
             $this->gapic,
             'setIamPolicy',
-            [$this->resource, $policy],
-            $request + $options
+            $request,
+            $options
         );
 
         return $this->policy;
@@ -201,10 +207,12 @@ class Iam
      */
     public function testPermissions(array $permissions, array $options = [])
     {
+        $data = ['resource' => $this->resource, 'permissions' => $permissions];
+        $request = $this->serializer->decodeMessage(new TestIamPermissionsRequest(), $data);
         $res = $this->requestHandler->sendRequest(
             $this->gapic,
             'testIamPermissions',
-            [$this->resource, $permissions],
+            $request,
             $options
         );
 
@@ -224,12 +232,18 @@ class Iam
      */
     public function reload(array $options = [])
     {
+        $policyOptions = $this->pluck('policyOptions', $options, false) ?? [];
+        $policyOptions = $this->serializer->decodeMessage(new GetPolicyOptions(), $policyOptions);
+        $data = ['resource' => $this->resource, 'options' => $policyOptions];
+        $request = $this->serializer->decodeMessage(new GetIamPolicyRequest(), $data);
+
         $this->policy = $this->requestHandler->sendRequest(
             $this->gapic,
             'getIamPolicy',
-            [$this->resource],
+            $request,
             $options
         );
+
         return $this->policy;
     }
 }
