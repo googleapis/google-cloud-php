@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.26.2](https://github.com/googleapis/gax-php/compare/v1.26.1...v1.26.2) (2024-01-09)
+
+
+### Bug Fixes
+
+* Ensure modifyClientOptions is called for new surface clients ([#515](https://github.com/googleapis/gax-php/issues/515)) ([68231b8](https://github.com/googleapis/gax-php/commit/68231b896dec8efb86f8986aefba3d247d2a2d1c))
+
 ## [1.26.1](https://github.com/googleapis/gax-php/compare/v1.26.0...v1.26.1) (2024-01-04)
 
 
