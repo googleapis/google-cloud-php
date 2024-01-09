@@ -27,6 +27,7 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Http\Message\RequestInterface;
+use UnexpectedValueException;
 
 /**
  * @group pubsub
@@ -46,21 +47,33 @@ class RestTest extends TestCase
         $this->successBody = '{"canI":"kickIt"}';
     }
 
-    public function testApiEndpoint()
+    /**
+     * @dataProvider clientUniverseDomainConfigProvider
+     */
+    public function testApiEndpointForUniverseDomain($config, $expectedEndpoint, $expectException = false)
     {
-        $endpoint = 'https://foobar.com/';
-        $rest = TestHelpers::stub(Rest::class, [
-            [
-                'apiEndpoint' => $endpoint
-            ]
-        ], ['requestBuilder']);
+        if ($expectException) {
+            $this->expectException(UnexpectedValueException::class);
+        }
+        $rest = TestHelpers::stub(Rest::class, [$config], ['requestBuilder']);
 
         $rb = $rest->___getProperty('requestBuilder');
         $r = new \ReflectionObject($rb);
         $p = $r->getProperty('baseUri');
         $p->setAccessible(true);
 
-        $this->assertEquals($endpoint, $p->getValue($rb));
+        $this->assertEquals($expectedEndpoint, $p->getValue($rb));
+    }
+
+    public function clientUniverseDomainConfigProvider()
+    {
+        return [
+            [[], 'https://pubsub.googleapis.com/'], // default
+            [['apiEndpoint' => 'https://foobar.com'], 'https://foobar.com/'],
+            [['universeDomain' => 'googleapis.com'], 'https://pubsub.googleapis.com/'],
+            [['universeDomain' => 'abc.def.ghi'], 'https://pubsub.abc.def.ghi/'],
+            [['universeDomain' => null], '', true],
+        ];
     }
 
     /**

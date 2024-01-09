@@ -77,6 +77,30 @@ class GrpcTest extends TestCase
         $this->assertEquals($expected, $grpc->config['apiEndpoint']);
     }
 
+
+    /**
+     * @dataProvider clientUniverseDomainConfigProvider
+     */
+    public function testUniverseDomain($config, $expectedUniverseDomain, $domainConfigExists = true)
+    {
+        $grpc = new GrpcStub($config);
+
+        if ($domainConfigExists) {
+            $this->assertEquals($expectedUniverseDomain, $grpc->config['universeDomain']);
+        } else {
+            $this->assertArrayNotHasKey('universeDomain', $grpc->config);
+        }
+    }
+
+    public function clientUniverseDomainConfigProvider()
+    {
+        return [
+            [[], 'googleapis.com', false],
+            [['universeDomain' => 'googleapis.com'], 'googleapis.com'],
+            [['universeDomain' => 'abc.def.ghi'], 'abc.def.ghi'],
+        ];
+    }
+
     public function testUpdateTopic()
     {
         $topic = new Topic();

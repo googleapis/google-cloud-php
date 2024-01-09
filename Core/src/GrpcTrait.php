@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Core;
 
+use Google\Auth\GetUniverseDomainInterface;
 use Google\ApiCore\CredentialsWrapper;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Duration;
@@ -94,10 +95,14 @@ trait GrpcTrait
      *
      * @param string $version
      * @param callable|null $authHttpHandler
+     * @param string|null $universeDomain
      * @return array
      */
-    private function getGaxConfig($version, callable $authHttpHandler = null)
-    {
+    private function getGaxConfig(
+        $version,
+        callable $authHttpHandler = null,
+        string $universeDomain = null
+    ) {
         $config = [
             'libName' => 'gccl',
             'libVersion' => $version,
@@ -110,7 +115,8 @@ trait GrpcTrait
         if (class_exists(CredentialsWrapper::class)) {
             $config['credentials'] = new CredentialsWrapper(
                 $this->requestWrapper->getCredentialsFetcher(),
-                $authHttpHandler
+                $authHttpHandler,
+                $universeDomain ?: GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN
             );
         } else {
             $config += [
