@@ -61,14 +61,27 @@ class SpannerClientTest extends TestCase
 
     private $client;
     private $connection;
+    private $directedReadOptionsIncludeReplicas;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->getConnStub();
+        $this->directedReadOptionsIncludeReplicas = [
+            'includeReplicas' => [
+                'replicaSelections' => [
+                    'location' => 'us-central1',
+                    'type' => 'READ_WRITE',
+                    'autoFailoverDisabled' => false
+                ]
+            ]
+        ];
         $this->client = TestHelpers::stub(SpannerClient::class, [
-            ['projectId' => self::PROJECT]
+            [
+                'projectId' => self::PROJECT,
+                'directedReadOptions' => $this->directedReadOptionsIncludeReplicas
+            ]
         ]);
     }
 
@@ -443,5 +456,14 @@ class SpannerClientTest extends TestCase
         $instance = $this->prophesize(Instance::class);
         $instance->database(Argument::any(), ['databaseRole' => 'Reader'])->shouldBeCalled();
         $this->client->connect($instance->reveal(), self::DATABASE, ['databaseRole' => 'Reader']);
+    }
+
+    public function testSpannerClientWithDirectedRead()
+    {
+        $instance = $this->client->instance('testInstance');
+        $this->assertEquals(
+            $instance->directedReadOptions(),
+            $this->directedReadOptionsIncludeReplicas
+        );
     }
 }

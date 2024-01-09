@@ -30,11 +30,12 @@ use Google\Cloud\SecurityCenterManagement\V1\UpdateEventThreatDetectionCustomMod
 use Google\Protobuf\FieldMask;
 
 /**
- * Updates an ETD custom module at the given level. All config fields can be
- * updated when updating the module at resident level. Only enablement state
- * can be updated when updating the module at inherited levels. Updating the
- * module has a side-effect that it updates all descendants that are inherited
- * from this module.
+ * Updates the Event Threat Detection custom module with the given name based
+ * on the given update mask. Updating the enablement state is supported for
+ * both resident and inherited modules (though resident modules cannot have an
+ * enablement state of "inherited"). Updating the display name or
+ * configuration of a module is supported for resident modules only. The type
+ * of a module cannot be changed.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

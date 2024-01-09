@@ -106,6 +106,7 @@ class BatchDmlResultTest extends SnippetTestCase
 
         $instance = $this->prophesize(Instance::class);
         $instance->name()->willReturn('projects/test-project/instances/my-instance');
+        $instance->directedReadOptions()->willReturn([]);
 
         $database = TestHelpers::stub(Database::class, [
             $connection->reveal(),

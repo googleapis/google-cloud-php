@@ -26,6 +26,14 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
+    /**
+     * Optional. The mode in which the query request is processed. This field is
+     * optional, and when not provided, it defaults to `NORMAL` mode where no
+     * additional statistics will be returned with the query results.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.QueryMode mode = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $mode = 0;
     protected $query_type;
     protected $consistency_selector;
 
@@ -57,6 +65,10 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
      *           This must be a microsecond precision timestamp within the past one hour,
      *           or if Point-in-Time Recovery is enabled, can additionally be a whole
      *           minute timestamp within the past 7 days.
+     *     @type int $mode
+     *           Optional. The mode in which the query request is processed. This field is
+     *           optional, and when not provided, it defaults to `NORMAL` mode where no
+     *           additional statistics will be returned with the query results.
      * }
      */
     public function __construct($data = NULL) {
@@ -234,6 +246,36 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. The mode in which the query request is processed. This field is
+     * optional, and when not provided, it defaults to `NORMAL` mode where no
+     * additional statistics will be returned with the query results.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.QueryMode mode = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMode()
+    {
+        return $this->mode;
+    }
+
+    /**
+     * Optional. The mode in which the query request is processed. This field is
+     * optional, and when not provided, it defaults to `NORMAL` mode where no
+     * additional statistics will be returned with the query results.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.QueryMode mode = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\V1\QueryMode::class);
+        $this->mode = $var;
 
         return $this;
     }
