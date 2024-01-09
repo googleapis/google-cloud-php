@@ -8,7 +8,6 @@ use UnexpectedValueException;
 
 /**
  * The database engine type and version.
- * The next tag is 325.
  *
  * Protobuf type <code>google.cloud.sql.v1.SqlDatabaseVersion</code>
  */
