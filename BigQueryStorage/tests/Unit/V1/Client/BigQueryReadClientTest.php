@@ -155,16 +155,22 @@ class BigQueryReadClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $rowCount = 1340416618;
+        $uncompressedByteSize = 2094376525;
         $expectedResponse = new ReadRowsResponse();
         $expectedResponse->setRowCount($rowCount);
+        $expectedResponse->setUncompressedByteSize($uncompressedByteSize);
         $transport->addResponse($expectedResponse);
         $rowCount2 = 349815907;
+        $uncompressedByteSize2 = 1643824294;
         $expectedResponse2 = new ReadRowsResponse();
         $expectedResponse2->setRowCount($rowCount2);
+        $expectedResponse2->setUncompressedByteSize($uncompressedByteSize2);
         $transport->addResponse($expectedResponse2);
         $rowCount3 = 349815906;
+        $uncompressedByteSize3 = 1643824295;
         $expectedResponse3 = new ReadRowsResponse();
         $expectedResponse3->setRowCount($rowCount3);
+        $expectedResponse3->setUncompressedByteSize($uncompressedByteSize3);
         $transport->addResponse($expectedResponse3);
         // Mock request
         $formattedReadStream = $gapicClient->readStreamName('[PROJECT]', '[LOCATION]', '[SESSION]', '[STREAM]');
