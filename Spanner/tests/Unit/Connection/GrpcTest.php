@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner\Tests\Unit\Connection;
 
 use Google\ApiCore\Call;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Serializer;
 use Google\ApiCore\Transport\TransportInterface;
@@ -480,7 +481,7 @@ class GrpcTest extends TestCase
             [
                 'session' => (new Session)->setLabels($labels)
             ]
-        ]));
+        ], true, true));
     }
 
     public function testCreateSessionAsync()
@@ -490,8 +491,10 @@ class GrpcTest extends TestCase
         $transport = $this->prophesize(TransportInterface::class);
         $transport->startUnaryCall(
             Argument::type(Call::class),
-            Argument::type('array')
-        )->willReturn($promise);
+            Argument::withEntry('headers', [
+                'x-goog-spanner-route-to-leader' => true,
+                'google-cloud-resource-prefix' => ['database1']
+            ]))->willReturn($promise);
 
         $client->getTransport()->willReturn($transport->reveal());
 
@@ -524,7 +527,7 @@ class GrpcTest extends TestCase
             self::DATABASE, $count, [
                 'sessionTemplate' => $this->serializer->decodeMessage(new Session, $template)
             ]
-        ]));
+        ], true, true));
     }
 
     public function testGetSession()
@@ -534,7 +537,7 @@ class GrpcTest extends TestCase
             'name' => self::SESSION
         ], $this->expectResourceHeader(self::DATABASE, [
             self::SESSION
-        ]));
+        ], true, true));
     }
 
     public function testDeleteSession()
@@ -859,7 +862,7 @@ class GrpcTest extends TestCase
             $this->transactionSelector(),
             $statementsObjs,
             1
-        ]));
+        ], true, true));
     }
 
     public function testExecuteBatchDmlWithRequestOptions()
@@ -896,7 +899,7 @@ class GrpcTest extends TestCase
             $statementsObjs,
             1,
             ['requestOptions' => $expectedRequestOptions]
-        ]));
+        ], true, true));
     }
 
     /**
@@ -911,7 +914,7 @@ class GrpcTest extends TestCase
         ], $this->expectResourceHeader(self::DATABASE, [
             self::SESSION,
             $optionsObj
-        ]));
+        ],true ,true, $optionsArr));
     }
 
     public function transactionTypes()
@@ -968,7 +971,7 @@ class GrpcTest extends TestCase
                     'read_write' => new ReadWrite
                 ])
             ]
-        ]));
+        ], true, true));
     }
 
     /**
@@ -996,7 +999,7 @@ class GrpcTest extends TestCase
                 ]),
                 'requestOptions' => $expectedRequestOptions
             ]
-        ]));
+        ], true, true));
     }
 
     public function commit()
@@ -1102,7 +1105,7 @@ class GrpcTest extends TestCase
         ], $this->expectResourceHeader(self::DATABASE, [
             self::SESSION,
             self::TRANSACTION
-        ]));
+        ], true, true));
     }
 
     /**
@@ -1125,7 +1128,7 @@ class GrpcTest extends TestCase
                 'transaction' => $this->transactionSelector(),
                 'partitionOptions' => $partitionOptionsObj
             ]
-        ]));
+        ], true, true));
     }
 
     /**
@@ -1148,7 +1151,7 @@ class GrpcTest extends TestCase
                 'transaction' => $this->transactionSelector(),
                 'partitionOptions' => $partitionOptionsObj
             ]
-        ]));
+        ], true, true));
     }
 
     public function partitionOptions()
@@ -1377,13 +1380,23 @@ class GrpcTest extends TestCase
      * @param boolean $append If true, should the last value in $args be an
      *     array, the header will be appended to that array. If false, the
      *     header will be added to a separate array.
+     * @param boolean $lar If true, will add the x-goog-spanner-route-to-leader
+     *    header.
      * @return array
      */
-    private function expectResourceHeader($val, array $args, $append = true)
-    {
+    private function expectResourceHeader(
+        $val,
+        array $args,
+        $append = true,
+        $lar = false,
+        $transactionOptions = []
+    ) {
         $header = [
             'google-cloud-resource-prefix' => [$val]
         ];
+        if ($lar && !isset($transactionOptions['readOnly'])) {
+            $header['x-goog-spanner-route-to-leader'] = true;
+        }
 
         $end = end($args);
         if (!is_array($end) || !$append) {

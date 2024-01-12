@@ -45,6 +45,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigMetadata;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceMetadata;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\SpannerClient as ManualSpannerClient;
+use Google\Cloud\Spanner\RequestHeaderTrait;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\DirectedReadOptions;
@@ -83,6 +84,7 @@ class Grpc implements ConnectionInterface
     use EmulatorTrait;
     use GrpcTrait;
     use OperationResponseTrait;
+    use RequestHeaderTrait;
 
     /**
      * @var InstanceAdminClient|null
@@ -806,6 +808,7 @@ class Grpc implements ConnectionInterface
             );
         }
 
+        $args = $this->addLarHeader($args);
         return $this->send([$this->spannerClient, 'createSession'], [
             $databaseName,
             $this->addResourcePrefixHeader($args, $databaseName)
@@ -825,6 +828,7 @@ class Grpc implements ConnectionInterface
     {
         $databaseName = $this->pluck('database', $args);
         $opts = $this->addResourcePrefixHeader([], $databaseName);
+        $opts = $this->addLarHeader($opts);
         $opts['credentialsWrapper'] = $this->credentialsWrapper;
         $transport = $this->spannerClient->getTransport();
 
@@ -860,6 +864,7 @@ class Grpc implements ConnectionInterface
         );
 
         $databaseName = $this->pluck('database', $args);
+        $args = $this->addLarHeader($args);
         return $this->send([$this->spannerClient, 'batchCreateSessions'], [
             $databaseName,
             $this->pluck('sessionCount', $args),
@@ -873,6 +878,7 @@ class Grpc implements ConnectionInterface
     public function getSession(array $args)
     {
         $databaseName = $this->pluck('database', $args);
+        $args = $this->addLarHeader($args);
         return $this->send([$this->spannerClient, 'getSession'], [
             $this->pluck('name', $args),
             $this->addResourcePrefixHeader($args, $databaseName)
@@ -1002,6 +1008,7 @@ class Grpc implements ConnectionInterface
     {
         $databaseName = $this->pluck('database', $args);
         $args['transaction'] = $this->createTransactionSelector($args);
+        $args = $this->addLarHeader($args);
 
         $statements = [];
         foreach ($this->pluck('statements', $args) as $statement) {
@@ -1045,9 +1052,11 @@ class Grpc implements ConnectionInterface
         } elseif (isset($transactionOptions['readWrite'])) {
             $readWrite = new ReadWrite();
             $options->setReadWrite($readWrite);
+            $args = $this->addLarHeader($args);
         } elseif (isset($transactionOptions['partitionedDml'])) {
             $pdml = new PartitionedDml();
             $options->setPartitionedDml($pdml);
+            $args = $this->addLarHeader($args);
         }
 
         $requestOptions = $this->pluck('requestOptions', $args, false) ?: [];
@@ -1135,6 +1144,7 @@ class Grpc implements ConnectionInterface
         }
 
         $databaseName = $this->pluck('database', $args);
+        $args = $this->addLarHeader($args);
         return $this->send([$this->spannerClient, 'commit'], [
             $this->pluck('session', $args),
             $mutations,
@@ -1148,6 +1158,7 @@ class Grpc implements ConnectionInterface
     public function rollback(array $args)
     {
         $databaseName = $this->pluck('database', $args);
+        $args = $this->addLarHeader($args);
         return $this->send([$this->spannerClient, 'rollback'], [
             $this->pluck('session', $args),
             $this->pluck('transactionId', $args),
@@ -1162,6 +1173,7 @@ class Grpc implements ConnectionInterface
     {
         $args = $this->formatSqlParams($args);
         $args['transaction'] = $this->createTransactionSelector($args);
+        $args = $this->addLarHeader($args);
 
         $args['partitionOptions'] = $this->serializer->decodeMessage(
             new PartitionOptions,
@@ -1185,6 +1197,7 @@ class Grpc implements ConnectionInterface
         $keySet = $this->serializer->decodeMessage(new KeySet, $this->formatKeySet($keySet));
 
         $args['transaction'] = $this->createTransactionSelector($args);
+        $args = $this->addLarHeader($args);
 
         $args['partitionOptions'] = $this->serializer->decodeMessage(
             new PartitionOptions,
@@ -1509,22 +1522,6 @@ class Grpc implements ConnectionInterface
         }
 
         return $transactionOptions;
-    }
-
-    /**
-     * Add the `google-cloud-resource-prefix` header value to the request.
-     *
-     * @param array $args
-     * @param string $value
-     * @return array
-     */
-    private function addResourcePrefixHeader(array $args, $value)
-    {
-        $args['headers'] = [
-            'google-cloud-resource-prefix' => [$value]
-        ];
-
-        return $args;
     }
 
     /**

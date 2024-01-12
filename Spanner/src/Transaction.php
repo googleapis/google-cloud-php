@@ -65,6 +65,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 class Transaction implements TransactionalReadInterface
 {
     use TransactionalReadTrait;
+    use RequestHeaderTrait;
 
     /**
      * @var CommitStats
@@ -569,6 +570,7 @@ class Transaction implements TransactionalReadInterface
 
         $this->state = self::STATE_ROLLED_BACK;
 
+        $options = $this->addLarHeader($options);
         $this->operation->rollback($this->session, $this->transactionId, $options);
     }
 
@@ -739,6 +741,6 @@ class Transaction implements TransactionalReadInterface
         $selector = $this->transactionSelector($options);
         $options['transaction'] = $selector[0];
 
-        return $options;
+        return $this->addLarHeader($options);
     }
 }
