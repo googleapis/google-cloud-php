@@ -33,19 +33,14 @@ class Filter extends \Google\Protobuf\Internal\Message
      *     @type string $field_name
      *           The dimension name or metric name. Must be a name defined in dimensions
      *           or metrics.
-     *     @type bool $null_filter
-     *           A filter for null values. If True, a null dimension value is matched by
-     *           this filter. Null filter is commonly used inside a NOT filter
-     *           expression. For example, a NOT expression of a null filter removes rows
-     *           when a dimension is null.
-     *     @type \Google\Analytics\Data\V1alpha\Filter\StringFilter $string_filter
+     *     @type \Google\Analytics\Data\V1alpha\StringFilter $string_filter
      *           Strings related filter.
-     *     @type \Google\Analytics\Data\V1alpha\Filter\InListFilter $in_list_filter
+     *     @type \Google\Analytics\Data\V1alpha\InListFilter $in_list_filter
      *           A filter for in list values.
-     *     @type \Google\Analytics\Data\V1alpha\Filter\NumericFilter $numeric_filter
+     *     @type \Google\Analytics\Data\V1alpha\NumericFilter $numeric_filter
      *           A filter for numeric or date values.
-     *     @type \Google\Analytics\Data\V1alpha\Filter\BetweenFilter $between_filter
-     *           A filter for two values.
+     *     @type \Google\Analytics\Data\V1alpha\BetweenFilter $between_filter
+     *           A filter for between two values.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,162 +77,125 @@ class Filter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A filter for null values. If True, a null dimension value is matched by
-     * this filter. Null filter is commonly used inside a NOT filter
-     * expression. For example, a NOT expression of a null filter removes rows
-     * when a dimension is null.
+     * Strings related filter.
      *
-     * Generated from protobuf field <code>bool null_filter = 2;</code>
-     * @return bool
+     * Generated from protobuf field <code>.google.analytics.data.v1alpha.StringFilter string_filter = 2;</code>
+     * @return \Google\Analytics\Data\V1alpha\StringFilter|null
      */
-    public function getNullFilter()
+    public function getStringFilter()
     {
         return $this->readOneof(2);
     }
 
-    public function hasNullFilter()
+    public function hasStringFilter()
     {
         return $this->hasOneof(2);
     }
 
     /**
-     * A filter for null values. If True, a null dimension value is matched by
-     * this filter. Null filter is commonly used inside a NOT filter
-     * expression. For example, a NOT expression of a null filter removes rows
-     * when a dimension is null.
+     * Strings related filter.
      *
-     * Generated from protobuf field <code>bool null_filter = 2;</code>
-     * @param bool $var
+     * Generated from protobuf field <code>.google.analytics.data.v1alpha.StringFilter string_filter = 2;</code>
+     * @param \Google\Analytics\Data\V1alpha\StringFilter $var
      * @return $this
      */
-    public function setNullFilter($var)
+    public function setStringFilter($var)
     {
-        GPBUtil::checkBool($var);
+        GPBUtil::checkMessage($var, \Google\Analytics\Data\V1alpha\StringFilter::class);
         $this->writeOneof(2, $var);
 
         return $this;
     }
 
     /**
-     * Strings related filter.
+     * A filter for in list values.
      *
-     * Generated from protobuf field <code>.google.analytics.data.v1alpha.Filter.StringFilter string_filter = 3;</code>
-     * @return \Google\Analytics\Data\V1alpha\Filter\StringFilter|null
+     * Generated from protobuf field <code>.google.analytics.data.v1alpha.InListFilter in_list_filter = 3;</code>
+     * @return \Google\Analytics\Data\V1alpha\InListFilter|null
      */
-    public function getStringFilter()
+    public function getInListFilter()
     {
         return $this->readOneof(3);
     }
 
-    public function hasStringFilter()
+    public function hasInListFilter()
     {
         return $this->hasOneof(3);
     }
 
     /**
-     * Strings related filter.
+     * A filter for in list values.
      *
-     * Generated from protobuf field <code>.google.analytics.data.v1alpha.Filter.StringFilter string_filter = 3;</code>
-     * @param \Google\Analytics\Data\V1alpha\Filter\StringFilter $var
+     * Generated from protobuf field <code>.google.analytics.data.v1alpha.InListFilter in_list_filter = 3;</code>
+     * @param \Google\Analytics\Data\V1alpha\InListFilter $var
      * @return $this
      */
-    public function setStringFilter($var)
+    public function setInListFilter($var)
     {
-        GPBUtil::checkMessage($var, \Google\Analytics\Data\V1alpha\Filter\StringFilter::class);
+        GPBUtil::checkMessage($var, \Google\Analytics\Data\V1alpha\InListFilter::class);
         $this->writeOneof(3, $var);
 
         return $this;
     }
 
     /**
-     * A filter for in list values.
+     * A filter for numeric or date values.
      *
-     * Generated from protobuf field <code>.google.analytics.data.v1alpha.Filter.InListFilter in_list_filter = 4;</code>
-     * @return \Google\Analytics\Data\V1alpha\Filter\InListFilter|null
+     * Generated from protobuf field <code>.google.analytics.data.v1alpha.NumericFilter numeric_filter = 4;</code>
+     * @return \Google\Analytics\Data\V1alpha\NumericFilter|null
      */
-    public function getInListFilter()
+    public function getNumericFilter()
     {
         return $this->readOneof(4);
     }
 
-    public function hasInListFilter()
+    public function hasNumericFilter()
     {
         return $this->hasOneof(4);
     }
 
     /**
-     * A filter for in list values.
+     * A filter for numeric or date values.
      *
-     * Generated from protobuf field <code>.google.analytics.data.v1alpha.Filter.InListFilter in_list_filter = 4;</code>
-     * @param \Google\Analytics\Data\V1alpha\Filter\InListFilter $var
+     * Generated from protobuf field <code>.google.analytics.data.v1alpha.NumericFilter numeric_filter = 4;</code>
+     * @param \Google\Analytics\Data\V1alpha\NumericFilter $var
      * @return $this
      */
-    public function setInListFilter($var)
+    public function setNumericFilter($var)
     {
-        GPBUtil::checkMessage($var, \Google\Analytics\Data\V1alpha\Filter\InListFilter::class);
+        GPBUtil::checkMessage($var, \Google\Analytics\Data\V1alpha\NumericFilter::class);
         $this->writeOneof(4, $var);
 
         return $this;
     }
 
     /**
-     * A filter for numeric or date values.
+     * A filter for between two values.
      *
-     * Generated from protobuf field <code>.google.analytics.data.v1alpha.Filter.NumericFilter numeric_filter = 5;</code>
-     * @return \Google\Analytics\Data\V1alpha\Filter\NumericFilter|null
+     * Generated from protobuf field <code>.google.analytics.data.v1alpha.BetweenFilter between_filter = 5;</code>
+     * @return \Google\Analytics\Data\V1alpha\BetweenFilter|null
      */
-    public function getNumericFilter()
+    public function getBetweenFilter()
     {
         return $this->readOneof(5);
     }
 
-    public function hasNumericFilter()
+    public function hasBetweenFilter()
     {
         return $this->hasOneof(5);
     }
 
     /**
-     * A filter for numeric or date values.
+     * A filter for between two values.
      *
-     * Generated from protobuf field <code>.google.analytics.data.v1alpha.Filter.NumericFilter numeric_filter = 5;</code>
-     * @param \Google\Analytics\Data\V1alpha\Filter\NumericFilter $var
-     * @return $this
-     */
-    public function setNumericFilter($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Analytics\Data\V1alpha\Filter\NumericFilter::class);
-        $this->writeOneof(5, $var);
-
-        return $this;
-    }
-
-    /**
-     * A filter for two values.
-     *
-     * Generated from protobuf field <code>.google.analytics.data.v1alpha.Filter.BetweenFilter between_filter = 6;</code>
-     * @return \Google\Analytics\Data\V1alpha\Filter\BetweenFilter|null
-     */
-    public function getBetweenFilter()
-    {
-        return $this->readOneof(6);
-    }
-
-    public function hasBetweenFilter()
-    {
-        return $this->hasOneof(6);
-    }
-
-    /**
-     * A filter for two values.
-     *
-     * Generated from protobuf field <code>.google.analytics.data.v1alpha.Filter.BetweenFilter between_filter = 6;</code>
-     * @param \Google\Analytics\Data\V1alpha\Filter\BetweenFilter $var
+     * Generated from protobuf field <code>.google.analytics.data.v1alpha.BetweenFilter between_filter = 5;</code>
+     * @param \Google\Analytics\Data\V1alpha\BetweenFilter $var
      * @return $this
      */
     public function setBetweenFilter($var)
     {
-        GPBUtil::checkMessage($var, \Google\Analytics\Data\V1alpha\Filter\BetweenFilter::class);
-        $this->writeOneof(6, $var);
+        GPBUtil::checkMessage($var, \Google\Analytics\Data\V1alpha\BetweenFilter::class);
+        $this->writeOneof(5, $var);
 
         return $this;
     }
