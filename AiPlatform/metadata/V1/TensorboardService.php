@@ -29,7 +29,7 @@ class TensorboardService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-è{
+¶{
 4google/cloud/aiplatform/v1/tensorboard_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto,google/cloud/aiplatform/v1/tensorboard.proto1google/cloud/aiplatform/v1/tensorboard_data.proto7google/cloud/aiplatform/v1/tensorboard_experiment.proto0google/cloud/aiplatform/v1/tensorboard_run.proto8google/cloud/aiplatform/v1/tensorboard_time_series.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"œ
 CreateTensorboardRequest=
 parent (	B-àAúA\'
@@ -205,7 +205,7 @@ page_token (	
 "CreateTensorboardOperationMetadataN
 generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"t
 "UpdateTensorboardOperationMetadataN
-generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata2‹?
+generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata2Ù>
 TensorboardServiceù
 CreateTensorboard4.google.cloud.aiplatform.v1.CreateTensorboardRequest.google.longrunning.Operation"Ž‚Óä“?"0/v1/{parent=projects/*/locations/*}/tensorboards:tensorboardÚAparent,tensorboardÊA1
 Tensorboard"CreateTensorboardOperationMetadata­
@@ -229,15 +229,15 @@ page_token (	
 UpdateTensorboardRun7.google.cloud.aiplatform.v1.UpdateTensorboardRunRequest*.google.cloud.aiplatform.v1.TensorboardRun"Œ‚Óä“h2U/v1/{tensorboard_run.name=projects/*/locations/*/tensorboards/*/experiments/*/runs/*}:tensorboard_runÚAtensorboard_run,update_maskÞ
 ListTensorboardRuns6.google.cloud.aiplatform.v1.ListTensorboardRunsRequest7.google.cloud.aiplatform.v1.ListTensorboardRunsResponse"V‚Óä“GE/v1/{parent=projects/*/locations/*/tensorboards/*/experiments/*}/runsÚAparentø
 DeleteTensorboardRun7.google.cloud.aiplatform.v1.DeleteTensorboardRunRequest.google.longrunning.Operation"‡‚Óä“G*E/v1/{name=projects/*/locations/*/tensorboards/*/experiments/*/runs/*}ÚAnameÊA0
-google.protobuf.EmptyDeleteOperationMetadataª
- BatchCreateTensorboardTimeSeriesC.google.cloud.aiplatform.v1.BatchCreateTensorboardTimeSeriesRequestD.google.cloud.aiplatform.v1.BatchCreateTensorboardTimeSeriesResponse"{‚Óä“c"^/v1/{parent=projects/*/locations/*/tensorboards/*/experiments/*}/runs/*/timeSeries:batchCreate:*ÚAparent,requests§
+google.protobuf.EmptyDeleteOperationMetadata˜
+ BatchCreateTensorboardTimeSeriesC.google.cloud.aiplatform.v1.BatchCreateTensorboardTimeSeriesRequestD.google.cloud.aiplatform.v1.BatchCreateTensorboardTimeSeriesResponse"i‚Óä“Q"L/v1/{parent=projects/*/locations/*/tensorboards/*/experiments/*}:batchCreate:*ÚAparent,requests§
 CreateTensorboardTimeSeries>.google.cloud.aiplatform.v1.CreateTensorboardTimeSeriesRequest1.google.cloud.aiplatform.v1.TensorboardTimeSeries"”‚Óä“m"R/v1/{parent=projects/*/locations/*/tensorboards/*/experiments/*/runs/*}/timeSeries:tensorboard_time_seriesÚAparent,tensorboard_time_seriesí
 GetTensorboardTimeSeries;.google.cloud.aiplatform.v1.GetTensorboardTimeSeriesRequest1.google.cloud.aiplatform.v1.TensorboardTimeSeries"a‚Óä“TR/v1/{name=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*}ÚAnameÅ
 UpdateTensorboardTimeSeries>.google.cloud.aiplatform.v1.UpdateTensorboardTimeSeriesRequest1.google.cloud.aiplatform.v1.TensorboardTimeSeries"²‚Óä“…2j/v1/{tensorboard_time_series.name=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*}:tensorboard_time_seriesÚA#tensorboard_time_series,update_maský
 ListTensorboardTimeSeries<.google.cloud.aiplatform.v1.ListTensorboardTimeSeriesRequest=.google.cloud.aiplatform.v1.ListTensorboardTimeSeriesResponse"c‚Óä“TR/v1/{parent=projects/*/locations/*/tensorboards/*/experiments/*/runs/*}/timeSeriesÚAparent“
 DeleteTensorboardTimeSeries>.google.cloud.aiplatform.v1.DeleteTensorboardTimeSeriesRequest.google.longrunning.Operation"”‚Óä“T*R/v1/{name=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*}ÚAnameÊA0
-google.protobuf.EmptyDeleteOperationMetadata¬
-"BatchReadTensorboardTimeSeriesDataE.google.cloud.aiplatform.v1.BatchReadTensorboardTimeSeriesDataRequestF.google.cloud.aiplatform.v1.BatchReadTensorboardTimeSeriesDataResponse"w‚Óä“ca/v1/{tensorboard=projects/*/locations/*/tensorboards/*}/experiments/*/runs/*/timeSeries:batchReadÚAtensorboard³
+google.protobuf.EmptyDeleteOperationMetadataŒ
+"BatchReadTensorboardTimeSeriesDataE.google.cloud.aiplatform.v1.BatchReadTensorboardTimeSeriesDataRequestF.google.cloud.aiplatform.v1.BatchReadTensorboardTimeSeriesDataResponse"W‚Óä“CA/v1/{tensorboard=projects/*/locations/*/tensorboards/*}:batchReadÚAtensorboard³
 ReadTensorboardTimeSeriesData@.google.cloud.aiplatform.v1.ReadTensorboardTimeSeriesDataRequestA.google.cloud.aiplatform.v1.ReadTensorboardTimeSeriesDataResponse"Œ‚Óä“lj/v1/{tensorboard_time_series=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*}:readÚAtensorboard_time_series’
 ReadTensorboardBlobData:.google.cloud.aiplatform.v1.ReadTensorboardBlobDataRequest;.google.cloud.aiplatform.v1.ReadTensorboardBlobDataResponse"|‚Óä“hf/v1/{time_series=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*}:readBlobDataÚAtime_series0¼
 WriteTensorboardExperimentDataA.google.cloud.aiplatform.v1.WriteTensorboardExperimentDataRequestB.google.cloud.aiplatform.v1.WriteTensorboardExperimentDataResponse"’‚Óä“["V/v1/{tensorboard_experiment=projects/*/locations/*/tensorboards/*/experiments/*}:write:*ÚA.tensorboard_experiment,write_run_data_requests™

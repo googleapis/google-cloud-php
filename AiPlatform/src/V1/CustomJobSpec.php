@@ -150,6 +150,23 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string experiment_run = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $experiment_run = '';
+    /**
+     * Optional. The name of the Model resources for which to generate a mapping
+     * to artifact URIs. Applicable only to some of the Google-provided custom
+     * jobs. Format: `projects/{project}/locations/{location}/models/{model}`
+     * In order to retrieve a specific version of the model, also provide
+     * the version ID or version alias.
+     *   Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *              or
+     *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     * If no version ID or alias is specified, the "default" version will be
+     * returned. The "default" version alias is created for the first version of
+     * the model, and can be moved to other versions later on. There will be
+     * exactly one default version.
+     *
+     * Generated from protobuf field <code>repeated string models = 20 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $models;
 
     /**
      * Constructor.
@@ -244,6 +261,19 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *           Optional. The Experiment Run associated with this job.
      *           Format:
      *           `projects/{project}/locations/{location}/metadataStores/{metadataStores}/contexts/{experiment-name}-{experiment-run-name}`
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $models
+     *           Optional. The name of the Model resources for which to generate a mapping
+     *           to artifact URIs. Applicable only to some of the Google-provided custom
+     *           jobs. Format: `projects/{project}/locations/{location}/models/{model}`
+     *           In order to retrieve a specific version of the model, also provide
+     *           the version ID or version alias.
+     *             Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *                        or
+     *                      `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     *           If no version ID or alias is specified, the "default" version will be
+     *           returned. The "default" version alias is created for the first version of
+     *           the model, and can be moved to other versions later on. There will be
+     *           exactly one default version.
      * }
      */
     public function __construct($data = NULL) {
@@ -705,6 +735,54 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->experiment_run = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The name of the Model resources for which to generate a mapping
+     * to artifact URIs. Applicable only to some of the Google-provided custom
+     * jobs. Format: `projects/{project}/locations/{location}/models/{model}`
+     * In order to retrieve a specific version of the model, also provide
+     * the version ID or version alias.
+     *   Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *              or
+     *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     * If no version ID or alias is specified, the "default" version will be
+     * returned. The "default" version alias is created for the first version of
+     * the model, and can be moved to other versions later on. There will be
+     * exactly one default version.
+     *
+     * Generated from protobuf field <code>repeated string models = 20 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getModels()
+    {
+        return $this->models;
+    }
+
+    /**
+     * Optional. The name of the Model resources for which to generate a mapping
+     * to artifact URIs. Applicable only to some of the Google-provided custom
+     * jobs. Format: `projects/{project}/locations/{location}/models/{model}`
+     * In order to retrieve a specific version of the model, also provide
+     * the version ID or version alias.
+     *   Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *              or
+     *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     * If no version ID or alias is specified, the "default" version will be
+     * returned. The "default" version alias is created for the first version of
+     * the model, and can be moved to other versions later on. There will be
+     * exactly one default version.
+     *
+     * Generated from protobuf field <code>repeated string models = 20 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setModels($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->models = $arr;
 
         return $this;
     }
