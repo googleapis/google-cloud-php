@@ -244,6 +244,12 @@ class SqlExternalSyncSettingErrorType
      * Generated from protobuf enum <code>SOURCE_MAX_SUBSCRIPTIONS = 38;</code>
      */
     const SOURCE_MAX_SUBSCRIPTIONS = 38;
+    /**
+     * Unable to verify definers on the source for MySQL.
+     *
+     * Generated from protobuf enum <code>UNABLE_TO_VERIFY_DEFINERS = 39;</code>
+     */
+    const UNABLE_TO_VERIFY_DEFINERS = 39;
 
     private static $valueToName = [
         self::SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED => 'SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED',
@@ -285,6 +291,7 @@ class SqlExternalSyncSettingErrorType
         self::TURN_ON_PITR_AFTER_PROMOTE => 'TURN_ON_PITR_AFTER_PROMOTE',
         self::INCOMPATIBLE_DATABASE_MINOR_VERSION => 'INCOMPATIBLE_DATABASE_MINOR_VERSION',
         self::SOURCE_MAX_SUBSCRIPTIONS => 'SOURCE_MAX_SUBSCRIPTIONS',
+        self::UNABLE_TO_VERIFY_DEFINERS => 'UNABLE_TO_VERIFY_DEFINERS',
     ];
 
     public static function name($value)
