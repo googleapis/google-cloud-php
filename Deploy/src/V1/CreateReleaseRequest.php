@@ -37,9 +37,9 @@ class CreateReleaseRequest extends \Google\Protobuf\Internal\Message
     private $release = null;
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
-     * so that if you must retry your request, the server will know to ignore
-     * the request if it has already been completed. The server will guarantee
-     * that for at least 60 minutes since the first request.
+     * so that if you must retry your request, the server knows to ignore the
+     * request if it has already been completed. The server guarantees that for
+     * at least 60 minutes after the first request.
      * For example, consider a situation where you make an initial request and the
      * request times out. If you make the request again with the same request ID,
      * the server can check if original operation with the same request ID was
@@ -95,9 +95,9 @@ class CreateReleaseRequest extends \Google\Protobuf\Internal\Message
      *           Required. The `Release` to create.
      *     @type string $request_id
      *           Optional. A request ID to identify requests. Specify a unique request ID
-     *           so that if you must retry your request, the server will know to ignore
-     *           the request if it has already been completed. The server will guarantee
-     *           that for at least 60 minutes since the first request.
+     *           so that if you must retry your request, the server knows to ignore the
+     *           request if it has already been completed. The server guarantees that for
+     *           at least 60 minutes after the first request.
      *           For example, consider a situation where you make an initial request and the
      *           request times out. If you make the request again with the same request ID,
      *           the server can check if original operation with the same request ID was
@@ -209,9 +209,9 @@ class CreateReleaseRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
-     * so that if you must retry your request, the server will know to ignore
-     * the request if it has already been completed. The server will guarantee
-     * that for at least 60 minutes since the first request.
+     * so that if you must retry your request, the server knows to ignore the
+     * request if it has already been completed. The server guarantees that for
+     * at least 60 minutes after the first request.
      * For example, consider a situation where you make an initial request and the
      * request times out. If you make the request again with the same request ID,
      * the server can check if original operation with the same request ID was
@@ -230,9 +230,9 @@ class CreateReleaseRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
-     * so that if you must retry your request, the server will know to ignore
-     * the request if it has already been completed. The server will guarantee
-     * that for at least 60 minutes since the first request.
+     * so that if you must retry your request, the server knows to ignore the
+     * request if it has already been completed. The server guarantees that for
+     * at least 60 minutes after the first request.
      * For example, consider a situation where you make an initial request and the
      * request times out. If you make the request again with the same request ID,
      * the server can check if original operation with the same request ID was

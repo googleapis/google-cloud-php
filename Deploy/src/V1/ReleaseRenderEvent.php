@@ -24,11 +24,25 @@ class ReleaseRenderEvent extends \Google\Protobuf\Internal\Message
      */
     private $message = '';
     /**
+     * Unique identifier of the `DeliveryPipeline`.
+     *
+     * Generated from protobuf field <code>string pipeline_uid = 4;</code>
+     */
+    private $pipeline_uid = '';
+    /**
      * The name of the release.
+     * release_uid is not in this log message because we write some of these log
+     * messages at release creation time, before we've generated the uid.
      *
      * Generated from protobuf field <code>string release = 2;</code>
      */
     private $release = '';
+    /**
+     * Type of this notification, e.g. for a release render state change event.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Type type = 5;</code>
+     */
+    private $type = 0;
     /**
      * The state of the release render.
      *
@@ -45,8 +59,14 @@ class ReleaseRenderEvent extends \Google\Protobuf\Internal\Message
      *     @type string $message
      *           Debug message for when a render transition occurs. Provides further
      *           details as rendering progresses through render states.
+     *     @type string $pipeline_uid
+     *           Unique identifier of the `DeliveryPipeline`.
      *     @type string $release
      *           The name of the release.
+     *           release_uid is not in this log message because we write some of these log
+     *           messages at release creation time, before we've generated the uid.
+     *     @type int $type
+     *           Type of this notification, e.g. for a release render state change event.
      *     @type int $release_render_state
      *           The state of the release render.
      * }
@@ -85,7 +105,35 @@ class ReleaseRenderEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Unique identifier of the `DeliveryPipeline`.
+     *
+     * Generated from protobuf field <code>string pipeline_uid = 4;</code>
+     * @return string
+     */
+    public function getPipelineUid()
+    {
+        return $this->pipeline_uid;
+    }
+
+    /**
+     * Unique identifier of the `DeliveryPipeline`.
+     *
+     * Generated from protobuf field <code>string pipeline_uid = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPipelineUid($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->pipeline_uid = $var;
+
+        return $this;
+    }
+
+    /**
      * The name of the release.
+     * release_uid is not in this log message because we write some of these log
+     * messages at release creation time, before we've generated the uid.
      *
      * Generated from protobuf field <code>string release = 2;</code>
      * @return string
@@ -97,6 +145,8 @@ class ReleaseRenderEvent extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the release.
+     * release_uid is not in this log message because we write some of these log
+     * messages at release creation time, before we've generated the uid.
      *
      * Generated from protobuf field <code>string release = 2;</code>
      * @param string $var
@@ -106,6 +156,32 @@ class ReleaseRenderEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->release = $var;
+
+        return $this;
+    }
+
+    /**
+     * Type of this notification, e.g. for a release render state change event.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Type type = 5;</code>
+     * @return int
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Type of this notification, e.g. for a release render state change event.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Type type = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Deploy\V1\Type::class);
+        $this->type = $var;
 
         return $this;
     }

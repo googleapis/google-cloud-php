@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * CustomMetadata contains information from a user defined operation.
+ * CustomMetadata contains information from a user-defined operation.
  *
  * Generated from protobuf message <code>google.cloud.deploy.v1.CustomMetadata</code>
  */
 class CustomMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Key-value pairs provided by the user defined operation.
+     * Output only. Key-value pairs provided by the user-defined operation.
      *
      * Generated from protobuf field <code>map<string, string> values = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -29,7 +29,7 @@ class CustomMetadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array|\Google\Protobuf\Internal\MapField $values
-     *           Output only. Key-value pairs provided by the user defined operation.
+     *           Output only. Key-value pairs provided by the user-defined operation.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class CustomMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Key-value pairs provided by the user defined operation.
+     * Output only. Key-value pairs provided by the user-defined operation.
      *
      * Generated from protobuf field <code>map<string, string> values = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -49,7 +49,7 @@ class CustomMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Key-value pairs provided by the user defined operation.
+     * Output only. Key-value pairs provided by the user-defined operation.
      *
      * Generated from protobuf field <code>map<string, string> values = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

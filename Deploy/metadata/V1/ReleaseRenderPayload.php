@@ -15,13 +15,16 @@ class ReleaseRenderPayload
           return;
         }
         \GPBMetadata\Google\Cloud\Deploy\V1\CloudDeploy::initOnce();
+        \GPBMetadata\Google\Cloud\Deploy\V1\LogEnums::initOnce();
         $pool->internalAddGeneratedFile(
             '
-»
-3google/cloud/deploy/v1/release_render_payload.protogoogle.cloud.deploy.v1"Å
+≤
+3google/cloud/deploy/v1/release_render_payload.protogoogle.cloud.deploy.v1&google/cloud/deploy/v1/log_enums.proto"√
 ReleaseRenderEvent
-message (	
-release (	I
+message (	
+pipeline_uid (	
+release (	*
+type (2.google.cloud.deploy.v1.TypeI
 release_render_state (2+.google.cloud.deploy.v1.Release.RenderStateBm
 com.google.cloud.deploy.v1BReleaseRenderPayloadProtoPZ2cloud.google.com/go/deploy/apiv1/deploypb;deploypbbproto3'
         , true);

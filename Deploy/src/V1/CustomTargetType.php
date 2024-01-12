@@ -11,8 +11,8 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A `CustomTargetType` resource in the Cloud Deploy API.
  * A `CustomTargetType` defines a type of custom target that can be referenced
- * in a `Target` in order to facilitate deploying to a runtime that does not
- * have a 1P integration with Cloud Deploy.
+ * in a `Target` in order to facilitate deploying to other systems besides the
+ * supported runtimes.
  *
  * Generated from protobuf message <code>google.cloud.deploy.v1.CustomTargetType</code>
  */
