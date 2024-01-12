@@ -623,6 +623,10 @@ class OsLoginServiceGapicClient
      *           Optional. The SSH public key and expiration time.
      *     @type string $projectId
      *           The project ID of the Google Cloud Platform project.
+     *     @type string[] $regions
+     *           Optional. The regions to which to assert that the key was written.
+     *           If unspecified, defaults to all regions.
+     *           Regions are listed at https://cloud.google.com/about/locations#region.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -645,6 +649,10 @@ class OsLoginServiceGapicClient
 
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
+        }
+
+        if (isset($optionalArgs['regions'])) {
+            $request->setRegions($optionalArgs['regions']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
