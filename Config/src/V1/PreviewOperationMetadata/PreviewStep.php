@@ -109,6 +109,4 @@ class PreviewStep
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PreviewStep::class, \Google\Cloud\Config\V1\PreviewOperationMetadata_PreviewStep::class);
 
