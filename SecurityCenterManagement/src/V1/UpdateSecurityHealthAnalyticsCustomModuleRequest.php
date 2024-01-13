@@ -16,11 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
-     * SecurityHealthAnalyticsCustomModule resource by the update.
-     * The fields specified in the update_mask are relative to the resource, not
-     * the full request. A field will be overwritten if it is in the mask. If the
-     * user does not provide a mask then all fields will be overwritten.
+     * Required. The list of fields to be updated. The only fields that can be
+     * updated are `enablement_state` and `custom_config`. If empty or set to the
+     * wildcard value `*`, both `enablement_state` and `custom_config` are
+     * updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -46,11 +45,10 @@ class UpdateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
 
     /**
      * @param \Google\Cloud\SecurityCenterManagement\V1\SecurityHealthAnalyticsCustomModule $securityHealthAnalyticsCustomModule Required. The resource being updated
-     * @param \Google\Protobuf\FieldMask                                                    $updateMask                          Required. Field mask is used to specify the fields to be overwritten in the
-     *                                                                                                                           SecurityHealthAnalyticsCustomModule resource by the update.
-     *                                                                                                                           The fields specified in the update_mask are relative to the resource, not
-     *                                                                                                                           the full request. A field will be overwritten if it is in the mask. If the
-     *                                                                                                                           user does not provide a mask then all fields will be overwritten.
+     * @param \Google\Protobuf\FieldMask                                                    $updateMask                          Required. The list of fields to be updated. The only fields that can be
+     *                                                                                                                           updated are `enablement_state` and `custom_config`. If empty or set to the
+     *                                                                                                                           wildcard value `*`, both `enablement_state` and `custom_config` are
+     *                                                                                                                           updated.
      *
      * @return \Google\Cloud\SecurityCenterManagement\V1\UpdateSecurityHealthAnalyticsCustomModuleRequest
      *
@@ -70,11 +68,10 @@ class UpdateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required. Field mask is used to specify the fields to be overwritten in the
-     *           SecurityHealthAnalyticsCustomModule resource by the update.
-     *           The fields specified in the update_mask are relative to the resource, not
-     *           the full request. A field will be overwritten if it is in the mask. If the
-     *           user does not provide a mask then all fields will be overwritten.
+     *           Required. The list of fields to be updated. The only fields that can be
+     *           updated are `enablement_state` and `custom_config`. If empty or set to the
+     *           wildcard value `*`, both `enablement_state` and `custom_config` are
+     *           updated.
      *     @type \Google\Cloud\SecurityCenterManagement\V1\SecurityHealthAnalyticsCustomModule $security_health_analytics_custom_module
      *           Required. The resource being updated
      *     @type bool $validate_only
@@ -93,11 +90,10 @@ class UpdateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
     }
 
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
-     * SecurityHealthAnalyticsCustomModule resource by the update.
-     * The fields specified in the update_mask are relative to the resource, not
-     * the full request. A field will be overwritten if it is in the mask. If the
-     * user does not provide a mask then all fields will be overwritten.
+     * Required. The list of fields to be updated. The only fields that can be
+     * updated are `enablement_state` and `custom_config`. If empty or set to the
+     * wildcard value `*`, both `enablement_state` and `custom_config` are
+     * updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -118,11 +114,10 @@ class UpdateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
     }
 
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
-     * SecurityHealthAnalyticsCustomModule resource by the update.
-     * The fields specified in the update_mask are relative to the resource, not
-     * the full request. A field will be overwritten if it is in the mask. If the
-     * user does not provide a mask then all fields will be overwritten.
+     * Required. The list of fields to be updated. The only fields that can be
+     * updated are `enablement_state` and `custom_config`. If empty or set to the
+     * wildcard value `*`, both `enablement_state` and `custom_config` are
+     * updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var
