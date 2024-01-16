@@ -189,7 +189,7 @@ trait ApiHelperTrait
      * @param string|mixed $value
      * @return array
      */
-    private function formatDurationForApi($value) : array
+    private function formatDurationForApi($value)
     {
         if (is_string($value)) {
             $d = explode('.', trim($value, 's'));
@@ -219,7 +219,7 @@ trait ApiHelperTrait
      * @param array $config
      * @return mixed
      */
-    protected function constructGapic(string $gapicName, array $config)
+    protected function constructGapic($gapicName, array $config)
     {
         return new $gapicName($config);
     }
