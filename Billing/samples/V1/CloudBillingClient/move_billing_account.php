@@ -36,7 +36,7 @@ use Google\Cloud\Billing\V1\MoveBillingAccountRequest;
  *                                           The specified billing account cannot be a subaccount, since a subaccount
  *                                           always belongs to the same organization as its parent account. Please see
  *                                           {@see CloudBillingClient::billingAccountName()} for help formatting this field.
- * @param string $formattedDestinationParent The resource name of the Organization to reparent
+ * @param string $formattedDestinationParent The resource name of the Organization to move
  *                                           the billing account under.
  *                                           Must be of the form `organizations/{organization_id}`. Please see
  *                                           {@see CloudBillingClient::organizationName()} for help formatting this field.

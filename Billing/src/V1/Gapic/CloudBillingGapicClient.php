@@ -841,7 +841,7 @@ class CloudBillingGapicClient
      *                                  Must be of the form `billingAccounts/{billing_account_id}`.
      *                                  The specified billing account cannot be a subaccount, since a subaccount
      *                                  always belongs to the same organization as its parent account.
-     * @param string $destinationParent Required. The resource name of the Organization to reparent
+     * @param string $destinationParent Required. The resource name of the Organization to move
      *                                  the billing account under.
      *                                  Must be of the form `organizations/{organization_id}`.
      * @param array  $optionalArgs      {
