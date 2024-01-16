@@ -212,6 +212,11 @@ class Grpc implements ConnectionInterface
     private $credentialsWrapper;
 
     /**
+     * @var bool
+     */
+    private $larEnabled;
+
+    /**
      * @param array $config [optional]
      */
     public function __construct(array $config = [])
@@ -272,6 +277,7 @@ class Grpc implements ConnectionInterface
         //@codeCoverageIgnoreEnd
 
         $this->grpcConfig = $grpcConfig;
+        $this->larEnabled = $this->pluck($config, 'xGoogSpannerRouteToLeader', false) ?? true;
     }
 
     /**
@@ -808,7 +814,7 @@ class Grpc implements ConnectionInterface
             );
         }
 
-        $args = $this->addLarHeader($args);
+        $args = $this->addLarHeader($args, $this->larEnabled);
         return $this->send([$this->spannerClient, 'createSession'], [
             $databaseName,
             $this->addResourcePrefixHeader($args, $databaseName)
@@ -828,7 +834,7 @@ class Grpc implements ConnectionInterface
     {
         $databaseName = $this->pluck('database', $args);
         $opts = $this->addResourcePrefixHeader([], $databaseName);
-        $opts = $this->addLarHeader($opts);
+        $opts = $this->addLarHeader($opts, $this->larEnabled);
         $opts['credentialsWrapper'] = $this->credentialsWrapper;
         $transport = $this->spannerClient->getTransport();
 
@@ -864,7 +870,7 @@ class Grpc implements ConnectionInterface
         );
 
         $databaseName = $this->pluck('database', $args);
-        $args = $this->addLarHeader($args);
+        $args = $this->addLarHeader($args, $this->larEnabled);
         return $this->send([$this->spannerClient, 'batchCreateSessions'], [
             $databaseName,
             $this->pluck('sessionCount', $args),
@@ -878,7 +884,7 @@ class Grpc implements ConnectionInterface
     public function getSession(array $args)
     {
         $databaseName = $this->pluck('database', $args);
-        $args = $this->addLarHeader($args);
+        $args = $this->addLarHeader($args, $this->larEnabled);
         return $this->send([$this->spannerClient, 'getSession'], [
             $this->pluck('name', $args),
             $this->addResourcePrefixHeader($args, $databaseName)
@@ -965,6 +971,7 @@ class Grpc implements ConnectionInterface
             );
         }
 
+        $args = $this->conditionallyUnsetLarHeader($args, $this->larEnabled);
         return $this->send([$this->spannerClient, 'executeStreamingSql'], [
             $this->pluck('session', $args),
             $this->pluck('sql', $args),
@@ -992,6 +999,7 @@ class Grpc implements ConnectionInterface
         $args['transaction'] = $this->createTransactionSelector($args);
 
         $databaseName = $this->pluck('database', $args);
+        $args = $this->conditionallyUnsetLarHeader($args, $this->larEnabled);
         return $this->send([$this->spannerClient, 'streamingRead'], [
             $this->pluck('session', $args),
             $this->pluck('table', $args),
@@ -1008,7 +1016,7 @@ class Grpc implements ConnectionInterface
     {
         $databaseName = $this->pluck('database', $args);
         $args['transaction'] = $this->createTransactionSelector($args);
-        $args = $this->addLarHeader($args);
+        $args = $this->addLarHeader($args, $this->larEnabled);
 
         $statements = [];
         foreach ($this->pluck('statements', $args) as $statement) {
@@ -1052,11 +1060,11 @@ class Grpc implements ConnectionInterface
         } elseif (isset($transactionOptions['readWrite'])) {
             $readWrite = new ReadWrite();
             $options->setReadWrite($readWrite);
-            $args = $this->addLarHeader($args);
+            $args = $this->addLarHeader($args, $this->larEnabled);
         } elseif (isset($transactionOptions['partitionedDml'])) {
             $pdml = new PartitionedDml();
             $options->setPartitionedDml($pdml);
-            $args = $this->addLarHeader($args);
+            $args = $this->addLarHeader($args, $this->larEnabled);
         }
 
         $requestOptions = $this->pluck('requestOptions', $args, false) ?: [];
@@ -1144,7 +1152,7 @@ class Grpc implements ConnectionInterface
         }
 
         $databaseName = $this->pluck('database', $args);
-        $args = $this->addLarHeader($args);
+        $args = $this->addLarHeader($args, $this->larEnabled);
         return $this->send([$this->spannerClient, 'commit'], [
             $this->pluck('session', $args),
             $mutations,
@@ -1158,7 +1166,7 @@ class Grpc implements ConnectionInterface
     public function rollback(array $args)
     {
         $databaseName = $this->pluck('database', $args);
-        $args = $this->addLarHeader($args);
+        $args = $this->addLarHeader($args, $this->larEnabled);
         return $this->send([$this->spannerClient, 'rollback'], [
             $this->pluck('session', $args),
             $this->pluck('transactionId', $args),
@@ -1173,7 +1181,7 @@ class Grpc implements ConnectionInterface
     {
         $args = $this->formatSqlParams($args);
         $args['transaction'] = $this->createTransactionSelector($args);
-        $args = $this->addLarHeader($args);
+        $args = $this->addLarHeader($args, $this->larEnabled);
 
         $args['partitionOptions'] = $this->serializer->decodeMessage(
             new PartitionOptions,
@@ -1197,7 +1205,7 @@ class Grpc implements ConnectionInterface
         $keySet = $this->serializer->decodeMessage(new KeySet, $this->formatKeySet($keySet));
 
         $args['transaction'] = $this->createTransactionSelector($args);
-        $args = $this->addLarHeader($args);
+        $args = $this->addLarHeader($args, $this->larEnabled);
 
         $args['partitionOptions'] = $this->serializer->decodeMessage(
             new PartitionOptions,

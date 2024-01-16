@@ -193,6 +193,8 @@ class SpannerClient
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
      *           If using the `replicaSelection::type` setting, utilize the constants available in
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
+     *     @type bool $xGoogSpannerRouteToLeader Enable/disable Leader Aware Routing.
+     *           **Defaults to** `true` (enabled).
      * }
      * @throws GoogleException If the gRPC extension is not enabled.
      */

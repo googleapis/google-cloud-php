@@ -570,7 +570,6 @@ class Transaction implements TransactionalReadInterface
 
         $this->state = self::STATE_ROLLED_BACK;
 
-        $options = $this->addLarHeader($options);
         $this->operation->rollback($this->session, $this->transactionId, $options);
     }
 

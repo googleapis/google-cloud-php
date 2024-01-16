@@ -24,21 +24,44 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  */
 trait RequestHeaderTrait
 {
-/**
+    /**
      * Add the `x-goog-spanner-route-to-leader` header value to the request.
      *
      * @param array $args
-     * @param string $context
      * @param bool $value
+     * @param string $context
      * @return array
      */
     private function addLarHeader(
         array $args,
-        string $context = SessionPoolInterface::CONTEXT_READWRITE,
+        bool $value = true,
+        string $context = SessionPoolInterface::CONTEXT_READWRITE
+    ) {
+        // If value is false, set LAR header to false and return.
+        if (!$value) {
+            $args['headers']['x-goog-spanner-route-to-leader'] = $value;
+            return $args;
+        }
+        // If value is true and context is READWRITE, set LAR header.
+        if ($context === SessionPoolInterface::CONTEXT_READWRITE) {
+            $args['headers']['x-goog-spanner-route-to-leader'] = $value;
+        }
+        return $args;
+    }
+
+    /**
+     * Conditionally unset the LAR header.
+     *
+     * @param array $args
+     * @param bool $value
+     * @return array
+     */
+    private function conditionallyUnsetLarHeader(
+        array $args,
         bool $value = true
     ) {
-        if ($value &&  !($context === SessionPoolInterface::CONTEXT_READ)) {
-            $args['headers']['x-goog-spanner-route-to-leader'] = $value;
+        if (!$value) {
+            unset($args['headers']['x-goog-spanner-route-to-leader']);
         }
         return $args;
     }
