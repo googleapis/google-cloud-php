@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Core\V2;
+namespace Google\Cloud\Core\Iam;
 
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ArrayTrait;
@@ -26,6 +26,7 @@ use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\GetPolicyOptions;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use InvalidArgumentException;
 
 /**
  * IAM Manager
@@ -33,7 +34,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
  * This class is not meant to be used directly. It should be accessed
  * through other objects which support IAM.
  *
- * Policies can be created using the {@see Google\Cloud\Core\Iam\PolicyBuilder}
+ * Policies can be created using the {@see PolicyBuilder}
  * to help ensure their validity.
  *
  * Example:
@@ -52,52 +53,33 @@ use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
  *
  * @internal
  */
-class Iam
+class IamManager
 {
     use ArrayTrait;
 
-    /**
-     * @var RequestHandler
-     */
-    private $requestHandler;
-
-    /**
-     * @var Serializer
-     */
-    private $serializer;
-
-    private $gapic;
-
-    /**
-     * @var string
-     */
-    private $resource;
-
-    /**
-     * @var array
-     */
-    private $policy;
-
-    /**
-     * @var array
-     */
-    private $options;
+    private RequestHandler $requestHandler;
+    private Serializer $serializer;
+    private string $clientClass;
+    private string $resource;
+    private array $policy;
 
     /**
      * @param RequestHandler $requestHandler
      * @param Serializer $serializer The serializer instance to encode/decode messages.
+     * @param string $clientClass The client class that will be passed on to the
+     * sendRequest method of the $requestHandler.
      * @param string $resource
      * @access private
      */
     public function __construct(
         RequestHandler $requestHandler,
         Serializer $serializer,
-        $gapic,
-        $resource
+        string $clientClass,
+        string $resource
     ) {
         $this->requestHandler = $requestHandler;
         $this->serializer = $serializer;
-        $this->gapic = $gapic;
+        $this->clientClass = $clientClass;
         $this->resource = $resource;
     }
 
@@ -106,7 +88,7 @@ class Iam
      *
      * If a policy has already been retrieved from the API, it will be returned.
      * To fetch a fresh copy of the policy, use
-     * {@see Google\Cloud\Core\Iam\Iam::reload()}.
+     * {@see IamManager::reload()}.
      *
      * Example:
      * ```
@@ -153,10 +135,10 @@ class Iam
      * ```
      *
      * @param  array|PolicyBuilder $policy The new policy, as an array or an
-     *         instance of {@see Google\Cloud\Core\Iam\PolicyBuilder}.
+     *         instance of {@see PolicyBuilder}.
      * @param  array $options Configuration Options
      * @return array An array of policy data
-     * @throws \InvalidArgumentException If the given policy is not an array or PolicyBuilder.
+     * @throws InvalidArgumentException If the given policy is not an array or PolicyBuilder.
      */
     public function setPolicy($policy, array $options = [])
     {
@@ -165,7 +147,7 @@ class Iam
         }
 
         if (!is_array($policy)) {
-            throw new \InvalidArgumentException('Given policy data must be an array or an instance of PolicyBuilder.');
+            throw new InvalidArgumentException('Given policy data must be an array or an instance of PolicyBuilder.');
         }
 
         $policy = $this->serializer->decodeMessage(
@@ -179,7 +161,7 @@ class Iam
         $request = $this->serializer->decodeMessage(new SetIamPolicyRequest(), $data);
 
         $this->policy = $this->requestHandler->sendRequest(
-            $this->gapic,
+            $this->clientClass,
             'setIamPolicy',
             $request,
             $options
@@ -210,7 +192,7 @@ class Iam
         $data = ['resource' => $this->resource, 'permissions' => $permissions];
         $request = $this->serializer->decodeMessage(new TestIamPermissionsRequest(), $data);
         $res = $this->requestHandler->sendRequest(
-            $this->gapic,
+            $this->clientClass,
             'testIamPermissions',
             $request,
             $options
@@ -232,13 +214,13 @@ class Iam
      */
     public function reload(array $options = [])
     {
-        $policyOptions = $this->pluck('policyOptions', $options, false) ?? [];
+        $policyOptions = $this->pluck('policyOptions', $options, false) ?: [];
         $policyOptions = $this->serializer->decodeMessage(new GetPolicyOptions(), $policyOptions);
         $data = ['resource' => $this->resource, 'options' => $policyOptions];
         $request = $this->serializer->decodeMessage(new GetIamPolicyRequest(), $data);
 
         $this->policy = $this->requestHandler->sendRequest(
-            $this->gapic,
+            $this->clientClass,
             'getIamPolicy',
             $request,
             $options

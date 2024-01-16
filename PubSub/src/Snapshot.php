@@ -42,17 +42,12 @@ class Snapshot
     use ArrayTrait;
 
     /**
-     * @var RequestHandler
      * @internal
      * The request handler that is responsible for sending a request and
      * serializing responses into relevant classes.
      */
-    private $requestHandler;
-
-    /**
-     * @var Serializer
-     */
-    private $serializer;
+    private RequestHandler $requestHandler;
+    private Serializer $serializer;
 
     /**
      * @var string
@@ -182,7 +177,7 @@ class Snapshot
         $data = [
             'name' => $this->name,
             'subscription' => $this->info['subscription'],
-            'labels' => $this->pluck('labels', $options, false) ?? []
+            'labels' => $this->pluck('labels', $options, false) ?: []
         ];
 
         $request = $this->serializer->decodeMessage(new CreateSnapshotRequest(), $data);

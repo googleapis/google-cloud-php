@@ -21,11 +21,11 @@ use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\Core\V2\Iam;
 use Google\Cloud\PubSub\V1\Encoding;
 use InvalidArgumentException;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\PubSub\V1\Client\PublisherClient;
 use Google\Cloud\PubSub\V1\SchemaSettings;
 use Google\Protobuf\FieldMask;
@@ -70,17 +70,12 @@ class Topic
     private const GZIP_COMPRESSION = 'gzip';
 
     /**
-     * @var RequestHandler
      * @internal
      * The request handler that is responsible for sending a request and
      * serializing responses into relevant classes.
      */
-    private $requestHandler;
-
-    /**
-     * @var Serializer
-     */
-    private $serializer;
+    private RequestHandler $requestHandler;
+    private Serializer $serializer;
 
     /**
      * @var string The project ID
@@ -785,12 +780,12 @@ class Topic
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/testIamPermissions Test Topic Permissions
      * @codingStandardsIgnoreEnd
      *
-     * @return Iam
+     * @return IamManager
      */
     public function iam()
     {
         if (!$this->iam) {
-            $this->iam = new Iam($this->requestHandler, $this->serializer, PublisherClient::class, $this->name);
+            $this->iam = new IamManager($this->requestHandler, $this->serializer, PublisherClient::class, $this->name);
         }
 
         return $this->iam;

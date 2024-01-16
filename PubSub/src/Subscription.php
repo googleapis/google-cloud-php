@@ -24,7 +24,7 @@ use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\ExponentialBackoff;
-use Google\Cloud\Core\V2\Iam;
+use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
@@ -110,17 +110,12 @@ class Subscription
     const MAX_MESSAGES = 1000;
 
     /**
-     * @var RequestHandler
      * @internal
      * The request handler that is responsible for sending a request and
      * serializing responses into relevant classes.
      */
-    private $requestHandler;
-
-    /**
-     * @var Serializer
-     */
-    private $serializer;
+    private RequestHandler $requestHandler;
+    private Serializer $serializer;
 
     /**
      * @var string
@@ -1343,12 +1338,12 @@ class Subscription
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/testIamPermissions Test Subscription Permissions
      * @codingStandardsIgnoreEnd
      *
-     * @return Iam
+     * @return IamManager
      */
     public function iam()
     {
         if (!$this->iam) {
-            $this->iam = new Iam($this->requestHandler, $this->serializer, SubscriberClient::class, $this->name);
+            $this->iam = new IamManager($this->requestHandler, $this->serializer, SubscriberClient::class, $this->name);
         }
 
         return $this->iam;

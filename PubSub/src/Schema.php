@@ -54,17 +54,12 @@ class Schema
     private const DEFAULT_VIEW = 'FULL';
 
     /**
-     * @var RequestHandler
      * @internal
      * The request handler that is responsible for sending a request and
      * serializing responses into relevant classes.
      */
-    private $requestHandler;
-
-    /**
-     * @var Serializer
-     */
-    private $serializer;
+    private RequestHandler $requestHandler;
+    private Serializer $serializer;
 
     /**
      * @var string
@@ -343,7 +338,7 @@ class Schema
      */
     private function getViewFromOptions(array &$options)
     {
-        $view = $this->pluck('view', $options, false) ?? self::DEFAULT_VIEW;
+        $view = $this->pluck('view', $options, false) ?: self::DEFAULT_VIEW;
 
         if (isset($view) && is_string($view)) {
             $view = SchemaView::value($view);

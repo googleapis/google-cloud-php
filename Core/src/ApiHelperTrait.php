@@ -240,9 +240,9 @@ trait ApiHelperTrait
      */
     private function convertDataToProtos(array $input, array $map) : array
     {
-        foreach ($map as $key => $cls) {
+        foreach ($map as $key => $className) {
             if (isset($input[$key])) {
-                $input[$key] = $this->serializer->decodeMessage(new $cls, $input[$key]);
+                $input[$key] = $this->serializer->decodeMessage(new $className, $input[$key]);
             }
         }
 
