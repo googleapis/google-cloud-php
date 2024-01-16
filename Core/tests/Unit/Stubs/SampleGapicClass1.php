@@ -29,7 +29,7 @@ class SampleGapicClass1
     public function sampleMethod(Message $request, $args = [])
     {
         if (isset($args['func'])) {
-            $args['func']();
+            return $args['func']();
         }
     }
 }

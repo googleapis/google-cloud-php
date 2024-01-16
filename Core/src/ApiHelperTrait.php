@@ -188,7 +188,7 @@ trait ApiHelperTrait
      * @param string|mixed $value
      * @return array
      */
-    private function formatDurationForApi($value) : array
+    private function formatDurationForApi($value)
     {
         if (is_string($value)) {
             $d = explode('.', trim($value, 's'));

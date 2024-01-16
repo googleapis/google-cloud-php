@@ -30,6 +30,25 @@ use Prophecy\PhpUnit\ProphecyTrait;
 use Google\Cloud\Core\Tests\Unit\Stubs\SampleGapicClass2;
 use Google\Cloud\Core\Tests\Unit\Stubs\SampleGapicClass1;
 use Google\Protobuf\Internal\Message;
+use Google\ApiCore\Page;
+use Google\ApiCore\PagedListResponse;
+use Google\Api\Http;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\ApiStatus;
+use Google\ApiCore\OperationResponse;
+use Google\Cloud\Core\Exception\GoogleException;
+use Google\Rpc\Code;
+use Google\ApiCore\ServerStream;
+use Google\Cloud\Core\Exception\AbortedException;
+use Google\Cloud\Core\Exception\ConflictException;
+use Google\Cloud\Core\Exception\DeadlineExceededException;
+use Google\Cloud\Core\Exception\FailedPreconditionException;
+use Google\Cloud\Core\Exception\ServerException;
+use Google\Cloud\Core\Exception\ServiceException;
+use Google\Rpc\BadRequest;
+use Google\Rpc\BadRequest\FieldViolation;
+use Google\Rpc\PreconditionFailure;
+use Google\Rpc\Status;
 
 /**
  * @group core
@@ -38,13 +57,11 @@ class RequestHandlerTest extends TestCase
 {
     use ProphecyTrait;
 
-    private $requestWrapper;
     private $serializer;
     private $request;
 
     public function setUp(): void
     {
-        $this->requestWrapper = $this->prophesize(GapicRequestWrapper::class);
         $this->serializer = $this->prophesize(Serializer::class);
         $this->request = $this->prophesize(Message::class);
     }
@@ -52,13 +69,13 @@ class RequestHandlerTest extends TestCase
     /**
      * @dataProvider gapicClassOrObjectProvider
      */
-    public function testGetGapicObject($gapicClasses, $callingClass)
+    public function testGetGapicObject($clientClasses, $callingClass)
     {
         $counter = 0;
         $func = function () use (&$counter) {
             $counter = 1;
         };
-        $requestHandler = new RequestHandler($this->serializer->reveal(), $gapicClasses);
+        $requestHandler = new RequestHandler($this->serializer->reveal(), $clientClasses);
         $requestHandler->sendRequest($callingClass, 'sampleMethod', $this->request->reveal(), ['func' => $func]);
 
         // This will only be 1 if the relevant method was called
@@ -75,74 +92,78 @@ class RequestHandlerTest extends TestCase
         ];
     }
 
-    public function testSendRequest()
+    /**
+     * @dataProvider responseProvider
+     */
+    public function testSuccessfullySendsRequest($response, $expectedMessage)
     {
-        $gapicClasses = [SampleGapicClass2::class];
+        $this->serializer->encodeMessage(Argument::type(Http::class))
+            ->willReturn($expectedMessage);
 
-        $responseStr = '{"foo": "bar"}';
-        $this->requestWrapper->send(
-            Argument::containing('sampleMethod'),
-            Argument::cetera()
-        )->willReturn(new Response(200, [], $responseStr));
+        $clientClasses = [SampleGapicClass1::class];
+        $requestHandler = new RequestHandler($this->serializer->reveal(), $clientClasses);
 
-        $requestHandler = new RequestHandler(
-            $this->serializer->reveal(),
-            $gapicClasses,
-            [],
-            $this->requestWrapper->reveal()
-        );
+        $func = function () use ($response) {
+            return $response;
+        };
 
-        $response = $requestHandler->sendRequest(
-            SampleGapicClass2::class,
+        $actualResponse = $requestHandler->sendRequest(
+            SampleGapicClass1::class,
             'sampleMethod',
             $this->request->reveal(),
-            []
+            ['func' => $func]
         );
-        $responseArr = json_decode($response->getBody()->getContents(), true);
 
-        $this->assertEquals(json_decode($responseStr, true), $responseArr);
+        $this->assertEquals($expectedMessage, $actualResponse);
+    }
+
+    public function responseProvider()
+    {
+        $expectedMessage = ['successful' => 'request'];
+        $message = new Http();
+        
+        $pagedMessage = $this->prophesize(PagedListResponse::class);
+        $page = $this->prophesize(Page::class);
+        $page->getResponseObject()->willReturn($message);
+        $pagedMessage->getPage()->willReturn($page->reveal());
+        $operationResponse = new OperationResponse("foo", "bar");
+
+        return [
+            [$message, $expectedMessage],
+            [$pagedMessage->reveal(), $expectedMessage],
+            // instance of OperationResponse is sent as-is
+            [$operationResponse, $operationResponse],
+            [null, null]
+        ];
     }
 
     public function testSendRequestThrowsException()
     {
-        $gapicClasses = [SampleGapicClass2::class];
+        $clientClasses = [SampleGapicClass2::class];
 
-        $this->requestWrapper->send(
-            Argument::containing('sampleMethod'),
-            Argument::cetera()
-        )->willThrow(new BadRequestException('exception message'));
+        $func = function () {
+            throw new ApiException(
+                'exception message',
+                \Google\Rpc\Code::NOT_FOUND,
+                \Google\ApiCore\ApiStatus::NOT_FOUND
+            );
+        };
 
         $requestHandler = new RequestHandler(
             $this->serializer->reveal(),
-            $gapicClasses,
-            [],
-            $this->requestWrapper->reveal()
+            $clientClasses,
+            []
         );
 
-        $this->expectException(BadRequestException::class);
+        $this->expectException(GoogleException::class);
         $this->expectExceptionMessage('exception message');
-
-        $requestHandler->sendRequest(SampleGapicClass2::class, 'sampleMethod', $this->request->reveal(), []);
-    }
-
-    public function testOptionalArgs()
-    {
-        $counter = 0;
-        $cb = function () use (&$counter) {
-            $counter = 1;
-        };
-
-        $gapicClasses = [SampleGapicClass2::class];
-        $requestHandler = new RequestHandler($this->serializer->reveal(), $gapicClasses);
 
         $requestHandler->sendRequest(
             SampleGapicClass2::class,
             'sampleMethod',
             $this->request->reveal(),
-            ['func' => $cb]
+            ['func' => $func]
         );
-
-        $this->assertEquals(1, $counter);
     }
 
     /**
@@ -150,18 +171,15 @@ class RequestHandlerTest extends TestCase
      */
     public function testSendRequestWhitelisted($isWhitelisted, $errMsg, $expectedMsg)
     {
-        $this->requestWrapper->send(
-            Argument::containing('sampleMethod'),
-            Argument::cetera()
-        )->willThrow(new NotFoundException($errMsg));
+        $func = function () use ($errMsg) {
+            throw new NotFoundException($errMsg);
+        };
 
-        $gapicClasses = [SampleGapicClass2::class];
-
+        $clientClasses = [SampleGapicClass2::class];
         $requestHandler = new RequestHandler(
             $this->serializer->reveal(),
-            $gapicClasses,
-            [],
-            $this->requestWrapper->reveal()
+            $clientClasses,
+            []
         );
 
         $msg = null;
@@ -170,7 +188,7 @@ class RequestHandlerTest extends TestCase
                 SampleGapicClass2::class,
                 'sampleMethod',
                 $this->request->reveal(),
-                [],
+                ['func' => $func],
                 $isWhitelisted
             );
         } catch (NotFoundException $e) {
@@ -186,5 +204,141 @@ class RequestHandlerTest extends TestCase
             [true, 'The url was not found!', 'NOTE: Error may be due to Whitelist Restriction.'],
             [false, 'The url was not found!', 'The url was not found!']
         ];
+    }
+
+    public function testReturnsStreamedResponse()
+    {
+        $clientClasses = [SampleGapicClass2::class];
+        $requestHandler = new RequestHandler(
+            new Serializer(),
+            $clientClasses,
+            []
+        );
+        $status = new Status(['code' => Code::CANCELLED]);
+        $expected = (new Serializer)->encodeMessage($status);
+
+        $stream = $this->prophesize(ServerStream::class);
+        $stream->readAll()->willReturn(new \ArrayIterator([
+            $status,
+            $status,
+            $status
+        ]));
+
+        $func = function () use ($stream) {
+            return $stream->reveal();
+        };
+
+        $res = $requestHandler->sendRequest(
+            SampleGapicClass2::class,
+            'sampleMethod',
+            $this->request->reveal(),
+            ['func' => $func]
+        );
+
+        $this->assertInstanceOf(\Generator::class, $res);
+        foreach ($res as $r) {
+            $this->assertEquals($expected, $r);
+        }
+    }
+
+    /**
+     * @dataProvider exceptionProvider
+     */
+    public function testCastsToProperException($code, $expectedException)
+    {
+        $clientClasses = [SampleGapicClass2::class];
+        $requestHandler = new RequestHandler(
+            new Serializer(),
+            $clientClasses,
+            []
+        );
+
+        $func = function () use ($code) {
+            $status = ApiStatus::statusFromRpcCode($code);
+            throw new ApiException('message', $code, $status);
+        };
+
+        try {
+            $requestHandler->sendRequest(
+                SampleGapicClass2::class,
+                'sampleMethod',
+                $this->request->reveal(),
+                ['func' => $func]
+            );
+        } catch (\Exception $ex) {
+            $this->assertInstanceOf($expectedException, $ex);
+        }
+    }
+
+    public function exceptionProvider()
+    {
+        return [
+            [Code::INVALID_ARGUMENT, BadRequestException::class],
+            [Code::NOT_FOUND, NotFoundException::class],
+            [Code::UNIMPLEMENTED, NotFoundException::class],
+            [Code::ALREADY_EXISTS, ConflictException::class],
+            [Code::FAILED_PRECONDITION, FailedPreconditionException::class],
+            [Code::UNKNOWN, ServerException::class],
+            [Code::INTERNAL, ServerException::class],
+            [Code::ABORTED, AbortedException::class],
+            [Code::DEADLINE_EXCEEDED, DeadlineExceededException::class],
+            [999, ServiceException::class]
+        ];
+    }
+
+    public function testExceptionMetadata()
+    {
+        $metadata = new BadRequest([
+            'field_violations' => [
+                new FieldViolation([
+                    'field' => 'foo',
+                    'description' => 'bar'
+                ])
+            ]
+        ]);
+
+        $otherMetadata = new PreconditionFailure();
+
+        $e = new ApiException(
+            'Testing',
+            Code::INVALID_ARGUMENT,
+            'foo',
+            [
+                'metadata' => [
+                    'google.rpc.badrequest-bin' => [$metadata->serializeToString()],
+                    'google.rpc.preconditionfailure-bin' => [$otherMetadata->serializeToString()]
+                ]
+            ]
+        );
+
+        $func = function () use ($e) {
+            throw $e;
+        };
+
+        $clientClasses = [SampleGapicClass2::class];
+        $requestHandler = new RequestHandler(
+            new Serializer(),
+            $clientClasses,
+            []
+        );
+
+        try {
+            $requestHandler->sendRequest(
+                SampleGapicClass2::class,
+                'sampleMethod',
+                $this->request->reveal(),
+                ['func' => $func]
+            );
+
+            $this->assertFalse(true, 'Exception not thrown!');
+        } catch (ServiceException $ex) {
+            $this->assertEquals(
+                json_decode($metadata->serializeToJsonString(), true),
+                $ex->getMetadata()[0]
+            );
+
+            // Assert only whitelisted types are included.
+            $this->assertCount(1, $ex->getMetadata());
+        }
     }
 }
