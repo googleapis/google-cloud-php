@@ -126,7 +126,7 @@ class RequestHandlerTest extends TestCase
         $page = $this->prophesize(Page::class);
         $page->getResponseObject()->willReturn($message);
         $pagedMessage->getPage()->willReturn($page->reveal());
-        $operationResponse = new OperationResponse("foo", "bar");
+        $operationResponse = new OperationResponse("foo", new \stdClass());
 
         return [
             [$message, $expectedMessage],
