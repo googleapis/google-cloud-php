@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsdata_v1alpha_generated_AlphaAnalyticsData_QueryAudienceList_sync]
-use Google\Analytics\Data\V1alpha\AlphaAnalyticsDataClient;
+use Google\Analytics\Data\V1alpha\Client\AlphaAnalyticsDataClient;
+use Google\Analytics\Data\V1alpha\QueryAudienceListRequest;
 use Google\Analytics\Data\V1alpha\QueryAudienceListResponse;
 use Google\ApiCore\ApiException;
 
@@ -56,10 +57,14 @@ function query_audience_list_sample(string $name): void
     // Create a client.
     $alphaAnalyticsDataClient = new AlphaAnalyticsDataClient();
 
+    // Prepare the request message.
+    $request = (new QueryAudienceListRequest())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
         /** @var QueryAudienceListResponse $response */
-        $response = $alphaAnalyticsDataClient->queryAudienceList($name);
+        $response = $alphaAnalyticsDataClient->queryAudienceList($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

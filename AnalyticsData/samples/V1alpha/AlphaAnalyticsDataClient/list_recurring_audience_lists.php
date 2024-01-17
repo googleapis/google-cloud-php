@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsdata_v1alpha_generated_AlphaAnalyticsData_ListRecurringAudienceLists_sync]
-use Google\Analytics\Data\V1alpha\AlphaAnalyticsDataClient;
+use Google\Analytics\Data\V1alpha\Client\AlphaAnalyticsDataClient;
+use Google\Analytics\Data\V1alpha\ListRecurringAudienceListsRequest;
 use Google\Analytics\Data\V1alpha\RecurringAudienceList;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
@@ -51,10 +52,14 @@ function list_recurring_audience_lists_sample(string $formattedParent): void
     // Create a client.
     $alphaAnalyticsDataClient = new AlphaAnalyticsDataClient();
 
+    // Prepare the request message.
+    $request = (new ListRecurringAudienceListsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $alphaAnalyticsDataClient->listRecurringAudienceLists($formattedParent);
+        $response = $alphaAnalyticsDataClient->listRecurringAudienceLists($request);
 
         /** @var RecurringAudienceList $element */
         foreach ($response as $element) {

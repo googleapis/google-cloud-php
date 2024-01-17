@@ -24,6 +24,21 @@ class GetAudienceListRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The audience list resource name.
+     *                     Format: `properties/{property}/audienceLists/{audience_list}`
+     *                     Please see {@see AlphaAnalyticsDataClient::audienceListName()} for help formatting this field.
+     *
+     * @return \Google\Analytics\Data\V1alpha\GetAudienceListRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

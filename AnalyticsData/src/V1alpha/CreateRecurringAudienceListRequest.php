@@ -30,6 +30,23 @@ class CreateRecurringAudienceListRequest extends \Google\Protobuf\Internal\Messa
     private $recurring_audience_list = null;
 
     /**
+     * @param string                                               $parent                Required. The parent resource where this recurring audience list will be
+     *                                                                                    created. Format: `properties/{property}`
+     *                                                                                    Please see {@see AlphaAnalyticsDataClient::propertyName()} for help formatting this field.
+     * @param \Google\Analytics\Data\V1alpha\RecurringAudienceList $recurringAudienceList Required. The recurring audience list to create.
+     *
+     * @return \Google\Analytics\Data\V1alpha\CreateRecurringAudienceListRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Analytics\Data\V1alpha\RecurringAudienceList $recurringAudienceList): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setRecurringAudienceList($recurringAudienceList);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

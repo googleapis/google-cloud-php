@@ -30,6 +30,23 @@ class CreateAudienceListRequest extends \Google\Protobuf\Internal\Message
     private $audience_list = null;
 
     /**
+     * @param string                                      $parent       Required. The parent resource where this audience list will be created.
+     *                                                                  Format: `properties/{property}`
+     *                                                                  Please see {@see AlphaAnalyticsDataClient::propertyName()} for help formatting this field.
+     * @param \Google\Analytics\Data\V1alpha\AudienceList $audienceList Required. The audience list to create.
+     *
+     * @return \Google\Analytics\Data\V1alpha\CreateAudienceListRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Analytics\Data\V1alpha\AudienceList $audienceList): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setAudienceList($audienceList);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

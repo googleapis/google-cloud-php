@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsdata_v1alpha_generated_AlphaAnalyticsData_GetRecurringAudienceList_sync]
-use Google\Analytics\Data\V1alpha\AlphaAnalyticsDataClient;
+use Google\Analytics\Data\V1alpha\Client\AlphaAnalyticsDataClient;
+use Google\Analytics\Data\V1alpha\GetRecurringAudienceListRequest;
 use Google\Analytics\Data\V1alpha\RecurringAudienceList;
 use Google\ApiCore\ApiException;
 
@@ -50,10 +51,14 @@ function get_recurring_audience_list_sample(string $formattedName): void
     // Create a client.
     $alphaAnalyticsDataClient = new AlphaAnalyticsDataClient();
 
+    // Prepare the request message.
+    $request = (new GetRecurringAudienceListRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var RecurringAudienceList $response */
-        $response = $alphaAnalyticsDataClient->getRecurringAudienceList($formattedName);
+        $response = $alphaAnalyticsDataClient->getRecurringAudienceList($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

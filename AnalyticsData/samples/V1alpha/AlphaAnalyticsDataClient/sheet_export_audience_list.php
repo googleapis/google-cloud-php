@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsdata_v1alpha_generated_AlphaAnalyticsData_SheetExportAudienceList_sync]
-use Google\Analytics\Data\V1alpha\AlphaAnalyticsDataClient;
+use Google\Analytics\Data\V1alpha\Client\AlphaAnalyticsDataClient;
+use Google\Analytics\Data\V1alpha\SheetExportAudienceListRequest;
 use Google\Analytics\Data\V1alpha\SheetExportAudienceListResponse;
 use Google\ApiCore\ApiException;
 
@@ -57,10 +58,14 @@ function sheet_export_audience_list_sample(string $formattedName): void
     // Create a client.
     $alphaAnalyticsDataClient = new AlphaAnalyticsDataClient();
 
+    // Prepare the request message.
+    $request = (new SheetExportAudienceListRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var SheetExportAudienceListResponse $response */
-        $response = $alphaAnalyticsDataClient->sheetExportAudienceList($formattedName);
+        $response = $alphaAnalyticsDataClient->sheetExportAudienceList($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -26,6 +26,22 @@ class GetRecurringAudienceListRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The recurring audience list resource name.
+     *                     Format:
+     *                     `properties/{property}/recurringAudienceLists/{recurring_audience_list}`
+     *                     Please see {@see AlphaAnalyticsDataClient::recurringAudienceListName()} for help formatting this field.
+     *
+     * @return \Google\Analytics\Data\V1alpha\GetRecurringAudienceListRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

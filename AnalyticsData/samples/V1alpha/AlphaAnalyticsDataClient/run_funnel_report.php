@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsdata_v1alpha_generated_AlphaAnalyticsData_RunFunnelReport_sync]
-use Google\Analytics\Data\V1alpha\AlphaAnalyticsDataClient;
+use Google\Analytics\Data\V1alpha\Client\AlphaAnalyticsDataClient;
+use Google\Analytics\Data\V1alpha\RunFunnelReportRequest;
 use Google\Analytics\Data\V1alpha\RunFunnelReportResponse;
 use Google\ApiCore\ApiException;
 
@@ -56,10 +57,13 @@ function run_funnel_report_sample(): void
     // Create a client.
     $alphaAnalyticsDataClient = new AlphaAnalyticsDataClient();
 
+    // Prepare the request message.
+    $request = new RunFunnelReportRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var RunFunnelReportResponse $response */
-        $response = $alphaAnalyticsDataClient->runFunnelReport();
+        $response = $alphaAnalyticsDataClient->runFunnelReport($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
