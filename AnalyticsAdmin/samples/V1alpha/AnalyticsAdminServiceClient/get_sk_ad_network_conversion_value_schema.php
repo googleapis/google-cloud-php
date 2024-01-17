@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetSKAdNetworkConversionValueSchema_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\GetSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema;
 use Google\ApiCore\ApiException;
 
@@ -40,10 +41,14 @@ function get_sk_ad_network_conversion_value_schema_sample(string $formattedName)
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetSKAdNetworkConversionValueSchemaRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var SKAdNetworkConversionValueSchema $response */
-        $response = $analyticsAdminServiceClient->getSKAdNetworkConversionValueSchema($formattedName);
+        $response = $analyticsAdminServiceClient->getSKAdNetworkConversionValueSchema($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

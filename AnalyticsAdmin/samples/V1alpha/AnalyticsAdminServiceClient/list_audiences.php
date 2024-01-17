@@ -23,8 +23,9 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_ListAudiences_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\Audience;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\ListAudiencesRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 
@@ -41,10 +42,14 @@ function list_audiences_sample(string $formattedParent): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListAudiencesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $analyticsAdminServiceClient->listAudiences($formattedParent);
+        $response = $analyticsAdminServiceClient->listAudiences($request);
 
         /** @var Audience $element */
         foreach ($response as $element) {

@@ -23,8 +23,9 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_UpdateEnhancedMeasurementSettings_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings;
+use Google\Analytics\Admin\V1alpha\UpdateEnhancedMeasurementSettingsRequest;
 use Google\ApiCore\ApiException;
 use Google\Protobuf\FieldMask;
 
@@ -42,18 +43,18 @@ function update_enhanced_measurement_settings_sample(
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $enhancedMeasurementSettings = (new EnhancedMeasurementSettings())
         ->setSearchQueryParameter($enhancedMeasurementSettingsSearchQueryParameter);
     $updateMask = new FieldMask();
+    $request = (new UpdateEnhancedMeasurementSettingsRequest())
+        ->setEnhancedMeasurementSettings($enhancedMeasurementSettings)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var EnhancedMeasurementSettings $response */
-        $response = $analyticsAdminServiceClient->updateEnhancedMeasurementSettings(
-            $enhancedMeasurementSettings,
-            $updateMask
-        );
+        $response = $analyticsAdminServiceClient->updateEnhancedMeasurementSettings($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

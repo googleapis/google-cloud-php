@@ -23,8 +23,9 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_UpdateExpandedDataSet_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\ExpandedDataSet;
+use Google\Analytics\Admin\V1alpha\UpdateExpandedDataSetRequest;
 use Google\ApiCore\ApiException;
 use Google\Protobuf\FieldMask;
 
@@ -39,15 +40,18 @@ function update_expanded_data_set_sample(string $expandedDataSetDisplayName): vo
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $expandedDataSet = (new ExpandedDataSet())
         ->setDisplayName($expandedDataSetDisplayName);
     $updateMask = new FieldMask();
+    $request = (new UpdateExpandedDataSetRequest())
+        ->setExpandedDataSet($expandedDataSet)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var ExpandedDataSet $response */
-        $response = $analyticsAdminServiceClient->updateExpandedDataSet($expandedDataSet, $updateMask);
+        $response = $analyticsAdminServiceClient->updateExpandedDataSet($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

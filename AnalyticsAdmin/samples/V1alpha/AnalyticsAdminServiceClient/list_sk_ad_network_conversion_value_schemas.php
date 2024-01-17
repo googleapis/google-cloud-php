@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_ListSKAdNetworkConversionValueSchemas_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\ListSKAdNetworkConversionValueSchemasRequest;
 use Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
@@ -43,10 +44,14 @@ function list_sk_ad_network_conversion_value_schemas_sample(string $formattedPar
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListSKAdNetworkConversionValueSchemasRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $analyticsAdminServiceClient->listSKAdNetworkConversionValueSchemas($formattedParent);
+        $response = $analyticsAdminServiceClient->listSKAdNetworkConversionValueSchemas($request);
 
         /** @var SKAdNetworkConversionValueSchema $element */
         foreach ($response as $element) {

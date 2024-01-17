@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_CreateSubpropertyEventFilter_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\CreateSubpropertyEventFilterRequest;
 use Google\Analytics\Admin\V1alpha\SubpropertyEventFilter;
 use Google\Analytics\Admin\V1alpha\SubpropertyEventFilterClause;
 use Google\Analytics\Admin\V1alpha\SubpropertyEventFilterClause\FilterClauseType;
@@ -45,7 +46,7 @@ function create_subproperty_event_filter_sample(
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $subpropertyEventFilterFilterClausesFilterExpression = new SubpropertyEventFilterExpression();
     $subpropertyEventFilterClause = (new SubpropertyEventFilterClause())
         ->setFilterClauseType($subpropertyEventFilterFilterClausesFilterClauseType)
@@ -53,14 +54,14 @@ function create_subproperty_event_filter_sample(
     $subpropertyEventFilterFilterClauses = [$subpropertyEventFilterClause,];
     $subpropertyEventFilter = (new SubpropertyEventFilter())
         ->setFilterClauses($subpropertyEventFilterFilterClauses);
+    $request = (new CreateSubpropertyEventFilterRequest())
+        ->setParent($formattedParent)
+        ->setSubpropertyEventFilter($subpropertyEventFilter);
 
     // Call the API and handle any network failures.
     try {
         /** @var SubpropertyEventFilter $response */
-        $response = $analyticsAdminServiceClient->createSubpropertyEventFilter(
-            $formattedParent,
-            $subpropertyEventFilter
-        );
+        $response = $analyticsAdminServiceClient->createSubpropertyEventFilter($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -23,8 +23,9 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_ListDisplayVideo360AdvertiserLinks_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLink;
+use Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinksRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 
@@ -39,10 +40,14 @@ function list_display_video360_advertiser_links_sample(string $formattedParent):
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListDisplayVideo360AdvertiserLinksRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $analyticsAdminServiceClient->listDisplayVideo360AdvertiserLinks($formattedParent);
+        $response = $analyticsAdminServiceClient->listDisplayVideo360AdvertiserLinks($request);
 
         /** @var DisplayVideo360AdvertiserLink $element */
         foreach ($response as $element) {
