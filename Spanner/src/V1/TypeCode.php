@@ -114,6 +114,19 @@ class TypeCode
      * Generated from protobuf enum <code>JSON = 11;</code>
      */
     const JSON = 11;
+    /**
+     * Encoded as a base64-encoded `string`, as described in RFC 4648,
+     * section 4.
+     *
+     * Generated from protobuf enum <code>PROTO = 13;</code>
+     */
+    const PROTO = 13;
+    /**
+     * Encoded as `string`, in decimal format.
+     *
+     * Generated from protobuf enum <code>ENUM = 14;</code>
+     */
+    const ENUM = 14;
 
     private static $valueToName = [
         self::TYPE_CODE_UNSPECIFIED => 'TYPE_CODE_UNSPECIFIED',
@@ -128,6 +141,8 @@ class TypeCode
         self::STRUCT => 'STRUCT',
         self::NUMERIC => 'NUMERIC',
         self::JSON => 'JSON',
+        self::PROTO => 'PROTO',
+        self::ENUM => 'ENUM',
     ];
 
     public static function name($value)
