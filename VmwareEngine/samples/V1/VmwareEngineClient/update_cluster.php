@@ -32,8 +32,7 @@ use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
- * Modifies a `Cluster` resource. Only the following fields can be updated:
- * `node_type_configs.*.node_count`. Only fields specified in `updateMask` are
+ * Modifies a `Cluster` resource. Only fields specified in `updateMask` are
  * applied.
  *
  * During operation processing, the resource is temporarily in the `ACTIVE`
