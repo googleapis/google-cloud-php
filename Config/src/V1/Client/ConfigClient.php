@@ -36,21 +36,28 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Config\V1\CreateDeploymentRequest;
+use Google\Cloud\Config\V1\CreatePreviewRequest;
 use Google\Cloud\Config\V1\DeleteDeploymentRequest;
+use Google\Cloud\Config\V1\DeletePreviewRequest;
 use Google\Cloud\Config\V1\DeleteStatefileRequest;
 use Google\Cloud\Config\V1\Deployment;
 use Google\Cloud\Config\V1\ExportDeploymentStatefileRequest;
 use Google\Cloud\Config\V1\ExportLockInfoRequest;
+use Google\Cloud\Config\V1\ExportPreviewResultRequest;
+use Google\Cloud\Config\V1\ExportPreviewResultResponse;
 use Google\Cloud\Config\V1\ExportRevisionStatefileRequest;
 use Google\Cloud\Config\V1\GetDeploymentRequest;
+use Google\Cloud\Config\V1\GetPreviewRequest;
 use Google\Cloud\Config\V1\GetResourceRequest;
 use Google\Cloud\Config\V1\GetRevisionRequest;
 use Google\Cloud\Config\V1\ImportStatefileRequest;
 use Google\Cloud\Config\V1\ListDeploymentsRequest;
+use Google\Cloud\Config\V1\ListPreviewsRequest;
 use Google\Cloud\Config\V1\ListResourcesRequest;
 use Google\Cloud\Config\V1\ListRevisionsRequest;
 use Google\Cloud\Config\V1\LockDeploymentRequest;
 use Google\Cloud\Config\V1\LockInfo;
+use Google\Cloud\Config\V1\Preview;
 use Google\Cloud\Config\V1\Resource;
 use Google\Cloud\Config\V1\Revision;
 use Google\Cloud\Config\V1\Statefile;
@@ -80,16 +87,21 @@ use GuzzleHttp\Promise\PromiseInterface;
  * contained within formatted names that are returned by the API.
  *
  * @method PromiseInterface createDeploymentAsync(CreateDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createPreviewAsync(CreatePreviewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteDeploymentAsync(DeleteDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deletePreviewAsync(DeletePreviewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteStatefileAsync(DeleteStatefileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface exportDeploymentStatefileAsync(ExportDeploymentStatefileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface exportLockInfoAsync(ExportLockInfoRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface exportPreviewResultAsync(ExportPreviewResultRequest $request, array $optionalArgs = [])
  * @method PromiseInterface exportRevisionStatefileAsync(ExportRevisionStatefileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getDeploymentAsync(GetDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getPreviewAsync(GetPreviewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getResourceAsync(GetResourceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getRevisionAsync(GetRevisionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface importStatefileAsync(ImportStatefileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listDeploymentsAsync(ListDeploymentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listPreviewsAsync(ListPreviewsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listResourcesAsync(ListResourcesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listRevisionsAsync(ListRevisionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface lockDeploymentAsync(LockDeploymentRequest $request, array $optionalArgs = [])
@@ -217,6 +229,25 @@ final class ConfigClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a preview
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $preview
+     *
+     * @return string The formatted preview resource.
+     */
+    public static function previewName(string $project, string $location, string $preview): string
+    {
+        return self::getPathTemplate('preview')->render([
+            'project' => $project,
+            'location' => $location,
+            'preview' => $preview,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a resource
      * resource.
      *
@@ -307,6 +338,7 @@ final class ConfigClient
      * Template: Pattern
      * - deployment: projects/{project}/locations/{location}/deployments/{deployment}
      * - location: projects/{project}/locations/{location}
+     * - preview: projects/{project}/locations/{location}/previews/{preview}
      * - resource: projects/{project}/locations/{location}/deployments/{deployment}/revisions/{revision}/resources/{resource}
      * - revision: projects/{project}/locations/{location}/deployments/{deployment}/revisions/{revision}
      * - serviceAccount: projects/{project}/serviceAccounts/{service_account}
@@ -429,6 +461,32 @@ final class ConfigClient
     }
 
     /**
+     * Creates a [Preview][google.cloud.config.v1.Preview].
+     *
+     * The async variant is {@see ConfigClient::createPreviewAsync()} .
+     *
+     * @example samples/V1/ConfigClient/create_preview.php
+     *
+     * @param CreatePreviewRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createPreview(CreatePreviewRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreatePreview', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a [Deployment][google.cloud.config.v1.Deployment].
      *
      * The async variant is {@see ConfigClient::deleteDeploymentAsync()} .
@@ -452,6 +510,32 @@ final class ConfigClient
     public function deleteDeployment(DeleteDeploymentRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteDeployment', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a [Preview][google.cloud.config.v1.Preview].
+     *
+     * The async variant is {@see ConfigClient::deletePreviewAsync()} .
+     *
+     * @example samples/V1/ConfigClient/delete_preview.php
+     *
+     * @param DeletePreviewRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deletePreview(DeletePreviewRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeletePreview', $request, $callOptions)->wait();
     }
 
     /**
@@ -533,6 +617,34 @@ final class ConfigClient
     }
 
     /**
+     * Export [Preview][google.cloud.config.v1.Preview] results.
+     *
+     * The async variant is {@see ConfigClient::exportPreviewResultAsync()} .
+     *
+     * @example samples/V1/ConfigClient/export_preview_result.php
+     *
+     * @param ExportPreviewResultRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ExportPreviewResultResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function exportPreviewResult(
+        ExportPreviewResultRequest $request,
+        array $callOptions = []
+    ): ExportPreviewResultResponse {
+        return $this->startApiCall('ExportPreviewResult', $request, $callOptions)->wait();
+    }
+
+    /**
      * Exports Terraform state file from a given revision.
      *
      * The async variant is {@see ConfigClient::exportRevisionStatefileAsync()} .
@@ -582,6 +694,32 @@ final class ConfigClient
     public function getDeployment(GetDeploymentRequest $request, array $callOptions = []): Deployment
     {
         return $this->startApiCall('GetDeployment', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details about a [Preview][google.cloud.config.v1.Preview].
+     *
+     * The async variant is {@see ConfigClient::getPreviewAsync()} .
+     *
+     * @example samples/V1/ConfigClient/get_preview.php
+     *
+     * @param GetPreviewRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Preview
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getPreview(GetPreviewRequest $request, array $callOptions = []): Preview
+    {
+        return $this->startApiCall('GetPreview', $request, $callOptions)->wait();
     }
 
     /**
@@ -689,6 +827,33 @@ final class ConfigClient
     public function listDeployments(ListDeploymentsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListDeployments', $request, $callOptions);
+    }
+
+    /**
+     * Lists [Preview][google.cloud.config.v1.Preview]s in a given project and
+     * location.
+     *
+     * The async variant is {@see ConfigClient::listPreviewsAsync()} .
+     *
+     * @example samples/V1/ConfigClient/list_previews.php
+     *
+     * @param ListPreviewsRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listPreviews(ListPreviewsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListPreviews', $request, $callOptions);
     }
 
     /**
