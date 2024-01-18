@@ -23,10 +23,11 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_UpdateAudience_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\Audience;
 use Google\Analytics\Admin\V1alpha\AudienceFilterClause;
 use Google\Analytics\Admin\V1alpha\AudienceFilterClause\AudienceClauseType;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\UpdateAudienceRequest;
 use Google\ApiCore\ApiException;
 use Google\Protobuf\FieldMask;
 
@@ -48,7 +49,7 @@ function update_audience_sample(
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $audienceFilterClause = (new AudienceFilterClause())
         ->setClauseType($audienceFilterClausesClauseType);
     $audienceFilterClauses = [$audienceFilterClause,];
@@ -58,11 +59,14 @@ function update_audience_sample(
         ->setMembershipDurationDays($audienceMembershipDurationDays)
         ->setFilterClauses($audienceFilterClauses);
     $updateMask = new FieldMask();
+    $request = (new UpdateAudienceRequest())
+        ->setAudience($audience)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var Audience $response */
-        $response = $analyticsAdminServiceClient->updateAudience($audience, $updateMask);
+        $response = $analyticsAdminServiceClient->updateAudience($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -41,6 +41,20 @@ class ListDisplayVideo360AdvertiserLinksRequest extends \Google\Protobuf\Interna
     private $page_token = '';
 
     /**
+     * @param string $parent Required. Example format: properties/1234
+     *                       Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
+     *
+     * @return \Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinksRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

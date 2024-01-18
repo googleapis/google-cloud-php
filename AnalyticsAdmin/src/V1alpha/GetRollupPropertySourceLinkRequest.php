@@ -26,6 +26,23 @@ class GetRollupPropertySourceLinkRequest extends \Google\Protobuf\Internal\Messa
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the roll-up property source link to lookup.
+     *                     Format:
+     *                     properties/{property_id}/rollupPropertySourceLinks/{rollup_property_source_link_id}
+     *                     Example: properties/123/rollupPropertySourceLinks/456
+     *                     Please see {@see AnalyticsAdminServiceClient::rollupPropertySourceLinkName()} for help formatting this field.
+     *
+     * @return \Google\Analytics\Admin\V1alpha\GetRollupPropertySourceLinkRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

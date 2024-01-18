@@ -48,8 +48,6 @@ use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
 use Google\Cloud\Tasks\V2beta2\AcknowledgeTaskRequest;
-use Google\Cloud\Tasks\V2beta2\BufferTaskRequest;
-use Google\Cloud\Tasks\V2beta2\BufferTaskResponse;
 use Google\Cloud\Tasks\V2beta2\CancelLeaseRequest;
 use Google\Cloud\Tasks\V2beta2\CreateQueueRequest;
 use Google\Cloud\Tasks\V2beta2\CreateTaskRequest;
@@ -454,77 +452,6 @@ class CloudTasksGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('AcknowledgeTask', GPBEmpty::class, $optionalArgs, $request)->wait();
-    }
-
-    /**
-     * Creates and buffers a new task without the need to explicitly define a Task
-     * message. The queue must have [HTTP
-     * target][google.cloud.tasks.v2beta2.HttpTarget]. To create the task with a
-     * custom ID, use the following format and set TASK_ID to your desired ID:
-     * projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID:buffer
-     * To create the task with an automatically generated ID, use the following
-     * format:
-     * projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks:buffer.
-     * Note: This feature is in its experimental stage. You must request access to
-     * the API through the [Cloud Tasks BufferTask Experiment Signup
-     * form](https://forms.gle/X8Zr5hiXH5tTGFqh8).
-     *
-     * Sample code:
-     * ```
-     * $cloudTasksClient = new CloudTasksClient();
-     * try {
-     *     $formattedQueue = $cloudTasksClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-     *     $response = $cloudTasksClient->bufferTask($formattedQueue);
-     * } finally {
-     *     $cloudTasksClient->close();
-     * }
-     * ```
-     *
-     * @param string $queue        Required. The parent queue name. For example:
-     *                             projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
-     *
-     *                             The queue must already exist.
-     * @param array  $optionalArgs {
-     *     Optional.
-     *
-     *     @type string $taskId
-     *           Optional. Task ID for the task being created. If not provided, a random
-     *           task ID is assigned to the task.
-     *     @type HttpBody $body
-     *           Optional. Body of the HTTP request.
-     *
-     *           The body can take any generic value. The value is written to the
-     *           [HttpRequest][payload] of the [Task].
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Tasks\V2beta2\BufferTaskResponse
-     *
-     * @throws ApiException if the remote call fails
-     *
-     * @experimental
-     */
-    public function bufferTask($queue, array $optionalArgs = [])
-    {
-        $request = new BufferTaskRequest();
-        $requestParamHeaders = [];
-        $request->setQueue($queue);
-        $requestParamHeaders['queue'] = $queue;
-        if (isset($optionalArgs['taskId'])) {
-            $request->setTaskId($optionalArgs['taskId']);
-            $requestParamHeaders['task_id'] = $optionalArgs['taskId'];
-        }
-
-        if (isset($optionalArgs['body'])) {
-            $request->setBody($optionalArgs['body']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('BufferTask', BufferTaskResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**

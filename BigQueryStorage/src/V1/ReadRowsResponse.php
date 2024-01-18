@@ -35,6 +35,25 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ThrottleState throttle_state = 5;</code>
      */
     private $throttle_state = null;
+    /**
+     * Optional. If the row data in this ReadRowsResponse is compressed, then
+     * uncompressed byte size is the original size of the uncompressed row data.
+     * If it is set to a value greater than 0, then decompress into a buffer of
+     * size uncompressed_byte_size using the compression codec that was requested
+     * during session creation time and which is specified in
+     * TableReadOptions.response_compression_codec in ReadSession.
+     * This value is not set if no response_compression_codec was not requested
+     * and it is -1 if the requested compression would not have reduced the size
+     * of this ReadRowsResponse's row data. This attempts to match Apache Arrow's
+     * behavior described here https://github.com/apache/arrow/issues/15102 where
+     * the uncompressed length may be set to -1 to indicate that the data that
+     * follows is not compressed, which can be useful for cases where compression
+     * does not yield appreciable savings. When uncompressed_byte_size is not
+     * greater than 0, the client should skip decompression.
+     *
+     * Generated from protobuf field <code>optional int64 uncompressed_byte_size = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $uncompressed_byte_size = null;
     protected $rows;
     protected $schema;
 
@@ -59,6 +78,21 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
      *           Output only. Avro schema.
      *     @type \Google\Cloud\BigQuery\Storage\V1\ArrowSchema $arrow_schema
      *           Output only. Arrow schema.
+     *     @type int|string $uncompressed_byte_size
+     *           Optional. If the row data in this ReadRowsResponse is compressed, then
+     *           uncompressed byte size is the original size of the uncompressed row data.
+     *           If it is set to a value greater than 0, then decompress into a buffer of
+     *           size uncompressed_byte_size using the compression codec that was requested
+     *           during session creation time and which is specified in
+     *           TableReadOptions.response_compression_codec in ReadSession.
+     *           This value is not set if no response_compression_codec was not requested
+     *           and it is -1 if the requested compression would not have reduced the size
+     *           of this ReadRowsResponse's row data. This attempts to match Apache Arrow's
+     *           behavior described here https://github.com/apache/arrow/issues/15102 where
+     *           the uncompressed length may be set to -1 to indicate that the data that
+     *           follows is not compressed, which can be useful for cases where compression
+     *           does not yield appreciable savings. When uncompressed_byte_size is not
+     *           greater than 0, the client should skip decompression.
      * }
      */
     public function __construct($data = NULL) {
@@ -286,6 +320,68 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Storage\V1\ArrowSchema::class);
         $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. If the row data in this ReadRowsResponse is compressed, then
+     * uncompressed byte size is the original size of the uncompressed row data.
+     * If it is set to a value greater than 0, then decompress into a buffer of
+     * size uncompressed_byte_size using the compression codec that was requested
+     * during session creation time and which is specified in
+     * TableReadOptions.response_compression_codec in ReadSession.
+     * This value is not set if no response_compression_codec was not requested
+     * and it is -1 if the requested compression would not have reduced the size
+     * of this ReadRowsResponse's row data. This attempts to match Apache Arrow's
+     * behavior described here https://github.com/apache/arrow/issues/15102 where
+     * the uncompressed length may be set to -1 to indicate that the data that
+     * follows is not compressed, which can be useful for cases where compression
+     * does not yield appreciable savings. When uncompressed_byte_size is not
+     * greater than 0, the client should skip decompression.
+     *
+     * Generated from protobuf field <code>optional int64 uncompressed_byte_size = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getUncompressedByteSize()
+    {
+        return isset($this->uncompressed_byte_size) ? $this->uncompressed_byte_size : 0;
+    }
+
+    public function hasUncompressedByteSize()
+    {
+        return isset($this->uncompressed_byte_size);
+    }
+
+    public function clearUncompressedByteSize()
+    {
+        unset($this->uncompressed_byte_size);
+    }
+
+    /**
+     * Optional. If the row data in this ReadRowsResponse is compressed, then
+     * uncompressed byte size is the original size of the uncompressed row data.
+     * If it is set to a value greater than 0, then decompress into a buffer of
+     * size uncompressed_byte_size using the compression codec that was requested
+     * during session creation time and which is specified in
+     * TableReadOptions.response_compression_codec in ReadSession.
+     * This value is not set if no response_compression_codec was not requested
+     * and it is -1 if the requested compression would not have reduced the size
+     * of this ReadRowsResponse's row data. This attempts to match Apache Arrow's
+     * behavior described here https://github.com/apache/arrow/issues/15102 where
+     * the uncompressed length may be set to -1 to indicate that the data that
+     * follows is not compressed, which can be useful for cases where compression
+     * does not yield appreciable savings. When uncompressed_byte_size is not
+     * greater than 0, the client should skip decompression.
+     *
+     * Generated from protobuf field <code>optional int64 uncompressed_byte_size = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setUncompressedByteSize($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->uncompressed_byte_size = $var;
 
         return $this;
     }

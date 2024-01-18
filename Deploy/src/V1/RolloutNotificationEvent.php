@@ -36,23 +36,35 @@ class RolloutNotificationEvent extends \Google\Protobuf\Internal\Message
      */
     private $release_uid = '';
     /**
+     * The name of the `Release`.
+     *
+     * Generated from protobuf field <code>string release = 7;</code>
+     */
+    private $release = '';
+    /**
+     * Unique identifier of the `Rollout`.
+     *
+     * Generated from protobuf field <code>string rollout_uid = 8;</code>
+     */
+    private $rollout_uid = '';
+    /**
      * The name of the `Rollout`.
      *
      * Generated from protobuf field <code>string rollout = 4;</code>
      */
     private $rollout = '';
     /**
-     * Type of this notification, e.g. for a Pub/Sub failure.
-     *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.Type type = 5;</code>
-     */
-    private $type = 0;
-    /**
      * ID of the `Target` that the rollout is deployed to.
      *
      * Generated from protobuf field <code>string target_id = 6;</code>
      */
     private $target_id = '';
+    /**
+     * Type of this notification, e.g. for a Pub/Sub failure.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Type type = 5;</code>
+     */
+    private $type = 0;
 
     /**
      * Constructor.
@@ -66,12 +78,16 @@ class RolloutNotificationEvent extends \Google\Protobuf\Internal\Message
      *           Unique identifier of the `DeliveryPipeline`.
      *     @type string $release_uid
      *           Unique identifier of the `Release`.
+     *     @type string $release
+     *           The name of the `Release`.
+     *     @type string $rollout_uid
+     *           Unique identifier of the `Rollout`.
      *     @type string $rollout
      *           The name of the `Rollout`.
-     *     @type int $type
-     *           Type of this notification, e.g. for a Pub/Sub failure.
      *     @type string $target_id
      *           ID of the `Target` that the rollout is deployed to.
+     *     @type int $type
+     *           Type of this notification, e.g. for a Pub/Sub failure.
      * }
      */
     public function __construct($data = NULL) {
@@ -158,6 +174,58 @@ class RolloutNotificationEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The name of the `Release`.
+     *
+     * Generated from protobuf field <code>string release = 7;</code>
+     * @return string
+     */
+    public function getRelease()
+    {
+        return $this->release;
+    }
+
+    /**
+     * The name of the `Release`.
+     *
+     * Generated from protobuf field <code>string release = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRelease($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->release = $var;
+
+        return $this;
+    }
+
+    /**
+     * Unique identifier of the `Rollout`.
+     *
+     * Generated from protobuf field <code>string rollout_uid = 8;</code>
+     * @return string
+     */
+    public function getRolloutUid()
+    {
+        return $this->rollout_uid;
+    }
+
+    /**
+     * Unique identifier of the `Rollout`.
+     *
+     * Generated from protobuf field <code>string rollout_uid = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRolloutUid($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->rollout_uid = $var;
+
+        return $this;
+    }
+
+    /**
      * The name of the `Rollout`.
      *
      * Generated from protobuf field <code>string rollout = 4;</code>
@@ -184,32 +252,6 @@ class RolloutNotificationEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of this notification, e.g. for a Pub/Sub failure.
-     *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.Type type = 5;</code>
-     * @return int
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Type of this notification, e.g. for a Pub/Sub failure.
-     *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.Type type = 5;</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setType($var)
-    {
-        GPBUtil::checkEnum($var, \Google\Cloud\Deploy\V1\Type::class);
-        $this->type = $var;
-
-        return $this;
-    }
-
-    /**
      * ID of the `Target` that the rollout is deployed to.
      *
      * Generated from protobuf field <code>string target_id = 6;</code>
@@ -231,6 +273,32 @@ class RolloutNotificationEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->target_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Type of this notification, e.g. for a Pub/Sub failure.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Type type = 5;</code>
+     * @return int
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Type of this notification, e.g. for a Pub/Sub failure.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Type type = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Deploy\V1\Type::class);
+        $this->type = $var;
 
         return $this;
     }

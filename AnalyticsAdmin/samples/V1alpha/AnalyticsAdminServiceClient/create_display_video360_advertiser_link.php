@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_CreateDisplayVideo360AdvertiserLink_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\CreateDisplayVideo360AdvertiserLinkRequest;
 use Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLink;
 use Google\ApiCore\ApiException;
 
@@ -42,16 +43,16 @@ function create_display_video360_advertiser_link_sample(string $formattedParent)
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $displayVideo360AdvertiserLink = new DisplayVideo360AdvertiserLink();
+    $request = (new CreateDisplayVideo360AdvertiserLinkRequest())
+        ->setParent($formattedParent)
+        ->setDisplayVideo360AdvertiserLink($displayVideo360AdvertiserLink);
 
     // Call the API and handle any network failures.
     try {
         /** @var DisplayVideo360AdvertiserLink $response */
-        $response = $analyticsAdminServiceClient->createDisplayVideo360AdvertiserLink(
-            $formattedParent,
-            $displayVideo360AdvertiserLink
-        );
+        $response = $analyticsAdminServiceClient->createDisplayVideo360AdvertiserLink($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

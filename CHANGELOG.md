@@ -1,5 +1,190 @@
 # Changelog
 
+## 0.231.0
+
+<details><summary>google/cloud-ai-platform 0.32.0</summary>
+
+
+
+### Features
+
+* Add max_wait_duration to Scheduling ([a0cccc6](https://github.com/googleapis/google-cloud-php/commit/a0cccc6fa2d32603d9102783111abe5f240cab04))
+* Add models to CustomJobSpec ([a0cccc6](https://github.com/googleapis/google-cloud-php/commit/a0cccc6fa2d32603d9102783111abe5f240cab04))
+* Fix rpc tensorboard_service.proto definitions for BatchCreateTensorboardTimeSeries and BatchReadTensorboardTimeSeriesData ([#6956](https://github.com/googleapis/google-cloud-php/issues/6956)) ([a0cccc6](https://github.com/googleapis/google-cloud-php/commit/a0cccc6fa2d32603d9102783111abe5f240cab04))
+
+
+### Documentation
+
+* Minor changes to comments ([a0cccc6](https://github.com/googleapis/google-cloud-php/commit/a0cccc6fa2d32603d9102783111abe5f240cab04))
+
+</details>
+
+<details><summary>google/analytics-data 0.14.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Update AnalyticsData V1alpha ([#6959](https://github.com/googleapis/google-cloud-php/issues/6959))
+
+### Features
+
+* Update AnalyticsData V1alpha ([#6959](https://github.com/googleapis/google-cloud-php/issues/6959)) ([2ca6317](https://github.com/googleapis/google-cloud-php/commit/2ca631701668a9f6245b56a5d2c5909a5fef3f4b))
+
+</details>
+
+<details><summary>google/cloud-asset 1.14.1</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/access-context-manager to ^0.5 ([#6946](https://github.com/googleapis/google-cloud-php/issues/6946)) ([d80219d](https://github.com/googleapis/google-cloud-php/commit/d80219d934c84aa3c0e379cbb78f933d8d679d78))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.29.0</summary>
+
+
+
+### Features
+
+* Add universe domain support to core, bigquery, storage, and pubsub ([#6850](https://github.com/googleapis/google-cloud-php/issues/6850)) ([52bc721](https://github.com/googleapis/google-cloud-php/commit/52bc7210910e31d36ee1d9af7cff19a8584cbe6f))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 1.9.0</summary>
+
+
+
+### Features
+
+* Add ability to request compressed ReadRowsResponse rows ([#6955](https://github.com/googleapis/google-cloud-php/issues/6955)) ([8ec090e](https://github.com/googleapis/google-cloud-php/commit/8ec090eff53fa0a5d52933be56639bddcb85cdc8))
+
+</details>
+
+<details><summary>google/cloud-binary-authorization 0.8.1</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/grafeas to ^0.9.0 ([#6948](https://github.com/googleapis/google-cloud-php/issues/6948)) ([10be8a9](https://github.com/googleapis/google-cloud-php/commit/10be8a9c8ccc207e9c9d1f048f095c2bb129e5fb))
+
+</details>
+
+<details><summary>google/cloud-container-analysis 0.5.1</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/grafeas to ^0.9.0 ([#6948](https://github.com/googleapis/google-cloud-php/issues/6948)) ([10be8a9](https://github.com/googleapis/google-cloud-php/commit/10be8a9c8ccc207e9c9d1f048f095c2bb129e5fb))
+
+</details>
+
+<details><summary>google/cloud-core 1.53.0</summary>
+
+
+
+### Features
+
+* Add universe domain support to core, bigquery, storage, and pubsub ([#6850](https://github.com/googleapis/google-cloud-php/issues/6850)) ([52bc721](https://github.com/googleapis/google-cloud-php/commit/52bc7210910e31d36ee1d9af7cff19a8584cbe6f))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 1.9.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-deploy 0.17.0</summary>
+
+
+
+### Features
+
+* Add stable cutback duration configuration to the k8s gateway service mesh deployment strategy. This allows configuring the amount of time to migrate traffic back to the original Service in the stable phase ([#6949](https://github.com/googleapis/google-cloud-php/issues/6949)) ([b799ca9](https://github.com/googleapis/google-cloud-php/commit/b799ca96d286d43bc304ac1cf200a09f27b155db))
+* Updated logging protos with new fields ([b799ca9](https://github.com/googleapis/google-cloud-php/commit/b799ca96d286d43bc304ac1cf200a09f27b155db))
+
+
+### Documentation
+
+* Fixed a number of comments ([b799ca9](https://github.com/googleapis/google-cloud-php/commit/b799ca96d286d43bc304ac1cf200a09f27b155db))
+
+</details>
+
+<details><summary>google/cloud-dialogflow-cx 0.2.1</summary>
+
+
+
+### Documentation
+
+* Fix formatting due to unclosed backtick ([#6954](https://github.com/googleapis/google-cloud-php/issues/6954)) ([0361165](https://github.com/googleapis/google-cloud-php/commit/03611652961ac6bf8c3f9dde1c77cff2f1a6e6af))
+
+</details>
+
+<details><summary>google/cloud-oslogin 1.9.0</summary>
+
+
+
+### Features
+
+* Added field `ImportSshPublicKeyRequest.regions` ([#6951](https://github.com/googleapis/google-cloud-php/issues/6951)) ([b7abd63](https://github.com/googleapis/google-cloud-php/commit/b7abd635c2bf3482731c997a2f316064596d0a40))
+
+</details>
+
+<details><summary>google/cloud-policytroubleshooter-iam 0.2.1</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/cloud-iam to ^0.5.0 ([#6947](https://github.com/googleapis/google-cloud-php/issues/6947)) ([60fd9ed](https://github.com/googleapis/google-cloud-php/commit/60fd9ed93226a077a910dd8dd63aabbc3b5b5042))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.50.0</summary>
+
+
+
+### Features
+
+* Add universe domain support to core, bigquery, storage, and pubsub ([#6850](https://github.com/googleapis/google-cloud-php/issues/6850)) ([52bc721](https://github.com/googleapis/google-cloud-php/commit/52bc7210910e31d36ee1d9af7cff19a8584cbe6f))
+
+</details>
+
+<details><summary>google/cloud-servicehealth 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce ServiceHealth ([#6957](https://github.com/googleapis/google-cloud-php/issues/6957)) ([3f5f262](https://github.com/googleapis/google-cloud-php/commit/3f5f262ad79be5e5186a6e42dbeac48e497f45fd))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 0.12.0</summary>
+
+
+
+### Features
+
+* Added value `UNABLE_TO_VERIFY_DEFINERS` to enum `SqlExternalSyncSettingErrorType` ([#6952](https://github.com/googleapis/google-cloud-php/issues/6952)) ([d21563c](https://github.com/googleapis/google-cloud-php/commit/d21563cfd9daa929b6b03567e03f94cd1fa59031))
+
+</details>
+
+<details><summary>google/cloud-storage 1.37.0</summary>
+
+
+
+### Features
+
+* Add universe domain support to core, bigquery, storage, and pubsub ([#6850](https://github.com/googleapis/google-cloud-php/issues/6850)) ([52bc721](https://github.com/googleapis/google-cloud-php/commit/52bc7210910e31d36ee1d9af7cff19a8584cbe6f))
+
+</details>
+
 ## 0.230.0
 
 <details><summary>google/cloud-access-approval 1.2.0</summary>

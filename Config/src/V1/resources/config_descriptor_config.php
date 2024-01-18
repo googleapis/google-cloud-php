@@ -22,9 +22,47 @@ return [
                     ],
                 ],
             ],
+            'CreatePreview' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Config\V1\Preview',
+                    'metadataReturnType' => '\Google\Cloud\Config\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '300000',
+                    'pollDelayMultiplier' => '1.25',
+                    'maxPollDelayMillis' => '3600000',
+                    'totalPollTimeoutMillis' => '43200000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteDeployment' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Config\V1\Deployment',
+                    'metadataReturnType' => '\Google\Cloud\Config\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '300000',
+                    'pollDelayMultiplier' => '1.25',
+                    'maxPollDelayMillis' => '3600000',
+                    'totalPollTimeoutMillis' => '43200000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeletePreview' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Config\V1\Preview',
                     'metadataReturnType' => '\Google\Cloud\Config\V1\OperationMetadata',
                     'initialPollDelayMillis' => '300000',
                     'pollDelayMultiplier' => '1.25',
@@ -135,6 +173,18 @@ return [
                     ],
                 ],
             ],
+            'ExportPreviewResult' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Config\V1\ExportPreviewResultResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ExportRevisionStatefile' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Config\V1\Statefile',
@@ -150,6 +200,18 @@ return [
             'GetDeployment' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Config\V1\Deployment',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetPreview' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Config\V1\Preview',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -206,6 +268,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\Config\V1\ListDeploymentsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListPreviews' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getPreviews',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Config\V1\ListPreviewsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -331,6 +413,7 @@ return [
             'templateMap' => [
                 'deployment' => 'projects/{project}/locations/{location}/deployments/{deployment}',
                 'location' => 'projects/{project}/locations/{location}',
+                'preview' => 'projects/{project}/locations/{location}/previews/{preview}',
                 'resource' => 'projects/{project}/locations/{location}/deployments/{deployment}/revisions/{revision}/resources/{resource}',
                 'revision' => 'projects/{project}/locations/{location}/deployments/{deployment}/revisions/{revision}',
                 'serviceAccount' => 'projects/{project}/serviceAccounts/{service_account}',
