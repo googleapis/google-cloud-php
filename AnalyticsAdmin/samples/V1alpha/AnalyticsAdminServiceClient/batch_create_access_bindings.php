@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_BatchCreateAccessBindings_sync]
 use Google\Analytics\Admin\V1alpha\AccessBinding;
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\BatchCreateAccessBindingsRequest;
 use Google\Analytics\Admin\V1alpha\BatchCreateAccessBindingsResponse;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\CreateAccessBindingRequest;
 use Google\ApiCore\ApiException;
 
@@ -54,17 +55,20 @@ function batch_create_access_bindings_sample(
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $requestsAccessBinding = new AccessBinding();
     $createAccessBindingRequest = (new CreateAccessBindingRequest())
         ->setParent($formattedRequestsParent)
         ->setAccessBinding($requestsAccessBinding);
     $requests = [$createAccessBindingRequest,];
+    $request = (new BatchCreateAccessBindingsRequest())
+        ->setParent($formattedParent)
+        ->setRequests($requests);
 
     // Call the API and handle any network failures.
     try {
         /** @var BatchCreateAccessBindingsResponse $response */
-        $response = $analyticsAdminServiceClient->batchCreateAccessBindings($formattedParent, $requests);
+        $response = $analyticsAdminServiceClient->batchCreateAccessBindings($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

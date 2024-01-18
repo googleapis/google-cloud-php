@@ -23,10 +23,11 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_CreateAudience_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\Audience;
 use Google\Analytics\Admin\V1alpha\AudienceFilterClause;
 use Google\Analytics\Admin\V1alpha\AudienceFilterClause\AudienceClauseType;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\CreateAudienceRequest;
 use Google\ApiCore\ApiException;
 
 /**
@@ -50,7 +51,7 @@ function create_audience_sample(
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $audienceFilterClause = (new AudienceFilterClause())
         ->setClauseType($audienceFilterClausesClauseType);
     $audienceFilterClauses = [$audienceFilterClause,];
@@ -59,11 +60,14 @@ function create_audience_sample(
         ->setDescription($audienceDescription)
         ->setMembershipDurationDays($audienceMembershipDurationDays)
         ->setFilterClauses($audienceFilterClauses);
+    $request = (new CreateAudienceRequest())
+        ->setParent($formattedParent)
+        ->setAudience($audience);
 
     // Call the API and handle any network failures.
     try {
         /** @var Audience $response */
-        $response = $analyticsAdminServiceClient->createAudience($formattedParent, $audience);
+        $response = $analyticsAdminServiceClient->createAudience($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

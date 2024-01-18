@@ -23,9 +23,10 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_UpdateSKAdNetworkConversionValueSchema_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\PostbackWindow;
 use Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema;
+use Google\Analytics\Admin\V1alpha\UpdateSKAdNetworkConversionValueSchemaRequest;
 use Google\ApiCore\ApiException;
 use Google\Protobuf\FieldMask;
 
@@ -43,19 +44,19 @@ function update_sk_ad_network_conversion_value_schema_sample(): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $skadnetworkConversionValueSchemaPostbackWindowOne = new PostbackWindow();
     $skadnetworkConversionValueSchema = (new SKAdNetworkConversionValueSchema())
         ->setPostbackWindowOne($skadnetworkConversionValueSchemaPostbackWindowOne);
     $updateMask = new FieldMask();
+    $request = (new UpdateSKAdNetworkConversionValueSchemaRequest())
+        ->setSkadnetworkConversionValueSchema($skadnetworkConversionValueSchema)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var SKAdNetworkConversionValueSchema $response */
-        $response = $analyticsAdminServiceClient->updateSKAdNetworkConversionValueSchema(
-            $skadnetworkConversionValueSchema,
-            $updateMask
-        );
+        $response = $analyticsAdminServiceClient->updateSKAdNetworkConversionValueSchema($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

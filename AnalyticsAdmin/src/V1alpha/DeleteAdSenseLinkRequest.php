@@ -25,6 +25,22 @@ class DeleteAdSenseLinkRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Unique identifier for the AdSense Link to be deleted.
+     *                     Format: properties/{propertyId}/adSenseLinks/{linkId}
+     *                     Example: properties/1234/adSenseLinks/5678
+     *                     Please see {@see AnalyticsAdminServiceClient::adSenseLinkName()} for help formatting this field.
+     *
+     * @return \Google\Analytics\Admin\V1alpha\DeleteAdSenseLinkRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

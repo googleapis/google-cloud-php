@@ -267,7 +267,7 @@ use Google\Protobuf\Timestamp;
  *
  * @experimental
  *
- * @deprecated This class will be removed in the next major version update.
+ * @deprecated Please use the new service client {@see \Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient}.
  */
 class AnalyticsAdminServiceGapicClient
 {

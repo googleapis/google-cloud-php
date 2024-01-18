@@ -23,9 +23,10 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_CreateChannelGroup_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\ChannelGroup;
 use Google\Analytics\Admin\V1alpha\ChannelGroupFilterExpression;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\CreateChannelGroupRequest;
 use Google\Analytics\Admin\V1alpha\GroupingRule;
 use Google\ApiCore\ApiException;
 
@@ -47,7 +48,7 @@ function create_channel_group_sample(
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $channelGroupGroupingRuleExpression = new ChannelGroupFilterExpression();
     $groupingRule = (new GroupingRule())
         ->setDisplayName($channelGroupGroupingRuleDisplayName)
@@ -56,11 +57,14 @@ function create_channel_group_sample(
     $channelGroup = (new ChannelGroup())
         ->setDisplayName($channelGroupDisplayName)
         ->setGroupingRule($channelGroupGroupingRule);
+    $request = (new CreateChannelGroupRequest())
+        ->setParent($formattedParent)
+        ->setChannelGroup($channelGroup);
 
     // Call the API and handle any network failures.
     try {
         /** @var ChannelGroup $response */
-        $response = $analyticsAdminServiceClient->createChannelGroup($formattedParent, $channelGroup);
+        $response = $analyticsAdminServiceClient->createChannelGroup($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
