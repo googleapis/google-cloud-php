@@ -10,10 +10,10 @@
         "google/auth": "^1.34.0",
         "google/grpc-gcp": "^0.2||^0.3",
         "grpc/grpc": "^1.13",
-        "google/protobuf": "^3.21.4",
+        "google/protobuf": "^3.22",
         "guzzlehttp/promises": "^1.4||^2.0",
         "guzzlehttp/psr7": "^2.0",
-        "google/common-protos": "^3.0||^4.0",
+        "google/common-protos": "^4.4",
         "google/longrunning": "~0.2"
     },
     "require-dev": {
