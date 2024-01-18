@@ -69,6 +69,7 @@ use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\Transaction;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Cloud\Spanner\V1\TransactionSelector;
+use Google\Protobuf\Duration;
 use Google\Protobuf\GPBEmpty;
 use Google\Protobuf\Struct;
 
@@ -603,6 +604,12 @@ class SpannerGapicClient
      *           If `true`, then statistics related to the transaction will be included in
      *           the [CommitResponse][google.spanner.v1.CommitResponse.commit_stats].
      *           Default value is `false`.
+     *     @type Duration $maxCommitDelay
+     *           Optional. The amount of latency this request is willing to incur in order
+     *           to improve throughput. If this field is not set, Spanner assumes requests
+     *           are relatively latency sensitive and automatically determines an
+     *           appropriate delay time. You can specify a batching delay value between 0
+     *           and 500 ms.
      *     @type RequestOptions $requestOptions
      *           Common options for this request.
      *     @type RetrySettings|array $retrySettings
@@ -634,6 +641,10 @@ class SpannerGapicClient
 
         if (isset($optionalArgs['returnCommitStats'])) {
             $request->setReturnCommitStats($optionalArgs['returnCommitStats']);
+        }
+
+        if (isset($optionalArgs['maxCommitDelay'])) {
+            $request->setMaxCommitDelay($optionalArgs['maxCommitDelay']);
         }
 
         if (isset($optionalArgs['requestOptions'])) {
