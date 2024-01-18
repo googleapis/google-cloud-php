@@ -1834,7 +1834,8 @@ class GapicClientTraitTest extends TestCase
                     'credentialsWrapper' => CredentialsWrapper::build([
                         'keyFile' => __DIR__ . '/testdata/json-key-file.json'
                     ]),
-                    'timeoutMillis' => null, // adds null timeoutMillis
+                    'timeoutMillis' => null, // adds null timeoutMillis,
+                    'transportOptions' => [],
                 ])
             )
             ->willReturn(new FulfilledPromise(new Operation()));
