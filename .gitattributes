@@ -16,3 +16,4 @@
 /*/.owlbot export-ignore
 /*/owlbot.py export-ignore
 /*/src/**/gapic_metadata.json export-ignore
+/CHANGELOG.md export-ignore
