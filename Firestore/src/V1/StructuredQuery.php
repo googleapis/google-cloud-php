@@ -10,6 +10,13 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A Firestore query.
+ * The query stages are executed in the following order:
+ * 1. from
+ * 2. where
+ * 3. select
+ * 4. order_by + start_at + end_at
+ * 5. offset
+ * 6. limit
  *
  * Generated from protobuf message <code>google.firestore.v1.StructuredQuery</code>
  */
