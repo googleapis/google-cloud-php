@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.26.3](https://github.com/googleapis/gax-php/compare/v1.26.2...v1.26.3) (2024-01-18)
+
+
+### Bug Fixes
+
+* CallOptions should use transportOptions ([#513](https://github.com/googleapis/gax-php/issues/513)) ([2d45ee1](https://github.com/googleapis/gax-php/commit/2d45ee187cdc3619b30c51b653b508718baf3af4))
+
 ## [1.26.2](https://github.com/googleapis/gax-php/compare/v1.26.1...v1.26.2) (2024-01-09)
 
 
