@@ -39,23 +39,6 @@ return [
                     ],
                 ],
             ],
-            'BufferTask' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2beta2/{queue=projects/*/locations/*/queues/*}/tasks/{task_id}:buffer',
-                'body' => '*',
-                'placeholders' => [
-                    'queue' => [
-                        'getters' => [
-                            'getQueue',
-                        ],
-                    ],
-                    'task_id' => [
-                        'getters' => [
-                            'getTaskId',
-                        ],
-                    ],
-                ],
-            ],
             'CancelLease' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2beta2/{name=projects/*/locations/*/queues/*/tasks/*}:cancelLease',
