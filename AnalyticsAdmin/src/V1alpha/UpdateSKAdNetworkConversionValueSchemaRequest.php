@@ -30,6 +30,22 @@ class UpdateSKAdNetworkConversionValueSchemaRequest extends \Google\Protobuf\Int
     private $update_mask = null;
 
     /**
+     * @param \Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema $skadnetworkConversionValueSchema Required. SKAdNetwork conversion value schema to update.
+     * @param \Google\Protobuf\FieldMask                                       $updateMask                       Required. The list of fields to be updated. Omitted fields will not be
+     *                                                                                                           updated.
+     *
+     * @return \Google\Analytics\Admin\V1alpha\UpdateSKAdNetworkConversionValueSchemaRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema $skadnetworkConversionValueSchema, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setSkadnetworkConversionValueSchema($skadnetworkConversionValueSchema)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

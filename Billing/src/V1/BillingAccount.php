@@ -29,8 +29,8 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
     /**
      * Output only. True if the billing account is open, and will therefore be
      * charged for any usage on associated projects. False if the billing account
-     * is closed, and therefore projects associated with it will be unable to use
-     * paid services.
+     * is closed, and therefore projects associated with it are unable to use paid
+     * services.
      *
      * Generated from protobuf field <code>bool open = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -80,8 +80,8 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
      *     @type bool $open
      *           Output only. True if the billing account is open, and will therefore be
      *           charged for any usage on associated projects. False if the billing account
-     *           is closed, and therefore projects associated with it will be unable to use
-     *           paid services.
+     *           is closed, and therefore projects associated with it are unable to use paid
+     *           services.
      *     @type string $display_name
      *           The display name given to the billing account, such as `My Billing
      *           Account`. This name is displayed in the Google Cloud Console.
@@ -142,8 +142,8 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
     /**
      * Output only. True if the billing account is open, and will therefore be
      * charged for any usage on associated projects. False if the billing account
-     * is closed, and therefore projects associated with it will be unable to use
-     * paid services.
+     * is closed, and therefore projects associated with it are unable to use paid
+     * services.
      *
      * Generated from protobuf field <code>bool open = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -156,8 +156,8 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
     /**
      * Output only. True if the billing account is open, and will therefore be
      * charged for any usage on associated projects. False if the billing account
-     * is closed, and therefore projects associated with it will be unable to use
-     * paid services.
+     * is closed, and therefore projects associated with it are unable to use paid
+     * services.
      *
      * Generated from protobuf field <code>bool open = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var

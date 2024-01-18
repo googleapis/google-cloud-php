@@ -23,11 +23,12 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_UpdateSubpropertyEventFilter_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\SubpropertyEventFilter;
 use Google\Analytics\Admin\V1alpha\SubpropertyEventFilterClause;
 use Google\Analytics\Admin\V1alpha\SubpropertyEventFilterClause\FilterClauseType;
 use Google\Analytics\Admin\V1alpha\SubpropertyEventFilterExpression;
+use Google\Analytics\Admin\V1alpha\UpdateSubpropertyEventFilterRequest;
 use Google\ApiCore\ApiException;
 use Google\Protobuf\FieldMask;
 
@@ -42,7 +43,7 @@ function update_subproperty_event_filter_sample(
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $subpropertyEventFilterFilterClausesFilterExpression = new SubpropertyEventFilterExpression();
     $subpropertyEventFilterClause = (new SubpropertyEventFilterClause())
         ->setFilterClauseType($subpropertyEventFilterFilterClausesFilterClauseType)
@@ -51,14 +52,14 @@ function update_subproperty_event_filter_sample(
     $subpropertyEventFilter = (new SubpropertyEventFilter())
         ->setFilterClauses($subpropertyEventFilterFilterClauses);
     $updateMask = new FieldMask();
+    $request = (new UpdateSubpropertyEventFilterRequest())
+        ->setSubpropertyEventFilter($subpropertyEventFilter)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var SubpropertyEventFilter $response */
-        $response = $analyticsAdminServiceClient->updateSubpropertyEventFilter(
-            $subpropertyEventFilter,
-            $updateMask
-        );
+        $response = $analyticsAdminServiceClient->updateSubpropertyEventFilter($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

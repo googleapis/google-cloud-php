@@ -22,7 +22,7 @@ class RenderMetadata extends \Google\Protobuf\Internal\Message
      */
     private $cloud_run = null;
     /**
-     * Output only. Custom metadata provided by user defined render operation.
+     * Output only. Custom metadata provided by user-defined render operation.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.CustomMetadata custom = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -37,7 +37,7 @@ class RenderMetadata extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Deploy\V1\CloudRunRenderMetadata $cloud_run
      *           Output only. Metadata associated with rendering for Cloud Run.
      *     @type \Google\Cloud\Deploy\V1\CustomMetadata $custom
-     *           Output only. Custom metadata provided by user defined render operation.
+     *           Output only. Custom metadata provided by user-defined render operation.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,7 +82,7 @@ class RenderMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Custom metadata provided by user defined render operation.
+     * Output only. Custom metadata provided by user-defined render operation.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.CustomMetadata custom = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Deploy\V1\CustomMetadata|null
@@ -103,7 +103,7 @@ class RenderMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Custom metadata provided by user defined render operation.
+     * Output only. Custom metadata provided by user-defined render operation.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.CustomMetadata custom = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Deploy\V1\CustomMetadata $var

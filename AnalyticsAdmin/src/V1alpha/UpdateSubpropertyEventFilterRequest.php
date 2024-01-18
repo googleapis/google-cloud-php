@@ -32,6 +32,24 @@ class UpdateSubpropertyEventFilterRequest extends \Google\Protobuf\Internal\Mess
     private $update_mask = null;
 
     /**
+     * @param \Google\Analytics\Admin\V1alpha\SubpropertyEventFilter $subpropertyEventFilter Required. The subproperty event filter to update.
+     * @param \Google\Protobuf\FieldMask                             $updateMask             Required. The list of fields to update. Field names must be in snake case
+     *                                                                                       (for example, "field_to_update"). Omitted fields will not be updated. To
+     *                                                                                       replace the entire entity, use one path with the string "*" to match all
+     *                                                                                       fields.
+     *
+     * @return \Google\Analytics\Admin\V1alpha\UpdateSubpropertyEventFilterRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Analytics\Admin\V1alpha\SubpropertyEventFilter $subpropertyEventFilter, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setSubpropertyEventFilter($subpropertyEventFilter)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_FetchAutomatedGa4ConfigurationOptOut_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutRequest;
 use Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutResponse;
 use Google\ApiCore\ApiException;
 
@@ -42,10 +43,14 @@ function fetch_automated_ga4_configuration_opt_out_sample(string $property): voi
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
+    // Prepare the request message.
+    $request = (new FetchAutomatedGa4ConfigurationOptOutRequest())
+        ->setProperty($property);
+
     // Call the API and handle any network failures.
     try {
         /** @var FetchAutomatedGa4ConfigurationOptOutResponse $response */
-        $response = $analyticsAdminServiceClient->fetchAutomatedGa4ConfigurationOptOut($property);
+        $response = $analyticsAdminServiceClient->fetchAutomatedGa4ConfigurationOptOut($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -19,7 +19,7 @@ class CreateFeatureOnlineStoreRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the Location to create FeatureOnlineStores.
      * Format:
-     * `projects/{project}/locations/{location}'`
+     * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -44,7 +44,7 @@ class CreateFeatureOnlineStoreRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                         $parent               Required. The resource name of the Location to create FeatureOnlineStores.
      *                                                                             Format:
-     *                                                                             `projects/{project}/locations/{location}'`
+     *                                                                             `projects/{project}/locations/{location}`
      *                                                                             Please see {@see FeatureOnlineStoreAdminServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\FeatureOnlineStore $featureOnlineStore   Required. The FeatureOnlineStore to create.
      * @param string                                         $featureOnlineStoreId Required. The ID to use for this FeatureOnlineStore, which will become the
@@ -76,7 +76,7 @@ class CreateFeatureOnlineStoreRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The resource name of the Location to create FeatureOnlineStores.
      *           Format:
-     *           `projects/{project}/locations/{location}'`
+     *           `projects/{project}/locations/{location}`
      *     @type \Google\Cloud\AIPlatform\V1\FeatureOnlineStore $feature_online_store
      *           Required. The FeatureOnlineStore to create.
      *     @type string $feature_online_store_id
@@ -95,7 +95,7 @@ class CreateFeatureOnlineStoreRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the Location to create FeatureOnlineStores.
      * Format:
-     * `projects/{project}/locations/{location}'`
+     * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -108,7 +108,7 @@ class CreateFeatureOnlineStoreRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the Location to create FeatureOnlineStores.
      * Format:
-     * `projects/{project}/locations/{location}'`
+     * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

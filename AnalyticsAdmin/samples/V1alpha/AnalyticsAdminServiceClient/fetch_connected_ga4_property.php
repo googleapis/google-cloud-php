@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_FetchConnectedGa4Property_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\FetchConnectedGa4PropertyRequest;
 use Google\Analytics\Admin\V1alpha\FetchConnectedGa4PropertyResponse;
 use Google\ApiCore\ApiException;
 
@@ -43,10 +44,14 @@ function fetch_connected_ga4_property_sample(string $formattedProperty): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
+    // Prepare the request message.
+    $request = (new FetchConnectedGa4PropertyRequest())
+        ->setProperty($formattedProperty);
+
     // Call the API and handle any network failures.
     try {
         /** @var FetchConnectedGa4PropertyResponse $response */
-        $response = $analyticsAdminServiceClient->fetchConnectedGa4Property($formattedProperty);
+        $response = $analyticsAdminServiceClient->fetchConnectedGa4Property($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,7 +25,7 @@ class MoveBillingAccountRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. The resource name of the Organization to reparent
+     * Required. The resource name of the Organization to move
      * the billing account under.
      * Must be of the form `organizations/{organization_id}`.
      *
@@ -45,7 +45,7 @@ class MoveBillingAccountRequest extends \Google\Protobuf\Internal\Message
      *           The specified billing account cannot be a subaccount, since a subaccount
      *           always belongs to the same organization as its parent account.
      *     @type string $destination_parent
-     *           Required. The resource name of the Organization to reparent
+     *           Required. The resource name of the Organization to move
      *           the billing account under.
      *           Must be of the form `organizations/{organization_id}`.
      * }
@@ -88,7 +88,7 @@ class MoveBillingAccountRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the Organization to reparent
+     * Required. The resource name of the Organization to move
      * the billing account under.
      * Must be of the form `organizations/{organization_id}`.
      *
@@ -101,7 +101,7 @@ class MoveBillingAccountRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the Organization to reparent
+     * Required. The resource name of the Organization to move
      * the billing account under.
      * Must be of the form `organizations/{organization_id}`.
      *

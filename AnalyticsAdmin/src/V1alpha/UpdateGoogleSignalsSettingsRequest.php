@@ -33,6 +33,25 @@ class UpdateGoogleSignalsSettingsRequest extends \Google\Protobuf\Internal\Messa
     private $update_mask = null;
 
     /**
+     * @param \Google\Analytics\Admin\V1alpha\GoogleSignalsSettings $googleSignalsSettings Required. The settings to update.
+     *                                                                                     The `name` field is used to identify the settings to be updated.
+     * @param \Google\Protobuf\FieldMask                            $updateMask            Required. The list of fields to be updated. Field names must be in snake
+     *                                                                                     case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *                                                                                     replace the entire entity, use one path with the string "*" to match all
+     *                                                                                     fields.
+     *
+     * @return \Google\Analytics\Admin\V1alpha\UpdateGoogleSignalsSettingsRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Analytics\Admin\V1alpha\GoogleSignalsSettings $googleSignalsSettings, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setGoogleSignalsSettings($googleSignalsSettings)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

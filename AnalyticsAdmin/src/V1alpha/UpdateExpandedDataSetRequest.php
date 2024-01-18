@@ -34,6 +34,26 @@ class UpdateExpandedDataSetRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Analytics\Admin\V1alpha\ExpandedDataSet $expandedDataSet Required. The ExpandedDataSet to update.
+     *                                                                         The resource's `name` field is used to identify the ExpandedDataSet to be
+     *                                                                         updated.
+     * @param \Google\Protobuf\FieldMask                      $updateMask      Required. The list of fields to be updated. Field names must be in snake
+     *                                                                         case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *                                                                         replace the entire entity, use one path with the string "*" to match all
+     *                                                                         fields.
+     *
+     * @return \Google\Analytics\Admin\V1alpha\UpdateExpandedDataSetRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Analytics\Admin\V1alpha\ExpandedDataSet $expandedDataSet, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setExpandedDataSet($expandedDataSet)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

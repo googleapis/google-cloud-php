@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_ListMeasurementProtocolSecrets_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\ListMeasurementProtocolSecretsRequest;
 use Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
@@ -42,10 +43,14 @@ function list_measurement_protocol_secrets_sample(string $formattedParent): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListMeasurementProtocolSecretsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $analyticsAdminServiceClient->listMeasurementProtocolSecrets($formattedParent);
+        $response = $analyticsAdminServiceClient->listMeasurementProtocolSecrets($request);
 
         /** @var MeasurementProtocolSecret $element */
         foreach ($response as $element) {

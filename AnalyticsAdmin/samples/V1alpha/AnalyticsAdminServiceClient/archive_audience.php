@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_ArchiveAudience_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\ArchiveAudienceRequest;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\ApiCore\ApiException;
 
 /**
@@ -37,9 +38,13 @@ function archive_audience_sample(string $formattedName): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
+    // Prepare the request message.
+    $request = (new ArchiveAudienceRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $analyticsAdminServiceClient->archiveAudience($formattedName);
+        $analyticsAdminServiceClient->archiveAudience($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

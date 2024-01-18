@@ -43,6 +43,21 @@ class ListRollupPropertySourceLinksRequest extends \Google\Protobuf\Internal\Mes
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The name of the roll-up property to list roll-up property source
+     *                       links under. Format: properties/{property_id} Example: properties/1234
+     *                       Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
+     *
+     * @return \Google\Analytics\Admin\V1alpha\ListRollupPropertySourceLinksRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

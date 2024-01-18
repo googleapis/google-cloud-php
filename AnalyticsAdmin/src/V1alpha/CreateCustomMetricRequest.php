@@ -29,6 +29,22 @@ class CreateCustomMetricRequest extends \Google\Protobuf\Internal\Message
     private $custom_metric = null;
 
     /**
+     * @param string                                       $parent       Required. Example format: properties/1234
+     *                                                                   Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
+     * @param \Google\Analytics\Admin\V1alpha\CustomMetric $customMetric Required. The CustomMetric to create.
+     *
+     * @return \Google\Analytics\Admin\V1alpha\CreateCustomMetricRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Analytics\Admin\V1alpha\CustomMetric $customMetric): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setCustomMetric($customMetric);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

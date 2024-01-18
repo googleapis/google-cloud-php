@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_CreateAdSenseLink_sync]
 use Google\Analytics\Admin\V1alpha\AdSenseLink;
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\CreateAdSenseLinkRequest;
 use Google\ApiCore\ApiException;
 
 /**
@@ -40,13 +41,16 @@ function create_ad_sense_link_sample(string $formattedParent): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $adsenseLink = new AdSenseLink();
+    $request = (new CreateAdSenseLinkRequest())
+        ->setParent($formattedParent)
+        ->setAdsenseLink($adsenseLink);
 
     // Call the API and handle any network failures.
     try {
         /** @var AdSenseLink $response */
-        $response = $analyticsAdminServiceClient->createAdSenseLink($formattedParent, $adsenseLink);
+        $response = $analyticsAdminServiceClient->createAdSenseLink($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

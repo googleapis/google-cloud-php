@@ -659,6 +659,10 @@ class OsLoginServiceGapicClient
      *     @type int $view
      *           The view configures whether to retrieve security keys information.
      *           For allowed values, use constants defined on {@see \Google\Cloud\OsLogin\V1beta\LoginProfileView}
+     *     @type string[] $regions
+     *           Optional. The regions to which to assert that the key was written.
+     *           If unspecified, defaults to all regions.
+     *           Regions are listed at https://cloud.google.com/about/locations#region.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -687,6 +691,10 @@ class OsLoginServiceGapicClient
 
         if (isset($optionalArgs['view'])) {
             $request->setView($optionalArgs['view']);
+        }
+
+        if (isset($optionalArgs['regions'])) {
+            $request->setRegions($optionalArgs['regions']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

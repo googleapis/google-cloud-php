@@ -33,6 +33,14 @@ class ImportSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string project_id = 3;</code>
      */
     private $project_id = '';
+    /**
+     * Optional. The regions to which to assert that the key was written.
+     * If unspecified, defaults to all regions.
+     * Regions are listed at https://cloud.google.com/about/locations#region.
+     *
+     * Generated from protobuf field <code>repeated string regions = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $regions;
 
     /**
      * @param string                                    $parent       Required. The unique ID for the user in format `users/{user}`. Please see
@@ -80,6 +88,10 @@ class ImportSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
      *           Optional. The SSH public key and expiration time.
      *     @type string $project_id
      *           The project ID of the Google Cloud Platform project.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $regions
+     *           Optional. The regions to which to assert that the key was written.
+     *           If unspecified, defaults to all regions.
+     *           Regions are listed at https://cloud.google.com/about/locations#region.
      * }
      */
     public function __construct($data = NULL) {
@@ -171,6 +183,36 @@ class ImportSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->project_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The regions to which to assert that the key was written.
+     * If unspecified, defaults to all regions.
+     * Regions are listed at https://cloud.google.com/about/locations#region.
+     *
+     * Generated from protobuf field <code>repeated string regions = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getRegions()
+    {
+        return $this->regions;
+    }
+
+    /**
+     * Optional. The regions to which to assert that the key was written.
+     * If unspecified, defaults to all regions.
+     * Regions are listed at https://cloud.google.com/about/locations#region.
+     *
+     * Generated from protobuf field <code>repeated string regions = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setRegions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->regions = $arr;
 
         return $this;
     }

@@ -9,10 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Contains criteria for selecting Targets. Attributes provided must match the
- * target resource in order for policy restrictions to apply. E.g. if id "prod"
- * and labels "foo: bar" are given the target resource must match both that id
- * and have that label in order to be selected.
+ * Contains criteria for selecting Targets.
  *
  * Generated from protobuf message <code>google.cloud.deploy.v1.TargetAttribute</code>
  */
