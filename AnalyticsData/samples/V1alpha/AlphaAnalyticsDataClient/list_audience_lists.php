@@ -23,8 +23,9 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsdata_v1alpha_generated_AlphaAnalyticsData_ListAudienceLists_sync]
-use Google\Analytics\Data\V1alpha\AlphaAnalyticsDataClient;
 use Google\Analytics\Data\V1alpha\AudienceList;
+use Google\Analytics\Data\V1alpha\Client\AlphaAnalyticsDataClient;
+use Google\Analytics\Data\V1alpha\ListAudienceListsRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 
@@ -53,10 +54,14 @@ function list_audience_lists_sample(string $formattedParent): void
     // Create a client.
     $alphaAnalyticsDataClient = new AlphaAnalyticsDataClient();
 
+    // Prepare the request message.
+    $request = (new ListAudienceListsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $alphaAnalyticsDataClient->listAudienceLists($formattedParent);
+        $response = $alphaAnalyticsDataClient->listAudienceLists($request);
 
         /** @var AudienceList $element */
         foreach ($response as $element) {

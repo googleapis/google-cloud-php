@@ -110,7 +110,7 @@ use Google\LongRunning\Operation;
  *
  * @experimental
  *
- * @deprecated This class will be removed in the next major version update.
+ * @deprecated Please use the new service client {@see \Google\Analytics\Data\V1alpha\Client\AlphaAnalyticsDataClient}.
  */
 class AlphaAnalyticsDataGapicClient
 {

@@ -23,9 +23,10 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsdata_v1alpha_generated_AlphaAnalyticsData_CreateAudienceList_sync]
-use Google\Analytics\Data\V1alpha\AlphaAnalyticsDataClient;
 use Google\Analytics\Data\V1alpha\AudienceDimension;
 use Google\Analytics\Data\V1alpha\AudienceList;
+use Google\Analytics\Data\V1alpha\Client\AlphaAnalyticsDataClient;
+use Google\Analytics\Data\V1alpha\CreateAudienceListRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Rpc\Status;
@@ -71,16 +72,19 @@ function create_audience_list_sample(string $formattedParent, string $audienceLi
     // Create a client.
     $alphaAnalyticsDataClient = new AlphaAnalyticsDataClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $audienceListDimensions = [new AudienceDimension()];
     $audienceList = (new AudienceList())
         ->setAudience($audienceListAudience)
         ->setDimensions($audienceListDimensions);
+    $request = (new CreateAudienceListRequest())
+        ->setParent($formattedParent)
+        ->setAudienceList($audienceList);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $alphaAnalyticsDataClient->createAudienceList($formattedParent, $audienceList);
+        $response = $alphaAnalyticsDataClient->createAudienceList($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

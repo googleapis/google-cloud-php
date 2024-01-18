@@ -44,6 +44,21 @@ class ListRecurringAudienceListsRequest extends \Google\Protobuf\Internal\Messag
     private $page_token = '';
 
     /**
+     * @param string $parent Required. All recurring audience lists for this property will be listed in
+     *                       the response. Format: `properties/{property}`
+     *                       Please see {@see AlphaAnalyticsDataClient::propertyName()} for help formatting this field.
+     *
+     * @return \Google\Analytics\Data\V1alpha\ListRecurringAudienceListsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
