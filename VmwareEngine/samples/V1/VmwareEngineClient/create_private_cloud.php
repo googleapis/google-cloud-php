@@ -34,9 +34,9 @@ use Google\Rpc\Status;
 
 /**
  * Creates a new `PrivateCloud` resource in a given project and location.
- * Private clouds can only be created in zones, regional private clouds are
- * not supported.
- *
+ * Private clouds of type `STANDARD` and
+ * `TIME_LIMITED` are zonal resources, `STRETCHED` private clouds are
+ * regional.
  * Creating a private cloud also creates a [management
  * cluster](https://cloud.google.com/vmware-engine/docs/concepts-vmware-components)
  * for that private cloud.

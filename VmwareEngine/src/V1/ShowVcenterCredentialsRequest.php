@@ -27,6 +27,21 @@ class ShowVcenterCredentialsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string private_cloud = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $private_cloud = '';
+    /**
+     * Optional. The username of the user to be queried for credentials.
+     * The default value of this field is CloudOwner&#64;gve.local.
+     * The provided value must be one of the following:
+     * CloudOwner&#64;gve.local,
+     * solution-user-01&#64;gve.local,
+     * solution-user-02&#64;gve.local,
+     * solution-user-03&#64;gve.local,
+     * solution-user-04&#64;gve.local,
+     * solution-user-05&#64;gve.local,
+     * zertoadmin&#64;gve.local.
+     *
+     * Generated from protobuf field <code>string username = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $username = '';
 
     /**
      * @param string $privateCloud Required. The resource name of the private cloud
@@ -60,6 +75,17 @@ class ShowVcenterCredentialsRequest extends \Google\Protobuf\Internal\Message
      *           https://cloud.google.com/apis/design/resource_names.
      *           For example:
      *           `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
+     *     @type string $username
+     *           Optional. The username of the user to be queried for credentials.
+     *           The default value of this field is CloudOwner&#64;gve.local.
+     *           The provided value must be one of the following:
+     *           CloudOwner&#64;gve.local,
+     *           solution-user-01&#64;gve.local,
+     *           solution-user-02&#64;gve.local,
+     *           solution-user-03&#64;gve.local,
+     *           solution-user-04&#64;gve.local,
+     *           solution-user-05&#64;gve.local,
+     *           zertoadmin&#64;gve.local.
      * }
      */
     public function __construct($data = NULL) {
@@ -99,6 +125,50 @@ class ShowVcenterCredentialsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->private_cloud = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The username of the user to be queried for credentials.
+     * The default value of this field is CloudOwner&#64;gve.local.
+     * The provided value must be one of the following:
+     * CloudOwner&#64;gve.local,
+     * solution-user-01&#64;gve.local,
+     * solution-user-02&#64;gve.local,
+     * solution-user-03&#64;gve.local,
+     * solution-user-04&#64;gve.local,
+     * solution-user-05&#64;gve.local,
+     * zertoadmin&#64;gve.local.
+     *
+     * Generated from protobuf field <code>string username = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * Optional. The username of the user to be queried for credentials.
+     * The default value of this field is CloudOwner&#64;gve.local.
+     * The provided value must be one of the following:
+     * CloudOwner&#64;gve.local,
+     * solution-user-01&#64;gve.local,
+     * solution-user-02&#64;gve.local,
+     * solution-user-03&#64;gve.local,
+     * solution-user-04&#64;gve.local,
+     * solution-user-05&#64;gve.local,
+     * zertoadmin&#64;gve.local.
+     *
+     * Generated from protobuf field <code>string username = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUsername($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->username = $var;
 
         return $this;
     }

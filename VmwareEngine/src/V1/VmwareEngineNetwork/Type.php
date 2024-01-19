@@ -27,10 +27,17 @@ class Type
      * Generated from protobuf enum <code>LEGACY = 1;</code>
      */
     const LEGACY = 1;
+    /**
+     * Standard network type used for private cloud connectivity.
+     *
+     * Generated from protobuf enum <code>STANDARD = 2;</code>
+     */
+    const STANDARD = 2;
 
     private static $valueToName = [
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
         self::LEGACY => 'LEGACY',
+        self::STANDARD => 'STANDARD',
     ];
 
     public static function name($value)

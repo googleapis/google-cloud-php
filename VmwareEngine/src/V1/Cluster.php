@@ -64,6 +64,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, .google.cloud.vmwareengine.v1.NodeTypeConfig> node_type_configs = 16 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $node_type_configs;
+    /**
+     * Optional. Configuration of a stretched cluster. Required for clusters that
+     * belong to a STRETCHED private cloud.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.StretchedClusterConfig stretched_cluster_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $stretched_cluster_config = null;
 
     /**
      * Constructor.
@@ -92,6 +99,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $node_type_configs
      *           Required. The map of cluster node types in this cluster, where the key is
      *           canonical identifier of the node type (corresponds to the `NodeType`).
+     *     @type \Google\Cloud\VmwareEngine\V1\StretchedClusterConfig $stretched_cluster_config
+     *           Optional. Configuration of a stretched cluster. Required for clusters that
+     *           belong to a STRETCHED private cloud.
      * }
      */
     public function __construct($data = NULL) {
@@ -311,6 +321,44 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VmwareEngine\V1\NodeTypeConfig::class);
         $this->node_type_configs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration of a stretched cluster. Required for clusters that
+     * belong to a STRETCHED private cloud.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.StretchedClusterConfig stretched_cluster_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\VmwareEngine\V1\StretchedClusterConfig|null
+     */
+    public function getStretchedClusterConfig()
+    {
+        return $this->stretched_cluster_config;
+    }
+
+    public function hasStretchedClusterConfig()
+    {
+        return isset($this->stretched_cluster_config);
+    }
+
+    public function clearStretchedClusterConfig()
+    {
+        unset($this->stretched_cluster_config);
+    }
+
+    /**
+     * Optional. Configuration of a stretched cluster. Required for clusters that
+     * belong to a STRETCHED private cloud.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.StretchedClusterConfig stretched_cluster_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\VmwareEngine\V1\StretchedClusterConfig $var
+     * @return $this
+     */
+    public function setStretchedClusterConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\VmwareEngine\V1\StretchedClusterConfig::class);
+        $this->stretched_cluster_config = $var;
 
         return $this;
     }
