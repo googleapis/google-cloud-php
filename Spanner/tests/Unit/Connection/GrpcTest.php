@@ -467,7 +467,10 @@ class GrpcTest extends TestCase
         ], false));
     }
 
-    public function testCreateSession()
+    /**
+     * @dataProvider larOptions
+     */
+    public function testCreateSession($larEnabled, $grpcConfig)
     {
         $labels = ['foo' => 'bar'];
 
@@ -481,7 +484,7 @@ class GrpcTest extends TestCase
             [
                 'session' => (new Session)->setLabels($labels)
             ]
-        ], true, true));
+        ], true, $larEnabled), null, '', $grpcConfig);
     }
 
     public function testCreateSessionAsync()
@@ -510,7 +513,10 @@ class GrpcTest extends TestCase
         $this->assertInstanceOf(PromiseInterface::class, $promise);
     }
 
-    public function testBatchCreateSessions()
+    /**
+     * @dataProvider larOptions
+     */
+    public function testBatchCreateSessions($larEnabled, $grpcConfig)
     {
         $count = 10;
         $template = [
@@ -527,17 +533,20 @@ class GrpcTest extends TestCase
             self::DATABASE, $count, [
                 'sessionTemplate' => $this->serializer->decodeMessage(new Session, $template)
             ]
-        ], true, true));
+        ], true, $larEnabled), null, '', $grpcConfig);
     }
 
-    public function testGetSession()
+    /**
+     * @dataProvider larOptions
+     */
+    public function testGetSession($larEnabled, $grpcConfig)
     {
         $this->assertCallCorrect('getSession', [
             'database' => self::DATABASE,
             'name' => self::SESSION
         ], $this->expectResourceHeader(self::DATABASE, [
             self::SESSION
-        ], true, true));
+        ], true, $larEnabled), null, '', $grpcConfig);
     }
 
     public function testDeleteSession()
@@ -575,7 +584,10 @@ class GrpcTest extends TestCase
         $this->assertInstanceOf(PromiseInterface::class, $call);
     }
 
-    public function testExecuteStreamingSql()
+    /**
+     * @dataProvider larOptions
+     */
+    public function testExecuteStreamingSql($larEnabled, $grpcConfig)
     {
         $sql = 'SELECT 1';
 
@@ -596,7 +608,8 @@ class GrpcTest extends TestCase
             'session' => self::SESSION,
             'sql' => $sql,
             'transactionId' => self::TRANSACTION,
-            'database' => self::DATABASE
+            'database' => self::DATABASE,
+            'headers' => ['x-goog-spanner-route-to-leader' => true]
         ] + $mapped, $this->expectResourceHeader(self::DATABASE, [
             self::SESSION,
             $sql,
@@ -605,7 +618,7 @@ class GrpcTest extends TestCase
                 'params' => $expectedParams,
                 'paramTypes' => $expectedParamTypes
             ]
-        ]));
+        ], true, $larEnabled), null, '', $grpcConfig);
     }
 
     public function testExecuteStreamingSqlWithRequestOptions()
@@ -738,7 +751,7 @@ class GrpcTest extends TestCase
     /**
      * @dataProvider readKeysets
      */
-    public function testStreamingRead($keyArg, $keyObj)
+    public function testStreamingRead($keyArg, $keyObj, $larEnabled, $grpcConfig)
     {
         $columns = [
             'id',
@@ -751,7 +764,8 @@ class GrpcTest extends TestCase
             'session' => self::SESSION,
             'table' => self::TABLE,
             'columns' => $columns,
-            'database' => self::DATABASE
+            'database' => self::DATABASE,
+            'headers' => ['x-goog-spanner-route-to-leader' => true]
         ], $this->expectResourceHeader(self::DATABASE, [
             self::SESSION,
             self::TABLE,
@@ -760,7 +774,7 @@ class GrpcTest extends TestCase
             [
                 'transaction' => $this->transactionSelector()
             ]
-        ]));
+        ], true, $larEnabled), null, '',  $grpcConfig);
     }
 
     public function testStreamingReadWithRequestOptions()
@@ -802,7 +816,9 @@ class GrpcTest extends TestCase
         return [
             [
                 [],
-                new KeySet
+                new KeySet,
+                true,
+                ['xGoogSpannerRouteToLeader' => true]
             ], [
                 ['keys' => [1]],
                 $this->serializer->decodeMessage(new KeySet, [
@@ -815,7 +831,9 @@ class GrpcTest extends TestCase
                             ]
                         ]
                     ]
-                ])
+                ]),
+                false,
+                ['xGoogSpannerRouteToLeader' => false]
             ], [
                 ['keys' => [[1,1]]],
                 $this->serializer->decodeMessage(new KeySet, [
@@ -831,12 +849,17 @@ class GrpcTest extends TestCase
                             ]
                         ]
                     ]
-                ])
+                ]),
+                false,
+                ['xGoogSpannerRouteToLeader' => false]
             ]
         ];
     }
 
-    public function testExecuteBatchDml()
+    /**
+     * @dataProvider larOptions
+     */
+    public function testExecuteBatchDml($larEnabled, $grpcConfig)
     {
         $statements = [
             [
@@ -862,7 +885,7 @@ class GrpcTest extends TestCase
             $this->transactionSelector(),
             $statementsObjs,
             1
-        ], true, true));
+        ], true, $larEnabled), null, '', $grpcConfig);
     }
 
     public function testExecuteBatchDmlWithRequestOptions()
@@ -905,7 +928,7 @@ class GrpcTest extends TestCase
     /**
      * @dataProvider transactionTypes
      */
-    public function testBeginTransaction($optionsArr, $optionsObj)
+    public function testBeginTransaction($optionsArr, $optionsObj, $larEnabled, $grpcConfig)
     {
         $this->assertCallCorrect('beginTransaction', [
             'session' => self::SESSION,
@@ -914,7 +937,7 @@ class GrpcTest extends TestCase
         ], $this->expectResourceHeader(self::DATABASE, [
             self::SESSION,
             $optionsObj
-        ],true ,true, $optionsArr));
+        ] ,true ,$larEnabled, $optionsArr), null, '', $grpcConfig);
     }
 
     public function transactionTypes()
@@ -930,7 +953,9 @@ class GrpcTest extends TestCase
                 ['readWrite' => []],
                 new TransactionOptions([
                     'read_write' => new ReadWrite
-                ])
+                ]),
+                true,
+                ['xGoogSpannerRouteToLeader' => true]
             ], [
                 [
                     'readOnly' => [
@@ -943,12 +968,16 @@ class GrpcTest extends TestCase
                         'min_read_timestamp' => $pbTs,
                         'read_timestamp' => $pbTs
                     ])
-                ])
+                ]),
+                true,
+                ['xGoogSpannerRouteToLeader' => true]
             ], [
                 ['partitionedDml' => []],
                 new TransactionOptions([
                     'partitioned_dml' => new PartitionedDml
-                ])
+                ]),
+                true,
+                ['xGoogSpannerRouteToLeader' => true]
             ]
         ];
     }
@@ -956,7 +985,7 @@ class GrpcTest extends TestCase
     /**
      * @dataProvider commit
      */
-    public function testCommit($mutationsArr, $mutationsObjArr)
+    public function testCommit($mutationsArr, $mutationsObjArr, $larEnabled, $grpcConfig)
     {
         $this->assertCallCorrect('commit', [
             'session' => self::SESSION,
@@ -971,7 +1000,7 @@ class GrpcTest extends TestCase
                     'read_write' => new ReadWrite
                 ])
             ]
-        ], true, true));
+        ], true, $grpcConfig), null, '', $grpcConfig);
     }
 
     /**
@@ -1030,7 +1059,7 @@ class GrpcTest extends TestCase
 
         return [
             [
-                [], []
+                [], [], true, ['xGoogSpannerRouteToLeader' => true]
             ], [
                 [
                     [
@@ -1047,7 +1076,9 @@ class GrpcTest extends TestCase
                             'key_set' => new KeySet
                         ])
                     ])
-                ]
+                ],
+                true,
+                ['xGoogSpannerRouteToLeader' => true]
             ], [
                 [
                     [
@@ -1058,7 +1089,9 @@ class GrpcTest extends TestCase
                     new Mutation([
                         'insert' => $write
                     ])
-                ]
+                ],
+                true,
+                ['xGoogSpannerRouteToLeader' => true]
             ], [
                 [
                     [
@@ -1069,7 +1102,9 @@ class GrpcTest extends TestCase
                     new Mutation([
                         'update' => $write
                     ])
-                ]
+                ],
+                true,
+                ['xGoogSpannerRouteToLeader' => true]
             ], [
                 [
                     [
@@ -1080,7 +1115,9 @@ class GrpcTest extends TestCase
                     new Mutation([
                         'insert_or_update' => $write
                     ])
-                ]
+                ],
+                true,
+                ['xGoogSpannerRouteToLeader' => true]
             ], [
                 [
                     [
@@ -1091,12 +1128,17 @@ class GrpcTest extends TestCase
                     new Mutation([
                         'replace' => $write
                     ])
-                ]
+                ],
+                true,
+                ['xGoogSpannerRouteToLeader' => true]
             ]
         ];
     }
 
-    public function testRollback()
+    /**
+     * @dataProvider larOptions
+     */
+    public function testRollback($larEnabled, $grpcConfig)
     {
         $this->assertCallCorrect('rollback', [
             'session' => self::SESSION,
@@ -1105,13 +1147,13 @@ class GrpcTest extends TestCase
         ], $this->expectResourceHeader(self::DATABASE, [
             self::SESSION,
             self::TRANSACTION
-        ], true, true));
+        ], true, $larEnabled), null, '', $grpcConfig);
     }
 
     /**
      * @dataProvider partitionOptions
      */
-    public function testPartitionQuery($partitionOptions, $partitionOptionsObj)
+    public function testPartitionQuery($partitionOptions, $partitionOptionsObj, $larEnabled, $grpcConfig)
     {
         $sql = 'SELECT 1';
         $this->assertCallCorrect('partitionQuery', [
@@ -1128,13 +1170,13 @@ class GrpcTest extends TestCase
                 'transaction' => $this->transactionSelector(),
                 'partitionOptions' => $partitionOptionsObj
             ]
-        ], true, true));
+        ], true, $larEnabled), null, '', $grpcConfig);
     }
 
     /**
      * @dataProvider partitionOptions
      */
-    public function testPartitionRead($partitionOptions, $partitionOptionsObj)
+    public function testPartitionRead($partitionOptions, $partitionOptionsObj, $larEnabled, $grpcConfig)
     {
         $this->assertCallCorrect('partitionRead', [
             'session' => self::SESSION,
@@ -1151,7 +1193,7 @@ class GrpcTest extends TestCase
                 'transaction' => $this->transactionSelector(),
                 'partitionOptions' => $partitionOptionsObj
             ]
-        ], true, true));
+        ], true, $larEnabled), null, '', $grpcConfig);
     }
 
     public function partitionOptions()
@@ -1159,13 +1201,17 @@ class GrpcTest extends TestCase
         return [
             [
                 [],
-                new PartitionOptions
+                new PartitionOptions,
+                true,
+                ['xGoogSpannerRouteToLeader' => true]
             ],
             [
                 ['maxPartitions' => 10],
                 new PartitionOptions([
                     'max_partitions' => 10
-                ])
+                ]),
+                true,
+                ['xGoogSpannerRouteToLeader' => true]
             ]
         ];
     }
@@ -1358,15 +1404,34 @@ class GrpcTest extends TestCase
         ];
     }
 
-    private function assertCallCorrect($method, array $args, array $expectedArgs, $return = null, $result = '')
+    public function larOptions()
     {
+        return [
+            [
+                true,
+                ['xGoogSpannerRouteToLeader' => true]
+            ], [
+                false,
+                ['xGoogSpannerRouteToLeader' => false]
+            ]
+        ];
+    }
+
+    private function assertCallCorrect(
+        $method,
+        array $args,
+        array $expectedArgs,
+        $return = null,
+        $result = '',
+        $grpcConfig = []
+    ) {
         $this->requestWrapper->send(
             Argument::type('callable'),
             $expectedArgs,
             Argument::type('array')
         )->willReturn($return ?: $this->successMessage);
 
-        $connection = new Grpc();
+        $connection = new Grpc($grpcConfig);
         $connection->setRequestWrapper($this->requestWrapper->reveal());
 
         $this->assertEquals($result !== '' ? $result : $this->successMessage, $connection->$method($args));
@@ -1382,6 +1447,7 @@ class GrpcTest extends TestCase
      *     header will be added to a separate array.
      * @param boolean $lar If true, will add the x-goog-spanner-route-to-leader
      *    header.
+     * @param array $options The options to add to the call.
      * @return array
      */
     private function expectResourceHeader(
@@ -1389,12 +1455,12 @@ class GrpcTest extends TestCase
         array $args,
         $append = true,
         $lar = false,
-        $transactionOptions = []
+        $options = []
     ) {
         $header = [
             'google-cloud-resource-prefix' => [$val]
         ];
-        if ($lar && !isset($transactionOptions['readOnly'])) {
+        if ($lar && !isset($options['readOnly'])) {
             $header['x-goog-spanner-route-to-leader'] = true;
         }
 

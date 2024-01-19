@@ -39,8 +39,7 @@ trait RequestHeaderTrait
     ) {
         // If value is false, set LAR header to false and return.
         if (!$value) {
-            $args['headers']['x-goog-spanner-route-to-leader'] = $value;
-            return $args;
+            return $this->conditionallyUnsetLarHeader($args, $value);
         }
         // If value is true and context is READWRITE, set LAR header.
         if ($context === SessionPoolInterface::CONTEXT_READWRITE) {

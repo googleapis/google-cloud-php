@@ -303,7 +303,7 @@ trait TransactionalReadTrait
             $this->directedReadOptions ?? []
         );
 
-        $options = $this->addLarHeader($options, $this->context);
+        $options = $this->addLarHeader($options, true, $this->context);
 
         $result = $this->operation->execute($this->session, $sql, $options);
         if (empty($this->id()) && $result->transaction()) {
@@ -383,7 +383,7 @@ trait TransactionalReadTrait
             $this->directedReadOptions ?? []
         );
 
-        $options = $this->addLarHeader($options, $this->context);
+        $options = $this->addLarHeader($options, true, $this->context);
 
         $result = $this->operation->read($this->session, $table, $keySet, $columns, $options);
         if (empty($this->id()) && $result->transaction()) {

@@ -1191,8 +1191,10 @@ class DatabaseTest extends TestCase
     {
         $sql = 'SELECT * FROM Table';
 
-        $this->connection->executeStreamingSql(Argument::withEntry('sql', $sql))
-            ->shouldBeCalled()->willReturn($this->resultGenerator());
+        $this->connection->executeStreamingSql(Argument::allOf(
+            Argument::withEntry('sql', $sql),
+            Argument::withEntry('headers', ['x-goog-spanner-route-to-leader' => true])
+        ))->shouldBeCalled()->willReturn($this->resultGenerator());
 
         $this->refreshOperation($this->database, $this->connection->reveal());
 
@@ -1266,7 +1268,8 @@ class DatabaseTest extends TestCase
 
         $this->connection->executeStreamingSql(Argument::allOf(
             Argument::withEntry('sql', $sql),
-            Argument::withEntry('transaction', ['id' => self::TRANSACTION])
+            Argument::withEntry('transaction', ['id' => self::TRANSACTION]),
+            Argument::withEntry('headers', ['x-goog-spanner-route-to-leader' => true])
         ))->shouldBeCalled()->willReturn($this->resultGenerator(true));
 
         $this->refreshOperation($this->database, $this->connection->reveal());
@@ -1290,6 +1293,10 @@ class DatabaseTest extends TestCase
             }
 
             if ($arg['columns'] !== ['ID']) {
+                return false;
+            }
+
+            if ($arg['headers'] !== ['x-goog-spanner-route-to-leader' => true]) {
                 return false;
             }
 
