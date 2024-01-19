@@ -44,6 +44,20 @@ class ResetVcenterCredentialsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string request_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $request_id = '';
+    /**
+     * Optional. The username of the user to be to reset the credentials.
+     * The default value of this field is CloudOwner&#64;gve.local.
+     * The provided value should be one of the following:
+     * solution-user-01&#64;gve.local,
+     * solution-user-02&#64;gve.local,
+     * solution-user-03&#64;gve.local,
+     * solution-user-04&#64;gve.local,
+     * solution-user-05&#64;gve.local,
+     * zertoadmin&#64;gve.local.
+     *
+     * Generated from protobuf field <code>string username = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $username = '';
 
     /**
      * @param string $privateCloud Required. The resource name of the private cloud
@@ -90,6 +104,16 @@ class ResetVcenterCredentialsRequest extends \Google\Protobuf\Internal\Message
      *           clients from accidentally creating duplicate commitments.
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type string $username
+     *           Optional. The username of the user to be to reset the credentials.
+     *           The default value of this field is CloudOwner&#64;gve.local.
+     *           The provided value should be one of the following:
+     *           solution-user-01&#64;gve.local,
+     *           solution-user-02&#64;gve.local,
+     *           solution-user-03&#64;gve.local,
+     *           solution-user-04&#64;gve.local,
+     *           solution-user-05&#64;gve.local,
+     *           zertoadmin&#64;gve.local.
      * }
      */
     public function __construct($data = NULL) {
@@ -177,6 +201,48 @@ class ResetVcenterCredentialsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->request_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The username of the user to be to reset the credentials.
+     * The default value of this field is CloudOwner&#64;gve.local.
+     * The provided value should be one of the following:
+     * solution-user-01&#64;gve.local,
+     * solution-user-02&#64;gve.local,
+     * solution-user-03&#64;gve.local,
+     * solution-user-04&#64;gve.local,
+     * solution-user-05&#64;gve.local,
+     * zertoadmin&#64;gve.local.
+     *
+     * Generated from protobuf field <code>string username = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * Optional. The username of the user to be to reset the credentials.
+     * The default value of this field is CloudOwner&#64;gve.local.
+     * The provided value should be one of the following:
+     * solution-user-01&#64;gve.local,
+     * solution-user-02&#64;gve.local,
+     * solution-user-03&#64;gve.local,
+     * solution-user-04&#64;gve.local,
+     * solution-user-05&#64;gve.local,
+     * zertoadmin&#64;gve.local.
+     *
+     * Generated from protobuf field <code>string username = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUsername($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->username = $var;
 
         return $this;
     }
