@@ -21,7 +21,7 @@
         "erusev/parsedown": "^1.6",
         "google/gax": "^1.26.0",
         "opis/closure": "^3",
-        "google/cloud-common-protos": "^0.4"
+        "google/cloud-common-protos": "^0.5"
     },
     "suggest": {
         "opis/closure": "May be used to serialize closures to process jobs in the batch daemon. Please require version ^3.",
