@@ -17,11 +17,14 @@
 
 namespace Google\Cloud\PubSub\Tests\Unit;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Schema;
+use Google\Cloud\PubSub\V1\Client\SchemaServiceClient;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
@@ -34,16 +37,17 @@ class SchemaTest extends TestCase
 
     const NAME = "projects/example/schemas/my-schema";
 
-    private $connection;
+    private $requestHandler;
     private $schema;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->schema = TestHelpers::stub(Schema::class, [
-            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            new Serializer(),
             self::NAME,
-        ]);
+        ], ['requestHandler']);
     }
 
     public function testName()
@@ -53,11 +57,13 @@ class SchemaTest extends TestCase
 
     public function testDelete()
     {
-        $this->connection->deleteSchema([
-            'name' => self::NAME,
-        ])->willReturn('foo');
+        $this->requestHandler->sendRequest(
+            SchemaServiceClient::class,
+            'deleteSchema',
+            Argument::cetera()
+        )->willReturn('foo');
 
-        $this->schema->___setProperty('connection', $this->connection->reveal());
+        $this->schema->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         // the service call returns void, but let's test that we're returning whatever it sends.
         $this->assertEquals('foo', $this->schema->delete());
@@ -65,12 +71,13 @@ class SchemaTest extends TestCase
 
     public function testInfo()
     {
-        $this->connection->getSchema([
-            'name' => self::NAME,
-            'view' => 'FULL',
-        ])->shouldBeCalledOnce()->willReturn(['foo' => 'bar']);
+        $this->requestHandler->sendRequest(
+            SchemaServiceClient::class,
+            'getSchema',
+            Argument::cetera()
+        )->shouldBeCalledOnce()->willReturn(['foo' => 'bar']);
 
-        $this->schema->___setProperty('connection', $this->connection->reveal());
+        $this->schema->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->assertEquals('bar', $this->schema->info()['foo']);
 
@@ -80,12 +87,13 @@ class SchemaTest extends TestCase
 
     public function testReload()
     {
-        $this->connection->getSchema([
-            'name' => self::NAME,
-            'view' => 'FULL',
-        ])->shouldBeCalledTimes(2)->willReturn(['foo' => 'bar']);
+        $this->requestHandler->sendRequest(
+            SchemaServiceClient::class,
+            'getSchema',
+            Argument::cetera()
+        )->shouldBeCalledTimes(2)->willReturn(['foo' => 'bar']);
 
-        $this->schema->___setProperty('connection', $this->connection->reveal());
+        $this->schema->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->assertEquals('bar', $this->schema->reload()['foo']);
 
@@ -95,68 +103,68 @@ class SchemaTest extends TestCase
 
     public function testExists()
     {
-        $this->connection->getSchema([
-            'name' => self::NAME,
-            'view' => 'FULL',
-        ])->shouldBeCalledOnce()->willReturn(['foo' => 'bar']);
+        $this->requestHandler->sendRequest(
+            SchemaServiceClient::class,
+            'getSchema',
+            Argument::cetera()
+        )->shouldBeCalledOnce()->willReturn(['foo' => 'bar']);
 
-        $this->schema->___setProperty('connection', $this->connection->reveal());
+        $this->schema->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->assertTrue($this->schema->exists());
     }
 
     public function testExistsReturnsFalse()
     {
-        $this->connection->getSchema([
-            'name' => self::NAME,
-            'view' => 'FULL',
-        ])->shouldBeCalledOnce()->willThrow(NotFoundException::class);
+        $this->requestHandler->sendRequest(
+            SchemaServiceClient::class,
+            'getSchema',
+            Argument::cetera()
+        )->shouldBeCalledOnce()->willThrow(NotFoundException::class);
 
-        $this->schema->___setProperty('connection', $this->connection->reveal());
+        $this->schema->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->assertFalse($this->schema->exists());
     }
 
     public function testlistRevisions()
     {
-        $this->connection
-            ->listRevisions(['name' => self::NAME,])
-            ->shouldBeCalledOnce()
-            ->willReturn(['foo' => 'bar']);
+        $this->requestHandler->sendRequest(
+            SchemaServiceClient::class,
+            'listSchemaRevisions',
+            Argument::cetera()
+        )->shouldBeCalledOnce()
+        ->willReturn(['foo' => 'bar']);
 
-        $this->schema->___setProperty('connection', $this->connection->reveal());
+        $this->schema->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->assertEquals('bar', $this->schema->listRevisions()['foo']);
     }
 
     public function testCommit()
     {
-        $this->connection
-            ->commitSchema(
-                [
-                    'name' => self::NAME,
-                    'schema' => [
-                        'definition' => 'test',
-                        'type' => 'AVRO',
-                    ],
-                ]
-            )
-            ->shouldBeCalledOnce()
-            ->willReturn(['foo' => 'bar']);
+        $this->requestHandler->sendRequest(
+            SchemaServiceClient::class,
+            'commitSchema',
+            Argument::cetera()
+        )->shouldBeCalledOnce()
+        ->willReturn(['foo' => 'bar']);
 
-        $this->schema->___setProperty('connection', $this->connection->reveal());
+        $this->schema->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->assertEquals('bar', $this->schema->commit('test', 'AVRO')['foo']);
     }
 
     public function testDeleteRevision()
     {
-        $this->connection
-            ->deleteRevision(['name' => self::NAME . '@1234567'])
-            ->shouldBeCalledOnce()
-            ->willReturn(['foo' => 'bar']);
+        $this->requestHandler->sendRequest(
+            SchemaServiceClient::class,
+            'deleteSchemaRevision',
+            Argument::cetera()
+        )->shouldBeCalledOnce()
+        ->willReturn(['foo' => 'bar']);
 
-        $this->schema->___setProperty('connection', $this->connection->reveal());
+        $this->schema->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->assertEquals('bar', $this->schema->deleteRevision('1234567')['foo']);
     }
