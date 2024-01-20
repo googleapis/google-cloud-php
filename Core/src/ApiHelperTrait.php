@@ -249,7 +249,7 @@ trait ApiHelperTrait
         return $input;
     }
 
-    /** 
+    /**
      * Helper method used to split a supplied set of options into parameters that are passed into
      * a proto message and optional args.
      * We strictly treat the parameters allowed by `CallOptions` in GAX as the optional params
