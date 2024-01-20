@@ -17,9 +17,11 @@
 
 namespace Google\Cloud\PubSub\Tests\Unit;
 
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\GoogleException;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\IncomingMessageTrait;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\Subscription;
@@ -32,16 +34,30 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class IncomingMessageTraitTest extends TestCase
 {
     use ProphecyTrait;
+    use ApiHelperTrait;
 
     const PROJECT = 'my-project';
 
-    private $connection;
     private $stub;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->stub = TestHelpers::impl(IncomingMessageTrait::class);
+        $requestHandler = $this->prophesize(RequestHandler::class);
+        $serializer = new Serializer([
+            'publish_time' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            },
+            'expiration_time' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            }
+        ], [], [], [
+            'google.protobuf.Duration' => function ($v) {
+                return $this->formatDurationForApi($v);
+            }
+        ]);
+        $this->stub = TestHelpers::impl(IncomingMessageTrait::class, ['requestHandler', 'serializer']);
+        $this->stub->___setProperty('requestHandler', $requestHandler->reveal());
+        $this->stub->___setProperty('serializer', $serializer);
     }
 
     public function testMessageFactory()
@@ -55,7 +71,7 @@ class IncomingMessageTraitTest extends TestCase
         $message = $this->stub->call(
             'messageFactory',
             [
-                $data, $this->connection->reveal(), self::PROJECT, false
+                $data, self::PROJECT, false
             ]
         );
 
@@ -70,7 +86,7 @@ class IncomingMessageTraitTest extends TestCase
         $this->stub->call(
             'messageFactory',
             [
-                [], $this->connection->reveal(), self::PROJECT, false
+                [], self::PROJECT, false
             ]
         );
     }
@@ -85,7 +101,6 @@ class IncomingMessageTraitTest extends TestCase
                         'data' => base64_encode('hello world')
                     ]
                 ],
-                $this->connection->reveal(),
                 self::PROJECT,
                 true
             ]
@@ -105,7 +120,6 @@ class IncomingMessageTraitTest extends TestCase
                     ],
                     'subscription' => 'projects/project-id/subscriptions/foo'
                 ],
-                $this->connection->reveal(),
                 self::PROJECT,
                 true
             ]

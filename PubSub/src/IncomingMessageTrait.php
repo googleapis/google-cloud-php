@@ -46,6 +46,7 @@ trait IncomingMessageTrait
         if (isset($message['subscription'])) {
             $subscription = new Subscription(
                 $this->requestHandler,
+                $this->serializer,
                 $projectId,
                 $message['subscription'],
                 null,
