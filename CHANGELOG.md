@@ -1,5 +1,154 @@
 # Changelog
 
+## 0.232.0
+
+<details><summary>google/analytics-admin 0.21.0</summary>
+
+
+
+### Features
+
+* Configure PHP client to generate new surface ([#6973](https://github.com/googleapis/google-cloud-php/issues/6973)) ([b54653a](https://github.com/googleapis/google-cloud-php/commit/b54653a1bf18b6db39efe681606c7f2705634390))
+
+</details>
+
+<details><summary>google/analytics-data 0.15.0</summary>
+
+
+
+### Features
+
+* Configure PHP client to generate new surface ([#6970](https://github.com/googleapis/google-cloud-php/issues/6970)) ([daf38c2](https://github.com/googleapis/google-cloud-php/commit/daf38c2388a1496e0271c7b1ccff54471b01c4b8))
+
+</details>
+
+<details><summary>google/cloud-billing 1.9.1</summary>
+
+
+
+### Documentation
+
+* Update comments ([#6968](https://github.com/googleapis/google-cloud-php/issues/6968)) ([60ee30b](https://github.com/googleapis/google-cloud-php/commit/60ee30bc71a38c286cda7136d0903d2971d32ec1))
+
+</details>
+
+<details><summary>google/cloud-config 0.3.0</summary>
+
+
+
+### Features
+
+* Added Terraform Plan ([#6964](https://github.com/googleapis/google-cloud-php/issues/6964)) ([44c53b2](https://github.com/googleapis/google-cloud-php/commit/44c53b27fbb611a0205ba8168ed01b919bc06079))
+
+</details>
+
+<details><summary>google/cloud-core 1.53.1</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/cloud-common-protos to ^0.5 ([#6977](https://github.com/googleapis/google-cloud-php/issues/6977)) ([465766b](https://github.com/googleapis/google-cloud-php/commit/465766b606587b3d4baad23efb1df22a6aaa8a8f))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.8.1</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/cloud-common-protos to ^0.5 ([#6977](https://github.com/googleapis/google-cloud-php/issues/6977)) ([465766b](https://github.com/googleapis/google-cloud-php/commit/465766b606587b3d4baad23efb1df22a6aaa8a8f))
+
+</details>
+
+<details><summary>google/cloud-filestore 1.5.1</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/cloud-common-protos to ^0.5 ([#6977](https://github.com/googleapis/google-cloud-php/issues/6977)) ([465766b](https://github.com/googleapis/google-cloud-php/commit/465766b606587b3d4baad23efb1df22a6aaa8a8f))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.40.1</summary>
+
+
+
+### Documentation
+
+* Fix formatting due to unclosed backtick ([#6962](https://github.com/googleapis/google-cloud-php/issues/6962)) ([09facd5](https://github.com/googleapis/google-cloud-php/commit/09facd577bcd928abaa8bff629bbdb1bb42de884))
+* Improve the documentation on Document.fields ([86579e6](https://github.com/googleapis/google-cloud-php/commit/86579e6c868ba32b1f087b7e58a363ed2541bf6e))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 1.8.1</summary>
+
+
+
+### Documentation
+
+* Update comment for `AccountVerificationInfo.username` ([#6966](https://github.com/googleapis/google-cloud-php/issues/6966)) ([50b4e56](https://github.com/googleapis/google-cloud-php/commit/50b4e563acb0c08dc945d5d5f409c0c784680122))
+
+</details>
+
+<details><summary>google/cloud-securitycentermanagement 0.2.1</summary>
+
+
+
+### Documentation
+
+* Update documentation for UpdateSecurityHealthAnalyticsCustomModule update_mask field ([#6963](https://github.com/googleapis/google-cloud-php/issues/6963)) ([da477ae](https://github.com/googleapis/google-cloud-php/commit/da477ae7424bec63698de8591e90b2d62d4958e5))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.69.0</summary>
+
+
+
+### Features
+
+* Add max_commit_delay API ([#6969](https://github.com/googleapis/google-cloud-php/issues/6969)) ([e164516](https://github.com/googleapis/google-cloud-php/commit/e16451611f754808e9bfce4ccdc8de427193dcd5))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 0.12.1</summary>
+
+
+
+### Documentation
+
+* Expand comments on IpConfiguration.ssl_mode ([#6967](https://github.com/googleapis/google-cloud-php/issues/6967)) ([758ce91](https://github.com/googleapis/google-cloud-php/commit/758ce9159befac368ae13470bc9f0703e021a134))
+* Fix comment casing for CLOUD_IAM_GROUP, CLOUD_IAM_GROUP_USER, and CLOUD_IAM_GROUP_SERVICE_ACCOUNT ([758ce91](https://github.com/googleapis/google-cloud-php/commit/758ce9159befac368ae13470bc9f0703e021a134))
+
+</details>
+
+<details><summary>google/cloud-tasks 1.14.1</summary>
+
+
+
+### Bug Fixes
+
+* Remove BufferTask method which cannot be called from client libraries ([#6971](https://github.com/googleapis/google-cloud-php/issues/6971)) ([6ab845b](https://github.com/googleapis/google-cloud-php/commit/6ab845b9f329b014a31bc439b444a4ec797bf79b))
+
+</details>
+
+<details><summary>google/cloud-vmware-engine 0.5.0</summary>
+
+
+
+### Features
+
+* Adding ManagementDnsZoneBinding, DnsBindPermission, DnsForwarding, ExternalAccessRule, ExternalAddress, LoggingServer, NetworkPeering, Node and stretched PC features ([#6976](https://github.com/googleapis/google-cloud-php/issues/6976)) ([291028e](https://github.com/googleapis/google-cloud-php/commit/291028ebca29c717ea22f861c175d6e8234415d5))
+
+
+### Documentation
+
+* Clarified wording around private cloud and update cluster ([291028e](https://github.com/googleapis/google-cloud-php/commit/291028ebca29c717ea22f861c175d6e8234415d5))
+
+</details>
+
 ## 0.231.0
 
 <details><summary>google/cloud-ai-platform 0.32.0</summary>
