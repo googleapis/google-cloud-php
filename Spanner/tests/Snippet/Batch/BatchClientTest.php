@@ -17,11 +17,13 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet\Batch;
 
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\PubSub\Connection\ConnectionInterface as PubSubConnectionInterface;
 use Google\Cloud\PubSub\PubSubClient;
+use Google\Cloud\PubSub\V1\Client\PublisherClient;
+use Google\Cloud\PubSub\V1\Client\SubscriberClient;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
 use Google\Cloud\Spanner\Batch\QueryPartition;
@@ -99,31 +101,40 @@ class BatchClientTest extends SnippetTestCase
         $message2['attributes']['partition'] = $partition2->serialize();
 
         // setup pubsub service call stubs
-        $pubsub = TestHelpers::stub(PubSubClient::class);
-        $pConnection = $this->prophesize(PubSubConnectionInterface::class);
-        $pConnection->publishMessage(Argument::withEntry('messages', [$message1]))
-            ->shouldBeCalled()
-            ->will(function () use ($message2) {
-                $this->publishMessage(Argument::withEntry('messages', [$message2]))
-                    ->shouldBeCalled();
-            });
+        $pubsub = TestHelpers::stub(PubSubClient::class, [['projectId' => 'test']], ['requestHandler']);
+        $requestHandler = $this->prophesize(RequestHandler::class);
+        $requestHandler->sendRequest(
+            PublisherClient::class,
+            'publish',
+            Argument::cetera()
+        )->shouldBeCalled()
+        ->will(function () use ($requestHandler) {
+            $requestHandler->sendRequest(
+                PublisherClient::class,
+                'publish',
+                Argument::cetera()
+            )->shouldBeCalled();
+        });
 
-        $pConnection->pull(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'receivedMessages' => [
-                    [
-                        'message' => [
-                            'attributes' => [
-                                'snapshot' => $snapshotString,
-                                'partition' => $partition1->serialize()
-                            ]
+        $requestHandler->sendRequest(
+            SubscriberClient::class,
+            'pull',
+            Argument::cetera()
+        )->shouldBeCalled()
+        ->willReturn([
+            'receivedMessages' => [
+                [
+                    'message' => [
+                        'attributes' => [
+                            'snapshot' => $snapshotString,
+                            'partition' => $partition1->serialize()
                         ]
                     ]
                 ]
-            ]);
+            ]
+        ]);
 
-        $pubsub->___setProperty('connection', $pConnection->reveal());
+        $pubsub->___setProperty('requestHandler', $requestHandler->reveal());
 
         // setup spanner service call stubs
         $this->connection->partitionQuery(Argument::any())
