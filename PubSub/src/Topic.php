@@ -46,7 +46,7 @@ use Google\Cloud\PubSub\V1\UpdateTopicRequest;
  * ```
  * use Google\Cloud\PubSub\PubSubClient;
  *
- * $pubsub = new PubSubClient();
+ * $pubsub = new PubSubClient(['projectId' => 'my-awesome-project']);
  * $topic = $pubsub->topic('my-new-topic');
  * ```
  *

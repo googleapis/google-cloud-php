@@ -60,7 +60,7 @@ use InvalidArgumentException;
  * // Create subscription through a topic
  * use Google\Cloud\PubSub\PubSubClient;
  *
- * $pubsub = new PubSubClient();
+ * $pubsub = new PubSubClient(['projectId' => 'my-awesome-project']);
  *
  * $topic = $pubsub->topic('my-new-topic');
  *
@@ -71,7 +71,7 @@ use InvalidArgumentException;
  * // Create subscription through PubSubClient
  * use Google\Cloud\PubSub\PubSubClient;
  *
- * $pubsub = new PubSubClient();
+ * $pubsub = new PubSubClient(['projectId' => 'my-awesome-project']);
  *
  * $subscription = $pubsub->subscription(
  *     'my-new-subscription',

@@ -77,7 +77,7 @@ use Google\Cloud\PubSub\V1\ValidateSchemaRequest;
  * ```
  * use Google\Cloud\PubSub\PubSubClient;
  *
- * $pubsub = new PubSubClient();
+ * $pubsub = new PubSubClient(['projectId' => 'my-project']);
  * ```
  *
  * ```
@@ -88,7 +88,7 @@ use Google\Cloud\PubSub\V1\ValidateSchemaRequest;
  * // `8900` is used as an example only.
  * putenv('PUBSUB_EMULATOR_HOST=localhost:8900');
  *
- * $pubsub = new PubSubClient();
+ * $pubsub = new PubSubClient(['projectId' => 'my-project']);
  * ```
  */
 class PubSubClient

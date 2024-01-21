@@ -142,10 +142,10 @@ class BatchPublisherTest extends TestCase
 
         // The returned order of the messages should be as per the
         // $orderedMsgsCounts declared above.
-        $this->assertEquals($messages[0],$res[0]);
-        $this->assertEquals($messages[2],$res[1]);
-        $this->assertEquals($messages[1],$res[2]);
-        $this->assertEquals($messages[3],$res[3]);
+        $this->assertEquals($messages[0], $res[0]);
+        $this->assertEquals($messages[2], $res[1]);
+        $this->assertEquals($messages[1], $res[2]);
+        $this->assertEquals($messages[3], $res[3]);
     }
 
     /**

@@ -31,7 +31,7 @@ use Google\Cloud\PubSub\V1\Client\SubscriberClient;
  * ```
  * use Google\Cloud\PubSub\PubSubClient;
  *
- * $pubsub = new PubSubClient();
+ * $pubsub = new PubSubClient(['projectId' => 'my-project']);
  *
  * $snapshot = $pubsub->snapshot($snapshotName);
  * ```

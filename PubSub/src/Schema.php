@@ -43,7 +43,7 @@ use Google\Cloud\PubSub\V1\Schema\Type;
  * ```
  * use Google\Cloud\PubSub\PubSubClient;
  *
- * $client = new PubSubClient();
+ * $client = new PubSubClient(['projectId' => 'my-project']);
  * $schema = $client->schema('my-schema');
  * ```
  */
