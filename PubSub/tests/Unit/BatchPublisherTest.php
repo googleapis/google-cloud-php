@@ -18,12 +18,14 @@
 namespace Google\Cloud\PubSub\Tests\Unit;
 
 use Google\Cloud\Core\Batch\BatchRunner;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\PubSub\BatchPublisher;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Topic;
+use Google\Cloud\PubSub\V1\Client\PublisherClient;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -87,7 +89,7 @@ class BatchPublisherTest extends TestCase
         $client = TestHelpers::stub(PubSubClient::class, [
             ['suppressKeyFileNotice' => true, 'projectId' => 'example-project']
         ], [
-            'encode', 'connection'
+            'encode', 'requestHandler'
         ]);
         $client->___setProperty('encode', false);
 
@@ -95,7 +97,7 @@ class BatchPublisherTest extends TestCase
             self::TOPIC_NAME,
         ], ['client', 'topics']);
 
-        $connection = $this->prophesize(ConnectionInterface::class);
+        $requestHandler = $this->prophesize(RequestHandler::class);
 
         $messages = [
             [
@@ -112,42 +114,38 @@ class BatchPublisherTest extends TestCase
             ]
         ];
 
-        $withOrderingKey = function ($key) use ($messages) {
-            $messages = array_filter($messages, function ($message) use ($key) {
-                if ($key === '') {
-                    return !isset($message['orderingKey']);
-                }
+        $orderedMsgsCounts = [
+            [$messages[0] , $messages[2]],
+            [$messages[1]],
+            [$messages[3]]
+        ];
 
-                return isset($message['orderingKey']) && $message['orderingKey'] === $key;
-            });
+        $requestHandler->sendRequest(
+            PublisherClient::class,
+            'publish',
+            Argument::cetera()
+        )->will(function ($args) use (&$orderedMsgsCounts) {
+            return array_shift($orderedMsgsCounts);
+        });
 
-            return Argument::withEntry('messages', array_values($messages));
-        };
+        $requestHandler->sendRequest(
+            PublisherClient::class,
+            'getTopic',
+            Argument::cetera()
+        )->willReturn([
+            'name' => self::TOPIC_NAME,
+        ]);
 
-        $connection->getTopic(Argument::any())
-            ->willReturn([
-                'name' => self::TOPIC_NAME,
-            ]);
-
-        $connection->publishMessage($withOrderingKey('a'))
-            ->will(function ($args) use ($withOrderingKey) {
-                $this->publishMessage($withOrderingKey('b'))
-                    ->will(function ($args) use ($withOrderingKey) {
-                        $this->publishMessage($withOrderingKey(''))
-                            ->will(function ($args) {
-                                return array_fill(0, count($args[0]['messages']), 1);
-                            });
-
-                        return array_fill(0, count($args[0]['messages']), 1);
-                    });
-
-                return array_fill(0, count($args[0]['messages']), 1);
-            });
-
-        $client->___setProperty('connection', $connection->reveal());
+        $client->___setProperty('requestHandler', $requestHandler->reveal());
         $publisher->___setProperty('client', $client);
         $res = $publisher->publishDeferred($messages);
-        $this->assertEquals(array_fill(0, count($messages), 1), $res);
+
+        // The returned order of the messages should be as per the
+        // $orderedMsgsCounts declared above.
+        $this->assertEquals($messages[0],$res[0]);
+        $this->assertEquals($messages[2],$res[1]);
+        $this->assertEquals($messages[1],$res[2]);
+        $this->assertEquals($messages[3],$res[3]);
     }
 
     /**
@@ -162,7 +160,7 @@ class BatchPublisherTest extends TestCase
         $client = TestHelpers::stub(PubSubClient::class, [
             ['suppressKeyFileNotice' => true, 'projectId' => 'example-project']
         ], [
-            'encode', 'connection'
+            'encode', 'requestHandler'
         ]);
         $client->___setProperty('encode', false);
 
@@ -174,34 +172,19 @@ class BatchPublisherTest extends TestCase
             ]
         ], ['client', 'topics']);
 
-        $connection = $this->prophesize(ConnectionInterface::class);
+        $requestHandler = $this->prophesize(RequestHandler::class);
 
         $messages = [[
             'data' => 'foo'
         ]];
 
-        $connection->publishMessage(Argument::that(
-            function ($args) use (
-                $processedEnableCompression,
-                $processedCompressionBytesThreshold
-            ) {
-                $result = is_array($args) &&
-                    array_key_exists('messages', $args) &&
-                    array_key_exists('topic', $args) &&
-                    array_key_exists('compressionOptions', $args);
+        $requestHandler->sendRequest(
+            PublisherClient::class,
+            'publish',
+            Argument::cetera()
+        )->shouldBeCalled(1)->willReturn([]);
 
-                if ($result &&
-                    ($args['compressionOptions']['enableCompression'] === $processedEnableCompression) &&
-                    ($args['compressionOptions']['compressionBytesThreshold'] === $processedCompressionBytesThreshold)
-                ) {
-                    return true;
-                }
-
-                return false;
-            }
-        ))->shouldBeCalled(1)->willReturn([]);
-
-        $client->___setProperty('connection', $connection->reveal());
+        $client->___setProperty('requestHandler', $requestHandler->reveal());
         $publisher->___setProperty('client', $client);
         $publisher->publishDeferred($messages);
     }

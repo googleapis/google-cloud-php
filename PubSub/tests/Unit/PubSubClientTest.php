@@ -180,7 +180,7 @@ class PubSubClientTest extends TestCase
                     return true;
                 })
             )
-        )   
+        )
         ->willReturn([
             'topics' => $topicResult,
             'nextPageToken' => 'foo'

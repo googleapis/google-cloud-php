@@ -181,8 +181,7 @@ class PubSubClient
             'emulatorHost' => $emulatorHost
         ];
 
-        $this->configureAuthentication($config);
-
+        $this->projectId = $this->detectProjectId($config);
         $this->clientConfig = $config;
         $this->serializer = new Serializer([
             'publish_time' => function ($v) {
