@@ -53,12 +53,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Billing\Budgets\V1\BudgetServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createBudgetAsync(CreateBudgetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteBudgetAsync(DeleteBudgetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getBudgetAsync(GetBudgetRequest $request, array $optionalArgs = [])
@@ -73,8 +67,15 @@ final class BudgetServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.billing.budgets.v1.BudgetService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'billingbudgets.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'billingbudgets.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -242,6 +243,8 @@ final class BudgetServiceClient
      *
      * The async variant is {@see BudgetServiceClient::createBudgetAsync()} .
      *
+     * @example samples/V1/BudgetServiceClient/create_budget.php
+     *
      * @param CreateBudgetRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -265,6 +268,8 @@ final class BudgetServiceClient
      * Deletes a budget. Returns successfully if already deleted.
      *
      * The async variant is {@see BudgetServiceClient::deleteBudgetAsync()} .
+     *
+     * @example samples/V1/BudgetServiceClient/delete_budget.php
      *
      * @param DeleteBudgetRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -292,6 +297,8 @@ final class BudgetServiceClient
      * in the Cloud Console.
      *
      * The async variant is {@see BudgetServiceClient::getBudgetAsync()} .
+     *
+     * @example samples/V1/BudgetServiceClient/get_budget.php
      *
      * @param GetBudgetRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -322,6 +329,8 @@ final class BudgetServiceClient
      *
      * The async variant is {@see BudgetServiceClient::listBudgetsAsync()} .
      *
+     * @example samples/V1/BudgetServiceClient/list_budgets.php
+     *
      * @param ListBudgetsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -349,6 +358,8 @@ final class BudgetServiceClient
      * this API will not be changed by this method.
      *
      * The async variant is {@see BudgetServiceClient::updateBudgetAsync()} .
+     *
+     * @example samples/V1/BudgetServiceClient/update_budget.php
      *
      * @param UpdateBudgetRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {

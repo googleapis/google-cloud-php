@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START appengine_v1_generated_Applications_GetApplication_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\AppEngine\V1\Application;
-use Google\Cloud\AppEngine\V1\ApplicationsClient;
+use Google\Cloud\AppEngine\V1\Client\ApplicationsClient;
+use Google\Cloud\AppEngine\V1\GetApplicationRequest;
 
 /**
  * Gets information about an application.
@@ -41,10 +42,13 @@ function get_application_sample(): void
     // Create a client.
     $applicationsClient = new ApplicationsClient();
 
+    // Prepare the request message.
+    $request = new GetApplicationRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var Application $response */
-        $response = $applicationsClient->getApplication();
+        $response = $applicationsClient->getApplication($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

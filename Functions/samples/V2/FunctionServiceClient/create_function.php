@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudfunctions_v2_generated_FunctionService_CreateFunction_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Functions\V2\FunctionServiceClient;
+use Google\Cloud\Functions\V2\Client\FunctionServiceClient;
+use Google\Cloud\Functions\V2\CreateFunctionRequest;
 use Google\Cloud\Functions\V2\PBFunction;
 use Google\Rpc\Status;
 
@@ -43,13 +44,16 @@ function create_function_sample(string $formattedParent): void
     // Create a client.
     $functionServiceClient = new FunctionServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $function = new PBFunction();
+    $request = (new CreateFunctionRequest())
+        ->setParent($formattedParent)
+        ->setFunction($function);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $functionServiceClient->createFunction($formattedParent, $function);
+        $response = $functionServiceClient->createFunction($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

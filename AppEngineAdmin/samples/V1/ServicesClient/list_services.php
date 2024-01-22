@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START appengine_v1_generated_Services_ListServices_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\AppEngine\V1\Client\ServicesClient;
+use Google\Cloud\AppEngine\V1\ListServicesRequest;
 use Google\Cloud\AppEngine\V1\Service;
-use Google\Cloud\AppEngine\V1\ServicesClient;
 
 /**
  * Lists all the services in the application.
@@ -42,10 +43,13 @@ function list_services_sample(): void
     // Create a client.
     $servicesClient = new ServicesClient();
 
+    // Prepare the request message.
+    $request = new ListServicesRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $servicesClient->listServices();
+        $response = $servicesClient->listServices($request);
 
         /** @var Service $element */
         foreach ($response as $element) {

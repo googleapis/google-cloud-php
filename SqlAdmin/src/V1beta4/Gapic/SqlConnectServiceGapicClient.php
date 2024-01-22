@@ -57,6 +57,8 @@ use Google\Protobuf\Timestamp;
  * ```
  *
  * @experimental
+ *
+ * @deprecated This class will be removed in the next major version update.
  */
 class SqlConnectServiceGapicClient
 {
@@ -65,8 +67,15 @@ class SqlConnectServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.sql.v1beta4.SqlConnectService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'sqladmin.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'sqladmin.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START logging_v2_generated_ConfigServiceV2_CreateSink_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Logging\V2\ConfigServiceV2Client;
+use Google\Cloud\Logging\V2\Client\ConfigServiceV2Client;
+use Google\Cloud\Logging\V2\CreateSinkRequest;
 use Google\Cloud\Logging\V2\LogSink;
 
 /**
@@ -71,15 +72,18 @@ function create_sink_sample(
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $sink = (new LogSink())
         ->setName($sinkName)
         ->setDestination($sinkDestination);
+    $request = (new CreateSinkRequest())
+        ->setParent($formattedParent)
+        ->setSink($sink);
 
     // Call the API and handle any network failures.
     try {
         /** @var LogSink $response */
-        $response = $configServiceV2Client->createSink($formattedParent, $sink);
+        $response = $configServiceV2Client->createSink($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

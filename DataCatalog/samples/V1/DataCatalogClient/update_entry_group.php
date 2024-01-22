@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datacatalog_v1_generated_DataCatalog_UpdateEntryGroup_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\DataCatalog\V1\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\Client\DataCatalogClient;
 use Google\Cloud\DataCatalog\V1\EntryGroup;
+use Google\Cloud\DataCatalog\V1\UpdateEntryGroupRequest;
 
 /**
  * Updates an entry group.
@@ -46,13 +47,15 @@ function update_entry_group_sample(): void
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $entryGroup = new EntryGroup();
+    $request = (new UpdateEntryGroupRequest())
+        ->setEntryGroup($entryGroup);
 
     // Call the API and handle any network failures.
     try {
         /** @var EntryGroup $response */
-        $response = $dataCatalogClient->updateEntryGroup($entryGroup);
+        $response = $dataCatalogClient->updateEntryGroup($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

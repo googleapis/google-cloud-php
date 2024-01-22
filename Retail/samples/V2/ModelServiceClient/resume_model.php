@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START retail_v2_generated_ModelService_ResumeModel_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Retail\V2\Client\ModelServiceClient;
 use Google\Cloud\Retail\V2\Model;
-use Google\Cloud\Retail\V2\ModelServiceClient;
+use Google\Cloud\Retail\V2\ResumeModelRequest;
 
 /**
  * Resumes the training of an existing model.
@@ -39,10 +40,14 @@ function resume_model_sample(string $name): void
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
+    // Prepare the request message.
+    $request = (new ResumeModelRequest())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
         /** @var Model $response */
-        $response = $modelServiceClient->resumeModel($name);
+        $response = $modelServiceClient->resumeModel($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

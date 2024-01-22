@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START appengine_v1_generated_Firewall_DeleteIngressRule_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AppEngine\V1\FirewallClient;
+use Google\Cloud\AppEngine\V1\Client\FirewallClient;
+use Google\Cloud\AppEngine\V1\DeleteIngressRuleRequest;
 
 /**
  * Deletes the specified firewall rule.
@@ -40,9 +41,12 @@ function delete_ingress_rule_sample(): void
     // Create a client.
     $firewallClient = new FirewallClient();
 
+    // Prepare the request message.
+    $request = new DeleteIngressRuleRequest();
+
     // Call the API and handle any network failures.
     try {
-        $firewallClient->deleteIngressRule();
+        $firewallClient->deleteIngressRule($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

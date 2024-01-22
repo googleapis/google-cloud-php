@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START servicedirectory_v1_generated_RegistrationService_CreateNamespace_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\ServiceDirectory\V1\Client\RegistrationServiceClient;
+use Google\Cloud\ServiceDirectory\V1\CreateNamespaceRequest;
 use Google\Cloud\ServiceDirectory\V1\PBNamespace;
-use Google\Cloud\ServiceDirectory\V1\RegistrationServiceClient;
 
 /**
  * Creates a namespace, and returns the new namespace.
@@ -46,13 +47,17 @@ function create_namespace_sample(string $formattedParent, string $namespaceId): 
     // Create a client.
     $registrationServiceClient = new RegistrationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $namespace = new PBNamespace();
+    $request = (new CreateNamespaceRequest())
+        ->setParent($formattedParent)
+        ->setNamespaceId($namespaceId)
+        ->setNamespace($namespace);
 
     // Call the API and handle any network failures.
     try {
         /** @var PBNamespace $response */
-        $response = $registrationServiceClient->createNamespace($formattedParent, $namespaceId, $namespace);
+        $response = $registrationServiceClient->createNamespace($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

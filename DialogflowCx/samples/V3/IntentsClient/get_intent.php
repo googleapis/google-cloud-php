@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_Intents_GetIntent_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\Cx\V3\Client\IntentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\GetIntentRequest;
 use Google\Cloud\Dialogflow\Cx\V3\Intent;
-use Google\Cloud\Dialogflow\Cx\V3\IntentsClient;
 
 /**
  * Retrieves the specified intent.
@@ -40,10 +41,14 @@ function get_intent_sample(string $formattedName): void
     // Create a client.
     $intentsClient = new IntentsClient();
 
+    // Prepare the request message.
+    $request = (new GetIntentRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Intent $response */
-        $response = $intentsClient->getIntent($formattedName);
+        $response = $intentsClient->getIntent($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

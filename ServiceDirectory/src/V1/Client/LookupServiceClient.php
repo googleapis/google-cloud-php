@@ -51,12 +51,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\ServiceDirectory\V1\LookupServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface resolveServiceAsync(ResolveServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -69,8 +63,15 @@ final class LookupServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.servicedirectory.v1.LookupService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'servicedirectory.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'servicedirectory.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -225,6 +226,8 @@ final class LookupServiceClient
      *
      * The async variant is {@see LookupServiceClient::resolveServiceAsync()} .
      *
+     * @example samples/V1/LookupServiceClient/resolve_service.php
+     *
      * @param ResolveServiceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -249,6 +252,8 @@ final class LookupServiceClient
      *
      * The async variant is {@see LookupServiceClient::getLocationAsync()} .
      *
+     * @example samples/V1/LookupServiceClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -272,6 +277,8 @@ final class LookupServiceClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see LookupServiceClient::listLocationsAsync()} .
+     *
+     * @example samples/V1/LookupServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Channel\V1\BillableSku;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\ListSkuGroupBillableSkusRequest;
 
 /**
  * Lists the Billable SKUs in a given SKU group.
@@ -58,10 +59,14 @@ function list_sku_group_billable_skus_sample(string $formattedParent): void
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListSkuGroupBillableSkusRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudChannelServiceClient->listSkuGroupBillableSkus($formattedParent);
+        $response = $cloudChannelServiceClient->listSkuGroupBillableSkus($request);
 
         /** @var BillableSku $element */
         foreach ($response as $element) {

@@ -26,8 +26,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Retail\V2\BigQuerySource;
+use Google\Cloud\Retail\V2\Client\CompletionServiceClient;
 use Google\Cloud\Retail\V2\CompletionDataInputConfig;
-use Google\Cloud\Retail\V2\CompletionServiceClient;
+use Google\Cloud\Retail\V2\ImportCompletionDataRequest;
 use Google\Cloud\Retail\V2\ImportCompletionDataResponse;
 use Google\Rpc\Status;
 
@@ -59,17 +60,20 @@ function import_completion_data_sample(
     // Create a client.
     $completionServiceClient = new CompletionServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $inputConfigBigQuerySource = (new BigQuerySource())
         ->setDatasetId($inputConfigBigQuerySourceDatasetId)
         ->setTableId($inputConfigBigQuerySourceTableId);
     $inputConfig = (new CompletionDataInputConfig())
         ->setBigQuerySource($inputConfigBigQuerySource);
+    $request = (new ImportCompletionDataRequest())
+        ->setParent($formattedParent)
+        ->setInputConfig($inputConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $completionServiceClient->importCompletionData($formattedParent, $inputConfig);
+        $response = $completionServiceClient->importCompletionData($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

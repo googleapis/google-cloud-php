@@ -10,6 +10,11 @@
                 "grpc": {
                     "libraryClient": "TranslationServiceGapicClient",
                     "rpcs": {
+                        "AdaptiveMtTranslate": {
+                            "methods": [
+                                "adaptiveMtTranslate"
+                            ]
+                        },
                         "BatchTranslateDocument": {
                             "methods": [
                                 "batchTranslateDocument"
@@ -20,9 +25,24 @@
                                 "batchTranslateText"
                             ]
                         },
+                        "CreateAdaptiveMtDataset": {
+                            "methods": [
+                                "createAdaptiveMtDataset"
+                            ]
+                        },
                         "CreateGlossary": {
                             "methods": [
                                 "createGlossary"
+                            ]
+                        },
+                        "DeleteAdaptiveMtDataset": {
+                            "methods": [
+                                "deleteAdaptiveMtDataset"
+                            ]
+                        },
+                        "DeleteAdaptiveMtFile": {
+                            "methods": [
+                                "deleteAdaptiveMtFile"
                             ]
                         },
                         "DeleteGlossary": {
@@ -35,6 +55,16 @@
                                 "detectLanguage"
                             ]
                         },
+                        "GetAdaptiveMtDataset": {
+                            "methods": [
+                                "getAdaptiveMtDataset"
+                            ]
+                        },
+                        "GetAdaptiveMtFile": {
+                            "methods": [
+                                "getAdaptiveMtFile"
+                            ]
+                        },
                         "GetGlossary": {
                             "methods": [
                                 "getGlossary"
@@ -43,6 +73,26 @@
                         "GetSupportedLanguages": {
                             "methods": [
                                 "getSupportedLanguages"
+                            ]
+                        },
+                        "ImportAdaptiveMtFile": {
+                            "methods": [
+                                "importAdaptiveMtFile"
+                            ]
+                        },
+                        "ListAdaptiveMtDatasets": {
+                            "methods": [
+                                "listAdaptiveMtDatasets"
+                            ]
+                        },
+                        "ListAdaptiveMtFiles": {
+                            "methods": [
+                                "listAdaptiveMtFiles"
+                            ]
+                        },
+                        "ListAdaptiveMtSentences": {
+                            "methods": [
+                                "listAdaptiveMtSentences"
                             ]
                         },
                         "ListGlossaries": {

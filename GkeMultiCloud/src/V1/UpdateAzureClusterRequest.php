@@ -38,6 +38,7 @@ class UpdateAzureClusterRequest extends \Google\Protobuf\Internal\Message
      *  *   `control_plane.vm_size`.
      *  *   `annotations`.
      *  *   `authorization.admin_users`.
+     *  *   `authorization.admin_groups`.
      *  *   `control_plane.root_volume.size_gib`.
      *  *   `azure_services_authentication`.
      *  *   `azure_services_authentication.tenant_id`.
@@ -66,6 +67,7 @@ class UpdateAzureClusterRequest extends \Google\Protobuf\Internal\Message
      *                                                                  *   `control_plane.vm_size`.
      *                                                                  *   `annotations`.
      *                                                                  *   `authorization.admin_users`.
+     *                                                                  *   `authorization.admin_groups`.
      *                                                                  *   `control_plane.root_volume.size_gib`.
      *                                                                  *   `azure_services_authentication`.
      *                                                                  *   `azure_services_authentication.tenant_id`.
@@ -109,6 +111,7 @@ class UpdateAzureClusterRequest extends \Google\Protobuf\Internal\Message
      *            *   `control_plane.vm_size`.
      *            *   `annotations`.
      *            *   `authorization.admin_users`.
+     *            *   `authorization.admin_groups`.
      *            *   `control_plane.root_volume.size_gib`.
      *            *   `azure_services_authentication`.
      *            *   `azure_services_authentication.tenant_id`.
@@ -200,6 +203,7 @@ class UpdateAzureClusterRequest extends \Google\Protobuf\Internal\Message
      *  *   `control_plane.vm_size`.
      *  *   `annotations`.
      *  *   `authorization.admin_users`.
+     *  *   `authorization.admin_groups`.
      *  *   `control_plane.root_volume.size_gib`.
      *  *   `azure_services_authentication`.
      *  *   `azure_services_authentication.tenant_id`.
@@ -239,6 +243,7 @@ class UpdateAzureClusterRequest extends \Google\Protobuf\Internal\Message
      *  *   `control_plane.vm_size`.
      *  *   `annotations`.
      *  *   `authorization.admin_users`.
+     *  *   `authorization.admin_groups`.
      *  *   `control_plane.root_volume.size_gib`.
      *  *   `azure_services_authentication`.
      *  *   `azure_services_authentication.tenant_id`.

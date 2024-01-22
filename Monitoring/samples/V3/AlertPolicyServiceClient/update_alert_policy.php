@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START monitoring_v3_generated_AlertPolicyService_UpdateAlertPolicy_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Monitoring\V3\AlertPolicy;
-use Google\Cloud\Monitoring\V3\AlertPolicyServiceClient;
+use Google\Cloud\Monitoring\V3\Client\AlertPolicyServiceClient;
+use Google\Cloud\Monitoring\V3\UpdateAlertPolicyRequest;
 
 /**
  * Updates an alerting policy. You can either replace the entire policy with
@@ -48,13 +49,15 @@ function update_alert_policy_sample(): void
     // Create a client.
     $alertPolicyServiceClient = new AlertPolicyServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $alertPolicy = new AlertPolicy();
+    $request = (new UpdateAlertPolicyRequest())
+        ->setAlertPolicy($alertPolicy);
 
     // Call the API and handle any network failures.
     try {
         /** @var AlertPolicy $response */
-        $response = $alertPolicyServiceClient->updateAlertPolicy($alertPolicy);
+        $response = $alertPolicyServiceClient->updateAlertPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

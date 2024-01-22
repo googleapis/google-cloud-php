@@ -31,6 +31,22 @@ class UpdateAgentRequest extends \Google\Protobuf\Internal\Message
     protected $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Agent $agent      Required. The agent to update.
+     * @param \Google\Protobuf\FieldMask           $updateMask The mask to control which fields get updated. If the mask is not present,
+     *                                                         all fields will be updated.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\UpdateAgentRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\Cx\V3\Agent $agent, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setAgent($agent)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

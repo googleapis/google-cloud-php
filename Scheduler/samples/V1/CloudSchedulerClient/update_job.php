@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudscheduler_v1_generated_CloudScheduler_UpdateJob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Scheduler\V1\CloudSchedulerClient;
+use Google\Cloud\Scheduler\V1\Client\CloudSchedulerClient;
 use Google\Cloud\Scheduler\V1\Job;
+use Google\Cloud\Scheduler\V1\UpdateJobRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -51,14 +52,17 @@ function update_job_sample(): void
     // Create a client.
     $cloudSchedulerClient = new CloudSchedulerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $job = new Job();
     $updateMask = new FieldMask();
+    $request = (new UpdateJobRequest())
+        ->setJob($job)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var Job $response */
-        $response = $cloudSchedulerClient->updateJob($job, $updateMask);
+        $response = $cloudSchedulerClient->updateJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

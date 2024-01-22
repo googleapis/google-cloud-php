@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START file_v1_generated_CloudFilestoreManager_RevertInstance_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Filestore\V1\CloudFilestoreManagerClient;
+use Google\Cloud\Filestore\V1\Client\CloudFilestoreManagerClient;
 use Google\Cloud\Filestore\V1\Instance;
+use Google\Cloud\Filestore\V1\RevertInstanceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -45,10 +46,15 @@ function revert_instance_sample(string $formattedName, string $targetSnapshotId)
     // Create a client.
     $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
 
+    // Prepare the request message.
+    $request = (new RevertInstanceRequest())
+        ->setName($formattedName)
+        ->setTargetSnapshotId($targetSnapshotId);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudFilestoreManagerClient->revertInstance($formattedName, $targetSnapshotId);
+        $response = $cloudFilestoreManagerClient->revertInstance($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datacatalog_v1_generated_DataCatalog_DeleteEntry_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\DataCatalog\V1\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\Client\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\DeleteEntryRequest;
 
 /**
  * Deletes an existing entry.
@@ -46,9 +47,13 @@ function delete_entry_sample(string $formattedName): void
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
+    // Prepare the request message.
+    $request = (new DeleteEntryRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $dataCatalogClient->deleteEntry($formattedName);
+        $dataCatalogClient->deleteEntry($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

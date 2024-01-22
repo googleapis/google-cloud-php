@@ -23,8 +23,9 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_ApproveDisplayVideo360AdvertiserLinkProposal_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\ApproveDisplayVideo360AdvertiserLinkProposalRequest;
 use Google\Analytics\Admin\V1alpha\ApproveDisplayVideo360AdvertiserLinkProposalResponse;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\ApiCore\ApiException;
 
 /**
@@ -41,12 +42,14 @@ function approve_display_video360_advertiser_link_proposal_sample(string $format
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
+    // Prepare the request message.
+    $request = (new ApproveDisplayVideo360AdvertiserLinkProposalRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var ApproveDisplayVideo360AdvertiserLinkProposalResponse $response */
-        $response = $analyticsAdminServiceClient->approveDisplayVideo360AdvertiserLinkProposal(
-            $formattedName
-        );
+        $response = $analyticsAdminServiceClient->approveDisplayVideo360AdvertiserLinkProposal($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

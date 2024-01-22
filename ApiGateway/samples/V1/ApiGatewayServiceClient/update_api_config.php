@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\ApiGateway\V1\ApiConfig;
-use Google\Cloud\ApiGateway\V1\ApiGatewayServiceClient;
+use Google\Cloud\ApiGateway\V1\Client\ApiGatewayServiceClient;
+use Google\Cloud\ApiGateway\V1\UpdateApiConfigRequest;
 use Google\Rpc\Status;
 
 /**
@@ -43,13 +44,15 @@ function update_api_config_sample(): void
     // Create a client.
     $apiGatewayServiceClient = new ApiGatewayServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $apiConfig = new ApiConfig();
+    $request = (new UpdateApiConfigRequest())
+        ->setApiConfig($apiConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $apiGatewayServiceClient->updateApiConfig($apiConfig);
+        $response = $apiGatewayServiceClient->updateApiConfig($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

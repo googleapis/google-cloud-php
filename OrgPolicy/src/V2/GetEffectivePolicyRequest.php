@@ -17,14 +17,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetEffectivePolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The effective policy to compute. See `Policy` for naming rules.
+     * Required. The effective policy to compute. See
+     * [Policy][google.cloud.orgpolicy.v2.Policy] for naming requirements.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
     /**
-     * @param string $name Required. The effective policy to compute. See `Policy` for naming rules. Please see
+     * @param string $name Required. The effective policy to compute. See
+     *                     [Policy][google.cloud.orgpolicy.v2.Policy] for naming requirements. Please see
      *                     {@see OrgPolicyClient::policyName()} for help formatting this field.
      *
      * @return \Google\Cloud\OrgPolicy\V2\GetEffectivePolicyRequest
@@ -44,7 +46,8 @@ class GetEffectivePolicyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The effective policy to compute. See `Policy` for naming rules.
+     *           Required. The effective policy to compute. See
+     *           [Policy][google.cloud.orgpolicy.v2.Policy] for naming requirements.
      * }
      */
     public function __construct($data = NULL) {
@@ -53,7 +56,8 @@ class GetEffectivePolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The effective policy to compute. See `Policy` for naming rules.
+     * Required. The effective policy to compute. See
+     * [Policy][google.cloud.orgpolicy.v2.Policy] for naming requirements.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -64,7 +68,8 @@ class GetEffectivePolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The effective policy to compute. See `Policy` for naming rules.
+     * Required. The effective policy to compute. See
+     * [Policy][google.cloud.orgpolicy.v2.Policy] for naming requirements.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

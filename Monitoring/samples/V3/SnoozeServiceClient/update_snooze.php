@@ -24,10 +24,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START monitoring_v3_generated_SnoozeService_UpdateSnooze_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Monitoring\V3\Client\SnoozeServiceClient;
 use Google\Cloud\Monitoring\V3\Snooze;
-use Google\Cloud\Monitoring\V3\SnoozeServiceClient;
 use Google\Cloud\Monitoring\V3\Snooze\Criteria;
 use Google\Cloud\Monitoring\V3\TimeInterval;
+use Google\Cloud\Monitoring\V3\UpdateSnoozeRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -47,7 +48,7 @@ function update_snooze_sample(string $snoozeName, string $snoozeDisplayName): vo
     // Create a client.
     $snoozeServiceClient = new SnoozeServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $snoozeCriteria = new Criteria();
     $snoozeInterval = new TimeInterval();
     $snooze = (new Snooze())
@@ -56,11 +57,14 @@ function update_snooze_sample(string $snoozeName, string $snoozeDisplayName): vo
         ->setInterval($snoozeInterval)
         ->setDisplayName($snoozeDisplayName);
     $updateMask = new FieldMask();
+    $request = (new UpdateSnoozeRequest())
+        ->setSnooze($snooze)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var Snooze $response */
-        $response = $snoozeServiceClient->updateSnooze($snooze, $updateMask);
+        $response = $snoozeServiceClient->updateSnooze($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

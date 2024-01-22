@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_KnowledgeBases_GetKnowledgeBase_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\V2\Client\KnowledgeBasesClient;
+use Google\Cloud\Dialogflow\V2\GetKnowledgeBaseRequest;
 use Google\Cloud\Dialogflow\V2\KnowledgeBase;
-use Google\Cloud\Dialogflow\V2\KnowledgeBasesClient;
 
 /**
  * Retrieves the specified knowledge base.
@@ -40,10 +41,14 @@ function get_knowledge_base_sample(string $formattedName): void
     // Create a client.
     $knowledgeBasesClient = new KnowledgeBasesClient();
 
+    // Prepare the request message.
+    $request = (new GetKnowledgeBaseRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var KnowledgeBase $response */
-        $response = $knowledgeBasesClient->getKnowledgeBase($formattedName);
+        $response = $knowledgeBasesClient->getKnowledgeBase($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

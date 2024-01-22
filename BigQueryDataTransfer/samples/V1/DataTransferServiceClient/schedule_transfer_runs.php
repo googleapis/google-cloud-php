@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START bigquerydatatransfer_v1_generated_DataTransferService_ScheduleTransferRuns_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\BigQuery\DataTransfer\V1\DataTransferServiceClient;
+use Google\Cloud\BigQuery\DataTransfer\V1\Client\DataTransferServiceClient;
+use Google\Cloud\BigQuery\DataTransfer\V1\ScheduleTransferRunsRequest;
 use Google\Cloud\BigQuery\DataTransfer\V1\ScheduleTransferRunsResponse;
 use Google\Protobuf\Timestamp;
 
@@ -45,18 +46,18 @@ function schedule_transfer_runs_sample(string $formattedParent): void
     // Create a client.
     $dataTransferServiceClient = new DataTransferServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $startTime = new Timestamp();
     $endTime = new Timestamp();
+    $request = (new ScheduleTransferRunsRequest())
+        ->setParent($formattedParent)
+        ->setStartTime($startTime)
+        ->setEndTime($endTime);
 
     // Call the API and handle any network failures.
     try {
         /** @var ScheduleTransferRunsResponse $response */
-        $response = $dataTransferServiceClient->scheduleTransferRuns(
-            $formattedParent,
-            $startTime,
-            $endTime
-        );
+        $response = $dataTransferServiceClient->scheduleTransferRuns($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

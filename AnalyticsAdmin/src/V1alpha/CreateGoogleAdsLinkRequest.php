@@ -29,6 +29,22 @@ class CreateGoogleAdsLinkRequest extends \Google\Protobuf\Internal\Message
     private $google_ads_link = null;
 
     /**
+     * @param string                                        $parent        Required. Example format: properties/1234
+     *                                                                     Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
+     * @param \Google\Analytics\Admin\V1alpha\GoogleAdsLink $googleAdsLink Required. The GoogleAdsLink to create.
+     *
+     * @return \Google\Analytics\Admin\V1alpha\CreateGoogleAdsLinkRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Analytics\Admin\V1alpha\GoogleAdsLink $googleAdsLink): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setGoogleAdsLink($googleAdsLink);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

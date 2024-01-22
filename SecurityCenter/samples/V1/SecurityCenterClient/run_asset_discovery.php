@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START securitycenter_v1_generated_SecurityCenter_RunAssetDiscovery_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\RunAssetDiscoveryRequest;
 use Google\Cloud\SecurityCenter\V1\RunAssetDiscoveryResponse;
-use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
 use Google\Rpc\Status;
 
 /**
@@ -46,10 +47,14 @@ function run_asset_discovery_sample(string $formattedParent): void
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
+    // Prepare the request message.
+    $request = (new RunAssetDiscoveryRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $securityCenterClient->runAssetDiscovery($formattedParent);
+        $response = $securityCenterClient->runAssetDiscovery($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

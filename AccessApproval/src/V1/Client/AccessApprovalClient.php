@@ -90,12 +90,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\AccessApproval\V1\AccessApprovalClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface approveApprovalRequestAsync(ApproveApprovalRequestMessage $request, array $optionalArgs = [])
  * @method PromiseInterface deleteAccessApprovalSettingsAsync(DeleteAccessApprovalSettingsMessage $request, array $optionalArgs = [])
  * @method PromiseInterface dismissApprovalRequestAsync(DismissApprovalRequestMessage $request, array $optionalArgs = [])
@@ -114,8 +108,15 @@ final class AccessApprovalClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.accessapproval.v1.AccessApproval';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'accessapproval.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'accessapproval.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -434,6 +435,8 @@ final class AccessApprovalClient
      * The async variant is {@see AccessApprovalClient::approveApprovalRequestAsync()}
      * .
      *
+     * @example samples/V1/AccessApprovalClient/approve_approval_request.php
+     *
      * @param ApproveApprovalRequestMessage $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -463,6 +466,8 @@ final class AccessApprovalClient
      *
      * The async variant is
      * {@see AccessApprovalClient::deleteAccessApprovalSettingsAsync()} .
+     *
+     * @example samples/V1/AccessApprovalClient/delete_access_approval_settings.php
      *
      * @param DeleteAccessApprovalSettingsMessage $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -496,6 +501,8 @@ final class AccessApprovalClient
      * The async variant is {@see AccessApprovalClient::dismissApprovalRequestAsync()}
      * .
      *
+     * @example samples/V1/AccessApprovalClient/dismiss_approval_request.php
+     *
      * @param DismissApprovalRequestMessage $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -522,6 +529,8 @@ final class AccessApprovalClient
      * The async variant is
      * {@see AccessApprovalClient::getAccessApprovalServiceAccountAsync()} .
      *
+     * @example samples/V1/AccessApprovalClient/get_access_approval_service_account.php
+     *
      * @param GetAccessApprovalServiceAccountMessage $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -547,6 +556,8 @@ final class AccessApprovalClient
      * The async variant is
      * {@see AccessApprovalClient::getAccessApprovalSettingsAsync()} .
      *
+     * @example samples/V1/AccessApprovalClient/get_access_approval_settings.php
+     *
      * @param GetAccessApprovalSettingsMessage $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -570,6 +581,8 @@ final class AccessApprovalClient
      * Gets an approval request. Returns NOT_FOUND if the request does not exist.
      *
      * The async variant is {@see AccessApprovalClient::getApprovalRequestAsync()} .
+     *
+     * @example samples/V1/AccessApprovalClient/get_approval_request.php
      *
      * @param GetApprovalRequestMessage $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -603,6 +616,8 @@ final class AccessApprovalClient
      * The async variant is
      * {@see AccessApprovalClient::invalidateApprovalRequestAsync()} .
      *
+     * @example samples/V1/AccessApprovalClient/invalidate_approval_request.php
+     *
      * @param InvalidateApprovalRequestMessage $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -629,6 +644,8 @@ final class AccessApprovalClient
      *
      * The async variant is {@see AccessApprovalClient::listApprovalRequestsAsync()} .
      *
+     * @example samples/V1/AccessApprovalClient/list_approval_requests.php
+     *
      * @param ListApprovalRequestsMessage $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -654,6 +671,8 @@ final class AccessApprovalClient
      *
      * The async variant is
      * {@see AccessApprovalClient::updateAccessApprovalSettingsAsync()} .
+     *
+     * @example samples/V1/AccessApprovalClient/update_access_approval_settings.php
      *
      * @param UpdateAccessApprovalSettingsMessage $request     A request to house fields associated with the call.
      * @param array                               $callOptions {

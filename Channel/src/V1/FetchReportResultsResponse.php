@@ -13,6 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults].
  * Contains a tabular representation of the report results.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.channel.v1.FetchReportResultsResponse</code>
  */
 class FetchReportResultsResponse extends \Google\Protobuf\Internal\Message

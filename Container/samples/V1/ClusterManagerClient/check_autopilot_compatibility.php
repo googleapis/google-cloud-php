@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START container_v1_generated_ClusterManager_CheckAutopilotCompatibility_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Container\V1\CheckAutopilotCompatibilityRequest;
 use Google\Cloud\Container\V1\CheckAutopilotCompatibilityResponse;
-use Google\Cloud\Container\V1\ClusterManagerClient;
+use Google\Cloud\Container\V1\Client\ClusterManagerClient;
 
 /**
  * Checks the cluster compatibility with Autopilot mode, and returns a list of
@@ -42,10 +43,13 @@ function check_autopilot_compatibility_sample(): void
     // Create a client.
     $clusterManagerClient = new ClusterManagerClient();
 
+    // Prepare the request message.
+    $request = new CheckAutopilotCompatibilityRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var CheckAutopilotCompatibilityResponse $response */
-        $response = $clusterManagerClient->checkAutopilotCompatibility();
+        $response = $clusterManagerClient->checkAutopilotCompatibility($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

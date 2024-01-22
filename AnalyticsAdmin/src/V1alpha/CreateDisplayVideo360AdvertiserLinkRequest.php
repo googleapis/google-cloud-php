@@ -29,6 +29,22 @@ class CreateDisplayVideo360AdvertiserLinkRequest extends \Google\Protobuf\Intern
     private $display_video_360_advertiser_link = null;
 
     /**
+     * @param string                                                        $parent                        Required. Example format: properties/1234
+     *                                                                                                     Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
+     * @param \Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLink $displayVideo360AdvertiserLink Required. The DisplayVideo360AdvertiserLink to create.
+     *
+     * @return \Google\Analytics\Admin\V1alpha\CreateDisplayVideo360AdvertiserLinkRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLink $displayVideo360AdvertiserLink): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setDisplayVideo360AdvertiserLink($displayVideo360AdvertiserLink);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

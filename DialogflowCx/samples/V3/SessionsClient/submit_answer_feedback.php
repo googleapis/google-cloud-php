@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_Sessions_SubmitAnswerFeedback_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Dialogflow\Cx\V3\AnswerFeedback;
-use Google\Cloud\Dialogflow\Cx\V3\SessionsClient;
+use Google\Cloud\Dialogflow\Cx\V3\Client\SessionsClient;
+use Google\Cloud\Dialogflow\Cx\V3\SubmitAnswerFeedbackRequest;
 
 /**
  * Updates the feedback received from the user for a single turn of the bot
@@ -41,13 +42,17 @@ function submit_answer_feedback_sample(string $formattedSession, string $respons
     // Create a client.
     $sessionsClient = new SessionsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $answerFeedback = new AnswerFeedback();
+    $request = (new SubmitAnswerFeedbackRequest())
+        ->setSession($formattedSession)
+        ->setResponseId($responseId)
+        ->setAnswerFeedback($answerFeedback);
 
     // Call the API and handle any network failures.
     try {
         /** @var AnswerFeedback $response */
-        $response = $sessionsClient->submitAnswerFeedback($formattedSession, $responseId, $answerFeedback);
+        $response = $sessionsClient->submitAnswerFeedback($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

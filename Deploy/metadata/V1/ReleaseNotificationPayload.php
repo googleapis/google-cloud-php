@@ -17,10 +17,12 @@ class ReleaseNotificationPayload
         \GPBMetadata\Google\Cloud\Deploy\V1\LogEnums::initOnce();
         $pool->internalAddGeneratedFile(
             '
-º
-9google/cloud/deploy/v1/release_notification_payload.protogoogle.cloud.deploy.v1"h
+æ
+9google/cloud/deploy/v1/release_notification_payload.protogoogle.cloud.deploy.v1"“
 ReleaseNotificationEvent
-message (	
+message (	
+pipeline_uid (	
+release_uid (	
 release (	*
 type (2.google.cloud.deploy.v1.TypeBs
 com.google.cloud.deploy.v1BReleaseNotificationPayloadProtoPZ2cloud.google.com/go/deploy/apiv1/deploypb;deploypbbproto3'

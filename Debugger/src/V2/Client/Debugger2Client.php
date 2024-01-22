@@ -59,11 +59,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Debugger\V2\Debugger2Client} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface deleteBreakpointAsync(DeleteBreakpointRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getBreakpointAsync(GetBreakpointRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listBreakpointsAsync(ListBreakpointsRequest $request, array $optionalArgs = [])
@@ -77,8 +72,15 @@ final class Debugger2Client
     /** The name of the service. */
     private const SERVICE_NAME = 'google.devtools.clouddebugger.v2.Debugger2';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'clouddebugger.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'clouddebugger.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -187,6 +189,8 @@ final class Debugger2Client
      *
      * The async variant is {@see Debugger2Client::deleteBreakpointAsync()} .
      *
+     * @example samples/V2/Debugger2Client/delete_breakpoint.php
+     *
      * @param DeleteBreakpointRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -208,6 +212,8 @@ final class Debugger2Client
      * Gets breakpoint information.
      *
      * The async variant is {@see Debugger2Client::getBreakpointAsync()} .
+     *
+     * @example samples/V2/Debugger2Client/get_breakpoint.php
      *
      * @param GetBreakpointRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -233,6 +239,8 @@ final class Debugger2Client
      *
      * The async variant is {@see Debugger2Client::listBreakpointsAsync()} .
      *
+     * @example samples/V2/Debugger2Client/list_breakpoints.php
+     *
      * @param ListBreakpointsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -257,6 +265,8 @@ final class Debugger2Client
      *
      * The async variant is {@see Debugger2Client::listDebuggeesAsync()} .
      *
+     * @example samples/V2/Debugger2Client/list_debuggees.php
+     *
      * @param ListDebuggeesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -280,6 +290,8 @@ final class Debugger2Client
      * Sets the breakpoint to the debuggee.
      *
      * The async variant is {@see Debugger2Client::setBreakpointAsync()} .
+     *
+     * @example samples/V2/Debugger2Client/set_breakpoint.php
      *
      * @param SetBreakpointRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

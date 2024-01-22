@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START retail_v2_generated_ServingConfigService_DeleteServingConfig_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Retail\V2\ServingConfigServiceClient;
+use Google\Cloud\Retail\V2\Client\ServingConfigServiceClient;
+use Google\Cloud\Retail\V2\DeleteServingConfigRequest;
 
 /**
  * Deletes a ServingConfig.
@@ -40,9 +41,13 @@ function delete_serving_config_sample(string $formattedName): void
     // Create a client.
     $servingConfigServiceClient = new ServingConfigServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteServingConfigRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $servingConfigServiceClient->deleteServingConfig($formattedName);
+        $servingConfigServiceClient->deleteServingConfig($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

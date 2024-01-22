@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START composer_v1_generated_Environments_GetEnvironment_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Orchestration\Airflow\Service\V1\Client\EnvironmentsClient;
 use Google\Cloud\Orchestration\Airflow\Service\V1\Environment;
-use Google\Cloud\Orchestration\Airflow\Service\V1\EnvironmentsClient;
+use Google\Cloud\Orchestration\Airflow\Service\V1\GetEnvironmentRequest;
 
 /**
  * Get an existing environment.
@@ -41,10 +42,13 @@ function get_environment_sample(): void
     // Create a client.
     $environmentsClient = new EnvironmentsClient();
 
+    // Prepare the request message.
+    $request = new GetEnvironmentRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var Environment $response */
-        $response = $environmentsClient->getEnvironment();
+        $response = $environmentsClient->getEnvironment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

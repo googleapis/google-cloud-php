@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkconnectivity_v1_generated_HubService_ListRouteTables_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\NetworkConnectivity\V1\HubServiceClient;
+use Google\Cloud\NetworkConnectivity\V1\Client\HubServiceClient;
+use Google\Cloud\NetworkConnectivity\V1\ListRouteTablesRequest;
 use Google\Cloud\NetworkConnectivity\V1\RouteTable;
 
 /**
@@ -39,10 +40,14 @@ function list_route_tables_sample(string $formattedParent): void
     // Create a client.
     $hubServiceClient = new HubServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListRouteTablesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $hubServiceClient->listRouteTables($formattedParent);
+        $response = $hubServiceClient->listRouteTables($request);
 
         /** @var RouteTable $element */
         foreach ($response as $element) {

@@ -83,12 +83,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Video\LiveStream\V1\LivestreamServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createAssetAsync(CreateAssetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createChannelAsync(CreateChannelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createEventAsync(CreateEventRequest $request, array $optionalArgs = [])
@@ -122,8 +116,15 @@ final class LivestreamServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.video.livestream.v1.LivestreamService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'livestream.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'livestream.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

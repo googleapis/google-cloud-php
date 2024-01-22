@@ -3,19 +3,33 @@
 return [
     'interfaces' => [
         'google.analytics.data.v1alpha.AlphaAnalyticsData' => [
-            'BatchRunPivotReports' => [
+            'CreateAudienceList' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1alpha:batchRunPivotReports',
-                'body' => '*',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/audienceLists',
+                'body' => 'audience_list',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
             ],
-            'BatchRunReports' => [
+            'CreateRecurringAudienceList' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1alpha:batchRunReports',
-                'body' => '*',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/recurringAudienceLists',
+                'body' => 'recurring_audience_list',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
             ],
-            'GetMetadata' => [
+            'GetAudienceList' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1alpha/{name=properties/*/metadata}',
+                'uriTemplate' => '/v1alpha/{name=properties/*/audienceLists/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -24,14 +38,54 @@ return [
                     ],
                 ],
             ],
-            'RunPivotReport' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1alpha:runPivotReport',
-                'body' => '*',
+            'GetRecurringAudienceList' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/recurringAudienceLists/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
             ],
-            'RunRealtimeReport' => [
+            'ListAudienceLists' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/audienceLists',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListRecurringAudienceLists' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/recurringAudienceLists',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'QueryAudienceList' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1alpha/{property=properties/*}:runRealtimeReport',
+                'uriTemplate' => '/v1alpha/{name=properties/*/audienceLists/*}:query',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'RunFunnelReport' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{property=properties/*}:runFunnelReport',
                 'body' => '*',
                 'placeholders' => [
                     'property' => [
@@ -41,11 +95,19 @@ return [
                     ],
                 ],
             ],
-            'RunReport' => [
+            'SheetExportAudienceList' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1alpha:runReport',
+                'uriTemplate' => '/v1alpha/{name=properties/*/audienceLists/*}:exportSheet',
                 'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

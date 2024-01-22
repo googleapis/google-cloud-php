@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START iap_v1_generated_IdentityAwareProxyOAuthService_ListIdentityAwareProxyClients_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Iap\V1\Client\IdentityAwareProxyOAuthServiceClient;
 use Google\Cloud\Iap\V1\IdentityAwareProxyClient;
-use Google\Cloud\Iap\V1\IdentityAwareProxyOAuthServiceClient;
+use Google\Cloud\Iap\V1\ListIdentityAwareProxyClientsRequest;
 
 /**
  * Lists the existing clients for the brand.
@@ -39,10 +40,14 @@ function list_identity_aware_proxy_clients_sample(string $parent): void
     // Create a client.
     $identityAwareProxyOAuthServiceClient = new IdentityAwareProxyOAuthServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListIdentityAwareProxyClientsRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $identityAwareProxyOAuthServiceClient->listIdentityAwareProxyClients($parent);
+        $response = $identityAwareProxyOAuthServiceClient->listIdentityAwareProxyClients($request);
 
         /** @var IdentityAwareProxyClient $element */
         foreach ($response as $element) {

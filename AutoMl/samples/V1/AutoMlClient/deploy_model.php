@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START automl_v1_generated_AutoMl_DeployModel_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AutoMl\V1\AutoMlClient;
+use Google\Cloud\AutoMl\V1\Client\AutoMlClient;
+use Google\Cloud\AutoMl\V1\DeployModelRequest;
 use Google\Rpc\Status;
 
 /**
@@ -49,10 +50,14 @@ function deploy_model_sample(string $formattedName): void
     // Create a client.
     $autoMlClient = new AutoMlClient();
 
+    // Prepare the request message.
+    $request = (new DeployModelRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $autoMlClient->deployModel($formattedName);
+        $response = $autoMlClient->deployModel($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

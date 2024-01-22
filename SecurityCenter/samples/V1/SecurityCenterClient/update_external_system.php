@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START securitycenter_v1_generated_SecurityCenter_UpdateExternalSystem_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient;
 use Google\Cloud\SecurityCenter\V1\ExternalSystem;
-use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\UpdateExternalSystemRequest;
 
 /**
  * Updates external system. This is for a given finding.
@@ -41,13 +42,15 @@ function update_external_system_sample(): void
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $externalSystem = new ExternalSystem();
+    $request = (new UpdateExternalSystemRequest())
+        ->setExternalSystem($externalSystem);
 
     // Call the API and handle any network failures.
     try {
         /** @var ExternalSystem $response */
-        $response = $securityCenterClient->updateExternalSystem($externalSystem);
+        $response = $securityCenterClient->updateExternalSystem($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

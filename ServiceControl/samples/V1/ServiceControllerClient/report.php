@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START servicecontrol_v1_generated_ServiceController_Report_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\ServiceControl\V1\Client\ServiceControllerClient;
+use Google\Cloud\ServiceControl\V1\ReportRequest;
 use Google\Cloud\ServiceControl\V1\ReportResponse;
-use Google\Cloud\ServiceControl\V1\ServiceControllerClient;
 
 /**
  * Reports operation results to Google Service Control, such as logs and
@@ -55,10 +56,13 @@ function report_sample(): void
     // Create a client.
     $serviceControllerClient = new ServiceControllerClient();
 
+    // Prepare the request message.
+    $request = new ReportRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var ReportResponse $response */
-        $response = $serviceControllerClient->report();
+        $response = $serviceControllerClient->report($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

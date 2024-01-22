@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START serviceusage_v1_generated_ServiceUsage_ListServices_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\ServiceUsage\V1\Client\ServiceUsageClient;
+use Google\Cloud\ServiceUsage\V1\ListServicesRequest;
 use Google\Cloud\ServiceUsage\V1\Service;
-use Google\Cloud\ServiceUsage\V1\ServiceUsageClient;
 
 /**
  * List all services available to the specified project, and the current
@@ -54,10 +55,13 @@ function list_services_sample(): void
     // Create a client.
     $serviceUsageClient = new ServiceUsageClient();
 
+    // Prepare the request message.
+    $request = new ListServicesRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $serviceUsageClient->listServices();
+        $response = $serviceUsageClient->listServices($request);
 
         /** @var Service $element */
         foreach ($response as $element) {

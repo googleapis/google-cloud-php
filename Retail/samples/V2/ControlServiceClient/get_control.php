@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START retail_v2_generated_ControlService_GetControl_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Retail\V2\Client\ControlServiceClient;
 use Google\Cloud\Retail\V2\Control;
-use Google\Cloud\Retail\V2\ControlServiceClient;
+use Google\Cloud\Retail\V2\GetControlRequest;
 
 /**
  * Gets a Control.
@@ -39,10 +40,14 @@ function get_control_sample(string $formattedName): void
     // Create a client.
     $controlServiceClient = new ControlServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetControlRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Control $response */
-        $response = $controlServiceClient->getControl($formattedName);
+        $response = $controlServiceClient->getControl($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

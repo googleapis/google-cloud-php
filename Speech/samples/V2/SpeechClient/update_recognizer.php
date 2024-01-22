@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START speech_v2_generated_Speech_UpdateRecognizer_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Speech\V2\Client\SpeechClient;
 use Google\Cloud\Speech\V2\Recognizer;
-use Google\Cloud\Speech\V2\SpeechClient;
+use Google\Cloud\Speech\V2\UpdateRecognizerRequest;
 use Google\Rpc\Status;
 
 /**
@@ -43,13 +44,15 @@ function update_recognizer_sample(): void
     // Create a client.
     $speechClient = new SpeechClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $recognizer = new Recognizer();
+    $request = (new UpdateRecognizerRequest())
+        ->setRecognizer($recognizer);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $speechClient->updateRecognizer($recognizer);
+        $response = $speechClient->updateRecognizer($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

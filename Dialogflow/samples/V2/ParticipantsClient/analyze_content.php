@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_Participants_AnalyzeContent_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\V2\AnalyzeContentRequest;
 use Google\Cloud\Dialogflow\V2\AnalyzeContentResponse;
-use Google\Cloud\Dialogflow\V2\ParticipantsClient;
+use Google\Cloud\Dialogflow\V2\Client\ParticipantsClient;
 
 /**
  * Adds a text (chat, for example), or audio (phone recording, for example)
@@ -45,10 +46,14 @@ function analyze_content_sample(string $formattedParticipant): void
     // Create a client.
     $participantsClient = new ParticipantsClient();
 
+    // Prepare the request message.
+    $request = (new AnalyzeContentRequest())
+        ->setParticipant($formattedParticipant);
+
     // Call the API and handle any network failures.
     try {
         /** @var AnalyzeContentResponse $response */
-        $response = $participantsClient->analyzeContent($formattedParticipant);
+        $response = $participantsClient->analyzeContent($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

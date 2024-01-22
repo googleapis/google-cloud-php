@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START servicedirectory_v1_generated_LookupService_ResolveService_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\ServiceDirectory\V1\LookupServiceClient;
+use Google\Cloud\ServiceDirectory\V1\Client\LookupServiceClient;
+use Google\Cloud\ServiceDirectory\V1\ResolveServiceRequest;
 use Google\Cloud\ServiceDirectory\V1\ResolveServiceResponse;
 
 /**
@@ -40,10 +41,14 @@ function resolve_service_sample(string $formattedName): void
     // Create a client.
     $lookupServiceClient = new LookupServiceClient();
 
+    // Prepare the request message.
+    $request = (new ResolveServiceRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var ResolveServiceResponse $response */
-        $response = $lookupServiceClient->resolveService($formattedName);
+        $response = $lookupServiceClient->resolveService($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

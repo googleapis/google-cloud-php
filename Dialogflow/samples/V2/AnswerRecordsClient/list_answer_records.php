@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Dialogflow\V2\AnswerRecord;
-use Google\Cloud\Dialogflow\V2\AnswerRecordsClient;
+use Google\Cloud\Dialogflow\V2\Client\AnswerRecordsClient;
+use Google\Cloud\Dialogflow\V2\ListAnswerRecordsRequest;
 
 /**
  * Returns the list of all answer records in the specified project in reverse
@@ -42,10 +43,14 @@ function list_answer_records_sample(string $formattedParent): void
     // Create a client.
     $answerRecordsClient = new AnswerRecordsClient();
 
+    // Prepare the request message.
+    $request = (new ListAnswerRecordsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $answerRecordsClient->listAnswerRecords($formattedParent);
+        $response = $answerRecordsClient->listAnswerRecords($request);
 
         /** @var AnswerRecord $element */
         foreach ($response as $element) {

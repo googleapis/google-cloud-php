@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_CreateRollupProperty_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\CreateRollupPropertyRequest;
 use Google\Analytics\Admin\V1alpha\CreateRollupPropertyResponse;
 use Google\Analytics\Admin\V1alpha\Property;
 use Google\ApiCore\ApiException;
@@ -51,15 +52,17 @@ function create_rollup_property_sample(
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $rollupProperty = (new Property())
         ->setDisplayName($rollupPropertyDisplayName)
         ->setTimeZone($rollupPropertyTimeZone);
+    $request = (new CreateRollupPropertyRequest())
+        ->setRollupProperty($rollupProperty);
 
     // Call the API and handle any network failures.
     try {
         /** @var CreateRollupPropertyResponse $response */
-        $response = $analyticsAdminServiceClient->createRollupProperty($rollupProperty);
+        $response = $analyticsAdminServiceClient->createRollupProperty($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

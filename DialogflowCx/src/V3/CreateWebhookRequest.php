@@ -31,6 +31,23 @@ class CreateWebhookRequest extends \Google\Protobuf\Internal\Message
     protected $webhook = null;
 
     /**
+     * @param string                                 $parent  Required. The agent to create a webhook for.
+     *                                                        Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+     *                                                        {@see WebhooksClient::agentName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Webhook $webhook Required. The webhook to create.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\CreateWebhookRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dialogflow\Cx\V3\Webhook $webhook): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setWebhook($webhook);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

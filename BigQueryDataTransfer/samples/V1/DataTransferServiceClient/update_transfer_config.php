@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START bigquerydatatransfer_v1_generated_DataTransferService_UpdateTransferConfig_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\BigQuery\DataTransfer\V1\DataTransferServiceClient;
+use Google\Cloud\BigQuery\DataTransfer\V1\Client\DataTransferServiceClient;
 use Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig;
+use Google\Cloud\BigQuery\DataTransfer\V1\UpdateTransferConfigRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -43,14 +44,17 @@ function update_transfer_config_sample(): void
     // Create a client.
     $dataTransferServiceClient = new DataTransferServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $transferConfig = new TransferConfig();
     $updateMask = new FieldMask();
+    $request = (new UpdateTransferConfigRequest())
+        ->setTransferConfig($transferConfig)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var TransferConfig $response */
-        $response = $dataTransferServiceClient->updateTransferConfig($transferConfig, $updateMask);
+        $response = $dataTransferServiceClient->updateTransferConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

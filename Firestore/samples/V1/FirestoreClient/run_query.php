@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START firestore_v1_generated_Firestore_RunQuery_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ServerStream;
-use Google\Cloud\Firestore\V1\FirestoreClient;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
+use Google\Cloud\Firestore\V1\RunQueryRequest;
 use Google\Cloud\Firestore\V1\RunQueryResponse;
 
 /**
@@ -43,10 +44,14 @@ function run_query_sample(string $parent): void
     // Create a client.
     $firestoreClient = new FirestoreClient();
 
+    // Prepare the request message.
+    $request = (new RunQueryRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var ServerStream $stream */
-        $stream = $firestoreClient->runQuery($parent);
+        $stream = $firestoreClient->runQuery($request);
 
         /** @var RunQueryResponse $element */
         foreach ($stream->readAll() as $element) {

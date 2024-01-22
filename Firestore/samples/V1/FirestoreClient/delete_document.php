@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START firestore_v1_generated_Firestore_DeleteDocument_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Firestore\V1\FirestoreClient;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
+use Google\Cloud\Firestore\V1\DeleteDocumentRequest;
 
 /**
  * Deletes a document.
@@ -37,9 +38,13 @@ function delete_document_sample(string $name): void
     // Create a client.
     $firestoreClient = new FirestoreClient();
 
+    // Prepare the request message.
+    $request = (new DeleteDocumentRequest())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
-        $firestoreClient->deleteDocument($name);
+        $firestoreClient->deleteDocument($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

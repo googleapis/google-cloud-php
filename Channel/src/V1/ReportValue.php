@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A single report value.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.channel.v1.ReportValue</code>
  */
 class ReportValue extends \Google\Protobuf\Internal\Message

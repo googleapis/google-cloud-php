@@ -62,11 +62,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Datastore\V1\DatastoreClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface allocateIdsAsync(AllocateIdsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface beginTransactionAsync(BeginTransactionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface commitAsync(CommitRequest $request, array $optionalArgs = [])
@@ -83,8 +78,15 @@ final class DatastoreClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.datastore.v1.Datastore';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'datastore.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'datastore.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -194,6 +196,8 @@ final class DatastoreClient
      *
      * The async variant is {@see DatastoreClient::allocateIdsAsync()} .
      *
+     * @example samples/V1/DatastoreClient/allocate_ids.php
+     *
      * @param AllocateIdsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -217,6 +221,8 @@ final class DatastoreClient
      * Begins a new transaction.
      *
      * The async variant is {@see DatastoreClient::beginTransactionAsync()} .
+     *
+     * @example samples/V1/DatastoreClient/begin_transaction.php
      *
      * @param BeginTransactionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -243,6 +249,8 @@ final class DatastoreClient
      *
      * The async variant is {@see DatastoreClient::commitAsync()} .
      *
+     * @example samples/V1/DatastoreClient/commit.php
+     *
      * @param CommitRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
      *     Optional.
@@ -266,6 +274,8 @@ final class DatastoreClient
      * Looks up entities by key.
      *
      * The async variant is {@see DatastoreClient::lookupAsync()} .
+     *
+     * @example samples/V1/DatastoreClient/lookup.php
      *
      * @param LookupRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -292,6 +302,8 @@ final class DatastoreClient
      *
      * The async variant is {@see DatastoreClient::reserveIdsAsync()} .
      *
+     * @example samples/V1/DatastoreClient/reserve_ids.php
+     *
      * @param ReserveIdsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -315,6 +327,8 @@ final class DatastoreClient
      * Rolls back a transaction.
      *
      * The async variant is {@see DatastoreClient::rollbackAsync()} .
+     *
+     * @example samples/V1/DatastoreClient/rollback.php
      *
      * @param RollbackRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -340,6 +354,8 @@ final class DatastoreClient
      *
      * The async variant is {@see DatastoreClient::runAggregationQueryAsync()} .
      *
+     * @example samples/V1/DatastoreClient/run_aggregation_query.php
+     *
      * @param RunAggregationQueryRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -363,6 +379,8 @@ final class DatastoreClient
      * Queries for entities.
      *
      * The async variant is {@see DatastoreClient::runQueryAsync()} .
+     *
+     * @example samples/V1/DatastoreClient/run_query.php
      *
      * @param RunQueryRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {

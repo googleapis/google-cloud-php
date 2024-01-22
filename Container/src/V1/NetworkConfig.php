@@ -108,6 +108,12 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool enable_fqdn_network_policy = 19;</code>
      */
     private $enable_fqdn_network_policy = null;
+    /**
+     * Specify the details of in-transit encryption.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.InTransitEncryptionConfig in_transit_encryption_config = 20;</code>
+     */
+    private $in_transit_encryption_config = null;
 
     /**
      * Constructor.
@@ -156,6 +162,8 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *           Network bandwidth tier configuration.
      *     @type bool $enable_fqdn_network_policy
      *           Whether FQDN Network Policy is enabled on this cluster.
+     *     @type int $in_transit_encryption_config
+     *           Specify the details of in-transit encryption.
      * }
      */
     public function __construct($data = NULL) {
@@ -587,6 +595,42 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_fqdn_network_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specify the details of in-transit encryption.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.InTransitEncryptionConfig in_transit_encryption_config = 20;</code>
+     * @return int
+     */
+    public function getInTransitEncryptionConfig()
+    {
+        return isset($this->in_transit_encryption_config) ? $this->in_transit_encryption_config : 0;
+    }
+
+    public function hasInTransitEncryptionConfig()
+    {
+        return isset($this->in_transit_encryption_config);
+    }
+
+    public function clearInTransitEncryptionConfig()
+    {
+        unset($this->in_transit_encryption_config);
+    }
+
+    /**
+     * Specify the details of in-transit encryption.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.InTransitEncryptionConfig in_transit_encryption_config = 20;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setInTransitEncryptionConfig($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\InTransitEncryptionConfig::class);
+        $this->in_transit_encryption_config = $var;
 
         return $this;
     }

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START privateca_v1_generated_CertificateAuthorityService_RevokeCertificate_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Security\PrivateCA\V1\Certificate;
-use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
 use Google\Cloud\Security\PrivateCA\V1\RevocationReason;
+use Google\Cloud\Security\PrivateCA\V1\RevokeCertificateRequest;
 
 /**
  * Revoke a [Certificate][google.cloud.security.privateca.v1.Certificate].
@@ -44,10 +45,15 @@ function revoke_certificate_sample(string $formattedName, int $reason): void
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
+    // Prepare the request message.
+    $request = (new RevokeCertificateRequest())
+        ->setName($formattedName)
+        ->setReason($reason);
+
     // Call the API and handle any network failures.
     try {
         /** @var Certificate $response */
-        $response = $certificateAuthorityServiceClient->revokeCertificate($formattedName, $reason);
+        $response = $certificateAuthorityServiceClient->revokeCertificate($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

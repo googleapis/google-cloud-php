@@ -13,12 +13,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# first argument can be a directory
 DIRS=$(find * -maxdepth 0 -type d -name '[A-Z]*')
+PREFER_LOWEST=""
+VALID=1
 if [ "$#" -eq 1 ]; then
-    DIRS=$1
+    # first argument can be a directory or "--prefer-lowest"
+    if [ "$1" = "--prefer-lowest" ]; then
+        PREFER_LOWEST="--prefer-lowest"
+    else
+        DIRS=$1
+    fi
+elif [ "$#" -eq 2 ]; then
+    # first argument is a directory, second is "--prefer-lowest"
+    if [ "$2" = "--prefer-lowest" ]; then
+        DIRS=$1
+        PREFER_LOWEST="--prefer-lowest"
+    else
+        echo "usage: run-package-tests.sh [DIR] [--prefer-lowest]"
+        exit 1;
+    fi
 elif [ "$#" -ne 0 ]; then
-    echo "usage: run-package-tests.sh [DIR]"
+    echo "usage: run-package-tests.sh [DIR] [--prefer-lowest]"
     exit 1;
 fi
 
@@ -28,21 +43,28 @@ export COMPOSER=composer-local.json
 FAILED_FILE=$(mktemp -d)/failed
 for DIR in ${DIRS}; do {
     cp ${DIR}/composer.json ${DIR}/composer-local.json
-    # Update composer to use local packages
-    for i in BigQuery,cloud-bigquery Core,cloud-core Logging,cloud-logging PubSub,cloud-pubsub Storage,cloud-storage ShoppingCommonProtos,shopping-common-protos,0.2; do
-        IFS=","; set -- $i;
-        if grep -q "\"google/$2\":" ${DIR}/composer.json; then
-            if [ -z "$3" ]; then VERSION="1.100"; else VERSION=$3; fi
-            composer config repositories.$2 "{\"type\": \"path\", \"url\": \"../$1\", \"options\":{\"versions\":{\"google/$2\":\"$VERSION\"}}}" -d ${DIR}
-        fi
-    done
+    if [ "$PREFER_LOWEST" = "" ]; then
+        # Update composer to use local packages
+        for i in BigQuery,cloud-bigquery Core,cloud-core Logging,cloud-logging PubSub,cloud-pubsub Storage,cloud-storage ShoppingCommonProtos,shopping-common-protos,0.2; do
+            IFS=","; set -- $i;
+            if grep -q "\"google/$2\":" ${DIR}/composer.json; then
+                if [ -z "$3" ]; then VERSION="1.100"; else VERSION=$3; fi
+                echo "Use local package $1 as google/$2:$VERSION in $DIR"
+                composer config repositories.$2 "{\"type\": \"path\", \"url\": \"../$1\", \"options\":{\"versions\":{\"google/$2\":\"$VERSION\"}}}" -d ${DIR}
+            fi
+        done
+    fi
 
-    echo "Installing composer in $DIR"
-    COMPOSER_ROOT_VERSION=$(cat $DIR/VERSION) composer -q --no-interaction --no-ansi --no-progress update -d ${DIR};
+    echo -n "Installing composer in $DIR"
+    if [ "$PREFER_LOWEST" != "" ]; then
+        echo -n " (with $PREFER_LOWEST)"
+    fi
+    echo ""
+    composer -q --no-interaction --no-ansi --no-progress $PREFER_LOWEST update -d ${DIR};
     if [ $? != 0 ]; then
         echo "$DIR: composer install failed" >> "${FAILED_FILE}"
         # run again but without "-q" so we can see the error
-        COMPOSER_ROOT_VERSION=$(cat $DIR/VERSION) composer --no-interaction --no-ansi --no-progress update -d ${DIR};
+        composer --no-interaction --no-ansi --no-progress $PREFER_LOWEST update -d ${DIR};
         continue
     fi
     echo "Running $DIR Unit Tests"

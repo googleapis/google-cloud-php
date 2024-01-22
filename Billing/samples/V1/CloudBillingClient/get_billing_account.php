@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudbilling_v1_generated_CloudBilling_GetBillingAccount_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Billing\V1\BillingAccount;
-use Google\Cloud\Billing\V1\CloudBillingClient;
+use Google\Cloud\Billing\V1\Client\CloudBillingClient;
+use Google\Cloud\Billing\V1\GetBillingAccountRequest;
 
 /**
  * Gets information about a billing account. The current authenticated user
@@ -41,10 +42,14 @@ function get_billing_account_sample(string $formattedName): void
     // Create a client.
     $cloudBillingClient = new CloudBillingClient();
 
+    // Prepare the request message.
+    $request = (new GetBillingAccountRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var BillingAccount $response */
-        $response = $cloudBillingClient->getBillingAccount($formattedName);
+        $response = $cloudBillingClient->getBillingAccount($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

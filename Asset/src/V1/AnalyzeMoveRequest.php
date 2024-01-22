@@ -21,7 +21,7 @@ class AnalyzeMoveRequest extends \Google\Protobuf\Internal\Message
      * be a project ID (such as "projects/my-project-id") or a project number
      * (such as "projects/12345").
      *
-     * Generated from protobuf field <code>string resource = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string resource = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $resource = '';
     /**
@@ -31,7 +31,7 @@ class AnalyzeMoveRequest extends \Google\Protobuf\Internal\Message
      * a folder number (such as "folders/123") or an organization number (such as
      * "organizations/123").
      *
-     * Generated from protobuf field <code>string destination_parent = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string destination_parent = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $destination_parent = '';
     /**
@@ -75,7 +75,7 @@ class AnalyzeMoveRequest extends \Google\Protobuf\Internal\Message
      * be a project ID (such as "projects/my-project-id") or a project number
      * (such as "projects/12345").
      *
-     * Generated from protobuf field <code>string resource = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string resource = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getResource()
@@ -89,7 +89,7 @@ class AnalyzeMoveRequest extends \Google\Protobuf\Internal\Message
      * be a project ID (such as "projects/my-project-id") or a project number
      * (such as "projects/12345").
      *
-     * Generated from protobuf field <code>string resource = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string resource = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -108,7 +108,7 @@ class AnalyzeMoveRequest extends \Google\Protobuf\Internal\Message
      * a folder number (such as "folders/123") or an organization number (such as
      * "organizations/123").
      *
-     * Generated from protobuf field <code>string destination_parent = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string destination_parent = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getDestinationParent()
@@ -123,7 +123,7 @@ class AnalyzeMoveRequest extends \Google\Protobuf\Internal\Message
      * a folder number (such as "folders/123") or an organization number (such as
      * "organizations/123").
      *
-     * Generated from protobuf field <code>string destination_parent = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string destination_parent = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

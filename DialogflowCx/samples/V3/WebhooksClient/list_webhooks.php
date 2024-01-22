@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_Webhooks_ListWebhooks_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dialogflow\Cx\V3\Client\WebhooksClient;
+use Google\Cloud\Dialogflow\Cx\V3\ListWebhooksRequest;
 use Google\Cloud\Dialogflow\Cx\V3\Webhook;
-use Google\Cloud\Dialogflow\Cx\V3\WebhooksClient;
 
 /**
  * Returns the list of all webhooks in the specified agent.
@@ -40,10 +41,14 @@ function list_webhooks_sample(string $formattedParent): void
     // Create a client.
     $webhooksClient = new WebhooksClient();
 
+    // Prepare the request message.
+    $request = (new ListWebhooksRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $webhooksClient->listWebhooks($formattedParent);
+        $response = $webhooksClient->listWebhooks($request);
 
         /** @var Webhook $element */
         foreach ($response as $element) {

@@ -43,7 +43,7 @@ class ExportDocumentsRequest extends \Google\Protobuf\Internal\Message
      */
     private $output_uri_prefix = '';
     /**
-     * Unspecified means all namespaces. This is the preferred
+     * An empty list represents all namespaces. This is the preferred
      * usage for databases that don't use namespaces.
      * An empty string element represents the default namespace. This should be
      * used if the database has data in non-default namespaces, but doesn't want
@@ -101,7 +101,7 @@ class ExportDocumentsRequest extends \Google\Protobuf\Internal\Message
      *           If the URI is a bucket (without a namespace path), a prefix will be
      *           generated based on the start time.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $namespace_ids
-     *           Unspecified means all namespaces. This is the preferred
+     *           An empty list represents all namespaces. This is the preferred
      *           usage for databases that don't use namespaces.
      *           An empty string element represents the default namespace. This should be
      *           used if the database has data in non-default namespaces, but doesn't want
@@ -216,7 +216,7 @@ class ExportDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unspecified means all namespaces. This is the preferred
+     * An empty list represents all namespaces. This is the preferred
      * usage for databases that don't use namespaces.
      * An empty string element represents the default namespace. This should be
      * used if the database has data in non-default namespaces, but doesn't want
@@ -231,7 +231,7 @@ class ExportDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unspecified means all namespaces. This is the preferred
+     * An empty list represents all namespaces. This is the preferred
      * usage for databases that don't use namespaces.
      * An empty string element represents the default namespace. This should be
      * used if the database has data in non-default namespaces, but doesn't want

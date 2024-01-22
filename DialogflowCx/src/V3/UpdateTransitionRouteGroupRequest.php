@@ -44,6 +44,21 @@ class UpdateTransitionRouteGroupRequest extends \Google\Protobuf\Internal\Messag
     protected $language_code = '';
 
     /**
+     * @param \Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroup $transitionRouteGroup Required. The transition route group to update.
+     * @param \Google\Protobuf\FieldMask                          $updateMask           The mask to control which fields get updated.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\UpdateTransitionRouteGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroup $transitionRouteGroup, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setTransitionRouteGroup($transitionRouteGroup)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

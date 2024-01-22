@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START bigqueryreservation_v1_generated_ReservationService_GetReservation_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\BigQuery\Reservation\V1\Client\ReservationServiceClient;
+use Google\Cloud\BigQuery\Reservation\V1\GetReservationRequest;
 use Google\Cloud\BigQuery\Reservation\V1\Reservation;
-use Google\Cloud\BigQuery\Reservation\V1\ReservationServiceClient;
 
 /**
  * Returns information about the reservation.
@@ -39,10 +40,14 @@ function get_reservation_sample(string $formattedName): void
     // Create a client.
     $reservationServiceClient = new ReservationServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetReservationRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Reservation $response */
-        $response = $reservationServiceClient->getReservation($formattedName);
+        $response = $reservationServiceClient->getReservation($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

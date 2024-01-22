@@ -55,7 +55,9 @@ class ConsumerProcurementServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ConsumerProcurementServiceClient */
@@ -86,15 +88,17 @@ class ConsumerProcurementServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new GetOrderRequest())
-            ->setName($name);
+        $request = (new GetOrderRequest())->setName($name);
         $response = $gapicClient->getOrder($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService/GetOrder', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService/GetOrder',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -111,17 +115,19 @@ class ConsumerProcurementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new GetOrderRequest())
-            ->setName($name);
+        $request = (new GetOrderRequest())->setName($name);
         try {
             $gapicClient->getOrder($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -146,17 +152,14 @@ class ConsumerProcurementServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $ordersElement = new Order();
-        $orders = [
-            $ordersElement,
-        ];
+        $orders = [$ordersElement];
         $expectedResponse = new ListOrdersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setOrders($orders);
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListOrdersRequest())
-            ->setParent($parent);
+        $request = (new ListOrdersRequest())->setParent($parent);
         $response = $gapicClient->listOrders($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -166,7 +169,10 @@ class ConsumerProcurementServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService/ListOrders', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService/ListOrders',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -183,17 +189,19 @@ class ConsumerProcurementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListOrdersRequest())
-            ->setParent($parent);
+        $request = (new ListOrdersRequest())->setParent($parent);
         try {
             $gapicClient->listOrders($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -245,9 +253,7 @@ class ConsumerProcurementServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
         $displayName = 'displayName1615086568';
-        $request = (new PlaceOrderRequest())
-            ->setParent($formattedParent)
-            ->setDisplayName($displayName);
+        $request = (new PlaceOrderRequest())->setParent($formattedParent)->setDisplayName($displayName);
         $response = $gapicClient->placeOrder($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -257,7 +263,10 @@ class ConsumerProcurementServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService/PlaceOrder', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService/PlaceOrder',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getDisplayName();
@@ -305,19 +314,20 @@ class ConsumerProcurementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
         $displayName = 'displayName1615086568';
-        $request = (new PlaceOrderRequest())
-            ->setParent($formattedParent)
-            ->setDisplayName($displayName);
+        $request = (new PlaceOrderRequest())->setParent($formattedParent)->setDisplayName($displayName);
         $response = $gapicClient->placeOrder($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -359,15 +369,17 @@ class ConsumerProcurementServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new GetOrderRequest())
-            ->setName($name);
+        $request = (new GetOrderRequest())->setName($name);
         $response = $gapicClient->getOrderAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService/GetOrder', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService/GetOrder',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());

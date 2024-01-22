@@ -24,10 +24,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_SessionEntityTypes_CreateSessionEntityType_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\V2\Client\SessionEntityTypesClient;
+use Google\Cloud\Dialogflow\V2\CreateSessionEntityTypeRequest;
 use Google\Cloud\Dialogflow\V2\EntityType\Entity;
 use Google\Cloud\Dialogflow\V2\SessionEntityType;
 use Google\Cloud\Dialogflow\V2\SessionEntityType\EntityOverrideMode;
-use Google\Cloud\Dialogflow\V2\SessionEntityTypesClient;
 
 /**
  * Creates a session entity type.
@@ -88,7 +89,7 @@ function create_session_entity_type_sample(
     // Create a client.
     $sessionEntityTypesClient = new SessionEntityTypesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $sessionEntityTypeEntitiesSynonyms = [$sessionEntityTypeEntitiesSynonymsElement,];
     $entity = (new Entity())
         ->setValue($sessionEntityTypeEntitiesValue)
@@ -98,14 +99,14 @@ function create_session_entity_type_sample(
         ->setName($sessionEntityTypeName)
         ->setEntityOverrideMode($sessionEntityTypeEntityOverrideMode)
         ->setEntities($sessionEntityTypeEntities);
+    $request = (new CreateSessionEntityTypeRequest())
+        ->setParent($formattedParent)
+        ->setSessionEntityType($sessionEntityType);
 
     // Call the API and handle any network failures.
     try {
         /** @var SessionEntityType $response */
-        $response = $sessionEntityTypesClient->createSessionEntityType(
-            $formattedParent,
-            $sessionEntityType
-        );
+        $response = $sessionEntityTypesClient->createSessionEntityType($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,6 +25,22 @@ class DeleteAccessBindingRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Formats:
+     *                     - accounts/{account}/accessBindings/{accessBinding}
+     *                     - properties/{property}/accessBindings/{accessBinding}
+     *                     Please see {@see AnalyticsAdminServiceClient::accessBindingName()} for help formatting this field.
+     *
+     * @return \Google\Analytics\Admin\V1alpha\DeleteAccessBindingRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

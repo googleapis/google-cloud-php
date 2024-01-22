@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START firestore_v1_generated_Firestore_BatchGetDocuments_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ServerStream;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
 use Google\Cloud\Firestore\V1\BatchGetDocumentsResponse;
-use Google\Cloud\Firestore\V1\FirestoreClient;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 
 /**
  * Gets multiple documents.
@@ -46,13 +47,16 @@ function batch_get_documents_sample(string $database, string $documentsElement):
     // Create a client.
     $firestoreClient = new FirestoreClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $documents = [$documentsElement,];
+    $request = (new BatchGetDocumentsRequest())
+        ->setDatabase($database)
+        ->setDocuments($documents);
 
     // Call the API and handle any network failures.
     try {
         /** @var ServerStream $stream */
-        $stream = $firestoreClient->batchGetDocuments($database, $documents);
+        $stream = $firestoreClient->batchGetDocuments($request);
 
         /** @var BatchGetDocumentsResponse $element */
         foreach ($stream->readAll() as $element) {

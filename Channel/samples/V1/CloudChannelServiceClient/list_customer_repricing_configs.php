@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudchannel_v1_generated_CloudChannelService_ListCustomerRepricingConfigs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
 use Google\Cloud\Channel\V1\CustomerRepricingConfig;
+use Google\Cloud\Channel\V1\ListCustomerRepricingConfigsRequest;
 
 /**
  * Lists information about how a Reseller modifies their bill before sending
@@ -66,10 +67,14 @@ function list_customer_repricing_configs_sample(string $formattedParent): void
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListCustomerRepricingConfigsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudChannelServiceClient->listCustomerRepricingConfigs($formattedParent);
+        $response = $cloudChannelServiceClient->listCustomerRepricingConfigs($request);
 
         /** @var CustomerRepricingConfig $element */
         foreach ($response as $element) {

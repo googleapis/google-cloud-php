@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START osconfig_v1_generated_OsConfigService_DeletePatchDeployment_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\OsConfig\V1\OsConfigServiceClient;
+use Google\Cloud\OsConfig\V1\Client\OsConfigServiceClient;
+use Google\Cloud\OsConfig\V1\DeletePatchDeploymentRequest;
 
 /**
  * Delete an OS Config patch deployment.
@@ -38,9 +39,13 @@ function delete_patch_deployment_sample(string $formattedName): void
     // Create a client.
     $osConfigServiceClient = new OsConfigServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeletePatchDeploymentRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $osConfigServiceClient->deletePatchDeployment($formattedName);
+        $osConfigServiceClient->deletePatchDeployment($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

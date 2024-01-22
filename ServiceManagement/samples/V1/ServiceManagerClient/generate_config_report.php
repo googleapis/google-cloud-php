@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START servicemanagement_v1_generated_ServiceManager_GenerateConfigReport_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\ServiceManagement\V1\Client\ServiceManagerClient;
+use Google\Cloud\ServiceManagement\V1\GenerateConfigReportRequest;
 use Google\Cloud\ServiceManagement\V1\GenerateConfigReportResponse;
-use Google\Cloud\ServiceManagement\V1\ServiceManagerClient;
 use Google\Protobuf\Any;
 
 /**
@@ -52,13 +53,15 @@ function generate_config_report_sample(): void
     // Create a client.
     $serviceManagerClient = new ServiceManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $newConfig = new Any();
+    $request = (new GenerateConfigReportRequest())
+        ->setNewConfig($newConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var GenerateConfigReportResponse $response */
-        $response = $serviceManagerClient->generateConfigReport($newConfig);
+        $response = $serviceManagerClient->generateConfigReport($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

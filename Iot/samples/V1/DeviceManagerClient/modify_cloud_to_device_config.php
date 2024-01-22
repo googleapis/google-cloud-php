@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudiot_v1_generated_DeviceManager_ModifyCloudToDeviceConfig_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Iot\V1\Client\DeviceManagerClient;
 use Google\Cloud\Iot\V1\DeviceConfig;
-use Google\Cloud\Iot\V1\DeviceManagerClient;
+use Google\Cloud\Iot\V1\ModifyCloudToDeviceConfigRequest;
 
 /**
  * Modifies the configuration for the device, which is eventually sent from
@@ -43,10 +44,15 @@ function modify_cloud_to_device_config_sample(string $formattedName, string $bin
     // Create a client.
     $deviceManagerClient = new DeviceManagerClient();
 
+    // Prepare the request message.
+    $request = (new ModifyCloudToDeviceConfigRequest())
+        ->setName($formattedName)
+        ->setBinaryData($binaryData);
+
     // Call the API and handle any network failures.
     try {
         /** @var DeviceConfig $response */
-        $response = $deviceManagerClient->modifyCloudToDeviceConfig($formattedName, $binaryData);
+        $response = $deviceManagerClient->modifyCloudToDeviceConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

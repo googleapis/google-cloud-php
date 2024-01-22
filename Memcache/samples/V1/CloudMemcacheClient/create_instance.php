@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START memcache_v1_generated_CloudMemcache_CreateInstance_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Memcache\V1\CloudMemcacheClient;
+use Google\Cloud\Memcache\V1\Client\CloudMemcacheClient;
+use Google\Cloud\Memcache\V1\CreateInstanceRequest;
 use Google\Cloud\Memcache\V1\Instance;
 use Google\Cloud\Memcache\V1\Instance\NodeConfig;
 use Google\Rpc\Status;
@@ -70,7 +71,7 @@ function create_instance_sample(
     // Create a client.
     $cloudMemcacheClient = new CloudMemcacheClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceNodeConfig = (new NodeConfig())
         ->setCpuCount($instanceNodeConfigCpuCount)
         ->setMemorySizeMb($instanceNodeConfigMemorySizeMb);
@@ -78,11 +79,15 @@ function create_instance_sample(
         ->setName($instanceName)
         ->setNodeCount($instanceNodeCount)
         ->setNodeConfig($instanceNodeConfig);
+    $request = (new CreateInstanceRequest())
+        ->setParent($formattedParent)
+        ->setInstanceId($instanceId)
+        ->setInstance($instance);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudMemcacheClient->createInstance($formattedParent, $instanceId, $instance);
+        $response = $cloudMemcacheClient->createInstance($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

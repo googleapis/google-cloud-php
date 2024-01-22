@@ -35,6 +35,27 @@ class CreateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
     protected $session_entity_type = null;
 
     /**
+     * @param string                                           $parent            Required. The session to create a session entity type for.
+     *                                                                            Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+     *                                                                            ID>/sessions/<Session ID>` or `projects/<Project ID>/locations/<Location
+     *                                                                            ID>/agents/<Agent ID>/environments/<Environment ID>/sessions/<Session ID>`.
+     *                                                                            If `Environment ID` is not specified, we assume default 'draft'
+     *                                                                            environment. Please see
+     *                                                                            {@see SessionEntityTypesClient::sessionName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\Cx\V3\SessionEntityType $sessionEntityType Required. The session entity type to create.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\CreateSessionEntityTypeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dialogflow\Cx\V3\SessionEntityType $sessionEntityType): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setSessionEntityType($sessionEntityType);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

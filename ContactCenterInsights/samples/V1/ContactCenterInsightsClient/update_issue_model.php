@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START contactcenterinsights_v1_generated_ContactCenterInsights_UpdateIssueModel_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\ContactCenterInsights\V1\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient;
 use Google\Cloud\ContactCenterInsights\V1\IssueModel;
+use Google\Cloud\ContactCenterInsights\V1\UpdateIssueModelRequest;
 
 /**
  * Updates an issue model.
@@ -41,13 +42,15 @@ function update_issue_model_sample(): void
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $issueModel = new IssueModel();
+    $request = (new UpdateIssueModelRequest())
+        ->setIssueModel($issueModel);
 
     // Call the API and handle any network failures.
     try {
         /** @var IssueModel $response */
-        $response = $contactCenterInsightsClient->updateIssueModel($issueModel);
+        $response = $contactCenterInsightsClient->updateIssueModel($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

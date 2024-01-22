@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START appengine_v1_generated_Versions_ListVersions_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\AppEngine\V1\Client\VersionsClient;
+use Google\Cloud\AppEngine\V1\ListVersionsRequest;
 use Google\Cloud\AppEngine\V1\Version;
-use Google\Cloud\AppEngine\V1\VersionsClient;
 
 /**
  * Lists the versions of a service.
@@ -42,10 +43,13 @@ function list_versions_sample(): void
     // Create a client.
     $versionsClient = new VersionsClient();
 
+    // Prepare the request message.
+    $request = new ListVersionsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $versionsClient->listVersions();
+        $response = $versionsClient->listVersions($request);
 
         /** @var Version $element */
         foreach ($response as $element) {

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_Agents_ExportAgent_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Dialogflow\Cx\V3\AgentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\Client\AgentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\ExportAgentRequest;
 use Google\Cloud\Dialogflow\Cx\V3\ExportAgentResponse;
 use Google\Rpc\Status;
 
@@ -50,10 +51,14 @@ function export_agent_sample(string $formattedName): void
     // Create a client.
     $agentsClient = new AgentsClient();
 
+    // Prepare the request message.
+    $request = (new ExportAgentRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $agentsClient->exportAgent($formattedName);
+        $response = $agentsClient->exportAgent($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

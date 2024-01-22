@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudfunctions_v2_generated_FunctionService_GetFunction_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Functions\V2\FunctionServiceClient;
+use Google\Cloud\Functions\V2\Client\FunctionServiceClient;
+use Google\Cloud\Functions\V2\GetFunctionRequest;
 use Google\Cloud\Functions\V2\PBFunction;
 
 /**
@@ -38,10 +39,14 @@ function get_function_sample(string $formattedName): void
     // Create a client.
     $functionServiceClient = new FunctionServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetFunctionRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var PBFunction $response */
-        $response = $functionServiceClient->getFunction($formattedName);
+        $response = $functionServiceClient->getFunction($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

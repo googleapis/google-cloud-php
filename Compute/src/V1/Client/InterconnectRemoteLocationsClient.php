@@ -43,12 +43,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Compute\V1\InterconnectRemoteLocationsClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface getAsync(GetInterconnectRemoteLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAsync(ListInterconnectRemoteLocationsRequest $request, array $optionalArgs = [])
  */
@@ -59,8 +53,15 @@ final class InterconnectRemoteLocationsClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.compute.v1.InterconnectRemoteLocations';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'compute.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'compute.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_EntityTypes_DeleteEntityType_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dialogflow\Cx\V3\EntityTypesClient;
+use Google\Cloud\Dialogflow\Cx\V3\Client\EntityTypesClient;
+use Google\Cloud\Dialogflow\Cx\V3\DeleteEntityTypeRequest;
 
 /**
  * Deletes the specified entity type.
@@ -43,9 +44,13 @@ function delete_entity_type_sample(string $formattedName): void
     // Create a client.
     $entityTypesClient = new EntityTypesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteEntityTypeRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $entityTypesClient->deleteEntityType($formattedName);
+        $entityTypesClient->deleteEntityType($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

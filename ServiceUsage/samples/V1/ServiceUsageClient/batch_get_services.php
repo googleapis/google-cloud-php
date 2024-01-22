@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START serviceusage_v1_generated_ServiceUsage_BatchGetServices_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\ServiceUsage\V1\BatchGetServicesRequest;
 use Google\Cloud\ServiceUsage\V1\BatchGetServicesResponse;
-use Google\Cloud\ServiceUsage\V1\ServiceUsageClient;
+use Google\Cloud\ServiceUsage\V1\Client\ServiceUsageClient;
 
 /**
  * Returns the service configurations and enabled states for a given list of
@@ -42,10 +43,13 @@ function batch_get_services_sample(): void
     // Create a client.
     $serviceUsageClient = new ServiceUsageClient();
 
+    // Prepare the request message.
+    $request = new BatchGetServicesRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var BatchGetServicesResponse $response */
-        $response = $serviceUsageClient->batchGetServices();
+        $response = $serviceUsageClient->batchGetServices($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

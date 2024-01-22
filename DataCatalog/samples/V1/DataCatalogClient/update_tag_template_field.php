@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datacatalog_v1_generated_DataCatalog_UpdateTagTemplateField_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\DataCatalog\V1\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\Client\DataCatalogClient;
 use Google\Cloud\DataCatalog\V1\FieldType;
 use Google\Cloud\DataCatalog\V1\TagTemplateField;
+use Google\Cloud\DataCatalog\V1\UpdateTagTemplateFieldRequest;
 
 /**
  * Updates a field in a tag template.
@@ -46,15 +47,18 @@ function update_tag_template_field_sample(string $formattedName): void
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $tagTemplateFieldType = new FieldType();
     $tagTemplateField = (new TagTemplateField())
         ->setType($tagTemplateFieldType);
+    $request = (new UpdateTagTemplateFieldRequest())
+        ->setName($formattedName)
+        ->setTagTemplateField($tagTemplateField);
 
     // Call the API and handle any network failures.
     try {
         /** @var TagTemplateField $response */
-        $response = $dataCatalogClient->updateTagTemplateField($formattedName, $tagTemplateField);
+        $response = $dataCatalogClient->updateTagTemplateField($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

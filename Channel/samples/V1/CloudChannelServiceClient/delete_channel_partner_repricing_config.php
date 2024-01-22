@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudchannel_v1_generated_CloudChannelService_DeleteChannelPartnerRepricingConfig_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\DeleteChannelPartnerRepricingConfigRequest;
 
 /**
  * Deletes the given
@@ -54,9 +55,13 @@ function delete_channel_partner_repricing_config_sample(string $formattedName): 
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteChannelPartnerRepricingConfigRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $cloudChannelServiceClient->deleteChannelPartnerRepricingConfig($formattedName);
+        $cloudChannelServiceClient->deleteChannelPartnerRepricingConfig($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

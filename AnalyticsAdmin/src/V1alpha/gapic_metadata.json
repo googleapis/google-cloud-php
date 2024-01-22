@@ -410,6 +410,11 @@
                                 "getSearchAds360Link"
                             ]
                         },
+                        "GetSubpropertyEventFilter": {
+                            "methods": [
+                                "getSubpropertyEventFilter"
+                            ]
+                        },
                         "ListAccessBindings": {
                             "methods": [
                                 "listAccessBindings"
@@ -523,6 +528,11 @@
                         "ListSearchAds360Links": {
                             "methods": [
                                 "listSearchAds360Links"
+                            ]
+                        },
+                        "ListSubpropertyEventFilters": {
+                            "methods": [
+                                "listSubpropertyEventFilters"
                             ]
                         },
                         "ProvisionAccountTicket": {
@@ -648,6 +658,11 @@
                         "UpdateSearchAds360Link": {
                             "methods": [
                                 "updateSearchAds360Link"
+                            ]
+                        },
+                        "UpdateSubpropertyEventFilter": {
+                            "methods": [
+                                "updateSubpropertyEventFilter"
                             ]
                         }
                     }

@@ -18,8 +18,9 @@ class ExportDataResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * All of the files that are exported in this export operation. For custom
-     * code training export, only three (training, validation and test) GCS paths
-     * in wildcard format are populated (e.g., gs://.../training-*).
+     * code training export, only three (training, validation and test)
+     * Cloud Storage paths in wildcard format are populated
+     * (for example, gs://.../training-*).
      *
      * Generated from protobuf field <code>repeated string exported_files = 1;</code>
      */
@@ -41,8 +42,9 @@ class ExportDataResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exported_files
      *           All of the files that are exported in this export operation. For custom
-     *           code training export, only three (training, validation and test) GCS paths
-     *           in wildcard format are populated (e.g., gs://.../training-*).
+     *           code training export, only three (training, validation and test)
+     *           Cloud Storage paths in wildcard format are populated
+     *           (for example, gs://.../training-*).
      *     @type \Google\Cloud\AIPlatform\V1\Model\DataStats $data_stats
      *           Only present for custom code training export use case. Records data stats,
      *           i.e., train/validation/test item/annotation counts calculated during
@@ -56,8 +58,9 @@ class ExportDataResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * All of the files that are exported in this export operation. For custom
-     * code training export, only three (training, validation and test) GCS paths
-     * in wildcard format are populated (e.g., gs://.../training-*).
+     * code training export, only three (training, validation and test)
+     * Cloud Storage paths in wildcard format are populated
+     * (for example, gs://.../training-*).
      *
      * Generated from protobuf field <code>repeated string exported_files = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -69,8 +72,9 @@ class ExportDataResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * All of the files that are exported in this export operation. For custom
-     * code training export, only three (training, validation and test) GCS paths
-     * in wildcard format are populated (e.g., gs://.../training-*).
+     * code training export, only three (training, validation and test)
+     * Cloud Storage paths in wildcard format are populated
+     * (for example, gs://.../training-*).
      *
      * Generated from protobuf field <code>repeated string exported_files = 1;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

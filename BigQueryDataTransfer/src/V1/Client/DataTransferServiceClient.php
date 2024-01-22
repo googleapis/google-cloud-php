@@ -70,12 +70,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\BigQuery\DataTransfer\V1\DataTransferServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface checkValidCredsAsync(CheckValidCredsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createTransferConfigAsync(CreateTransferConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteTransferConfigAsync(DeleteTransferConfigRequest $request, array $optionalArgs = [])
@@ -102,8 +96,15 @@ final class DataTransferServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.bigquery.datatransfer.v1.DataTransferService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'bigquerydatatransfer.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'bigquerydatatransfer.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -443,6 +444,8 @@ final class DataTransferServiceClient
      *
      * The async variant is {@see DataTransferServiceClient::checkValidCredsAsync()} .
      *
+     * @example samples/V1/DataTransferServiceClient/check_valid_creds.php
+     *
      * @param CheckValidCredsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -467,6 +470,8 @@ final class DataTransferServiceClient
      *
      * The async variant is
      * {@see DataTransferServiceClient::createTransferConfigAsync()} .
+     *
+     * @example samples/V1/DataTransferServiceClient/create_transfer_config.php
      *
      * @param CreateTransferConfigRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -494,6 +499,8 @@ final class DataTransferServiceClient
      * The async variant is
      * {@see DataTransferServiceClient::deleteTransferConfigAsync()} .
      *
+     * @example samples/V1/DataTransferServiceClient/delete_transfer_config.php
+     *
      * @param DeleteTransferConfigRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -516,6 +523,8 @@ final class DataTransferServiceClient
      *
      * The async variant is {@see DataTransferServiceClient::deleteTransferRunAsync()}
      * .
+     *
+     * @example samples/V1/DataTransferServiceClient/delete_transfer_run.php
      *
      * @param DeleteTransferRunRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -547,6 +556,8 @@ final class DataTransferServiceClient
      * The async variant is {@see DataTransferServiceClient::enrollDataSourcesAsync()}
      * .
      *
+     * @example samples/V1/DataTransferServiceClient/enroll_data_sources.php
+     *
      * @param EnrollDataSourcesRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -568,6 +579,8 @@ final class DataTransferServiceClient
      * Retrieves a supported data source and returns its settings.
      *
      * The async variant is {@see DataTransferServiceClient::getDataSourceAsync()} .
+     *
+     * @example samples/V1/DataTransferServiceClient/get_data_source.php
      *
      * @param GetDataSourceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -594,6 +607,8 @@ final class DataTransferServiceClient
      * The async variant is {@see DataTransferServiceClient::getTransferConfigAsync()}
      * .
      *
+     * @example samples/V1/DataTransferServiceClient/get_transfer_config.php
+     *
      * @param GetTransferConfigRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -618,6 +633,8 @@ final class DataTransferServiceClient
      *
      * The async variant is {@see DataTransferServiceClient::getTransferRunAsync()} .
      *
+     * @example samples/V1/DataTransferServiceClient/get_transfer_run.php
+     *
      * @param GetTransferRunRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -641,6 +658,8 @@ final class DataTransferServiceClient
      * Lists supported data sources and returns their settings.
      *
      * The async variant is {@see DataTransferServiceClient::listDataSourcesAsync()} .
+     *
+     * @example samples/V1/DataTransferServiceClient/list_data_sources.php
      *
      * @param ListDataSourcesRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -668,6 +687,8 @@ final class DataTransferServiceClient
      * The async variant is
      * {@see DataTransferServiceClient::listTransferConfigsAsync()} .
      *
+     * @example samples/V1/DataTransferServiceClient/list_transfer_configs.php
+     *
      * @param ListTransferConfigsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -692,6 +713,8 @@ final class DataTransferServiceClient
      *
      * The async variant is {@see DataTransferServiceClient::listTransferLogsAsync()} .
      *
+     * @example samples/V1/DataTransferServiceClient/list_transfer_logs.php
+     *
      * @param ListTransferLogsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -715,6 +738,8 @@ final class DataTransferServiceClient
      * Returns information about running and completed transfer runs.
      *
      * The async variant is {@see DataTransferServiceClient::listTransferRunsAsync()} .
+     *
+     * @example samples/V1/DataTransferServiceClient/list_transfer_runs.php
      *
      * @param ListTransferRunsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -744,6 +769,8 @@ final class DataTransferServiceClient
      *
      * The async variant is
      * {@see DataTransferServiceClient::scheduleTransferRunsAsync()} .
+     *
+     * @example samples/V1/DataTransferServiceClient/schedule_transfer_runs.php
      *
      * @param ScheduleTransferRunsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -775,6 +802,8 @@ final class DataTransferServiceClient
      * The async variant is
      * {@see DataTransferServiceClient::startManualTransferRunsAsync()} .
      *
+     * @example samples/V1/DataTransferServiceClient/start_manual_transfer_runs.php
+     *
      * @param StartManualTransferRunsRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -801,6 +830,8 @@ final class DataTransferServiceClient
      * The async variant is
      * {@see DataTransferServiceClient::updateTransferConfigAsync()} .
      *
+     * @example samples/V1/DataTransferServiceClient/update_transfer_config.php
+     *
      * @param UpdateTransferConfigRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -825,6 +856,8 @@ final class DataTransferServiceClient
      *
      * The async variant is {@see DataTransferServiceClient::getLocationAsync()} .
      *
+     * @example samples/V1/DataTransferServiceClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -848,6 +881,8 @@ final class DataTransferServiceClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see DataTransferServiceClient::listLocationsAsync()} .
+     *
+     * @example samples/V1/DataTransferServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

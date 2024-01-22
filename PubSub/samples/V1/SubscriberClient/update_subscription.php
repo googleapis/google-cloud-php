@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START pubsub_v1_generated_Subscriber_UpdateSubscription_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\PubSub\V1\SubscriberClient;
+use Google\Cloud\PubSub\V1\Client\SubscriberClient;
 use Google\Cloud\PubSub\V1\Subscription;
+use Google\Cloud\PubSub\V1\UpdateSubscriptionRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -50,16 +51,19 @@ function update_subscription_sample(
     // Create a client.
     $subscriberClient = new SubscriberClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $subscription = (new Subscription())
         ->setName($subscriptionName)
         ->setTopic($formattedSubscriptionTopic);
     $updateMask = new FieldMask();
+    $request = (new UpdateSubscriptionRequest())
+        ->setSubscription($subscription)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var Subscription $response */
-        $response = $subscriberClient->updateSubscription($subscription, $updateMask);
+        $response = $subscriberClient->updateSubscription($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

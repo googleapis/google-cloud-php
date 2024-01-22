@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudtasks_v2_generated_CloudTasks_GetIamPolicy_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
-use Google\Cloud\Tasks\V2\CloudTasksClient;
+use Google\Cloud\Tasks\V2\Client\CloudTasksClient;
 
 /**
  * Gets the access control policy for a [Queue][google.cloud.tasks.v2.Queue].
@@ -46,10 +47,14 @@ function get_iam_policy_sample(string $resource): void
     // Create a client.
     $cloudTasksClient = new CloudTasksClient();
 
+    // Prepare the request message.
+    $request = (new GetIamPolicyRequest())
+        ->setResource($resource);
+
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $cloudTasksClient->getIamPolicy($resource);
+        $response = $cloudTasksClient->getIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

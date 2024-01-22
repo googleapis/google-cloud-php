@@ -26,6 +26,22 @@ class GetSecuritySettingsRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. Resource name of the settings.
+     *                     Format: `projects/<Project ID>/locations/<Location
+     *                     ID>/securitySettings/<security settings ID>`. Please see
+     *                     {@see SecuritySettingsServiceClient::securitySettingsName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\GetSecuritySettingsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

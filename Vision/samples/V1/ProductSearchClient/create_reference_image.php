@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START vision_v1_generated_ProductSearch_CreateReferenceImage_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Vision\V1\ProductSearchClient;
+use Google\Cloud\Vision\V1\Client\ProductSearchClient;
+use Google\Cloud\Vision\V1\CreateReferenceImageRequest;
 use Google\Cloud\Vision\V1\ReferenceImage;
 
 /**
@@ -62,14 +63,17 @@ function create_reference_image_sample(string $formattedParent, string $referenc
     // Create a client.
     $productSearchClient = new ProductSearchClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $referenceImage = (new ReferenceImage())
         ->setUri($referenceImageUri);
+    $request = (new CreateReferenceImageRequest())
+        ->setParent($formattedParent)
+        ->setReferenceImage($referenceImage);
 
     // Call the API and handle any network failures.
     try {
         /** @var ReferenceImage $response */
-        $response = $productSearchClient->createReferenceImage($formattedParent, $referenceImage);
+        $response = $productSearchClient->createReferenceImage($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_Contexts_DeleteAllContexts_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dialogflow\V2\ContextsClient;
+use Google\Cloud\Dialogflow\V2\Client\ContextsClient;
+use Google\Cloud\Dialogflow\V2\DeleteAllContextsRequest;
 
 /**
  * Deletes all active contexts in the specified session.
@@ -42,9 +43,13 @@ function delete_all_contexts_sample(string $formattedParent): void
     // Create a client.
     $contextsClient = new ContextsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteAllContextsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
-        $contextsClient->deleteAllContexts($formattedParent);
+        $contextsClient->deleteAllContexts($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

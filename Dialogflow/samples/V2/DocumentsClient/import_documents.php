@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_Documents_ImportDocuments_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Dialogflow\V2\Client\DocumentsClient;
 use Google\Cloud\Dialogflow\V2\Document\KnowledgeType;
-use Google\Cloud\Dialogflow\V2\DocumentsClient;
 use Google\Cloud\Dialogflow\V2\ImportDocumentTemplate;
+use Google\Cloud\Dialogflow\V2\ImportDocumentsRequest;
 use Google\Cloud\Dialogflow\V2\ImportDocumentsResponse;
 use Google\Rpc\Status;
 
@@ -60,16 +61,19 @@ function import_documents_sample(
     // Create a client.
     $documentsClient = new DocumentsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $documentTemplateKnowledgeTypes = [$documentTemplateKnowledgeTypesElement,];
     $documentTemplate = (new ImportDocumentTemplate())
         ->setMimeType($documentTemplateMimeType)
         ->setKnowledgeTypes($documentTemplateKnowledgeTypes);
+    $request = (new ImportDocumentsRequest())
+        ->setParent($formattedParent)
+        ->setDocumentTemplate($documentTemplate);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $documentsClient->importDocuments($formattedParent, $documentTemplate);
+        $response = $documentsClient->importDocuments($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

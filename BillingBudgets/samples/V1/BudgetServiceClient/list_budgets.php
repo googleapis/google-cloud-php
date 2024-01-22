@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Billing\Budgets\V1\Budget;
-use Google\Cloud\Billing\Budgets\V1\BudgetServiceClient;
+use Google\Cloud\Billing\Budgets\V1\Client\BudgetServiceClient;
+use Google\Cloud\Billing\Budgets\V1\ListBudgetsRequest;
 
 /**
  * Returns a list of budgets for a billing account.
@@ -45,10 +46,14 @@ function list_budgets_sample(string $formattedParent): void
     // Create a client.
     $budgetServiceClient = new BudgetServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListBudgetsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $budgetServiceClient->listBudgets($formattedParent);
+        $response = $budgetServiceClient->listBudgets($request);
 
         /** @var Budget $element */
         foreach ($response as $element) {

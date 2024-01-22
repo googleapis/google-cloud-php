@@ -52,6 +52,12 @@ class GenerateAttachedClusterInstallManifestRequest extends \Google\Protobuf\Int
      * Generated from protobuf field <code>string platform_version = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $platform_version = '';
+    /**
+     * Optional. Proxy configuration for outbound HTTP(S) traffic.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AttachedProxyConfig proxy_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $proxy_config = null;
 
     /**
      * @param string $parent            Required. The parent location where this
@@ -120,6 +126,8 @@ class GenerateAttachedClusterInstallManifestRequest extends \Google\Protobuf\Int
      *           You can list all supported versions on a given Google Cloud region by
      *           calling
      *           [GetAttachedServerConfig][google.cloud.gkemulticloud.v1.AttachedClusters.GetAttachedServerConfig].
+     *     @type \Google\Cloud\GkeMultiCloud\V1\AttachedProxyConfig $proxy_config
+     *           Optional. Proxy configuration for outbound HTTP(S) traffic.
      * }
      */
     public function __construct($data = NULL) {
@@ -237,6 +245,42 @@ class GenerateAttachedClusterInstallManifestRequest extends \Google\Protobuf\Int
     {
         GPBUtil::checkString($var, True);
         $this->platform_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Proxy configuration for outbound HTTP(S) traffic.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AttachedProxyConfig proxy_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GkeMultiCloud\V1\AttachedProxyConfig|null
+     */
+    public function getProxyConfig()
+    {
+        return $this->proxy_config;
+    }
+
+    public function hasProxyConfig()
+    {
+        return isset($this->proxy_config);
+    }
+
+    public function clearProxyConfig()
+    {
+        unset($this->proxy_config);
+    }
+
+    /**
+     * Optional. Proxy configuration for outbound HTTP(S) traffic.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AttachedProxyConfig proxy_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GkeMultiCloud\V1\AttachedProxyConfig $var
+     * @return $this
+     */
+    public function setProxyConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\AttachedProxyConfig::class);
+        $this->proxy_config = $var;
 
         return $this;
     }

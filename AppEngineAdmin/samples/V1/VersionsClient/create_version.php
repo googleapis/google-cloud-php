@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START appengine_v1_generated_Versions_CreateVersion_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AppEngine\V1\Client\VersionsClient;
+use Google\Cloud\AppEngine\V1\CreateVersionRequest;
 use Google\Cloud\AppEngine\V1\Version;
-use Google\Cloud\AppEngine\V1\VersionsClient;
 use Google\Rpc\Status;
 
 /**
@@ -43,10 +44,13 @@ function create_version_sample(): void
     // Create a client.
     $versionsClient = new VersionsClient();
 
+    // Prepare the request message.
+    $request = new CreateVersionRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $versionsClient->createVersion();
+        $response = $versionsClient->createVersion($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

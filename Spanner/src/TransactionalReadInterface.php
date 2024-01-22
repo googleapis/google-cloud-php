@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner;
 
 /**
+ * @internal
  * Defines an interface for any Transaction which supports read operations,
  * and includes support for common data related to single-use transactions.
  */
@@ -64,4 +65,9 @@ interface TransactionalReadInterface
      * @return int
      */
     public function type();
+
+    /**
+     * Set the transaction ID.
+     */
+    public function setId(?string $transactionId);
 }

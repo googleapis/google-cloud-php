@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START jobs_v4_generated_TenantService_ListTenants_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Talent\V4\Client\TenantServiceClient;
+use Google\Cloud\Talent\V4\ListTenantsRequest;
 use Google\Cloud\Talent\V4\Tenant;
-use Google\Cloud\Talent\V4\TenantServiceClient;
 
 /**
  * Lists all tenants associated with the project.
@@ -42,10 +43,14 @@ function list_tenants_sample(string $formattedParent): void
     // Create a client.
     $tenantServiceClient = new TenantServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListTenantsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $tenantServiceClient->listTenants($formattedParent);
+        $response = $tenantServiceClient->listTenants($request);
 
         /** @var Tenant $element */
         foreach ($response as $element) {

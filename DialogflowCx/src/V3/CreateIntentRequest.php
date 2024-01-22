@@ -43,6 +43,23 @@ class CreateIntentRequest extends \Google\Protobuf\Internal\Message
     protected $language_code = '';
 
     /**
+     * @param string                                $parent Required. The agent to create an intent for.
+     *                                                      Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+     *                                                      {@see IntentsClient::agentName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Intent $intent Required. The intent to create.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\CreateIntentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dialogflow\Cx\V3\Intent $intent): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setIntent($intent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

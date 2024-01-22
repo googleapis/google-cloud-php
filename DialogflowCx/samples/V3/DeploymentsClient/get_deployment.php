@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_Deployments_GetDeployment_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\Cx\V3\Client\DeploymentsClient;
 use Google\Cloud\Dialogflow\Cx\V3\Deployment;
-use Google\Cloud\Dialogflow\Cx\V3\DeploymentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\GetDeploymentRequest;
 
 /**
  * Retrieves the specified
@@ -42,10 +43,14 @@ function get_deployment_sample(string $formattedName): void
     // Create a client.
     $deploymentsClient = new DeploymentsClient();
 
+    // Prepare the request message.
+    $request = (new GetDeploymentRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Deployment $response */
-        $response = $deploymentsClient->getDeployment($formattedName);
+        $response = $deploymentsClient->getDeployment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

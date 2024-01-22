@@ -37,6 +37,22 @@ class UpdateGeneratorRequest extends \Google\Protobuf\Internal\Message
     protected $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Generator $generator  Required. The generator to update.
+     * @param \Google\Protobuf\FieldMask               $updateMask The mask to control which fields get updated. If the mask is not present,
+     *                                                             all fields will be updated.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\UpdateGeneratorRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\Cx\V3\Generator $generator, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setGenerator($generator)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

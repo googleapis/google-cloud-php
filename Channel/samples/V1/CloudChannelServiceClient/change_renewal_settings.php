@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudchannel_v1_generated_CloudChannelService_ChangeRenewalSettings_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\ChangeRenewalSettingsRequest;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
 use Google\Cloud\Channel\V1\Entitlement;
 use Google\Cloud\Channel\V1\RenewalSettings;
 use Google\Rpc\Status;
@@ -64,13 +65,16 @@ function change_renewal_settings_sample(string $name): void
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $renewalSettings = new RenewalSettings();
+    $request = (new ChangeRenewalSettingsRequest())
+        ->setName($name)
+        ->setRenewalSettings($renewalSettings);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudChannelServiceClient->changeRenewalSettings($name, $renewalSettings);
+        $response = $cloudChannelServiceClient->changeRenewalSettings($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

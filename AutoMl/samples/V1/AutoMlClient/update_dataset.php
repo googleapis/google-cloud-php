@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START automl_v1_generated_AutoMl_UpdateDataset_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AutoMl\V1\AutoMlClient;
+use Google\Cloud\AutoMl\V1\Client\AutoMlClient;
 use Google\Cloud\AutoMl\V1\Dataset;
+use Google\Cloud\AutoMl\V1\UpdateDatasetRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -42,14 +43,17 @@ function update_dataset_sample(): void
     // Create a client.
     $autoMlClient = new AutoMlClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $dataset = new Dataset();
     $updateMask = new FieldMask();
+    $request = (new UpdateDatasetRequest())
+        ->setDataset($dataset)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var Dataset $response */
-        $response = $autoMlClient->updateDataset($dataset, $updateMask);
+        $response = $autoMlClient->updateDataset($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

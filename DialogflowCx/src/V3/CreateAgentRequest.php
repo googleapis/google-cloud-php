@@ -31,6 +31,23 @@ class CreateAgentRequest extends \Google\Protobuf\Internal\Message
     protected $agent = null;
 
     /**
+     * @param string                               $parent Required. The location to create a agent for.
+     *                                                     Format: `projects/<Project ID>/locations/<Location ID>`. Please see
+     *                                                     {@see AgentsClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Agent $agent  Required. The agent to create.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\CreateAgentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dialogflow\Cx\V3\Agent $agent): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setAgent($agent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

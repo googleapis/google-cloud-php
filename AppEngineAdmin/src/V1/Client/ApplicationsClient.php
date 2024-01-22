@@ -47,11 +47,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\AppEngine\V1\ApplicationsClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createApplicationAsync(CreateApplicationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getApplicationAsync(GetApplicationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface repairApplicationAsync(RepairApplicationRequest $request, array $optionalArgs = [])
@@ -64,8 +59,15 @@ final class ApplicationsClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.appengine.v1.Applications';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'appengine.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'appengine.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -213,6 +215,8 @@ final class ApplicationsClient
      *
      * The async variant is {@see ApplicationsClient::createApplicationAsync()} .
      *
+     * @example samples/V1/ApplicationsClient/create_application.php
+     *
      * @param CreateApplicationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -236,6 +240,8 @@ final class ApplicationsClient
      * Gets information about an application.
      *
      * The async variant is {@see ApplicationsClient::getApplicationAsync()} .
+     *
+     * @example samples/V1/ApplicationsClient/get_application.php
      *
      * @param GetApplicationRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -270,6 +276,8 @@ final class ApplicationsClient
      *
      * The async variant is {@see ApplicationsClient::repairApplicationAsync()} .
      *
+     * @example samples/V1/ApplicationsClient/repair_application.php
+     *
      * @param RepairApplicationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -298,6 +306,8 @@ final class ApplicationsClient
      * * `iap` - Identity-Aware Proxy properties for the application.
      *
      * The async variant is {@see ApplicationsClient::updateApplicationAsync()} .
+     *
+     * @example samples/V1/ApplicationsClient/update_application.php
      *
      * @param UpdateApplicationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {

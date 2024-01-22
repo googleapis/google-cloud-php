@@ -57,12 +57,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\BigQuery\Connection\V1\ConnectionServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createConnectionAsync(CreateConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteConnectionAsync(DeleteConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getConnectionAsync(GetConnectionRequest $request, array $optionalArgs = [])
@@ -80,8 +74,15 @@ final class ConnectionServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.bigquery.connection.v1.ConnectionService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'bigqueryconnection.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'bigqueryconnection.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -291,6 +292,8 @@ final class ConnectionServiceClient
      *
      * The async variant is {@see ConnectionServiceClient::createConnectionAsync()} .
      *
+     * @example samples/V1/ConnectionServiceClient/create_connection.php
+     *
      * @param CreateConnectionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -315,6 +318,8 @@ final class ConnectionServiceClient
      *
      * The async variant is {@see ConnectionServiceClient::deleteConnectionAsync()} .
      *
+     * @example samples/V1/ConnectionServiceClient/delete_connection.php
+     *
      * @param DeleteConnectionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -336,6 +341,8 @@ final class ConnectionServiceClient
      * Returns specified connection.
      *
      * The async variant is {@see ConnectionServiceClient::getConnectionAsync()} .
+     *
+     * @example samples/V1/ConnectionServiceClient/get_connection.php
      *
      * @param GetConnectionRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -363,6 +370,8 @@ final class ConnectionServiceClient
      *
      * The async variant is {@see ConnectionServiceClient::getIamPolicyAsync()} .
      *
+     * @example samples/V1/ConnectionServiceClient/get_iam_policy.php
+     *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -386,6 +395,8 @@ final class ConnectionServiceClient
      * Returns a list of connections in the given project.
      *
      * The async variant is {@see ConnectionServiceClient::listConnectionsAsync()} .
+     *
+     * @example samples/V1/ConnectionServiceClient/list_connections.php
      *
      * @param ListConnectionsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -413,6 +424,8 @@ final class ConnectionServiceClient
      * Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      *
      * The async variant is {@see ConnectionServiceClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/ConnectionServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -444,6 +457,8 @@ final class ConnectionServiceClient
      *
      * The async variant is {@see ConnectionServiceClient::testIamPermissionsAsync()} .
      *
+     * @example samples/V1/ConnectionServiceClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -468,6 +483,8 @@ final class ConnectionServiceClient
      * credential if connection properties are in the update field mask.
      *
      * The async variant is {@see ConnectionServiceClient::updateConnectionAsync()} .
+     *
+     * @example samples/V1/ConnectionServiceClient/update_connection.php
      *
      * @param UpdateConnectionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {

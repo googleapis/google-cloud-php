@@ -66,12 +66,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Orchestration\Airflow\Service\V1\EnvironmentsClient} for the
- * stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createEnvironmentAsync(CreateEnvironmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface databaseFailoverAsync(DatabaseFailoverRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteEnvironmentAsync(DeleteEnvironmentRequest $request, array $optionalArgs = [])
@@ -93,8 +87,15 @@ final class EnvironmentsClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.orchestration.airflow.service.v1.Environments';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'composer.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'composer.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -277,6 +278,8 @@ final class EnvironmentsClient
      *
      * The async variant is {@see EnvironmentsClient::createEnvironmentAsync()} .
      *
+     * @example samples/V1/EnvironmentsClient/create_environment.php
+     *
      * @param CreateEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -300,6 +303,8 @@ final class EnvironmentsClient
      * Triggers database failover (only for highly resilient environments).
      *
      * The async variant is {@see EnvironmentsClient::databaseFailoverAsync()} .
+     *
+     * @example samples/V1/EnvironmentsClient/database_failover.php
      *
      * @param DatabaseFailoverRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -325,6 +330,8 @@ final class EnvironmentsClient
      *
      * The async variant is {@see EnvironmentsClient::deleteEnvironmentAsync()} .
      *
+     * @example samples/V1/EnvironmentsClient/delete_environment.php
+     *
      * @param DeleteEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -348,6 +355,8 @@ final class EnvironmentsClient
      * Executes Airflow CLI command.
      *
      * The async variant is {@see EnvironmentsClient::executeAirflowCommandAsync()} .
+     *
+     * @example samples/V1/EnvironmentsClient/execute_airflow_command.php
      *
      * @param ExecuteAirflowCommandRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -373,6 +382,8 @@ final class EnvironmentsClient
      *
      * The async variant is {@see EnvironmentsClient::fetchDatabasePropertiesAsync()} .
      *
+     * @example samples/V1/EnvironmentsClient/fetch_database_properties.php
+     *
      * @param FetchDatabasePropertiesRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -397,6 +408,8 @@ final class EnvironmentsClient
      *
      * The async variant is {@see EnvironmentsClient::getEnvironmentAsync()} .
      *
+     * @example samples/V1/EnvironmentsClient/get_environment.php
+     *
      * @param GetEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -420,6 +433,8 @@ final class EnvironmentsClient
      * List environments.
      *
      * The async variant is {@see EnvironmentsClient::listEnvironmentsAsync()} .
+     *
+     * @example samples/V1/EnvironmentsClient/list_environments.php
      *
      * @param ListEnvironmentsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -448,6 +463,8 @@ final class EnvironmentsClient
      *
      * The async variant is {@see EnvironmentsClient::loadSnapshotAsync()} .
      *
+     * @example samples/V1/EnvironmentsClient/load_snapshot.php
+     *
      * @param LoadSnapshotRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -471,6 +488,8 @@ final class EnvironmentsClient
      * Polls Airflow CLI command execution and fetches logs.
      *
      * The async variant is {@see EnvironmentsClient::pollAirflowCommandAsync()} .
+     *
+     * @example samples/V1/EnvironmentsClient/poll_airflow_command.php
      *
      * @param PollAirflowCommandRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -499,6 +518,8 @@ final class EnvironmentsClient
      *
      * The async variant is {@see EnvironmentsClient::saveSnapshotAsync()} .
      *
+     * @example samples/V1/EnvironmentsClient/save_snapshot.php
+     *
      * @param SaveSnapshotRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -523,6 +544,8 @@ final class EnvironmentsClient
      *
      * The async variant is {@see EnvironmentsClient::stopAirflowCommandAsync()} .
      *
+     * @example samples/V1/EnvironmentsClient/stop_airflow_command.php
+     *
      * @param StopAirflowCommandRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -546,6 +569,8 @@ final class EnvironmentsClient
      * Update an environment.
      *
      * The async variant is {@see EnvironmentsClient::updateEnvironmentAsync()} .
+     *
+     * @example samples/V1/EnvironmentsClient/update_environment.php
      *
      * @param UpdateEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {

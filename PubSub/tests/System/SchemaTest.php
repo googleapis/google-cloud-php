@@ -108,9 +108,6 @@ class SchemaTest extends PubSubTestCase
      */
     public function testPublishWithAvroSchemaBinary(PubSubClient $client)
     {
-        if (version_compare(phpversion(), '7.3.0') === -1) {
-            $this->markTestSkipped('This test can only be run on php 7.3+');
-        }
         $definition = file_get_contents(__DIR__ . '/testdata/schema.avsc');
         $schema = $client->createSchema(
             uniqid(self::TESTING_PREFIX),
@@ -139,9 +136,10 @@ class SchemaTest extends PubSubTestCase
         $encoder = new \AvroIOBinaryEncoder($io);
         $writer->write($data, $encoder);
 
-        $topic->publish(new Message([
+        $messageIds = $topic->publish(new Message([
             'data' => $io->string(),
         ]));
+        $this->assertNotEmpty($messageIds);
     }
 
     /**

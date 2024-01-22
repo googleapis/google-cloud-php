@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START serviceusage_v1_generated_ServiceUsage_BatchEnableServices_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\ServiceUsage\V1\BatchEnableServicesRequest;
 use Google\Cloud\ServiceUsage\V1\BatchEnableServicesResponse;
-use Google\Cloud\ServiceUsage\V1\ServiceUsageClient;
+use Google\Cloud\ServiceUsage\V1\Client\ServiceUsageClient;
 use Google\Rpc\Status;
 
 /**
@@ -45,10 +46,13 @@ function batch_enable_services_sample(): void
     // Create a client.
     $serviceUsageClient = new ServiceUsageClient();
 
+    // Prepare the request message.
+    $request = new BatchEnableServicesRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $serviceUsageClient->batchEnableServices();
+        $response = $serviceUsageClient->batchEnableServices($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

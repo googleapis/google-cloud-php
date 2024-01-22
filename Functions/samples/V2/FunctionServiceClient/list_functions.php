@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudfunctions_v2_generated_FunctionService_ListFunctions_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Functions\V2\FunctionServiceClient;
+use Google\Cloud\Functions\V2\Client\FunctionServiceClient;
+use Google\Cloud\Functions\V2\ListFunctionsRequest;
 use Google\Cloud\Functions\V2\PBFunction;
 
 /**
@@ -44,10 +45,14 @@ function list_functions_sample(string $formattedParent): void
     // Create a client.
     $functionServiceClient = new FunctionServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListFunctionsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $functionServiceClient->listFunctions($formattedParent);
+        $response = $functionServiceClient->listFunctions($request);
 
         /** @var PBFunction $element */
         foreach ($response as $element) {

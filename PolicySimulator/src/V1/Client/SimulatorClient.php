@@ -64,10 +64,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
- *
- * @experimental
- *
  * @method PromiseInterface createReplayAsync(CreateReplayRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getReplayAsync(GetReplayRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listReplayResultsAsync(ListReplayResultsRequest $request, array $optionalArgs = [])
@@ -80,8 +76,15 @@ final class SimulatorClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.policysimulator.v1.Simulator';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'policysimulator.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'policysimulator.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -90,9 +93,7 @@ final class SimulatorClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -138,7 +139,9 @@ final class SimulatorClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -173,8 +176,11 @@ final class SimulatorClient
      *
      * @return string The formatted organization_location_replay resource.
      */
-    public static function organizationLocationReplayName(string $organization, string $location, string $replay): string
-    {
+    public static function organizationLocationReplayName(
+        string $organization,
+        string $location,
+        string $replay
+    ): string {
         return self::getPathTemplate('organizationLocationReplay')->render([
             'organization' => $organization,
             'location' => $location,
