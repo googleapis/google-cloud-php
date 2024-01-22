@@ -59,6 +59,4 @@ class MacsecStatus
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MacsecStatus::class, \Google\Cloud\EdgeNetwork\V1\DiagnoseNetworkResponse_NetworkStatus_MacsecStatus::class);
 
