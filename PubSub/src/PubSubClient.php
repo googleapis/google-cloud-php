@@ -20,11 +20,11 @@ namespace Google\Cloud\PubSub;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Cloud\Core\NewClientTrait;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\PubSub\V1\Client\PublisherClient;
@@ -94,7 +94,7 @@ use Google\Cloud\PubSub\V1\ValidateSchemaRequest;
 class PubSubClient
 {
     use ArrayTrait;
-    use ClientTrait;
+    use NewClientTrait;
     use IncomingMessageTrait;
     use ResourceNameTrait;
     use ApiHelperTrait;
@@ -186,7 +186,7 @@ class PubSubClient
             ]
         ];
 
-        $this->projectId = $this->detectProjectId($config);
+        $config = $this->configureAuthentication($config);
         $this->clientConfig = $config;
         $this->serializer = new Serializer([
             'publish_time' => function ($v) {
