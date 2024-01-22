@@ -19,6 +19,7 @@ namespace Google\Cloud\PubSub\Tests\Unit;
 
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\Testing\Snippet\Fixtures;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\PubSub\BatchPublisher;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
@@ -87,7 +88,11 @@ class BatchPublisherTest extends TestCase
     public function testPublishDeferred()
     {
         $client = TestHelpers::stub(PubSubClient::class, [
-            ['suppressKeyFileNotice' => true, 'projectId' => 'example-project']
+            [
+                'suppressKeyFileNotice' => true,
+                'projectId' => 'example-project',
+                'credentials' => Fixtures::KEYFILE_STUB_FIXTURE()
+            ]
         ], [
             'encode', 'requestHandler'
         ]);
@@ -158,7 +163,11 @@ class BatchPublisherTest extends TestCase
         $processedCompressionBytesThreshold
     ) {
         $client = TestHelpers::stub(PubSubClient::class, [
-            ['suppressKeyFileNotice' => true, 'projectId' => 'example-project']
+            [
+                'suppressKeyFileNotice' => true,
+                'projectId' => 'example-project',
+                'credentials' => Fixtures::KEYFILE_STUB_FIXTURE()
+            ]
         ], [
             'encode', 'requestHandler'
         ]);

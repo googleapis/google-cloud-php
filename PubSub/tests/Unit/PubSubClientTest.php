@@ -23,6 +23,7 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Core\Testing\Snippet\Fixtures;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\PubSubClient;
@@ -61,7 +62,8 @@ class PubSubClientTest extends TestCase
         $this->client = TestHelpers::stub(PubSubClient::class, [
             [
                 'projectId' => self::PROJECT,
-                'transport' => 'rest'
+                'transport' => 'rest',
+                'credentials' => Fixtures::KEYFILE_STUB_FIXTURE()
             ]
         ], ['requestHandler']);
     }
