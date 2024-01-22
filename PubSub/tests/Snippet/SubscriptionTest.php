@@ -339,7 +339,10 @@ class SubscriptionTest extends SnippetTestCase
         )->shouldBeCalled()
         ->willReturn([
             'receivedMessages' => [
-                ['message' => ['data' => 'hello world']]
+                [
+                    'message' => ['data' => 'hello world'],
+                    'ackId' => 'foo'
+                ]
             ]
         ]);
 
@@ -372,7 +375,10 @@ class SubscriptionTest extends SnippetTestCase
         )->shouldBeCalled()
         ->willReturn([
             'receivedMessages' => [
-                ['message' => ['data' => 'hello world']]
+                [
+                    'message' => ['data' => 'hello world'],
+                    'ackId' => 'foo'
+                ]
             ]
         ]);
 
@@ -393,7 +399,10 @@ class SubscriptionTest extends SnippetTestCase
         )->shouldBeCalled()
         ->willReturn([
             'receivedMessages' => [
-                ['message' => ['data' => 'hello world']]
+                [
+                    'message' => ['data' => 'hello world'],
+                    'ackId' => 'foo'
+                ]
             ]
         ]);
 
@@ -426,7 +435,10 @@ class SubscriptionTest extends SnippetTestCase
         )->shouldBeCalled()
         ->willReturn([
             'receivedMessages' => [
-                ['message' => ['data' => 'hello world']]
+                [
+                    'message' => ['data' => 'hello world'],
+                    'ackId' => 'foo'
+                ]
             ]
         ]);
 
