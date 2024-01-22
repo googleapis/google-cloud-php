@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\PubSub;
 
+use Google\ApiCore\ApiException;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\ArrayTrait;
@@ -921,7 +922,9 @@ class Subscription
     {
         $this->validateBatch($messages, Message::class);
 
-        if (isset($options['returnFailures']) && $options['returnFailures']) {
+        $returnFailures = $this->pluck('returnFailures', $options, false) ?: false;
+
+        if ($returnFailures) {
             return $this->acknowledgeBatchWithRetries($messages, $options);
         }
 
@@ -929,7 +932,7 @@ class Subscription
         // but we don't act on the exception to maintain compatibility
         try {
             $this->sendAckRequest($messages, $options);
-        } catch (BadRequestException $e) {
+        } catch (\Exception $e) {
             // bubble up the error if the exception isn't an EOD exception
             if (!$this->isExceptionExactlyOnce($e)) {
                 throw $e;
@@ -1053,7 +1056,9 @@ class Subscription
     {
         $this->validateBatch($messages, Message::class);
 
-        if (isset($options['returnFailures']) && $options['returnFailures']) {
+        $returnFailures = $this->pluck('returnFailures', $options, false) ?: false;
+
+        if ($returnFailures) {
             return $this->modifyAckDeadlineBatchWithRetries($messages, $seconds, $options);
         }
 
@@ -1107,20 +1112,9 @@ class Subscription
         $startTime = time();
         $maxAttemptTime = 10 * 60;  // 10 minutes
 
-        // min delay of 1 sec, max delay of 64 secs
-        // doubles on every attempt
-        $delayFunc = function ($attempt) {
-            $delay = min(
-                mt_rand(0, 1000000) + (pow(2, $attempt) * 1000000),
-                self::$exactlyOnceDeliveryMaxRetryTime
-            );
-            return $delay;
-        };
-
         // Func that decides if we need to retry again or not
         $retryFunc = function (
-            BadRequestException $e,
-            $attempt
+            \Exception $e
         ) use (
             &$messages,
             &$failed,
@@ -1165,14 +1159,22 @@ class Subscription
             return count($messages) > 0;
         };
 
+        // min delay of 1 sec, max delay of 64 secs
+        // doubles on every attempt
         // We use 15 retries as the number of retries should be high enough to have a total delay
         // of 10 minutes($maxAttemptTime)
-        $backoff = new ExponentialBackoff(self::$exactlyOnceDeliveryMaxRetries, $retryFunc);
-        $backoff->setCalcDelayFunction($delayFunc);
+        $retrySettings = [
+            'initialRetryDelayMillis' => 1000,
+            'maxRetryDelayMillis' => self::$exactlyOnceDeliveryMaxRetryTime,
+            'retryDelayMultiplier' => 2,
+            'retryFunction' => $retryFunc,
+            'maxRetries' => self::$exactlyOnceDeliveryMaxRetries
+        ];
 
-        // Try to ack the messages with an ExponentialBackoff
+        $options['retrySettings'] = $retrySettings;
+
         try {
-            $backoff->execute($actionFunc, [&$messages, $options]);
+            $actionFunc($messages, $options);
         } catch (BadRequestException $e) {
             // When an exception is thrown in the action func
             // and retry function returns false
@@ -1456,11 +1458,15 @@ class Subscription
      * Checks if a given exception failure is because of
      * an EOD failure.
      *
-     * @param BadRequestException $e
+     * @param \Exception $e
      * @return boolean
      */
-    private function isExceptionExactlyOnce(BadRequestException $e)
+    private function isExceptionExactlyOnce(\Exception $e)
     {
+        if (!$e instanceof ApiException && !$e instanceof BadRequestException) {
+            return false;
+        }
+
         $reason = $e->getReason();
 
         return $reason === self::$exactlyOnceDeliveryFailureReason;
@@ -1486,16 +1492,17 @@ class Subscription
     /**
      * Returns the temporarily failed ackIds from the exception object
      *
-     * @param BadRequestException
+     * @param \Exception
      * @return array
      */
-    private function getRetryableAckIds(BadRequestException $e)
+    private function getRetryableAckIds(\Exception $e)
     {
-        $metadata = $e->getErrorInfoMetadata();
         $ackIds = [];
 
         // EOD enabled subscription
         if ($this->isExceptionExactlyOnce($e)) {
+            $metadata = $e->getErrorInfoMetadata();
+            
             foreach ($metadata as $ackId => $failureReason) {
                 // check if the prefix of the failure reason is same as
                 // the transient failure for EOD enabled subscriptions

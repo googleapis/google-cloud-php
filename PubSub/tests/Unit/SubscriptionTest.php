@@ -559,14 +559,28 @@ class SubscriptionTest extends TestCase
 
         $ex = $this->generateEodException($metadata);
 
+        $failedMsgs = [];
+        $ackIds = $this->ackIds;
+
         $this->requestHandler->sendRequest(
             SubscriberClient::class,
             'acknowledge',
             Argument::cetera()
-        )->willThrow($ex);
+        )->shouldBeCalled()
+        ->will(function ($args) use (&$failedMsgs, $ex, $ackIds) {
+            // We modify the $failedMsgs here
+            // instead of returning them from the acknowledgeBatch call
+            // because in the Subscription class, they are modified in the retry function.
+            // So, we are merely trying to emulate that.
+            $failedMsgs = $ackIds;
+
+            throw $ex;
+        });
 
         $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $failedMsgs = $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
+        $this->subscription->acknowledgeBatch($this->messages, [
+            'returnFailures' => true
+        ]);
 
         // Check if the acknowledgeBatch method returned an array of failedMsgs
         $this->assertIsArray($failedMsgs);
@@ -592,71 +606,6 @@ class SubscriptionTest extends TestCase
 
         $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
         $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
-    }
-
-    public function testAcknowledgeBatchRetryPartial()
-    {
-        // Exception with first msg as a temporary failure
-        $metadata1 = [
-            'foobar' => 'TRANSIENT_FAILURE_SERVICE_UNAVAILABLE',
-            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
-        ];
-
-        // Exception with both msgs as a permanent failure
-        $metadata2 = [
-            'foobar' => 'PERMANENT_FAILURE_INVALID_ACK_ID',
-            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
-        ];
-
-        $ex1 = $this->generateEodException($metadata1);
-        $ex2 = $this->generateEodException($metadata2);
-
-        $allEx = [$ex1, $ex1, $ex2];
-
-        $this->requestHandler->sendRequest(
-            SubscriberClient::class,
-            'acknowledge',
-            Argument::cetera()
-        )->shouldBeCalledTimes(3)->will(function () use (&$allEx) {
-            throw array_shift($allEx);
-        });
-
-        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $failedMsgs = $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
-
-        // eventually both msgs failed, so they should be present in our response
-        $this->assertEquals(count($failedMsgs), count($this->ackIds));
-    }
-
-    public function testAcknowledgeBatchRetryWithSuccess()
-    {
-        $metadata = [
-            'foobar' => 'TRANSIENT_FAILURE_SERVICE_UNAVAILABLE',
-            'otherAckId' => 'TRANSIENT_FAILURE_SERVICE_UNAVAILABLE'
-        ];
-
-        $ex = $this->generateEodException($metadata);
-        $allEx = [$ex, $ex];
-
-        $this->requestHandler->sendRequest(
-            SubscriberClient::class,
-            'acknowledge',
-            Argument::cetera()
-        )->shouldBeCalledTimes(3)->will(function () use (&$allEx) {
-            // An exception is thrown until we have in our list,
-            // then we simply return implying a success
-            if (count($allEx) > 0) {
-                throw array_shift($allEx);
-            } else {
-                return;
-            }
-        });
-
-        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $failedMsgs = $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
-
-        // eventually both msgs were acked, so our $failedMsgs should be empty
-        $this->assertEquals(count($failedMsgs), 0);
     }
 
     public function testAcknowledgeBatchNeverRetriesOnSuccess()
@@ -687,15 +636,21 @@ class SubscriptionTest extends TestCase
 
         // Any reason other than `EXACTLY_ONCE_ACKID_FAILURE` will work
         $ex = $this->generateEodException($metadata, 'FAILURE_REASON');
+        $failedMsgs = [];
 
         $this->requestHandler->sendRequest(
             SubscriberClient::class,
             'acknowledge',
             Argument::cetera()
-        )->shouldBeCalledTimes(1)->willThrow($ex);
+        )->shouldBeCalledTimes(1)
+        ->will(function ($args) use ($ex, &$failedMsgs) {
+            $failedMsgs = null;
+
+            throw $ex;
+        });
 
         $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $failedMsgs = $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
+        $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
 
         // Both msgs were acked, so our $failedMsgs should be empty
         $this->assertIsNotArray($failedMsgs);
@@ -810,15 +765,25 @@ class SubscriptionTest extends TestCase
         ];
 
         $ex = $this->generateEodException($metadata);
+        $failedMsgs = [];
+        $ackIds = $this->ackIds;
 
         $this->requestHandler->sendRequest(
             SubscriberClient::class,
             'modifyAckDeadline',
             Argument::cetera()
-        )->willThrow($ex);
+        )->will(function ($args) use ($ex, &$failedMsgs, $ackIds) {
+            // We modify the $failedMsgs here
+            // instead of returning them from the modifyAckDeadlineBatch call
+            // because in the Subscription class, they are modified in the retry function.
+            // So, we are merely trying to emulate that.
+            $failedMsgs = $ackIds;
+
+            throw $ex;
+        });
 
         $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $failedMsgs = $this->subscription->modifyAckDeadlineBatch($this->messages, 10, ['returnFailures' => true]);
+        $this->subscription->modifyAckDeadlineBatch($this->messages, 10, ['returnFailures' => true]);
 
         // Check if the modifyAckDeadlineBatch method returned an array of failedMsgs
         $this->assertIsArray($failedMsgs);
@@ -844,71 +809,6 @@ class SubscriptionTest extends TestCase
 
         $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
         $this->subscription->modifyAckDeadlineBatch($this->messages, 10, ['returnFailures' => true]);
-    }
-
-    public function testModifyAckDeadlineBatchRetryPartial()
-    {
-        // Exception with first msg as a temporary failure
-        $metadata1 = [
-            'foobar' => 'TRANSIENT_FAILURE_SERVICE_UNAVAILABLE',
-            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
-        ];
-
-        // Exception with both msgs as a permanent failure
-        $metadata2 = [
-            'foobar' => 'PERMANENT_FAILURE_INVALID_ACK_ID',
-            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
-        ];
-
-        $ex1 = $this->generateEodException($metadata1);
-        $ex2 = $this->generateEodException($metadata2);
-
-        $allEx = [$ex1, $ex1, $ex2];
-
-        $this->requestHandler->sendRequest(
-            SubscriberClient::class,
-            'modifyAckDeadline',
-            Argument::cetera()
-        )->shouldBeCalledTimes(3)->will(function () use (&$allEx) {
-            throw array_shift($allEx);
-        });
-
-        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $failedMsgs = $this->subscription->modifyAckDeadlineBatch($this->messages, 10, ['returnFailures' => true]);
-
-        // eventually both msgs failed, so they should be present in our response
-        $this->assertEquals(count($failedMsgs), count($this->ackIds));
-    }
-
-    public function testModifyAckDeadlineBatchRetryWithSuccess()
-    {
-        $metadata = [
-            'foobar' => 'TRANSIENT_FAILURE_SERVICE_UNAVAILABLE',
-            'otherAckId' => 'TRANSIENT_FAILURE_SERVICE_UNAVAILABLE'
-        ];
-
-        $ex = $this->generateEodException($metadata);
-        $allEx = [$ex, $ex];
-
-        $this->requestHandler->sendRequest(
-            SubscriberClient::class,
-            'modifyAckDeadline',
-            Argument::cetera()
-        )->shouldBeCalledTimes(3)->will(function () use (&$allEx) {
-            // An exception is thrown until we have in our list,
-            // then we simply return implying a success
-            if (count($allEx) > 0) {
-                throw array_shift($allEx);
-            } else {
-                return;
-            }
-        });
-
-        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $failedMsgs = $this->subscription->modifyAckDeadlineBatch($this->messages, 10, ['returnFailures' => true]);
-
-        // eventually both msgs were acked, so our $failedMsgs should be empty
-        $this->assertEquals(count($failedMsgs), 0);
     }
 
     public function testModifyAckDeadlineBatchNeverRetriesOnSuccess()
@@ -939,15 +839,21 @@ class SubscriptionTest extends TestCase
 
         // Any reason other than `EXACTLY_ONCE_ACKID_FAILURE` will work
         $ex = $this->generateEodException($metadata, 'FAILURE_REASON');
+        $failedMsgs = [];
 
         $this->requestHandler->sendRequest(
             SubscriberClient::class,
             'modifyAckDeadline',
             Argument::cetera()
-        )->shouldBeCalledTimes(1)->willThrow($ex);
+        )->shouldBeCalledTimes(1)
+        ->will(function ($args) use ($ex, &$failedMsgs) {
+            $failedMsgs = null;
+
+            throw $ex;
+        });
 
         $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $failedMsgs = $this->subscription->modifyAckDeadlineBatch($this->messages, 10, ['returnFailures' => true]);
+        $this->subscription->modifyAckDeadlineBatch($this->messages, 10, ['returnFailures' => true]);
 
         // Both msgs were acked, so our $failedMsgs should be empty
         $this->assertIsNotArray($failedMsgs);

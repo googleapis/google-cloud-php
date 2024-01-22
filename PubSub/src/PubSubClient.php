@@ -178,7 +178,12 @@ class PubSubClient
             'scopes' => [self::FULL_CONTROL_SCOPE],
             'projectIdRequired' => true,
             'hasEmulator' => (bool) $emulatorHost,
-            'emulatorHost' => $emulatorHost
+            'emulatorHost' => $emulatorHost,
+            'transportConfig' => [
+                'grpc' => [
+                    'stubOpts' => ['grpc.max_metadata_size' => 4 * 1024 * 1024,]
+                ]
+            ]
         ];
 
         $this->projectId = $this->detectProjectId($config);
