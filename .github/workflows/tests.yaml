@@ -80,6 +80,19 @@ jobs:
     - name: Run Package Test Suites
       run: bash .github/run-package-tests.sh
 
+  test_packages_lowest:
+    name: Package Tests (Lowest Dependencies)
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup PHP
+      uses: shivammathur/setup-php@verbose
+      with:
+        php-version: '7.4'
+        extensions: grpc
+    - name: Run Package Test Suites
+      run: bash .github/run-package-tests.sh --prefer-lowest
+
   test_dev_commands:
     name: Dev Commands Unit Tests
     runs-on: ubuntu-latest
