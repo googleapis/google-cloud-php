@@ -20,7 +20,7 @@ namespace Google\Cloud\Spanner;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 
 /**
- * Shared methods for Leader Aware Routing (LAR).
+ * Shared methods for request headers.
  */
 trait RequestHeaderTrait
 {

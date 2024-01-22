@@ -1671,7 +1671,7 @@ class Database
             $options['transaction'],
             $options['transactionContext']
         ) = $this->transactionSelector($options);
-        $options = $this->addLarHeader($options, $options['transactionContext']);
+        $options = $this->addLarHeader($options, true, $options['transactionContext']);
 
         $options['directedReadOptions'] = $this->configureDirectedReadOptions(
             $options,
@@ -1958,7 +1958,7 @@ class Database
             $this->directedReadOptions ?? []
         );
 
-        $options = $this->addLarHeader($options, $context);
+        $options = $this->addLarHeader($options, true, $context);
 
         try {
             return $this->operation->read($session, $table, $keySet, $columns, $options);

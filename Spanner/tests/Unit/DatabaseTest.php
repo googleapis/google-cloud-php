@@ -1198,7 +1198,9 @@ class DatabaseTest extends TestCase
 
         $this->refreshOperation($this->database, $this->connection->reveal());
 
-        $res = $this->database->execute($sql);
+        $res = $this->database->execute($sql, [
+            'transactionType' => SessionPoolInterface::CONTEXT_READWRITE
+        ]);
         $this->assertInstanceOf(Result::class, $res);
         $rows = iterator_to_array($res->rows());
         $this->assertEquals(10, $rows[0]['ID']);
@@ -1305,7 +1307,12 @@ class DatabaseTest extends TestCase
 
         $this->refreshOperation($this->database, $this->connection->reveal());
 
-        $res = $this->database->read($table, new KeySet(['all' => true]), ['ID']);
+        $res = $this->database->read(
+            $table,
+            new KeySet(['all' => true]),
+            ['ID'],
+            ['transactionType' => SessionPoolInterface::CONTEXT_READWRITE]
+        );
         $this->assertInstanceOf(Result::class, $res);
         $rows = iterator_to_array($res->rows());
         $this->assertEquals(10, $rows[0]['ID']);
