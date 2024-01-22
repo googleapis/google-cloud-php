@@ -30,8 +30,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 class GitHub
 {
     const GITHUB_REPO_ENDPOINT = 'https://api.github.com/repos/%s';
-    const GITHUB_RELEASE_TAG_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases/tags/%s';
-    const GITHUB_RELEASE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases';
+    const GITHUB_RELEASE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases/tags/%s';
+    const GITHUB_RELEASE_CREATE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases';
     const GITHUB_RELEASE_UPDATE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases/%s';
     const GITHUB_RELEASE_GET_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases/tags/%s';
     const GITHUB_WEBHOOK_CREATE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/hooks';
@@ -92,7 +92,7 @@ class GitHub
     {
         try {
             $res = $this->client->get(sprintf(
-                self::GITHUB_RELEASE_TAG_ENDPOINT,
+                self::GITHUB_RELEASE_ENDPOINT,
                 $this->cleanTarget($target), $tagName
             ), [
                 'auth' => [null, $this->token]
@@ -128,7 +128,7 @@ class GitHub
 
         try {
             $res = $this->client->post(sprintf(
-                self::GITHUB_RELEASE_ENDPOINT,
+                self::GITHUB_RELEASE_CREATE_ENDPOINT,
                 $this->cleanTarget($target)
             ), [
                 'json' => $requestBody,
@@ -200,7 +200,7 @@ class GitHub
     {
         try {
             $res = $this->client->get(sprintf(
-                self::GITHUB_RELEASE_TAG_ENDPOINT,
+                self::GITHUB_RELEASE_ENDPOINT,
                 $target,
                 $tagName
             ), [
@@ -306,7 +306,7 @@ class GitHub
     {
         try {
             $res = $this->client->get(sprintf(
-                self::GITHUB_RELEASE_ENDPOINT,
+                self::GITHUB_RELEASE_CREATE_ENDPOINT,
                 $this->cleanTarget($target)
             ), [
                 'auth' => [null, $this->token]

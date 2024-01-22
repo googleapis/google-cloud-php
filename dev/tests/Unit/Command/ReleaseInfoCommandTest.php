@@ -52,12 +52,15 @@ class ReleaseInfoCommandTest extends TestCase
         $response->getBody()
             ->shouldBeCalledOnce()
             ->willReturn($body->reveal());
+        $response->getStatusCode()
+            ->shouldBeCalledOnce()
+            ->willReturn(200);
         $http = $this->prophesize(Client::class);
         $http->get(
             'https://api.github.com/repos/googleapis/google-cloud-php/releases/tags/' . $tag,
             ['auth' => [null, null]]
         )
-            ->shouldBeCalledOnce()
+            ->shouldBeCalledTimes(2)
             ->willReturn($response->reveal());
 
         $commandTester = new CommandTester(new ReleaseInfoCommand($http->reveal()));
@@ -80,5 +83,61 @@ class ReleaseInfoCommandTest extends TestCase
             'id' => 'cloud-build',
             'version' => '0.7.2'
         ], $json['releases'][1]);
+    }
+
+    public function testReleaseInfoFromAndSqlFormat()
+    {
+        $tag = 'v0.2000.0';
+        $tagBody = $this->prophesize(StreamInterface::class);
+        $tagBody->__toString()
+            ->shouldBeCalledOnce()
+            ->willReturn(json_encode(self::$mockResponse));
+        $tagResponse = $this->prophesize(ResponseInterface::class);
+        $tagResponse->getBody()
+            ->shouldBeCalledOnce()
+            ->willReturn($tagBody->reveal());
+        $tagResponse->getStatusCode()
+            ->shouldBeCalledOnce()
+            ->willReturn(200);
+        $releaseBody = $this->prophesize(StreamInterface::class);
+        $releaseBody->__toString()
+            ->shouldBeCalledOnce()
+            ->willReturn(json_encode([
+                ['tag_name' => 'v0.2000.0', 'published_at' => '2024-01-21T19:35:32Z'],
+                ['tag_name' => 'v0.1000.0', 'published_at' => "2013-02-27T19:35:32Z"]
+            ]));
+        $releaseResponse = $this->prophesize(ResponseInterface::class);
+        $releaseResponse->getBody()
+            ->shouldBeCalledOnce()
+            ->willReturn($releaseBody->reveal());
+        $http = $this->prophesize(Client::class);
+        $http->get(
+            'https://api.github.com/repos/googleapis/google-cloud-php/releases',
+            ['auth' => [null, null]]
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($releaseResponse->reveal());
+        $http->get(
+            'https://api.github.com/repos/googleapis/google-cloud-php/releases/tags/' . $tag,
+            ['auth' => [null, null]]
+        )
+            ->shouldBeCalledTimes(2)
+            ->willReturn($tagResponse->reveal());
+
+        $commandTester = new CommandTester(new ReleaseInfoCommand($http->reveal()));
+        $commandTester->execute(['--from' => '2024-01-01', '--format' => 'sql']);
+
+        $display = $commandTester->getDisplay();
+        $lines = explode("\n", trim($display));
+
+        $this->assertCount(2, $lines);
+        $this->assertEquals(
+            '(service_name = "billingbudgets" and client_library_version = "1.2.0")',
+            $lines[0]
+        );
+        $this->assertEquals(
+            'OR (service_name = "cloudbuild" and client_library_version = "0.7.2")',
+            $lines[1]
+        );
     }
 }

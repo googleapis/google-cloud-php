@@ -82,15 +82,15 @@ class ReleaseInfoCommand extends Command
             $releases = [];
             $tags = [];
             foreach ($github->getReleases(self::REPO_ID, new \DateTime($from)) as $release) {
-                $releases = array_merge($releases, $this->getReleaseDataFromTag($release['name'], $github));
-                $tags[] = $release['name'];
+                $releases = array_merge($releases, $this->getReleaseDataFromTag($release['tag_name'], $github));
+                $tags[] = $release['tag_name'];
             }
             $tag = implode(', ', $tags);
         } else {
             if (!$tag = $input->getArgument('tag')) {
                 // if no tag is supplied, get the most recent tag
                 $releases = $github->getReleases(self::REPO_ID);
-                $tag = $releases[0]['name'] ?? '';
+                $tag = $releases[0]['tag_name'] ?? '';
             }
             $releases = $this->getReleaseDataFromTag($tag, $github);
         }
@@ -116,7 +116,6 @@ class ReleaseInfoCommand extends Command
                 $output->writeln(json_encode($releases, JSON_PRETTY_PRINT));
                 break;
             case 'sql':
-                $output->writeln('FALSE');
                 foreach ($releases as $release) {
                     $component = new Component($release['component']);
                     // Some components make calls to multiple services, so we can add a query line for each one.
@@ -135,13 +134,16 @@ class ReleaseInfoCommand extends Command
                             // corresponds to multiple packages, so skip
                             continue;
                         }
-                        $output->writeln(sprintf(
-                            'OR (service_name = "%s" and client_library_version = "%s")',
+
+                        $lines["$shortname-$release[version]"] = sprintf(
+                            '(service_name = "%s" and client_library_version = "%s")',
                             $shortname,
                             $release['version']
-                        ));
+                        );
                     }
                 }
+                ksort($lines); // order by service name and version
+                $output->writeln(implode("\nOR ", $lines));
                 break;
             default:
                 throw new \InvalidArgumentException('invalid format');
