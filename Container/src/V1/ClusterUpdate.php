@@ -371,6 +371,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.ResourceManagerTags desired_node_pool_auto_config_resource_manager_tags = 136;</code>
      */
     private $desired_node_pool_auto_config_resource_manager_tags = null;
+    /**
+     * Specify the details of in-transit encryption.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.InTransitEncryptionConfig desired_in_transit_encryption_config = 137;</code>
+     */
+    private $desired_in_transit_encryption_config = null;
 
     /**
      * Constructor.
@@ -532,6 +538,8 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\ResourceManagerTags $desired_node_pool_auto_config_resource_manager_tags
      *           The desired resource manager tags that apply to all auto-provisioned node
      *           pools in autopilot clusters and node auto-provisioning enabled clusters.
+     *     @type int $desired_in_transit_encryption_config
+     *           Specify the details of in-transit encryption.
      * }
      */
     public function __construct($data = NULL) {
@@ -2333,6 +2341,42 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ResourceManagerTags::class);
         $this->desired_node_pool_auto_config_resource_manager_tags = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specify the details of in-transit encryption.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.InTransitEncryptionConfig desired_in_transit_encryption_config = 137;</code>
+     * @return int
+     */
+    public function getDesiredInTransitEncryptionConfig()
+    {
+        return isset($this->desired_in_transit_encryption_config) ? $this->desired_in_transit_encryption_config : 0;
+    }
+
+    public function hasDesiredInTransitEncryptionConfig()
+    {
+        return isset($this->desired_in_transit_encryption_config);
+    }
+
+    public function clearDesiredInTransitEncryptionConfig()
+    {
+        unset($this->desired_in_transit_encryption_config);
+    }
+
+    /**
+     * Specify the details of in-transit encryption.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.InTransitEncryptionConfig desired_in_transit_encryption_config = 137;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDesiredInTransitEncryptionConfig($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\InTransitEncryptionConfig::class);
+        $this->desired_in_transit_encryption_config = $var;
 
         return $this;
     }
