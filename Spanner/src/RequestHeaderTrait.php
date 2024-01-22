@@ -37,13 +37,13 @@ trait RequestHeaderTrait
         bool $value = true,
         string $context = SessionPoolInterface::CONTEXT_READWRITE
     ) {
-        // If value is false, set LAR header to false and return.
+        // If value is false, unset LAR header.
         if (!$value) {
             return $this->conditionallyUnsetLarHeader($args, $value);
         }
         // If value is true and context is READWRITE, set LAR header.
         if ($context === SessionPoolInterface::CONTEXT_READWRITE) {
-            $args['headers']['x-goog-spanner-route-to-leader'] = $value;
+            $args['headers']['x-goog-spanner-route-to-leader'] = ['true'];
         }
         return $args;
     }

@@ -495,9 +495,10 @@ class GrpcTest extends TestCase
         $transport->startUnaryCall(
             Argument::type(Call::class),
             Argument::withEntry('headers', [
-                'x-goog-spanner-route-to-leader' => true,
+                'x-goog-spanner-route-to-leader' => ['true'],
                 'google-cloud-resource-prefix' => ['database1']
-            ]))->willReturn($promise);
+            ])
+        )->willReturn($promise);
 
         $client->getTransport()->willReturn($transport->reveal());
 
@@ -609,7 +610,7 @@ class GrpcTest extends TestCase
             'sql' => $sql,
             'transactionId' => self::TRANSACTION,
             'database' => self::DATABASE,
-            'headers' => ['x-goog-spanner-route-to-leader' => true]
+            'headers' => ['x-goog-spanner-route-to-leader' => ['true']]
         ] + $mapped, $this->expectResourceHeader(self::DATABASE, [
             self::SESSION,
             $sql,
@@ -765,7 +766,7 @@ class GrpcTest extends TestCase
             'table' => self::TABLE,
             'columns' => $columns,
             'database' => self::DATABASE,
-            'headers' => ['x-goog-spanner-route-to-leader' => true]
+            'headers' => ['x-goog-spanner-route-to-leader' => ['true']]
         ], $this->expectResourceHeader(self::DATABASE, [
             self::SESSION,
             self::TABLE,
@@ -774,7 +775,7 @@ class GrpcTest extends TestCase
             [
                 'transaction' => $this->transactionSelector()
             ]
-        ], true, $larEnabled), null, '',  $grpcConfig);
+        ], true, $larEnabled), null, '', $grpcConfig);
     }
 
     public function testStreamingReadWithRequestOptions()
@@ -937,7 +938,7 @@ class GrpcTest extends TestCase
         ], $this->expectResourceHeader(self::DATABASE, [
             self::SESSION,
             $optionsObj
-        ] ,true ,$larEnabled, $optionsArr), null, '', $grpcConfig);
+        ], true, $larEnabled, $optionsArr), null, '', $grpcConfig);
     }
 
     public function transactionTypes()
@@ -1461,7 +1462,7 @@ class GrpcTest extends TestCase
             'google-cloud-resource-prefix' => [$val]
         ];
         if ($lar && !isset($options['readOnly'])) {
-            $header['x-goog-spanner-route-to-leader'] = true;
+            $header['x-goog-spanner-route-to-leader'] = ['true'];
         }
 
         $end = end($args);

@@ -130,7 +130,7 @@ class SnapshotTest extends TestCase
         ))->shouldBeCalled()->willReturn($result);
         $operation->execute(Argument::any(), Argument::any(), Argument::withEntry(
             'headers',
-            ['x-goog-spanner-route-to-leader' => true]
+            ['x-goog-spanner-route-to-leader' => ['true']]
         ))->shouldNotBeCalled();
 
         $snapshot = new Snapshot(
@@ -157,7 +157,7 @@ class SnapshotTest extends TestCase
         ))->shouldBeCalled()->willReturn($result);
         $operation->read(Argument::any(), Argument::any(), Argument::any(), Argument::any(), Argument::withEntry(
             'headers',
-            ['x-goog-spanner-route-to-leader' => true]
+            ['x-goog-spanner-route-to-leader' => ['true']]
         ))->shouldNotBeCalled();
 
         $snapshot = new Snapshot(
