@@ -63,7 +63,7 @@ class RequestHandlerTest extends TestCase
     public function setUp(): void
     {
         $this->serializer = $this->prophesize(Serializer::class);
-        $this->request = $this->prophesize(MockRequest::class);
+        $this->request = new MockRequest();
     }
 
     /**
@@ -76,7 +76,7 @@ class RequestHandlerTest extends TestCase
             $counter = 1;
         };
         $requestHandler = new RequestHandler($this->serializer->reveal(), $clientClasses);
-        $requestHandler->sendRequest($callingClass, 'sampleMethod', $this->request->reveal(), ['func' => $func]);
+        $requestHandler->sendRequest($callingClass, 'sampleMethod', $this->request, ['func' => $func]);
 
         // This will only be 1 if the relevant method was called
         $this->assertEquals(1, $counter);
@@ -110,7 +110,7 @@ class RequestHandlerTest extends TestCase
         $actualResponse = $requestHandler->sendRequest(
             SampleGapicClass1::class,
             'sampleMethod',
-            $this->request->reveal(),
+            $this->request,
             ['func' => $func]
         );
 
@@ -161,7 +161,7 @@ class RequestHandlerTest extends TestCase
         $requestHandler->sendRequest(
             SampleGapicClass2::class,
             'sampleMethod',
-            $this->request->reveal(),
+            $this->request,
             ['func' => $func]
         );
     }
@@ -187,7 +187,7 @@ class RequestHandlerTest extends TestCase
             $requestHandler->sendRequest(
                 SampleGapicClass2::class,
                 'sampleMethod',
-                $this->request->reveal(),
+                $this->request,
                 ['func' => $func],
                 $isWhitelisted
             );
@@ -231,7 +231,7 @@ class RequestHandlerTest extends TestCase
         $res = $requestHandler->sendRequest(
             SampleGapicClass2::class,
             'sampleMethod',
-            $this->request->reveal(),
+            $this->request,
             ['func' => $func]
         );
 
@@ -262,7 +262,7 @@ class RequestHandlerTest extends TestCase
             $requestHandler->sendRequest(
                 SampleGapicClass2::class,
                 'sampleMethod',
-                $this->request->reveal(),
+                $this->request,
                 ['func' => $func]
             );
         } catch (\Exception $ex) {
@@ -326,7 +326,7 @@ class RequestHandlerTest extends TestCase
             $requestHandler->sendRequest(
                 SampleGapicClass2::class,
                 'sampleMethod',
-                $this->request->reveal(),
+                $this->request,
                 ['func' => $func]
             );
 
