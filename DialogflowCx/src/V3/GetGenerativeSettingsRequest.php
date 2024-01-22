@@ -32,6 +32,23 @@ class GetGenerativeSettingsRequest extends \Google\Protobuf\Internal\Message
     protected $language_code = '';
 
     /**
+     * @param string $name         Required. Format: `projects/<Project ID>/locations/<Location
+     *                             ID>/agents/<Agent ID>/generativeSettings`. Please see
+     *                             {@see AgentsClient::agentGenerativeSettingsName()} for help formatting this field.
+     * @param string $languageCode Required. Language code of the generative settings.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\GetGenerativeSettingsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, string $languageCode): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setLanguageCode($languageCode);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

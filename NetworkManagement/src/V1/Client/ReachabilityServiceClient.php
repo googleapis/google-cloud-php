@@ -63,12 +63,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\NetworkManagement\V1\ReachabilityServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createConnectivityTestAsync(CreateConnectivityTestRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteConnectivityTestAsync(DeleteConnectivityTestRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getConnectivityTestAsync(GetConnectivityTestRequest $request, array $optionalArgs = [])
@@ -84,8 +78,15 @@ final class ReachabilityServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.networkmanagement.v1.ReachabilityService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'networkmanagement.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'networkmanagement.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -279,6 +280,8 @@ final class ReachabilityServiceClient
      * The async variant is
      * {@see ReachabilityServiceClient::createConnectivityTestAsync()} .
      *
+     * @example samples/V1/ReachabilityServiceClient/create_connectivity_test.php
+     *
      * @param CreateConnectivityTestRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -303,6 +306,8 @@ final class ReachabilityServiceClient
      *
      * The async variant is
      * {@see ReachabilityServiceClient::deleteConnectivityTestAsync()} .
+     *
+     * @example samples/V1/ReachabilityServiceClient/delete_connectivity_test.php
      *
      * @param DeleteConnectivityTestRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -329,6 +334,8 @@ final class ReachabilityServiceClient
      * The async variant is
      * {@see ReachabilityServiceClient::getConnectivityTestAsync()} .
      *
+     * @example samples/V1/ReachabilityServiceClient/get_connectivity_test.php
+     *
      * @param GetConnectivityTestRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -353,6 +360,8 @@ final class ReachabilityServiceClient
      *
      * The async variant is
      * {@see ReachabilityServiceClient::listConnectivityTestsAsync()} .
+     *
+     * @example samples/V1/ReachabilityServiceClient/list_connectivity_tests.php
      *
      * @param ListConnectivityTestsRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -389,6 +398,8 @@ final class ReachabilityServiceClient
      *
      * The async variant is
      * {@see ReachabilityServiceClient::rerunConnectivityTestAsync()} .
+     *
+     * @example samples/V1/ReachabilityServiceClient/rerun_connectivity_test.php
      *
      * @param RerunConnectivityTestRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -427,6 +438,8 @@ final class ReachabilityServiceClient
      *
      * The async variant is
      * {@see ReachabilityServiceClient::updateConnectivityTestAsync()} .
+     *
+     * @example samples/V1/ReachabilityServiceClient/update_connectivity_test.php
      *
      * @param UpdateConnectivityTestRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {

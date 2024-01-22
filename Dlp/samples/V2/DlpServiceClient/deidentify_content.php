@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dlp_v2_generated_DlpService_DeidentifyContent_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
+use Google\Cloud\Dlp\V2\DeidentifyContentRequest;
 use Google\Cloud\Dlp\V2\DeidentifyContentResponse;
-use Google\Cloud\Dlp\V2\DlpServiceClient;
 
 /**
  * De-identifies potentially sensitive info from a ContentItem.
@@ -48,10 +49,13 @@ function deidentify_content_sample(): void
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
+    // Prepare the request message.
+    $request = new DeidentifyContentRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var DeidentifyContentResponse $response */
-        $response = $dlpServiceClient->deidentifyContent();
+        $response = $dlpServiceClient->deidentifyContent($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

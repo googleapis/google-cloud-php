@@ -7,15 +7,16 @@
         "php": ">=7.4",
         "google/cloud-core": "^1.52.7",
         "google/cloud-logging": "^1.16",
-        "google/gax": "^1.24.0",
-        "google/cloud-common-protos": "^0.4",
+        "google/gax": "^1.26.0",
+        "google/cloud-common-protos": "~0.5",
         "psr/log": "^1.0||^2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0",
         "phpspec/prophecy-phpunit": "^2.0",
         "squizlabs/php_codesniffer": "2.*",
-        "phpdocumentor/reflection": "^5.0",
+        "phpdocumentor/reflection": "^5.3.3",
+        "phpdocumentor/reflection-docblock": "^5.3",
         "erusev/parsedown": "^1.6",
         "google/cloud-tools": "^0.13.0",
         "kreait/firebase-php": "^5.26.5"

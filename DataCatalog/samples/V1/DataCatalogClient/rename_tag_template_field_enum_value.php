@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datacatalog_v1_generated_DataCatalog_RenameTagTemplateFieldEnumValue_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\DataCatalog\V1\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\Client\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\RenameTagTemplateFieldEnumValueRequest;
 use Google\Cloud\DataCatalog\V1\TagTemplateField;
 
 /**
@@ -44,13 +45,15 @@ function rename_tag_template_field_enum_value_sample(
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
+    // Prepare the request message.
+    $request = (new RenameTagTemplateFieldEnumValueRequest())
+        ->setName($formattedName)
+        ->setNewEnumValueDisplayName($newEnumValueDisplayName);
+
     // Call the API and handle any network failures.
     try {
         /** @var TagTemplateField $response */
-        $response = $dataCatalogClient->renameTagTemplateFieldEnumValue(
-            $formattedName,
-            $newEnumValueDisplayName
-        );
+        $response = $dataCatalogClient->renameTagTemplateFieldEnumValue($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

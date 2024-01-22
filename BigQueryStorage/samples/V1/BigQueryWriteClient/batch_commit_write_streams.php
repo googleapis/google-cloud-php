@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START bigquerystorage_v1_generated_BigQueryWrite_BatchCommitWriteStreams_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\BigQuery\Storage\V1\BatchCommitWriteStreamsRequest;
 use Google\Cloud\BigQuery\Storage\V1\BatchCommitWriteStreamsResponse;
-use Google\Cloud\BigQuery\Storage\V1\BigQueryWriteClient;
+use Google\Cloud\BigQuery\Storage\V1\Client\BigQueryWriteClient;
 
 /**
  * Atomically commits a group of `PENDING` streams that belong to the same
@@ -47,13 +48,16 @@ function batch_commit_write_streams_sample(
     // Create a client.
     $bigQueryWriteClient = new BigQueryWriteClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $writeStreams = [$writeStreamsElement,];
+    $request = (new BatchCommitWriteStreamsRequest())
+        ->setParent($formattedParent)
+        ->setWriteStreams($writeStreams);
 
     // Call the API and handle any network failures.
     try {
         /** @var BatchCommitWriteStreamsResponse $response */
-        $response = $bigQueryWriteClient->batchCommitWriteStreams($formattedParent, $writeStreams);
+        $response = $bigQueryWriteClient->batchCommitWriteStreams($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

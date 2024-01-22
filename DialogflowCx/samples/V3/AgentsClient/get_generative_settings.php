@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_Agents_GetGenerativeSettings_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dialogflow\Cx\V3\AgentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\Client\AgentsClient;
 use Google\Cloud\Dialogflow\Cx\V3\GenerativeSettings;
+use Google\Cloud\Dialogflow\Cx\V3\GetGenerativeSettingsRequest;
 
 /**
  * Gets the generative settings for the agent.
@@ -40,10 +41,15 @@ function get_generative_settings_sample(string $formattedName, string $languageC
     // Create a client.
     $agentsClient = new AgentsClient();
 
+    // Prepare the request message.
+    $request = (new GetGenerativeSettingsRequest())
+        ->setName($formattedName)
+        ->setLanguageCode($languageCode);
+
     // Call the API and handle any network failures.
     try {
         /** @var GenerativeSettings $response */
-        $response = $agentsClient->getGenerativeSettings($formattedName, $languageCode);
+        $response = $agentsClient->getGenerativeSettings($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

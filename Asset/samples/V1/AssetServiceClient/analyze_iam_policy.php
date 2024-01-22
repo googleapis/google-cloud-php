@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudasset_v1_generated_AssetService_AnalyzeIamPolicy_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Asset\V1\AnalyzeIamPolicyRequest;
 use Google\Cloud\Asset\V1\AnalyzeIamPolicyResponse;
-use Google\Cloud\Asset\V1\AssetServiceClient;
+use Google\Cloud\Asset\V1\Client\AssetServiceClient;
 use Google\Cloud\Asset\V1\IamPolicyAnalysisQuery;
 
 /**
@@ -50,14 +51,16 @@ function analyze_iam_policy_sample(string $analysisQueryScope): void
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $analysisQuery = (new IamPolicyAnalysisQuery())
         ->setScope($analysisQueryScope);
+    $request = (new AnalyzeIamPolicyRequest())
+        ->setAnalysisQuery($analysisQuery);
 
     // Call the API and handle any network failures.
     try {
         /** @var AnalyzeIamPolicyResponse $response */
-        $response = $assetServiceClient->analyzeIamPolicy($analysisQuery);
+        $response = $assetServiceClient->analyzeIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

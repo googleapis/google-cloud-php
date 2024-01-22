@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_TestCases_GetTestCaseResult_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\Cx\V3\Client\TestCasesClient;
+use Google\Cloud\Dialogflow\Cx\V3\GetTestCaseResultRequest;
 use Google\Cloud\Dialogflow\Cx\V3\TestCaseResult;
-use Google\Cloud\Dialogflow\Cx\V3\TestCasesClient;
 
 /**
  * Gets a test case result.
@@ -40,10 +41,14 @@ function get_test_case_result_sample(string $formattedName): void
     // Create a client.
     $testCasesClient = new TestCasesClient();
 
+    // Prepare the request message.
+    $request = (new GetTestCaseResultRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var TestCaseResult $response */
-        $response = $testCasesClient->getTestCaseResult($formattedName);
+        $response = $testCasesClient->getTestCaseResult($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

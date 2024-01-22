@@ -30,7 +30,7 @@ class AnalyticsAdmin
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Øª
+â°
 4google/analytics/admin/v1alpha/analytics_admin.protogoogle.analytics.admin.v1alpha-google/analytics/admin/v1alpha/audience.proto2google/analytics/admin/v1alpha/channel_group.proto:google/analytics/admin/v1alpha/event_create_and_edit.proto6google/analytics/admin/v1alpha/expanded_data_set.proto.google/analytics/admin/v1alpha/resources.proto=google/analytics/admin/v1alpha/subproperty_event_filter.protogoogle/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"à
 RunAccessReportRequest
 entity (	C
@@ -597,7 +597,7 @@ page_token (	BàA"™
 update_mask (2.google.protobuf.FieldMaskBàA"q
 #DeleteSubpropertyEventFilterRequestJ
 name (	B<àAúA6
-4analyticsadmin.googleapis.com/SubpropertyEventFilter2ñè
+4analyticsadmin.googleapis.com/SubpropertyEventFilter2ûî
 AnalyticsAdminService“
 
 GetAccount1.google.analytics.admin.v1alpha.GetAccountRequest\'.google.analytics.admin.v1alpha.Account")‚Óä“/v1alpha/{name=accounts/*}ÚAname”
@@ -725,9 +725,12 @@ $FetchAutomatedGa4ConfigurationOptOutK.google.analytics.admin.v1alpha.FetchAuto
 ListRollupPropertySourceLinksD.google.analytics.admin.v1alpha.ListRollupPropertySourceLinksRequestE.google.analytics.admin.v1alpha.ListRollupPropertySourceLinksResponse"I‚Óä“:8/v1alpha/{parent=properties/*}/rollupPropertySourceLinksÚAparent¦
 CreateRollupPropertySourceLinkE.google.analytics.admin.v1alpha.CreateRollupPropertySourceLinkRequest8.google.analytics.admin.v1alpha.RollupPropertySourceLink"‚‚Óä“W"8/v1alpha/{parent=properties/*}/rollupPropertySourceLinks:rollup_property_source_linkÚA"parent,rollup_property_source_linkÈ
 DeleteRollupPropertySourceLinkE.google.analytics.admin.v1alpha.DeleteRollupPropertySourceLinkRequest.google.protobuf.Empty"G‚Óä“:*8/v1alpha/{name=properties/*/rollupPropertySourceLinks/*}ÚAnameº
-CreateSubproperty8.google.analytics.admin.v1alpha.CreateSubpropertyRequest9.google.analytics.admin.v1alpha.CreateSubpropertyResponse"0‚Óä“*"%/v1alpha/properties:createSubproperty:*Â
-DeleteSubpropertyEventFilterC.google.analytics.admin.v1alpha.DeleteSubpropertyEventFilterRequest.google.protobuf.Empty"E‚Óä“8*6/v1alpha/{name=properties/*/subpropertyEventFilters/*}ÚAname—
-CreateSubpropertyEventFilterC.google.analytics.admin.v1alpha.CreateSubpropertyEventFilterRequest6.google.analytics.admin.v1alpha.SubpropertyEventFilter"z‚Óä“R"6/v1alpha/{parent=properties/*}/subpropertyEventFilters:subproperty_event_filterÚAparent,subproperty_event_filterüÊAanalyticsadmin.googleapis.comÒAØhttps://www.googleapis.com/auth/analytics.edit,https://www.googleapis.com/auth/analytics.manage.users,https://www.googleapis.com/auth/analytics.manage.users.readonly,https://www.googleapis.com/auth/analytics.readonlyB{
+CreateSubproperty8.google.analytics.admin.v1alpha.CreateSubpropertyRequest9.google.analytics.admin.v1alpha.CreateSubpropertyResponse"0‚Óä“*"%/v1alpha/properties:createSubproperty:*—
+CreateSubpropertyEventFilterC.google.analytics.admin.v1alpha.CreateSubpropertyEventFilterRequest6.google.analytics.admin.v1alpha.SubpropertyEventFilter"z‚Óä“R"6/v1alpha/{parent=properties/*}/subpropertyEventFilters:subproperty_event_filterÚAparent,subproperty_event_filterÜ
+GetSubpropertyEventFilter@.google.analytics.admin.v1alpha.GetSubpropertyEventFilterRequest6.google.analytics.admin.v1alpha.SubpropertyEventFilter"E‚Óä“86/v1alpha/{name=properties/*/subpropertyEventFilters/*}ÚAnameï
+ListSubpropertyEventFiltersB.google.analytics.admin.v1alpha.ListSubpropertyEventFiltersRequestC.google.analytics.admin.v1alpha.ListSubpropertyEventFiltersResponse"G‚Óä“86/v1alpha/{parent=properties/*}/subpropertyEventFiltersÚAparent¶
+UpdateSubpropertyEventFilterC.google.analytics.admin.v1alpha.UpdateSubpropertyEventFilterRequest6.google.analytics.admin.v1alpha.SubpropertyEventFilter"˜‚Óä“k2O/v1alpha/{subproperty_event_filter.name=properties/*/subpropertyEventFilters/*}:subproperty_event_filterÚA$subproperty_event_filter,update_maskÂ
+DeleteSubpropertyEventFilterC.google.analytics.admin.v1alpha.DeleteSubpropertyEventFilterRequest.google.protobuf.Empty"E‚Óä“8*6/v1alpha/{name=properties/*/subpropertyEventFilters/*}ÚAnameüÊAanalyticsadmin.googleapis.comÒAØhttps://www.googleapis.com/auth/analytics.edit,https://www.googleapis.com/auth/analytics.manage.users,https://www.googleapis.com/auth/analytics.manage.users.readonly,https://www.googleapis.com/auth/analytics.readonlyB{
 "com.google.analytics.admin.v1alphaBAnalyticsAdminProtoPZ>cloud.google.com/go/analytics/admin/apiv1alpha/adminpb;adminpbbproto3'
         , true);
 

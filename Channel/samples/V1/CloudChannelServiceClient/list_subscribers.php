@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudchannel_v1_generated_CloudChannelService_ListSubscribers_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\ListSubscribersRequest;
 
 /**
  * Lists service accounts with subscriber privileges on the Cloud Pub/Sub
@@ -53,10 +54,14 @@ function list_subscribers_sample(string $account): void
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListSubscribersRequest())
+        ->setAccount($account);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudChannelServiceClient->listSubscribers($account);
+        $response = $cloudChannelServiceClient->listSubscribers($request);
 
         /** @var string $element */
         foreach ($response as $element) {

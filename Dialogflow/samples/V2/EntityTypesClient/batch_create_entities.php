@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_EntityTypes_BatchCreateEntities_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Dialogflow\V2\BatchCreateEntitiesRequest;
+use Google\Cloud\Dialogflow\V2\Client\EntityTypesClient;
 use Google\Cloud\Dialogflow\V2\EntityType\Entity;
-use Google\Cloud\Dialogflow\V2\EntityTypesClient;
 use Google\Rpc\Status;
 
 /**
@@ -76,17 +77,20 @@ function batch_create_entities_sample(
     // Create a client.
     $entityTypesClient = new EntityTypesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $entitiesSynonyms = [$entitiesSynonymsElement,];
     $entity = (new Entity())
         ->setValue($entitiesValue)
         ->setSynonyms($entitiesSynonyms);
     $entities = [$entity,];
+    $request = (new BatchCreateEntitiesRequest())
+        ->setParent($formattedParent)
+        ->setEntities($entities);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $entityTypesClient->batchCreateEntities($formattedParent, $entities);
+        $response = $entityTypesClient->batchCreateEntities($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

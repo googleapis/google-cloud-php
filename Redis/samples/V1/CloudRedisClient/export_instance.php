@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START redis_v1_generated_CloudRedis_ExportInstance_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Redis\V1\CloudRedisClient;
+use Google\Cloud\Redis\V1\Client\CloudRedisClient;
+use Google\Cloud\Redis\V1\ExportInstanceRequest;
 use Google\Cloud\Redis\V1\Instance;
 use Google\Cloud\Redis\V1\OutputConfig;
 use Google\Rpc\Status;
@@ -47,13 +48,16 @@ function export_instance_sample(string $name): void
     // Create a client.
     $cloudRedisClient = new CloudRedisClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $outputConfig = new OutputConfig();
+    $request = (new ExportInstanceRequest())
+        ->setName($name)
+        ->setOutputConfig($outputConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudRedisClient->exportInstance($name, $outputConfig);
+        $response = $cloudRedisClient->exportInstance($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

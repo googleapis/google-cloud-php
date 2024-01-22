@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START privateca_v1_generated_CertificateAuthorityService_DeleteCertificateTemplate_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\DeleteCertificateTemplateRequest;
 use Google\Rpc\Status;
 
 /**
@@ -42,10 +43,14 @@ function delete_certificate_template_sample(string $formattedName): void
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteCertificateTemplateRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $certificateAuthorityServiceClient->deleteCertificateTemplate($formattedName);
+        $response = $certificateAuthorityServiceClient->deleteCertificateTemplate($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

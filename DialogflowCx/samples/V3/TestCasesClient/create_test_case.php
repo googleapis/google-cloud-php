@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_TestCases_CreateTestCase_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\Cx\V3\Client\TestCasesClient;
+use Google\Cloud\Dialogflow\Cx\V3\CreateTestCaseRequest;
 use Google\Cloud\Dialogflow\Cx\V3\TestCase;
-use Google\Cloud\Dialogflow\Cx\V3\TestCasesClient;
 
 /**
  * Creates a test case for the given agent.
@@ -41,14 +42,17 @@ function create_test_case_sample(string $formattedParent, string $testCaseDispla
     // Create a client.
     $testCasesClient = new TestCasesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $testCase = (new TestCase())
         ->setDisplayName($testCaseDisplayName);
+    $request = (new CreateTestCaseRequest())
+        ->setParent($formattedParent)
+        ->setTestCase($testCase);
 
     // Call the API and handle any network failures.
     try {
         /** @var TestCase $response */
-        $response = $testCasesClient->createTestCase($formattedParent, $testCase);
+        $response = $testCasesClient->createTestCase($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

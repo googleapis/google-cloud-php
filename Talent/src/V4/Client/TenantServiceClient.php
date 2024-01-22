@@ -52,11 +52,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Talent\V4\TenantServiceClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createTenantAsync(CreateTenantRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteTenantAsync(DeleteTenantRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getTenantAsync(GetTenantRequest $request, array $optionalArgs = [])
@@ -71,8 +66,15 @@ final class TenantServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.talent.v4.TenantService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'jobs.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'jobs.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -238,6 +240,8 @@ final class TenantServiceClient
      *
      * The async variant is {@see TenantServiceClient::createTenantAsync()} .
      *
+     * @example samples/V4/TenantServiceClient/create_tenant.php
+     *
      * @param CreateTenantRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -262,6 +266,8 @@ final class TenantServiceClient
      *
      * The async variant is {@see TenantServiceClient::deleteTenantAsync()} .
      *
+     * @example samples/V4/TenantServiceClient/delete_tenant.php
+     *
      * @param DeleteTenantRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -283,6 +289,8 @@ final class TenantServiceClient
      * Retrieves specified tenant.
      *
      * The async variant is {@see TenantServiceClient::getTenantAsync()} .
+     *
+     * @example samples/V4/TenantServiceClient/get_tenant.php
      *
      * @param GetTenantRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -308,6 +316,8 @@ final class TenantServiceClient
      *
      * The async variant is {@see TenantServiceClient::listTenantsAsync()} .
      *
+     * @example samples/V4/TenantServiceClient/list_tenants.php
+     *
      * @param ListTenantsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -331,6 +341,8 @@ final class TenantServiceClient
      * Updates specified tenant.
      *
      * The async variant is {@see TenantServiceClient::updateTenantAsync()} .
+     *
+     * @example samples/V4/TenantServiceClient/update_tenant.php
      *
      * @param UpdateTenantRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {

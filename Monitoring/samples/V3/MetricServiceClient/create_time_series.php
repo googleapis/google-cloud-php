@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START monitoring_v3_generated_MetricService_CreateTimeSeries_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Monitoring\V3\MetricServiceClient;
+use Google\Cloud\Monitoring\V3\Client\MetricServiceClient;
+use Google\Cloud\Monitoring\V3\CreateTimeSeriesRequest;
 use Google\Cloud\Monitoring\V3\TimeSeries;
 
 /**
@@ -44,12 +45,15 @@ function create_time_series_sample(string $formattedName): void
     // Create a client.
     $metricServiceClient = new MetricServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $timeSeries = [new TimeSeries()];
+    $request = (new CreateTimeSeriesRequest())
+        ->setName($formattedName)
+        ->setTimeSeries($timeSeries);
 
     // Call the API and handle any network failures.
     try {
-        $metricServiceClient->createTimeSeries($formattedName, $timeSeries);
+        $metricServiceClient->createTimeSeries($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

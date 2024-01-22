@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START appengine_v1_generated_DomainMappings_GetDomainMapping_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AppEngine\V1\Client\DomainMappingsClient;
 use Google\Cloud\AppEngine\V1\DomainMapping;
-use Google\Cloud\AppEngine\V1\DomainMappingsClient;
+use Google\Cloud\AppEngine\V1\GetDomainMappingRequest;
 
 /**
  * Gets the specified domain mapping.
@@ -41,10 +42,13 @@ function get_domain_mapping_sample(): void
     // Create a client.
     $domainMappingsClient = new DomainMappingsClient();
 
+    // Prepare the request message.
+    $request = new GetDomainMappingRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var DomainMapping $response */
-        $response = $domainMappingsClient->getDomainMapping();
+        $response = $domainMappingsClient->getDomainMapping($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

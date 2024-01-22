@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START securitycenter_v1_generated_SecurityCenter_DeleteNotificationConfig_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\DeleteNotificationConfigRequest;
 
 /**
  * Deletes a notification config.
@@ -40,9 +41,13 @@ function delete_notification_config_sample(string $formattedName): void
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
+    // Prepare the request message.
+    $request = (new DeleteNotificationConfigRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $securityCenterClient->deleteNotificationConfig($formattedName);
+        $securityCenterClient->deleteNotificationConfig($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START speech_v2_generated_Speech_GetCustomClass_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Speech\V2\Client\SpeechClient;
 use Google\Cloud\Speech\V2\CustomClass;
-use Google\Cloud\Speech\V2\SpeechClient;
+use Google\Cloud\Speech\V2\GetCustomClassRequest;
 
 /**
  * Returns the requested
@@ -40,10 +41,14 @@ function get_custom_class_sample(string $formattedName): void
     // Create a client.
     $speechClient = new SpeechClient();
 
+    // Prepare the request message.
+    $request = (new GetCustomClassRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var CustomClass $response */
-        $response = $speechClient->getCustomClass($formattedName);
+        $response = $speechClient->getCustomClass($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

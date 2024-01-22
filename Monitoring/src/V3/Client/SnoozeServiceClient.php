@@ -53,9 +53,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Monitoring\V3\SnoozeServiceClient} for the stable implementation
- *
  * @method PromiseInterface createSnoozeAsync(CreateSnoozeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getSnoozeAsync(GetSnoozeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listSnoozesAsync(ListSnoozesRequest $request, array $optionalArgs = [])
@@ -69,8 +66,15 @@ final class SnoozeServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.monitoring.v3.SnoozeService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'monitoring.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'monitoring.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -327,6 +331,8 @@ final class SnoozeServiceClient
      *
      * The async variant is {@see SnoozeServiceClient::createSnoozeAsync()} .
      *
+     * @example samples/V3/SnoozeServiceClient/create_snooze.php
+     *
      * @param CreateSnoozeRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -350,6 +356,8 @@ final class SnoozeServiceClient
      * Retrieves a `Snooze` by `name`.
      *
      * The async variant is {@see SnoozeServiceClient::getSnoozeAsync()} .
+     *
+     * @example samples/V3/SnoozeServiceClient/get_snooze.php
      *
      * @param GetSnoozeRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -376,6 +384,8 @@ final class SnoozeServiceClient
      *
      * The async variant is {@see SnoozeServiceClient::listSnoozesAsync()} .
      *
+     * @example samples/V3/SnoozeServiceClient/list_snoozes.php
+     *
      * @param ListSnoozesRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -400,6 +410,8 @@ final class SnoozeServiceClient
      * given `Snooze` object.
      *
      * The async variant is {@see SnoozeServiceClient::updateSnoozeAsync()} .
+     *
+     * @example samples/V3/SnoozeServiceClient/update_snooze.php
      *
      * @param UpdateSnoozeRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {

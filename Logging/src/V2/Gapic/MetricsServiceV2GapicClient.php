@@ -64,8 +64,7 @@ use Google\Protobuf\GPBEmpty;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Logging\V2\Client\MetricsServiceV2Client} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Logging\V2\Client\MetricsServiceV2Client}.
  */
 class MetricsServiceV2GapicClient
 {
@@ -74,8 +73,15 @@ class MetricsServiceV2GapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.logging.v2.MetricsServiceV2';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'logging.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'logging.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;

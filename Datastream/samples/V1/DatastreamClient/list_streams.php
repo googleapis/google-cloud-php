@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datastream_v1_generated_Datastream_ListStreams_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Datastream\V1\DatastreamClient;
+use Google\Cloud\Datastream\V1\Client\DatastreamClient;
+use Google\Cloud\Datastream\V1\ListStreamsRequest;
 use Google\Cloud\Datastream\V1\Stream;
 
 /**
@@ -39,10 +40,14 @@ function list_streams_sample(string $formattedParent): void
     // Create a client.
     $datastreamClient = new DatastreamClient();
 
+    // Prepare the request message.
+    $request = (new ListStreamsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $datastreamClient->listStreams($formattedParent);
+        $response = $datastreamClient->listStreams($request);
 
         /** @var Stream $element */
         foreach ($response as $element) {

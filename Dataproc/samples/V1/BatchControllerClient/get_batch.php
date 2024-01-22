@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataproc_v1_generated_BatchController_GetBatch_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Dataproc\V1\Batch;
-use Google\Cloud\Dataproc\V1\BatchControllerClient;
+use Google\Cloud\Dataproc\V1\Client\BatchControllerClient;
+use Google\Cloud\Dataproc\V1\GetBatchRequest;
 
 /**
  * Gets the batch workload resource representation.
@@ -40,10 +41,14 @@ function get_batch_sample(string $formattedName): void
     // Create a client.
     $batchControllerClient = new BatchControllerClient();
 
+    // Prepare the request message.
+    $request = (new GetBatchRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Batch $response */
-        $response = $batchControllerClient->getBatch($formattedName);
+        $response = $batchControllerClient->getBatch($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

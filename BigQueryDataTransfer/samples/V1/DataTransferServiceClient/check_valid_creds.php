@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START bigquerydatatransfer_v1_generated_DataTransferService_CheckValidCreds_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\BigQuery\DataTransfer\V1\CheckValidCredsRequest;
 use Google\Cloud\BigQuery\DataTransfer\V1\CheckValidCredsResponse;
-use Google\Cloud\BigQuery\DataTransfer\V1\DataTransferServiceClient;
+use Google\Cloud\BigQuery\DataTransfer\V1\Client\DataTransferServiceClient;
 
 /**
  * Returns true if valid credentials exist for the given data source and
@@ -41,10 +42,14 @@ function check_valid_creds_sample(string $formattedName): void
     // Create a client.
     $dataTransferServiceClient = new DataTransferServiceClient();
 
+    // Prepare the request message.
+    $request = (new CheckValidCredsRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var CheckValidCredsResponse $response */
-        $response = $dataTransferServiceClient->checkValidCreds($formattedName);
+        $response = $dataTransferServiceClient->checkValidCreds($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

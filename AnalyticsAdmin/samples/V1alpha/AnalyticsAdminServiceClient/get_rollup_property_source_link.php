@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetRollupPropertySourceLink_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\GetRollupPropertySourceLinkRequest;
 use Google\Analytics\Admin\V1alpha\RollupPropertySourceLink;
 use Google\ApiCore\ApiException;
 
@@ -43,10 +44,14 @@ function get_rollup_property_source_link_sample(string $formattedName): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetRollupPropertySourceLinkRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var RollupPropertySourceLink $response */
-        $response = $analyticsAdminServiceClient->getRollupPropertySourceLink($formattedName);
+        $response = $analyticsAdminServiceClient->getRollupPropertySourceLink($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_Experiments_UpdateExperiment_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\Cx\V3\Client\ExperimentsClient;
 use Google\Cloud\Dialogflow\Cx\V3\Experiment;
-use Google\Cloud\Dialogflow\Cx\V3\ExperimentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\UpdateExperimentRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -40,15 +41,18 @@ function update_experiment_sample(string $experimentDisplayName): void
     // Create a client.
     $experimentsClient = new ExperimentsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $experiment = (new Experiment())
         ->setDisplayName($experimentDisplayName);
     $updateMask = new FieldMask();
+    $request = (new UpdateExperimentRequest())
+        ->setExperiment($experiment)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var Experiment $response */
-        $response = $experimentsClient->updateExperiment($experiment, $updateMask);
+        $response = $experimentsClient->updateExperiment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\Billing\Budgets\V1\Budget;
 use Google\Cloud\Billing\Budgets\V1\BudgetAmount;
-use Google\Cloud\Billing\Budgets\V1\BudgetServiceClient;
+use Google\Cloud\Billing\Budgets\V1\Client\BudgetServiceClient;
+use Google\Cloud\Billing\Budgets\V1\UpdateBudgetRequest;
 
 /**
  * Updates a budget and returns the updated budget.
@@ -46,15 +47,17 @@ function update_budget_sample(): void
     // Create a client.
     $budgetServiceClient = new BudgetServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $budgetAmount = new BudgetAmount();
     $budget = (new Budget())
         ->setAmount($budgetAmount);
+    $request = (new UpdateBudgetRequest())
+        ->setBudget($budget);
 
     // Call the API and handle any network failures.
     try {
         /** @var Budget $response */
-        $response = $budgetServiceClient->updateBudget($budget);
+        $response = $budgetServiceClient->updateBudget($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START spanner_v1_generated_Spanner_ExecuteStreamingSql_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ServerStream;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\PartialResultSet;
-use Google\Cloud\Spanner\V1\SpannerClient;
 
 /**
  * Like [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql], except returns the
@@ -44,10 +45,15 @@ function execute_streaming_sql_sample(string $formattedSession, string $sql): vo
     // Create a client.
     $spannerClient = new SpannerClient();
 
+    // Prepare the request message.
+    $request = (new ExecuteSqlRequest())
+        ->setSession($formattedSession)
+        ->setSql($sql);
+
     // Call the API and handle any network failures.
     try {
         /** @var ServerStream $stream */
-        $stream = $spannerClient->executeStreamingSql($formattedSession, $sql);
+        $stream = $spannerClient->executeStreamingSql($request);
 
         /** @var PartialResultSet $element */
         foreach ($stream->readAll() as $element) {

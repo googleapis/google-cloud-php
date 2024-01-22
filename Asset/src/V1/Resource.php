@@ -59,7 +59,6 @@ class Resource extends \Google\Protobuf\Internal\Message
      * hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy).
      * Example:
      * `//cloudresourcemanager.googleapis.com/projects/my_project_123`
-     * For third-party assets, this field may be set differently.
      *
      * Generated from protobuf field <code>string parent = 5;</code>
      */
@@ -113,7 +112,6 @@ class Resource extends \Google\Protobuf\Internal\Message
      *           hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy).
      *           Example:
      *           `//cloudresourcemanager.googleapis.com/projects/my_project_123`
-     *           For third-party assets, this field may be set differently.
      *     @type \Google\Protobuf\Struct $data
      *           The content of the resource, in which some sensitive fields are removed
      *           and may not be present.
@@ -261,7 +259,6 @@ class Resource extends \Google\Protobuf\Internal\Message
      * hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy).
      * Example:
      * `//cloudresourcemanager.googleapis.com/projects/my_project_123`
-     * For third-party assets, this field may be set differently.
      *
      * Generated from protobuf field <code>string parent = 5;</code>
      * @return string
@@ -281,7 +278,6 @@ class Resource extends \Google\Protobuf\Internal\Message
      * hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy).
      * Example:
      * `//cloudresourcemanager.googleapis.com/projects/my_project_123`
-     * For third-party assets, this field may be set differently.
      *
      * Generated from protobuf field <code>string parent = 5;</code>
      * @param string $var

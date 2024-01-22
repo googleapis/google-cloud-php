@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START spanner_v1_generated_Spanner_Commit_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CommitResponse;
 use Google\Cloud\Spanner\V1\Mutation;
-use Google\Cloud\Spanner\V1\SpannerClient;
 
 /**
  * Commits a transaction. The request includes the mutations to be
@@ -52,13 +53,16 @@ function commit_sample(string $formattedSession): void
     // Create a client.
     $spannerClient = new SpannerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $mutations = [new Mutation()];
+    $request = (new CommitRequest())
+        ->setSession($formattedSession)
+        ->setMutations($mutations);
 
     // Call the API and handle any network failures.
     try {
         /** @var CommitResponse $response */
-        $response = $spannerClient->commit($formattedSession, $mutations);
+        $response = $spannerClient->commit($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

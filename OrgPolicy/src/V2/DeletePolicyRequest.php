@@ -18,15 +18,23 @@ class DeletePolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the policy to delete.
-     * See `Policy` for naming rules.
+     * See the policy entry for naming rules.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+    /**
+     * Optional. The current etag of policy. If an etag is provided and does not
+     * match the current etag of the policy, deletion will be blocked and an
+     * ABORTED error will be returned.
+     *
+     * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $etag = '';
 
     /**
      * @param string $name Required. Name of the policy to delete.
-     *                     See `Policy` for naming rules. Please see
+     *                     See the policy entry for naming rules. Please see
      *                     {@see OrgPolicyClient::policyName()} for help formatting this field.
      *
      * @return \Google\Cloud\OrgPolicy\V2\DeletePolicyRequest
@@ -47,7 +55,11 @@ class DeletePolicyRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Name of the policy to delete.
-     *           See `Policy` for naming rules.
+     *           See the policy entry for naming rules.
+     *     @type string $etag
+     *           Optional. The current etag of policy. If an etag is provided and does not
+     *           match the current etag of the policy, deletion will be blocked and an
+     *           ABORTED error will be returned.
      * }
      */
     public function __construct($data = NULL) {
@@ -57,7 +69,7 @@ class DeletePolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the policy to delete.
-     * See `Policy` for naming rules.
+     * See the policy entry for naming rules.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -69,7 +81,7 @@ class DeletePolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the policy to delete.
-     * See `Policy` for naming rules.
+     * See the policy entry for naming rules.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -79,6 +91,36 @@ class DeletePolicyRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The current etag of policy. If an etag is provided and does not
+     * match the current etag of the policy, deletion will be blocked and an
+     * ABORTED error will be returned.
+     *
+     * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getEtag()
+    {
+        return $this->etag;
+    }
+
+    /**
+     * Optional. The current etag of policy. If an etag is provided and does not
+     * match the current etag of the policy, deletion will be blocked and an
+     * ABORTED error will be returned.
+     *
+     * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEtag($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->etag = $var;
 
         return $this;
     }

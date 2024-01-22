@@ -36,7 +36,7 @@ class AccountVerificationInfo extends \Google\Protobuf\Internal\Message
     private $latest_verification_result = 0;
     /**
      * Username of the account that is being verified. Deprecated. Customers
-     * should now provide the hashed account ID field in Event.
+     * should now provide the `account_id` field in `event.user_info`.
      *
      * Generated from protobuf field <code>string username = 2 [deprecated = true];</code>
      * @deprecated
@@ -58,7 +58,7 @@ class AccountVerificationInfo extends \Google\Protobuf\Internal\Message
      *           Output only. Result of the latest account verification challenge.
      *     @type string $username
      *           Username of the account that is being verified. Deprecated. Customers
-     *           should now provide the hashed account ID field in Event.
+     *           should now provide the `account_id` field in `event.user_info`.
      * }
      */
     public function __construct($data = NULL) {
@@ -148,7 +148,7 @@ class AccountVerificationInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * Username of the account that is being verified. Deprecated. Customers
-     * should now provide the hashed account ID field in Event.
+     * should now provide the `account_id` field in `event.user_info`.
      *
      * Generated from protobuf field <code>string username = 2 [deprecated = true];</code>
      * @return string
@@ -162,7 +162,7 @@ class AccountVerificationInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * Username of the account that is being verified. Deprecated. Customers
-     * should now provide the hashed account ID field in Event.
+     * should now provide the `account_id` field in `event.user_info`.
      *
      * Generated from protobuf field <code>string username = 2 [deprecated = true];</code>
      * @param string $var

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START networkconnectivity_v1_generated_PolicyBasedRoutingService_GetLocation_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\Location;
-use Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoutingServiceClient;
+use Google\Cloud\NetworkConnectivity\V1\Client\PolicyBasedRoutingServiceClient;
 
 /**
  * Gets information about a location.
@@ -41,10 +42,13 @@ function get_location_sample(): void
     // Create a client.
     $policyBasedRoutingServiceClient = new PolicyBasedRoutingServiceClient();
 
+    // Prepare the request message.
+    $request = new GetLocationRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var Location $response */
-        $response = $policyBasedRoutingServiceClient->getLocation();
+        $response = $policyBasedRoutingServiceClient->getLocation($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

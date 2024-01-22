@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_ConversationModels_UndeployConversationModel_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Dialogflow\V2\ConversationModelsClient;
+use Google\Cloud\Dialogflow\V2\Client\ConversationModelsClient;
+use Google\Cloud\Dialogflow\V2\UndeployConversationModelRequest;
 use Google\Rpc\Status;
 
 /**
@@ -51,10 +52,14 @@ function undeploy_conversation_model_sample(string $name): void
     // Create a client.
     $conversationModelsClient = new ConversationModelsClient();
 
+    // Prepare the request message.
+    $request = (new UndeployConversationModelRequest())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $conversationModelsClient->undeployConversationModel($name);
+        $response = $conversationModelsClient->undeployConversationModel($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

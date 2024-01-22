@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START bigqueryreservation_v1_generated_ReservationService_MoveAssignment_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\BigQuery\Reservation\V1\Assignment;
-use Google\Cloud\BigQuery\Reservation\V1\ReservationServiceClient;
+use Google\Cloud\BigQuery\Reservation\V1\Client\ReservationServiceClient;
+use Google\Cloud\BigQuery\Reservation\V1\MoveAssignmentRequest;
 
 /**
  * Moves an assignment under a new reservation.
@@ -44,10 +45,14 @@ function move_assignment_sample(string $formattedName): void
     // Create a client.
     $reservationServiceClient = new ReservationServiceClient();
 
+    // Prepare the request message.
+    $request = (new MoveAssignmentRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Assignment $response */
-        $response = $reservationServiceClient->moveAssignment($formattedName);
+        $response = $reservationServiceClient->moveAssignment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START spanner_v1_generated_Spanner_ListSessions_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\ListSessionsRequest;
 use Google\Cloud\Spanner\V1\Session;
-use Google\Cloud\Spanner\V1\SpannerClient;
 
 /**
  * Lists all sessions in a given database.
@@ -39,10 +40,14 @@ function list_sessions_sample(string $formattedDatabase): void
     // Create a client.
     $spannerClient = new SpannerClient();
 
+    // Prepare the request message.
+    $request = (new ListSessionsRequest())
+        ->setDatabase($formattedDatabase);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $spannerClient->listSessions($formattedDatabase);
+        $response = $spannerClient->listSessions($request);
 
         /** @var Session $element */
         foreach ($response as $element) {

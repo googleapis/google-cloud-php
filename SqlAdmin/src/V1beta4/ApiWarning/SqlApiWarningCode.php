@@ -31,11 +31,27 @@ class SqlApiWarningCode
      * Generated from protobuf enum <code>MAX_RESULTS_EXCEEDS_LIMIT = 2;</code>
      */
     const MAX_RESULTS_EXCEEDS_LIMIT = 2;
+    /**
+     * Warning when user tries to create/update a user with credentials that
+     * have previously been compromised by a public data breach.
+     *
+     * Generated from protobuf enum <code>COMPROMISED_CREDENTIALS = 3;</code>
+     */
+    const COMPROMISED_CREDENTIALS = 3;
+    /**
+     * Warning when the operation succeeds but some non-critical workflow state
+     * failed.
+     *
+     * Generated from protobuf enum <code>INTERNAL_STATE_FAILURE = 4;</code>
+     */
+    const INTERNAL_STATE_FAILURE = 4;
 
     private static $valueToName = [
         self::SQL_API_WARNING_CODE_UNSPECIFIED => 'SQL_API_WARNING_CODE_UNSPECIFIED',
         self::REGION_UNREACHABLE => 'REGION_UNREACHABLE',
         self::MAX_RESULTS_EXCEEDS_LIMIT => 'MAX_RESULTS_EXCEEDS_LIMIT',
+        self::COMPROMISED_CREDENTIALS => 'COMPROMISED_CREDENTIALS',
+        self::INTERNAL_STATE_FAILURE => 'INTERNAL_STATE_FAILURE',
     ];
 
     public static function name($value)

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START memcache_v1_generated_CloudMemcache_UpdateParameters_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Memcache\V1\CloudMemcacheClient;
+use Google\Cloud\Memcache\V1\Client\CloudMemcacheClient;
 use Google\Cloud\Memcache\V1\Instance;
+use Google\Cloud\Memcache\V1\UpdateParametersRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -45,13 +46,16 @@ function update_parameters_sample(string $formattedName): void
     // Create a client.
     $cloudMemcacheClient = new CloudMemcacheClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
+    $request = (new UpdateParametersRequest())
+        ->setName($formattedName)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudMemcacheClient->updateParameters($formattedName, $updateMask);
+        $response = $cloudMemcacheClient->updateParameters($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

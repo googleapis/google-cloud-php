@@ -272,6 +272,12 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     private $maintenance_version = '';
     /**
+     * The SQL network architecture for the instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1beta4.DatabaseInstance.SqlNetworkArchitecture sql_network_architecture = 47;</code>
+     */
+    private $sql_network_architecture = null;
+    /**
      * Output only. The link to service attachment of PSC instance.
      *
      * Generated from protobuf field <code>optional string psc_service_attachment_link = 48 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -412,6 +418,8 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *           Output only. List all maintenance versions applicable on the instance
      *     @type string $maintenance_version
      *           The current software version on the instance.
+     *     @type int $sql_network_architecture
+     *           The SQL network architecture for the instance.
      *     @type string $psc_service_attachment_link
      *           Output only. The link to service attachment of PSC instance.
      *     @type string $dns_name
@@ -1674,6 +1682,42 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->maintenance_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * The SQL network architecture for the instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1beta4.DatabaseInstance.SqlNetworkArchitecture sql_network_architecture = 47;</code>
+     * @return int
+     */
+    public function getSqlNetworkArchitecture()
+    {
+        return isset($this->sql_network_architecture) ? $this->sql_network_architecture : 0;
+    }
+
+    public function hasSqlNetworkArchitecture()
+    {
+        return isset($this->sql_network_architecture);
+    }
+
+    public function clearSqlNetworkArchitecture()
+    {
+        unset($this->sql_network_architecture);
+    }
+
+    /**
+     * The SQL network architecture for the instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1beta4.DatabaseInstance.SqlNetworkArchitecture sql_network_architecture = 47;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSqlNetworkArchitecture($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1beta4\DatabaseInstance\SqlNetworkArchitecture::class);
+        $this->sql_network_architecture = $var;
 
         return $this;
     }

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_Flows_CreateFlow_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\Cx\V3\Client\FlowsClient;
+use Google\Cloud\Dialogflow\Cx\V3\CreateFlowRequest;
 use Google\Cloud\Dialogflow\Cx\V3\Flow;
-use Google\Cloud\Dialogflow\Cx\V3\FlowsClient;
 
 /**
  * Creates a flow in the specified agent.
@@ -44,14 +45,17 @@ function create_flow_sample(string $formattedParent, string $flowDisplayName): v
     // Create a client.
     $flowsClient = new FlowsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $flow = (new Flow())
         ->setDisplayName($flowDisplayName);
+    $request = (new CreateFlowRequest())
+        ->setParent($formattedParent)
+        ->setFlow($flow);
 
     // Call the API and handle any network failures.
     try {
         /** @var Flow $response */
-        $response = $flowsClient->createFlow($formattedParent, $flow);
+        $response = $flowsClient->createFlow($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -9,8 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Next tag: 7
- *
  * Generated from protobuf message <code>google.cloud.sql.v1beta4.SqlInstancesDeleteRequest</code>
  */
 class SqlInstancesDeleteRequest extends \Google\Protobuf\Internal\Message

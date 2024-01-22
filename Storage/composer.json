@@ -5,14 +5,15 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=7.4",
-        "google/cloud-core": "^1.52.7",
+        "google/cloud-core": "^1.53",
         "ramsey/uuid": "^4.2.3"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0",
         "phpspec/prophecy-phpunit": "^2.0",
         "squizlabs/php_codesniffer": "2.*",
-        "phpdocumentor/reflection": "^5.0",
+        "phpdocumentor/reflection": "^5.3.3",
+        "phpdocumentor/reflection-docblock": "^5.3",
         "erusev/parsedown": "^1.6",
         "phpseclib/phpseclib": "^2.0||^3.0",
         "google/cloud-pubsub": "^1.0"

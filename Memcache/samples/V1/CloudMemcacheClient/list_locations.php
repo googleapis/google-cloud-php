@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START memcache_v1_generated_CloudMemcache_ListLocations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
-use Google\Cloud\Memcache\V1\CloudMemcacheClient;
+use Google\Cloud\Memcache\V1\Client\CloudMemcacheClient;
 
 /**
  * Lists information about the supported locations for this service.
@@ -42,10 +43,13 @@ function list_locations_sample(): void
     // Create a client.
     $cloudMemcacheClient = new CloudMemcacheClient();
 
+    // Prepare the request message.
+    $request = new ListLocationsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudMemcacheClient->listLocations();
+        $response = $cloudMemcacheClient->listLocations($request);
 
         /** @var Location $element */
         foreach ($response as $element) {

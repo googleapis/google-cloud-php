@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dlp_v2_generated_DlpService_DeleteInspectTemplate_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dlp\V2\DlpServiceClient;
+use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
+use Google\Cloud\Dlp\V2\DeleteInspectTemplateRequest;
 
 /**
  * Deletes an InspectTemplate.
@@ -40,9 +41,13 @@ function delete_inspect_template_sample(string $formattedName): void
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteInspectTemplateRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $dlpServiceClient->deleteInspectTemplate($formattedName);
+        $dlpServiceClient->deleteInspectTemplate($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

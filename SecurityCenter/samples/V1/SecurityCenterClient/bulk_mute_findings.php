@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START securitycenter_v1_generated_SecurityCenter_BulkMuteFindings_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\SecurityCenter\V1\BulkMuteFindingsRequest;
 use Google\Cloud\SecurityCenter\V1\BulkMuteFindingsResponse;
-use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient;
 use Google\Rpc\Status;
 
 /**
@@ -43,10 +44,14 @@ function bulk_mute_findings_sample(string $parent): void
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
+    // Prepare the request message.
+    $request = (new BulkMuteFindingsRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $securityCenterClient->bulkMuteFindings($parent);
+        $response = $securityCenterClient->bulkMuteFindings($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START documentai_v1_generated_DocumentProcessorService_ListEvaluations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\DocumentAI\V1\DocumentProcessorServiceClient;
+use Google\Cloud\DocumentAI\V1\Client\DocumentProcessorServiceClient;
 use Google\Cloud\DocumentAI\V1\Evaluation;
+use Google\Cloud\DocumentAI\V1\ListEvaluationsRequest;
 
 /**
  * Retrieves a set of evaluations for a given processor version.
@@ -42,10 +43,14 @@ function list_evaluations_sample(string $formattedParent): void
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListEvaluationsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $documentProcessorServiceClient->listEvaluations($formattedParent);
+        $response = $documentProcessorServiceClient->listEvaluations($request);
 
         /** @var Evaluation $element */
         foreach ($response as $element) {

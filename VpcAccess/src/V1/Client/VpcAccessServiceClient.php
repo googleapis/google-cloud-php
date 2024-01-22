@@ -57,11 +57,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\VpcAccess\V1\VpcAccessServiceClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createConnectorAsync(CreateConnectorRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteConnectorAsync(DeleteConnectorRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getConnectorAsync(GetConnectorRequest $request, array $optionalArgs = [])
@@ -76,8 +71,15 @@ final class VpcAccessServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.vpcaccess.v1.VpcAccessService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'vpcaccess.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'vpcaccess.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -278,6 +280,8 @@ final class VpcAccessServiceClient
      *
      * The async variant is {@see VpcAccessServiceClient::createConnectorAsync()} .
      *
+     * @example samples/V1/VpcAccessServiceClient/create_connector.php
+     *
      * @param CreateConnectorRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -302,6 +306,8 @@ final class VpcAccessServiceClient
      * resource does not exist.
      *
      * The async variant is {@see VpcAccessServiceClient::deleteConnectorAsync()} .
+     *
+     * @example samples/V1/VpcAccessServiceClient/delete_connector.php
      *
      * @param DeleteConnectorRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -328,6 +334,8 @@ final class VpcAccessServiceClient
      *
      * The async variant is {@see VpcAccessServiceClient::getConnectorAsync()} .
      *
+     * @example samples/V1/VpcAccessServiceClient/get_connector.php
+     *
      * @param GetConnectorRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -352,6 +360,8 @@ final class VpcAccessServiceClient
      *
      * The async variant is {@see VpcAccessServiceClient::listConnectorsAsync()} .
      *
+     * @example samples/V1/VpcAccessServiceClient/list_connectors.php
+     *
      * @param ListConnectorsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -375,6 +385,8 @@ final class VpcAccessServiceClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see VpcAccessServiceClient::listLocationsAsync()} .
+     *
+     * @example samples/V1/VpcAccessServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

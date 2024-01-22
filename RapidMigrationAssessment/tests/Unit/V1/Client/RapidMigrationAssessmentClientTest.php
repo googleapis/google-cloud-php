@@ -68,7 +68,9 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return RapidMigrationAssessmentClient */
@@ -114,9 +116,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $annotation = new Annotation();
-        $request = (new CreateAnnotationRequest())
-            ->setParent($formattedParent)
-            ->setAnnotation($annotation);
+        $request = (new CreateAnnotationRequest())->setParent($formattedParent)->setAnnotation($annotation);
         $response = $gapicClient->createAnnotation($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -126,7 +126,10 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/CreateAnnotation', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/CreateAnnotation',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getAnnotation();
@@ -174,19 +177,20 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $annotation = new Annotation();
-        $request = (new CreateAnnotationRequest())
-            ->setParent($formattedParent)
-            ->setAnnotation($annotation);
+        $request = (new CreateAnnotationRequest())->setParent($formattedParent)->setAnnotation($annotation);
         $response = $gapicClient->createAnnotation($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -273,7 +277,10 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/CreateCollector', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/CreateCollector',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getCollectorId();
@@ -323,12 +330,15 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -409,8 +419,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->collectorName('[PROJECT]', '[LOCATION]', '[COLLECTOR]');
-        $request = (new DeleteCollectorRequest())
-            ->setName($formattedName);
+        $request = (new DeleteCollectorRequest())->setName($formattedName);
         $response = $gapicClient->deleteCollector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -420,7 +429,10 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/DeleteCollector', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/DeleteCollector',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -466,17 +478,19 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->collectorName('[PROJECT]', '[LOCATION]', '[COLLECTOR]');
-        $request = (new DeleteCollectorRequest())
-            ->setName($formattedName);
+        $request = (new DeleteCollectorRequest())->setName($formattedName);
         $response = $gapicClient->deleteCollector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -514,15 +528,17 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->annotationName('[PROJECT]', '[LOCATION]', '[ANNOTATION]');
-        $request = (new GetAnnotationRequest())
-            ->setName($formattedName);
+        $request = (new GetAnnotationRequest())->setName($formattedName);
         $response = $gapicClient->getAnnotation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/GetAnnotation', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/GetAnnotation',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -539,17 +555,19 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->annotationName('[PROJECT]', '[LOCATION]', '[ANNOTATION]');
-        $request = (new GetAnnotationRequest())
-            ->setName($formattedName);
+        $request = (new GetAnnotationRequest())->setName($formattedName);
         try {
             $gapicClient->getAnnotation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -594,15 +612,17 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->collectorName('[PROJECT]', '[LOCATION]', '[COLLECTOR]');
-        $request = (new GetCollectorRequest())
-            ->setName($formattedName);
+        $request = (new GetCollectorRequest())->setName($formattedName);
         $response = $gapicClient->getCollector($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/GetCollector', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/GetCollector',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -619,17 +639,19 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->collectorName('[PROJECT]', '[LOCATION]', '[COLLECTOR]');
-        $request = (new GetCollectorRequest())
-            ->setName($formattedName);
+        $request = (new GetCollectorRequest())->setName($formattedName);
         try {
             $gapicClient->getCollector($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -654,17 +676,14 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $collectorsElement = new Collector();
-        $collectors = [
-            $collectorsElement,
-        ];
+        $collectors = [$collectorsElement];
         $expectedResponse = new ListCollectorsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCollectors($collectors);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListCollectorsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListCollectorsRequest())->setParent($formattedParent);
         $response = $gapicClient->listCollectors($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -674,7 +693,10 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/ListCollectors', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/ListCollectors',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -691,17 +713,19 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListCollectorsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListCollectorsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listCollectors($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -764,8 +788,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->collectorName('[PROJECT]', '[LOCATION]', '[COLLECTOR]');
-        $request = (new PauseCollectorRequest())
-            ->setName($formattedName);
+        $request = (new PauseCollectorRequest())->setName($formattedName);
         $response = $gapicClient->pauseCollector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -775,7 +798,10 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/PauseCollector', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/PauseCollector',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -821,17 +847,19 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->collectorName('[PROJECT]', '[LOCATION]', '[COLLECTOR]');
-        $request = (new PauseCollectorRequest())
-            ->setName($formattedName);
+        $request = (new PauseCollectorRequest())->setName($formattedName);
         $response = $gapicClient->pauseCollector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -903,8 +931,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->collectorName('[PROJECT]', '[LOCATION]', '[COLLECTOR]');
-        $request = (new RegisterCollectorRequest())
-            ->setName($formattedName);
+        $request = (new RegisterCollectorRequest())->setName($formattedName);
         $response = $gapicClient->registerCollector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -914,7 +941,10 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/RegisterCollector', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/RegisterCollector',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -960,17 +990,19 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->collectorName('[PROJECT]', '[LOCATION]', '[COLLECTOR]');
-        $request = (new RegisterCollectorRequest())
-            ->setName($formattedName);
+        $request = (new RegisterCollectorRequest())->setName($formattedName);
         $response = $gapicClient->registerCollector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1042,8 +1074,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->collectorName('[PROJECT]', '[LOCATION]', '[COLLECTOR]');
-        $request = (new ResumeCollectorRequest())
-            ->setName($formattedName);
+        $request = (new ResumeCollectorRequest())->setName($formattedName);
         $response = $gapicClient->resumeCollector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1053,7 +1084,10 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/ResumeCollector', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/ResumeCollector',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1099,17 +1133,19 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->collectorName('[PROJECT]', '[LOCATION]', '[COLLECTOR]');
-        $request = (new ResumeCollectorRequest())
-            ->setName($formattedName);
+        $request = (new ResumeCollectorRequest())->setName($formattedName);
         $response = $gapicClient->resumeCollector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1182,9 +1218,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $collector = new Collector();
-        $request = (new UpdateCollectorRequest())
-            ->setUpdateMask($updateMask)
-            ->setCollector($collector);
+        $request = (new UpdateCollectorRequest())->setUpdateMask($updateMask)->setCollector($collector);
         $response = $gapicClient->updateCollector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1194,7 +1228,10 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/UpdateCollector', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/UpdateCollector',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getUpdateMask();
         $this->assertProtobufEquals($updateMask, $actualValue);
         $actualValue = $actualApiRequestObject->getCollector();
@@ -1242,19 +1279,20 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
         $collector = new Collector();
-        $request = (new UpdateCollectorRequest())
-            ->setUpdateMask($updateMask)
-            ->setCollector($collector);
+        $request = (new UpdateCollectorRequest())->setUpdateMask($updateMask)->setCollector($collector);
         $response = $gapicClient->updateCollector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1316,12 +1354,15 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -1348,9 +1389,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -1380,12 +1419,15 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -1435,9 +1477,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $annotation = new Annotation();
-        $request = (new CreateAnnotationRequest())
-            ->setParent($formattedParent)
-            ->setAnnotation($annotation);
+        $request = (new CreateAnnotationRequest())->setParent($formattedParent)->setAnnotation($annotation);
         $response = $gapicClient->createAnnotationAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1447,7 +1487,10 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/CreateAnnotation', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/CreateAnnotation',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getAnnotation();

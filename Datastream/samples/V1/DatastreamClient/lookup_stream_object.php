@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datastream_v1_generated_Datastream_LookupStreamObject_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Datastream\V1\DatastreamClient;
+use Google\Cloud\Datastream\V1\Client\DatastreamClient;
+use Google\Cloud\Datastream\V1\LookupStreamObjectRequest;
 use Google\Cloud\Datastream\V1\SourceObjectIdentifier;
 use Google\Cloud\Datastream\V1\StreamObject;
 
@@ -39,13 +40,16 @@ function lookup_stream_object_sample(string $formattedParent): void
     // Create a client.
     $datastreamClient = new DatastreamClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $sourceObjectIdentifier = new SourceObjectIdentifier();
+    $request = (new LookupStreamObjectRequest())
+        ->setParent($formattedParent)
+        ->setSourceObjectIdentifier($sourceObjectIdentifier);
 
     // Call the API and handle any network failures.
     try {
         /** @var StreamObject $response */
-        $response = $datastreamClient->lookupStreamObject($formattedParent, $sourceObjectIdentifier);
+        $response = $datastreamClient->lookupStreamObject($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

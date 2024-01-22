@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START networkconnectivity_v1_generated_PolicyBasedRoutingService_GetPolicyBasedRoute_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\NetworkConnectivity\V1\Client\PolicyBasedRoutingServiceClient;
+use Google\Cloud\NetworkConnectivity\V1\GetPolicyBasedRouteRequest;
 use Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute;
-use Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoutingServiceClient;
 
 /**
  * Gets details of a single PolicyBasedRoute.
@@ -38,10 +39,14 @@ function get_policy_based_route_sample(string $formattedName): void
     // Create a client.
     $policyBasedRoutingServiceClient = new PolicyBasedRoutingServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetPolicyBasedRouteRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var PolicyBasedRoute $response */
-        $response = $policyBasedRoutingServiceClient->getPolicyBasedRoute($formattedName);
+        $response = $policyBasedRoutingServiceClient->getPolicyBasedRoute($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

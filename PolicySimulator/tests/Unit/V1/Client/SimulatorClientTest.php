@@ -57,7 +57,9 @@ class SimulatorClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return SimulatorClient */
@@ -105,9 +107,7 @@ class SimulatorClientTest extends GeneratedTest
         $replay = new Replay();
         $replayConfig = new ReplayConfig();
         $replay->setConfig($replayConfig);
-        $request = (new CreateReplayRequest())
-            ->setParent($parent)
-            ->setReplay($replay);
+        $request = (new CreateReplayRequest())->setParent($parent)->setReplay($replay);
         $response = $gapicClient->createReplay($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -165,21 +165,22 @@ class SimulatorClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
         $replay = new Replay();
         $replayConfig = new ReplayConfig();
         $replay->setConfig($replayConfig);
-        $request = (new CreateReplayRequest())
-            ->setParent($parent)
-            ->setReplay($replay);
+        $request = (new CreateReplayRequest())->setParent($parent)->setReplay($replay);
         $response = $gapicClient->createReplay($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -217,8 +218,7 @@ class SimulatorClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->replayName('[PROJECT]', '[LOCATION]', '[REPLAY]');
-        $request = (new GetReplayRequest())
-            ->setName($formattedName);
+        $request = (new GetReplayRequest())->setName($formattedName);
         $response = $gapicClient->getReplay($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -242,17 +242,19 @@ class SimulatorClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->replayName('[PROJECT]', '[LOCATION]', '[REPLAY]');
-        $request = (new GetReplayRequest())
-            ->setName($formattedName);
+        $request = (new GetReplayRequest())->setName($formattedName);
         try {
             $gapicClient->getReplay($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -277,17 +279,14 @@ class SimulatorClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $replayResultsElement = new ReplayResult();
-        $replayResults = [
-            $replayResultsElement,
-        ];
+        $replayResults = [$replayResultsElement];
         $expectedResponse = new ListReplayResultsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setReplayResults($replayResults);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->replayName('[PROJECT]', '[LOCATION]', '[REPLAY]');
-        $request = (new ListReplayResultsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListReplayResultsRequest())->setParent($formattedParent);
         $response = $gapicClient->listReplayResults($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -314,17 +313,19 @@ class SimulatorClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->replayName('[PROJECT]', '[LOCATION]', '[REPLAY]');
-        $request = (new ListReplayResultsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListReplayResultsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listReplayResults($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -374,9 +375,7 @@ class SimulatorClientTest extends GeneratedTest
         $replay = new Replay();
         $replayConfig = new ReplayConfig();
         $replay->setConfig($replayConfig);
-        $request = (new CreateReplayRequest())
-            ->setParent($parent)
-            ->setReplay($replay);
+        $request = (new CreateReplayRequest())->setParent($parent)->setReplay($replay);
         $response = $gapicClient->createReplayAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

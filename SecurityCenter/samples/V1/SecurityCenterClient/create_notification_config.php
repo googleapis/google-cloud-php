@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START securitycenter_v1_generated_SecurityCenter_CreateNotificationConfig_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\CreateNotificationConfigRequest;
 use Google\Cloud\SecurityCenter\V1\NotificationConfig;
-use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
 
 /**
  * Creates a notification config.
@@ -44,17 +45,17 @@ function create_notification_config_sample(string $formattedParent, string $conf
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $notificationConfig = new NotificationConfig();
+    $request = (new CreateNotificationConfigRequest())
+        ->setParent($formattedParent)
+        ->setConfigId($configId)
+        ->setNotificationConfig($notificationConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var NotificationConfig $response */
-        $response = $securityCenterClient->createNotificationConfig(
-            $formattedParent,
-            $configId,
-            $notificationConfig
-        );
+        $response = $securityCenterClient->createNotificationConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

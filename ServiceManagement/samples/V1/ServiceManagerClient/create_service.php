@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START servicemanagement_v1_generated_ServiceManager_CreateService_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\ServiceManagement\V1\Client\ServiceManagerClient;
+use Google\Cloud\ServiceManagement\V1\CreateServiceRequest;
 use Google\Cloud\ServiceManagement\V1\ManagedService;
-use Google\Cloud\ServiceManagement\V1\ServiceManagerClient;
 use Google\Rpc\Status;
 
 /**
@@ -53,13 +54,15 @@ function create_service_sample(): void
     // Create a client.
     $serviceManagerClient = new ServiceManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $service = new ManagedService();
+    $request = (new CreateServiceRequest())
+        ->setService($service);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $serviceManagerClient->createService($service);
+        $response = $serviceManagerClient->createService($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

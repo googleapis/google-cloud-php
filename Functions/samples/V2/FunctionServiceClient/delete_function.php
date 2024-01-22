@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudfunctions_v2_generated_FunctionService_DeleteFunction_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Functions\V2\FunctionServiceClient;
+use Google\Cloud\Functions\V2\Client\FunctionServiceClient;
+use Google\Cloud\Functions\V2\DeleteFunctionRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,10 +42,14 @@ function delete_function_sample(string $formattedName): void
     // Create a client.
     $functionServiceClient = new FunctionServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteFunctionRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $functionServiceClient->deleteFunction($formattedName);
+        $response = $functionServiceClient->deleteFunction($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

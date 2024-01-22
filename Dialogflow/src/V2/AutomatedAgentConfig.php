@@ -35,10 +35,10 @@ class AutomatedAgentConfig extends \Google\Protobuf\Internal\Message
      */
     private $agent = '';
     /**
-     * Optional. Sets Dialogflow CX session life time.
+     * Optional. Configure lifetime of the Dialogflow session.
      * By default, a Dialogflow CX session remains active and its data is stored
-     * for 30 minutes after the last request is sent for the session. This value
-     * should be no longer than 1 day.
+     * for 30 minutes after the last request is sent for the session.
+     * This value should be no longer than 1 day.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration session_ttl = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -66,10 +66,10 @@ class AutomatedAgentConfig extends \Google\Protobuf\Internal\Message
      *           or '-'>`. If environment is not specified, the default `draft` environment
      *           is used.
      *     @type \Google\Protobuf\Duration $session_ttl
-     *           Optional. Sets Dialogflow CX session life time.
+     *           Optional. Configure lifetime of the Dialogflow session.
      *           By default, a Dialogflow CX session remains active and its data is stored
-     *           for 30 minutes after the last request is sent for the session. This value
-     *           should be no longer than 1 day.
+     *           for 30 minutes after the last request is sent for the session.
+     *           This value should be no longer than 1 day.
      * }
      */
     public function __construct($data = NULL) {
@@ -130,10 +130,10 @@ class AutomatedAgentConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Sets Dialogflow CX session life time.
+     * Optional. Configure lifetime of the Dialogflow session.
      * By default, a Dialogflow CX session remains active and its data is stored
-     * for 30 minutes after the last request is sent for the session. This value
-     * should be no longer than 1 day.
+     * for 30 minutes after the last request is sent for the session.
+     * This value should be no longer than 1 day.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration session_ttl = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration|null
@@ -154,10 +154,10 @@ class AutomatedAgentConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Sets Dialogflow CX session life time.
+     * Optional. Configure lifetime of the Dialogflow session.
      * By default, a Dialogflow CX session remains active and its data is stored
-     * for 30 minutes after the last request is sent for the session. This value
-     * should be no longer than 1 day.
+     * for 30 minutes after the last request is sent for the session.
+     * This value should be no longer than 1 day.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration session_ttl = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var

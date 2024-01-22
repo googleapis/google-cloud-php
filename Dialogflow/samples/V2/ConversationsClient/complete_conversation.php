@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_Conversations_CompleteConversation_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\V2\Client\ConversationsClient;
+use Google\Cloud\Dialogflow\V2\CompleteConversationRequest;
 use Google\Cloud\Dialogflow\V2\Conversation;
-use Google\Cloud\Dialogflow\V2\ConversationsClient;
 
 /**
  * Completes the specified conversation. Finished conversations are purged
@@ -41,10 +42,14 @@ function complete_conversation_sample(string $formattedName): void
     // Create a client.
     $conversationsClient = new ConversationsClient();
 
+    // Prepare the request message.
+    $request = (new CompleteConversationRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Conversation $response */
-        $response = $conversationsClient->completeConversation($formattedName);
+        $response = $conversationsClient->completeConversation($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

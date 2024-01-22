@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudchannel_v1_generated_CloudChannelService_ListCustomers_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
 use Google\Cloud\Channel\V1\Customer;
+use Google\Cloud\Channel\V1\ListCustomersRequest;
 
 /**
  * List [Customer][google.cloud.channel.v1.Customer]s.
@@ -49,10 +50,14 @@ function list_customers_sample(string $parent): void
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListCustomersRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudChannelServiceClient->listCustomers($parent);
+        $response = $cloudChannelServiceClient->listCustomers($request);
 
         /** @var Customer $element */
         foreach ($response as $element) {

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_Experiments_DeleteExperiment_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dialogflow\Cx\V3\ExperimentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\Client\ExperimentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\DeleteExperimentRequest;
 
 /**
  * Deletes the specified
@@ -41,9 +42,13 @@ function delete_experiment_sample(string $formattedName): void
     // Create a client.
     $experimentsClient = new ExperimentsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteExperimentRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $experimentsClient->deleteExperiment($formattedName);
+        $experimentsClient->deleteExperiment($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

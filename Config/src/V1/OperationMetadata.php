@@ -71,6 +71,8 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Config\V1\DeploymentOperationMetadata $deployment_metadata
      *           Output only. Metadata about the deployment operation state.
+     *     @type \Google\Cloud\Config\V1\PreviewOperationMetadata $preview_metadata
+     *           Output only. Metadata about the preview operation state.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time when the operation was created.
      *     @type \Google\Protobuf\Timestamp $end_time
@@ -123,6 +125,37 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Config\V1\DeploymentOperationMetadata::class);
         $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. Metadata about the preview operation state.
+     *
+     * Generated from protobuf field <code>.google.cloud.config.v1.PreviewOperationMetadata preview_metadata = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Config\V1\PreviewOperationMetadata|null
+     */
+    public function getPreviewMetadata()
+    {
+        return $this->readOneof(9);
+    }
+
+    public function hasPreviewMetadata()
+    {
+        return $this->hasOneof(9);
+    }
+
+    /**
+     * Output only. Metadata about the preview operation state.
+     *
+     * Generated from protobuf field <code>.google.cloud.config.v1.PreviewOperationMetadata preview_metadata = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Config\V1\PreviewOperationMetadata $var
+     * @return $this
+     */
+    public function setPreviewMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Config\V1\PreviewOperationMetadata::class);
+        $this->writeOneof(9, $var);
 
         return $this;
     }

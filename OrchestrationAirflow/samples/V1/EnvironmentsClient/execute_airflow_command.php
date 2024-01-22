@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START composer_v1_generated_Environments_ExecuteAirflowCommand_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Orchestration\Airflow\Service\V1\EnvironmentsClient;
+use Google\Cloud\Orchestration\Airflow\Service\V1\Client\EnvironmentsClient;
+use Google\Cloud\Orchestration\Airflow\Service\V1\ExecuteAirflowCommandRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\ExecuteAirflowCommandResponse;
 
 /**
@@ -41,10 +42,13 @@ function execute_airflow_command_sample(): void
     // Create a client.
     $environmentsClient = new EnvironmentsClient();
 
+    // Prepare the request message.
+    $request = new ExecuteAirflowCommandRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var ExecuteAirflowCommandResponse $response */
-        $response = $environmentsClient->executeAirflowCommand();
+        $response = $environmentsClient->executeAirflowCommand($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

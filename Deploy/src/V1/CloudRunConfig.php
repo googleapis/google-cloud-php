@@ -26,21 +26,21 @@ class CloudRunConfig extends \Google\Protobuf\Internal\Message
     private $automatic_traffic_control = false;
     /**
      * Optional. A list of tags that are added to the canary revision while the
-     * canary deployment is in progress.
+     * canary phase is in progress.
      *
      * Generated from protobuf field <code>repeated string canary_revision_tags = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $canary_revision_tags;
     /**
      * Optional. A list of tags that are added to the prior revision while the
-     * canary deployment is in progress.
+     * canary phase is in progress.
      *
      * Generated from protobuf field <code>repeated string prior_revision_tags = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $prior_revision_tags;
     /**
-     * Optional. A list of tags that are added to the final stable revision after
-     * the canary deployment is completed.
+     * Optional. A list of tags that are added to the final stable revision when
+     * the stable phase is applied.
      *
      * Generated from protobuf field <code>repeated string stable_revision_tags = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -59,13 +59,13 @@ class CloudRunConfig extends \Google\Protobuf\Internal\Message
      *           CustomCanaryDeployments.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $canary_revision_tags
      *           Optional. A list of tags that are added to the canary revision while the
-     *           canary deployment is in progress.
+     *           canary phase is in progress.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $prior_revision_tags
      *           Optional. A list of tags that are added to the prior revision while the
-     *           canary deployment is in progress.
+     *           canary phase is in progress.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $stable_revision_tags
-     *           Optional. A list of tags that are added to the final stable revision after
-     *           the canary deployment is completed.
+     *           Optional. A list of tags that are added to the final stable revision when
+     *           the stable phase is applied.
      * }
      */
     public function __construct($data = NULL) {
@@ -107,7 +107,7 @@ class CloudRunConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A list of tags that are added to the canary revision while the
-     * canary deployment is in progress.
+     * canary phase is in progress.
      *
      * Generated from protobuf field <code>repeated string canary_revision_tags = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -119,7 +119,7 @@ class CloudRunConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A list of tags that are added to the canary revision while the
-     * canary deployment is in progress.
+     * canary phase is in progress.
      *
      * Generated from protobuf field <code>repeated string canary_revision_tags = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -135,7 +135,7 @@ class CloudRunConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A list of tags that are added to the prior revision while the
-     * canary deployment is in progress.
+     * canary phase is in progress.
      *
      * Generated from protobuf field <code>repeated string prior_revision_tags = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -147,7 +147,7 @@ class CloudRunConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A list of tags that are added to the prior revision while the
-     * canary deployment is in progress.
+     * canary phase is in progress.
      *
      * Generated from protobuf field <code>repeated string prior_revision_tags = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -162,8 +162,8 @@ class CloudRunConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A list of tags that are added to the final stable revision after
-     * the canary deployment is completed.
+     * Optional. A list of tags that are added to the final stable revision when
+     * the stable phase is applied.
      *
      * Generated from protobuf field <code>repeated string stable_revision_tags = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -174,8 +174,8 @@ class CloudRunConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A list of tags that are added to the final stable revision after
-     * the canary deployment is completed.
+     * Optional. A list of tags that are added to the final stable revision when
+     * the stable phase is applied.
      *
      * Generated from protobuf field <code>repeated string stable_revision_tags = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

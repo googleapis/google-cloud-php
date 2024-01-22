@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_Conversations_GenerateStatelessSummary_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\V2\Client\ConversationsClient;
 use Google\Cloud\Dialogflow\V2\ConversationProfile;
-use Google\Cloud\Dialogflow\V2\ConversationsClient;
+use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryRequest;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryRequest\MinimalConversation;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryResponse;
 use Google\Cloud\Dialogflow\V2\Message;
@@ -48,7 +49,7 @@ function generate_stateless_summary_sample(
     // Create a client.
     $conversationsClient = new ConversationsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $message = (new Message())
         ->setContent($statelessConversationMessagesContent);
     $statelessConversationMessages = [$message,];
@@ -57,14 +58,14 @@ function generate_stateless_summary_sample(
         ->setParent($formattedStatelessConversationParent);
     $conversationProfile = (new ConversationProfile())
         ->setDisplayName($conversationProfileDisplayName);
+    $request = (new GenerateStatelessSummaryRequest())
+        ->setStatelessConversation($statelessConversation)
+        ->setConversationProfile($conversationProfile);
 
     // Call the API and handle any network failures.
     try {
         /** @var GenerateStatelessSummaryResponse $response */
-        $response = $conversationsClient->generateStatelessSummary(
-            $statelessConversation,
-            $conversationProfile
-        );
+        $response = $conversationsClient->generateStatelessSummary($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

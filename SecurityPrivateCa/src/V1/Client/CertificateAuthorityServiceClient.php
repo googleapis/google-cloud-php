@@ -95,12 +95,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient} for the
- * stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface activateCertificateAuthorityAsync(ActivateCertificateAuthorityRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createCaPoolAsync(CreateCaPoolRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createCertificateAsync(CreateCertificateRequest $request, array $optionalArgs = [])
@@ -144,8 +138,15 @@ final class CertificateAuthorityServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.security.privateca.v1.CertificateAuthorityService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'privateca.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'privateca.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -444,6 +445,8 @@ final class CertificateAuthorityServiceClient
      * The async variant is
      * {@see CertificateAuthorityServiceClient::activateCertificateAuthorityAsync()} .
      *
+     * @example samples/V1/CertificateAuthorityServiceClient/activate_certificate_authority.php
+     *
      * @param ActivateCertificateAuthorityRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -468,6 +471,8 @@ final class CertificateAuthorityServiceClient
      *
      * The async variant is
      * {@see CertificateAuthorityServiceClient::createCaPoolAsync()} .
+     *
+     * @example samples/V1/CertificateAuthorityServiceClient/create_ca_pool.php
      *
      * @param CreateCaPoolRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -496,6 +501,8 @@ final class CertificateAuthorityServiceClient
      * The async variant is
      * {@see CertificateAuthorityServiceClient::createCertificateAsync()} .
      *
+     * @example samples/V1/CertificateAuthorityServiceClient/create_certificate.php
+     *
      * @param CreateCertificateRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -522,6 +529,8 @@ final class CertificateAuthorityServiceClient
      *
      * The async variant is
      * {@see CertificateAuthorityServiceClient::createCertificateAuthorityAsync()} .
+     *
+     * @example samples/V1/CertificateAuthorityServiceClient/create_certificate_authority.php
      *
      * @param CreateCertificateAuthorityRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -550,6 +559,8 @@ final class CertificateAuthorityServiceClient
      * The async variant is
      * {@see CertificateAuthorityServiceClient::createCertificateTemplateAsync()} .
      *
+     * @example samples/V1/CertificateAuthorityServiceClient/create_certificate_template.php
+     *
      * @param CreateCertificateTemplateRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -574,6 +585,8 @@ final class CertificateAuthorityServiceClient
      *
      * The async variant is
      * {@see CertificateAuthorityServiceClient::deleteCaPoolAsync()} .
+     *
+     * @example samples/V1/CertificateAuthorityServiceClient/delete_ca_pool.php
      *
      * @param DeleteCaPoolRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -601,6 +614,8 @@ final class CertificateAuthorityServiceClient
      * The async variant is
      * {@see CertificateAuthorityServiceClient::deleteCertificateAuthorityAsync()} .
      *
+     * @example samples/V1/CertificateAuthorityServiceClient/delete_certificate_authority.php
+     *
      * @param DeleteCertificateAuthorityRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -626,6 +641,8 @@ final class CertificateAuthorityServiceClient
      *
      * The async variant is
      * {@see CertificateAuthorityServiceClient::deleteCertificateTemplateAsync()} .
+     *
+     * @example samples/V1/CertificateAuthorityServiceClient/delete_certificate_template.php
      *
      * @param DeleteCertificateTemplateRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -653,6 +670,8 @@ final class CertificateAuthorityServiceClient
      * The async variant is
      * {@see CertificateAuthorityServiceClient::disableCertificateAuthorityAsync()} .
      *
+     * @example samples/V1/CertificateAuthorityServiceClient/disable_certificate_authority.php
+     *
      * @param DisableCertificateAuthorityRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -678,6 +697,8 @@ final class CertificateAuthorityServiceClient
      *
      * The async variant is
      * {@see CertificateAuthorityServiceClient::enableCertificateAuthorityAsync()} .
+     *
+     * @example samples/V1/CertificateAuthorityServiceClient/enable_certificate_authority.php
      *
      * @param EnableCertificateAuthorityRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -707,6 +728,8 @@ final class CertificateAuthorityServiceClient
      *
      * The async variant is
      * {@see CertificateAuthorityServiceClient::fetchCaCertsAsync()} .
+     *
+     * @example samples/V1/CertificateAuthorityServiceClient/fetch_ca_certs.php
      *
      * @param FetchCaCertsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -743,6 +766,8 @@ final class CertificateAuthorityServiceClient
      * The async variant is
      * {@see CertificateAuthorityServiceClient::fetchCertificateAuthorityCsrAsync()} .
      *
+     * @example samples/V1/CertificateAuthorityServiceClient/fetch_certificate_authority_csr.php
+     *
      * @param FetchCertificateAuthorityCsrRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -768,6 +793,8 @@ final class CertificateAuthorityServiceClient
      * The async variant is {@see CertificateAuthorityServiceClient::getCaPoolAsync()}
      * .
      *
+     * @example samples/V1/CertificateAuthorityServiceClient/get_ca_pool.php
+     *
      * @param GetCaPoolRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -792,6 +819,8 @@ final class CertificateAuthorityServiceClient
      *
      * The async variant is
      * {@see CertificateAuthorityServiceClient::getCertificateAsync()} .
+     *
+     * @example samples/V1/CertificateAuthorityServiceClient/get_certificate.php
      *
      * @param GetCertificateRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -819,6 +848,8 @@ final class CertificateAuthorityServiceClient
      * The async variant is
      * {@see CertificateAuthorityServiceClient::getCertificateAuthorityAsync()} .
      *
+     * @example samples/V1/CertificateAuthorityServiceClient/get_certificate_authority.php
+     *
      * @param GetCertificateAuthorityRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -844,6 +875,8 @@ final class CertificateAuthorityServiceClient
      *
      * The async variant is
      * {@see CertificateAuthorityServiceClient::getCertificateRevocationListAsync()} .
+     *
+     * @example samples/V1/CertificateAuthorityServiceClient/get_certificate_revocation_list.php
      *
      * @param GetCertificateRevocationListRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -871,6 +904,8 @@ final class CertificateAuthorityServiceClient
      * The async variant is
      * {@see CertificateAuthorityServiceClient::getCertificateTemplateAsync()} .
      *
+     * @example samples/V1/CertificateAuthorityServiceClient/get_certificate_template.php
+     *
      * @param GetCertificateTemplateRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -895,6 +930,8 @@ final class CertificateAuthorityServiceClient
      *
      * The async variant is
      * {@see CertificateAuthorityServiceClient::listCaPoolsAsync()} .
+     *
+     * @example samples/V1/CertificateAuthorityServiceClient/list_ca_pools.php
      *
      * @param ListCaPoolsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -921,6 +958,8 @@ final class CertificateAuthorityServiceClient
      *
      * The async variant is
      * {@see CertificateAuthorityServiceClient::listCertificateAuthoritiesAsync()} .
+     *
+     * @example samples/V1/CertificateAuthorityServiceClient/list_certificate_authorities.php
      *
      * @param ListCertificateAuthoritiesRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -949,6 +988,8 @@ final class CertificateAuthorityServiceClient
      * {@see CertificateAuthorityServiceClient::listCertificateRevocationListsAsync()}
      * .
      *
+     * @example samples/V1/CertificateAuthorityServiceClient/list_certificate_revocation_lists.php
+     *
      * @param ListCertificateRevocationListsRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -975,6 +1016,8 @@ final class CertificateAuthorityServiceClient
      * The async variant is
      * {@see CertificateAuthorityServiceClient::listCertificateTemplatesAsync()} .
      *
+     * @example samples/V1/CertificateAuthorityServiceClient/list_certificate_templates.php
+     *
      * @param ListCertificateTemplatesRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -1000,6 +1043,8 @@ final class CertificateAuthorityServiceClient
      * The async variant is
      * {@see CertificateAuthorityServiceClient::listCertificatesAsync()} .
      *
+     * @example samples/V1/CertificateAuthorityServiceClient/list_certificates.php
+     *
      * @param ListCertificatesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -1024,6 +1069,8 @@ final class CertificateAuthorityServiceClient
      *
      * The async variant is
      * {@see CertificateAuthorityServiceClient::revokeCertificateAsync()} .
+     *
+     * @example samples/V1/CertificateAuthorityServiceClient/revoke_certificate.php
      *
      * @param RevokeCertificateRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -1052,6 +1099,8 @@ final class CertificateAuthorityServiceClient
      * The async variant is
      * {@see CertificateAuthorityServiceClient::undeleteCertificateAuthorityAsync()} .
      *
+     * @example samples/V1/CertificateAuthorityServiceClient/undelete_certificate_authority.php
+     *
      * @param UndeleteCertificateAuthorityRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -1076,6 +1125,8 @@ final class CertificateAuthorityServiceClient
      *
      * The async variant is
      * {@see CertificateAuthorityServiceClient::updateCaPoolAsync()} .
+     *
+     * @example samples/V1/CertificateAuthorityServiceClient/update_ca_pool.php
      *
      * @param UpdateCaPoolRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1104,6 +1155,8 @@ final class CertificateAuthorityServiceClient
      * The async variant is
      * {@see CertificateAuthorityServiceClient::updateCertificateAsync()} .
      *
+     * @example samples/V1/CertificateAuthorityServiceClient/update_certificate.php
+     *
      * @param UpdateCertificateRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -1129,6 +1182,8 @@ final class CertificateAuthorityServiceClient
      *
      * The async variant is
      * {@see CertificateAuthorityServiceClient::updateCertificateAuthorityAsync()} .
+     *
+     * @example samples/V1/CertificateAuthorityServiceClient/update_certificate_authority.php
      *
      * @param UpdateCertificateAuthorityRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -1157,6 +1212,8 @@ final class CertificateAuthorityServiceClient
      * {@see CertificateAuthorityServiceClient::updateCertificateRevocationListAsync()}
      * .
      *
+     * @example samples/V1/CertificateAuthorityServiceClient/update_certificate_revocation_list.php
+     *
      * @param UpdateCertificateRevocationListRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -1183,6 +1240,8 @@ final class CertificateAuthorityServiceClient
      * The async variant is
      * {@see CertificateAuthorityServiceClient::updateCertificateTemplateAsync()} .
      *
+     * @example samples/V1/CertificateAuthorityServiceClient/update_certificate_template.php
+     *
      * @param UpdateCertificateTemplateRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -1207,6 +1266,8 @@ final class CertificateAuthorityServiceClient
      *
      * The async variant is
      * {@see CertificateAuthorityServiceClient::getLocationAsync()} .
+     *
+     * @example samples/V1/CertificateAuthorityServiceClient/get_location.php
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1233,6 +1294,8 @@ final class CertificateAuthorityServiceClient
      * The async variant is
      * {@see CertificateAuthorityServiceClient::listLocationsAsync()} .
      *
+     * @example samples/V1/CertificateAuthorityServiceClient/list_locations.php
+     *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -1258,6 +1321,8 @@ final class CertificateAuthorityServiceClient
      *
      * The async variant is
      * {@see CertificateAuthorityServiceClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/CertificateAuthorityServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1287,6 +1352,8 @@ final class CertificateAuthorityServiceClient
      *
      * The async variant is
      * {@see CertificateAuthorityServiceClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/CertificateAuthorityServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1318,6 +1385,8 @@ final class CertificateAuthorityServiceClient
      *
      * The async variant is
      * {@see CertificateAuthorityServiceClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/CertificateAuthorityServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

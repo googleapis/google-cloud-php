@@ -35,7 +35,7 @@ use Google\Rpc\Status;
  *
  * @param string $formattedParent      The resource name of the Location to create FeatureOnlineStores.
  *                                     Format:
- *                                     `projects/{project}/locations/{location}'`
+ *                                     `projects/{project}/locations/{location}`
  *                                     Please see {@see FeatureOnlineStoreAdminServiceClient::locationName()} for help formatting this field.
  * @param string $featureOnlineStoreId The ID to use for this FeatureOnlineStore, which will become the
  *                                     final component of the FeatureOnlineStore's resource name.

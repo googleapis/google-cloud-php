@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_Generators_DeleteGenerator_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dialogflow\Cx\V3\GeneratorsClient;
+use Google\Cloud\Dialogflow\Cx\V3\Client\GeneratorsClient;
+use Google\Cloud\Dialogflow\Cx\V3\DeleteGeneratorRequest;
 
 /**
  * Deletes the specified generators.
@@ -39,9 +40,13 @@ function delete_generator_sample(string $formattedName): void
     // Create a client.
     $generatorsClient = new GeneratorsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteGeneratorRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $generatorsClient->deleteGenerator($formattedName);
+        $generatorsClient->deleteGenerator($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

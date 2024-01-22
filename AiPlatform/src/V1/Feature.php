@@ -99,7 +99,7 @@ class Feature extends \Google\Protobuf\Internal\Message
     private $monitoring_stats_anomalies;
     /**
      * Only applicable for Vertex AI Feature Store.
-     * The name of the BigQuery Table/View columnn hosting data for this version.
+     * The name of the BigQuery Table/View column hosting data for this version.
      * If no value is provided, will use feature_id.
      *
      * Generated from protobuf field <code>string version_column_name = 106;</code>
@@ -159,7 +159,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      *           The list of historical stats and anomalies with specified objectives.
      *     @type string $version_column_name
      *           Only applicable for Vertex AI Feature Store.
-     *           The name of the BigQuery Table/View columnn hosting data for this version.
+     *           The name of the BigQuery Table/View column hosting data for this version.
      *           If no value is provided, will use feature_id.
      * }
      */
@@ -478,7 +478,7 @@ class Feature extends \Google\Protobuf\Internal\Message
 
     /**
      * Only applicable for Vertex AI Feature Store.
-     * The name of the BigQuery Table/View columnn hosting data for this version.
+     * The name of the BigQuery Table/View column hosting data for this version.
      * If no value is provided, will use feature_id.
      *
      * Generated from protobuf field <code>string version_column_name = 106;</code>
@@ -491,7 +491,7 @@ class Feature extends \Google\Protobuf\Internal\Message
 
     /**
      * Only applicable for Vertex AI Feature Store.
-     * The name of the BigQuery Table/View columnn hosting data for this version.
+     * The name of the BigQuery Table/View column hosting data for this version.
      * If no value is provided, will use feature_id.
      *
      * Generated from protobuf field <code>string version_column_name = 106;</code>

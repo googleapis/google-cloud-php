@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START iap_v1_generated_IdentityAwareProxyOAuthService_ResetIdentityAwareProxyClientSecret_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Iap\V1\Client\IdentityAwareProxyOAuthServiceClient;
 use Google\Cloud\Iap\V1\IdentityAwareProxyClient;
-use Google\Cloud\Iap\V1\IdentityAwareProxyOAuthServiceClient;
+use Google\Cloud\Iap\V1\ResetIdentityAwareProxyClientSecretRequest;
 
 /**
  * Resets an Identity Aware Proxy (IAP) OAuth client secret. Useful if the
@@ -40,10 +41,14 @@ function reset_identity_aware_proxy_client_secret_sample(string $name): void
     // Create a client.
     $identityAwareProxyOAuthServiceClient = new IdentityAwareProxyOAuthServiceClient();
 
+    // Prepare the request message.
+    $request = (new ResetIdentityAwareProxyClientSecretRequest())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
         /** @var IdentityAwareProxyClient $response */
-        $response = $identityAwareProxyOAuthServiceClient->resetIdentityAwareProxyClientSecret($name);
+        $response = $identityAwareProxyOAuthServiceClient->resetIdentityAwareProxyClientSecret($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

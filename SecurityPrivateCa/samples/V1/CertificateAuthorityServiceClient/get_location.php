@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START privateca_v1_generated_CertificateAuthorityService_GetLocation_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\Location;
-use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
 
 /**
  * Gets information about a location.
@@ -41,10 +42,13 @@ function get_location_sample(): void
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
+    // Prepare the request message.
+    $request = new GetLocationRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var Location $response */
-        $response = $certificateAuthorityServiceClient->getLocation();
+        $response = $certificateAuthorityServiceClient->getLocation($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

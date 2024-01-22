@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_EntityTypes_CreateEntityType_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\V2\Client\EntityTypesClient;
+use Google\Cloud\Dialogflow\V2\CreateEntityTypeRequest;
 use Google\Cloud\Dialogflow\V2\EntityType;
 use Google\Cloud\Dialogflow\V2\EntityType\Kind;
-use Google\Cloud\Dialogflow\V2\EntityTypesClient;
 
 /**
  * Creates an entity type in the specified agent.
@@ -49,15 +50,18 @@ function create_entity_type_sample(
     // Create a client.
     $entityTypesClient = new EntityTypesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $entityType = (new EntityType())
         ->setDisplayName($entityTypeDisplayName)
         ->setKind($entityTypeKind);
+    $request = (new CreateEntityTypeRequest())
+        ->setParent($formattedParent)
+        ->setEntityType($entityType);
 
     // Call the API and handle any network failures.
     try {
         /** @var EntityType $response */
-        $response = $entityTypesClient->createEntityType($formattedParent, $entityType);
+        $response = $entityTypesClient->createEntityType($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

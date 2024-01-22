@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datastream_v1_generated_Datastream_DiscoverConnectionProfile_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Datastream\V1\DatastreamClient;
+use Google\Cloud\Datastream\V1\Client\DatastreamClient;
+use Google\Cloud\Datastream\V1\DiscoverConnectionProfileRequest;
 use Google\Cloud\Datastream\V1\DiscoverConnectionProfileResponse;
 
 /**
@@ -42,10 +43,14 @@ function discover_connection_profile_sample(string $formattedParent): void
     // Create a client.
     $datastreamClient = new DatastreamClient();
 
+    // Prepare the request message.
+    $request = (new DiscoverConnectionProfileRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var DiscoverConnectionProfileResponse $response */
-        $response = $datastreamClient->discoverConnectionProfile($formattedParent);
+        $response = $datastreamClient->discoverConnectionProfile($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

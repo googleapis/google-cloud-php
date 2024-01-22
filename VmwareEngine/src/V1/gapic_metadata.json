@@ -15,9 +15,34 @@
                                 "createCluster"
                             ]
                         },
+                        "CreateExternalAccessRule": {
+                            "methods": [
+                                "createExternalAccessRule"
+                            ]
+                        },
+                        "CreateExternalAddress": {
+                            "methods": [
+                                "createExternalAddress"
+                            ]
+                        },
                         "CreateHcxActivationKey": {
                             "methods": [
                                 "createHcxActivationKey"
+                            ]
+                        },
+                        "CreateLoggingServer": {
+                            "methods": [
+                                "createLoggingServer"
+                            ]
+                        },
+                        "CreateManagementDnsZoneBinding": {
+                            "methods": [
+                                "createManagementDnsZoneBinding"
+                            ]
+                        },
+                        "CreateNetworkPeering": {
+                            "methods": [
+                                "createNetworkPeering"
                             ]
                         },
                         "CreateNetworkPolicy": {
@@ -45,6 +70,31 @@
                                 "deleteCluster"
                             ]
                         },
+                        "DeleteExternalAccessRule": {
+                            "methods": [
+                                "deleteExternalAccessRule"
+                            ]
+                        },
+                        "DeleteExternalAddress": {
+                            "methods": [
+                                "deleteExternalAddress"
+                            ]
+                        },
+                        "DeleteLoggingServer": {
+                            "methods": [
+                                "deleteLoggingServer"
+                            ]
+                        },
+                        "DeleteManagementDnsZoneBinding": {
+                            "methods": [
+                                "deleteManagementDnsZoneBinding"
+                            ]
+                        },
+                        "DeleteNetworkPeering": {
+                            "methods": [
+                                "deleteNetworkPeering"
+                            ]
+                        },
                         "DeleteNetworkPolicy": {
                             "methods": [
                                 "deleteNetworkPolicy"
@@ -65,9 +115,34 @@
                                 "deleteVmwareEngineNetwork"
                             ]
                         },
+                        "FetchNetworkPolicyExternalAddresses": {
+                            "methods": [
+                                "fetchNetworkPolicyExternalAddresses"
+                            ]
+                        },
                         "GetCluster": {
                             "methods": [
                                 "getCluster"
+                            ]
+                        },
+                        "GetDnsBindPermission": {
+                            "methods": [
+                                "getDnsBindPermission"
+                            ]
+                        },
+                        "GetDnsForwarding": {
+                            "methods": [
+                                "getDnsForwarding"
+                            ]
+                        },
+                        "GetExternalAccessRule": {
+                            "methods": [
+                                "getExternalAccessRule"
+                            ]
+                        },
+                        "GetExternalAddress": {
+                            "methods": [
+                                "getExternalAddress"
                             ]
                         },
                         "GetHcxActivationKey": {
@@ -75,9 +150,29 @@
                                 "getHcxActivationKey"
                             ]
                         },
+                        "GetLoggingServer": {
+                            "methods": [
+                                "getLoggingServer"
+                            ]
+                        },
+                        "GetManagementDnsZoneBinding": {
+                            "methods": [
+                                "getManagementDnsZoneBinding"
+                            ]
+                        },
+                        "GetNetworkPeering": {
+                            "methods": [
+                                "getNetworkPeering"
+                            ]
+                        },
                         "GetNetworkPolicy": {
                             "methods": [
                                 "getNetworkPolicy"
+                            ]
+                        },
+                        "GetNode": {
+                            "methods": [
+                                "getNode"
                             ]
                         },
                         "GetNodeType": {
@@ -105,14 +200,44 @@
                                 "getVmwareEngineNetwork"
                             ]
                         },
+                        "GrantDnsBindPermission": {
+                            "methods": [
+                                "grantDnsBindPermission"
+                            ]
+                        },
                         "ListClusters": {
                             "methods": [
                                 "listClusters"
                             ]
                         },
+                        "ListExternalAccessRules": {
+                            "methods": [
+                                "listExternalAccessRules"
+                            ]
+                        },
+                        "ListExternalAddresses": {
+                            "methods": [
+                                "listExternalAddresses"
+                            ]
+                        },
                         "ListHcxActivationKeys": {
                             "methods": [
                                 "listHcxActivationKeys"
+                            ]
+                        },
+                        "ListLoggingServers": {
+                            "methods": [
+                                "listLoggingServers"
+                            ]
+                        },
+                        "ListManagementDnsZoneBindings": {
+                            "methods": [
+                                "listManagementDnsZoneBindings"
+                            ]
+                        },
+                        "ListNetworkPeerings": {
+                            "methods": [
+                                "listNetworkPeerings"
                             ]
                         },
                         "ListNetworkPolicies": {
@@ -123,6 +248,16 @@
                         "ListNodeTypes": {
                             "methods": [
                                 "listNodeTypes"
+                            ]
+                        },
+                        "ListNodes": {
+                            "methods": [
+                                "listNodes"
+                            ]
+                        },
+                        "ListPeeringRoutes": {
+                            "methods": [
+                                "listPeeringRoutes"
                             ]
                         },
                         "ListPrivateClouds": {
@@ -150,6 +285,11 @@
                                 "listVmwareEngineNetworks"
                             ]
                         },
+                        "RepairManagementDnsZoneBinding": {
+                            "methods": [
+                                "repairManagementDnsZoneBinding"
+                            ]
+                        },
                         "ResetNsxCredentials": {
                             "methods": [
                                 "resetNsxCredentials"
@@ -158,6 +298,11 @@
                         "ResetVcenterCredentials": {
                             "methods": [
                                 "resetVcenterCredentials"
+                            ]
+                        },
+                        "RevokeDnsBindPermission": {
+                            "methods": [
+                                "revokeDnsBindPermission"
                             ]
                         },
                         "ShowNsxCredentials": {
@@ -178,6 +323,36 @@
                         "UpdateCluster": {
                             "methods": [
                                 "updateCluster"
+                            ]
+                        },
+                        "UpdateDnsForwarding": {
+                            "methods": [
+                                "updateDnsForwarding"
+                            ]
+                        },
+                        "UpdateExternalAccessRule": {
+                            "methods": [
+                                "updateExternalAccessRule"
+                            ]
+                        },
+                        "UpdateExternalAddress": {
+                            "methods": [
+                                "updateExternalAddress"
+                            ]
+                        },
+                        "UpdateLoggingServer": {
+                            "methods": [
+                                "updateLoggingServer"
+                            ]
+                        },
+                        "UpdateManagementDnsZoneBinding": {
+                            "methods": [
+                                "updateManagementDnsZoneBinding"
+                            ]
+                        },
+                        "UpdateNetworkPeering": {
+                            "methods": [
+                                "updateNetworkPeering"
                             ]
                         },
                         "UpdateNetworkPolicy": {

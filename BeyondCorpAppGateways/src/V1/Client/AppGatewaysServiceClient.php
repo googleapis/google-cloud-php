@@ -75,12 +75,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\BeyondCorp\AppGateways\V1\AppGatewaysServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createAppGatewayAsync(CreateAppGatewayRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteAppGatewayAsync(DeleteAppGatewayRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAppGatewayAsync(GetAppGatewayRequest $request, array $optionalArgs = [])
@@ -99,8 +93,15 @@ final class AppGatewaysServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.beyondcorp.appgateways.v1.AppGatewaysService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'beyondcorp.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'beyondcorp.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

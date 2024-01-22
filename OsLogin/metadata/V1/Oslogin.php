@@ -23,7 +23,7 @@ class Oslogin
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¸
+í
 %google/cloud/oslogin/v1/oslogin.protogoogle.cloud.oslogin.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto(google/cloud/oslogin/common/common.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"ò
 LoginProfile
 name (	B‡AA
@@ -48,12 +48,13 @@ project_id (	
 	system_id (	"S
 GetSshPublicKeyRequest9
 name (	B+‡A˙A%
-#oslogin.googleapis.com/SshPublicKey"¥
+#oslogin.googleapis.com/SshPublicKey" 
 ImportSshPublicKeyRequest;
 parent (	B+‡A˙A%#oslogin.googleapis.com/SshPublicKeyF
 ssh_public_key (2).google.cloud.oslogin.common.SshPublicKeyB‡A
 
-project_id (	"k
+project_id (	
+regions (	B‡A"k
 ImportSshPublicKeyResponse<
 login_profile (2%.google.cloud.oslogin.v1.LoginProfile
 details (	"œ

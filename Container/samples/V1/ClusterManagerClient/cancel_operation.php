@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START container_v1_generated_ClusterManager_CancelOperation_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Container\V1\ClusterManagerClient;
+use Google\Cloud\Container\V1\CancelOperationRequest;
+use Google\Cloud\Container\V1\Client\ClusterManagerClient;
 
 /**
  * Cancels the specified operation.
@@ -40,9 +41,12 @@ function cancel_operation_sample(): void
     // Create a client.
     $clusterManagerClient = new ClusterManagerClient();
 
+    // Prepare the request message.
+    $request = new CancelOperationRequest();
+
     // Call the API and handle any network failures.
     try {
-        $clusterManagerClient->cancelOperation();
+        $clusterManagerClient->cancelOperation($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

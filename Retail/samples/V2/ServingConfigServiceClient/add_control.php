@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START retail_v2_generated_ServingConfigService_AddControl_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Retail\V2\AddControlRequest;
+use Google\Cloud\Retail\V2\Client\ServingConfigServiceClient;
 use Google\Cloud\Retail\V2\ServingConfig;
-use Google\Cloud\Retail\V2\ServingConfigServiceClient;
 
 /**
  * Enables a Control on the specified ServingConfig.
@@ -47,10 +48,15 @@ function add_control_sample(string $formattedServingConfig, string $controlId): 
     // Create a client.
     $servingConfigServiceClient = new ServingConfigServiceClient();
 
+    // Prepare the request message.
+    $request = (new AddControlRequest())
+        ->setServingConfig($formattedServingConfig)
+        ->setControlId($controlId);
+
     // Call the API and handle any network failures.
     try {
         /** @var ServingConfig $response */
-        $response = $servingConfigServiceClient->addControl($formattedServingConfig, $controlId);
+        $response = $servingConfigServiceClient->addControl($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

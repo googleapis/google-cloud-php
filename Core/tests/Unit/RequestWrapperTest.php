@@ -21,6 +21,7 @@ namespace Google\Cloud\Core\Tests\Unit;
 use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Auth\GetUniverseDomainInterface;
 use Google\Auth\UpdateMetadataInterface;
 use Google\Cloud\Core\AnonymousCredentials;
 use Google\Cloud\Core\Exception\BadRequestException;
@@ -774,6 +775,98 @@ class RequestWrapperTest extends TestCase
         $requestWrapper->send(
             new Request('GET', 'http://www.example.com')
         );
+    }
+
+    /**
+     * @dataProvider provideCheckUniverseDomainFails
+     */
+    public function testCheckUniverseDomainFails(
+        ?string $universeDomain,
+        ?string $credentialsUniverse,
+        string $message = null
+    ) {
+        $this->expectException(GoogleException::class);
+        $this->expectExceptionMessage($message ?: sprintf(
+            'The configured universe domain (%s) does not match the credential universe domain (%s)',
+            is_null($universeDomain) ? GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN : $universeDomain,
+            is_null($credentialsUniverse) ? GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN : $credentialsUniverse,
+        ));
+        $fetcher = $this->prophesize(FetchAuthTokenInterface::class);
+        // When the $credentialsUniverse is null, the fetcher doesn't implement GetUniverseDomainInterface
+        if (!is_null($credentialsUniverse)) {
+            $fetcher->willImplement(GetUniverseDomainInterface::class);
+            $fetcher->getUniverseDomain()->willReturn($credentialsUniverse);
+        }
+        $fetcher->getLastReceivedToken()->willReturn(null);
+
+        $config = ['credentialsFetcher' => $fetcher->reveal()];
+        // A null value here represents not passing in a universeDomain
+        if (!is_null($universeDomain)) {
+            $config['universeDomain'] = $universeDomain;
+        }
+        $requestWrapper = new RequestWrapper($config);
+        // Send a fake request
+        $requestWrapper->send(new Request('GET', 'http://www.example.com'));
+    }
+
+    public function provideCheckUniverseDomainFails()
+    {
+        return [
+            ['foo.com', 'googleapis.com'],
+            ['googleapis.com', 'foo.com'],
+            ['googleapis.com', ''],
+            ['', 'googleapis.com', 'The universe domain cannot be empty'],
+            [null, 'foo.com'], // null in RequestWrapper will default to "googleapis.com"
+            ['foo.com', null], // Credentials not implementing `GetUniverseDomainInterface` will have default universe
+        ];
+    }
+
+    /**
+     * @dataProvider provideCheckUniverseDomainPasses
+     */
+    public function testCheckUniverseDomainPasses(?string $universeDomain, ?string $credentialsUniverse)
+    {
+        $fetcher = $this->prophesize(FetchAuthTokenInterface::class);
+        // When the $credentialsUniverse is null, the fetcher doesn't implement GetUniverseDomainInterface
+        if (!is_null($credentialsUniverse)) {
+            $fetcher->willImplement(GetUniverseDomainInterface::class);
+            $fetcher->getUniverseDomain()->shouldBeCalledOnce()->willReturn($credentialsUniverse);
+        }
+        $fetcher->getLastReceivedToken()->willReturn(null);
+        $fetcher->fetchAuthToken(Argument::any())->willReturn(['access_token' => 'abc']);
+        $fetcher->getCacheKey()
+            ->shouldBeCalledTimes(2)
+            ->willReturn(null);
+
+        $called = false;
+        $config = [
+            'credentialsFetcher' => $fetcher->reveal(),
+            'httpHandler' => function (Request $request) use (&$called) {
+                $headers = $request->getHeaders();
+                $this->assertArrayHasKey('authorization', $headers);
+                $this->assertEquals('Bearer abc', $headers['authorization'][0]);
+                $called = true;
+            }
+        ];
+        // A null value here represents not passing in a universeDomain
+        if (!is_null($universeDomain)) {
+            $config['universeDomain'] = $universeDomain;
+        }
+        $requestWrapper = new RequestWrapper($config);
+
+        // send a fake request
+        $requestWrapper->send(new Request('GET', 'http://www.example.com'));
+        $this->assertTrue($called);
+    }
+
+    public function provideCheckUniverseDomainPasses()
+    {
+        return [
+            [null, 'googleapis.com'], // null will default to "googleapis.com"
+            ['foo.com', 'foo.com'],
+            ['googleapis.com', 'googleapis.com'],
+            ['googleapis.com', null],
+        ];
     }
 
     private function prophesizeUpdateMetadataFetcher($credentialsFetcher)

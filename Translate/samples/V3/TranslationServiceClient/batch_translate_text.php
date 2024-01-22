@@ -26,9 +26,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Translate\V3\BatchTranslateResponse;
+use Google\Cloud\Translate\V3\BatchTranslateTextRequest;
+use Google\Cloud\Translate\V3\Client\TranslationServiceClient;
 use Google\Cloud\Translate\V3\InputConfig;
 use Google\Cloud\Translate\V3\OutputConfig;
-use Google\Cloud\Translate\V3\TranslationServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -61,21 +62,21 @@ function batch_translate_text_sample(
     // Create a client.
     $translationServiceClient = new TranslationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetLanguageCodes = [$targetLanguageCodesElement,];
     $inputConfigs = [new InputConfig()];
     $outputConfig = new OutputConfig();
+    $request = (new BatchTranslateTextRequest())
+        ->setParent($formattedParent)
+        ->setSourceLanguageCode($sourceLanguageCode)
+        ->setTargetLanguageCodes($targetLanguageCodes)
+        ->setInputConfigs($inputConfigs)
+        ->setOutputConfig($outputConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $translationServiceClient->batchTranslateText(
-            $formattedParent,
-            $sourceLanguageCode,
-            $targetLanguageCodes,
-            $inputConfigs,
-            $outputConfig
-        );
+        $response = $translationServiceClient->batchTranslateText($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

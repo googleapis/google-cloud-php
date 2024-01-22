@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\ApiGateway\V1\Api;
-use Google\Cloud\ApiGateway\V1\ApiGatewayServiceClient;
+use Google\Cloud\ApiGateway\V1\Client\ApiGatewayServiceClient;
+use Google\Cloud\ApiGateway\V1\ListApisRequest;
 
 /**
  * Lists Apis in a given project and location.
@@ -40,10 +41,14 @@ function list_apis_sample(string $formattedParent): void
     // Create a client.
     $apiGatewayServiceClient = new ApiGatewayServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListApisRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $apiGatewayServiceClient->listApis($formattedParent);
+        $response = $apiGatewayServiceClient->listApis($request);
 
         /** @var Api $element */
         foreach ($response as $element) {

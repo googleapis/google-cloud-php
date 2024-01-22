@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_Environments_ListContinuousTestResults_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dialogflow\Cx\V3\Client\EnvironmentsClient;
 use Google\Cloud\Dialogflow\Cx\V3\ContinuousTestResult;
-use Google\Cloud\Dialogflow\Cx\V3\EnvironmentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\ListContinuousTestResultsRequest;
 
 /**
  * Fetches a list of continuous test results for a given environment.
@@ -41,10 +42,14 @@ function list_continuous_test_results_sample(string $formattedParent): void
     // Create a client.
     $environmentsClient = new EnvironmentsClient();
 
+    // Prepare the request message.
+    $request = (new ListContinuousTestResultsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $environmentsClient->listContinuousTestResults($formattedParent);
+        $response = $environmentsClient->listContinuousTestResults($request);
 
         /** @var ContinuousTestResult $element */
         foreach ($response as $element) {

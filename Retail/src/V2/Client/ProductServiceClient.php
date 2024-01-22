@@ -62,11 +62,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Retail\V2\ProductServiceClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface addFulfillmentPlacesAsync(AddFulfillmentPlacesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface addLocalInventoriesAsync(AddLocalInventoriesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createProductAsync(CreateProductRequest $request, array $optionalArgs = [])
@@ -87,8 +82,15 @@ final class ProductServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.retail.v2.ProductService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'retail.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'retail.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -325,6 +327,8 @@ final class ProductServiceClient
      *
      * The async variant is {@see ProductServiceClient::addFulfillmentPlacesAsync()} .
      *
+     * @example samples/V2/ProductServiceClient/add_fulfillment_places.php
+     *
      * @param AddFulfillmentPlacesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -376,6 +380,8 @@ final class ProductServiceClient
      *
      * The async variant is {@see ProductServiceClient::addLocalInventoriesAsync()} .
      *
+     * @example samples/V2/ProductServiceClient/add_local_inventories.php
+     *
      * @param AddLocalInventoriesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -399,6 +405,8 @@ final class ProductServiceClient
      * Creates a [Product][google.cloud.retail.v2.Product].
      *
      * The async variant is {@see ProductServiceClient::createProductAsync()} .
+     *
+     * @example samples/V2/ProductServiceClient/create_product.php
      *
      * @param CreateProductRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -424,6 +432,8 @@ final class ProductServiceClient
      *
      * The async variant is {@see ProductServiceClient::deleteProductAsync()} .
      *
+     * @example samples/V2/ProductServiceClient/delete_product.php
+     *
      * @param DeleteProductRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -445,6 +455,8 @@ final class ProductServiceClient
      * Gets a [Product][google.cloud.retail.v2.Product].
      *
      * The async variant is {@see ProductServiceClient::getProductAsync()} .
+     *
+     * @example samples/V2/ProductServiceClient/get_product.php
      *
      * @param GetProductRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -476,6 +488,8 @@ final class ProductServiceClient
      *
      * The async variant is {@see ProductServiceClient::importProductsAsync()} .
      *
+     * @example samples/V2/ProductServiceClient/import_products.php
+     *
      * @param ImportProductsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -499,6 +513,8 @@ final class ProductServiceClient
      * Gets a list of [Product][google.cloud.retail.v2.Product]s.
      *
      * The async variant is {@see ProductServiceClient::listProductsAsync()} .
+     *
+     * @example samples/V2/ProductServiceClient/list_products.php
      *
      * @param ListProductsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -553,6 +569,8 @@ final class ProductServiceClient
      * The async variant is {@see ProductServiceClient::removeFulfillmentPlacesAsync()}
      * .
      *
+     * @example samples/V2/ProductServiceClient/remove_fulfillment_places.php
+     *
      * @param RemoveFulfillmentPlacesRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -602,6 +620,8 @@ final class ProductServiceClient
      *
      * The async variant is {@see ProductServiceClient::removeLocalInventoriesAsync()}
      * .
+     *
+     * @example samples/V2/ProductServiceClient/remove_local_inventories.php
      *
      * @param RemoveLocalInventoriesRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -675,6 +695,8 @@ final class ProductServiceClient
      *
      * The async variant is {@see ProductServiceClient::setInventoryAsync()} .
      *
+     * @example samples/V2/ProductServiceClient/set_inventory.php
+     *
      * @param SetInventoryRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -698,6 +720,8 @@ final class ProductServiceClient
      * Updates a [Product][google.cloud.retail.v2.Product].
      *
      * The async variant is {@see ProductServiceClient::updateProductAsync()} .
+     *
+     * @example samples/V2/ProductServiceClient/update_product.php
      *
      * @param UpdateProductRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

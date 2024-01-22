@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudasset_v1_generated_AssetService_SearchAllResources_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Asset\V1\AssetServiceClient;
+use Google\Cloud\Asset\V1\Client\AssetServiceClient;
 use Google\Cloud\Asset\V1\ResourceSearchResult;
+use Google\Cloud\Asset\V1\SearchAllResourcesRequest;
 
 /**
  * Searches all Google Cloud resources within the specified scope, such as a
@@ -52,10 +53,14 @@ function search_all_resources_sample(string $scope): void
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
+    // Prepare the request message.
+    $request = (new SearchAllResourcesRequest())
+        ->setScope($scope);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $assetServiceClient->searchAllResources($scope);
+        $response = $assetServiceClient->searchAllResources($request);
 
         /** @var ResourceSearchResult $element */
         foreach ($response as $element) {

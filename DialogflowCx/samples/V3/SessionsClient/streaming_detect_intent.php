@@ -25,8 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_Sessions_StreamingDetectIntent_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
+use Google\Cloud\Dialogflow\Cx\V3\Client\SessionsClient;
 use Google\Cloud\Dialogflow\Cx\V3\QueryInput;
-use Google\Cloud\Dialogflow\Cx\V3\SessionsClient;
 use Google\Cloud\Dialogflow\Cx\V3\StreamingDetectIntentRequest;
 use Google\Cloud\Dialogflow\Cx\V3\StreamingDetectIntentResponse;
 
@@ -49,7 +49,7 @@ function streaming_detect_intent_sample(string $queryInputLanguageCode): void
     // Create a client.
     $sessionsClient = new SessionsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $queryInput = (new QueryInput())
         ->setLanguageCode($queryInputLanguageCode);
     $request = (new StreamingDetectIntentRequest())

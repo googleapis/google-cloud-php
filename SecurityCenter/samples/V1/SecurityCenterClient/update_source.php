@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START securitycenter_v1_generated_SecurityCenter_UpdateSource_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient;
 use Google\Cloud\SecurityCenter\V1\Source;
+use Google\Cloud\SecurityCenter\V1\UpdateSourceRequest;
 
 /**
  * Updates a source.
@@ -41,13 +42,15 @@ function update_source_sample(): void
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $source = new Source();
+    $request = (new UpdateSourceRequest())
+        ->setSource($source);
 
     // Call the API and handle any network failures.
     try {
         /** @var Source $response */
-        $response = $securityCenterClient->updateSource($source);
+        $response = $securityCenterClient->updateSource($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

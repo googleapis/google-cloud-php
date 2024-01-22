@@ -64,11 +64,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\PubSub\V1\SchemaServiceClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface commitSchemaAsync(CommitSchemaRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createSchemaAsync(CreateSchemaRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteSchemaAsync(DeleteSchemaRequest $request, array $optionalArgs = [])
@@ -91,8 +86,15 @@ final class SchemaServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.pubsub.v1.SchemaService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'pubsub.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'pubsub.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -258,6 +260,8 @@ final class SchemaServiceClient
      *
      * The async variant is {@see SchemaServiceClient::commitSchemaAsync()} .
      *
+     * @example samples/V1/SchemaServiceClient/commit_schema.php
+     *
      * @param CommitSchemaRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -281,6 +285,8 @@ final class SchemaServiceClient
      * Creates a schema.
      *
      * The async variant is {@see SchemaServiceClient::createSchemaAsync()} .
+     *
+     * @example samples/V1/SchemaServiceClient/create_schema.php
      *
      * @param CreateSchemaRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -306,6 +312,8 @@ final class SchemaServiceClient
      *
      * The async variant is {@see SchemaServiceClient::deleteSchemaAsync()} .
      *
+     * @example samples/V1/SchemaServiceClient/delete_schema.php
+     *
      * @param DeleteSchemaRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -327,6 +335,8 @@ final class SchemaServiceClient
      * Deletes a specific schema revision.
      *
      * The async variant is {@see SchemaServiceClient::deleteSchemaRevisionAsync()} .
+     *
+     * @example samples/V1/SchemaServiceClient/delete_schema_revision.php
      *
      * @param DeleteSchemaRevisionRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -352,6 +362,8 @@ final class SchemaServiceClient
      *
      * The async variant is {@see SchemaServiceClient::getSchemaAsync()} .
      *
+     * @example samples/V1/SchemaServiceClient/get_schema.php
+     *
      * @param GetSchemaRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -375,6 +387,8 @@ final class SchemaServiceClient
      * Lists all schema revisions for the named schema.
      *
      * The async variant is {@see SchemaServiceClient::listSchemaRevisionsAsync()} .
+     *
+     * @example samples/V1/SchemaServiceClient/list_schema_revisions.php
      *
      * @param ListSchemaRevisionsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -400,6 +414,8 @@ final class SchemaServiceClient
      *
      * The async variant is {@see SchemaServiceClient::listSchemasAsync()} .
      *
+     * @example samples/V1/SchemaServiceClient/list_schemas.php
+     *
      * @param ListSchemasRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -423,6 +439,8 @@ final class SchemaServiceClient
      * Creates a new schema revision that is a copy of the provided revision_id.
      *
      * The async variant is {@see SchemaServiceClient::rollbackSchemaAsync()} .
+     *
+     * @example samples/V1/SchemaServiceClient/rollback_schema.php
      *
      * @param RollbackSchemaRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -448,6 +466,8 @@ final class SchemaServiceClient
      *
      * The async variant is {@see SchemaServiceClient::validateMessageAsync()} .
      *
+     * @example samples/V1/SchemaServiceClient/validate_message.php
+     *
      * @param ValidateMessageRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -471,6 +491,8 @@ final class SchemaServiceClient
      * Validates a schema.
      *
      * The async variant is {@see SchemaServiceClient::validateSchemaAsync()} .
+     *
+     * @example samples/V1/SchemaServiceClient/validate_schema.php
      *
      * @param ValidateSchemaRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -496,6 +518,8 @@ final class SchemaServiceClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see SchemaServiceClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/SchemaServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -524,6 +548,8 @@ final class SchemaServiceClient
     errors.
      *
      * The async variant is {@see SchemaServiceClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/SchemaServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -554,6 +580,8 @@ final class SchemaServiceClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see SchemaServiceClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/SchemaServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

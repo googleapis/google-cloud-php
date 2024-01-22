@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START appengine_v1_generated_Firewall_ListIngressRules_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\AppEngine\V1\FirewallClient;
+use Google\Cloud\AppEngine\V1\Client\FirewallClient;
 use Google\Cloud\AppEngine\V1\FirewallRule;
+use Google\Cloud\AppEngine\V1\ListIngressRulesRequest;
 
 /**
  * Lists the firewall rules of an application.
@@ -42,10 +43,13 @@ function list_ingress_rules_sample(): void
     // Create a client.
     $firewallClient = new FirewallClient();
 
+    // Prepare the request message.
+    $request = new ListIngressRulesRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $firewallClient->listIngressRules();
+        $response = $firewallClient->listIngressRules($request);
 
         /** @var FirewallRule $element */
         foreach ($response as $element) {

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START servicedirectory_v1_generated_RegistrationService_DeleteNamespace_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\ServiceDirectory\V1\RegistrationServiceClient;
+use Google\Cloud\ServiceDirectory\V1\Client\RegistrationServiceClient;
+use Google\Cloud\ServiceDirectory\V1\DeleteNamespaceRequest;
 
 /**
  * Deletes a namespace. This also deletes all services and endpoints in
@@ -38,9 +39,13 @@ function delete_namespace_sample(string $formattedName): void
     // Create a client.
     $registrationServiceClient = new RegistrationServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteNamespaceRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $registrationServiceClient->deleteNamespace($formattedName);
+        $registrationServiceClient->deleteNamespace($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

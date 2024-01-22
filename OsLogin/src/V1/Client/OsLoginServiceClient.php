@@ -58,11 +58,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\OsLogin\V1\OsLoginServiceClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createSshPublicKeyAsync(CreateSshPublicKeyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deletePosixAccountAsync(DeletePosixAccountRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteSshPublicKeyAsync(DeleteSshPublicKeyRequest $request, array $optionalArgs = [])
@@ -79,8 +74,15 @@ class OsLoginServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.oslogin.v1.OsLoginService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'oslogin.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'oslogin.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -266,6 +268,8 @@ class OsLoginServiceClient
      *
      * The async variant is {@see OsLoginServiceClient::createSshPublicKeyAsync()} .
      *
+     * @example samples/V1/OsLoginServiceClient/create_ssh_public_key.php
+     *
      * @param CreateSshPublicKeyRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -290,6 +294,8 @@ class OsLoginServiceClient
      *
      * The async variant is {@see OsLoginServiceClient::deletePosixAccountAsync()} .
      *
+     * @example samples/V1/OsLoginServiceClient/delete_posix_account.php
+     *
      * @param DeletePosixAccountRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -311,6 +317,8 @@ class OsLoginServiceClient
      * Deletes an SSH public key.
      *
      * The async variant is {@see OsLoginServiceClient::deleteSshPublicKeyAsync()} .
+     *
+     * @example samples/V1/OsLoginServiceClient/delete_ssh_public_key.php
      *
      * @param DeleteSshPublicKeyRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -335,6 +343,8 @@ class OsLoginServiceClient
      *
      * The async variant is {@see OsLoginServiceClient::getLoginProfileAsync()} .
      *
+     * @example samples/V1/OsLoginServiceClient/get_login_profile.php
+     *
      * @param GetLoginProfileRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -358,6 +368,8 @@ class OsLoginServiceClient
      * Retrieves an SSH public key.
      *
      * The async variant is {@see OsLoginServiceClient::getSshPublicKeyAsync()} .
+     *
+     * @example samples/V1/OsLoginServiceClient/get_ssh_public_key.php
      *
      * @param GetSshPublicKeyRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -385,6 +397,8 @@ class OsLoginServiceClient
      *
      * The async variant is {@see OsLoginServiceClient::importSshPublicKeyAsync()} .
      *
+     * @example samples/V1/OsLoginServiceClient/import_ssh_public_key.php
+     *
      * @param ImportSshPublicKeyRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -409,6 +423,8 @@ class OsLoginServiceClient
      * supports patch semantics.
      *
      * The async variant is {@see OsLoginServiceClient::updateSshPublicKeyAsync()} .
+     *
+     * @example samples/V1/OsLoginServiceClient/update_ssh_public_key.php
      *
      * @param UpdateSshPublicKeyRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

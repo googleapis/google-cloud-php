@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START apigateway_v1_generated_ApiGatewayService_GetApi_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\ApiGateway\V1\Api;
-use Google\Cloud\ApiGateway\V1\ApiGatewayServiceClient;
+use Google\Cloud\ApiGateway\V1\Client\ApiGatewayServiceClient;
+use Google\Cloud\ApiGateway\V1\GetApiRequest;
 
 /**
  * Gets details of a single Api.
@@ -39,10 +40,14 @@ function get_api_sample(string $formattedName): void
     // Create a client.
     $apiGatewayServiceClient = new ApiGatewayServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetApiRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Api $response */
-        $response = $apiGatewayServiceClient->getApi($formattedName);
+        $response = $apiGatewayServiceClient->getApi($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START recommender_v1_generated_Recommender_ListRecommendations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Recommender\V1\Client\RecommenderClient;
+use Google\Cloud\Recommender\V1\ListRecommendationsRequest;
 use Google\Cloud\Recommender\V1\Recommendation;
-use Google\Cloud\Recommender\V1\RecommenderClient;
 
 /**
  * Lists recommendations for the specified Cloud Resource. Requires the
@@ -56,10 +57,14 @@ function list_recommendations_sample(string $formattedParent): void
     // Create a client.
     $recommenderClient = new RecommenderClient();
 
+    // Prepare the request message.
+    $request = (new ListRecommendationsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $recommenderClient->listRecommendations($formattedParent);
+        $response = $recommenderClient->listRecommendations($request);
 
         /** @var Recommendation $element */
         foreach ($response as $element) {

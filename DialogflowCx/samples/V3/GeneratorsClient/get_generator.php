@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_Generators_GetGenerator_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\Cx\V3\Client\GeneratorsClient;
 use Google\Cloud\Dialogflow\Cx\V3\Generator;
-use Google\Cloud\Dialogflow\Cx\V3\GeneratorsClient;
+use Google\Cloud\Dialogflow\Cx\V3\GetGeneratorRequest;
 
 /**
  * Retrieves the specified generator.
@@ -40,10 +41,14 @@ function get_generator_sample(string $formattedName): void
     // Create a client.
     $generatorsClient = new GeneratorsClient();
 
+    // Prepare the request message.
+    $request = (new GetGeneratorRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Generator $response */
-        $response = $generatorsClient->getGenerator($formattedName);
+        $response = $generatorsClient->getGenerator($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

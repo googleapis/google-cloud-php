@@ -43,6 +43,15 @@ class DeleteAwsClusterRequest extends \Google\Protobuf\Internal\Message
      */
     private $allow_missing = false;
     /**
+     * Optional. If set to true, the deletion of
+     * [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource will
+     * succeed even if errors occur during deleting in cluster resources. Using
+     * this parameter may result in orphaned resources in the cluster.
+     *
+     * Generated from protobuf field <code>bool ignore_errors = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $ignore_errors = false;
+    /**
      * The current etag of the
      * [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
      * Allows clients to perform deletions through optimistic concurrency control.
@@ -95,6 +104,11 @@ class DeleteAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *           found, the request will succeed but no action will be taken on the server
      *           and a completed [Operation][google.longrunning.Operation] will be returned.
      *           Useful for idempotent deletion.
+     *     @type bool $ignore_errors
+     *           Optional. If set to true, the deletion of
+     *           [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource will
+     *           succeed even if errors occur during deleting in cluster resources. Using
+     *           this parameter may result in orphaned resources in the cluster.
      *     @type string $etag
      *           The current etag of the
      *           [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
@@ -200,6 +214,38 @@ class DeleteAwsClusterRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->allow_missing = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set to true, the deletion of
+     * [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource will
+     * succeed even if errors occur during deleting in cluster resources. Using
+     * this parameter may result in orphaned resources in the cluster.
+     *
+     * Generated from protobuf field <code>bool ignore_errors = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getIgnoreErrors()
+    {
+        return $this->ignore_errors;
+    }
+
+    /**
+     * Optional. If set to true, the deletion of
+     * [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource will
+     * succeed even if errors occur during deleting in cluster resources. Using
+     * this parameter may result in orphaned resources in the cluster.
+     *
+     * Generated from protobuf field <code>bool ignore_errors = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIgnoreErrors($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->ignore_errors = $var;
 
         return $this;
     }

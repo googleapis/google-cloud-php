@@ -84,7 +84,9 @@ class SecurityCenterManagementClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return SecurityCenterManagementClient */
@@ -131,7 +133,10 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/CreateEventThreatDetectionCustomModule', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/CreateEventThreatDetectionCustomModule',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getEventThreatDetectionCustomModule();
@@ -150,12 +155,15 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
@@ -207,7 +215,10 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/CreateSecurityHealthAnalyticsCustomModule', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/CreateSecurityHealthAnalyticsCustomModule',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getSecurityHealthAnalyticsCustomModule();
@@ -226,12 +237,15 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
@@ -264,15 +278,21 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->eventThreatDetectionCustomModuleName('[ORGANIZATION]', '[LOCATION]', '[EVENT_THREAT_DETECTION_CUSTOM_MODULE]');
-        $request = (new DeleteEventThreatDetectionCustomModuleRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->eventThreatDetectionCustomModuleName(
+            '[ORGANIZATION]',
+            '[LOCATION]',
+            '[EVENT_THREAT_DETECTION_CUSTOM_MODULE]'
+        );
+        $request = (new DeleteEventThreatDetectionCustomModuleRequest())->setName($formattedName);
         $gapicClient->deleteEventThreatDetectionCustomModule($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/DeleteEventThreatDetectionCustomModule', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/DeleteEventThreatDetectionCustomModule',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -289,17 +309,23 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->eventThreatDetectionCustomModuleName('[ORGANIZATION]', '[LOCATION]', '[EVENT_THREAT_DETECTION_CUSTOM_MODULE]');
-        $request = (new DeleteEventThreatDetectionCustomModuleRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->eventThreatDetectionCustomModuleName(
+            '[ORGANIZATION]',
+            '[LOCATION]',
+            '[EVENT_THREAT_DETECTION_CUSTOM_MODULE]'
+        );
+        $request = (new DeleteEventThreatDetectionCustomModuleRequest())->setName($formattedName);
         try {
             $gapicClient->deleteEventThreatDetectionCustomModule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -325,15 +351,21 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->securityHealthAnalyticsCustomModuleName('[ORGANIZATION]', '[LOCATION]', '[SECURITY_HEALTH_ANALYTICS_CUSTOM_MODULE]');
-        $request = (new DeleteSecurityHealthAnalyticsCustomModuleRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->securityHealthAnalyticsCustomModuleName(
+            '[ORGANIZATION]',
+            '[LOCATION]',
+            '[SECURITY_HEALTH_ANALYTICS_CUSTOM_MODULE]'
+        );
+        $request = (new DeleteSecurityHealthAnalyticsCustomModuleRequest())->setName($formattedName);
         $gapicClient->deleteSecurityHealthAnalyticsCustomModule($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/DeleteSecurityHealthAnalyticsCustomModule', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/DeleteSecurityHealthAnalyticsCustomModule',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -350,17 +382,23 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->securityHealthAnalyticsCustomModuleName('[ORGANIZATION]', '[LOCATION]', '[SECURITY_HEALTH_ANALYTICS_CUSTOM_MODULE]');
-        $request = (new DeleteSecurityHealthAnalyticsCustomModuleRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->securityHealthAnalyticsCustomModuleName(
+            '[ORGANIZATION]',
+            '[LOCATION]',
+            '[SECURITY_HEALTH_ANALYTICS_CUSTOM_MODULE]'
+        );
+        $request = (new DeleteSecurityHealthAnalyticsCustomModuleRequest())->setName($formattedName);
         try {
             $gapicClient->deleteSecurityHealthAnalyticsCustomModule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -394,16 +432,22 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->effectiveEventThreatDetectionCustomModuleName('[ORGANIZATION]', '[LOCATION]', '[EFFECTIVE_EVENT_THREAT_DETECTION_CUSTOM_MODULE]');
-        $request = (new GetEffectiveEventThreatDetectionCustomModuleRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->effectiveEventThreatDetectionCustomModuleName(
+            '[ORGANIZATION]',
+            '[LOCATION]',
+            '[EFFECTIVE_EVENT_THREAT_DETECTION_CUSTOM_MODULE]'
+        );
+        $request = (new GetEffectiveEventThreatDetectionCustomModuleRequest())->setName($formattedName);
         $response = $gapicClient->getEffectiveEventThreatDetectionCustomModule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/GetEffectiveEventThreatDetectionCustomModule', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/GetEffectiveEventThreatDetectionCustomModule',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -420,17 +464,23 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->effectiveEventThreatDetectionCustomModuleName('[ORGANIZATION]', '[LOCATION]', '[EFFECTIVE_EVENT_THREAT_DETECTION_CUSTOM_MODULE]');
-        $request = (new GetEffectiveEventThreatDetectionCustomModuleRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->effectiveEventThreatDetectionCustomModuleName(
+            '[ORGANIZATION]',
+            '[LOCATION]',
+            '[EFFECTIVE_EVENT_THREAT_DETECTION_CUSTOM_MODULE]'
+        );
+        $request = (new GetEffectiveEventThreatDetectionCustomModuleRequest())->setName($formattedName);
         try {
             $gapicClient->getEffectiveEventThreatDetectionCustomModule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -460,16 +510,22 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->effectiveSecurityHealthAnalyticsCustomModuleName('[ORGANIZATION]', '[LOCATION]', '[EFFECTIVE_SECURITY_HEALTH_ANALYTICS_CUSTOM_MODULE]');
-        $request = (new GetEffectiveSecurityHealthAnalyticsCustomModuleRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->effectiveSecurityHealthAnalyticsCustomModuleName(
+            '[ORGANIZATION]',
+            '[LOCATION]',
+            '[EFFECTIVE_SECURITY_HEALTH_ANALYTICS_CUSTOM_MODULE]'
+        );
+        $request = (new GetEffectiveSecurityHealthAnalyticsCustomModuleRequest())->setName($formattedName);
         $response = $gapicClient->getEffectiveSecurityHealthAnalyticsCustomModule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/GetEffectiveSecurityHealthAnalyticsCustomModule', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/GetEffectiveSecurityHealthAnalyticsCustomModule',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -486,17 +542,23 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->effectiveSecurityHealthAnalyticsCustomModuleName('[ORGANIZATION]', '[LOCATION]', '[EFFECTIVE_SECURITY_HEALTH_ANALYTICS_CUSTOM_MODULE]');
-        $request = (new GetEffectiveSecurityHealthAnalyticsCustomModuleRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->effectiveSecurityHealthAnalyticsCustomModuleName(
+            '[ORGANIZATION]',
+            '[LOCATION]',
+            '[EFFECTIVE_SECURITY_HEALTH_ANALYTICS_CUSTOM_MODULE]'
+        );
+        $request = (new GetEffectiveSecurityHealthAnalyticsCustomModuleRequest())->setName($formattedName);
         try {
             $gapicClient->getEffectiveSecurityHealthAnalyticsCustomModule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -534,16 +596,22 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $expectedResponse->setLastEditor($lastEditor);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->eventThreatDetectionCustomModuleName('[ORGANIZATION]', '[LOCATION]', '[EVENT_THREAT_DETECTION_CUSTOM_MODULE]');
-        $request = (new GetEventThreatDetectionCustomModuleRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->eventThreatDetectionCustomModuleName(
+            '[ORGANIZATION]',
+            '[LOCATION]',
+            '[EVENT_THREAT_DETECTION_CUSTOM_MODULE]'
+        );
+        $request = (new GetEventThreatDetectionCustomModuleRequest())->setName($formattedName);
         $response = $gapicClient->getEventThreatDetectionCustomModule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/GetEventThreatDetectionCustomModule', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/GetEventThreatDetectionCustomModule',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -560,17 +628,23 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->eventThreatDetectionCustomModuleName('[ORGANIZATION]', '[LOCATION]', '[EVENT_THREAT_DETECTION_CUSTOM_MODULE]');
-        $request = (new GetEventThreatDetectionCustomModuleRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->eventThreatDetectionCustomModuleName(
+            '[ORGANIZATION]',
+            '[LOCATION]',
+            '[EVENT_THREAT_DETECTION_CUSTOM_MODULE]'
+        );
+        $request = (new GetEventThreatDetectionCustomModuleRequest())->setName($formattedName);
         try {
             $gapicClient->getEventThreatDetectionCustomModule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -604,16 +678,22 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $expectedResponse->setAncestorModule($ancestorModule);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->securityHealthAnalyticsCustomModuleName('[ORGANIZATION]', '[LOCATION]', '[SECURITY_HEALTH_ANALYTICS_CUSTOM_MODULE]');
-        $request = (new GetSecurityHealthAnalyticsCustomModuleRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->securityHealthAnalyticsCustomModuleName(
+            '[ORGANIZATION]',
+            '[LOCATION]',
+            '[SECURITY_HEALTH_ANALYTICS_CUSTOM_MODULE]'
+        );
+        $request = (new GetSecurityHealthAnalyticsCustomModuleRequest())->setName($formattedName);
         $response = $gapicClient->getSecurityHealthAnalyticsCustomModule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/GetSecurityHealthAnalyticsCustomModule', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/GetSecurityHealthAnalyticsCustomModule',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -630,17 +710,23 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->securityHealthAnalyticsCustomModuleName('[ORGANIZATION]', '[LOCATION]', '[SECURITY_HEALTH_ANALYTICS_CUSTOM_MODULE]');
-        $request = (new GetSecurityHealthAnalyticsCustomModuleRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->securityHealthAnalyticsCustomModuleName(
+            '[ORGANIZATION]',
+            '[LOCATION]',
+            '[SECURITY_HEALTH_ANALYTICS_CUSTOM_MODULE]'
+        );
+        $request = (new GetSecurityHealthAnalyticsCustomModuleRequest())->setName($formattedName);
         try {
             $gapicClient->getSecurityHealthAnalyticsCustomModule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -665,17 +751,14 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $eventThreatDetectionCustomModulesElement = new EventThreatDetectionCustomModule();
-        $eventThreatDetectionCustomModules = [
-            $eventThreatDetectionCustomModulesElement,
-        ];
+        $eventThreatDetectionCustomModules = [$eventThreatDetectionCustomModulesElement];
         $expectedResponse = new ListDescendantEventThreatDetectionCustomModulesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEventThreatDetectionCustomModules($eventThreatDetectionCustomModules);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListDescendantEventThreatDetectionCustomModulesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDescendantEventThreatDetectionCustomModulesRequest())->setParent($formattedParent);
         $response = $gapicClient->listDescendantEventThreatDetectionCustomModules($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -685,7 +768,10 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/ListDescendantEventThreatDetectionCustomModules', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/ListDescendantEventThreatDetectionCustomModules',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -702,17 +788,19 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListDescendantEventThreatDetectionCustomModulesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDescendantEventThreatDetectionCustomModulesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listDescendantEventThreatDetectionCustomModules($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -737,17 +825,14 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $securityHealthAnalyticsCustomModulesElement = new SecurityHealthAnalyticsCustomModule();
-        $securityHealthAnalyticsCustomModules = [
-            $securityHealthAnalyticsCustomModulesElement,
-        ];
+        $securityHealthAnalyticsCustomModules = [$securityHealthAnalyticsCustomModulesElement];
         $expectedResponse = new ListDescendantSecurityHealthAnalyticsCustomModulesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSecurityHealthAnalyticsCustomModules($securityHealthAnalyticsCustomModules);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListDescendantSecurityHealthAnalyticsCustomModulesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDescendantSecurityHealthAnalyticsCustomModulesRequest())->setParent($formattedParent);
         $response = $gapicClient->listDescendantSecurityHealthAnalyticsCustomModules($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -757,7 +842,10 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/ListDescendantSecurityHealthAnalyticsCustomModules', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/ListDescendantSecurityHealthAnalyticsCustomModules',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -774,17 +862,19 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListDescendantSecurityHealthAnalyticsCustomModulesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDescendantSecurityHealthAnalyticsCustomModulesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listDescendantSecurityHealthAnalyticsCustomModules($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -809,17 +899,14 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $effectiveEventThreatDetectionCustomModulesElement = new EffectiveEventThreatDetectionCustomModule();
-        $effectiveEventThreatDetectionCustomModules = [
-            $effectiveEventThreatDetectionCustomModulesElement,
-        ];
+        $effectiveEventThreatDetectionCustomModules = [$effectiveEventThreatDetectionCustomModulesElement];
         $expectedResponse = new ListEffectiveEventThreatDetectionCustomModulesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEffectiveEventThreatDetectionCustomModules($effectiveEventThreatDetectionCustomModules);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListEffectiveEventThreatDetectionCustomModulesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListEffectiveEventThreatDetectionCustomModulesRequest())->setParent($formattedParent);
         $response = $gapicClient->listEffectiveEventThreatDetectionCustomModules($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -829,7 +916,10 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/ListEffectiveEventThreatDetectionCustomModules', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/ListEffectiveEventThreatDetectionCustomModules',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -846,17 +936,19 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListEffectiveEventThreatDetectionCustomModulesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListEffectiveEventThreatDetectionCustomModulesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listEffectiveEventThreatDetectionCustomModules($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -881,17 +973,16 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $effectiveSecurityHealthAnalyticsCustomModulesElement = new EffectiveSecurityHealthAnalyticsCustomModule();
-        $effectiveSecurityHealthAnalyticsCustomModules = [
-            $effectiveSecurityHealthAnalyticsCustomModulesElement,
-        ];
+        $effectiveSecurityHealthAnalyticsCustomModules = [$effectiveSecurityHealthAnalyticsCustomModulesElement];
         $expectedResponse = new ListEffectiveSecurityHealthAnalyticsCustomModulesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setEffectiveSecurityHealthAnalyticsCustomModules($effectiveSecurityHealthAnalyticsCustomModules);
+        $expectedResponse->setEffectiveSecurityHealthAnalyticsCustomModules(
+            $effectiveSecurityHealthAnalyticsCustomModules
+        );
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListEffectiveSecurityHealthAnalyticsCustomModulesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListEffectiveSecurityHealthAnalyticsCustomModulesRequest())->setParent($formattedParent);
         $response = $gapicClient->listEffectiveSecurityHealthAnalyticsCustomModules($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -901,7 +992,10 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/ListEffectiveSecurityHealthAnalyticsCustomModules', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/ListEffectiveSecurityHealthAnalyticsCustomModules',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -918,17 +1012,19 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListEffectiveSecurityHealthAnalyticsCustomModulesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListEffectiveSecurityHealthAnalyticsCustomModulesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listEffectiveSecurityHealthAnalyticsCustomModules($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -953,17 +1049,14 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $eventThreatDetectionCustomModulesElement = new EventThreatDetectionCustomModule();
-        $eventThreatDetectionCustomModules = [
-            $eventThreatDetectionCustomModulesElement,
-        ];
+        $eventThreatDetectionCustomModules = [$eventThreatDetectionCustomModulesElement];
         $expectedResponse = new ListEventThreatDetectionCustomModulesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEventThreatDetectionCustomModules($eventThreatDetectionCustomModules);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListEventThreatDetectionCustomModulesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListEventThreatDetectionCustomModulesRequest())->setParent($formattedParent);
         $response = $gapicClient->listEventThreatDetectionCustomModules($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -973,7 +1066,10 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/ListEventThreatDetectionCustomModules', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/ListEventThreatDetectionCustomModules',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -990,17 +1086,19 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListEventThreatDetectionCustomModulesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListEventThreatDetectionCustomModulesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listEventThreatDetectionCustomModules($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1025,17 +1123,14 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $securityHealthAnalyticsCustomModulesElement = new SecurityHealthAnalyticsCustomModule();
-        $securityHealthAnalyticsCustomModules = [
-            $securityHealthAnalyticsCustomModulesElement,
-        ];
+        $securityHealthAnalyticsCustomModules = [$securityHealthAnalyticsCustomModulesElement];
         $expectedResponse = new ListSecurityHealthAnalyticsCustomModulesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSecurityHealthAnalyticsCustomModules($securityHealthAnalyticsCustomModules);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListSecurityHealthAnalyticsCustomModulesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSecurityHealthAnalyticsCustomModulesRequest())->setParent($formattedParent);
         $response = $gapicClient->listSecurityHealthAnalyticsCustomModules($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1045,7 +1140,10 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/ListSecurityHealthAnalyticsCustomModules', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/ListSecurityHealthAnalyticsCustomModules',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -1062,17 +1160,19 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListSecurityHealthAnalyticsCustomModulesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSecurityHealthAnalyticsCustomModulesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listSecurityHealthAnalyticsCustomModules($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1113,7 +1213,10 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/SimulateSecurityHealthAnalyticsCustomModule', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/SimulateSecurityHealthAnalyticsCustomModule',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($parent, $actualValue);
         $actualValue = $actualRequestObject->getCustomConfig();
@@ -1134,12 +1237,15 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
@@ -1199,7 +1305,10 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/UpdateEventThreatDetectionCustomModule', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/UpdateEventThreatDetectionCustomModule',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getUpdateMask();
         $this->assertProtobufEquals($updateMask, $actualValue);
         $actualValue = $actualRequestObject->getEventThreatDetectionCustomModule();
@@ -1218,12 +1327,15 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
@@ -1275,7 +1387,10 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/UpdateSecurityHealthAnalyticsCustomModule', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/UpdateSecurityHealthAnalyticsCustomModule',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getUpdateMask();
         $this->assertProtobufEquals($updateMask, $actualValue);
         $actualValue = $actualRequestObject->getSecurityHealthAnalyticsCustomModule();
@@ -1294,12 +1409,15 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
@@ -1345,7 +1463,10 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/ValidateEventThreatDetectionCustomModule', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/ValidateEventThreatDetectionCustomModule',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getRawText();
@@ -1366,12 +1487,15 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
@@ -1433,12 +1557,15 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -1465,9 +1592,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -1497,12 +1622,15 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -1553,7 +1681,10 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/CreateEventThreatDetectionCustomModule', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/CreateEventThreatDetectionCustomModule',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getEventThreatDetectionCustomModule();

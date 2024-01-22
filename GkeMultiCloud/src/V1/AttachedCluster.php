@@ -49,7 +49,7 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
     private $platform_version = '';
     /**
      * Required. The Kubernetes distribution of the underlying attached cluster.
-     * Supported values: ["eks", "aks"].
+     * Supported values: ["eks", "aks", "generic"].
      *
      * Generated from protobuf field <code>string distribution = 16 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -156,6 +156,18 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.MonitoringConfig monitoring_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $monitoring_config = null;
+    /**
+     * Optional. Proxy configuration for outbound HTTP(S) traffic.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AttachedProxyConfig proxy_config = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $proxy_config = null;
+    /**
+     * Optional. Binary Authorization configuration for this cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.BinaryAuthorization binary_authorization = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $binary_authorization = null;
 
     /**
      * Constructor.
@@ -181,7 +193,7 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
      *           [GetAttachedServerConfig][google.cloud.gkemulticloud.v1.AttachedClusters.GetAttachedServerConfig].
      *     @type string $distribution
      *           Required. The Kubernetes distribution of the underlying attached cluster.
-     *           Supported values: ["eks", "aks"].
+     *           Supported values: ["eks", "aks", "generic"].
      *     @type string $cluster_region
      *           Output only. The region where this cluster runs.
      *           For EKS clusters, this is a AWS region. For AKS clusters,
@@ -224,6 +236,10 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
      *           Optional. Configuration related to the cluster RBAC settings.
      *     @type \Google\Cloud\GkeMultiCloud\V1\MonitoringConfig $monitoring_config
      *           Optional. Monitoring configuration for this cluster.
+     *     @type \Google\Cloud\GkeMultiCloud\V1\AttachedProxyConfig $proxy_config
+     *           Optional. Proxy configuration for outbound HTTP(S) traffic.
+     *     @type \Google\Cloud\GkeMultiCloud\V1\BinaryAuthorization $binary_authorization
+     *           Optional. Binary Authorization configuration for this cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -363,7 +379,7 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Kubernetes distribution of the underlying attached cluster.
-     * Supported values: ["eks", "aks"].
+     * Supported values: ["eks", "aks", "generic"].
      *
      * Generated from protobuf field <code>string distribution = 16 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -375,7 +391,7 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Kubernetes distribution of the underlying attached cluster.
-     * Supported values: ["eks", "aks"].
+     * Supported values: ["eks", "aks", "generic"].
      *
      * Generated from protobuf field <code>string distribution = 16 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -869,6 +885,78 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\MonitoringConfig::class);
         $this->monitoring_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Proxy configuration for outbound HTTP(S) traffic.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AttachedProxyConfig proxy_config = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GkeMultiCloud\V1\AttachedProxyConfig|null
+     */
+    public function getProxyConfig()
+    {
+        return $this->proxy_config;
+    }
+
+    public function hasProxyConfig()
+    {
+        return isset($this->proxy_config);
+    }
+
+    public function clearProxyConfig()
+    {
+        unset($this->proxy_config);
+    }
+
+    /**
+     * Optional. Proxy configuration for outbound HTTP(S) traffic.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AttachedProxyConfig proxy_config = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GkeMultiCloud\V1\AttachedProxyConfig $var
+     * @return $this
+     */
+    public function setProxyConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\AttachedProxyConfig::class);
+        $this->proxy_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Binary Authorization configuration for this cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.BinaryAuthorization binary_authorization = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GkeMultiCloud\V1\BinaryAuthorization|null
+     */
+    public function getBinaryAuthorization()
+    {
+        return $this->binary_authorization;
+    }
+
+    public function hasBinaryAuthorization()
+    {
+        return isset($this->binary_authorization);
+    }
+
+    public function clearBinaryAuthorization()
+    {
+        unset($this->binary_authorization);
+    }
+
+    /**
+     * Optional. Binary Authorization configuration for this cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.BinaryAuthorization binary_authorization = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GkeMultiCloud\V1\BinaryAuthorization $var
+     * @return $this
+     */
+    public function setBinaryAuthorization($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\BinaryAuthorization::class);
+        $this->binary_authorization = $var;
 
         return $this;
     }

@@ -19,29 +19,33 @@ class AttachedService
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Gkemulticloud\V1\AttachedResources::initOnce();
+        \GPBMetadata\Google\Cloud\Gkemulticloud\V1\CommonResources::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
+        \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-È 
-4google/cloud/gkemulticloud/v1/attached_service.protogoogle.cloud.gkemulticloud.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto6google/cloud/gkemulticloud/v1/attached_resources.proto#google/longrunning/operations.proto google/protobuf/field_mask.proto"∂
+∫(
+4google/cloud/gkemulticloud/v1/attached_service.protogoogle.cloud.gkemulticloud.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto6google/cloud/gkemulticloud/v1/attached_resources.proto4google/cloud/gkemulticloud/v1/common_resources.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"Ö
 -GenerateAttachedClusterInstallManifestRequestD
 parent (	B4‡A˙A.,gkemulticloud.googleapis.com/AttachedCluster 
 attached_cluster_id (	B‡A
-platform_version (	B‡A"B
+platform_version (	B‡AM
+proxy_config (22.google.cloud.gkemulticloud.v1.AttachedProxyConfigB‡A"B
 .GenerateAttachedClusterInstallManifestResponse
 manifest (	"Ï
 CreateAttachedClusterRequestD
 parent (	B4‡A˙A.,gkemulticloud.googleapis.com/AttachedClusterM
 attached_cluster (2..google.cloud.gkemulticloud.v1.AttachedClusterB‡A 
 attached_cluster_id (	B‡A
-validate_only ("‘
+validate_only ("£
 ImportAttachedClusterRequestD
 parent (	B4‡A˙A.,gkemulticloud.googleapis.com/AttachedCluster
 validate_only (
 fleet_membership (	B‡A
 platform_version (	B‡A
-distribution (	B‡A"∫
+distribution (	B‡AM
+proxy_config (22.google.cloud.gkemulticloud.v1.AttachedProxyConfigB‡A"∫
 UpdateAttachedClusterRequestM
 attached_cluster (2..google.cloud.gkemulticloud.v1.AttachedClusterB‡A
 validate_only (4
@@ -66,7 +70,26 @@ page_token (	"Ç
 etag (	"i
 GetAttachedServerConfigRequestG
 name (	B9‡A˙A3
-1gkemulticloud.googleapis.com/AttachedServerConfig2µ
+1gkemulticloud.googleapis.com/AttachedServerConfig" 
+(GenerateAttachedClusterAgentTokenRequestN
+attached_cluster (	B4‡A˙A.
+,gkemulticloud.googleapis.com/AttachedCluster
+subject_token (	B‡A
+subject_token_type (	B‡A
+version (	B‡A
+
+grant_type (	B‡A
+audience (	B‡A
+scope (	B‡A!
+requested_token_type	 (	B‡A
+options
+ (	B‡A"i
+)GenerateAttachedClusterAgentTokenResponse
+access_token (	
+
+expires_in (
+
+token_type (	2›
 AttachedClustersô
 CreateAttachedCluster;.google.cloud.gkemulticloud.v1.CreateAttachedClusterRequest.google.longrunning.Operation"£Ç”‰ìH"4/v1/{parent=projects/*/locations/*}/attachedClusters:attached_cluster⁄A+parent,attached_cluster,attached_cluster_id A$
 AttachedClusterOperationMetadataõ
@@ -79,7 +102,8 @@ page_token (	"Ç
 DeleteAttachedCluster;.google.cloud.gkemulticloud.v1.DeleteAttachedClusterRequest.google.longrunning.Operation"pÇ”‰ì6*4/v1/{name=projects/*/locations/*/attachedClusters/*}⁄Aname A*
 google.protobuf.EmptyOperationMetadata‘
 GetAttachedServerConfig=.google.cloud.gkemulticloud.v1.GetAttachedServerConfigRequest3.google.cloud.gkemulticloud.v1.AttachedServerConfig"EÇ”‰ì86/v1/{name=projects/*/locations/*/attachedServerConfig}⁄Aname∂
-&GenerateAttachedClusterInstallManifestL.google.cloud.gkemulticloud.v1.GenerateAttachedClusterInstallManifestRequestM.google.cloud.gkemulticloud.v1.GenerateAttachedClusterInstallManifestResponse"oÇ”‰ìLJ/v1/{parent=projects/*/locations/*}:generateAttachedClusterInstallManifest⁄Aparent,attached_cluster_idP Agkemulticloud.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÁ
+&GenerateAttachedClusterInstallManifestL.google.cloud.gkemulticloud.v1.GenerateAttachedClusterInstallManifestRequestM.google.cloud.gkemulticloud.v1.GenerateAttachedClusterInstallManifestResponse"oÇ”‰ìLJ/v1/{parent=projects/*/locations/*}:generateAttachedClusterInstallManifest⁄Aparent,attached_cluster_id•
+!GenerateAttachedClusterAgentTokenG.google.cloud.gkemulticloud.v1.GenerateAttachedClusterAgentTokenRequestH.google.cloud.gkemulticloud.v1.GenerateAttachedClusterAgentTokenResponse"mÇ”‰ìg"b/v1/{attached_cluster=projects/*/locations/*/attachedClusters/*}:generateAttachedClusterAgentToken:*P Agkemulticloud.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÁ
 !com.google.cloud.gkemulticloud.v1BAttachedServiceProtoPZGcloud.google.com/go/gkemulticloud/apiv1/gkemulticloudpb;gkemulticloudpb™Google.Cloud.GkeMultiCloud.V1 Google\\Cloud\\GkeMultiCloud\\V1Í Google::Cloud::GkeMultiCloud::V1bproto3'
         , true);
 

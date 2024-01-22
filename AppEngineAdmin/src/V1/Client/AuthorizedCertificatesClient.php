@@ -47,12 +47,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\AppEngine\V1\AuthorizedCertificatesClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createAuthorizedCertificateAsync(CreateAuthorizedCertificateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteAuthorizedCertificateAsync(DeleteAuthorizedCertificateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAuthorizedCertificateAsync(GetAuthorizedCertificateRequest $request, array $optionalArgs = [])
@@ -66,8 +60,15 @@ final class AuthorizedCertificatesClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.appengine.v1.AuthorizedCertificates';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'appengine.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'appengine.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -178,6 +179,8 @@ final class AuthorizedCertificatesClient
      * The async variant is
      * {@see AuthorizedCertificatesClient::createAuthorizedCertificateAsync()} .
      *
+     * @example samples/V1/AuthorizedCertificatesClient/create_authorized_certificate.php
+     *
      * @param CreateAuthorizedCertificateRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -203,6 +206,8 @@ final class AuthorizedCertificatesClient
      * The async variant is
      * {@see AuthorizedCertificatesClient::deleteAuthorizedCertificateAsync()} .
      *
+     * @example samples/V1/AuthorizedCertificatesClient/delete_authorized_certificate.php
+     *
      * @param DeleteAuthorizedCertificateRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -225,6 +230,8 @@ final class AuthorizedCertificatesClient
      *
      * The async variant is
      * {@see AuthorizedCertificatesClient::getAuthorizedCertificateAsync()} .
+     *
+     * @example samples/V1/AuthorizedCertificatesClient/get_authorized_certificate.php
      *
      * @param GetAuthorizedCertificateRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -250,6 +257,8 @@ final class AuthorizedCertificatesClient
      *
      * The async variant is
      * {@see AuthorizedCertificatesClient::listAuthorizedCertificatesAsync()} .
+     *
+     * @example samples/V1/AuthorizedCertificatesClient/list_authorized_certificates.php
      *
      * @param ListAuthorizedCertificatesRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -279,6 +288,8 @@ final class AuthorizedCertificatesClient
      *
      * The async variant is
      * {@see AuthorizedCertificatesClient::updateAuthorizedCertificateAsync()} .
+     *
+     * @example samples/V1/AuthorizedCertificatesClient/update_authorized_certificate.php
      *
      * @param UpdateAuthorizedCertificateRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {

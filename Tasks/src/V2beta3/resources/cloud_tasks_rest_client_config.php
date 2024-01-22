@@ -27,23 +27,6 @@ return [
             ],
         ],
         'google.cloud.tasks.v2beta3.CloudTasks' => [
-            'BufferTask' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2beta3/{queue=projects/*/locations/*/queues/*}/tasks/{task_id}:buffer',
-                'body' => '*',
-                'placeholders' => [
-                    'queue' => [
-                        'getters' => [
-                            'getQueue',
-                        ],
-                    ],
-                    'task_id' => [
-                        'getters' => [
-                            'getTaskId',
-                        ],
-                    ],
-                ],
-            ],
             'CreateQueue' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2beta3/{parent=projects/*/locations/*}/queues',

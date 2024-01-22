@@ -33,6 +33,25 @@ class CreateVersionRequest extends \Google\Protobuf\Internal\Message
     protected $version = null;
 
     /**
+     * @param string                                 $parent  Required. The [Flow][google.cloud.dialogflow.cx.v3.Flow] to create an
+     *                                                        [Version][google.cloud.dialogflow.cx.v3.Version] for. Format:
+     *                                                        `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+     *                                                        ID>/flows/<Flow ID>`. Please see
+     *                                                        {@see VersionsClient::flowName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Version $version Required. The version to create.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\CreateVersionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dialogflow\Cx\V3\Version $version): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setVersion($version);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START securitycenter_v1_generated_SecurityCenter_GetOrganizationSettings_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\GetOrganizationSettingsRequest;
 use Google\Cloud\SecurityCenter\V1\OrganizationSettings;
-use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
 
 /**
  * Gets the settings for an organization.
@@ -39,10 +40,14 @@ function get_organization_settings_sample(string $formattedName): void
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
+    // Prepare the request message.
+    $request = (new GetOrganizationSettingsRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OrganizationSettings $response */
-        $response = $securityCenterClient->getOrganizationSettings($formattedName);
+        $response = $securityCenterClient->getOrganizationSettings($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

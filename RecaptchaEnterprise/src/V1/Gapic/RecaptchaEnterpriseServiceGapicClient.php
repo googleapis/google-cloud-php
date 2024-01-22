@@ -89,9 +89,7 @@ use Google\Protobuf\GPBEmpty;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient} to
- * use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient}.
  */
 class RecaptchaEnterpriseServiceGapicClient
 {
@@ -100,8 +98,15 @@ class RecaptchaEnterpriseServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'recaptchaenterprise.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'recaptchaenterprise.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;

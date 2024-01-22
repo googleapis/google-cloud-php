@@ -41,12 +41,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Orchestration\Airflow\Service\V1\ImageVersionsClient} for the
- * stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface listImageVersionsAsync(ListImageVersionsRequest $request, array $optionalArgs = [])
  */
 final class ImageVersionsClient
@@ -56,8 +50,15 @@ final class ImageVersionsClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.orchestration.airflow.service.v1.ImageVersions';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'composer.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'composer.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -164,6 +165,8 @@ final class ImageVersionsClient
      * List ImageVersions for provided location.
      *
      * The async variant is {@see ImageVersionsClient::listImageVersionsAsync()} .
+     *
+     * @example samples/V1/ImageVersionsClient/list_image_versions.php
      *
      * @param ListImageVersionsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {

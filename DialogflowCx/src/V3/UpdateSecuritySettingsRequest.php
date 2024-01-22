@@ -32,6 +32,23 @@ class UpdateSecuritySettingsRequest extends \Google\Protobuf\Internal\Message
     protected $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Dialogflow\Cx\V3\SecuritySettings $securitySettings Required. [SecuritySettings] object that contains values for each of the
+     *                                                                          fields to update.
+     * @param \Google\Protobuf\FieldMask                      $updateMask       Required. The mask to control which fields get updated. If the mask is not
+     *                                                                          present, all fields will be updated.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\UpdateSecuritySettingsRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\Cx\V3\SecuritySettings $securitySettings, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setSecuritySettings($securitySettings)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

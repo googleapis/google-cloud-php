@@ -31,6 +31,23 @@ class UpdateSearchAds360LinkRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Analytics\Admin\V1alpha\SearchAds360Link $searchAds360Link The SearchAds360Link to update
+     * @param \Google\Protobuf\FieldMask                       $updateMask       Required. The list of fields to be updated. Omitted fields will not be
+     *                                                                           updated. To replace the entire entity, use one path with the string "*" to
+     *                                                                           match all fields.
+     *
+     * @return \Google\Analytics\Admin\V1alpha\UpdateSearchAds360LinkRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Analytics\Admin\V1alpha\SearchAds360Link $searchAds360Link, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setSearchAds360Link($searchAds360Link)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

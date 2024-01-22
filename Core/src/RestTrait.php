@@ -19,6 +19,7 @@ namespace Google\Cloud\Core;
 
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
+use UnexpectedValueException;
 
 /**
  * Provides shared functionality for REST service implementations.
@@ -118,20 +119,45 @@ trait RestTrait
      *
      * @param string $default
      * @param array $config
+     * @param string $apiEndpointTemplate
      * @return string
      */
-    private function getApiEndpoint($default, array $config)
+    private function getApiEndpoint($default, array $config, string $apiEndpointTemplate = null)
     {
-        $res = $config['apiEndpoint'] ?? $default;
+        // If the $default parameter is provided, or the user has set an "apiEndoint" config option,
+        // fall back to the previous behavior.
+        if ($res = $config['apiEndpoint'] ?? $default) {
+            if (substr($res, -1) !== '/') {
+                $res = $res . '/';
+            }
 
-        if (substr($res, -1) !== '/') {
-            $res = $res . '/';
+            if (strpos($res, '//') === false) {
+                $res = 'https://' . $res;
+            }
+
+            return $res;
         }
 
-        if (strpos($res, '//') === false) {
-            $res = 'https://' . $res;
+        // One of the $default or the $template must always be set
+        if (!$apiEndpointTemplate) {
+            throw new UnexpectedValueException(
+                'An API endpoint template must be provided if no "apiEndpoint" or default endpoint is set.'
+            );
         }
 
-        return $res;
+        if (!isset($config['universeDomain'])) {
+            throw new UnexpectedValueException(
+                'The "universeDomain" config value must be set to use the default API endpoint template.'
+            );
+        }
+
+        $apiEndpoint = str_replace(
+            'UNIVERSE_DOMAIN',
+            $config['universeDomain'],
+            $apiEndpointTemplate
+        );
+
+        // Preserve the behavior of guaranteeing a trailing "/"
+        return $apiEndpoint . (substr($apiEndpoint, -1) !== '/' ? '/' : '');
     }
 }

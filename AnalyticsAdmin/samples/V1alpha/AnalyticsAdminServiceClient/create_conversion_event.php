@@ -23,8 +23,9 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_CreateConversionEvent_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\ConversionEvent;
+use Google\Analytics\Admin\V1alpha\CreateConversionEventRequest;
 use Google\ApiCore\ApiException;
 
 /**
@@ -39,13 +40,16 @@ function create_conversion_event_sample(string $formattedParent): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $conversionEvent = new ConversionEvent();
+    $request = (new CreateConversionEventRequest())
+        ->setConversionEvent($conversionEvent)
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
         /** @var ConversionEvent $response */
-        $response = $analyticsAdminServiceClient->createConversionEvent($conversionEvent, $formattedParent);
+        $response = $analyticsAdminServiceClient->createConversionEvent($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

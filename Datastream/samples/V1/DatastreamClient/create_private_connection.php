@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datastream_v1_generated_Datastream_CreatePrivateConnection_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Datastream\V1\DatastreamClient;
+use Google\Cloud\Datastream\V1\Client\DatastreamClient;
+use Google\Cloud\Datastream\V1\CreatePrivateConnectionRequest;
 use Google\Cloud\Datastream\V1\PrivateConnection;
 use Google\Rpc\Status;
 
@@ -45,18 +46,18 @@ function create_private_connection_sample(
     // Create a client.
     $datastreamClient = new DatastreamClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $privateConnection = (new PrivateConnection())
         ->setDisplayName($privateConnectionDisplayName);
+    $request = (new CreatePrivateConnectionRequest())
+        ->setParent($formattedParent)
+        ->setPrivateConnectionId($privateConnectionId)
+        ->setPrivateConnection($privateConnection);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $datastreamClient->createPrivateConnection(
-            $formattedParent,
-            $privateConnectionId,
-            $privateConnection
-        );
+        $response = $datastreamClient->createPrivateConnection($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

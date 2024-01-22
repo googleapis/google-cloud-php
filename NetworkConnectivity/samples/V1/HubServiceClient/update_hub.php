@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkconnectivity_v1_generated_HubService_UpdateHub_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\NetworkConnectivity\V1\Client\HubServiceClient;
 use Google\Cloud\NetworkConnectivity\V1\Hub;
-use Google\Cloud\NetworkConnectivity\V1\HubServiceClient;
+use Google\Cloud\NetworkConnectivity\V1\UpdateHubRequest;
 use Google\Rpc\Status;
 
 /**
@@ -44,13 +45,15 @@ function update_hub_sample(): void
     // Create a client.
     $hubServiceClient = new HubServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $hub = new Hub();
+    $request = (new UpdateHubRequest())
+        ->setHub($hub);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $hubServiceClient->updateHub($hub);
+        $response = $hubServiceClient->updateHub($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

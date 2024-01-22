@@ -40,6 +40,23 @@ class ListDeploymentsRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
+     * @param string $parent Required. The [Environment][google.cloud.dialogflow.cx.v3.Environment] to
+     *                       list all environments for. Format: `projects/<Project
+     *                       ID>/locations/<Location ID>/agents/<Agent ID>/environments/<Environment
+     *                       ID>`. Please see
+     *                       {@see DeploymentsClient::environmentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\ListDeploymentsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

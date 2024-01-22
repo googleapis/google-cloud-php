@@ -15,9 +15,19 @@
                                 "createDeployment"
                             ]
                         },
+                        "CreatePreview": {
+                            "methods": [
+                                "createPreview"
+                            ]
+                        },
                         "DeleteDeployment": {
                             "methods": [
                                 "deleteDeployment"
+                            ]
+                        },
+                        "DeletePreview": {
+                            "methods": [
+                                "deletePreview"
                             ]
                         },
                         "DeleteStatefile": {
@@ -35,6 +45,11 @@
                                 "exportLockInfo"
                             ]
                         },
+                        "ExportPreviewResult": {
+                            "methods": [
+                                "exportPreviewResult"
+                            ]
+                        },
                         "ExportRevisionStatefile": {
                             "methods": [
                                 "exportRevisionStatefile"
@@ -43,6 +58,11 @@
                         "GetDeployment": {
                             "methods": [
                                 "getDeployment"
+                            ]
+                        },
+                        "GetPreview": {
+                            "methods": [
+                                "getPreview"
                             ]
                         },
                         "GetResource": {
@@ -63,6 +83,11 @@
                         "ListDeployments": {
                             "methods": [
                                 "listDeployments"
+                            ]
+                        },
+                        "ListPreviews": {
+                            "methods": [
+                                "listPreviews"
                             ]
                         },
                         "ListResources": {

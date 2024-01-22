@@ -22,7 +22,10 @@ class AwsServerConfig extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * List of valid Kubernetes versions.
+     * List of all released Kubernetes versions, including ones which are end of
+     * life and can no longer be used.  Filter by the `enabled`
+     * property to limit to currently available versions.
+     * Valid versions supported for both create and update operations
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AwsK8sVersionInfo valid_versions = 2;</code>
      */
@@ -43,7 +46,10 @@ class AwsServerConfig extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The resource name of the config.
      *     @type array<\Google\Cloud\GkeMultiCloud\V1\AwsK8sVersionInfo>|\Google\Protobuf\Internal\RepeatedField $valid_versions
-     *           List of valid Kubernetes versions.
+     *           List of all released Kubernetes versions, including ones which are end of
+     *           life and can no longer be used.  Filter by the `enabled`
+     *           property to limit to currently available versions.
+     *           Valid versions supported for both create and update operations
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $supported_aws_regions
      *           The list of supported AWS regions.
      * }
@@ -80,7 +86,10 @@ class AwsServerConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of valid Kubernetes versions.
+     * List of all released Kubernetes versions, including ones which are end of
+     * life and can no longer be used.  Filter by the `enabled`
+     * property to limit to currently available versions.
+     * Valid versions supported for both create and update operations
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AwsK8sVersionInfo valid_versions = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -91,7 +100,10 @@ class AwsServerConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of valid Kubernetes versions.
+     * List of all released Kubernetes versions, including ones which are end of
+     * life and can no longer be used.  Filter by the `enabled`
+     * property to limit to currently available versions.
+     * Valid versions supported for both create and update operations
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AwsK8sVersionInfo valid_versions = 2;</code>
      * @param array<\Google\Cloud\GkeMultiCloud\V1\AwsK8sVersionInfo>|\Google\Protobuf\Internal\RepeatedField $var

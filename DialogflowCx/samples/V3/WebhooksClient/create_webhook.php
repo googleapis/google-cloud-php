@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_Webhooks_CreateWebhook_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\Cx\V3\Client\WebhooksClient;
+use Google\Cloud\Dialogflow\Cx\V3\CreateWebhookRequest;
 use Google\Cloud\Dialogflow\Cx\V3\Webhook;
-use Google\Cloud\Dialogflow\Cx\V3\WebhooksClient;
 
 /**
  * Creates a webhook in the specified agent.
@@ -40,14 +41,17 @@ function create_webhook_sample(string $formattedParent, string $webhookDisplayNa
     // Create a client.
     $webhooksClient = new WebhooksClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $webhook = (new Webhook())
         ->setDisplayName($webhookDisplayName);
+    $request = (new CreateWebhookRequest())
+        ->setParent($formattedParent)
+        ->setWebhook($webhook);
 
     // Call the API and handle any network failures.
     try {
         /** @var Webhook $response */
-        $response = $webhooksClient->createWebhook($formattedParent, $webhook);
+        $response = $webhooksClient->createWebhook($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

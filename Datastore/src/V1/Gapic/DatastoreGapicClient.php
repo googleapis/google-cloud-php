@@ -81,8 +81,7 @@ use Google\Cloud\Datastore\V1\TransactionOptions;
  * }
  * ```
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Datastore\V1\Client\DatastoreClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Datastore\V1\Client\DatastoreClient}.
  */
 class DatastoreGapicClient
 {
@@ -91,8 +90,15 @@ class DatastoreGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.datastore.v1.Datastore';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'datastore.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'datastore.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -579,6 +585,11 @@ class DatastoreGapicClient
      *           The query to run.
      *     @type GqlQuery $gqlQuery
      *           The GQL query to run. This query must be an aggregation query.
+     *     @type int $mode
+     *           Optional. The mode in which the query request is processed. This field is
+     *           optional, and when not provided, it defaults to `NORMAL` mode where no
+     *           additional statistics will be returned with the query results.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Datastore\V1\QueryMode}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -614,6 +625,10 @@ class DatastoreGapicClient
 
         if (isset($optionalArgs['gqlQuery'])) {
             $request->setGqlQuery($optionalArgs['gqlQuery']);
+        }
+
+        if (isset($optionalArgs['mode'])) {
+            $request->setMode($optionalArgs['mode']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -655,6 +670,11 @@ class DatastoreGapicClient
      *           The query to run.
      *     @type GqlQuery $gqlQuery
      *           The GQL query to run. This query must be a non-aggregation query.
+     *     @type int $mode
+     *           Optional. The mode in which the query request is processed. This field is
+     *           optional, and when not provided, it defaults to `NORMAL` mode where no
+     *           additional statistics will be returned with the query results.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Datastore\V1\QueryMode}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -687,6 +707,10 @@ class DatastoreGapicClient
 
         if (isset($optionalArgs['gqlQuery'])) {
             $request->setGqlQuery($optionalArgs['gqlQuery']);
+        }
+
+        if (isset($optionalArgs['mode'])) {
+            $request->setMode($optionalArgs['mode']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

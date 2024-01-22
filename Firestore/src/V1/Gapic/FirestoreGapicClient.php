@@ -98,8 +98,7 @@ use Google\Protobuf\Timestamp;
  * }
  * ```
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Firestore\V1\Client\FirestoreClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Firestore\V1\Client\FirestoreClient}.
  */
 class FirestoreGapicClient
 {
@@ -108,8 +107,15 @@ class FirestoreGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.firestore.v1.Firestore';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'firestore.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'firestore.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -1108,6 +1114,11 @@ class FirestoreGapicClient
      *           This must be a microsecond precision timestamp within the past one hour,
      *           or if Point-in-Time Recovery is enabled, can additionally be a whole
      *           minute timestamp within the past 7 days.
+     *     @type int $mode
+     *           Optional. The mode in which the query request is processed. This field is
+     *           optional, and when not provided, it defaults to `NORMAL` mode where no
+     *           additional statistics will be returned with the query results.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Firestore\V1\QueryMode}
      *     @type int $timeoutMillis
      *           Timeout to use for this call.
      * }
@@ -1136,6 +1147,10 @@ class FirestoreGapicClient
 
         if (isset($optionalArgs['readTime'])) {
             $request->setReadTime($optionalArgs['readTime']);
+        }
+
+        if (isset($optionalArgs['mode'])) {
+            $request->setMode($optionalArgs['mode']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1187,6 +1202,11 @@ class FirestoreGapicClient
      *           This must be a microsecond precision timestamp within the past one hour,
      *           or if Point-in-Time Recovery is enabled, can additionally be a whole
      *           minute timestamp within the past 7 days.
+     *     @type int $mode
+     *           Optional. The mode in which the query request is processed. This field is
+     *           optional, and when not provided, it defaults to `NORMAL` mode where no
+     *           additional statistics will be returned with the query results.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Firestore\V1\QueryMode}
      *     @type int $timeoutMillis
      *           Timeout to use for this call.
      * }
@@ -1215,6 +1235,10 @@ class FirestoreGapicClient
 
         if (isset($optionalArgs['readTime'])) {
             $request->setReadTime($optionalArgs['readTime']);
+        }
+
+        if (isset($optionalArgs['mode'])) {
+            $request->setMode($optionalArgs['mode']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

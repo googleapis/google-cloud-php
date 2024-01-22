@@ -24,10 +24,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START webrisk_v1_generated_WebRiskService_ComputeThreatListDiff_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\WebRisk\V1\Client\WebRiskServiceClient;
+use Google\Cloud\WebRisk\V1\ComputeThreatListDiffRequest;
 use Google\Cloud\WebRisk\V1\ComputeThreatListDiffRequest\Constraints;
 use Google\Cloud\WebRisk\V1\ComputeThreatListDiffResponse;
 use Google\Cloud\WebRisk\V1\ThreatType;
-use Google\Cloud\WebRisk\V1\WebRiskServiceClient;
 
 /**
  * Gets the most recent threat list diffs. These diffs should be applied to
@@ -46,13 +47,16 @@ function compute_threat_list_diff_sample(int $threatType): void
     // Create a client.
     $webRiskServiceClient = new WebRiskServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $constraints = new Constraints();
+    $request = (new ComputeThreatListDiffRequest())
+        ->setThreatType($threatType)
+        ->setConstraints($constraints);
 
     // Call the API and handle any network failures.
     try {
         /** @var ComputeThreatListDiffResponse $response */
-        $response = $webRiskServiceClient->computeThreatListDiff($threatType, $constraints);
+        $response = $webRiskServiceClient->computeThreatListDiff($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

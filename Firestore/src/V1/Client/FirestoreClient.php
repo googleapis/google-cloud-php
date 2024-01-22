@@ -68,11 +68,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Firestore\V1\FirestoreClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface batchWriteAsync(BatchWriteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface beginTransactionAsync(BeginTransactionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface commitAsync(CommitRequest $request, array $optionalArgs = [])
@@ -92,8 +87,15 @@ final class FirestoreClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.firestore.v1.Firestore';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'firestore.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'firestore.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -203,6 +205,8 @@ final class FirestoreClient
      * Documents returned by this method are not guaranteed to be returned in the
      * same order that they were requested.
      *
+     * @example samples/V1/FirestoreClient/batch_get_documents.php
+     *
      * @param BatchGetDocumentsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -234,6 +238,8 @@ final class FirestoreClient
      *
      * The async variant is {@see FirestoreClient::batchWriteAsync()} .
      *
+     * @example samples/V1/FirestoreClient/batch_write.php
+     *
      * @param BatchWriteRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -257,6 +263,8 @@ final class FirestoreClient
      * Starts a new transaction.
      *
      * The async variant is {@see FirestoreClient::beginTransactionAsync()} .
+     *
+     * @example samples/V1/FirestoreClient/begin_transaction.php
      *
      * @param BeginTransactionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -282,6 +290,8 @@ final class FirestoreClient
      *
      * The async variant is {@see FirestoreClient::commitAsync()} .
      *
+     * @example samples/V1/FirestoreClient/commit.php
+     *
      * @param CommitRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
      *     Optional.
@@ -305,6 +315,8 @@ final class FirestoreClient
      * Creates a new document.
      *
      * The async variant is {@see FirestoreClient::createDocumentAsync()} .
+     *
+     * @example samples/V1/FirestoreClient/create_document.php
      *
      * @param CreateDocumentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -330,6 +342,8 @@ final class FirestoreClient
      *
      * The async variant is {@see FirestoreClient::deleteDocumentAsync()} .
      *
+     * @example samples/V1/FirestoreClient/delete_document.php
+     *
      * @param DeleteDocumentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -351,6 +365,8 @@ final class FirestoreClient
      * Gets a single document.
      *
      * The async variant is {@see FirestoreClient::getDocumentAsync()} .
+     *
+     * @example samples/V1/FirestoreClient/get_document.php
      *
      * @param GetDocumentRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -376,6 +392,8 @@ final class FirestoreClient
      *
      * The async variant is {@see FirestoreClient::listCollectionIdsAsync()} .
      *
+     * @example samples/V1/FirestoreClient/list_collection_ids.php
+     *
      * @param ListCollectionIdsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -400,6 +418,8 @@ final class FirestoreClient
      *
      * The async variant is {@see FirestoreClient::listDocumentsAsync()} .
      *
+     * @example samples/V1/FirestoreClient/list_documents.php
+     *
      * @param ListDocumentsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -422,6 +442,8 @@ final class FirestoreClient
     /**
      * Listens to changes. This method is only available via gRPC or WebChannel
      * (not REST).
+     *
+     * @example samples/V1/FirestoreClient/listen.php
      *
      * @param array $callOptions {
      *     Optional.
@@ -446,6 +468,8 @@ final class FirestoreClient
      *
      * The async variant is {@see FirestoreClient::partitionQueryAsync()} .
      *
+     * @example samples/V1/FirestoreClient/partition_query.php
+     *
      * @param PartitionQueryRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -469,6 +493,8 @@ final class FirestoreClient
      * Rolls back a transaction.
      *
      * The async variant is {@see FirestoreClient::rollbackAsync()} .
+     *
+     * @example samples/V1/FirestoreClient/rollback.php
      *
      * @param RollbackRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -502,6 +528,8 @@ final class FirestoreClient
      * SELECT COUNT(*) FROM ( SELECT * FROM k where a = true );
      * ```
      *
+     * @example samples/V1/FirestoreClient/run_aggregation_query.php
+     *
      * @param RunAggregationQueryRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -521,6 +549,8 @@ final class FirestoreClient
 
     /**
      * Runs a query.
+     *
+     * @example samples/V1/FirestoreClient/run_query.php
      *
      * @param RunQueryRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -544,6 +574,8 @@ final class FirestoreClient
      *
      * The async variant is {@see FirestoreClient::updateDocumentAsync()} .
      *
+     * @example samples/V1/FirestoreClient/update_document.php
+     *
      * @param UpdateDocumentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -566,6 +598,8 @@ final class FirestoreClient
     /**
      * Streams batches of document updates and deletes, in order. This method is
      * only available via gRPC or WebChannel (not REST).
+     *
+     * @example samples/V1/FirestoreClient/write.php
      *
      * @param array $callOptions {
      *     Optional.

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START logging_v2_generated_ConfigServiceV2_UpdateExclusion_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Logging\V2\ConfigServiceV2Client;
+use Google\Cloud\Logging\V2\Client\ConfigServiceV2Client;
 use Google\Cloud\Logging\V2\LogExclusion;
+use Google\Cloud\Logging\V2\UpdateExclusionRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -66,16 +67,20 @@ function update_exclusion_sample(
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $exclusion = (new LogExclusion())
         ->setName($exclusionName)
         ->setFilter($exclusionFilter);
     $updateMask = new FieldMask();
+    $request = (new UpdateExclusionRequest())
+        ->setName($formattedName)
+        ->setExclusion($exclusion)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var LogExclusion $response */
-        $response = $configServiceV2Client->updateExclusion($formattedName, $exclusion, $updateMask);
+        $response = $configServiceV2Client->updateExclusion($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

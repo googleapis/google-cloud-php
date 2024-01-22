@@ -91,12 +91,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createInstanceConfigAsync(CreateInstanceConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
@@ -120,8 +114,15 @@ final class InstanceAdminClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.spanner.admin.instance.v1.InstanceAdmin';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'spanner.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'spanner.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -370,6 +371,8 @@ final class InstanceAdminClient
      *
      * The async variant is {@see InstanceAdminClient::createInstanceAsync()} .
      *
+     * @example samples/V1/InstanceAdminClient/create_instance.php
+     *
      * @param CreateInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -434,6 +437,8 @@ final class InstanceAdminClient
      *
      * The async variant is {@see InstanceAdminClient::createInstanceConfigAsync()} .
      *
+     * @example samples/V1/InstanceAdminClient/create_instance_config.php
+     *
      * @param CreateInstanceConfigRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -468,6 +473,8 @@ final class InstanceAdminClient
      *
      * The async variant is {@see InstanceAdminClient::deleteInstanceAsync()} .
      *
+     * @example samples/V1/InstanceAdminClient/delete_instance.php
+     *
      * @param DeleteInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -497,6 +504,8 @@ final class InstanceAdminClient
      *
      * The async variant is {@see InstanceAdminClient::deleteInstanceConfigAsync()} .
      *
+     * @example samples/V1/InstanceAdminClient/delete_instance_config.php
+     *
      * @param DeleteInstanceConfigRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -523,6 +532,8 @@ final class InstanceAdminClient
      *
      * The async variant is {@see InstanceAdminClient::getIamPolicyAsync()} .
      *
+     * @example samples/V1/InstanceAdminClient/get_iam_policy.php
+     *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -547,6 +558,8 @@ final class InstanceAdminClient
      *
      * The async variant is {@see InstanceAdminClient::getInstanceAsync()} .
      *
+     * @example samples/V1/InstanceAdminClient/get_instance.php
+     *
      * @param GetInstanceRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -570,6 +583,8 @@ final class InstanceAdminClient
      * Gets information about a particular instance configuration.
      *
      * The async variant is {@see InstanceAdminClient::getInstanceConfigAsync()} .
+     *
+     * @example samples/V1/InstanceAdminClient/get_instance_config.php
      *
      * @param GetInstanceConfigRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -606,6 +621,8 @@ final class InstanceAdminClient
      * The async variant is
      * {@see InstanceAdminClient::listInstanceConfigOperationsAsync()} .
      *
+     * @example samples/V1/InstanceAdminClient/list_instance_config_operations.php
+     *
      * @param ListInstanceConfigOperationsRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -630,6 +647,8 @@ final class InstanceAdminClient
      *
      * The async variant is {@see InstanceAdminClient::listInstanceConfigsAsync()} .
      *
+     * @example samples/V1/InstanceAdminClient/list_instance_configs.php
+     *
      * @param ListInstanceConfigsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -653,6 +672,8 @@ final class InstanceAdminClient
      * Lists all instances in the given project.
      *
      * The async variant is {@see InstanceAdminClient::listInstancesAsync()} .
+     *
+     * @example samples/V1/InstanceAdminClient/list_instances.php
      *
      * @param ListInstancesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -682,6 +703,8 @@ final class InstanceAdminClient
      *
      * The async variant is {@see InstanceAdminClient::setIamPolicyAsync()} .
      *
+     * @example samples/V1/InstanceAdminClient/set_iam_policy.php
+     *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -710,6 +733,8 @@ final class InstanceAdminClient
      * empty set of permissions.
      *
      * The async variant is {@see InstanceAdminClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/InstanceAdminClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -773,6 +798,8 @@ final class InstanceAdminClient
      * the resource [name][google.spanner.admin.instance.v1.Instance.name].
      *
      * The async variant is {@see InstanceAdminClient::updateInstanceAsync()} .
+     *
+     * @example samples/V1/InstanceAdminClient/update_instance.php
      *
      * @param UpdateInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -840,6 +867,8 @@ final class InstanceAdminClient
      * the resource [name][google.spanner.admin.instance.v1.InstanceConfig.name].
      *
      * The async variant is {@see InstanceAdminClient::updateInstanceConfigAsync()} .
+     *
+     * @example samples/V1/InstanceAdminClient/update_instance_config.php
      *
      * @param UpdateInstanceConfigRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

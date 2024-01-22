@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Security\PrivateCA\V1\CertificateAuthority;
-use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\DeleteCertificateAuthorityRequest;
 use Google\Rpc\Status;
 
 /**
@@ -43,10 +44,14 @@ function delete_certificate_authority_sample(string $formattedName): void
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteCertificateAuthorityRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $certificateAuthorityServiceClient->deleteCertificateAuthority($formattedName);
+        $response = $certificateAuthorityServiceClient->deleteCertificateAuthority($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

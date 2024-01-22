@@ -38,6 +38,14 @@ class AwsVolumeTemplate extends \Google\Protobuf\Internal\Message
      */
     private $iops = 0;
     /**
+     * Optional. The throughput that the volume supports, in MiB/s. Only valid if
+     * volume_type is GP3.
+     * If the volume_type is GP3 and this is not speficied, it defaults to 125.
+     *
+     * Generated from protobuf field <code>int32 throughput = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $throughput = 0;
+    /**
      * Optional. The Amazon Resource Name (ARN) of the Customer Managed Key (CMK)
      * used to encrypt AWS EBS volumes.
      * If not specified, the default Amazon managed key associated to
@@ -63,6 +71,10 @@ class AwsVolumeTemplate extends \Google\Protobuf\Internal\Message
      *     @type int $iops
      *           Optional. The number of I/O operations per second (IOPS) to provision for
      *           GP3 volume.
+     *     @type int $throughput
+     *           Optional. The throughput that the volume supports, in MiB/s. Only valid if
+     *           volume_type is GP3.
+     *           If the volume_type is GP3 and this is not speficied, it defaults to 125.
      *     @type string $kms_key_arn
      *           Optional. The Amazon Resource Name (ARN) of the Customer Managed Key (CMK)
      *           used to encrypt AWS EBS volumes.
@@ -157,6 +169,36 @@ class AwsVolumeTemplate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->iops = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The throughput that the volume supports, in MiB/s. Only valid if
+     * volume_type is GP3.
+     * If the volume_type is GP3 and this is not speficied, it defaults to 125.
+     *
+     * Generated from protobuf field <code>int32 throughput = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getThroughput()
+    {
+        return $this->throughput;
+    }
+
+    /**
+     * Optional. The throughput that the volume supports, in MiB/s. Only valid if
+     * volume_type is GP3.
+     * If the volume_type is GP3 and this is not speficied, it defaults to 125.
+     *
+     * Generated from protobuf field <code>int32 throughput = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setThroughput($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->throughput = $var;
 
         return $this;
     }

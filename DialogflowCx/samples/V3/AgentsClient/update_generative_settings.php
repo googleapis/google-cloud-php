@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_Agents_UpdateGenerativeSettings_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dialogflow\Cx\V3\AgentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\Client\AgentsClient;
 use Google\Cloud\Dialogflow\Cx\V3\GenerativeSettings;
+use Google\Cloud\Dialogflow\Cx\V3\UpdateGenerativeSettingsRequest;
 
 /**
  * Updates the generative settings for the agent.
@@ -41,13 +42,15 @@ function update_generative_settings_sample(): void
     // Create a client.
     $agentsClient = new AgentsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $generativeSettings = new GenerativeSettings();
+    $request = (new UpdateGenerativeSettingsRequest())
+        ->setGenerativeSettings($generativeSettings);
 
     // Call the API and handle any network failures.
     try {
         /** @var GenerativeSettings $response */
-        $response = $agentsClient->updateGenerativeSettings($generativeSettings);
+        $response = $agentsClient->updateGenerativeSettings($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

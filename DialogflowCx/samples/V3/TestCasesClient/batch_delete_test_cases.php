@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_TestCases_BatchDeleteTestCases_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dialogflow\Cx\V3\TestCasesClient;
+use Google\Cloud\Dialogflow\Cx\V3\BatchDeleteTestCasesRequest;
+use Google\Cloud\Dialogflow\Cx\V3\Client\TestCasesClient;
 
 /**
  * Batch deletes test cases.
@@ -43,12 +44,15 @@ function batch_delete_test_cases_sample(
     // Create a client.
     $testCasesClient = new TestCasesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $formattedNames = [$formattedNamesElement,];
+    $request = (new BatchDeleteTestCasesRequest())
+        ->setParent($formattedParent)
+        ->setNames($formattedNames);
 
     // Call the API and handle any network failures.
     try {
-        $testCasesClient->batchDeleteTestCases($formattedParent, $formattedNames);
+        $testCasesClient->batchDeleteTestCases($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

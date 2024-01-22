@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START retail_v2_generated_ProductService_AddFulfillmentPlaces_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Retail\V2\AddFulfillmentPlacesRequest;
 use Google\Cloud\Retail\V2\AddFulfillmentPlacesResponse;
-use Google\Cloud\Retail\V2\ProductServiceClient;
+use Google\Cloud\Retail\V2\Client\ProductServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -112,13 +113,17 @@ function add_fulfillment_places_sample(
     // Create a client.
     $productServiceClient = new ProductServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $placeIds = [$placeIdsElement,];
+    $request = (new AddFulfillmentPlacesRequest())
+        ->setProduct($formattedProduct)
+        ->setType($type)
+        ->setPlaceIds($placeIds);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $productServiceClient->addFulfillmentPlaces($formattedProduct, $type, $placeIds);
+        $response = $productServiceClient->addFulfillmentPlaces($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

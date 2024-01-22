@@ -60,12 +60,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\BigQuery\Storage\V1\BigQueryWriteClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface batchCommitWriteStreamsAsync(BatchCommitWriteStreamsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createWriteStreamAsync(CreateWriteStreamRequest $request, array $optionalArgs = [])
  * @method PromiseInterface finalizeWriteStreamAsync(FinalizeWriteStreamRequest $request, array $optionalArgs = [])
@@ -80,8 +74,15 @@ final class BigQueryWriteClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.bigquery.storage.v1.BigQueryWrite';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'bigquerystorage.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'bigquerystorage.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -284,6 +285,8 @@ final class BigQueryWriteClient
      * finalized (via the `FinalizeWriteStream` rpc), and the stream is explicitly
      * committed via the `BatchCommitWriteStreams` rpc.
      *
+     * @example samples/V1/BigQueryWriteClient/append_rows.php
+     *
      * @param array $callOptions {
      *     Optional.
      *
@@ -310,6 +313,8 @@ final class BigQueryWriteClient
      *
      * The async variant is {@see BigQueryWriteClient::batchCommitWriteStreamsAsync()}
      * .
+     *
+     * @example samples/V1/BigQueryWriteClient/batch_commit_write_streams.php
      *
      * @param BatchCommitWriteStreamsRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -340,6 +345,8 @@ final class BigQueryWriteClient
      *
      * The async variant is {@see BigQueryWriteClient::createWriteStreamAsync()} .
      *
+     * @example samples/V1/BigQueryWriteClient/create_write_stream.php
+     *
      * @param CreateWriteStreamRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -364,6 +371,8 @@ final class BigQueryWriteClient
      * stream. Finalize is not supported on the '_default' stream.
      *
      * The async variant is {@see BigQueryWriteClient::finalizeWriteStreamAsync()} .
+     *
+     * @example samples/V1/BigQueryWriteClient/finalize_write_stream.php
      *
      * @param FinalizeWriteStreamRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -396,6 +405,8 @@ final class BigQueryWriteClient
      *
      * The async variant is {@see BigQueryWriteClient::flushRowsAsync()} .
      *
+     * @example samples/V1/BigQueryWriteClient/flush_rows.php
+     *
      * @param FlushRowsRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -419,6 +430,8 @@ final class BigQueryWriteClient
      * Gets information about a write stream.
      *
      * The async variant is {@see BigQueryWriteClient::getWriteStreamAsync()} .
+     *
+     * @example samples/V1/BigQueryWriteClient/get_write_stream.php
      *
      * @param GetWriteStreamRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
