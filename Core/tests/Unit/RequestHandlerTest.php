@@ -29,7 +29,6 @@ use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Google\Cloud\Core\Tests\Unit\Stubs\SampleGapicClass2;
 use Google\Cloud\Core\Tests\Unit\Stubs\SampleGapicClass1;
-use Google\Protobuf\Internal\Message;
 use Google\ApiCore\Page;
 use Google\ApiCore\PagedListResponse;
 use Google\Api\Http;
@@ -39,6 +38,7 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Rpc\Code;
 use Google\ApiCore\ServerStream;
+use Google\ApiCore\Testing\MockRequest;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Core\Exception\DeadlineExceededException;
@@ -63,7 +63,7 @@ class RequestHandlerTest extends TestCase
     public function setUp(): void
     {
         $this->serializer = $this->prophesize(Serializer::class);
-        $this->request = $this->prophesize(Message::class);
+        $this->request = $this->prophesize(MockRequest::class);
     }
 
     /**
