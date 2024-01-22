@@ -30,8 +30,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 class GitHub
 {
     const GITHUB_REPO_ENDPOINT = 'https://api.github.com/repos/%s';
-    const GITHUB_RELEASE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases/tags/%s';
-    const GITHUB_RELEASE_CREATE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases';
+    const GITHUB_RELEASE_TAG_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases/tags/%s';
+    const GITHUB_RELEASE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases';
     const GITHUB_RELEASE_UPDATE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases/%s';
     const GITHUB_RELEASE_GET_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases/tags/%s';
     const GITHUB_WEBHOOK_CREATE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/hooks';
@@ -92,7 +92,7 @@ class GitHub
     {
         try {
             $res = $this->client->get(sprintf(
-                self::GITHUB_RELEASE_ENDPOINT,
+                self::GITHUB_RELEASE_TAG_ENDPOINT,
                 $this->cleanTarget($target), $tagName
             ), [
                 'auth' => [null, $this->token]
@@ -128,7 +128,7 @@ class GitHub
 
         try {
             $res = $this->client->post(sprintf(
-                self::GITHUB_RELEASE_CREATE_ENDPOINT,
+                self::GITHUB_RELEASE_ENDPOINT,
                 $this->cleanTarget($target)
             ), [
                 'json' => $requestBody,
@@ -200,7 +200,7 @@ class GitHub
     {
         try {
             $res = $this->client->get(sprintf(
-                self::GITHUB_RELEASE_ENDPOINT,
+                self::GITHUB_RELEASE_TAG_ENDPOINT,
                 $target,
                 $tagName
             ), [
@@ -292,6 +292,44 @@ class GitHub
             $this->logException($e);
             return null;
         }
+    }
+
+    /**
+     * Get release details from the GitHub API.
+     *
+     * @param string $target The GitHub organization and repository ID separated
+     *        by a forward slash, i.e. `organization/repository'.
+     *
+     * @return array|null
+     */
+    public function getReleases($target, \DateTime $fromDate = null): ?array
+    {
+        try {
+            $res = $this->client->get(sprintf(
+                self::GITHUB_RELEASE_ENDPOINT,
+                $this->cleanTarget($target)
+            ), [
+                'auth' => [null, $this->token]
+            ]);
+        } catch (\Exception $e) {
+            $this->logException($e);
+            return null;
+        }
+
+        $releases = json_decode((string) $res->getBody(), true);
+
+        if (null === $fromDate) {
+            return $releases;
+        }
+
+        foreach ($releases as $i => $release) {
+            $releaseDate = new \DateTime($release['published_at']);
+            if ($releaseDate < $fromDate) {
+                return array_slice($releases, 0, $i);
+            }
+        }
+
+        return $releases;
     }
 
     public function updateRepoDetails(string $repoName, array $settings): bool
