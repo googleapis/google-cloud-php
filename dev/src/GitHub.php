@@ -18,7 +18,7 @@
 namespace Google\Cloud\Dev;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Response;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -189,14 +189,14 @@ class GitHub
     }
 
     /**
-     * Get the changelog from a release.
+     * Get the changelog from a release. False if the release doesn't exist.
      *
      * @param string $target The GitHub organization and repository ID separated
      *        by a forward slash, i.e. `organization/repository'.
      * @param string $tagName The name of the tag to fetch from.
-     * @return string|null
+     * @return string|null|false
      */
-    public function getChangelog($target, $tagName)
+    public function getChangelog($target, $tagName): string|null|false
     {
         try {
             $res = $this->client->get(sprintf(
@@ -208,9 +208,9 @@ class GitHub
             ]);
 
             return json_decode((string) $res->getBody(), true)['body'];
-        } catch (\Exception $e) {
+        } catch (RequestException $e) {
             $this->logException($e);
-            return null;
+            return $e->getResponse()?->getStatusCode() === 404 ? false : null;
         }
     }
 

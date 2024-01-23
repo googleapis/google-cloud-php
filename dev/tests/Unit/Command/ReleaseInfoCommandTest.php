@@ -20,6 +20,7 @@ namespace Google\Cloud\Dev\Tests\Unit\Command;
 use Google\Cloud\Dev\Command\ReleaseInfoCommand;
 use Google\Cloud\Dev\Composer;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
@@ -52,15 +53,12 @@ class ReleaseInfoCommandTest extends TestCase
         $response->getBody()
             ->shouldBeCalledOnce()
             ->willReturn($body->reveal());
-        $response->getStatusCode()
-            ->shouldBeCalledOnce()
-            ->willReturn(200);
         $http = $this->prophesize(Client::class);
         $http->get(
             'https://api.github.com/repos/googleapis/google-cloud-php/releases/tags/' . $tag,
             ['auth' => [null, null]]
         )
-            ->shouldBeCalledTimes(2)
+            ->shouldBeCalledOnce()
             ->willReturn($response->reveal());
 
         $commandTester = new CommandTester(new ReleaseInfoCommand($http->reveal()));
@@ -96,9 +94,6 @@ class ReleaseInfoCommandTest extends TestCase
         $tagResponse->getBody()
             ->shouldBeCalledOnce()
             ->willReturn($tagBody->reveal());
-        $tagResponse->getStatusCode()
-            ->shouldBeCalledOnce()
-            ->willReturn(200);
         $releaseBody = $this->prophesize(StreamInterface::class);
         $releaseBody->__toString()
             ->shouldBeCalledOnce()
@@ -121,7 +116,7 @@ class ReleaseInfoCommandTest extends TestCase
             'https://api.github.com/repos/googleapis/google-cloud-php/releases/tags/' . $tag,
             ['auth' => [null, null]]
         )
-            ->shouldBeCalledTimes(2)
+            ->shouldBeCalledOnce()
             ->willReturn($tagResponse->reveal());
 
         $commandTester = new CommandTester(new ReleaseInfoCommand($http->reveal()));
@@ -139,5 +134,53 @@ class ReleaseInfoCommandTest extends TestCase
             'OR (service_name = "cloudbuild" and client_library_version = "0.7.2")',
             $lines[1]
         );
+    }
+
+    public function testInvalidTagThrowsException()
+    {
+        $tag = 'v0.1001.0';
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage(sprintf('Tag "%s" not found', $tag));
+
+        $response = $this->prophesize(ResponseInterface::class);
+        $response->getStatusCode()
+            ->shouldBeCalledOnce()
+            ->willReturn(404);
+        $exception = $this->prophesize(RequestException::class);
+        $exception->getResponse()
+            ->shouldBeCalledOnce()
+            ->willReturn($response->reveal());
+        $http = $this->prophesize(Client::class);
+        $http->get(
+            'https://api.github.com/repos/googleapis/google-cloud-php/releases/tags/' . $tag,
+            ['auth' => [null, null]]
+        )
+            ->shouldBeCalledOnce()
+            ->willThrow($exception->reveal());
+
+        $commandTester = new CommandTester(new ReleaseInfoCommand($http->reveal()));
+        $commandTester->execute(['tag' => $tag, '--format' => 'json']);
+    }
+
+    public function testBadRequestThrowsException()
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Unable to retrieve tag');
+
+        $tag = 'v0.1000.0';
+        $exception = $this->prophesize(RequestException::class);
+        $exception->getResponse()
+            ->shouldBeCalledOnce()
+            ->willReturn(null);
+        $http = $this->prophesize(Client::class);
+        $http->get(
+            'https://api.github.com/repos/googleapis/google-cloud-php/releases/tags/' . $tag,
+            ['auth' => [null, null]]
+        )
+            ->shouldBeCalledOnce()
+            ->willThrow($exception->reveal());
+
+        $commandTester = new CommandTester(new ReleaseInfoCommand($http->reveal()));
+        $commandTester->execute(['tag' => $tag, '--format' => 'json']);
     }
 }

@@ -154,11 +154,10 @@ class ReleaseInfoCommand extends Command
 
     private function getReleaseDataFromTag(string $tag, Github $github)
     {
-        if (false === $github->doesTagExist(self::REPO_ID, $tag)) {
-            throw new \InvalidArgumentException(sprintf('tag "%s" not found', $tag));
-        }
-
         $changelog = $github->getChangelog(self::REPO_ID, $tag);
+        if (false === $changelog) {
+            throw new \InvalidArgumentException(sprintf('Tag "%s" not found', $tag));
+        }
         if (null === $changelog) {
             throw new \RuntimeException('Unable to retrieve tag');
         }
