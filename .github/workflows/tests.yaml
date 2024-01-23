@@ -33,7 +33,7 @@ jobs:
         extensions: ${{ matrix.extensions }}
         key: cache-key-1 # increment to bust the cache
     - name: Cache extensions
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ${{ steps.extcache.outputs.dir }}
         key: ${{ steps.extcache.outputs.key }}
