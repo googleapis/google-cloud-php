@@ -82,6 +82,25 @@ class Container extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string password = 11;</code>
      */
     private $password = '';
+    /**
+     * Optional. If set to true, this container runnable uses Image streaming.
+     * Use Image streaming to allow the runnable to initialize without
+     * waiting for the entire container image to download, which can
+     * significantly reduce startup time for large container images.
+     * When `enableImageStreaming` is set to true, the container
+     * runtime is [containerd](https://containerd.io/) instead of Docker.
+     * Additionally, this container runnable only supports the following
+     * `container` subfields: `imageUri`,
+     * `commands[]`, `entrypoint`, and
+     * `volumes[]`; any other `container` subfields are ignored.
+     * For more information about the requirements and limitations for using
+     * Image streaming with Batch, see the [`image-streaming`
+     * sample on
+     * GitHub](https://github.com/GoogleCloudPlatform/batch-samples/tree/main/api-samples/image-streaming).
+     *
+     * Generated from protobuf field <code>bool enable_image_streaming = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $enable_image_streaming = false;
 
     /**
      * Constructor.
@@ -124,6 +143,21 @@ class Container extends \Google\Protobuf\Internal\Message
      *           Optional password for logging in to a docker registry. If password
      *           matches `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` then Batch will read the
      *           password from the Secret Manager;
+     *     @type bool $enable_image_streaming
+     *           Optional. If set to true, this container runnable uses Image streaming.
+     *           Use Image streaming to allow the runnable to initialize without
+     *           waiting for the entire container image to download, which can
+     *           significantly reduce startup time for large container images.
+     *           When `enableImageStreaming` is set to true, the container
+     *           runtime is [containerd](https://containerd.io/) instead of Docker.
+     *           Additionally, this container runnable only supports the following
+     *           `container` subfields: `imageUri`,
+     *           `commands[]`, `entrypoint`, and
+     *           `volumes[]`; any other `container` subfields are ignored.
+     *           For more information about the requirements and limitations for using
+     *           Image streaming with Batch, see the [`image-streaming`
+     *           sample on
+     *           GitHub](https://github.com/GoogleCloudPlatform/batch-samples/tree/main/api-samples/image-streaming).
      * }
      */
     public function __construct($data = NULL) {
@@ -373,6 +407,58 @@ class Container extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->password = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set to true, this container runnable uses Image streaming.
+     * Use Image streaming to allow the runnable to initialize without
+     * waiting for the entire container image to download, which can
+     * significantly reduce startup time for large container images.
+     * When `enableImageStreaming` is set to true, the container
+     * runtime is [containerd](https://containerd.io/) instead of Docker.
+     * Additionally, this container runnable only supports the following
+     * `container` subfields: `imageUri`,
+     * `commands[]`, `entrypoint`, and
+     * `volumes[]`; any other `container` subfields are ignored.
+     * For more information about the requirements and limitations for using
+     * Image streaming with Batch, see the [`image-streaming`
+     * sample on
+     * GitHub](https://github.com/GoogleCloudPlatform/batch-samples/tree/main/api-samples/image-streaming).
+     *
+     * Generated from protobuf field <code>bool enable_image_streaming = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableImageStreaming()
+    {
+        return $this->enable_image_streaming;
+    }
+
+    /**
+     * Optional. If set to true, this container runnable uses Image streaming.
+     * Use Image streaming to allow the runnable to initialize without
+     * waiting for the entire container image to download, which can
+     * significantly reduce startup time for large container images.
+     * When `enableImageStreaming` is set to true, the container
+     * runtime is [containerd](https://containerd.io/) instead of Docker.
+     * Additionally, this container runnable only supports the following
+     * `container` subfields: `imageUri`,
+     * `commands[]`, `entrypoint`, and
+     * `volumes[]`; any other `container` subfields are ignored.
+     * For more information about the requirements and limitations for using
+     * Image streaming with Batch, see the [`image-streaming`
+     * sample on
+     * GitHub](https://github.com/GoogleCloudPlatform/batch-samples/tree/main/api-samples/image-streaming).
+     *
+     * Generated from protobuf field <code>bool enable_image_streaming = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableImageStreaming($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_image_streaming = $var;
 
         return $this;
     }
