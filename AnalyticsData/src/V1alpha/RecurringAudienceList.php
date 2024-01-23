@@ -73,6 +73,22 @@ class RecurringAudienceList extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string audience_lists = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $audience_lists;
+    /**
+     * Optional. Configures webhook notifications to be sent from the Google
+     * Analytics Data API to your webhook server. Use of webhooks is optional. If
+     * unused, you'll need to poll this API to determine when a recurring audience
+     * list creates new audience lists. Webhooks allow a notification to be sent
+     * to your servers & avoid the need for polling.
+     * Two POST requests will be sent each time a recurring audience list creates
+     * an audience list. This happens once per day until a recurring audience list
+     * reaches 0 active days remaining. The first request will be sent showing a
+     * newly created audience list in its CREATING state. The second request will
+     * be sent after the audience list completes creation (either the ACTIVE or
+     * FAILED state).
+     *
+     * Generated from protobuf field <code>optional .google.analytics.data.v1alpha.WebhookNotification webhook_notification = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $webhook_notification = null;
 
     /**
      * Constructor.
@@ -111,6 +127,18 @@ class RecurringAudienceList extends \Google\Protobuf\Internal\Message
      *           created for this recurring audience list. One audience list is created for
      *           each day, and the audience list will be listed here.
      *           This list is ordered with the most recently created audience list first.
+     *     @type \Google\Analytics\Data\V1alpha\WebhookNotification $webhook_notification
+     *           Optional. Configures webhook notifications to be sent from the Google
+     *           Analytics Data API to your webhook server. Use of webhooks is optional. If
+     *           unused, you'll need to poll this API to determine when a recurring audience
+     *           list creates new audience lists. Webhooks allow a notification to be sent
+     *           to your servers & avoid the need for polling.
+     *           Two POST requests will be sent each time a recurring audience list creates
+     *           an audience list. This happens once per day until a recurring audience list
+     *           reaches 0 active days remaining. The first request will be sent showing a
+     *           newly created audience list in its CREATING state. The second request will
+     *           be sent after the audience list completes creation (either the ACTIVE or
+     *           FAILED state).
      * }
      */
     public function __construct($data = NULL) {
@@ -318,6 +346,62 @@ class RecurringAudienceList extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->audience_lists = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configures webhook notifications to be sent from the Google
+     * Analytics Data API to your webhook server. Use of webhooks is optional. If
+     * unused, you'll need to poll this API to determine when a recurring audience
+     * list creates new audience lists. Webhooks allow a notification to be sent
+     * to your servers & avoid the need for polling.
+     * Two POST requests will be sent each time a recurring audience list creates
+     * an audience list. This happens once per day until a recurring audience list
+     * reaches 0 active days remaining. The first request will be sent showing a
+     * newly created audience list in its CREATING state. The second request will
+     * be sent after the audience list completes creation (either the ACTIVE or
+     * FAILED state).
+     *
+     * Generated from protobuf field <code>optional .google.analytics.data.v1alpha.WebhookNotification webhook_notification = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Analytics\Data\V1alpha\WebhookNotification|null
+     */
+    public function getWebhookNotification()
+    {
+        return $this->webhook_notification;
+    }
+
+    public function hasWebhookNotification()
+    {
+        return isset($this->webhook_notification);
+    }
+
+    public function clearWebhookNotification()
+    {
+        unset($this->webhook_notification);
+    }
+
+    /**
+     * Optional. Configures webhook notifications to be sent from the Google
+     * Analytics Data API to your webhook server. Use of webhooks is optional. If
+     * unused, you'll need to poll this API to determine when a recurring audience
+     * list creates new audience lists. Webhooks allow a notification to be sent
+     * to your servers & avoid the need for polling.
+     * Two POST requests will be sent each time a recurring audience list creates
+     * an audience list. This happens once per day until a recurring audience list
+     * reaches 0 active days remaining. The first request will be sent showing a
+     * newly created audience list in its CREATING state. The second request will
+     * be sent after the audience list completes creation (either the ACTIVE or
+     * FAILED state).
+     *
+     * Generated from protobuf field <code>optional .google.analytics.data.v1alpha.WebhookNotification webhook_notification = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Analytics\Data\V1alpha\WebhookNotification $var
+     * @return $this
+     */
+    public function setWebhookNotification($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Data\V1alpha\WebhookNotification::class);
+        $this->webhook_notification = $var;
 
         return $this;
     }

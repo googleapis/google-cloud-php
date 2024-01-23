@@ -98,6 +98,24 @@ class AudienceList extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string recurring_audience_list = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $recurring_audience_list = null;
+    /**
+     * Optional. Configures webhook notifications to be sent from the Google
+     * Analytics Data API to your webhook server. Use of webhooks is optional. If
+     * unused, you'll need to poll this API to determine when an audience list is
+     * ready to be used. Webhooks allow a notification to be sent to your servers
+     * & avoid the need for polling.
+     * Either one or two POST requests will be sent to the webhook. The first POST
+     * request will be sent immediately showing the newly created audience list in
+     * its CREATING state. The second POST request will be sent after the audience
+     * list completes creation (either the ACTIVE or FAILED state).
+     * If identical audience lists are requested in quick succession, the second &
+     * subsequent audience lists can be served from cache. In that case, the
+     * audience list create method can return an audience list is already ACTIVE.
+     * In this scenario, only one POST request will be sent to the webhook.
+     *
+     * Generated from protobuf field <code>optional .google.analytics.data.v1alpha.WebhookNotification webhook_notification = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $webhook_notification = null;
 
     /**
      * Constructor.
@@ -142,6 +160,20 @@ class AudienceList extends \Google\Protobuf\Internal\Message
      *           Recurring audience lists create audience lists daily.
      *           If audience lists are created directly, they will have no associated
      *           recurring audience list, and this field will be blank.
+     *     @type \Google\Analytics\Data\V1alpha\WebhookNotification $webhook_notification
+     *           Optional. Configures webhook notifications to be sent from the Google
+     *           Analytics Data API to your webhook server. Use of webhooks is optional. If
+     *           unused, you'll need to poll this API to determine when an audience list is
+     *           ready to be used. Webhooks allow a notification to be sent to your servers
+     *           & avoid the need for polling.
+     *           Either one or two POST requests will be sent to the webhook. The first POST
+     *           request will be sent immediately showing the newly created audience list in
+     *           its CREATING state. The second POST request will be sent after the audience
+     *           list completes creation (either the ACTIVE or FAILED state).
+     *           If identical audience lists are requested in quick succession, the second &
+     *           subsequent audience lists can be served from cache. In that case, the
+     *           audience list create method can return an audience list is already ACTIVE.
+     *           In this scenario, only one POST request will be sent to the webhook.
      * }
      */
     public function __construct($data = NULL) {
@@ -521,6 +553,66 @@ class AudienceList extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->recurring_audience_list = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configures webhook notifications to be sent from the Google
+     * Analytics Data API to your webhook server. Use of webhooks is optional. If
+     * unused, you'll need to poll this API to determine when an audience list is
+     * ready to be used. Webhooks allow a notification to be sent to your servers
+     * & avoid the need for polling.
+     * Either one or two POST requests will be sent to the webhook. The first POST
+     * request will be sent immediately showing the newly created audience list in
+     * its CREATING state. The second POST request will be sent after the audience
+     * list completes creation (either the ACTIVE or FAILED state).
+     * If identical audience lists are requested in quick succession, the second &
+     * subsequent audience lists can be served from cache. In that case, the
+     * audience list create method can return an audience list is already ACTIVE.
+     * In this scenario, only one POST request will be sent to the webhook.
+     *
+     * Generated from protobuf field <code>optional .google.analytics.data.v1alpha.WebhookNotification webhook_notification = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Analytics\Data\V1alpha\WebhookNotification|null
+     */
+    public function getWebhookNotification()
+    {
+        return $this->webhook_notification;
+    }
+
+    public function hasWebhookNotification()
+    {
+        return isset($this->webhook_notification);
+    }
+
+    public function clearWebhookNotification()
+    {
+        unset($this->webhook_notification);
+    }
+
+    /**
+     * Optional. Configures webhook notifications to be sent from the Google
+     * Analytics Data API to your webhook server. Use of webhooks is optional. If
+     * unused, you'll need to poll this API to determine when an audience list is
+     * ready to be used. Webhooks allow a notification to be sent to your servers
+     * & avoid the need for polling.
+     * Either one or two POST requests will be sent to the webhook. The first POST
+     * request will be sent immediately showing the newly created audience list in
+     * its CREATING state. The second POST request will be sent after the audience
+     * list completes creation (either the ACTIVE or FAILED state).
+     * If identical audience lists are requested in quick succession, the second &
+     * subsequent audience lists can be served from cache. In that case, the
+     * audience list create method can return an audience list is already ACTIVE.
+     * In this scenario, only one POST request will be sent to the webhook.
+     *
+     * Generated from protobuf field <code>optional .google.analytics.data.v1alpha.WebhookNotification webhook_notification = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Analytics\Data\V1alpha\WebhookNotification $var
+     * @return $this
+     */
+    public function setWebhookNotification($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Data\V1alpha\WebhookNotification::class);
+        $this->webhook_notification = $var;
 
         return $this;
     }
