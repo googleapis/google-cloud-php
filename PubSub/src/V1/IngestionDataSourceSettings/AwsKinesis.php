@@ -21,20 +21,20 @@ class AwsKinesis extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.pubsub.v1.IngestionDataSourceSettings.AwsKinesis.State state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $state = 0;
+    private $state = 0;
     /**
      * Required. The Kinesis stream ARN to ingest data from.
      *
      * Generated from protobuf field <code>string stream_arn = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $stream_arn = '';
+    private $stream_arn = '';
     /**
      * Required. The Kinesis consumer ARN to used for ingestion in Enhanced
      * Fan-Out mode. The consumer must be already created and ready to be used.
      *
      * Generated from protobuf field <code>string consumer_arn = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $consumer_arn = '';
+    private $consumer_arn = '';
     /**
      * Required. AWS role ARN to be used for Federated Identity authentication
      * with Kinesis. Check the Pub/Sub docs for how to set up this role and the
@@ -42,7 +42,7 @@ class AwsKinesis extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string aws_role_arn = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $aws_role_arn = '';
+    private $aws_role_arn = '';
     /**
      * Required. The GCP service account to be used for Federated Identity
      * authentication with Kinesis (via a `AssumeRoleWithWebIdentity` call for
@@ -51,7 +51,7 @@ class AwsKinesis extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string gcp_service_account = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $gcp_service_account = '';
+    private $gcp_service_account = '';
 
     /**
      * Constructor.
