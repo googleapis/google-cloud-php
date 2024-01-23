@@ -75,6 +75,19 @@ class Topic extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8;</code>
      */
     private $message_retention_duration = null;
+    /**
+     * Output only. An output-only field indicating the state of the topic.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.Topic.State state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $state = 0;
+    /**
+     * Optional. Settings for managed ingestion from a data source into this
+     * topic.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.IngestionDataSourceSettings ingestion_data_source_settings = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $ingestion_data_source_settings = null;
 
     /**
      * @param string $name Required. The name of the topic. It must have the format
@@ -132,6 +145,11 @@ class Topic extends \Google\Protobuf\Internal\Message
      *           that is up to `message_retention_duration` in the past. If this field is
      *           not set, message retention is controlled by settings on individual
      *           subscriptions. Cannot be more than 31 days or less than 10 minutes.
+     *     @type int $state
+     *           Output only. An output-only field indicating the state of the topic.
+     *     @type \Google\Cloud\PubSub\V1\IngestionDataSourceSettings $ingestion_data_source_settings
+     *           Optional. Settings for managed ingestion from a data source into this
+     *           topic.
      * }
      */
     public function __construct($data = NULL) {
@@ -383,6 +401,70 @@ class Topic extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->message_retention_duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. An output-only field indicating the state of the topic.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.Topic.State state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Output only. An output-only field indicating the state of the topic.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.Topic.State state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setState($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\PubSub\V1\Topic\State::class);
+        $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Settings for managed ingestion from a data source into this
+     * topic.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.IngestionDataSourceSettings ingestion_data_source_settings = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\PubSub\V1\IngestionDataSourceSettings|null
+     */
+    public function getIngestionDataSourceSettings()
+    {
+        return $this->ingestion_data_source_settings;
+    }
+
+    public function hasIngestionDataSourceSettings()
+    {
+        return isset($this->ingestion_data_source_settings);
+    }
+
+    public function clearIngestionDataSourceSettings()
+    {
+        unset($this->ingestion_data_source_settings);
+    }
+
+    /**
+     * Optional. Settings for managed ingestion from a data source into this
+     * topic.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.IngestionDataSourceSettings ingestion_data_source_settings = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\PubSub\V1\IngestionDataSourceSettings $var
+     * @return $this
+     */
+    public function setIngestionDataSourceSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\IngestionDataSourceSettings::class);
+        $this->ingestion_data_source_settings = $var;
 
         return $this;
     }
