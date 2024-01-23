@@ -21,7 +21,7 @@ class OnDeployUpdatePolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string runtime_version = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $runtime_version = '';
+    private $runtime_version = '';
 
     /**
      * Constructor.
@@ -69,6 +69,4 @@ class OnDeployUpdatePolicy extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(OnDeployUpdatePolicy::class, \Google\Cloud\Functions\V1\CloudFunction_OnDeployUpdatePolicy::class);
 
