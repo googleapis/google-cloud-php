@@ -31,7 +31,7 @@ use Google\Rpc\Status;
 
 /**
  * Creates a new function. If a function with the given name already exists in
- * the specified project, the long running operation returns an
+ * the specified project, the long running operation will return
  * `ALREADY_EXISTS` error.
  *
  * @param string $formattedLocation The project and location in which the function should be created,
