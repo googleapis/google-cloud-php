@@ -1,5 +1,177 @@
 # Changelog
 
+## 0.233.0
+
+<details><summary>google/analytics-data 0.16.0</summary>
+
+
+
+### Features
+
+* Add the `webhook_notification` field to the `AudienceList` resource ([2120284](https://github.com/googleapis/google-cloud-php/commit/212028437940e71fbe6ae83277646780ac1e3273))
+* Add the `webhook_notification` field to the `RecurringAudienceList` resource ([2120284](https://github.com/googleapis/google-cloud-php/commit/212028437940e71fbe6ae83277646780ac1e3273))
+* Add the `WebhookNotification` type ([2120284](https://github.com/googleapis/google-cloud-php/commit/212028437940e71fbe6ae83277646780ac1e3273))
+
+
+### Documentation
+
+* Announce that `ListAudienceLists`, `GetAudienceList`, `QueryAudienceList`, `CreateAudienceList` methods are now available in the v1beta version of the Data API ([#6988](https://github.com/googleapis/google-cloud-php/issues/6988)) ([2120284](https://github.com/googleapis/google-cloud-php/commit/212028437940e71fbe6ae83277646780ac1e3273))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.29.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.30.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-config 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-container 1.25.0</summary>
+
+
+
+### Features
+
+* Add fields desired_in_transit_encryption_config and in_transit_encryption_config ([#6980](https://github.com/googleapis/google-cloud-php/issues/6980)) ([bc3d969](https://github.com/googleapis/google-cloud-php/commit/bc3d9696a047705d3fc28e30748a5092dc5d3896))
+
+
+### Documentation
+
+* Remove Not GA comments for GetOpenIDConfig and GetJSONWebKeys in v1alpha1/v1beta1/v1 ([bc3d969](https://github.com/googleapis/google-cloud-php/commit/bc3d9696a047705d3fc28e30748a5092dc5d3896))
+
+</details>
+
+<details><summary>google/cloud-core 1.53.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataplex 0.14.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-datastore 1.26.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-debugger 1.8.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-edgenetwork 0.3.0</summary>
+
+
+
+### Features
+
+* Add MACsec status for internal links ([#6985](https://github.com/googleapis/google-cloud-php/issues/6985)) ([fbe2667](https://github.com/googleapis/google-cloud-php/commit/fbe26677e94811c5251642e65439b9eda3866373))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.22.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-filestore 1.5.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-firestore 1.40.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-language 0.32.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-logging 1.29.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.51.0</summary>
+
+
+
+### Features
+
+* Add `ingestion_data_source_settings` field to `Topic` ([#6987](https://github.com/googleapis/google-cloud-php/issues/6987)) ([0dc0d9b](https://github.com/googleapis/google-cloud-php/commit/0dc0d9b5e54c5e8824cd063a1411bbac49955f91))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.70.0</summary>
+
+
+
+### Features
+
+* **spanner:** Add proto descriptors for proto and enum types in create/update/get database ddl requests ([#6991](https://github.com/googleapis/google-cloud-php/issues/6991)) ([79bcd91](https://github.com/googleapis/google-cloud-php/commit/79bcd918d0e8f06999082109bddf53edc3053ecd))
+
+</details>
+
+<details><summary>google/cloud-speech 1.16.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storage 1.37.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-trace 1.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-translate 1.17.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vision 1.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vmware-engine 0.5.1</summary>
+
+
+
+</details>
+
 ## 0.232.0
 
 <details><summary>google/analytics-admin 0.21.0</summary>
