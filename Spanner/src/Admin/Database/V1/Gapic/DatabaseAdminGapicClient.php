@@ -829,6 +829,22 @@ class DatabaseAdminGapicClient
      *     @type int $databaseDialect
      *           Optional. The dialect of the Cloud Spanner Database.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect}
+     *     @type string $protoDescriptors
+     *           Optional. Proto descriptors used by CREATE/ALTER PROTO BUNDLE statements in
+     *           'extra_statements' above.
+     *           Contains a protobuf-serialized
+     *           [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto).
+     *           To generate it, [install](https://grpc.io/docs/protoc-installation/) and
+     *           run `protoc` with --include_imports and --descriptor_set_out. For example,
+     *           to generate for moon/shot/app.proto, run
+     *           ```
+     *           $protoc  --proto_path=/app_path --proto_path=/lib_path \
+     *           --include_imports \
+     *           --descriptor_set_out=descriptors.data \
+     *           moon/shot/app.proto
+     *           ```
+     *           For more details, see protobuffer [self
+     *           description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -859,6 +875,10 @@ class DatabaseAdminGapicClient
 
         if (isset($optionalArgs['databaseDialect'])) {
             $request->setDatabaseDialect($optionalArgs['databaseDialect']);
+        }
+
+        if (isset($optionalArgs['protoDescriptors'])) {
+            $request->setProtoDescriptors($optionalArgs['protoDescriptors']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -2256,6 +2276,21 @@ class DatabaseAdminGapicClient
      *           underscore. If the named operation already exists,
      *           [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl] returns
      *           `ALREADY_EXISTS`.
+     *     @type string $protoDescriptors
+     *           Optional. Proto descriptors used by CREATE/ALTER PROTO BUNDLE statements.
+     *           Contains a protobuf-serialized
+     *           [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto).
+     *           To generate it, [install](https://grpc.io/docs/protoc-installation/) and
+     *           run `protoc` with --include_imports and --descriptor_set_out. For example,
+     *           to generate for moon/shot/app.proto, run
+     *           ```
+     *           $protoc  --proto_path=/app_path --proto_path=/lib_path \
+     *           --include_imports \
+     *           --descriptor_set_out=descriptors.data \
+     *           moon/shot/app.proto
+     *           ```
+     *           For more details, see protobuffer [self
+     *           description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2278,6 +2313,10 @@ class DatabaseAdminGapicClient
         $requestParamHeaders['database'] = $database;
         if (isset($optionalArgs['operationId'])) {
             $request->setOperationId($optionalArgs['operationId']);
+        }
+
+        if (isset($optionalArgs['protoDescriptors'])) {
+            $request->setProtoDescriptors($optionalArgs['protoDescriptors']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
