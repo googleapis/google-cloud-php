@@ -32,16 +32,14 @@ class Component
     private string $releaseLevel;
     private string $packageName;
     private string $repoName;
-    private ?string $branch;
     private string $productDocumentation;
     private string $clientDocumentation;
     private string $description;
     private array $namespaces;
 
-    public function __construct(private string $name, string $path = null, string $branch = null)
+    public function __construct(private string $name, string $path = null)
     {
         $this->path = $path ?: $this->getComponentPath($name);
-        $this->branch = $branch;
         $this->validateComponentFiles();
     }
 
@@ -85,11 +83,6 @@ class Component
     public function getRepoName(): string
     {
         return $this->repoName;
-    }
-
-    public function getBranch(): ?string
-    {
-        return $this->branch;
     }
 
     public function getIssueTracker(): string
