@@ -225,7 +225,7 @@ class ServiceBuilder
      *
      * Example:
      * ```
-     * $pubsub = $cloud->pubsub(['projectId' => 'my-project']);
+     * $pubsub = $cloud->pubsub();
      * ```
      *
      * @param array $config [optional] {

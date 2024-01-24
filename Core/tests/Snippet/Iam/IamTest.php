@@ -21,7 +21,7 @@ use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iam\IamConnectionInterface;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Spanner\SpannerClient;
+use Google\Cloud\PubSub\PubSubClient;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -51,7 +51,7 @@ class IamTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromClass(Iam::class);
         $this->checkAndSkipTest([
-            SpannerClient::class,
+            PubSubClient::class,
         ]);
         $res = $snippet->invoke('iam');
 
