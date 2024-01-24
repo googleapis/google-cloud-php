@@ -78,7 +78,6 @@ class RequestHandlerTest extends TestCase
         $requestHandler = new RequestHandler($this->serializer->reveal(), $clientClasses);
         $requestHandler->sendRequest($callingClass, 'sampleMethod', $this->request, ['func' => $func]);
 
-        // This will only be 1 if the relevant method was called
         $this->assertEquals(1, $counter);
     }
 

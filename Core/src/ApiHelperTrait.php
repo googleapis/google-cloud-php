@@ -17,6 +17,7 @@
  */
 namespace Google\Cloud\Core;
 
+use Google\ApiCore\Options\CallOptions;
 use Google\Protobuf\NullValue;
 use Google\Cloud\Core\Duration;
 
@@ -221,5 +222,46 @@ trait ApiHelperTrait
     protected function constructGapic($gapicName, array $config)
     {
         return new $gapicName($config);
+    }
+
+    /**
+     * Helper function to convert selective elements into protos out of a given input array.
+     *
+     * Example:
+     * ```
+     * $output = $topic->convertDataToProtos(['schema' =>[], 'other vals'], ['schema' => Schema::class]);
+     * $output['schema']; // This will be of the Schema type.
+     * ```
+     *
+     * @param array $input The input array.
+     * @param array $map The key,value pairs specifying the elements and the proto classes.
+     *
+     * @return array The modified array
+     */
+    private function convertDataToProtos(array $input, array $map) : array
+    {
+        foreach ($map as $key => $className) {
+            if (isset($input[$key])) {
+                $input[$key] = $this->serializer->decodeMessage(new $className, $input[$key]);
+            }
+        }
+
+        return $input;
+    }
+
+    /**
+     * Helper method used to split a supplied set of options into parameters that are passed into
+     * a proto message and optional args.
+     * We strictly treat the parameters allowed by `CallOptions` in GAX as the optional params
+     * and everything else that is passed is passed to the Proto message constructor.
+     */
+    private function splitOptionalArgs(array $input, array $extraAllowedKeys = []) : array
+    {
+        $callOptionFields = array_keys((new CallOptions([]))->toArray());
+        $keys = array_merge($callOptionFields, $extraAllowedKeys);
+
+        $optionalArgs = $this->pluckArray($keys, $input);
+
+        return [$input, $optionalArgs];
     }
 }
