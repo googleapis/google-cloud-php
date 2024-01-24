@@ -47,7 +47,8 @@ jobs:
               --to=origin/main --format=github-actions
 
   # Ensure the release PR does not contain an unexpected (e.g. 2.0.0) major version release
-  # add "MAJOR_VERSION_ALLOWED=component1,component2" to the PR description to allow major version releases for those components
+  # Add "MAJOR_VERSION_ALLOWED=component1,component2" to the PR description to allow major version
+  # releases for those components
   unexpected-major-version-check:
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'release-please[bot]'
@@ -64,13 +65,14 @@ jobs:
           flags: gm
       - name: "Check for unexpected major version"
         run: |
-          # get all changed components
+          # parse allowed major versions into an array
           IFS=', ' read -r -a ALLOWED_MAJOR_VERSIONS <<< "${{ steps.allowed-major-versions.outputs.group1 }}"
+          # get all changed components
           COMPONENTS=$(git diff origin/main --name-only | grep VERSION | xargs dirname)
           FAIL=""
           for COMPONENT in ${COMPONENTS}; do {
-            # A new version is being released
             if [[ "$(cat $COMPONENT/VERSION)" == [123456789].0.0 ]]; then
+              # A new version is being released - make sure it's allowed
               if [[ ${ALLOWED_MAJOR_VERSIONS[@]} =~ $COMPONENT ]]; then
                 echo "Major version release allowed: $COMPONENT"
               else
