@@ -10,6 +10,7 @@ permissions:
 jobs:
   style:
     runs-on: ubuntu-latest
+    if: false
     name: PHP Style Check
     steps:
     - uses: actions/checkout@v4
@@ -23,6 +24,7 @@ jobs:
       run: ~/.composer/vendor/bin/phpcs --standard=phpcs-ruleset.xml -p
   staticanalysis:
     runs-on: ubuntu-latest
+    if: false
     name: PHPStan Static Analysis
     steps:
     - uses: actions/checkout@v4

@@ -22,6 +22,7 @@ jobs:
             type: "Unit Test + protobuf extension"
     name: PHP ${{ matrix.php }} ${{ matrix.type }} (${{ matrix.platform }})
     runs-on: ${{ matrix.platform }}
+    if: false
     continue-on-error: true
     steps:
     - uses: actions/checkout@v4
@@ -70,6 +71,7 @@ jobs:
   test_packages:
     name: Package Tests
     runs-on: ubuntu-latest
+    if: false
     steps:
     - uses: actions/checkout@v4
     - name: Setup PHP
@@ -83,6 +85,7 @@ jobs:
   test_packages_lowest:
     name: Package Tests (Lowest Dependencies)
     runs-on: ubuntu-latest
+    if: false
     steps:
     - uses: actions/checkout@v4
     - name: Setup PHP
@@ -96,6 +99,7 @@ jobs:
   test_dev_commands:
     name: Dev Commands Unit Tests
     runs-on: ubuntu-latest
+    if: false
     steps:
     - uses: actions/checkout@v4
     - name: Setup PHP

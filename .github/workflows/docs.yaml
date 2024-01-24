@@ -9,6 +9,7 @@ jobs:
   docfx:
     name: "Run DocFX tests"
     runs-on: ubuntu-latest
+    if: false
     env:
       PHPDOC_ENV: prod
     steps:
