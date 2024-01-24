@@ -11,7 +11,8 @@
         "guzzlehttp/promises": "^1.4||^2.0",
         "guzzlehttp/psr7": "^2.6",
         "monolog/monolog": "^2.9|^3.0",
-        "psr/http-message": "^1.0|^2.0"
+        "psr/http-message": "^1.0|^2.0",
+        "google/gax": "^1.26.3"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0",
@@ -20,7 +21,6 @@
         "phpdocumentor/reflection": "^5.3.3",
         "phpdocumentor/reflection-docblock": "^5.3",
         "erusev/parsedown": "^1.6",
-        "google/gax": "^1.26.0",
         "opis/closure": "^3",
         "google/cloud-common-protos": "~0.5"
     },
