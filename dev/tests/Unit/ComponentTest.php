@@ -34,9 +34,9 @@ class ComponentTest extends TestCase
     /**
      * @dataProvider provideComponentProperties
      */
-    public function testComponentProperties(string $componentName, array $details)
+    public function testComponentProperties(string $componentName, array $details, ?string $branch)
     {
-        $component = new Component($componentName);
+        $component = new Component($componentName, null, $branch);
         foreach ($details as $key => $value) {
             $this->assertEquals($details[$key], $component->{'get' . ucfirst($key)}());
         }
@@ -62,7 +62,9 @@ class ComponentTest extends TestCase
                     'description' => 'Cloud Bigtable Client for PHP',
                     'namespaces' => ['Google\Cloud\Bigtable' => 'src'],
                     'referenceDocumentationUid' => 'google-cloud-bigtable',
-                ]
+                    'branch' => 'foo'
+                ],
+                'foo'
             ],
             [
                 'Talent',
@@ -70,8 +72,18 @@ class ComponentTest extends TestCase
                     'id' => 'cloud-talent',
                     'apiVersions' => ['V4', 'V4beta1'],
                     'protoPackages' => ['google/cloud/talent/v4', 'google/cloud/talent/v4beta1'],
-                ]
+                ],
+                null
             ]
         ];
+    }
+
+    public function testGetBranch()
+    {
+        $component = new Component('Bigtable', null, 'foo');
+        $this->assertEquals($component->getBranch(), 'foo');
+
+        $component = new Component('PubSub');
+        $this->assertNull($component->getBranch());
     }
 }

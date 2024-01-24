@@ -32,7 +32,7 @@ class Component
     private string $releaseLevel;
     private string $packageName;
     private string $repoName;
-    private string $branch;
+    private ?string $branch;
     private string $productDocumentation;
     private string $clientDocumentation;
     private string $description;
