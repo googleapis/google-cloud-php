@@ -116,6 +116,12 @@ class SplitCommand extends Command
                 '',
                 InputOption::VALUE_NONE,
                 'Update the release notes if the release already exists.'
+            )
+            ->addOption(
+                'component-branch',
+                '',
+                InputOption::VALUE_OPTIONAL,
+                'Specify the branch of the component to push to(used when the component option is used).'
             );
     }
 
@@ -159,7 +165,8 @@ class SplitCommand extends Command
         $releaseNotes = new ReleaseNotes($changelog);
 
         if ($componentId = $input->getOption('component')) {
-            $components = [new Component($componentId)];
+            $branch = $input->getOption('component-branch');
+            $components = [new Component($componentId, null, $branch)];
         } else {
             // Build a list of components to update based on the release notes
             $components = [];
@@ -242,6 +249,7 @@ class SplitCommand extends Command
         $componentId = $component->getId();
         $isAlreadyTagged = $github->doesTagExist($repoName, $tagName);
         $defaultBranch = $github->getDefaultBranch($repoName) ?: 'main';
+        $branchToPush = $component->getBranch() ?? $defaultBranch;
 
         // If the repo is empty, it's new and we don't want to force-push.
         $isTargetEmpty = $github->isTargetEmpty($repoName);
@@ -293,7 +301,7 @@ class SplitCommand extends Command
             $repoName
         ));
 
-        $res = $github->push($repoName, $splitBranch, $defaultBranch, $isTargetEmpty);
+        $res = $github->push($repoName, $splitBranch, $branchToPush, $isTargetEmpty);
         if ($res[0]) {
             $output->writeln(sprintf('<comment>%s</comment>: Push succeeded.', $componentId));
         } else {
