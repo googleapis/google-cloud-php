@@ -46,7 +46,8 @@ jobs:
               --from=${{ steps.latest-release.outputs.release }} \
               --to=origin/main --format=github-actions
 
-  # Ensure the release PR does not contain an unexpected (2.0.0) major version release
+  # Ensure the release PR does not contain an unexpected (e.g. 2.0.0) major version release
+  # add "MAJOR_VERSION_ALLOWED=component1,component2" to the PR description to allow major version releases for those components
   unexpected-major-version-check:
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'release-please[bot]'
@@ -54,9 +55,32 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Parse allowed major versions
+        uses: actions-ecosystem/action-regex-match@v2
+        id: allowed-major-versions
+        with:
+          text: ${{ github.event.pull_request.body }}
+          regex: '^MAJOR_VERSION_ALLOWED=(.*)$'
+          flags: gm
       - name: "Check for unexpected major version"
         run: |
-          if [[ "true" == "${{ contains(github.event.pull_request.body, '2.0.0') }}" ]]; then
-            echo "Unexpected 2.0.0 major version release found"
+          # get all changed components
+          IFS=', ' read -r -a ALLOWED_MAJOR_VERSIONS <<< "${{ steps.allowed-major-versions.outputs.group1 }}"
+          COMPONENTS=$(git diff origin/main --name-only | grep VERSION | xargs dirname)
+          FAIL=""
+          for COMPONENT in ${COMPONENTS}; do {
+            # A new version is being released
+            if [[ "$(cat $COMPONENT/VERSION)" == [123456789].0.0 ]]; then
+              if [[ ${ALLOWED_MAJOR_VERSIONS[@]} =~ $COMPONENT ]]; then
+                echo "Major version release allowed: $COMPONENT"
+              else
+                echo "Unexpected major version release found: $COMPONENT"
+                FAIL="true"
+              fi
+            fi
+          }; done
+          if [[ "$FAIL" == "true" ]]; then
+            echo "Add \"MAJOR_VERSION_ALLOWED=component1,component2\" to the PR description to allow "
+            echo "major version releases for those components"
             exit 1
           fi
