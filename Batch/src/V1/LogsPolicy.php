@@ -32,7 +32,7 @@ class LogsPolicy extends \Google\Protobuf\Internal\Message
     private $logs_path = '';
     /**
      * Optional. Additional settings for Cloud Logging. It will only take effect
-     * when the destination of LogsPolicy is set to CLOUD_LOGGING.
+     * when the destination of `LogsPolicy` is set to `CLOUD_LOGGING`.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.LogsPolicy.CloudLoggingOption cloud_logging_option = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -52,7 +52,7 @@ class LogsPolicy extends \Google\Protobuf\Internal\Message
      *           Filestore, or a Cloud Storage path.
      *     @type \Google\Cloud\Batch\V1\LogsPolicy\CloudLoggingOption $cloud_logging_option
      *           Optional. Additional settings for Cloud Logging. It will only take effect
-     *           when the destination of LogsPolicy is set to CLOUD_LOGGING.
+     *           when the destination of `LogsPolicy` is set to `CLOUD_LOGGING`.
      * }
      */
     public function __construct($data = NULL) {
@@ -118,7 +118,7 @@ class LogsPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Additional settings for Cloud Logging. It will only take effect
-     * when the destination of LogsPolicy is set to CLOUD_LOGGING.
+     * when the destination of `LogsPolicy` is set to `CLOUD_LOGGING`.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.LogsPolicy.CloudLoggingOption cloud_logging_option = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Batch\V1\LogsPolicy\CloudLoggingOption|null
@@ -140,7 +140,7 @@ class LogsPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Additional settings for Cloud Logging. It will only take effect
-     * when the destination of LogsPolicy is set to CLOUD_LOGGING.
+     * when the destination of `LogsPolicy` is set to `CLOUD_LOGGING`.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.LogsPolicy.CloudLoggingOption cloud_logging_option = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Batch\V1\LogsPolicy\CloudLoggingOption $var
