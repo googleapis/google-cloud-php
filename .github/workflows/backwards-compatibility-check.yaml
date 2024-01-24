@@ -68,8 +68,7 @@ jobs:
       - name: "Check for unexpected major version"
         run: |
           # get all changed components
-          IFS=', ' read -r -a ALLOWED_MAJOR_VERSIONS <<< "{{ steps.get-major-versions.outputs.group1 }}"
-          echo "Allowed major versions: $ALLOWED_MAJOR_VERSIONS[4]"
+          IFS=', ' read -r -a ALLOWED_MAJOR_VERSIONS <<< "${{ steps.allowed-major-versions.outputs.group1 }}"
           COMPONENTS=$(git diff origin/main --name-only | grep VERSION | xargs dirname)
           FAIL=""
           for COMPONENT in ${COMPONENTS}; do {
@@ -78,7 +77,7 @@ jobs:
               if [[ ${ALLOWED_MAJOR_VERSIONS[@]} =~ $COMPONENT ]]; then
                 echo "Major version release allowed: $COMPONENT"
               else
-                echo "Unexpected major version release found: $COMPONENT!"
+                echo "Unexpected major version release found: $COMPONENT"
                 FAIL="true"
               fi
             fi
