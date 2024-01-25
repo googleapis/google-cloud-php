@@ -75,6 +75,11 @@
                                 "createAudience"
                             ]
                         },
+                        "CreateCalculatedMetric": {
+                            "methods": [
+                                "createCalculatedMetric"
+                            ]
+                        },
                         "CreateChannelGroup": {
                             "methods": [
                                 "createChannelGroup"
@@ -188,6 +193,11 @@
                         "DeleteAdSenseLink": {
                             "methods": [
                                 "deleteAdSenseLink"
+                            ]
+                        },
+                        "DeleteCalculatedMetric": {
+                            "methods": [
+                                "deleteCalculatedMetric"
                             ]
                         },
                         "DeleteChannelGroup": {
@@ -308,6 +318,11 @@
                         "GetBigQueryLink": {
                             "methods": [
                                 "getBigQueryLink"
+                            ]
+                        },
+                        "GetCalculatedMetric": {
+                            "methods": [
+                                "getCalculatedMetric"
                             ]
                         },
                         "GetChannelGroup": {
@@ -445,6 +460,11 @@
                                 "listBigQueryLinks"
                             ]
                         },
+                        "ListCalculatedMetrics": {
+                            "methods": [
+                                "listCalculatedMetrics"
+                            ]
+                        },
                         "ListChannelGroups": {
                             "methods": [
                                 "listChannelGroups"
@@ -573,6 +593,11 @@
                         "UpdateAudience": {
                             "methods": [
                                 "updateAudience"
+                            ]
+                        },
+                        "UpdateCalculatedMetric": {
+                            "methods": [
+                                "updateCalculatedMetric"
                             ]
                         },
                         "UpdateChannelGroup": {
