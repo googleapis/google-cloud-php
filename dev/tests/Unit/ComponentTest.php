@@ -36,7 +36,7 @@ class ComponentTest extends TestCase
      */
     public function testComponentProperties(string $componentName, array $details)
     {
-        $component = new Component($componentName, null);
+        $component = new Component($componentName);
         foreach ($details as $key => $value) {
             $this->assertEquals($details[$key], $component->{'get' . ucfirst($key)}());
         }

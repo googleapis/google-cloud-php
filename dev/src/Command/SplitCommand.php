@@ -121,7 +121,7 @@ class SplitCommand extends Command
                 'component-branch',
                 '',
                 InputOption::VALUE_OPTIONAL,
-                'Specify the branch of the component to push to(used when the component option is used).'
+                'Specify the branch of the component to push to.'
             );
     }
 
@@ -163,11 +163,10 @@ class SplitCommand extends Command
         );
 
         $releaseNotes = new ReleaseNotes($changelog);
-        $branchToPush = null;
+        $branchToPush = $input->getOption('component-branch');
 
         if ($componentId = $input->getOption('component')) {
-            $branchToPush = $input->getOption('component-branch');
-            $components = [new Component($componentId, null)];
+            $components = [new Component($componentId)];
         } else {
             // Build a list of components to update based on the release notes
             $components = [];
@@ -244,15 +243,16 @@ class SplitCommand extends Command
         $parentTagSource,
         $updateReleaseNotes,
         ?Packagist $packagist,
-        ?string $branchToPush = null
+        ?string $branchToPush
     ) {
         $output->writeln('');
         $tagName = 'v' . $component->getPackageVersion();
         $repoName = $component->getRepoName();
         $componentId = $component->getId();
         $isAlreadyTagged = $github->doesTagExist($repoName, $tagName);
-        $defaultBranch = $github->getDefaultBranch($repoName) ?: 'main';
-        $branchToPush = $branchToPush ?? $defaultBranch;
+        if (is_null($branchToPush)) {
+            $branchToPush = $github->getDefaultBranch($repoName) ?: 'main';
+        }
 
         // If the repo is empty, it's new and we don't want to force-push.
         $isTargetEmpty = $github->isTargetEmpty($repoName);
