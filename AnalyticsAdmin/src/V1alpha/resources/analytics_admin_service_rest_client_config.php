@@ -192,6 +192,21 @@ return [
                     ],
                 ],
             ],
+            'CreateCalculatedMetric' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/calculatedMetrics',
+                'body' => 'calculated_metric',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'calculated_metric_id',
+                ],
+            ],
             'CreateChannelGroup' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/channelGroups',
@@ -443,6 +458,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteCalculatedMetric' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/calculatedMetrics/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteChannelGroup' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=properties/*/channelGroups/*}',
@@ -686,6 +712,17 @@ return [
             'GetBigQueryLink' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*/bigQueryLinks/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetCalculatedMetric' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/calculatedMetrics/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -983,6 +1020,17 @@ return [
                     ],
                 ],
             ],
+            'ListCalculatedMetrics' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/calculatedMetrics',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListChannelGroups' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/channelGroups',
@@ -1272,6 +1320,22 @@ return [
                     'audience.name' => [
                         'getters' => [
                             'getAudience',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateCalculatedMetric' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{calculated_metric.name=properties/*/calculatedMetrics/*}',
+                'body' => 'calculated_metric',
+                'placeholders' => [
+                    'calculated_metric.name' => [
+                        'getters' => [
+                            'getCalculatedMetric',
                             'getName',
                         ],
                     ],
