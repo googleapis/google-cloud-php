@@ -20,26 +20,26 @@ class AgentInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string agent_id = 1;</code>
      */
-    protected $agent_id = '';
+    private $agent_id = '';
     /**
      * The agent's name.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    protected $display_name = '';
+    private $display_name = '';
     /**
      * A user-specified string representing the agent's team.
      *
      * Generated from protobuf field <code>string team = 3;</code>
      */
-    protected $team = '';
+    private $team = '';
     /**
      * A user-provided string indicating the outcome of the agent's segment of
      * the call.
      *
      * Generated from protobuf field <code>string disposition_code = 4;</code>
      */
-    protected $disposition_code = '';
+    private $disposition_code = '';
 
     /**
      * Constructor.
@@ -171,6 +171,4 @@ class AgentInfo extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AgentInfo::class, \Google\Cloud\ContactCenterInsights\V1\Conversation_QualityMetadata_AgentInfo::class);
 

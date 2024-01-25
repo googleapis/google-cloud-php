@@ -20,19 +20,19 @@ class QualityMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 customer_satisfaction_rating = 1;</code>
      */
-    protected $customer_satisfaction_rating = 0;
+    private $customer_satisfaction_rating = 0;
     /**
      * The amount of time the customer waited to connect with an agent.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration wait_duration = 2;</code>
      */
-    protected $wait_duration = null;
+    private $wait_duration = null;
     /**
      * An arbitrary string value specifying the menu path the customer took.
      *
      * Generated from protobuf field <code>string menu_path = 3;</code>
      */
-    protected $menu_path = '';
+    private $menu_path = '';
     /**
      * Information about agents involved in the call.
      *
@@ -177,6 +177,4 @@ class QualityMetadata extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(QualityMetadata::class, \Google\Cloud\ContactCenterInsights\V1\Conversation_QualityMetadata::class);
 
