@@ -16,17 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListSubscriptionsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The subscriptions that match the request.
+     * Optional. The subscriptions that match the request.
      *
-     * Generated from protobuf field <code>repeated .google.pubsub.v1.Subscription subscriptions = 1;</code>
+     * Generated from protobuf field <code>repeated .google.pubsub.v1.Subscription subscriptions = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $subscriptions;
     /**
-     * If not empty, indicates that there may be more subscriptions that match
-     * the request; this value should be passed in a new
+     * Optional. If not empty, indicates that there may be more subscriptions that
+     * match the request; this value should be passed in a new
      * `ListSubscriptionsRequest` to get more subscriptions.
      *
-     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $next_page_token = '';
 
@@ -37,10 +37,10 @@ class ListSubscriptionsResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\PubSub\V1\Subscription>|\Google\Protobuf\Internal\RepeatedField $subscriptions
-     *           The subscriptions that match the request.
+     *           Optional. The subscriptions that match the request.
      *     @type string $next_page_token
-     *           If not empty, indicates that there may be more subscriptions that match
-     *           the request; this value should be passed in a new
+     *           Optional. If not empty, indicates that there may be more subscriptions that
+     *           match the request; this value should be passed in a new
      *           `ListSubscriptionsRequest` to get more subscriptions.
      * }
      */
@@ -50,9 +50,9 @@ class ListSubscriptionsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The subscriptions that match the request.
+     * Optional. The subscriptions that match the request.
      *
-     * Generated from protobuf field <code>repeated .google.pubsub.v1.Subscription subscriptions = 1;</code>
+     * Generated from protobuf field <code>repeated .google.pubsub.v1.Subscription subscriptions = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSubscriptions()
@@ -61,9 +61,9 @@ class ListSubscriptionsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The subscriptions that match the request.
+     * Optional. The subscriptions that match the request.
      *
-     * Generated from protobuf field <code>repeated .google.pubsub.v1.Subscription subscriptions = 1;</code>
+     * Generated from protobuf field <code>repeated .google.pubsub.v1.Subscription subscriptions = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\PubSub\V1\Subscription>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -76,11 +76,11 @@ class ListSubscriptionsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If not empty, indicates that there may be more subscriptions that match
-     * the request; this value should be passed in a new
+     * Optional. If not empty, indicates that there may be more subscriptions that
+     * match the request; this value should be passed in a new
      * `ListSubscriptionsRequest` to get more subscriptions.
      *
-     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getNextPageToken()
@@ -89,11 +89,11 @@ class ListSubscriptionsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If not empty, indicates that there may be more subscriptions that match
-     * the request; this value should be passed in a new
+     * Optional. If not empty, indicates that there may be more subscriptions that
+     * match the request; this value should be passed in a new
      * `ListSubscriptionsRequest` to get more subscriptions.
      *
-     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

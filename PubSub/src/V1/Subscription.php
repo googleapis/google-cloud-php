@@ -37,32 +37,32 @@ class Subscription extends \Google\Protobuf\Internal\Message
      */
     private $topic = '';
     /**
-     * If push delivery is used with this subscription, this field is
+     * Optional. If push delivery is used with this subscription, this field is
      * used to configure it.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $push_config = null;
     /**
-     * If delivery to BigQuery is used with this subscription, this field is
-     * used to configure it.
+     * Optional. If delivery to BigQuery is used with this subscription, this
+     * field is used to configure it.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.BigQueryConfig bigquery_config = 18;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.BigQueryConfig bigquery_config = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $bigquery_config = null;
     /**
-     * If delivery to Google Cloud Storage is used with this subscription, this
-     * field is used to configure it.
+     * Optional. If delivery to Google Cloud Storage is used with this
+     * subscription, this field is used to configure it.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.CloudStorageConfig cloud_storage_config = 22;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.CloudStorageConfig cloud_storage_config = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $cloud_storage_config = null;
     /**
-     * The approximate amount of time (on a best-effort basis) Pub/Sub waits for
-     * the subscriber to acknowledge receipt before resending the message. In the
-     * interval after the message is delivered and before it is acknowledged, it
-     * is considered to be _outstanding_. During that time period, the
-     * message will not be redelivered (on a best-effort basis).
+     * Optional. The approximate amount of time (on a best-effort basis) Pub/Sub
+     * waits for the subscriber to acknowledge receipt before resending the
+     * message. In the interval after the message is delivered and before it is
+     * acknowledged, it is considered to be _outstanding_. During that time
+     * period, the message will not be redelivered (on a best-effort basis).
      * For pull subscriptions, this value is used as the initial value for the ack
      * deadline. To override this value for a given message, call
      * `ModifyAckDeadline` with the corresponding `ack_id` if using
@@ -76,105 +76,105 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * If the subscriber never acknowledges the message, the Pub/Sub
      * system will eventually redeliver the message.
      *
-     * Generated from protobuf field <code>int32 ack_deadline_seconds = 5;</code>
+     * Generated from protobuf field <code>int32 ack_deadline_seconds = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $ack_deadline_seconds = 0;
     /**
-     * Indicates whether to retain acknowledged messages. If true, then
+     * Optional. Indicates whether to retain acknowledged messages. If true, then
      * messages are not expunged from the subscription's backlog, even if they are
      * acknowledged, until they fall out of the `message_retention_duration`
      * window. This must be true if you would like to [`Seek` to a timestamp]
      * (https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time) in
      * the past to replay previously-acknowledged messages.
      *
-     * Generated from protobuf field <code>bool retain_acked_messages = 7;</code>
+     * Generated from protobuf field <code>bool retain_acked_messages = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $retain_acked_messages = false;
     /**
-     * How long to retain unacknowledged messages in the subscription's backlog,
-     * from the moment a message is published.
-     * If `retain_acked_messages` is true, then this also configures the retention
-     * of acknowledged messages, and thus configures how far back in time a `Seek`
-     * can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10
-     * minutes.
+     * Optional. How long to retain unacknowledged messages in the subscription's
+     * backlog, from the moment a message is published. If `retain_acked_messages`
+     * is true, then this also configures the retention of acknowledged messages,
+     * and thus configures how far back in time a `Seek` can be done. Defaults to
+     * 7 days. Cannot be more than 7 days or less than 10 minutes.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $message_retention_duration = null;
     /**
-     * See [Creating and managing
+     * Optional. See [Creating and managing
      * labels](https://cloud.google.com/pubsub/docs/labels).
      *
-     * Generated from protobuf field <code>map<string, string> labels = 9;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
     /**
-     * If true, messages published with the same `ordering_key` in `PubsubMessage`
-     * will be delivered to the subscribers in the order in which they
-     * are received by the Pub/Sub system. Otherwise, they may be delivered in
-     * any order.
+     * Optional. If true, messages published with the same `ordering_key` in
+     * `PubsubMessage` will be delivered to the subscribers in the order in which
+     * they are received by the Pub/Sub system. Otherwise, they may be delivered
+     * in any order.
      *
-     * Generated from protobuf field <code>bool enable_message_ordering = 10;</code>
+     * Generated from protobuf field <code>bool enable_message_ordering = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $enable_message_ordering = false;
     /**
-     * A policy that specifies the conditions for this subscription's expiration.
-     * A subscription is considered active as long as any connected subscriber is
-     * successfully consuming messages from the subscription or is issuing
-     * operations on the subscription. If `expiration_policy` is not set, a
-     * *default policy* with `ttl` of 31 days will be used. The minimum allowed
+     * Optional. A policy that specifies the conditions for this subscription's
+     * expiration. A subscription is considered active as long as any connected
+     * subscriber is successfully consuming messages from the subscription or is
+     * issuing operations on the subscription. If `expiration_policy` is not set,
+     * a *default policy* with `ttl` of 31 days will be used. The minimum allowed
      * value for `expiration_policy.ttl` is 1 day. If `expiration_policy` is set,
      * but `expiration_policy.ttl` is not set, the subscription never expires.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.ExpirationPolicy expiration_policy = 11;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.ExpirationPolicy expiration_policy = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $expiration_policy = null;
     /**
-     * An expression written in the Pub/Sub [filter
+     * Optional. An expression written in the Pub/Sub [filter
      * language](https://cloud.google.com/pubsub/docs/filtering). If non-empty,
      * then only `PubsubMessage`s whose `attributes` field matches the filter are
      * delivered on this subscription. If empty, then no messages are filtered
      * out.
      *
-     * Generated from protobuf field <code>string filter = 12;</code>
+     * Generated from protobuf field <code>string filter = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $filter = '';
     /**
-     * A policy that specifies the conditions for dead lettering messages in
-     * this subscription. If dead_letter_policy is not set, dead lettering
-     * is disabled.
-     * The Cloud Pub/Sub service account associated with this subscriptions's
+     * Optional. A policy that specifies the conditions for dead lettering
+     * messages in this subscription. If dead_letter_policy is not set, dead
+     * lettering is disabled.
+     * The Pub/Sub service account associated with this subscriptions's
      * parent project (i.e.,
      * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must have
      * permission to Acknowledge() messages on this subscription.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.DeadLetterPolicy dead_letter_policy = 13;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.DeadLetterPolicy dead_letter_policy = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $dead_letter_policy = null;
     /**
-     * A policy that specifies how Pub/Sub retries message delivery for this
-     * subscription.
+     * Optional. A policy that specifies how Pub/Sub retries message delivery for
+     * this subscription.
      * If not set, the default retry policy is applied. This generally implies
      * that messages will be retried as soon as possible for healthy subscribers.
      * RetryPolicy will be triggered on NACKs or acknowledgement deadline
      * exceeded events for a given message.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.RetryPolicy retry_policy = 14;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.RetryPolicy retry_policy = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $retry_policy = null;
     /**
-     * Indicates whether the subscription is detached from its topic. Detached
-     * subscriptions don't receive messages from their topic and don't retain any
-     * backlog. `Pull` and `StreamingPull` requests will return
+     * Optional. Indicates whether the subscription is detached from its topic.
+     * Detached subscriptions don't receive messages from their topic and don't
+     * retain any backlog. `Pull` and `StreamingPull` requests will return
      * FAILED_PRECONDITION. If the subscription is a push subscription, pushes to
      * the endpoint will not be made.
      *
-     * Generated from protobuf field <code>bool detached = 15;</code>
+     * Generated from protobuf field <code>bool detached = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $detached = false;
     /**
-     * If true, Pub/Sub provides the following guarantees for the delivery of
-     * a message with a given value of `message_id` on this subscription:
+     * Optional. If true, Pub/Sub provides the following guarantees for the
+     * delivery of a message with a given value of `message_id` on this
+     * subscription:
      * * The message sent to a subscriber is guaranteed not to be resent
      * before the message's acknowledgement deadline expires.
      * * An acknowledged message will not be resent to a subscriber.
@@ -183,7 +183,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * multiple times by a publisher client. These copies are  considered distinct
      * by Pub/Sub and have distinct `message_id` values.
      *
-     * Generated from protobuf field <code>bool enable_exactly_once_delivery = 16;</code>
+     * Generated from protobuf field <code>bool enable_exactly_once_delivery = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $enable_exactly_once_delivery = false;
     /**
@@ -216,13 +216,13 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *                                                               messages. Format is `projects/{project}/topics/{topic}`. The value of this
      *                                                               field will be `_deleted-topic_` if the topic has been deleted. Please see
      *                                                               {@see SubscriberClient::topicName()} for help formatting this field.
-     * @param \Google\Cloud\PubSub\V1\PushConfig $pushConfig         If push delivery is used with this subscription, this field is
+     * @param \Google\Cloud\PubSub\V1\PushConfig $pushConfig         Optional. If push delivery is used with this subscription, this field is
      *                                                               used to configure it.
-     * @param int                                $ackDeadlineSeconds The approximate amount of time (on a best-effort basis) Pub/Sub waits for
-     *                                                               the subscriber to acknowledge receipt before resending the message. In the
-     *                                                               interval after the message is delivered and before it is acknowledged, it
-     *                                                               is considered to be _outstanding_. During that time period, the
-     *                                                               message will not be redelivered (on a best-effort basis).
+     * @param int                                $ackDeadlineSeconds Optional. The approximate amount of time (on a best-effort basis) Pub/Sub
+     *                                                               waits for the subscriber to acknowledge receipt before resending the
+     *                                                               message. In the interval after the message is delivered and before it is
+     *                                                               acknowledged, it is considered to be _outstanding_. During that time
+     *                                                               period, the message will not be redelivered (on a best-effort basis).
      *
      *                                                               For pull subscriptions, this value is used as the initial value for the ack
      *                                                               deadline. To override this value for a given message, call
@@ -270,20 +270,20 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           messages. Format is `projects/{project}/topics/{topic}`. The value of this
      *           field will be `_deleted-topic_` if the topic has been deleted.
      *     @type \Google\Cloud\PubSub\V1\PushConfig $push_config
-     *           If push delivery is used with this subscription, this field is
+     *           Optional. If push delivery is used with this subscription, this field is
      *           used to configure it.
      *     @type \Google\Cloud\PubSub\V1\BigQueryConfig $bigquery_config
-     *           If delivery to BigQuery is used with this subscription, this field is
-     *           used to configure it.
-     *     @type \Google\Cloud\PubSub\V1\CloudStorageConfig $cloud_storage_config
-     *           If delivery to Google Cloud Storage is used with this subscription, this
+     *           Optional. If delivery to BigQuery is used with this subscription, this
      *           field is used to configure it.
+     *     @type \Google\Cloud\PubSub\V1\CloudStorageConfig $cloud_storage_config
+     *           Optional. If delivery to Google Cloud Storage is used with this
+     *           subscription, this field is used to configure it.
      *     @type int $ack_deadline_seconds
-     *           The approximate amount of time (on a best-effort basis) Pub/Sub waits for
-     *           the subscriber to acknowledge receipt before resending the message. In the
-     *           interval after the message is delivered and before it is acknowledged, it
-     *           is considered to be _outstanding_. During that time period, the
-     *           message will not be redelivered (on a best-effort basis).
+     *           Optional. The approximate amount of time (on a best-effort basis) Pub/Sub
+     *           waits for the subscriber to acknowledge receipt before resending the
+     *           message. In the interval after the message is delivered and before it is
+     *           acknowledged, it is considered to be _outstanding_. During that time
+     *           period, the message will not be redelivered (on a best-effort basis).
      *           For pull subscriptions, this value is used as the initial value for the ack
      *           deadline. To override this value for a given message, call
      *           `ModifyAckDeadline` with the corresponding `ack_id` if using
@@ -297,65 +297,65 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           If the subscriber never acknowledges the message, the Pub/Sub
      *           system will eventually redeliver the message.
      *     @type bool $retain_acked_messages
-     *           Indicates whether to retain acknowledged messages. If true, then
+     *           Optional. Indicates whether to retain acknowledged messages. If true, then
      *           messages are not expunged from the subscription's backlog, even if they are
      *           acknowledged, until they fall out of the `message_retention_duration`
      *           window. This must be true if you would like to [`Seek` to a timestamp]
      *           (https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time) in
      *           the past to replay previously-acknowledged messages.
      *     @type \Google\Protobuf\Duration $message_retention_duration
-     *           How long to retain unacknowledged messages in the subscription's backlog,
-     *           from the moment a message is published.
-     *           If `retain_acked_messages` is true, then this also configures the retention
-     *           of acknowledged messages, and thus configures how far back in time a `Seek`
-     *           can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10
-     *           minutes.
+     *           Optional. How long to retain unacknowledged messages in the subscription's
+     *           backlog, from the moment a message is published. If `retain_acked_messages`
+     *           is true, then this also configures the retention of acknowledged messages,
+     *           and thus configures how far back in time a `Seek` can be done. Defaults to
+     *           7 days. Cannot be more than 7 days or less than 10 minutes.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           See [Creating and managing
+     *           Optional. See [Creating and managing
      *           labels](https://cloud.google.com/pubsub/docs/labels).
      *     @type bool $enable_message_ordering
-     *           If true, messages published with the same `ordering_key` in `PubsubMessage`
-     *           will be delivered to the subscribers in the order in which they
-     *           are received by the Pub/Sub system. Otherwise, they may be delivered in
-     *           any order.
+     *           Optional. If true, messages published with the same `ordering_key` in
+     *           `PubsubMessage` will be delivered to the subscribers in the order in which
+     *           they are received by the Pub/Sub system. Otherwise, they may be delivered
+     *           in any order.
      *     @type \Google\Cloud\PubSub\V1\ExpirationPolicy $expiration_policy
-     *           A policy that specifies the conditions for this subscription's expiration.
-     *           A subscription is considered active as long as any connected subscriber is
-     *           successfully consuming messages from the subscription or is issuing
-     *           operations on the subscription. If `expiration_policy` is not set, a
-     *           *default policy* with `ttl` of 31 days will be used. The minimum allowed
+     *           Optional. A policy that specifies the conditions for this subscription's
+     *           expiration. A subscription is considered active as long as any connected
+     *           subscriber is successfully consuming messages from the subscription or is
+     *           issuing operations on the subscription. If `expiration_policy` is not set,
+     *           a *default policy* with `ttl` of 31 days will be used. The minimum allowed
      *           value for `expiration_policy.ttl` is 1 day. If `expiration_policy` is set,
      *           but `expiration_policy.ttl` is not set, the subscription never expires.
      *     @type string $filter
-     *           An expression written in the Pub/Sub [filter
+     *           Optional. An expression written in the Pub/Sub [filter
      *           language](https://cloud.google.com/pubsub/docs/filtering). If non-empty,
      *           then only `PubsubMessage`s whose `attributes` field matches the filter are
      *           delivered on this subscription. If empty, then no messages are filtered
      *           out.
      *     @type \Google\Cloud\PubSub\V1\DeadLetterPolicy $dead_letter_policy
-     *           A policy that specifies the conditions for dead lettering messages in
-     *           this subscription. If dead_letter_policy is not set, dead lettering
-     *           is disabled.
-     *           The Cloud Pub/Sub service account associated with this subscriptions's
+     *           Optional. A policy that specifies the conditions for dead lettering
+     *           messages in this subscription. If dead_letter_policy is not set, dead
+     *           lettering is disabled.
+     *           The Pub/Sub service account associated with this subscriptions's
      *           parent project (i.e.,
      *           service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must have
      *           permission to Acknowledge() messages on this subscription.
      *     @type \Google\Cloud\PubSub\V1\RetryPolicy $retry_policy
-     *           A policy that specifies how Pub/Sub retries message delivery for this
-     *           subscription.
+     *           Optional. A policy that specifies how Pub/Sub retries message delivery for
+     *           this subscription.
      *           If not set, the default retry policy is applied. This generally implies
      *           that messages will be retried as soon as possible for healthy subscribers.
      *           RetryPolicy will be triggered on NACKs or acknowledgement deadline
      *           exceeded events for a given message.
      *     @type bool $detached
-     *           Indicates whether the subscription is detached from its topic. Detached
-     *           subscriptions don't receive messages from their topic and don't retain any
-     *           backlog. `Pull` and `StreamingPull` requests will return
+     *           Optional. Indicates whether the subscription is detached from its topic.
+     *           Detached subscriptions don't receive messages from their topic and don't
+     *           retain any backlog. `Pull` and `StreamingPull` requests will return
      *           FAILED_PRECONDITION. If the subscription is a push subscription, pushes to
      *           the endpoint will not be made.
      *     @type bool $enable_exactly_once_delivery
-     *           If true, Pub/Sub provides the following guarantees for the delivery of
-     *           a message with a given value of `message_id` on this subscription:
+     *           Optional. If true, Pub/Sub provides the following guarantees for the
+     *           delivery of a message with a given value of `message_id` on this
+     *           subscription:
      *           * The message sent to a subscriber is guaranteed not to be resent
      *           before the message's acknowledgement deadline expires.
      *           * An acknowledged message will not be resent to a subscriber.
@@ -447,10 +447,10 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If push delivery is used with this subscription, this field is
+     * Optional. If push delivery is used with this subscription, this field is
      * used to configure it.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\PubSub\V1\PushConfig|null
      */
     public function getPushConfig()
@@ -469,10 +469,10 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If push delivery is used with this subscription, this field is
+     * Optional. If push delivery is used with this subscription, this field is
      * used to configure it.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\PubSub\V1\PushConfig $var
      * @return $this
      */
@@ -485,10 +485,10 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If delivery to BigQuery is used with this subscription, this field is
-     * used to configure it.
+     * Optional. If delivery to BigQuery is used with this subscription, this
+     * field is used to configure it.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.BigQueryConfig bigquery_config = 18;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.BigQueryConfig bigquery_config = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\PubSub\V1\BigQueryConfig|null
      */
     public function getBigqueryConfig()
@@ -507,10 +507,10 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If delivery to BigQuery is used with this subscription, this field is
-     * used to configure it.
+     * Optional. If delivery to BigQuery is used with this subscription, this
+     * field is used to configure it.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.BigQueryConfig bigquery_config = 18;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.BigQueryConfig bigquery_config = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\PubSub\V1\BigQueryConfig $var
      * @return $this
      */
@@ -523,10 +523,10 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If delivery to Google Cloud Storage is used with this subscription, this
-     * field is used to configure it.
+     * Optional. If delivery to Google Cloud Storage is used with this
+     * subscription, this field is used to configure it.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.CloudStorageConfig cloud_storage_config = 22;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.CloudStorageConfig cloud_storage_config = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\PubSub\V1\CloudStorageConfig|null
      */
     public function getCloudStorageConfig()
@@ -545,10 +545,10 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If delivery to Google Cloud Storage is used with this subscription, this
-     * field is used to configure it.
+     * Optional. If delivery to Google Cloud Storage is used with this
+     * subscription, this field is used to configure it.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.CloudStorageConfig cloud_storage_config = 22;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.CloudStorageConfig cloud_storage_config = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\PubSub\V1\CloudStorageConfig $var
      * @return $this
      */
@@ -561,11 +561,11 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The approximate amount of time (on a best-effort basis) Pub/Sub waits for
-     * the subscriber to acknowledge receipt before resending the message. In the
-     * interval after the message is delivered and before it is acknowledged, it
-     * is considered to be _outstanding_. During that time period, the
-     * message will not be redelivered (on a best-effort basis).
+     * Optional. The approximate amount of time (on a best-effort basis) Pub/Sub
+     * waits for the subscriber to acknowledge receipt before resending the
+     * message. In the interval after the message is delivered and before it is
+     * acknowledged, it is considered to be _outstanding_. During that time
+     * period, the message will not be redelivered (on a best-effort basis).
      * For pull subscriptions, this value is used as the initial value for the ack
      * deadline. To override this value for a given message, call
      * `ModifyAckDeadline` with the corresponding `ack_id` if using
@@ -579,7 +579,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * If the subscriber never acknowledges the message, the Pub/Sub
      * system will eventually redeliver the message.
      *
-     * Generated from protobuf field <code>int32 ack_deadline_seconds = 5;</code>
+     * Generated from protobuf field <code>int32 ack_deadline_seconds = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getAckDeadlineSeconds()
@@ -588,11 +588,11 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The approximate amount of time (on a best-effort basis) Pub/Sub waits for
-     * the subscriber to acknowledge receipt before resending the message. In the
-     * interval after the message is delivered and before it is acknowledged, it
-     * is considered to be _outstanding_. During that time period, the
-     * message will not be redelivered (on a best-effort basis).
+     * Optional. The approximate amount of time (on a best-effort basis) Pub/Sub
+     * waits for the subscriber to acknowledge receipt before resending the
+     * message. In the interval after the message is delivered and before it is
+     * acknowledged, it is considered to be _outstanding_. During that time
+     * period, the message will not be redelivered (on a best-effort basis).
      * For pull subscriptions, this value is used as the initial value for the ack
      * deadline. To override this value for a given message, call
      * `ModifyAckDeadline` with the corresponding `ack_id` if using
@@ -606,7 +606,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * If the subscriber never acknowledges the message, the Pub/Sub
      * system will eventually redeliver the message.
      *
-     * Generated from protobuf field <code>int32 ack_deadline_seconds = 5;</code>
+     * Generated from protobuf field <code>int32 ack_deadline_seconds = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -619,14 +619,14 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates whether to retain acknowledged messages. If true, then
+     * Optional. Indicates whether to retain acknowledged messages. If true, then
      * messages are not expunged from the subscription's backlog, even if they are
      * acknowledged, until they fall out of the `message_retention_duration`
      * window. This must be true if you would like to [`Seek` to a timestamp]
      * (https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time) in
      * the past to replay previously-acknowledged messages.
      *
-     * Generated from protobuf field <code>bool retain_acked_messages = 7;</code>
+     * Generated from protobuf field <code>bool retain_acked_messages = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getRetainAckedMessages()
@@ -635,14 +635,14 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates whether to retain acknowledged messages. If true, then
+     * Optional. Indicates whether to retain acknowledged messages. If true, then
      * messages are not expunged from the subscription's backlog, even if they are
      * acknowledged, until they fall out of the `message_retention_duration`
      * window. This must be true if you would like to [`Seek` to a timestamp]
      * (https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time) in
      * the past to replay previously-acknowledged messages.
      *
-     * Generated from protobuf field <code>bool retain_acked_messages = 7;</code>
+     * Generated from protobuf field <code>bool retain_acked_messages = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -655,14 +655,13 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * How long to retain unacknowledged messages in the subscription's backlog,
-     * from the moment a message is published.
-     * If `retain_acked_messages` is true, then this also configures the retention
-     * of acknowledged messages, and thus configures how far back in time a `Seek`
-     * can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10
-     * minutes.
+     * Optional. How long to retain unacknowledged messages in the subscription's
+     * backlog, from the moment a message is published. If `retain_acked_messages`
+     * is true, then this also configures the retention of acknowledged messages,
+     * and thus configures how far back in time a `Seek` can be done. Defaults to
+     * 7 days. Cannot be more than 7 days or less than 10 minutes.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration|null
      */
     public function getMessageRetentionDuration()
@@ -681,14 +680,13 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * How long to retain unacknowledged messages in the subscription's backlog,
-     * from the moment a message is published.
-     * If `retain_acked_messages` is true, then this also configures the retention
-     * of acknowledged messages, and thus configures how far back in time a `Seek`
-     * can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10
-     * minutes.
+     * Optional. How long to retain unacknowledged messages in the subscription's
+     * backlog, from the moment a message is published. If `retain_acked_messages`
+     * is true, then this also configures the retention of acknowledged messages,
+     * and thus configures how far back in time a `Seek` can be done. Defaults to
+     * 7 days. Cannot be more than 7 days or less than 10 minutes.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var
      * @return $this
      */
@@ -701,10 +699,10 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [Creating and managing
+     * Optional. See [Creating and managing
      * labels](https://cloud.google.com/pubsub/docs/labels).
      *
-     * Generated from protobuf field <code>map<string, string> labels = 9;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -713,10 +711,10 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [Creating and managing
+     * Optional. See [Creating and managing
      * labels](https://cloud.google.com/pubsub/docs/labels).
      *
-     * Generated from protobuf field <code>map<string, string> labels = 9;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -729,12 +727,12 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, messages published with the same `ordering_key` in `PubsubMessage`
-     * will be delivered to the subscribers in the order in which they
-     * are received by the Pub/Sub system. Otherwise, they may be delivered in
-     * any order.
+     * Optional. If true, messages published with the same `ordering_key` in
+     * `PubsubMessage` will be delivered to the subscribers in the order in which
+     * they are received by the Pub/Sub system. Otherwise, they may be delivered
+     * in any order.
      *
-     * Generated from protobuf field <code>bool enable_message_ordering = 10;</code>
+     * Generated from protobuf field <code>bool enable_message_ordering = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getEnableMessageOrdering()
@@ -743,12 +741,12 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, messages published with the same `ordering_key` in `PubsubMessage`
-     * will be delivered to the subscribers in the order in which they
-     * are received by the Pub/Sub system. Otherwise, they may be delivered in
-     * any order.
+     * Optional. If true, messages published with the same `ordering_key` in
+     * `PubsubMessage` will be delivered to the subscribers in the order in which
+     * they are received by the Pub/Sub system. Otherwise, they may be delivered
+     * in any order.
      *
-     * Generated from protobuf field <code>bool enable_message_ordering = 10;</code>
+     * Generated from protobuf field <code>bool enable_message_ordering = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -761,15 +759,15 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A policy that specifies the conditions for this subscription's expiration.
-     * A subscription is considered active as long as any connected subscriber is
-     * successfully consuming messages from the subscription or is issuing
-     * operations on the subscription. If `expiration_policy` is not set, a
-     * *default policy* with `ttl` of 31 days will be used. The minimum allowed
+     * Optional. A policy that specifies the conditions for this subscription's
+     * expiration. A subscription is considered active as long as any connected
+     * subscriber is successfully consuming messages from the subscription or is
+     * issuing operations on the subscription. If `expiration_policy` is not set,
+     * a *default policy* with `ttl` of 31 days will be used. The minimum allowed
      * value for `expiration_policy.ttl` is 1 day. If `expiration_policy` is set,
      * but `expiration_policy.ttl` is not set, the subscription never expires.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.ExpirationPolicy expiration_policy = 11;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.ExpirationPolicy expiration_policy = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\PubSub\V1\ExpirationPolicy|null
      */
     public function getExpirationPolicy()
@@ -788,15 +786,15 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A policy that specifies the conditions for this subscription's expiration.
-     * A subscription is considered active as long as any connected subscriber is
-     * successfully consuming messages from the subscription or is issuing
-     * operations on the subscription. If `expiration_policy` is not set, a
-     * *default policy* with `ttl` of 31 days will be used. The minimum allowed
+     * Optional. A policy that specifies the conditions for this subscription's
+     * expiration. A subscription is considered active as long as any connected
+     * subscriber is successfully consuming messages from the subscription or is
+     * issuing operations on the subscription. If `expiration_policy` is not set,
+     * a *default policy* with `ttl` of 31 days will be used. The minimum allowed
      * value for `expiration_policy.ttl` is 1 day. If `expiration_policy` is set,
      * but `expiration_policy.ttl` is not set, the subscription never expires.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.ExpirationPolicy expiration_policy = 11;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.ExpirationPolicy expiration_policy = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\PubSub\V1\ExpirationPolicy $var
      * @return $this
      */
@@ -809,13 +807,13 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An expression written in the Pub/Sub [filter
+     * Optional. An expression written in the Pub/Sub [filter
      * language](https://cloud.google.com/pubsub/docs/filtering). If non-empty,
      * then only `PubsubMessage`s whose `attributes` field matches the filter are
      * delivered on this subscription. If empty, then no messages are filtered
      * out.
      *
-     * Generated from protobuf field <code>string filter = 12;</code>
+     * Generated from protobuf field <code>string filter = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getFilter()
@@ -824,13 +822,13 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An expression written in the Pub/Sub [filter
+     * Optional. An expression written in the Pub/Sub [filter
      * language](https://cloud.google.com/pubsub/docs/filtering). If non-empty,
      * then only `PubsubMessage`s whose `attributes` field matches the filter are
      * delivered on this subscription. If empty, then no messages are filtered
      * out.
      *
-     * Generated from protobuf field <code>string filter = 12;</code>
+     * Generated from protobuf field <code>string filter = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -843,15 +841,15 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A policy that specifies the conditions for dead lettering messages in
-     * this subscription. If dead_letter_policy is not set, dead lettering
-     * is disabled.
-     * The Cloud Pub/Sub service account associated with this subscriptions's
+     * Optional. A policy that specifies the conditions for dead lettering
+     * messages in this subscription. If dead_letter_policy is not set, dead
+     * lettering is disabled.
+     * The Pub/Sub service account associated with this subscriptions's
      * parent project (i.e.,
      * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must have
      * permission to Acknowledge() messages on this subscription.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.DeadLetterPolicy dead_letter_policy = 13;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.DeadLetterPolicy dead_letter_policy = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\PubSub\V1\DeadLetterPolicy|null
      */
     public function getDeadLetterPolicy()
@@ -870,15 +868,15 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A policy that specifies the conditions for dead lettering messages in
-     * this subscription. If dead_letter_policy is not set, dead lettering
-     * is disabled.
-     * The Cloud Pub/Sub service account associated with this subscriptions's
+     * Optional. A policy that specifies the conditions for dead lettering
+     * messages in this subscription. If dead_letter_policy is not set, dead
+     * lettering is disabled.
+     * The Pub/Sub service account associated with this subscriptions's
      * parent project (i.e.,
      * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must have
      * permission to Acknowledge() messages on this subscription.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.DeadLetterPolicy dead_letter_policy = 13;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.DeadLetterPolicy dead_letter_policy = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\PubSub\V1\DeadLetterPolicy $var
      * @return $this
      */
@@ -891,14 +889,14 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A policy that specifies how Pub/Sub retries message delivery for this
-     * subscription.
+     * Optional. A policy that specifies how Pub/Sub retries message delivery for
+     * this subscription.
      * If not set, the default retry policy is applied. This generally implies
      * that messages will be retried as soon as possible for healthy subscribers.
      * RetryPolicy will be triggered on NACKs or acknowledgement deadline
      * exceeded events for a given message.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.RetryPolicy retry_policy = 14;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.RetryPolicy retry_policy = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\PubSub\V1\RetryPolicy|null
      */
     public function getRetryPolicy()
@@ -917,14 +915,14 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A policy that specifies how Pub/Sub retries message delivery for this
-     * subscription.
+     * Optional. A policy that specifies how Pub/Sub retries message delivery for
+     * this subscription.
      * If not set, the default retry policy is applied. This generally implies
      * that messages will be retried as soon as possible for healthy subscribers.
      * RetryPolicy will be triggered on NACKs or acknowledgement deadline
      * exceeded events for a given message.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.RetryPolicy retry_policy = 14;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.RetryPolicy retry_policy = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\PubSub\V1\RetryPolicy $var
      * @return $this
      */
@@ -937,13 +935,13 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates whether the subscription is detached from its topic. Detached
-     * subscriptions don't receive messages from their topic and don't retain any
-     * backlog. `Pull` and `StreamingPull` requests will return
+     * Optional. Indicates whether the subscription is detached from its topic.
+     * Detached subscriptions don't receive messages from their topic and don't
+     * retain any backlog. `Pull` and `StreamingPull` requests will return
      * FAILED_PRECONDITION. If the subscription is a push subscription, pushes to
      * the endpoint will not be made.
      *
-     * Generated from protobuf field <code>bool detached = 15;</code>
+     * Generated from protobuf field <code>bool detached = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getDetached()
@@ -952,13 +950,13 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates whether the subscription is detached from its topic. Detached
-     * subscriptions don't receive messages from their topic and don't retain any
-     * backlog. `Pull` and `StreamingPull` requests will return
+     * Optional. Indicates whether the subscription is detached from its topic.
+     * Detached subscriptions don't receive messages from their topic and don't
+     * retain any backlog. `Pull` and `StreamingPull` requests will return
      * FAILED_PRECONDITION. If the subscription is a push subscription, pushes to
      * the endpoint will not be made.
      *
-     * Generated from protobuf field <code>bool detached = 15;</code>
+     * Generated from protobuf field <code>bool detached = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -971,8 +969,9 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, Pub/Sub provides the following guarantees for the delivery of
-     * a message with a given value of `message_id` on this subscription:
+     * Optional. If true, Pub/Sub provides the following guarantees for the
+     * delivery of a message with a given value of `message_id` on this
+     * subscription:
      * * The message sent to a subscriber is guaranteed not to be resent
      * before the message's acknowledgement deadline expires.
      * * An acknowledged message will not be resent to a subscriber.
@@ -981,7 +980,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * multiple times by a publisher client. These copies are  considered distinct
      * by Pub/Sub and have distinct `message_id` values.
      *
-     * Generated from protobuf field <code>bool enable_exactly_once_delivery = 16;</code>
+     * Generated from protobuf field <code>bool enable_exactly_once_delivery = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getEnableExactlyOnceDelivery()
@@ -990,8 +989,9 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, Pub/Sub provides the following guarantees for the delivery of
-     * a message with a given value of `message_id` on this subscription:
+     * Optional. If true, Pub/Sub provides the following guarantees for the
+     * delivery of a message with a given value of `message_id` on this
+     * subscription:
      * * The message sent to a subscriber is guaranteed not to be resent
      * before the message's acknowledgement deadline expires.
      * * An acknowledged message will not be resent to a subscriber.
@@ -1000,7 +1000,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * multiple times by a publisher client. These copies are  considered distinct
      * by Pub/Sub and have distinct `message_id` values.
      *
-     * Generated from protobuf field <code>bool enable_exactly_once_delivery = 16;</code>
+     * Generated from protobuf field <code>bool enable_exactly_once_delivery = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
