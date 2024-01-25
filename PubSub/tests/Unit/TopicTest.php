@@ -327,9 +327,7 @@ class TopicTest extends TestCase
 
         $this->topic->___setProperty('requestHandler', $this->requestHandler->reveal());
 
-        $subscriptions = $this->topic->subscriptions([
-            'foo' => 'bar'
-        ]);
+        $subscriptions = $this->topic->subscriptions();
 
         $this->assertInstanceOf(ItemIterator::class, $subscriptions);
 
@@ -353,7 +351,6 @@ class TopicTest extends TestCase
             'listTopicSubscriptions',
             Argument::cetera(),
             Argument::allOf(
-                Argument::withEntry('foo', 'bar'),
                 Argument::that(function ($options) {
                     if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
                         return false;
@@ -369,9 +366,7 @@ class TopicTest extends TestCase
 
         $this->topic->___setProperty('requestHandler', $this->requestHandler->reveal());
 
-        $subscriptions = $this->topic->subscriptions([
-            'foo' => 'bar'
-        ]);
+        $subscriptions = $this->topic->subscriptions();
 
         // enumerate the iterator and kill after it loops twice.
         $arr = [];

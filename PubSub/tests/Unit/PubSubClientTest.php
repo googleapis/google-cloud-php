@@ -143,9 +143,7 @@ class PubSubClientTest extends TestCase
 
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
-        $topics = $this->client->topics([
-            'foo' => 'bar'
-        ]);
+        $topics = $this->client->topics();
 
         $this->assertInstanceOf(ItemIterator::class, $topics);
 
@@ -173,7 +171,6 @@ class PubSubClientTest extends TestCase
             'listTopics',
             Argument::any(),
             Argument::allOf(
-                Argument::withEntry('foo', 'bar'),
                 Argument::that(function ($options) {
                     if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
                         return false;
@@ -190,9 +187,7 @@ class PubSubClientTest extends TestCase
 
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
-        $topics = $this->client->topics([
-            'foo' => 'bar'
-        ]);
+        $topics = $this->client->topics();
 
         // enumerate the iterator and kill after it loops twice.
         $arr = [];
@@ -276,9 +271,7 @@ class PubSubClientTest extends TestCase
 
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
-        $subscriptions = $this->client->subscriptions([
-            'foo' => 'bar'
-        ]);
+        $subscriptions = $this->client->subscriptions();
 
         $this->assertInstanceOf(ItemIterator::class, $subscriptions);
 
@@ -309,7 +302,6 @@ class PubSubClientTest extends TestCase
             'listSubscriptions',
             Argument::any(),
             Argument::allOf(
-                Argument::withEntry('foo', 'bar'),
                 Argument::that(function ($options) {
                     if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
                         return false;
@@ -325,9 +317,7 @@ class PubSubClientTest extends TestCase
 
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
-        $subscriptions = $this->client->subscriptions([
-            'foo' => 'bar'
-        ]);
+        $subscriptions = $this->client->subscriptions();
 
         // enumerate the iterator and kill after it loops twice.
         $arr = [];
@@ -390,9 +380,7 @@ class PubSubClientTest extends TestCase
 
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
-        $snapshots = $this->client->snapshots([
-            'foo' => 'bar'
-        ]);
+        $snapshots = $this->client->snapshots();
 
         $this->assertInstanceOf(ItemIterator::class, $snapshots);
 
@@ -420,7 +408,6 @@ class PubSubClientTest extends TestCase
             'listSnapshots',
             Argument::any(),
             Argument::allOf(
-                Argument::withEntry('foo', 'bar'),
                 Argument::that(function ($options) {
                     if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
                         return false;
@@ -436,9 +423,7 @@ class PubSubClientTest extends TestCase
 
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
-        $snapshots = $this->client->snapshots([
-            'foo' => 'bar'
-        ]);
+        $snapshots = $this->client->snapshots();
 
         // enumerate the iterator and kill after it loops twice.
         $arr = [];
