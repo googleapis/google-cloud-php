@@ -38,12 +38,20 @@ class State
      * Generated from protobuf enum <code>NOT_FOUND = 3;</code>
      */
     const NOT_FOUND = 3;
+    /**
+     * Cannot write to the destination because enforce_in_transit is set to true
+     * and the destination locations are not in the allowed regions.
+     *
+     * Generated from protobuf enum <code>IN_TRANSIT_LOCATION_RESTRICTION = 4;</code>
+     */
+    const IN_TRANSIT_LOCATION_RESTRICTION = 4;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
         self::ACTIVE => 'ACTIVE',
         self::PERMISSION_DENIED => 'PERMISSION_DENIED',
         self::NOT_FOUND => 'NOT_FOUND',
+        self::IN_TRANSIT_LOCATION_RESTRICTION => 'IN_TRANSIT_LOCATION_RESTRICTION',
     ];
 
     public static function name($value)

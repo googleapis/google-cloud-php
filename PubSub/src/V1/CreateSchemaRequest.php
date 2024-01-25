@@ -34,8 +34,8 @@ class CreateSchemaRequest extends \Google\Protobuf\Internal\Message
     /**
      * The ID to use for the schema, which will become the final component of
      * the schema's resource name.
-     * See https://cloud.google.com/pubsub/docs/admin#resource_names for resource
-     * name constraints.
+     * See https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names for
+     * resource name constraints.
      *
      * Generated from protobuf field <code>string schema_id = 3;</code>
      */
@@ -53,8 +53,8 @@ class CreateSchemaRequest extends \Google\Protobuf\Internal\Message
      * @param string                         $schemaId The ID to use for the schema, which will become the final component of
      *                                                 the schema's resource name.
      *
-     *                                                 See https://cloud.google.com/pubsub/docs/admin#resource_names for resource
-     *                                                 name constraints.
+     *                                                 See https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names for
+     *                                                 resource name constraints.
      *
      * @return \Google\Cloud\PubSub\V1\CreateSchemaRequest
      *
@@ -85,8 +85,8 @@ class CreateSchemaRequest extends \Google\Protobuf\Internal\Message
      *     @type string $schema_id
      *           The ID to use for the schema, which will become the final component of
      *           the schema's resource name.
-     *           See https://cloud.google.com/pubsub/docs/admin#resource_names for resource
-     *           name constraints.
+     *           See https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names for
+     *           resource name constraints.
      * }
      */
     public function __construct($data = NULL) {
@@ -167,8 +167,8 @@ class CreateSchemaRequest extends \Google\Protobuf\Internal\Message
     /**
      * The ID to use for the schema, which will become the final component of
      * the schema's resource name.
-     * See https://cloud.google.com/pubsub/docs/admin#resource_names for resource
-     * name constraints.
+     * See https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names for
+     * resource name constraints.
      *
      * Generated from protobuf field <code>string schema_id = 3;</code>
      * @return string
@@ -181,8 +181,8 @@ class CreateSchemaRequest extends \Google\Protobuf\Internal\Message
     /**
      * The ID to use for the schema, which will become the final component of
      * the schema's resource name.
-     * See https://cloud.google.com/pubsub/docs/admin#resource_names for resource
-     * name constraints.
+     * See https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names for
+     * resource name constraints.
      *
      * Generated from protobuf field <code>string schema_id = 3;</code>
      * @param string $var

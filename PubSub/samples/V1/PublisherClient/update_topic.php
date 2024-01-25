@@ -30,8 +30,8 @@ use Google\Cloud\PubSub\V1\UpdateTopicRequest;
 use Google\Protobuf\FieldMask;
 
 /**
- * Updates an existing topic. Note that certain properties of a
- * topic are not modifiable.
+ * Updates an existing topic by updating the fields specified in the update
+ * mask. Note that certain properties of a topic are not modifiable.
  *
  * @param string $topicName The name of the topic. It must have the format
  *                          `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,

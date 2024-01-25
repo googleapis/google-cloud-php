@@ -756,7 +756,8 @@ final class SubscriberClient
     }
 
     /**
-     * Updates an existing snapshot. Snapshots are used in
+     * Updates an existing snapshot by updating the fields specified in the update
+     * mask. Snapshots are used in
      * [Seek](https://cloud.google.com/pubsub/docs/replay-overview) operations,
      * which allow you to manage message acknowledgments in bulk. That is, you can
      * set the acknowledgment state of messages in an existing subscription to the
@@ -786,8 +787,9 @@ final class SubscriberClient
     }
 
     /**
-     * Updates an existing subscription. Note that certain properties of a
-     * subscription, such as its topic, are not modifiable.
+     * Updates an existing subscription by updating the fields specified in the
+     * update mask. Note that certain properties of a subscription, such as its
+     * topic, are not modifiable.
      *
      * The async variant is {@see SubscriberClient::updateSubscriptionAsync()} .
      *

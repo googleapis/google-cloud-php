@@ -16,20 +16,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class ReceivedMessage extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This ID can be used to acknowledge the received message.
+     * Optional. This ID can be used to acknowledge the received message.
      *
-     * Generated from protobuf field <code>string ack_id = 1;</code>
+     * Generated from protobuf field <code>string ack_id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $ack_id = '';
     /**
-     * The message.
+     * Optional. The message.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.PubsubMessage message = 2;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.PubsubMessage message = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $message = null;
     /**
-     * The approximate number of times that Cloud Pub/Sub has attempted to deliver
-     * the associated message to a subscriber.
+     * Optional. The approximate number of times that Pub/Sub has attempted to
+     * deliver the associated message to a subscriber.
      * More precisely, this is 1 + (number of NACKs) +
      * (number of ack_deadline exceeds) for this message.
      * A NACK is any call to ModifyAckDeadline with a 0 deadline. An ack_deadline
@@ -41,7 +41,7 @@ class ReceivedMessage extends \Google\Protobuf\Internal\Message
      * value of 1. The value is calculated at best effort and is approximate.
      * If a DeadLetterPolicy is not set on the subscription, this will be 0.
      *
-     * Generated from protobuf field <code>int32 delivery_attempt = 3;</code>
+     * Generated from protobuf field <code>int32 delivery_attempt = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $delivery_attempt = 0;
 
@@ -52,12 +52,12 @@ class ReceivedMessage extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $ack_id
-     *           This ID can be used to acknowledge the received message.
+     *           Optional. This ID can be used to acknowledge the received message.
      *     @type \Google\Cloud\PubSub\V1\PubsubMessage $message
-     *           The message.
+     *           Optional. The message.
      *     @type int $delivery_attempt
-     *           The approximate number of times that Cloud Pub/Sub has attempted to deliver
-     *           the associated message to a subscriber.
+     *           Optional. The approximate number of times that Pub/Sub has attempted to
+     *           deliver the associated message to a subscriber.
      *           More precisely, this is 1 + (number of NACKs) +
      *           (number of ack_deadline exceeds) for this message.
      *           A NACK is any call to ModifyAckDeadline with a 0 deadline. An ack_deadline
@@ -76,9 +76,9 @@ class ReceivedMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This ID can be used to acknowledge the received message.
+     * Optional. This ID can be used to acknowledge the received message.
      *
-     * Generated from protobuf field <code>string ack_id = 1;</code>
+     * Generated from protobuf field <code>string ack_id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getAckId()
@@ -87,9 +87,9 @@ class ReceivedMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This ID can be used to acknowledge the received message.
+     * Optional. This ID can be used to acknowledge the received message.
      *
-     * Generated from protobuf field <code>string ack_id = 1;</code>
+     * Generated from protobuf field <code>string ack_id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -102,9 +102,9 @@ class ReceivedMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The message.
+     * Optional. The message.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.PubsubMessage message = 2;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.PubsubMessage message = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\PubSub\V1\PubsubMessage|null
      */
     public function getMessage()
@@ -123,9 +123,9 @@ class ReceivedMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The message.
+     * Optional. The message.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.PubsubMessage message = 2;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.PubsubMessage message = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\PubSub\V1\PubsubMessage $var
      * @return $this
      */
@@ -138,8 +138,8 @@ class ReceivedMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The approximate number of times that Cloud Pub/Sub has attempted to deliver
-     * the associated message to a subscriber.
+     * Optional. The approximate number of times that Pub/Sub has attempted to
+     * deliver the associated message to a subscriber.
      * More precisely, this is 1 + (number of NACKs) +
      * (number of ack_deadline exceeds) for this message.
      * A NACK is any call to ModifyAckDeadline with a 0 deadline. An ack_deadline
@@ -151,7 +151,7 @@ class ReceivedMessage extends \Google\Protobuf\Internal\Message
      * value of 1. The value is calculated at best effort and is approximate.
      * If a DeadLetterPolicy is not set on the subscription, this will be 0.
      *
-     * Generated from protobuf field <code>int32 delivery_attempt = 3;</code>
+     * Generated from protobuf field <code>int32 delivery_attempt = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getDeliveryAttempt()
@@ -160,8 +160,8 @@ class ReceivedMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The approximate number of times that Cloud Pub/Sub has attempted to deliver
-     * the associated message to a subscriber.
+     * Optional. The approximate number of times that Pub/Sub has attempted to
+     * deliver the associated message to a subscriber.
      * More precisely, this is 1 + (number of NACKs) +
      * (number of ack_deadline exceeds) for this message.
      * A NACK is any call to ModifyAckDeadline with a 0 deadline. An ack_deadline
@@ -173,7 +173,7 @@ class ReceivedMessage extends \Google\Protobuf\Internal\Message
      * value of 1. The value is calculated at best effort and is approximate.
      * If a DeadLetterPolicy is not set on the subscription, this will be 0.
      *
-     * Generated from protobuf field <code>int32 delivery_attempt = 3;</code>
+     * Generated from protobuf field <code>int32 delivery_attempt = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

@@ -41,10 +41,10 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      */
     private $subscription = '';
     /**
-     * See [Creating and managing
+     * Optional. See [Creating and managing
      * labels](https://cloud.google.com/pubsub/docs/labels).
      *
-     * Generated from protobuf field <code>map<string, string> labels = 3;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
 
@@ -102,7 +102,7 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      *                successful completion of the CreateSnapshot request.
      *           Format is `projects/{project}/subscriptions/{sub}`.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           See [Creating and managing
+     *           Optional. See [Creating and managing
      *           labels](https://cloud.google.com/pubsub/docs/labels).
      * }
      */
@@ -190,10 +190,10 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [Creating and managing
+     * Optional. See [Creating and managing
      * labels](https://cloud.google.com/pubsub/docs/labels).
      *
-     * Generated from protobuf field <code>map<string, string> labels = 3;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -202,10 +202,10 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [Creating and managing
+     * Optional. See [Creating and managing
      * labels](https://cloud.google.com/pubsub/docs/labels).
      *
-     * Generated from protobuf field <code>map<string, string> labels = 3;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
