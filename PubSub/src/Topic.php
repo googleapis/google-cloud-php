@@ -736,24 +736,27 @@ class Topic
      */
     public function subscriptions(array $options = [])
     {
-        $resultLimit = $this->pluck('resultLimit', $options, false);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $resultLimit = $this->pluck('resultLimit', $data, false);
 
-        $request = $this->serializer->decodeMessage(
-            new ListTopicSubscriptionsRequest(),
-            ['topic' => $this->name]
-        );
+        $data['topic'] = $this->name;
+        $request = $this->serializer->decodeMessage(new ListTopicSubscriptionsRequest(), $data);
 
         return new ItemIterator(
             new PageIterator(
                 function ($subscription) {
                     return $this->subscriptionFactory($subscription);
                 },
-                function ($options) use ($request) {
+                function ($callOptions) use ($optionalArgs, $request) {
+                    if (isset($callOptions['pageToken'])) {
+                        $request->setPageToken($callOptions['pageToken']);
+                    }
+
                     return $this->requestHandler->sendRequest(
                         PublisherClient::class,
                         'listTopicSubscriptions',
                         $request,
-                        $options
+                        $optionalArgs
                     );
                 },
                 $options,

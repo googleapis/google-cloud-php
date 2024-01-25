@@ -310,10 +310,10 @@ class PubSubClient
      */
     public function topics(array $options = [])
     {
-        $resultLimit = $this->pluck('resultLimit', $options, false);
-        $projectId = $this->formatName('project', $this->projectId);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $resultLimit = $this->pluck('resultLimit', $data, false);
 
-        $data = ['project' => $projectId];
+        $data['project'] = $this->formatName('project', $this->projectId);
         $request = $this->serializer->decodeMessage(new ListTopicsRequest(), $data);
 
         return new ItemIterator(
@@ -321,15 +321,19 @@ class PubSubClient
                 function (array $topic) {
                     return $this->topicFactory($topic['name'], $topic);
                 },
-                function ($options) use ($request) {
+                function ($callOptions) use ($optionalArgs, $request) {
+                    if (isset($callOptions['pageToken'])) {
+                        $request->setPageToken($callOptions['pageToken']);
+                    }
+
                     return $this->requestHandler->sendRequest(
                         PublisherClient::class,
                         'listTopics',
                         $request,
-                        $options
+                        $optionalArgs
                     );
                 },
-                $options,
+                $optionalArgs,
                 [
                     'itemsKey' => 'topics',
                     'resultLimit' => $resultLimit
@@ -420,10 +424,10 @@ class PubSubClient
      */
     public function subscriptions(array $options = [])
     {
-        $resultLimit = $this->pluck('resultLimit', $options, false);
-        $projectId = $this->formatName('project', $this->projectId);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $resultLimit = $this->pluck('resultLimit', $data, false);
 
-        $data = ['project' => $projectId];
+        $data['project'] = $this->formatName('project', $this->projectId);
         $request = $this->serializer->decodeMessage(new ListSubscriptionsRequest(), $data);
 
         return new ItemIterator(
@@ -435,12 +439,16 @@ class PubSubClient
                         $subscription
                     );
                 },
-                function ($options) use ($request) {
+                function ($callOptions) use ($optionalArgs, $request) {
+                    if (isset($callOptions['pageToken'])) {
+                        $request->setPageToken($callOptions['pageToken']);
+                    }
+
                     return $this->requestHandler->sendRequest(
                         SubscriberClient::class,
                         'listSubscriptions',
                         $request,
-                        $options
+                        $optionalArgs
                     );
                 },
                 $options,
@@ -532,10 +540,10 @@ class PubSubClient
      */
     public function snapshots(array $options = [])
     {
-        $resultLimit = $this->pluck('resultLimit', $options, false);
-        $projectId = $this->formatName('project', $this->projectId);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $resultLimit = $this->pluck('resultLimit', $data, false);
 
-        $data = ['project' => $projectId];
+        $data['project'] = $this->formatName('project', $this->projectId);
         $request = $this->serializer->decodeMessage(new ListSnapshotsRequest(), $data);
 
         return new ItemIterator(
@@ -550,12 +558,16 @@ class PubSubClient
                         $snapshot
                     );
                 },
-                function ($options) use ($request) {
+                function ($callOptions) use ($optionalArgs, $request) {
+                    if (isset($callOptions['pageToken'])) {
+                        $request->setPageToken($callOptions['pageToken']);
+                    }
+
                     return $this->requestHandler->sendRequest(
                         SubscriberClient::class,
                         'listSnapshots',
                         $request,
-                        $options
+                        $optionalArgs
                     );
                 },
                 $options,
@@ -669,10 +681,10 @@ class PubSubClient
      */
     public function schemas(array $options = [])
     {
-        $resultLimit = $this->pluck('resultLimit', $options, false);
-        $parent = $this->formatName('project', $this->projectId);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $resultLimit = $this->pluck('resultLimit', $data, false);
 
-        $data = ['parent' => $parent];
+        $data['parent'] = $this->formatName('project', $this->projectId);
         $request = $this->serializer->decodeMessage(new ListSchemasRequest(), $data);
 
         return new ItemIterator(
@@ -681,12 +693,16 @@ class PubSubClient
                     $parts = SchemaServiceClient::parseName($schema['name'], 'schema');
                     return $this->schema($parts['schema'], $schema);
                 },
-                function ($options) use ($request) {
+                function ($callOptions) use ($optionalArgs, $request) {
+                    if (isset($callOptions['pageToken'])) {
+                        $request->setPageToken($callOptions['pageToken']);
+                    }
+
                     return $this->requestHandler->sendRequest(
                         SchemaServiceClient::class,
                         'listSchemas',
                         $request,
-                        $options
+                        $optionalArgs
                     );
                 },
                 $options,
