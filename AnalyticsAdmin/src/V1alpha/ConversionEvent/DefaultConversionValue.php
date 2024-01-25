@@ -27,7 +27,7 @@ class DefaultConversionValue extends \Google\Protobuf\Internal\Message
      * When a conversion event for this event_name has no set currency,
      * this currency will be applied as the default. Must be in ISO 4217
      * currency code format. See https://en.wikipedia.org/wiki/ISO_4217 for
-     * more.
+     * more information.
      *
      * Generated from protobuf field <code>optional string currency_code = 2;</code>
      */
@@ -46,7 +46,7 @@ class DefaultConversionValue extends \Google\Protobuf\Internal\Message
      *           When a conversion event for this event_name has no set currency,
      *           this currency will be applied as the default. Must be in ISO 4217
      *           currency code format. See https://en.wikipedia.org/wiki/ISO_4217 for
-     *           more.
+     *           more information.
      * }
      */
     public function __construct($data = NULL) {
@@ -96,7 +96,7 @@ class DefaultConversionValue extends \Google\Protobuf\Internal\Message
      * When a conversion event for this event_name has no set currency,
      * this currency will be applied as the default. Must be in ISO 4217
      * currency code format. See https://en.wikipedia.org/wiki/ISO_4217 for
-     * more.
+     * more information.
      *
      * Generated from protobuf field <code>optional string currency_code = 2;</code>
      * @return string
@@ -120,7 +120,7 @@ class DefaultConversionValue extends \Google\Protobuf\Internal\Message
      * When a conversion event for this event_name has no set currency,
      * this currency will be applied as the default. Must be in ISO 4217
      * currency code format. See https://en.wikipedia.org/wiki/ISO_4217 for
-     * more.
+     * more information.
      *
      * Generated from protobuf field <code>optional string currency_code = 2;</code>
      * @param string $var

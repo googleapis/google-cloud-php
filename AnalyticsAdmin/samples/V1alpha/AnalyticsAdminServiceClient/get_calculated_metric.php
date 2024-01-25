@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,39 +22,34 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_SearchChangeHistoryEvents_sync]
-use Google\Analytics\Admin\V1alpha\ChangeHistoryEvent;
+// [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetCalculatedMetric_sync]
+use Google\Analytics\Admin\V1alpha\CalculatedMetric;
 use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
-use Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsRequest;
+use Google\Analytics\Admin\V1alpha\GetCalculatedMetricRequest;
 use Google\ApiCore\ApiException;
-use Google\ApiCore\PagedListResponse;
 
 /**
- * Searches through all changes to an account or its children given the
- * specified set of filters.
+ * Lookup for a single CalculatedMetric.
  *
- * @param string $formattedAccount The account resource for which to return change history
- *                                 resources. Format: accounts/{account} Example: "accounts/100"
- *                                 Please see {@see AnalyticsAdminServiceClient::accountName()} for help formatting this field.
+ * @param string $formattedName The name of the CalculatedMetric to get.
+ *                              Format: properties/{property_id}/calculatedMetrics/{calculated_metric_id}
+ *                              Example: properties/1234/calculatedMetrics/Metric01
+ *                              Please see {@see AnalyticsAdminServiceClient::calculatedMetricName()} for help formatting this field.
  */
-function search_change_history_events_sample(string $formattedAccount): void
+function get_calculated_metric_sample(string $formattedName): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = (new SearchChangeHistoryEventsRequest())
-        ->setAccount($formattedAccount);
+    $request = (new GetCalculatedMetricRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
-        /** @var PagedListResponse $response */
-        $response = $analyticsAdminServiceClient->searchChangeHistoryEvents($request);
-
-        /** @var ChangeHistoryEvent $element */
-        foreach ($response as $element) {
-            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
-        }
+        /** @var CalculatedMetric $response */
+        $response = $analyticsAdminServiceClient->getCalculatedMetric($request);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -71,8 +66,11 @@ function search_change_history_events_sample(string $formattedAccount): void
  */
 function callSample(): void
 {
-    $formattedAccount = AnalyticsAdminServiceClient::accountName('[ACCOUNT]');
+    $formattedName = AnalyticsAdminServiceClient::calculatedMetricName(
+        '[PROPERTY]',
+        '[CALCULATED_METRIC]'
+    );
 
-    search_change_history_events_sample($formattedAccount);
+    get_calculated_metric_sample($formattedName);
 }
-// [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_SearchChangeHistoryEvents_sync]
+// [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetCalculatedMetric_sync]
