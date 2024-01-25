@@ -103,6 +103,4 @@ class SubscriptionProperties extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SubscriptionProperties::class, \Google\Cloud\PubSub\V1\StreamingPullResponse_SubscriptionProperties::class);
 
