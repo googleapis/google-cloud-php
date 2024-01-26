@@ -24,13 +24,8 @@ use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\WhitelistTrait;
 use \Google\Protobuf\Internal\Message;
-use Google\ApiCore\ServerStream;
-use Google\Rpc\BadRequest;
-use Google\Rpc\Code;
-use Google\Rpc\RetryInfo;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\ApiCore\PagedListResponse;
 
 /**
  * @internal
@@ -43,19 +38,12 @@ class RequestHandler
     use ArrayTrait;
     use TimeTrait;
     use WhitelistTrait;
+    use RequestProcessorTrait;
 
     /**
      * @var Serializer
      */
     private Serializer $serializer;
-
-    /**
-     * @var array Map of error metadata types to RPC wrappers.
-     */
-    private array $metadataTypes = [
-        'google.rpc.retryinfo-bin' => RetryInfo::class,
-        'google.rpc.badrequest-bin' => BadRequest::class
-    ];
 
     private array $clients;
 
@@ -77,7 +65,6 @@ class RequestHandler
         // gccl needs to be present for handwritten clients
         $clientConfig += [
             'libName' => 'gccl',
-            'transport' => $this->getDefaultTransport(),
             'emulatorHost' => null
         ];
 
@@ -143,114 +130,6 @@ class RequestHandler
     }
 
     /**
-     * Serializes a gRPC response.
-     *
-     * @param mixed $response
-     * @return \Generator|OperationResponse|array|null
-     */
-    private function handleResponse($response)
-    {
-        if ($response instanceof PagedListResponse) {
-            $response = $response->getPage()->getResponseObject();
-        }
-
-        if ($response instanceof Message) {
-            return $this->serializer->encodeMessage($response);
-        }
-
-        if ($response instanceof OperationResponse) {
-            return $response;
-        }
-
-        if ($response instanceof ServerStream) {
-            return $this->handleStream($response);
-        }
-
-        return null;
-    }
-
-    /**
-     * Handles a streaming response.
-     *
-     * @param ServerStream $response
-     * @return \Generator|array|null
-     * @throws Exception\ServiceException
-     */
-    private function handleStream(ServerStream $response)
-    {
-        try {
-            foreach ($response->readAll() as $count => $result) {
-                $res = $this->serializer->encodeMessage($result);
-                yield $res;
-            }
-        } catch (\Exception $ex) {
-            throw $this->convertToGoogleException($ex);
-        }
-    }
-
-    /**
-     * Convert a ApiCore exception to a Google Exception.
-     *
-     * @param \Exception $ex
-     * @return ServiceException
-     */
-    private function convertToGoogleException(\Exception $ex): ServiceException
-    {
-        switch ($ex->getCode()) {
-            case Code::INVALID_ARGUMENT:
-                $exception = Exception\BadRequestException::class;
-                break;
-
-            case Code::NOT_FOUND:
-            case Code::UNIMPLEMENTED:
-                $exception = Exception\NotFoundException::class;
-                break;
-
-            case Code::ALREADY_EXISTS:
-                $exception = Exception\ConflictException::class;
-                break;
-
-            case Code::FAILED_PRECONDITION:
-                $exception = Exception\FailedPreconditionException::class;
-                break;
-
-            case Code::UNKNOWN:
-                $exception = Exception\ServerException::class;
-                break;
-
-            case Code::INTERNAL:
-                $exception = Exception\ServerException::class;
-                break;
-
-            case Code::ABORTED:
-                $exception = Exception\AbortedException::class;
-                break;
-
-            case Code::DEADLINE_EXCEEDED:
-                $exception = Exception\DeadlineExceededException::class;
-                break;
-
-            default:
-                $exception = Exception\ServiceException::class;
-                break;
-        }
-
-        $metadata = [];
-        if (method_exists($ex, 'getMetadata') && $ex->getMetadata()) {
-            foreach ($ex->getMetadata() as $type => $binaryValue) {
-                if (!isset($this->metadataTypes[$type])) {
-                    continue;
-                }
-                $metadataElement = new $this->metadataTypes[$type];
-                $metadataElement->mergeFromString($binaryValue[0]);
-                $metadata[] = $this->serializer->encodeMessage($metadataElement);
-            }
-        }
-
-        return new $exception($ex->getMessage(), $ex->getCode(), $ex, $metadata);
-    }
-
-    /**
      * Helper function that returns a client object stored in memory
      * using the client class as key.
      * @param $clientClass The client class whose object we need.
@@ -259,17 +138,5 @@ class RequestHandler
     private function getClientObject(string $clientClass)
     {
         return $this->clients[$clientClass] ?? null;
-    }
-
-    private function getDefaultTransport() : string
-    {
-        $isGrpcExtensionLoaded = $this->isGrpcLoaded();
-        $defaultTransport = $isGrpcExtensionLoaded ? 'grpc' : 'rest';
-        return $defaultTransport;
-    }
-
-    private function isGrpcLoaded() : bool
-    {
-        return extension_loaded('grpc');
     }
 }
