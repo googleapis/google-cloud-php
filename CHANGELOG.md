@@ -113,7 +113,7 @@
 
 </details>
 
-<details><summary>google/cloud-datastore 2.0.0</summary>
+<details><summary>google/cloud-datastore 1.27.0</summary>
 
 
 
@@ -163,7 +163,7 @@
 
 </details>
 
-<details><summary>google/cloud-firestore 2.0.0</summary>
+<details><summary>google/cloud-firestore 1.41.0</summary>
 
 
 
