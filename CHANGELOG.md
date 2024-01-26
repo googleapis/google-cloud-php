@@ -1,5 +1,274 @@
 # Changelog
 
+## 0.233.0
+
+<details><summary>google/analytics-admin 0.22.0</summary>
+
+
+
+### Features
+
+* Add `GetCalculatedMetric`, `CreateCalculatedMetric`, `ListCalculatedMetrics`, `UpdateCalculatedMetric`, `DeleteCalculatedMetric` methods to the Admin API v1alpha ([#6999](https://github.com/googleapis/google-cloud-php/issues/6999)) ([88e97f3](https://github.com/googleapis/google-cloud-php/commit/88e97f31d791ada0f84ecfc23f6cf5476b4f37c7))
+* Add the `calculated_metric` field to the `ChangeHistoryResource.resource` oneof field ([88e97f3](https://github.com/googleapis/google-cloud-php/commit/88e97f31d791ada0f84ecfc23f6cf5476b4f37c7))
+* Add the `CALCULATED_METRIC` option to the `ChangeHistoryResourceType` enum ([88e97f3](https://github.com/googleapis/google-cloud-php/commit/88e97f31d791ada0f84ecfc23f6cf5476b4f37c7))
+* Add the `CalculatedMetric` resource ([88e97f3](https://github.com/googleapis/google-cloud-php/commit/88e97f31d791ada0f84ecfc23f6cf5476b4f37c7))
+
+</details>
+
+<details><summary>google/analytics-data 0.16.0</summary>
+
+
+
+### Features
+
+* Add the `webhook_notification` field to the `AudienceList` resource ([2120284](https://github.com/googleapis/google-cloud-php/commit/212028437940e71fbe6ae83277646780ac1e3273))
+* Add the `webhook_notification` field to the `RecurringAudienceList` resource ([2120284](https://github.com/googleapis/google-cloud-php/commit/212028437940e71fbe6ae83277646780ac1e3273))
+* Add the `WebhookNotification` type ([2120284](https://github.com/googleapis/google-cloud-php/commit/212028437940e71fbe6ae83277646780ac1e3273))
+
+
+### Documentation
+
+* Announce that `ListAudienceLists`, `GetAudienceList`, `QueryAudienceList`, `CreateAudienceList` methods are now available in the v1beta version of the Data API ([#6988](https://github.com/googleapis/google-cloud-php/issues/6988)) ([2120284](https://github.com/googleapis/google-cloud-php/commit/212028437940e71fbe6ae83277646780ac1e3273))
+
+</details>
+
+<details><summary>google/cloud-batch 0.16.0</summary>
+
+
+
+### Features
+
+* Add `run_as_non_root` field to allow user's runnable be executed as non root ([#6990](https://github.com/googleapis/google-cloud-php/issues/6990)) ([aa41bc6](https://github.com/googleapis/google-cloud-php/commit/aa41bc6fb8c02446fc27072e83ef7e8a4fce3732))
+* Add `tags` field in Job's AllocationPolicy field in v1 ([aa41bc6](https://github.com/googleapis/google-cloud-php/commit/aa41bc6fb8c02446fc27072e83ef7e8a4fce3732))
+* Add Batch Image Streaming support for v1 ([aa41bc6](https://github.com/googleapis/google-cloud-php/commit/aa41bc6fb8c02446fc27072e83ef7e8a4fce3732))
+
+
+### Documentation
+
+* Polish the field descriptions for enableImageStreaming and CloudLoggingOptions ([aa41bc6](https://github.com/googleapis/google-cloud-php/commit/aa41bc6fb8c02446fc27072e83ef7e8a4fce3732))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.29.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.30.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-config 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 1.9.0</summary>
+
+
+
+### Features
+
+* Add Conversation QualityMetadata ([#7000](https://github.com/googleapis/google-cloud-php/issues/7000)) ([2abac50](https://github.com/googleapis/google-cloud-php/commit/2abac501d29abb0aa03b825c546f8920b92204ac))
+
+
+### Documentation
+
+* Clarify usage of agent and customer channel fields in IngestConversationsRequest ([2abac50](https://github.com/googleapis/google-cloud-php/commit/2abac501d29abb0aa03b825c546f8920b92204ac))
+
+</details>
+
+<details><summary>google/cloud-container 1.25.0</summary>
+
+
+
+### Features
+
+* Add fields desired_in_transit_encryption_config and in_transit_encryption_config ([#6980](https://github.com/googleapis/google-cloud-php/issues/6980)) ([bc3d969](https://github.com/googleapis/google-cloud-php/commit/bc3d9696a047705d3fc28e30748a5092dc5d3896))
+
+
+### Documentation
+
+* Remove Not GA comments for GetOpenIDConfig and GetJSONWebKeys in v1alpha1/v1beta1/v1 ([bc3d969](https://github.com/googleapis/google-cloud-php/commit/bc3d9696a047705d3fc28e30748a5092dc5d3896))
+
+</details>
+
+<details><summary>google/cloud-core 1.54.0</summary>
+
+
+
+### Features
+
+* **Core:** Add RequestHandler and supporting classes ([#6871](https://github.com/googleapis/google-cloud-php/issues/6871)) ([9df29db](https://github.com/googleapis/google-cloud-php/commit/9df29db4dc4dbf811daaddeb07dc5b8f1628b322))
+
+</details>
+
+<details><summary>google/cloud-dataplex 0.14.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-datastore 2.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Remove QueryMode field from RunQueryRequest
+* Remove ResultSetStats field from RunQueryResponse
+* Remove QueryMode field from RunAggregationQueryRequest
+* Remove ResultSetStats field from RunAggregationQueryResponse
+* Remove types QueryMode, QueryPlan, ResultSetStats ([#7002](https://github.com/googleapis/google-cloud-php/issues/7002))
+
+### Bug Fixes
+
+* Remove QueryMode field from RunAggregationQueryRequest ([0878a66](https://github.com/googleapis/google-cloud-php/commit/0878a6671cc91c2d8b068b4d4722acf0ee45b6bb))
+* Remove QueryMode field from RunQueryRequest ([0878a66](https://github.com/googleapis/google-cloud-php/commit/0878a6671cc91c2d8b068b4d4722acf0ee45b6bb))
+* Remove ResultSetStats field from RunAggregationQueryResponse ([0878a66](https://github.com/googleapis/google-cloud-php/commit/0878a6671cc91c2d8b068b4d4722acf0ee45b6bb))
+* Remove ResultSetStats field from RunQueryResponse ([0878a66](https://github.com/googleapis/google-cloud-php/commit/0878a6671cc91c2d8b068b4d4722acf0ee45b6bb))
+* Remove types QueryMode, QueryPlan, ResultSetStats ([#7002](https://github.com/googleapis/google-cloud-php/issues/7002)) ([0878a66](https://github.com/googleapis/google-cloud-php/commit/0878a6671cc91c2d8b068b4d4722acf0ee45b6bb))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.8.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-edgenetwork 0.3.0</summary>
+
+
+
+### Features
+
+* Add MACsec status for internal links ([#6985](https://github.com/googleapis/google-cloud-php/issues/6985)) ([fbe2667](https://github.com/googleapis/google-cloud-php/commit/fbe26677e94811c5251642e65439b9eda3866373))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.22.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-filestore 1.5.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-firestore 2.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Remove QueryMode field from RunQueryRequest
+* Remove ResultSetStats field from RunQueryResponse
+* Remove QueryMode field from RunAggregationQueryRequest
+* Remove ResultSetStats field from RunAggregationQueryResponse
+* Remove types QueryMode, QueryPlan, ResultSetStats ([#7003](https://github.com/googleapis/google-cloud-php/issues/7003))
+
+### Bug Fixes
+
+* Remove QueryMode field from RunAggregationQueryRequest ([40a852c](https://github.com/googleapis/google-cloud-php/commit/40a852ca80cc99bdb206816f0b6ee8c38970429b))
+* Remove QueryMode field from RunQueryRequest ([40a852c](https://github.com/googleapis/google-cloud-php/commit/40a852ca80cc99bdb206816f0b6ee8c38970429b))
+* Remove ResultSetStats field from RunAggregationQueryResponse ([40a852c](https://github.com/googleapis/google-cloud-php/commit/40a852ca80cc99bdb206816f0b6ee8c38970429b))
+* Remove ResultSetStats field from RunQueryResponse ([40a852c](https://github.com/googleapis/google-cloud-php/commit/40a852ca80cc99bdb206816f0b6ee8c38970429b))
+* Remove types QueryMode, QueryPlan, ResultSetStats ([#7003](https://github.com/googleapis/google-cloud-php/issues/7003)) ([40a852c](https://github.com/googleapis/google-cloud-php/commit/40a852ca80cc99bdb206816f0b6ee8c38970429b))
+
+</details>
+
+<details><summary>google/cloud-functions 1.6.0</summary>
+
+
+
+### Features
+
+* Additional optional parameter `version_id` added to `GetFunctionRequest` ([db310c4](https://github.com/googleapis/google-cloud-php/commit/db310c41784dac84b5dec71ea7c6c3967c5eb65a))
+* Fields for automatic runtime updates ([db310c4](https://github.com/googleapis/google-cloud-php/commit/db310c41784dac84b5dec71ea7c6c3967c5eb65a))
+* Minor updates in comments throughout ([db310c4](https://github.com/googleapis/google-cloud-php/commit/db310c41784dac84b5dec71ea7c6c3967c5eb65a))
+* Reflects deprecation of `network` field ([db310c4](https://github.com/googleapis/google-cloud-php/commit/db310c41784dac84b5dec71ea7c6c3967c5eb65a))
+* Updated description for `docker_registry` to reflect transition to Artifact Registry ([#6989](https://github.com/googleapis/google-cloud-php/issues/6989)) ([db310c4](https://github.com/googleapis/google-cloud-php/commit/db310c41784dac84b5dec71ea7c6c3967c5eb65a))
+
+</details>
+
+<details><summary>google/cloud-language 0.32.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-logging 1.29.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.51.0</summary>
+
+
+
+### Features
+
+* Add `ingestion_data_source_settings` field to `Topic` ([#6987](https://github.com/googleapis/google-cloud-php/issues/6987)) ([0dc0d9b](https://github.com/googleapis/google-cloud-php/commit/0dc0d9b5e54c5e8824cd063a1411bbac49955f91))
+* Add enforce_in_transit fields and optional annotations ([#6998](https://github.com/googleapis/google-cloud-php/issues/6998)) ([668d9a8](https://github.com/googleapis/google-cloud-php/commit/668d9a87eb8907dc7adf2dbe1fee8db891761bda))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.70.0</summary>
+
+
+
+### Features
+
+* Add FLOAT32 enum to TypeCode ([#6997](https://github.com/googleapis/google-cloud-php/issues/6997)) ([6eff9a3](https://github.com/googleapis/google-cloud-php/commit/6eff9a33d0ad7672486e1aa921f67ba84b311156))
+* **spanner:** Add proto descriptors for proto and enum types in create/update/get database ddl requests ([#6991](https://github.com/googleapis/google-cloud-php/issues/6991)) ([79bcd91](https://github.com/googleapis/google-cloud-php/commit/79bcd918d0e8f06999082109bddf53edc3053ecd))
+
+</details>
+
+<details><summary>google/cloud-speech 1.16.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storage 1.37.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-trace 1.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-translate 1.17.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vision 1.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vmware-engine 0.5.1</summary>
+
+
+
+</details>
+
 ## 0.232.0
 
 <details><summary>google/analytics-admin 0.21.0</summary>

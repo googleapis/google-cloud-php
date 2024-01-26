@@ -92,7 +92,7 @@ class DatastoreClient
     use ClientTrait;
     use DatastoreTrait;
 
-    const VERSION = '1.26.0';
+    const VERSION = '2.0.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/datastore';
 
