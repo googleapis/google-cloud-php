@@ -100,6 +100,10 @@ class BatchClientTest extends SnippetTestCase
         $message2 = $message1;
         $message2['attributes']['partition'] = $partition2->serialize();
 
+        if (!property_exists(PubSubClient::class, 'requestHandler')) {
+            $this->markTestSkipped("Skipping testPubSubExample test as property 'requestHandler' is missing");
+        }
+
         // setup pubsub service call stubs
         $pubsub = TestHelpers::stub(PubSubClient::class, [['projectId' => 'test']], ['requestHandler']);
         $requestHandler = $this->prophesize(RequestHandler::class);
