@@ -27,6 +27,7 @@ use Google\Rpc\RetryInfo;
 use Google\Rpc\BadRequest;
 
 /**
+ * @internal
  * Encapsulates shared functionality of classes that need to send
  * and process requests and responses.
  */
