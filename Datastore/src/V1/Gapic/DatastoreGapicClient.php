@@ -585,11 +585,6 @@ class DatastoreGapicClient
      *           The query to run.
      *     @type GqlQuery $gqlQuery
      *           The GQL query to run. This query must be an aggregation query.
-     *     @type int $mode
-     *           Optional. The mode in which the query request is processed. This field is
-     *           optional, and when not provided, it defaults to `NORMAL` mode where no
-     *           additional statistics will be returned with the query results.
-     *           For allowed values, use constants defined on {@see \Google\Cloud\Datastore\V1\QueryMode}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -625,10 +620,6 @@ class DatastoreGapicClient
 
         if (isset($optionalArgs['gqlQuery'])) {
             $request->setGqlQuery($optionalArgs['gqlQuery']);
-        }
-
-        if (isset($optionalArgs['mode'])) {
-            $request->setMode($optionalArgs['mode']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -670,11 +661,6 @@ class DatastoreGapicClient
      *           The query to run.
      *     @type GqlQuery $gqlQuery
      *           The GQL query to run. This query must be a non-aggregation query.
-     *     @type int $mode
-     *           Optional. The mode in which the query request is processed. This field is
-     *           optional, and when not provided, it defaults to `NORMAL` mode where no
-     *           additional statistics will be returned with the query results.
-     *           For allowed values, use constants defined on {@see \Google\Cloud\Datastore\V1\QueryMode}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -707,10 +693,6 @@ class DatastoreGapicClient
 
         if (isset($optionalArgs['gqlQuery'])) {
             $request->setGqlQuery($optionalArgs['gqlQuery']);
-        }
-
-        if (isset($optionalArgs['mode'])) {
-            $request->setMode($optionalArgs['mode']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

@@ -159,6 +159,18 @@ return [
                     ],
                 ],
             ],
+            'CreateCalculatedMetric' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\CalculatedMetric',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateChannelGroup' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\ChannelGroup',
@@ -392,6 +404,18 @@ return [
                 ],
             ],
             'DeleteAdSenseLink' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteCalculatedMetric' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
                 'headerParams' => [
@@ -658,6 +682,18 @@ return [
             'GetBigQueryLink' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\BigQueryLink',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetCalculatedMetric' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\CalculatedMetric',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -1014,6 +1050,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\ListBigQueryLinksResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListCalculatedMetrics' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getCalculatedMetrics',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\ListCalculatedMetricsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -1451,6 +1507,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateCalculatedMetric' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\CalculatedMetric',
+                'headerParams' => [
+                    [
+                        'keyName' => 'calculated_metric.name',
+                        'fieldAccessors' => [
+                            'getCalculatedMetric',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateChannelGroup' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\ChannelGroup',
@@ -1693,6 +1762,7 @@ return [
                 'attributionSettings' => 'properties/{property}/attributionSettings',
                 'audience' => 'properties/{property}/audiences/{audience}',
                 'bigQueryLink' => 'properties/{property}/bigQueryLinks/{bigquery_link}',
+                'calculatedMetric' => 'properties/{property}/calculatedMetrics/{calculated_metric}',
                 'channelGroup' => 'properties/{property}/channelGroups/{channel_group}',
                 'conversionEvent' => 'properties/{property}/conversionEvents/{conversion_event}',
                 'customDimension' => 'properties/{property}/customDimensions/{custom_dimension}',

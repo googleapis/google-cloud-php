@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class NoWrapper extends \Google\Protobuf\Internal\Message
 {
     /**
-     * When true, writes the Pub/Sub message metadata to
+     * Optional. When true, writes the Pub/Sub message metadata to
      * `x-goog-pubsub-<KEY>:<VAL>` headers of the HTTP request. Writes the
      * Pub/Sub message attributes to `<KEY>:<VAL>` headers of the HTTP request.
      *
-     * Generated from protobuf field <code>bool write_metadata = 1;</code>
+     * Generated from protobuf field <code>bool write_metadata = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $write_metadata = false;
 
@@ -31,7 +31,7 @@ class NoWrapper extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $write_metadata
-     *           When true, writes the Pub/Sub message metadata to
+     *           Optional. When true, writes the Pub/Sub message metadata to
      *           `x-goog-pubsub-<KEY>:<VAL>` headers of the HTTP request. Writes the
      *           Pub/Sub message attributes to `<KEY>:<VAL>` headers of the HTTP request.
      * }
@@ -42,11 +42,11 @@ class NoWrapper extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When true, writes the Pub/Sub message metadata to
+     * Optional. When true, writes the Pub/Sub message metadata to
      * `x-goog-pubsub-<KEY>:<VAL>` headers of the HTTP request. Writes the
      * Pub/Sub message attributes to `<KEY>:<VAL>` headers of the HTTP request.
      *
-     * Generated from protobuf field <code>bool write_metadata = 1;</code>
+     * Generated from protobuf field <code>bool write_metadata = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getWriteMetadata()
@@ -55,11 +55,11 @@ class NoWrapper extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When true, writes the Pub/Sub message metadata to
+     * Optional. When true, writes the Pub/Sub message metadata to
      * `x-goog-pubsub-<KEY>:<VAL>` headers of the HTTP request. Writes the
      * Pub/Sub message attributes to `<KEY>:<VAL>` headers of the HTTP request.
      *
-     * Generated from protobuf field <code>bool write_metadata = 1;</code>
+     * Generated from protobuf field <code>bool write_metadata = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

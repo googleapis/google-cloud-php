@@ -116,6 +116,12 @@ class SplitCommand extends Command
                 '',
                 InputOption::VALUE_NONE,
                 'Update the release notes if the release already exists.'
+            )
+            ->addOption(
+                'component-branch',
+                '',
+                InputOption::VALUE_OPTIONAL,
+                'Specify the branch of the component to push to.'
             );
     }
 
@@ -157,6 +163,7 @@ class SplitCommand extends Command
         );
 
         $releaseNotes = new ReleaseNotes($changelog);
+        $branchToPush = $input->getOption('component-branch');
 
         if ($componentId = $input->getOption('component')) {
             $components = [new Component($componentId)];
@@ -176,7 +183,6 @@ class SplitCommand extends Command
             $input->getArgument('parent')
         );
 
-
         $errors = [];
         foreach ($components as $component) {
             $res = $this->processComponent(
@@ -188,7 +194,8 @@ class SplitCommand extends Command
                 $splitBinaryPath,
                 $parentTagSource,
                 $input->getOption('update-release-notes'),
-                $packagist
+                $packagist,
+                $branchToPush
             );
             if (!$res) {
                 $errors[] = $component->getId();
@@ -223,6 +230,7 @@ class SplitCommand extends Command
      * @param string $splitBinaryPath The path to the splitsh binary.
      * @param string $parentTagSource The URI to the parent tag.
      * @param ?Packagist $packagist The Packagist API object (if configured).
+     * @param ?string $branchToPush The branch to which the component will be pushed.
      * @return bool
      */
     private function processComponent(
@@ -235,13 +243,16 @@ class SplitCommand extends Command
         $parentTagSource,
         $updateReleaseNotes,
         ?Packagist $packagist,
+        ?string $branchToPush
     ) {
         $output->writeln('');
         $tagName = 'v' . $component->getPackageVersion();
         $repoName = $component->getRepoName();
         $componentId = $component->getId();
         $isAlreadyTagged = $github->doesTagExist($repoName, $tagName);
-        $defaultBranch = $github->getDefaultBranch($repoName) ?: 'main';
+        if (is_null($branchToPush)) {
+            $branchToPush = $github->getDefaultBranch($repoName) ?: 'main';
+        }
 
         // If the repo is empty, it's new and we don't want to force-push.
         $isTargetEmpty = $github->isTargetEmpty($repoName);
@@ -293,7 +304,7 @@ class SplitCommand extends Command
             $repoName
         ));
 
-        $res = $github->push($repoName, $splitBranch, $defaultBranch, $isTargetEmpty);
+        $res = $github->push($repoName, $splitBranch, $branchToPush, $isTargetEmpty);
         if ($res[0]) {
             $output->writeln(sprintf('<comment>%s</comment>: Push succeeded.', $componentId));
         } else {

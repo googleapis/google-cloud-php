@@ -52,11 +52,10 @@ use Google\Rpc\Status;
  * https://support.google.com/analytics/answer/9267572. Audience lists contain
  * the users in each audience.
  *
- * This method is introduced at alpha stability with the intention of
- * gathering feedback on syntax and capabilities before entering beta. To give
- * your feedback on this API, complete the
- * [Google Analytics Audience Export API
- * Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
+ * This method is available at beta stability at
+ * [audienceExports.create](https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties.audienceExports/create).
+ * To give your feedback on this API, complete the [Google Analytics Audience
+ * Export API Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
  *
  * @param string $formattedParent      The parent resource where this audience list will be created.
  *                                     Format: `properties/{property}`

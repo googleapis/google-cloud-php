@@ -23,18 +23,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class PubsubMessage extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The message data field. If this field is empty, the message must contain
-     * at least one attribute.
+     * Optional. The message data field. If this field is empty, the message must
+     * contain at least one attribute.
      *
-     * Generated from protobuf field <code>bytes data = 1;</code>
+     * Generated from protobuf field <code>bytes data = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $data = '';
     /**
-     * Attributes for this message. If this field is empty, the message must
-     * contain non-empty data. This can be used to filter messages on the
+     * Optional. Attributes for this message. If this field is empty, the message
+     * must contain non-empty data. This can be used to filter messages on the
      * subscription.
      *
-     * Generated from protobuf field <code>map<string, string> attributes = 2;</code>
+     * Generated from protobuf field <code>map<string, string> attributes = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $attributes;
     /**
@@ -55,16 +55,16 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      */
     private $publish_time = null;
     /**
-     * If non-empty, identifies related messages for which publish order should be
-     * respected. If a `Subscription` has `enable_message_ordering` set to `true`,
-     * messages published with the same non-empty `ordering_key` value will be
-     * delivered to subscribers in the order in which they are received by the
-     * Pub/Sub system. All `PubsubMessage`s published in a given `PublishRequest`
-     * must specify the same `ordering_key` value.
-     * For more information, see [ordering
+     * Optional. If non-empty, identifies related messages for which publish order
+     * should be respected. If a `Subscription` has `enable_message_ordering` set
+     * to `true`, messages published with the same non-empty `ordering_key` value
+     * will be delivered to subscribers in the order in which they are received by
+     * the Pub/Sub system. All `PubsubMessage`s published in a given
+     * `PublishRequest` must specify the same `ordering_key` value. For more
+     * information, see [ordering
      * messages](https://cloud.google.com/pubsub/docs/ordering).
      *
-     * Generated from protobuf field <code>string ordering_key = 5;</code>
+     * Generated from protobuf field <code>string ordering_key = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $ordering_key = '';
 
@@ -75,11 +75,11 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $data
-     *           The message data field. If this field is empty, the message must contain
-     *           at least one attribute.
+     *           Optional. The message data field. If this field is empty, the message must
+     *           contain at least one attribute.
      *     @type array|\Google\Protobuf\Internal\MapField $attributes
-     *           Attributes for this message. If this field is empty, the message must
-     *           contain non-empty data. This can be used to filter messages on the
+     *           Optional. Attributes for this message. If this field is empty, the message
+     *           must contain non-empty data. This can be used to filter messages on the
      *           subscription.
      *     @type string $message_id
      *           ID of this message, assigned by the server when the message is published.
@@ -91,13 +91,13 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      *           it receives the `Publish` call. It must not be populated by the
      *           publisher in a `Publish` call.
      *     @type string $ordering_key
-     *           If non-empty, identifies related messages for which publish order should be
-     *           respected. If a `Subscription` has `enable_message_ordering` set to `true`,
-     *           messages published with the same non-empty `ordering_key` value will be
-     *           delivered to subscribers in the order in which they are received by the
-     *           Pub/Sub system. All `PubsubMessage`s published in a given `PublishRequest`
-     *           must specify the same `ordering_key` value.
-     *           For more information, see [ordering
+     *           Optional. If non-empty, identifies related messages for which publish order
+     *           should be respected. If a `Subscription` has `enable_message_ordering` set
+     *           to `true`, messages published with the same non-empty `ordering_key` value
+     *           will be delivered to subscribers in the order in which they are received by
+     *           the Pub/Sub system. All `PubsubMessage`s published in a given
+     *           `PublishRequest` must specify the same `ordering_key` value. For more
+     *           information, see [ordering
      *           messages](https://cloud.google.com/pubsub/docs/ordering).
      * }
      */
@@ -107,10 +107,10 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The message data field. If this field is empty, the message must contain
-     * at least one attribute.
+     * Optional. The message data field. If this field is empty, the message must
+     * contain at least one attribute.
      *
-     * Generated from protobuf field <code>bytes data = 1;</code>
+     * Generated from protobuf field <code>bytes data = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getData()
@@ -119,10 +119,10 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The message data field. If this field is empty, the message must contain
-     * at least one attribute.
+     * Optional. The message data field. If this field is empty, the message must
+     * contain at least one attribute.
      *
-     * Generated from protobuf field <code>bytes data = 1;</code>
+     * Generated from protobuf field <code>bytes data = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -135,11 +135,11 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Attributes for this message. If this field is empty, the message must
-     * contain non-empty data. This can be used to filter messages on the
+     * Optional. Attributes for this message. If this field is empty, the message
+     * must contain non-empty data. This can be used to filter messages on the
      * subscription.
      *
-     * Generated from protobuf field <code>map<string, string> attributes = 2;</code>
+     * Generated from protobuf field <code>map<string, string> attributes = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getAttributes()
@@ -148,11 +148,11 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Attributes for this message. If this field is empty, the message must
-     * contain non-empty data. This can be used to filter messages on the
+     * Optional. Attributes for this message. If this field is empty, the message
+     * must contain non-empty data. This can be used to filter messages on the
      * subscription.
      *
-     * Generated from protobuf field <code>map<string, string> attributes = 2;</code>
+     * Generated from protobuf field <code>map<string, string> attributes = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -237,16 +237,16 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If non-empty, identifies related messages for which publish order should be
-     * respected. If a `Subscription` has `enable_message_ordering` set to `true`,
-     * messages published with the same non-empty `ordering_key` value will be
-     * delivered to subscribers in the order in which they are received by the
-     * Pub/Sub system. All `PubsubMessage`s published in a given `PublishRequest`
-     * must specify the same `ordering_key` value.
-     * For more information, see [ordering
+     * Optional. If non-empty, identifies related messages for which publish order
+     * should be respected. If a `Subscription` has `enable_message_ordering` set
+     * to `true`, messages published with the same non-empty `ordering_key` value
+     * will be delivered to subscribers in the order in which they are received by
+     * the Pub/Sub system. All `PubsubMessage`s published in a given
+     * `PublishRequest` must specify the same `ordering_key` value. For more
+     * information, see [ordering
      * messages](https://cloud.google.com/pubsub/docs/ordering).
      *
-     * Generated from protobuf field <code>string ordering_key = 5;</code>
+     * Generated from protobuf field <code>string ordering_key = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getOrderingKey()
@@ -255,16 +255,16 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If non-empty, identifies related messages for which publish order should be
-     * respected. If a `Subscription` has `enable_message_ordering` set to `true`,
-     * messages published with the same non-empty `ordering_key` value will be
-     * delivered to subscribers in the order in which they are received by the
-     * Pub/Sub system. All `PubsubMessage`s published in a given `PublishRequest`
-     * must specify the same `ordering_key` value.
-     * For more information, see [ordering
+     * Optional. If non-empty, identifies related messages for which publish order
+     * should be respected. If a `Subscription` has `enable_message_ordering` set
+     * to `true`, messages published with the same non-empty `ordering_key` value
+     * will be delivered to subscribers in the order in which they are received by
+     * the Pub/Sub system. All `PubsubMessage`s published in a given
+     * `PublishRequest` must specify the same `ordering_key` value. For more
+     * information, see [ordering
      * messages](https://cloud.google.com/pubsub/docs/ordering).
      *
-     * Generated from protobuf field <code>string ordering_key = 5;</code>
+     * Generated from protobuf field <code>string ordering_key = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

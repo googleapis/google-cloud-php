@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Describes a Cloud Function that contains user computation executed in
- * response to an event. It encapsulates function and triggers configurations.
+ * response to an event. It encapsulate function and triggers configurations.
  *
  * Generated from protobuf message <code>google.cloud.functions.v1.CloudFunction</code>
  */
@@ -36,12 +36,9 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      */
     private $status = 0;
     /**
-     * The name of the function (as defined in source code) that is executed.
-     * Defaults to the resource name suffix, if not specified. For
-     * backward compatibility, if function with given name is not found, the
-     * system tries to use the function named "function".
-     * For Node.js, this is the name of a function exported by the module
-     * as specified in `source_location`.
+     * The name of the function (as defined in source code) that will be
+     * executed. Defaults to the resource name suffix (ID of the function), if not
+     * specified.
      *
      * Generated from protobuf field <code>string entry_point = 8;</code>
      */
@@ -110,29 +107,19 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      */
     private $build_environment_variables;
     /**
-     * The Serverless VPC Access connector that this cloud function can connect
-     * to. It can be either the fully qualified URI, or the short name of the
-     * connector resource. If the connector name is used, the connector must
-     * belong to the same project as the function. Otherwise, it must belong to a
-     * project within the same organization. The format of this field is either
-     * `projects/{project}/global/networks/{network}` or `{network}`, where
-     * `{project}` is a project id where the network is defined, and `{network}`
-     * is the short name of the network.
-     * This field is mutually exclusive with `vpc_connector` and will be replaced
-     * by it.
-     * See [the VPC documentation](https://cloud.google.com/compute/docs/vpc) for
-     * more information on connecting Cloud projects.
+     * Deprecated: use vpc_connector
      *
-     * Generated from protobuf field <code>string network = 18;</code>
+     * Generated from protobuf field <code>string network = 18 [deprecated = true];</code>
+     * @deprecated
      */
-    private $network = '';
+    protected $network = '';
     /**
-     * The limit on the maximum number of function instances that can coexist at a
+     * The limit on the maximum number of function instances that may coexist at a
      * given time.
-     * In some cases, such as rapid traffic surges, Cloud Functions can for a
-     * short period of time create more instances than the specified max
+     * In some cases, such as rapid traffic surges, Cloud Functions may, for a
+     * short period of time, create more instances than the specified max
      * instances limit. If your function cannot tolerate this temporary behavior,
-     * you might want to factor in a safety margin and set a lower max instances
+     * you may want to factor in a safety margin and set a lower max instances
      * value than your function can tolerate.
      * See the [Max
      * Instances](https://cloud.google.com/functions/docs/max-instances) Guide for
@@ -142,7 +129,7 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      */
     private $max_instances = 0;
     /**
-     * A lower bound for the number function instances that can coexist at a
+     * A lower bound for the number function instances that may coexist at a
      * given time.
      *
      * Generated from protobuf field <code>int32 min_instances = 32;</code>
@@ -150,7 +137,7 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     private $min_instances = 0;
     /**
      * The VPC Network Connector that this cloud function can connect to. It can
-     * be either the fully qualified URI, or the short name of the network
+     * be either the fully-qualified URI, or the short name of the network
      * connector resource. The format of this field is
      * `projects/&#42;&#47;locations/&#42;&#47;connectors/&#42;`
      * This field is mutually exclusive with `network` field and will eventually
@@ -259,7 +246,7 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      * Artifact Registry. If unspecified and the deployment is eligible to use
      * Artifact Registry, GCF will create and use a repository named
      * 'gcf-artifacts' for every deployed region. This is the repository to which
-     * the function docker image is pushed after it is built by Cloud Build.
+     * the function docker image will be pushed after it is built by Cloud Build.
      * It must match the pattern
      * `projects/{project}/locations/{location}/repositories/{repository}`.
      * Cross-project repositories are not supported.
@@ -271,16 +258,16 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     private $docker_repository = '';
     /**
      * Docker Registry to use for this deployment.
-     * If `docker_repository` field is specified, this field is automatically
-     * set as `ARTIFACT_REGISTRY`.
-     * If unspecified, it currently defaults to `CONTAINER_REGISTRY`.
-     * This field may be overridden by the backend for eligible deployments.
+     * If unspecified, it defaults to `ARTIFACT_REGISTRY`.
+     * If `docker_repository` field is specified, this field should either be left
+     * unspecified or set to `ARTIFACT_REGISTRY`.
      *
      * Generated from protobuf field <code>.google.cloud.functions.v1.CloudFunction.DockerRegistry docker_registry = 35;</code>
      */
     private $docker_registry = 0;
     protected $source_code;
     protected $trigger;
+    protected $runtime_update_policy;
 
     /**
      * Constructor.
@@ -300,7 +287,7 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      *           **Beta Feature**
      *           The source repository where a function is hosted.
      *     @type string $source_upload_url
-     *           The Google Cloud Storage-signed URL used for source uploading, generated
+     *           The Google Cloud Storage signed URL used for source uploading, generated
      *           by calling [google.cloud.functions.v1.GenerateUploadUrl].
      *           The signature is validated on write methods (Create, Update)
      *           The signature is stripped from the Function object on read methods (Get,
@@ -312,12 +299,9 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      *     @type int $status
      *           Output only. Status of the function deployment.
      *     @type string $entry_point
-     *           The name of the function (as defined in source code) that is executed.
-     *           Defaults to the resource name suffix, if not specified. For
-     *           backward compatibility, if function with given name is not found, the
-     *           system tries to use the function named "function".
-     *           For Node.js, this is the name of a function exported by the module
-     *           as specified in `source_location`.
+     *           The name of the function (as defined in source code) that will be
+     *           executed. Defaults to the resource name suffix (ID of the function), if not
+     *           specified.
      *     @type string $runtime
      *           The runtime in which to run the function. Required when deploying a new
      *           function, optional when updating an existing function. For a complete
@@ -346,35 +330,24 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $build_environment_variables
      *           Build environment variables that shall be available during build time.
      *     @type string $network
-     *           The Serverless VPC Access connector that this cloud function can connect
-     *           to. It can be either the fully qualified URI, or the short name of the
-     *           connector resource. If the connector name is used, the connector must
-     *           belong to the same project as the function. Otherwise, it must belong to a
-     *           project within the same organization. The format of this field is either
-     *           `projects/{project}/global/networks/{network}` or `{network}`, where
-     *           `{project}` is a project id where the network is defined, and `{network}`
-     *           is the short name of the network.
-     *           This field is mutually exclusive with `vpc_connector` and will be replaced
-     *           by it.
-     *           See [the VPC documentation](https://cloud.google.com/compute/docs/vpc) for
-     *           more information on connecting Cloud projects.
+     *           Deprecated: use vpc_connector
      *     @type int $max_instances
-     *           The limit on the maximum number of function instances that can coexist at a
+     *           The limit on the maximum number of function instances that may coexist at a
      *           given time.
-     *           In some cases, such as rapid traffic surges, Cloud Functions can for a
-     *           short period of time create more instances than the specified max
+     *           In some cases, such as rapid traffic surges, Cloud Functions may, for a
+     *           short period of time, create more instances than the specified max
      *           instances limit. If your function cannot tolerate this temporary behavior,
-     *           you might want to factor in a safety margin and set a lower max instances
+     *           you may want to factor in a safety margin and set a lower max instances
      *           value than your function can tolerate.
      *           See the [Max
      *           Instances](https://cloud.google.com/functions/docs/max-instances) Guide for
      *           more details.
      *     @type int $min_instances
-     *           A lower bound for the number function instances that can coexist at a
+     *           A lower bound for the number function instances that may coexist at a
      *           given time.
      *     @type string $vpc_connector
      *           The VPC Network Connector that this cloud function can connect to. It can
-     *           be either the fully qualified URI, or the short name of the network
+     *           be either the fully-qualified URI, or the short name of the network
      *           connector resource. The format of this field is
      *           `projects/&#42;&#47;locations/&#42;&#47;connectors/&#42;`
      *           This field is mutually exclusive with `network` field and will eventually
@@ -443,7 +416,7 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      *           Artifact Registry. If unspecified and the deployment is eligible to use
      *           Artifact Registry, GCF will create and use a repository named
      *           'gcf-artifacts' for every deployed region. This is the repository to which
-     *           the function docker image is pushed after it is built by Cloud Build.
+     *           the function docker image will be pushed after it is built by Cloud Build.
      *           It must match the pattern
      *           `projects/{project}/locations/{location}/repositories/{repository}`.
      *           Cross-project repositories are not supported.
@@ -451,10 +424,13 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      *           Repository format must be 'DOCKER'.
      *     @type int $docker_registry
      *           Docker Registry to use for this deployment.
-     *           If `docker_repository` field is specified, this field is automatically
-     *           set as `ARTIFACT_REGISTRY`.
-     *           If unspecified, it currently defaults to `CONTAINER_REGISTRY`.
-     *           This field may be overridden by the backend for eligible deployments.
+     *           If unspecified, it defaults to `ARTIFACT_REGISTRY`.
+     *           If `docker_repository` field is specified, this field should either be left
+     *           unspecified or set to `ARTIFACT_REGISTRY`.
+     *     @type \Google\Cloud\Functions\V1\CloudFunction\AutomaticUpdatePolicy $automatic_update_policy
+     *           See the comment next to this message for more details.
+     *     @type \Google\Cloud\Functions\V1\CloudFunction\OnDeployUpdatePolicy $on_deploy_update_policy
+     *           See the comment next to this message for more details.
      * }
      */
     public function __construct($data = NULL) {
@@ -583,7 +559,7 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Cloud Storage-signed URL used for source uploading, generated
+     * The Google Cloud Storage signed URL used for source uploading, generated
      * by calling [google.cloud.functions.v1.GenerateUploadUrl].
      * The signature is validated on write methods (Create, Update)
      * The signature is stripped from the Function object on read methods (Get,
@@ -603,7 +579,7 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Cloud Storage-signed URL used for source uploading, generated
+     * The Google Cloud Storage signed URL used for source uploading, generated
      * by calling [google.cloud.functions.v1.GenerateUploadUrl].
      * The signature is validated on write methods (Create, Update)
      * The signature is stripped from the Function object on read methods (Get,
@@ -710,12 +686,9 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the function (as defined in source code) that is executed.
-     * Defaults to the resource name suffix, if not specified. For
-     * backward compatibility, if function with given name is not found, the
-     * system tries to use the function named "function".
-     * For Node.js, this is the name of a function exported by the module
-     * as specified in `source_location`.
+     * The name of the function (as defined in source code) that will be
+     * executed. Defaults to the resource name suffix (ID of the function), if not
+     * specified.
      *
      * Generated from protobuf field <code>string entry_point = 8;</code>
      * @return string
@@ -726,12 +699,9 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the function (as defined in source code) that is executed.
-     * Defaults to the resource name suffix, if not specified. For
-     * backward compatibility, if function with given name is not found, the
-     * system tries to use the function named "function".
-     * For Node.js, this is the name of a function exported by the module
-     * as specified in `source_location`.
+     * The name of the function (as defined in source code) that will be
+     * executed. Defaults to the resource name suffix (ID of the function), if not
+     * specified.
      *
      * Generated from protobuf field <code>string entry_point = 8;</code>
      * @param string $var
@@ -1018,47 +988,29 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Serverless VPC Access connector that this cloud function can connect
-     * to. It can be either the fully qualified URI, or the short name of the
-     * connector resource. If the connector name is used, the connector must
-     * belong to the same project as the function. Otherwise, it must belong to a
-     * project within the same organization. The format of this field is either
-     * `projects/{project}/global/networks/{network}` or `{network}`, where
-     * `{project}` is a project id where the network is defined, and `{network}`
-     * is the short name of the network.
-     * This field is mutually exclusive with `vpc_connector` and will be replaced
-     * by it.
-     * See [the VPC documentation](https://cloud.google.com/compute/docs/vpc) for
-     * more information on connecting Cloud projects.
+     * Deprecated: use vpc_connector
      *
-     * Generated from protobuf field <code>string network = 18;</code>
+     * Generated from protobuf field <code>string network = 18 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getNetwork()
     {
+        @trigger_error('network is deprecated.', E_USER_DEPRECATED);
         return $this->network;
     }
 
     /**
-     * The Serverless VPC Access connector that this cloud function can connect
-     * to. It can be either the fully qualified URI, or the short name of the
-     * connector resource. If the connector name is used, the connector must
-     * belong to the same project as the function. Otherwise, it must belong to a
-     * project within the same organization. The format of this field is either
-     * `projects/{project}/global/networks/{network}` or `{network}`, where
-     * `{project}` is a project id where the network is defined, and `{network}`
-     * is the short name of the network.
-     * This field is mutually exclusive with `vpc_connector` and will be replaced
-     * by it.
-     * See [the VPC documentation](https://cloud.google.com/compute/docs/vpc) for
-     * more information on connecting Cloud projects.
+     * Deprecated: use vpc_connector
      *
-     * Generated from protobuf field <code>string network = 18;</code>
+     * Generated from protobuf field <code>string network = 18 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setNetwork($var)
     {
+        @trigger_error('network is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->network = $var;
 
@@ -1066,12 +1018,12 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The limit on the maximum number of function instances that can coexist at a
+     * The limit on the maximum number of function instances that may coexist at a
      * given time.
-     * In some cases, such as rapid traffic surges, Cloud Functions can for a
-     * short period of time create more instances than the specified max
+     * In some cases, such as rapid traffic surges, Cloud Functions may, for a
+     * short period of time, create more instances than the specified max
      * instances limit. If your function cannot tolerate this temporary behavior,
-     * you might want to factor in a safety margin and set a lower max instances
+     * you may want to factor in a safety margin and set a lower max instances
      * value than your function can tolerate.
      * See the [Max
      * Instances](https://cloud.google.com/functions/docs/max-instances) Guide for
@@ -1086,12 +1038,12 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The limit on the maximum number of function instances that can coexist at a
+     * The limit on the maximum number of function instances that may coexist at a
      * given time.
-     * In some cases, such as rapid traffic surges, Cloud Functions can for a
-     * short period of time create more instances than the specified max
+     * In some cases, such as rapid traffic surges, Cloud Functions may, for a
+     * short period of time, create more instances than the specified max
      * instances limit. If your function cannot tolerate this temporary behavior,
-     * you might want to factor in a safety margin and set a lower max instances
+     * you may want to factor in a safety margin and set a lower max instances
      * value than your function can tolerate.
      * See the [Max
      * Instances](https://cloud.google.com/functions/docs/max-instances) Guide for
@@ -1110,7 +1062,7 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A lower bound for the number function instances that can coexist at a
+     * A lower bound for the number function instances that may coexist at a
      * given time.
      *
      * Generated from protobuf field <code>int32 min_instances = 32;</code>
@@ -1122,7 +1074,7 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A lower bound for the number function instances that can coexist at a
+     * A lower bound for the number function instances that may coexist at a
      * given time.
      *
      * Generated from protobuf field <code>int32 min_instances = 32;</code>
@@ -1139,7 +1091,7 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
 
     /**
      * The VPC Network Connector that this cloud function can connect to. It can
-     * be either the fully qualified URI, or the short name of the network
+     * be either the fully-qualified URI, or the short name of the network
      * connector resource. The format of this field is
      * `projects/&#42;&#47;locations/&#42;&#47;connectors/&#42;`
      * This field is mutually exclusive with `network` field and will eventually
@@ -1157,7 +1109,7 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
 
     /**
      * The VPC Network Connector that this cloud function can connect to. It can
-     * be either the fully qualified URI, or the short name of the network
+     * be either the fully-qualified URI, or the short name of the network
      * connector resource. The format of this field is
      * `projects/&#42;&#47;locations/&#42;&#47;connectors/&#42;`
      * This field is mutually exclusive with `network` field and will eventually
@@ -1493,7 +1445,7 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      * Artifact Registry. If unspecified and the deployment is eligible to use
      * Artifact Registry, GCF will create and use a repository named
      * 'gcf-artifacts' for every deployed region. This is the repository to which
-     * the function docker image is pushed after it is built by Cloud Build.
+     * the function docker image will be pushed after it is built by Cloud Build.
      * It must match the pattern
      * `projects/{project}/locations/{location}/repositories/{repository}`.
      * Cross-project repositories are not supported.
@@ -1514,7 +1466,7 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      * Artifact Registry. If unspecified and the deployment is eligible to use
      * Artifact Registry, GCF will create and use a repository named
      * 'gcf-artifacts' for every deployed region. This is the repository to which
-     * the function docker image is pushed after it is built by Cloud Build.
+     * the function docker image will be pushed after it is built by Cloud Build.
      * It must match the pattern
      * `projects/{project}/locations/{location}/repositories/{repository}`.
      * Cross-project repositories are not supported.
@@ -1535,10 +1487,9 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
 
     /**
      * Docker Registry to use for this deployment.
-     * If `docker_repository` field is specified, this field is automatically
-     * set as `ARTIFACT_REGISTRY`.
-     * If unspecified, it currently defaults to `CONTAINER_REGISTRY`.
-     * This field may be overridden by the backend for eligible deployments.
+     * If unspecified, it defaults to `ARTIFACT_REGISTRY`.
+     * If `docker_repository` field is specified, this field should either be left
+     * unspecified or set to `ARTIFACT_REGISTRY`.
      *
      * Generated from protobuf field <code>.google.cloud.functions.v1.CloudFunction.DockerRegistry docker_registry = 35;</code>
      * @return int
@@ -1550,10 +1501,9 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
 
     /**
      * Docker Registry to use for this deployment.
-     * If `docker_repository` field is specified, this field is automatically
-     * set as `ARTIFACT_REGISTRY`.
-     * If unspecified, it currently defaults to `CONTAINER_REGISTRY`.
-     * This field may be overridden by the backend for eligible deployments.
+     * If unspecified, it defaults to `ARTIFACT_REGISTRY`.
+     * If `docker_repository` field is specified, this field should either be left
+     * unspecified or set to `ARTIFACT_REGISTRY`.
      *
      * Generated from protobuf field <code>.google.cloud.functions.v1.CloudFunction.DockerRegistry docker_registry = 35;</code>
      * @param int $var
@@ -1563,6 +1513,68 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Functions\V1\CloudFunction\DockerRegistry::class);
         $this->docker_registry = $var;
+
+        return $this;
+    }
+
+    /**
+     * See the comment next to this message for more details.
+     *
+     * Generated from protobuf field <code>.google.cloud.functions.v1.CloudFunction.AutomaticUpdatePolicy automatic_update_policy = 40;</code>
+     * @return \Google\Cloud\Functions\V1\CloudFunction\AutomaticUpdatePolicy|null
+     */
+    public function getAutomaticUpdatePolicy()
+    {
+        return $this->readOneof(40);
+    }
+
+    public function hasAutomaticUpdatePolicy()
+    {
+        return $this->hasOneof(40);
+    }
+
+    /**
+     * See the comment next to this message for more details.
+     *
+     * Generated from protobuf field <code>.google.cloud.functions.v1.CloudFunction.AutomaticUpdatePolicy automatic_update_policy = 40;</code>
+     * @param \Google\Cloud\Functions\V1\CloudFunction\AutomaticUpdatePolicy $var
+     * @return $this
+     */
+    public function setAutomaticUpdatePolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Functions\V1\CloudFunction\AutomaticUpdatePolicy::class);
+        $this->writeOneof(40, $var);
+
+        return $this;
+    }
+
+    /**
+     * See the comment next to this message for more details.
+     *
+     * Generated from protobuf field <code>.google.cloud.functions.v1.CloudFunction.OnDeployUpdatePolicy on_deploy_update_policy = 41;</code>
+     * @return \Google\Cloud\Functions\V1\CloudFunction\OnDeployUpdatePolicy|null
+     */
+    public function getOnDeployUpdatePolicy()
+    {
+        return $this->readOneof(41);
+    }
+
+    public function hasOnDeployUpdatePolicy()
+    {
+        return $this->hasOneof(41);
+    }
+
+    /**
+     * See the comment next to this message for more details.
+     *
+     * Generated from protobuf field <code>.google.cloud.functions.v1.CloudFunction.OnDeployUpdatePolicy on_deploy_update_policy = 41;</code>
+     * @param \Google\Cloud\Functions\V1\CloudFunction\OnDeployUpdatePolicy $var
+     * @return $this
+     */
+    public function setOnDeployUpdatePolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Functions\V1\CloudFunction\OnDeployUpdatePolicy::class);
+        $this->writeOneof(41, $var);
 
         return $this;
     }
@@ -1581,6 +1593,14 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     public function getTrigger()
     {
         return $this->whichOneof("trigger");
+    }
+
+    /**
+     * @return string
+     */
+    public function getRuntimeUpdatePolicy()
+    {
+        return $this->whichOneof("runtime_update_policy");
     }
 
 }

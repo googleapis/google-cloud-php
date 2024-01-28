@@ -63,6 +63,25 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string operation_id = 3;</code>
      */
     private $operation_id = '';
+    /**
+     * Optional. Proto descriptors used by CREATE/ALTER PROTO BUNDLE statements.
+     * Contains a protobuf-serialized
+     * [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto).
+     * To generate it, [install](https://grpc.io/docs/protoc-installation/) and
+     * run `protoc` with --include_imports and --descriptor_set_out. For example,
+     * to generate for moon/shot/app.proto, run
+     * ```
+     * $protoc  --proto_path=/app_path --proto_path=/lib_path \
+     *          --include_imports \
+     *          --descriptor_set_out=descriptors.data \
+     *          moon/shot/app.proto
+     * ```
+     * For more details, see protobuffer [self
+     * description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).
+     *
+     * Generated from protobuf field <code>bytes proto_descriptors = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $proto_descriptors = '';
 
     /**
      * @param string   $database   Required. The database to update. Please see
@@ -108,6 +127,21 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
      *           underscore. If the named operation already exists,
      *           [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl] returns
      *           `ALREADY_EXISTS`.
+     *     @type string $proto_descriptors
+     *           Optional. Proto descriptors used by CREATE/ALTER PROTO BUNDLE statements.
+     *           Contains a protobuf-serialized
+     *           [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto).
+     *           To generate it, [install](https://grpc.io/docs/protoc-installation/) and
+     *           run `protoc` with --include_imports and --descriptor_set_out. For example,
+     *           to generate for moon/shot/app.proto, run
+     *           ```
+     *           $protoc  --proto_path=/app_path --proto_path=/lib_path \
+     *                    --include_imports \
+     *                    --descriptor_set_out=descriptors.data \
+     *                    moon/shot/app.proto
+     *           ```
+     *           For more details, see protobuffer [self
+     *           description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).
      * }
      */
     public function __construct($data = NULL) {
@@ -221,6 +255,58 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->operation_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Proto descriptors used by CREATE/ALTER PROTO BUNDLE statements.
+     * Contains a protobuf-serialized
+     * [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto).
+     * To generate it, [install](https://grpc.io/docs/protoc-installation/) and
+     * run `protoc` with --include_imports and --descriptor_set_out. For example,
+     * to generate for moon/shot/app.proto, run
+     * ```
+     * $protoc  --proto_path=/app_path --proto_path=/lib_path \
+     *          --include_imports \
+     *          --descriptor_set_out=descriptors.data \
+     *          moon/shot/app.proto
+     * ```
+     * For more details, see protobuffer [self
+     * description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).
+     *
+     * Generated from protobuf field <code>bytes proto_descriptors = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getProtoDescriptors()
+    {
+        return $this->proto_descriptors;
+    }
+
+    /**
+     * Optional. Proto descriptors used by CREATE/ALTER PROTO BUNDLE statements.
+     * Contains a protobuf-serialized
+     * [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto).
+     * To generate it, [install](https://grpc.io/docs/protoc-installation/) and
+     * run `protoc` with --include_imports and --descriptor_set_out. For example,
+     * to generate for moon/shot/app.proto, run
+     * ```
+     * $protoc  --proto_path=/app_path --proto_path=/lib_path \
+     *          --include_imports \
+     *          --descriptor_set_out=descriptors.data \
+     *          moon/shot/app.proto
+     * ```
+     * For more details, see protobuffer [self
+     * description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).
+     *
+     * Generated from protobuf field <code>bytes proto_descriptors = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setProtoDescriptors($var)
+    {
+        GPBUtil::checkString($var, False);
+        $this->proto_descriptors = $var;
 
         return $this;
     }

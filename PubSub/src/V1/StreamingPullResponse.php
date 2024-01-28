@@ -17,29 +17,29 @@ use Google\Protobuf\Internal\GPBUtil;
 class StreamingPullResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Received Pub/Sub messages. This will not be empty.
+     * Optional. Received Pub/Sub messages. This will not be empty.
      *
-     * Generated from protobuf field <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1;</code>
+     * Generated from protobuf field <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $received_messages;
     /**
-     * This field will only be set if `enable_exactly_once_delivery` is set to
-     * `true`.
+     * Optional. This field will only be set if `enable_exactly_once_delivery` is
+     * set to `true`.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.AcknowledgeConfirmation acknowledge_confirmation = 5;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.AcknowledgeConfirmation acknowledge_confirmation = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $acknowledge_confirmation = null;
     /**
-     * This field will only be set if `enable_exactly_once_delivery` is set to
-     * `true`.
+     * Optional. This field will only be set if `enable_exactly_once_delivery` is
+     * set to `true`.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.ModifyAckDeadlineConfirmation modify_ack_deadline_confirmation = 3;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.ModifyAckDeadlineConfirmation modify_ack_deadline_confirmation = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $modify_ack_deadline_confirmation = null;
     /**
-     * Properties associated with this subscription.
+     * Optional. Properties associated with this subscription.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.SubscriptionProperties subscription_properties = 4;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.SubscriptionProperties subscription_properties = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $subscription_properties = null;
 
@@ -50,15 +50,15 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\PubSub\V1\ReceivedMessage>|\Google\Protobuf\Internal\RepeatedField $received_messages
-     *           Received Pub/Sub messages. This will not be empty.
+     *           Optional. Received Pub/Sub messages. This will not be empty.
      *     @type \Google\Cloud\PubSub\V1\StreamingPullResponse\AcknowledgeConfirmation $acknowledge_confirmation
-     *           This field will only be set if `enable_exactly_once_delivery` is set to
-     *           `true`.
+     *           Optional. This field will only be set if `enable_exactly_once_delivery` is
+     *           set to `true`.
      *     @type \Google\Cloud\PubSub\V1\StreamingPullResponse\ModifyAckDeadlineConfirmation $modify_ack_deadline_confirmation
-     *           This field will only be set if `enable_exactly_once_delivery` is set to
-     *           `true`.
+     *           Optional. This field will only be set if `enable_exactly_once_delivery` is
+     *           set to `true`.
      *     @type \Google\Cloud\PubSub\V1\StreamingPullResponse\SubscriptionProperties $subscription_properties
-     *           Properties associated with this subscription.
+     *           Optional. Properties associated with this subscription.
      * }
      */
     public function __construct($data = NULL) {
@@ -67,9 +67,9 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Received Pub/Sub messages. This will not be empty.
+     * Optional. Received Pub/Sub messages. This will not be empty.
      *
-     * Generated from protobuf field <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1;</code>
+     * Generated from protobuf field <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getReceivedMessages()
@@ -78,9 +78,9 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Received Pub/Sub messages. This will not be empty.
+     * Optional. Received Pub/Sub messages. This will not be empty.
      *
-     * Generated from protobuf field <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1;</code>
+     * Generated from protobuf field <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\PubSub\V1\ReceivedMessage>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -93,10 +93,10 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field will only be set if `enable_exactly_once_delivery` is set to
-     * `true`.
+     * Optional. This field will only be set if `enable_exactly_once_delivery` is
+     * set to `true`.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.AcknowledgeConfirmation acknowledge_confirmation = 5;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.AcknowledgeConfirmation acknowledge_confirmation = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\PubSub\V1\StreamingPullResponse\AcknowledgeConfirmation|null
      */
     public function getAcknowledgeConfirmation()
@@ -115,10 +115,10 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field will only be set if `enable_exactly_once_delivery` is set to
-     * `true`.
+     * Optional. This field will only be set if `enable_exactly_once_delivery` is
+     * set to `true`.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.AcknowledgeConfirmation acknowledge_confirmation = 5;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.AcknowledgeConfirmation acknowledge_confirmation = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\PubSub\V1\StreamingPullResponse\AcknowledgeConfirmation $var
      * @return $this
      */
@@ -131,10 +131,10 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field will only be set if `enable_exactly_once_delivery` is set to
-     * `true`.
+     * Optional. This field will only be set if `enable_exactly_once_delivery` is
+     * set to `true`.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.ModifyAckDeadlineConfirmation modify_ack_deadline_confirmation = 3;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.ModifyAckDeadlineConfirmation modify_ack_deadline_confirmation = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\PubSub\V1\StreamingPullResponse\ModifyAckDeadlineConfirmation|null
      */
     public function getModifyAckDeadlineConfirmation()
@@ -153,10 +153,10 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field will only be set if `enable_exactly_once_delivery` is set to
-     * `true`.
+     * Optional. This field will only be set if `enable_exactly_once_delivery` is
+     * set to `true`.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.ModifyAckDeadlineConfirmation modify_ack_deadline_confirmation = 3;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.ModifyAckDeadlineConfirmation modify_ack_deadline_confirmation = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\PubSub\V1\StreamingPullResponse\ModifyAckDeadlineConfirmation $var
      * @return $this
      */
@@ -169,9 +169,9 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Properties associated with this subscription.
+     * Optional. Properties associated with this subscription.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.SubscriptionProperties subscription_properties = 4;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.SubscriptionProperties subscription_properties = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\PubSub\V1\StreamingPullResponse\SubscriptionProperties|null
      */
     public function getSubscriptionProperties()
@@ -190,9 +190,9 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Properties associated with this subscription.
+     * Optional. Properties associated with this subscription.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.SubscriptionProperties subscription_properties = 4;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.SubscriptionProperties subscription_properties = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\PubSub\V1\StreamingPullResponse\SubscriptionProperties $var
      * @return $this
      */

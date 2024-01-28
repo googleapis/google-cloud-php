@@ -46,12 +46,14 @@ use Google\Analytics\Admin\V1alpha\BatchGetAccessBindingsResponse;
 use Google\Analytics\Admin\V1alpha\BatchUpdateAccessBindingsRequest;
 use Google\Analytics\Admin\V1alpha\BatchUpdateAccessBindingsResponse;
 use Google\Analytics\Admin\V1alpha\BigQueryLink;
+use Google\Analytics\Admin\V1alpha\CalculatedMetric;
 use Google\Analytics\Admin\V1alpha\CancelDisplayVideo360AdvertiserLinkProposalRequest;
 use Google\Analytics\Admin\V1alpha\ChannelGroup;
 use Google\Analytics\Admin\V1alpha\ConversionEvent;
 use Google\Analytics\Admin\V1alpha\CreateAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\CreateAdSenseLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateAudienceRequest;
+use Google\Analytics\Admin\V1alpha\CreateCalculatedMetricRequest;
 use Google\Analytics\Admin\V1alpha\CreateChannelGroupRequest;
 use Google\Analytics\Admin\V1alpha\CreateConnectedSiteTagRequest;
 use Google\Analytics\Admin\V1alpha\CreateConnectedSiteTagResponse;
@@ -84,6 +86,7 @@ use Google\Analytics\Admin\V1alpha\DataStream;
 use Google\Analytics\Admin\V1alpha\DeleteAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\DeleteAccountRequest;
 use Google\Analytics\Admin\V1alpha\DeleteAdSenseLinkRequest;
+use Google\Analytics\Admin\V1alpha\DeleteCalculatedMetricRequest;
 use Google\Analytics\Admin\V1alpha\DeleteChannelGroupRequest;
 use Google\Analytics\Admin\V1alpha\DeleteConnectedSiteTagRequest;
 use Google\Analytics\Admin\V1alpha\DeleteConversionEventRequest;
@@ -116,6 +119,7 @@ use Google\Analytics\Admin\V1alpha\GetAdSenseLinkRequest;
 use Google\Analytics\Admin\V1alpha\GetAttributionSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetAudienceRequest;
 use Google\Analytics\Admin\V1alpha\GetBigQueryLinkRequest;
+use Google\Analytics\Admin\V1alpha\GetCalculatedMetricRequest;
 use Google\Analytics\Admin\V1alpha\GetChannelGroupRequest;
 use Google\Analytics\Admin\V1alpha\GetConversionEventRequest;
 use Google\Analytics\Admin\V1alpha\GetCustomDimensionRequest;
@@ -146,6 +150,7 @@ use Google\Analytics\Admin\V1alpha\ListAccountsRequest;
 use Google\Analytics\Admin\V1alpha\ListAdSenseLinksRequest;
 use Google\Analytics\Admin\V1alpha\ListAudiencesRequest;
 use Google\Analytics\Admin\V1alpha\ListBigQueryLinksRequest;
+use Google\Analytics\Admin\V1alpha\ListCalculatedMetricsRequest;
 use Google\Analytics\Admin\V1alpha\ListChannelGroupsRequest;
 use Google\Analytics\Admin\V1alpha\ListConnectedSiteTagsRequest;
 use Google\Analytics\Admin\V1alpha\ListConnectedSiteTagsResponse;
@@ -182,6 +187,7 @@ use Google\Analytics\Admin\V1alpha\UpdateAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAccountRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAttributionSettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAudienceRequest;
+use Google\Analytics\Admin\V1alpha\UpdateCalculatedMetricRequest;
 use Google\Analytics\Admin\V1alpha\UpdateChannelGroupRequest;
 use Google\Analytics\Admin\V1alpha\UpdateConversionEventRequest;
 use Google\Analytics\Admin\V1alpha\UpdateCustomDimensionRequest;
@@ -237,6 +243,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface createAccessBindingAsync(CreateAccessBindingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createAdSenseLinkAsync(CreateAdSenseLinkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createAudienceAsync(CreateAudienceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createCalculatedMetricAsync(CreateCalculatedMetricRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createChannelGroupAsync(CreateChannelGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createConnectedSiteTagAsync(CreateConnectedSiteTagRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createConversionEventAsync(CreateConversionEventRequest $request, array $optionalArgs = [])
@@ -260,6 +267,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface deleteAccessBindingAsync(DeleteAccessBindingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteAccountAsync(DeleteAccountRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteAdSenseLinkAsync(DeleteAdSenseLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteCalculatedMetricAsync(DeleteCalculatedMetricRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteChannelGroupAsync(DeleteChannelGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteConnectedSiteTagAsync(DeleteConnectedSiteTagRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteConversionEventAsync(DeleteConversionEventRequest $request, array $optionalArgs = [])
@@ -284,6 +292,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface getAttributionSettingsAsync(GetAttributionSettingsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAudienceAsync(GetAudienceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getBigQueryLinkAsync(GetBigQueryLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getCalculatedMetricAsync(GetCalculatedMetricRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getChannelGroupAsync(GetChannelGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getConversionEventAsync(GetConversionEventRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getCustomDimensionAsync(GetCustomDimensionRequest $request, array $optionalArgs = [])
@@ -311,6 +320,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface listAdSenseLinksAsync(ListAdSenseLinksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAudiencesAsync(ListAudiencesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listBigQueryLinksAsync(ListBigQueryLinksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listCalculatedMetricsAsync(ListCalculatedMetricsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listChannelGroupsAsync(ListChannelGroupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listConnectedSiteTagsAsync(ListConnectedSiteTagsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listConversionEventsAsync(ListConversionEventsRequest $request, array $optionalArgs = [])
@@ -337,6 +347,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface updateAccountAsync(UpdateAccountRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateAttributionSettingsAsync(UpdateAttributionSettingsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateAudienceAsync(UpdateAudienceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateCalculatedMetricAsync(UpdateCalculatedMetricRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateChannelGroupAsync(UpdateChannelGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateConversionEventAsync(UpdateConversionEventRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateCustomDimensionAsync(UpdateCustomDimensionRequest $request, array $optionalArgs = [])
@@ -533,6 +544,25 @@ final class AnalyticsAdminServiceClient
         return self::getPathTemplate('bigQueryLink')->render([
             'property' => $property,
             'bigquery_link' => $bigqueryLink,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * calculated_metric resource.
+     *
+     * @param string $property
+     * @param string $calculatedMetric
+     *
+     * @return string The formatted calculated_metric resource.
+     *
+     * @experimental
+     */
+    public static function calculatedMetricName(string $property, string $calculatedMetric): string
+    {
+        return self::getPathTemplate('calculatedMetric')->render([
+            'property' => $property,
+            'calculated_metric' => $calculatedMetric,
         ]);
     }
 
@@ -1001,6 +1031,7 @@ final class AnalyticsAdminServiceClient
      * - attributionSettings: properties/{property}/attributionSettings
      * - audience: properties/{property}/audiences/{audience}
      * - bigQueryLink: properties/{property}/bigQueryLinks/{bigquery_link}
+     * - calculatedMetric: properties/{property}/calculatedMetrics/{calculated_metric}
      * - channelGroup: properties/{property}/channelGroups/{channel_group}
      * - conversionEvent: properties/{property}/conversionEvents/{conversion_event}
      * - customDimension: properties/{property}/customDimensions/{custom_dimension}
@@ -1502,6 +1533,35 @@ final class AnalyticsAdminServiceClient
     public function createAudience(CreateAudienceRequest $request, array $callOptions = []): Audience
     {
         return $this->startApiCall('CreateAudience', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a CalculatedMetric.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::createCalculatedMetricAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/create_calculated_metric.php
+     *
+     * @param CreateCalculatedMetricRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CalculatedMetric
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function createCalculatedMetric(CreateCalculatedMetricRequest $request, array $callOptions = []): CalculatedMetric
+    {
+        return $this->startApiCall('CreateCalculatedMetric', $request, $callOptions)->wait();
     }
 
     /**
@@ -2187,6 +2247,33 @@ final class AnalyticsAdminServiceClient
     }
 
     /**
+     * Deletes a CalculatedMetric on a property.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::deleteCalculatedMetricAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/delete_calculated_metric.php
+     *
+     * @param DeleteCalculatedMetricRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteCalculatedMetric(DeleteCalculatedMetricRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteCalculatedMetric', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a ChannelGroup on a property.
      *
      * The async variant is
@@ -2868,6 +2955,35 @@ final class AnalyticsAdminServiceClient
     public function getBigQueryLink(GetBigQueryLinkRequest $request, array $callOptions = []): BigQueryLink
     {
         return $this->startApiCall('GetBigQueryLink', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lookup for a single CalculatedMetric.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::getCalculatedMetricAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/get_calculated_metric.php
+     *
+     * @param GetCalculatedMetricRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CalculatedMetric
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getCalculatedMetric(GetCalculatedMetricRequest $request, array $callOptions = []): CalculatedMetric
+    {
+        return $this->startApiCall('GetCalculatedMetric', $request, $callOptions)->wait();
     }
 
     /**
@@ -3663,6 +3779,35 @@ final class AnalyticsAdminServiceClient
     }
 
     /**
+     * Lists CalculatedMetrics on a property.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::listCalculatedMetricsAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/list_calculated_metrics.php
+     *
+     * @param ListCalculatedMetricsRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listCalculatedMetrics(ListCalculatedMetricsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListCalculatedMetrics', $request, $callOptions);
+    }
+
+    /**
      * Lists ChannelGroups on a property.
      *
      * The async variant is
@@ -4444,6 +4589,35 @@ final class AnalyticsAdminServiceClient
     public function updateAudience(UpdateAudienceRequest $request, array $callOptions = []): Audience
     {
         return $this->startApiCall('UpdateAudience', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a CalculatedMetric on a property.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::updateCalculatedMetricAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/update_calculated_metric.php
+     *
+     * @param UpdateCalculatedMetricRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CalculatedMetric
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateCalculatedMetric(UpdateCalculatedMetricRequest $request, array $callOptions = []): CalculatedMetric
+    {
+        return $this->startApiCall('UpdateCalculatedMetric', $request, $callOptions)->wait();
     }
 
     /**

@@ -15,25 +15,26 @@
 
 DIRS=$(find * -maxdepth 0 -type d -name '[A-Z]*')
 PREFER_LOWEST=""
-VALID=1
 if [ "$#" -eq 1 ]; then
     # first argument can be a directory or "--prefer-lowest"
-    if [ "$1" = "--prefer-lowest" ]; then
+    if [ "$1" = "--prefer-lowest" ] || [ "$1" = "--prefer-lowest-strict" ]; then
         PREFER_LOWEST="--prefer-lowest"
+        if [ "$1" = "--prefer-lowest-strict" ]; then STRICT="true"; fi
     else
         DIRS=$1
     fi
 elif [ "$#" -eq 2 ]; then
     # first argument is a directory, second is "--prefer-lowest"
-    if [ "$2" = "--prefer-lowest" ]; then
+    if [ "$2" = "--prefer-lowest" ] || [ "$2" = "--prefer-lowest-strict" ]; then
         DIRS=$1
         PREFER_LOWEST="--prefer-lowest"
+        if [ "$2" = "--prefer-lowest-strict" ]; then STRICT="true"; fi
     else
-        echo "usage: run-package-tests.sh [DIR] [--prefer-lowest]"
+        echo "usage: run-package-tests.sh [DIR] [--prefer-lowest|--prefer-lowest-strict]"
         exit 1;
     fi
 elif [ "$#" -ne 0 ]; then
-    echo "usage: run-package-tests.sh [DIR] [--prefer-lowest]"
+    echo "usage: run-package-tests.sh [DIR] [--prefer-lowest|--prefer-lowest-strict]"
     exit 1;
 fi
 
@@ -43,17 +44,17 @@ export COMPOSER=composer-local.json
 FAILED_FILE=$(mktemp -d)/failed
 for DIR in ${DIRS}; do {
     cp ${DIR}/composer.json ${DIR}/composer-local.json
-    if [ "$PREFER_LOWEST" = "" ]; then
-        # Update composer to use local packages
-        for i in BigQuery,cloud-bigquery Core,cloud-core Logging,cloud-logging PubSub,cloud-pubsub Storage,cloud-storage ShoppingCommonProtos,shopping-common-protos,0.2; do
-            IFS=","; set -- $i;
-            if grep -q "\"google/$2\":" ${DIR}/composer.json; then
-                if [ -z "$3" ]; then VERSION="1.100"; else VERSION=$3; fi
-                echo "Use local package $1 as google/$2:$VERSION in $DIR"
-                composer config repositories.$2 "{\"type\": \"path\", \"url\": \"../$1\", \"options\":{\"versions\":{\"google/$2\":\"$VERSION\"}}}" -d ${DIR}
-            fi
-        done
-    fi
+    # Update composer to use local packages
+    for i in BigQuery,cloud-bigquery Core,cloud-core Logging,cloud-logging PubSub,cloud-pubsub Storage,cloud-storage ShoppingCommonProtos,shopping-common-protos; do
+        IFS=","; set -- $i;
+        if grep -q "\"google/$2\":" ${DIR}/composer.json; then
+            # determine local package version
+            if [ "$STRICT" = "true" ]; then VERSION=$(cat $1/VERSION); else VERSION="1.100"; fi
+            echo "Use local package $1 as google/$2:$VERSION in $DIR"
+            # "canonical: false" ensures composer will try to install from packagist when the "--prefer-lowest" flag is set.
+            composer config repositories.$2 -d ${DIR} "{\"type\": \"path\", \"url\": \"../$1\", \"options\":{\"versions\":{\"google/$2\":\"$VERSION\"}},\"canonical\":false}"
+        fi
+    done
 
     echo -n "Installing composer in $DIR"
     if [ "$PREFER_LOWEST" != "" ]; then

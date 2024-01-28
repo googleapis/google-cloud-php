@@ -539,8 +539,8 @@ final class PublisherClient
     }
 
     /**
-     * Updates an existing topic. Note that certain properties of a
-     * topic are not modifiable.
+     * Updates an existing topic by updating the fields specified in the update
+     * mask. Note that certain properties of a topic are not modifiable.
      *
      * The async variant is {@see PublisherClient::updateTopicAsync()} .
      *

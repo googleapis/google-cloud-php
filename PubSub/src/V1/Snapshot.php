@@ -20,19 +20,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class Snapshot extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the snapshot.
+     * Optional. The name of the snapshot.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $name = '';
     /**
-     * The name of the topic from which this snapshot is retaining messages.
+     * Optional. The name of the topic from which this snapshot is retaining
+     * messages.
      *
-     * Generated from protobuf field <code>string topic = 2 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string topic = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $topic = '';
     /**
-     * The snapshot is guaranteed to exist up until this time.
+     * Optional. The snapshot is guaranteed to exist up until this time.
      * A newly-created snapshot expires no later than 7 days from the time of its
      * creation. Its exact lifetime is determined at creation by the existing
      * backlog in the source subscription. Specifically, the lifetime of the
@@ -43,14 +44,14 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * exists -- will expire in 4 days. The service will refuse to create a
      * snapshot that would expire in less than 1 hour after creation.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $expire_time = null;
     /**
-     * See [Creating and managing labels]
+     * Optional. See [Creating and managing labels]
      * (https://cloud.google.com/pubsub/docs/labels).
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
 
@@ -61,11 +62,12 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The name of the snapshot.
+     *           Optional. The name of the snapshot.
      *     @type string $topic
-     *           The name of the topic from which this snapshot is retaining messages.
+     *           Optional. The name of the topic from which this snapshot is retaining
+     *           messages.
      *     @type \Google\Protobuf\Timestamp $expire_time
-     *           The snapshot is guaranteed to exist up until this time.
+     *           Optional. The snapshot is guaranteed to exist up until this time.
      *           A newly-created snapshot expires no later than 7 days from the time of its
      *           creation. Its exact lifetime is determined at creation by the existing
      *           backlog in the source subscription. Specifically, the lifetime of the
@@ -76,7 +78,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *           exists -- will expire in 4 days. The service will refuse to create a
      *           snapshot that would expire in less than 1 hour after creation.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           See [Creating and managing labels]
+     *           Optional. See [Creating and managing labels]
      *           (https://cloud.google.com/pubsub/docs/labels).
      * }
      */
@@ -86,9 +88,9 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the snapshot.
+     * Optional. The name of the snapshot.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getName()
@@ -97,9 +99,9 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the snapshot.
+     * Optional. The name of the snapshot.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -112,9 +114,10 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the topic from which this snapshot is retaining messages.
+     * Optional. The name of the topic from which this snapshot is retaining
+     * messages.
      *
-     * Generated from protobuf field <code>string topic = 2 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string topic = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getTopic()
@@ -123,9 +126,10 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the topic from which this snapshot is retaining messages.
+     * Optional. The name of the topic from which this snapshot is retaining
+     * messages.
      *
-     * Generated from protobuf field <code>string topic = 2 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string topic = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -138,7 +142,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The snapshot is guaranteed to exist up until this time.
+     * Optional. The snapshot is guaranteed to exist up until this time.
      * A newly-created snapshot expires no later than 7 days from the time of its
      * creation. Its exact lifetime is determined at creation by the existing
      * backlog in the source subscription. Specifically, the lifetime of the
@@ -149,7 +153,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * exists -- will expire in 4 days. The service will refuse to create a
      * snapshot that would expire in less than 1 hour after creation.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getExpireTime()
@@ -168,7 +172,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The snapshot is guaranteed to exist up until this time.
+     * Optional. The snapshot is guaranteed to exist up until this time.
      * A newly-created snapshot expires no later than 7 days from the time of its
      * creation. Its exact lifetime is determined at creation by the existing
      * backlog in the source subscription. Specifically, the lifetime of the
@@ -179,7 +183,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * exists -- will expire in 4 days. The service will refuse to create a
      * snapshot that would expire in less than 1 hour after creation.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -192,10 +196,10 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [Creating and managing labels]
+     * Optional. See [Creating and managing labels]
      * (https://cloud.google.com/pubsub/docs/labels).
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -204,10 +208,10 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [Creating and managing labels]
+     * Optional. See [Creating and managing labels]
      * (https://cloud.google.com/pubsub/docs/labels).
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */

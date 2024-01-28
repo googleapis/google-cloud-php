@@ -22,6 +22,12 @@ class NetworkStatus extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.edgenetwork.v1.SubnetStatus subnet_status = 1;</code>
      */
     private $subnet_status;
+    /**
+     * The MACsec status of internal links.
+     *
+     * Generated from protobuf field <code>.google.cloud.edgenetwork.v1.DiagnoseNetworkResponse.NetworkStatus.MacsecStatus macsec_status_internal_links = 2;</code>
+     */
+    protected $macsec_status_internal_links = 0;
 
     /**
      * Constructor.
@@ -31,6 +37,8 @@ class NetworkStatus extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\EdgeNetwork\V1\SubnetStatus>|\Google\Protobuf\Internal\RepeatedField $subnet_status
      *           A list of status for the subnets under the current network.
+     *     @type int $macsec_status_internal_links
+     *           The MACsec status of internal links.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,6 +68,32 @@ class NetworkStatus extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\EdgeNetwork\V1\SubnetStatus::class);
         $this->subnet_status = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The MACsec status of internal links.
+     *
+     * Generated from protobuf field <code>.google.cloud.edgenetwork.v1.DiagnoseNetworkResponse.NetworkStatus.MacsecStatus macsec_status_internal_links = 2;</code>
+     * @return int
+     */
+    public function getMacsecStatusInternalLinks()
+    {
+        return $this->macsec_status_internal_links;
+    }
+
+    /**
+     * The MACsec status of internal links.
+     *
+     * Generated from protobuf field <code>.google.cloud.edgenetwork.v1.DiagnoseNetworkResponse.NetworkStatus.MacsecStatus macsec_status_internal_links = 2;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMacsecStatusInternalLinks($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\EdgeNetwork\V1\DiagnoseNetworkResponse\NetworkStatus\MacsecStatus::class);
+        $this->macsec_status_internal_links = $var;
 
         return $this;
     }

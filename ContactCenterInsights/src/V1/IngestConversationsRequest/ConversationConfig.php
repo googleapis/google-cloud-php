@@ -23,17 +23,17 @@ class ConversationConfig extends \Google\Protobuf\Internal\Message
      */
     private $agent_id = '';
     /**
-     * Optional. For audio conversations, this field indicates which of the
-     * channels, 1 or 2, contains the agent. Note that this must be set for
-     * audio conversations to be properly displayed and analyzed.
+     * Optional. Indicates which of the channels, 1 or 2, contains the agent.
+     * Note that this must be set for conversations to be properly displayed and
+     * analyzed.
      *
      * Generated from protobuf field <code>int32 agent_channel = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $agent_channel = 0;
     /**
-     * Optional. For audio conversations, this field indicates which of the
-     * channels, 1 or 2, contains the customer. Note that this must be set for
-     * audio conversations to be properly displayed and analyzed.
+     * Optional. Indicates which of the channels, 1 or 2, contains the agent.
+     * Note that this must be set for conversations to be properly displayed and
+     * analyzed.
      *
      * Generated from protobuf field <code>int32 customer_channel = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -49,13 +49,13 @@ class ConversationConfig extends \Google\Protobuf\Internal\Message
      *           An opaque, user-specified string representing the human agent who handled
      *           the conversations.
      *     @type int $agent_channel
-     *           Optional. For audio conversations, this field indicates which of the
-     *           channels, 1 or 2, contains the agent. Note that this must be set for
-     *           audio conversations to be properly displayed and analyzed.
+     *           Optional. Indicates which of the channels, 1 or 2, contains the agent.
+     *           Note that this must be set for conversations to be properly displayed and
+     *           analyzed.
      *     @type int $customer_channel
-     *           Optional. For audio conversations, this field indicates which of the
-     *           channels, 1 or 2, contains the customer. Note that this must be set for
-     *           audio conversations to be properly displayed and analyzed.
+     *           Optional. Indicates which of the channels, 1 or 2, contains the agent.
+     *           Note that this must be set for conversations to be properly displayed and
+     *           analyzed.
      * }
      */
     public function __construct($data = NULL) {
@@ -92,9 +92,9 @@ class ConversationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. For audio conversations, this field indicates which of the
-     * channels, 1 or 2, contains the agent. Note that this must be set for
-     * audio conversations to be properly displayed and analyzed.
+     * Optional. Indicates which of the channels, 1 or 2, contains the agent.
+     * Note that this must be set for conversations to be properly displayed and
+     * analyzed.
      *
      * Generated from protobuf field <code>int32 agent_channel = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -105,9 +105,9 @@ class ConversationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. For audio conversations, this field indicates which of the
-     * channels, 1 or 2, contains the agent. Note that this must be set for
-     * audio conversations to be properly displayed and analyzed.
+     * Optional. Indicates which of the channels, 1 or 2, contains the agent.
+     * Note that this must be set for conversations to be properly displayed and
+     * analyzed.
      *
      * Generated from protobuf field <code>int32 agent_channel = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -122,9 +122,9 @@ class ConversationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. For audio conversations, this field indicates which of the
-     * channels, 1 or 2, contains the customer. Note that this must be set for
-     * audio conversations to be properly displayed and analyzed.
+     * Optional. Indicates which of the channels, 1 or 2, contains the agent.
+     * Note that this must be set for conversations to be properly displayed and
+     * analyzed.
      *
      * Generated from protobuf field <code>int32 customer_channel = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -135,9 +135,9 @@ class ConversationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. For audio conversations, this field indicates which of the
-     * channels, 1 or 2, contains the customer. Note that this must be set for
-     * audio conversations to be properly displayed and analyzed.
+     * Optional. Indicates which of the channels, 1 or 2, contains the agent.
+     * Note that this must be set for conversations to be properly displayed and
+     * analyzed.
      *
      * Generated from protobuf field <code>int32 customer_channel = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
