@@ -1,10 +1,39 @@
-This guide talks about changes from `google/cloud-pubsub` `v1` to `v2` and how to easily upgrade with some minor changes to your codebase.
+# Migrating Google PubSub from V1 to V2
 
 ## How to upgrade
 
-If your `composer.json` uses (version ranges)[https://getcomposer.org/doc/articles/versions.md#next-significant-release-operators] or exact versions for `google/cloud-pubsub`, then you may need to update those ranges and then run `composer update`.
+Update your `google/cloud-pubsub` dependency to `^2.0`:
+
+```
+{
+    "require": {
+        "google/cloud-pubsub": "^2.0"
+    }
+}
+```
 
 ## Changes
+
+### Client config changes
+
+The following properties are removed/replaced with other options present in GAX. This was done to achieve consistent behaviour that already exists in most of the other products.
+
+- `authCache` -> Moved to `credentialsConfig.authCache`
+- `authCacheOptions` -> Moved to `credentialsConfig.authCacheOptions`
+- `credentialsFetcher` -> Moved to `credentials`
+- `keyFile` -> Moved to `credentials`
+- `keyFilePath` -> Moved to `credentials`
+- `requestTimeout` -> Removed from client options and moved to a call option `timeoutMillis`
+- `scopes` -> Moved to `credentialsConfig.scopes`
+- `defaultScopes` -> Moved to `credentialsConfig.defaultScopes`
+- `quotaProject` -> Moved to `credentialsConfig.quotaProject`
+- `httpHandler` -> Moved to `transportConfig.rest.httpHandler`
+- `authHttpHandler` -> Moved to `credentialsConfig.authHttpHandler`
+- `asyncHttpHandler` -> Removed in favour of a single httpHandler option.
+- `restOptions` -> Moved to `transportConfig.rest`
+- `grpcOptions` -> Moved to `transportConfig.grpc`
+- `accessToken` -> Removed
+- `shouldSignRequest` -> Removed
 
 ### Connection classes are not used anymore.
 
@@ -34,27 +63,6 @@ With `v2` in `google/cloud-pubsub` the retry settings have been moved to GAX com
 - restRetryFunction -> Renamed to retrySettings.retryFunction
 - grpcRetryFunction -> Renamed to retrySettings.retryFunction
 - delayFunc/calcDelayFunction -> Removed in favour of the properties `retrySettings.initialRetryDelayMillis`, `retrySettings.retryDelayMultiplier` and `retrySettings.maxRetryDelayMillis`.
-
-### Client config changes
-
-The following properties are removed/replaced with other options present in GAX. This was done to achieve consistent behaviour that already exists in most of the other products.
-
-- authCache -> Moved to `credentialsConfig.authCache`
-- authCacheOptions -> Moved to `credentialsConfig.authCacheOptions`
-- credentialsFetcher -> Moved to `credentials`
-- keyFile -> Moved to `credentials`
-- keyFilePath -> Moved to `credentials`
-- requestTimeout -> Removed from client options and moved to a call option `timeoutMillis`
-- scopes -> Moved to `credentialsConfig.scopes`
-- defaultScopes -> Moved to `credentialsConfig.defaultScopes`
-- quotaProject -> Moved to `credentialsConfig.quotaProject`
-- httpHandler -> Moved to `transportConfig.rest.httpHandler`
-- authHttpHandler -> Moved to `credentialsConfig.authHttpHandler`
-- asyncHttpHandler -> Removed in favour of a single httpHandler option.
-- restOptions -> Moved to `transportConfig.rest`
-- grpcOptions -> Moved to `transportConfig.grpc`
-- accessToken -> Removed
-- shouldSignRequest -> Deprecated
 
 ### IAM class changes
 
