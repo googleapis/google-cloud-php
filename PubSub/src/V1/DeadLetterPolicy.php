@@ -19,21 +19,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeadLetterPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the topic to which dead letter messages should be published.
-     * Format is `projects/{project}/topics/{topic}`.The Cloud Pub/Sub service
-     * account associated with the enclosing subscription's parent project (i.e.,
-     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must have
-     * permission to Publish() to this topic.
+     * Optional. The name of the topic to which dead letter messages should be
+     * published. Format is `projects/{project}/topics/{topic}`.The Pub/Sub
+     * service account associated with the enclosing subscription's parent project
+     * (i.e., service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must
+     * have permission to Publish() to this topic.
      * The operation will fail if the topic does not exist.
      * Users should ensure that there is a subscription attached to this topic
      * since messages published to a topic with no subscriptions are lost.
      *
-     * Generated from protobuf field <code>string dead_letter_topic = 1;</code>
+     * Generated from protobuf field <code>string dead_letter_topic = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $dead_letter_topic = '';
     /**
-     * The maximum number of delivery attempts for any message. The value must be
-     * between 5 and 100.
+     * Optional. The maximum number of delivery attempts for any message. The
+     * value must be between 5 and 100.
      * The number of delivery attempts is defined as 1 + (the sum of number of
      * NACKs and number of times the acknowledgement deadline has been exceeded
      * for the message).
@@ -42,7 +42,7 @@ class DeadLetterPolicy extends \Google\Protobuf\Internal\Message
      * This field will be honored on a best effort basis.
      * If this parameter is 0, a default value of 5 is used.
      *
-     * Generated from protobuf field <code>int32 max_delivery_attempts = 2;</code>
+     * Generated from protobuf field <code>int32 max_delivery_attempts = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $max_delivery_attempts = 0;
 
@@ -53,17 +53,17 @@ class DeadLetterPolicy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $dead_letter_topic
-     *           The name of the topic to which dead letter messages should be published.
-     *           Format is `projects/{project}/topics/{topic}`.The Cloud Pub/Sub service
-     *           account associated with the enclosing subscription's parent project (i.e.,
-     *           service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must have
-     *           permission to Publish() to this topic.
+     *           Optional. The name of the topic to which dead letter messages should be
+     *           published. Format is `projects/{project}/topics/{topic}`.The Pub/Sub
+     *           service account associated with the enclosing subscription's parent project
+     *           (i.e., service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must
+     *           have permission to Publish() to this topic.
      *           The operation will fail if the topic does not exist.
      *           Users should ensure that there is a subscription attached to this topic
      *           since messages published to a topic with no subscriptions are lost.
      *     @type int $max_delivery_attempts
-     *           The maximum number of delivery attempts for any message. The value must be
-     *           between 5 and 100.
+     *           Optional. The maximum number of delivery attempts for any message. The
+     *           value must be between 5 and 100.
      *           The number of delivery attempts is defined as 1 + (the sum of number of
      *           NACKs and number of times the acknowledgement deadline has been exceeded
      *           for the message).
@@ -79,16 +79,16 @@ class DeadLetterPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the topic to which dead letter messages should be published.
-     * Format is `projects/{project}/topics/{topic}`.The Cloud Pub/Sub service
-     * account associated with the enclosing subscription's parent project (i.e.,
-     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must have
-     * permission to Publish() to this topic.
+     * Optional. The name of the topic to which dead letter messages should be
+     * published. Format is `projects/{project}/topics/{topic}`.The Pub/Sub
+     * service account associated with the enclosing subscription's parent project
+     * (i.e., service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must
+     * have permission to Publish() to this topic.
      * The operation will fail if the topic does not exist.
      * Users should ensure that there is a subscription attached to this topic
      * since messages published to a topic with no subscriptions are lost.
      *
-     * Generated from protobuf field <code>string dead_letter_topic = 1;</code>
+     * Generated from protobuf field <code>string dead_letter_topic = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDeadLetterTopic()
@@ -97,16 +97,16 @@ class DeadLetterPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the topic to which dead letter messages should be published.
-     * Format is `projects/{project}/topics/{topic}`.The Cloud Pub/Sub service
-     * account associated with the enclosing subscription's parent project (i.e.,
-     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must have
-     * permission to Publish() to this topic.
+     * Optional. The name of the topic to which dead letter messages should be
+     * published. Format is `projects/{project}/topics/{topic}`.The Pub/Sub
+     * service account associated with the enclosing subscription's parent project
+     * (i.e., service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must
+     * have permission to Publish() to this topic.
      * The operation will fail if the topic does not exist.
      * Users should ensure that there is a subscription attached to this topic
      * since messages published to a topic with no subscriptions are lost.
      *
-     * Generated from protobuf field <code>string dead_letter_topic = 1;</code>
+     * Generated from protobuf field <code>string dead_letter_topic = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -119,8 +119,8 @@ class DeadLetterPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of delivery attempts for any message. The value must be
-     * between 5 and 100.
+     * Optional. The maximum number of delivery attempts for any message. The
+     * value must be between 5 and 100.
      * The number of delivery attempts is defined as 1 + (the sum of number of
      * NACKs and number of times the acknowledgement deadline has been exceeded
      * for the message).
@@ -129,7 +129,7 @@ class DeadLetterPolicy extends \Google\Protobuf\Internal\Message
      * This field will be honored on a best effort basis.
      * If this parameter is 0, a default value of 5 is used.
      *
-     * Generated from protobuf field <code>int32 max_delivery_attempts = 2;</code>
+     * Generated from protobuf field <code>int32 max_delivery_attempts = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getMaxDeliveryAttempts()
@@ -138,8 +138,8 @@ class DeadLetterPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of delivery attempts for any message. The value must be
-     * between 5 and 100.
+     * Optional. The maximum number of delivery attempts for any message. The
+     * value must be between 5 and 100.
      * The number of delivery attempts is defined as 1 + (the sum of number of
      * NACKs and number of times the acknowledgement deadline has been exceeded
      * for the message).
@@ -148,7 +148,7 @@ class DeadLetterPolicy extends \Google\Protobuf\Internal\Message
      * This field will be honored on a best effort basis.
      * If this parameter is 0, a default value of 5 is used.
      *
-     * Generated from protobuf field <code>int32 max_delivery_attempts = 2;</code>
+     * Generated from protobuf field <code>int32 max_delivery_attempts = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

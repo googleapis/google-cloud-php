@@ -50,15 +50,6 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 skipped_results = 4;</code>
      */
     private $skipped_results = 0;
-    /**
-     * Query plan and execution statistics. Note that the returned stats are
-     * subject to change as Firestore evolves.
-     * This is only present when the request specifies a mode other than `NORMAL`
-     * and is sent only once with the last response in the stream.
-     *
-     * Generated from protobuf field <code>.google.firestore.v1.ResultSetStats stats = 7;</code>
-     */
-    private $stats = null;
     protected $continuation_selector;
 
     /**
@@ -88,11 +79,6 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      *     @type bool $done
      *           If present, Firestore has completely finished the request and no more
      *           documents will be returned.
-     *     @type \Google\Cloud\Firestore\V1\ResultSetStats $stats
-     *           Query plan and execution statistics. Note that the returned stats are
-     *           subject to change as Firestore evolves.
-     *           This is only present when the request specifies a mode other than `NORMAL`
-     *           and is sent only once with the last response in the stream.
      * }
      */
     public function __construct($data = NULL) {
@@ -273,48 +259,6 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->writeOneof(6, $var);
-
-        return $this;
-    }
-
-    /**
-     * Query plan and execution statistics. Note that the returned stats are
-     * subject to change as Firestore evolves.
-     * This is only present when the request specifies a mode other than `NORMAL`
-     * and is sent only once with the last response in the stream.
-     *
-     * Generated from protobuf field <code>.google.firestore.v1.ResultSetStats stats = 7;</code>
-     * @return \Google\Cloud\Firestore\V1\ResultSetStats|null
-     */
-    public function getStats()
-    {
-        return $this->stats;
-    }
-
-    public function hasStats()
-    {
-        return isset($this->stats);
-    }
-
-    public function clearStats()
-    {
-        unset($this->stats);
-    }
-
-    /**
-     * Query plan and execution statistics. Note that the returned stats are
-     * subject to change as Firestore evolves.
-     * This is only present when the request specifies a mode other than `NORMAL`
-     * and is sent only once with the last response in the stream.
-     *
-     * Generated from protobuf field <code>.google.firestore.v1.ResultSetStats stats = 7;</code>
-     * @param \Google\Cloud\Firestore\V1\ResultSetStats $var
-     * @return $this
-     */
-    public function setStats($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\ResultSetStats::class);
-        $this->stats = $var;
 
         return $this;
     }

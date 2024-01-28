@@ -16,15 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class SubscriptionProperties extends \Google\Protobuf\Internal\Message
 {
     /**
-     * True iff exactly once delivery is enabled for this subscription.
+     * Optional. True iff exactly once delivery is enabled for this
+     * subscription.
      *
-     * Generated from protobuf field <code>bool exactly_once_delivery_enabled = 1;</code>
+     * Generated from protobuf field <code>bool exactly_once_delivery_enabled = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $exactly_once_delivery_enabled = false;
     /**
-     * True iff message ordering is enabled for this subscription.
+     * Optional. True iff message ordering is enabled for this subscription.
      *
-     * Generated from protobuf field <code>bool message_ordering_enabled = 2;</code>
+     * Generated from protobuf field <code>bool message_ordering_enabled = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $message_ordering_enabled = false;
 
@@ -35,9 +36,10 @@ class SubscriptionProperties extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $exactly_once_delivery_enabled
-     *           True iff exactly once delivery is enabled for this subscription.
+     *           Optional. True iff exactly once delivery is enabled for this
+     *           subscription.
      *     @type bool $message_ordering_enabled
-     *           True iff message ordering is enabled for this subscription.
+     *           Optional. True iff message ordering is enabled for this subscription.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,9 +48,10 @@ class SubscriptionProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True iff exactly once delivery is enabled for this subscription.
+     * Optional. True iff exactly once delivery is enabled for this
+     * subscription.
      *
-     * Generated from protobuf field <code>bool exactly_once_delivery_enabled = 1;</code>
+     * Generated from protobuf field <code>bool exactly_once_delivery_enabled = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getExactlyOnceDeliveryEnabled()
@@ -57,9 +60,10 @@ class SubscriptionProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True iff exactly once delivery is enabled for this subscription.
+     * Optional. True iff exactly once delivery is enabled for this
+     * subscription.
      *
-     * Generated from protobuf field <code>bool exactly_once_delivery_enabled = 1;</code>
+     * Generated from protobuf field <code>bool exactly_once_delivery_enabled = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -72,9 +76,9 @@ class SubscriptionProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True iff message ordering is enabled for this subscription.
+     * Optional. True iff message ordering is enabled for this subscription.
      *
-     * Generated from protobuf field <code>bool message_ordering_enabled = 2;</code>
+     * Generated from protobuf field <code>bool message_ordering_enabled = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getMessageOrderingEnabled()
@@ -83,9 +87,9 @@ class SubscriptionProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True iff message ordering is enabled for this subscription.
+     * Optional. True iff message ordering is enabled for this subscription.
      *
-     * Generated from protobuf field <code>bool message_ordering_enabled = 2;</code>
+     * Generated from protobuf field <code>bool message_ordering_enabled = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

@@ -30,7 +30,7 @@ class AnalyticsAdmin
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‚∞
+¡¿
 4google/analytics/admin/v1alpha/analytics_admin.protogoogle.analytics.admin.v1alpha-google/analytics/admin/v1alpha/audience.proto2google/analytics/admin/v1alpha/channel_group.proto:google/analytics/admin/v1alpha/event_create_and_edit.proto6google/analytics/admin/v1alpha/expanded_data_set.proto.google/analytics/admin/v1alpha/resources.proto=google/analytics/admin/v1alpha/subproperty_event_filter.protogoogle/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"‡
 RunAccessReportRequest
 entity (	C
@@ -332,7 +332,28 @@ page_token (	"z
 *analyticsadmin.googleapis.com/CustomMetric"Z
 GetCustomMetricRequest@
 name (	B2‡A˙A,
-*analyticsadmin.googleapis.com/CustomMetric"l
+*analyticsadmin.googleapis.com/CustomMetric"‹
+CreateCalculatedMetricRequestF
+parent (	B6‡A˙A0.analyticsadmin.googleapis.com/CalculatedMetric!
+calculated_metric_id (	B‡AP
+calculated_metric (20.google.analytics.admin.v1alpha.CalculatedMetricB‡A"ß
+UpdateCalculatedMetricRequestP
+calculated_metric (20.google.analytics.admin.v1alpha.CalculatedMetricB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A"e
+DeleteCalculatedMetricRequestD
+name (	B6‡A˙A0
+.analyticsadmin.googleapis.com/CalculatedMetric"ó
+ListCalculatedMetricsRequestF
+parent (	B6‡A˙A0.analyticsadmin.googleapis.com/CalculatedMetric
+	page_size (B‡A
+
+page_token (	B‡A"Ü
+ListCalculatedMetricsResponseL
+calculated_metrics (20.google.analytics.admin.v1alpha.CalculatedMetric
+next_page_token (	"b
+GetCalculatedMetricRequestD
+name (	B6‡A˙A0
+.analyticsadmin.googleapis.com/CalculatedMetric"l
 GetDataRetentionSettingsRequestI
 name (	B;‡A˙A5
 3analyticsadmin.googleapis.com/DataRetentionSettings"∑
@@ -597,7 +618,7 @@ page_token (	B‡A"ô
 update_mask (2.google.protobuf.FieldMaskB‡A"q
 #DeleteSubpropertyEventFilterRequestJ
 name (	B<‡A˙A6
-4analyticsadmin.googleapis.com/SubpropertyEventFilter2˚Ó
+4analyticsadmin.googleapis.com/SubpropertyEventFilter2„˜
 AnalyticsAdminServiceì
 
 GetAccount1.google.analytics.admin.v1alpha.GetAccountRequest\'.google.analytics.admin.v1alpha.Account")Ç”‰ì/v1alpha/{name=accounts/*}⁄Anameî
@@ -719,7 +740,12 @@ $FetchAutomatedGa4ConfigurationOptOutK.google.analytics.admin.v1alpha.FetchAuto
 UpdateEventCreateRule<.google.analytics.admin.v1alpha.UpdateEventCreateRuleRequest/.google.analytics.admin.v1alpha.EventCreateRule"äÇ”‰ìd2O/v1alpha/{event_create_rule.name=properties/*/dataStreams/*/eventCreateRules/*}:event_create_rule⁄Aevent_create_rule,update_maskª
 DeleteEventCreateRule<.google.analytics.admin.v1alpha.DeleteEventCreateRuleRequest.google.protobuf.Empty"LÇ”‰ì?*=/v1alpha/{name=properties/*/dataStreams/*/eventCreateRules/*}⁄Aname∫
 UpdateDataRedactionSettingsB.google.analytics.admin.v1alpha.UpdateDataRedactionSettingsRequest5.google.analytics.admin.v1alpha.DataRedactionSettings"üÇ”‰ìs2X/v1alpha/{data_redaction_settings.name=properties/*/dataStreams/*/dataRedactionSettings}:data_redaction_settings⁄A#data_redaction_settings,update_mask„
-GetDataRedactionSettings?.google.analytics.admin.v1alpha.GetDataRedactionSettingsRequest5.google.analytics.admin.v1alpha.DataRedactionSettings"OÇ”‰ìB@/v1alpha/{name=properties/*/dataStreams/*/dataRedactionSettings}⁄Aname∆
+GetDataRedactionSettings?.google.analytics.admin.v1alpha.GetDataRedactionSettingsRequest5.google.analytics.admin.v1alpha.DataRedactionSettings"OÇ”‰ìB@/v1alpha/{name=properties/*/dataStreams/*/dataRedactionSettings}⁄Anameƒ
+GetCalculatedMetric:.google.analytics.admin.v1alpha.GetCalculatedMetricRequest0.google.analytics.admin.v1alpha.CalculatedMetric"?Ç”‰ì20/v1alpha/{name=properties/*/calculatedMetrics/*}⁄AnameÜ
+CreateCalculatedMetric=.google.analytics.admin.v1alpha.CreateCalculatedMetricRequest0.google.analytics.admin.v1alpha.CalculatedMetric"{Ç”‰ìE"0/v1alpha/{parent=properties/*}/calculatedMetrics:calculated_metric⁄A-parent,calculated_metric,calculated_metric_id◊
+ListCalculatedMetrics<.google.analytics.admin.v1alpha.ListCalculatedMetricsRequest=.google.analytics.admin.v1alpha.ListCalculatedMetricsResponse"AÇ”‰ì20/v1alpha/{parent=properties/*}/calculatedMetrics⁄Aparentà
+UpdateCalculatedMetric=.google.analytics.admin.v1alpha.UpdateCalculatedMetricRequest0.google.analytics.admin.v1alpha.CalculatedMetric"}Ç”‰ìW2B/v1alpha/{calculated_metric.name=properties/*/calculatedMetrics/*}:calculated_metric⁄Acalculated_metric,update_mask∞
+DeleteCalculatedMetric=.google.analytics.admin.v1alpha.DeleteCalculatedMetricRequest.google.protobuf.Empty"?Ç”‰ì2*0/v1alpha/{name=properties/*/calculatedMetrics/*}⁄Aname∆
 CreateRollupProperty;.google.analytics.admin.v1alpha.CreateRollupPropertyRequest<.google.analytics.admin.v1alpha.CreateRollupPropertyResponse"3Ç”‰ì-"(/v1alpha/properties:createRollupProperty:*‰
 GetRollupPropertySourceLinkB.google.analytics.admin.v1alpha.GetRollupPropertySourceLinkRequest8.google.analytics.admin.v1alpha.RollupPropertySourceLink"GÇ”‰ì:8/v1alpha/{name=properties/*/rollupPropertySourceLinks/*}⁄Aname˜
 ListRollupPropertySourceLinksD.google.analytics.admin.v1alpha.ListRollupPropertySourceLinksRequestE.google.analytics.admin.v1alpha.ListRollupPropertySourceLinksResponse"IÇ”‰ì:8/v1alpha/{parent=properties/*}/rollupPropertySourceLinks⁄Aparent¶

@@ -343,11 +343,10 @@ final class AlphaAnalyticsDataClient
      * https://support.google.com/analytics/answer/9267572. Audience lists contain
      * the users in each audience.
      *
-     * This method is introduced at alpha stability with the intention of
-     * gathering feedback on syntax and capabilities before entering beta. To give
-     * your feedback on this API, complete the
-     * [Google Analytics Audience Export API
-     * Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
+     * This method is available at beta stability at
+     * [audienceExports.create](https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties.audienceExports/create).
+     * To give your feedback on this API, complete the [Google Analytics Audience
+     * Export API Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
      *
      * The async variant is {@see AlphaAnalyticsDataClient::createAudienceListAsync()}
      * .
@@ -429,9 +428,9 @@ final class AlphaAnalyticsDataClient
      * List](https://developers.google.com/analytics/devguides/reporting/data/v1/audience-list-basics)
      * for an introduction to Audience Lists with examples.
      *
-     * This method is introduced at alpha stability with the intention of
-     * gathering feedback on syntax and capabilities before entering beta. To give
-     * your feedback on this API, complete the
+     * This method is available at beta stability at
+     * [audienceExports.get](https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties.audienceExports/get).
+     * To give your feedback on this API, complete the
      * [Google Analytics Audience Export API
      * Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
      *
@@ -509,9 +508,9 @@ final class AlphaAnalyticsDataClient
      * List](https://developers.google.com/analytics/devguides/reporting/data/v1/audience-list-basics)
      * for an introduction to Audience Lists with examples.
      *
-     * This method is introduced at alpha stability with the intention of
-     * gathering feedback on syntax and capabilities before entering beta. To give
-     * your feedback on this API, complete the
+     * This method is available at beta stability at
+     * [audienceExports.list](https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties.audienceExports/list).
+     * To give your feedback on this API, complete the
      * [Google Analytics Audience Export API
      * Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
      *
@@ -595,11 +594,10 @@ final class AlphaAnalyticsDataClient
      * that are important to your business. To learn more, see
      * https://support.google.com/analytics/answer/9267572.
      *
-     * This method is introduced at alpha stability with the intention of
-     * gathering feedback on syntax and capabilities before entering beta. To give
-     * your feedback on this API, complete the
-     * [Google Analytics Audience Export API
-     * Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
+     * This method is available at beta stability at
+     * [audienceExports.query](https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties.audienceExports/query).
+     * To give your feedback on this API, complete the [Google Analytics Audience
+     * Export API Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
      *
      * The async variant is {@see AlphaAnalyticsDataClient::queryAudienceListAsync()} .
      *

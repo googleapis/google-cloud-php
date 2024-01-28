@@ -39,14 +39,6 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bytes transaction = 5;</code>
      */
     private $transaction = '';
-    /**
-     * Query plan and execution statistics. Note that the returned stats are
-     * subject to change as Firestore evolves.
-     * This is only present when the request specifies a mode other than `NORMAL`.
-     *
-     * Generated from protobuf field <code>.google.datastore.v1.ResultSetStats stats = 6;</code>
-     */
-    private $stats = null;
 
     /**
      * Constructor.
@@ -65,10 +57,6 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      *           [ReadOptions.new_transaction][google.datastore.v1.ReadOptions.new_transaction]
      *           was set in
      *           [RunQueryRequest.read_options][google.datastore.v1.RunQueryRequest.read_options].
-     *     @type \Google\Cloud\Datastore\V1\ResultSetStats $stats
-     *           Query plan and execution statistics. Note that the returned stats are
-     *           subject to change as Firestore evolves.
-     *           This is only present when the request specifies a mode other than `NORMAL`.
      * }
      */
     public function __construct($data = NULL) {
@@ -180,46 +168,6 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, False);
         $this->transaction = $var;
-
-        return $this;
-    }
-
-    /**
-     * Query plan and execution statistics. Note that the returned stats are
-     * subject to change as Firestore evolves.
-     * This is only present when the request specifies a mode other than `NORMAL`.
-     *
-     * Generated from protobuf field <code>.google.datastore.v1.ResultSetStats stats = 6;</code>
-     * @return \Google\Cloud\Datastore\V1\ResultSetStats|null
-     */
-    public function getStats()
-    {
-        return $this->stats;
-    }
-
-    public function hasStats()
-    {
-        return isset($this->stats);
-    }
-
-    public function clearStats()
-    {
-        unset($this->stats);
-    }
-
-    /**
-     * Query plan and execution statistics. Note that the returned stats are
-     * subject to change as Firestore evolves.
-     * This is only present when the request specifies a mode other than `NORMAL`.
-     *
-     * Generated from protobuf field <code>.google.datastore.v1.ResultSetStats stats = 6;</code>
-     * @param \Google\Cloud\Datastore\V1\ResultSetStats $var
-     * @return $this
-     */
-    public function setStats($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Datastore\V1\ResultSetStats::class);
-        $this->stats = $var;
 
         return $this;
     }

@@ -18,24 +18,25 @@ use Google\Protobuf\Internal\GPBUtil;
 class OidcToken extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Service account
+     * Optional. [Service account
      * email](https://cloud.google.com/iam/docs/service-accounts)
      * used for generating the OIDC token. For more information
      * on setting up authentication, see
      * [Push subscriptions](https://cloud.google.com/pubsub/docs/push).
      *
-     * Generated from protobuf field <code>string service_account_email = 1;</code>
+     * Generated from protobuf field <code>string service_account_email = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $service_account_email = '';
     /**
-     * Audience to be used when generating OIDC token. The audience claim
-     * identifies the recipients that the JWT is intended for. The audience
-     * value is a single case-sensitive string. Having multiple values (array)
-     * for the audience field is not supported. More info about the OIDC JWT
-     * token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3
-     * Note: if not specified, the Push endpoint URL will be used.
+     * Optional. Audience to be used when generating OIDC token. The audience
+     * claim identifies the recipients that the JWT is intended for. The
+     * audience value is a single case-sensitive string. Having multiple values
+     * (array) for the audience field is not supported. More info about the OIDC
+     * JWT token audience here:
+     * https://tools.ietf.org/html/rfc7519#section-4.1.3 Note: if not specified,
+     * the Push endpoint URL will be used.
      *
-     * Generated from protobuf field <code>string audience = 2;</code>
+     * Generated from protobuf field <code>string audience = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $audience = '';
 
@@ -46,18 +47,19 @@ class OidcToken extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $service_account_email
-     *           [Service account
+     *           Optional. [Service account
      *           email](https://cloud.google.com/iam/docs/service-accounts)
      *           used for generating the OIDC token. For more information
      *           on setting up authentication, see
      *           [Push subscriptions](https://cloud.google.com/pubsub/docs/push).
      *     @type string $audience
-     *           Audience to be used when generating OIDC token. The audience claim
-     *           identifies the recipients that the JWT is intended for. The audience
-     *           value is a single case-sensitive string. Having multiple values (array)
-     *           for the audience field is not supported. More info about the OIDC JWT
-     *           token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3
-     *           Note: if not specified, the Push endpoint URL will be used.
+     *           Optional. Audience to be used when generating OIDC token. The audience
+     *           claim identifies the recipients that the JWT is intended for. The
+     *           audience value is a single case-sensitive string. Having multiple values
+     *           (array) for the audience field is not supported. More info about the OIDC
+     *           JWT token audience here:
+     *           https://tools.ietf.org/html/rfc7519#section-4.1.3 Note: if not specified,
+     *           the Push endpoint URL will be used.
      * }
      */
     public function __construct($data = NULL) {
@@ -66,13 +68,13 @@ class OidcToken extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Service account
+     * Optional. [Service account
      * email](https://cloud.google.com/iam/docs/service-accounts)
      * used for generating the OIDC token. For more information
      * on setting up authentication, see
      * [Push subscriptions](https://cloud.google.com/pubsub/docs/push).
      *
-     * Generated from protobuf field <code>string service_account_email = 1;</code>
+     * Generated from protobuf field <code>string service_account_email = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getServiceAccountEmail()
@@ -81,13 +83,13 @@ class OidcToken extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Service account
+     * Optional. [Service account
      * email](https://cloud.google.com/iam/docs/service-accounts)
      * used for generating the OIDC token. For more information
      * on setting up authentication, see
      * [Push subscriptions](https://cloud.google.com/pubsub/docs/push).
      *
-     * Generated from protobuf field <code>string service_account_email = 1;</code>
+     * Generated from protobuf field <code>string service_account_email = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -100,14 +102,15 @@ class OidcToken extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Audience to be used when generating OIDC token. The audience claim
-     * identifies the recipients that the JWT is intended for. The audience
-     * value is a single case-sensitive string. Having multiple values (array)
-     * for the audience field is not supported. More info about the OIDC JWT
-     * token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3
-     * Note: if not specified, the Push endpoint URL will be used.
+     * Optional. Audience to be used when generating OIDC token. The audience
+     * claim identifies the recipients that the JWT is intended for. The
+     * audience value is a single case-sensitive string. Having multiple values
+     * (array) for the audience field is not supported. More info about the OIDC
+     * JWT token audience here:
+     * https://tools.ietf.org/html/rfc7519#section-4.1.3 Note: if not specified,
+     * the Push endpoint URL will be used.
      *
-     * Generated from protobuf field <code>string audience = 2;</code>
+     * Generated from protobuf field <code>string audience = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getAudience()
@@ -116,14 +119,15 @@ class OidcToken extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Audience to be used when generating OIDC token. The audience claim
-     * identifies the recipients that the JWT is intended for. The audience
-     * value is a single case-sensitive string. Having multiple values (array)
-     * for the audience field is not supported. More info about the OIDC JWT
-     * token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3
-     * Note: if not specified, the Push endpoint URL will be used.
+     * Optional. Audience to be used when generating OIDC token. The audience
+     * claim identifies the recipients that the JWT is intended for. The
+     * audience value is a single case-sensitive string. Having multiple values
+     * (array) for the audience field is not supported. More info about the OIDC
+     * JWT token audience here:
+     * https://tools.ietf.org/html/rfc7519#section-4.1.3 Note: if not specified,
+     * the Push endpoint URL will be used.
      *
-     * Generated from protobuf field <code>string audience = 2;</code>
+     * Generated from protobuf field <code>string audience = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

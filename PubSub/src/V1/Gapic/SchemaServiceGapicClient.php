@@ -373,8 +373,8 @@ class SchemaServiceGapicClient
      *           The ID to use for the schema, which will become the final component of
      *           the schema's resource name.
      *
-     *           See https://cloud.google.com/pubsub/docs/admin#resource_names for resource
-     *           name constraints.
+     *           See https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names for
+     *           resource name constraints.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

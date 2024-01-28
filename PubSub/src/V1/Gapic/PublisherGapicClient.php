@@ -44,6 +44,7 @@ use Google\Cloud\PubSub\V1\DeleteTopicRequest;
 use Google\Cloud\PubSub\V1\DetachSubscriptionRequest;
 use Google\Cloud\PubSub\V1\DetachSubscriptionResponse;
 use Google\Cloud\PubSub\V1\GetTopicRequest;
+use Google\Cloud\PubSub\V1\IngestionDataSourceSettings;
 use Google\Cloud\PubSub\V1\ListTopicSnapshotsRequest;
 use Google\Cloud\PubSub\V1\ListTopicSnapshotsResponse;
 use Google\Cloud\PubSub\V1\ListTopicSubscriptionsRequest;
@@ -56,6 +57,7 @@ use Google\Cloud\PubSub\V1\PublishResponse;
 use Google\Cloud\PubSub\V1\PubsubMessage;
 use Google\Cloud\PubSub\V1\SchemaSettings;
 use Google\Cloud\PubSub\V1\Topic;
+use Google\Cloud\PubSub\V1\Topic\State;
 use Google\Cloud\PubSub\V1\UpdateTopicRequest;
 use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
@@ -442,31 +444,38 @@ class PublisherGapicClient
      *     Optional.
      *
      *     @type array $labels
-     *           See [Creating and managing labels]
+     *           Optional. See [Creating and managing labels]
      *           (https://cloud.google.com/pubsub/docs/labels).
      *     @type MessageStoragePolicy $messageStoragePolicy
-     *           Policy constraining the set of Google Cloud Platform regions where messages
-     *           published to the topic may be stored. If not present, then no constraints
-     *           are in effect.
+     *           Optional. Policy constraining the set of Google Cloud Platform regions
+     *           where messages published to the topic may be stored. If not present, then
+     *           no constraints are in effect.
      *     @type string $kmsKeyName
-     *           The resource name of the Cloud KMS CryptoKey to be used to protect access
-     *           to messages published on this topic.
+     *           Optional. The resource name of the Cloud KMS CryptoKey to be used to
+     *           protect access to messages published on this topic.
      *
      *           The expected format is `projects/&#42;/locations/&#42;/keyRings/&#42;/cryptoKeys/*`.
      *     @type SchemaSettings $schemaSettings
-     *           Settings for validating messages published against a schema.
+     *           Optional. Settings for validating messages published against a schema.
      *     @type bool $satisfiesPzs
-     *           Reserved for future use. This field is set only in responses from the
-     *           server; it is ignored if it is set in any requests.
+     *           Optional. Reserved for future use. This field is set only in responses from
+     *           the server; it is ignored if it is set in any requests.
      *     @type Duration $messageRetentionDuration
-     *           Indicates the minimum duration to retain a message after it is published to
-     *           the topic. If this field is set, messages published to the topic in the
-     *           last `message_retention_duration` are always available to subscribers. For
-     *           instance, it allows any attached subscription to [seek to a
+     *           Optional. Indicates the minimum duration to retain a message after it is
+     *           published to the topic. If this field is set, messages published to the
+     *           topic in the last `message_retention_duration` are always available to
+     *           subscribers. For instance, it allows any attached subscription to [seek to
+     *           a
      *           timestamp](https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time)
      *           that is up to `message_retention_duration` in the past. If this field is
      *           not set, message retention is controlled by settings on individual
      *           subscriptions. Cannot be more than 31 days or less than 10 minutes.
+     *     @type int $state
+     *           Output only. An output-only field indicating the state of the topic.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\PubSub\V1\Topic\State}
+     *     @type IngestionDataSourceSettings $ingestionDataSourceSettings
+     *           Optional. Settings for managed ingestion from a data source into this
+     *           topic.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -505,6 +514,14 @@ class PublisherGapicClient
 
         if (isset($optionalArgs['messageRetentionDuration'])) {
             $request->setMessageRetentionDuration($optionalArgs['messageRetentionDuration']);
+        }
+
+        if (isset($optionalArgs['state'])) {
+            $request->setState($optionalArgs['state']);
+        }
+
+        if (isset($optionalArgs['ingestionDataSourceSettings'])) {
+            $request->setIngestionDataSourceSettings($optionalArgs['ingestionDataSourceSettings']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -893,8 +910,8 @@ class PublisherGapicClient
     }
 
     /**
-     * Updates an existing topic. Note that certain properties of a
-     * topic are not modifiable.
+     * Updates an existing topic by updating the fields specified in the update
+     * mask. Note that certain properties of a topic are not modifiable.
      *
      * Sample code:
      * ```

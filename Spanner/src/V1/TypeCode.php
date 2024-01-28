@@ -44,6 +44,13 @@ class TypeCode
      */
     const FLOAT64 = 3;
     /**
+     * Encoded as `number`, or the strings `"NaN"`, `"Infinity"`, or
+     * `"-Infinity"`.
+     *
+     * Generated from protobuf enum <code>FLOAT32 = 15;</code>
+     */
+    const FLOAT32 = 15;
+    /**
      * Encoded as `string` in RFC 3339 timestamp format. The time zone
      * must be present, and must be `"Z"`.
      * If the schema has the column option
@@ -133,6 +140,7 @@ class TypeCode
         self::BOOL => 'BOOL',
         self::INT64 => 'INT64',
         self::FLOAT64 => 'FLOAT64',
+        self::FLOAT32 => 'FLOAT32',
         self::TIMESTAMP => 'TIMESTAMP',
         self::DATE => 'DATE',
         self::STRING => 'STRING',

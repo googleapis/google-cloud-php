@@ -47,6 +47,8 @@ use Google\Analytics\Admin\V1alpha\BatchGetAccessBindingsResponse;
 use Google\Analytics\Admin\V1alpha\BatchUpdateAccessBindingsRequest;
 use Google\Analytics\Admin\V1alpha\BatchUpdateAccessBindingsResponse;
 use Google\Analytics\Admin\V1alpha\BigQueryLink;
+use Google\Analytics\Admin\V1alpha\CalculatedMetric;
+use Google\Analytics\Admin\V1alpha\CalculatedMetric\MetricUnit;
 use Google\Analytics\Admin\V1alpha\CancelDisplayVideo360AdvertiserLinkProposalRequest;
 use Google\Analytics\Admin\V1alpha\ChangeHistoryEvent;
 use Google\Analytics\Admin\V1alpha\ChannelGroup;
@@ -56,6 +58,7 @@ use Google\Analytics\Admin\V1alpha\ConversionEvent;
 use Google\Analytics\Admin\V1alpha\CreateAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\CreateAdSenseLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateAudienceRequest;
+use Google\Analytics\Admin\V1alpha\CreateCalculatedMetricRequest;
 use Google\Analytics\Admin\V1alpha\CreateChannelGroupRequest;
 use Google\Analytics\Admin\V1alpha\CreateConnectedSiteTagRequest;
 use Google\Analytics\Admin\V1alpha\CreateConnectedSiteTagResponse;
@@ -92,6 +95,7 @@ use Google\Analytics\Admin\V1alpha\DataStream\DataStreamType;
 use Google\Analytics\Admin\V1alpha\DeleteAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\DeleteAccountRequest;
 use Google\Analytics\Admin\V1alpha\DeleteAdSenseLinkRequest;
+use Google\Analytics\Admin\V1alpha\DeleteCalculatedMetricRequest;
 use Google\Analytics\Admin\V1alpha\DeleteChannelGroupRequest;
 use Google\Analytics\Admin\V1alpha\DeleteConnectedSiteTagRequest;
 use Google\Analytics\Admin\V1alpha\DeleteConversionEventRequest;
@@ -124,6 +128,7 @@ use Google\Analytics\Admin\V1alpha\GetAdSenseLinkRequest;
 use Google\Analytics\Admin\V1alpha\GetAttributionSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetAudienceRequest;
 use Google\Analytics\Admin\V1alpha\GetBigQueryLinkRequest;
+use Google\Analytics\Admin\V1alpha\GetCalculatedMetricRequest;
 use Google\Analytics\Admin\V1alpha\GetChannelGroupRequest;
 use Google\Analytics\Admin\V1alpha\GetConversionEventRequest;
 use Google\Analytics\Admin\V1alpha\GetCustomDimensionRequest;
@@ -160,6 +165,8 @@ use Google\Analytics\Admin\V1alpha\ListAudiencesRequest;
 use Google\Analytics\Admin\V1alpha\ListAudiencesResponse;
 use Google\Analytics\Admin\V1alpha\ListBigQueryLinksRequest;
 use Google\Analytics\Admin\V1alpha\ListBigQueryLinksResponse;
+use Google\Analytics\Admin\V1alpha\ListCalculatedMetricsRequest;
+use Google\Analytics\Admin\V1alpha\ListCalculatedMetricsResponse;
 use Google\Analytics\Admin\V1alpha\ListChannelGroupsRequest;
 use Google\Analytics\Admin\V1alpha\ListChannelGroupsResponse;
 use Google\Analytics\Admin\V1alpha\ListConnectedSiteTagsRequest;
@@ -215,6 +222,7 @@ use Google\Analytics\Admin\V1alpha\UpdateAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAccountRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAttributionSettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAudienceRequest;
+use Google\Analytics\Admin\V1alpha\UpdateCalculatedMetricRequest;
 use Google\Analytics\Admin\V1alpha\UpdateChannelGroupRequest;
 use Google\Analytics\Admin\V1alpha\UpdateConversionEventRequest;
 use Google\Analytics\Admin\V1alpha\UpdateCustomDimensionRequest;
@@ -1155,6 +1163,104 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             ->setAudience($audience);
         try {
             $gapicClient->createAudience($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createCalculatedMetricTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $displayName = 'displayName1615086568';
+        $calculatedMetricId2 = 'calculatedMetricId2-706401732';
+        $formula = 'formula-677424794';
+        $invalidMetricReference = true;
+        $expectedResponse = new CalculatedMetric();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setCalculatedMetricId($calculatedMetricId2);
+        $expectedResponse->setFormula($formula);
+        $expectedResponse->setInvalidMetricReference($invalidMetricReference);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $calculatedMetricId = 'calculatedMetricId8203465';
+        $calculatedMetric = new CalculatedMetric();
+        $calculatedMetricDisplayName = 'calculatedMetricDisplayName-1927551873';
+        $calculatedMetric->setDisplayName($calculatedMetricDisplayName);
+        $calculatedMetricMetricUnit = MetricUnit::METRIC_UNIT_UNSPECIFIED;
+        $calculatedMetric->setMetricUnit($calculatedMetricMetricUnit);
+        $calculatedMetricFormula = 'calculatedMetricFormula752695416';
+        $calculatedMetric->setFormula($calculatedMetricFormula);
+        $request = (new CreateCalculatedMetricRequest())
+            ->setParent($formattedParent)
+            ->setCalculatedMetricId($calculatedMetricId)
+            ->setCalculatedMetric($calculatedMetric);
+        $response = $gapicClient->createCalculatedMetric($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateCalculatedMetric', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getCalculatedMetricId();
+        $this->assertProtobufEquals($calculatedMetricId, $actualValue);
+        $actualValue = $actualRequestObject->getCalculatedMetric();
+        $this->assertProtobufEquals($calculatedMetric, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createCalculatedMetricExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $calculatedMetricId = 'calculatedMetricId8203465';
+        $calculatedMetric = new CalculatedMetric();
+        $calculatedMetricDisplayName = 'calculatedMetricDisplayName-1927551873';
+        $calculatedMetric->setDisplayName($calculatedMetricDisplayName);
+        $calculatedMetricMetricUnit = MetricUnit::METRIC_UNIT_UNSPECIFIED;
+        $calculatedMetric->setMetricUnit($calculatedMetricMetricUnit);
+        $calculatedMetricFormula = 'calculatedMetricFormula752695416';
+        $calculatedMetric->setFormula($calculatedMetricFormula);
+        $request = (new CreateCalculatedMetricRequest())
+            ->setParent($formattedParent)
+            ->setCalculatedMetricId($calculatedMetricId)
+            ->setCalculatedMetric($calculatedMetric);
+        try {
+            $gapicClient->createCalculatedMetric($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2900,6 +3006,67 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteCalculatedMetricTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->calculatedMetricName('[PROPERTY]', '[CALCULATED_METRIC]');
+        $request = (new DeleteCalculatedMetricRequest())
+            ->setName($formattedName);
+        $gapicClient->deleteCalculatedMetric($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteCalculatedMetric', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteCalculatedMetricExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->calculatedMetricName('[PROPERTY]', '[CALCULATED_METRIC]');
+        $request = (new DeleteCalculatedMetricRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->deleteCalculatedMetric($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function deleteChannelGroupTest()
     {
         $transport = $this->createTransport();
@@ -4409,6 +4576,80 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             ->setName($formattedName);
         try {
             $gapicClient->getBigQueryLink($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getCalculatedMetricTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $description = 'description-1724546052';
+        $displayName = 'displayName1615086568';
+        $calculatedMetricId = 'calculatedMetricId8203465';
+        $formula = 'formula-677424794';
+        $invalidMetricReference = true;
+        $expectedResponse = new CalculatedMetric();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setCalculatedMetricId($calculatedMetricId);
+        $expectedResponse->setFormula($formula);
+        $expectedResponse->setInvalidMetricReference($invalidMetricReference);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->calculatedMetricName('[PROPERTY]', '[CALCULATED_METRIC]');
+        $request = (new GetCalculatedMetricRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->getCalculatedMetric($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetCalculatedMetric', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getCalculatedMetricExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->calculatedMetricName('[PROPERTY]', '[CALCULATED_METRIC]');
+        $request = (new GetCalculatedMetricRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->getCalculatedMetric($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -6289,6 +6530,78 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listCalculatedMetricsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $calculatedMetricsElement = new CalculatedMetric();
+        $calculatedMetrics = [
+            $calculatedMetricsElement,
+        ];
+        $expectedResponse = new ListCalculatedMetricsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setCalculatedMetrics($calculatedMetrics);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $request = (new ListCalculatedMetricsRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->listCalculatedMetrics($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getCalculatedMetrics()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListCalculatedMetrics', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listCalculatedMetricsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $request = (new ListCalculatedMetricsRequest())
+            ->setParent($formattedParent);
+        try {
+            $gapicClient->listCalculatedMetrics($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listChannelGroupsTest()
     {
         $transport = $this->createTransport();
@@ -8127,6 +8440,98 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             ->setUpdateMask($updateMask);
         try {
             $gapicClient->updateAudience($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateCalculatedMetricTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $displayName = 'displayName1615086568';
+        $calculatedMetricId = 'calculatedMetricId8203465';
+        $formula = 'formula-677424794';
+        $invalidMetricReference = true;
+        $expectedResponse = new CalculatedMetric();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setCalculatedMetricId($calculatedMetricId);
+        $expectedResponse->setFormula($formula);
+        $expectedResponse->setInvalidMetricReference($invalidMetricReference);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $calculatedMetric = new CalculatedMetric();
+        $calculatedMetricDisplayName = 'calculatedMetricDisplayName-1927551873';
+        $calculatedMetric->setDisplayName($calculatedMetricDisplayName);
+        $calculatedMetricMetricUnit = MetricUnit::METRIC_UNIT_UNSPECIFIED;
+        $calculatedMetric->setMetricUnit($calculatedMetricMetricUnit);
+        $calculatedMetricFormula = 'calculatedMetricFormula752695416';
+        $calculatedMetric->setFormula($calculatedMetricFormula);
+        $updateMask = new FieldMask();
+        $request = (new UpdateCalculatedMetricRequest())
+            ->setCalculatedMetric($calculatedMetric)
+            ->setUpdateMask($updateMask);
+        $response = $gapicClient->updateCalculatedMetric($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateCalculatedMetric', $actualFuncCall);
+        $actualValue = $actualRequestObject->getCalculatedMetric();
+        $this->assertProtobufEquals($calculatedMetric, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateCalculatedMetricExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $calculatedMetric = new CalculatedMetric();
+        $calculatedMetricDisplayName = 'calculatedMetricDisplayName-1927551873';
+        $calculatedMetric->setDisplayName($calculatedMetricDisplayName);
+        $calculatedMetricMetricUnit = MetricUnit::METRIC_UNIT_UNSPECIFIED;
+        $calculatedMetric->setMetricUnit($calculatedMetricMetricUnit);
+        $calculatedMetricFormula = 'calculatedMetricFormula752695416';
+        $calculatedMetric->setFormula($calculatedMetricFormula);
+        $updateMask = new FieldMask();
+        $request = (new UpdateCalculatedMetricRequest())
+            ->setCalculatedMetric($calculatedMetric)
+            ->setUpdateMask($updateMask);
+        try {
+            $gapicClient->updateCalculatedMetric($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
