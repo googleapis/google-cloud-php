@@ -819,7 +819,7 @@ class GrpcTest extends TestCase
                 [],
                 new KeySet,
                 true,
-                ['xGoogSpannerRouteToLeader' => true]
+                ['routeToLeader' => true]
             ], [
                 ['keys' => [1]],
                 $this->serializer->decodeMessage(new KeySet, [
@@ -834,7 +834,7 @@ class GrpcTest extends TestCase
                     ]
                 ]),
                 false,
-                ['xGoogSpannerRouteToLeader' => false]
+                ['routeToLeader' => false]
             ], [
                 ['keys' => [[1,1]]],
                 $this->serializer->decodeMessage(new KeySet, [
@@ -852,7 +852,7 @@ class GrpcTest extends TestCase
                     ]
                 ]),
                 false,
-                ['xGoogSpannerRouteToLeader' => false]
+                ['routeToLeader' => false]
             ]
         ];
     }
@@ -956,7 +956,7 @@ class GrpcTest extends TestCase
                     'read_write' => new ReadWrite
                 ]),
                 true,
-                ['xGoogSpannerRouteToLeader' => true]
+                ['routeToLeader' => true]
             ], [
                 [
                     'readOnly' => [
@@ -971,14 +971,14 @@ class GrpcTest extends TestCase
                     ])
                 ]),
                 true,
-                ['xGoogSpannerRouteToLeader' => true]
+                ['routeToLeader' => true]
             ], [
                 ['partitionedDml' => []],
                 new TransactionOptions([
                     'partitioned_dml' => new PartitionedDml
                 ]),
                 true,
-                ['xGoogSpannerRouteToLeader' => true]
+                ['routeToLeader' => true]
             ]
         ];
     }
@@ -1060,7 +1060,7 @@ class GrpcTest extends TestCase
 
         return [
             [
-                [], [], true, ['xGoogSpannerRouteToLeader' => true]
+                [], [], true, ['routeToLeader' => true]
             ], [
                 [
                     [
@@ -1079,7 +1079,7 @@ class GrpcTest extends TestCase
                     ])
                 ],
                 true,
-                ['xGoogSpannerRouteToLeader' => true]
+                ['routeToLeader' => true]
             ], [
                 [
                     [
@@ -1092,7 +1092,7 @@ class GrpcTest extends TestCase
                     ])
                 ],
                 true,
-                ['xGoogSpannerRouteToLeader' => true]
+                ['routeToLeader' => true]
             ], [
                 [
                     [
@@ -1105,7 +1105,7 @@ class GrpcTest extends TestCase
                     ])
                 ],
                 true,
-                ['xGoogSpannerRouteToLeader' => true]
+                ['routeToLeader' => true]
             ], [
                 [
                     [
@@ -1118,7 +1118,7 @@ class GrpcTest extends TestCase
                     ])
                 ],
                 true,
-                ['xGoogSpannerRouteToLeader' => true]
+                ['routeToLeader' => true]
             ], [
                 [
                     [
@@ -1131,7 +1131,7 @@ class GrpcTest extends TestCase
                     ])
                 ],
                 true,
-                ['xGoogSpannerRouteToLeader' => true]
+                ['routeToLeader' => true]
             ]
         ];
     }
@@ -1204,7 +1204,7 @@ class GrpcTest extends TestCase
                 [],
                 new PartitionOptions,
                 true,
-                ['xGoogSpannerRouteToLeader' => true]
+                ['routeToLeader' => true]
             ],
             [
                 ['maxPartitions' => 10],
@@ -1212,7 +1212,7 @@ class GrpcTest extends TestCase
                     'max_partitions' => 10
                 ]),
                 true,
-                ['xGoogSpannerRouteToLeader' => true]
+                ['routeToLeader' => true]
             ]
         ];
     }
@@ -1410,10 +1410,10 @@ class GrpcTest extends TestCase
         return [
             [
                 true,
-                ['xGoogSpannerRouteToLeader' => true]
+                ['routeToLeader' => true]
             ], [
                 false,
-                ['xGoogSpannerRouteToLeader' => false]
+                ['routeToLeader' => false]
             ]
         ];
     }

@@ -24,12 +24,15 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  */
 trait RequestHeaderTrait
 {
+    const LAR_HEADER = 'x-goog-spanner-route-to-leader';
+    const RESOURCE_PREFIX_HEADER = 'google-cloud-resource-prefix';
+
     /**
      * Add the `x-goog-spanner-route-to-leader` header value to the request.
      *
-     * @param array $args
-     * @param bool $value
-     * @param string $context
+     * @param array $args Request arguments.
+     * @param bool $value LAR header value.
+     * @param string $context Transaction context.
      * @return array
      */
     private function addLarHeader(
@@ -43,7 +46,7 @@ trait RequestHeaderTrait
         }
         // If value is true and context is READWRITE, set LAR header.
         if ($context === SessionPoolInterface::CONTEXT_READWRITE) {
-            $args['headers']['x-goog-spanner-route-to-leader'] = ['true'];
+            $args['headers'][self::LAR_HEADER] = ['true'];
         }
         return $args;
     }
@@ -51,8 +54,8 @@ trait RequestHeaderTrait
     /**
      * Conditionally unset the LAR header.
      *
-     * @param array $args
-     * @param bool $value
+     * @param array $args Request arguments.
+     * @param bool $value Whether to set or unset the LAR header.
      * @return array
      */
     private function conditionallyUnsetLarHeader(
@@ -60,7 +63,7 @@ trait RequestHeaderTrait
         bool $value = true
     ) {
         if (!$value) {
-            unset($args['headers']['x-goog-spanner-route-to-leader']);
+            unset($args['headers'][self::LAR_HEADER]);
         }
         return $args;
     }
@@ -68,13 +71,13 @@ trait RequestHeaderTrait
     /**
      * Add the `google-cloud-resource-prefix` header value to the request.
      *
-     * @param array $args
-     * @param string $value
+     * @param array $args Request arguments.
+     * @param string $value Resource prefix header value.
      * @return array
      */
     private function addResourcePrefixHeader(array $args, $value)
     {
-        $args['headers']['google-cloud-resource-prefix'] = [$value];
+        $args['headers'][self::RESOURCE_PREFIX_HEADER] = [$value];
         return $args;
     }
 }

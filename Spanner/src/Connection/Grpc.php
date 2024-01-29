@@ -277,7 +277,7 @@ class Grpc implements ConnectionInterface
         //@codeCoverageIgnoreEnd
 
         $this->grpcConfig = $grpcConfig;
-        $this->larEnabled = $this->pluck('xGoogSpannerRouteToLeader', $config, false) ?? true;
+        $this->larEnabled = $this->pluck('routeToLeader', $config, false) ?? true;
     }
 
     /**
