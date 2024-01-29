@@ -24,8 +24,8 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  */
 trait RequestHeaderTrait
 {
-    const LAR_HEADER = 'x-goog-spanner-route-to-leader';
-    const RESOURCE_PREFIX_HEADER = 'google-cloud-resource-prefix';
+    public static $larHeader = 'x-goog-spanner-route-to-leader';
+    public static $resourcePrefixHeader = 'google-cloud-resource-prefix';
 
     /**
      * Add the `x-goog-spanner-route-to-leader` header value to the request.
@@ -46,7 +46,7 @@ trait RequestHeaderTrait
         }
         // If value is true and context is READWRITE, set LAR header.
         if ($context === SessionPoolInterface::CONTEXT_READWRITE) {
-            $args['headers'][self::LAR_HEADER] = ['true'];
+            $args['headers'][self::$larHeader] = ['true'];
         }
         return $args;
     }
@@ -63,7 +63,7 @@ trait RequestHeaderTrait
         bool $value = true
     ) {
         if (!$value) {
-            unset($args['headers'][self::LAR_HEADER]);
+            unset($args['headers'][self::$larHeader]);
         }
         return $args;
     }
@@ -77,7 +77,7 @@ trait RequestHeaderTrait
      */
     private function addResourcePrefixHeader(array $args, $value)
     {
-        $args['headers'][self::RESOURCE_PREFIX_HEADER] = [$value];
+        $args['headers'][self::$resourcePrefixHeader] = [$value];
         return $args;
     }
 }
