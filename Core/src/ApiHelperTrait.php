@@ -27,7 +27,6 @@ use Google\Cloud\Core\Duration;
  */
 trait ApiHelperTrait
 {
-    use ArrayTrait;
     use TimeTrait;
 
     /**

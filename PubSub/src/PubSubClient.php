@@ -18,6 +18,7 @@
 namespace Google\Cloud\PubSub;
 
 use Google\ApiCore\Serializer;
+use Google\ApiCore\GapicClientTrait;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
@@ -93,10 +94,10 @@ use Google\Cloud\PubSub\V1\ValidateSchemaRequest;
  */
 class PubSubClient
 {
-    use ArrayTrait;
     use ClientTrait;
     use IncomingMessageTrait;
     use ResourceNameTrait;
+    use GapicClientTrait;
     use ApiHelperTrait;
 
     const VERSION = '1.51.0';
@@ -173,6 +174,7 @@ class PubSubClient
      */
     public function __construct(array $config = [])
     {
+        // configure custom client options
         $emulatorHost = getenv('PUBSUB_EMULATOR_HOST');
         $config += [
             'scopes' => [self::FULL_CONTROL_SCOPE],
@@ -185,7 +187,13 @@ class PubSubClient
                 ]
             ]
         ];
-
+        // Configure GAPIC client options
+        $config = $this->buildClientOptions($config);
+        $config['credentials'] = $this->createCredentialsWrapper(
+            $config['credentials'],
+            $config['credentialsConfig'],
+            $config['universeDomain']
+        );
         $this->projectId = $this->detectProjectId($config);
         $this->clientConfig = $config;
         $this->serializer = new Serializer([
@@ -940,37 +948,6 @@ class PubSubClient
             $this->encode,
             $info
         );
-    }
-
-    /**
-     * Helper function that initializes the default config for handlwritten clients.
-     *
-     * @param array $config The client config passed on by the user.
-     * @param array $customAttrs The key/val pairs containing default values
-     * common for the handwritten clients.
-     *
-     * @return array The default config combined with the options passed on by the user
-     * and auth related config.
-     */
-    private function getDefaultClientConfig(array $config, array $customAttrs)
-    {
-        $defaultScope = $customAttrs['defaultScope'] ?? [];
-        $emulatorHost = $customAttrs['emulatorHost'] ?? '';
-
-        $config += [
-            'scopes' => [$defaultScope],
-            'projectIdRequired' => true,
-            'hasEmulator' => (bool) $emulatorHost,
-            'emulatorHost' => $emulatorHost
-        ];
-
-        if (isset($customAttrs['libVersion'])) {
-            $config['libVersion'] = $customAttrs['libVersion'];
-        }
-
-        $config = $this->configureAuthentication($config);
-
-        return $config;
     }
 
     /**

@@ -18,6 +18,7 @@
 namespace Google\Cloud\Core;
 
 use Google\Auth\CredentialsLoader;
+use Google\Auth\ProjectIdProviderInterface;
 use Google\Auth\Credentials\GCECredentials;
 use Google\Cloud\Core\Compute\Metadata;
 use Google\Cloud\Core\Exception\GoogleException;
@@ -175,8 +176,15 @@ trait ClientTrait
             'projectIdRequired' => false,
             'hasEmulator' => false,
             'preferNumericProjectId' => false,
-            'suppressKeyFileNotice' => false
+            'suppressKeyFileNotice' => false,
+            'credentials' => null,
         ];
+
+        if ($config['credentials']
+            && $config['credentials'] instanceof ProjectIdProviderInterface
+            && $projectId = $config['credentials']->getProjectId()) {
+            return $projectId;
+        }
 
         if ($config['projectId']) {
             return $config['projectId'];
