@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START servicecontrol_v1_generated_ServiceController_Check_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\ServiceControl\V1\CheckRequest;
 use Google\Cloud\ServiceControl\V1\CheckResponse;
-use Google\Cloud\ServiceControl\V1\ServiceControllerClient;
+use Google\Cloud\ServiceControl\V1\Client\ServiceControllerClient;
 
 /**
  * Checks whether an operation on a service should be allowed to proceed
@@ -57,10 +58,13 @@ function check_sample(): void
     // Create a client.
     $serviceControllerClient = new ServiceControllerClient();
 
+    // Prepare the request message.
+    $request = new CheckRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var CheckResponse $response */
-        $response = $serviceControllerClient->check();
+        $response = $serviceControllerClient->check($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

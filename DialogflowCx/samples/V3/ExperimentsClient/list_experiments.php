@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_Experiments_ListExperiments_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dialogflow\Cx\V3\Client\ExperimentsClient;
 use Google\Cloud\Dialogflow\Cx\V3\Experiment;
-use Google\Cloud\Dialogflow\Cx\V3\ExperimentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\ListExperimentsRequest;
 
 /**
  * Returns the list of all experiments in the specified
@@ -43,10 +44,14 @@ function list_experiments_sample(string $formattedParent): void
     // Create a client.
     $experimentsClient = new ExperimentsClient();
 
+    // Prepare the request message.
+    $request = (new ListExperimentsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $experimentsClient->listExperiments($formattedParent);
+        $response = $experimentsClient->listExperiments($request);
 
         /** @var Experiment $element */
         foreach ($response as $element) {

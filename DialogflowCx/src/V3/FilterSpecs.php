@@ -19,7 +19,7 @@ class FilterSpecs extends \Google\Protobuf\Internal\Message
      * Optional. Data Stores where the boosting configuration is applied. The full
      * names of the referenced data stores. Formats:
      * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`
-     * `projects/{project}/locations/{location}/dataStores/{data_store}
+     * `projects/{project}/locations/{location}/dataStores/{data_store}`
      *
      * Generated from protobuf field <code>repeated string data_stores = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -43,7 +43,7 @@ class FilterSpecs extends \Google\Protobuf\Internal\Message
      *           Optional. Data Stores where the boosting configuration is applied. The full
      *           names of the referenced data stores. Formats:
      *           `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`
-     *           `projects/{project}/locations/{location}/dataStores/{data_store}
+     *           `projects/{project}/locations/{location}/dataStores/{data_store}`
      *     @type string $filter
      *           Optional. The filter expression to be applied.
      *           Expression syntax is documented at
@@ -59,7 +59,7 @@ class FilterSpecs extends \Google\Protobuf\Internal\Message
      * Optional. Data Stores where the boosting configuration is applied. The full
      * names of the referenced data stores. Formats:
      * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`
-     * `projects/{project}/locations/{location}/dataStores/{data_store}
+     * `projects/{project}/locations/{location}/dataStores/{data_store}`
      *
      * Generated from protobuf field <code>repeated string data_stores = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -73,7 +73,7 @@ class FilterSpecs extends \Google\Protobuf\Internal\Message
      * Optional. Data Stores where the boosting configuration is applied. The full
      * names of the referenced data stores. Formats:
      * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`
-     * `projects/{project}/locations/{location}/dataStores/{data_store}
+     * `projects/{project}/locations/{location}/dataStores/{data_store}`
      *
      * Generated from protobuf field <code>repeated string data_stores = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

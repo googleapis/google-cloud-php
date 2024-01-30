@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_Environments_UpdateEnvironment_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Dialogflow\Cx\V3\Client\EnvironmentsClient;
 use Google\Cloud\Dialogflow\Cx\V3\Environment;
-use Google\Cloud\Dialogflow\Cx\V3\EnvironmentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\UpdateEnvironmentRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -50,15 +51,18 @@ function update_environment_sample(string $environmentDisplayName): void
     // Create a client.
     $environmentsClient = new EnvironmentsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $environment = (new Environment())
         ->setDisplayName($environmentDisplayName);
     $updateMask = new FieldMask();
+    $request = (new UpdateEnvironmentRequest())
+        ->setEnvironment($environment)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $environmentsClient->updateEnvironment($environment, $updateMask);
+        $response = $environmentsClient->updateEnvironment($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

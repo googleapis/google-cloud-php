@@ -73,12 +73,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorServicesServiceClient}
- * for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createClientConnectorServiceAsync(CreateClientConnectorServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteClientConnectorServiceAsync(DeleteClientConnectorServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getClientConnectorServiceAsync(GetClientConnectorServiceRequest $request, array $optionalArgs = [])
@@ -98,8 +92,15 @@ final class ClientConnectorServicesServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorServicesService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'beyondcorp.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'beyondcorp.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

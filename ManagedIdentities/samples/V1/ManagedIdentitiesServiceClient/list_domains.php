@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START managedidentities_v1_generated_ManagedIdentitiesService_ListDomains_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\ManagedIdentities\V1\Client\ManagedIdentitiesServiceClient;
 use Google\Cloud\ManagedIdentities\V1\Domain;
-use Google\Cloud\ManagedIdentities\V1\ManagedIdentitiesServiceClient;
+use Google\Cloud\ManagedIdentities\V1\ListDomainsRequest;
 
 /**
  * Lists domains in a project.
@@ -40,10 +41,14 @@ function list_domains_sample(string $formattedParent): void
     // Create a client.
     $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListDomainsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $managedIdentitiesServiceClient->listDomains($formattedParent);
+        $response = $managedIdentitiesServiceClient->listDomains($request);
 
         /** @var Domain $element */
         foreach ($response as $element) {

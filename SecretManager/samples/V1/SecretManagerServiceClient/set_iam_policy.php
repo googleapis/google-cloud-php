@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START secretmanager_v1_generated_SecretManagerService_SetIamPolicy_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Iam\V1\Policy;
-use Google\Cloud\SecretManager\V1\SecretManagerServiceClient;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
 
 /**
  * Sets the access control policy on the specified secret. Replaces any
@@ -42,13 +43,16 @@ function set_iam_policy_sample(string $resource): void
     // Create a client.
     $secretManagerServiceClient = new SecretManagerServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $policy = new Policy();
+    $request = (new SetIamPolicyRequest())
+        ->setResource($resource)
+        ->setPolicy($policy);
 
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $secretManagerServiceClient->setIamPolicy($resource, $policy);
+        $response = $secretManagerServiceClient->setIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

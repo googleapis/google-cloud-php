@@ -66,11 +66,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Dialogflow\V2\EntityTypesClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface batchCreateEntitiesAsync(BatchCreateEntitiesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface batchDeleteEntitiesAsync(BatchDeleteEntitiesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface batchDeleteEntityTypesAsync(BatchDeleteEntityTypesRequest $request, array $optionalArgs = [])
@@ -92,8 +87,15 @@ final class EntityTypesClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.dialogflow.v2.EntityTypes';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'dialogflow.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'dialogflow.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -376,6 +378,8 @@ final class EntityTypesClient
      *
      * The async variant is {@see EntityTypesClient::batchCreateEntitiesAsync()} .
      *
+     * @example samples/V2/EntityTypesClient/batch_create_entities.php
+     *
      * @param BatchCreateEntitiesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -413,6 +417,8 @@ final class EntityTypesClient
      *
      * The async variant is {@see EntityTypesClient::batchDeleteEntitiesAsync()} .
      *
+     * @example samples/V2/EntityTypesClient/batch_delete_entities.php
+     *
      * @param BatchDeleteEntitiesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -449,6 +455,8 @@ final class EntityTypesClient
      * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      *
      * The async variant is {@see EntityTypesClient::batchDeleteEntityTypesAsync()} .
+     *
+     * @example samples/V2/EntityTypesClient/batch_delete_entity_types.php
      *
      * @param BatchDeleteEntityTypesRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -490,6 +498,8 @@ final class EntityTypesClient
      *
      * The async variant is {@see EntityTypesClient::batchUpdateEntitiesAsync()} .
      *
+     * @example samples/V2/EntityTypesClient/batch_update_entities.php
+     *
      * @param BatchUpdateEntitiesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -527,6 +537,8 @@ final class EntityTypesClient
      *
      * The async variant is {@see EntityTypesClient::batchUpdateEntityTypesAsync()} .
      *
+     * @example samples/V2/EntityTypesClient/batch_update_entity_types.php
+     *
      * @param BatchUpdateEntityTypesRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -554,6 +566,8 @@ final class EntityTypesClient
      * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      *
      * The async variant is {@see EntityTypesClient::createEntityTypeAsync()} .
+     *
+     * @example samples/V2/EntityTypesClient/create_entity_type.php
      *
      * @param CreateEntityTypeRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -583,6 +597,8 @@ final class EntityTypesClient
      *
      * The async variant is {@see EntityTypesClient::deleteEntityTypeAsync()} .
      *
+     * @example samples/V2/EntityTypesClient/delete_entity_type.php
+     *
      * @param DeleteEntityTypeRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -604,6 +620,8 @@ final class EntityTypesClient
      * Retrieves the specified entity type.
      *
      * The async variant is {@see EntityTypesClient::getEntityTypeAsync()} .
+     *
+     * @example samples/V2/EntityTypesClient/get_entity_type.php
      *
      * @param GetEntityTypeRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -628,6 +646,8 @@ final class EntityTypesClient
      * Returns the list of all entity types in the specified agent.
      *
      * The async variant is {@see EntityTypesClient::listEntityTypesAsync()} .
+     *
+     * @example samples/V2/EntityTypesClient/list_entity_types.php
      *
      * @param ListEntityTypesRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -657,6 +677,8 @@ final class EntityTypesClient
      *
      * The async variant is {@see EntityTypesClient::updateEntityTypeAsync()} .
      *
+     * @example samples/V2/EntityTypesClient/update_entity_type.php
+     *
      * @param UpdateEntityTypeRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -681,6 +703,8 @@ final class EntityTypesClient
      *
      * The async variant is {@see EntityTypesClient::getLocationAsync()} .
      *
+     * @example samples/V2/EntityTypesClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -704,6 +728,8 @@ final class EntityTypesClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see EntityTypesClient::listLocationsAsync()} .
+     *
+     * @example samples/V2/EntityTypesClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

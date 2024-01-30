@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START monitoring_v3_generated_ServiceMonitoringService_GetServiceLevelObjective_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Monitoring\V3\Client\ServiceMonitoringServiceClient;
+use Google\Cloud\Monitoring\V3\GetServiceLevelObjectiveRequest;
 use Google\Cloud\Monitoring\V3\ServiceLevelObjective;
-use Google\Cloud\Monitoring\V3\ServiceMonitoringServiceClient;
 
 /**
  * Get a `ServiceLevelObjective` by name.
@@ -40,10 +41,14 @@ function get_service_level_objective_sample(string $formattedName): void
     // Create a client.
     $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetServiceLevelObjectiveRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var ServiceLevelObjective $response */
-        $response = $serviceMonitoringServiceClient->getServiceLevelObjective($formattedName);
+        $response = $serviceMonitoringServiceClient->getServiceLevelObjective($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

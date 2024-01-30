@@ -54,6 +54,22 @@ class UpdatePageRequest extends \Google\Protobuf\Internal\Message
     protected $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Page $page       Required. The page to update.
+     * @param \Google\Protobuf\FieldMask          $updateMask The mask to control which fields get updated. If the mask is not present,
+     *                                                        all fields will be updated.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\UpdatePageRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\Cx\V3\Page $page, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setPage($page)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

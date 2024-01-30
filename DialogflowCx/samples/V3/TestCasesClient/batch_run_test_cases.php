@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_TestCases_BatchRunTestCases_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Dialogflow\Cx\V3\BatchRunTestCasesRequest;
 use Google\Cloud\Dialogflow\Cx\V3\BatchRunTestCasesResponse;
-use Google\Cloud\Dialogflow\Cx\V3\TestCasesClient;
+use Google\Cloud\Dialogflow\Cx\V3\Client\TestCasesClient;
 use Google\Rpc\Status;
 
 /**
@@ -55,13 +56,16 @@ function batch_run_test_cases_sample(
     // Create a client.
     $testCasesClient = new TestCasesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $formattedTestCases = [$formattedTestCasesElement,];
+    $request = (new BatchRunTestCasesRequest())
+        ->setParent($formattedParent)
+        ->setTestCases($formattedTestCases);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $testCasesClient->batchRunTestCases($formattedParent, $formattedTestCases);
+        $response = $testCasesClient->batchRunTestCases($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

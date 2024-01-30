@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START firestore_v1_generated_Firestore_GetDocument_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 use Google\Cloud\Firestore\V1\Document;
-use Google\Cloud\Firestore\V1\FirestoreClient;
+use Google\Cloud\Firestore\V1\GetDocumentRequest;
 
 /**
  * Gets a single document.
@@ -38,10 +39,14 @@ function get_document_sample(string $name): void
     // Create a client.
     $firestoreClient = new FirestoreClient();
 
+    // Prepare the request message.
+    $request = (new GetDocumentRequest())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
         /** @var Document $response */
-        $response = $firestoreClient->getDocument($name);
+        $response = $firestoreClient->getDocument($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

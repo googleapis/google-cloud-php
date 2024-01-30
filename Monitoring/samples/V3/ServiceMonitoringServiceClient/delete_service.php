@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START monitoring_v3_generated_ServiceMonitoringService_DeleteService_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Monitoring\V3\ServiceMonitoringServiceClient;
+use Google\Cloud\Monitoring\V3\Client\ServiceMonitoringServiceClient;
+use Google\Cloud\Monitoring\V3\DeleteServiceRequest;
 
 /**
  * Soft delete this `Service`.
@@ -39,9 +40,13 @@ function delete_service_sample(string $formattedName): void
     // Create a client.
     $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteServiceRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $serviceMonitoringServiceClient->deleteService($formattedName);
+        $serviceMonitoringServiceClient->deleteService($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

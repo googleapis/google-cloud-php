@@ -66,6 +66,18 @@ return [
                     ],
                 ],
             ],
+            'GenerateAwsClusterAgentToken' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{aws_cluster=projects/*/locations/*/awsClusters/*}:generateAwsClusterAgentToken',
+                'body' => '*',
+                'placeholders' => [
+                    'aws_cluster' => [
+                        'getters' => [
+                            'getAwsCluster',
+                        ],
+                    ],
+                ],
+            ],
             'GetAwsCluster' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/awsClusters/*}',
@@ -77,6 +89,17 @@ return [
                     ],
                 ],
             ],
+            'GetAwsJsonWebKeys' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{aws_cluster=projects/*/locations/*/awsClusters/*}/jwks',
+                'placeholders' => [
+                    'aws_cluster' => [
+                        'getters' => [
+                            'getAwsCluster',
+                        ],
+                    ],
+                ],
+            ],
             'GetAwsNodePool' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/awsClusters/*/awsNodePools/*}',
@@ -84,6 +107,17 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAwsOpenIdConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{aws_cluster=projects/*/locations/*/awsClusters/*}/.well-known/openid-configuration',
+                'placeholders' => [
+                    'aws_cluster' => [
+                        'getters' => [
+                            'getAwsCluster',
                         ],
                     ],
                 ],
@@ -117,6 +151,18 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RollbackAwsNodePoolUpdate' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/awsClusters/*/awsNodePools/*}:rollback',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],

@@ -58,12 +58,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Dataproc\V1\AutoscalingPolicyServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createAutoscalingPolicyAsync(CreateAutoscalingPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteAutoscalingPolicyAsync(DeleteAutoscalingPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAutoscalingPolicyAsync(GetAutoscalingPolicyRequest $request, array $optionalArgs = [])
@@ -81,8 +75,15 @@ final class AutoscalingPolicyServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.dataproc.v1.AutoscalingPolicyService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'dataproc.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'dataproc.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -310,6 +311,8 @@ final class AutoscalingPolicyServiceClient
      * The async variant is
      * {@see AutoscalingPolicyServiceClient::createAutoscalingPolicyAsync()} .
      *
+     * @example samples/V1/AutoscalingPolicyServiceClient/create_autoscaling_policy.php
+     *
      * @param CreateAutoscalingPolicyRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -336,6 +339,8 @@ final class AutoscalingPolicyServiceClient
      * The async variant is
      * {@see AutoscalingPolicyServiceClient::deleteAutoscalingPolicyAsync()} .
      *
+     * @example samples/V1/AutoscalingPolicyServiceClient/delete_autoscaling_policy.php
+     *
      * @param DeleteAutoscalingPolicyRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -358,6 +363,8 @@ final class AutoscalingPolicyServiceClient
      *
      * The async variant is
      * {@see AutoscalingPolicyServiceClient::getAutoscalingPolicyAsync()} .
+     *
+     * @example samples/V1/AutoscalingPolicyServiceClient/get_autoscaling_policy.php
      *
      * @param GetAutoscalingPolicyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -383,6 +390,8 @@ final class AutoscalingPolicyServiceClient
      *
      * The async variant is
      * {@see AutoscalingPolicyServiceClient::listAutoscalingPoliciesAsync()} .
+     *
+     * @example samples/V1/AutoscalingPolicyServiceClient/list_autoscaling_policies.php
      *
      * @param ListAutoscalingPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -412,6 +421,8 @@ final class AutoscalingPolicyServiceClient
      * The async variant is
      * {@see AutoscalingPolicyServiceClient::updateAutoscalingPolicyAsync()} .
      *
+     * @example samples/V1/AutoscalingPolicyServiceClient/update_autoscaling_policy.php
+     *
      * @param UpdateAutoscalingPolicyRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -437,6 +448,8 @@ final class AutoscalingPolicyServiceClient
      *
      * The async variant is {@see AutoscalingPolicyServiceClient::getIamPolicyAsync()}
      * .
+     *
+     * @example samples/V1/AutoscalingPolicyServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -466,6 +479,8 @@ final class AutoscalingPolicyServiceClient
      *
      * The async variant is {@see AutoscalingPolicyServiceClient::setIamPolicyAsync()}
      * .
+     *
+     * @example samples/V1/AutoscalingPolicyServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -497,6 +512,8 @@ final class AutoscalingPolicyServiceClient
      *
      * The async variant is
      * {@see AutoscalingPolicyServiceClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/AutoscalingPolicyServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

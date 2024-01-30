@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START securitycenter_v1_generated_SecurityCenter_SimulateSecurityHealthAnalyticsCustomModule_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient;
 use Google\Cloud\SecurityCenter\V1\CustomConfig;
-use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleRequest;
 use Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleRequest\SimulatedResource;
 use Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleResponse;
 
@@ -47,19 +48,19 @@ function simulate_security_health_analytics_custom_module_sample(
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $customConfig = new CustomConfig();
     $resource = (new SimulatedResource())
         ->setResourceType($resourceResourceType);
+    $request = (new SimulateSecurityHealthAnalyticsCustomModuleRequest())
+        ->setParent($parent)
+        ->setCustomConfig($customConfig)
+        ->setResource($resource);
 
     // Call the API and handle any network failures.
     try {
         /** @var SimulateSecurityHealthAnalyticsCustomModuleResponse $response */
-        $response = $securityCenterClient->simulateSecurityHealthAnalyticsCustomModule(
-            $parent,
-            $customConfig,
-            $resource
-        );
+        $response = $securityCenterClient->simulateSecurityHealthAnalyticsCustomModule($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

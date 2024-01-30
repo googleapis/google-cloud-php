@@ -22,7 +22,7 @@ class CloudTtsLrs
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ê
+ÿ
 
 0google/cloud/texttospeech/v1/cloud_tts_lrs.protogoogle.cloud.texttospeech.v1google/api/client.protogoogle/api/field_behavior.proto,google/cloud/texttospeech/v1/cloud_tts.proto#google/longrunning/operations.protogoogle/protobuf/timestamp.proto"™
 SynthesizeLongAudioRequest
@@ -31,15 +31,15 @@ class CloudTtsLrs
 audio_config (2).google.cloud.texttospeech.v1.AudioConfigBàA
 output_gcs_uri (	BàAF
 voice (22.google.cloud.texttospeech.v1.VoiceSelectionParamsBàA"
-SynthesizeLongAudioResponse" 
+SynthesizeLongAudioResponse"¤
 SynthesizeLongAudioMetadata.
 
-start_time (2.google.protobuf.Timestamp4
-last_update_time (2.google.protobuf.Timestamp
-progress_percentage (2î
-TextToSpeechLongAudioSynthesizeù
-SynthesizeLongAudio8.google.cloud.texttospeech.v1.SynthesizeLongAudioRequest.google.longrunning.Operation"ˆ‚Óä“E"@/v1/{parent=projects/*/locations/*/voices/*}:SynthesizeLongAudio:*ÊA:
-SynthesizeLongAudioResponseSynthesizeLongAudioMetadataOÊAtexttospeech.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBò
+start_time (2.google.protobuf.Timestamp8
+last_update_time (2.google.protobuf.TimestampB
+progress_percentage (2Ÿ
+TextToSpeechLongAudioSynthesizeª
+SynthesizeLongAudio8.google.cloud.texttospeech.v1.SynthesizeLongAudioRequest.google.longrunning.Operation"¹‚Óä“<"7/v1/{parent=projects/*/locations/*}:synthesizeLongAudio:*ÊAt
+8google.cloud.texttospeech.v1.SynthesizeLongAudioResponse8google.cloud.texttospeech.v1.SynthesizeLongAudioMetadataOÊAtexttospeech.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBò
  com.google.cloud.texttospeech.v1B#TextToSpeechLongAudioSynthesisProtoPZDcloud.google.com/go/texttospeech/apiv1/texttospeechpb;texttospeechpbøªGoogle.Cloud.TextToSpeech.V1ÊGoogle\\Cloud\\TextToSpeech\\V1êGoogle::Cloud::TextToSpeech::V1bproto3'
         , true);
 

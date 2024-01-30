@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START servicedirectory_v1_generated_RegistrationService_SetIamPolicy_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Iam\V1\Policy;
-use Google\Cloud\ServiceDirectory\V1\RegistrationServiceClient;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\ServiceDirectory\V1\Client\RegistrationServiceClient;
 
 /**
  * Sets the IAM Policy for a resource (namespace or service only).
@@ -38,13 +39,16 @@ function set_iam_policy_sample(string $resource): void
     // Create a client.
     $registrationServiceClient = new RegistrationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $policy = new Policy();
+    $request = (new SetIamPolicyRequest())
+        ->setResource($resource)
+        ->setPolicy($policy);
 
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $registrationServiceClient->setIamPolicy($resource, $policy);
+        $response = $registrationServiceClient->setIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

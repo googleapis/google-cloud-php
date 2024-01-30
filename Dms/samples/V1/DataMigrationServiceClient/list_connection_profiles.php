@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datamigration_v1_generated_DataMigrationService_ListConnectionProfiles_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\CloudDms\V1\Client\DataMigrationServiceClient;
 use Google\Cloud\CloudDms\V1\ConnectionProfile;
-use Google\Cloud\CloudDms\V1\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\ListConnectionProfilesRequest;
 
 /**
  * Retrieves a list of all connection profiles in a given project and
@@ -40,10 +41,14 @@ function list_connection_profiles_sample(string $formattedParent): void
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListConnectionProfilesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataMigrationServiceClient->listConnectionProfiles($formattedParent);
+        $response = $dataMigrationServiceClient->listConnectionProfiles($request);
 
         /** @var ConnectionProfile $element */
         foreach ($response as $element) {

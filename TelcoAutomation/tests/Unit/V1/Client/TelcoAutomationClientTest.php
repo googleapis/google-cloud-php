@@ -111,7 +111,9 @@ class TelcoAutomationClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return TelcoAutomationClient */
@@ -151,9 +153,13 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setRollbackSupport($rollbackSupport);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[DEPLOYMENT]');
-        $request = (new ApplyDeploymentRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->deploymentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[DEPLOYMENT]'
+        );
+        $request = (new ApplyDeploymentRequest())->setName($formattedName);
         $response = $gapicClient->applyDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -177,17 +183,24 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[DEPLOYMENT]');
-        $request = (new ApplyDeploymentRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->deploymentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[DEPLOYMENT]'
+        );
+        $request = (new ApplyDeploymentRequest())->setName($formattedName);
         try {
             $gapicClient->applyDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -217,9 +230,14 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setWorkloadCluster($workloadCluster);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->hydratedDeploymentName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[DEPLOYMENT]', '[HYDRATED_DEPLOYMENT]');
-        $request = (new ApplyHydratedDeploymentRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->hydratedDeploymentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[DEPLOYMENT]',
+            '[HYDRATED_DEPLOYMENT]'
+        );
+        $request = (new ApplyHydratedDeploymentRequest())->setName($formattedName);
         $response = $gapicClient->applyHydratedDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -243,17 +261,25 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->hydratedDeploymentName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[DEPLOYMENT]', '[HYDRATED_DEPLOYMENT]');
-        $request = (new ApplyHydratedDeploymentRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->hydratedDeploymentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[DEPLOYMENT]',
+            '[HYDRATED_DEPLOYMENT]'
+        );
+        $request = (new ApplyHydratedDeploymentRequest())->setName($formattedName);
         try {
             $gapicClient->applyHydratedDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -293,9 +319,13 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setRollbackSupport($rollbackSupport);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->blueprintName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[BLUEPRINT]');
-        $request = (new ApproveBlueprintRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->blueprintName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[BLUEPRINT]'
+        );
+        $request = (new ApproveBlueprintRequest())->setName($formattedName);
         $response = $gapicClient->approveBlueprint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -319,17 +349,24 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->blueprintName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[BLUEPRINT]');
-        $request = (new ApproveBlueprintRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->blueprintName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[BLUEPRINT]'
+        );
+        $request = (new ApproveBlueprintRequest())->setName($formattedName);
         try {
             $gapicClient->approveBlueprint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -357,9 +394,13 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[DEPLOYMENT]');
-        $request = (new ComputeDeploymentStatusRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->deploymentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[DEPLOYMENT]'
+        );
+        $request = (new ComputeDeploymentStatusRequest())->setName($formattedName);
         $response = $gapicClient->computeDeploymentStatus($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -383,17 +424,24 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[DEPLOYMENT]');
-        $request = (new ComputeDeploymentStatusRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->deploymentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[DEPLOYMENT]'
+        );
+        $request = (new ComputeDeploymentStatusRequest())->setName($formattedName);
         try {
             $gapicClient->computeDeploymentStatus($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -437,9 +485,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $blueprint = new Blueprint();
         $blueprintSourceBlueprint = 'blueprintSourceBlueprint115443109';
         $blueprint->setSourceBlueprint($blueprintSourceBlueprint);
-        $request = (new CreateBlueprintRequest())
-            ->setParent($formattedParent)
-            ->setBlueprint($blueprint);
+        $request = (new CreateBlueprintRequest())->setParent($formattedParent)->setBlueprint($blueprint);
         $response = $gapicClient->createBlueprint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -465,21 +511,22 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
         $blueprint = new Blueprint();
         $blueprintSourceBlueprint = 'blueprintSourceBlueprint115443109';
         $blueprint->setSourceBlueprint($blueprintSourceBlueprint);
-        $request = (new CreateBlueprintRequest())
-            ->setParent($formattedParent)
-            ->setBlueprint($blueprint);
+        $request = (new CreateBlueprintRequest())->setParent($formattedParent)->setBlueprint($blueprint);
         try {
             $gapicClient->createBlueprint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -525,9 +572,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $deployment = new Deployment();
         $deploymentSourceBlueprintRevision = 'deploymentSourceBlueprintRevision-1529084882';
         $deployment->setSourceBlueprintRevision($deploymentSourceBlueprintRevision);
-        $request = (new CreateDeploymentRequest())
-            ->setParent($formattedParent)
-            ->setDeployment($deployment);
+        $request = (new CreateDeploymentRequest())->setParent($formattedParent)->setDeployment($deployment);
         $response = $gapicClient->createDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -553,21 +598,22 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
         $deployment = new Deployment();
         $deploymentSourceBlueprintRevision = 'deploymentSourceBlueprintRevision-1529084882';
         $deployment->setSourceBlueprintRevision($deploymentSourceBlueprintRevision);
-        $request = (new CreateDeploymentRequest())
-            ->setParent($formattedParent)
-            ->setDeployment($deployment);
+        $request = (new CreateDeploymentRequest())->setParent($formattedParent)->setDeployment($deployment);
         try {
             $gapicClient->createDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -683,12 +729,15 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -770,7 +819,10 @@ class TelcoAutomationClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/CreateOrchestrationCluster', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.telcoautomation.v1.TelcoAutomation/CreateOrchestrationCluster',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getOrchestrationClusterId();
@@ -820,12 +872,15 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -869,9 +924,13 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->blueprintName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[BLUEPRINT]');
-        $request = (new DeleteBlueprintRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->blueprintName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[BLUEPRINT]'
+        );
+        $request = (new DeleteBlueprintRequest())->setName($formattedName);
         $gapicClient->deleteBlueprint($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -894,17 +953,24 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->blueprintName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[BLUEPRINT]');
-        $request = (new DeleteBlueprintRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->blueprintName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[BLUEPRINT]'
+        );
+        $request = (new DeleteBlueprintRequest())->setName($formattedName);
         try {
             $gapicClient->deleteBlueprint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -949,8 +1015,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->edgeSlmName('[PROJECT]', '[LOCATION]', '[EDGE_SLM]');
-        $request = (new DeleteEdgeSlmRequest())
-            ->setName($formattedName);
+        $request = (new DeleteEdgeSlmRequest())->setName($formattedName);
         $response = $gapicClient->deleteEdgeSlm($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1006,17 +1071,19 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->edgeSlmName('[PROJECT]', '[LOCATION]', '[EDGE_SLM]');
-        $request = (new DeleteEdgeSlmRequest())
-            ->setName($formattedName);
+        $request = (new DeleteEdgeSlmRequest())->setName($formattedName);
         $response = $gapicClient->deleteEdgeSlm($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1070,8 +1137,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
-        $request = (new DeleteOrchestrationClusterRequest())
-            ->setName($formattedName);
+        $request = (new DeleteOrchestrationClusterRequest())->setName($formattedName);
         $response = $gapicClient->deleteOrchestrationCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1081,7 +1147,10 @@ class TelcoAutomationClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/DeleteOrchestrationCluster', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.telcoautomation.v1.TelcoAutomation/DeleteOrchestrationCluster',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1127,17 +1196,19 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
-        $request = (new DeleteOrchestrationClusterRequest())
-            ->setName($formattedName);
+        $request = (new DeleteOrchestrationClusterRequest())->setName($formattedName);
         $response = $gapicClient->deleteOrchestrationCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1172,9 +1243,13 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse = new DiscardBlueprintChangesResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->blueprintName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[BLUEPRINT]');
-        $request = (new DiscardBlueprintChangesRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->blueprintName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[BLUEPRINT]'
+        );
+        $request = (new DiscardBlueprintChangesRequest())->setName($formattedName);
         $response = $gapicClient->discardBlueprintChanges($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1198,17 +1273,24 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->blueprintName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[BLUEPRINT]');
-        $request = (new DiscardBlueprintChangesRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->blueprintName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[BLUEPRINT]'
+        );
+        $request = (new DiscardBlueprintChangesRequest())->setName($formattedName);
         try {
             $gapicClient->discardBlueprintChanges($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1234,9 +1316,13 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse = new DiscardDeploymentChangesResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[DEPLOYMENT]');
-        $request = (new DiscardDeploymentChangesRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->deploymentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[DEPLOYMENT]'
+        );
+        $request = (new DiscardDeploymentChangesRequest())->setName($formattedName);
         $response = $gapicClient->discardDeploymentChanges($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1260,17 +1346,24 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[DEPLOYMENT]');
-        $request = (new DiscardDeploymentChangesRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->deploymentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[DEPLOYMENT]'
+        );
+        $request = (new DiscardDeploymentChangesRequest())->setName($formattedName);
         try {
             $gapicClient->discardDeploymentChanges($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1310,9 +1403,13 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setRollbackSupport($rollbackSupport);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->blueprintName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[BLUEPRINT]');
-        $request = (new GetBlueprintRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->blueprintName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[BLUEPRINT]'
+        );
+        $request = (new GetBlueprintRequest())->setName($formattedName);
         $response = $gapicClient->getBlueprint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1336,17 +1433,24 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->blueprintName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[BLUEPRINT]');
-        $request = (new GetBlueprintRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->blueprintName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[BLUEPRINT]'
+        );
+        $request = (new GetBlueprintRequest())->setName($formattedName);
         try {
             $gapicClient->getBlueprint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1388,9 +1492,13 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setRollbackSupport($rollbackSupport);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[DEPLOYMENT]');
-        $request = (new GetDeploymentRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->deploymentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[DEPLOYMENT]'
+        );
+        $request = (new GetDeploymentRequest())->setName($formattedName);
         $response = $gapicClient->getDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1414,17 +1522,24 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[DEPLOYMENT]');
-        $request = (new GetDeploymentRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->deploymentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[DEPLOYMENT]'
+        );
+        $request = (new GetDeploymentRequest())->setName($formattedName);
         try {
             $gapicClient->getDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1457,8 +1572,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->edgeSlmName('[PROJECT]', '[LOCATION]', '[EDGE_SLM]');
-        $request = (new GetEdgeSlmRequest())
-            ->setName($formattedName);
+        $request = (new GetEdgeSlmRequest())->setName($formattedName);
         $response = $gapicClient->getEdgeSlm($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1482,17 +1596,19 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->edgeSlmName('[PROJECT]', '[LOCATION]', '[EDGE_SLM]');
-        $request = (new GetEdgeSlmRequest())
-            ->setName($formattedName);
+        $request = (new GetEdgeSlmRequest())->setName($formattedName);
         try {
             $gapicClient->getEdgeSlm($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1522,9 +1638,14 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setWorkloadCluster($workloadCluster);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->hydratedDeploymentName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[DEPLOYMENT]', '[HYDRATED_DEPLOYMENT]');
-        $request = (new GetHydratedDeploymentRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->hydratedDeploymentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[DEPLOYMENT]',
+            '[HYDRATED_DEPLOYMENT]'
+        );
+        $request = (new GetHydratedDeploymentRequest())->setName($formattedName);
         $response = $gapicClient->getHydratedDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1548,17 +1669,25 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->hydratedDeploymentName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[DEPLOYMENT]', '[HYDRATED_DEPLOYMENT]');
-        $request = (new GetHydratedDeploymentRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->hydratedDeploymentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[DEPLOYMENT]',
+            '[HYDRATED_DEPLOYMENT]'
+        );
+        $request = (new GetHydratedDeploymentRequest())->setName($formattedName);
         try {
             $gapicClient->getHydratedDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1589,8 +1718,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
-        $request = (new GetOrchestrationClusterRequest())
-            ->setName($formattedName);
+        $request = (new GetOrchestrationClusterRequest())->setName($formattedName);
         $response = $gapicClient->getOrchestrationCluster($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1614,17 +1742,19 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
-        $request = (new GetOrchestrationClusterRequest())
-            ->setName($formattedName);
+        $request = (new GetOrchestrationClusterRequest())->setName($formattedName);
         try {
             $gapicClient->getOrchestrationCluster($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1661,8 +1791,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->publicBlueprintName('[PROJECT]', '[LOCATION]', '[PUBLIC_LUEPRINT]');
-        $request = (new GetPublicBlueprintRequest())
-            ->setName($formattedName);
+        $request = (new GetPublicBlueprintRequest())->setName($formattedName);
         $response = $gapicClient->getPublicBlueprint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1686,17 +1815,19 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->publicBlueprintName('[PROJECT]', '[LOCATION]', '[PUBLIC_LUEPRINT]');
-        $request = (new GetPublicBlueprintRequest())
-            ->setName($formattedName);
+        $request = (new GetPublicBlueprintRequest())->setName($formattedName);
         try {
             $gapicClient->getPublicBlueprint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1721,17 +1852,19 @@ class TelcoAutomationClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $blueprintsElement = new Blueprint();
-        $blueprints = [
-            $blueprintsElement,
-        ];
+        $blueprints = [$blueprintsElement];
         $expectedResponse = new ListBlueprintRevisionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBlueprints($blueprints);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->blueprintName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[BLUEPRINT]');
-        $request = (new ListBlueprintRevisionsRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->blueprintName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[BLUEPRINT]'
+        );
+        $request = (new ListBlueprintRevisionsRequest())->setName($formattedName);
         $response = $gapicClient->listBlueprintRevisions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1758,17 +1891,24 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->blueprintName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[BLUEPRINT]');
-        $request = (new ListBlueprintRevisionsRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->blueprintName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[BLUEPRINT]'
+        );
+        $request = (new ListBlueprintRevisionsRequest())->setName($formattedName);
         try {
             $gapicClient->listBlueprintRevisions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1793,17 +1933,14 @@ class TelcoAutomationClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $blueprintsElement = new Blueprint();
-        $blueprints = [
-            $blueprintsElement,
-        ];
+        $blueprints = [$blueprintsElement];
         $expectedResponse = new ListBlueprintsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBlueprints($blueprints);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
-        $request = (new ListBlueprintsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListBlueprintsRequest())->setParent($formattedParent);
         $response = $gapicClient->listBlueprints($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1830,17 +1967,19 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
-        $request = (new ListBlueprintsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListBlueprintsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listBlueprints($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1865,17 +2004,19 @@ class TelcoAutomationClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $deploymentsElement = new Deployment();
-        $deployments = [
-            $deploymentsElement,
-        ];
+        $deployments = [$deploymentsElement];
         $expectedResponse = new ListDeploymentRevisionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDeployments($deployments);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[DEPLOYMENT]');
-        $request = (new ListDeploymentRevisionsRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->deploymentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[DEPLOYMENT]'
+        );
+        $request = (new ListDeploymentRevisionsRequest())->setName($formattedName);
         $response = $gapicClient->listDeploymentRevisions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1902,17 +2043,24 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[DEPLOYMENT]');
-        $request = (new ListDeploymentRevisionsRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->deploymentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[DEPLOYMENT]'
+        );
+        $request = (new ListDeploymentRevisionsRequest())->setName($formattedName);
         try {
             $gapicClient->listDeploymentRevisions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1937,17 +2085,14 @@ class TelcoAutomationClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $deploymentsElement = new Deployment();
-        $deployments = [
-            $deploymentsElement,
-        ];
+        $deployments = [$deploymentsElement];
         $expectedResponse = new ListDeploymentsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDeployments($deployments);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
-        $request = (new ListDeploymentsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDeploymentsRequest())->setParent($formattedParent);
         $response = $gapicClient->listDeployments($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1974,17 +2119,19 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
-        $request = (new ListDeploymentsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDeploymentsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listDeployments($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2009,17 +2156,14 @@ class TelcoAutomationClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $edgeSlmsElement = new EdgeSlm();
-        $edgeSlms = [
-            $edgeSlmsElement,
-        ];
+        $edgeSlms = [$edgeSlmsElement];
         $expectedResponse = new ListEdgeSlmsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEdgeSlms($edgeSlms);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListEdgeSlmsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListEdgeSlmsRequest())->setParent($formattedParent);
         $response = $gapicClient->listEdgeSlms($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2046,17 +2190,19 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListEdgeSlmsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListEdgeSlmsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listEdgeSlms($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2081,17 +2227,19 @@ class TelcoAutomationClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $hydratedDeploymentsElement = new HydratedDeployment();
-        $hydratedDeployments = [
-            $hydratedDeploymentsElement,
-        ];
+        $hydratedDeployments = [$hydratedDeploymentsElement];
         $expectedResponse = new ListHydratedDeploymentsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setHydratedDeployments($hydratedDeployments);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[DEPLOYMENT]');
-        $request = (new ListHydratedDeploymentsRequest())
-            ->setParent($formattedParent);
+        $formattedParent = $gapicClient->deploymentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[DEPLOYMENT]'
+        );
+        $request = (new ListHydratedDeploymentsRequest())->setParent($formattedParent);
         $response = $gapicClient->listHydratedDeployments($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2118,17 +2266,24 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[DEPLOYMENT]');
-        $request = (new ListHydratedDeploymentsRequest())
-            ->setParent($formattedParent);
+        $formattedParent = $gapicClient->deploymentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[DEPLOYMENT]'
+        );
+        $request = (new ListHydratedDeploymentsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listHydratedDeployments($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2153,17 +2308,14 @@ class TelcoAutomationClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $orchestrationClustersElement = new OrchestrationCluster();
-        $orchestrationClusters = [
-            $orchestrationClustersElement,
-        ];
+        $orchestrationClusters = [$orchestrationClustersElement];
         $expectedResponse = new ListOrchestrationClustersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setOrchestrationClusters($orchestrationClusters);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListOrchestrationClustersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListOrchestrationClustersRequest())->setParent($formattedParent);
         $response = $gapicClient->listOrchestrationClusters($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2173,7 +2325,10 @@ class TelcoAutomationClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/ListOrchestrationClusters', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.telcoautomation.v1.TelcoAutomation/ListOrchestrationClusters',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -2190,17 +2345,19 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListOrchestrationClustersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListOrchestrationClustersRequest())->setParent($formattedParent);
         try {
             $gapicClient->listOrchestrationClusters($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2225,17 +2382,14 @@ class TelcoAutomationClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $publicBlueprintsElement = new PublicBlueprint();
-        $publicBlueprints = [
-            $publicBlueprintsElement,
-        ];
+        $publicBlueprints = [$publicBlueprintsElement];
         $expectedResponse = new ListPublicBlueprintsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPublicBlueprints($publicBlueprints);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListPublicBlueprintsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPublicBlueprintsRequest())->setParent($formattedParent);
         $response = $gapicClient->listPublicBlueprints($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2262,17 +2416,19 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListPublicBlueprintsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPublicBlueprintsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listPublicBlueprints($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2312,9 +2468,13 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setRollbackSupport($rollbackSupport);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->blueprintName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[BLUEPRINT]');
-        $request = (new ProposeBlueprintRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->blueprintName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[BLUEPRINT]'
+        );
+        $request = (new ProposeBlueprintRequest())->setName($formattedName);
         $response = $gapicClient->proposeBlueprint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2338,17 +2498,24 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->blueprintName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[BLUEPRINT]');
-        $request = (new ProposeBlueprintRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->blueprintName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[BLUEPRINT]'
+        );
+        $request = (new ProposeBlueprintRequest())->setName($formattedName);
         try {
             $gapicClient->proposeBlueprint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2388,9 +2555,13 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setRollbackSupport($rollbackSupport);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->blueprintName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[BLUEPRINT]');
-        $request = (new RejectBlueprintRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->blueprintName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[BLUEPRINT]'
+        );
+        $request = (new RejectBlueprintRequest())->setName($formattedName);
         $response = $gapicClient->rejectBlueprint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2414,17 +2585,24 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->blueprintName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[BLUEPRINT]');
-        $request = (new RejectBlueprintRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->blueprintName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[BLUEPRINT]'
+        );
+        $request = (new RejectBlueprintRequest())->setName($formattedName);
         try {
             $gapicClient->rejectBlueprint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2450,9 +2628,13 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[DEPLOYMENT]');
-        $request = (new RemoveDeploymentRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->deploymentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[DEPLOYMENT]'
+        );
+        $request = (new RemoveDeploymentRequest())->setName($formattedName);
         $gapicClient->removeDeployment($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2475,17 +2657,24 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[DEPLOYMENT]');
-        $request = (new RemoveDeploymentRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->deploymentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[DEPLOYMENT]'
+        );
+        $request = (new RemoveDeploymentRequest())->setName($formattedName);
         try {
             $gapicClient->removeDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2527,11 +2716,14 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setRollbackSupport($rollbackSupport);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[DEPLOYMENT]');
+        $formattedName = $gapicClient->deploymentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[DEPLOYMENT]'
+        );
         $revisionId = 'revisionId513861631';
-        $request = (new RollbackDeploymentRequest())
-            ->setName($formattedName)
-            ->setRevisionId($revisionId);
+        $request = (new RollbackDeploymentRequest())->setName($formattedName)->setRevisionId($revisionId);
         $response = $gapicClient->rollbackDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2557,19 +2749,25 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[DEPLOYMENT]');
+        $formattedName = $gapicClient->deploymentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[DEPLOYMENT]'
+        );
         $revisionId = 'revisionId513861631';
-        $request = (new RollbackDeploymentRequest())
-            ->setName($formattedName)
-            ->setRevisionId($revisionId);
+        $request = (new RollbackDeploymentRequest())->setName($formattedName)->setRevisionId($revisionId);
         try {
             $gapicClient->rollbackDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2594,9 +2792,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $blueprintsElement = new Blueprint();
-        $blueprints = [
-            $blueprintsElement,
-        ];
+        $blueprints = [$blueprintsElement];
         $expectedResponse = new SearchBlueprintRevisionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBlueprints($blueprints);
@@ -2604,9 +2800,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
         $query = 'query107944136';
-        $request = (new SearchBlueprintRevisionsRequest())
-            ->setParent($formattedParent)
-            ->setQuery($query);
+        $request = (new SearchBlueprintRevisionsRequest())->setParent($formattedParent)->setQuery($query);
         $response = $gapicClient->searchBlueprintRevisions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2635,19 +2829,20 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
         $query = 'query107944136';
-        $request = (new SearchBlueprintRevisionsRequest())
-            ->setParent($formattedParent)
-            ->setQuery($query);
+        $request = (new SearchBlueprintRevisionsRequest())->setParent($formattedParent)->setQuery($query);
         try {
             $gapicClient->searchBlueprintRevisions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2672,9 +2867,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $deploymentsElement = new Deployment();
-        $deployments = [
-            $deploymentsElement,
-        ];
+        $deployments = [$deploymentsElement];
         $expectedResponse = new SearchDeploymentRevisionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDeployments($deployments);
@@ -2682,9 +2875,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
         $query = 'query107944136';
-        $request = (new SearchDeploymentRevisionsRequest())
-            ->setParent($formattedParent)
-            ->setQuery($query);
+        $request = (new SearchDeploymentRevisionsRequest())->setParent($formattedParent)->setQuery($query);
         $response = $gapicClient->searchDeploymentRevisions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2694,7 +2885,10 @@ class TelcoAutomationClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/SearchDeploymentRevisions', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.telcoautomation.v1.TelcoAutomation/SearchDeploymentRevisions',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getQuery();
@@ -2713,19 +2907,20 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
         $query = 'query107944136';
-        $request = (new SearchDeploymentRevisionsRequest())
-            ->setParent($formattedParent)
-            ->setQuery($query);
+        $request = (new SearchDeploymentRevisionsRequest())->setParent($formattedParent)->setQuery($query);
         try {
             $gapicClient->searchDeploymentRevisions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2769,9 +2964,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $blueprintSourceBlueprint = 'blueprintSourceBlueprint115443109';
         $blueprint->setSourceBlueprint($blueprintSourceBlueprint);
         $updateMask = new FieldMask();
-        $request = (new UpdateBlueprintRequest())
-            ->setBlueprint($blueprint)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateBlueprintRequest())->setBlueprint($blueprint)->setUpdateMask($updateMask);
         $response = $gapicClient->updateBlueprint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2797,21 +2990,22 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $blueprint = new Blueprint();
         $blueprintSourceBlueprint = 'blueprintSourceBlueprint115443109';
         $blueprint->setSourceBlueprint($blueprintSourceBlueprint);
         $updateMask = new FieldMask();
-        $request = (new UpdateBlueprintRequest())
-            ->setBlueprint($blueprint)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateBlueprintRequest())->setBlueprint($blueprint)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateBlueprint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2857,9 +3051,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $deploymentSourceBlueprintRevision = 'deploymentSourceBlueprintRevision-1529084882';
         $deployment->setSourceBlueprintRevision($deploymentSourceBlueprintRevision);
         $updateMask = new FieldMask();
-        $request = (new UpdateDeploymentRequest())
-            ->setDeployment($deployment)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateDeploymentRequest())->setDeployment($deployment)->setUpdateMask($updateMask);
         $response = $gapicClient->updateDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2885,21 +3077,22 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $deployment = new Deployment();
         $deploymentSourceBlueprintRevision = 'deploymentSourceBlueprintRevision-1529084882';
         $deployment->setSourceBlueprintRevision($deploymentSourceBlueprintRevision);
         $updateMask = new FieldMask();
-        $request = (new UpdateDeploymentRequest())
-            ->setDeployment($deployment)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateDeploymentRequest())->setDeployment($deployment)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2959,12 +3152,15 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $hydratedDeployment = new HydratedDeployment();
@@ -3024,12 +3220,15 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -3056,9 +3255,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -3088,12 +3285,15 @@ class TelcoAutomationClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -3137,9 +3337,13 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setRollbackSupport($rollbackSupport);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]', '[DEPLOYMENT]');
-        $request = (new ApplyDeploymentRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->deploymentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ORCHESTRATION_CLUSTER]',
+            '[DEPLOYMENT]'
+        );
+        $request = (new ApplyDeploymentRequest())->setName($formattedName);
         $response = $gapicClient->applyDeploymentAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

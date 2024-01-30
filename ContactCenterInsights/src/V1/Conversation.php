@@ -68,6 +68,12 @@ class Conversation extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
+     * Conversation metadata related to quality management.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.Conversation.QualityMetadata quality_metadata = 24;</code>
+     */
+    private $quality_metadata = null;
+    /**
      * Output only. The conversation transcript.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.Conversation.Transcript transcript = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -162,6 +168,8 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           A map for the user to specify any custom fields. A maximum of 20 labels per
      *           conversation is allowed, with a maximum of 256 characters per entry.
+     *     @type \Google\Cloud\ContactCenterInsights\V1\Conversation\QualityMetadata $quality_metadata
+     *           Conversation metadata related to quality management.
      *     @type \Google\Cloud\ContactCenterInsights\V1\Conversation\Transcript $transcript
      *           Output only. The conversation transcript.
      *     @type int $medium
@@ -540,6 +548,42 @@ class Conversation extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Conversation metadata related to quality management.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.Conversation.QualityMetadata quality_metadata = 24;</code>
+     * @return \Google\Cloud\ContactCenterInsights\V1\Conversation\QualityMetadata|null
+     */
+    public function getQualityMetadata()
+    {
+        return $this->quality_metadata;
+    }
+
+    public function hasQualityMetadata()
+    {
+        return isset($this->quality_metadata);
+    }
+
+    public function clearQualityMetadata()
+    {
+        unset($this->quality_metadata);
+    }
+
+    /**
+     * Conversation metadata related to quality management.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.Conversation.QualityMetadata quality_metadata = 24;</code>
+     * @param \Google\Cloud\ContactCenterInsights\V1\Conversation\QualityMetadata $var
+     * @return $this
+     */
+    public function setQualityMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\Conversation\QualityMetadata::class);
+        $this->quality_metadata = $var;
 
         return $this;
     }

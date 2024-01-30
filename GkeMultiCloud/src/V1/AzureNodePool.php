@@ -124,6 +124,12 @@ class AzureNodePool extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureNodePoolError errors = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $errors;
+    /**
+     * Optional. The Management configuration for this node pool.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureNodeManagement management = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $management = null;
 
     /**
      * Constructor.
@@ -180,6 +186,8 @@ class AzureNodePool extends \Google\Protobuf\Internal\Message
      *           When unspecified, it defaults to `1`.
      *     @type array<\Google\Cloud\GkeMultiCloud\V1\AzureNodePoolError>|\Google\Protobuf\Internal\RepeatedField $errors
      *           Output only. A set of errors found in the node pool.
+     *     @type \Google\Cloud\GkeMultiCloud\V1\AzureNodeManagement $management
+     *           Optional. The Management configuration for this node pool.
      * }
      */
     public function __construct($data = NULL) {
@@ -661,6 +669,42 @@ class AzureNodePool extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GkeMultiCloud\V1\AzureNodePoolError::class);
         $this->errors = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The Management configuration for this node pool.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureNodeManagement management = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GkeMultiCloud\V1\AzureNodeManagement|null
+     */
+    public function getManagement()
+    {
+        return $this->management;
+    }
+
+    public function hasManagement()
+    {
+        return isset($this->management);
+    }
+
+    public function clearManagement()
+    {
+        unset($this->management);
+    }
+
+    /**
+     * Optional. The Management configuration for this node pool.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureNodeManagement management = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GkeMultiCloud\V1\AzureNodeManagement $var
+     * @return $this
+     */
+    public function setManagement($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\AzureNodeManagement::class);
+        $this->management = $var;
 
         return $this;
     }

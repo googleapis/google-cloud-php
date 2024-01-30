@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START privateca_v1_generated_CertificateAuthorityService_DeleteCaPool_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\DeleteCaPoolRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,10 +42,14 @@ function delete_ca_pool_sample(string $formattedName): void
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteCaPoolRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $certificateAuthorityServiceClient->deleteCaPool($formattedName);
+        $response = $certificateAuthorityServiceClient->deleteCaPool($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudprofiler_v2_generated_ProfilerService_UpdateProfile_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Profiler\V2\Client\ProfilerServiceClient;
 use Google\Cloud\Profiler\V2\Profile;
-use Google\Cloud\Profiler\V2\ProfilerServiceClient;
+use Google\Cloud\Profiler\V2\UpdateProfileRequest;
 
 /**
  * UpdateProfile updates the profile bytes and labels on the profile resource
@@ -44,10 +45,13 @@ function update_profile_sample(): void
     // Create a client.
     $profilerServiceClient = new ProfilerServiceClient();
 
+    // Prepare the request message.
+    $request = new UpdateProfileRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var Profile $response */
-        $response = $profilerServiceClient->updateProfile();
+        $response = $profilerServiceClient->updateProfile($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datamigration_v1_generated_DataMigrationService_ListPrivateConnections_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\CloudDms\V1\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\Client\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\ListPrivateConnectionsRequest;
 use Google\Cloud\CloudDms\V1\PrivateConnection;
 
 /**
@@ -39,10 +40,14 @@ function list_private_connections_sample(string $formattedParent): void
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListPrivateConnectionsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataMigrationServiceClient->listPrivateConnections($formattedParent);
+        $response = $dataMigrationServiceClient->listPrivateConnections($request);
 
         /** @var PrivateConnection $element */
         foreach ($response as $element) {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datamigration_v1_generated_DataMigrationService_DescribeDatabaseEntities_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\CloudDms\V1\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\Client\DataMigrationServiceClient;
 use Google\Cloud\CloudDms\V1\DatabaseEntity;
+use Google\Cloud\CloudDms\V1\DescribeDatabaseEntitiesRequest;
 
 /**
  * Describes the database entities tree for a specific conversion workspace
@@ -46,10 +47,14 @@ function describe_database_entities_sample(string $formattedConversionWorkspace)
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
+    // Prepare the request message.
+    $request = (new DescribeDatabaseEntitiesRequest())
+        ->setConversionWorkspace($formattedConversionWorkspace);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataMigrationServiceClient->describeDatabaseEntities($formattedConversionWorkspace);
+        $response = $dataMigrationServiceClient->describeDatabaseEntities($request);
 
         /** @var DatabaseEntity $element */
         foreach ($response as $element) {

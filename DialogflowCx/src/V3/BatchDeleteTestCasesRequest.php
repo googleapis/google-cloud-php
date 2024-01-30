@@ -32,6 +32,21 @@ class BatchDeleteTestCasesRequest extends \Google\Protobuf\Internal\Message
     private $names;
 
     /**
+     * @param string $parent Required. The agent to delete test cases from.
+     *                       Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+     *                       {@see TestCasesClient::agentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\BatchDeleteTestCasesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

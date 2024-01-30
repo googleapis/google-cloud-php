@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_Webhooks_UpdateWebhook_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\Cx\V3\Client\WebhooksClient;
+use Google\Cloud\Dialogflow\Cx\V3\UpdateWebhookRequest;
 use Google\Cloud\Dialogflow\Cx\V3\Webhook;
-use Google\Cloud\Dialogflow\Cx\V3\WebhooksClient;
 
 /**
  * Updates the specified webhook.
@@ -37,14 +38,16 @@ function update_webhook_sample(string $webhookDisplayName): void
     // Create a client.
     $webhooksClient = new WebhooksClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $webhook = (new Webhook())
         ->setDisplayName($webhookDisplayName);
+    $request = (new UpdateWebhookRequest())
+        ->setWebhook($webhook);
 
     // Call the API and handle any network failures.
     try {
         /** @var Webhook $response */
-        $response = $webhooksClient->updateWebhook($webhook);
+        $response = $webhooksClient->updateWebhook($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

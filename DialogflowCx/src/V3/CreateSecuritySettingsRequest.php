@@ -31,6 +31,24 @@ class CreateSecuritySettingsRequest extends \Google\Protobuf\Internal\Message
     protected $security_settings = null;
 
     /**
+     * @param string                                          $parent           Required. The location to create an
+     *                                                                          [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings] for.
+     *                                                                          Format: `projects/<Project ID>/locations/<Location ID>`. Please see
+     *                                                                          {@see SecuritySettingsServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\Cx\V3\SecuritySettings $securitySettings Required. The security settings to create.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\CreateSecuritySettingsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dialogflow\Cx\V3\SecuritySettings $securitySettings): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setSecuritySettings($securitySettings);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

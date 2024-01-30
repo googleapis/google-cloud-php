@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\StorageTransfer\V1\AgentPool;
-use Google\Cloud\StorageTransfer\V1\StorageTransferServiceClient;
+use Google\Cloud\StorageTransfer\V1\Client\StorageTransferServiceClient;
+use Google\Cloud\StorageTransfer\V1\ListAgentPoolsRequest;
 
 /**
  * Lists agent pools.
@@ -38,10 +39,14 @@ function list_agent_pools_sample(string $projectId): void
     // Create a client.
     $storageTransferServiceClient = new StorageTransferServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListAgentPoolsRequest())
+        ->setProjectId($projectId);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $storageTransferServiceClient->listAgentPools($projectId);
+        $response = $storageTransferServiceClient->listAgentPools($request);
 
         /** @var AgentPool $element */
         foreach ($response as $element) {

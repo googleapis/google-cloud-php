@@ -54,11 +54,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Retail\V2\CompletionServiceClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface completeQueryAsync(CompleteQueryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface importCompletionDataAsync(ImportCompletionDataRequest $request, array $optionalArgs = [])
  */
@@ -70,8 +65,15 @@ final class CompletionServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.retail.v2.CompletionService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'retail.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'retail.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -257,6 +259,8 @@ final class CompletionServiceClient
      *
      * The async variant is {@see CompletionServiceClient::completeQueryAsync()} .
      *
+     * @example samples/V2/CompletionServiceClient/complete_query.php
+     *
      * @param CompleteQueryRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -289,6 +293,8 @@ final class CompletionServiceClient
      *
      * The async variant is {@see CompletionServiceClient::importCompletionDataAsync()}
      * .
+     *
+     * @example samples/V2/CompletionServiceClient/import_completion_data.php
      *
      * @param ImportCompletionDataRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

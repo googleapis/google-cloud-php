@@ -35,10 +35,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class Taxonomy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Resource name of this taxonomy in URL format.
+     * Identifier. Resource name of this taxonomy in URL format.
      * Note: Policy tag manager generates unique taxonomy IDs.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     private $name = '';
     /**
@@ -95,7 +95,7 @@ class Taxonomy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. Resource name of this taxonomy in URL format.
+     *           Identifier. Resource name of this taxonomy in URL format.
      *           Note: Policy tag manager generates unique taxonomy IDs.
      *     @type string $display_name
      *           Required. User-defined name of this taxonomy.
@@ -127,10 +127,10 @@ class Taxonomy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource name of this taxonomy in URL format.
+     * Identifier. Resource name of this taxonomy in URL format.
      * Note: Policy tag manager generates unique taxonomy IDs.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -139,10 +139,10 @@ class Taxonomy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource name of this taxonomy in URL format.
+     * Identifier. Resource name of this taxonomy in URL format.
      * Note: Policy tag manager generates unique taxonomy IDs.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

@@ -19,16 +19,10 @@ them in the way it describes relationships between data objects.
 
 To begin, install the preferred dependency manager for PHP, [Composer](https://getcomposer.org/).
 
-Now to install just this component:
+Now install this component:
 
 ```sh
 $ composer require google/cloud-firestore
-```
-
-Or to install the entire suite of components at once:
-
-```sh
-$ composer require google/cloud
 ```
 
 This component requires the gRPC extension. Please see our [gRPC installation guide](https://cloud.google.com/php/grpc)

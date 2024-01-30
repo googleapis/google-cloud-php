@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Dataproc\V1\AutoscalingPolicy;
-use Google\Cloud\Dataproc\V1\AutoscalingPolicyServiceClient;
+use Google\Cloud\Dataproc\V1\Client\AutoscalingPolicyServiceClient;
+use Google\Cloud\Dataproc\V1\ListAutoscalingPoliciesRequest;
 
 /**
  * Lists autoscaling policies in the project.
@@ -48,10 +49,14 @@ function list_autoscaling_policies_sample(string $formattedParent): void
     // Create a client.
     $autoscalingPolicyServiceClient = new AutoscalingPolicyServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListAutoscalingPoliciesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $autoscalingPolicyServiceClient->listAutoscalingPolicies($formattedParent);
+        $response = $autoscalingPolicyServiceClient->listAutoscalingPolicies($request);
 
         /** @var AutoscalingPolicy $element */
         foreach ($response as $element) {

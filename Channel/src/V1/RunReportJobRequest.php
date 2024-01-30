@@ -12,6 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Request message for
  * [CloudChannelReportsService.RunReportJob][google.cloud.channel.v1.CloudChannelReportsService.RunReportJob].
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.channel.v1.RunReportJobRequest</code>
  */
 class RunReportJobRequest extends \Google\Protobuf\Internal\Message

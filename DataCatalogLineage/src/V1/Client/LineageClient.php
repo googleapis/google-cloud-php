@@ -73,12 +73,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\DataCatalog\Lineage\V1\LineageClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface batchSearchLinkProcessesAsync(BatchSearchLinkProcessesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createLineageEventAsync(CreateLineageEventRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createProcessAsync(CreateProcessRequest $request, array $optionalArgs = [])
@@ -105,8 +99,15 @@ final class LineageClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.datacatalog.lineage.v1.Lineage';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'datalineage.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'datalineage.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

@@ -49,11 +49,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\AppEngine\V1\DomainMappingsClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createDomainMappingAsync(CreateDomainMappingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteDomainMappingAsync(DeleteDomainMappingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getDomainMappingAsync(GetDomainMappingRequest $request, array $optionalArgs = [])
@@ -67,8 +62,15 @@ final class DomainMappingsClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.appengine.v1.DomainMappings';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'appengine.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'appengine.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -212,6 +214,8 @@ final class DomainMappingsClient
      *
      * The async variant is {@see DomainMappingsClient::createDomainMappingAsync()} .
      *
+     * @example samples/V1/DomainMappingsClient/create_domain_mapping.php
+     *
      * @param CreateDomainMappingRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -238,6 +242,8 @@ final class DomainMappingsClient
      *
      * The async variant is {@see DomainMappingsClient::deleteDomainMappingAsync()} .
      *
+     * @example samples/V1/DomainMappingsClient/delete_domain_mapping.php
+     *
      * @param DeleteDomainMappingRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -262,6 +268,8 @@ final class DomainMappingsClient
      *
      * The async variant is {@see DomainMappingsClient::getDomainMappingAsync()} .
      *
+     * @example samples/V1/DomainMappingsClient/get_domain_mapping.php
+     *
      * @param GetDomainMappingRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -285,6 +293,8 @@ final class DomainMappingsClient
      * Lists the domain mappings on an application.
      *
      * The async variant is {@see DomainMappingsClient::listDomainMappingsAsync()} .
+     *
+     * @example samples/V1/DomainMappingsClient/list_domain_mappings.php
      *
      * @param ListDomainMappingsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -312,6 +322,8 @@ final class DomainMappingsClient
      * in order to update a `DomainMapping` resource.
      *
      * The async variant is {@see DomainMappingsClient::updateDomainMappingAsync()} .
+     *
+     * @example samples/V1/DomainMappingsClient/update_domain_mapping.php
      *
      * @param UpdateDomainMappingRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {

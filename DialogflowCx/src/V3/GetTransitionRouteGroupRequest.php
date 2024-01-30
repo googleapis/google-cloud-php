@@ -44,6 +44,25 @@ class GetTransitionRouteGroupRequest extends \Google\Protobuf\Internal\Message
     protected $language_code = '';
 
     /**
+     * @param string $name Required. The name of the
+     *                     [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup].
+     *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+     *                     ID>/flows/<Flow ID>/transitionRouteGroups/<Transition Route Group ID>`
+     *                     or `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+     *                     ID>/transitionRouteGroups/<Transition Route Group ID>`. Please see
+     *                     {@see TransitionRouteGroupsClient::transitionRouteGroupName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\GetTransitionRouteGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

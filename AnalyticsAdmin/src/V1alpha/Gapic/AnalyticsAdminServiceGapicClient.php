@@ -51,6 +51,7 @@ use Google\Analytics\Admin\V1alpha\BatchGetAccessBindingsResponse;
 use Google\Analytics\Admin\V1alpha\BatchUpdateAccessBindingsRequest;
 use Google\Analytics\Admin\V1alpha\BatchUpdateAccessBindingsResponse;
 use Google\Analytics\Admin\V1alpha\BigQueryLink;
+use Google\Analytics\Admin\V1alpha\CalculatedMetric;
 use Google\Analytics\Admin\V1alpha\CancelDisplayVideo360AdvertiserLinkProposalRequest;
 use Google\Analytics\Admin\V1alpha\ChannelGroup;
 use Google\Analytics\Admin\V1alpha\ConnectedSiteTag;
@@ -58,6 +59,7 @@ use Google\Analytics\Admin\V1alpha\ConversionEvent;
 use Google\Analytics\Admin\V1alpha\CreateAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\CreateAdSenseLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateAudienceRequest;
+use Google\Analytics\Admin\V1alpha\CreateCalculatedMetricRequest;
 use Google\Analytics\Admin\V1alpha\CreateChannelGroupRequest;
 use Google\Analytics\Admin\V1alpha\CreateConnectedSiteTagRequest;
 use Google\Analytics\Admin\V1alpha\CreateConnectedSiteTagResponse;
@@ -90,6 +92,7 @@ use Google\Analytics\Admin\V1alpha\DataStream;
 use Google\Analytics\Admin\V1alpha\DeleteAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\DeleteAccountRequest;
 use Google\Analytics\Admin\V1alpha\DeleteAdSenseLinkRequest;
+use Google\Analytics\Admin\V1alpha\DeleteCalculatedMetricRequest;
 use Google\Analytics\Admin\V1alpha\DeleteChannelGroupRequest;
 use Google\Analytics\Admin\V1alpha\DeleteConnectedSiteTagRequest;
 use Google\Analytics\Admin\V1alpha\DeleteConversionEventRequest;
@@ -122,6 +125,7 @@ use Google\Analytics\Admin\V1alpha\GetAdSenseLinkRequest;
 use Google\Analytics\Admin\V1alpha\GetAttributionSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetAudienceRequest;
 use Google\Analytics\Admin\V1alpha\GetBigQueryLinkRequest;
+use Google\Analytics\Admin\V1alpha\GetCalculatedMetricRequest;
 use Google\Analytics\Admin\V1alpha\GetChannelGroupRequest;
 use Google\Analytics\Admin\V1alpha\GetConversionEventRequest;
 use Google\Analytics\Admin\V1alpha\GetCustomDimensionRequest;
@@ -142,6 +146,7 @@ use Google\Analytics\Admin\V1alpha\GetPropertyRequest;
 use Google\Analytics\Admin\V1alpha\GetRollupPropertySourceLinkRequest;
 use Google\Analytics\Admin\V1alpha\GetSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\GetSearchAds360LinkRequest;
+use Google\Analytics\Admin\V1alpha\GetSubpropertyEventFilterRequest;
 use Google\Analytics\Admin\V1alpha\GlobalSiteTag;
 use Google\Analytics\Admin\V1alpha\GoogleAdsLink;
 use Google\Analytics\Admin\V1alpha\GoogleSignalsSettings;
@@ -157,6 +162,8 @@ use Google\Analytics\Admin\V1alpha\ListAudiencesRequest;
 use Google\Analytics\Admin\V1alpha\ListAudiencesResponse;
 use Google\Analytics\Admin\V1alpha\ListBigQueryLinksRequest;
 use Google\Analytics\Admin\V1alpha\ListBigQueryLinksResponse;
+use Google\Analytics\Admin\V1alpha\ListCalculatedMetricsRequest;
+use Google\Analytics\Admin\V1alpha\ListCalculatedMetricsResponse;
 use Google\Analytics\Admin\V1alpha\ListChannelGroupsRequest;
 use Google\Analytics\Admin\V1alpha\ListChannelGroupsResponse;
 use Google\Analytics\Admin\V1alpha\ListConnectedSiteTagsRequest;
@@ -191,6 +198,8 @@ use Google\Analytics\Admin\V1alpha\ListSKAdNetworkConversionValueSchemasRequest;
 use Google\Analytics\Admin\V1alpha\ListSKAdNetworkConversionValueSchemasResponse;
 use Google\Analytics\Admin\V1alpha\ListSearchAds360LinksRequest;
 use Google\Analytics\Admin\V1alpha\ListSearchAds360LinksResponse;
+use Google\Analytics\Admin\V1alpha\ListSubpropertyEventFiltersRequest;
+use Google\Analytics\Admin\V1alpha\ListSubpropertyEventFiltersResponse;
 use Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret;
 use Google\Analytics\Admin\V1alpha\Property;
 use Google\Analytics\Admin\V1alpha\ProvisionAccountTicketRequest;
@@ -209,6 +218,7 @@ use Google\Analytics\Admin\V1alpha\UpdateAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAccountRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAttributionSettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAudienceRequest;
+use Google\Analytics\Admin\V1alpha\UpdateCalculatedMetricRequest;
 use Google\Analytics\Admin\V1alpha\UpdateChannelGroupRequest;
 use Google\Analytics\Admin\V1alpha\UpdateConversionEventRequest;
 use Google\Analytics\Admin\V1alpha\UpdateCustomDimensionRequest;
@@ -226,6 +236,7 @@ use Google\Analytics\Admin\V1alpha\UpdateMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\UpdatePropertyRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSearchAds360LinkRequest;
+use Google\Analytics\Admin\V1alpha\UpdateSubpropertyEventFilterRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
@@ -262,6 +273,8 @@ use Google\Protobuf\Timestamp;
  * contained within formatted names that are returned by the API.
  *
  * @experimental
+ *
+ * @deprecated Please use the new service client {@see \Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient}.
  */
 class AnalyticsAdminServiceGapicClient
 {
@@ -270,8 +283,15 @@ class AnalyticsAdminServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.analytics.admin.v1alpha.AnalyticsAdminService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'analyticsadmin.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'analyticsadmin.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -300,6 +320,8 @@ class AnalyticsAdminServiceGapicClient
     private static $audienceNameTemplate;
 
     private static $bigQueryLinkNameTemplate;
+
+    private static $calculatedMetricNameTemplate;
 
     private static $channelGroupNameTemplate;
 
@@ -431,6 +453,15 @@ class AnalyticsAdminServiceGapicClient
         }
 
         return self::$bigQueryLinkNameTemplate;
+    }
+
+    private static function getCalculatedMetricNameTemplate()
+    {
+        if (self::$calculatedMetricNameTemplate == null) {
+            self::$calculatedMetricNameTemplate = new PathTemplate('properties/{property}/calculatedMetrics/{calculated_metric}');
+        }
+
+        return self::$calculatedMetricNameTemplate;
     }
 
     private static function getChannelGroupNameTemplate()
@@ -660,6 +691,7 @@ class AnalyticsAdminServiceGapicClient
                 'attributionSettings' => self::getAttributionSettingsNameTemplate(),
                 'audience' => self::getAudienceNameTemplate(),
                 'bigQueryLink' => self::getBigQueryLinkNameTemplate(),
+                'calculatedMetric' => self::getCalculatedMetricNameTemplate(),
                 'channelGroup' => self::getChannelGroupNameTemplate(),
                 'conversionEvent' => self::getConversionEventNameTemplate(),
                 'customDimension' => self::getCustomDimensionNameTemplate(),
@@ -816,6 +848,25 @@ class AnalyticsAdminServiceGapicClient
         return self::getBigQueryLinkNameTemplate()->render([
             'property' => $property,
             'bigquery_link' => $bigqueryLink,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * calculated_metric resource.
+     *
+     * @param string $property
+     * @param string $calculatedMetric
+     *
+     * @return string The formatted calculated_metric resource.
+     *
+     * @experimental
+     */
+    public static function calculatedMetricName($property, $calculatedMetric)
+    {
+        return self::getCalculatedMetricNameTemplate()->render([
+            'property' => $property,
+            'calculated_metric' => $calculatedMetric,
         ]);
     }
 
@@ -1284,6 +1335,7 @@ class AnalyticsAdminServiceGapicClient
      * - attributionSettings: properties/{property}/attributionSettings
      * - audience: properties/{property}/audiences/{audience}
      * - bigQueryLink: properties/{property}/bigQueryLinks/{bigquery_link}
+     * - calculatedMetric: properties/{property}/calculatedMetrics/{calculated_metric}
      * - channelGroup: properties/{property}/channelGroups/{channel_group}
      * - conversionEvent: properties/{property}/conversionEvents/{conversion_event}
      * - customDimension: properties/{property}/customDimensions/{custom_dimension}
@@ -2011,6 +2063,61 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateAudience', Audience::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Creates a CalculatedMetric.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     $calculatedMetricId = 'calculated_metric_id';
+     *     $calculatedMetric = new CalculatedMetric();
+     *     $response = $analyticsAdminServiceClient->createCalculatedMetric($formattedParent, $calculatedMetricId, $calculatedMetric);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string           $parent             Required. Format: properties/{property_id}
+     *                                             Example: properties/1234
+     * @param string           $calculatedMetricId Required. The ID to use for the calculated metric which will become the
+     *                                             final component of the calculated metric's resource name.
+     *
+     *                                             This value should be 1-80 characters and valid characters are
+     *                                             /[a-zA-Z0-9_]/, no spaces allowed. calculated_metric_id must be unique
+     *                                             between all calculated metrics under a property. The calculated_metric_id
+     *                                             is used when referencing this calculated metric from external APIs, for
+     *                                             example, "calcMetric:{calculated_metric_id}".
+     * @param CalculatedMetric $calculatedMetric   Required. The CalculatedMetric to create.
+     * @param array            $optionalArgs       {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\CalculatedMetric
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function createCalculatedMetric($parent, $calculatedMetricId, $calculatedMetric, array $optionalArgs = [])
+    {
+        $request = new CreateCalculatedMetricRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setCalculatedMetricId($calculatedMetricId);
+        $request->setCalculatedMetric($calculatedMetric);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateCalculatedMetric', CalculatedMetric::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -3045,6 +3152,47 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Deletes a CalculatedMetric on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->calculatedMetricName('[PROPERTY]', '[CALCULATED_METRIC]');
+     *     $analyticsAdminServiceClient->deleteCalculatedMetric($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the CalculatedMetric to delete.
+     *                             Format: properties/{property_id}/calculatedMetrics/{calculated_metric_id}
+     *                             Example: properties/1234/calculatedMetrics/Metric01
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function deleteCalculatedMetric($name, array $optionalArgs = [])
+    {
+        $request = new DeleteCalculatedMetricRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteCalculatedMetric', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Deletes a ChannelGroup on a property.
      *
      * Sample code:
@@ -4057,6 +4205,49 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Lookup for a single CalculatedMetric.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->calculatedMetricName('[PROPERTY]', '[CALCULATED_METRIC]');
+     *     $response = $analyticsAdminServiceClient->getCalculatedMetric($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the CalculatedMetric to get.
+     *                             Format: properties/{property_id}/calculatedMetrics/{calculated_metric_id}
+     *                             Example: properties/1234/calculatedMetrics/Metric01
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\CalculatedMetric
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getCalculatedMetric($name, array $optionalArgs = [])
+    {
+        $request = new GetCalculatedMetricRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetCalculatedMetric', CalculatedMetric::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Lookup for a single ChannelGroup.
      *
      * Sample code:
@@ -4918,6 +5109,50 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Lookup for a single subproperty Event Filter.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->subpropertyEventFilterName('[PROPERTY]', '[SUB_PROPERTY_EVENT_FILTER]');
+     *     $response = $analyticsAdminServiceClient->getSubpropertyEventFilter($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name of the subproperty event filter to lookup.
+     *                             Format:
+     *                             properties/property_id/subpropertyEventFilters/subproperty_event_filter
+     *                             Example: properties/123/subpropertyEventFilters/456
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\SubpropertyEventFilter
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getSubpropertyEventFilter($name, array $optionalArgs = [])
+    {
+        $request = new GetSubpropertyEventFilterRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetSubpropertyEventFilter', SubpropertyEventFilter::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Lists all access bindings on an account or property.
      *
      * Sample code:
@@ -5341,6 +5576,76 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListBigQueryLinks', $optionalArgs, ListBigQueryLinksResponse::class, $request);
+    }
+
+    /**
+     * Lists CalculatedMetrics on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listCalculatedMetrics($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listCalculatedMetrics($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Example format: properties/1234
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listCalculatedMetrics($parent, array $optionalArgs = [])
+    {
+        $request = new ListCalculatedMetricsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListCalculatedMetrics', $optionalArgs, ListCalculatedMetricsResponse::class, $request);
     }
 
     /**
@@ -6549,6 +6854,78 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * List all subproperty Event Filters on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listSubpropertyEventFilters($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listSubpropertyEventFilters($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Resource name of the ordinary property.
+     *                             Format: properties/property_id
+     *                             Example: properties/123
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listSubpropertyEventFilters($parent, array $optionalArgs = [])
+    {
+        $request = new ListSubpropertyEventFiltersRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListSubpropertyEventFilters', $optionalArgs, ListSubpropertyEventFiltersResponse::class, $request);
+    }
+
+    /**
      * Requests a ticket for creating an account.
      *
      * Sample code:
@@ -6600,8 +6977,10 @@ class AnalyticsAdminServiceGapicClient
      * records of each time a user reads Google Analytics reporting data. Access
      * records are retained for up to 2 years.
      *
-     * Data Access Reports can be requested for a property. The property must be
-     * in Google Analytics 360. This method is only available to Administrators.
+     * Data Access Reports can be requested for a property. Reports may be
+     * requested for any property, but dimensions that aren't related to quota can
+     * only be requested on Google Analytics 360 properties. This method is only
+     * available to Administrators.
      *
      * These data access records include GA4 UI Reporting, GA4 UI Explorations,
      * GA4 Data API, and other products like Firebase & Admob that can retrieve
@@ -6802,13 +7181,15 @@ class AnalyticsAdminServiceGapicClient
      * ```
      *
      * @param string $account      Required. The account resource for which to return change history
-     *                             resources.
+     *                             resources. Format: accounts/{account} Example: "accounts/100"
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $property
      *           Optional. Resource name for a child property. If set, only return changes
      *           made to this property or its child resources.
+     *           Format: properties/{propertyId}
+     *           Example: "properties/100"
      *     @type int[] $resourceType
      *           Optional. If set, only return changes if they are for a resource that
      *           matches at least one of these types.
@@ -7119,6 +7500,52 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateAudience', Audience::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Updates a CalculatedMetric on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $calculatedMetric = new CalculatedMetric();
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateCalculatedMetric($calculatedMetric, $updateMask);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param CalculatedMetric $calculatedMetric Required. The CalculatedMetric to update
+     * @param FieldMask        $updateMask       Required. The list of fields to be updated. Omitted fields will not be
+     *                                           updated. To replace the entire entity, use one path with the string "*" to
+     *                                           match all fields.
+     * @param array            $optionalArgs     {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\CalculatedMetric
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function updateCalculatedMetric($calculatedMetric, $updateMask, array $optionalArgs = [])
+    {
+        $request = new UpdateCalculatedMetricRequest();
+        $requestParamHeaders = [];
+        $request->setCalculatedMetric($calculatedMetric);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['calculated_metric.name'] = $calculatedMetric->getName();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateCalculatedMetric', CalculatedMetric::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -7936,5 +8363,52 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateSearchAds360Link', SearchAds360Link::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Updates a subproperty Event Filter.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $subpropertyEventFilter = new SubpropertyEventFilter();
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateSubpropertyEventFilter($subpropertyEventFilter, $updateMask);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param SubpropertyEventFilter $subpropertyEventFilter Required. The subproperty event filter to update.
+     * @param FieldMask              $updateMask             Required. The list of fields to update. Field names must be in snake case
+     *                                                       (for example, "field_to_update"). Omitted fields will not be updated. To
+     *                                                       replace the entire entity, use one path with the string "*" to match all
+     *                                                       fields.
+     * @param array                  $optionalArgs           {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\SubpropertyEventFilter
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function updateSubpropertyEventFilter($subpropertyEventFilter, $updateMask, array $optionalArgs = [])
+    {
+        $request = new UpdateSubpropertyEventFilterRequest();
+        $requestParamHeaders = [];
+        $request->setSubpropertyEventFilter($subpropertyEventFilter);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['subproperty_event_filter.name'] = $subpropertyEventFilter->getName();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateSubpropertyEventFilter', SubpropertyEventFilter::class, $optionalArgs, $request)->wait();
     }
 }

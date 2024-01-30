@@ -56,6 +56,9 @@ class Grpc implements ConnectionInterface
     use EmulatorTrait;
     use GrpcTrait;
 
+    /**
+     * @deprecated
+     */
     const BASE_URI = 'https://pubsub.googleapis.com/';
 
     const COMPRESSION_HEADER_KEY = 'grpc-internal-encoding-request';
@@ -112,7 +115,8 @@ class Grpc implements ConnectionInterface
             PubSubClient::VERSION,
             isset($config['authHttpHandler'])
                 ? $config['authHttpHandler']
-                : null
+                : null,
+            $config['universeDomain'] ?? null
         );
 
         $config += ['emulatorHost' => null];
@@ -126,6 +130,10 @@ class Grpc implements ConnectionInterface
                 $grpcConfig,
                 $this->emulatorGapicConfig($config['emulatorHost'])
             );
+        }
+
+        if (isset($config['universeDomain'])) {
+            $grpcConfig['universeDomain'] = $config['universeDomain'];
         }
         //@codeCoverageIgnoreEnd
 

@@ -49,11 +49,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\AppEngine\V1\VersionsClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createVersionAsync(CreateVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteVersionAsync(DeleteVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getVersionAsync(GetVersionRequest $request, array $optionalArgs = [])
@@ -67,8 +62,15 @@ final class VersionsClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.appengine.v1.Versions';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'appengine.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'appengine.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -210,6 +212,8 @@ final class VersionsClient
      *
      * The async variant is {@see VersionsClient::createVersionAsync()} .
      *
+     * @example samples/V1/VersionsClient/create_version.php
+     *
      * @param CreateVersionRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -233,6 +237,8 @@ final class VersionsClient
      * Deletes an existing Version resource.
      *
      * The async variant is {@see VersionsClient::deleteVersionAsync()} .
+     *
+     * @example samples/V1/VersionsClient/delete_version.php
      *
      * @param DeleteVersionRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -260,6 +266,8 @@ final class VersionsClient
      *
      * The async variant is {@see VersionsClient::getVersionAsync()} .
      *
+     * @example samples/V1/VersionsClient/get_version.php
+     *
      * @param GetVersionRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -283,6 +291,8 @@ final class VersionsClient
      * Lists the versions of a service.
      *
      * The async variant is {@see VersionsClient::listVersionsAsync()} .
+     *
+     * @example samples/V1/VersionsClient/list_versions.php
      *
      * @param ListVersionsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -342,6 +352,8 @@ final class VersionsClient
      * * [`manual_scaling.instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#manualscaling)
      *
      * The async variant is {@see VersionsClient::updateVersionAsync()} .
+     *
+     * @example samples/V1/VersionsClient/update_version.php
      *
      * @param UpdateVersionRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

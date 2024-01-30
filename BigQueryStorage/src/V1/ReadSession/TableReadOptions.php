@@ -83,6 +83,13 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional double sample_percentage = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $sample_percentage = null;
+    /**
+     * Optional. Set response_compression_codec when creating a read session to
+     * enable application-level compression of ReadRows responses.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.bigquery.storage.v1.ReadSession.TableReadOptions.ResponseCompressionCodec response_compression_codec = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $response_compression_codec = null;
     protected $output_format_serialization_options;
 
     /**
@@ -151,6 +158,9 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
      *           randomly choose for each data block whether to read the rows in that data
      *           block. For more details, see
      *           https://cloud.google.com/bigquery/docs/table-sampling)
+     *     @type int $response_compression_codec
+     *           Optional. Set response_compression_codec when creating a read session to
+     *           enable application-level compression of ReadRows responses.
      * }
      */
     public function __construct($data = NULL) {
@@ -404,6 +414,44 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkDouble($var);
         $this->sample_percentage = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Set response_compression_codec when creating a read session to
+     * enable application-level compression of ReadRows responses.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.bigquery.storage.v1.ReadSession.TableReadOptions.ResponseCompressionCodec response_compression_codec = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getResponseCompressionCodec()
+    {
+        return isset($this->response_compression_codec) ? $this->response_compression_codec : 0;
+    }
+
+    public function hasResponseCompressionCodec()
+    {
+        return isset($this->response_compression_codec);
+    }
+
+    public function clearResponseCompressionCodec()
+    {
+        unset($this->response_compression_codec);
+    }
+
+    /**
+     * Optional. Set response_compression_codec when creating a read session to
+     * enable application-level compression of ReadRows responses.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.bigquery.storage.v1.ReadSession.TableReadOptions.ResponseCompressionCodec response_compression_codec = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setResponseCompressionCodec($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Storage\V1\ReadSession\TableReadOptions\ResponseCompressionCodec::class);
+        $this->response_compression_codec = $var;
 
         return $this;
     }

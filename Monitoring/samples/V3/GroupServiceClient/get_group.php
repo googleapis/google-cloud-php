@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START monitoring_v3_generated_GroupService_GetGroup_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Monitoring\V3\Client\GroupServiceClient;
+use Google\Cloud\Monitoring\V3\GetGroupRequest;
 use Google\Cloud\Monitoring\V3\Group;
-use Google\Cloud\Monitoring\V3\GroupServiceClient;
 
 /**
  * Gets a single group.
@@ -40,10 +41,14 @@ function get_group_sample(string $formattedName): void
     // Create a client.
     $groupServiceClient = new GroupServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetGroupRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Group $response */
-        $response = $groupServiceClient->getGroup($formattedName);
+        $response = $groupServiceClient->getGroup($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

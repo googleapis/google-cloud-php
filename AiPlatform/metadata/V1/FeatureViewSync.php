@@ -24,7 +24,7 @@ class FeatureViewSync
 û
 2google/cloud/aiplatform/v1/feature_view_sync.protogoogle.cloud.aiplatform.v1google/api/resource.protogoogle/protobuf/timestamp.protogoogle/rpc/status.protogoogle/type/interval.proto"˝
 FeatureViewSync
-name (	B‡A4
+name (	B‡A4
 create_time (2.google.protobuf.TimestampB‡A,
 run_time (2.google.type.IntervalB‡A-
 final_status (2.google.rpc.StatusB‡A:√ÍAø

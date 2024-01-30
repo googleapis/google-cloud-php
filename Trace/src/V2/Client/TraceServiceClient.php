@@ -53,11 +53,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Trace\V2\TraceServiceClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface batchWriteSpansAsync(BatchWriteSpansRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createSpanAsync(Span $request, array $optionalArgs = [])
  */
@@ -69,8 +64,15 @@ final class TraceServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.devtools.cloudtrace.v2.TraceService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'cloudtrace.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'cloudtrace.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -239,6 +241,8 @@ final class TraceServiceClient
      *
      * The async variant is {@see TraceServiceClient::batchWriteSpansAsync()} .
      *
+     * @example samples/V2/TraceServiceClient/batch_write_spans.php
+     *
      * @param BatchWriteSpansRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -260,6 +264,8 @@ final class TraceServiceClient
      * Creates a new span.
      *
      * The async variant is {@see TraceServiceClient::createSpanAsync()} .
+     *
+     * @example samples/V2/TraceServiceClient/create_span.php
      *
      * @param Span  $request     A request to house fields associated with the call.
      * @param array $callOptions {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vpcaccess_v1_generated_VpcAccessService_CreateConnector_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VpcAccess\V1\Client\VpcAccessServiceClient;
 use Google\Cloud\VpcAccess\V1\Connector;
-use Google\Cloud\VpcAccess\V1\VpcAccessServiceClient;
+use Google\Cloud\VpcAccess\V1\CreateConnectorRequest;
 use Google\Rpc\Status;
 
 /**
@@ -42,13 +43,17 @@ function create_connector_sample(string $formattedParent, string $connectorId): 
     // Create a client.
     $vpcAccessServiceClient = new VpcAccessServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $connector = new Connector();
+    $request = (new CreateConnectorRequest())
+        ->setParent($formattedParent)
+        ->setConnectorId($connectorId)
+        ->setConnector($connector);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $vpcAccessServiceClient->createConnector($formattedParent, $connectorId, $connector);
+        $response = $vpcAccessServiceClient->createConnector($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

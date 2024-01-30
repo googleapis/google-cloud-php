@@ -55,11 +55,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Dataproc\V1\JobControllerClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface cancelJobAsync(CancelJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteJobAsync(DeleteJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getJobAsync(GetJobRequest $request, array $optionalArgs = [])
@@ -78,8 +73,15 @@ final class JobControllerClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.dataproc.v1.JobController';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'dataproc.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'dataproc.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -223,6 +225,8 @@ final class JobControllerClient
      *
      * The async variant is {@see JobControllerClient::cancelJobAsync()} .
      *
+     * @example samples/V1/JobControllerClient/cancel_job.php
+     *
      * @param CancelJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -248,6 +252,8 @@ final class JobControllerClient
      *
      * The async variant is {@see JobControllerClient::deleteJobAsync()} .
      *
+     * @example samples/V1/JobControllerClient/delete_job.php
+     *
      * @param DeleteJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -269,6 +275,8 @@ final class JobControllerClient
      * Gets the resource representation for a job in a project.
      *
      * The async variant is {@see JobControllerClient::getJobAsync()} .
+     *
+     * @example samples/V1/JobControllerClient/get_job.php
      *
      * @param GetJobRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -294,6 +302,8 @@ final class JobControllerClient
      *
      * The async variant is {@see JobControllerClient::listJobsAsync()} .
      *
+     * @example samples/V1/JobControllerClient/list_jobs.php
+     *
      * @param ListJobsRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -317,6 +327,8 @@ final class JobControllerClient
      * Submits a job to a cluster.
      *
      * The async variant is {@see JobControllerClient::submitJobAsync()} .
+     *
+     * @example samples/V1/JobControllerClient/submit_job.php
      *
      * @param SubmitJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -342,6 +354,8 @@ final class JobControllerClient
      *
      * The async variant is {@see JobControllerClient::submitJobAsOperationAsync()} .
      *
+     * @example samples/V1/JobControllerClient/submit_job_as_operation.php
+     *
      * @param SubmitJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -365,6 +379,8 @@ final class JobControllerClient
      * Updates a job in a project.
      *
      * The async variant is {@see JobControllerClient::updateJobAsync()} .
+     *
+     * @example samples/V1/JobControllerClient/update_job.php
      *
      * @param UpdateJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -390,6 +406,8 @@ final class JobControllerClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see JobControllerClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/JobControllerClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -418,6 +436,8 @@ final class JobControllerClient
     errors.
      *
      * The async variant is {@see JobControllerClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/JobControllerClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -448,6 +468,8 @@ final class JobControllerClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see JobControllerClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/JobControllerClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

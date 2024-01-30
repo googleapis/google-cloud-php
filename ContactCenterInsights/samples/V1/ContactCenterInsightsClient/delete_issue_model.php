@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START contactcenterinsights_v1_generated_ContactCenterInsights_DeleteIssueModel_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\ContactCenterInsights\V1\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\DeleteIssueModelRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,10 +40,14 @@ function delete_issue_model_sample(string $formattedName): void
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteIssueModelRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $contactCenterInsightsClient->deleteIssueModel($formattedName);
+        $response = $contactCenterInsightsClient->deleteIssueModel($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -1,0 +1,100 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.shopping.css.v1",
+    "libraryPackage": "Google\\Shopping\\Css\\V1",
+    "services": {
+        "AccountsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AccountsServiceGapicClient",
+                    "rpcs": {
+                        "GetAccount": {
+                            "methods": [
+                                "getAccount"
+                            ]
+                        },
+                        "ListChildAccounts": {
+                            "methods": [
+                                "listChildAccounts"
+                            ]
+                        },
+                        "UpdateLabels": {
+                            "methods": [
+                                "updateLabels"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "AccountLabelsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AccountLabelsServiceGapicClient",
+                    "rpcs": {
+                        "CreateAccountLabel": {
+                            "methods": [
+                                "createAccountLabel"
+                            ]
+                        },
+                        "DeleteAccountLabel": {
+                            "methods": [
+                                "deleteAccountLabel"
+                            ]
+                        },
+                        "ListAccountLabels": {
+                            "methods": [
+                                "listAccountLabels"
+                            ]
+                        },
+                        "UpdateAccountLabel": {
+                            "methods": [
+                                "updateAccountLabel"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "CssProductInputsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CssProductInputsServiceGapicClient",
+                    "rpcs": {
+                        "DeleteCssProductInput": {
+                            "methods": [
+                                "deleteCssProductInput"
+                            ]
+                        },
+                        "InsertCssProductInput": {
+                            "methods": [
+                                "insertCssProductInput"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "CssProductsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CssProductsServiceGapicClient",
+                    "rpcs": {
+                        "GetCssProduct": {
+                            "methods": [
+                                "getCssProduct"
+                            ]
+                        },
+                        "ListCssProducts": {
+                            "methods": [
+                                "listCssProducts"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

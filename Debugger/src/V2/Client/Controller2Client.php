@@ -64,11 +64,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Debugger\V2\Controller2Client} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface listActiveBreakpointsAsync(ListActiveBreakpointsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface registerDebuggeeAsync(RegisterDebuggeeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateActiveBreakpointAsync(UpdateActiveBreakpointRequest $request, array $optionalArgs = [])
@@ -80,8 +75,15 @@ final class Controller2Client
     /** The name of the service. */
     private const SERVICE_NAME = 'google.devtools.clouddebugger.v2.Controller2';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'clouddebugger.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'clouddebugger.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -202,6 +204,8 @@ final class Controller2Client
      *
      * The async variant is {@see Controller2Client::listActiveBreakpointsAsync()} .
      *
+     * @example samples/V2/Controller2Client/list_active_breakpoints.php
+     *
      * @param ListActiveBreakpointsRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -235,6 +239,8 @@ final class Controller2Client
      *
      * The async variant is {@see Controller2Client::registerDebuggeeAsync()} .
      *
+     * @example samples/V2/Controller2Client/register_debuggee.php
+     *
      * @param RegisterDebuggeeRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -265,6 +271,8 @@ final class Controller2Client
      * or snapping the location to the correct line of code.
      *
      * The async variant is {@see Controller2Client::updateActiveBreakpointAsync()} .
+     *
+     * @example samples/V2/Controller2Client/update_active_breakpoint.php
      *
      * @param UpdateActiveBreakpointRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {

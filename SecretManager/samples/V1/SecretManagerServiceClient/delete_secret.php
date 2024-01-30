@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START secretmanager_v1_generated_SecretManagerService_DeleteSecret_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\SecretManager\V1\SecretManagerServiceClient;
+use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
+use Google\Cloud\SecretManager\V1\DeleteSecretRequest;
 
 /**
  * Deletes a [Secret][google.cloud.secretmanager.v1.Secret].
@@ -38,9 +39,13 @@ function delete_secret_sample(string $formattedName): void
     // Create a client.
     $secretManagerServiceClient = new SecretManagerServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteSecretRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $secretManagerServiceClient->deleteSecret($formattedName);
+        $secretManagerServiceClient->deleteSecret($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

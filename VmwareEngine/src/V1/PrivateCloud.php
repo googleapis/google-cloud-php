@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a private cloud resource. Private clouds are zonal resources.
+ * Represents a private cloud resource. Private clouds of type `STANDARD` and
+ * `TIME_LIMITED` are zonal resources, `STRETCHED` private clouds are
+ * regional.
  *
  * Generated from protobuf message <code>google.cloud.vmwareengine.v1.PrivateCloud</code>
  */

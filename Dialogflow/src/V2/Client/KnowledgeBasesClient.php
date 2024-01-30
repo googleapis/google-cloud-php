@@ -56,11 +56,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Dialogflow\V2\KnowledgeBasesClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createKnowledgeBaseAsync(CreateKnowledgeBaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteKnowledgeBaseAsync(DeleteKnowledgeBaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getKnowledgeBaseAsync(GetKnowledgeBaseRequest $request, array $optionalArgs = [])
@@ -77,8 +72,15 @@ final class KnowledgeBasesClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.dialogflow.v2.KnowledgeBases';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'dialogflow.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'dialogflow.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -300,6 +302,8 @@ final class KnowledgeBasesClient
      *
      * The async variant is {@see KnowledgeBasesClient::createKnowledgeBaseAsync()} .
      *
+     * @example samples/V2/KnowledgeBasesClient/create_knowledge_base.php
+     *
      * @param CreateKnowledgeBaseRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -324,6 +328,8 @@ final class KnowledgeBasesClient
      *
      * The async variant is {@see KnowledgeBasesClient::deleteKnowledgeBaseAsync()} .
      *
+     * @example samples/V2/KnowledgeBasesClient/delete_knowledge_base.php
+     *
      * @param DeleteKnowledgeBaseRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -345,6 +351,8 @@ final class KnowledgeBasesClient
      * Retrieves the specified knowledge base.
      *
      * The async variant is {@see KnowledgeBasesClient::getKnowledgeBaseAsync()} .
+     *
+     * @example samples/V2/KnowledgeBasesClient/get_knowledge_base.php
      *
      * @param GetKnowledgeBaseRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -370,6 +378,8 @@ final class KnowledgeBasesClient
      *
      * The async variant is {@see KnowledgeBasesClient::listKnowledgeBasesAsync()} .
      *
+     * @example samples/V2/KnowledgeBasesClient/list_knowledge_bases.php
+     *
      * @param ListKnowledgeBasesRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -393,6 +403,8 @@ final class KnowledgeBasesClient
      * Updates the specified knowledge base.
      *
      * The async variant is {@see KnowledgeBasesClient::updateKnowledgeBaseAsync()} .
+     *
+     * @example samples/V2/KnowledgeBasesClient/update_knowledge_base.php
      *
      * @param UpdateKnowledgeBaseRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -418,6 +430,8 @@ final class KnowledgeBasesClient
      *
      * The async variant is {@see KnowledgeBasesClient::getLocationAsync()} .
      *
+     * @example samples/V2/KnowledgeBasesClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -441,6 +455,8 @@ final class KnowledgeBasesClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see KnowledgeBasesClient::listLocationsAsync()} .
+     *
+     * @example samples/V2/KnowledgeBasesClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

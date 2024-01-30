@@ -217,6 +217,7 @@ return [
                 'interfaceOverride' => 'google.iam.v1.IAMPolicy',
             ],
             'templateMap' => [
+                'deploymentResourcePool' => 'projects/{project}/locations/{location}/deploymentResourcePools/{deployment_resource_pool}',
                 'endpoint' => 'projects/{project}/locations/{location}/endpoints/{endpoint}',
                 'location' => 'projects/{project}/locations/{location}',
                 'model' => 'projects/{project}/locations/{location}/models/{model}',

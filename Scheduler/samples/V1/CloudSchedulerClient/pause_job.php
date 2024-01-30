@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudscheduler_v1_generated_CloudScheduler_PauseJob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Scheduler\V1\CloudSchedulerClient;
+use Google\Cloud\Scheduler\V1\Client\CloudSchedulerClient;
 use Google\Cloud\Scheduler\V1\Job;
+use Google\Cloud\Scheduler\V1\PauseJobRequest;
 
 /**
  * Pauses a job.
@@ -48,10 +49,14 @@ function pause_job_sample(string $formattedName): void
     // Create a client.
     $cloudSchedulerClient = new CloudSchedulerClient();
 
+    // Prepare the request message.
+    $request = (new PauseJobRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Job $response */
-        $response = $cloudSchedulerClient->pauseJob($formattedName);
+        $response = $cloudSchedulerClient->pauseJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

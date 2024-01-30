@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START securitycenter_v1_generated_SecurityCenter_GetEffectiveSecurityHealthAnalyticsCustomModule_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient;
 use Google\Cloud\SecurityCenter\V1\EffectiveSecurityHealthAnalyticsCustomModule;
-use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\GetEffectiveSecurityHealthAnalyticsCustomModuleRequest;
 
 /**
  * Retrieves an EffectiveSecurityHealthAnalyticsCustomModule.
@@ -42,10 +43,14 @@ function get_effective_security_health_analytics_custom_module_sample(string $fo
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
+    // Prepare the request message.
+    $request = (new GetEffectiveSecurityHealthAnalyticsCustomModuleRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var EffectiveSecurityHealthAnalyticsCustomModule $response */
-        $response = $securityCenterClient->getEffectiveSecurityHealthAnalyticsCustomModule($formattedName);
+        $response = $securityCenterClient->getEffectiveSecurityHealthAnalyticsCustomModule($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

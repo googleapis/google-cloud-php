@@ -72,7 +72,9 @@ class SecureSourceManagerClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return SecureSourceManagerClient */
@@ -134,7 +136,10 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securesourcemanager.v1.SecureSourceManager/CreateInstance', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.securesourcemanager.v1.SecureSourceManager/CreateInstance',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getInstanceId();
@@ -184,12 +189,15 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -277,7 +285,10 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securesourcemanager.v1.SecureSourceManager/CreateRepository', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.securesourcemanager.v1.SecureSourceManager/CreateRepository',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getRepository();
@@ -327,12 +338,15 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -395,8 +409,7 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new DeleteInstanceRequest())
-            ->setName($formattedName);
+        $request = (new DeleteInstanceRequest())->setName($formattedName);
         $response = $gapicClient->deleteInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -406,7 +419,10 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securesourcemanager.v1.SecureSourceManager/DeleteInstance', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.securesourcemanager.v1.SecureSourceManager/DeleteInstance',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -452,17 +468,19 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new DeleteInstanceRequest())
-            ->setName($formattedName);
+        $request = (new DeleteInstanceRequest())->setName($formattedName);
         $response = $gapicClient->deleteInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -516,8 +534,7 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new DeleteRepositoryRequest())
-            ->setName($formattedName);
+        $request = (new DeleteRepositoryRequest())->setName($formattedName);
         $response = $gapicClient->deleteRepository($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -527,7 +544,10 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securesourcemanager.v1.SecureSourceManager/DeleteRepository', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.securesourcemanager.v1.SecureSourceManager/DeleteRepository',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -573,17 +593,19 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new DeleteRepositoryRequest())
-            ->setName($formattedName);
+        $request = (new DeleteRepositoryRequest())->setName($formattedName);
         $response = $gapicClient->deleteRepository($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -623,8 +645,7 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicyRepo($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -648,17 +669,19 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicyRepo($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -689,8 +712,7 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new GetInstanceRequest())
-            ->setName($formattedName);
+        $request = (new GetInstanceRequest())->setName($formattedName);
         $response = $gapicClient->getInstance($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -714,17 +736,19 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new GetInstanceRequest())
-            ->setName($formattedName);
+        $request = (new GetInstanceRequest())->setName($formattedName);
         try {
             $gapicClient->getInstance($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -761,8 +785,7 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new GetRepositoryRequest())
-            ->setName($formattedName);
+        $request = (new GetRepositoryRequest())->setName($formattedName);
         $response = $gapicClient->getRepository($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -786,17 +809,19 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new GetRepositoryRequest())
-            ->setName($formattedName);
+        $request = (new GetRepositoryRequest())->setName($formattedName);
         try {
             $gapicClient->getRepository($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -821,17 +846,14 @@ class SecureSourceManagerClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $instancesElement = new Instance();
-        $instances = [
-            $instancesElement,
-        ];
+        $instances = [$instancesElement];
         $expectedResponse = new ListInstancesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setInstances($instances);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListInstancesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListInstancesRequest())->setParent($formattedParent);
         $response = $gapicClient->listInstances($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -858,17 +880,19 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListInstancesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListInstancesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listInstances($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -893,17 +917,14 @@ class SecureSourceManagerClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $repositoriesElement = new Repository();
-        $repositories = [
-            $repositoriesElement,
-        ];
+        $repositories = [$repositoriesElement];
         $expectedResponse = new ListRepositoriesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRepositories($repositories);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListRepositoriesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRepositoriesRequest())->setParent($formattedParent);
         $response = $gapicClient->listRepositories($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -930,17 +951,19 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListRepositoriesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRepositoriesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listRepositories($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -972,9 +995,7 @@ class SecureSourceManagerClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicyRepo($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1000,19 +1021,20 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicyRepo($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1040,16 +1062,17 @@ class SecureSourceManagerClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissionsRepo($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securesourcemanager.v1.SecureSourceManager/TestIamPermissionsRepo', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.securesourcemanager.v1.SecureSourceManager/TestIamPermissionsRepo',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getResource();
         $this->assertProtobufEquals($resource, $actualValue);
         $actualValue = $actualRequestObject->getPermissions();
@@ -1068,19 +1091,20 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissionsRepo($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1111,8 +1135,7 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1136,17 +1159,19 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1178,9 +1203,7 @@ class SecureSourceManagerClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1206,19 +1229,20 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1246,9 +1270,7 @@ class SecureSourceManagerClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1274,19 +1296,20 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1339,12 +1362,15 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -1371,9 +1397,7 @@ class SecureSourceManagerClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -1403,12 +1427,15 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -1474,7 +1501,10 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securesourcemanager.v1.SecureSourceManager/CreateInstance', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.securesourcemanager.v1.SecureSourceManager/CreateInstance',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getInstanceId();

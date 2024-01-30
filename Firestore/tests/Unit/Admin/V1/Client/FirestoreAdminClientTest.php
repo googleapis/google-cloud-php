@@ -31,6 +31,7 @@ use Google\Cloud\Firestore\Admin\V1\Client\FirestoreAdminClient;
 use Google\Cloud\Firestore\Admin\V1\CreateDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateIndexRequest;
 use Google\Cloud\Firestore\Admin\V1\Database;
+use Google\Cloud\Firestore\Admin\V1\DeleteDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\DeleteIndexRequest;
 use Google\Cloud\Firestore\Admin\V1\ExportDocumentsRequest;
 use Google\Cloud\Firestore\Admin\V1\ExportDocumentsResponse;
@@ -105,11 +106,13 @@ class FirestoreAdminClientTest extends GeneratedTest
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
+        $uid = 'uid115792';
         $locationId = 'locationId552319461';
         $keyPrefix = 'keyPrefix438630514';
         $etag = 'etag3123477';
         $expectedResponse = new Database();
         $expectedResponse->setName($name);
+        $expectedResponse->setUid($uid);
         $expectedResponse->setLocationId($locationId);
         $expectedResponse->setKeyPrefix($keyPrefix);
         $expectedResponse->setEtag($etag);
@@ -354,6 +357,137 @@ class FirestoreAdminClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteDatabaseTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteDatabaseTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name2 = 'name2-1052831874';
+        $uid = 'uid115792';
+        $locationId = 'locationId552319461';
+        $keyPrefix = 'keyPrefix438630514';
+        $etag2 = 'etag2-1293302904';
+        $expectedResponse = new Database();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setUid($uid);
+        $expectedResponse->setLocationId($locationId);
+        $expectedResponse->setKeyPrefix($keyPrefix);
+        $expectedResponse->setEtag($etag2);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteDatabaseTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
+        $request = (new DeleteDatabaseRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->deleteDatabase($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/DeleteDatabase', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteDatabaseTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteDatabaseExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteDatabaseTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
+        $request = (new DeleteDatabaseRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->deleteDatabase($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteDatabaseTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function deleteIndexTest()
     {
         $transport = $this->createTransport();
@@ -547,11 +681,13 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $uid = 'uid115792';
         $locationId = 'locationId552319461';
         $keyPrefix = 'keyPrefix438630514';
         $etag = 'etag3123477';
         $expectedResponse = new Database();
         $expectedResponse->setName($name2);
+        $expectedResponse->setUid($uid);
         $expectedResponse->setLocationId($locationId);
         $expectedResponse->setKeyPrefix($keyPrefix);
         $expectedResponse->setEtag($etag);
@@ -1084,11 +1220,13 @@ class FirestoreAdminClientTest extends GeneratedTest
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
+        $uid = 'uid115792';
         $locationId = 'locationId552319461';
         $keyPrefix = 'keyPrefix438630514';
         $etag = 'etag3123477';
         $expectedResponse = new Database();
         $expectedResponse->setName($name);
+        $expectedResponse->setUid($uid);
         $expectedResponse->setLocationId($locationId);
         $expectedResponse->setKeyPrefix($keyPrefix);
         $expectedResponse->setEtag($etag);
@@ -1340,11 +1478,13 @@ class FirestoreAdminClientTest extends GeneratedTest
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
+        $uid = 'uid115792';
         $locationId = 'locationId552319461';
         $keyPrefix = 'keyPrefix438630514';
         $etag = 'etag3123477';
         $expectedResponse = new Database();
         $expectedResponse->setName($name);
+        $expectedResponse->setUid($uid);
         $expectedResponse->setLocationId($locationId);
         $expectedResponse->setKeyPrefix($keyPrefix);
         $expectedResponse->setEtag($etag);

@@ -17,14 +17,16 @@ class JobrunNotificationPayload
         \GPBMetadata\Google\Cloud\Deploy\V1\LogEnums::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‹
-8google/cloud/deploy/v1/jobrun_notification_payload.protogoogle.cloud.deploy.v1"º
+­
+8google/cloud/deploy/v1/jobrun_notification_payload.protogoogle.cloud.deploy.v1"Ü
 JobRunNotificationEvent
 message (	
 job_run (	
 pipeline_uid (	
-release_uid (	
-rollout_uid (	
+release_uid (	
+release (	
+rollout_uid (	
+rollout	 (	
 	target_id (	*
 type (2.google.cloud.deploy.v1.TypeBr
 com.google.cloud.deploy.v1BJobRunNotificationPayloadProtoPZ2cloud.google.com/go/deploy/apiv1/deploypb;deploypbbproto3'

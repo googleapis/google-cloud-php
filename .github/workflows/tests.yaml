@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         platform: [ubuntu-latest, windows-latest]
-        php: [ "7.4", "8.0", "8.1", "8.2" ]
+        php: [ "7.4", "8.0", "8.1", "8.2", "8.3" ]
         extensions: ["grpc-1.54.0"]
         type: ["Unit Test"]
         include:
@@ -33,7 +33,7 @@ jobs:
         extensions: ${{ matrix.extensions }}
         key: cache-key-1 # increment to bust the cache
     - name: Cache extensions
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ${{ steps.extcache.outputs.dir }}
         key: ${{ steps.extcache.outputs.key }}
@@ -79,6 +79,21 @@ jobs:
         extensions: grpc
     - name: Run Package Test Suites
       run: bash .github/run-package-tests.sh
+
+  test_packages_lowest:
+    name: Package Tests (Lowest Dependencies)
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup PHP
+      uses: shivammathur/setup-php@verbose
+      with:
+        php-version: '7.4'
+        extensions: grpc
+    - name: Run Package Test Suites
+      env:
+        PREFER_LOWEST: ${{ github.event.pull_request.user.login == 'release-please[bot]' && '--prefer-lowest-strict' || '--prefer-lowest' }}
+      run: bash .github/run-package-tests.sh $PREFER_LOWEST
 
   test_dev_commands:
     name: Dev Commands Unit Tests

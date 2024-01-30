@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_Changelogs_GetChangelog_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Dialogflow\Cx\V3\Changelog;
-use Google\Cloud\Dialogflow\Cx\V3\ChangelogsClient;
+use Google\Cloud\Dialogflow\Cx\V3\Client\ChangelogsClient;
+use Google\Cloud\Dialogflow\Cx\V3\GetChangelogRequest;
 
 /**
  * Retrieves the specified Changelog.
@@ -40,10 +41,14 @@ function get_changelog_sample(string $formattedName): void
     // Create a client.
     $changelogsClient = new ChangelogsClient();
 
+    // Prepare the request message.
+    $request = (new GetChangelogRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Changelog $response */
-        $response = $changelogsClient->getChangelog($formattedName);
+        $response = $changelogsClient->getChangelog($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

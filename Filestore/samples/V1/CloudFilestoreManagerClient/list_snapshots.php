@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START file_v1_generated_CloudFilestoreManager_ListSnapshots_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Filestore\V1\CloudFilestoreManagerClient;
+use Google\Cloud\Filestore\V1\Client\CloudFilestoreManagerClient;
+use Google\Cloud\Filestore\V1\ListSnapshotsRequest;
 use Google\Cloud\Filestore\V1\Snapshot;
 
 /**
@@ -42,10 +43,14 @@ function list_snapshots_sample(string $formattedParent): void
     // Create a client.
     $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
 
+    // Prepare the request message.
+    $request = (new ListSnapshotsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudFilestoreManagerClient->listSnapshots($formattedParent);
+        $response = $cloudFilestoreManagerClient->listSnapshots($request);
 
         /** @var Snapshot $element */
         foreach ($response as $element) {

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START contactcenterinsights_v1_generated_ContactCenterInsights_UndeployIssueModel_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\ContactCenterInsights\V1\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\UndeployIssueModelRequest;
 use Google\Cloud\ContactCenterInsights\V1\UndeployIssueModelResponse;
 use Google\Rpc\Status;
 
@@ -41,10 +42,14 @@ function undeploy_issue_model_sample(string $formattedName): void
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
+    // Prepare the request message.
+    $request = (new UndeployIssueModelRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $contactCenterInsightsClient->undeployIssueModel($formattedName);
+        $response = $contactCenterInsightsClient->undeployIssueModel($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

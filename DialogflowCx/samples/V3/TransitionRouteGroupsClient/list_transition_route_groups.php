@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_TransitionRouteGroups_ListTransitionRouteGroups_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dialogflow\Cx\V3\Client\TransitionRouteGroupsClient;
+use Google\Cloud\Dialogflow\Cx\V3\ListTransitionRouteGroupsRequest;
 use Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroup;
-use Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroupsClient;
 
 /**
  * Returns the list of all transition route groups in the specified flow.
@@ -42,10 +43,14 @@ function list_transition_route_groups_sample(string $formattedParent): void
     // Create a client.
     $transitionRouteGroupsClient = new TransitionRouteGroupsClient();
 
+    // Prepare the request message.
+    $request = (new ListTransitionRouteGroupsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $transitionRouteGroupsClient->listTransitionRouteGroups($formattedParent);
+        $response = $transitionRouteGroupsClient->listTransitionRouteGroups($request);
 
         /** @var TransitionRouteGroup $element */
         foreach ($response as $element) {

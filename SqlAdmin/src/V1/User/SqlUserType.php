@@ -32,19 +32,19 @@ class SqlUserType
      */
     const CLOUD_IAM_SERVICE_ACCOUNT = 2;
     /**
-     * Cloud IAM Group non-login user.
+     * Cloud IAM group non-login user.
      *
      * Generated from protobuf enum <code>CLOUD_IAM_GROUP = 3;</code>
      */
     const CLOUD_IAM_GROUP = 3;
     /**
-     * Cloud IAM Group login user.
+     * Cloud IAM group login user.
      *
      * Generated from protobuf enum <code>CLOUD_IAM_GROUP_USER = 4;</code>
      */
     const CLOUD_IAM_GROUP_USER = 4;
     /**
-     * Cloud IAM Group login service account.
+     * Cloud IAM group login service account.
      *
      * Generated from protobuf enum <code>CLOUD_IAM_GROUP_SERVICE_ACCOUNT = 5;</code>
      */

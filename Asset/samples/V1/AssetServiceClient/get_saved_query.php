@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudasset_v1_generated_AssetService_GetSavedQuery_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Asset\V1\AssetServiceClient;
+use Google\Cloud\Asset\V1\Client\AssetServiceClient;
+use Google\Cloud\Asset\V1\GetSavedQueryRequest;
 use Google\Cloud\Asset\V1\SavedQuery;
 
 /**
@@ -42,10 +43,14 @@ function get_saved_query_sample(string $formattedName): void
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetSavedQueryRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var SavedQuery $response */
-        $response = $assetServiceClient->getSavedQuery($formattedName);
+        $response = $assetServiceClient->getSavedQuery($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

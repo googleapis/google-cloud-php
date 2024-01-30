@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START accessapproval_v1_generated_AccessApproval_DeleteAccessApprovalSettings_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AccessApproval\V1\AccessApprovalClient;
+use Google\Cloud\AccessApproval\V1\Client\AccessApprovalClient;
+use Google\Cloud\AccessApproval\V1\DeleteAccessApprovalSettingsMessage;
 
 /**
  * Deletes the settings associated with a project, folder, or organization.
@@ -45,9 +46,12 @@ function delete_access_approval_settings_sample(): void
     // Create a client.
     $accessApprovalClient = new AccessApprovalClient();
 
+    // Prepare the request message.
+    $request = new DeleteAccessApprovalSettingsMessage();
+
     // Call the API and handle any network failures.
     try {
-        $accessApprovalClient->deleteAccessApprovalSettings();
+        $accessApprovalClient->deleteAccessApprovalSettings($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

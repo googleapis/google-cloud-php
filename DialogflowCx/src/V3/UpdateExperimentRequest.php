@@ -30,6 +30,21 @@ class UpdateExperimentRequest extends \Google\Protobuf\Internal\Message
     protected $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Experiment $experiment Required. The experiment to update.
+     * @param \Google\Protobuf\FieldMask                $updateMask Required. The mask to control which fields get updated.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\UpdateExperimentRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\Cx\V3\Experiment $experiment, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setExperiment($experiment)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

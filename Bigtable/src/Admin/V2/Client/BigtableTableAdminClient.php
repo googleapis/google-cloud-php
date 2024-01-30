@@ -87,12 +87,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface checkConsistencyAsync(CheckConsistencyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface copyBackupAsync(CopyBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
@@ -127,8 +121,15 @@ final class BigtableTableAdminClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.bigtable.admin.v2.BigtableTableAdmin';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'bigtableadmin.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'bigtableadmin.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -424,6 +425,8 @@ final class BigtableTableAdminClient
      *
      * The async variant is {@see BigtableTableAdminClient::checkConsistencyAsync()} .
      *
+     * @example samples/V2/BigtableTableAdminClient/check_consistency.php
+     *
      * @param CheckConsistencyRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -448,6 +451,8 @@ final class BigtableTableAdminClient
      * located in the destination instance and project.
      *
      * The async variant is {@see BigtableTableAdminClient::copyBackupAsync()} .
+     *
+     * @example samples/V2/BigtableTableAdminClient/copy_backup.php
      *
      * @param CopyBackupRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -480,6 +485,8 @@ final class BigtableTableAdminClient
      *
      * The async variant is {@see BigtableTableAdminClient::createBackupAsync()} .
      *
+     * @example samples/V2/BigtableTableAdminClient/create_backup.php
+     *
      * @param CreateBackupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -505,6 +512,8 @@ final class BigtableTableAdminClient
      * specified in the request.
      *
      * The async variant is {@see BigtableTableAdminClient::createTableAsync()} .
+     *
+     * @example samples/V2/BigtableTableAdminClient/create_table.php
      *
      * @param CreateTableRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -538,6 +547,8 @@ final class BigtableTableAdminClient
      * The async variant is
      * {@see BigtableTableAdminClient::createTableFromSnapshotAsync()} .
      *
+     * @example samples/V2/BigtableTableAdminClient/create_table_from_snapshot.php
+     *
      * @param CreateTableFromSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -561,6 +572,8 @@ final class BigtableTableAdminClient
      * Deletes a pending or completed Cloud Bigtable backup.
      *
      * The async variant is {@see BigtableTableAdminClient::deleteBackupAsync()} .
+     *
+     * @example samples/V2/BigtableTableAdminClient/delete_backup.php
      *
      * @param DeleteBackupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -590,6 +603,8 @@ final class BigtableTableAdminClient
      *
      * The async variant is {@see BigtableTableAdminClient::deleteSnapshotAsync()} .
      *
+     * @example samples/V2/BigtableTableAdminClient/delete_snapshot.php
+     *
      * @param DeleteSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -611,6 +626,8 @@ final class BigtableTableAdminClient
      * Permanently deletes a specified table and all of its data.
      *
      * The async variant is {@see BigtableTableAdminClient::deleteTableAsync()} .
+     *
+     * @example samples/V2/BigtableTableAdminClient/delete_table.php
      *
      * @param DeleteTableRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -635,6 +652,8 @@ final class BigtableTableAdminClient
      * particular prefix.
      *
      * The async variant is {@see BigtableTableAdminClient::dropRowRangeAsync()} .
+     *
+     * @example samples/V2/BigtableTableAdminClient/drop_row_range.php
      *
      * @param DropRowRangeRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -662,6 +681,8 @@ final class BigtableTableAdminClient
      * The async variant is
      * {@see BigtableTableAdminClient::generateConsistencyTokenAsync()} .
      *
+     * @example samples/V2/BigtableTableAdminClient/generate_consistency_token.php
+     *
      * @param GenerateConsistencyTokenRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -685,6 +706,8 @@ final class BigtableTableAdminClient
      * Gets metadata on a pending or completed Cloud Bigtable Backup.
      *
      * The async variant is {@see BigtableTableAdminClient::getBackupAsync()} .
+     *
+     * @example samples/V2/BigtableTableAdminClient/get_backup.php
      *
      * @param GetBackupRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -711,6 +734,8 @@ final class BigtableTableAdminClient
      * set.
      *
      * The async variant is {@see BigtableTableAdminClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V2/BigtableTableAdminClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -742,6 +767,8 @@ final class BigtableTableAdminClient
      *
      * The async variant is {@see BigtableTableAdminClient::getSnapshotAsync()} .
      *
+     * @example samples/V2/BigtableTableAdminClient/get_snapshot.php
+     *
      * @param GetSnapshotRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -765,6 +792,8 @@ final class BigtableTableAdminClient
      * Gets metadata information about the specified table.
      *
      * The async variant is {@see BigtableTableAdminClient::getTableAsync()} .
+     *
+     * @example samples/V2/BigtableTableAdminClient/get_table.php
      *
      * @param GetTableRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -790,6 +819,8 @@ final class BigtableTableAdminClient
      * backups.
      *
      * The async variant is {@see BigtableTableAdminClient::listBackupsAsync()} .
+     *
+     * @example samples/V2/BigtableTableAdminClient/list_backups.php
      *
      * @param ListBackupsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -821,6 +852,8 @@ final class BigtableTableAdminClient
      *
      * The async variant is {@see BigtableTableAdminClient::listSnapshotsAsync()} .
      *
+     * @example samples/V2/BigtableTableAdminClient/list_snapshots.php
+     *
      * @param ListSnapshotsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -844,6 +877,8 @@ final class BigtableTableAdminClient
      * Lists all tables served from a specified instance.
      *
      * The async variant is {@see BigtableTableAdminClient::listTablesAsync()} .
+     *
+     * @example samples/V2/BigtableTableAdminClient/list_tables.php
      *
      * @param ListTablesRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -872,6 +907,8 @@ final class BigtableTableAdminClient
      *
      * The async variant is
      * {@see BigtableTableAdminClient::modifyColumnFamiliesAsync()} .
+     *
+     * @example samples/V2/BigtableTableAdminClient/modify_column_families.php
      *
      * @param ModifyColumnFamiliesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -903,6 +940,8 @@ final class BigtableTableAdminClient
      *
      * The async variant is {@see BigtableTableAdminClient::restoreTableAsync()} .
      *
+     * @example samples/V2/BigtableTableAdminClient/restore_table.php
+     *
      * @param RestoreTableRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -927,6 +966,8 @@ final class BigtableTableAdminClient
      * Replaces any existing policy.
      *
      * The async variant is {@see BigtableTableAdminClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V2/BigtableTableAdminClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -959,6 +1000,8 @@ final class BigtableTableAdminClient
      *
      * The async variant is {@see BigtableTableAdminClient::snapshotTableAsync()} .
      *
+     * @example samples/V2/BigtableTableAdminClient/snapshot_table.php
+     *
      * @param SnapshotTableRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -985,6 +1028,8 @@ final class BigtableTableAdminClient
      * The async variant is {@see BigtableTableAdminClient::testIamPermissionsAsync()}
      * .
      *
+     * @example samples/V2/BigtableTableAdminClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -1008,6 +1053,8 @@ final class BigtableTableAdminClient
      * Restores a specified table which was accidentally deleted.
      *
      * The async variant is {@see BigtableTableAdminClient::undeleteTableAsync()} .
+     *
+     * @example samples/V2/BigtableTableAdminClient/undelete_table.php
      *
      * @param UndeleteTableRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1033,6 +1080,8 @@ final class BigtableTableAdminClient
      *
      * The async variant is {@see BigtableTableAdminClient::updateBackupAsync()} .
      *
+     * @example samples/V2/BigtableTableAdminClient/update_backup.php
+     *
      * @param UpdateBackupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -1056,6 +1105,8 @@ final class BigtableTableAdminClient
      * Updates a specified table.
      *
      * The async variant is {@see BigtableTableAdminClient::updateTableAsync()} .
+     *
+     * @example samples/V2/BigtableTableAdminClient/update_table.php
      *
      * @param UpdateTableRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {

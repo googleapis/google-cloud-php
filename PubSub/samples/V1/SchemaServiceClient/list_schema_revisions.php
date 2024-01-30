@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START pubsub_v1_generated_SchemaService_ListSchemaRevisions_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\PubSub\V1\Client\SchemaServiceClient;
+use Google\Cloud\PubSub\V1\ListSchemaRevisionsRequest;
 use Google\Cloud\PubSub\V1\Schema;
-use Google\Cloud\PubSub\V1\SchemaServiceClient;
 
 /**
  * Lists all schema revisions for the named schema.
@@ -39,10 +40,14 @@ function list_schema_revisions_sample(string $formattedName): void
     // Create a client.
     $schemaServiceClient = new SchemaServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListSchemaRevisionsRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $schemaServiceClient->listSchemaRevisions($formattedName);
+        $response = $schemaServiceClient->listSchemaRevisions($request);
 
         /** @var Schema $element */
         foreach ($response as $element) {

@@ -18,7 +18,8 @@ class CreateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
      * resource where this node pool will be created.
-     * Location names are formatted as `projects/<project-id>/locations/<region>`.
+     * `AzureCluster` names are formatted as
+     * `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      * for more details on Google Cloud resource names.
      *
@@ -56,7 +57,8 @@ class CreateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
      * @param string                                       $parent          Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
      *                                                                      resource where this node pool will be created.
      *
-     *                                                                      Location names are formatted as `projects/<project-id>/locations/<region>`.
+     *                                                                      `AzureCluster` names are formatted as
+     *                                                                      `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
      *
      *                                                                      See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      *                                                                      for more details on Google Cloud resource names. Please see
@@ -94,7 +96,8 @@ class CreateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
      *           resource where this node pool will be created.
-     *           Location names are formatted as `projects/<project-id>/locations/<region>`.
+     *           `AzureCluster` names are formatted as
+     *           `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
      *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      *           for more details on Google Cloud resource names.
      *     @type \Google\Cloud\GkeMultiCloud\V1\AzureNodePool $azure_node_pool
@@ -121,7 +124,8 @@ class CreateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
      * resource where this node pool will be created.
-     * Location names are formatted as `projects/<project-id>/locations/<region>`.
+     * `AzureCluster` names are formatted as
+     * `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      * for more details on Google Cloud resource names.
      *
@@ -136,7 +140,8 @@ class CreateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
      * resource where this node pool will be created.
-     * Location names are formatted as `projects/<project-id>/locations/<region>`.
+     * `AzureCluster` names are formatted as
+     * `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      * for more details on Google Cloud resource names.
      *

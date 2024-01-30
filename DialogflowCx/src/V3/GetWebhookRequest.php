@@ -26,6 +26,22 @@ class GetWebhookRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. The name of the webhook.
+     *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+     *                     ID>/webhooks/<Webhook ID>`. Please see
+     *                     {@see WebhooksClient::webhookName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\GetWebhookRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -28,15 +28,22 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\OrgPolicy\V2\Client\OrgPolicyClient;
 use Google\Cloud\OrgPolicy\V2\Constraint;
+use Google\Cloud\OrgPolicy\V2\CreateCustomConstraintRequest;
 use Google\Cloud\OrgPolicy\V2\CreatePolicyRequest;
+use Google\Cloud\OrgPolicy\V2\CustomConstraint;
+use Google\Cloud\OrgPolicy\V2\DeleteCustomConstraintRequest;
 use Google\Cloud\OrgPolicy\V2\DeletePolicyRequest;
+use Google\Cloud\OrgPolicy\V2\GetCustomConstraintRequest;
 use Google\Cloud\OrgPolicy\V2\GetEffectivePolicyRequest;
 use Google\Cloud\OrgPolicy\V2\GetPolicyRequest;
 use Google\Cloud\OrgPolicy\V2\ListConstraintsRequest;
 use Google\Cloud\OrgPolicy\V2\ListConstraintsResponse;
+use Google\Cloud\OrgPolicy\V2\ListCustomConstraintsRequest;
+use Google\Cloud\OrgPolicy\V2\ListCustomConstraintsResponse;
 use Google\Cloud\OrgPolicy\V2\ListPoliciesRequest;
 use Google\Cloud\OrgPolicy\V2\ListPoliciesResponse;
 use Google\Cloud\OrgPolicy\V2\Policy;
+use Google\Cloud\OrgPolicy\V2\UpdateCustomConstraintRequest;
 use Google\Cloud\OrgPolicy\V2\UpdatePolicyRequest;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
@@ -71,6 +78,82 @@ class OrgPolicyClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createCustomConstraintTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $condition = 'condition-861311717';
+        $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
+        $expectedResponse = new CustomConstraint();
+        $expectedResponse->setName($name);
+        $expectedResponse->setCondition($condition);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
+        $customConstraint = new CustomConstraint();
+        $request = (new CreateCustomConstraintRequest())
+            ->setParent($formattedParent)
+            ->setCustomConstraint($customConstraint);
+        $response = $gapicClient->createCustomConstraint($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.orgpolicy.v2.OrgPolicy/CreateCustomConstraint', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getCustomConstraint();
+        $this->assertProtobufEquals($customConstraint, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createCustomConstraintExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
+        $customConstraint = new CustomConstraint();
+        $request = (new CreateCustomConstraintRequest())
+            ->setParent($formattedParent)
+            ->setCustomConstraint($customConstraint);
+        try {
+            $gapicClient->createCustomConstraint($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function createPolicyTest()
     {
         $transport = $this->createTransport();
@@ -80,8 +163,10 @@ class OrgPolicyClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $etag = 'etag3123477';
         $expectedResponse = new Policy();
         $expectedResponse->setName($name);
+        $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
@@ -129,6 +214,67 @@ class OrgPolicyClientTest extends GeneratedTest
             ->setPolicy($policy);
         try {
             $gapicClient->createPolicy($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteCustomConstraintTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->customConstraintName('[ORGANIZATION]', '[CUSTOM_CONSTRAINT]');
+        $request = (new DeleteCustomConstraintRequest())
+            ->setName($formattedName);
+        $gapicClient->deleteCustomConstraint($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.orgpolicy.v2.OrgPolicy/DeleteCustomConstraint', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteCustomConstraintExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->customConstraintName('[ORGANIZATION]', '[CUSTOM_CONSTRAINT]');
+        $request = (new DeleteCustomConstraintRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->deleteCustomConstraint($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -202,6 +348,76 @@ class OrgPolicyClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getCustomConstraintTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $condition = 'condition-861311717';
+        $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
+        $expectedResponse = new CustomConstraint();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setCondition($condition);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->customConstraintName('[ORGANIZATION]', '[CUSTOM_CONSTRAINT]');
+        $request = (new GetCustomConstraintRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->getCustomConstraint($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.orgpolicy.v2.OrgPolicy/GetCustomConstraint', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getCustomConstraintExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->customConstraintName('[ORGANIZATION]', '[CUSTOM_CONSTRAINT]');
+        $request = (new GetCustomConstraintRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->getCustomConstraint($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getEffectivePolicyTest()
     {
         $transport = $this->createTransport();
@@ -211,8 +427,10 @@ class OrgPolicyClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $etag = 'etag3123477';
         $expectedResponse = new Policy();
         $expectedResponse->setName($name2);
+        $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->policyName('[PROJECT]', '[POLICY]');
@@ -275,8 +493,10 @@ class OrgPolicyClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $etag = 'etag3123477';
         $expectedResponse = new Policy();
         $expectedResponse->setName($name2);
+        $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->policyName('[PROJECT]', '[POLICY]');
@@ -402,6 +622,78 @@ class OrgPolicyClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listCustomConstraintsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $customConstraintsElement = new CustomConstraint();
+        $customConstraints = [
+            $customConstraintsElement,
+        ];
+        $expectedResponse = new ListCustomConstraintsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setCustomConstraints($customConstraints);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
+        $request = (new ListCustomConstraintsRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->listCustomConstraints($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getCustomConstraints()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.orgpolicy.v2.OrgPolicy/ListCustomConstraints', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listCustomConstraintsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
+        $request = (new ListCustomConstraintsRequest())
+            ->setParent($formattedParent);
+        try {
+            $gapicClient->listCustomConstraints($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listPoliciesTest()
     {
         $transport = $this->createTransport();
@@ -474,6 +766,76 @@ class OrgPolicyClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function updateCustomConstraintTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $condition = 'condition-861311717';
+        $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
+        $expectedResponse = new CustomConstraint();
+        $expectedResponse->setName($name);
+        $expectedResponse->setCondition($condition);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $customConstraint = new CustomConstraint();
+        $request = (new UpdateCustomConstraintRequest())
+            ->setCustomConstraint($customConstraint);
+        $response = $gapicClient->updateCustomConstraint($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.orgpolicy.v2.OrgPolicy/UpdateCustomConstraint', $actualFuncCall);
+        $actualValue = $actualRequestObject->getCustomConstraint();
+        $this->assertProtobufEquals($customConstraint, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateCustomConstraintExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $customConstraint = new CustomConstraint();
+        $request = (new UpdateCustomConstraintRequest())
+            ->setCustomConstraint($customConstraint);
+        try {
+            $gapicClient->updateCustomConstraint($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function updatePolicyTest()
     {
         $transport = $this->createTransport();
@@ -483,8 +845,10 @@ class OrgPolicyClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $etag = 'etag3123477';
         $expectedResponse = new Policy();
         $expectedResponse->setName($name);
+        $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
         $policy = new Policy();
@@ -538,7 +902,7 @@ class OrgPolicyClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createPolicyAsyncTest()
+    public function createCustomConstraintAsyncTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -547,26 +911,32 @@ class OrgPolicyClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
-        $expectedResponse = new Policy();
+        $condition = 'condition-861311717';
+        $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
+        $expectedResponse = new CustomConstraint();
         $expectedResponse->setName($name);
+        $expectedResponse->setCondition($condition);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $policy = new Policy();
-        $request = (new CreatePolicyRequest())
+        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
+        $customConstraint = new CustomConstraint();
+        $request = (new CreateCustomConstraintRequest())
             ->setParent($formattedParent)
-            ->setPolicy($policy);
-        $response = $gapicClient->createPolicyAsync($request)->wait();
+            ->setCustomConstraint($customConstraint);
+        $response = $gapicClient->createCustomConstraintAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.orgpolicy.v2.OrgPolicy/CreatePolicy', $actualFuncCall);
+        $this->assertSame('/google.cloud.orgpolicy.v2.OrgPolicy/CreateCustomConstraint', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
+        $actualValue = $actualRequestObject->getCustomConstraint();
+        $this->assertProtobufEquals($customConstraint, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START securitycenter_v1_generated_SecurityCenter_UpdateOrganizationSettings_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient;
 use Google\Cloud\SecurityCenter\V1\OrganizationSettings;
-use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\UpdateOrganizationSettingsRequest;
 
 /**
  * Updates an organization's settings.
@@ -41,13 +42,15 @@ function update_organization_settings_sample(): void
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $organizationSettings = new OrganizationSettings();
+    $request = (new UpdateOrganizationSettingsRequest())
+        ->setOrganizationSettings($organizationSettings);
 
     // Call the API and handle any network failures.
     try {
         /** @var OrganizationSettings $response */
-        $response = $securityCenterClient->updateOrganizationSettings($organizationSettings);
+        $response = $securityCenterClient->updateOrganizationSettings($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

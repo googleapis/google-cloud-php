@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START appengine_v1_generated_Firewall_UpdateIngressRule_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AppEngine\V1\FirewallClient;
+use Google\Cloud\AppEngine\V1\Client\FirewallClient;
 use Google\Cloud\AppEngine\V1\FirewallRule;
+use Google\Cloud\AppEngine\V1\UpdateIngressRuleRequest;
 
 /**
  * Updates the specified firewall rule.
@@ -41,10 +42,13 @@ function update_ingress_rule_sample(): void
     // Create a client.
     $firewallClient = new FirewallClient();
 
+    // Prepare the request message.
+    $request = new UpdateIngressRuleRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var FirewallRule $response */
-        $response = $firewallClient->updateIngressRule();
+        $response = $firewallClient->updateIngressRule($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

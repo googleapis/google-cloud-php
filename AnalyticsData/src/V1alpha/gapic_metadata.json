@@ -10,34 +10,49 @@
                 "grpc": {
                     "libraryClient": "AlphaAnalyticsDataGapicClient",
                     "rpcs": {
-                        "BatchRunPivotReports": {
+                        "CreateAudienceList": {
                             "methods": [
-                                "batchRunPivotReports"
+                                "createAudienceList"
                             ]
                         },
-                        "BatchRunReports": {
+                        "CreateRecurringAudienceList": {
                             "methods": [
-                                "batchRunReports"
+                                "createRecurringAudienceList"
                             ]
                         },
-                        "GetMetadata": {
+                        "GetAudienceList": {
                             "methods": [
-                                "getMetadata"
+                                "getAudienceList"
                             ]
                         },
-                        "RunPivotReport": {
+                        "GetRecurringAudienceList": {
                             "methods": [
-                                "runPivotReport"
+                                "getRecurringAudienceList"
                             ]
                         },
-                        "RunRealtimeReport": {
+                        "ListAudienceLists": {
                             "methods": [
-                                "runRealtimeReport"
+                                "listAudienceLists"
                             ]
                         },
-                        "RunReport": {
+                        "ListRecurringAudienceLists": {
                             "methods": [
-                                "runReport"
+                                "listRecurringAudienceLists"
+                            ]
+                        },
+                        "QueryAudienceList": {
+                            "methods": [
+                                "queryAudienceList"
+                            ]
+                        },
+                        "RunFunnelReport": {
+                            "methods": [
+                                "runFunnelReport"
+                            ]
+                        },
+                        "SheetExportAudienceList": {
+                            "methods": [
+                                "sheetExportAudienceList"
                             ]
                         }
                     }

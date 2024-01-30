@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START networkconnectivity_v1_generated_HubService_GetRoute_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\NetworkConnectivity\V1\HubServiceClient;
+use Google\Cloud\NetworkConnectivity\V1\Client\HubServiceClient;
+use Google\Cloud\NetworkConnectivity\V1\GetRouteRequest;
 use Google\Cloud\NetworkConnectivity\V1\Route;
 
 /**
@@ -38,10 +39,14 @@ function get_route_sample(string $formattedName): void
     // Create a client.
     $hubServiceClient = new HubServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetRouteRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Route $response */
-        $response = $hubServiceClient->getRoute($formattedName);
+        $response = $hubServiceClient->getRoute($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

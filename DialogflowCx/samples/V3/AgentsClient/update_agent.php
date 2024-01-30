@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_Agents_UpdateAgent_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Dialogflow\Cx\V3\Agent;
-use Google\Cloud\Dialogflow\Cx\V3\AgentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\Client\AgentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\UpdateAgentRequest;
 
 /**
  * Updates the specified agent.
@@ -54,16 +55,18 @@ function update_agent_sample(
     // Create a client.
     $agentsClient = new AgentsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $agent = (new Agent())
         ->setDisplayName($agentDisplayName)
         ->setDefaultLanguageCode($agentDefaultLanguageCode)
         ->setTimeZone($agentTimeZone);
+    $request = (new UpdateAgentRequest())
+        ->setAgent($agent);
 
     // Call the API and handle any network failures.
     try {
         /** @var Agent $response */
-        $response = $agentsClient->updateAgent($agent);
+        $response = $agentsClient->updateAgent($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

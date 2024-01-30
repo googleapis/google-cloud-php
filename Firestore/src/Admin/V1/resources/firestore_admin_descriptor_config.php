@@ -41,6 +41,25 @@ return [
                     ],
                 ],
             ],
+            'DeleteDatabase' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Firestore\Admin\V1\Database',
+                    'metadataReturnType' => '\Google\Cloud\Firestore\Admin\V1\DeleteDatabaseMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ExportDocuments' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Firestore\Admin\V1\ExportDocumentsResponse',

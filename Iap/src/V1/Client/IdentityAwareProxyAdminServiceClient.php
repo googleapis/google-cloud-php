@@ -60,12 +60,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Iap\V1\IdentityAwareProxyAdminServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createTunnelDestGroupAsync(CreateTunnelDestGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteTunnelDestGroupAsync(DeleteTunnelDestGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
@@ -85,8 +79,15 @@ final class IdentityAwareProxyAdminServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.iap.v1.IdentityAwareProxyAdminService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'iap.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'iap.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -256,6 +257,8 @@ final class IdentityAwareProxyAdminServiceClient
      * The async variant is
      * {@see IdentityAwareProxyAdminServiceClient::createTunnelDestGroupAsync()} .
      *
+     * @example samples/V1/IdentityAwareProxyAdminServiceClient/create_tunnel_dest_group.php
+     *
      * @param CreateTunnelDestGroupRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -280,6 +283,8 @@ final class IdentityAwareProxyAdminServiceClient
      *
      * The async variant is
      * {@see IdentityAwareProxyAdminServiceClient::deleteTunnelDestGroupAsync()} .
+     *
+     * @example samples/V1/IdentityAwareProxyAdminServiceClient/delete_tunnel_dest_group.php
      *
      * @param DeleteTunnelDestGroupRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -307,6 +312,8 @@ final class IdentityAwareProxyAdminServiceClient
      * The async variant is
      * {@see IdentityAwareProxyAdminServiceClient::getIamPolicyAsync()} .
      *
+     * @example samples/V1/IdentityAwareProxyAdminServiceClient/get_iam_policy.php
+     *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -332,6 +339,8 @@ final class IdentityAwareProxyAdminServiceClient
      * The async variant is
      * {@see IdentityAwareProxyAdminServiceClient::getIapSettingsAsync()} .
      *
+     * @example samples/V1/IdentityAwareProxyAdminServiceClient/get_iap_settings.php
+     *
      * @param GetIapSettingsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -356,6 +365,8 @@ final class IdentityAwareProxyAdminServiceClient
      *
      * The async variant is
      * {@see IdentityAwareProxyAdminServiceClient::getTunnelDestGroupAsync()} .
+     *
+     * @example samples/V1/IdentityAwareProxyAdminServiceClient/get_tunnel_dest_group.php
      *
      * @param GetTunnelDestGroupRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -383,6 +394,8 @@ final class IdentityAwareProxyAdminServiceClient
      *
      * The async variant is
      * {@see IdentityAwareProxyAdminServiceClient::listTunnelDestGroupsAsync()} .
+     *
+     * @example samples/V1/IdentityAwareProxyAdminServiceClient/list_tunnel_dest_groups.php
      *
      * @param ListTunnelDestGroupsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -412,6 +425,8 @@ final class IdentityAwareProxyAdminServiceClient
      * The async variant is
      * {@see IdentityAwareProxyAdminServiceClient::setIamPolicyAsync()} .
      *
+     * @example samples/V1/IdentityAwareProxyAdminServiceClient/set_iam_policy.php
+     *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -440,6 +455,8 @@ final class IdentityAwareProxyAdminServiceClient
      * The async variant is
      * {@see IdentityAwareProxyAdminServiceClient::testIamPermissionsAsync()} .
      *
+     * @example samples/V1/IdentityAwareProxyAdminServiceClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -466,6 +483,8 @@ final class IdentityAwareProxyAdminServiceClient
      * The async variant is
      * {@see IdentityAwareProxyAdminServiceClient::updateIapSettingsAsync()} .
      *
+     * @example samples/V1/IdentityAwareProxyAdminServiceClient/update_iap_settings.php
+     *
      * @param UpdateIapSettingsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -490,6 +509,8 @@ final class IdentityAwareProxyAdminServiceClient
      *
      * The async variant is
      * {@see IdentityAwareProxyAdminServiceClient::updateTunnelDestGroupAsync()} .
+     *
+     * @example samples/V1/IdentityAwareProxyAdminServiceClient/update_tunnel_dest_group.php
      *
      * @param UpdateTunnelDestGroupRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {

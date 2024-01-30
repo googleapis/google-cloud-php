@@ -14,14 +14,20 @@ use UnexpectedValueException;
 class ServiceLevel
 {
     /**
+     * Unspecified service level.
+     *
      * Generated from protobuf enum <code>SERVICE_LEVEL_UNSPECIFIED = 0;</code>
      */
     const SERVICE_LEVEL_UNSPECIFIED = 0;
     /**
+     * Premium service level.
+     *
      * Generated from protobuf enum <code>PREMIUM = 1;</code>
      */
     const PREMIUM = 1;
     /**
+     * Extreme service level.
+     *
      * Generated from protobuf enum <code>EXTREME = 2;</code>
      */
     const EXTREME = 2;

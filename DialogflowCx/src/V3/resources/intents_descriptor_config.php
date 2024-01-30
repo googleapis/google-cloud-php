@@ -12,6 +12,15 @@ return [
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
                 ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
             ],
             'ImportIntents' => [
                 'longRunning' => [
@@ -21,6 +30,51 @@ return [
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateIntent' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dialogflow\Cx\V3\Intent',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteIntent' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetIntent' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dialogflow\Cx\V3\Intent',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
             'ListIntents' => [
@@ -32,8 +86,41 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getIntents',
                 ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Dialogflow\Cx\V3\ListIntentsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateIntent' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dialogflow\Cx\V3\Intent',
+                'headerParams' => [
+                    [
+                        'keyName' => 'intent.name',
+                        'fieldAccessors' => [
+                            'getIntent',
+                            'getName',
+                        ],
+                    ],
+                ],
             ],
             'GetLocation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Location\Location',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
                 'interfaceOverride' => 'google.cloud.location.Locations',
             ],
             'ListLocations' => [
@@ -45,7 +132,22 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getLocations',
                 ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Location\ListLocationsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
                 'interfaceOverride' => 'google.cloud.location.Locations',
+            ],
+            'templateMap' => [
+                'agent' => 'projects/{project}/locations/{location}/agents/{agent}',
+                'entityType' => 'projects/{project}/locations/{location}/agents/{agent}/entityTypes/{entity_type}',
+                'intent' => 'projects/{project}/locations/{location}/agents/{agent}/intents/{intent}',
             ],
         ],
     ],

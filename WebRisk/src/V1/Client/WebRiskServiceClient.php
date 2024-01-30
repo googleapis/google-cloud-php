@@ -58,11 +58,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\WebRisk\V1\WebRiskServiceClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface computeThreatListDiffAsync(ComputeThreatListDiffRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createSubmissionAsync(CreateSubmissionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface searchHashesAsync(SearchHashesRequest $request, array $optionalArgs = [])
@@ -77,8 +72,15 @@ final class WebRiskServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.webrisk.v1.WebRiskService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'webrisk.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'webrisk.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -262,6 +264,8 @@ final class WebRiskServiceClient
      *
      * The async variant is {@see WebRiskServiceClient::computeThreatListDiffAsync()} .
      *
+     * @example samples/V1/WebRiskServiceClient/compute_threat_list_diff.php
+     *
      * @param ComputeThreatListDiffRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -292,6 +296,8 @@ final class WebRiskServiceClient
      *
      * The async variant is {@see WebRiskServiceClient::createSubmissionAsync()} .
      *
+     * @example samples/V1/WebRiskServiceClient/create_submission.php
+     *
      * @param CreateSubmissionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -320,6 +326,8 @@ final class WebRiskServiceClient
      *
      * The async variant is {@see WebRiskServiceClient::searchHashesAsync()} .
      *
+     * @example samples/V1/WebRiskServiceClient/search_hashes.php
+     *
      * @param SearchHashesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -347,6 +355,8 @@ final class WebRiskServiceClient
      * empty response will be returned.
      *
      * The async variant is {@see WebRiskServiceClient::searchUrisAsync()} .
+     *
+     * @example samples/V1/WebRiskServiceClient/search_uris.php
      *
      * @param SearchUrisRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -380,6 +390,8 @@ final class WebRiskServiceClient
      * out to Sales or your customer engineer to obtain access.
      *
      * The async variant is {@see WebRiskServiceClient::submitUriAsync()} .
+     *
+     * @example samples/V1/WebRiskServiceClient/submit_uri.php
      *
      * @param SubmitUriRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {

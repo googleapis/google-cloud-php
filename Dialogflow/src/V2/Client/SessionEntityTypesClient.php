@@ -56,12 +56,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Dialogflow\V2\SessionEntityTypesClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createSessionEntityTypeAsync(CreateSessionEntityTypeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteSessionEntityTypeAsync(DeleteSessionEntityTypeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getSessionEntityTypeAsync(GetSessionEntityTypeRequest $request, array $optionalArgs = [])
@@ -78,8 +72,15 @@ final class SessionEntityTypesClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.dialogflow.v2.SessionEntityTypes';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'dialogflow.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'dialogflow.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -433,6 +434,8 @@ final class SessionEntityTypesClient
      * The async variant is
      * {@see SessionEntityTypesClient::createSessionEntityTypeAsync()} .
      *
+     * @example samples/V2/SessionEntityTypesClient/create_session_entity_type.php
+     *
      * @param CreateSessionEntityTypeRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -462,6 +465,8 @@ final class SessionEntityTypesClient
      * The async variant is
      * {@see SessionEntityTypesClient::deleteSessionEntityTypeAsync()} .
      *
+     * @example samples/V2/SessionEntityTypesClient/delete_session_entity_type.php
+     *
      * @param DeleteSessionEntityTypeRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -488,6 +493,8 @@ final class SessionEntityTypesClient
      *
      * The async variant is
      * {@see SessionEntityTypesClient::getSessionEntityTypeAsync()} .
+     *
+     * @example samples/V2/SessionEntityTypesClient/get_session_entity_type.php
      *
      * @param GetSessionEntityTypeRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -518,6 +525,8 @@ final class SessionEntityTypesClient
      * The async variant is
      * {@see SessionEntityTypesClient::listSessionEntityTypesAsync()} .
      *
+     * @example samples/V2/SessionEntityTypesClient/list_session_entity_types.php
+     *
      * @param ListSessionEntityTypesRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -547,6 +556,8 @@ final class SessionEntityTypesClient
      * The async variant is
      * {@see SessionEntityTypesClient::updateSessionEntityTypeAsync()} .
      *
+     * @example samples/V2/SessionEntityTypesClient/update_session_entity_type.php
+     *
      * @param UpdateSessionEntityTypeRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -571,6 +582,8 @@ final class SessionEntityTypesClient
      *
      * The async variant is {@see SessionEntityTypesClient::getLocationAsync()} .
      *
+     * @example samples/V2/SessionEntityTypesClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -594,6 +607,8 @@ final class SessionEntityTypesClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see SessionEntityTypesClient::listLocationsAsync()} .
+     *
+     * @example samples/V2/SessionEntityTypesClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Dialogflow\Cx\V3\Changelog;
-use Google\Cloud\Dialogflow\Cx\V3\ChangelogsClient;
+use Google\Cloud\Dialogflow\Cx\V3\Client\ChangelogsClient;
+use Google\Cloud\Dialogflow\Cx\V3\ListChangelogsRequest;
 
 /**
  * Returns the list of Changelogs.
@@ -40,10 +41,14 @@ function list_changelogs_sample(string $formattedParent): void
     // Create a client.
     $changelogsClient = new ChangelogsClient();
 
+    // Prepare the request message.
+    $request = (new ListChangelogsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $changelogsClient->listChangelogs($formattedParent);
+        $response = $changelogsClient->listChangelogs($request);
 
         /** @var Changelog $element */
         foreach ($response as $element) {

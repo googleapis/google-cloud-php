@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Channel\V1\ChannelPartnerRepricingConfig;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\ListChannelPartnerRepricingConfigsRequest;
 
 /**
  * Lists information about how a Reseller modifies their bill before sending
@@ -67,10 +68,14 @@ function list_channel_partner_repricing_configs_sample(string $formattedParent):
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListChannelPartnerRepricingConfigsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudChannelServiceClient->listChannelPartnerRepricingConfigs($formattedParent);
+        $response = $cloudChannelServiceClient->listChannelPartnerRepricingConfigs($request);
 
         /** @var ChannelPartnerRepricingConfig $element */
         foreach ($response as $element) {

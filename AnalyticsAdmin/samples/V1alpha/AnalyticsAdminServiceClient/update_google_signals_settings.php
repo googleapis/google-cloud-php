@@ -23,8 +23,9 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_UpdateGoogleSignalsSettings_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\GoogleSignalsSettings;
+use Google\Analytics\Admin\V1alpha\UpdateGoogleSignalsSettingsRequest;
 use Google\ApiCore\ApiException;
 use Google\Protobuf\FieldMask;
 
@@ -42,17 +43,17 @@ function update_google_signals_settings_sample(): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $googleSignalsSettings = new GoogleSignalsSettings();
     $updateMask = new FieldMask();
+    $request = (new UpdateGoogleSignalsSettingsRequest())
+        ->setGoogleSignalsSettings($googleSignalsSettings)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var GoogleSignalsSettings $response */
-        $response = $analyticsAdminServiceClient->updateGoogleSignalsSettings(
-            $googleSignalsSettings,
-            $updateMask
-        );
+        $response = $analyticsAdminServiceClient->updateGoogleSignalsSettings($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

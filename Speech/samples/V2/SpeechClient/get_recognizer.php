@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START speech_v2_generated_Speech_GetRecognizer_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Speech\V2\Client\SpeechClient;
+use Google\Cloud\Speech\V2\GetRecognizerRequest;
 use Google\Cloud\Speech\V2\Recognizer;
-use Google\Cloud\Speech\V2\SpeechClient;
 
 /**
  * Returns the requested
@@ -42,10 +43,14 @@ function get_recognizer_sample(string $formattedName): void
     // Create a client.
     $speechClient = new SpeechClient();
 
+    // Prepare the request message.
+    $request = (new GetRecognizerRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Recognizer $response */
-        $response = $speechClient->getRecognizer($formattedName);
+        $response = $speechClient->getRecognizer($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

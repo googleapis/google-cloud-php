@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\PubSub\Connection;
 
+use Google\Auth\GetUniverseDomainInterface;
 use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
@@ -39,19 +40,28 @@ class Rest implements ConnectionInterface
     use RestTrait;
     use UriTrait;
 
+    /**
+     * @deprecated
+     */
     const BASE_URI = 'https://pubsub.googleapis.com/';
+
+    private const BASE_URI_TEMPLATE = 'https://pubsub.UNIVERSE_DOMAIN';
 
     /**
      * @param array $config
      */
     public function __construct(array $config = [])
     {
-        $config += ['emulatorHost' => null];
+        $config += [
+            'emulatorHost' => null,
+            'universeDomain' => GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN,
+        ];
 
-        $baseUri = $this->getApiEndpoint(self::BASE_URI, $config);
         if ((bool) $config['emulatorHost']) {
             $baseUri = $this->emulatorBaseUri($config['emulatorHost']);
             $config['shouldSignRequest'] = false;
+        } else {
+            $baseUri = $this->getApiEndpoint(null, $config, self::BASE_URI_TEMPLATE);
         }
 
         $config += [

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START contactcenterinsights_v1_generated_ContactCenterInsights_CalculateStats_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\ContactCenterInsights\V1\CalculateStatsRequest;
 use Google\Cloud\ContactCenterInsights\V1\CalculateStatsResponse;
-use Google\Cloud\ContactCenterInsights\V1\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient;
 
 /**
  * Gets conversation statistics.
@@ -38,10 +39,14 @@ function calculate_stats_sample(string $formattedLocation): void
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
+    // Prepare the request message.
+    $request = (new CalculateStatsRequest())
+        ->setLocation($formattedLocation);
+
     // Call the API and handle any network failures.
     try {
         /** @var CalculateStatsResponse $response */
-        $response = $contactCenterInsightsClient->calculateStats($formattedLocation);
+        $response = $contactCenterInsightsClient->calculateStats($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

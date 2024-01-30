@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datamigration_v1_generated_DataMigrationService_CommitConversionWorkspace_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\CloudDms\V1\Client\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\CommitConversionWorkspaceRequest;
 use Google\Cloud\CloudDms\V1\ConversionWorkspace;
-use Google\Cloud\CloudDms\V1\DataMigrationServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,14 @@ function commit_conversion_workspace_sample(string $formattedName): void
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
+    // Prepare the request message.
+    $request = (new CommitConversionWorkspaceRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataMigrationServiceClient->commitConversionWorkspace($formattedName);
+        $response = $dataMigrationServiceClient->commitConversionWorkspace($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

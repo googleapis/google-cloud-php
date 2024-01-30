@@ -44,6 +44,13 @@ class TypeCode
      */
     const FLOAT64 = 3;
     /**
+     * Encoded as `number`, or the strings `"NaN"`, `"Infinity"`, or
+     * `"-Infinity"`.
+     *
+     * Generated from protobuf enum <code>FLOAT32 = 15;</code>
+     */
+    const FLOAT32 = 15;
+    /**
      * Encoded as `string` in RFC 3339 timestamp format. The time zone
      * must be present, and must be `"Z"`.
      * If the schema has the column option
@@ -114,12 +121,26 @@ class TypeCode
      * Generated from protobuf enum <code>JSON = 11;</code>
      */
     const JSON = 11;
+    /**
+     * Encoded as a base64-encoded `string`, as described in RFC 4648,
+     * section 4.
+     *
+     * Generated from protobuf enum <code>PROTO = 13;</code>
+     */
+    const PROTO = 13;
+    /**
+     * Encoded as `string`, in decimal format.
+     *
+     * Generated from protobuf enum <code>ENUM = 14;</code>
+     */
+    const ENUM = 14;
 
     private static $valueToName = [
         self::TYPE_CODE_UNSPECIFIED => 'TYPE_CODE_UNSPECIFIED',
         self::BOOL => 'BOOL',
         self::INT64 => 'INT64',
         self::FLOAT64 => 'FLOAT64',
+        self::FLOAT32 => 'FLOAT32',
         self::TIMESTAMP => 'TIMESTAMP',
         self::DATE => 'DATE',
         self::STRING => 'STRING',
@@ -128,6 +149,8 @@ class TypeCode
         self::STRUCT => 'STRUCT',
         self::NUMERIC => 'NUMERIC',
         self::JSON => 'JSON',
+        self::PROTO => 'PROTO',
+        self::ENUM => 'ENUM',
     ];
 
     public static function name($value)

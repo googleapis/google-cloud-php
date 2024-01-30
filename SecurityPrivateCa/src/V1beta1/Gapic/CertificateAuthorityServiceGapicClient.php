@@ -88,7 +88,7 @@ use Google\Protobuf\FieldMask;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -105,7 +105,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -121,6 +121,8 @@ use Google\Protobuf\FieldMask;
  * contained within formatted names that are returned by the API.
  *
  * @experimental
+ *
+ * @deprecated This class will be removed in the next major version update.
  */
 class CertificateAuthorityServiceGapicClient
 {
@@ -129,8 +131,15 @@ class CertificateAuthorityServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.security.privateca.v1beta1.CertificateAuthorityService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'privateca.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'privateca.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -505,7 +514,7 @@ class CertificateAuthorityServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -522,7 +531,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -672,7 +681,7 @@ class CertificateAuthorityServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -689,7 +698,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -763,7 +772,7 @@ class CertificateAuthorityServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -780,7 +789,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -848,7 +857,7 @@ class CertificateAuthorityServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -865,7 +874,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1487,7 +1496,7 @@ class CertificateAuthorityServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1504,7 +1513,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1636,7 +1645,7 @@ class CertificateAuthorityServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1653,7 +1662,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1785,7 +1794,7 @@ class CertificateAuthorityServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1802,7 +1811,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1872,7 +1881,7 @@ class CertificateAuthorityServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1889,7 +1898,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)

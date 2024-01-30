@@ -24,12 +24,26 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
      */
     private $endpoint = '';
     /**
+     * Required. The name of the publisher model requested to serve the
+     * prediction. Format:
+     * `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
+     *
+     * Generated from protobuf field <code>string model = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     */
+    private $model = '';
+    /**
      * Required. The instances that are the input to token counting call.
      * Schema is identical to the prediction schema of the underlying model.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Value instances = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $instances;
+    /**
+     * Required. Input content.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Content contents = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     */
+    private $contents;
 
     /**
      * @param string                   $endpoint  Required. The name of the Endpoint requested to perform token counting.
@@ -60,9 +74,15 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the Endpoint requested to perform token counting.
      *           Format:
      *           `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     *     @type string $model
+     *           Required. The name of the publisher model requested to serve the
+     *           prediction. Format:
+     *           `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
      *     @type array<\Google\Protobuf\Value>|\Google\Protobuf\Internal\RepeatedField $instances
      *           Required. The instances that are the input to token counting call.
      *           Schema is identical to the prediction schema of the underlying model.
+     *     @type array<\Google\Cloud\AIPlatform\V1\Content>|\Google\Protobuf\Internal\RepeatedField $contents
+     *           Required. Input content.
      * }
      */
     public function __construct($data = NULL) {
@@ -101,6 +121,36 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Required. The name of the publisher model requested to serve the
+     * prediction. Format:
+     * `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
+     *
+     * Generated from protobuf field <code>string model = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return string
+     */
+    public function getModel()
+    {
+        return $this->model;
+    }
+
+    /**
+     * Required. The name of the publisher model requested to serve the
+     * prediction. Format:
+     * `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
+     *
+     * Generated from protobuf field <code>string model = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setModel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->model = $var;
+
+        return $this;
+    }
+
+    /**
      * Required. The instances that are the input to token counting call.
      * Schema is identical to the prediction schema of the underlying model.
      *
@@ -124,6 +174,32 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Protobuf\Value::class);
         $this->instances = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Required. Input content.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Content contents = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getContents()
+    {
+        return $this->contents;
+    }
+
+    /**
+     * Required. Input content.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Content contents = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\Content>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setContents($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\Content::class);
+        $this->contents = $arr;
 
         return $this;
     }

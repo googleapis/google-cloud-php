@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START pubsub_v1_generated_SchemaService_DeleteSchemaRevision_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\PubSub\V1\Client\SchemaServiceClient;
+use Google\Cloud\PubSub\V1\DeleteSchemaRevisionRequest;
 use Google\Cloud\PubSub\V1\Schema;
-use Google\Cloud\PubSub\V1\SchemaServiceClient;
 
 /**
  * Deletes a specific schema revision.
@@ -44,10 +45,15 @@ function delete_schema_revision_sample(string $formattedName, string $revisionId
     // Create a client.
     $schemaServiceClient = new SchemaServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteSchemaRevisionRequest())
+        ->setName($formattedName)
+        ->setRevisionId($revisionId);
+
     // Call the API and handle any network failures.
     try {
         /** @var Schema $response */
-        $response = $schemaServiceClient->deleteSchemaRevision($formattedName, $revisionId);
+        $response = $schemaServiceClient->deleteSchemaRevision($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

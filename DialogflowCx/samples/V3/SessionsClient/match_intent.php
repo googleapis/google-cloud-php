@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_Sessions_MatchIntent_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\Cx\V3\Client\SessionsClient;
+use Google\Cloud\Dialogflow\Cx\V3\MatchIntentRequest;
 use Google\Cloud\Dialogflow\Cx\V3\MatchIntentResponse;
 use Google\Cloud\Dialogflow\Cx\V3\QueryInput;
-use Google\Cloud\Dialogflow\Cx\V3\SessionsClient;
 
 /**
  * Returns preliminary intent match results, doesn't change the session
@@ -55,14 +56,17 @@ function match_intent_sample(string $formattedSession, string $queryInputLanguag
     // Create a client.
     $sessionsClient = new SessionsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $queryInput = (new QueryInput())
         ->setLanguageCode($queryInputLanguageCode);
+    $request = (new MatchIntentRequest())
+        ->setSession($formattedSession)
+        ->setQueryInput($queryInput);
 
     // Call the API and handle any network failures.
     try {
         /** @var MatchIntentResponse $response */
-        $response = $sessionsClient->matchIntent($formattedSession, $queryInput);
+        $response = $sessionsClient->matchIntent($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_EntityTypes_GetEntityType_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\Cx\V3\Client\EntityTypesClient;
 use Google\Cloud\Dialogflow\Cx\V3\EntityType;
-use Google\Cloud\Dialogflow\Cx\V3\EntityTypesClient;
+use Google\Cloud\Dialogflow\Cx\V3\GetEntityTypeRequest;
 
 /**
  * Retrieves the specified entity type.
@@ -40,10 +41,14 @@ function get_entity_type_sample(string $formattedName): void
     // Create a client.
     $entityTypesClient = new EntityTypesClient();
 
+    // Prepare the request message.
+    $request = (new GetEntityTypeRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var EntityType $response */
-        $response = $entityTypesClient->getEntityType($formattedName);
+        $response = $entityTypesClient->getEntityType($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

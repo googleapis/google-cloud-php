@@ -73,6 +73,11 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "GenerateAzureClusterAgentToken": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "GetAzureClient": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
@@ -83,7 +88,17 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "GetAzureJsonWebKeys": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "GetAzureNodePool": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetAzureOpenIdConfig": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START retail_v2_generated_ProductService_ListProducts_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Retail\V2\Client\ProductServiceClient;
+use Google\Cloud\Retail\V2\ListProductsRequest;
 use Google\Cloud\Retail\V2\Product;
-use Google\Cloud\Retail\V2\ProductServiceClient;
 
 /**
  * Gets a list of [Product][google.cloud.retail.v2.Product]s.
@@ -46,10 +47,14 @@ function list_products_sample(string $formattedParent): void
     // Create a client.
     $productServiceClient = new ProductServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListProductsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $productServiceClient->listProducts($formattedParent);
+        $response = $productServiceClient->listProducts($request);
 
         /** @var Product $element */
         foreach ($response as $element) {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START contactcenterinsights_v1_generated_ContactCenterInsights_UploadConversation_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\ContactCenterInsights\V1\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient;
 use Google\Cloud\ContactCenterInsights\V1\Conversation;
+use Google\Cloud\ContactCenterInsights\V1\UploadConversationRequest;
 use Google\Rpc\Status;
 
 /**
@@ -42,13 +43,16 @@ function upload_conversation_sample(string $formattedParent): void
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $conversation = new Conversation();
+    $request = (new UploadConversationRequest())
+        ->setParent($formattedParent)
+        ->setConversation($conversation);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $contactCenterInsightsClient->uploadConversation($formattedParent, $conversation);
+        $response = $contactCenterInsightsClient->uploadConversation($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

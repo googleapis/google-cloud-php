@@ -27,7 +27,8 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Security\PrivateCA\V1\CaPool;
 use Google\Cloud\Security\PrivateCA\V1\CaPool\Tier;
-use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\CreateCaPoolRequest;
 use Google\Rpc\Status;
 
 /**
@@ -48,14 +49,18 @@ function create_ca_pool_sample(string $formattedParent, string $caPoolId, int $c
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $caPool = (new CaPool())
         ->setTier($caPoolTier);
+    $request = (new CreateCaPoolRequest())
+        ->setParent($formattedParent)
+        ->setCaPoolId($caPoolId)
+        ->setCaPool($caPool);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $certificateAuthorityServiceClient->createCaPool($formattedParent, $caPoolId, $caPool);
+        $response = $certificateAuthorityServiceClient->createCaPool($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

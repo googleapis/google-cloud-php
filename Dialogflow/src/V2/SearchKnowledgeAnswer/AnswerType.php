@@ -20,7 +20,7 @@ class AnswerType
      */
     const ANSWER_TYPE_UNSPECIFIED = 0;
     /**
-     * The answer is from FAQ doucments.
+     * The answer is from FAQ documents.
      *
      * Generated from protobuf enum <code>FAQ = 1;</code>
      */
@@ -31,11 +31,18 @@ class AnswerType
      * Generated from protobuf enum <code>GENERATIVE = 2;</code>
      */
     const GENERATIVE = 2;
+    /**
+     * The answer is from intent matching.
+     *
+     * Generated from protobuf enum <code>INTENT = 3;</code>
+     */
+    const INTENT = 3;
 
     private static $valueToName = [
         self::ANSWER_TYPE_UNSPECIFIED => 'ANSWER_TYPE_UNSPECIFIED',
         self::FAQ => 'FAQ',
         self::GENERATIVE => 'GENERATIVE',
+        self::INTENT => 'INTENT',
     ];
 
     public static function name($value)

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_SearchRelatedAccountGroupMemberships_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
+use Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient;
 use Google\Cloud\RecaptchaEnterprise\V1\RelatedAccountGroupMembership;
+use Google\Cloud\RecaptchaEnterprise\V1\SearchRelatedAccountGroupMembershipsRequest;
 
 /**
  * Search group memberships related to a given account.
@@ -41,12 +42,14 @@ function search_related_account_group_memberships_sample(string $formattedProjec
     // Create a client.
     $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
 
+    // Prepare the request message.
+    $request = (new SearchRelatedAccountGroupMembershipsRequest())
+        ->setProject($formattedProject);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $recaptchaEnterpriseServiceClient->searchRelatedAccountGroupMemberships(
-            $formattedProject
-        );
+        $response = $recaptchaEnterpriseServiceClient->searchRelatedAccountGroupMemberships($request);
 
         /** @var RelatedAccountGroupMembership $element */
         foreach ($response as $element) {

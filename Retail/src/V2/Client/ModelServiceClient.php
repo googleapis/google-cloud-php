@@ -69,11 +69,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Retail\V2\ModelServiceClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createModelAsync(CreateModelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteModelAsync(DeleteModelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getModelAsync(GetModelRequest $request, array $optionalArgs = [])
@@ -91,8 +86,15 @@ final class ModelServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.retail.v2.ModelService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'retail.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'retail.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -297,6 +299,8 @@ final class ModelServiceClient
      *
      * The async variant is {@see ModelServiceClient::createModelAsync()} .
      *
+     * @example samples/V2/ModelServiceClient/create_model.php
+     *
      * @param CreateModelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -321,6 +325,8 @@ final class ModelServiceClient
      *
      * The async variant is {@see ModelServiceClient::deleteModelAsync()} .
      *
+     * @example samples/V2/ModelServiceClient/delete_model.php
+     *
      * @param DeleteModelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -342,6 +348,8 @@ final class ModelServiceClient
      * Gets a model.
      *
      * The async variant is {@see ModelServiceClient::getModelAsync()} .
+     *
+     * @example samples/V2/ModelServiceClient/get_model.php
      *
      * @param GetModelRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -367,6 +375,8 @@ final class ModelServiceClient
      *
      * The async variant is {@see ModelServiceClient::listModelsAsync()} .
      *
+     * @example samples/V2/ModelServiceClient/list_models.php
+     *
      * @param ListModelsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -390,6 +400,8 @@ final class ModelServiceClient
      * Pauses the training of an existing model.
      *
      * The async variant is {@see ModelServiceClient::pauseModelAsync()} .
+     *
+     * @example samples/V2/ModelServiceClient/pause_model.php
      *
      * @param PauseModelRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -415,6 +427,8 @@ final class ModelServiceClient
      *
      * The async variant is {@see ModelServiceClient::resumeModelAsync()} .
      *
+     * @example samples/V2/ModelServiceClient/resume_model.php
+     *
      * @param ResumeModelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -438,6 +452,8 @@ final class ModelServiceClient
      * Tunes an existing model.
      *
      * The async variant is {@see ModelServiceClient::tuneModelAsync()} .
+     *
+     * @example samples/V2/ModelServiceClient/tune_model.php
      *
      * @param TuneModelRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -465,6 +481,8 @@ final class ModelServiceClient
      * If other values are provided, this API method ignores them.
      *
      * The async variant is {@see ModelServiceClient::updateModelAsync()} .
+     *
+     * @example samples/V2/ModelServiceClient/update_model.php
      *
      * @param UpdateModelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {

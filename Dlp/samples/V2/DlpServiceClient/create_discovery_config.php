@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dlp_v2_generated_DlpService_CreateDiscoveryConfig_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
+use Google\Cloud\Dlp\V2\CreateDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\DiscoveryConfig;
 use Google\Cloud\Dlp\V2\DiscoveryConfig\Status;
-use Google\Cloud\Dlp\V2\DlpServiceClient;
 
 /**
  * Creates a config for discovery to scan and profile storage.
@@ -49,14 +50,17 @@ function create_discovery_config_sample(string $formattedParent, int $discoveryC
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $discoveryConfig = (new DiscoveryConfig())
         ->setStatus($discoveryConfigStatus);
+    $request = (new CreateDiscoveryConfigRequest())
+        ->setParent($formattedParent)
+        ->setDiscoveryConfig($discoveryConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var DiscoveryConfig $response */
-        $response = $dlpServiceClient->createDiscoveryConfig($formattedParent, $discoveryConfig);
+        $response = $dlpServiceClient->createDiscoveryConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

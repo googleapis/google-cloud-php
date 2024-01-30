@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START servicedirectory_v1_generated_RegistrationService_CreateEndpoint_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\ServiceDirectory\V1\Client\RegistrationServiceClient;
+use Google\Cloud\ServiceDirectory\V1\CreateEndpointRequest;
 use Google\Cloud\ServiceDirectory\V1\Endpoint;
-use Google\Cloud\ServiceDirectory\V1\RegistrationServiceClient;
 
 /**
  * Creates an endpoint, and returns the new endpoint.
@@ -45,13 +46,17 @@ function create_endpoint_sample(string $formattedParent, string $endpointId): vo
     // Create a client.
     $registrationServiceClient = new RegistrationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $endpoint = new Endpoint();
+    $request = (new CreateEndpointRequest())
+        ->setParent($formattedParent)
+        ->setEndpointId($endpointId)
+        ->setEndpoint($endpoint);
 
     // Call the API and handle any network failures.
     try {
         /** @var Endpoint $response */
-        $response = $registrationServiceClient->createEndpoint($formattedParent, $endpointId, $endpoint);
+        $response = $registrationServiceClient->createEndpoint($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

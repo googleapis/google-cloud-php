@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START clouddebugger_v2_generated_Debugger2_GetBreakpoint_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Debugger\V2\Debugger2Client;
+use Google\Cloud\Debugger\V2\Client\Debugger2Client;
+use Google\Cloud\Debugger\V2\GetBreakpointRequest;
 use Google\Cloud\Debugger\V2\GetBreakpointResponse;
 
 /**
@@ -43,10 +44,16 @@ function get_breakpoint_sample(
     // Create a client.
     $debugger2Client = new Debugger2Client();
 
+    // Prepare the request message.
+    $request = (new GetBreakpointRequest())
+        ->setDebuggeeId($debuggeeId)
+        ->setBreakpointId($breakpointId)
+        ->setClientVersion($clientVersion);
+
     // Call the API and handle any network failures.
     try {
         /** @var GetBreakpointResponse $response */
-        $response = $debugger2Client->getBreakpoint($debuggeeId, $breakpointId, $clientVersion);
+        $response = $debugger2Client->getBreakpoint($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

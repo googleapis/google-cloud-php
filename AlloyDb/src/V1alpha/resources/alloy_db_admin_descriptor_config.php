@@ -193,6 +193,16 @@ return [
                     'resourcesGetMethod' => 'getClusters',
                 ],
             ],
+            'ListDatabases' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getDatabases',
+                ],
+            ],
             'ListInstances' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

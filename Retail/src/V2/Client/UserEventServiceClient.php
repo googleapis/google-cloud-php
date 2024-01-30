@@ -56,11 +56,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Retail\V2\UserEventServiceClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface collectUserEventAsync(CollectUserEventRequest $request, array $optionalArgs = [])
  * @method PromiseInterface importUserEventsAsync(ImportUserEventsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface purgeUserEventsAsync(PurgeUserEventsRequest $request, array $optionalArgs = [])
@@ -75,8 +70,15 @@ final class UserEventServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.retail.v2.UserEventService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'retail.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'retail.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -287,6 +289,8 @@ final class UserEventServiceClient
      *
      * The async variant is {@see UserEventServiceClient::collectUserEventAsync()} .
      *
+     * @example samples/V2/UserEventServiceClient/collect_user_event.php
+     *
      * @param CollectUserEventRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -317,6 +321,8 @@ final class UserEventServiceClient
      *
      * The async variant is {@see UserEventServiceClient::importUserEventsAsync()} .
      *
+     * @example samples/V2/UserEventServiceClient/import_user_events.php
+     *
      * @param ImportUserEventsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -343,6 +349,8 @@ final class UserEventServiceClient
      * command first.
      *
      * The async variant is {@see UserEventServiceClient::purgeUserEventsAsync()} .
+     *
+     * @example samples/V2/UserEventServiceClient/purge_user_events.php
      *
      * @param PurgeUserEventsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -375,6 +383,8 @@ final class UserEventServiceClient
      *
      * The async variant is {@see UserEventServiceClient::rejoinUserEventsAsync()} .
      *
+     * @example samples/V2/UserEventServiceClient/rejoin_user_events.php
+     *
      * @param RejoinUserEventsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -398,6 +408,8 @@ final class UserEventServiceClient
      * Writes a single user event.
      *
      * The async variant is {@see UserEventServiceClient::writeUserEventAsync()} .
+     *
+     * @example samples/V2/UserEventServiceClient/write_user_event.php
      *
      * @param WriteUserEventRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

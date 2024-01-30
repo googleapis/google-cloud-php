@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_DeleteSKAdNetworkConversionValueSchema_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\DeleteSKAdNetworkConversionValueSchemaRequest;
 use Google\ApiCore\ApiException;
 
 /**
@@ -39,9 +40,13 @@ function delete_sk_ad_network_conversion_value_schema_sample(string $formattedNa
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteSKAdNetworkConversionValueSchemaRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $analyticsAdminServiceClient->deleteSKAdNetworkConversionValueSchema($formattedName);
+        $analyticsAdminServiceClient->deleteSKAdNetworkConversionValueSchema($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -23,8 +23,9 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetExpandedDataSet_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\ExpandedDataSet;
+use Google\Analytics\Admin\V1alpha\GetExpandedDataSetRequest;
 use Google\ApiCore\ApiException;
 
 /**
@@ -39,10 +40,14 @@ function get_expanded_data_set_sample(string $formattedName): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetExpandedDataSetRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var ExpandedDataSet $response */
-        $response = $analyticsAdminServiceClient->getExpandedDataSet($formattedName);
+        $response = $analyticsAdminServiceClient->getExpandedDataSet($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

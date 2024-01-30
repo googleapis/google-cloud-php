@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_SecuritySettingsService_GetSecuritySettings_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\Cx\V3\Client\SecuritySettingsServiceClient;
+use Google\Cloud\Dialogflow\Cx\V3\GetSecuritySettingsRequest;
 use Google\Cloud\Dialogflow\Cx\V3\SecuritySettings;
-use Google\Cloud\Dialogflow\Cx\V3\SecuritySettingsServiceClient;
 
 /**
  * Retrieves the specified
@@ -42,10 +43,14 @@ function get_security_settings_sample(string $formattedName): void
     // Create a client.
     $securitySettingsServiceClient = new SecuritySettingsServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetSecuritySettingsRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var SecuritySettings $response */
-        $response = $securitySettingsServiceClient->getSecuritySettings($formattedName);
+        $response = $securitySettingsServiceClient->getSecuritySettings($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

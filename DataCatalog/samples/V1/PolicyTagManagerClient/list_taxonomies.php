@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datacatalog_v1_generated_PolicyTagManager_ListTaxonomies_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\DataCatalog\V1\PolicyTagManagerClient;
+use Google\Cloud\DataCatalog\V1\Client\PolicyTagManagerClient;
+use Google\Cloud\DataCatalog\V1\ListTaxonomiesRequest;
 use Google\Cloud\DataCatalog\V1\Taxonomy;
 
 /**
@@ -40,10 +41,14 @@ function list_taxonomies_sample(string $formattedParent): void
     // Create a client.
     $policyTagManagerClient = new PolicyTagManagerClient();
 
+    // Prepare the request message.
+    $request = (new ListTaxonomiesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $policyTagManagerClient->listTaxonomies($formattedParent);
+        $response = $policyTagManagerClient->listTaxonomies($request);
 
         /** @var Taxonomy $element */
         foreach ($response as $element) {

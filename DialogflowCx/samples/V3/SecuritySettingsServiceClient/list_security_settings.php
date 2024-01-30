@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_SecuritySettingsService_ListSecuritySettings_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dialogflow\Cx\V3\Client\SecuritySettingsServiceClient;
+use Google\Cloud\Dialogflow\Cx\V3\ListSecuritySettingsRequest;
 use Google\Cloud\Dialogflow\Cx\V3\SecuritySettings;
-use Google\Cloud\Dialogflow\Cx\V3\SecuritySettingsServiceClient;
 
 /**
  * Returns the list of all security settings in the specified location.
@@ -40,10 +41,14 @@ function list_security_settings_sample(string $formattedParent): void
     // Create a client.
     $securitySettingsServiceClient = new SecuritySettingsServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListSecuritySettingsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $securitySettingsServiceClient->listSecuritySettings($formattedParent);
+        $response = $securitySettingsServiceClient->listSecuritySettings($request);
 
         /** @var SecuritySettings $element */
         foreach ($response as $element) {

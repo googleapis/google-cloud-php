@@ -32,6 +32,22 @@ class UpdateGenerativeSettingsRequest extends \Google\Protobuf\Internal\Message
     protected $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Dialogflow\Cx\V3\GenerativeSettings $generativeSettings Required. Generative settings to update.
+     * @param \Google\Protobuf\FieldMask                        $updateMask         Optional. The mask to control which fields get updated. If the mask is not
+     *                                                                              present, all fields will be updated.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\UpdateGenerativeSettingsRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\Cx\V3\GenerativeSettings $generativeSettings, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setGenerativeSettings($generativeSettings)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

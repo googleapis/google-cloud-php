@@ -40,6 +40,22 @@ class DeletePageRequest extends \Google\Protobuf\Internal\Message
     protected $force = false;
 
     /**
+     * @param string $name Required. The name of the page to delete.
+     *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+     *                     ID>/Flows/<flow ID>/pages/<Page ID>`. Please see
+     *                     {@see PagesClient::pageName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\DeletePageRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

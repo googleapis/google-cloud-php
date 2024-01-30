@@ -39,6 +39,22 @@ class ListVersionsRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
+     * @param string $parent Required. The [Flow][google.cloud.dialogflow.cx.v3.Flow] to list all
+     *                       versions for. Format: `projects/<Project ID>/locations/<Location
+     *                       ID>/agents/<Agent ID>/flows/<Flow ID>`. Please see
+     *                       {@see VersionsClient::flowName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\Cx\V3\ListVersionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

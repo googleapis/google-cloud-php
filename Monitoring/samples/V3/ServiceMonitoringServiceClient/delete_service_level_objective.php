@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START monitoring_v3_generated_ServiceMonitoringService_DeleteServiceLevelObjective_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Monitoring\V3\ServiceMonitoringServiceClient;
+use Google\Cloud\Monitoring\V3\Client\ServiceMonitoringServiceClient;
+use Google\Cloud\Monitoring\V3\DeleteServiceLevelObjectiveRequest;
 
 /**
  * Delete the given `ServiceLevelObjective`.
@@ -39,9 +40,13 @@ function delete_service_level_objective_sample(string $formattedName): void
     // Create a client.
     $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteServiceLevelObjectiveRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $serviceMonitoringServiceClient->deleteServiceLevelObjective($formattedName);
+        $serviceMonitoringServiceClient->deleteServiceLevelObjective($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

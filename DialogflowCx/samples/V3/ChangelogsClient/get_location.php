@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v3_generated_Changelogs_GetLocation_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dialogflow\Cx\V3\ChangelogsClient;
+use Google\Cloud\Dialogflow\Cx\V3\Client\ChangelogsClient;
+use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\Location;
 
 /**
@@ -41,10 +42,13 @@ function get_location_sample(): void
     // Create a client.
     $changelogsClient = new ChangelogsClient();
 
+    // Prepare the request message.
+    $request = new GetLocationRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var Location $response */
-        $response = $changelogsClient->getLocation();
+        $response = $changelogsClient->getLocation($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

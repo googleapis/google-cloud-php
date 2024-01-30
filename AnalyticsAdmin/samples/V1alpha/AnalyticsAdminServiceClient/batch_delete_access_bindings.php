@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_BatchDeleteAccessBindings_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\BatchDeleteAccessBindingsRequest;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\DeleteAccessBindingRequest;
 use Google\ApiCore\ApiException;
 
@@ -48,14 +49,17 @@ function batch_delete_access_bindings_sample(
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $deleteAccessBindingRequest = (new DeleteAccessBindingRequest())
         ->setName($formattedRequestsName);
     $requests = [$deleteAccessBindingRequest,];
+    $request = (new BatchDeleteAccessBindingsRequest())
+        ->setParent($formattedParent)
+        ->setRequests($requests);
 
     // Call the API and handle any network failures.
     try {
-        $analyticsAdminServiceClient->batchDeleteAccessBindings($formattedParent, $requests);
+        $analyticsAdminServiceClient->batchDeleteAccessBindings($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

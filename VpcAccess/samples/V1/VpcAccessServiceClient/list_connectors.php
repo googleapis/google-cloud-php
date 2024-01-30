@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vpcaccess_v1_generated_VpcAccessService_ListConnectors_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\VpcAccess\V1\Client\VpcAccessServiceClient;
 use Google\Cloud\VpcAccess\V1\Connector;
-use Google\Cloud\VpcAccess\V1\VpcAccessServiceClient;
+use Google\Cloud\VpcAccess\V1\ListConnectorsRequest;
 
 /**
  * Lists Serverless VPC Access connectors.
@@ -39,10 +40,14 @@ function list_connectors_sample(string $formattedParent): void
     // Create a client.
     $vpcAccessServiceClient = new VpcAccessServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListConnectorsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $vpcAccessServiceClient->listConnectors($formattedParent);
+        $response = $vpcAccessServiceClient->listConnectors($request);
 
         /** @var Connector $element */
         foreach ($response as $element) {

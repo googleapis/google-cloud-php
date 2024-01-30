@@ -80,6 +80,8 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * @deprecated This class will be removed in the next major version update.
  */
 class CloudFunctionsServiceGapicClient
 {
@@ -88,8 +90,15 @@ class CloudFunctionsServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.functions.v1.CloudFunctionsService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'cloudfunctions.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'cloudfunctions.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -480,7 +489,7 @@ class CloudFunctionsServiceGapicClient
 
     /**
      * Creates a new function. If a function with the given name already exists in
-     * the specified project, the long running operation returns an
+     * the specified project, the long running operation will return
      * `ALREADY_EXISTS` error.
      *
      * Sample code:
@@ -493,7 +502,7 @@ class CloudFunctionsServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -510,7 +519,7 @@ class CloudFunctionsServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -562,7 +571,7 @@ class CloudFunctionsServiceGapicClient
 
     /**
      * Deletes a function with the given name from the specified project. If the
-     * given function is used by some trigger, the trigger is updated to
+     * given function is used by some trigger, the trigger will be updated to
      * remove this function.
      *
      * Sample code:
@@ -635,9 +644,9 @@ class CloudFunctionsServiceGapicClient
 
     /**
      * Returns a signed URL for downloading deployed function source code.
-     * The URL is only valid for a limited period and must be used within
+     * The URL is only valid for a limited period and should be used within
      * minutes after generation.
-     * For more information about the signed URL usage, see:
+     * For more information about the signed URL usage see:
      * https://cloud.google.com/storage/docs/access-control/signed-urls
      *
      * Sample code:
@@ -714,12 +723,12 @@ class CloudFunctionsServiceGapicClient
      * attached, the identity from the credentials would be used, but that
      * identity does not have permissions to upload files to the URL.
      *
-     * When making an HTTP PUT request, these two headers must be specified:
+     * When making a HTTP PUT request, these two headers need to be specified:
      *
      * * `content-type: application/zip`
      * * `x-goog-content-length-range: 0,104857600`
      *
-     * And this header must NOT be specified:
+     * And this header SHOULD NOT be specified:
      *
      * * `Authorization: Bearer YOUR_TOKEN`
      *
@@ -741,11 +750,11 @@ class CloudFunctionsServiceGapicClient
      *           should be generated, specified in the format `projects/&#42;/locations/*`.
      *     @type string $kmsKeyName
      *           Resource name of a KMS crypto key (managed by the user) used to
-     *           encrypt/decrypt function source code objects in staging Cloud Storage
+     *           encrypt/decrypt function source code objects in intermediate Cloud Storage
      *           buckets. When you generate an upload url and upload your source code, it
-     *           gets copied to a staging Cloud Storage bucket in an internal regional
-     *           project. The source code is then copied to a versioned directory in the
-     *           sources bucket in the consumer project during the function deployment.
+     *           gets copied to an intermediate Cloud Storage bucket. The source code is
+     *           then copied to a versioned directory in the sources bucket in the consumer
+     *           project during the function deployment.
      *
      *           It must match the pattern
      *           `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.
@@ -812,6 +821,13 @@ class CloudFunctionsServiceGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type int $versionId
+     *           Optional. The optional version of the function whose details should be
+     *           obtained. The version of a 1st Gen function is an integer that starts from
+     *           1 and gets incremented on redeployments. Each deployment creates a config
+     *           version of the underlying function. GCF may keep historical configs for old
+     *           versions. This field can be specified to fetch the historical configs.
+     *           Leave it blank or set to 0 to get the latest version of the function.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -828,6 +844,10 @@ class CloudFunctionsServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['versionId'])) {
+            $request->setVersionId($optionalArgs['versionId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1054,7 +1074,7 @@ class CloudFunctionsServiceGapicClient
     /**
      * Tests the specified permissions against the IAM access control policy
      * for a function.
-     * If the function does not exist, this returns an empty set of
+     * If the function does not exist, this will return an empty set of
      * permissions, not a NOT_FOUND error.
      *
      * Sample code:
@@ -1124,7 +1144,7 @@ class CloudFunctionsServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1141,7 +1161,7 @@ class CloudFunctionsServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudkms_v1_generated_EkmService_ListLocations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Kms\V1\EkmServiceClient;
+use Google\Cloud\Kms\V1\Client\EkmServiceClient;
+use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 
 /**
@@ -42,10 +43,13 @@ function list_locations_sample(): void
     // Create a client.
     $ekmServiceClient = new EkmServiceClient();
 
+    // Prepare the request message.
+    $request = new ListLocationsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $ekmServiceClient->listLocations();
+        $response = $ekmServiceClient->listLocations($request);
 
         /** @var Location $element */
         foreach ($response as $element) {

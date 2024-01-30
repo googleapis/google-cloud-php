@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Retail\V2\Catalog;
-use Google\Cloud\Retail\V2\CatalogServiceClient;
+use Google\Cloud\Retail\V2\Client\CatalogServiceClient;
+use Google\Cloud\Retail\V2\ListCatalogsRequest;
 
 /**
  * Lists all the [Catalog][google.cloud.retail.v2.Catalog]s associated with
@@ -45,10 +46,14 @@ function list_catalogs_sample(string $formattedParent): void
     // Create a client.
     $catalogServiceClient = new CatalogServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListCatalogsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $catalogServiceClient->listCatalogs($formattedParent);
+        $response = $catalogServiceClient->listCatalogs($request);
 
         /** @var Catalog $element */
         foreach ($response as $element) {

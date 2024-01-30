@@ -75,8 +75,7 @@ use Google\Protobuf\FieldMask;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Billing\V1\Client\CloudBillingClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Billing\V1\Client\CloudBillingClient}.
  */
 class CloudBillingGapicClient
 {
@@ -85,8 +84,15 @@ class CloudBillingGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.billing.v1.CloudBilling';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'cloudbilling.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'cloudbilling.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -835,7 +841,7 @@ class CloudBillingGapicClient
      *                                  Must be of the form `billingAccounts/{billing_account_id}`.
      *                                  The specified billing account cannot be a subaccount, since a subaccount
      *                                  always belongs to the same organization as its parent account.
-     * @param string $destinationParent Required. The resource name of the Organization to reparent
+     * @param string $destinationParent Required. The resource name of the Organization to move
      *                                  the billing account under.
      *                                  Must be of the form `organizations/{organization_id}`.
      * @param array  $optionalArgs      {

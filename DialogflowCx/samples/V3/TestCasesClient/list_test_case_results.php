@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v3_generated_TestCases_ListTestCaseResults_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dialogflow\Cx\V3\Client\TestCasesClient;
+use Google\Cloud\Dialogflow\Cx\V3\ListTestCaseResultsRequest;
 use Google\Cloud\Dialogflow\Cx\V3\TestCaseResult;
-use Google\Cloud\Dialogflow\Cx\V3\TestCasesClient;
 
 /**
  * Fetches the list of run results for the given test case. A maximum of 100
@@ -43,10 +44,14 @@ function list_test_case_results_sample(string $formattedParent): void
     // Create a client.
     $testCasesClient = new TestCasesClient();
 
+    // Prepare the request message.
+    $request = (new ListTestCaseResultsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $testCasesClient->listTestCaseResults($formattedParent);
+        $response = $testCasesClient->listTestCaseResults($request);
 
         /** @var TestCaseResult $element */
         foreach ($response as $element) {

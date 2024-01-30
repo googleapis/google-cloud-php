@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\BigQuery\Reservation\V1\Assignment;
-use Google\Cloud\BigQuery\Reservation\V1\ReservationServiceClient;
+use Google\Cloud\BigQuery\Reservation\V1\Client\ReservationServiceClient;
+use Google\Cloud\BigQuery\Reservation\V1\SearchAllAssignmentsRequest;
 
 /**
  * Looks up assignments for a specified resource for a particular region.
@@ -60,10 +61,14 @@ function search_all_assignments_sample(string $formattedParent): void
     // Create a client.
     $reservationServiceClient = new ReservationServiceClient();
 
+    // Prepare the request message.
+    $request = (new SearchAllAssignmentsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $reservationServiceClient->searchAllAssignments($formattedParent);
+        $response = $reservationServiceClient->searchAllAssignments($request);
 
         /** @var Assignment $element */
         foreach ($response as $element) {
