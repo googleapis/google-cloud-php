@@ -160,7 +160,7 @@ class RestTransport implements TransportInterface
 
                 return $return;
             },
-            function (\Exception $ex) {
+            function (\Throwable $ex) {
                 if ($ex instanceof RequestException && $ex->hasResponse()) {
                     throw ApiException::createFromRequestException($ex);
                 }
