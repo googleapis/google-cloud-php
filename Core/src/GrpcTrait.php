@@ -29,6 +29,7 @@ use Google\Cloud\Core\GrpcRequestWrapper;
 trait GrpcTrait
 {
     use WhitelistTrait;
+    use ArrayTrait;
     use ApiHelperTrait;
 
     /**
