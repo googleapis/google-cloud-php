@@ -72,20 +72,24 @@ class PubSubClientTest extends TestCase
     {
         $topicName = 'test-topic';
 
-        $this->requestHandler->sendRequest(
-            PublisherClient::class,
-            'createTopic',
-            Argument::cetera()
-        )->willReturn([
-            'name' => PublisherClient::topicName(self::PROJECT, $topicName)
-        ]);
+        $this->requestHandler
+            ->sendRequest(
+                PublisherClient::class,
+                'createTopic',
+                Argument::cetera()
+            )
+                ->willReturn([
+                'name' => PublisherClient::topicName(self::PROJECT, $topicName)
+            ]);
 
         // Set this to zero to make sure we're getting the cached result
-        $this->requestHandler->sendRequest(
-            PublisherClient::class,
-            'getTopic',
-            Argument::cetera()
-        )->shouldNotBeCalled();
+        $this->requestHandler
+            ->sendRequest(
+                PublisherClient::class,
+                'getTopic',
+                Argument::cetera()
+            )
+            ->shouldNotBeCalled();
 
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -103,13 +107,16 @@ class PubSubClientTest extends TestCase
     {
         $topicName = 'test-topic';
 
-        $this->requestHandler->sendRequest(
-            PublisherClient::class,
-            'getTopic',
-            Argument::cetera()
-        )->willReturn([
-            'name' => PublisherClient::topicName(self::PROJECT, $topicName)
-        ])->shouldBeCalledTimes(1);
+        $this->requestHandler
+            ->sendRequest(
+                PublisherClient::class,
+                'getTopic',
+                Argument::cetera()
+            )
+            ->willReturn([
+                'name' => PublisherClient::topicName(self::PROJECT, $topicName)
+            ])
+            ->shouldBeCalledTimes(1);
 
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -133,13 +140,16 @@ class PubSubClientTest extends TestCase
             ]
         ];
 
-        $this->requestHandler->sendRequest(
-            PublisherClient::class,
-            'listTopics',
-            Argument::cetera()
-        )->willReturn([
-            'topics' => $topicResult
-        ])->shouldBeCalledTimes(1);
+        $this->requestHandler
+            ->sendRequest(
+                PublisherClient::class,
+                'listTopics',
+                Argument::cetera()
+            )
+            ->willReturn([
+                'topics' => $topicResult
+            ])
+            ->shouldBeCalledTimes(1);
 
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -166,24 +176,26 @@ class PubSubClientTest extends TestCase
             ]
         ];
 
-        $this->requestHandler->sendRequest(
-            PublisherClient::class,
-            'listTopics',
-            Argument::any(),
-            Argument::allOf(
-                Argument::that(function ($options) {
-                    if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
-                        return false;
-                    }
-    
-                    return true;
-                })
+        $this->requestHandler
+            ->sendRequest(
+                PublisherClient::class,
+                'listTopics',
+                Argument::any(),
+                Argument::allOf(
+                    Argument::that(function ($options) {
+                        if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
+                            return false;
+                        }
+
+                        return true;
+                    })
+                )
             )
-        )
-        ->willReturn([
-            'topics' => $topicResult,
-            'nextPageToken' => 'foo'
-        ])->shouldBeCalledTimes(2);
+            ->willReturn([
+                'topics' => $topicResult,
+                'nextPageToken' => 'foo'
+            ])
+            ->shouldBeCalledTimes(2);
 
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -205,18 +217,23 @@ class PubSubClientTest extends TestCase
 
     public function testSubscribe()
     {
-        $this->requestHandler->sendRequest(
-            SubscriberClient::class,
-            'createSubscription',
-            Argument::cetera()
-        )->willReturn([
-            'test' => 'value'
-        ])->shouldBeCalledTimes(1);
+        $this->requestHandler
+            ->sendRequest(
+                SubscriberClient::class,
+                'createSubscription',
+                Argument::cetera()
+            )
+            ->willReturn([
+                'test' => 'value'
+            ])
+            ->shouldBeCalledTimes(1);
 
-        $this->requestHandler->sendRequest(
-            SubscriberClient::class,
-            'getSubscription',
-        )->shouldNotBeCalled();
+        $this->requestHandler
+            ->sendRequest(
+                SubscriberClient::class,
+                'getSubscription',
+            )
+            ->shouldNotBeCalled();
 
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -228,12 +245,14 @@ class PubSubClientTest extends TestCase
 
     public function testSubscription()
     {
-        $this->requestHandler->sendRequest(
-            SubscriberClient::class,
-            'getSubscription',
-            Argument::cetera()
-        )->shouldBeCalledTimes(1)
-        ->willReturn(['foo' => 'bar']);
+        $this->requestHandler
+            ->sendRequest(
+                SubscriberClient::class,
+                'getSubscription',
+                Argument::cetera()
+            )
+            ->shouldBeCalledTimes(1)
+            ->willReturn(['foo' => 'bar']);
 
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -261,13 +280,16 @@ class PubSubClientTest extends TestCase
             ]
         ];
 
-        $this->requestHandler->sendRequest(
-            SubscriberClient::class,
-            'listSubscriptions',
-            Argument::cetera()
-        )->willReturn([
-            'subscriptions' => $subscriptionResult
-        ])->shouldBeCalledTimes(1);
+        $this->requestHandler
+            ->sendRequest(
+                SubscriberClient::class,
+                'listSubscriptions',
+                Argument::cetera()
+            )
+            ->willReturn([
+                'subscriptions' => $subscriptionResult
+            ])
+            ->shouldBeCalledTimes(1);
 
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -297,23 +319,26 @@ class PubSubClientTest extends TestCase
             ]
         ];
 
-        $this->requestHandler->sendRequest(
-            SubscriberClient::class,
-            'listSubscriptions',
-            Argument::any(),
-            Argument::allOf(
-                Argument::that(function ($options) {
-                    if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
-                        return false;
-                    }
+        $this->requestHandler
+            ->sendRequest(
+                SubscriberClient::class,
+                'listSubscriptions',
+                Argument::any(),
+                Argument::allOf(
+                    Argument::that(function ($options) {
+                        if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
+                            return false;
+                        }
 
-                    return true;
-                })
+                        return true;
+                    })
+                )
             )
-        )->willReturn([
-            'subscriptions' => $subscriptionResult,
-            'nextPageToken' => 'foo'
-        ])->shouldBeCalledTimes(2);
+            ->willReturn([
+                'subscriptions' => $subscriptionResult,
+                'nextPageToken' => 'foo'
+            ])
+            ->shouldBeCalledTimes(2);
 
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -335,12 +360,14 @@ class PubSubClientTest extends TestCase
 
     public function testCreateSnapshot()
     {
-        $this->requestHandler->sendRequest(
-            SubscriberClient::class,
-            'createSnapshot',
-            Argument::cetera()
-        )->shouldBeCalled()
-        ->willReturn([]);
+        $this->requestHandler
+            ->sendRequest(
+                SubscriberClient::class,
+                'createSnapshot',
+                Argument::cetera()
+            )
+            ->shouldBeCalled()
+            ->willReturn([]);
 
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -370,13 +397,16 @@ class PubSubClientTest extends TestCase
             ]
         ];
 
-        $this->requestHandler->sendRequest(
-            SubscriberClient::class,
-            'listSnapshots',
-            Argument::cetera()
-        )->willReturn([
-            'snapshots' => $snapshotResult
-        ])->shouldBeCalledTimes(1);
+        $this->requestHandler
+            ->sendRequest(
+                SubscriberClient::class,
+                'listSnapshots',
+                Argument::cetera()
+            )
+            ->willReturn([
+                'snapshots' => $snapshotResult
+            ])
+            ->shouldBeCalledTimes(1);
 
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -403,23 +433,26 @@ class PubSubClientTest extends TestCase
             ]
         ];
 
-        $this->requestHandler->sendRequest(
-            SubscriberClient::class,
-            'listSnapshots',
-            Argument::any(),
-            Argument::allOf(
-                Argument::that(function ($options) {
-                    if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
-                        return false;
-                    }
+        $this->requestHandler
+            ->sendRequest(
+                SubscriberClient::class,
+                'listSnapshots',
+                Argument::any(),
+                Argument::allOf(
+                    Argument::that(function ($options) {
+                        if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
+                            return false;
+                        }
 
-                    return true;
-                })
+                        return true;
+                    })
+                )
             )
-        )->willReturn([
-            'snapshots' => $snapshotResult,
-            'nextPageToken' => 'foo'
-        ])->shouldBeCalledTimes(2);
+            ->willReturn([
+                'snapshots' => $snapshotResult,
+                'nextPageToken' => 'foo'
+            ])
+            ->shouldBeCalledTimes(2);
 
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -455,11 +488,13 @@ class PubSubClientTest extends TestCase
         $definition = 'bar';
         $res = ['a' => 'b'];
 
-        $this->requestHandler->sendRequest(
-            SchemaServiceClient::class,
-            'createSchema',
-            Argument::cetera()
-        )->willReturn(['a' => 'b']);
+        $this->requestHandler
+            ->sendRequest(
+                SchemaServiceClient::class,
+                'createSchema',
+                Argument::cetera()
+            )
+            ->willReturn(['a' => 'b']);
 
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -481,13 +516,16 @@ class PubSubClientTest extends TestCase
             ]
         ];
 
-        $this->requestHandler->sendRequest(
-            SchemaServiceClient::class,
-            'listSchemas',
-            Argument::cetera()
-        )->willReturn([
-            'schemas' => $schemaResult
-        ])->shouldBeCalledTimes(1);
+        $this->requestHandler
+            ->sendRequest(
+                SchemaServiceClient::class,
+                'listSchemas',
+                Argument::cetera()
+            )
+            ->willReturn([
+                'schemas' => $schemaResult
+            ])
+            ->shouldBeCalledTimes(1);
 
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -504,11 +542,14 @@ class PubSubClientTest extends TestCase
 
     public function testValidateSchema()
     {
-        $this->requestHandler->sendRequest(
-            SchemaServiceClient::class,
-            'validateSchema',
-            Argument::cetera()
-        )->shouldBeCalled()->willReturn(['foo' => 'bar']);
+        $this->requestHandler
+            ->sendRequest(
+                SchemaServiceClient::class,
+                'validateSchema',
+                Argument::cetera()
+            )
+            ->shouldBeCalled()
+            ->willReturn(['foo' => 'bar']);
 
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -524,12 +565,14 @@ class PubSubClientTest extends TestCase
     {
         $this->expectException(BadRequestException::class);
 
-        $this->requestHandler->sendRequest(
-            SchemaServiceClient::class,
-            'validateSchema',
-            Argument::cetera()
-        )->shouldBeCalled()
-        ->willThrow(new BadRequestException('foo'));
+        $this->requestHandler
+            ->sendRequest(
+                SchemaServiceClient::class,
+                'validateSchema',
+                Argument::cetera()
+            )
+            ->shouldBeCalled()
+            ->willThrow(new BadRequestException('foo'));
 
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -546,11 +589,14 @@ class PubSubClientTest extends TestCase
     {
         $message = 'hello';
         $encoding = 'JSON';
-        $this->requestHandler->sendRequest(
-            SchemaServiceClient::class,
-            'validateMessage',
-            Argument::cetera()
-        )->shouldBeCalled()->willReturn('foo');
+        $this->requestHandler
+            ->sendRequest(
+                SchemaServiceClient::class,
+                'validateMessage',
+                Argument::cetera()
+            )
+            ->shouldBeCalled()
+            ->willReturn('foo');
 
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
