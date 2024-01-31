@@ -180,18 +180,18 @@ trait ClientTrait
             'credentials' => null,
         ];
 
-        if ($config['credentials']
-            && $config['credentials'] instanceof ProjectIdProviderInterface
-            && $projectId = $config['credentials']->getProjectId()) {
-            return $projectId;
-        }
-
         if ($config['projectId']) {
             return $config['projectId'];
         }
 
         if ($config['hasEmulator']) {
             return 'emulator-project';
+        }
+
+        if ($config['credentials']
+            && $config['credentials'] instanceof ProjectIdProviderInterface
+            && $projectId = $config['credentials']->getProjectId()) {
+            return $projectId;
         }
 
         if (isset($config['keyFile'])) {

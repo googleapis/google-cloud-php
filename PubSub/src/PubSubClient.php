@@ -18,7 +18,7 @@
 namespace Google\Cloud\PubSub;
 
 use Google\ApiCore\Serializer;
-use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\ClientOptionsTrait;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
@@ -97,7 +97,7 @@ class PubSubClient
     use ClientTrait;
     use IncomingMessageTrait;
     use ResourceNameTrait;
-    use GapicClientTrait;
+    use ClientOptionsTrait;
     use ApiHelperTrait;
 
     const VERSION = '1.51.0';
