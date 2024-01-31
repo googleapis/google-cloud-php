@@ -20,7 +20,6 @@ namespace Google\Cloud\PubSub;
 use Google\ApiCore\Serializer;
 use Google\ApiCore\ClientOptionsTrait;
 use Google\Cloud\Core\ApiHelperTrait;
-use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\BadRequestException;

@@ -20,7 +20,6 @@ namespace Google\Cloud\PubSub;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
-use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\BadRequestException;
@@ -101,7 +100,6 @@ use InvalidArgumentException;
  */
 class Subscription
 {
-    use ArrayTrait;
     use IncomingMessageTrait;
     use ResourceNameTrait;
     use TimeTrait;
@@ -1252,7 +1250,7 @@ class Subscription
     public function seekToTime(Timestamp $timestamp, array $options = [])
     {
         $data = ['time' => $timestamp->formatForApi(), 'subscription' => $this->name];
-        
+
         $data = $this->convertDataToProtos($data, ['time' => ProtobufTimestamp::class]);
         $request = $this->serializer->decodeMessage(new SeekRequest(), $data);
 
@@ -1502,7 +1500,7 @@ class Subscription
         // EOD enabled subscription
         if ($this->isExceptionExactlyOnce($e)) {
             $metadata = $e->getErrorInfoMetadata();
-            
+
             foreach ($metadata as $ackId => $failureReason) {
                 // check if the prefix of the failure reason is same as
                 // the transient failure for EOD enabled subscriptions
