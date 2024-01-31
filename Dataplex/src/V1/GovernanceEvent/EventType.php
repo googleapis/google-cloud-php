@@ -110,7 +110,7 @@ class EventType
      */
     const GOVERNANCE_RULE_ERRORS = 17;
     /**
-     * Governance rule prcoessing Event.
+     * Governance rule processing Event.
      *
      * Generated from protobuf enum <code>GOVERNANCE_RULE_PROCESSING = 18;</code>
      */
